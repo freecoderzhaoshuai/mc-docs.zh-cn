@@ -1,22 +1,22 @@
 ---
 title: 使用 .NET 创建存储访问策略
 titleSuffix: Azure Storage
-description: 了解如何使用 .NET 客户端库创建存储访问策略。
+description: 使用 Azure 存储和 .NET 创建存储访问策略。 对服务器上的服务级别共享访问签名执行其他级别的控制。
 services: storage
 author: WenJason
 ms.service: storage
 ms.topic: how-to
 origin.date: 06/16/2019
-ms.date: 07/20/2020
+ms.date: 08/24/2020
 ms.author: v-jay
 ms.reviewer: ozgun
 ms.subservice: common
-ms.openlocfilehash: 2da4f946be84bbf2f59a53d37b22c11bfb3e4e55
-ms.sourcegitcommit: 31da682a32dbb41c2da3afb80d39c69b9f9c1bc6
+ms.openlocfilehash: b2483429078a0dbd24ba8cb979b6acd418dc3553
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86414727"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753322"
 ---
 # <a name="create-a-stored-access-policy-with-net"></a>使用 .NET 创建存储访问策略
 
@@ -34,13 +34,15 @@ ms.locfileid: "86414727"
 >
 > 仅服务 SAS 支持存储访问策略。 帐户 SAS 不支持存储访问策略。  
 
+有关存储访问策略的更多信息，请参阅[定义存储访问策略](https://docs.microsoft.com/rest/api/storageservices/define-stored-access-policy)。
+
 ## <a name="create-a-stored-access-policy"></a>创建存储访问策略
 
 创建存储访问策略的基础 REST 操作是[设置容器 ACL](https://docs.microsoft.com/rest/api/storageservices/set-container-acl)。 你必须通过使用连接字符串中的帐户访问密钥，授权该操作通过共享密钥创建存储访问策略。 不支持使用 Azure AD 凭据授权“设置容器 ACL”操作。 有关详细信息，请参阅[调用 blob 和队列数据操作的权限](https://docs.microsoft.com/rest/api/storageservices/authorize-with-azure-active-directory#permissions-for-calling-blob-and-queue-data-operations)。
 
 以下代码示例会在容器上创建存储访问策略。 可以使用访问策略指定对容器或其 Blob 上的服务 SAS 的约束。
 
-# <a name="net-v12-sdk"></a>[.NET v12 SDK](#tab/dotnet)
+# <a name="net-v12"></a>[.NET v12](#tab/dotnet)
 
 若要使用适用于 Azure 存储的 .NET 客户端库版本 12 在容器上创建存储访问策略，请调用以下方法之一：
 
@@ -91,7 +93,7 @@ async static Task CreateStoredAccessPolicyAsync(string containerName)
 }
 ```
 
-# <a name="net-v11-sdk"></a>[.NET v11 SDK](#tab/dotnet11)
+# <a name="net-v11"></a>[.NET v11](#tab/dotnet11)
 
 若要使用适用于 Azure 存储的 .NET 客户端库版本 12 在容器上创建存储访问策略，请调用以下方法之一：
 

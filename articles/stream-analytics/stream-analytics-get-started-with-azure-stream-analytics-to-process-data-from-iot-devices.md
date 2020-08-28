@@ -1,27 +1,29 @@
 ---
 title: 使用 Azure 流分析处理实时 IoT 数据流
 description: 带流分析和实时数据处理的 IoT 传感器标记和数据流
-author: lingliw
-ms.author: v-lingwu
-ms.reviewer: jasonh
+author: Johnnytechn
+ms.author: v-johya
+ms.reviewer: mamccrea
 ms.service: stream-analytics
-ms.topic: quickstart
+ms.topic: how-to
 origin.date: 11/26/2019
-ms.date: 01/06/2020
-ms.openlocfilehash: 6808ae4903676c6bb85517f994ee5a507c64077e
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.date: 08/20/2020
+ms.openlocfilehash: 280ef7aef92282ca9d17010198f6e1f644e3a60a
+ms.sourcegitcommit: 09c7071f4d0d9256b40a6bf700b38c6a25db1b26
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75856941"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715746"
 ---
 # <a name="process-real-time-iot-data-streams-with-azure-stream-analytics"></a>使用 Azure 流分析处理实时 IoT 数据流
 
 本文介绍如何创建流处理逻辑，以从物联网 (IoT) 设备收集数据。 使用真实的物联网 (IoT) 用例来演示如何经济实惠地快速生成解决方案。
 
 ## <a name="prerequisites"></a>必备条件
-* [Azure 订阅](https://www.azure.cn/pricing/1rmb-trial/)
-* 可从 [GitHub](https://github.com/Azure/azure-stream-analytics/tree/master/Samples/GettingStarted)
+
+* 创建 [Azure 订阅](https://www.azure.cn/pricing/1rmb-trial/)试用版
+* 可从 [GitHub](https://github.com/Azure/azure-stream-analytics/tree/master/Samples/GettingStarted) 下载示例查询和数据文件
+<!--Correct in MC: https://github.com/Azure/azure-stream-analytics/tree/master/Samples/GettingStarted-->
 
 ## <a name="scenario"></a>场景
 
@@ -44,7 +46,8 @@ Contoso 是一家工业自动化公司，该公司已将其制造流程完全自
 
 ## <a name="create-a-stream-analytics-job"></a>创建流分析作业
 
-1. 在 [Azure 门户](https://portal.azure.cn)的左侧导航菜单中，选择“+ 创建资源”  。 然后从“分析”中选择“流分析作业”   。
+<!--Correct in MC-->
+1. 在 [Azure 门户](https://portal.azure.cn)的左侧导航菜单中，选择“+ 创建资源”  。 然后，从“市场”搜索“流分析作业”，并从结果中选择“流分析作业”  。
    
     ![创建新的流分析作业](./media/stream-analytics-get-started-with-iot-devices/stream-analytics-get-started-with-iot-devices-02.png)
 
@@ -154,6 +157,4 @@ WHERE t2.dspl IS NULL
 
 本文旨在演示如何编写不同的流分析查询语言查询，并在浏览器中查看结果。 但这只是入门知识。 流分析支持多种输入和输出，甚至可以使用 Azure 机器学习中的函数，因而是用于分析数据流的可靠工具。 有关如何编写查询的详细信息，请阅读有关[常用查询模式](stream-analytics-stream-analytics-query-patterns.md)的文章。
 
-
-<!--Update_Description: wording update, update meta propreties -->
 

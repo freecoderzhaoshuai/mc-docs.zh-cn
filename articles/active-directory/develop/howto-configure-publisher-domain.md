@@ -1,30 +1,24 @@
 ---
-title: 配置应用程序的发布者域
+title: 配置应用的发布者域 | Azure
 titleSuffix: Microsoft identity platform
 description: 了解如何配置应用程序的发布者域，以告知用户其信息将发送到何处。
 services: active-directory
-documentationcenter: dev-center-name
 author: rwike77
 manager: CelesteDG
-editor: ''
 ms.service: active-directory
 ms.subservice: develop
-ms.devlang: na
-ms.topic: conceptual
-ms.tgt_pltfrm: na
+ms.topic: how-to
 ms.workload: identity
-origin.date: 04/05/2019
-ms.date: 11/26/2019
+ms.date: 08/18/2020
 ms.author: v-junlch
 ms.reviewer: lenalepa, sureshja, zachowd
 ms.custom: aaddev
-ms.collection: M365-identity-device-management
-ms.openlocfilehash: 89e0cec7d9e814c1169a4790c83f0c1d7a906da7
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 5224ece9c1542c524d95d799f8571e1248b2c8fb
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74655255"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647481"
 ---
 # <a name="how-to-configure-an-applications-publisher-domain"></a>如何：配置应用程序的发布者域
 
@@ -82,9 +76,12 @@ ms.locfileid: "74655255"
    ```json
    {
       "associatedApplications": [
-        {
-           "applicationId": "{YOUR-APP-ID-HERE}"
-        }
+         {
+            "applicationId": "{YOUR-APP-ID-HERE}"
+         },
+         {
+            "applicationId": "{YOUR-OTHER-APP-ID-HERE}"
+         }
       ]
     }
    ```
@@ -159,4 +156,3 @@ ms.locfileid: "74655255"
 
 目前，不支持使用 REST API 或 PowerShell 以编程方式配置发布者域。
 
-<!-- Update_Description: wording update -->

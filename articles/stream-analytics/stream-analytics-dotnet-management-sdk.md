@@ -5,16 +5,16 @@ author: Johnnytechn
 ms.author: v-johya
 ms.reviewer: mamccrea
 ms.service: stream-analytics
-ms.topic: conceptual
+ms.topic: how-to
 origin.date: 12/06/2018
-ms.date: 07/06/2020
+ms.date: 08/20/2020
 ms.custom: seodec18
-ms.openlocfilehash: a2f5a89bd06aba0d93cb556e98e0226e94a886c7
-ms.sourcegitcommit: 9bc3e55f01e0999f05e7b4ebaea95f3ac91d32eb
+ms.openlocfilehash: 92dad03fe226a9740b790a6736df47000f5cef3c
+ms.sourcegitcommit: 09c7071f4d0d9256b40a6bf700b38c6a25db1b26
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86225983"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715747"
 ---
 # <a name="management-net-sdk-set-up-and-run-analytics-jobs-using-the-azure-stream-analytics-api-for-net"></a>Management .NET SDK：使用用于 .NET 的 Azure 流分析 API 设置和运行分析作业
 了解如何通过管理 .NET SDK 设置和运行使用 .NET 版流分析 API 的分析作业。 设置项目、创建输入和输出源、转换，以及开始和停止作业。 就分析作业来说，可以从 Blob 存储或事件中心流式传输数据。
@@ -32,7 +32,7 @@ Azure 流分析是一种完全托管的服务，可以在云中通过流式数�
 
 * 安装 Visual Studio 2019 或 2015。
 * 下载并安装 [Azure .NET SDK](/downloads/)。
-* 在订阅中创建 Azure 资源组。 以下示例是 Azure PowerShell 脚本示例。 有关 Azure PowerShell 的信息，请参阅 [安装和配置 Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview)；  
+* 在订阅中创建 Azure 资源组。 以下示例是 Azure PowerShell 脚本示例。 有关 Azure PowerShell 的信息，请参阅 [安装和配置 Azure PowerShell](https://docs.microsoft.com/powershell/azure/)；  
 
    ```powershell
    # Log in to your Azure account

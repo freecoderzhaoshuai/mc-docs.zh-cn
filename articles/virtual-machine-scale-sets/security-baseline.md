@@ -4,15 +4,15 @@ description: 虚拟机规模集安全基线为实现 Azure 安全基准中指定
 author: msmbaldwin
 ms.service: virtual-machine-scale-sets
 ms.topic: conceptual
-ms.date: 08/06/2020
+ms.date: 08/20/2020
 ms.author: v-junlch
 ms.custom: security-benchmark
-ms.openlocfilehash: bcee757b83f1f2b9e038a4b228a16f01c75ec79e
-ms.sourcegitcommit: 66563f2b68cce57b5816f59295b97f1647d7a3d6
+ms.openlocfilehash: c4b0d33f5b486c0232fdd7ae00e617177e08c229
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87914651"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715167"
 ---
 # <a name="azure-security-baseline-for-virtual-machine-scale-sets"></a>适用于虚拟机规模集的 Azure 安全基线
 
@@ -516,11 +516,11 @@ Microsoft 使用传输层安全性 (TLS) 协议，在云服务和客户之间传
 
 **责任**：客户
 
-### <a name="46-use-role-based-access-control-to-control-access-to-resources"></a>4.6：使用基于角色的访问控制来控制对资源的访问
+### <a name="46-use-azure-rbac-to-control-access-to-resources"></a>4.6：使用 Azure RBAC 控制对资源的访问
 
-**指导**：使用基于角色的访问控制 (RBAC)，可以在团队中对职责进行分配，仅向虚拟机 (VM) 上的用户授予执行作业所需的访问权限。 可以仅允许某些操作，而不是向 VM 上的每个人授予不受限制的权限。 可以使用 Azure CLI 或 Azure PowerShell 为 Azure 门户中的 VM 配置访问控制。
+**指导**：使用 Azure 基于角色的访问控制 (Azure RBAC)，可以在团队中对职责进行分配，仅向虚拟机 (VM) 上的用户授予执行作业所需的访问权限。 可以仅允许某些操作，而不是向 VM 上的每个人授予不受限制的权限。 可以使用 Azure CLI 或 Azure PowerShell 为 Azure 门户中的 VM 配置访问控制。
 
-* [Azure 资源的基于角色的访问控制 (RBAC)](/role-based-access-control/overview)
+* [Azure RBAC](/role-based-access-control/overview)
 
 * [Azure 内置角色](/role-based-access-control/built-in-roles#virtual-machine-contributor)
 
@@ -824,11 +824,11 @@ Microsoft 使用传输层安全性 (TLS) 协议，在云服务和客户之间传
 
 ### <a name="75-securely-store-custom-operating-system-images"></a>7.5：安全存储自定义操作系统映像
 
-**指导**：如果使用自定义映像（例如，虚拟硬盘），请使用 Azure 基于角色的访问控制来确保仅授权用户才能访问映像。
+**指导**：如果使用自定义映像（例如，虚拟硬盘），请使用 Azure 基于角色的访问控制 (Azure RBAC) 来确保仅授权用户才能访问映像。
 
-* [了解 Azure 中的 RBAC](/role-based-access-control/rbac-and-directory-admin-roles)
+* [了解 Azure RBAC](/role-based-access-control/rbac-and-directory-admin-roles)
 
-* [如何在 Azure 中配置 RBAC](/role-based-access-control/quickstart-assign-role-user-portal)
+* [如何配置 Azure RBAC](/role-based-access-control/quickstart-assign-role-user-portal)
 
 **Azure 安全中心监视**：不适用
 
@@ -1032,7 +1032,7 @@ Microsoft 使用传输层安全性 (TLS) 协议，在云服务和客户之间传
 
 **指南**：安全中心向每个警报分配一个严重性，帮助你优先处理应首先调查的警报。 严重性取决于安全中心在发出警报时所依据的检测结果和分析结果的置信度，以及导致发出警报的活动的恶意企图的置信度。
 
-此外，使用标记清楚地标记订阅（例如 生产、非生产）并创建命名系统来对 Azure 资源进行明确标识和分类，特别是处理敏感数据的资源。 你的责任是根据发生事件的 Azure 资源和环境的关键性确定修正警报的优先级。
+此外，请明确标记订阅（例如 生产、非生产）并创建命名系统来对 Azure 资源进行明确标识和分类，特别是处理敏感数据的资源。 你的责任是根据发生事件的 Azure 资源和环境的关键性确定修正警报的优先级。
 
 * [Azure 安全中心中的安全警报](/security-center/security-center-alerts-overview)
 

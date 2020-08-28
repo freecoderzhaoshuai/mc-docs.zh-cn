@@ -8,14 +8,14 @@ ms.reviewer: jasonh
 ms.custom: hdinsightactive
 ms.service: hdinsight
 ms.topic: conceptual
-origin.date: 07/31/2020
-ms.date: 08/17/2020
-ms.openlocfilehash: 6a1498ebc457169a634e511949a9892e703b739e
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+origin.date: 08/09/2020
+ms.date: 08/31/2020
+ms.openlocfilehash: b39a1e49225571ff88c7531b95c68c12098105e8
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917171"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715165"
 ---
 # <a name="release-notes"></a>发行说明
 
@@ -25,9 +25,9 @@ ms.locfileid: "87917171"
 
 Azure HDInsight 是 Azure 中最受企业客户青睐的开源分析服务之一。
 
-## <a name="release-date-07302020"></a>发行日期：2020/07/30
+## <a name="release-date-08092020"></a>发行日期：2020/08/09
 
-此发行版适用于 HDInsight 3.6 和 4.0。 HDInsight 发行版在几天后即会在所有区域中推出。 此处的发行日期是指在第一个区域中的发行日期。 如果看不到以下更改，请耐心等待，几天后发行版会在你所在的区域推出。
+此版本仅适用于 HDInsight 4.0。 HDInsight 发行版在几天后即会在所有区域中推出。 此处的发行日期是指在第一个区域中的发行日期。 如果看不到以下更改，请耐心等待，几天后发行版会在你所在的区域推出。
 
 ## <a name="new-features"></a>新增功能
 ### <a name="support-for-sparkcruise"></a>对 SparkCruise 的支持
@@ -66,6 +66,11 @@ HDInsight 会持续改善群集的可靠性和性能。
 * [HIVE-22121](https://issues.apache.org/jira/browse/HIVE-22121)
 * [HIVE-22136](https://issues.apache.org/jira/browse/HIVE-22136)
 * [HIVE-18786](https://issues.apache.org/jira/browse/HIVE-18786)
+
+已为 Hive 向后移植以下 HBase：
+* [HBASE-21458](https://issues.apache.org/jira/browse/HBASE-21458)
+* [HBASE-24208](https://issues.apache.org/jira/browse/HBASE-24208)
+* [HBASE-24205](https://issues.apache.org/jira/browse/HBASE-24205)
 
 ## <a name="component-version-change"></a>组件版本更改
 此发行版未发生组件版本更改。 可以在[此文档](https://docs.microsoft.com/azure/hdinsight/hdinsight-component-versioning#apache-hadoop-components-available-with-different-hdinsight-versions)中查找 HDInsight 4.0 和 HDInsight 3.6 的当前组件版本。

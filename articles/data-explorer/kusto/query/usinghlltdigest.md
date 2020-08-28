@@ -8,15 +8,15 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 02/19/2020
-ms.date: 08/06/2020
+ms.date: 08/18/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 40b86342a16737bfb95ab99153cd3c11bb670520
-ms.sourcegitcommit: 7ceeca89c0f0057610d998b64c000a2bb0a57285
+ms.openlocfilehash: 8857f88bf5d02999a3902fd6e85388c7bb3e77a2
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87841544"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515651"
 ---
 # <a name="using-hll-and-tdigest"></a>使用 hll() 和 tdigest()
 
@@ -28,7 +28,8 @@ ms.locfileid: "87841544"
 
 > [!NOTE]
 > 在某些情况下，`hll` 或 `tdigest` 聚合函数生成的动态对象可能会很大，会超出编码策略中的默认 MaxValueSize 属性值。 如果是这样，则该对象将作为 null 引入。
-例如，在准确度为 4 的情况下保存 `hll` 函数的输出时，`hll` 对象的大小超出了默认的 MaxValueSize (1MB)。
+> 例如，在准确度为 4 的情况下保存 `hll` 函数的输出时，`hll` 对象的大小超出了默认的 MaxValueSize (1MB)。
+> 若要避免此问题，请修改列的编码策略，如下例所示。
 
 ```kusto
 range x from 1 to 1000000 step 1
@@ -82,7 +83,7 @@ MyTable
 |0|
 
 
-**示例**
+## <a name="example"></a>示例
 
 这里有一个表 `PageViewsHllTDigest`，其中包含每小时查看的页面的 `hll` 值。 你希望将这些值分段成 `12h`。 使用 `hll_merge()` 聚合函数合并 `hll` 值，将时间戳分段成 `12h`。 使用函数 `dcount_hll` 返回最终的 `dcount` 值：
 
@@ -128,7 +129,7 @@ PageViewsHllTDigest
 |2016-05-02 12:00:00.0000000|181315|
 |2016-05-03 00:00:00.0000000|146817|
  
-**示例**
+## <a name="example"></a>示例
 
 如果数据集太大，则会达到 Kusto 限制。在这种情况下，你需要对数据集运行定期查询，但需要运行常规查询来针对大型数据集计算 [`percentile()`](percentiles-aggfunction.md) 或 [`dcount()`](dcount-aggfunction.md)。
 
@@ -179,7 +180,7 @@ PageViewsHllTDigest
 
 此查询的性能应当更高，因为它针对更小的表运行。 在此示例中，第一个查询针对大约 215M 记录运行，而第二个查询仅针对 32 条记录运行：
 
-**示例**
+## <a name="example"></a>示例
 
 保留查询。
 假设你有一个表，其中汇总了用户查看每个维基百科页面的时间（样本大小为 10M），并且对于每个 date1 date2，你想要查明在 date1 和 date2 这两天查看的页面数相对于在 date1 (date1 < date2) 这天查看的页面数的比率。

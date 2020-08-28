@@ -7,16 +7,16 @@ author: WenJason
 ms.service: storage
 ms.topic: conceptual
 origin.date: 04/15/2019
-ms.date: 07/20/2020
+ms.date: 08/24/2020
 ms.author: v-jay
-ms.reviewer: cbrooks
+ms.reviewer: ozgun
 ms.subservice: common
-ms.openlocfilehash: 950b1f26d7d80824be26c12cf30069a7cdfca736
-ms.sourcegitcommit: 31da682a32dbb41c2da3afb80d39c69b9f9c1bc6
+ms.openlocfilehash: dd8ad79f3ee69d6609b3eb2cf8009cbd8a1a9c76
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86414636"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753539"
 ---
 # <a name="authorizing-access-to-data-in-azure-storage"></a>授权访问 Azure 存储中的数据
 
@@ -24,20 +24,19 @@ ms.locfileid: "86414636"
 
 下表介绍了多个选项，Azure 存储提供这些选项，用于授权对资源的访问：
 
-|  |共享密钥（存储帐户密钥）  |共享访问签名 (SAS)  |Azure Active Directory (Azure AD)  |匿名公共读取访问权限  |
-|---------|---------|---------|---------|---------|
-|Azure Blob     |[支持](https://docs.microsoft.com/rest/api/storageservices/authorize-with-shared-key/)         |[支持](storage-sas-overview.md)         |[支持](storage-auth-aad.md)         |[支持](../blobs/storage-manage-access-to-resources.md)         |
-|Azure 文件存储 (SMB)     |[支持](https://docs.microsoft.com/rest/api/storageservices/authorize-with-shared-key/)         |不支持         |不支持         |不支持         |
-|Azure 文件存储 (REST)     |[支持](https://docs.microsoft.com/rest/api/storageservices/authorize-with-shared-key/)         |[支持](storage-sas-overview.md)         |不支持         |不支持         |
-|Azure 队列     |[支持](https://docs.microsoft.com/rest/api/storageservices/authorize-with-shared-key/)         |[支持](storage-sas-overview.md)         |[支持](storage-auth-aad.md)         |不支持         |
-|Azure 表     |[支持](https://docs.microsoft.com/rest/api/storageservices/authorize-with-shared-key/)         |[支持](storage-sas-overview.md)         |不支持         |不支持         |
+| Azure 项目 | 共享密钥（存储帐户密钥） | 共享访问签名 (SAS) | Azure Active Directory (Azure AD) |
+| -------------- | -------------------------------- | ----------------------------- | --------------------------------- |
+|Azure Blob     |[支持](https://docs.microsoft.com/rest/api/storageservices/authorize-with-shared-key/)         |[支持](storage-sas-overview.md)         |[支持](storage-auth-aad.md)         |
+|Azure 文件存储 (SMB)     |[支持](https://docs.microsoft.com/rest/api/storageservices/authorize-with-shared-key/)         |不支持         |不支持         |
+|Azure 文件存储 (REST)     |[支持](https://docs.microsoft.com/rest/api/storageservices/authorize-with-shared-key/)         |[支持](storage-sas-overview.md)         |不支持         |
+|Azure 队列     |[支持](https://docs.microsoft.com/rest/api/storageservices/authorize-with-shared-key/)         |[支持](storage-sas-overview.md)         |[支持](storage-auth-aad.md)         |
+|Azure 表     |[支持](https://docs.microsoft.com/rest/api/storageservices/authorize-with-shared-key/)         |[支持](storage-sas-overview.md)         |不支持         |
 
 下面简要介绍每个授权选项：
 
 - 用于 Blob 和队列的 **Azure Active Directory (Azure AD) 集成**。 Azure AD 提供基于角色的访问控制 (RBAC)，用于控制客户端对存储帐户中资源的访问权限。 有关用于 Blob 和队列的 Azure AD 集成的详细信息，请参阅[使用 Azure Active Directory 授予对 Azure Blob 和队列的访问权限](storage-auth-aad.md)。
 - 用于 blob、文件、队列和表的**共享密钥授权**。 使用共享密钥的客户端会随使用存储帐户访问密钥签名的每个请求传递一个标头。 有关详细信息，请参阅[通过共享密钥进行授权](https://docs.microsoft.com/rest/api/storageservices/authorize-with-shared-key/)。
 - 用于 blob、文件、队列和表的**共享访问签名**。 共享访问签名 (SAS) 针对存储帐户中的资源提供有限的委托访问权限。 通过对签名的有效时间间隔或对它授予的权限添加约束，可灵活地管理访问权限。 有关详细信息，请参阅[使用共享访问签名 (SAS)](storage-sas-overview.md)。
-- 用于容器和 blob 的**匿名公共读取访问**。 无需授权。 有关详细信息，请参阅[管理对容器和 Blob 的匿名读取访问](../blobs/storage-manage-access-to-resources.md)。  
 
 默认情况下，Azure 存储中的所有资源都受到保护，并且只能由帐户所有者使用。 虽然你可以使用上述任何授权策略来为客户端授予访问存储帐户资源的权限，但 Azure 建议尽可能使用 Azure AD，以便最大限度地提高安全性和易用性。
 

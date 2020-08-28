@@ -1,16 +1,18 @@
 ---
 title: 最佳做法
 description: 了解开发 Azure Batch 解决方案的最佳做法和有用技巧。
-ms.author: v-tawe
-origin.date: 05/22/2020
-ms.date: 06/29/2020
+origin.date: 08/12/2020
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: 06/29/2020
+ms.author: v-yeche
 ms.topic: conceptual
-ms.openlocfilehash: 837513dc6bdab750aed8962d009af3126fdc7f5c
-ms.sourcegitcommit: 3cf647177c22b24f76236c57cae19482ead6a283
+ms.openlocfilehash: 07a1630894c3d11a6a5f77634d1b64439e0e6275
+ms.sourcegitcommit: e633c458126612223fbf7a8853dbf19acc7f0fa5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88029644"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88654920"
 ---
 # <a name="azure-batch-best-practices"></a>Azure Batch 最佳做法
 
@@ -31,12 +33,12 @@ ms.locfileid: "88029644"
     不保证各个节点始终可用。 硬件故障、操作系统更新和其他许多问题虽然不太常见，但它们可能会导致个别节点脱机。 如果 Batch 工作负荷需要具有确定性且有保证的进度，则你应该分配包含多个节点的池。
 
 - **不要重复使用资源名称。**
-    我们往往会不断地分配和解除 Batch 资源（作业、池等）。 例如，你可能会在星期一创建一个池，在星期二将它删除，然后在星期四又创建一个池。 应为创建的每个新资源指定一个以前从未用过的唯一名称。 为此，可以使用 GUID（作为整个资源名称或其中的一部分），或者在资源名称中嵌入资源的创建时间。 Batch 支持 [DisplayName](/dotnet/api/microsoft.azure.batch.jobspecification.displayname?view=azure-dotnet)，使用此属性可为资源指定一个用户可读的名称，即使实际资源 ID 不够用户友好。 使用唯一名称可以更方便地区分哪个特定资源在日志和指标中产生了影响。 如果需要针对某个资源提交支持案例，唯一名称还可以消除不明确性。
+    我们往往会不断地分配和解除 Batch 资源（作业、池等）。 例如，你可能会在星期一创建一个池，在星期二将它删除，然后在星期四又创建一个池。 应为创建的每个新资源指定一个以前从未用过的唯一名称。 为此，可以使用 GUID（作为整个资源名称或其中的一部分），或者在资源名称中嵌入资源的创建时间。 Batch 支持 [DisplayName](https://docs.azure.cn/dotnet/api/microsoft.azure.batch.jobspecification.displayname?view=azure-dotnet)，使用此属性可为资源指定一个用户可读的名称，即使实际资源 ID 不够用户友好。 使用唯一名称可以更方便地区分哪个特定资源在日志和指标中产生了影响。 如果需要针对某个资源提交支持案例，唯一名称还可以消除不明确性。
 
 - **池维护和故障期间的连续性。**
     最好是让作业动态使用池。 如果作业将同一个池用于所有用途，在该池出现问题时，作业有可能无法运行。 这对于时间敏感型工作负载尤其重要。 若要解决此问题，请在计划每个作业时动态选择或创建池，或通过某种方式替代池名称，以便可以绕过运行不正常的池。
 
-- **池维护和故障期间的业务连续性** 有许多可能的原因（例如内部错误、容量约束等）会阻止池缩放到所需的大小。出于此原因，应当做好相应准备，以便在必要时将作业目标重新定为不同的池（也许可以使用不同的 VM 大小 - Batch 通过 [UpdateJob](/dotnet/api/microsoft.azure.batch.protocol.joboperationsextensions.update?view=azure-dotnet) 实现此目的）。 避免使用预计永远不会删除或更改的静态池 ID。
+- **池维护和故障期间的业务连续性** 有许多可能的原因（例如内部错误、容量约束等）会阻止池缩放到所需的大小。出于此原因，应当做好相应准备，以便在必要时将作业目标重新定为不同的池（也许可以使用不同的 VM 大小 - Batch 通过 [UpdateJob](https://docs.azure.cn/dotnet/api/microsoft.azure.batch.protocol.joboperationsextensions.update?view=azure-dotnet) 实现此目的）。 避免使用预计永远不会删除或更改的静态池 ID。
 
 ### <a name="pool-lifetime-and-billing"></a>池生存期和计费
 
@@ -59,6 +61,14 @@ Azure 中的 Batch 池可能会遇到停机事件。 在规划和开发 Batch �
 
 如果某个节点发生故障，Batch 会代表你自动尝试恢复这些计算节点。 这可能会触发在恢复的节点上重新计划任何正在运行的任务。 若要详细了解中断的任务，请参阅[重试设计](#design-for-retries-and-re-execution)。
 
+### <a name="custom-image-pools"></a>自定义映像池
+
+使用虚拟机配置创建 Azure Batch 池时，需指定一个虚拟机 (VM) 映像，为池中每个计算节点提供操作系统。 可以使用支持的 Azure 市场映像创建池，也可以[使用共享映像库映像创建自定义映像](batch-sig-images.md)。 尽管你也可以使用[托管映像](batch-custom-images.md)来创建自定义映像池，但我们建议尽可能使用共享映像库创建自定义映像。 使用共享映像库可以更快地预配池、缩放更大数量的 VM 以及在预配 VM 时提高可靠性。
+
+### <a name="third-party-images"></a>第三方映像
+
+可以使用发布到 Azure 市场的第三方映像创建池。 对于用户订阅模式 Batch 帐户，在使用某些第三方映像创建池时，你可能会看到错误“由于市场购买资格检查造成分配失败”。 若要解决此错误，请接受映像发布者设置的术语。 可以通过使用 [Azure Powershell](https://docs.microsoft.com/powershell/module/azurerm.marketplaceordering/set-azurermmarketplaceterms?view=azurermps-6.13.0) 或 [Azure CLI](https://docs.azure.cn/cli/vm/image/terms?view=azure-cli-latest) 来实现此目的。
+
 ### <a name="azure-region-dependency"></a>Azure 区域依赖项
 
 如果你有时间敏感型工作负载或生产工作负载，建议不要依赖单个 Azure 区域。 有些问题虽然极少出现，但可能会影响整个区域。 例如，如果处理需要在特定的时间开始，请考虑在开始之前的相当长一段时间纵向扩展主要区域中的池。 如果扩展该池失败，可以回退并在一个或多个备份区域中纵向扩展池。 如果另一个池出现问题，跨不同区域中多个帐户的池可提供一个现成的且易于访问的备份。 有关详细信息，请参阅[设计应用程序以实现高可用性](high-availability-disaster-recovery.md)。
@@ -77,7 +87,7 @@ Azure 中的 Batch 池可能会遇到停机事件。 在规划和开发 Batch �
 
 在从系统中删除之前，Batch 作业生存期是无限的。 其状态会指示该作业是否可以接受更多任务来进行计划。
 
-除非显式终止作业，否则作业不会自动转换为已完成状态。 可以通过 [onAllTasksComplete](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.common.onalltaskscomplete?view=azure-dotnet) 属性或 [maxWallClockTime](https://docs.microsoft.com/rest/api/batchservice/job/add#jobconstraints) 自动触发此状态转换。
+除非显式终止作业，否则作业不会自动转换为已完成状态。 可以通过 [onAllTasksComplete](https://docs.azure.cn/dotnet/api/microsoft.azure.batch.common.onalltaskscomplete?view=azure-dotnet) 属性或 [maxWallClockTime](https://docs.microsoft.com/rest/api/batchservice/job/add#jobconstraints) 自动触发此状态转换。
 
 存在默认的[活动作业和作业计划配额](batch-quota-limit.md#resource-quotas)。 处于已完成状态的作业和作业计划不会计入此配额。
 
@@ -93,7 +103,7 @@ Batch 中集成了用于通过 [OutputFiles](batch-task-output-files.md) 上传�
 
 ### <a name="manage-task-lifetime"></a>管理任务生存期
 
-当不再需要这些任务时将其删除，或者设置 [retentionTime](/dotnet/api/microsoft.azure.batch.taskconstraints.retentiontime?view=azure-dotnet) 任务约束。 如果设置了 `retentionTime`，当 `retentionTime` 过期时，Batch 会自动清理该任务占用的磁盘空间。
+当不再需要这些任务时将其删除，或者设置 [retentionTime](https://docs.azure.cn/dotnet/api/microsoft.azure.batch.taskconstraints.retentiontime?view=azure-dotnet) 任务约束。 如果设置了 `retentionTime`，当 `retentionTime` 过期时，Batch 会自动清理该任务占用的磁盘空间。
 
 删除任务可以实现两种目的。 它可以确保作业中不会存在积累的任务，存在积累任务会使查询/查找感兴趣的任务变得更困难（因为你必须在“已完成”的任务中筛选）。 此外，它还会清理节点上的相应任务数据（假设尚未达到 `retentionTime`）。 这有助于确保节点中不会填满任务数据且不会耗尽磁盘空间。
 
@@ -107,11 +117,11 @@ Batch 在节点上支持超额订阅的任务（运行的任务数超过节点�
 
 ### <a name="design-for-retries-and-re-execution"></a>设计重试和重新执行
 
-Batch 可以自动重试任务。 有两种类型的重试：用户控制的重试和内部重试。 用户控制的重试由任务的 [maxTaskRetryCount](/dotnet/api/microsoft.azure.batch.taskconstraints.maxtaskretrycount?view=azure-dotnet) 指定。 如果任务中指定的程序退出并出现非零退出代码，则会将该任务重试最多 `maxTaskRetryCount` 次。
+Batch 可以自动重试任务。 有两种类型的重试：用户控制的重试和内部重试。 用户控制的重试由任务的 [maxTaskRetryCount](https://docs.azure.cn/dotnet/api/microsoft.azure.batch.taskconstraints.maxtaskretrycount?view=azure-dotnet) 指定。 如果任务中指定的程序退出并出现非零退出代码，则会将该任务重试最多 `maxTaskRetryCount` 次。
 
 可能会由于计算节点上发生故障（例如，在运行任务时无法更新内部状态或节点上发生故障）而在内部重试任务，不过，这种情况很罕见。 将尽可能地在同一计算节点上重试任务，直到达到内部限制，重试失败后将放弃该任务，并推迟任务以让 Batch 重新对其进行计划（可能会将其安排在不同的计算节点上）。
 
-无论是在专用节点上还是在低优先级节点上执行任务，在设计方面没有任何差异。 无论是任务在低优先级节点上运行时被抢占资源，还是在专用节点上因为故障而中断，都可以通过将任务设计为能够承受故障来进行缓解。
+<!--Not Available on  low-priority -->
 
 ### <a name="build-durable-tasks"></a>生成持久任务
 
@@ -123,6 +133,9 @@ Batch 可以自动重试任务。 有两种类型的重试：用户控制的重�
 
 仅运行一两秒的任务并不是很理想的任务。 应该尝试在单个任务（最少运行 10 秒，最多运行几小时甚至几天）中执行大量的工作。 如果每个任务执行一分钟（或更长时间），则调度开销将仅占总体计算时间的很少一部分。
 
+### <a name="use-pool-scope-for-short-tasks-on-windows-nodes"></a>将池范围用于 Windows 节点上的短任务
+
+在 Batch 节点上计划任务时，可以选择是否使用任务范围或池范围运行任务。 如果任务只运行很短的时间，由于为该任务创建自动用户帐户所需的资源，任务范围可能效率不高。 为了提高效率，请考虑将这些任务设置为池范围。 有关详细信息，请参阅[以具有池范围的自动用户身份运行任务](batch-user-accounts.md#run-a-task-as-an-auto-user-with-pool-scope).
 
 ## <a name="nodes"></a>Nodes
 
@@ -144,7 +157,13 @@ Batch 可以自动重试任务。 有两种类型的重试：用户控制的重�
 
 ### <a name="collect-the-batch-agent-logs"></a>收集 Batch 代理日志
 
-如果发现节点的行为或节点上运行的任务出现问题，请在解除分配有问题的节点之前收集 Batch 代理日志。 可以使用“上传 Batch 服务日志”API 收集 Batch 代理日志。 可将这些日志作为支持票证的一部分提供给 Microsoft，它们将有助于排查和解决问题。
+如果发现节点的行为或节点上运行的任务出现问题，请在解除分配有问题的节点之前收集 Batch 代理日志。 可以使用“上传 Batch 服务日志”API 收集 Batch 代理日志。 这些日志可以作为 Azure 支持工单的一部分提供，并将有助于问题的故障排除和解决。
+
+### <a name="manage-os-upgrades"></a>管理 OS 升级
+
+对于用户订阅模式 Batch 帐户，自动 OS 升级可能会中断任务进程，尤其是在任务长时间运行的情况下。 [生成幂等任务](#build-durable-tasks)有助于减少由这些中断导致的错误。
+
+<!--Not Available on [scheduling OS image upgrades for times where tasks aren't expected to run](../virtual-machine-scale-sets/virtual-machine-scale-sets-automatic-upgrade.md#manually-trigger-os-image-upgrades)-->
 
 ## <a name="isolation-security"></a>隔离安全性
 
@@ -159,7 +178,7 @@ Azure Batch 帐户无法直接从一个区域移到另一个区域。 但是，�
 
 将模板上传到新区域后，必须重新创建证书、作业计划和应用程序包。 若要提交更改并完成 Batch 帐户的移动，请记得删除原始 Batch 帐户或资源组。
 
-有关资源管理器和模板的详细信息，请参阅[快速入门：使用 Azure 门户创建和部署 Azure 资源管理器模板](https://docs.azure.cn/azure-resource-manager/templates/quickstart-create-templates-use-the-portal)。
+有关资源管理器和模板的详细信息，请参阅[快速入门：使用 Azure 门户创建和部署 Azure 资源管理器模板](../azure-resource-manager/templates/quickstart-create-templates-use-the-portal.md)。
 
 ## <a name="connectivity"></a>连接
 
@@ -174,11 +193,39 @@ Azure Batch 帐户无法直接从一个区域移到另一个区域。 但是，�
 
 ### <a name="honoring-dns"></a>遵守 DNS
 
-确保系统遵守 Batch 帐户服务 URL 的 DNS 生存时间 (TTL)。 此外，请确保 Batch 服务客户端以及 Batch 服务的其他连接机制不依赖于 IP 地址。
+确保系统遵守 Batch 帐户服务 URL 的 DNS 生存时间 (TTL)。 此外，请确保 Batch 服务客户端以及 Batch 服务的其他连接机制不依赖于 IP 地址（或[创建一个具有静态公用 IP 地址的池](create-pool-public-ip.md)）。
 
 如果请求收到 5xx 级别 HTTP 响应并且响应中包含“Connection: close”标头，则 Batch 服务客户端应遵循建议关闭现有连接，重新解析 Batch 帐户服务 URL 的 DNS，然后在新的连接上尝试后续请求。
 
 ### <a name="retry-requests-automatically"></a>自动重试请求
 
-确保 Batch 服务客户端实施了适当的重试策略来自动重试请求，即使在正常操作期间也要实施重试机制，而不仅仅是在任何服务维护时段实施。 这些重试策略的间隔时间应该至少为 5 分钟。 各种 Batch SDK（例如 [.NET RetryPolicyProvider 类](/dotnet/api/microsoft.azure.batch.retrypolicyprovider?view=azure-dotnet)）都附带了自动重试功能。
+确保 Batch 服务客户端实施了适当的重试策略来自动重试请求，即使在正常操作期间也要实施重试机制，而不仅仅是在任何服务维护时段实施。 这些重试策略的间隔时间应该至少为 5 分钟。 各种 Batch SDK（例如 [.NET RetryPolicyProvider 类](https://docs.azure.cn/dotnet/api/microsoft.azure.batch.retrypolicyprovider?view=azure-dotnet)）都附带了自动重试功能。
 
+### <a name="static-public-ip-addresses"></a>静态公共 IP 地址
+
+通常， Batch 池中的虚拟机是通过公用 IP 地址访问的，这些地址在池的生命周期中会发生更改。 这会使与数据库或其他限制访问某些 IP 地址的外部服务交互变得困难。 若要确保池中的公用 IP 地址不会意外更改，可以使用一组你控制的静态公用 IP 地址创建池。 有关详细信息，请参阅[使用指定的公用 IP 地址创建 Azure Batch 池](create-pool-public-ip.md)。
+
+## <a name="batch-node-underlying-dependencies"></a>Batch 节点的基本依赖项
+
+设计 Batch 解决方案时，请考虑以下依赖项和限制。
+
+### <a name="system-created-resources"></a>系统创建的资源
+
+Azure Batch 在 VM 上创建和管理一组用户和组，这些不应受到更改。 这些限制如下：
+
+#### <a name="windows"></a>Windows
+
+- 名为“PoolNonAdmin”的用户
+- 名为“WATaskCommon”的用户组
+
+#### <a name="linux"></a>Linux
+
+- 名为“_azbatch”的用户
+
+### <a name="file-cleanup"></a>文件清理
+
+当任务的保留期到期后，Batch 会主动尝试清理运行任务的工作目录。 [你应负责清理](#manage-task-lifetime)在此目录之外写入的所有文件，以避免占用磁盘空间。 
+
+如果在 Windows 上从 startTask 工作目录运行服务，则会阻止对工作目录的自动清理，因为文件夹仍在使用中。 这将导致性能下降。 若要解决此问题，请将该服务的目录更改为不受 Batch 管理的单独目录。
+
+<!-- Update_Description: update meta properties, wording update, update link -->

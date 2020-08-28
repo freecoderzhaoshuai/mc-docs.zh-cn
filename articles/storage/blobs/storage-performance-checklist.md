@@ -6,15 +6,15 @@ author: WenJason
 ms.service: storage
 ms.topic: conceptual
 origin.date: 10/10/2019
-ms.date: 03/09/2020
+ms.date: 08/24/2020
 ms.author: v-jay
 ms.subservice: blobs
-ms.openlocfilehash: ffb7b9cfc559938700e7ac907ea3aefd0ed50ff4
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: fea81069dc635c1504c1b11a455be20b5fc71847
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80109779"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753497"
 ---
 # <a name="performance-and-scalability-checklist-for-blob-storage"></a>Blob 存储的性能与可伸缩性查检表
 
@@ -26,7 +26,7 @@ Azure 存储在容量、事务速率和带宽方面存在可伸缩性与性能�
 
 本文以查检表的形式组织了在开发 Blob 存储应用程序时在性能方面可以遵循的经过证实的做法。
 
-| 完成 | Category | 设计注意事项 |
+| 完成 | 类别 | 设计注意事项 |
 | --- | --- | --- |
 | &nbsp; |可伸缩性目标 |[是否可将应用程序设计为避免使用的存储帐户数超过最大数目？](#maximum-number-of-storage-accounts) |
 | &nbsp; |可伸缩性目标 |[是否要避免接近容量和事务限制？](#capacity-and-transaction-targets) |
@@ -65,7 +65,7 @@ Azure 存储在容量、事务速率和带宽方面存在可伸缩性与性能�
 如果即将达到特定订阅/区域组合允许的最大存储帐户数，请评估你的方案并确定是否符合以下任何条件：
 
 - 是否使用存储帐户作为非托管磁盘，并将这些磁盘添加到虚拟机 (VM)？ 对于此方案，Azure 建议使用托管磁盘。 托管磁盘可自动缩放，你无需创建和管理单个存储帐户。 有关详细信息，请参阅 [Azure 托管磁盘简介](../../virtual-machines/windows/managed-disks-overview.md)
-- 是否对每个客户使用一个存储帐户，以实现数据隔离？ 对于此方案，Azure 建议对每个客户使用 Blob 容器，而不要使用整个存储帐户。 Azure 存储现在允许按容器分配基于角色的访问控制 (RBAC)。 有关详细信息，请参阅[在 Azure 门户中使用 RBAC 授予对 Azure Blob 和队列数据的访问权限](../common/storage-auth-aad-rbac-portal.md)。
+- 是否对每个客户使用一个存储帐户，以实现数据隔离？ 对于此方案，Azure 建议对每个客户使用 Blob 容器，而不要使用整个存储帐户。 Azure 存储现在允许基于每个容器分配 Azure 角色。 有关详细信息，请参阅[在 Azure 门户中使用 RBAC 授予对 Azure Blob 和队列数据的访问权限](../common/storage-auth-aad-rbac-portal.md)。
 - 是否使用多个存储帐户进行分片，以增加流入量、流出量、每秒 I/O 操作次数 (IOPS) 或容量？ 对于此方案，Azure 建议在可能的情况下，利用存储帐户的更高限制来减少工作负荷所需的存储帐户数。 若要请求提高存储帐户的限制，请联系 [Azure 支持部门](https://support.azure.cn/zh-cn/support/contact/)。
 
 ### <a name="capacity-and-transaction-targets"></a>容量和事务目标
@@ -137,7 +137,7 @@ Blob 存储使用基于范围的分区方案来进行缩放和负载均衡。 �
 
 如果客户端应用程序要访问 Azure 存储但不是托管在 Azure 中（例如移动设备应用或本地企业服务），则将存储帐户放在靠近这些客户端的区域可降低延迟。 如果客户端广泛分布在各地，请考虑在每个区域使用一个存储帐户。 如果应用程序存储的数据是特定于各个用户的，不需要在存储帐户之间复制数据，则此方法更容易实施。
 
-若要广泛地分发 blob 内容，请使用内容分发网络，如 Azure CDN。 有关 Azure CDN 的详细信息，请参阅 [Azure CDN](/cdn/cdn-overview)。  
+若要广泛地分发 blob 内容，请使用内容分发网络，如 Azure CDN。 关于 Azure CDN 的详细信息，请参阅 [Azure CDN](/cdn/cdn-overview)。  
 
 ## <a name="sas-and-cors"></a>SAS 和 CORS
 
@@ -194,7 +194,7 @@ ServicePointManager.DefaultConnectionLimit = 100; //(Or More)
 
 对于其他编程语言，请参阅文档以确定如何设置连接限制。  
 
-有关详细信息，请参阅博客文章 [Web 服务：Concurrent Connections](https://blogs.msdn.microsoft.com/darrenj/2005/03/07/web-services-concurrent-connections/)（Web 服务：并发连接）。  
+有关详细信息，请参阅博客文章 [Web 服务：并发连接](https://blogs.msdn.microsoft.com/darrenj/2005/03/07/web-services-concurrent-connections/)。  
 
 ### <a name="increase-minimum-number-of-threads"></a>增大最小线程数
 
@@ -248,7 +248,7 @@ AzCopy 命令行实用工具是向/从以及跨存储帐户批量传输 Blob 的
 
 有时，应用程序需要向位于同一区域或多个区域的许多用户提供相同的内容（例如网站主页中使用的产品演示视频）。 在这种情况下，使用 Azure CDN 等内容分发网络 (CDN) 按地理位置分发 blob 内容。 与存在于一个区域且无法以低延迟向其他区域交付内容的 Azure 存储帐户不同，Azure CDN 使用位于全世界多个数据中心的服务器。 此外，与单个存储帐户相比，CDN 通常可以支持更高的出口限制。  
 
-有关 Azure CDN 的详细信息，请参阅 [Azure CDN](/cdn/cdn-overview)。
+关于 Azure CDN 的详细信息，请参阅 [Azure CDN](/cdn/cdn-overview)。
 
 ## <a name="use-metadata"></a>使用元数据
 

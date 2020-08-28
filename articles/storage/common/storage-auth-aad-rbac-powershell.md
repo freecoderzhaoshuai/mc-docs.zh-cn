@@ -1,34 +1,34 @@
 ---
-title: 使用 PowerShell 为数据访问分配 RBAC 角色
+title: 使用 PowerShell 为数据访问分配 Azure 角色
 titleSuffix: Azure Storage
-description: 了解如何使用 PowerShell 通过基于角色的访问控制 (RBAC) 向 Azure Active Directory 安全主体分配权限。 Azure 存储支持通过 Azure AD 使用内置和自定义的 RBAC 角色进行身份验证。
+description: 了解如何使用 PowerShell 通过基于角色的访问控制 (RBAC) 向 Azure Active Directory 安全主体分配权限。 Azure 存储支持通过 Azure AD 使用内置和 Azure 自定义角色进行身份验证。
 services: storage
 author: WenJason
 ms.service: storage
 ms.topic: how-to
-origin.date: 12/04/2019
-ms.date: 01/06/2020
+origin.date: 07/16/2020
+ms.date: 08/24/2020
 ms.author: v-jay
-ms.reviewer: cbrooks
+ms.reviewer: ozgun
 ms.subservice: common
-ms.openlocfilehash: f4c51d222bf712a878db741cf532673f3256ad77
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: c4d2eba544c1a238e926c3fc93d1e98427573b70
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75624162"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753334"
 ---
-# <a name="use-powershell-to-assign-an-rbac-role-for-access-to-blob-and-queue-data"></a>使用 PowerShell 为 blob 和队列数据分配 RBAC 角色
+# <a name="use-powershell-to-assign-an-azure-role-for-access-to-blob-and-queue-data"></a>使用 PowerShell 为 blob 和队列数据访问分配 Azure 角色
 
-Azure Active Directory (Azure AD) 通过[基于角色的访问控制 (RBAC)](../../role-based-access-control/overview.md) 授权访问受保护的资源。 Azure 存储定义了一组内置的 RBAC 角色，它们包含用于访问容器或队列的通用权限集。
+Azure Active Directory (Azure AD) 通过 [Azure 基于角色的访问控制 (Azure RBAC)](../../role-based-access-control/overview.md) 授权访问受保护的资源。 Azure 存储定义了一组 Azure 内置角色，它们包含用于访问容器或队列的通用权限集。
 
-将 RBAC 角色分配到 Azure AD 安全主体后，Azure 会向该安全主体授予对这些资源的访问权限。 可以将访问权限限定于订阅、资源组、存储帐户、单个容器或队列级别。 Azure AD 安全主体可以是用户、组、应用程序服务主体，也可以是 [Azure 资源的托管标识](../../active-directory/managed-identities-azure-resources/overview.md)。
+将 Azure 角色分配到 Azure AD 安全主体后，Azure 会向该安全主体授予对这些资源的访问权限。 可以将访问权限限定于订阅、资源组、存储帐户、单个容器或队列级别。 Azure AD 安全主体可以是用户、组、应用程序服务主体，也可以是 [Azure 资源的托管标识](../../active-directory/managed-identities-azure-resources/overview.md)。
 
-本文介绍如何使用 Azure PowerShell 列出内置的 RBAC 角色并将其分配给用户。 有关使用 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 概述](https://docs.microsoft.com/powershell/azure/overview)。
+本文介绍如何使用 Azure PowerShell 列出 Azure 内置角色并将其分配给用户。 有关使用 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 概述](https://docs.microsoft.com/powershell/azure/)。
 
 [!INCLUDE [updated-for-az](../../../includes/updated-for-az.md)]
 
-## <a name="rbac-roles-for-blobs-and-queues"></a>Blob 和队列的 RBAC 角色
+## <a name="azure-roles-for-blobs-and-queues"></a>Blob 和队列的 Azure 角色
 
 [!INCLUDE [storage-auth-rbac-roles-include](../../../includes/storage-auth-rbac-roles-include.md)]
 
@@ -36,9 +36,9 @@ Azure Active Directory (Azure AD) 通过[基于角色的访问控制 (RBAC)](../
 
 [!INCLUDE [storage-auth-resource-scope-include](../../../includes/storage-auth-resource-scope-include.md)]
 
-## <a name="list-available-rbac-roles"></a>列出可用的 RBAC 角色
+## <a name="list-available-azure-roles"></a>列出可用的 Azure 角色
 
-若要使用 Azure PowerShell 列出可用的内置 RBAC 角色，请使用 [Get-AzRoleDefinition](https://docs.microsoft.com/powershell/module/az.resources/get-azroledefinition) 命令：
+若要使用 Azure PowerShell 列出可用的 Azure 内置角色，请使用 [Get-AzRoleDefinition](https://docs.microsoft.com/powershell/module/az.resources/get-azroledefinition) 命令：
 
 ```powershell
 Get-AzRoleDefinition | FT Name, Description
@@ -56,9 +56,9 @@ Storage Queue Data Message Sender         Allows for sending of Azure Storage qu
 Storage Queue Data Reader                 Allows for read access to Azure Storage queues and queue messages
 ```
 
-## <a name="assign-an-rbac-role-to-a-security-principal"></a>向安全主体分配 RBAC 角色
+## <a name="assign-an-azure-role-to-a-security-principal"></a>向安全主体分配 Azure 角色
 
-若要将 RBAC 角色分配给安全主体，请使用 [New-AzRoleAssignment](https://docs.microsoft.com/powershell/module/az.resources/new-azroleassignment) 命令。 命令的格式因分配范围而异。 为了运行此命令，需要在相应的范围内分配“所有者”和“参与者”角色。 以下示例显示如何在各种范围内为用户分配角色，但可以使用相同的命令将角色分配给任何安全主体。
+若要将 Azure 角色分配给安全主体，请使用 [New-AzRoleAssignment](https://docs.microsoft.com/powershell/module/az.resources/new-azroleassignment) 命令。 命令的格式因分配范围而异。 为了运行此命令，需要在相应的范围内分配“所有者”和“参与者”角色。 以下示例显示如何在各种范围内为用户分配角色，但可以使用相同的命令将角色分配给任何安全主体。
 
 ### <a name="container-scope"></a>容器范围
 

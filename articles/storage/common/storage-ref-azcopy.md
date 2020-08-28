@@ -4,17 +4,17 @@ description: 本文提供有关 azcopy 命令的参考信息。
 author: WenJason
 ms.service: storage
 ms.topic: reference
-origin.date: 10/16/2019
-ms.date: 11/25/2019
+origin.date: 07/24/2020
+ms.date: 08/24/2020
 ms.author: v-jay
 ms.subservice: common
 ms.reviewer: zezha-msft
-ms.openlocfilehash: 97ee61898e2e6c1d7a54fb48faac1bed8d23d06d
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 3bac28a729b8355ed6f88ce10400290038404c22
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74354348"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753479"
 ---
 # <a name="azcopy"></a>azcopy
 
@@ -35,11 +35,13 @@ AzCopy 是一个命令行工具，用于将数据移入和移出 Azure 存储。
 
 ## <a name="options"></a>选项
 
-**--cap-mbps uint32**   以兆位/秒为单位限制传输速率。 瞬间吞吐量可能与上限略有不同。 如果此选项设置为零，或者省略，则吞吐量不受限制。
+**--cap-mbps**（浮动）以兆位/秒为单位限制传输速率。 瞬间吞吐量可能与上限略有不同。 如果此选项设置为零，或者省略，则吞吐量不受限制。
 
-**-h, --help** azcopy 命令的帮助
+**--help** azcopy 命令的帮助
       
-**--output-type**  命令输出的格式。 选项包括：text、json。 默认值为“text”。 （默认值为“text”）
+**--output-type**（字符串）命令输出的格式。 选项包括：text、json。 默认值为 `text`。 （默认 `text`）
+
+**--trusted-microsoft-suffixes**（字符串）指定可向其中发送 Azure Active Directory 登录令牌的其他域后缀。  默认值为“.core.windows.net;.core.chinacloudapi.cn;.core.cloudapi.de;.core.usgovcloudapi.net” 。 此处列出的任何内容都会添加到默认值。 为安全起见，应只在此处放置 Azure 域。 用分号分隔多个条目。
 
 ## <a name="see-also"></a>另请参阅
 

@@ -9,17 +9,17 @@ ms.reviewer: jasonh
 ms.service: stream-analytics
 ms.topic: conceptual
 origin.date: 04/03/2019
-ms.date: 07/12/2019
-ms.openlocfilehash: 1dfe9eec4beb92650a6548d6d8914c3711ae7e83
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.date: 08/20/2020
+ms.openlocfilehash: a5885a7f916fee13c10cffcbdf082c995b13f65a
+ms.sourcegitcommit: 09c7071f4d0d9256b40a6bf700b38c6a25db1b26
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71674695"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715728"
 ---
 # <a name="how-to-start-an-azure-stream-analytics-job"></a>如何启动 Azure 流分析作业
 
-可以使用 Azure 门户、Visual Studio 和 PowerShell 启动 Azure 流分析作业。 启动作业时，可以选择该作业开始创建输出的时间。 Azure 门户、Visual Studio 和 PowerShell 各自提供不同的方法来设置开始时间。 下面将介绍这些方法。
+可以使用 Azure 门户和 PowerShell 启动 Azure 流分析作业。 启动作业时，可以选择该作业开始创建输出的时间。 Azure 门户和 PowerShell 各自提供不同的方法来设置开始时间。 下面将介绍这些方法。
 
 ## <a name="start-options"></a>启动选项
 可使用以下三个选项来启动作业。 请注意，下面提到的所有时间都是在 [TIMESTAMP BY](https://docs.microsoft.com/stream-analytics-query/timestamp-by-azure-stream-analytics) 中指定的时间。 如果未指定 TIMESTAMP BY，将使用抵达时间。
@@ -36,13 +36,6 @@ ms.locfileid: "71674695"
 在 Azure 门户中导航到你的作业，然后在概述页上选择“启动”。  依次选择“作业输出开始时间”、“启动”。  
 
 选择“作业输出开始时间”对应的选项之一。  选项包括“立即”、“自定义”，如果作业先前已运行过，则还包括“上次停止时”。    有关这些选项的详细信息，请参阅上文。
-
-## <a name="visual-studio"></a>Visual Studio
-
-在作业视图中，选择绿色箭头按钮启动作业。 设置“作业输出启动模式”并选择“启动”。   作业状态将更改为“正在运行”。 
-
-“作业输出启动模式”有三个选项：  *JobStartTime*、*CustomTime* 和 *LastOutputEventTime*。 如果此属性不存在，则默认值为 *JobStartTime*。 有关这些选项的详细信息，请参阅上文。
-
 
 ## <a name="powershell"></a>PowerShell
 
@@ -63,4 +56,3 @@ Start-AzStreamAnalyticsJob `
 
 * [快速入门：使用 Azure 门户创建流分析作业](stream-analytics-quick-create-portal.md)
 * [快速入门：使用 Azure PowerShell 创建流分析作业](stream-analytics-quick-create-powershell.md)
-* [快速入门：使用用于 Visual Studio 的 Azure 流分析工具创建流分析作业](stream-analytics-quick-create-vs.md)

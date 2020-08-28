@@ -1,19 +1,18 @@
 ---
 title: Azure 流分析兼容性级别
 description: 了解如何设置 Azure 流分析作业的兼容性级别，并了解最新兼容性级别中的重大更改
-author: lingliw
-ms.author: v-lingwu
-manager: digimobile
+author: Johnnytechn
+ms.author: v-johya
 ms.service: stream-analytics
 ms.topic: conceptual
 origin.date: 03/10/2020
-ms.date: 03/20/2020
-ms.openlocfilehash: a9fa5014197ca3437072d5c76ea68abac6f97842
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.date: 08/20/2020
+ms.openlocfilehash: 8ff758b81d9e10858b30bff40bea8b2ecd73950a
+ms.sourcegitcommit: 09c7071f4d0d9256b40a6bf700b38c6a25db1b26
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80109809"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715742"
 ---
 # <a name="compatibility-level-for-azure-stream-analytics-jobs"></a>Azure 流分析作业的兼容性级别
 
@@ -45,7 +44,7 @@ Azure 流分析目前支持三种兼容性级别：
 4. 选择所需的兼容性级别值。
 5. 选择页面底部的“保存”  。
 
-![Azure 门户中的流分析兼容性级别](media/stream-analytics-compatibility-level/stream-analytics-compatibility.png)
+![Azure 门户中的流分析兼容性级别](./media/stream-analytics-compatibility-level/stream-analytics-compatibility.png)
 
 在更新兼容性级别时，T 编译器会使用与所选兼容性级别相对应的语法来验证作业。
 
@@ -144,11 +143,14 @@ Azure 流分析支持地理空间参考数据索引编制。 可为包含地理�
 
 **1.1 级别：** CREATE TABLE 允许指定强架构。 流分析引擎验证数据是否符合此架构。 使用这一模型，该命令可以通过 NaN 值筛选事件。
 
-### <a name="disable-automatic-upcast-for-datetime-strings-in-json"></a>对 JSON 格式的日期/时间字符串禁用自动向上转换
+### <a name="disable-automatic-conversion-of-datetime-strings-to-datetime-type-at-ingress-for-json"></a>对于 JSON，在入口处禁用日期/时间字符串到 DateTime 类型的自动转换
 
-**1.0 级别：** JSON 分析器会自动将包含日期/时间/时区信息的字符串值向上转换为日期/时间类型，然后转换为 UTC。 此行为导致了丢失时区信息。
+**1.0 级别：** JSON 分析器会在入口处将包含日期/时间/区域信息的字符串值自动转换为 DATETIME 类型，使该值立即丢失其原始格式和时区信息。 因为这是在入口处完成的，所以即使查询中没有使用该字段，它也会转换为 UTC DateTime。
 
-**1.1 级别：** 不再将包含日期/时间/时区信息的字符串值自动向上转换为日期/时间类型。 因此会保留时区信息。
+**1.1 级别：** 没有将包含日期/时间/区域信息的字符串值自动转换为 DATETIME 类型。 因此，时区信息和原始格式保持不变。 但是，如果在查询中使用 NVARCHAR(MAX) 字段作为 DATETIME 表达式的一部分（例如 DATEADD 函数），它将被转换为 DATETIME 类型来执行计算，并且会失去其原始形式。
 
 ## <a name="next-steps"></a>后续步骤
+
 * [Azure 流分析输入的故障排除](stream-analytics-troubleshoot-input.md)
+* [流分析资源运行状况](stream-analytics-resource-health.md)
+

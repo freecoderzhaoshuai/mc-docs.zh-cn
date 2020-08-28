@@ -10,14 +10,14 @@ ms.reviewer: v-mamcge, jasonh, kfile
 ms.devlang: csharp
 ms.workload: big-data
 ms.topic: conceptual
-ms.date: 08/05/2020
+ms.date: 08/20/2020
 ms.custom: seodec18, has-adal-ref
-ms.openlocfilehash: 7d1a3a7bc97b9ff7d836b2b172843f90f7fbb6be
-ms.sourcegitcommit: 36e7f37481969f92138bfe70192b1f4a2414caf7
+ms.openlocfilehash: 0acbc9b60402462f6cdc7a86cd557cd280c95c0d
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87796297"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715173"
 ---
 # <a name="authentication-and-authorization-for-azure-time-series-insights-api"></a>Azure 时序见解 API 的身份验证和授权
 
@@ -46,6 +46,7 @@ Azure Active Directory 应用注册流程涉及三个主要步骤。
 > 配置 Azure 时序见解安全策略时，请遵循“关注点分离”的原则（在上述方案中已介绍）。
 
 > [!NOTE]
+
 > * 文中重点介绍了单租户应用程序，其中应用程序只应在一个组织内运行。
 > * 通常会将单租户应用程序作为在组织中运行的业务线应用程序使用。
 
@@ -85,6 +86,175 @@ Azure Active Directory 应用注册流程涉及三个主要步骤。
    1. 在 C# 中，以下代码可以代表应用程序获取令牌。 有关如何从 Gen1 环境查询数据的完整示例，请参阅[使用 C# 查询数据](time-series-insights-query-data-csharp.md)。
 
         ```csharp
+        using System;
+        using System.Collections.Generic;
+        using System.Diagnostics;
+        using System.IO;
+        using System.Linq;
+        using System.Net;
+        using System.Net.WebSockets;
+        using System.Text;
+        using System.Threading;
+        using System.Threading.Tasks;
+        using Microsoft.IdentityModel.Clients.ActiveDirectory;
+        using Newtonsoft.Json;
+        using Newtonsoft.Json.Linq;
+    
+        namespace TimeSeriesInsightsQuerySample
+        {
+            class Program
+            {
+                // For automated execution under application identity,
+                // use application created in Active Directory.
+                // To create the application in AAD, follow the steps provided here:
+                // /time-series-insights/time-series-insights-authentication-and-authorization
+    
+                // SET the application ID of application registered in your Azure Active Directory
+                private static string ApplicationClientId = "#DUMMY#";
+    
+                // SET the application key of the application registered in your Azure Active Directory
+                private static string ApplicationClientSecret = "#DUMMY#";
+    
+                // SET the Azure Active Directory tenant.
+                private static string Tenant = "#DUMMY#.partner.onmschina.cn";
+    
+                public static async Task SampleAsync()
+                {
+                    // Acquire an access token.
+                    string accessToken = await AcquireAccessTokenAsync();
+    
+                    // Obtain list of environments and get environment FQDN for the environment of interest.
+                    string environmentFqdn;
+                    {
+                        HttpWebRequest request = CreateHttpsWebRequest("api.timeseries.azure.cn", "GET", "environments", accessToken);
+                        JToken responseContent = await GetResponseAsync(request);
+    
+                        JArray environmentsList = (JArray)responseContent["environments"];
+                        if (environmentsList.Count == 0)
+                        {
+                            // List of user environments is empty, fallback to sample environment.
+                            environmentFqdn = "10000000-0000-0000-0000-100000000108.env.timeseries.azure.com";
+                        }
+                        else
+                        {
+                            // Assume the first environment is the environment of interest.
+                            JObject firstEnvironment = (JObject)environmentsList[0];
+                            environmentFqdn = firstEnvironment["environmentFqdn"].Value<string>();
+                        }
+                    }
+                    Console.WriteLine("Using environment FQDN '{0}'", environmentFqdn);
+                    Console.WriteLine();
+    
+                    // Obtain availability data for the environment and get availability range.
+                    DateTime fromAvailabilityTimestamp;
+                    DateTime toAvailabilityTimestamp;
+                    {
+                        HttpWebRequest request = CreateHttpsWebRequest(environmentFqdn, "GET", "availability", accessToken);
+                        JToken responseContent = await GetResponseAsync(request);
+    
+                        JObject range = (JObject)responseContent["range"];
+                        fromAvailabilityTimestamp = range["from"].Value<DateTime>();
+                        toAvailabilityTimestamp = range["to"].Value<DateTime>();
+                    }
+                    Console.WriteLine(
+                        "Obtained availability range [{0}, {1}]",
+                        fromAvailabilityTimestamp,
+                        toAvailabilityTimestamp);
+                    Console.WriteLine();
+    
+                    // Assume data for the whole availablility range is requested.
+                    DateTime from = fromAvailabilityTimestamp;
+                    DateTime to = toAvailabilityTimestamp;
+    
+                    // Obtain metadata for the environment.
+                    {
+                        JObject inputPayload = new JObject(
+                            new JProperty("searchSpan", new JObject(
+                                new JProperty("from", from),
+                                new JProperty("to", to))));
+    
+                        HttpWebRequest request = CreateHttpsWebRequest(environmentFqdn, "POST", "metadata", accessToken);
+                        await WriteRequestStreamAsync(request, inputPayload);
+                        JToken responseContent = await GetResponseAsync(request);
+    
+                        DumpMetadata(responseContent);
+                        Console.WriteLine();
+                    }
+    
+                    // Get events for the environment.
+                    {
+                        int requestedEventCount = 10;
+    
+                        JObject contentInputPayload = new JObject(
+                            new JProperty("take", requestedEventCount),
+                            new JProperty("searchSpan", new JObject(
+                                new JProperty("from", from),
+                                new JProperty("to", to))));
+    
+                        // Use HTTP request.
+                        HttpWebRequest request = CreateHttpsWebRequest(environmentFqdn, "POST", "events", accessToken, new[] { "timeout=PT20S" });
+                        await WriteRequestStreamAsync(request, contentInputPayload);
+                        JToken responseContent = await GetResponseAsync(request);
+    
+                        Console.WriteLine("Requested {0} events via HTTP request.", requestedEventCount);
+                        DumpEvents(responseContent);
+                        Console.WriteLine();
+    
+                        // Use WebSocket request.
+                        JObject inputPayload = new JObject(
+                            // Send HTTP headers as a part of the message since .NET WebSocket does not support
+                            // sending custom headers on HTTP GET upgrade request to WebSocket protocol request.
+                            new JProperty("headers", new JObject(
+                                new JProperty("x-ms-client-application-name", "TimeSeriesInsightsQuerySample"),
+                                new JProperty("Authorization", "Bearer " + accessToken))),
+                            new JProperty("content", contentInputPayload));
+                        IReadOnlyList<JToken> responseMessagesContent = await ReadWebSocketResponseAsync(environmentFqdn, "events", inputPayload);
+    
+                        Console.WriteLine("Requested {0} events via WebSocket request.", requestedEventCount);
+                        DumpEventsStreamed(responseMessagesContent);
+                        Console.WriteLine();
+                    }
+    
+                    // Get aggregates for the environment: group by Event Source Name and calculate number of events in each group.
+                    {
+                        JObject contentInputPayload = new JObject(
+                            new JProperty("aggregates", new JArray(new JObject(
+                                new JProperty("dimension", new JObject(
+                                    new JProperty("uniqueValues", new JObject(
+                                        new JProperty("input", new JObject(
+                                            new JProperty("builtInProperty", "$esn"))),
+                                        new JProperty("take", 1000))))),
+                                new JProperty("measures", new JArray(new JObject(
+                                    new JProperty("count", new JObject()))))))),
+                            new JProperty("searchSpan", new JObject(
+                                new JProperty("from", from),
+                                new JProperty("to", to))));
+    
+                        // Use HTTP request.
+                        HttpWebRequest request = CreateHttpsWebRequest(environmentFqdn, "POST", "aggregates", accessToken, new[] { "timeout=PT20S" });
+                        await WriteRequestStreamAsync(request, contentInputPayload);
+                        JToken responseContent = await GetResponseAsync(request);
+    
+                        Console.WriteLine("Group by Event Source Name via HTTP request.");
+                        DumpAggregates(responseContent);
+                        Console.WriteLine();
+    
+                        // Use WebSocket request.
+                        JObject inputPayload = new JObject(
+                            // Send HTTP headers as a part of the message since .NET WebSocket does not support
+                            // sending custom headers on HTTP GET upgrade request to WebSocket protocol request.
+                            new JProperty("headers", new JObject(
+                                new JProperty("x-ms-client-application-name", "TimeSeriesInsightsQuerySample"),
+                                new JProperty("Authorization", "Bearer " + accessToken))),
+                            new JProperty("content", contentInputPayload));
+                        IReadOnlyList<JToken> responseMessagesContent = await ReadWebSocketResponseAsync(environmentFqdn, "aggregates", inputPayload);
+    
+                        Console.WriteLine("Group by Event Source Name via WebSocket request.");
+                        DumpAggregatesStreamed(responseMessagesContent);
+                        Console.WriteLine();
+                    }
+                }
+    
                 private static async Task<string> AcquireAccessTokenAsync()
                 {
                     if (AadClientApplicationId == "#PLACEHOLDER#" || AadScopes.Length == 0 || AadRedirectUri == "#PLACEHOLDER#" || AadTenantName.StartsWith("#PLACEHOLDER#"))
@@ -115,6 +285,224 @@ Azure Active Directory 应用注册流程涉及三个主要步骤。
                     return result.AccessToken;
                 }
     
+                private static HttpWebRequest CreateHttpsWebRequest(string host, string method, string path, string accessToken, string[] queryArgs = null)
+                {
+                    string query = "api-version=2016-12-12";
+                    if (queryArgs != null && queryArgs.Any())
+                    {
+                        query += "&" + String.Join("&", queryArgs);
+                    }
+    
+                    Uri uri = new UriBuilder("https", host)
+                    {
+                        Path = path,
+                        Query = query
+                    }.Uri;
+                    HttpWebRequest request = WebRequest.CreateHttp(uri);
+                    request.Method = method;
+                    request.Headers.Add("x-ms-client-application-name", "TimeSeriesInsightsQuerySample");
+                    request.Headers.Add("Authorization", "Bearer " + accessToken);
+                    return request;
+                }
+    
+                private static async Task WriteRequestStreamAsync(HttpWebRequest request, JObject inputPayload)
+                {
+                    using (var stream = await request.GetRequestStreamAsync())
+                    using (var streamWriter = new StreamWriter(stream))
+                    {
+                        await streamWriter.WriteAsync(inputPayload.ToString());
+                        await streamWriter.FlushAsync();
+                        streamWriter.Close();
+                    }
+                }
+    
+                private static async Task<JToken> GetResponseAsync(HttpWebRequest request)
+                {
+                    using (WebResponse webResponse = await request.GetResponseAsync())
+                    using (var sr = new StreamReader(webResponse.GetResponseStream()))
+                    {
+                        string result = await sr.ReadToEndAsync();
+                        return JsonConvert.DeserializeObject<JToken>(result);
+                    }
+                }
+    
+                private static async Task<IReadOnlyList<JToken>> ReadWebSocketResponseAsync(string environmentFqdn, string path, JObject inputPayload)
+                {
+                    var webSocket = new ClientWebSocket();
+    
+                    // Establish web socket connection.
+                    Uri uri = new UriBuilder("wss", environmentFqdn)
+                    {
+                        Path = path,
+                        Query = "api-version=2016-12-12"
+                    }.Uri;
+                    await webSocket.ConnectAsync(uri, CancellationToken.None);
+    
+                    // Send input payload.
+                    byte[] inputPayloadBytes = Encoding.UTF8.GetBytes(inputPayload.ToString());
+                    await webSocket.SendAsync(
+                        new ArraySegment<byte>(inputPayloadBytes),
+                        WebSocketMessageType.Text,
+                        endOfMessage: true,
+                        cancellationToken: CancellationToken.None);
+    
+                    // Read response messages from web socket.
+                    List<JToken> responseMessagesContent = new List<JToken>();
+                    using (webSocket)
+                    {
+                        while (true)
+                        {
+                            string message;
+                            using (var ms = new MemoryStream())
+                            {
+                                // Write from socket to memory stream.
+                                const int bufferSize = 16 * 1024;
+                                var temporaryBuffer = new byte[bufferSize];
+                                while (true)
+                                {
+                                    WebSocketReceiveResult response = await webSocket.ReceiveAsync(
+                                        new ArraySegment<byte>(temporaryBuffer),
+                                        CancellationToken.None);
+    
+                                    ms.Write(temporaryBuffer, 0, response.Count);
+                                    if (response.EndOfMessage)
+                                    {
+                                        break;
+                                    }
+                                }
+    
+                                // Reset position to the beginning to allow reads.
+                                ms.Position = 0;
+    
+                                using (var sr = new StreamReader(ms))
+                                {
+                                    message = sr.ReadToEnd();
+                                }
+                            }
+    
+                            JObject messageObj = JsonConvert.DeserializeObject<JObject>(message);
+    
+                            // Stop reading if error is emitted.
+                            if (messageObj["error"] != null)
+                            {
+                                break;
+                            }
+    
+                            // Actual response contents is wrapped into "content" object.
+                            responseMessagesContent.Add(messageObj["content"]);
+    
+                            // Stop reading if 100% of completeness is reached.
+                            if (messageObj["percentCompleted"] != null &&
+                                Math.Abs((double)messageObj["percentCompleted"] - 100d) < 0.01)
+                            {
+                                break;
+                            }
+                        }
+    
+                        // Close web socket connection.
+                        if (webSocket.State == WebSocketState.Open)
+                        {
+                            await webSocket.CloseAsync(
+                                WebSocketCloseStatus.NormalClosure,
+                                "CompletedByClient",
+                                CancellationToken.None);
+                        }
+                    }
+    
+                    return responseMessagesContent;
+                }
+    
+                private static void DumpMetadata(JToken responseContent)
+                {
+                    // Response content has a list of properties under "properties" property.
+                    JArray properties = (JArray)responseContent["properties"];
+                    int propertiesCount = properties.Count;
+                    Console.WriteLine("Acquired {0} properties:", propertiesCount);
+                    for (int i = 0; i < propertiesCount; i++)
+                    {
+                        JObject currentProperty = (JObject)properties[i];
+                        Console.WriteLine("'{0}': {1}", currentProperty["name"], currentProperty["type"]);
+                    }
+                }
+    
+                private static void DumpEvents(JToken responseContent)
+                {
+                    // Response content has a list of events under "events" property for HTTP request.
+                    JArray events = (JArray)responseContent["events"];
+                    int eventCount = events.Count;
+                    Console.WriteLine("Acquired {0} events:", eventCount);
+                    for (int i = 0; i < eventCount; i++)
+                    {
+                        JObject currentEvent = (JObject)events[i];
+                        JArray values = (JArray)currentEvent["values"];
+                        Console.WriteLine("{{$ts: {0}, values: {1}}}", currentEvent["$ts"].ToString(), String.Join(",", values));
+                    }
+                }
+    
+                private static void DumpEventsStreamed(IReadOnlyList<JToken> responseMessagesContent)
+                {
+                    // For events stream next message always contains additional events, i.e. new message is additive to the previous one.
+                    // New message contains new events that were not in the previous message.
+                    // The previous message should be kept and accumulated with the new message.
+                    // Response content has a list of events under "events" property both for HTTP and WebSocket requests.
+                    JArray events = new JArray(responseMessagesContent.SelectMany(m => (JArray)m["events"]));
+    
+                    int eventCount = events.Count;
+                    Console.WriteLine("Acquired {0} events:", eventCount);
+                    for (int i = 0; i < eventCount; i++)
+                    {
+                        JObject currentEvent = (JObject)events[i];
+                        JArray values = (JArray)currentEvent["values"];
+                        Console.WriteLine("{{$ts: {0}, values: {1}}}", currentEvent["$ts"].ToString(), String.Join(",", values));
+                    }
+                }
+    
+                private static void DumpAggregates(JToken responseContent)
+                {
+                    // HTTP response content contains the list of aggregates under "aggregates" property.
+                    JArray aggregates = (JArray)responseContent["aggregates"];
+    
+                    DumpAggregatesInternal(aggregates);
+                }
+    
+                private static void DumpAggregatesStreamed(IReadOnlyList<JToken> responseMessagesContent)
+                {
+                    // For aggregates stream next message always contains a replacement (snapshot) of all the values.
+                    // Previous message can be discarded by the client.
+                    // WebSocket response represents the list of aggregates.
+                    JArray aggregates = (JArray)responseMessagesContent.Last();
+    
+                    DumpAggregatesInternal(aggregates);
+                }
+    
+                private static void DumpAggregatesInternal(JArray aggregates)
+                {
+                    // Number of items corresponds to number of aggregates in input payload.
+                    // In this sample list of aggregates in input payload contains only 1 item since request contains 1 aggregate.
+                    JObject aggregate = (JObject)aggregates[0];
+                    JArray dimensionValues = (JArray)aggregate["dimension"];
+                    JArray measures = (JArray)aggregate["measures"];
+                    Debug.Assert(
+                        dimensionValues.Count == measures.Count,
+                        "Number of measures and dimensions should match.");
+                    Console.WriteLine("Dimension Value\t\tCount");
+                    for (int i = 0; i < dimensionValues.Count; i++)
+                    {
+                        string currentDimensionValue = (string)dimensionValues[i];
+                        JArray currentMeasureValues = (JArray)measures[i];
+                        double currentCount = (double)currentMeasureValues[0];
+    
+                        Console.WriteLine("{0}\t\t{1}", currentDimensionValue, currentCount);
+                    }
+                }
+    
+                static void Main(string[] args)
+                {
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                    Task.Run(async () => await SampleAsync()).Wait();
+                }
+            }
+        }
         ```
 
    1. 随后可在应用程序调用 Azure 时序见解 API 时，将令牌传入 `Authorization` 标头。
@@ -146,6 +534,7 @@ Azure Active Directory 应用注册流程涉及三个主要步骤。
 
 > [!IMPORTANT]
 > 令牌必须严格颁发给 `https://api.timeseries.azure.cn/` 资源（也称为令牌的“受众”）。
+
 > * 因此，[Postman](https://www.getpostman.com/) **AuthURL** 将为：`https://login.partner.microsoftonline.cn/microsoft.partner.onmschina.cn/oauth2/authorize?scope=https://api.timeseries.azure.cn/.default`
 > * `https://api.timeseries.azure.cn/` 有效，但 `https://api.timeseries.azure.cn` 无效。
 
@@ -186,7 +575,7 @@ Azure Active Directory 应用注册流程涉及三个主要步骤。
 
 | 可选查询参数 | 说明 | 版本 |
 | --- |  --- | --- |
-| `timeout=<timeout>` | 用于执行 HTTP 请求的服务器端超时。 仅适用于[获取环境事件](https://docs.microsoft.com/rest/api/time-series-insights/ga-query-api#get-environment-events-api)和[获取环境聚合](https://docs.microsoft.com/rest/api/time-series-insights/ga-query-api#get-environment-aggregates-api) API。 超时值应采用 ISO 8601 持续时间格式（例如 `"PT20S"`），并且应在 `1-30 s` 范围内。 默认值为 `30 s`。 | Gen1 |
+| `timeout=<timeout>` | 用于执行 HTTP 请求的服务器端超时。 仅适用于`Get Environment Events`和[获取环境聚合](https://docs.microsoft.com/rest/api/time-series-insights/gen1-query-api#get-environment-aggregates-api) API。 超时值应采用 ISO 8601 持续时间格式（例如 `"PT20S"`），并且应在 `1-30 s` 范围内。 默认值为 `30 s`。 | Gen1 |
 | `storeType=<storeType>` | 对于启用了 Warm 存储的 Gen2 环境，可以对 `WarmStore` 或 `ColdStore` 执行查询。 查询中的此参数定义应对哪个存储执行查询。 如果未定义，将对 Cold 存储区执行查询。 若要查询 Warm 存储，需要将 storeType 设置为 `WarmStore`。 如果未定义，将对 Cold 存储区执行查询。 | Gen2 |
 
 ## <a name="next-steps"></a>后续步骤
@@ -195,7 +584,7 @@ Azure Active Directory 应用注册流程涉及三个主要步骤。
 
 * 有关调用 Gen2 Azure 时序见解 API 示例代码的示例代码，请参阅[使用 C# 查询 Gen2 数据](./time-series-insights-update-query-data-csharp.md)。
 
-* 有关 API 参考信息，请阅读[查询 API 参考](https://docs.microsoft.com/rest/api/time-series-insights/ga-query-api)文档。
+* 有关 API 参考信息，请阅读[查询 API 参考](https://docs.microsoft.com/rest/api/time-series-insights/gen1-query-api)文档。
 
 * 了解如何[创建服务主体](../active-directory/develop/howto-create-service-principal-portal.md)。
 

@@ -1,20 +1,20 @@
 ---
 title: 使用 DistCp 将数据复制到 Azure Data Lake Storage Gen2 | Microsoft Docs
-description: 使用 DistCp 工具将数据复制到 Data Lake Storage Gen2 和从中复制数据
+description: 使用 Apache Hadoop 分布式复制工具 (DistCp) 在 Azure Data Lake Storage Gen2 之间复制数据。
 author: WenJason
 ms.subservice: data-lake-storage-gen2
 ms.service: storage
 ms.topic: how-to
 origin.date: 12/06/2018
-ms.date: 07/20/2020
+ms.date: 08/24/2020
 ms.author: v-jay
 ms.reviewer: stewu
-ms.openlocfilehash: 4cd5b0dec3b7f99aed0cd855467e2e44bf1e8c2f
-ms.sourcegitcommit: 31da682a32dbb41c2da3afb80d39c69b9f9c1bc6
+ms.openlocfilehash: 2b105f7f8bb0ca0755587bb158c29ad10b8b642a
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86414731"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753587"
 ---
 # <a name="use-distcp-to-copy-data-between-azure-storage-blobs-and-azure-data-lake-storage-gen2"></a>使用 DistCp 在 Azure 存储 Blob 与 Data Lake Storage Gen2 之间复制数据
 
@@ -38,25 +38,33 @@ HDInsight 群集附带 DistCp 实用工具，该实用工具可用于从不同�
 
 2. 验证是否可以访问现有的常规用途 V2 帐户（未启用分层命名空间）。
 
-        hdfs dfs –ls wasbs://<container-name>@<storage-account-name>.blob.core.chinacloudapi.cn/
+    ```bash
+    hdfs dfs –ls wasbs://<container-name>@<storage-account-name>.blob.core.chinacloudapi.cn/
+    ```
 
    输出应提供容器中内容的列表。
 
 3. 同样，验证是否可从此群集访问启用分层命名空间的存储帐户。 运行以下命令：
 
-        hdfs dfs -ls abfss://<container-name>@<storage-account-name>.dfs.core.chinacloudapi.cn/
+    ```bash
+    hdfs dfs -ls abfss://<container-name>@<storage-account-name>.dfs.core.chinacloudapi.cn/
+    ```
 
     输出会提供 Data Lake Storage 帐户中文件/文件夹的列表。
 
 4. 使用 DistCp 从 WASB 将数据复制到 Data Lake Storage 帐户。
 
-        hadoop distcp wasbs://<container-name>@<storage-account-name>.blob.core.chinacloudapi.cn/example/data/gutenberg abfss://<container-name>@<storage-account-name>.dfs.core.chinacloudapi.cn/myfolder
+    ```bash
+    hadoop distcp wasbs://<container-name>@<storage-account-name>.blob.core.chinacloudapi.cn/example/data/gutenberg abfss://<container-name>@<storage-account-name>.dfs.core.chinacloudapi.cn/myfolder
+    ```
 
     该命令会将 Blob 存储中 /example/data/gutenberg/ 文件夹的内容复制到 Data Lake Storage 帐户中的 /myfolder 。
 
 5. 同样，使用 DistCp 从 Data Lake Storage 帐户将数据复制到 Blob 存储 (WASB)。
 
-        hadoop distcp abfss://<container-name>@<storage-account-name>.dfs.core.chinacloudapi.cn/myfolder wasbs://<container-name>@<storage-account-name>.blob.core.chinacloudapi.cn/example/data/gutenberg
+    ```bash
+    hadoop distcp abfss://<container-name>@<storage-account-name>.dfs.core.chinacloudapi.cn/myfolder wasbs://<container-name>@<storage-account-name>.blob.core.chinacloudapi.cn/example/data/gutenberg
+    ```
 
     该命令会将 Data Lake Store 帐户中 /myfolder 的内容复制到 WASB 中的 /example/data/gutenberg/ 文件夹 。
 
@@ -66,7 +74,9 @@ HDInsight 群集附带 DistCp 实用工具，该实用工具可用于从不同�
 
 **示例**
 
-    hadoop distcp -m 100 wasbs://<container-name>@<storage-account-name>.blob.core.chinacloudapi.cn/example/data/gutenberg abfss://<container-name>@<storage-account-name>.dfs.core.chinacloudapi.cn/myfolder
+```bash
+hadoop distcp -m 100 wasbs://<container-name>@<storage-account-name>.blob.core.chinacloudapi.cn/example/data/gutenberg abfss://<container-name>@<storage-account-name>.dfs.core.chinacloudapi.cn/myfolder
+```
 
 ### <a name="how-do-i-determine-the-number-of-mappers-to-use"></a>如何确定要使用的映射器数？
 
@@ -76,7 +86,7 @@ HDInsight 群集附带 DistCp 实用工具，该实用工具可用于从不同�
 
 * **步骤 2：计算映射器数** - **m** 的值等于总 YARN 内存除以 YARN 容器大小的商。 YARN 容器大小的信息也可在 Ambari 门户中找到。 导航到 YARN 并查看“配置”选项卡。YARN 容器大小显示在此窗口中。 用于得到映射器数 (**m**) 的公式是
 
-        m = (number of nodes * YARN memory for each node) / YARN container size
+    m = (number of nodes * YARN memory for each node) / YARN container size
 
 **示例**
 
@@ -84,11 +94,11 @@ HDInsight 群集附带 DistCp 实用工具，该实用工具可用于从不同�
 
 * **总 YARN 内存**：从 Ambari 门户确定一个 D14 节点的 YARN 内存为 96 GB。 因此，具有 4 个节点的群集的总 YARN 内存是： 
 
-        YARN memory = 4 * 96GB = 384GB
+    YARN memory = 4 * 96GB = 384GB
 
 * **映射器数**：从 Ambari 门户确定一个 D14 群集节点的 YARN 容器大小为 3,072 MB。 因此，映射器数为：
 
-        m = (4 nodes * 96GB) / 3072MB = 128 mappers
+    m = (4 nodes * 96GB) / 3072MB = 128 mappers
 
 如果其他应用程序正在使用内存，则可以选择仅将群集的部分 YARN 内存用于 DistCp。
 

@@ -1,21 +1,21 @@
 ---
 title: 监视 Azure 存储 | Microsoft Docs
-description: 了解如何监视 Azure 存储的性能和可用性。
+description: 了解如何监视 Azure 存储的性能和可用性。 监视 Azure 存储数据、了解配置以及分析指标和日志数据。
 author: WenJason
 services: storage
 ms.service: storage
 ms.topic: conceptual
 origin.date: 05/19/2020
-ms.date: 07/20/2020
+ms.date: 08/24/2020
 ms.author: v-jay
 ms.reviewer: fryu
 ms.custom: monitoring
-ms.openlocfilehash: 6bb958fd5f609bbdc208e55aedb9eb1c7f8dbc6d
-ms.sourcegitcommit: 31da682a32dbb41c2da3afb80d39c69b9f9c1bc6
+ms.openlocfilehash: 3f3aa5bb14eb563704ff5a1494a30d50837cfc16
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86414744"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753345"
 ---
 # <a name="monitor-azure-storage"></a>监视 Azure 存储
 
@@ -85,11 +85,11 @@ Azure Monitor 中的指标和日志仅支持 Azure 资源管理器存储帐户�
 
 此外，还必须指定要为其收集日志的操作的类别。 此表列出了 Azure 存储的类别。
 
-| Category | 说明 |
+| 类别 | 说明 |
 |:---|:---|
-| StorageRead | 读取 blob 上的操作。 |
-| StorageWrite | 在 blob 上写入操作。 |
-| StorageDelete | 对 blob 的删除操作。 |
+| StorageRead | 对象上的读取操作。 |
+| StorageWrite | 对象上的写入操作。 |
+| StorageDelete | 对象上的删除操作。 |
 
 ## <a name="analyze-metric-data"></a>分析指标数据
 
@@ -401,11 +401,11 @@ Data Lake Storage Gen2 的日志不会出现在专用表中。 这是因为 Data
     | sort by count_ desc 
     | render piechart
     ```
-## <a name="faq"></a>常见问题
+## <a name="faq"></a>常见问题解答
 
 **Azure 存储是否支持托管磁盘或非托管磁盘的指标？**
 
-否。 Azure 计算支持磁盘上的指标。 有关详细信息，请参阅 [托管和非托管磁盘的每个磁盘指标](https://azure.microsoft.com/blog/per-disk-metrics-managed-disks/)。
+不是。 Azure 计算支持磁盘上的指标。 有关详细信息，请参阅 [托管和非托管磁盘的每个磁盘指标](https://azure.microsoft.com/blog/per-disk-metrics-managed-disks/)。
 
 ## <a name="next-steps"></a>后续步骤
 

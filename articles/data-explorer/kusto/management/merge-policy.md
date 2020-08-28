@@ -8,15 +8,15 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 02/13/2020
-ms.date: 07/01/2020
-ms.openlocfilehash: cdd0f6dff4303ae1fb4a5b1506cb060b42bf545a
-ms.sourcegitcommit: c17e965d4ffd82fd7cd86b2648fcb0053a65df00
+ms.date: 08/18/2020
+ms.openlocfilehash: 5ceab6c8a0c553d0e7ec372a29550036ff3e3793
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86470474"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515650"
 ---
-# <a name="merge-policy-management"></a>合并策略管理
+# <a name="merge-policy-command"></a>合并策略命令
 
 ## <a name="show-policy"></a>显示策略
 
@@ -31,13 +31,13 @@ ms.locfileid: "86470474"
 ```
 
 显示数据库或表的当前合并策略。
-如果给定名称为“\*”，则显示给定实体类型（数据库或表）的所有策略。
+如果给定名称为“*”，则显示给定实体类型（数据库或表）的所有策略。
 
 ### <a name="output"></a>输出
 
-| 策略名称        | 实体名称           | 策略                                             | 子实体                    | 实体类型           |
-| ------------------ | --------------------- | -------------------------------------------------- | --------------------------------- | --------------------- |
-| ExtentsMergePolicy | 数据库/表名称 | 一个表示策略的 JSON 格式字符串 | 表列表（对于数据库） | 数据库 &#124; 表 |
+|策略名称 | 实体名称 | 策略 | 子实体 | 实体类型
+|---|---|---|---|---
+|ExtentsMergePolicy | 数据库/表名称 | 一个表示策略的 JSON 格式字符串 | 表列表（对于数据库）|数据库 &#124; 表
 
 ## <a name="alter-policy"></a>更改策略
 
@@ -46,7 +46,7 @@ ms.locfileid: "86470474"
 #### <a name="1-setting-all-properties-of-the-policy-explicitly-at-table-level"></a>1.在表级别显式设置策略的所有属性：
 
 ```kusto
-.alter table [table_name] policy merge
+.alter table [table_name] policy merge 
 @'{'
     '"ExtentSizeTargetInMb": 1024,'
     '"OriginalSizeInMbUpperBoundForRebuild": 2048,'
@@ -64,7 +64,7 @@ ms.locfileid: "86470474"
 #### <a name="2-setting-all-properties-of-the-policy-explicitly-at-database-level"></a>2.在数据库级别显式设置策略的所有属性：
 
 ```kusto
-.alter database [database_name] policy merge
+.alter database [database_name] policy merge 
 @'{'
     '"ExtentSizeTargetInMb": 1024,'
     '"OriginalSizeInMbUpperBoundForRebuild": 2048,'
@@ -79,7 +79,7 @@ ms.locfileid: "86470474"
 '}'
 ```
 
-#### <a name="3-setting-the-_default_-merge-policy-at-database-level"></a>3.在数据库级别设置默认合并策略：
+#### <a name="3-setting-the-default-merge-policy-at-database-level"></a>3.在数据库级别设置默认合并策略：
 
 ```kusto
 .alter database [database_name] policy merge '{}'

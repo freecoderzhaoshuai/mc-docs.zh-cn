@@ -1,21 +1,21 @@
 ---
 title: 配置 Azure 存储防火墙和虚拟网络 | Microsoft Docs
-description: 配置存储帐户的分层网络安全性。
+description: 使用 Azure 存储防火墙和 Azure 虚拟网络为存储帐户配置分层网络安全。
 services: storage
 author: WenJason
 ms.service: storage
 ms.topic: how-to
-origin.date: 06/04/2020
-ms.date: 07/20/2020
+origin.date: 07/16/2020
+ms.date: 08/24/2020
 ms.author: v-jay
 ms.reviewer: santoshc
 ms.subservice: common
-ms.openlocfilehash: 956e052625573d0ed8b825f3151b24fd6a109d80
-ms.sourcegitcommit: 31da682a32dbb41c2da3afb80d39c69b9f9c1bc6
+ms.openlocfilehash: 4bad3f82419bffe409156050d4c1876f182bc340
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86414735"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753574"
 ---
 # <a name="configure-azure-storage-firewalls-and-virtual-networks"></a>配置 Azure 存储防火墙和虚拟网络
 
@@ -119,7 +119,7 @@ Azure 存储提供分层安全模型。 使用此模型可以根据所用网络�
 
 在 VNet 内为 Azure 存储启用[服务终结点](/virtual-network/virtual-network-service-endpoints-overview)。 服务终结点通过最佳路径将流量从 VNet 路由到 Azure 存储服务。 子网和虚拟网络的标识也随每个请求进行传输。 管理员随后可以配置存储帐户的网络规则，允许从 VNet 中的特定子网接收请求。 通过这些网络规则获得访问权限的客户端必须继续满足存储帐户的授权要求，才能访问数据。
 
-每个存储帐户最多支持 100 条虚拟网络规则，这些规则可与 [IP 网络规则](#grant-access-from-an-internet-ip-range)组合使用。
+每个存储帐户最多支持 200 条虚拟网络规则，这些规则可与 [IP 网络规则](#grant-access-from-an-internet-ip-range)组合使用。
 
 ### <a name="available-virtual-network-regions"></a>可用的虚拟网络区域
 
@@ -364,7 +364,7 @@ IP 网络规则仅适用于**公共 Internet** IP 地址。 IP 规则不允许�
 某些 Azure 服务通过无法包含在网络规则中的网络运行。 可向其中的一部分受信任 Azure 服务授予对存储帐户的访问权限，同时对其他应用保持使用网络规则。 然后，这些受信任的服务将使用强身份验证安全连接到存储帐户。 我们为 Azure 服务启用了两种受信任访问模式。
 
 - 某些服务的资源**在注册到订阅**后，可在**同一订阅**中访问存储帐户以执行特定的操作，例如写入日志或备份。
-- 可通过以下方式向某些服务的资源授予对存储帐户的显式访问权限：**将 RBAC 角色分配**到其系统分配的托管标识。
+- 可通过向其系统分配的托管标识分配 Azure 角色，向某些服务的资源授予对存储帐户的显式访问权限。
 
 
 如果启用“允许受信任的 Microsoft 服务...”设置，则会向以下服务的、已注册到存储帐户所在的同一订阅的资源授予对有限一组操作的访问权限，如下所述：
@@ -372,6 +372,7 @@ IP 网络规则仅适用于**公共 Internet** IP 地址。 IP 规则不允许�
 | 服务                  | 资源提供程序名称     | 允许的操作                 |
 |:------------------------ |:-------------------------- |:---------------------------------- |
 | Azure 备份             | Microsoft.RecoveryServices | 在 IAAS 虚拟机中运行非托管磁盘的备份和还原。 （不是托管磁盘的必需操作）。 [了解详细信息](/backup/backup-introduction-to-azure-backup)。 |
+| Azure Data Box           | Microsoft.DataBox          | 支持使用 Data Box 将数据导入到 Azure。 [了解详细信息](/databox/data-box-disk-overview)。 |
 | Azure 事件网格         | Microsoft.EventGrid        | 启用 Blob 存储事件发布并允许事件网格发布到存储队列。 了解有关 [blob 存储事件](/event-grid/event-sources)和[发布到队列](/event-grid/event-handlers)的信息。 |
 |Azure 事件中心|Microsoft.EventHub|使用事件中心捕获功能存档数据。  [了解详细信息](/event-hubs/event-hubs-capture-overview)。|
 | Azure HDInsight          | Microsoft.HDInsight        | 为新的 HDInsight 群集预配默认文件系统的初始内容。 [了解详细信息](/hdinsight/hdinsight-hadoop-use-blob-storage)。 |
@@ -380,14 +381,19 @@ IP 网络规则仅适用于**公共 Internet** IP 地址。 IP 规则不允许�
 | Azure 网络         | Microsoft.Network          | 以多种方式（包括使用网络观察程序和流量分析服务）存储和分析网络流量日志。 [了解详细信息](/network-watcher/network-watcher-nsg-flow-logging-overview)。 |
 | Azure Site Recovery      | Microsoft.SiteRecovery     | 使用启用了防火墙的缓存、源或目标存储帐户时，请启用复制，以实现 Azure IaaS 虚拟机的灾难恢复。  [了解详细信息](/site-recovery/azure-to-azure-tutorial-enable-replication)。 |
 
-如果已显式[将 RBAC 角色分配](storage-auth-aad.md#assign-rbac-roles-for-access-rights)到以下服务的特定实例的[系统分配的托管标识](../../active-directory/managed-identities-azure-resources/overview.md)，则“允许受信任的 Microsoft 服务...”设置也允许该资源实例访问存储帐户。 在这种情况下，该实例的访问权限范围对应于分配到托管标识的 RBAC 角色。
+如果已显式[将 Azure 角色分配](storage-auth-aad.md#assign-azure-roles-for-access-rights)到以下服务的特定实例的[系统分配的托管标识](../../active-directory/managed-identities-azure-resources/overview.md)，则“允许受信任的 Microsoft 服务...”设置也允许该资源实例访问存储帐户。 在这种情况下，实例的访问范围对应于分配给托管标识的 Azure 角色。
 
 | 服务                        | 资源提供程序名称                 | 目的            |
 | :----------------------------- | :------------------------------------- | :----------------- |
+| Azure API 管理           | Microsoft.ApiManagement/service        | 使用策略允许 API 管理服务访问防火墙后的存储帐户。 [了解详细信息](/api-management/api-management-authentication-policies#use-managed-identity-in-send-request-policy)。 |
+| Azure 认知搜索         | Microsoft.Search/searchServices        | 使认知搜索服务能够访问存储帐户，以进行索引编制、处理和查询。 |
+| Azure 容器注册表任务 | Microsoft.ContainerRegistry/registries | ACR 任务可以在生成容器映像时访问存储帐户。 |
 | Azure 数据工厂             | Microsoft.DataFactory/factories        | 用于通过 ADF 运行时访问存储帐户。 |
 | Azure 逻辑应用               | Microsoft.Logic/workflows              | 使逻辑应用能够访问存储帐户。 [了解详细信息](/logic-apps/create-managed-service-identity#authenticate-access-with-managed-identity)。 |
+| Azure 机器学习服务 | Microsoft.MachineLearningServices      | 经过授权的 Azure 机器学习工作区将实验输出、模型和日志写入 Blob 存储并读取数据。 [了解详细信息](/machine-learning/how-to-enable-virtual-network#use-a-storage-account-for-your-workspace)。 | 
 | Azure SQL 数据仓库       | Microsoft.Sql                   | 用于通过 PolyBase 从特定 SQL 数据库实例导入和导出数据。 [了解详细信息](/sql-database/sql-database-vnet-service-endpoint-rule-overview)。 |
-| Azure 流分析         | Microsoft.StreamAnalytics             | 用于将流式处理作业中的数据写入 Blob 存储。 此功能目前以预览版提供。 [了解详细信息](/stream-analytics/blob-output-managed-identity)。 |
+| Azure SQL 数据库       | Microsoft.Sql                          | 允许从存储帐户[导入](https://docs.microsoft.com/sql/t-sql/statements/bulk-insert-transact-sql?view=sql-server-ver15#f-importing-data-from-a-file-in-azure-blob-storage)数据，并将审核数据[写入](/azure-sql/database/audit-write-storage-account-behind-vnet-firewall)防火墙后的存储帐户。 |
+| Azure 流分析         | Microsoft.StreamAnalytics             | 用于将流式处理作业中的数据写入 Blob 存储。 此功能目前处于预览状态。 [了解详细信息](/stream-analytics/blob-output-managed-identity)。 |
 | Azure Synapse Analytics        | Microsoft.Synapse/workspaces          | 允许从 Synapse Analytics 访问 Azure 存储中的数据。 |
 
 

@@ -1,31 +1,22 @@
 ---
-title: 功能概述 - Azure 事件中心 | Azure
+title: Azure 事件中心功能概述 | Microsoft Docs
 description: 本文详细介绍 Azure 事件中心的功能和术语。
-services: event-hubs
-documentationcenter: .net
-author: ShubhaVijayasarathy
-manager: timlt
-ms.service: event-hubs
-ms.devlang: na
 ms.topic: article
-ms.custom: seodec18
-ms.tgt_pltfrm: na
-ms.workload: na
-origin.date: 12/06/2018
-ms.date: 05/29/2020
+origin.date: 06/23/2020
+ms.date: 08/21/2020
 ms.author: v-tawe
-ms.openlocfilehash: 5663888a504ff42c19c3e28926c807102f99f934
-ms.sourcegitcommit: be0a8e909fbce6b1b09699a721268f2fc7eb89de
+ms.openlocfilehash: aacfdef8c85c04fe4d864d9c7da854e88481e933
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84199787"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715288"
 ---
 # <a name="features-and-terminology-in-azure-event-hubs"></a>Azure 事件中心的功能和术语
 
-Azure 事件中心是可缩放的事件处理服务，它引入并处理大量事件和数据，具有低延迟和高可靠性。 有关简要概述，请参阅[什么是事件中心？](event-hubs-what-is-event-hubs.md)。
+Azure 事件中心是可缩放的事件处理服务，它引入并处理大量事件和数据，具有低延迟和高可靠性。 有关简要概述，请参阅[什么是事件中心？](./event-hubs-about.md)。
 
-本文基于[概述文章](event-hubs-what-is-event-hubs.md)中的信息编写，并提供有关事件中心组件和功能的技术和实现详细信息。
+本文基于[概述文章](./event-hubs-about.md)中的信息编写，并提供有关事件中心组件和功能的技术和实现详细信息。
 
 ## <a name="namespace"></a>命名空间
 事件中心命名空间提供唯一的作用域容器，可以通过其完全限定的域名进行引用，而在该容器中，可以创建一个或多个事件中心或 Kafka 主题。 
@@ -44,7 +35,7 @@ Azure 事件中心是可缩放的事件处理服务，它引入并处理大量�
 
 ### <a name="publishing-an-event"></a>发布事件
 
-可以通过 AMQP 1.0、Kafka 1.0（和更高版本）或 HTTPS 发布事件。 服务总线提供了[客户端库和类](event-hubs-dotnet-framework-api-overview.md)，用于从 .NET 客户端将事件发布到事件中心。 对于其他运行时和平台，可以使用任何 AMQP 1.0 客户端，例如 [Apache Qpid](https://qpid.apache.org/)。 可以逐个或者批量发送事件。 单个发布（事件数据实例）限制为 1 MB，不管它是单个事件还是事件批。 发布大于此限制的事件将导致出错。 发布者最好是不知道事件中心内的分区数，而只是通过其 SAS 令牌指定“分区键”（如下一部分所述）或其标识。
+可以通过 AMQP 1.0、Kafka 1.0（和更高版本）或 HTTPS 发布事件。 服务总线提供了[客户端库和类](./event-hubs-dotnet-framework-getstarted-send.md)，用于从 .NET 客户端将事件发布到事件中心。 对于其他运行时和平台，可以使用任何 AMQP 1.0 客户端，例如 [Apache Qpid](https://qpid.apache.org/)。 可以逐个或者批量发送事件。 单个发布（事件数据实例）限制为 1 MB，不管它是单个事件还是事件批。 发布大于此限制的事件将导致出错。 发布者最好是不知道事件中心内的分区数，而只是通过其 SAS 令牌指定“分区键”（如下一部分所述）或其标识。
 
 是要使用 AMQP 还 HTTPS 根据具体的使用方案而定。 AMQP 除了需要使用传输级别安全 (TLS) 或 SSL/TLS 以外，还需要建立持久的双向套接字。 初始化会话时，AMQP 具有较高的网络成本，但是 HTTPS 需要为每个请求使用额外的 TLS 开销。 对于活动频繁的发布者，AMQP 的性能更高。
 
@@ -57,7 +48,7 @@ Azure 事件中心是可缩放的事件处理服务，它引入并处理大量�
 使用事件中心可以通过*发布者策略*对事件发布者进行精细控制。 发布者策略是运行时功能，旨在为大量的独立事件发布者提供方便。 借助发布者策略，每个发布者在使用以下机制将事件发布到事件中心时可以使用自身的唯一标识符：
 
 ```http
-//[my namespace].servicebus.chinacloudapi.cn/[event hub name]/publishers/[my publisher name]
+//<my namespace>.servicebus.chinacloudapi.cn/<event hub name>/publishers/<my publisher name>
 ```
 
 不需要提前创建发布者名称，但它们必须与发布事件时使用的 SAS 令牌匹配，以确保发布者标识保持独立。 使用发布者策略时，**PartitionKey** 值设置为发布者名称。 若要正常工作，这些值必须匹配。
@@ -86,12 +77,13 @@ Azure 事件中心是可缩放的事件处理服务，它引入并处理大量�
 
 每个使用者组的分区上最多可以有 5 个并发读取者，但是**建议每个使用者组的分区上只有一个活动接收者**。 在单个分区中，每个读取者接收所有消息。 如果在同一分区上有多个读取者，则处理重复消息。 需在代码中处理此问题，这并非易于处理的。 但是，在某些情况下，这是一种有效的方法。
 
+Azure SDK 提供的某些客户端是智能使用者代理，可以自动管理详细信息，以确保每个分区都有一个读取者，并确保正在读取事件中心的所有分区。 这样，你的代码的处理范围便可集中于从事件中心读取的事件，从而可以忽略分区的许多细节。 有关详细信息，请参阅[连接到分区](#connect-to-a-partition)。
 
-以下是使用者组 URI 约定的示例：
+以下示例显示了使用者组 URI 约定：
 
 ```http
-//[my namespace].servicebus.chinacloudapi.cn/[event hub name]/[Consumer Group #1]
-//[my namespace].servicebus.chinacloudapi.cn/[event hub name]/[Consumer Group #2]
+//<my namespace>.servicebus.chinacloudapi.cn/<event hub name>/<Consumer Group #1>
+//<my namespace>.servicebus.chinacloudapi.cn/<event hub name>/<Consumer Group #2>
 ```
 
 下图显示了事件中心流处理体系结构：
@@ -123,7 +115,12 @@ Azure 事件中心是可缩放的事件处理服务，它引入并处理大量�
 
 #### <a name="connect-to-a-partition"></a>连接到分区
 
-在连接到分区时，常见的做法是使用租用机制来协调读取者与特定分区的连接。 这样，便可以做到一个使用者组中每分区只有一个活动的读取者。 使用 .NET 客户端的 [EventProcessorHost](/dotnet/api/microsoft.azure.eventhubs.processor.eventprocessorhost) 类可以简化检查点、租用和读取者管理功能。 事件处理程序主机是智能使用者代理。
+在连接到分区时，常见的做法是使用租用机制来协调读取者与特定分区的连接。 这样，便可以做到一个使用者组中每分区只有一个活动的读取者。 使用事件中心 SDK 中的客户端（充当智能使用者代理）可以简化检查点、租用和管理读取者的操作。 它们是：
+
+- 适用于 .NET 的 [EventProcessorClient](https://docs.microsoft.com/dotnet/api/azure.messaging.eventhubs.eventprocessorclient)
+- 适用于 Java 的 [EventProcessorClient](https://docs.microsoft.com/java/api/com.azure.messaging.eventhubs.eventprocessorclient)
+- 适用于 Python 的 [EventHubConsumerClient](https://docs.microsoft.com/python/api/azure-eventhub/azure.eventhub.aio.eventhubconsumerclient)
+- 适用于 JavaScript/TypeScript 的 [EventHubConsumerClient](https://docs.microsoft.com/javascript/api/@azure/event-hubs/eventhubconsumerclient)
 
 #### <a name="read-events"></a>读取事件
 
@@ -143,13 +140,11 @@ Azure 事件中心是可缩放的事件处理服务，它引入并处理大量�
 有关事件中心的详细信息，请访问以下链接：
 
 - 事件中心入门
-    - [.NET Core](get-started-dotnet-standard-send-v2.md)
+    - [.NET](get-started-dotnet-standard-send-v2.md)
     - [Java](get-started-java-send-v2.md)
     - [Python](get-started-python-send-v2.md)
     - [JavaScript](get-started-java-send-v2.md)
 * [事件中心编程指南](event-hubs-programming-guide.md)
 * [事件中心中的可用性和一致性](event-hubs-availability-and-consistency.md)
 * [事件中心常见问题](event-hubs-faq.md)
-* [事件中心示例][]
-
-[事件中心示例]: https://github.com/Azure/azure-event-hubs/tree/master/samples
+* [事件中心示例](event-hubs-samples.md)

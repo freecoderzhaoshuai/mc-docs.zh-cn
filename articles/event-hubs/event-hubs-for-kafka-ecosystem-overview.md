@@ -1,22 +1,16 @@
 ---
 title: 使用 Apache Kafka 应用中的事件中心 - Azure 事件中心 | Microsoft Docs
 description: 本文介绍有关 Azure 事件中心提供的 Apache Kafka 支持的信息。
-services: event-hubs
-documentationcenter: .net
-author: ShubhaVijayasarathy
-manager: timlt
-ms.service: event-hubs
 ms.topic: article
-ms.custom: seodec18
 ms.author: v-tawe
-origin.date: 02/12/2020
-ms.date: 05/29/2020
-ms.openlocfilehash: ec08579360713bf585b6068f4de70d51bc06b7ad
-ms.sourcegitcommit: be0a8e909fbce6b1b09699a721268f2fc7eb89de
+origin.date: 07/20/2020
+ms.date: 08/21/2020
+ms.openlocfilehash: 1081a121e6c3e84df254bb6629b680eb322d0882
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84200257"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715235"
 ---
 # <a name="use-azure-event-hubs-from-apache-kafka-applications"></a>使用 Apache Kafka 应用程序中的 Azure 事件中心
 事件中心提供 Kafka 终结点，现有的基于 Kafka 的应用程序可将该终结点用作运行你自己的 Kafka 群集的替代方案。 事件中心支持 [Apache Kafka 协议 1.0 及更高版本](https://kafka.apache.org/documentation/)，并且可与现有 Kafka 应用程序（包括 MirrorMaker）配合使用。  
@@ -54,7 +48,7 @@ Azure 事件中心提供了多个选项来授予对安全资源的访问权限�
 - 共享访问签名 (SAS)
 
 #### <a name="oauth"></a>OAuth
-事件中心会与 Azure Active Directory (Azure AD) 集成，后者提供了与 OAuth 2.0 兼容的集中式授权服务器。 使用 Azure AD，可以通过基于角色的访问控制 (RBAC) 向客户端标识授予细粒度权限。 可以指定“SASL_SSL”作为协议，并指定“OAUTHBEARER”作为机制，通过这种方式将此功能用于 Kafka 客户端。 有关 RBAC 角色和范围访问级别的详细信息，请参阅[使用 Azure AD 授予访问权限](authorize-access-azure-active-directory.md)。
+事件中心会与 Azure Active Directory (Azure AD) 集成，后者提供了与 OAuth 2.0 兼容的集中式授权服务器。 使用 Azure AD，可以通过基于角色的访问控制 (RBAC) 向客户端标识授予细粒度权限。 可以指定“SASL_SSL”作为协议，并指定“OAUTHBEARER”作为机制，通过这种方式将此功能用于 Kafka 客户端。 有关 Azure 角色和范围访问级别的详细信息，请参阅[使用 Azure AD 授予访问权限](authorize-access-azure-active-directory.md)。
 
 ```xml
 bootstrap.servers=NAMESPACENAME.servicebus.chinacloudapi.cn:9093
@@ -74,6 +68,9 @@ sasl.mechanism=PLAIN
 sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="$ConnectionString" password="{YOUR.EVENTHUBS.CONNECTION.STRING}";
 ```
 
+> [!NOTE]
+> 对 Kafka 客户端使用 SAS 身份验证时，在重新生成 SAS 密钥时，已建立的连接不会断开。 
+
 #### <a name="samples"></a>示例 
 有关创建事件中心并使用 SAS 或 OAuth 对其进行访问的分步说明教程，请参阅[快速入门：使用 Kafka 协议通过事件中心进行数据流式传输](event-hubs-quickstart-kafka-enabled-event-hubs.md)。
 
@@ -87,14 +84,14 @@ sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule require
 
 下面是尚不支持的 Kafka 功能列表：
 
-*   幂等生成方
 *   事务
 *   压缩
 *   基于大小的保留
 *   日志压缩
-*   将分区添加到现有主题
 *   HTTP Kafka API 支持
 *   Kafka Stream
 
 ## <a name="next-steps"></a>后续步骤
 本文介绍了适用于 Kafka 的事件中心。 若要了解详细信息，请参阅[针对 Azure 事件中心的 Apache Kafka 开发人员指南](apache-kafka-developer-guide.md)。
+
+

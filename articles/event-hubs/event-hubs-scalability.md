@@ -1,26 +1,16 @@
 ---
-title: 可伸缩性 - Azure 事件中心 | Azure
+title: 可伸缩性 - Azure 事件中心 | Microsoft Docs
 description: 本文介绍如何使用分区和吞吐量单位来缩放 Azure 事件中心。
-services: event-hubs
-documentationcenter: na
-author: ShubhaVijayasarathy
-manager: timlt
-editor: ''
-ms.service: event-hubs
-ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
-ms.custom: seodec18
-origin.date: 06/18/2019
-ms.date: 05/29/2020
+origin.date: 06/23/2020
+ms.date: 08/21/2020
 ms.author: v-tawe
-ms.openlocfilehash: b30545fdd641f4268d88b3c3b4886f41896d71d6
-ms.sourcegitcommit: be0a8e909fbce6b1b09699a721268f2fc7eb89de
+ms.openlocfilehash: a372ebd48d507020a091a9bcbc7a8dcefdc97717
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84199771"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715206"
 ---
 # <a name="scaling-with-event-hubs"></a>通过事件中心进行缩放
 
@@ -62,4 +52,4 @@ ms.locfileid: "84199771"
 访问以下链接可以了解有关事件中心的详细信息：
 
 - [自动缩放吞吐量单位](event-hubs-auto-inflate.md)
-- [事件中心服务概述](event-hubs-what-is-event-hubs.md)
+- [事件中心服务概述](./event-hubs-about.md)

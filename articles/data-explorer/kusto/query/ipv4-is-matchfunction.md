@@ -8,13 +8,13 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 02/24/2020
-ms.date: 08/06/2020
-ms.openlocfilehash: 790552b38e8e0401d08599f1a7149c7b983b594a
-ms.sourcegitcommit: 7ceeca89c0f0057610d998b64c000a2bb0a57285
+ms.date: 08/18/2020
+ms.openlocfilehash: 13012dca196f4fd99e33fbd12de4e9e33028fcf0
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87841378"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88516046"
 ---
 # <a name="ipv4_is_match"></a>ipv4_is_match()
 
@@ -27,11 +27,11 @@ ipv4_is_match('192.168.1.1/24', '192.168.1.255/24') == true
 ipv4_is_match('192.168.1.1', '192.168.1.255', 24) == true
 ```
 
-**语法**
+## <a name="syntax"></a>语法
 
 `ipv4_is_match(`*Expr1*`, `*Expr2*`[ ,`*PrefixMask*`])`
 
-**参数**
+## <a name="arguments"></a>参数
 
 * Expr1、Expr2：表示 IPv4 地址的字符串表达式。 可以使用 [IP 前缀表示法](#ip-prefix-notation)对 IPv4 字符串进行掩码操作。
 * PrefixMask：从 0 到 32 的整数，表示所考虑的最有效位的数目。
@@ -39,9 +39,10 @@ ipv4_is_match('192.168.1.1', '192.168.1.255', 24) == true
 ## <a name="ip-prefix-notation"></a>IP 前缀表示法
 
 IP 地址可通过使用斜杠 (`/`) 字符的 `IP-prefix notation` 进行定义。 斜杠 (`/`) 左边的 IP 地址是基本 IP 地址。 斜杠 (`/`) 右边的数字（1 到 32）是网络掩码中连续位的数目。 
-**示例：** 192.168.2.0/24 将具有关联的网络/子网掩码，其中包含 24 个连续位或点分十进制格式的 255.255.255.0。
 
-**返回**
+例如，192.168.2.0/24 将具有关联的网络/子网掩码，其中包含 24 个连续位或点分十进制格式的 255.255.255.0。
+
+## <a name="returns"></a>返回
 
 * `true`：如果第一个 IPv4 字符串参数的长表示形式等于第二个 IPv4 字符串参数。
 *  `false`：其他情况。
@@ -49,7 +50,7 @@ IP 地址可通过使用斜杠 (`/`) 字符的 `IP-prefix notation` 进行定义
 
 ## <a name="examples"></a>示例
 
-### <a name="ipv4-comparison-equality---ip-prefix-notation-specified-inside-the-ipv4-strings"></a>IPv4 比较相等 - IPv4 字符串中指定的 IP 前缀表示法。
+### <a name="ipv4-comparison-equality---ip-prefix-notation-specified-inside-the-ipv4-strings"></a>IPv4 比较相等 - IPv4 字符串中指定的 IP 前缀表示法
 
 <!-- csl: https://help.kusto.chinacloudapi.cn/Samples -->
 ```kusto

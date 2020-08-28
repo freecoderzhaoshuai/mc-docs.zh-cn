@@ -1,24 +1,16 @@
 ---
 title: Azure 事件中心 - 资源管理器异常 | Microsoft Docs
 description: Azure 资源管理器公开的 Azure 事件中心异常列表以及建议的处理措施。
-services: service-bus-messaging
-documentationcenter: na
-author: spelluru
-editor: spelluru
-ms.service: service-bus-messaging
-ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
-origin.date: 12/08/2019
-ms.date: 05/29/2020
+origin.date: 06/23/2020
+ms.date: 08/21/2020
 ms.author: v-tawe
-ms.openlocfilehash: cd8d9f838c0e83080ddc39cb9d1ab4e0f9ad2310
-ms.sourcegitcommit: be0a8e909fbce6b1b09699a721268f2fc7eb89de
+ms.openlocfilehash: ead7d5cc1ec39dd4ce60e1fbd008852599ba7e1b
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84199675"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715152"
 ---
 # <a name="azure-event-hubs---resource-manager-exceptions"></a>Azure 事件中心 - 资源管理器异常
 本文列出了使用 Azure 资源管理器通过模板或直接调用来与 Azure 事件中心交互时生成的异常。
@@ -33,6 +25,7 @@ ms.locfileid: "84199675"
 | 错误代码 | 错误子代码 | 错误消息 | 说明 | 建议 |
 | ---------- | ------------- | ------------- | ----------- | -------------- |
 | Conflict | 40300 | 已达到或超过 EventHub 类型的资源数上限。 实际数目: #，最大允许数目: # | 命名空间已达到其可以包含的事件中心数[配额](event-hubs-quotas.md)。 | 从命名空间中删除任何未使用的或无关的事件中心，或考虑升级到[专用群集](event-hubs-dedicated-overview.md)。 |
+| Conflict | 无 | 由于复制正在进行，无法删除灾难恢复 (DR) 配置。 在尝试删除 DR 配置之前进行故障转移或中断配对。 | [GeoDR 复制](event-hubs-geo-dr.md)正在进行，此时无法删除配置。 | 若要取消阻止删除配置，请等待复制完成，触发故障转移，或中断异地灾难恢复配对。 |
 | Conflict | 无 | 后端存在冲突，命名空间更新失败。 | 当前正在对此命名空间执行另一项操作。 | 等待当前操作完成，然后重试。 |
 
 ## <a name="error-code-429"></a>错误代码：429
@@ -40,6 +33,7 @@ ms.locfileid: "84199675"
 | 错误代码 | 错误子代码 | 错误消息 | 说明 | 建议 |
 | ---------- | ------------- | ------------- | ----------- | -------------- |
 | 429 | 无 | 命名空间预配正在转换 | 当前正在对此命名空间执行另一项操作。 | 等待当前操作完成，然后重试。 |
+| 429 | 无 | 灾难恢复操作正在进行。 | 当前正在对此命名空间或配对执行某项[GeoDR](event-hubs-geo-dr.md)操作。 | 等待当前异地灾难恢复操作完成，然后重试。 |
 
 ## <a name="error-code-badrequest"></a>错误代码：BadRequest
 
@@ -49,6 +43,7 @@ ms.locfileid: "84199675"
 | BadRequest | 40000 | MessageRetentionInDays 的 '#' 值对于基本层无效。 该值不能超过 '1' 天。 | 基本层事件中心命名空间仅支持最长 1 天的消息保留期。 | 如果需要一天以上的消息保留期，请[创建标准事件中心命名空间](event-hubs-create.md)。 | 
 | BadRequest | 无 | 指定的名称不可用。 | 命名空间名称必须唯一，而指定的名称已被使用。 | 如果你是使用指定名称的现有命名空间的所有者，可将其删除，但这会导致数据丢失。 然后重试相同的名称。 如果不能安全删除该命名空间（或者你不是所有者），请选择另一个命名空间名称。 |
 | BadRequest | 无 | 指定的订阅已达到其命名空间配额。 | 订阅已达到其可以包含的命名空间数[配额](event-hubs-quotas.md)。 | 考虑删除此订阅中未使用的命名空间、创建另一个订阅，或升级到[专用群集](event-hubs-dedicated-overview.md)。 |
+| BadRequest | 无 | 无法更新辅助命名空间 | 无法更新命名空间，因为它是 [GeoDR 配对](event-hubs-geo-dr.md)中的辅助命名空间。 | 如果合适，请改为对此配对中的主命名空间进行更改。 否则，请中断 GeoDR 配对以进行更改。 |
 | BadRequest | 无 | 无法在基本 SKU 中设置自动扩充 | 无法在基本层事件中心命名空间中启用自动扩充。 | 若要在命名空间中[启用自动扩充](event-hubs-auto-inflate.md)，请确保它位于标准层。 |
 | BadRequest | 无 | 容量不足，无法创建命名空间。 请联系事件中心管理员。 | 所选区域已达到容量限制，无法创建更多命名空间。 | 选择另一个区域来容纳命名空间。 |
 | BadRequest | 无 | 无法对实体类型 'ConsumerGroup' 执行该操作，因为命名空间 '<命名空间名称>' 使用的是“基本”层。  | 基本层事件中心命名空间的 [配额]((event-hubs-quotas.md#event-hubs-basic-and-standard---quotas-and-limits) 为一个使用者组（默认设置）。 不支持创建更多使用者组。 | 继续使用默认使用者组 ($Default)，如果需要更多使用者组，请考虑改用标准层事件中心命名空间。 | 

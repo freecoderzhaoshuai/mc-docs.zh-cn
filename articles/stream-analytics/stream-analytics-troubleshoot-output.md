@@ -5,26 +5,26 @@ author: Johnnytechn
 ms.author: v-johya
 ms.reviewer: mamccrea
 ms.service: stream-analytics
-ms.topic: conceptual
-ms.date: 07/06/2020
+ms.topic: troubleshooting
+ms.date: 08/20/2020
 ms.custom: seodec18
-ms.openlocfilehash: 6e3a5c9d67158ddf6ca95275f0b6db18b1632efb
-ms.sourcegitcommit: 9bc3e55f01e0999f05e7b4ebaea95f3ac91d32eb
+ms.openlocfilehash: 9e420241b722a3b25058f0f71a4570ceaac11bfa
+ms.sourcegitcommit: 09c7071f4d0d9256b40a6bf700b38c6a25db1b26
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86226010"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715733"
 ---
 # <a name="troubleshoot-azure-stream-analytics-outputs"></a>Azure 流分析输出的故障排除
 
-本文介绍了 Azure 流分析输出连接的常见问题，以及如何排查输出问题。 许多故障排除步骤都需要为流分析作业启用资源日志和其他诊断日志。
+本文介绍了 Azure 流分析输出连接的常见问题，以及如何排查输出问题。
 
 ## <a name="the-job-doesnt-produce-output"></a>作业不生成输出
 
 1. 使用每项输出对应的“测试连接”按钮来验证与输出的连接****。
 1. 查看“监视器”**** 选项卡上的[监视指标](stream-analytics-monitoring.md)。由于值将进行聚合，因此指标会延迟几分钟。
 
-   * 如果“输入事件”的值大于零，则作业可以读取输入数据****。 如果“输入事件”的值小于或等于零，表示作业的输入有问题****。 有关详细信息，请参阅[对输入连接进行故障排除](stream-analytics-troubleshoot-input.md)。
+   * 如果“输入事件”的值大于零，则作业可以读取输入数据****。 如果“输入事件”的值小于或等于零，表示作业的输入有问题****。 有关详细信息，请参阅[对输入连接进行故障排除](stream-analytics-troubleshoot-input.md)。 如果作业具有参考数据输入，请在查看输入事件指标时按逻辑名称应用拆分。 如果仅参考数据中没有输入事件，则可能意味着此输入源未正确配置，无法获取正确的参考数据集。
    * 如果“数据转换错误”**** 的值大于零并不断增大，请参阅 [Azure 流分析数据错误](data-errors.md)，详细了解数据转换错误。
    * 如果“运行时错误”**** 的值大于零，表示作业可以接收数据，但在处理查询时生成错误。 若要查找错误，请转到[审核日志](../azure-resource-manager/management/view-activity-logs.md)，然后筛选“失败”**** 状态。
    * 如果“输入事件”**** 的值大于零，而“输出事件”**** 的值等于零，则下列陈述之一是正确的：

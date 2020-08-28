@@ -10,12 +10,12 @@ ms.custom: hdinsightactive
 ms.topic: conceptual
 origin.date: 11/20/2019
 ms.date: 02/24/2020
-ms.openlocfilehash: b54a3a29f0fc4b8457364c0239282c040095f98c
-ms.sourcegitcommit: 3a8a7d65d0791cdb6695fe6c2222a1971a19f745
+ms.openlocfilehash: 33e7e22adbb93a5502834f302d87598238bbb635
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2020
-ms.locfileid: "85516733"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715248"
 ---
 # <a name="azure-hdinsight-frequently-asked-questions"></a>Azure HDInsight：常见问题
 
@@ -44,6 +44,14 @@ ms.locfileid: "85516733"
 ### <a name="what-are-the-various-types-of-nodes-in-an-hdinsight-cluster"></a>HDInsight 群集中有哪些不同类型的节点？
 
 请参阅 [Azure HDInsight 群集中的资源类型](hdinsight-virtual-network-architecture.md#resource-types-in-azure-hdinsight-clusters)。
+
+### <a name="what-are-the-best-practices-for-creating-large-hdinsight-clusters"></a>创建大型 HDInsight 群集的最佳做法有哪些？
+
+1. 建议使用[自定义 Ambari DB](/hdinsight/hdinsight-custom-ambari-db) 设置 HDInsight 群集，以提高群集的可伸缩性。
+2. 使用 [Azure Data Lake Storage Gen2](/hdinsight/hdinsight-hadoop-use-data-lake-storage-gen2) 创建 HDInsight 群集，以利用更高的带宽和 Azure Data Lake Storage Gen2 的其他性能特点。
+3. 头节点应该足够大，能够容纳在这些节点上运行的多个主服务。
+4. 某些特定工作负载（如 Interactive Query）也需要更大的 Zookeeper 节点。 请考虑使用至少 8 个核心 VM。
+5. 对于 Hive 和 Spark，请使用[外部 Hive 元存储](/hdinsight/hdinsight-use-external-metadata-stores)。
 
 ## <a name="individual-components"></a>单个组件
 
@@ -240,7 +248,7 @@ done
 
 ### <a name="can-i-add-an-edge-node-after-the-cluster-has-been-created"></a>创建群集后是否可以添加边缘节点？
 
-只能在创建群集时将边缘节点添加到 HDInsight 群集或新的群集。 有关详细信息，请参阅[在 HDInsight 中的 Apache Hadoop 群集上使用空边缘节点](hdinsight-apps-use-edge-node.md)一文。
+请参阅[在 HDInsight 中的 Apache Hadoop 群集上使用空边缘节点](hdinsight-apps-use-edge-node.md)。
 
 ### <a name="how-can-i-connect-to-an-edge-node"></a>如何连接到边缘节点？
 

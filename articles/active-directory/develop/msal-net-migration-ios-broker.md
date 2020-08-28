@@ -8,17 +8,16 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 01/06/2020
+ms.date: 08/18/2020
 ms.author: v-junlch
 ms.reviewer: saeeda
-ms.custom: aaddev
-ms.collection: M365-identity-device-management
-ms.openlocfilehash: 2ead4737a66122d9f1d755e67b37916938edeced
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp, aaddev
+ms.openlocfilehash: 4f997ab05528bd971afa3326dbef9d3738de8689
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75776989"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647734"
 ---
 # <a name="migrate-ios-applications-that-use-microsoft-authenticator-from-adalnet-to-msalnet"></a>将使用 Microsoft Authenticator 的 iOS 应用程序从 ADAL.NET 迁移到 MSAL.NET
 
@@ -38,6 +37,7 @@ ms.locfileid: "75776989"
 中介可以实现：
 
 - 单一登录。
+- 某些[条件访问策略](../conditional-access/overview.md)所需的设备标识。 有关详细信息，请参阅[管理](../conditional-access/concept-conditional-access-conditions.md#device-platforms)。
 - 应用程序标识验证，在某些企业方案中也需要执行此操作。 有关详细信息，请参阅 [Intune 移动应用程序管理 (MAM)](https://docs.microsoft.com/intune/mam-faq)。
 
 ## <a name="migrate-from-adal-to-msal"></a>从 ADAL 迁移到 MSAL
@@ -118,7 +118,7 @@ page.BrokerParameters = new PlatformParameters(
 1. 在 `AppDelegate.cs` 中，将 `App.RootViewController` 设置为新的 `UIViewController()`。 这种分配可确保提供一个 UIViewController 来调用中介。 如果未正确设置此参数，可能会收到以下错误：`"uiviewcontroller_required_for_ios_broker":"UIViewController is null, so MSAL.NET cannot invoke the iOS broker. See https://aka.ms/msal-net-ios-broker"`
 1. 在 AcquireTokenInteractive 调用中，使用 `.WithParentActivityOrWindow(App.RootViewController)` 并传入对你要使用的对象窗口的引用。
 
-例如： 
+例如：
 
 在 `App.cs`中：
 ```csharp
@@ -151,7 +151,7 @@ ADAL.NET 和 MSAL.NET 使用 URL 调用中介，然后将中介响应返回到�
 <tr><td>
 URL 方案对于应用是唯一的。
 </td><td>
-The 
+必须向 
 
 `CFBundleURLSchemes` 名称必须包含 
 
@@ -159,7 +159,7 @@ The
 
 作为前缀，后接 `CFBundleURLName`
 
-例如： `$"msauth.(BundleId")`
+例如：`$"msauth.(BundleId")`
 
 ```csharp
  <key>CFBundleURLTypes</key>
@@ -241,6 +241,5 @@ ADAL.NET 和 MSAL.NET 都使用 `-canOpenURL:` 来检查是否在设备上安装
 
 ## <a name="next-steps"></a>后续步骤
 
-了解[与 MSAL.NET 配合使用时特定于 Xamarin iOS 的注意事项](msal-net-xamarin-ios-considerations.md)。 
+了解[与 MSAL.NET 配合使用时特定于 Xamarin iOS 的注意事项](msal-net-xamarin-ios-considerations.md)。
 
-<!-- Update_Description: wording update -->

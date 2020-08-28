@@ -8,13 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 05/27/2020
-ms.date: 08/06/2020
-ms.openlocfilehash: 11254ed5fba7c7daaaa437078d648b1e09b09342
-ms.sourcegitcommit: 7ceeca89c0f0057610d998b64c000a2bb0a57285
+ms.date: 08/18/2020
+ms.openlocfilehash: 6815d7d469e45afad7e48c7470e9c169a59adcec
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87841198"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515949"
 ---
 # <a name="scalar-function-types"></a>标量函数类型
 
@@ -70,6 +70,10 @@ ms.locfileid: "87841198"
 |[startofyear()](startofyearfunction.md)|返回包含日期的年份的起点，偏移某个偏移量（如已提供）。|
 |[todatetime()](todatetimefunction.md)|将输入转换为日期时间标量。|
 |[totimespan()](totimespanfunction.md)|将输入转换为时间跨度标量。|
+|[unixtime_microseconds_todatetime()](unixtime-microseconds-todatetimefunction.md)|将 unix-epoch 微秒转换为 UTC 日期/时间。|
+|[unixtime_milliseconds_todatetime()](unixtime-milliseconds-todatetimefunction.md)|将 unix-epoch 毫秒转换为 UTC 日期/时间。|
+|[unixtime_nanoseconds_todatetime()](unixtime-nanoseconds-todatetimefunction.md)|将 unix-epoch 纳秒转换为 UTC 日期/时间。|
+|[unixtime_seconds_todatetime()](unixtime-seconds-todatetimefunction.md)|将 unix-epoch 秒转换为 UTC 日期/时间。|
 |[weekofyear()](weekofyearfunction.md)|返回一个表示周数的整数。|
 
 
@@ -210,11 +214,13 @@ ms.locfileid: "87841198"
 |[series_fill_const()](series-fill-constfunction.md)|用指定的常数值替换系列中缺失的值。|
 |[series_fill_forward()](series-fill-forwardfunction.md)|在系列中对缺失值执行前向填充内插。|
 |[series_fill_linear()](series-fill-linearfunction.md)|在系列中对缺失值执行线性内插。|
+|[series_fft()](series-fft-function.md)|对某个系列应用快速傅立叶变换 (FFT)。|
 |[series_fir()](series-firfunction.md)|对系列应用有限脉冲响应滤波器。|
 |[series_fit_2lines()](series-fit-2linesfunction.md)|对系列应用两段线性回归，返回多个列。|
 |[series_fit_2lines_dynamic()](series-fit-2lines-dynamicfunction.md)|对系列应用两段线性回归，返回动态对象。|
 |[series_fit_line()](series-fit-linefunction.md)|对系列应用线性回归，返回多个列。|
 |[series_fit_line_dynamic()](series-fit-line-dynamicfunction.md)|对系列应用线性回归，返回动态对象。|
+|[series_ifft()](series-ifft-function.md)|对系列应用快速傅立叶逆变换 (IFFT)。|
 |[series_iir()](series-iirfunction.md)|对系列应用无限脉冲响应滤波器。|
 |[series_outliers()](series-outliersfunction.md)|对系列中的异常点进行评分。|
 |[series_pearson_correlation()](series-pearson-correlationfunction.md)|计算两个系列的皮尔逊相关系数。|
@@ -279,6 +285,8 @@ ms.locfileid: "87841198"
 |[ipv6_is_match()](ipv6-is-matchfunction.md)|对两个 IPv4 或 IPv6 字符串进行匹配。|
 |[parse_ipv6()](parse-ipv6function.md)|将 IPv6 或 IPv4 字符串转换为规范的 IPv6 字符串表示形式。|
 |[parse_ipv6_mask()](parse-ipv6-maskfunction.md)|将 IPv6 或 IPv4 字符串和网络掩码转换为规范的 IPv6 字符串表示形式。|
+|[format_ipv4()](format-ipv4-function.md)|使用网络掩码分析输入，并返回表示 IPv4 地址的字符串。|
+|[format_ipv4_mask()](format-ipv4-mask-function.md)|使用网络掩码分析输入，并以 CIDR 表示法返回表示 IPv4 地址的字符串。|
 
 ## <a name="type-functions"></a>类型函数
 
@@ -302,9 +310,16 @@ ms.locfileid: "87841198"
 |函数名称|描述|
 |--------------------------------------------------------------------------|--------------------------------------------------------|
 |[geo_distance_2points()](geo-distance-2points-function.md)|计算地球上两个地理空间坐标之间的最短距离。|
-|[geo_geohash_to_central_point()](geo-geohash-to-central-point-function.md)|计算表示 Geohash 矩形区中心的地理空间坐标。|
+|[geo_distance_point_to_line()](geo-distance-point-to-line-function.md)|计算地球上坐标和直线之间的最短距离。|
 |[geo_point_in_circle()](geo-point-in-circle-function.md)|计算地理空间坐标是否在地球上的某个圆圈范围内。|
+|[geo_point_in_polygon()](geo-point-in-polygon-function.md)|计算地理空间坐标是否在地球上的某个多边形或多多边形内。|
 |[geo_point_to_geohash()](geo-point-to-geohash-function.md)|计算地理位置的 Geohash 字符串值。|
+|[geo_geohash_to_central_point()](geo-geohash-to-central-point-function.md)|计算表示 Geohash 矩形区中心的地理空间坐标。|
+|[geo_point_to_s2cell()](geo-point-to-s2cell-function.md)|计算地理位置的 S2 单元格字符串值。|
+|[geo_s2cell_to_central_point()](geo-s2cell-to-central-point-function.md)|计算表示 S2 单元格中心的地理空间坐标。|
+|[geo_polygon_to_s2cells()](geo-polygon-to-s2cells-function.md)|计算覆盖地球上的多边形或多多边形的 S2 单元标记。 有用的地理空间联接工具。|
+|[geo_line_densify()](geo-line-densify-function.md)|通过添加中间点将平面线边缘转换为测地线。|
+|[geo_polygon_densify()](geo-polygon-densify-function.md)|通过添加中间点将多边形或多边形集合的平面边缘转换为测地线。|
 
 ## <a name="hash-functions"></a>哈希函数
 

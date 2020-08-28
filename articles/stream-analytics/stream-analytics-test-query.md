@@ -1,25 +1,26 @@
 ---
 title: 使用样本数据测试 Azure 流分析作业
 description: 本文介绍如何使用 Azure 门户测试 Azure 流分析作业、示例输入以及上传样本数据。
-author: lingliw
-ms.author: v-lingwu
-ms.reviewer: jasonh
+author: Johnnytechn
+ms.author: v-johya
+ms.reviewer: mamccrea
 ms.service: stream-analytics
-ms.topic: conceptual
+ms.topic: how-to
 origin.date: 08/23/2019
-ms.date: 09/23/2019
-ms.openlocfilehash: 10e568f55e3b78ffb7f9b8a3a06152a118d1518b
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.date: 08/20/2020
+ms.custom: seodec18
+ms.openlocfilehash: 3354c4f5198530964dab3134c655606dd9830b9b
+ms.sourcegitcommit: 09c7071f4d0d9256b40a6bf700b38c6a25db1b26
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77068300"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715758"
 ---
-# <a name="test-an-azure-stream-analytics-job-with-sample-data"></a>使用样本数据测试 Azure 流分析作业
+# <a name="test-an-azure-stream-analytics-job-in-the-portal"></a>在门户中测试 Azure 流分析作业
 
-在 Azure 流分析中，无需启动或停止作业即可测试查询。 可以在 Azure 门户上，针对输入接收器传入的数据或者从本地文件上传的示例数据测试查询。 还可以在 [Visual Studio](stream-analytics-live-data-local-testing.md) 中基于本地示例数据或实时数据在本地测试查询。 
+在 Azure 流分析中，无需启动或停止作业即可测试查询。 可以对流源中的传入数据测试查询，也可以从 Azure 门户上的本地文件上传示例数据。
 
-## <a name="sample-incoming-data-from-input"></a>来自输入的示例传入数据
+## <a name="automatically-sample-incoming-data-from-input"></a>来自输入的自动示例传入数据
 
 Azure 流分析自动从流输入中提取事件。 可以针对默认示例运行查询，或者为示例设置特定的期限。
 
@@ -27,43 +28,43 @@ Azure 流分析自动从流输入中提取事件。 可以针对默认示例运�
 
 2. 找到并选择现有的流分析作业。
 
-3. 在“流分析作业”页上的“作业拓扑”  标题下，选择“查询”  以打开“查询编辑器”窗口。 
+3. 在“流分析作业”页上的“作业拓扑”**** 标题下，选择“查询”**** 以打开“查询编辑器”窗口。 
 
-4. 若要查看传入事件的示例列表，请使用文件图标选择输入，示例事件将自动显示在“输入预览”中。  
+4. 若要查看传入事件的示例列表，请使用文件图标选择输入，示例事件将自动显示在“输入预览”中。****
 
    a. 如果数据的序列化类型为 JSON 或 CSV，系统会自动检测到该类型。 还可以通过更改下拉菜单中的选项，手动将序列化类型更改为 JSON、CSV 或 AVRO。
     
-   b. 使用选择器查看“表”或“原始”格式的数据。  
+   b. 使用选择器查看“表”或“原始”格式的数据。********
     
-   c. 如果显示的数据不是最新的，请选择“刷新”查看最新事件。 
+   c. 如果显示的数据不是最新的，请选择“刷新”查看最新事件。
 
-   下表显示了采用“表”格式的数据示例： 
+   下表显示了采用“表”格式的数据示例：****
 
    ![采用表格式的 Azure 流分析输入示例](./media/stream-analytics-test-query/asa-sample-table.png)
 
-   下表显示了“原始”格式的数据示例： 
+   下表显示了“原始”格式的数据示例：****
 
    ![采用原始格式的 Azure 流分析输入示例](./media/stream-analytics-test-query/asa-sample-raw.png)
 
-5. 若要使用传入数据测试查询，请选择“测试查询”。  结果将显示在“测试结果”选项卡中。  还可以选择“下载结果”来下载结果。 
+5. 若要使用传入数据测试查询，请选择“测试查询”。**** 结果将显示在“测试结果”选项卡中。还可以选择“下载结果”来下载结果。
 
    ![Azure 流分析中的示例测试查询结果](./media/stream-analytics-test-query/asa-test-query.png)
 
-6. 若要针对传入事件的特定时间范围测试查询，请选择“选择时间范围”。 
+6. 若要针对传入事件的特定时间范围测试查询，请选择“选择时间范围”。****
    
    ![传入示例事件的 Azure 流分析时间范围](./media/stream-analytics-test-query/asa-select-time-range.png)
 
-7. 设置用于测试查询的事件的时间范围，然后选择“示例”。  在此期限内，最多可以检索 1000 个事件或 1 MB 的数据大小（以先达到的限制为准）。
+7. 设置用于测试查询的事件的时间范围，然后选择“示例”。**** 在此期限内，最多可以检索 1000 个事件或 1 MB 的数据大小（以先达到的限制为准）。
 
    ![在 Azure 流分析中设置传入示例事件的时间范围](./media/stream-analytics-test-query/asa-set-time-range.png)
 
-8. 根据所选时间范围对事件采样后，这些事件将显示在“输入预览”选项卡中。 
+8. 根据所选时间范围对事件采样后，这些事件将显示在“输入预览”选项卡中。****
 
    ![在 Azure 流分析中查看测试结果](./media/stream-analytics-test-query/asa-view-test-results.png)
 
-9. 选择“重置”，查看传入事件的示例列表。  如果选择“重置”，选择的时间范围将会丢失。  选择“测试查询”以测试查询，然后在“测试结果”选项卡中查看结果。  
+9. 选择“重置”，查看传入事件的示例列表。**** 如果选择“重置”，选择的时间范围将会丢失。**** 选择“测试查询”以测试查询，然后在“测试结果”选项卡中查看结果。********
 
-10. 更改查询后，请选择“保存查询”以测试新的查询逻辑。  这样就可以反复修改查询，并再次对其进行测试，以查看输出有何变化。
+10. 更改查询后，请选择“保存查询”以测试新的查询逻辑。**** 这样就可以反复修改查询，并再次对其进行测试，以查看输出有何变化。
 
 11. 确认结果显示在浏览器中后，可以**启动**作业。
 
@@ -75,21 +76,21 @@ Azure 流分析自动从流输入中提取事件。 可以针对默认示例运�
    
 2. 找到现有流分析作业并选择它。
 
-3. 在“流分析作业”页上的“作业拓扑”  标题下，选择“查询”  以打开“查询编辑器”窗口。
+3. 在“流分析作业”页上的“作业拓扑”**** 标题下，选择“查询”**** 以打开“查询编辑器”窗口。
 
-4. 若要使用本地文件测试查询，请在“输入预览”选项卡上选择“上传示例输入”。   
+4. 若要使用本地文件测试查询，请在“输入预览”选项卡上选择“上传示例输入”。******** 
 
    ![在 Azure 流分析中上传示例文件](./media/stream-analytics-test-query/asa-upload-sample-file.png)
 
-5. 上传本地文件以测试查询。 只能上传采用 JSON、CSV 或 AVRO 格式的文件。 选择“确定”  。
+5. 上传本地文件以测试查询。 只能上传采用 JSON、CSV 或 AVRO 格式的文件。 选择“确定”。
 
    ![在 Azure 流分析中上传示例文件](./media/stream-analytics-test-query/asa-upload-sample-json-file.png)
 
-6. 上传文件后，还可以在窗体中查看表格式或原始格式的文件内容。 如果选择“重置”，示例数据将还原为上一部分所述的传入输入数据。  随时可以上传任何其他文件来测试查询。
+6. 上传文件后，还可以在窗体中查看表格式或原始格式的文件内容。 如果选择“重置”，示例数据将还原为上一部分所述的传入输入数据。**** 随时可以上传任何其他文件来测试查询。
 
-7. 选择“测试查询”，以针对上传的示例文件测试查询。 
+7. 选择“测试查询”，以针对上传的示例文件测试查询。****
 
-8. 将根据查询显示测试结果。 可以更改查询，然后选择“保存查询”来测试新的查询逻辑。  这样就可以反复修改查询，并再次对其进行测试，以查看输出有何变化。
+8. 将根据查询显示测试结果。 可以更改查询，然后选择“保存查询”来测试新的查询逻辑。**** 这样就可以反复修改查询，并再次对其进行测试，以查看输出有何变化。
 
 9. 在查询中使用多个输出时，将根据所选输出显示结果。 
 
@@ -98,6 +99,7 @@ Azure 流分析自动从流输入中提取事件。 可以针对默认示例运�
 10. 确认结果显示在浏览器中后，可以**启动**作业。
 
 ## <a name="next-steps"></a>后续步骤
+* [使用流分析构建 IoT 解决方案](/stream-analytics/stream-analytics-build-an-iot-solution-using-stream-analytics)：本教程将指导使用数据生成器构建端到端解决方案，该生成器将模拟收费站的流量。
 
 * [Azure 流分析查询语言参考](https://docs.microsoft.com/stream-analytics-query/stream-analytics-query-language-reference)
 
@@ -106,3 +108,4 @@ Azure 流分析自动从流输入中提取事件。 可以针对默认示例运�
 * [理解 Azure 流分析的输入](stream-analytics-add-inputs.md)
 
 * [了解 Azure 流分析的输出](stream-analytics-define-outputs.md)
+

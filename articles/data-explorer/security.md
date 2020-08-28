@@ -1,19 +1,19 @@
 ---
 title: 在 Azure 中保护 Azure 数据资源管理器群集
 description: 了解如何保护 Azure 数据资源管理器中的群集。
-author: saguiitay
+author: orspod
 ms.author: v-tawe
-ms.reviewer: orspodek
+ms.reviewer: itsagui
 ms.service: data-explorer
 ms.topic: conceptual
 origin.date: 01/06/2020
-ms.date: 06/09/2020
-ms.openlocfilehash: 20260845c0365281b9ec7315a891a1cd34addf57
-ms.sourcegitcommit: 73697fa9c19a40d235df033400c74741e7d0f3f4
+ms.date: 08/18/2020
+ms.openlocfilehash: a3a34d5982962b66a131f87990a195c874a87898
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84574878"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88516022"
 ---
 # <a name="secure-azure-data-explorer-clusters-in-azure"></a>在 Azure 中保护 Azure 数据资源管理器群集
 
@@ -39,7 +39,7 @@ By default, data is encrypted with Microsoft-managed keys. For additional contro
 Use Azure Key Vault to store your customer-managed keys. You can create your own keys and store them in a key vault, or you can use an Azure Key Vault API to generate keys. The Azure Data Explorer cluster and the Azure Key Vault must be in the same region, but they can be in different subscriptions. For more information about Azure Key Vault, see [What is Azure Key Vault?](/key-vault/key-vault-overview). For a detailed explanation on customer-managed keys, see [Customer-managed keys with Azure Key Vault](/storage/common/storage-service-encryption). Configure customer-managed keys in your Azure Data Explorer cluster using [C#](/data-explorer/customer-managed-keys-csharp) or the [Azure Resource Manager template](/data-explorer/customer-managed-keys-resource-manager)
 
 > [!Note]
-> Customer-managed keys rely on managed identities for Azure resources, a feature of Azure Active Directory (Azure AD). To configure customer-managed keys in the Azure portal, you need to configure a **SystemAssigned** managed identity to your cluster.
+> Customer-managed keys rely on managed identities for Azure resources, a feature of Azure Active Directory (Azure AD). To configure customer-managed keys in the Azure portal, you need to configure a **SystemAssigned** managed identity to your cluster as detailed in [Configure managed identities for your Azure Data Explorer cluster](managed-identities.md).
 
 #### Store customer-managed keys in Azure Key Vault
 
@@ -63,9 +63,8 @@ To revoke access to customer-managed keys, use PowerShell or Azure CLI. For more
 
 ## <a name="next-steps"></a>后续步骤
 
-* 通过启用静态加密[保护 Azure 数据资源管理器中的群集 - 门户](manage-cluster-security.md)。
+* 通过启用静态加密[使用磁盘加密保护 Azure 数据资源管理器中的群集 - 门户](cluster-disk-encryption.md)。
 
 <!-- * [Configure customer-managed-keys using the Azure Resource Manager template](customer-managed-keys-resource-manager.md) -->
 <!-- * [Configure customer-managed-keys using C#](customer-managed-keys-csharp.md) -->
-
 <!-- * [Configure managed identities for your Azure Data Explorer cluster](managed-identities.md) -->

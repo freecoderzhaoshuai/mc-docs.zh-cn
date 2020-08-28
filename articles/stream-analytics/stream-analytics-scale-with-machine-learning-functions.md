@@ -5,17 +5,18 @@ author: Johnnytechn
 ms.author: v-johya
 ms.reviewer: mamccrea
 ms.service: stream-analytics
-ms.topic: conceptual
+ms.topic: how-to
 origin.date: 06/21/2019
-ms.date: 07/06/2020
-ms.openlocfilehash: 322faa45eb91d83607655842bb348b2e386aa6e7
-ms.sourcegitcommit: 9bc3e55f01e0999f05e7b4ebaea95f3ac91d32eb
+ms.date: 08/20/2020
+ms.openlocfilehash: 84723f61a2bb2585116d884fe53eca5a511dfc04
+ms.sourcegitcommit: 09c7071f4d0d9256b40a6bf700b38c6a25db1b26
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86226162"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715775"
 ---
 # <a name="scale-your-stream-analytics-job-with-azure-machine-learning-studio-classic-functions"></a>使用 Azure 机器学习工作室（经典）函数缩放流分析作业
+<!--Not available in MC: [Azure Machine Learning UDFs](machine-learning-udf.md)-->
 
 本文介绍如何有效缩放使用 Azure 机器学习函数的 Azure 流分析作业。 有关如何缩放流分析作业的常规信息，请参阅文章 [缩放作业](stream-analytics-scale-jobs.md)。
 
@@ -59,7 +60,7 @@ ms.locfileid: "86226162"
 有关此设置的详细信息，请参阅[机器学习 Web 服务的缩放文章](../machine-learning/studio/create-endpoint.md)。
 
 ## <a name="example---sentiment-analysis"></a>示例 - 观点分析
-以下示例包含具有情绪分析机器学习函数的流分析作业，如 [流分析机器学习集成教程](stream-analytics-machine-learning-integration-tutorial.md)所述。
+以下示例包括具有情绪分析机器学习功能的流分析作业。
 
 查询是简单的、已完全分区的查询，后跟**情绪**函数，如以下示例所示：
 
