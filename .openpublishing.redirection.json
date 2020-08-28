@@ -27333,7 +27333,23 @@
       "source_path": "articles/azure-stack/operator/app-service-deploy-ha.md", 
       "redirect_url": "/azure-stack/operator/azure-stack-app-service-deploy", 
       "redirect_document_id": false
-    }  
+    },
+    {
+      "source_path": "articles/load-balancer/configure-load-balancer-outbound-portal.md",
+      "redirect_url": "/load-balancer/quickstart-create-standard-load-balancer-powershell?tabs=option-1-create-load-balancer-standard#create-outbound-rule-configuration",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/load-balancer/configure-load-balancer-outbound-cli.md",
+      "redirect_url": "/load-balancer/quickstart-load-balancer-standard-public-cli?tabs=option-1-create-load-balancer-standard#create-outbound-rule-configuration",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/load-balancer/configure-load-balancer-outbound-powershell.md",
+      "redirect_url": "/load-balancer/quickstart-create-standard-load-balancer-powershell?tabs=option-1-create-load-balancer-standard#create-outbound-rule-configuration",
+      "redirect_document_id": false
+    }
+
 
 
 
