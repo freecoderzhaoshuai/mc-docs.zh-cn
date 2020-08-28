@@ -9,16 +9,16 @@ manager: diviso
 ms.devlang: csharp
 ms.workload: big-data
 ms.topic: conceptual
-ms.date: 08/05/2020
+ms.date: 08/20/2020
 ms.custom: seodec18
-ms.openlocfilehash: ea042b695151486385e82c4de47a85dd5626c0e1
-ms.sourcegitcommit: 36e7f37481969f92138bfe70192b1f4a2414caf7
+ms.openlocfilehash: 9f4733bf84d45f11582fba2a8c7cc404d6cf87ac
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87796344"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715171"
 ---
-# <a name="send-events-to-a-azure-time-series-insights-gen1-environment-by-using-an-event-hub"></a>使用事件中心向 Azure 时序见解 Gen1 环境发送事件
+# <a name="send-events-to-an-azure-time-series-insights-gen1-environment-by-using-an-event-hub"></a>使用事件中心向 Azure 时序见解 Gen1 环境发送事件
 
 本文介绍如何在 Azure 事件中心中创建和配置事件中心。 其中还介绍了如何运行示例应用程序将事件从事件中心推送到 Azure 时序见解。 如果你已经有了一个事件中心，其中的事件采用 JSON 格式，则可跳过本教程，在 Azure 时序见解中查看你的环境。
 
@@ -55,9 +55,9 @@ ms.locfileid: "87796344"
 
 ## <a name="add-an-azure-time-series-insights-instance"></a>添加 Azure 时序见解实例
 
-在 Azure 时序见解 Gen 2 中，可以使用时序模型 (TSM) 将上下文数据添加到传入遥测中。 在 TSM 中，标记或信号被称为实例，你可以将上下文数据存储在实例字段中 。 使用时间序列 ID 在查询时加入数据。 在本文后面使用的示例 windmills 项目的“时间序列 ID”是 `id`。 若要详细了解如何在实例字段中存储数据，请参阅[时序模型](./concepts-model-overview.md)概述。
+在 Azure 时序见解 Gen2 中，可以使用时序模型 (TSM) 将上下文数据添加到传入遥测中。 在 TSM 中，标记或信号被称为“实例”，你可以将上下文数据存储在“实例字段”中 。 使用时间序列 ID 在查询时加入数据。 在本文后面使用的示例 windmills 项目的“时间序列 ID”是 `id`。 若要详细了解如何在实例字段中存储数据，请参阅[时序模型](./concepts-model-overview.md)概述。
 
-### <a name="create-a-azure-time-series-insights-event-source"></a>创建 Azure 时序见解事件源
+### <a name="create-an-azure-time-series-insights-event-source"></a>创建 Azure 时序见解事件源
 
 1. 如果尚未创建事件源，请完成步骤以[创建事件源](how-to-ingest-data-event-hub.md)。
 
@@ -73,15 +73,15 @@ ms.locfileid: "87796344"
 
     [![复制主密钥连接字符串的值](./media/send-events/configure-sample-code-connection-string.png)](./media/send-events/configure-sample-code-connection-string.png#lightbox)
 
-1. 转到  https://tsiclientsample.azurewebsites.net/windFarmGen.html 。 该 URL 创建并运行风车模拟设备。
+1. 转到  <https://tsiclientsample.azurewebsites.net/windFarmGen.html> 。 该 URL 创建并运行风车模拟设备。
 1. 在网页上的“事件中心连接字符串”框中，粘贴在 [windmill 输入字段](#push-events-to-windmills-sample)中复制的连接字符串。
   
     [![将主密钥连接字符串粘贴到“事件中心连接字符串”框中](./media/send-events/configure-wind-mill-sim.png)](./media/send-events/configure-wind-mill-sim.png#lightbox)
 
-1. 选择“单击可启动”。 
+1. 选择“单击可启动”。
 
     > [!TIP]
-    > 风车模拟器还会创建可以作为有效负载与 [Azure 时序见解 GA 查询 API](https://docs.microsoft.com/rest/api/time-series-insights/ga-query) 配合使用的 JSON。
+    > 风车模拟器还会创建可以作为有效负载与 [Azure 时序见解 GA 查询 API](https://docs.microsoft.com/rest/api/time-series-insights/gen1-query) 配合使用的 JSON。
 
     > [!NOTE]
     > 模拟器将继续发送数据，直到浏览器选项卡关闭。
@@ -203,7 +203,7 @@ ms.locfileid: "87796344"
 
 ## <a name="next-steps"></a>后续步骤
 
-- 在 Azure 时序见解资源管理器中[查看环境](https://insights.timeseries.azure.com)。
+* 在 Azure 时序见解资源管理器中[查看环境](https://insights.timeseries.azure.cn)。
 
-- 阅读有关 [IoT 中心设备消息](/iot-hub/iot-hub-devguide-messages-construct)的详细信息
+* 阅读有关 [IoT 中心设备消息](/iot-hub/iot-hub-devguide-messages-construct)的详细信息
 

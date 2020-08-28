@@ -10,15 +10,15 @@ ms.devlang: na
 ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: big-data
-origin.date: 04/27/2020
-ms.date: 06/22/2020
+origin.date: 08/06/2020
+ms.date: 08/31/2020
 ms.author: v-yiso
-ms.openlocfilehash: 2e1c10a9f932a0ad0ae214f3aa6f1b853302965e
-ms.sourcegitcommit: 3de7d92ac955272fd140ec47b3a0a7b1e287ca14
+ms.openlocfilehash: 902fb989f899fefbd7af6d8acd69b5fa70a9de1c
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84723292"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715174"
 ---
 # <a name="create-linux-based-clusters-in-hdinsight-by-using-the-azure-portal"></a>使用 Azure 门户在 HDInsight 中创建基于 Linux 的群集
 
@@ -68,6 +68,9 @@ Azure 门户会公开大部分的群集属性。 使用 Azure 资源管理器模
 
 ## <a name="storage"></a>存储
 
+> [!WARNING] 
+> 从 2020 年 6 月 15 日开始，客户将无法使用 HDInsight 创建新的服务主体。 请参阅[使用 Azure Active Directory 创建服务主体和证书](/active-directory/develop/howto-create-service-principal-portal)。
+
 ![HDInsight 创建群集存储](./media/hdinsight-hadoop-create-linux-clusters-portal/azure-portal-cluster-storage.png "在 Azure 门户中创建新群集 - 存储")
 
 ### <a name="primary-storage"></a>主存储
@@ -88,6 +91,9 @@ Azure 门户会公开大部分的群集属性。 使用 Azure 资源管理器模
 
 可选：指定现有的 SQL 数据库，将 Apache Hive、Apache Oozie 和/或 Apache Ambari 元数据保存在群集之外。 用于元存储的 Azure SQL 数据库必须允许连接到其他 Azure 服务，包括 Azure HDInsight。 创建元存储时，请勿使用短划线或连字符来命名数据库。 这些字符可能导致群集创建过程失败。
 
+> [!IMPORTANT]
+> 对于支持元存储的群集形状，默认元存储提供具有基本层 5 DTU 限制（不可升级）的 Azure SQL 数据库！ 适用于基本测试目的。 对于大型或生产工作负载，我们建议迁移到外部元存储。
+
 在完成时选择“下一步:安全性 + 网络 >>”，转到下一选项卡。
 
 ## <a name="security--networking"></a>安全性 + 网络
@@ -98,7 +104,7 @@ Azure 门户会公开大部分的群集属性。 使用 Azure 资源管理器模
 
 |属性 |说明 |
 |---|---|
-|TLS|可选：从下拉列表中选择 TLS 版本。 有关详细信息，请参阅[传输层安全性](./hdinsight-plan-virtual-network-deployment.md#transport-layer-security)。|
+|TLS|可选：从下拉列表中选择 TLS 版本。 有关详细信息，请参阅[传输层安全性](./transport-layer-security.md)。|
 |虚拟网络|可选：从下拉列表中选择现有的虚拟网络和子网。 有关信息，请参阅[为 Azure HDInsight 群集规划虚拟网络部署](hdinsight-plan-virtual-network-deployment.md)。 本文包含虚拟网络的特定配置要求。|
 |磁盘加密设置|可选：选中此复选框即可使用加密。 有关详细信息，请参阅[客户管理的密钥磁盘加密](./disk-encryption.md)。|
 |Kafka REST 代理|此设置仅适用于群集类型 Kafka。 有关详细信息，请参阅[使用 REST 代理](./kafka/rest-proxy.md)。|
@@ -117,6 +123,7 @@ Azure 门户会公开大部分的群集属性。 使用 Azure 资源管理器模
 |+ 添加应用程序|可选：选择所需的任何应用程序。 Microsoft、独立软件供应商 (ISV) 或你自己都可以开发这些应用程序。 有关详细信息，请参阅[在群集创建期间安装应用程序](hdinsight-apps-install-applications.md#install-applications-during-cluster-creation)。|
 |节点大小|可选：选择不同大小的节点。|
 |节点数|可选：输入指定节点类型的节点数。 如果计划使用 32 个以上的辅助角色节点，则请选择至少具有 8 个核心和 14 GB RAM 的头节点大小。 可以在创建群集时计划节点，也可以在创建群集之后通过缩放群集来计划节点。|
+|启用自动缩放|可选：选中相应的复选框以启用该功能。 有关详细信息，请参阅[自动缩放 Azure HDInsight 群集](./hdinsight-autoscale-clusters.md)。|
 |+ 添加脚本操作|可选：如果要在创建群集时使用自定义脚本来自定义群集，请使用此选项。 有关脚本操作的详细信息，请参阅[使用脚本操作自定义基于 Linux 的 HDInsight 群集](hdinsight-hadoop-customize-cluster-linux.md)。|
 
 选择“查看 + 创建>>”，验证群集配置并转到最后一个选项卡。

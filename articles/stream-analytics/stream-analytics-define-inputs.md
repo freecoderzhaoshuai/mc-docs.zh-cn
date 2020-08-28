@@ -7,13 +7,13 @@ ms.reviewer: mamccrea
 ms.service: stream-analytics
 ms.topic: conceptual
 origin.date: 01/17/2020
-ms.date: 07/06/2020
-ms.openlocfilehash: 8ba01afee0086586aa1695863e2bc909db3a5bb6
-ms.sourcegitcommit: 9bc3e55f01e0999f05e7b4ebaea95f3ac91d32eb
+ms.date: 08/20/2020
+ms.openlocfilehash: c3ec7b3f8289dd5f12cfac220cf0f9eadf16db88
+ms.sourcegitcommit: 09c7071f4d0d9256b40a6bf700b38c6a25db1b26
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86226001"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715755"
 ---
 # <a name="stream-data-as-input-into-stream-analytics"></a>将数据作为流分析的输入进行流式传输
 
@@ -31,7 +31,7 @@ ms.locfileid: "86226001"
 
 ## <a name="create-edit-or-test-inputs"></a>创建、编辑或测试输入
 
-可以使用 [Azure 门户](stream-analytics-quick-create-portal.md)、[Visual Studio](stream-analytics-quick-create-vs.md) 和 [Visual Studio Code](quick-create-vs-code.md) 在流式处理作业上添加输入和查看或编辑现有输入。 还可以给根据 Azure 门户、[Visual Studio](stream-analytics-vs-tools-local-run.md) 和 [Visual Studio Code](visual-studio-code-local-run.md) 的示例数据测试输入连接和测试查询。 编写查询时，将在 FROM 子句中列出输入。 可以在门户的“查询”页中获取可用输入的列表。 若要使用多个输入，可以对其执行 `JOIN` 操作，也可以编写多个 `SELECT` 查询。
+可以使用 [Azure 门户](stream-analytics-quick-create-portal.md)来添加和查看或编辑流式处理作业上的现有输入。 还可以基于 Azure 门户的示例数据测试输入连接和测试查询。 编写查询时，将在 FROM 子句中列出输入。 可以在门户的“查询”页中获取可用输入的列表。 若要使用多个输入，可以对其执行 `JOIN` 操作，也可以编写多个 `SELECT` 查询。
 
 
 ## <a name="stream-data-from-event-hubs"></a>从事件中心对数据进行流式传输

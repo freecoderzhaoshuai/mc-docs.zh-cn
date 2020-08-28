@@ -7,15 +7,15 @@ author: WenJason
 ms.service: storage
 ms.topic: article
 origin.date: 04/02/2020
-ms.date: 07/20/2020
+ms.date: 08/24/2020
 ms.author: v-jay
 ms.subservice: blobs
-ms.openlocfilehash: 4475f598c704f63b0246c99d9765480c6246acce
-ms.sourcegitcommit: 31da682a32dbb41c2da3afb80d39c69b9f9c1bc6
+ms.openlocfilehash: a4951ba48f5f168addde93f5fce082aedbc7af93
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86414655"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753469"
 ---
 # <a name="blob-snapshots"></a>Blob 快照
 
@@ -31,7 +31,7 @@ Blob 的快照与其基本 Blob 相同，不过，Blob URI 的后面追加了一
 > 所有快照共享基本 Blob 的 URI。 基本 Blob 与快照之间的唯一区别体现在追加的 **DateTime** 值。
 >
 
-一个 Blob 可以有任意数目的快照。 快照会一直保留，直到被显式删除，这意味着快照的生存期不能长于其基本 Blob。 可以枚举与基本 Blob 关联的快照，以跟踪当前快照。
+一个 Blob 可以有任意数目的快照。 快照将持续存在，直到显式删除它们，可以独立删除或作为基本 Blob 的“删除 Blob”操作的一部分删除。 可以枚举与基本 Blob 关联的快照，以跟踪当前快照。
 
 创建 Blob 的快照时，会将该 Blob 的系统属性复制到具有相同值的快照。 基本 Blob 的元数据也会复制到快照，除非创建快照时为其指定了单独的元数据。 创建快照后，可以读取、复制或删除它，但无法修改它。
 

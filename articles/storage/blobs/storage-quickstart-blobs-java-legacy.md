@@ -2,22 +2,26 @@
 title: 快速入门：适用于 Java 的 Azure Blob 存储客户端库 v8
 description: 在对象 (Blob) 存储中创建存储帐户和容器。 随后，使用适用于 Java 的 Azure 存储客户端库 v8 将一个 Blob 上传到 Azure 存储，下载一个 Blob，然后列出容器中的 Blob。
 author: WenJason
+ms.custom: devx-track-java
 ms.author: v-jay
-origin.date: 01/24/2020
-ms.date: 06/01/2020
+origin.date: 07/24/2020
+ms.date: 08/24/2020
 ms.service: storage
 ms.subservice: blobs
 ms.topic: conceptual
-ms.openlocfilehash: 8cd96ff77887c6257d0fa19755ba0379adb0a093
-ms.sourcegitcommit: 31da682a32dbb41c2da3afb80d39c69b9f9c1bc6
+ms.openlocfilehash: 2c891f77e8857179deae1d933721a97d2a437e00
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86414716"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753494"
 ---
 # <a name="quickstart-manage-blobs-with-java-v8-sdk"></a>快速入门：使用 Java v8 SDK 管理 blob
 
 本快速入门介绍如何使用 Java 管理 blob。 Blob 是可以保存大量文本或二进制数据（包括图像、文档、流媒体和存档数据）的对象。 你将上传、下载并列出 blob。 你还将创建容器、设置容器权限并删除容器。
+
+> [!NOTE]
+> 此快速启动使用 Azure Blob 存储客户端库的旧版本。 若要开始使用最新版本，请参阅[快速入门：使用 Java v12 SDK 管理 blob](storage-quickstart-blobs-java.md)。
 
 ## <a name="prerequisites"></a>先决条件
 
@@ -97,7 +101,7 @@ Deleting the source, and downloaded files
 
     “CloudBlobClient”提供对 Blob 服务的访问点，允许用户以编程方式设置和访问 Blob 存储属性。 使用“CloudBlobClient”，可创建“CloudBlobContainer”对象的实例，创建容器需要该实例 。
 
-* 创建 [CloudBlobContainer](https://docs.microsoft.com/java/api/com.microsoft.azure.storage.blob.cloudblobcontainer) 对象的实例，该对象代表所访问的容器。 使用容器来组织 Blob，就像使用计算机上的文件夹组织文件一样。    
+* 创建 [CloudBlobContainer](https://docs.microsoft.com/java/api/com.microsoft.azure.storage.blob.cloudblobcontainer) 对象的实例，该对象代表所访问的容器。 使用容器来组织 Blob，就像使用计算机上的文件夹组织文件一样。
 
     有了 CloudBlobContainer 后，就可以创建 [CloudBlockBlob](https://docs.microsoft.com/java/api/com.microsoft.azure.storage.blob.cloudblockblob) 对象（该对象指向你感兴趣的特定 Blob）的实例，然后执行上传、下载、复制等操作。
 

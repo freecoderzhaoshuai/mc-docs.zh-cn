@@ -8,15 +8,15 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 02/13/2020
-ms.date: 08/06/2020
+ms.date: 08/18/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: 102806cfa7ba74714500984c7c7af6dcb14be280
-ms.sourcegitcommit: 7ceeca89c0f0057610d998b64c000a2bb0a57285
+ms.openlocfilehash: 3b55409da68ec1b04d01f6c5f5154891b142c98b
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87841660"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515987"
 ---
 # <a name="database-scope-function"></a>database()（范围函数）
 
@@ -29,22 +29,21 @@ database('Sample').StormEvents
 cluster('help').database('Sample').StormEvents
 ```
 
-**语法**
+> [!NOTE]
+> * 有关详细信息，请参阅[跨数据库和跨群集查询](cross-cluster-or-database-queries.md)。
+> * 若要访问远程群集和远程数据库，请参阅 [cluster()](clusterfunction.md) 范围函数。
+
+## <a name="syntax"></a>语法
 
 `database(`*stringConstant*`)`
 
-**参数**
+## <a name="arguments"></a>参数
 
 * *stringConstant*：被引用数据库的名称。 标识的数据库可以是 `DatabaseName` 或 `PrettyName`。 在执行查询之前，参数必须是常量，即不能来自子查询求值。
 
-**备注**
-
-* 若要访问远程群集和远程数据库，请参阅 [cluster()](clusterfunction.md) 范围函数。
-* 有关跨群集查询和跨数据库查询的详细信息，请参阅[此文](cross-cluster-or-database-queries.md)
-
 ## <a name="examples"></a>示例
 
-### <a name="use-database-to-access-table-of-other-database"></a>使用 database() 访问其他数据库的表。 
+### <a name="use-database-to-access-table-of-other-database"></a>使用 database() 访问其他数据库的表
 
 ```kusto
 database('Samples').StormEvents | count
@@ -70,7 +69,7 @@ foo('help')
 |---|
 |59066|
 
-### <a name="use-database-inside-functions"></a>在 Functions 内使用 database() 
+### <a name="use-database-inside-functions"></a>在函数中使用 database() 
 
 可以重写与上述查询相同的查询，以便在可接收参数 `dbName` 的函数中使用它 - 该参数会传递到 database() 函数中。
 
@@ -81,7 +80,8 @@ foo('help')
 };
 ```
 
-**请注意：** 此类函数只能在本地使用，而不能在跨群集查询中使用。
+> [!NOTE]
+> 此类函数只能在本地使用，而不能在跨群集查询中使用。
 
 ::: zone-end
 

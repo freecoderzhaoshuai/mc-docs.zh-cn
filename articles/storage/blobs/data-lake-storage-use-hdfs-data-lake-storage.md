@@ -1,21 +1,21 @@
 ---
 title: 将 HDFS CLI 与 Azure Data Lake Storage Gen2 配合使用
-description: 适用于 Azure Data Lake Storage Gen2 的 HDFS CLI 简介
+description: 将 Hadoop 分布式文件系统 (HDFS) CLI 用于 Azure Data Lake Storage Gen2。 创建一个容器、获取文件或目录的列表等等。
 services: storage
 author: WenJason
 ms.service: storage
-ms.topic: conceptual
+ms.topic: how-to
 origin.date: 12/06/2018
-ms.date: 09/30/2019
+ms.date: 08/24/2020
 ms.author: v-jay
 ms.subservice: data-lake-storage-gen2
 ms.reviewer: artek
-ms.openlocfilehash: 2507870a3ff8b92ef92c184ce903f5d24a9c4487
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 3c6978068a8c90a9c2c09726df18e4adc14fa686
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71306506"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753599"
 ---
 # <a name="using-the-hdfs-cli-with-data-lake-storage-gen2"></a>将 HDFS CLI 与 Data Lake Storage Gen2 配合使用
 
@@ -40,11 +40,11 @@ hdfs dfs -mkdir /samplefolder
 可以在 Azure 门户中 HDInsight 群集边栏选项卡的“SSH + 群集登录”部分中找到连接字符串。 SSH 凭据是在创建群集时指定的。
 
 >[!IMPORTANT]
->创建群集后便开始 HDInsight 群集计费，删除群集后停止计费。 群集以每分钟按比例收费，因此无需再使用群集时，应始终将其删除。 若要了解如何删除群集，请参阅我们的[有关该主题的文章](../../hdinsight/hdinsight-delete-cluster.md)。 但是，即使删除了 HDInsight 群集，在启用了 Data Lake Storage Gen2 的存储帐户中存储的数据仍然会保留。
+>创建群集后便开始 HDInsight 群集计费，删除群集后停止计费。 HDInsight 群集按分钟收费，因此不再需要使用群集时，应将其删除。 若要了解如何删除群集，请参阅我们的[有关该主题的文章](../../hdinsight/hdinsight-delete-cluster.md)。 但是，即使删除了 HDInsight 群集，在启用了 Data Lake Storage Gen2 的存储帐户中存储的数据仍然会保留。
 
 ## <a name="create-a-container"></a>创建容器
 
-    hdfs dfs -D "fs.azure.createRemoteFileSystemDuringInitialization=true" -ls abfs://<container-name>@<storage-account-name>.dfs.core.chinacloudapi.cn/
+`hdfs dfs -D "fs.azure.createRemoteFileSystemDuringInitialization=true" -ls abfs://<container-name>@<storage-account-name>.dfs.core.chinacloudapi.cn/`
 
 * 将 `<container-name>` 占位符替换为你要为容器指定的名称。
 
@@ -52,31 +52,31 @@ hdfs dfs -mkdir /samplefolder
 
 ## <a name="get-a-list-of-files-or-directories"></a>获取文件或目录列表
 
-    hdfs dfs -ls <path>
+`hdfs dfs -ls <path>`
 
 将 `<path>` 占位符替换为容器或容器文件夹的 URI。
 
-例如： `hdfs dfs -ls abfs://my-file-system@mystorageaccount.dfs.core.chinacloudapi.cn/my-directory-name`
+例如：`hdfs dfs -ls abfs://my-file-system@mystorageaccount.dfs.core.chinacloudapi.cn/my-directory-name`
 
 ## <a name="create-a-directory"></a>创建目录
 
-    hdfs dfs -mkdir [-p] <path>
+`hdfs dfs -mkdir [-p] <path>`
 
 将 `<path>` 占位符替换为根容器名称或容器中的文件夹。
 
-例如： `hdfs dfs -mkdir abfs://my-file-system@mystorageaccount.dfs.core.chinacloudapi.cn/`
+例如：`hdfs dfs -mkdir abfs://my-file-system@mystorageaccount.dfs.core.chinacloudapi.cn/`
 
 ## <a name="delete-a-file-or-directory"></a>删除文件或目录
 
-    hdfs dfs -rm <path>
+`hdfs dfs -rm <path>`
 
 将 `<path>` 占位符替换为要删除的文件或文件夹的 URI。
 
-例如： `hdfs dfs -rmdir abfs://my-file-system@mystorageaccount.dfs.core.chinacloudapi.cn/my-directory-name/my-file-name`
+例如：`hdfs dfs -rmdir abfs://my-file-system@mystorageaccount.dfs.core.chinacloudapi.cn/my-directory-name/my-file-name`
 
 ## <a name="display-the-access-control-lists-acls-of-files-and-directories"></a>显示文件和目录的访问控制列表 (ACL)
 
-    hdfs dfs -getfacl [-R] <path>
+`hdfs dfs -getfacl [-R] <path>`
 
 示例：
 
@@ -86,7 +86,7 @@ hdfs dfs -mkdir /samplefolder
 
 ## <a name="set-acls-of-files-and-directories"></a>设置文件和目录的 ACL
 
-    hdfs dfs -setfacl [-R] [-b|-k -m|-x <acl_spec> <path>]|[--set <acl_spec> <path>]
+`hdfs dfs -setfacl [-R] [-b|-k -m|-x <acl_spec> <path>]|[--set <acl_spec> <path>]`
 
 示例：
 
@@ -96,19 +96,19 @@ hdfs dfs -mkdir /samplefolder
 
 ## <a name="change-the-owner-of-files"></a>更改文件的所有者
 
-    hdfs dfs -chown [-R] <new_owner>:<users_group> <URI>
+`hdfs dfs -chown [-R] <new_owner>:<users_group> <URI>`
 
 请参阅 [chown](https://hadoop.apache.org/docs/r2.4.1/hadoop-project-dist/hadoop-common/FileSystemShell.html#chown)
 
 ## <a name="change-group-association-of-files"></a>更改文件的组关联
 
-    hdfs dfs -chgrp [-R] <group> <URI>
+`hdfs dfs -chgrp [-R] <group> <URI>`
 
 请参阅 [chgrp](https://hadoop.apache.org/docs/r2.4.1/hadoop-project-dist/hadoop-common/FileSystemShell.html#chgrp)
 
 ## <a name="change-the-permissions-of-files"></a>更改文件的权限
 
-    hdfs dfs -chmod [-R] <mode> <URI>
+`hdfs dfs -chmod [-R] <mode> <URI>`
 
 请参阅 [chmod](https://hadoop.apache.org/docs/r2.4.1/hadoop-project-dist/hadoop-common/FileSystemShell.html#chmod)
 

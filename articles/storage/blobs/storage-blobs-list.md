@@ -6,19 +6,19 @@ author: WenJason
 ms.service: storage
 ms.topic: how-to
 origin.date: 06/05/2020
-ms.date: 07/20/2020
+ms.date: 08/24/2020
 ms.author: v-jay
 ms.subservice: blobs
-ms.openlocfilehash: b7df897f13de1f66a971a6927d8b0d712fffe684
-ms.sourcegitcommit: 31da682a32dbb41c2da3afb80d39c69b9f9c1bc6
+ms.openlocfilehash: edf12ef47f17fb6540ff3f03377451dd072b2869
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86414634"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753543"
 ---
 # <a name="list-blobs-with-net"></a>使用 .NET 列出 blob
 
-通过代码列出 Blob 时，可以指定多个选项来管理如何从 Azure 存储返回结果。 可以指定要在每个结果集中返回的结果数，然后检索后续结果集。 可以指定前缀以返回名称以该字符或字符串开头的 blob。 而且，可以在平面列表结构中列出 blob，也可以分层列出 blob。 分层列表返回 blob，就像它们被组织到文件夹中一样。 
+通过代码列出 Blob 时，可以指定多个选项来管理如何从 Azure 存储返回结果。 可以指定要在每个结果集中返回的结果数，然后检索后续结果集。 可以指定前缀以返回名称以该字符或字符串开头的 blob。 而且，可以在平面列表结构中列出 blob，也可以分层列出 blob。 分层列表返回 blob，就像它们被组织到文件夹中一样。
 
 本文介绍如何使用[适用于 .NET 的 Azure 存储客户端库](/dotnet/api/overview/storage/client)列出 blob。  
 
@@ -26,14 +26,14 @@ ms.locfileid: "86414634"
 
 若要列出存储帐户中的 Blob，请调用以下方法之一：
 
-# <a name="net-v12-sdk"></a>[.NET v12 SDK](#tab/dotnet)
+# <a name="net-v12"></a>[.NET v12](#tab/dotnet)
 
 - [BlobContainerClient.GetBlobs](https://docs.microsoft.com/dotnet/api/azure.storage.blobs.blobcontainerclient.getblobs?view=azure-dotnet)
 - [BlobContainerClient.GetBlobsAsync](https://docs.microsoft.com/dotnet/api/azure.storage.blobs.blobcontainerclient.getblobsasync?view=azure-dotnet)
 - [BlobContainerClient.GetBlobsByHierarchy](https://docs.microsoft.com/dotnet/api/azure.storage.blobs.blobcontainerclient.getblobsbyhierarchy?view=azure-dotnet)
 - [BlobContainerClient.GetBlobsByHierarchyAsync](https://docs.microsoft.com/dotnet/api/azure.storage.blobs.blobcontainerclient.getblobsbyhierarchyasync?view=azure-dotnet)
 
-# <a name="net-v11-sdk"></a>[.NET v11 SDK](#tab/dotnet11)
+# <a name="net-v11"></a>[.NET v11](#tab/dotnet11)
 
 - [CloudBlobClient.ListBlobs](/dotnet/api/microsoft.windowsazure.storage.blob.cloudblobclient.listblobs)
 - [CloudBlobClient.ListBlobsSegmented](/dotnet/api/microsoft.windowsazure.storage.blob.cloudblobclient.listblobssegmented)
@@ -85,7 +85,7 @@ Azure 存储中的 Blob 以平面范式进行组织，而不是以分层范式�
 
 如果在帐户上启用了分层命名空间功能，则目录不是虚拟目录， 而是具体的独立对象。 因此，目录在列表中显示为长度为零的 blob。
 
-# <a name="net-v12-sdk"></a>[.NET v12 SDK](#tab/dotnet)
+# <a name="net-v12"></a>[.NET v12](#tab/dotnet)
 
 ```csharp
 private static void ListBlobsFlatListing(BlobContainerClient container, int? segmentSize)
@@ -127,7 +127,7 @@ private static void ListBlobsFlatListing(BlobContainerClient container, int? seg
 }
 ```
 
-# <a name="net-v11-sdk"></a>[.NET v11 SDK](#tab/dotnet11)
+# <a name="net-v11"></a>[.NET v11](#tab/dotnet11)
 
 ```csharp
 private static async Task ListBlobsFlatListingAsync(CloudBlobContainer container, int? segmentSize)
@@ -189,7 +189,7 @@ Blob name: FolderA/FolderB/FolderC/blob3.txt
 
 以分层方式调用列出操作时，Azure 存储将返回位于层次结构第一级别的虚拟目录和 Blob。 将设置每个虚拟目录的 [Prefix](/dotnet/api/microsoft.windowsazure.storage.blob.cloudblobdirectory.prefix) 属性，以便可以在递归调用中传递前缀来检索下一个目录。
 
-# <a name="net-v12-sdk"></a>[.NET v12 SDK](#tab/dotnet)
+# <a name="net-v12"></a>[.NET v12](#tab/dotnet)
 
 若要以分层方式列出 blob，请调用 [BlobContainerClient.GetBlobsByHierarchy](https://docs.microsoft.com/dotnet/api/azure.storage.blobs.blobcontainerclient.getblobsbyhierarchy?view=azure-dotnet) 或 [BlobContainerClient.GetBlobsByHierarchyAsync](https://docs.microsoft.com/dotnet/api/azure.storage.blobs.blobcontainerclient.getblobsbyhierarchyasync?view=azure-dotnet) 方法。
 
@@ -249,7 +249,7 @@ private static void ListBlobsHierarchicalListing(BlobContainerClient container,
        }
 ```
 
-# <a name="net-v11-sdk"></a>[.NET v11 SDK](#tab/dotnet11)
+# <a name="net-v11"></a>[.NET v11](#tab/dotnet11)
 
 若要以分层方式列出 Blob，请将列出方法的 `useFlatBlobListing` 参数设置为 **false**。
 

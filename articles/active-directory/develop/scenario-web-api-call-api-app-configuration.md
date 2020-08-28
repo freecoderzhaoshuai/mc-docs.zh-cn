@@ -9,15 +9,15 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 04/22/2020
+ms.date: 08/19/2020
 ms.author: v-junlch
 ms.custom: aaddev
-ms.openlocfilehash: 4e23b56614b29fff0c818e922aade25c3e5d5b90
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.openlocfilehash: e6d4c4bb278345fe6ddb374ca9e1c829ba11d5f9
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82126443"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647508"
 ---
 # <a name="a-web-api-that-calls-web-apis-code-configuration"></a>调用 Web API 的 Web API：代码配置
 
@@ -27,120 +27,74 @@ ms.locfileid: "82126443"
 
 # <a name="aspnet-core"></a>[ASP.NET Core](#tab/aspnetcore)
 
-## <a name="code-subscribed-to-ontokenvalidated"></a>订阅 OnTokenValidated 的代码
+## <a name="client-secrets-or-client-certificates"></a>客户端密码或客户端证书
 
-在任何受保护的 Web API 的代码配置的基础上，需订阅持有者令牌的验证，该令牌是在调用 API 时接收的：
+鉴于 Web API 现在调用了下游 Web API，你需要在 appsettings.json 文件中提供客户端密码或客户端证书。
 
-```csharp
-/// <summary>
-/// Protects the web API with the Microsoft identity platform, or Azure Active Directory (Azure AD) developer platform
-/// This supposes that the configuration files have a section named "AzureAD"
-/// </summary>
-/// <param name="services">The service collection to which to add authentication</param>
-/// <param name="configuration">Configuration</param>
-/// <returns></returns>
-public static IServiceCollection AddProtectedApiCallsWebApis(this IServiceCollection services,
-                                                             IConfiguration configuration,
-                                                             IEnumerable<string> scopes)
+```JSON
 {
-    services.AddTokenAcquisition();
-    services.Configure<JwtBearerOptions>(AzureADDefaults.JwtBearerAuthenticationScheme, options =>
-    {
-        // When an access token for our own web API is validated, we add it
-        // to the MSAL.NET cache so that it can be used from the controllers.
-        options.Events = new JwtBearerEvents();
-
-        options.Events.OnTokenValidated = async context =>
-        {
-            context.Success();
-
-            // Adds the token to the cache and handles the incremental consent
-            // and claim challenges
-            AddAccountToCacheFromJwt(context, scopes);
-            await Task.FromResult(0);
-        };
-    });
-    return services;
+  "AzureAd": {
+    "Instance": "https://login.partner.microsoftonline.cn/",
+    "ClientId": "[Client_id-of-web-api-eg-2ec40e65-ba09-4853-bcde-bcb60029e596]",
+    "TenantId": "common"
+  
+   // To call an API
+   "ClientSecret": "[Copy the client secret added to the app from the Azure portal]",
+   "ClientCertificates": [
+  ]
+ }
 }
 ```
 
-## <a name="on-behalf-of-flow"></a>代理流
+你可以提供客户端证书，而不是客户端密码。 以下代码片段演示如何使用存储在 Azure Key Vault 中的证书。
 
-AddAccountToCacheFromJwt() 方法需要执行以下操作：
-
-- 实例化 Microsoft 身份验证库 (MSAL) 机密客户端应用程序。
-- 调用 `AcquireTokenOnBehalf` 方法。 此调用将通过 Web API 的客户端获取的持有者令牌与同一用户的持有者令牌进行交换，但它会让该 API 调用某个下游 API。
-
-### <a name="instantiate-a-confidential-client-application"></a>实例化机密客户端应用程序
-
-此流仅在机密客户端流中可用，使受保护的 Web API 通过 `WithClientSecret` 或 `WithCertificate` 方法将客户端凭据（客户端机密或证书）提供给 [ConfidentialClientApplicationBuilder 类](https://docs.microsoft.com/dotnet/api/microsoft.identity.client.confidentialclientapplicationbuilder)。
-
-![IConfidentialClientApplication 方法列表](https://user-images.githubusercontent.com/13203188/55967244-3d8e1d00-5c7a-11e9-8285-a54b05597ec9.png)
-
-```csharp
-IConfidentialClientApplication app;
-
-#if !VariationWithCertificateCredentials
-app = ConfidentialClientApplicationBuilder.Create(config.ClientId)
-           .WithClientSecret(config.ClientSecret)
-           .Build();
-#else
-// Building the client credentials from a certificate
-X509Certificate2 certificate = ReadCertificate(config.CertificateName);
-app = ConfidentialClientApplicationBuilder.Create(config.ClientId)
-    .WithCertificate(certificate)
-    .Build();
-#endif
-```
-
-最后，机密客户端应用程序无需通过客户端机密或证书来提供自身的标识，而可以使用客户端断言来证明其身份。
-有关此高级方案的详细信息，请参阅[机密客户端断言](msal-net-client-assertions.md)。
-
-### <a name="how-to-call-on-behalf-of"></a>如何调用代理
-
-可以通过对 `IConfidentialClientApplication` 接口调用 [AcquireTokenOnBehalf 方法](https://docs.microsoft.com/dotnet/api/microsoft.identity.client.acquiretokenonbehalfofparameterbuilder)来发出代理 (OBO) 调用。
-
-`UserAssertion` 类是从持有者令牌生成的，该令牌是 Web API 从其自身的客户端接收的。 有[两个构造函数](https://docs.azure.cn/zh-cn/dotnet/api/microsoft.identity.client.clientcredential.-ctor?view=azure-dotnet)：
-* 一个构造函数采用 JSON Web 令牌 (JWT) 持有者令牌
-* 一个构造函数采用任何类型的用户断言（另一种安全令牌，随后会在名为 `assertionType` 的附加参数中指定其类型）
-
-![UserAssertion 属性和方法](https://user-images.githubusercontent.com/13203188/37082180-afc4b708-21e3-11e8-8af8-a6dcbd2dfba8.png)
-
-在实践中，往往使用 OBO 流来获取下游 API 的令牌，并将其存储在 MSAL.NET 用户令牌缓存中。 这样做的目的是使 Web API 的其他部分随后可以调用 ``AcquireTokenOnSilent`` 的[重写](https://docs.microsoft.com/dotnet/api/microsoft.identity.client.clientapplicationbase.acquiretokensilent?view=azure-dotnet)来调用下游 API。 此调用的作用是根据需要刷新令牌。
-
-```csharp
-private void AddAccountToCacheFromJwt(IEnumerable<string> scopes, JwtSecurityToken jwtToken, ClaimsPrincipal principal, HttpContext httpContext)
+```JSON
 {
-    try
-    {
-        UserAssertion userAssertion;
-        IEnumerable<string> requestedScopes;
-        if (jwtToken != null)
-        {
-            userAssertion = new UserAssertion(jwtToken.RawData, "urn:ietf:params:oauth:grant-type:jwt-bearer");
-            requestedScopes = scopes ?? jwtToken.Audiences.Select(a => $"{a}/.default");
-        }
-        else
-        {
-            throw new ArgumentOutOfRangeException("tokenValidationContext.SecurityToken should be a JWT Token");
-        }
-
-        // Create the application
-        var application = BuildConfidentialClientApplication(httpContext, principal);
-
-        // .Result to make sure that the cache is filled in before the controller tries to get access tokens
-        var result = application.AcquireTokenOnBehalfOf(requestedScopes.Except(scopesRequestedByMsalNet),
-                                                        userAssertion)
-                                .ExecuteAsync()
-                                .GetAwaiter().GetResult();
-     }
-     catch (MsalException ex)
-     {
-         Debug.WriteLine(ex.Message);
-         throw;
-     }
+  "AzureAd": {
+    "Instance": "https://login.partner.microsoftonline.cn/",
+    "ClientId": "[Client_id-of-web-api-eg-2ec40e65-ba09-4853-bcde-bcb60029e596]",
+    "TenantId": "common"
+  
+   // To call an API
+   "ClientCertificates": [
+      {
+        "SourceType": "KeyVault",
+        "KeyVaultUrl": "https://msidentitywebsamples.vault.azure.cn",
+        "KeyVaultCertificateName": "MicrosoftIdentitySamplesCert"
+      }
+  ]
+ }
 }
 ```
+
+Microsoft.Identity.Web 提供了多种通过配置或代码描述证书的方法。 有关详细信息，请参阅 GitHub 上的 [Microsoft.Identity.Web wiki - 使用证书](https://github.com/AzureAD/microsoft-identity-web/wiki/Using-certificates)。
+
+## <a name="startupcs"></a>Startup.cs
+
+使用 Microsoft.Identity.Web 时，如果你希望使 Web API 调用下游 Web API，请在 `.AddMicrosoftWebApiAuthentication(Configuration)` 之后添加 `.AddMicrosoftWebApiCallsWebApi()` 行，然后在 Startup.cs 中选择令牌缓存实现，例如 `.AddInMemoryTokenCaches()`：
+
+```csharp
+using Microsoft.Identity.Web;
+
+public class Startup
+{
+  ...
+  public void ConfigureServices(IServiceCollection services)
+  {
+   // ...
+   services.AddMicrosoftWebApiAuthentication(Configuration)
+           .AddMicrosoftWebApiCallsWebApi(Configuration)
+           .AddInMemoryTokenCaches();
+  // ...
+  }
+  // ...
+}
+```
+
+与 Web 应用一样，你可以选择各种令牌缓存实现。 有关详细信息，请参阅 GitHub 上的 [Microsoft 标识 Web wiki - 令牌缓存序列化](https://github.com/AzureAD/microsoft-identity-web/wiki/token-cache-serialization)。
+
+如果确定 Web API 需要特定范围，可以选择将其作为参数传递给 `AddMicrosoftWebApiCallsWebApi`。
+
 # <a name="java"></a>[Java](#tab/java)
 
 代理 (OBO) 流用于获取所需的令牌来调用下游 Web API。 在此流中，Web API 从客户端应用程序接收拥有用户委托权限的持有者令牌，然后用此令牌交换另一个访问令牌来调用下游 Web API。
@@ -222,7 +176,7 @@ Python Web API 需要使用一些中间件来验证从客户端接收的持有�
 
 ## <a name="protocol"></a>协议
 
-有关 OBO 协议的详细信息，请参阅 [Microsoft 标识平台和 OAuth 2.0 代理流](/active-directory/develop/v2-oauth2-on-behalf-of-flow)。
+有关 OBO 协议的详细信息，请参阅 [Microsoft 标识平台和 OAuth 2.0 代理流](./v2-oauth2-on-behalf-of-flow.md)。
 
 ## <a name="next-steps"></a>后续步骤
 

@@ -1,19 +1,19 @@
 ---
 title: 规划 Azure 文件部署 | Microsoft Docs
-description: 了解规划 Azure 文件部署时应考虑的问题。
+description: 了解规划 Azure 文件部署。 可以直接装载 Azure 文件共享，也可以使用 Azure 文件同步在本地缓存 Azure 文件共享。
 author: WenJason
 ms.service: storage
 ms.topic: conceptual
 origin.date: 1/3/2020
-ms.date: 07/20/2020
+ms.date: 08/24/2020
 ms.author: v-jay
 ms.subservice: files
-ms.openlocfilehash: 14ca0f7109ea10ae157e69dbb5fb239edb218f99
-ms.sourcegitcommit: 31da682a32dbb41c2da3afb80d39c69b9f9c1bc6
+ms.openlocfilehash: 34f3fca1e8d3e4de2f9f3bcfcfda8b18669a3614
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86414719"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753583"
 ---
 # <a name="planning-for-an-azure-files-deployment"></a>规划 Azure 文件部署
 可通过以下主要方式部署 [Azure 文件存储](storage-files-introduction.md)：直接装载无服务器 Azure 文件共享。
@@ -68,6 +68,19 @@ Azure 文件存储支持两种不同类型的加密：传输中加密（与装�
 
 ### <a name="encryption-at-rest"></a>静态加密
 [!INCLUDE [storage-files-encryption-at-rest](../../../includes/storage-files-encryption-at-rest.md)]
+
+## <a name="data-protection"></a>数据保护
+Azure 文件有一种多层方法来确保数据得到备份、恢复以及不受安全威胁。
+
+### <a name="soft-delete"></a>软删除
+Azure 文件共享的软删除（预览版）是一种存储帐户级别设置，使你在意外删除文件共享时对其进行恢复。 已删除的文件共享会过渡到软删除状态，而非被永久擦除。 可配置软删除数据被永久删除前的可恢复时间，并在此保留期内随时取消删除共享。 
+
+我们建议对大多数文件共享启用软删除。 如果你的工作流中共享删除是常见且预期的，那么你可能会决定很短的保留期，或者根本不启用软删除。
+
+有关软删除的详细信息，请参见[防止意外数据删除](/storage/files/storage-files-prevent-file-share-deletion)。
+
+### <a name="backup"></a>备份
+可以通过[共享快照](/storage/files/storage-snapshots-files)备份 Azure 文件共享，这些快照是共享的只读时间点副本。 快照是增量的，这意味着它们只包含自上一个快照以来更改的数据量。 每个文件共享最多可以有 200 个快照，并将其保留长达 10 年。 可以通过 PowerShell 或命令行界面 (CLI) 在 Azure 门户中手动获取这些快照。 快照存储在文件共享中，这意味着如果删除文件共享，快照也将删除。 若要保护快照备份不被意外删除，请确保为共享启用软删除。
 
 ## <a name="storage-tiers"></a>存储层
 [!INCLUDE [storage-files-tiers-overview](../../../includes/storage-files-tiers-overview.md)]
@@ -150,7 +163,7 @@ Azure 文件存储支持两种不同类型的加密：传输中加密（与装�
 [!INCLUDE [storage-files-redundancy-overview](../../../includes/storage-files-redundancy-overview.md)]
 
 ## <a name="migration"></a>迁移
-在很多情况下，你不想要为组织建立全新的文件共享，而是将现有文件共享从本地文件服务器或 NAS 设备迁移到 Azure 文件存储。 Microsoft 和第三方提供了许多用于迁移到文件共享的工具，这些工具大致划分为两种类别：
+在很多情况下，你不想要为组织建立全新的文件共享，而是将现有文件共享从本地文件服务器或 NAS 设备迁移到 Azure 文件存储。 为你的场景选择正确的迁移策略和工具对于迁移的成功非常重要。 
 
 ## <a name="next-steps"></a>后续步骤
 * [部署 Azure 文件](storage-files-deployment-guide.md)

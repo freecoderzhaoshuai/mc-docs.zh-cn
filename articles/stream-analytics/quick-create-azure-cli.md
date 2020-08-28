@@ -9,19 +9,19 @@ ms.reviewer: jasonh
 ms.workload: big-data
 ms.topic: quickstart
 ms.custom: mvc
-ms.date: 07/06/2020
-ms.openlocfilehash: e56fbceb8ce352ff6234f532c38313726e18938b
-ms.sourcegitcommit: 9bc3e55f01e0999f05e7b4ebaea95f3ac91d32eb
+ms.date: 08/20/2020
+ms.openlocfilehash: e84def7ec07c5d33c597a03489eeae08aec35ba3
+ms.sourcegitcommit: 09c7071f4d0d9256b40a6bf700b38c6a25db1b26
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86226241"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715716"
 ---
 # <a name="quickstart-create-an-azure-stream-analytics-job-using-the-azure-cli"></a>快速入门：使用 Azure CLI 创建 Azure 流分析作业
 
 在本快速入门中，将使用 Azure CLI 定义一个流分析作业，以便筛选温度读数高于 27 的实时传感器消息。 流分析作业会从 IoT 中心读取数据，对数据进行转换，然后将数据写回到 Blob 存储中的容器。 在本快速入门中使用的输入数据由 Raspberry Pi 联机模拟器生成。
 
-## <a name="before-you-begin"></a>准备阶段
+## <a name="before-you-begin"></a>开始之前
 
 * 如果没有 Azure 订阅，请创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial/)。
 
@@ -41,7 +41,7 @@ ms.locfileid: "86226241"
 
 2. 安装 Azure CLI 扩展。
 
-   使用 Azure CLI 的扩展引用时，必须先安装该扩展。  借助 Azure CLI 扩展，可访问尚未在核心 CLI 中提供的试验性和预发布的命令。  若要详细了解包含更新和卸载的扩展，请参阅[使用 Azure CLI 的扩展](/cli/azure-cli-extensions-overview?view=azure-cli-latest)。
+   使用 Azure CLI 的扩展引用时，必须先安装该扩展。  借助 Azure CLI 扩展，可访问尚未在核心 CLI 中提供的试验性和预发布的命令。  若要详细了解包含更新和卸载的扩展，请参阅[使用 Azure CLI 的扩展](/cli/azure-cli-extensions-overview)。
 
    运行以下命令，安装[流分析扩展](https://docs.microsoft.com/cli/azure/ext/stream-analytics/stream-analytics?view=azure-cli-latest)：
 
@@ -114,9 +114,10 @@ ms.locfileid: "86226241"
        --name <storage-account> \
        --resource-group streamanalyticsrg \
        --location chinanorth \
-       --sku Standard_ZRS \
+       --sku Standard_LRS \
        --encryption-services blob
    ```
+<!--Not available in MC: Standard_ZRS-->
 
 2. 通过运行 [az storage account keys list](/cli/storage/account/keys) 命令获取存储帐户的密钥。 保存此密钥以便在下一步中使用。
 
@@ -278,7 +279,7 @@ az group delete \
 
 ## <a name="next-steps"></a>后续步骤
 
-在本快速入门中，你使用 Azure CLI 部署了一个简单的流分析作业。 也可通过 [Azure 门户](stream-analytics-quick-create-portal.md)和 [Visual Studio](stream-analytics-quick-create-vs.md) 部署流分析作业。
+在本快速入门中，你使用 Azure CLI 部署了一个简单的流分析作业。 你还可以使用 [Azure 门户](stream-analytics-quick-create-portal.md)部署流分析作业。
 
 若要了解如何配置其他输入源并执行实时检测，请继续阅读以下文章：
 

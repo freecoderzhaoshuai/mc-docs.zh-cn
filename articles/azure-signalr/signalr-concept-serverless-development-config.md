@@ -5,14 +5,15 @@ author: anthonychu
 ms.service: signalr
 ms.topic: conceptual
 origin.date: 03/01/2019
-ms.date: 07/01/2020
+ms.date: 08/21/2020
 ms.author: v-tawe
-ms.openlocfilehash: 0e9fe4e58b63be4e54ca0aacf905a6f44c4a12b2
-ms.sourcegitcommit: 4f84bba7e509a321b6f68a2da475027c539b8fd3
+ms.custom: devx-track-javascript
+ms.openlocfilehash: d16d5d77315a08427724586966d3e3013e382eaa
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85796288"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715279"
 ---
 # <a name="azure-functions-development-and-configuration-with-azure-signalr-service"></a>使用 Azure SignalR 服务进行 Azure Functions 开发和配置
 
@@ -41,7 +42,9 @@ Azure Functions 应用程序可以利用 [Azure SignalR 服务绑定](../azure-f
 
 使用 HTTP 触发的 Azure 函数和 *SignalRConnectionInfo* 输入绑定生成连接信息对象。 该函数必须包含以 `/negotiate` 结尾的 HTTP 路由。
 
-通过使用 C# 中[基于类的模型](#class-based-model)，可无需执行 SignalRConnectionInfo 输入绑定，并可以轻松得多的方式添加自定义声明。 请参阅[基于类的模型中的协商体验](#negotiate-experience-in-class-based-model)。有关如何创建 negotiate 函数的详细信息，请参阅 [SignalRConnectionInfo 输入绑定参考](../azure-functions/functions-bindings-signalr-service-input.md)。
+通过使用 C# 中[基于类的模型](#class-based-model)，可无需执行 SignalRConnectionInfo 输入绑定，并可以轻松得多的方式添加自定义声明。 请参阅[基于类的模型中的协商体验](#negotiate-experience-in-class-based-model)
+
+有关如何创建 negotiate 函数的详细信息，请参阅 [*SignalRConnectionInfo* 输入绑定参考](../azure-functions/functions-bindings-signalr-service-input.md)。
 
 若要了解如何创建经过身份验证的令牌，请参阅[使用应用服务身份验证](#using-app-service-authentication)。
 

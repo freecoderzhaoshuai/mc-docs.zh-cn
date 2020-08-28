@@ -8,15 +8,15 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 03/25/2020
-ms.date: 07/01/2020
-ms.openlocfilehash: d0d7dd37152962fd7e294fa082b3053b8845648b
-ms.sourcegitcommit: c17e965d4ffd82fd7cd86b2648fcb0053a65df00
+ms.date: 08/18/2020
+ms.openlocfilehash: 2f94530d003b051b014a3a6f2c53c567fe552f0a
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86470425"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88516071"
 ---
-# <a name="rowlevelsecurity-policy-preview"></a>RowLevelSecurity 策略（预览版）
+# <a name="row_level_security-policy-command-preview"></a>row_level_security 策略命令（预览版）
 
 本文介绍用于为数据库表配置 [row_level_security 策略](rowlevelsecuritypolicy.md)的命令。
 
@@ -51,20 +51,19 @@ ms.locfileid: "86470425"
 > [!NOTE]
 > 以下限制适用于 `query`：
 >
-> - 查询应生成与在其上定义该策略的表完全相同的架构。 也就是说，查询的结果应该返回与原始表完全相同的列（顺序相同且名称和类型也相同）。
-> - 查询只能使用以下运算符：`extend`、`where`、`project`、`project-away`、`project-rename`、`project-reorder`、`join` 和 `union`。
-> - 查询无法引用在其上启用了 RLS 的其他表。
-> - 查询可以是以下任一项，也可以是它们的组合：
->   - 查询（例如，`<table_name> | extend CreditCardNumber = "****"`）
->   - 函数（例如，`AnonymizeSensitiveData`）
->   - 数据表（例如，`datatable(Col1:datetime, Col2:string) [...]`）
+> * 查询应生成与在其上定义该策略的表完全相同的架构。 也就是说，查询的结果应该返回与原始表完全相同的列（顺序相同且名称和类型也相同）。
+> * 查询只能使用以下运算符：`extend`、`where`、`project`、`project-away`、`project-rename`、`project-reorder`、`join` 和 `union`。
+> * 查询无法引用在其上启用了 RLS 的其他表。
+> * 查询可以是以下任一项，也可以是它们的组合：
+>    * 查询（例如，`<table_name> | extend CreditCardNumber = "****"`）
+>    * 函数（例如，`AnonymizeSensitiveData`）
+>    * 数据表（例如，`datatable(Col1:datetime, Col2:string) [...]`）
 
 > [!TIP]
 > 以下函数通常用于 row_level_security 查询：
->
-> - [current_principal()](../query/current-principalfunction.md)
-> - [current_principal_details()](../query/current-principal-detailsfunction.md)
-> - [current_principal_is_member_of()](../query/current-principal-ismemberoffunction.md)
+> * [current_principal()](../query/current-principalfunction.md)
+> * [current_principal_details()](../query/current-principal-detailsfunction.md)
+> * [current_principal_is_member_of()](../query/current-principal-ismemberoffunction.md)
 
 **示例**
 

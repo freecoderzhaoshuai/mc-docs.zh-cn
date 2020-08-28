@@ -8,13 +8,13 @@ ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 05/27/2020
-ms.date: 08/06/2020
-ms.openlocfilehash: 543d0ab0d1ef8e6b9c040dab2f0a75de58bf55cf
-ms.sourcegitcommit: 7ceeca89c0f0057610d998b64c000a2bb0a57285
+ms.date: 08/18/2020
+ms.openlocfilehash: aa66dd7f8f60cf57f5f794aa63021c7775849421
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87841632"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515983"
 ---
 # <a name="ipv6_is_match"></a>ipv6_is_match()
 
@@ -28,11 +28,14 @@ ipv6_is_match('fe80::85d:e82c:9446:7994/127', 'fe80::85d:e82c:9446:7995/127') ==
 ipv6_is_match('fe80::85d:e82c:9446:7994', 'fe80::85d:e82c:9446:7995', 127) == true
 ```
 
-**语法**
+> [!NOTE]
+> 此函数可以接受并比较表示 IPv6 和 IPv4 网络地址的参数。 如果调用方知道参数采用 IPv4 格式，请使用 [ipv4_is_match()](./ipv4-is-matchfunction.md) 函数。 此函数将产生更好的运行时性能。
+
+## <a name="syntax"></a>语法
 
 `ipv6_is_match(`*Expr1*`, `*Expr2*`[ ,`*PrefixMask*`])`
 
-**参数**
+## <a name="arguments"></a>参数
 
 * Expr1、Expr2：表示 IPv6 或 IPv4 地址的字符串表达式。 可以使用 [IP 前缀表示法](#ip-prefix-notation)对 IPv6 和 IPv4 字符串进行掩码操作。
 * PrefixMask：从 0 到 128 的整数，表示所考虑的最有效位的数目。
@@ -44,14 +47,11 @@ IP 地址可以通过斜杠 (`/`) 字符使用 `IP-prefix notation` 进行定义
 
 示例：fe80::85d:e82c:9446:7994/120 将有一个包含 120 个连续位的关联网络/子网掩码。
 
-**返回**
+## <a name="returns"></a>返回
 
 * `true`：如果第一个 IPv6/IPv4 字符串参数的长表示形式等于第二个 IPv6/IPv4 字符串参数。
 * `false`：其他情况。
 * `null`：如果两个 IPv6/IPv4 字符串之一转换不成功。
-
-> [!Note]
-> 此函数可以接受并比较表示 IPv6 和 IPv4 网络地址的参数。 如果调用方知道参数采用 IPv4 格式，请使用 [ipv4_is_match()](./ipv4-is-matchfunction.md) 函数。 此函数将产生更好的运行时性能。
 
 ## <a name="examples"></a>示例
 

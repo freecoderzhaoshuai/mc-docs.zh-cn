@@ -8,15 +8,15 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 02/24/2020
-ms.date: 07/01/2020
-ms.openlocfilehash: a1abd6cd7f12609b005d1659e6e1cd923745875c
-ms.sourcegitcommit: c17e965d4ffd82fd7cd86b2648fcb0053a65df00
+ms.date: 08/18/2020
+ms.openlocfilehash: 0baf0c01ae7dfbc20fad26d5f289cfdf86c0c327
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86470442"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88516066"
 ---
-# <a name="streaming-ingestion-policy-management"></a>流式引入策略管理
+# <a name="streaming-ingestion-policy-command"></a>流式引入策略命令
 
 可以对表设置流式引入策略，以允许流式引入到此表中。 也可以在数据库级别设置策略，以便将相同的设置应用于当前表和未来的表。
 
@@ -25,7 +25,7 @@ ms.locfileid: "86470442"
 ## <a name="display-the-policy"></a>显示策略
 
 `.show policy streamingingestion` 命令显示数据库或表的流式引入策略。
-
+ 
 **语法**
 
 `.show` `{database|table}` &lt;entity name&gt; `policy` `streamingingestion`
@@ -34,11 +34,11 @@ ms.locfileid: "86470442"
 
 此命令返回包含以下列的表：
 
-| 列     | 类型     | 说明                                                             |
-| ---------- | -------- | ----------------------------------------------------------------------- |
-| PolicyName | `string` | 策略名称 - StreamingIngestionPolicy                              |
-| EntityName | `string` | 数据库或表名称                                                  |
-| 策略     | `string` | [流式引入策略对象](#streaming-ingestion-policy-object) |
+|列    |类型    |说明
+|---|---|---
+|PolicyName|`string`|策略名称 - StreamingIngestionPolicy
+|EntityName|`string`|数据库或表名称
+|策略    |`string`|[流式引入策略对象](#streaming-ingestion-policy-object)
 
 **示例**
 
@@ -48,9 +48,9 @@ ms.locfileid: "86470442"
 .show table T1 policy streamingingestion
 ```
 
-| PolicyName               | EntityName | 策略                                         | ChildEntities | EntityType |
-| ------------------------ | ---------- | ---------------------------------------------- | ------------- | ---------- |
-| StreamingIngestionPolicy | DB1        | {"IsEnabled": true, "HintAllocatedRate": null} |
+|PolicyName|EntityName|策略|ChildEntities|EntityType|
+|---|---|---|---|---|
+|StreamingIngestionPolicy|DB1|{"IsEnabled": true, "HintAllocatedRate": null}
 
 ## <a name="change-the-policy"></a>更改策略
 
@@ -58,19 +58,19 @@ ms.locfileid: "86470442"
 
 **语法**
 
-- `.alter` `{database|table}` &lt;entity name&gt; `policy` `streamingingestion` `[enable|disable]`
+* `.alter` `{database|table}` &lt;entity name&gt; `policy` `streamingingestion` `[enable|disable]`
 
-- `.alter` `{database|table}` &lt;entity name&gt; `policy` `streamingingestion` &lt;[streaming ingestion policy object](#streaming-ingestion-policy-object)&gt;
+* `.alter` `{database|table}` &lt;entity name&gt; `policy` `streamingingestion` &lt;[streaming ingestion policy object](#streaming-ingestion-policy-object)&gt;
 
-- `.alter-merge` `{database|table}` &lt;entity name&gt; `policy` `streamingingestion` &lt;[streaming ingestion policy object](#streaming-ingestion-policy-object)&gt;
+* `.alter-merge` `{database|table}` &lt;entity name&gt; `policy` `streamingingestion` &lt;[streaming ingestion policy object](#streaming-ingestion-policy-object)&gt;
 
 > [!Note]
 >
-> - 如果先前未在实体上定义策略，则无需更改策略的其他属性或将属性设置为默认值，即可更改流式引入的启用/禁用状态。
+> * 如果先前未在实体上定义策略，则无需更改策略的其他属性或将属性设置为默认值，即可更改流式引入的启用/禁用状态。
 >
-> - 允许替换实体上的整个流式引入策略。 [流式引入策略对象](#streaming-ingestion-policy-object)必须包含所有必需的属性。
+> * 允许替换实体上的整个流式引入策略。 [流式引入策略对象](#streaming-ingestion-policy-object)必须包含所有必需的属性。
 >
-> - 允许只替换实体上流式引入策略的指定属性。 [流式引入策略对象](#streaming-ingestion-policy-object)可以包含部分或不包含强制性属性。
+> * 允许只替换实体上流式引入策略的指定属性。 [流式引入策略对象](#streaming-ingestion-policy-object)可以包含部分或不包含强制性属性。
 
 **返回**
 
@@ -85,7 +85,7 @@ ms.locfileid: "86470442"
 
 .alter database DB1 policy streamingingestion '{"IsEnabled": true, "HintAllocatedRate": 2.1}'
 
-.alter table T1 streamingingestion '{"IsEnabled": true}'
+.alter table T1 policy streamingingestion '{"IsEnabled": true}'
 
 .alter-merge database DB1 policy streamingingestion '{"IsEnabled": false}'
 
@@ -116,7 +116,7 @@ ms.locfileid: "86470442"
 
 在管理命令的输入和输出中，流式引入策略对象是 JSON 格式的字符串，其中包括以下属性。
 
-| 属性          | 类型     | 说明                                   | 必需/可选 |
-| ----------------- | -------- | --------------------------------------------- | ----------------- |
-| IsEnabled         | `bool`   | 实体是否启用了流式引入 | 必须          |
-| HintAllocatedRate | `double` | 数据流入量的估计速率（Gb/小时）   | 可选          |
+|属性|类型|说明|必需/可选
+|---|---|---|---
+|IsEnabled|`bool`|实体是否启用了流式引入| 必须
+|HintAllocatedRate|`double`|数据流入量的估计速率（Gb/小时）|可选

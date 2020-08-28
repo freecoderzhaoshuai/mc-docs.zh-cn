@@ -8,13 +8,13 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 02/13/2020
-ms.date: 08/06/2020
-ms.openlocfilehash: 36de9c9b03799bf92a55d209d038859dc0614da2
-ms.sourcegitcommit: 7ceeca89c0f0057610d998b64c000a2bb0a57285
+ms.date: 08/18/2020
+ms.openlocfilehash: bc44e055bbad341afb629c3f30a4cb612505c664
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87841289"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88516004"
 ---
 # <a name="diff-patterns-plugin"></a>diffpatterns 插件
 
@@ -24,13 +24,16 @@ ms.locfileid: "87841289"
 ```kusto
 T | evaluate diffpatterns(splitColumn)
 ```
+> [!NOTE]
+> `diffpatterns` 的目的是查找显著的模式（这将捕获集之间的数据差异部分），而不是查找逐行差异。
 
-
-**语法**
+## <a name="syntax"></a>语法
 
 `T | evaluate diffpatterns(SplitColumn, SplitValueA, SplitValueB [, WeightColumn, Threshold, MaxDimensions, CustomWildcard, ...])` 
 
-**必需参数**
+## <a name="arguments"></a>参数 
+
+### <a name="required-arguments"></a>必需参数
 
 * SplitColumn - column_name**
 
@@ -46,7 +49,7 @@ T | evaluate diffpatterns(splitColumn)
 
     示例： `T | extend splitColumn=iff(request_responseCode == 200, "Success" , "Failure") | evaluate diffpatterns(splitColumn, "Success","Failure") `
 
-**可选实参**
+### <a name="optional-arguments"></a>可选自变量
 
 其他所有参数都为可选参数，但必须按以下方式进行排序。 若要指示应使用默认值，请输入字符串波形值 -“~”（请参阅下方示例）。
 
@@ -77,7 +80,7 @@ T | evaluate diffpatterns(splitColumn)
 
     示例： `T | extend splitColumn = iff(request-responseCode == 200, "Success" , "Failure") | evaluate diffpatterns(splitColumn, "Success","Failure", "~", "~", "~", int(-1), double(-1), long(0), datetime(1900-1-1))`
 
-**返回**
+## <a name="returns"></a>返回
 
 `Diffpatterns` 返回一小组模式，可捕获两个数据集中数据的不同部分（即，某一模式可捕获第一个数据集中占较大百分比的行和第二个数据集中占较小百分比的行）。 每种模式均由结果中的一行表示。
 
@@ -101,16 +104,11 @@ T | evaluate diffpatterns(splitColumn)
 
 * 注意：这些模式通常并非截然不同。 它们可能会重叠，且通常不涵盖所有原始行。 某些行可能不属于任何模式。
 
+> [!TIP]
+> * 在输入管道中使用 [where](./whereoperator.md) 和 [project](./projectoperator.md) 可将数据缩减到仅剩所需数据。
+> * 找到所需行时，可通过将该行的特定值添加到 `where` 筛选器，来对其进行深入研究。
 
-**提示**
-
-在输入管道中使用 [where](./whereoperator.md) 和 [project](./projectoperator.md) 可将数据缩减到仅剩所需数据。
-
-找到所需行时，可通过将该行的特定值添加到 `where` 筛选器，来对其进行深入研究。
-
-* 注意：`diffpatterns` 的目的是查找显著的模式（这将捕获集之间的数据差异部分），而不是查找逐行差异。
-
-**示例**
+## <a name="example"></a>示例
 
 <!-- csl: https://help.kusto.chinacloudapi.cn:443/Samples -->
 ```kusto

@@ -7,15 +7,15 @@ author: hrasheed-msft
 ms.reviewer: jasonh
 ms.custom: hdinsightactive
 ms.topic: conceptual
-origin.date: 11/07/2019
-ms.date: 12/09/2019
+origin.date: 04/23/2020
+ms.date: 08/31/2020
 ms.author: hrasheed
-ms.openlocfilehash: 4c258c3d30f6265eb5ee54b03bb2c315db483ada
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: 1b681e1870171b711986ea40a2c74d78989e26cb
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186443"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715181"
 ---
 # <a name="install-jupyter-notebook-on-your-computer-and-connect-to-apache-spark-on-hdinsight"></a>在计算机上安装 Jupyter notebook 并连接到 HDInsight 上的 Apache Spark
 
@@ -92,7 +92,7 @@ ms.locfileid: "84186443"
     python
     ```
 
-2. Jupyter 配置信息通常存储在用户主目录中。 输入以下命令来标识主目录，并创建一个名为 **.sparkmagic** 的文件夹。  将输出完整路径。
+2. Jupyter 配置信息通常存储在用户主目录中。 输入以下命令来标识主目录，并创建一个名为 \.sparkmagic 的文件夹。  将输出完整路径。
 
     ```python
     import os

@@ -1,31 +1,31 @@
 ---
-title: Azure 文件共享存储参考
+title: Azure 文件存储参考
 description: 查找 Azure 存储 API 参考、自述文件和客户端库包。
 author: WenJason
 ms.author: v-jay
-origin.date: 06/02/2020
-ms.date: 07/20/2020
+origin.date: 07/14/2020
+ms.date: 08/24/2020
 ms.service: storage
 ms.topic: conceptual
 ms.reviewer: ripohane
-ms.openlocfilehash: 5a9c58efdf844121f31d7baa388ff522de7062d0
-ms.sourcegitcommit: 31da682a32dbb41c2da3afb80d39c69b9f9c1bc6
+ms.openlocfilehash: 57945ea08ac8d9dcbb591fc595e0c28826d969c9
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86414750"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753577"
 ---
-# <a name="azure-file-shares-storage-reference"></a>Azure 文件共享存储参考
+# <a name="azure-files-reference"></a>Azure 文件存储参考
 
-查找 Azure 文件共享存储 API 参考、库包、自述文件和入门文章。
+查找 Azure 文件 API 参考、库包、自述文件和入门文章。
 
 ## <a name="net-client-libraries"></a>.NET 客户端库
 
-下表列出了 Azure 文件共享 .NET API 的参考文档和示例文档。
+下表列出了 Azure 文件 .NET API 的参考文档和示例文档。
 
 |  版本  | 参考文档 | 程序包 | 快速入门 |
 | :-------: | ----------------------- | ------- | ---------- |
-| 12.x | [适用于 .NET 的 Azure 文件共享客户端库 v12](https://docs.microsoft.com/dotnet/api/overview/azure/storage.files.shares-readme) | [包 (NuGet)](https://www.nuget.org/packages/Azure.Storage.Files/) | &nbsp; |
+| 12.x | [适用于 .NET 的 Azure 文件客户端库 v12](https://docs.microsoft.com/dotnet/api/overview/azure/storage.files.shares-readme) | [包 (NuGet)](https://www.nuget.org/packages/Azure.Storage.Files/) | &nbsp; |
 | 11.x | [Microsoft.Azure.Storage.File 命名空间](https://docs.microsoft.com/dotnet/api/microsoft.azure.storage.file) | [包 (NuGet)](https://www.nuget.org/packages/Microsoft.Azure.Storage.File/) | [使用 .NET 针对 Azure 文件进行开发](/storage/files/storage-dotnet-how-to-use-files) |
 
 ### <a name="storage-management"></a>存储管理
@@ -46,11 +46,11 @@ ms.locfileid: "86414750"
 
 ## <a name="java-client-libraries"></a>Java 客户端库
 
-下表列出了 Azure 文件共享 Java API 的参考文档和示例文档。
+下表列出了 Azure 文件 Java API 的参考文档和示例文档。
 
 |  版本  | 参考文档 | 程序包 | 快速入门 |
 | :-------: | ----------------------- | ------- | ---------- |
-| 12.x | [适用于 Java 的 Azure 文件共享客户端库](https://docs.microsoft.com/java/api/overview/azure/storage-file-share-readme) | [包 (Maven)](https://mvnrepository.com/artifact/com.azure/azure-storage-file-share) | &nbsp; |
+| 12.x | [适用于 Java 的 Azure 文件客户端库](https://docs.microsoft.com/java/api/overview/azure/storage-file-share-readme) | [包 (Maven)](https://mvnrepository.com/artifact/com.azure/azure-storage-file-share) | &nbsp; |
 | 8.x | [com.microsoft.azure.storage.file](https://docs.microsoft.com/java/api/com.microsoft.azure.storage.file) | [包 (Maven)](https://mvnrepository.com/artifact/com.microsoft.azure/azure-storage) | [使用 Java 针对 Azure 文件进行开发](/storage/files/storage-java-how-to-use-file-storage) |
 
 ### <a name="storage-management"></a>存储管理
@@ -63,7 +63,7 @@ ms.locfileid: "86414750"
 
 ## <a name="python-client-libraries"></a>Python 客户端库
 
-下表列出了 Azure 文件共享 Python API 的参考文档和示例文档。
+下表列出了 Azure 文件 Python API 的参考文档和示例文档。
 
 |  版本  | 参考文档 | 程序包 | 快速入门 |
 | :-------: | ----------------------- | ------- | ---------- |
@@ -72,16 +72,16 @@ ms.locfileid: "86414750"
 
 ## <a name="javascript-client-libraries"></a>JavaScript 客户端库
 
-下表列出了 Azure 文件共享 JavaScript API 的参考文档和示例文档。
+下表列出了 Azure 文件 JavaScript API 的参考文档和示例文档。
 
 |  版本  | 参考文档 | 程序包 | 快速入门 |
 | :-------: | ----------------------- | ------- | ---------- |
-| 12.x | [适用于 JavaScript 的 Azure 存储文件共享客户端库](https://docs.microsoft.com/javascript/api/overview/azure/storage-file-share-readme) | [包 (npm)](https://www.npmjs.com/package/@azure/storage-file-share) | [示例](https://docs.microsoft.com/javascript/api/overview/azure/storage-file-share-readme#examples) |
+| 12.x | [适用于 JavaScript 的 Azure 文件客户端库](https://docs.microsoft.com/javascript/api/overview/azure/storage-file-share-readme) | [包 (npm)](https://www.npmjs.com/package/@azure/storage-file-share) | [示例](https://docs.microsoft.com/javascript/api/overview/azure/storage-file-share-readme#examples) |
 | 10.x | [@azure/storage-file](https://docs.microsoft.com/javascript/api/@azure/storage-file) | [包 (npm)](https://www.npmjs.com/package/@azure/storage-file) | &nbsp; |
 
 ## <a name="rest-apis"></a>REST API
 
-下表列出了 Azure 文件共享 REST API 的参考文档和示例文档。
+下表列出了 Azure 文件 REST API 的参考文档和示例文档。
 
 | 参考文档 | 概述 |
 | ----------------------- | -------- |

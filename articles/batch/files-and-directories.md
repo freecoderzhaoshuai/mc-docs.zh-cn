@@ -2,24 +2,32 @@
 title: Azure Batch 中的文件和目录
 description: 从开发的角度来了解文件和目录及其在 Azure Batch 工作流中的运用。
 ms.topic: conceptual
-ms.date: 06/28/2020
-origin.date: 05/12/2020
-ms.openlocfilehash: c4ec85a1d751c6ed89c9128cf5a04aae3cea0f03
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+origin.date: 08/03/2020
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: 05/12/2020
+ms.author: v-yeche
+ms.openlocfilehash: 23b00aaa130606f902d255f923549f089bedad1b
+ms.sourcegitcommit: e633c458126612223fbf7a8853dbf19acc7f0fa5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85706591"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88654914"
 ---
+<!--Verified with Characters Content-->
 # <a name="files-and-directories-in-azure-batch"></a>Azure Batch 中的文件和目录
 
-在 Azure Batch 中，每个任务都有一个工作目录，任务将在该目录中创建零个或多个文件和目录。 此工作目录可用于存储任务运行的程序、任务处理的数据，以及任务执行的处理的输出。 任务的所有文件和目录由任务用户拥有。
+在 Azure Batch 中，每个任务都有一个工作目录，任务可以在该目录中创建文件和目录。 此工作目录可用于存储任务运行的程序、任务处理的数据，以及任务执行的处理的输出。 任务的所有文件和目录由任务用户拥有。
 
-Batch 服务在节点上公开文件系统的一部分作为 *根目录*。 任务可通过引用 `AZ_BATCH_NODE_ROOT_DIR` 环境变量来访问根目录。 有关使用环境变量的详细信息，请参阅 [任务的环境设置](jobs-and-tasks.md#environment-settings-for-tasks)。
+Batch 服务在节点上公开文件系统的一部分作为 *根目录*。 此根目录位于 VM 的临时存储驱动器上，而不是直接位于 OS 驱动器上。
+
+任务可通过引用 `AZ_BATCH_NODE_ROOT_DIR` 环境变量来访问根目录。 有关使用环境变量的详细信息，请参阅 [任务的环境设置](jobs-and-tasks.md#environment-settings-for-tasks)。
+
+## <a name="root-directory-structure"></a>根目录结构
 
 根目录包含以下目录结构：
 
-![计算节点目录结构][media\files-and-directories\node-folder-structure.png]
+![计算节点目录结构的屏幕截图。](media\files-and-directories\node-folder-structure.png)
 
 - **applications**：包含计算节点上安装的应用程序包的详细信息。 任务可通过引用 `AZ_BATCH_APP_PACKAGE` 环境变量来访问此目录。
 

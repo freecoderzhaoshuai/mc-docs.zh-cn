@@ -5,14 +5,14 @@ author: sffamily
 ms.service: signalr
 ms.topic: conceptual
 origin.date: 11/13/2019
-ms.date: 05/25/2020
+ms.date: 08/21/2020
 ms.author: v-tawe
-ms.openlocfilehash: b2969d7f9e9ecf4bc2e36de09f79b074a64c7cf4
-ms.sourcegitcommit: 8b77a146f74ebe2cb287821fe5fc13870f89467a
+ms.openlocfilehash: 1a11b6e662c738edb77f178df290954375a38fb1
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/26/2020
-ms.locfileid: "83844168"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715281"
 ---
 # <a name="azure-signalr-service-internals"></a>Azure SignalR 服务内部
 
@@ -86,6 +86,8 @@ Azure SignalR 服务构建于 ASP.NET Core SignalR 框架的基础之上。 它�
 此时，应用程序服务器会收到一个事件，其中包含来自新客户端的信息。 在应用程序服务器中与客户端建立逻辑连接。 通过 SignalR 服务建立从客户端到应用程序服务器的数据通道。
 
 SignalR 服务将客户端中的数据传输到配对的应用程序服务器。 应用程序服务器中的数据将发送到映射的客户端。
+
+SignalR 服务不保存或存储客户数据，接收的所有客户数据将实时传输到目标服务器或客户端。
 
 可以看出，Azure SignalR 服务本质上是应用程序服务器与客户端之间的逻辑传输层。 所有持久性连接将卸载到 SignalR 服务。
 应用程序服务器只需处理中心类中的业务逻辑，而无需担心客户端连接。

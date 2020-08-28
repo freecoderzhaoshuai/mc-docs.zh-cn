@@ -4,17 +4,17 @@ description: 了解如何开发使用 Azure 文件来存储文件数据的 .NET 
 author: WenJason
 ms.service: storage
 ms.devlang: dotnet
-ms.topic: conceptual
+ms.topic: how-to
 origin.date: 10/07/2019
-ms.date: 03/30/2020
+ms.date: 08/24/2020
 ms.author: v-jay
 ms.subservice: files
-ms.openlocfilehash: 7f281c8960d97ee8590a545d632443331cf2328c
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 1a645786d9039e839ba3c39a2f07c3696ed84ce5
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80290462"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753319"
 ---
 # <a name="develop-for-azure-files-with-net"></a>使用 .NET 针对 Azure 文件进行开发
 

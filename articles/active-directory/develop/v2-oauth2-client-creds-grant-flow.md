@@ -8,16 +8,16 @@ ms.service: active-directory
 ms.subservice: develop
 ms.workload: identity
 ms.topic: conceptual
-ms.date: 05/28/2020
+ms.date: 08/20/2020
 ms.author: v-junlch
 ms.reviewer: hirsin
 ms.custom: aaddev, identityplatformtop40
-ms.openlocfilehash: bfe144098c7aa356531d155cbeac2667e7a52913
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: e7da100d9fcfda233cdd4113ba7188c192ad6406
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186850"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647710"
 ---
 # <a name="microsoft-identity-platform-and-the-oauth-20-client-credentials-flow"></a>Microsoft 标识平台和 OAuth 2.0 客户端凭据流
 
@@ -27,7 +27,7 @@ ms.locfileid: "84186850"
 
 OAuth 2.0 客户端凭据授权流允许 Web 服务（机密客户端）在调用其他 Web 服务时使用它自己的凭据（而不是模拟用户）进行身份验证。 在这种情况下，客户端通常是中间层 Web 服务、后台程序服务或网站。 为了进行更高级别的保证，Microsoft 标识平台还允许调用服务将证书（而不是共享机密）用作凭据。
 
-在较典型的 *三重 OAuth*中，客户端应用程序有权代表特定用户访问资源。 该权限通常在[许可](v2-permissions-and-consent.md)过程中由用户委托给应用程序。 但是，在客户端凭据（双重 OAuth）流中，权限直接授予应用程序本身。 应用向资源出示令牌时，该资源强制要求应用本身而不是用户拥有执行操作的授权。
+在客户端凭据流中，由管理员向应用程序本身直接授予权限。 当应用程序向资源出示令牌时，资源强制应用本身具有执行操作的授权，因为没有用户参与身份验证。  本文介绍[授权应用程序调用 API](#application-permissions) 所需的步骤，以及[如何获取调用该 API 所需的令牌](#get-a-token)。
 
 ## <a name="protocol-diagram"></a>协议图
 
@@ -52,6 +52,9 @@ OAuth 2.0 客户端凭据授权流允许 Web 服务（机密客户端）在调�
 
 对于组织拥有的数据，建议通过应用程序权限获取必要的授权。
 
+> [!NOTE]
+> 为了启用这种基于 ACL 的授权模式，Azure AD 不要求应用程序必须经过授权才能从另一个应用程序获取令牌 - 因此可以在没有 `roles` 声明的情况下颁发仅限应用的令牌。 公开 API 的应用程序必须实现权限检查才能接受令牌。
+
 ### <a name="application-permissions"></a>应用程序权限
 
 可使用 API 公开一组应用程序权限，而不是使用 ACL。 应用程序权限由组织管理员向应用程序授予，并且只可用于访问该组织与其员工所拥有的数据。 例如，Microsoft Graph 公开多个应用程序权限来执行以下操作：
@@ -61,21 +64,11 @@ OAuth 2.0 客户端凭据授权流允许 Web 服务（机密客户端）在调�
 * 以任何用户的身份发送邮件
 * 读取目录数据
 
-有关应用程序权限的详细信息，请转到 [Microsoft Graph](https://developer.microsoft.com/graph)。
+若要将应用程序权限用于自己的 API（与 Microsoft Graph 相反），必须首先通过在 Azure 门户中 API 的应用注册中定义作用域来[公开 API](quickstart-configure-app-expose-web-apis.md)。 然后，通过在客户端应用程序的应用注册中选择这些权限来[配置对 API 的访问](quickstart-configure-app-access-web-apis.md)。 如果你在 API 的应用注册中没有公开任何作用域，则将无法在 Azure 门户中的客户端应用程序的应用注册中为该 API 指定应用程序权限。
 
-若要在应用中使用应用程序权限，请执行后续部分所述的步骤。
+以应用程序形式（不同于与以用户身份）进行身份验证时，不能使用“委托的权限”（用户授予的范围）。 必须使用“应用程序权限”（也称为“角色”），这些权限是由管理员为应用程序授予的（或通过 Web API 预授权来授予的）。
 
-
-> [!NOTE]
-> 以应用程序形式（不同于与以用户身份）进行身份验证时，不能使用“委托的权限”（用户授予的范围）。  必须使用“应用程序权限”（也称为“角色”），这些权限是由管理员为应用程序授予的（或通过 Web API 预授权来授予的）。
-
-
-#### <a name="request-the-permissions-in-the-app-registration-portal"></a>在应用注册门户中请求权限
-
-1. 通过新的[应用注册（预览版）体验](quickstart-register-app.md)注册和创建应用。
-2. 在应用注册（预览版）体验中转到你的应用程序。 导航到“证书和机密”部分，并添加一个**新的客户端机密**，因为至少需要使用一个客户端机密来请求令牌。
-3. 找到“API 权限”部分，然后添加应用所需的**应用程序权限**。
-4. **保存** 应用注册。
+有关应用程序权限的详细信息，请参阅[权限和许可](v2-permissions-and-consent.md#permission-types)。
 
 #### <a name="recommended-sign-the-user-into-your-app"></a>建议：让用户登录到应用
 

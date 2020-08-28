@@ -8,15 +8,15 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 02/19/2020
-ms.date: 07/01/2020
-ms.openlocfilehash: 7dbea999199434fe0187945f5fa633fa35cff2f5
-ms.sourcegitcommit: c17e965d4ffd82fd7cd86b2648fcb0053a65df00
+ms.date: 08/18/2020
+ms.openlocfilehash: 1c08f6f99a1db69dba6aae792ac72c282e96e9ea
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86470332"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515670"
 ---
-# <a name="restrictedviewaccess-policy"></a>RestrictedViewAccess 策略
+# <a name="restricted-view-access-policy"></a>受限视图访问策略
 
 RestrictedViewAccess 是一个可为数据库的表启用的可选策略。
 
@@ -24,8 +24,7 @@ RestrictedViewAccess 是一个可为数据库的表启用的可选策略。
 未注册 [UnrestrictedViewer](../management/access-control/role-based-authorization.md) 数据库级角色的任何主体都无法查询表中的数据。 即使是表/数据库/群集的管理员，如果未注册也无法查询。
 
 [UnrestrictedViewer](../management/access-control/role-based-authorization.md) 角色提供可查看数据库中启用了该策略的所有表的相应权限。
-当前主体（数据库管理员/用户/查看者）已获得查询数据库的授权。
-添加或删除主体可以由 [DatabaseAdmin](../management/access-control/role-based-authorization.md) 完成。
+当前主体（数据库管理员/用户/查看者）已获得查询数据库的授权。 添加或删除主体可以由 [DatabaseAdmin](../management/access-control/role-based-authorization.md) 完成。
 
 > [!NOTE]
 > 无法在启用[行级别安全性策略](./rowlevelsecuritypolicy.md)的表上配置 RestrictedViewAccess 策略。

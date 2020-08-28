@@ -3,17 +3,17 @@ title: 在虚拟网络中预配池
 description: 如何在 Azure 虚拟网络中创建 Batch 池，以便计算节点可以安全地与网络（例如文件服务器）中的其他 VM 通信。
 ms.topic: how-to
 origin.date: 06/26/2020
-ms.date: 08/10/2020
+ms.date: 08/24/2020
 ms.testscope: no
 ms.testdate: 04/27/2020
 ms.author: v-yeche
 ms.custom: seodec18
-ms.openlocfilehash: c69ed855982ac5b6b2f2ad1b0d941b80039d5089
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 0c9f4a844c4fcd9f8dffc5fb944ae4336b3841b2
+ms.sourcegitcommit: e633c458126612223fbf7a8853dbf19acc7f0fa5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917224"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88654922"
 ---
 # <a name="create-an-azure-batch-pool-in-a-virtual-network"></a>在虚拟网络中创建 Azure Batch 池
 
@@ -46,7 +46,10 @@ ms.locfileid: "87917224"
 3. 在“池”窗口中，选择“添加”。 
 4. 在“添加池”窗口中，从“映像类型”下拉列表中选择要使用的选项。 
 5. 为自定义映像选择正确的“发布服务器/产品/SKU”。
-6. 指定剩余所需设置，包括“节点大小”、“目标专用节点”和“低优先级节点”，以及任何所需的可选设置。  
+6. 指定剩余所需设置，包括“节点大小”和“目标专用节点”，以及任何所需的可选设置 。
+
+    <!--Not Available on and **Low priority nodes**-->
+    
 7. 在“虚拟网络”中，选择要使用的虚拟网络和子网。
 
     :::image type="content" source="./media/batch-virtual-network/add-vnet-pool.png" alt-text="使用虚拟网络添加池":::

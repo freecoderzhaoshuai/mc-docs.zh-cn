@@ -1,17 +1,19 @@
 ---
 title: 使用多实例任务运行 MPI 应用程序
 description: 了解如何在 Azure Batch 中使用多实例任务类型执行消息传递接口 (MPI) 应用程序。
-ms.topic: article
+ms.topic: how-to
 origin.date: 03/13/2019
-ms.date: 08/13/2019
-ms.author: v-lingwu
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: 08/13/2019
+ms.author: v-yeche
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 2de99b8cb2a754e59324d3a60b5685a03683e19e
-ms.sourcegitcommit: cbaa1aef101f67bd094f6ad0b4be274bbc2d2537
+ms.openlocfilehash: f9ce5db8cf02c68c0abcf84bcee6ab36fb698c0e
+ms.sourcegitcommit: e633c458126612223fbf7a8853dbf19acc7f0fa5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/28/2020
-ms.locfileid: "84126578"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88654921"
 ---
 # <a name="use-multi-instance-tasks-to-run-message-passing-interface-mpi-applications-in-batch"></a>在 Batch 中使用多实例任务来运行消息传递接口 (MPI) 应用程序
 
@@ -23,31 +25,30 @@ ms.locfileid: "84126578"
 >
 
 ## <a name="multi-instance-task-overview"></a>多实例任务概述
-在 Batch 中，每个任务通常是在单个计算节点上执行 --将多个任务提交给作业，Batch 服务将每个任务安排在节点上执行。 但是，可以通过配置任务的“多实例设置”，告知 Batch 改为创建一个主要任务和多个子任务，然后在多个节点上执行它们。
+在 Batch 中，每个任务通常是在单个计算节点上执行 --将多个任务提交给作业，Batch 服务将每个任务安排在节点上执行。 但是，可以通过配置任务的“多实例设置”，告知批处理改为创建一个主要任务和多个子任务，并在多个节点上执行它们。
 
 ![多实例任务概述][1]
 
 将具有多实例设置的任务提交给作业时，Batch 执行多实例任务特有的几个步骤：
 
 1. 批处理服务根据多实例设置创建一个**主要任务**和多个**子任务**。 任务（主要任务和所有子任务）的总数与用户在多实例设置中指定的**实例**（计算节点）数相符。
-2. Batch 将其中一个计算节点指定为**主**节点，将主要任务安排在主节点上执行。 将子任务安排在已分配给多实例任务的剩余计算节点上执行，一个节点一个子任务。
+2. 批处理将其中一个计算节点指定为**主**节点，将主要任务安排在主节点上执行。 将子任务安排在已分配给多实例任务的剩余计算节点上执行，一个节点一个子任务。
 3. 主要任务和所有子任务会下载在多实例设置中指定的任何**通用资源文件**。
-4. 下载公共资源文件之后，主任务和子任务会执行多实例设置中指定的 **协调命令** 。 通常使用协调命令准备节点，以便执行任务。 该操作可能包括启动后台服务（例如 [Microsoft MPI][msmpi_msdn] 的 `smpd.exe`），以及验证节点是否已就绪，能够处理节点间消息。
-5. 在主要任务和所有子任务成功完成协调命令*以后*，主要任务会在主节点上执行**应用程序命令**。 应用程序命令是多实例任务本身的命令行，只由主要任务执行。 在基于 [MS-MPI][msmpi_msdn] 的解决方案中，用户将在此处使用 `mpiexec.exe` 执行已启用 MPI 的应用程序。
+4. 下载通用资源文件之后，主任务和子任务将执行多实例设置中指定的**协调命令**。 通常使用协调命令准备节点，以便执行任务。 该操作可能包括启动后台服务（例如 [Microsoft MPI][msmpi_msdn] 的 `smpd.exe`），以及验证节点是否已就绪，能够处理节点间消息。
+5. 在主要任务和所有子任务成功完成协调命令*以后*，主要任务会在主节点上执行**应用程序命令**。 应用程序命令是多实例任务本身的命令行，只由主要任务执行。 在基于 [MS-MPI][msmpi_msdn] 的解决方案中，用户会在此处使用 `mpiexec.exe` 执行已启用 MPI 的应用程序。
 
 > [!NOTE]
-> 虽然“多实例任务”在功能上不同，但它并不是像 [StartTask][net_starttask] 或 [jobprepareationtask][net_jobprep] 那样的独特任务类型。 多实例任务只是已配置多实例设置的标准 Batch 任务（Batch .NET 中的 [CloudTask][net_task]）。 在本文中，我们将它称为**多实例任务**。
+> 虽然“多实例任务”在功能上不同，但并不是特殊的任务类型，例如 [StartTask][net_starttask] 或 [JobPreparationTask][net_jobprep]。 多实例任务只是已配置多实例设置的标准 Batch 任务（Batch .NET 中的 [CloudTask][net_task]）。 在本文中，我们将它称为**多实例任务**。
 >
 >
 
 ## <a name="requirements-for-multi-instance-tasks"></a>多实例任务的要求
-多实例任务需要有**已启用节点间通信**和**已禁用并发任务执行**的池。 若要禁用并发任务执行，请将 [CloudPool.MaxTasksPerComputeNode](/dotnet/api/microsoft.azure.batch.cloudpool) 属性设置为 1。
+多实例任务需要有**已启用节点间通信**和**已禁用并发任务执行**的池。 要禁用并发任务执行，请将 [CloudPool.MaxTasksPerComputeNode](https://docs.azure.cn/dotnet/api/microsoft.azure.batch.cloudpool?view=azure-dotnet) 属性设置为 1。
 
 > [!NOTE]
 > Batch [限制](batch-quota-limit.md#pool-size-limits)已启用节点间通信的池的大小。
 
-
-此代码片段演示如何使用 Batch.NET 库为多实例任务创建池。
+此代码段演示如何使用 Batch.NET 库为多实例任务创建池。
 
 ```csharp
 CloudPool myCloudPool =
@@ -66,9 +67,8 @@ myCloudPool.MaxTasksPerComputeNode = 1;
 > [!NOTE]
 > 如果尝试在已禁用节点间通信，或 *maxTasksPerNode* 值大于 1 的池中运行多实例任务，则永远不排定任务 -- 它无限期停留在“活动”状态。 
 
-
 ### <a name="use-a-starttask-to-install-mpi"></a>使用 StartTask 安装 MPI
-若要通过多实例任务运行 MPI 应用程序，首先需在池中的计算节点上安装 MPI 实现（例如 MS-MPI 或 Intel MPI）。 这是使用 [StartTask][net_starttask] 的好时机，每当节点加入池或重新启动时，它就会执行。 此代码片段创建一个 StartTask，将 MS-MPI 安装程序包指定为[资源文件][net_resourcefile]。 资源文件下载到节点之后，会执行启动任务的命令行。 在本示例中，命令行执行 MS-MPI 的无人参与安装。
+若要通过多实例任务运行 MPI 应用程序，首先需在池中的计算节点上安装 MPI 实现（例如 MS-MPI 或 Intel MPI）。 这是使用 [StartTask][net_starttask] 的好时机，每当节点加入池或重新启动时，它就会执行。 此代码片段创建一个 StartTask，将 MS-MPI 安装程序包指定为[资源文件][net_resourcefile]。 资源文件下载到节点之后，将执行启动任务的命令行。 在本示例中，命令行执行 MS-MPI 的无人参与安装。
 
 ```csharp
 // Create a StartTask for the pool which we use for installing MS-MPI on
@@ -88,15 +88,18 @@ await myCloudPool.CommitAsync();
 ```
 
 ### <a name="remote-direct-memory-access-rdma"></a>远程直接内存访问 (RDMA)
+
+<!--Not Available on [RDMA-capable size](../virtual-machines/sizes-hpc.md?toc=/virtual-machines/windows/toc.json)-->
+
 在以下文章中查找指定为“支持 RDMA”的大小：
 
 * **CloudServiceConfiguration** 池
 
-  * [云服务的大小](../cloud-services/cloud-services-sizes-specs.md)（仅 Windows）
+    * [云服务的大小](../cloud-services/cloud-services-sizes-specs.md)（仅 Windows）
 * **VirtualMachineConfiguration** 池
 
-  * [Azure 中虚拟机的大小](../virtual-machines/linux/sizes.md?toc=%2fvirtual-machines%2flinux%2ftoc.json) (Linux)
-  * [Azure 中虚拟机的大小](../virtual-machines/windows/sizes.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json) (Windows)
+    * [Azure 中虚拟机的大小](../virtual-machines/linux/sizes.md?toc=%2fvirtual-machines%2flinux%2ftoc.json) (Linux)
+    * [Azure 中虚拟机的大小](../virtual-machines/windows/sizes.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json) (Windows)
 
 > [!NOTE]
 > 若要充分利用 [Linux 计算节点](batch-linux-nodes.md)上的 RDMA，必须使用节点上的 **Intel MPI**。 
@@ -139,7 +142,7 @@ myMultiInstanceTask.MultiInstanceSettings = new MultiInstanceSettings(numberOfNo
 ```
 
 ### <a name="master-node"></a>主节点
-当用户提交多实例任务时，Batch 服务会将其中一个计算节点指定为“主”节点，并将主要任务安排在主节点上执行。 子任务安排在已分配给多实例任务的剩余节点上执行。
+当用户提交多实例任务时，批处理服务会将其中一个计算节点指定为“主”节点，并将主要任务安排在主节点上执行。 子任务安排在已分配给多实例任务的剩余节点上执行。
 
 ## <a name="coordination-command"></a>协调命令
 主要任务和子任务都执行**协调命令**。
@@ -150,7 +153,7 @@ myMultiInstanceTask.MultiInstanceSettings = new MultiInstanceSettings(numberOfNo
 cmd /c start cmd /c ""%MSMPI_BIN%\smpd.exe"" -d
 ```
 
-请注意此协调命令中使用 `start` 。 这是必需的，因为 `smpd.exe` 应用程序不会在执行后立即返回。 如果不使用 [start][cmd_start] 命令，此协调命令就不返回，因此会阻止执行应用程序命令。
+请注意此协调命令中使用 `start`。 这是必需的，因为 `smpd.exe` 应用程序不会在执行后立即返回。 如果不使用 [start][cmd_start] 命令，此协调命令就不返回，因此将阻止执行应用程序命令。
 
 ## <a name="application-command"></a>应用程序命令
 主要任务及所有子任务完成执行协调命令之后，只有主要任务执行多实例任务的命令行。 我们将此命令行称为**应用程序命令**，以便与协调命令区分开来。
@@ -167,9 +170,9 @@ cmd /c ""%MSMPI_BIN%\mpiexec.exe"" -c 1 -wdir %AZ_BATCH_TASK_SHARED_DIR% MyMPIAp
 >
 
 ## <a name="environment-variables"></a>环境变量
-Batch 创建的多个 [环境变量][msdn_env_var] 特定于已分配给某个多实例任务的计算节点上的多实例任务。 协调命令行和应用程序命令行可以引用这些环境变量，就像其所执行的脚本和程序一样。
+Batch 创建的多个[环境变量][msdn_env_var]特定于已分配给某个多实例任务的计算节点上的多实例任务。 协调命令行和应用程序命令行可以引用这些环境变量，就像其所执行的脚本和程序一样。
 
-以下环境变量由多实例任务所使用的 Batch 服务创建：
+以下环境变量由多实例任务所使用的批处理服务创建：
 
 * `CCP_NODES`
 * `AZ_BATCH_NODE_LIST`
@@ -181,14 +184,12 @@ Batch 创建的多个 [环境变量][msdn_env_var] 特定于已分配给某个�
 如需这些环境变量以及其他 Batch 计算节点环境变量的完整详细信息（包括内容和可见性），请参阅[计算节点环境变量][msdn_env_var]。
 
 > [!TIP]
-> 此批处理 Linux MPI 代码示例包含一个示例，介绍了如何使用这些环境变量中的其中几个。 [coordination-cmd][coord_cmd_example] Bash 脚本可从 Azure 存储下载常用应用程序和输入文件，在主节点上启用网络文件系统 (NFS) 共享，以及将其他分配给多实例任务的节点配置为 NFS 客户端。
->
->
+> 此批处理 Linux MPI 代码示例包含一个示例，介绍了如何使用这些环境变量中的其中几个。
 
 ## <a name="resource-files"></a>资源文件
 多实例任务需要考虑两组资源文件：所有任务（主要任务和子任务）下载的**通用资源文件**，以及为多实例任务本身指定的**资源文件**（只有主要任务下载）。 
 
-可以在任务的多实例设置中指定一个或多个**通用资源文件**。 主要任务及所有子任务从 [Azure 存储](../storage/common/storage-introduction.md)将这些通用资源文件下载到每个节点的**任务共享目录**。 可以使用 `AZ_BATCH_TASK_SHARED_DIR` 环境变量从应用程序命令和协调命令行访问任务共享目录。 `AZ_BATCH_TASK_SHARED_DIR` 路径在所有分配给多实例任务的节点上都是相同的，因此可在主要任务和所有子任务之间共享单个协调命令。 从远程访问的意义上来说，Batch 并不“共享”目录，但用户可将其用作装入点或共享点，如此前在有关环境变量的提示中所述。
+可以在任务的多实例设置中指定一个或多个**通用资源文件**。 主要任务及所有子任务从 [Azure 存储](../storage/common/storage-introduction.md)将这些通用资源文件下载到每个节点的**任务共享目录**。 可以使用 `AZ_BATCH_TASK_SHARED_DIR` 环境变量从应用程序命令和协调命令行访问任务共享目录。 `AZ_BATCH_TASK_SHARED_DIR` 路径在所有分配给多实例任务的节点上都是相同的，因此可在主要任务和所有子任务之间共享单个协调命令。 从远程访问的意义上来说，批处理并不“共享”目录，但用户可将其用作装入点或共享点，如此前在有关环境变量的提示中所述。
 
 默认情况下，为多实例任务本身指定的资源文件下载到任务的工作目录 `AZ_BATCH_TASK_WORKING_DIR`。 如前所述，仅主要任务下载为多实例任务本身指定的资源文件（与通用资源文件相比）。
 
@@ -209,10 +210,10 @@ Batch 创建的多个 [环境变量][msdn_env_var] 特定于已分配给某个�
 如果最近的任务是多实例任务的一部分，计算节点的最近任务列表反映子任务的 ID。
 
 ## <a name="obtain-information-about-subtasks"></a>获取有关子任务的信息
-若要使用 Batch .NET 库获取子任务的信息，请调用 [CloudTask.ListSubtasks][net_task_listsubtasks] 方法。 此方法返回所有子任务的相关信息，以及已执行任务的计算节点的相关信息。 可以根据此信息判断每项子任务的根目录、池 ID、其当前状态、退出代码等等。 可以使用此信息结合 [PoolOperations.GetNodeFile][poolops_getnodefile] 方法，获取子任务的文件。 请注意，此方法不返回主要任务 (ID 0) 的相关信息。
+若要使用 Batch .NET 库获取子任务的详细信息，请调用 [CloudTask.ListSubtasks][net_task_listsubtasks] 方法。 此方法返回所有子任务的相关信息，以及已执行任务的计算节点的相关信息。 可以根据此信息判断每项子任务的根目录、池 ID、其当前状态、退出代码等等。 可以使用此信息结合 [PoolOperations.GetNodeFile][poolops_getnodefile] 方法，以获取子任务的文件。 请注意，此方法不返回主要任务 (ID 0) 的相关信息。
 
 > [!NOTE]
-> 除非另有说明，否则在多实例 [CloudTask][net_task] 本身执行的 Batch .NET 方法只应用到主要任务。 例如，当在多实例任务上调用 [CloudTask.ListNodeFiles][net_task_listnodefiles] 方法时，只返回主要任务的文件。
+> 除非另有指明，否则在多实例 [CloudTask][net_task] 本身执行的 Batch .NET 方法只应用到主要任务。 例如，当在多实例任务上调用 [CloudTask.ListNodeFiles][net_task_listnodefiles] 方法时，只返回主要任务的文件。
 >
 >
 
@@ -260,9 +261,9 @@ GitHub 上的 [MultiInstanceTasks][github_mpi] 代码示例演示了如何通过
 
 ### <a name="preparation"></a>准备工作
 1. 执行[如何编译和运行简单的 MS-MPI 程序][msmpi_howto]中的开始两个步骤。 这样即可满足下一步的先决条件。
-2. 生成 *MPIHelloWorld* 示例 MPI 程序的[发行][helloworld_proj]版。 该程序是会在计算节点上通过多实例任务运行的程序。
-3. 创建包含 `MPIHelloWorld.exe`（在步骤 2 构建）和 `MSMpiSetup.exe`（在步骤 1 下载）的 zip 文件。 下一步需要将此 zip 文件作为应用程序包上传。
-4. 通过 [Azure 门户][portal]创建名为“MPIHelloWorld”的 Batch [应用程序](batch-application-packages.md)，并将上一步创建的 zip 文件指定为“1.0”版应用程序包。 有关详细信息，请参阅[上传和管理应用程序](batch-application-packages.md#upload-and-manage-applications)。
+2. 生成 [MPIHelloWorld][helloworld_proj] 示例 MPI 程序的发行版。 该程序是会在计算节点上通过多实例任务运行的程序。
+3. 创建包含 `MPIHelloWorld.exe`（在步骤 2 构建）和 `MSMpiSetup.exe`（在步骤 1 下载）的 zip 文件。 需在下一步将此 zip 文件作为应用程序包上传。
+4. 通过 [Azure 门户][portal]创建名为“MPIHelloWorld”的 Batch [应用程序](batch-application-packages.md)，并将在上一步创建的 zip 文件指定为“1.0”版应用程序包。 有关详细信息，请参阅[上载和管理应用程序](batch-application-packages.md#upload-and-manage-applications)。
 
 > [!TIP]
 > 生成*发行*版 `MPIHelloWorld.exe`，这样就不需在应用程序包中包括任何其他依赖项（例如 `msvcp140d.dll` 或 `vcruntime140d.dll`）。
@@ -271,10 +272,10 @@ GitHub 上的 [MultiInstanceTasks][github_mpi] 代码示例演示了如何通过
 
 ### <a name="execution"></a>执行
 1. 从 GitHub 下载 [azure-batch-samples][github_samples_zip]。
-2. 在 Visual Studio 2019 中打开 MultiInstanceTasks **解决方案**。 `MultiInstanceTasks.sln` 解决方案文件位于：
+2. 在 Visual Studio 2019 中打开 MultiInstanceTasks 解决方案。 `MultiInstanceTasks.sln` 解决方案文件位于：
 
     `azure-batch-samples\CSharp\ArticleProjects\MultiInstanceTasks\`
-3. 将 Batch 和存储帐户凭据输入到 **Microsoft.Azure.Batch.Samples.Common** 项目中的 `AccountSettings.settings`。
+3. 将批处理和存储帐户凭据输入 **Microsoft.Azure.Batch.Samples.Common** 项目中的 `AccountSettings.settings`。
 4. **生成并运行** MultiInstanceTasks 解决方案，在批处理池中的计算节点上执行 MPI 示例应用程序。
 5. *可选*：在删除资源前，请先通过 [Azure 门户][portal]或 [Batch Explorer][batch_labs] 检查示例池、作业和任务（“MultiInstanceSamplePool”、“MultiInstanceSampleJob”、“MultiInstanceSampleTask”）。
 
@@ -319,51 +320,51 @@ Sample complete, hit ENTER to exit...
 ```
 
 ## <a name="next-steps"></a>后续步骤
-* Microsoft HPC 和 Azure Batch 团队博客讨论 [Azure Batch 上针对 Linux 的 MPI 支持][blog_mpi_linux]，并介绍如何将 [OpenFOAM][openfoam] 与 Batch 配合使用。 可以查找适用于 [GitHub 上的 OpenFOAM 示例][github_mpi]的 Python 代码示例。
+* Azure HPC 和 Azure Batch 团队博客讨论 [Azure Batch 上针对 Linux 的 MPI 支持][blog_mpi_linux]，并介绍如何将 [OpenFOAM][openfoam] 与 Batch 配合使用。 可以查找适用于 [GitHub 上的 OpenFOAM 示例][github_mpi]的 Python 代码示例。
 * 了解如何[创建 Linux 计算节点池](batch-linux-nodes.md)，以便将其用在 Azure Batch MPI 解决方案中。
 
 [helloworld_proj]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/ArticleProjects/MultiInstanceTasks/MPIHelloWorld
 
-[api_net]: https://msdn.microsoft.com/library/azure/mt348682.aspx
-[api_rest]: https://msdn.microsoft.com/library/azure/dn820158.aspx
+[api_net]: https://docs.azure.cn/dotnet/api/microsoft.azure.batch
+[api_rest]: https://docs.microsoft.com/rest/api/batchservice/
 [batch_labs]: https://azure.github.io/BatchExplorer/
-[blog_mpi_linux]: https://blogs.technet.microsoft.com/windowshpc/2016/07/20/introducing-mpi-support-for-linux-on-azure-batch/
-[cmd_start]: https://technet.microsoft.com/library/cc770297.aspx
+[blog_mpi_linux]: https://docs.microsoft.com/archive/blogs/windowshpc/introducing-mpi-support-for-linux-on-azure-batch
+[cmd_start]: https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/cc770297(v=ws.11?view=azure-dotnet)
 [coord_cmd_example]: https://github.com/Azure/azure-batch-samples/blob/master/Python/Batch/article_samples/mpi/data/coordination-cmd
 [github_mpi]: https://github.com/Azure/azure-batch-samples/tree/master/CSharp/ArticleProjects/MultiInstanceTasks
 [github_samples]: https://github.com/Azure/azure-batch-samples
 [github_samples_zip]: https://github.com/Azure/azure-batch-samples/archive/master.zip
-[msdn_env_var]: https://msdn.microsoft.com/library/azure/mt743623.aspx
-[msmpi_msdn]: https://msdn.microsoft.com/library/bb524831.aspx
+[msdn_env_var]: ./batch-compute-node-environment-variables.md
+[msmpi_msdn]: https://docs.microsoft.com/message-passing-interface/microsoft-mpi
 [msmpi_sdk]: https://go.microsoft.com/FWLink/p/?LinkID=389556
-[msmpi_howto]: https://blogs.technet.com/b/windowshpc/archive/2015/02/02/how-to-compile-and-run-a-simple-ms-mpi-program.aspx
-[openfoam]: https://www.openfoam.com/
+[msmpi_howto]: https://docs.microsoft.com/archive/blogs/windowshpc/how-to-compile-and-run-a-simple-ms-mpi-program
+[openfoam]: http://www.openfoam.com/
 [visual_studio]: https://www.visualstudio.com/vs/community/
 
-[net_jobprep]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.jobpreparationtask.aspx
-[net_multiinstance_class]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.multiinstancesettings.aspx
-[net_multiinstance_prop]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudtask.multiinstancesettings.aspx
-[net_multiinsance_commonresfiles]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.multiinstancesettings.commonresourcefiles.aspx
-[net_multiinstance_coordcmdline]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.multiinstancesettings.coordinationcommandline.aspx
-[net_multiinstance_numinstances]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.multiinstancesettings.numberofinstances.aspx
-[net_pool]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudpool.aspx
-[net_pool_create]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.pooloperations.createpool.aspx
-[net_pool_starttask]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudpool.starttask.aspx
-[net_resourcefile]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.resourcefile.aspx
-[net_starttask]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.starttask.aspx
-[net_starttask_cmdline]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.starttask.commandline.aspx
-[net_task]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudtask.aspx
-[net_taskconstraints]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.taskconstraints.aspx
-[net_taskconstraint_maxretry]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.taskconstraints.maxtaskretrycount.aspx
-[net_taskconstraint_maxwallclock]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.taskconstraints.maxwallclocktime.aspx
-[net_taskconstraint_retention]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.taskconstraints.retentiontime.aspx
-[net_task_listsubtasks]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudtask.listsubtasks.aspx
-[net_task_listnodefiles]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.cloudtask.listnodefiles.aspx
-[poolops_getnodefile]: https://msdn.microsoft.com/library/azure/microsoft.azure.batch.pooloperations.getnodefile.aspx
+[net_jobprep]: https://docs.azure.cn/dotnet/api/microsoft.azure.batch.jobpreparationtask
+[net_multiinstance_class]: https://docs.azure.cn/dotnet/api/microsoft.azure.batch.multiinstancesettings
+[net_multiinstance_prop]: https://docs.azure.cn/dotnet/api/microsoft.azure.batch.cloudtask
+[net_multiinsance_commonresfiles]: https://docs.azure.cn/dotnet/api/microsoft.azure.batch.multiinstancesettings
+[net_multiinstance_coordcmdline]: https://docs.azure.cn/dotnet/api/microsoft.azure.batch.multiinstancesettings
+[net_multiinstance_numinstances]: https://docs.azure.cn/dotnet/api/microsoft.azure.batch.multiinstancesettings
+[net_pool]: https://docs.azure.cn/dotnet/api/microsoft.azure.batch.cloudpool
+[net_pool_create]: https://docs.azure.cn/dotnet/api/microsoft.azure.batch.pooloperations
+[net_pool_starttask]: https://docs.azure.cn/dotnet/api/microsoft.azure.batch.cloudpool
+[net_resourcefile]: https://docs.azure.cn/dotnet/api/microsoft.azure.batch.resourcefile
+[net_starttask]: https://docs.azure.cn/dotnet/api/microsoft.azure.batch.starttask
+[net_starttask_cmdline]: https://docs.azure.cn/dotnet/api/microsoft.azure.batch.starttask
+[net_task]: https://docs.azure.cn/dotnet/api/microsoft.azure.batch.cloudtask
+[net_taskconstraints]: https://docs.azure.cn/dotnet/api/microsoft.azure.batch.taskconstraints
+[net_taskconstraint_maxretry]: https://docs.azure.cn/dotnet/api/microsoft.azure.batch.taskconstraints
+[net_taskconstraint_maxwallclock]: https://docs.azure.cn/dotnet/api/microsoft.azure.batch.taskconstraints
+[net_taskconstraint_retention]: https://docs.azure.cn/dotnet/api/microsoft.azure.batch.taskconstraints
+[net_task_listsubtasks]: https://docs.azure.cn/dotnet/api/microsoft.azure.batch.cloudtask
+[net_task_listnodefiles]: https://docs.azure.cn/dotnet/api/microsoft.azure.batch.cloudtask
+[poolops_getnodefile]: https://docs.azure.cn/dotnet/api/microsoft.azure.batch.pooloperations
 
 [portal]: https://portal.azure.cn
-[rest_multiinstance]: https://msdn.microsoft.com/library/azure/mt637905.aspx
+[rest_multiinstance]: /previous-versions/azure/mt637905(v=azure.100)
 
 [1]: ./media/batch-mpi/batch_mpi_01.png "多实例概述"
 
-<!-- Update_Description: wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

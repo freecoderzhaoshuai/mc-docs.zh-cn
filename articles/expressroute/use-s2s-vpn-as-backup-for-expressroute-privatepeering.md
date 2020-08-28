@@ -6,18 +6,18 @@ author: rambk
 ms.service: expressroute
 ms.topic: article
 origin.date: 02/05/2020
-ms.date: 03/09/2020
+ms.date: 08/21/2020
 ms.author: v-yiso
-ms.openlocfilehash: 00366d0829076c54a33b1274710d6302c6fe34be
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 1aeacca667cadfed8fd9a8f12014a23152c24aa9
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "81605454"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715302"
 ---
 # <a name="using-s2s-vpn-as-a-backup-for-expressroute-private-peering"></a>将 S2S VPN 用作 Azure ExpressRoute 专用对等互连的备用解决方案
 
-在标题为[使用 ExpressRoute 专用对等互连进行灾难恢复设计][DR-PP]的文章中，我们讨论了 ExpressRoute 专用对等互连对备用连接解决方案的需求，以及如何使用异地冗余的 ExpressRoute 线路来实现此目的。 本文将探讨如何利用并维护站点到站点 (S2S) VPN，以将其用作 ExpressRoute 专用对等互连的备用解决方案。 
+在标题为[使用 ExpressRoute 专用对等互连进行灾难恢复设计][DR-PP]的文章中，我们讨论了 ExpressRoute 专用对等互连对备用连接解决方案的需求，以及如何使用异地冗余的 ExpressRoute 线路来实现此目的。 本文将探讨如何利用并维护站点到站点 (S2S) VPN，以将其用作 ExpressRoute 专用对等互连的备份。 
 
 与异地冗余的 ExpressRoute 线路不同，只能在主动-被动模式下使用 ExpressRoute-VPN 灾难恢复组合。 在被动模式下使用任何备用网络连接的一个主要难点在于，被动连接经常连同主要连接一起发生故障。 被动连接故障的常见原因是缺乏主动的维护。 因此，本文将重点介绍如何验证和主动维护充当 ExpressRoute 专用对等互连备用解决方案的 S2S VPN 连接。
 
@@ -111,7 +111,7 @@ ms.locfileid: "81605454"
 
 ### <a name="configuring-for-symmetric-traffic-flow"></a>配置对称流量流
 
-我们注意到，在通过 ExpressRoute 和 S2S VPN 播发给定的本地路由时，Azure 会优先采用 ExpressRoute 路径。 若要强制 Azure 优先采用 S2S VPN 路径而不是采用共存的 ExpressRoute，需要通过 VPN 连接播发更具体的路由（子网掩码更大的更长前缀）。 此处，我们的目标是仅将 VPN 连接用作备用连接。 因此，Azure 的默认路径选择行为与我们的目标相符。 
+我们注意到，在通过 ExpressRoute 和 S2S VPN 播发给定的本地路由时，Azure 会优先采用 ExpressRoute 路径。 若要强制 Azure 优先采用 S2S VPN 路径而不是采用共存的 ExpressRoute，需要通过 VPN 连接播发更具体的路由（子网掩码更大的更长前缀）。 此处，我们的目标是仅将 VPN 连接用作备份。 因此，Azure 的默认路径选择行为与我们的目标相符。 
 
 我们需要负责确保从本地发往 Azure 的流量也优先采用 ExpressRoute 路径而不是 S2S VPN。 本地设置中的 CE 路由器和防火墙的默认本地首选项为 100。 因此，如果将通过 ExpressRoute 专用对等互连接收的路由的本地首选项配置为大于 100（例如 150），可使发往 Azure 的流量优先采用处于稳定状态的 ExpressRoute 线路。
 

@@ -3,25 +3,21 @@ title: 配置受保护的 Web API 应用 | Azure
 titleSuffix: Microsoft identity platform
 description: 了解如何生成受保护的 Web API 和配置应用程序的代码。
 services: active-directory
-documentationcenter: dev-center-name
 author: jmprieur
 manager: CelesteDG
-editor: ''
 ms.service: active-directory
 ms.subservice: develop
-ms.devlang: na
 ms.topic: conceptual
-ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 03/10/2020
+ms.date: 08/19/2020
 ms.author: v-junlch
 ms.custom: aaddev
-ms.openlocfilehash: 78d6710d009b09c63c2cf2bbcb8e7afa0434abda
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: ad2c978c5b909caf727ba3171c54d398fa31569c
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291041"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647723"
 ---
 # <a name="protected-web-api-code-configuration"></a>受保护的 Web API：代码配置
 
@@ -94,11 +90,33 @@ HttpResponseMessage response = await _httpClient.GetAsync(apiUri);
 }
 ```
 
+#### <a name="case-where-you-used-a-custom-app-id-uri-for-your-web-api"></a>为 Web API 使用自定义应用 ID URI 时
+
+如果已接受门户建议的应用 ID URI，则无需指定受众（请参阅[应用程序 ID URI 和作用域](scenario-protected-web-api-app-registration.md#application-id-uri-and-scopes)）。 否则，应添加一个 `Audience` 属性，其值为 Web API 的应用 ID URI。
+
+```Json
+{
+  "AzureAd": {
+    "Instance": "https://login.partner.microsoftonline.cn/",
+    "ClientId": "[Client_id-of-web-api-eg-2ec40e65-ba09-4853-bcde-bcb60029e596]",
+    "TenantId": "common",
+    "Audience": "custom App ID URI for your web API"
+  },
+  // more lines
+}
+```
+
 ### <a name="code-initialization"></a>代码初始化
 
 对包含 **[Authorize]** 属性的控制器操作调用某个应用时，ASP.NET 和 ASP.NET Core 将从 Authorization 标头的持有者令牌中提取访问令牌。 然后，该访问令牌将转发到 JwtBearer 中间件，而该中间件会调用适用于 .NET 的 Microsoft IdentityModel 扩展。
 
-在 ASP.NET Core 中，该中间件在 Startup.cs 文件中初始化。
+#### <a name="using-microsoftidentityweb-templates"></a>使用 Microsoft.Identity.Web 模板
+
+可以通过使用 Microsoft.Identity.Web 项目模板从头开始创建一个 Web API。 有关详细信息，请参阅 [Microsoft.Identity.Web - Web API 项目模板](https://github.com/AzureAD/microsoft-identity-web/wiki/web-api-template)
+
+#### <a name="starting-from-an-existing-aspnet-core-31-application"></a>从现有 ASP.NET Core 3.1 应用程序开始
+
+目前，ASP.NET Core 3.1 使用 Microsoft.AspNetCore.AzureAD.UI 库。 该中间件在 Startup.cs 文件中初始化。
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -107,33 +125,37 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 该中间件由以下指令添加到 Web API：
 
 ```csharp
- services.AddAuthentication(AzureADDefaults.JwtBearerAuthenticationScheme)
-         .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
+// This method gets called by the runtime. Use this method to add services to the container.
+public void ConfigureServices(IServiceCollection services)
+{
+  services.AddAuthentication(AzureADDefaults.JwtBearerAuthenticationScheme)
+          .AddAzureADBearer(options => Configuration.Bind("AzureAd", options));
+}
 ```
 
- 目前，ASP.NET Core 模板会创建可将你的组织或任何组织中的用户登录的 Azure Active Directory (Azure AD) Web API。 但是，你可以通过在 Startup.cs 中添加以下代码，将这些模板更改为使用 Microsoft 标识平台终结点：
+ 目前，ASP.NET Core 模板会创建可将你的组织或任何组织中的用户登录的 Azure Active Directory (Azure AD) Web API。 可以将模板更改为使用 Microsoft 身份平台终结点，方法是使用 [Microsoft.Identity.Web](https://www.nuget.org/packages/Microsoft.Identity.Web)（以 NuGet 包的形式）替换 Startup.cs 中的代码：
 
 ```csharp
-services.Configure<JwtBearerOptions>(AzureADDefaults.JwtBearerAuthenticationScheme, options =>
-{
-    // This is a Microsoft identity platform web API.
-    options.Authority += "/v2.0";
-
-    // The web API accepts as audiences both the Client ID (options.Audience) and api://{ClientID}.
-    options.TokenValidationParameters.ValidAudiences = new []
-    {
-     options.Audience,
-     $"api://{options.Audience}"
-    };
-
-    // Instead of using the default validation (validating against a single tenant,
-    // as we do in line-of-business apps),
-    // we inject our own multitenant validation logic (which even accepts both v1 and v2 tokens).
-    options.TokenValidationParameters.IssuerValidator = AadIssuerValidator.GetIssuerValidator(options.Authority).Validate;;
-});
+using Microsoft.Identity.Web;
 ```
 
-上述代码片段摘自 [Microsoft.Identity.Web/WebApiServiceCollectionExtensions.cs#L50-L63](https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore-v2/blob/154282843da2fc2958fad151e2a11e521e358d42/Microsoft.Identity.Web/WebApiServiceCollectionExtensions.cs#L50-L63) 中的 ASP.NET Core Web API 增量教程。 **AddProtectedWebApi** 方法是从 Startup.cs 调用的，代码片段中并未演示它的全部作用。
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+ // Adds Microsoft Identity platform (AAD v2.0) support to protect this API
+ services.AddMicrosoftWebApiAuthentication(Configuration, "AzureAd");
+
+ services.AddControllers();
+}
+```
+
+> [!NOTE]
+> 如果使用 Microsoft.Identity.Web，但未在 appsettings.json 中设置 `Audience`，则使用以下内容：
+> -  如果已将[接受访问令牌的版本](scenario-protected-web-api-app-registration.md#accepted-token-version)设置为 `2` 或用于 Azure AD B2C Web API，则使用 `$"{ClientId}"`。
+> - 在所有其他情况下（用于 v1.0 [访问令牌](access-tokens.md)），使用 `$"api://{ClientId}`。
+> 有关详细信息，请参阅 Microsoft.Identity.Web [源代码](https://github.com/AzureAD/microsoft-identity-web/blob/d2ad0f5f830391a34175d48621a2c56011a45082/src/Microsoft.Identity.Web/Resource/RegisterValidAudience.cs#L70-L83)。
+
+前面的代码段摘自 [ASP.NET Core Web API 增量教程](https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore-v2/blob/63087e83326e6a332d05fee6e1586b66d840b08f/1.%20Desktop%20app%20calls%20Web%20API/TodoListService/Startup.cs#L23-L28)。 [Microsoft.Identity.Web](https://github.com/AzureAD/microsoft-identity-web/blob/d2ad0f5f830391a34175d48621a2c56011a45082/src/Microsoft.Identity.Web/WebApiExtensions/WebApiServiceCollectionExtensions.cs#L27) 中提供了“AddMicrosoftWebApiAuthentication”的详细信息。 此方法调用 [AddMicrosoftWebAPI](https://github.com/AzureAD/microsoft-identity-web/blob/d2ad0f5f830391a34175d48621a2c56011a45082/src/Microsoft.Identity.Web/WebApiExtensions/WebApiAuthenticationBuilderExtensions.cs#L58)，后者会指示中间件如何验证令牌。 有关详细信息，请参阅其[源代码](https://github.com/AzureAD/microsoft-identity-web/blob/d2ad0f5f830391a34175d48621a2c56011a45082/src/Microsoft.Identity.Web/WebApiExtensions/WebApiAuthenticationBuilderExtensions.cs#L104-L122)。
 
 ## <a name="token-validation"></a>令牌验证
 
@@ -162,17 +184,43 @@ services.Configure<JwtBearerOptions>(AzureADDefaults.JwtBearerAuthenticationSche
 | **ValidateSignature** | 确保令牌未被篡改。 |
 | **ValidateTokenReplay** | 确保令牌未重放。 某些一次性协议存在一种特殊情况。 |
 
+#### <a name="customizing-token-validation"></a>自定义令牌验证
+
 验证程序与 **TokenValidationParameters** 类的属性相关联。 这些属性从 ASP.NET 和 ASP.NET Core 配置初始化。
 
-在大多数情况下，无需更改参数， 非单租户应用除外。 这些 Web 应用接受任何组织中的用户。 对于这种情况，必须验证颁发者。
+在大多数情况下，无需更改参数， 非单租户应用除外。 这些 Web 应用接受任何组织帐户中的用户。 对于这种情况，必须验证颁发者。 Microsoft.Identity.Web 还负责颁发者验证。 有关详细信息，请参阅 Microsoft.Identity.Web [AadIssuerValidator](https://github.com/AzureAD/microsoft-identity-web/blob/master/src/Microsoft.Identity.Web/Resource/AadIssuerValidator.cs)。
+
+在 ASP.NET Core 中，如果要自定义令牌验证参数，请在 Startup.cs 中使用以下代码片段：
+
+```C#
+services.AddMicrosoftWebApiAuthentication(Configuration);
+services.Configure<JwtBearerOptions>(JwtBearerDefaults.AuthenticationScheme, options =>
+{
+  var existingOnTokenValidatedHandler = options.Events.OnTokenValidated;
+  options.Events.OnTokenValidated = async context =>
+  {
+       await existingOnTokenValidatedHandler(context);
+      // Your code to add extra configuration that will be executed after the current event implementation.
+      options.TokenValidationParameters.ValidIssuers = new[] { /* list of valid issuers */ };
+      options.TokenValidationParameters.ValidAudiences = new[] { /* list of valid audiences */};
+  }
+});
+```
+
+对于 ASP.NET MVC，下面的代码示例演示了如何执行自定义令牌验证：
+
+https://github.com/azure-samples/active-directory-dotnet-webapi-manual-jwt-validation
 
 ## <a name="token-validation-in-azure-functions"></a>Azure Functions 中的令牌验证
 
-还可以在 Azure Functions 中验证传入的访问令牌。 可以在 [Microsoft .NET](https://github.com/Azure-Samples/ms-identity-dotnet-webapi-azurefunctions)、[NodeJS](https://github.com/Azure-Samples/ms-identity-nodejs-webapi-azurefunctions) 和 [Python](https://github.com/Azure-Samples/ms-identity-python-webapi-azurefunctions) 中找到此类验证的示例。
+还可以在 Azure Functions 中验证传入的访问令牌。 可以在 GitHub 上的以下代码示例中找到此类验证的示例：
+
+- .NET:[Azure-Samples/ms-identity-dotnet-webapi-azurefunctions](https://github.com/Azure-Samples/ms-identity-dotnet-webapi-azurefunctions)
+- Node.js：[Azure-Samples/ms-identity-nodejs-webapi-azurefunctions](https://github.com/Azure-Samples/ms-identity-nodejs-webapi-azurefunctions)
+- Python:[Azure-Samples/ms-identity-python-webapi-azurefunctions)](https://github.com/Azure-Samples/ms-identity-python-webapi-azurefunctions)
 
 ## <a name="next-steps"></a>后续步骤
 
 > [!div class="nextstepaction"]
 > [验证代码中的范围和应用角色](scenario-protected-web-api-verification-scope-app-roles.md)
 
-<!-- Update_Description: wording update -->

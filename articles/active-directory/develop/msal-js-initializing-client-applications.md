@@ -9,136 +9,154 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 04/22/2020
+ms.date: 08/18/2020
 ms.author: v-junlch
 ms.reviewer: saeeda
 ms.custom: aaddev
-ms.openlocfilehash: 3b4fa8871fd4ed2c7660cbf4b44c9f90385fe594
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.openlocfilehash: a7b8a4e4e4355893949f34df3a3be060c0c14ba0
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82126506"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647738"
 ---
 # <a name="initialize-client-applications-using-msaljs"></a>使用 MSAL.js 初始化客户端应用程序
-本文介绍如何使用用户代理应用程序的实例初始化适用于 JavaScript 的 Microsoft 身份验证库 (MSAL.js)。 该用户代理应用程序是某种形式的公共客户端应用程序，其中的客户端代码在 Web 浏览器等用户代理中执行。 这些客户端不存储机密，因为浏览器上下文可公开访问。 若要详细了解客户端应用程序类型和应用程序配置选项，请阅读[概述](msal-client-applications.md)。
+
+本文介绍如何使用用户代理应用程序的实例初始化适用于 JavaScript 的 Microsoft 身份验证库 (MSAL.js)。
+
+该用户代理应用程序是某种形式的公共客户端应用程序，其中的客户端代码在 Web 浏览器等用户代理中执行。 此类客户端不存储机密，因为浏览器上下文可公开访问。
+
+若要详细了解客户端应用程序类型和应用程序配置选项，请参阅 [MSAL 中的公共和机密客户端应用](msal-client-applications.md)。
 
 ## <a name="prerequisites"></a>先决条件
-在初始化应用程序之前，首先需要[使用 Azure 门户将其注册](scenario-spa-app-registration.md)，使应用能够与 Microsoft 标识平台集成。 注册后，可能需要以下信息（可在 Azure 门户中找到）：
 
-- 客户端 ID（表示应用程序 GUID 的字符串）
-- 标识提供者 URL（为实例命名）和应用程序的登录受众。 这两个参数统称为颁发机构。
-- 租户 ID：如果你编写的业务线应用程序（也称为单租户应用程序）专用于自己的组织。
-- 对于 Web 应用，还必须设置 redirectUri，标识提供者将通过此 URI 向应用程序返回安全令牌。
+在初始化应用程序之前，首先需要[在 Azure 门户中注册该应用程序](scenario-spa-app-registration.md)，从而在应用程序和 Microsoft 标识平台之间建立信任关系。
 
-## <a name="initializing-applications"></a>初始化应用程序
+注册应用后，你需要以下部分值或所有值，这些可以在 Azure 门户中找到。
 
-在单纯的 JavaScript/Typescript 应用程序中，可按如下所示使用 MSAL.js。 通过使用配置对象实例化 `UserAgentApplication` 来初始化 MSAL 身份验证上下文。 要初始化 MSAL.js，最起码需要提供的配置是可从门户获取的应用程序 clientID。
+| 值 | 必选 | 说明 |
+|:----- | :------: | :---------- |
+| 应用程序（客户端）ID | 必选 | 在 Microsoft 标识平台中唯一标识你的应用程序的 GUID。 |
+| 颁发机构 | 可选 | 标识提供者 URL（实例）和应用程序的登录受众 。 实例和登录受众连接起来后就组成了颁发机构。 |
+| 目录（租户）ID | 可选 | 如果构建专用于组织的业务线应用程序（通常称为单租户应用程序），请指定此项。 |
+| 重定向 URI | 可选 | 如果要构建 Web 应用，`redirectUri` 指定标识提供者（Microsoft 标识平台）应在何处返回其已颁发的安全令牌。 |
 
-在 MSAL.js 1.2.x 或更早版本中，对于使用重定向流的身份验证方法（`loginRedirect` 和 `acquireTokenRedirect`），需要通过 `handleRedirectCallback()` 方法显式注册一个返回成功或错误结果的回调。 之所以需要这样做，是因为重定向流不会像弹出窗口体验中的方法那样返回约定。 这在 MSAL.js 1.3.0 版中是可选项。
+## <a name="initialize-msaljs-2x-apps"></a>初始化 MSAL.js 2.x 应用
+
+通过使用[配置][msal-js-configuration]对象实例化 [PublicClientApplication][msal-js-publicclientapplication] 来初始化 MSAL 身份验证上下文。 所需的最低配置属性是应用程序的 `clientID`，在 Azure 门户中应用注册的“概述”页上显示为“应用程序(客户端) ID” 。
+
+下面是一个示例配置对象和 `PublicClientApplication` 的实例化：
+
+```javascript
+const msalConfig = {
+    auth: {
+        clientId: "11111111-1111-1111-111111111111",
+        authority: "https://login.partner.microsoftonline.cn/common",
+        knownAuthorities: [],
+        redirectUri: "https://localhost:3001",
+        postLogoutRedirectUri: "https://localhost:3001/logout",
+        navigateToLoginRequestUrl: true
+    },
+    cache: {
+        cacheLocation: "sessionStorage",
+        storeAuthStateInCookie: false
+    },
+    system: {
+        loggerOptions: {
+            loggerCallback: (level: LogLevel, message: string, containsPii: boolean): void => {
+                if (containsPii) {
+                    return;
+                }
+                switch (level) {
+                    case LogLevel.Error:
+                        console.error(message);
+                        return;
+                    case LogLevel.Info:
+                        console.info(message);
+                        return;
+                    case LogLevel.Verbose:
+                        console.debug(message);
+                        return;
+                    case LogLevel.Warning:
+                        console.warn(message);
+                        return;
+                }
+            },
+            piiLoggingEnabled: false
+        },
+        windowHashTimeout: 60000,
+        iframeHashTimeout: 6000,
+        loadFrameTimeout: 0
+    }
+};
+
+// Create an instance of PublicClientApplication
+const msalInstance = new PublicClientApplication(msalConfig);
+
+// Handle the redirect flows
+msalInstance.handleRedirectPromise().then((tokenResponse) => {
+    // Handle redirect response
+}).catch((error) => {
+    // Handle redirect error
+});
+```
+
+### `handleRedirectPromise`
+
+当应用程序使用重定向流时，调用 [handleRedirectPromise][msal-js-handleredirectpromise]。 使用重定向流时，应在每次加载页面时运行 `handleRedirectPromise`。
+
+这个承诺有三种可能的结果：
+
+- `.then` 被调用且 `tokenResponse` 为 truthy：应用程序从成功的重定向操作返回。
+- `.then` 被调用且 `tokenResponse` 为 falsey (`null`)：应用程序未从重定向操作返回。
+- `.catch` 被调用：应用程序从重定向操作返回，但出现错误。
+
+## <a name="initialize-msaljs-1x-apps"></a>初始化 MSAL.js 1.x 应用
+
+通过使用配置对象实例化 [UserAgentApplication][msal-js-useragentapplication] 来初始化 MSAL 1.x 身份验证上下文。 所需的最低配置属性是应用程序的 `clientID`，在 Azure 门户中应用注册的“概述”页上显示为“应用程序(客户端) ID” 。
+
+对于 MSAL.js 1.2.x 或更早版本中使用重定向流（[loginRedirect][msal-js-loginredirect] 和 [acquireTokenRedirect][msal-js-acquiretokenredirect]）的身份验证方法，必须通过 `handleRedirectCallback()` 方法显式注册一个返回成功或错误结果的回调。 在 MSAL.js 1.2.x 和更早版本中，必须显式注册回调，因为重定向流不会像具有弹出体验的方法那样返回承诺。 在 MSAL.js 版本 1.3.x 和更高版本中注册回调是可选操作。
 
 ```javascript
 // Configuration object constructed
-const config = {
+const msalConfig = {
     auth: {
-        clientId: "abcd-ef12-gh34-ikkl-ashdjhlhsdg"
+        clientId: "11111111-1111-1111-111111111111"
     }
 }
 
-// create UserAgentApplication instance
-const myMSALObj = new UserAgentApplication(config);
+// Create UserAgentApplication instance
+const msalInstance = new UserAgentApplication(msalConfig);
 
 function authCallback(error, response) {
-    //handle redirect response
+    // Handle redirect response
 }
 
-// (optional when using redirect methods) register redirect call back for Success or Error
-myMSALObj.handleRedirectCallback(authCallback);
+// Register a redirect callback for Success or Error (when using redirect methods)
+// **REQUIRED** in MSAL.js 1.2.x and earlier
+// **OPTIONAL** in MSAL.js 1.3.x and later
+msalInstance.handleRedirectCallback(authCallback);
 ```
 
-MSAL.js 在设计上采用 `UserAgentApplication` 的单个实例和配置表示单个身份验证上下文。 不建议使用多个实例，因为它们会导致浏览器中出现有冲突的缓存条目和行为。
+## <a name="single-instance-and-configuration"></a>单实例和配置
 
-## <a name="configuration-options"></a>配置选项
+MSAL.js 1.x 和 2.x 在设计上分别采用 `UserAgentApplication` 或 `PublicClientApplication` 的单个实例和配置，用于表示单个身份验证上下文。
 
-MSAL.js 包含如下所示的配置对象，该对象提供可用于创建 `UserAgentApplication` 实例的可配置选项分组。
+不建议使用 `UserAgentApplication` 或 `PublicClientApplication` 的多个实例，因为它们会导致浏览器中出现有冲突的缓存条目和行为。
 
-```javascript
-type storage = "localStorage" | "sessionStorage";
+## <a name="next-steps"></a>后续步骤
 
-// Protocol Support
-export type AuthOptions = {
-    clientId: string;
-    authority?: string;
-    validateAuthority?: boolean;
-    redirectUri?: string | (() => string);
-    postLogoutRedirectUri?: string | (() => string);
-    navigateToLoginRequestUrl?: boolean;
-};
+GitHub 上的此 MSAL.js 2.x 代码示例演示如何使用[配置][msal-js-configuration]对象实例化 [PublicClientApplication][msal-js-publicclientapplication]：
 
-// Cache Support
-export type CacheOptions = {
-    cacheLocation?: CacheLocation;
-    storeAuthStateInCookie?: boolean;
-};
+[Azure-Samples/ms-identity-javascript-v2](https://github.com/Azure-Samples/ms-identity-javascript-v2)
 
-// Library support
-export type SystemOptions = {
-    logger?: Logger;
-    loadFrameTimeout?: number;
-    tokenRenewalOffsetSeconds?: number;
-    navigateFrameWait?: number;
-};
-
-// Developer App Environment Support
-export type FrameworkOptions = {
-    isAngular?: boolean;
-    unprotectedResources?: Array<string>;
-    protectedResourceMap?: Map<string, Array<string>>;
-};
-
-// Configuration Object
-export type Configuration = {
-    auth: AuthOptions,
-    cache?: CacheOptions,
-    system?: SystemOptions,
-    framework?: FrameworkOptions
-};
-```
-
-下面是配置对象中当前支持的整个可配置选项集：
-
-- **clientID**：必需。 应用程序的 clientID，应从 Azure 门户获取。
-
-- **authority**：可选。 一个 URL，表示 MSAL 可从中请求令牌的目录。 默认值为 `https://login.partner.microsoftonline.cn/common`。
-    * 在 Azure AD 中，该 URL 采用 https://&lt;instance&gt;/&lt;audience&gt; 格式，其中，&lt;instance&gt; 是标识提供者域（例如 `https://login.partner.microsoftonline.cn`），&lt;audience&gt; 是表示登录受众的标识符。 可设置为以下值：
-        * `https://login.partner.microsoftonline.cn/<tenant>` - tenant 是与租户关联的域（例如 contoso.partner.onmschina.cn），或者表示目录的 `TenantID` 属性的 GUID，仅用于将特定组织的用户登录。
-        * `https://login.partner.microsoftonline.cn/common` - 用于通过工作和学校帐户将用户登录。
-        * `https://login.partner.microsoftonline.cn/organizations/` - 用于通过工作和学校帐户将用户登录。
-    * 在 Azure AD B2C 中，其格式为 `https://<instance>/tfp/<tenant>/<policyName>/`，其中 instance 是 Azure AD B2C 域（即 {your-tenant-name}.b2clogin.com），tenant 是 Azure AD B2C 租户的名称（即 {your-tenant-name}.partner.onmschina.cn），policyName 是要应用的 B2C 策略的名称。
-
-
-- **validateAuthority**：可选。  验证令牌的颁发者。 默认值为 `true`。 对于 B2C 应用程序，由于颁发机构值是已知的，并且根据不同的策略而异，因此，颁发机构验证不起作用，必须设置为 `false`。
-
-- **redirectUri**：可选。  应用的重定向 URI，应用可在其中发送和接收身份验证响应。 它必须完全符合在门户中注册的其中一个重定向 URI。 默认为 `window.location.href`。
-
-- **postLogoutRedirectUri**：可选。  注销后将用户重定向到 `postLogoutRedirectUri`。默认为 `redirectUri`。
-
-- **navigateToLoginRequestUrl**：可选。 登录后可以关闭默认导航到起始页的行为。 默认值为 true。 这仅适用于重定向流。
-
-- **cacheLocation**：可选。  将浏览器存储设置为 `localStorage` 或 `sessionStorage`。 默认为 `sessionStorage`。
-
-- **storeAuthStateInCookie**：可选。  此标志已在 MSAL.js v0.2.2 中引入，修复了 Microsoft Internet Explorer 和 Microsoft Edge 中的[身份验证循环问题](https://github.com/AzureAD/microsoft-authentication-library-for-js/wiki/Known-issues-on-IE-and-Edge-Browser#1-issues-due-to-security-zones)。 将标志 `storeAuthStateInCookie` 设置为 true（启用）可以利用此修复措施。 启用此标志后，MSAL.js 将存储身份验证请求状态，在浏览器 Cookie 中验证身份验证流时需要此状态。 此标志默认设置为 `false`。
-
-- **logger**：可选。  一个包含回调实例的记录器对象。开发人员可以提供该实例以自定义方式使用和发布日志。 有关传递记录器对象的详细信息，请参阅[使用 MSAL.js 进行日志记录](msal-logging.md)。
-
-- **loadFrameTimeout**：可选。  处于非活动状态的毫秒数，如果 Azure AD 在此时限内未返回令牌续订响应，则被视为超时。默认值为 6 秒。
-
-- **tokenRenewalOffsetSeconds**：可选。 在令牌过期之前续订令牌的偏差时限，以毫秒为单位。 默认值为 300 毫秒。
-
-- **navigateFrameWait**：可选。 毫秒数，用于设置隐藏的 iframe 导航到其目标之前的等待时间。 默认值为 500 毫秒。
-
-这些值只适合从 MSAL Angular 包装器库向下传递：
-- **unprotectedResources**：可选。  不受保护资源的 URI 数组。 MSAL 不会将令牌附加到包含这些 URI 的传出请求。 默认为 `null`。
-
-- **protectedResourceMap**：可选。  资源到范围的映射，MSAL 在 Web API 调用中使用这种映射自动附加访问令牌。 将获取资源的单个访问令牌。 因此，可按如下所示映射特定的资源路径：{"https://microsoftgraph.chinacloudapi.cn/v1.0/me", ["https://microsoftgraph.chinacloudapi.cn/user.read"]}；或按如下所示映射资源的应用 URL：{"https://microsoftgraph.chinacloudapi.cn/", ["user.read", "mail.send"]}。 对于 CORS 调用，必须进行这种映射。 默认为 `null`。
+<!-- LINKS - External -->
+[msal-browser]: https://azuread.github.io/microsoft-authentication-library-for-js/ref/msal-browser/
+[msal-core]: https://azuread.github.io/microsoft-authentication-library-for-js/ref/msal-core/
+[msal-js-acquiretokenredirect]: https://azuread.github.io/microsoft-authentication-library-for-js/ref/msal-core/classes/_useragentapplication_.useragentapplication.html#acquiretokenredirect
+[msal-js-configuration]: https://azuread.github.io/microsoft-authentication-library-for-js/ref/msal-core/modules/_configuration_.html
+[msal-js-handleredirectpromise]: https://azuread.github.io/microsoft-authentication-library-for-js/ref/msal-browser/classes/_src_app_publicclientapplication_.publicclientapplication.html#handleredirectpromise
+[msal-js-loginredirect]: https://azuread.github.io/microsoft-authentication-library-for-js/ref/msal-core/classes/_useragentapplication_.useragentapplication.html#loginredirect
+[msal-js-publicclientapplication]: https://azuread.github.io/microsoft-authentication-library-for-js/ref/msal-browser/classes/_src_app_publicclientapplication_.publicclientapplication.html
+[msal-js-useragentapplication]: https://azuread.github.io/microsoft-authentication-library-for-js/ref/msal-core/modules/_useragentapplication_.html
 

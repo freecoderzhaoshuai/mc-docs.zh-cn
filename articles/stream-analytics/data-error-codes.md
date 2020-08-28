@@ -3,17 +3,17 @@ title: 数据错误代码 - Azure 流分析
 description: 通过数据错误代码对 Azure 流分析进行故障排除。
 ms.author: v-johya
 author: Johnnytechn
-ms.topic: conceptual
-ms.date: 07/06/2020
+ms.topic: troubleshooting
+ms.date: 08/20/2020
 ms.service: stream-analytics
-ms.openlocfilehash: 0b3ca64ffc5ace393e8b71a7355f587102b0a139
-ms.sourcegitcommit: 9bc3e55f01e0999f05e7b4ebaea95f3ac91d32eb
+ms.openlocfilehash: a1e86c8c39d753448d431ff057971e4fa297aa09
+ms.sourcegitcommit: 09c7071f4d0d9256b40a6bf700b38c6a25db1b26
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86226285"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715740"
 ---
-# <a name="azure-stream-analytics-configuration-error-codes"></a>Azure 流分析配置错误代码
+# <a name="azure-stream-analytics-data-error-codes"></a>Azure 流分析数据错误代码
 
 可以使用活动日志和资源日志来帮助调试 Azure 流分析作业中的意外行为。 本文列出了每个数据错误代码的说明。 当流中存在错误数据（例如意外的记录架构），就会出现数据错误。
 

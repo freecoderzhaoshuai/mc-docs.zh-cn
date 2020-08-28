@@ -8,15 +8,15 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 02/13/2020
-ms.date: 07/01/2020
-ms.openlocfilehash: 94c8028d9e3386bd9db182095483e966c504107b
-ms.sourcegitcommit: c17e965d4ffd82fd7cd86b2648fcb0053a65df00
+ms.date: 08/18/2020
+ms.openlocfilehash: cea37fe2b6ab21766f49344fddc84f056ee323b0
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86470540"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515990"
 ---
-# <a name="sharding-policy-management"></a>分片策略管理
+# <a name="sharding-policy-command"></a>分片策略命令
 
 ## <a name="show-policy"></a>显示策略
 
@@ -28,13 +28,13 @@ ms.locfileid: "86470540"
 .show database [database_name] policy sharding
 ```
 
-`Show` 策略显示数据库或表的分片策略。 如果给定的名称为“\*”，它将显示给定实体类型（数据库或表）的所有策略。
+`Show` 策略显示数据库或表的分片策略。 如果给定的名称为“*”，它将显示给定实体类型（数据库或表）的所有策略。
 
 ### <a name="output"></a>输出
 
-| 策略名称           | 实体名称           | 策略                                        | 子实体                  | 实体类型      |
-| --------------------- | --------------------- | --------------------------------------------- | ------------------------------- | ---------------- |
-| ExtentsShardingPolicy | 数据库/表名称 | 表示策略的 json 格式字符串 | 表列表（对于数据库） | 数据库/表 |
+|策略名称 | 实体名称 | 策略 | 子实体 | 实体类型
+|---|---|---|---|---
+|ExtentsShardingPolicy | 数据库/表名称 | 表示策略的 json 格式字符串 | 表列表（对于数据库）|数据库/表
 
 ## <a name="alter-policy"></a>更改策略
 
@@ -45,7 +45,7 @@ ms.locfileid: "86470540"
 #### <a name="setting-all-properties-of-the-policy-explicitly-at-table-level"></a>在表级别显式设置策略的所有属性
 
 ```kusto
-.alter table [table_name] policy sharding
+.alter table [table_name] policy sharding 
 @'{ "MaxRowCount": 750000, "MaxExtentSizeInMb": 1024, "MaxOriginalSizeInMb": 2048}'
 ```
 
@@ -56,13 +56,13 @@ ms.locfileid: "86470540"
 @'{ "MaxRowCount": 750000, "MaxExtentSizeInMb": 1024, "MaxOriginalSizeInMb": 2048}'
 ```
 
-#### <a name="setting-the-_default_-sharding-policy-at-database-level"></a>在数据库级别设置默认分片策略
+#### <a name="setting-the-default-sharding-policy-at-database-level"></a>在数据库级别设置默认分片策略
 
 ```kusto
 .alter database [database_name] policy sharding @'{}'
 ```
 
-#### <a name="altering-a-single-property-of-the-policy-at-database-level"></a>在数据库级别更改策略的单个属性
+#### <a name="altering-a-single-property-of-the-policy-at-database-level"></a>在数据库级别更改策略的单个属性 
 
 所有其他属性保持不变。
 

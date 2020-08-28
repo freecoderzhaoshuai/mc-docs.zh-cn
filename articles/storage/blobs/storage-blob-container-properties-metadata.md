@@ -6,15 +6,15 @@ services: storage
 author: WenJason
 ms.service: storage
 ms.topic: how-to
-origin.date: 07/10/2019
-ms.date: 07/20/2020
+origin.date: 07/01/2019
+ms.date: 08/24/2020
 ms.author: v-jay
-ms.openlocfilehash: b44f530432f70cbb54cddf615d04044d453191d1
-ms.sourcegitcommit: 31da682a32dbb41c2da3afb80d39c69b9f9c1bc6
+ms.openlocfilehash: 6f5e4bc3d570db68c577d2f50c65da86ace0452b
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86414653"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753457"
 ---
 # <a name="manage-container-properties-and-metadata-with-net"></a>使用 .NET 管理容器属性和元数据
 
@@ -30,7 +30,7 @@ ms.locfileid: "86414653"
 
 ## <a name="retrieve-container-properties"></a>检索容器属性
 
-# <a name="net-v12-sdk"></a>[.NET v12 SDK](#tab/dotnet)
+# <a name="net-v12"></a>[.NET v12](#tab/dotnet)
 
 若要检索容器属性，请调用以下方法之一：
 
@@ -62,7 +62,7 @@ private static async Task ReadContainerPropertiesAsync
 }
 ```
 
-# <a name="net-v11-sdk"></a>[.NET v11 SDK](#tab/dotnet11)
+# <a name="net-v11"></a>[.NET v11](#tab/dotnet11)
 
 检索 Blob 存储资源的属性和元数据值的过程分为两步。 必须先通过调用 FetchAttributes 或 FetchAttributesAsync 方法显式提取这些值，然后才能读取 。 此规则的例外是，**Exists** 和 **ExistsAsync** 方法以隐藏方式调用相应的 **FetchAttributes** 方法。 调用这其中的一个方法时，不需同时调用 **FetchAttributes**。
 
@@ -102,7 +102,7 @@ private static async Task ReadContainerPropertiesAsync(CloudBlobContainer contai
 
 ## <a name="set-and-retrieve-metadata"></a>设置和检索元数据
 
-# <a name="net-v12-sdk"></a>[.NET v12 SDK](#tab/dotnet)
+# <a name="net-v12"></a>[.NET v12](#tab/dotnet)
 
 可将元数据指定为 Blob 或容器资源上的一个或多个名称/值对。 若要设置元数据，请将名称/值对添加到 [IDictionary](https://docs.microsoft.com/dotnet/api/system.collections.idictionary) 对象，然后调用下述方法之一来写入值：
 
@@ -174,7 +174,7 @@ public static async Task ReadContainerMetadataAsync
 }
 ```
 
-# <a name="net-v11-sdk"></a>[.NET v11 SDK](#tab/dotnet11)
+# <a name="net-v11"></a>[.NET v11](#tab/dotnet11)
 
 可将元数据指定为 Blob 或容器资源上的一个或多个名称/值对。 若要设置元数据，请将名称/值对添加到资源上的 Metadata 集合，然后调用下述方法之一来写入值：
 

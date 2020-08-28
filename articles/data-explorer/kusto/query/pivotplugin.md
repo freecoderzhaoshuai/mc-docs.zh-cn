@@ -8,13 +8,13 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 02/13/2020
-ms.date: 08/06/2020
-ms.openlocfilehash: 1c81f3415928963e1087f4bcdd8a83ba2c8c0568
-ms.sourcegitcommit: 7ceeca89c0f0057610d998b64c000a2bb0a57285
+ms.date: 08/18/2020
+ms.openlocfilehash: 9e48e8e64e9834aa2d3c2447f9c0bbcea6f5ee6d
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87841670"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515985"
 ---
 # <a name="pivot-plugin"></a>pivot 插件
 
@@ -24,25 +24,24 @@ ms.locfileid: "87841670"
 T | evaluate pivot(PivotColumn)
 ```
 
-**语法**
+> [!NOTE]
+> `pivot` 插件的输出架构基于数据，因此，查询可能会为任意两个运行生成不同的架构。 这也意味着，引用未包装列的查询随时可能会“中断”。 由于此原因，不建议将此插件用于自动化作业。
+
+## <a name="syntax"></a>语法
 
 `T | evaluate pivot(`*pivotColumn*`[, `*aggregationFunction*`] [,`*column1* `[,`*column2* ... `]])`
 
-**参数**
+## <a name="arguments"></a>参数
 
 * pivotColumn：要旋转的列。 此列中的每个唯一值将是输出表中的一个列。
 * 聚合函数：（可选）将输入表中的多个行聚合到输出表中的单个行。 当前支持的函数：`min()`、`max()`、`any()`、`sum()`、`dcount()`、`avg()`、`stdev()`、`variance()`、`make_list()`、`make_bag()`、`make_set()`、`count()`（默认值为 `count()`）。
 * column1、column2……：（可选）列名称。 输出表将为每个指定列包含一个额外的列。 默认值：除已透视列和聚合列以外的所有列。
 
-**返回**
+## <a name="returns"></a>返回
 
 Pivot 返回包含指定列（*column1*、*column2*……）及透视列的所有唯一值的旋转表。 已透视列的每个单元格都将包含聚合函数计算。
 
-**注意**
-
-`pivot` 插件的输出架构基于数据，因此，查询可能会为任意两个运行生成不同的架构。 这也意味着，引用未包装列的查询随时可能会“中断”。 由于此原因，不建议将此插件用于自动化作业。
-
-**示例**
+## <a name="examples"></a>示例
 
 ### <a name="pivot-by-a-column"></a>按列透视
 
@@ -65,7 +64,7 @@ StormEvents
 |Strong Wind|22|0|
 
 
-### <a name="pivot-by-a-column-with-aggregation-function"></a>使用聚合函数按列进行透视。
+### <a name="pivot-by-a-column-with-aggregation-function"></a>使用聚合函数按列进行透视
 
 对于每个以“AR”开头的 EventType 和 State，显示直接死亡人数的总数。
 
@@ -88,7 +87,7 @@ StormEvents
 |热|3|0|
 
 
-### <a name="pivot-by-a-column-with-aggregation-function-and-a-single-additional-column"></a>按包含聚合函数的列和单个附加列进行透视。
+### <a name="pivot-by-a-column-with-aggregation-function-and-a-single-additional-column"></a>按包含聚合函数的列和单个附加列进行透视
 
 结果与上一示例相同。
 
@@ -111,7 +110,7 @@ StormEvents
 |热|3|0|
 
 
-### <a name="specify-the-pivoted-column-aggregation-function-and-multiple-additional-columns"></a>指定已透视列、聚合函数和多个附加列。
+### <a name="specify-the-pivoted-column-aggregation-function-and-multiple-additional-columns"></a>指定已透视列、聚合函数和多个附加列
 
 对于每个事件类型、源和州，计算直接死亡人数之和。
 

@@ -7,14 +7,15 @@ author: WenJason
 ms.service: storage
 ms.topic: how-to
 origin.date: 04/24/2020
-ms.date: 06/01/2020
+ms.date: 08/24/2020
 ms.author: v-jay
-ms.openlocfilehash: 757f3489ed6697e78a9ff3761aed492e8ac1d13d
-ms.sourcegitcommit: be0a8e909fbce6b1b09699a721268f2fc7eb89de
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 29f5300c3af733802941840441988c8b414501bb
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84199539"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753341"
 ---
 # <a name="manage-storage-account-access-keys"></a>管理存储帐户访问密钥
 
@@ -66,7 +67,7 @@ az storage account keys list \
 
 可以使用这两个密钥中的任何一个来访问 Azure 存储，但通常情况下，最好使用第一个密钥，并保留第二个密钥在轮换密钥时使用。
 
-若要查看或读取帐户的访问密钥，用户必须是服务管理员，或者分配到包含 Microsoft.Storage/storageAccounts/listkeys/action 的 RBAC 角色。 包含此操作的内置 RBAC 角色有所有者、贡献者和存储帐户密钥操作员服务角色等  。 有关服务管理员角色的详细信息，请参阅[经典订阅管理员角色、Azure RBAC 角色和 Azure AD 角色](../../role-based-access-control/rbac-and-directory-admin-roles.md)。 若要详细了解 Azure 存储的内置角色，请参阅 [Azure RBAC 的 Azure 内置角色](../../role-based-access-control/built-in-roles.md#storage)中的“存储”部分。
+若要查看或读取帐户的访问密钥，用户必须是服务管理员，或者分配到包含“Microsoft.Storage/storageAccounts/listkeys/action”的 Azure 角色。 包含此操作的 Azure 内置角色有“所有者”、“贡献者”和“存储帐户密钥操作员服务角色”等  。 有关服务管理员角色的详细信息，请参阅[经典订阅管理员角色、Azure 角色和 Azure AD 角色](../../role-based-access-control/rbac-and-directory-admin-roles.md)。 若要详细了解 Azure 存储的内置角色，请参阅 [Azure RBAC 的 Azure 内置角色](../../role-based-access-control/built-in-roles.md#storage)中的“存储”部分。
 
 ## <a name="use-azure-key-vault-to-manage-your-access-keys"></a>使用 Azure 密钥保管库管理访问密钥
 
@@ -133,7 +134,7 @@ Azure 建议定期轮换访问密钥，以帮助保护存储帐户的安全。 �
 > [!NOTE]
 > Azure 建议同一时间在所有应用程序中只使用一个密钥。 如果在某些地方使用密钥 1 并在其他地方使用密钥 2，则无法在没有部分应用程序失去访问的情况下轮转密钥。
 
-若要轮换帐户的访问密钥，用户必须是服务管理员，或者分配到包含 Microsoft.Storage/storageAccounts/regeneratekey/action 的 RBAC 角色。 包含此操作的内置 RBAC 角色有所有者、贡献者和存储帐户密钥操作员服务角色等  。 有关服务管理员角色的详细信息，请参阅[经典订阅管理员角色、Azure RBAC 角色和 Azure AD 角色](../../role-based-access-control/rbac-and-directory-admin-roles.md)。 若要详细了解 Azure 存储的内置 RBAC 角色，请参阅 [Azure RBAC 的 Azure 内置角色](../../role-based-access-control/built-in-roles.md#storage)中的“存储”部分。
+若要轮换帐户的访问密钥，用户必须是服务管理员，或者分配到包含“Microsoft.Storage/storageAccounts/regeneratekey/action”的 Azure 角色。 包含此操作的 Azure 内置角色有“所有者”、“贡献者”和“存储帐户密钥操作员服务角色”等  。 有关服务管理员角色的详细信息，请参阅[经典订阅管理员角色、Azure 角色和 Azure AD 角色](../../role-based-access-control/rbac-and-directory-admin-roles.md)。 若要详细了解 Azure 存储的 Azure 内置角色，请参阅 [Azure RBAC 的 Azure 内置角色](../../role-based-access-control/built-in-roles.md#storage)中的“存储”部分。
 
 ## <a name="next-steps"></a>后续步骤
 

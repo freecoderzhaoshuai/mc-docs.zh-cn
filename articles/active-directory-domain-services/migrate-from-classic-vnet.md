@@ -7,14 +7,14 @@ ms.service: active-directory
 ms.subservice: domain-services
 ms.workload: identity
 ms.topic: how-to
-ms.date: 08/07/2020
+ms.date: 08/21/2020
 ms.author: v-junlch
-ms.openlocfilehash: 07daeed6908bc44ccd5ac38987c304b68237227d
-ms.sourcegitcommit: a5eb9a47feefb053ddbaab4b15c395972c372339
+ms.openlocfilehash: 2fa609de12869e28efcbd88b04dd5d7f5cd69899
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88028616"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715297"
 ---
 # <a name="migrate-azure-active-directory-domain-services-from-the-classic-virtual-network-model-to-resource-manager"></a>将 Azure Active Directory 域服务从经典虚拟网络模型迁移到资源管理器
 
@@ -197,6 +197,12 @@ Azure AD DS 通常使用地址范围内的前两个可用 IP 地址，但不是�
     ```powershell
     $creds = Get-Credential
     ```
+    
+1. 定义 Azure 订阅 ID 的变量。 如果需要，可以使用 [Get-AzSubscription](https://docs.microsoft.com/powershell/module/az.accounts/get-azsubscription) cmdlet 来列出和查看订阅 ID。 在以下命令中提供自己的订阅 ID：
+
+   ```powershell
+   $subscriptionId = 'yourSubscriptionId'
+   ```
 
 1. 现在使用 -Prepare 参数运行 `Migrate-Aadds` cmdlet。 提供你自己的托管域的 -ManagedDomainFqdn，例如 aaddscontoso.com：
 
@@ -204,7 +210,8 @@ Azure AD DS 通常使用地址范围内的前两个可用 IP 地址，但不是�
     Migrate-Aadds `
         -Prepare `
         -ManagedDomainFqdn aaddscontoso.com `
-        -Credentials $creds
+        -Credentials $creds `
+        -SubscriptionId $subscriptionId
     ```
 
 ## <a name="migrate-the-managed-domain"></a>迁移托管域
@@ -224,7 +231,8 @@ Migrate-Aadds `
     -VirtualNetworkResourceGroupName myResourceGroup `
     -VirtualNetworkName myVnet `
     -VirtualSubnetName DomainServices `
-    -Credentials $creds
+    -Credentials $creds `
+    -SubscriptionId $subscriptionId
 ```
 
 在脚本验证托管域已准备好进行迁移后，输入 Y 开始迁移过程。
@@ -310,7 +318,8 @@ Migrate-Aadds `
     -Abort `
     -ManagedDomainFqdn aaddscontoso.com `
     -ClassicVirtualNetworkName myClassicVnet `
-    -Credentials $creds
+    -Credentials $creds `
+    -SubscriptionId $subscriptionId
 ```
 
 ### <a name="restore"></a>还原

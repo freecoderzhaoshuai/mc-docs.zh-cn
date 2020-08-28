@@ -2,19 +2,19 @@
 title: 清除查询结果缓存 - Azure 数据资源管理器
 description: 本文介绍用于在 Azure 数据资源管理器中清除缓存的数据库架构的管理命令。
 services: data-explorer
-author: amitof
+author: orspod
 ms.author: v-tawe
-ms.reviewer: orspodek
+ms.reviewer: amitof
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 06/16/2020
-ms.date: 07/01/2020
-ms.openlocfilehash: a05827009d63b285fd8bcc572d2315e839b33106
-ms.sourcegitcommit: c17e965d4ffd82fd7cd86b2648fcb0053a65df00
+ms.date: 08/18/2020
+ms.openlocfilehash: 54aa99a1b4ae56d07d56b27798ef65344d5aa94a
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86470494"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515917"
 ---
 # <a name="clear-query-results-cache"></a>清除查询结果缓存
 
@@ -22,16 +22,16 @@ ms.locfileid: "86470494"
 
 **语法**
 
-`.clear` `database` `cache` `queryresults`
+`.clear` `database` `cache` `query_results`
 
 **返回**
 
 此命令返回包含以下列的表：
 
-| 列  | 类型     | 说明                                |
-| ------- | -------- | ------------------------------------------ |
-| NodeId  | `string` | 群集节点的标识符。            |
-| 项 | `long`   | 节点清除的项数。 |
+|列    |类型    |说明
+|---|---|---
+|NodeId|`string`|群集节点的标识符。
+|计数|`long`|节点删除的项数。
 
 **示例**
 
@@ -39,7 +39,7 @@ ms.locfileid: "86470494"
 .clear database cache queryresults
 ```
 
-| NodeId | 项 |
-| ------ | ------- |
-| Node1  | 42      |
-| Node2  | 0       |
+|NodeId|项|
+|---|---|
+|Node1|42
+|Node2|0

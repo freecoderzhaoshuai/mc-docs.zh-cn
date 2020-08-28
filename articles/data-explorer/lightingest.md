@@ -1,36 +1,36 @@
 ---
-title: LightIngest 是用于将数据引入 Azure 数据资源管理器的一个命令行实用工具。
+title: 使用 LightIngest 将数据引入 Azure 数据资源管理器。
 description: 了解 LightIngest - 用于将即席数据引入 Azure 数据资源管理器的命令行实用工具。
 author: orspod
 ms.author: v-tawe
 ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
-origin.date: 04/01/2020
-ms.date: 06/09/2020
-ms.openlocfilehash: 9d2686f959def91f91743a885eb4b710cd19fc1d
-ms.sourcegitcommit: 73697fa9c19a40d235df033400c74741e7d0f3f4
+origin.date: 06/28/2020
+ms.date: 08/18/2020
+ms.openlocfilehash: 6deba682c85389a2c27091ea787f3c7d1236855d
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84574884"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515966"
 ---
-# <a name="install-and-use-lightingest"></a>安装和使用 LightIngest
-
-LightIngest 是用于将即席数据引入 Azure 数据资源管理器的命令行实用工具。
-该实用工具可以从本地文件夹或 Azure Blob 存储容器提取源数据。
+# <a name="use-lightingest-to-ingest-data-to-azure-data-explorer"></a>使用 LightIngest 将数据引入 Azure 数据资源管理器
+ 
+LightIngest 是用于将即席数据引入 Azure 数据资源管理器的命令行实用工具。 该实用工具可以从本地文件夹或 Azure Blob 存储容器提取源数据。
+当你想要引入大量数据时，LightIngest 最有用，因为引入持续时间没有时间限制。 当你想要以后根据记录的创建时间而不是引入时间来查询记录时，它也很有用。
 
 ## <a name="prerequisites"></a>先决条件
 
 * LightIngest - 将其作为 [Microsoft.Azure.Kusto.Tools NuGet 包](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Tools/)的一部分下载
 
-    ![Lightingest 下载](media/lightingest/lightingest-download-area.png)
+    :::image type="content" source="media/lightingest/lightingest-download-area.png" alt-text="Lightingest 下载":::
 
 * WinRAR - 从 [www.win-rar.com/download.html](http://www.win-rar.com/download.html) 下载
 
 ## <a name="install-lightingest"></a>安装 LightIngest
 
-1. 在计算机上导航到 LightIngest 所下载到的位置。 
+1. 在计算机上导航到 LightIngest 所下载到的位置。
 1. 使用 WinRAR 将 tools 目录解压缩到计算机上。**
 
 ## <a name="run-lightingest"></a>运行 LightIngest
@@ -38,7 +38,7 @@ LightIngest 是用于将即席数据引入 Azure 数据资源管理器的命令�
 1. 在计算机上导航到解压缩的 tools 目录。**
 1. 从位置栏中删除现有的位置信息。
     
-      ![删除位置信息](media/lightingest/lightingest-location-bar.png)
+    :::image type="content" source="kusto/tools/images/KustoTools-Lightingest/lightingest-locationbar.png" alt-text="删除 LightIngest 的现有位置信息":::
 
 1. 输入 `cmd`，然后按 Enter。****
 1. 在命令提示符下，输入 `LightIngest.exe`，后接相关的命令行参数。
@@ -46,70 +46,55 @@ LightIngest 是用于将即席数据引入 Azure 数据资源管理器的命令�
     > [!Tip]
     > 若要查看支持的命令行参数列表，请输入 `LightIngest.exe /help`。
     >
-    >![命令行帮助](media/lightingest/lightingest-cmd-line-help.png)
+    > :::image type="content" source="media/lightingest/lightingest-cmd-line-help.png" alt-text="LightIngest 的命令行帮助":::
 
 1. 输入 `ingest-`，后接用于管理引入操作的 Azure 数据资源管理器群集的连接字符串。
-    将连接字符串括在双引号中，并遵循 [Kusto 连接字符串规范](https://docs.microsoft.com/azure/data-explorer/kusto/api/connection-strings/kusto)。
+    将连接字符串括在双引号中，并遵循 [Kusto 连接字符串规范](kusto/api/connection-strings/kusto.md)。
 
     例如：
+
     ```
     ingest-{Cluster name and region}.kusto.chinacloudapi.cn;AAD Federated Security=True"  -db:{Database} -table:Trips -source:"https://{Account}.blob.core.chinacloudapi.cn/{ROOT_CONTAINER};{StorageAccountKey}" -pattern:"*.csv.gz" -format:csv -limit:2 -ignoreFirst:true -cr:10.0 -dontWait:true
     ```
 
-* 建议的方法是让 LightIngest 使用 `https://ingest-{yourClusterNameAndRegion}.kusto.chinacloudapi.cn` 上的引入终结点。 这样，Azure 数据资源管理器服务就可以管理引入负载，而你可以在发生暂时性错误时轻松恢复。 不过，也可以将 `LightIngest` 配置为直接使用引擎终结点 (`https://{yourClusterNameAndRegion}.kusto.chinacloudapi.cn`)。
+### <a name="recommendations"></a>建议
 
-> [!Note]
-> 如果直接通过引擎终结点引入，则不需要包含 `ingest-`，但不会有 DM 功能来保护引擎并提高引入成功率。
+* 建议的方法是让 LightIngest 使用 `https://ingest-{yourClusterNameAndRegion}.kusto.chinacloudapi.cn` 上的引入终结点。 这样，Azure 数据资源管理器服务就可以管理引入负载，而你可以在发生暂时性错误时轻松恢复。 不过，也可以将 LightIngest 配置为直接用于引擎终结点 (`https://{yourClusterNameAndRegion}.kusto.chinacloudapi.cn`)。
 
-* 若要提供最佳引入性能，LightIngest 必须知道原始数据大小，因此，LightIngest 将估算本地文件的非压缩大小。 但如果没有事先下载已压缩的 Blob，LightIngest 可能无法正确估算这些 Blob 的原始大小。 因此，在引入压缩的 Blob 时，请将 Blob 元数据的 `rawSizeBytes` 属性设置为以字节为单位的非压缩数据大小。
+   > [!NOTE]
+   > 如果直接与引擎终结点一起引入，则不需要包括 `ingest-`。 但是，不会有 DM 功能来保护引擎和提高引入成功率。
 
-## <a name="general-command-line-arguments"></a>常规命令行参数
+* 若要提供最佳引入性能，需要原始数据大小，以便 LightIngest 可以估计本地文件的未压缩大小。 但如果没有事先下载已压缩的 Blob，LightIngest 可能无法正确估算这些 Blob 的原始大小。 因此，在引入压缩的 Blob 时，请将 Blob 元数据的 `rawSizeBytes` 属性设置为以字节为单位的非压缩数据大小。
 
-|参数名称         |短名称   |类型    |必需 |说明                                |
-|----------------------|-------------|--------|----------|-------------------------------------------|
-|                      |             |string  |必需 |[Azure 数据资源管理器连接字符串](https://docs.microsoft.com/azure/data-explorer/kusto/api/connection-strings/kusto)，指定用于处理引入操作的 Kusto 终结点。 应括在双引号中 |
-|-database             |-db          |string  |可选  |目标 Azure 数据资源管理器数据库名称 |
-|-table                |             |string  |必需 |目标 Azure 数据资源管理器表名称 |
-|-sourcePath           |-source      |string  |必需 |源文件的路径，或 Blob 容器的根 URI。 如果数据位于 Blob 中，则必须包含存储帐户密钥或 SAS。 建议括在双引号中 |
-|-prefix               |             |string  |可选  |当要引入的源数据驻留在 Blob 存储中时，此 URL 前缀（不包括容器名称）将由所有 Blob 共享。 <br>例如，如果数据位于 `MyContainer/Dir1/Dir2` 中，则前缀应是 `Dir1/Dir2`。 建议括在双引号中 |
-|-pattern              |             |string  |可选  |提取源文件/Blob 时所遵循的模式。 支持通配符。 例如，`"*.csv"`。 建议括在双引号中 |
-|-zipPattern           |             |string  |可选  |选择要引入 ZIP 存档中的哪些文件时要使用的正则表达式。<br>该存档中的所有其他文件将被忽略。例如 `"*.csv"`。 建议括在双引号中 |
-|-format               |-f           |string  |可选  |源数据格式。 必须是[支持的格式](ingestion-supported-formats.md)之一 |
-|-ingestionMappingPath |-mappingPath |string  |可选  |引入列映射文件的路径（对于 Json 和 Avro 格式是必需的）。 请参阅[数据映射](https://docs.microsoft.com/azure/data-explorer/kusto/management/mappings) |
-|-ingestionMappingRef  |-mappingRef  |string  |可选  |预先创建的引入列映射的名称（对于 Json 和 Avro 格式是必需的）。 请参阅[数据映射](https://docs.microsoft.com/azure/kusto/management/mappings) |
-|-creationTimePattern  |             |string  |可选  |如果设置此参数，它将用于从文件或 Blob 路径中提取 CreationTime 属性。 请参阅[使用 CreationTimePattern 参数](#using-creationtimepattern-argument) |
-|-ignoreFirstRow       |-ignoreFirst |bool    |可选  |如果设置此参数，将忽略每个文件/Blob 的第一条记录（例如，如果源数据包含标头） |
-|-tag                  |             |string  |可选  |要与引入的数据相关联的[标记](https://docs.microsoft.com/azure/data-explorer/kusto/management/extents-overview#extent-tagging)。 允许多个标记 |
-|-dontWait             |             |bool    |可选  |如果设置为“true”，则不等待引入完成。 引入大量文件/Blob 时非常有用 |
+## <a name="command-line-arguments"></a>命令行参数
 
-### <a name="using-creationtimepattern-argument"></a>使用 CreationTimePattern 参数
+|参数名称            |类型     |说明       |必需/可选
+|------------------------------|--------|----------|-----------------------------|
+|                               |string   |[Azure 数据资源管理器连接字符串](kusto/api/connection-strings/kusto.md)，指定用于处理引入操作的 Kusto 终结点。 应括在双引号中 | 必需
+|-database、-db          |string  |目标 Azure 数据资源管理器数据库名称 | 可选  |
+|-table                  |string  |目标 Azure 数据资源管理器表名称 | 必需 |
+|-sourcePath、-source      |string  |源文件的路径，或 Blob 容器的根 URI。 如果数据位于 Blob 中，则必须包含存储帐户密钥或 SAS。 建议括在双引号中 |必需 |
+|-prefix                  |string  |当要引入的源数据驻留在 Blob 存储中时，此 URL 前缀（不包括容器名称）将由所有 Blob 共享。 <br>例如，如果数据位于 `MyContainer/Dir1/Dir2` 中，则前缀应是 `Dir1/Dir2`。 建议括在双引号中 | 可选  |
+|-pattern        |string  |提取源文件/Blob 时所遵循的模式。 支持通配符。 例如，`"*.csv"`。 建议括在双引号中 | 可选  |
+|-zipPattern     |string  |选择要引入 ZIP 存档中的哪些文件时要使用的正则表达式。<br>存档中的所有其他文件会被忽略。 例如，`"*.csv"`。 建议括在双引号中 | 可选  |
+|-format、-f           |string  | 源数据格式。 必须是[支持的格式](ingestion-supported-formats.md)之一 | 可选  |
+|-ingestionMappingPath、-mappingPath |string  |用于引入列映射的本地文件路径。 对于 Json 和 Avro 格式是必需的。 请参阅[数据映射](kusto/management/mappings.md) | 可选  |
+|-ingestionMappingRef、-mappingRef  |string  |之前在表上创建的引入列映射的名称。 对于 Json 和 Avro 格式是必需的。 请参阅[数据映射](kusto/management/mappings.md) | 可选  |
+|-creationTimePattern      |string  |如果设置此参数，它将用于从文件或 Blob 路径中提取 CreationTime 属性。 请参阅[如何使用 `CreationTime` 引入数据](#how-to-ingest-data-using-creationtime) |可选  |
+|-ignoreFirstRow、-ignoreFirst |bool    |如果设置此参数，将忽略每个文件/Blob 的第一条记录（例如，如果源数据包含标头） | 可选  |
+|-tag            |string   |要与引入的数据相关联的[标记](kusto/management/extents-overview.md#extent-tagging)。 允许多个标记 | 可选  |
+|-dontWait           |bool     |如果设置为“true”，则不等待引入完成。 引入大量文件/Blob 时非常有用 |可选  |
+|-compression、-cr          |Double |压缩比提示。 引入压缩的文件/Blob 来帮助 Azure 数据资源管理器评估原始数据大小时，此参数非常有用。 计算方式为原始大小除以压缩大小 |可选  |
+|-limit、-l           |integer   |如果设置此参数，则会将引入限制为前 N 个文件 |可选  |
+|-listOnly、-list        |bool    |如果设置此参数，仅显示已选择引入的项| 可选  |
+|-ingestTimeout   |integer  |完成所有引入操作的超时（分钟）。 默认为 `60`| 可选  |
+|-forceSync        |bool  |如果设置此参数，将强制同步引入。 默认为 `false` |可选  |
+|-dataBatchSize        |integer  |设置每个引入操作的总大小限制（MB，非压缩） |可选  |
+|-filesInBatch            |integer |设置每个引入操作的文件/Blob 计数限制 |可选  |
+|-devTracing、-trace       |string    |如果设置此参数，诊断日志将写入本地目录（默认为当前目录中的 `RollingLogs`，可以通过设置开关值修改此位置） | 可选  |
 
-`-creationTimePattern` 参数从文件或 Blob 路径中提取 CreationTime 属性。 此模式不需要反映整个项路径，只需反映包含要使用的时间戳的部分。
+## <a name="azure-blob-specific-capabilities"></a>特定于 Azure Blob 的功能
 
-参数值必须包括：
-* 紧靠在时间戳前面的常量测试，括在单引号中
-* 时间戳格式，采用标准的 [.NET 日期时间表示法](https://docs.microsoft.com/dotnet/standard/base-types/custom-date-and-time-format-strings)
-* 紧跟在时间戳之后的常量值。 例如，如果 blob 名称以 `historicalvalues19840101.parquet` 结尾（时间戳是表示年份的四位数、表示月份的两位数和表示月份日期的两位数），则 `-creationTimePattern` 参数的相应值为：
-
-```
-ingest-{Cluster name and region}.kusto.chinacloudapi.cn;AAD Federated Security=True -db:{Database} -table:Trips -source:"https://{Account}.blob.core.chinacloudapi.cn/{ROOT_CONTAINER};{StorageAccountKey}" -creationTimePattern:"'historicalvalues'yyyyMMdd'.parquet'"
- -pattern:"*.csv.gz" -format:csv -limit:2 -ignoreFirst:true -cr:10.0 -dontWait:true
-```
-
-### <a name="command-line-arguments-for-advanced-scenarios"></a>用于高级方案的命令行参数
-
-|参数名称         |短名称   |类型    |必需 |说明                                |
-|----------------------|-------------|--------|----------|-------------------------------------------|
-|-compression          |-cr          |Double  |可选  |压缩比提示。 引入压缩的文件/Blob 来帮助 Azure 数据资源管理器评估原始数据大小时，此参数非常有用。 计算方式为原始大小除以压缩大小 |
-|-limit                |-l           |integer |可选  |如果设置此参数，则会将引入限制为前 N 个文件 |
-|-listOnly             |-list        |bool    |可选  |如果设置此参数，仅显示已选择引入的项| 
-|-ingestTimeout        |             |integer |可选  |完成所有引入操作的超时（分钟）。 默认为 `60`|
-|-forceSync            |             |bool    |可选  |如果设置此参数，将强制同步引入。 默认为 `false` |
-|-dataBatchSize        |             |integer |可选  |设置每个引入操作的总大小限制（MB，非压缩） |
-|-filesInBatch         |             |integer |可选  |设置每个引入操作的文件/Blob 计数限制 |
-|-devTracing           |-trace       |string  |可选  |如果设置此参数，诊断日志将写入本地目录（默认为当前目录中的 `RollingLogs`，可以通过设置开关值修改此位置） |
-
-## <a name="blob-metadata-properties"></a>Blob 元数据属性
 与 Azure Blob 配合使用时，LightIngest 将使用特定的 Blob 元数据属性来增强引入过程。
 
 |元数据属性                            | 使用情况                                                                           |
@@ -150,8 +135,37 @@ To use the LightIngest command below:
      
 1. In Azure Data Explorer, open query count.
 
-    ![Injestion result in Azure Data Explorer](media/lightingest/lightingest-show-failure-count.png)
+    ![Ingestion result in Azure Data Explorer](media/lightingest/lightingest-show-failure-count.png)
 -->
+
+### <a name="how-to-ingest-data-using-creationtime"></a>如何使用 CreationTime 引入数据
+
+将历史数据从现有系统加载到 Azure 数据资源管理器时，所有记录接收相同的引入日期。 若要启用按创建时间而不是引入时间对数据进行分区，可以使用 `-creationTimePattern` 参数。 `-creationTimePattern` 参数从文件或 Blob 路径中提取 `CreationTime` 属性。 此模式不需要反映整个项路径，只需反映包含要使用的时间戳的部分。
+
+参数值必须包括：
+* 紧邻在时间戳格式前面的常量文本，用单引号括起来（前缀）
+* 时间戳格式，采用标准的 [.NET 日期时间表示法](https://docs.microsoft.com/dotnet/standard/base-types/custom-date-and-time-format-strings)
+* 紧跟在时间戳之后的常量文本（后缀）。
+
+**示例** 
+
+* 包含如下日期时间的 Blob 名称：`historicalvalues19840101.parquet`（时间戳中年份以四位数表示，月份以两位数表示，日期以两位数表示） 
+    
+    `-creationTimePattern` 参数的值是文件名的一部分：“'historicalvalues'yyyyMMdd'.parquet'”
+
+    ```kusto
+    ingest-{Cluster name and region}.kusto.chinacloudapi.cn;AAD Federated Security=True -db:{Database} -table:Trips -source:"https://{Account}.blob.core.chinacloudapi.cn/{ROOT_CONTAINER};{StorageAccountKey}" -creationTimePattern:"'historicalvalues'yyyyMMdd'.parquet'"
+     -pattern:"*.csv.gz" -format:csv -limit:2 -ignoreFirst:true -cr:10.0 -dontWait:true
+    ```
+
+* 一个引用分层文件夹结构的 Blob URI（如 `https://storageaccount/container/folder/2002/12/01/blobname.extension`） 
+
+    `-creationTimePattern` 参数的值为文件夹结构的一部分：“'folder/'yyyy/MM/dd'/blob'”
+
+   ```kusto
+    ingest-{Cluster name and region}.kusto.chinacloudapi.cn;AAD Federated Security=True -db:{Database} -table:Trips -source:"https://{Account}.blob.core.chinacloudapi.cn/{ROOT_CONTAINER};{StorageAccountKey}" -creationTimePattern:"'folder/'yyyy/MM/dd'/blob'"
+     -pattern:"*.csv.gz" -format:csv -limit:2 -ignoreFirst:true -cr:10.0 -dontWait:true
+    ```
 
 ### <a name="ingesting-blobs-using-a-storage-account-key-or-a-sas-token"></a>使用存储帐户密钥或 SAS 令牌引入 Blob
 
@@ -233,7 +247,3 @@ LightIngest.exe "https://ingest-{ClusterAndRegion}.kusto.chinacloudapi.cn;Fed=Tr
   -mappingPath:"MAPPING_FILE_PATH"
   -trace:"LOGS_PATH"
 ```
-## <a name="changelog"></a>更改日志
-|版本        |更改                                                                             |
-|---------------|------------------------------------------------------------------------------------|
-|4.0.9.0        |<ul><li>添加了 `-zipPattern` 参数</li><li>添加了 `-listOnly` 参数</li><li>在开始运行之前显示参数摘要</li><li>根据 `-creationTimePattern` 参数，从 Blob 元数据属性或者从 Blob 或文件名读取 CreationTime</li></ul>|

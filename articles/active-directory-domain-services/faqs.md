@@ -9,14 +9,14 @@ ms.service: active-directory
 ms.subservice: domain-services
 ms.workload: identity
 ms.topic: how-to
-ms.date: 08/07/2020
+ms.date: 08/21/2020
 ms.author: v-junlch
-ms.openlocfilehash: b095e8e5ae743a4bc0d26baa07f8e17963ddbe7d
-ms.sourcegitcommit: a5eb9a47feefb053ddbaab4b15c395972c372339
+ms.openlocfilehash: 478d43da863d3217d4f503a227e4017b78bf0b3e
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88028560"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715180"
 ---
 # <a name="frequently-asked-questions-faqs-about-azure-active-directory-ad-domain-services"></a>有关 Azure Active Directory (AD) 域服务的常见问题 (FAQ)
 
@@ -117,7 +117,11 @@ ms.locfileid: "88028560"
 是的。 “AAD DC 管理员”组的成员具有“DNS 管理员”权限，可在托管域中修改 DNS 记录。  这些用户可以在运行已加入托管域的 Windows Server 的计算机上使用 DNS 管理器控制台来管理 DNS。 若要使用 DNS 管理器控制台，请在服务器上安装“远程服务器管理工具”可选功能中包含的“DNS 服务器工具”。  有关详细信息，请参阅[管理 Azure AD 域服务托管域中的 DNS](manage-dns.md)。
 
 ### <a name="what-is-the-password-lifetime-policy-on-a-managed-domain"></a>什么是托管域上的密码生存期策略？
-Azure AD 域服务托管域上的默认密码生存期为 90 天。 此密码生存期与在 Azure AD 中配置的密码生存期不同步。 因此，可能会出现用户密码在托管域中已过期，但在 Azure AD 中仍然有效的情况。 在这种情况下，用户需要更改 Azure AD 中的密码，并且将新密码同步到托管域。 此外，用户帐户的“password-does-not-expire”和“user-must-change-password-at-next-logon”属性不会同步到托管域。 
+Azure AD 域服务托管域上的默认密码生存期为 90 天。 此密码生存期与在 Azure AD 中配置的密码生存期不同步。 因此，可能会出现用户密码在托管域中已过期，但在 Azure AD 中仍然有效的情况。 在这种情况下，用户需要更改 Azure AD 中的密码，并且将新密码同步到托管域。 如果要更改托管域中的默认密码生存期，可以[创建并配置自定义密码策略](password-policy.md)。
+
+此外，DisablePasswordExpiration 的 Azure AD 密码策略将同步到托管域。 当将 DisablePasswordExpiration 应用于 Azure AD 中的用户时，托管域中已同步用户的 UserAccountControl 值已应用 DONT_EXPIRE_PASSWORD  。
+
+当用户在 Azure AD 中重置密码时，将应用 forceChangePasswordNextSignIn=True 属性。 托管域从 Azure AD 同步此属性。 当托管域检测到为来自 Azure AD 的同步用户设置了 forceChangePasswordNextSignIn 时，托管域中的 pwdLastSet 属性设置为 0，这将使当前设置的密码无效  。
 
 ### <a name="does-azure-ad-domain-services-provide-ad-account-lockout-protection"></a>Azure AD 域服务是否提供 AD 帐户锁定保护？
 是的。 在托管域上于 2 分钟内尝试五个无效密码将导致用户帐户锁定 30 分钟。 30 分钟后用户帐户将自动解锁。 在 Azure AD 中，在托管域上尝试无效密码不会锁定用户帐户。 仅在 Azure AD 域服务托管域中锁定用户帐户。 有关详细信息，请参阅[托管域中的密码和帐户锁定策略](password-policy.md)。

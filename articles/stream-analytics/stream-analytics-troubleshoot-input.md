@@ -5,19 +5,19 @@ author: Johnnytechn
 ms.author: v-johya
 ms.reviewer: mamccrea
 ms.service: stream-analytics
-ms.topic: conceptual
-ms.date: 07/06/2020
+ms.topic: troubleshooting
+ms.date: 08/20/2020
 ms.custom: seodec18
-ms.openlocfilehash: 4389d6fec543a8bba25699ad71dc83cb18ab7693
-ms.sourcegitcommit: 9bc3e55f01e0999f05e7b4ebaea95f3ac91d32eb
+ms.openlocfilehash: d80132999b758e996743ba0b1316d6c5de7efe84
+ms.sourcegitcommit: 09c7071f4d0d9256b40a6bf700b38c6a25db1b26
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86226019"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715760"
 ---
 # <a name="troubleshoot-input-connections"></a>排查输入连接问题
 
-本文介绍 Azure 流分析输入连接的常见问题，以及如何排查和解决这些问题。 许多故障排除步骤都需要为流分析作业启用资源日志。
+本文介绍 Azure 流分析输入连接的常见问题，以及如何排查和解决这些问题。
 
 ## <a name="input-events-not-received-by-job"></a>作业未收到输入事件 
 
@@ -138,6 +138,32 @@ FROM data
 ### <a name="ensure-that-inputs-bind-to-different-consumer-groups"></a>确保输入绑定到不同的使用者组
 
 对于有三个或三个以上输入连接到同一事件中心的查询，请创建单独的使用者组。 这需要创建额外的流分析输入。
+
+### <a name="create-separate-inputs-with-different-consumer-groups"></a>使用不同的使用者组创建不同的输入
+
+你可以使用不同的使用者组为同一事件中心创建不同的输入。 下面的 UNION 查询是一个示例，其中 InputOne 和 InputTwo 指代同一事件中心源 。 任何查询都可以使用不同的使用者组创建不同的输入 UNION 查询只是一个示例。
+
+```sql
+WITH 
+DataOne AS 
+(
+SELECT * FROM InputOne 
+),
+
+DataTwo AS 
+(
+SELECT * FROM InputTwo 
+),
+
+SELECT foo FROM DataOne
+UNION 
+SELECT foo FROM DataTwo
+
+```
+
+## <a name="readers-per-partition-exceeds-iot-hub-limit"></a>每个分区的读取器数超过 IoT 中心限制
+
+流分析作业使用 IoT 中心内置的[事件中心集线器兼容终结点](../iot-hub/iot-hub-devguide-messages-read-builtin.md)从 IoT 中心连接和读取事件。 如果每个分区的读取数超过了 IoT 中心的限制，则可以使用[事件中心的解决方案](#readers-per-partition-exceeds-event-hubs-limit)来解决它。 可以通过 IoT 中心门户终结点会话或通过[IoT 中心 SDK](https://docs.microsoft.com/rest/api/iothub/IotHubResource/CreateEventHubConsumerGroup)为内置终结点创建使用者组。
 
 ## <a name="get-help"></a>获取帮助
 

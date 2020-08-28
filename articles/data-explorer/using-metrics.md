@@ -7,13 +7,13 @@ ms.reviewer: gabil
 ms.service: data-explorer
 ms.topic: conceptual
 origin.date: 01/19/2020
-ms.date: 06/09/2020
-ms.openlocfilehash: e3e0503fc4627f536ffce7534e368fbe5b26a86c
-ms.sourcegitcommit: 73697fa9c19a40d235df033400c74741e7d0f3f4
+ms.date: 08/18/2020
+ms.openlocfilehash: 9af60d4ae7ec3245dad633959eac7fa774286f06
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84574871"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515628"
 ---
 # <a name="monitor-azure-data-explorer-performance-health-and-usage-with-metrics"></a>使用指标监视 Azure 数据资源管理器的性能、运行状况和使用情况
 
@@ -77,9 +77,13 @@ Azure 数据资源管理器是一项快速、完全托管的数据分析服务�
 
 **指标** | **单位** | **聚合** | **指标说明** | **Dimensions** |
 |---|---|---|---|---|
+| 批处理 Blob 计数 | 计数 | Avg、Max、Min | 引入的已完成批处理中数据源数。 | 数据库 |
+| 批处理持续时间 | 秒 | Avg、Max、Min | 引入流中批处理阶段的持续时间  | 数据库 |
+| 批大小 | 字节 | Avg、Max、Min | 引入的聚合批处理中未压缩的预期数据大小。 | 数据库 |
+| 已处理批处理 | 计数 | Avg、Max、Min | 引入的已完成批处理数。 `BatchCompletionReason`：批处理是否达到[批处理策略](/data-explorer/kusto/management/batchingpolicy)设置的批处理时间、数据大小或文件数限制。 | 数据库, BatchCompletionReason |
 | 处理的事件数（适用于事件中心/IoT 中心） | 计数 | Max、Min、Sum | 从事件中心读取的以及由群集处理的事件总数 事件划分为群集引擎拒绝的事件和接受的事件。 | EventStatus |
 | 引入延迟 | 秒 | Avg、Max、Min | 引入数据的延迟，根据从群集中收到数据，到数据可供查询的时间来测得。 引入延迟周期决于引入方案。 | 无 |
-| 引入结果 | 计数 | 计数 | 失败和成功的引入操作总数。 使用“应用拆分”可以创建成功和失败结果桶，并分析维度（**值** > **状态**）。 | IngestionResultDetails |
+| 引入结果 | 计数 | 计数 | 失败和成功的引入操作总数。 使用“应用拆分”可以创建成功和失败结果桶，并分析维度（**值** > **状态**）。****| IngestionResultDetails |
 | 引入量 (MB) | 计数 | Max、Sum | 引入到群集中的数据在压缩前的总大小 (MB)。 | 数据库 |
 | | | | |  
 
@@ -87,7 +91,7 @@ Azure 数据资源管理器是一项快速、完全托管的数据分析服务�
 
 查询性能指标跟踪查询持续时间，以及并发或受限制查询的总数。
 
-**指标** | **单位** | **聚合** | **指标说明** | **Dimensions** |
+**指标** | **单位** | **聚合** | **度量值说明** | **Dimensions** |
 |---|---|---|---|---|
 | 查询持续时间 | 毫秒 | Avg、Min、Max、Sum | 收到查询结果之前所花费的总时间（不包括网络延迟）。 | QueryStatus |
 | 并发查询总数 | 计数 | Avg、Max、Min、Sum | 群集中并行运行的查询数。 使用此指标可以很好地评估群集上的负载。 | 无 |
@@ -98,7 +102,7 @@ Azure 数据资源管理器是一项快速、完全托管的数据分析服务�
 
 流引入指标跟踪流引入数据和请求速率、持续时间与结果。
 
-**指标** | **单位** | **聚合** | **指标说明** | **Dimensions** |
+**指标** | **单位** | **聚合** | **度量值说明** | **Dimensions** |
 |---|---|---|---|---|
 流引入数据速率 |    计数   | RateRequestsPerSecond | 引入群集的数据总量。 | 无 |
 流引入持续时间   | 毫秒  | Avg、Max、Min | 所有流引入请求的总持续时间。 | 无 |

@@ -9,12 +9,12 @@ origin.date: 04/15/2020
 ms.date: 04/20/2020
 ms.author: v-tawe
 ms.custom: include file
-ms.openlocfilehash: f52fa57cc1693d70d431a9c4793f855368c5d656
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.openlocfilehash: 496ebea78ca1567ca9918a2965f12af6c514c284
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82595250"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88602249"
 ---
 1. 下载以下平台的客户端 SDK 快速入门：
     
@@ -41,7 +41,7 @@ ms.locfileid: "82595250"
 
         1. SQL 数据库连接字符串格式 - `Data Source=tcp:{your_SQLServer},{port};Initial Catalog={your_catalogue};User ID={your_username};Password={your_password}`
 
-           **{your_SQLServer}** ：服务器的名称，此项可以在数据库的概览页中找到，通常采用“server_name.database.windows.net”格式。
+           {your_SQLServer}：服务器的名称，此项可以在数据库的概览页中找到，通常采用“server_name.database.chinacloudapi.cn”格式。
             **{port}** ：通常为 1433。
             **{your_catalogue}** ：数据库的名称。
             **{your_username}** ：用于访问数据库的用户名。

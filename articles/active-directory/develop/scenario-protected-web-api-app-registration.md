@@ -9,15 +9,15 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 05/28/2020
+ms.date: 08/19/2020
 ms.author: v-junlch
 ms.custom: aaddev
-ms.openlocfilehash: c1daffa9955ef1c412e873414adfcaadfb605fcc
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: 4863ef37e3c7b3f47e5711dd7ddbf37d87016014
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186872"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647720"
 ---
 # <a name="protected-web-api-app-registration"></a>受保护的 Web API：应用注册
 
@@ -29,10 +29,15 @@ ms.locfileid: "84186872"
 
 Microsoft 标识平台终结点可以发出 v1.0 令牌和 v2.0 令牌。 有关这些令牌的详细信息，请参阅[访问令牌](access-tokens.md)。
 
+在 Azure 门户中创建 Web API 应用程序注册时，API 可以接受的令牌版本取决于你选择的“支持的帐户类型”。
+
+- 如果“支持帐户类型”的值是“任何组织目录的帐户”，则已接受的令牌版本必须是 v2.0 。
+- 否则，已接受的令牌版本可以为 v1.0。
+
 创建应用程序后，可以按以下步骤确定或更改接受的令牌版本：
 
 1. 在 Azure 门户中选择你的应用，然后选择“清单”。
-1. 在清单中找到 **accessTokenAcceptedVersion** 属性。 此属性的默认值为 2。
+1. 在清单中找到 **accessTokenAcceptedVersion** 属性。
 1. 该值向 Azure Active Directory (Azure AD) 指定 Web API 接受哪个令牌版本。
     - 如果值为 2，则 Web API 接受 v2.0 令牌。
     - 如果值为 **null**，则 Web API 接受 v1.0 令牌。
@@ -47,7 +52,7 @@ Web API 不需注册重定向 URI，因为没有任何用户以交互方式登�
 
 ## <a name="exposed-api"></a>公开的 API
 
-特定于 Web API 的其他设置是公开的 API 和公开的范围。
+特定于 Web API 的其他设置是公开的 API 和公开的范围或应用角色。
 
 ### <a name="application-id-uri-and-scopes"></a>应用程序 ID URI 和范围
 
@@ -59,7 +64,7 @@ Web API 不需注册重定向 URI，因为没有任何用户以交互方式登�
 - 一个或多个范围
 - 一个或多个应用角色
 
-默认情况下，门户建议使用资源 URI `api://{clientId}`。 此 URI 是唯一的，但用户无法识别它。 如果更改 URI，请确保新值是唯一的。
+默认情况下，门户建议使用资源 URI `api://{clientId}`。 此 URI 是唯一的，但用户无法识别它。 如果更改 URI，请确保新值是唯一的。 门户将确保使用[配置的发行者域](howto-configure-publisher-domain.md)
 
 对于客户端应用程序，范围将显示为委托的权限，应用角色将显示为 Web API 的应用程序权限。 
 
@@ -68,10 +73,12 @@ Web API 不需注册重定向 URI，因为没有任何用户以交互方式登�
 - 用户看到的内容。
 - 可授予管理员许可的租户管理员看到的内容。
 
+用户不能同意应用角色（因为它们由代表自己调用 Web API 的应用程序使用）。 租户管理员将需要同意你的 Web API 的客户端应用程序公开应用角色。 有关详细信息，请参阅[管理员同意](v2-admin-consent.md)
+
 ### <a name="exposing-delegated-permissions-scopes"></a>公开委托的权限（范围）
 
 1. 在应用程序注册中选择“公开 API”。
-1. 选择“添加范围”。
+1. 选择“添加范围”。 
 1. 出现提示时，请选择“保存并继续”，接受建议的应用程序 ID URI (`api://{clientId}`)。
 1. 指定以下值：
     - 选择“范围名称”并输入 **access_as_user**。

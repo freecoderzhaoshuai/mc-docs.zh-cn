@@ -8,17 +8,17 @@ manager: CelesteDG
 ms.service: active-directory
 ms.subservice: develop
 ms.workload: identity
-ms.topic: conceptual
-ms.date: 05/27/2020
+ms.topic: how-to
+ms.date: 08/18/2020
 ms.author: v-junlch
 ms.reviewer: jmprieur
 ms.custom: aaddev
-ms.openlocfilehash: f9723f37b0ae115224fa6fdc060304a6ae847302
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: 22ac63d815f997a90b9fd4dae8080abe2e9fe109
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186743"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647477"
 ---
 # <a name="how-to-restrict-your-azure-ad-app-to-a-set-of-users-in-an-azure-ad-tenant"></a>如何：将 Azure AD 应用限制为仅供 Azure AD 租户中的一组用户使用
 
@@ -26,7 +26,7 @@ ms.locfileid: "84186743"
 
 类似地，在使用[多租户](howto-convert-app-to-be-multi-tenant.md)应用时，如果此应用在 Azure AD 租户中预配，则该租户中的所有用户在相应的租户中成功进行身份验证以后，都能够访问此应用程序。
 
-租户管理员和开发人员通常会要求一个应用只能供特定的一组用户使用。 开发人员可以使用基于角色的访问控制 (RBAC) 之类的常用授权模式来完成此操作，但这种方法要求开发人员完成大量的工作。
+租户管理员和开发人员通常会要求一个应用只能供特定的一组用户使用。 开发人员可以使用 Azure 基于角色的访问控制 (Azure RBAC) 之类的常用授权模式来完成此操作，但这种方法要求开发人员完成大量的工作。
 
 租户管理员和开发人员也可以使用 Azure AD 的此内置功能，将应用限制为仅供租户中特定的一组用户或安全组使用。
 
@@ -37,7 +37,7 @@ ms.locfileid: "84186743"
 - 直接在 Azure AD 应用程序平台上生成且使用 OAuth 2.0/OpenID Connect 身份验证的应用程序（前提是用户或管理员已认可该应用程序）。
 
      > [!NOTE]
-     > 此功能仅适用于 Web 应用/Web API 和企业应用程序。 注册为[本机](quickstart-v1-integrate-apps-with-azure-ad.md)的应用不能只限租户中的一组用户或安全组使用。
+     > 此功能仅适用于 Web 应用/Web API 和企业应用程序。 注册为[本机](./quickstart-register-app.md)的应用不能只限租户中的一组用户或安全组使用。
 
 ## <a name="update-the-app-to-enable-user-assignment"></a>更新应用，允许用户分配
 
@@ -93,8 +93,8 @@ ms.locfileid: "84186743"
 
 ## <a name="more-information"></a>详细信息
 
-- [如何：在应用程序中添加应用角色](/active-directory/develop/howto-add-app-roles-in-azure-ad-apps)
+- [如何：在应用程序中添加应用角色](./howto-add-app-roles-in-azure-ad-apps.md)
 - [使用应用角色和角色声明向 ASP.NET Core Web 应用添加授权](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2/tree/master/5-WebApp-AuthZ/5-1-Roles)
 - [Azure Active Directory 现在可以与组声明和应用程序角色配合使用](https://techcommunity.microsoft.com/t5/Azure-Active-Directory-Identity/Azure-Active-Directory-now-with-Group-Claims-and-Application/ba-p/243862)
-- [Azure Active Directory 应用清单](/active-directory/develop/reference-app-manifest)
+- [Azure Active Directory 应用清单](./reference-app-manifest.md)
 

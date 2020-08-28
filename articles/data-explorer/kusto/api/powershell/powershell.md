@@ -8,13 +8,13 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 05/29/2019
-ms.date: 07/01/2020
-ms.openlocfilehash: 65ba9bf2bc465ba85a7cd5610e410e7e30a596fc
-ms.sourcegitcommit: 9bc3e55f01e0999f05e7b4ebaea95f3ac91d32eb
+ms.date: 08/18/2020
+ms.openlocfilehash: 5d990d5126bba45691b93389720c6d6729b89a9f
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86226338"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515991"
 ---
 # <a name="using-the-net-client-libraries-from-powershell"></a>使用 PowerShell 提供的 .NET 客户端库
 
@@ -25,9 +25,10 @@ PowerShell 脚本可以通过 PowerShell 内置的与任意（非 PowerShell）.
 开始通过 PowerShell 使用 Azure 数据资源管理器 .NET 客户端库。
 
 1. 下载 [`Microsoft.Azure.Kusto.Tools` NuGet 包](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Tools/)。
+    * 如果使用的是 Powershell 7（或更高版本），请下载 [`Microsoft.Azure.Kusto.Tools.NETCore` NuGet 包](https://www.nuget.org/packages/Microsoft.Azure.Kusto.Tools.NETCore/)。
 1. 提取包中“tools”目录的内容（使用 `7-zip` 之类的存档工具）。
 1. 从 PowerShell 调用 `[System.Reflection.Assembly]::LoadFrom("path")`，以加载所需的库。 
-    - 命令的 `path` 参数应指示所提取文件的位置。
+    * 命令的 `path` 参数应指示所提取文件的位置。
 1. 加载所有相关的 .NET 程序集后，请执行以下操作：
    1. 创建 Kusto 连接字符串。
    1. 实例化查询提供程序或管理提供程序。
@@ -66,6 +67,10 @@ $kcsb = New-Object Kusto.Data.KustoConnectionStringBuilder ($clusterUrl, $databa
 #     $applicationKey = "application key goes here"
 #     $authority = "authority goes here"
 #     $kcsb = $kcsb.WithAadApplicationKeyAuthentication($applicationId, $applicationKey, $authority)
+#
+#   NOTE: if you're running with Powershell 7 (or above) and the .NET Core library,
+#         AAD user authentication with prompt will not work, and you should choose
+#         a different authentication method.
 ```
 
 ### <a name="example-running-an-admin-command"></a>示例：运行管理命令

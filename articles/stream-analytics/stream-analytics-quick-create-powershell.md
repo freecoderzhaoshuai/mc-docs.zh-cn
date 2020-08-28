@@ -3,17 +3,17 @@ title: 快速入门 - 使用 Azure PowerShell 创建流分析作业
 description: 本快速入门演示如何使用 Azure PowerShell 模块来部署并运行 Azure 流分析作业。
 author: Johnnytechn
 ms.author: v-johya
-ms.date: 07/06/2020
+ms.date: 08/20/2020
 ms.topic: quickstart
 ms.service: stream-analytics
 origin.date: 12/20/2018
 ms.custom: mvc
-ms.openlocfilehash: 6497039adc34ae39f47faf5b0b4e96af89fdebb5
-ms.sourcegitcommit: 9bc3e55f01e0999f05e7b4ebaea95f3ac91d32eb
+ms.openlocfilehash: fdbd9486c8795a14f6641c10507d3bc100943a74
+ms.sourcegitcommit: 09c7071f4d0d9256b40a6bf700b38c6a25db1b26
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86226164"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715712"
 ---
 # <a name="quickstart-create-a-stream-analytics-job-using-azure-powershell"></a>快速入门：使用 Azure PowerShell 创建流分析作业
 
@@ -333,7 +333,7 @@ Remove-AzResourceGroup `
 
 ## <a name="next-steps"></a>后续步骤
 
-在本快速入门中，你使用 PowerShell 部署了一个简单的流分析作业。 也可通过 [Azure 门户](stream-analytics-quick-create-portal.md)和 [Visual Studio](stream-analytics-quick-create-vs.md) 部署流分析作业。
+在本快速入门中，你使用 PowerShell 部署了一个简单的流分析作业。 你还可以使用 [Azure 门户](stream-analytics-quick-create-portal.md)部署流分析作业。
 
 若要了解如何配置其他输入源并执行实时检测，请继续阅读以下文章：
 

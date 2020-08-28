@@ -8,13 +8,13 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 02/13/2020
-ms.date: 08/06/2020
-ms.openlocfilehash: e6d41bd998cb66ca539e5f2b7aab1d7fe02a6238
-ms.sourcegitcommit: 7ceeca89c0f0057610d998b64c000a2bb0a57285
+ms.date: 08/18/2020
+ms.openlocfilehash: 2994f6f0b1e1d4c1344c921ea9d4788375613015
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87841287"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88516005"
 ---
 # <a name="diffpatterns_text-plugin"></a>diffpatterns_text 插件
 
@@ -26,11 +26,13 @@ T | evaluate diffpatterns_text(TextColumn, BooleanCondition)
 
 `diffpatterns_text` 返回一组文本模式，这些模式捕获两个数据集中数据的差异部分（例如，当条件为 `true` 时，模式捕获占较大百分比的行；当条件为 `false` 时，模式捕获占较小百分比的行）。 模式是使用连续的标记（以空格分隔，来自文本列）或是使用表示通配符的 `*` 构建的。 每种模式均由结果中的一行表示。
 
-**语法**
+## <a name="syntax"></a>语法
 
 `T | evaluate diffpatterns_text(`TextColumn, BooleanCondition [, MinTokens, Threshold , MaxTokens]`)` 
 
-**必需参数**
+## <a name="arguments"></a>参数
+
+### <a name="required-arguments"></a>必需参数
 
 * TextColumn - column_name
 
@@ -40,7 +42,7 @@ T | evaluate diffpatterns_text(TextColumn, BooleanCondition)
 
     定义如何生成要与输入表进行比较的两个记录子集。 算法根据条件将查询拆分为两个数据集：“True”和“False”，然后分析它们之间的（文本）差异。 
 
-**可选实参**
+### <a name="optional-arguments"></a>可选自变量
 
 其他所有参数都为可选参数，但必须按以下方式进行排序。 
 
@@ -56,7 +58,7 @@ T | evaluate diffpatterns_text(TextColumn, BooleanCondition)
 
     设置每个结果模式的最大标记数量（从开始算起），指定一个较低的限制会减少查询运行时间。
 
-**返回**
+## <a name="returns"></a>返回
 
 diffpatterns_text 的结果返回以下列：
 
@@ -69,7 +71,7 @@ diffpatterns_text 的结果返回以下列：
 > [!NOTE]
 > 这些模式不一定截然不同，可能未涵盖完整的数据集范围。 这些模式可能重叠，某些行可能与任何模式都不匹配。
 
-**示例**
+## <a name="example"></a>示例
 
 <!-- csl: https://help.kusto.chinacloudapi.cn:443/Samples -->
 ```kusto
@@ -87,4 +89,3 @@ StormEvents
 |0|42|0|7.71|* * * * * * caused * * * * * * * * across western Colorado. *|
 |0|45|0|8.26|* * below normal *|
 |0|110|0|20.18|Below normal *|
-

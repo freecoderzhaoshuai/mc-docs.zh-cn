@@ -11,12 +11,12 @@ ms.devlang: na
 ms.topic: conceptual
 origin.date: 02/12/2020
 ms.date: 03/02/2020
-ms.openlocfilehash: 57ab6bc9787c2deb7059fde290415a8d48e9cf63
-ms.sourcegitcommit: 3de7d92ac955272fd140ec47b3a0a7b1e287ca14
+ms.openlocfilehash: 26a4a011fb08a87a3b39910cc0b003ba69ce2aef
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84723516"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715247"
 ---
 # <a name="set-up-clusters-in-hdinsight-with-apache-hadoop-apache-spark-apache-kafka-and-more"></a>使用 Apache Hadoop、Apache Spark、Apache Kafka 及其他组件在 HDInsight 中设置群集
 
@@ -147,6 +147,8 @@ HDInsight 群集可以使用以下存储选项：
 如果希望在删除 HDInsight 群集后保留 Hive 表，请使用自定义元存储。 这样，便可以将该元存储附加到另一个 HDInsight 群集。
 
 为一个 HDInsight 群集版本创建的 HDInsight 元存储不能在不同的 HDInsight 群集版本之间共享。 有关 HDInsight 版本的列表，请参阅[支持的 HDInsight 版本](hdinsight-component-versioning.md#supported-hdinsight-versions)。
+> [!IMPORTANT]
+> 默认元存储提供具有基本层 5 DTU 限制（不可升级）的 Azure SQL 数据库！ 适用于基本测试目的。 对于大型或生产工作负载，我们建议迁移到外部元存储。
 
 #### <a name="sql-database-for-oozie"></a>适用于 Oozie 的 SQL 数据库
 
@@ -167,7 +169,7 @@ Ambari 用于监视 HDInsight 群集，进行配置更改，以及存储群集�
 
 ### <a name="tls"></a>TLS
 
-有关详细信息，请参阅[传输层安全性](./hdinsight-plan-virtual-network-deployment.md#transport-layer-security)
+有关详细信息，请参阅[传输层安全性](./transport-layer-security.md)
 
 ### <a name="virtual-network"></a>虚拟网络
 

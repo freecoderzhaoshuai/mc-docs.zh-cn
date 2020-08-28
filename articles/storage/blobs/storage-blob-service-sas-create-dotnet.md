@@ -1,21 +1,22 @@
 ---
-title: 使用 .NET 为容器或 blob 创建服务 SAS - Azure 存储
+title: 使用 .NET 为容器或 blob 创建服务 SAS
+titleSuffix: Azure Storage
 description: 了解如何使用 .NET 客户端库为容器或 blob 创建服务共享访问签名 (SAS)。
 services: storage
 author: WenJason
 ms.service: storage
-ms.topic: article
-origin.date: 08/09/2019
-ms.date: 09/09/2019
+ms.topic: how-to
+origin.date: 08/07/2020
+ms.date: 08/24/2020
 ms.author: v-jay
-ms.reviewer: cbrooks
+ms.reviewer: dineshm
 ms.subservice: blobs
-ms.openlocfilehash: b5e5cde0642c46d860df73a17d9f1364d2f9b64d
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: bff60299aadf046ba919c83a831527b6c71e643d
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "70209314"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753560"
 ---
 # <a name="create-a-service-sas-for-a-container-or-blob-with-net"></a>使用 .NET 为容器或 blob 创建服务 SAS
 
@@ -25,9 +26,47 @@ ms.locfileid: "70209314"
 
 ## <a name="create-a-service-sas-for-a-blob-container"></a>为 blob 容器创建服务 SAS
 
-若要为容器创建服务 SAS，请调用 [CloudBlobContainer.GetSharedAccessSignature](https://docs.azure.cn/zh-cn/dotnet/api/microsoft.windowsazure.storage.blob.cloudblobcontainer.getsharedaccesssignature?view=azure-dotnet) 方法。
+下面的代码示例为容器创建 SAS。 如果提供现有存储访问策略的名称，则该策略与 SAS 关联。 如果未提供存储访问策略，则代码会在容器上创建一个临时 SAS。
 
-下面的代码示例在容器上创建 SAS。 如果提供现有存储访问策略的名称，则该策略与 SAS 关联。 如果未提供存储访问策略，则代码会在容器上创建一个临时 SAS。
+### <a name="net-v12"></a>[\.NET v12](#tab/dotnet)
+
+创建新的 [BlobSasBuilder](https://docs.microsoft.com/dotnet/api/azure.storage.sas.blobsasbuilder)。 然后，调用 [ToSasQueryParameters](https://docs.microsoft.com/dotnet/api/azure.storage.sas.blobsasbuilder.tosasqueryparameters) 来获取 SAS 令牌字符串。 
+
+```csharp
+private static string GetContainerSasUri(BlobContainerClient container, 
+    StorageSharedKeyCredential key, string storedPolicyName = null)
+{
+    // Create a SAS token that's valid for one hour.
+    BlobSasBuilder sasBuilder = new BlobSasBuilder()
+    {
+        BlobContainerName = container.Name,
+        Resource = "c",
+    };
+
+    if (storedPolicyName == null)
+    {
+        sasBuilder.StartsOn = DateTimeOffset.UtcNow;
+        sasBuilder.ExpiresOn = DateTimeOffset.UtcNow.AddHours(1);
+        sasBuilder.SetPermissions(BlobContainerSasPermissions.Read);
+    }
+    else
+    {
+        sasBuilder.Identifier = storedPolicyName;
+    }
+
+    // Use the key to get the SAS token.
+    string sasToken = sasBuilder.ToSasQueryParameters(key).ToString();
+
+    Console.WriteLine("SAS for blob container is: {0}", sasToken);
+    Console.WriteLine();
+
+    return container.Uri + sasToken;
+}
+```
+
+### <a name="net-v11"></a>[\.NET v11](#tab/dotnetv11)
+
+若要为容器创建服务 SAS，请调用 [CloudBlobContainer.GetSharedAccessSignature](/dotnet/api/microsoft.windowsazure.storage.blob.cloudblobcontainer.getsharedaccesssignature) 方法。
 
 ```csharp
 private static string GetContainerSasUri(CloudBlobContainer container, string storedPolicyName = null)
@@ -67,13 +106,54 @@ private static string GetContainerSasUri(CloudBlobContainer container, string st
     // Return the URI string for the container, including the SAS token.
     return container.Uri + sasContainerToken;
 }
+
 ```
+---
 
 ## <a name="create-a-service-sas-for-a-blob"></a>为 blob 创建服务 SAS
 
-若要为 blob 创建服务 SAS，请调用 [CloudBlob.GetSharedAccessSignature](https://docs.azure.cn/dotnet/api/microsoft.windowsazure.storage.blob.cloudblob.getsharedaccesssignature) 方法。
-
 下面的代码示例在 blob 上创建 SAS。 如果提供现有存储访问策略的名称，则该策略与 SAS 关联。 如果未提供存储访问策略，则代码会在 Blob 上创建一个临时 SAS。
+
+### <a name="net-v12"></a>[\.NET v12](#tab/dotnet)
+
+创建新的 [BlobSasBuilder](https://docs.microsoft.com/dotnet/api/azure.storage.sas.blobsasbuilder)。 然后，调用 [ToSasQueryParameters](https://docs.microsoft.com/dotnet/api/azure.storage.sas.blobsasbuilder.tosasqueryparameters) 来获取 SAS 令牌字符串。 
+
+```csharp
+private static string GetBlobSasUri(BlobContainerClient container,
+    string blobName, StorageSharedKeyCredential key, string storedPolicyName = null)
+{
+    // Create a SAS token that's valid for one hour.
+    BlobSasBuilder sasBuilder = new BlobSasBuilder()
+    {
+        BlobContainerName = container.Name,
+        BlobName = blobName,
+        Resource = "b",
+    };
+
+    if (storedPolicyName == null)
+    {
+        sasBuilder.StartsOn = DateTimeOffset.UtcNow;
+        sasBuilder.ExpiresOn = DateTimeOffset.UtcNow.AddHours(1);
+        sasBuilder.SetPermissions(BlobContainerSasPermissions.Read);
+    }
+    else
+    {
+        sasBuilder.Identifier = storedPolicyName;
+    }
+
+    // Use the key to get the SAS token.
+    string sasToken = sasBuilder.ToSasQueryParameters(key).ToString();
+
+    Console.WriteLine("SAS for blob is: {0}", sasToken);
+    Console.WriteLine();
+
+    return container.GetBlockBlobClient(blobName).Uri + sasToken;
+}
+```
+
+### <a name="net-v11"></a>[\.NET v11](#tab/dotnetv11)
+
+若要为 blob 创建服务 SAS，请调用 [CloudBlob.GetSharedAccessSignature](/dotnet/api/microsoft.windowsazure.storage.blob.cloudblob.getsharedaccesssignature) 方法。
 
 ```csharp
 private static string GetBlobSasUri(CloudBlobContainer container, string blobName, string policyName = null)
@@ -117,6 +197,7 @@ private static string GetBlobSasUri(CloudBlobContainer container, string blobNam
     return blob.Uri + sasBlobToken;
 }
 ```
+---
 
 [!INCLUDE [storage-blob-dotnet-resources-include](../../../includes/storage-blob-dotnet-resources-include.md)]
 

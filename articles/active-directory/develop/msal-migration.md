@@ -9,16 +9,16 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 07/08/2020
+ms.date: 08/18/2020
 ms.author: v-junlch
 ms.reviewer: saeeda
 ms.custom: aaddev
-ms.openlocfilehash: 09cdc9f8d13f70cd19248e93d101f8a3be6b5438
-ms.sourcegitcommit: 92b9b1387314b60661f5f62db4451c9ff2c49500
+ms.openlocfilehash: f6b992a20279a5c5c1a1213ffcee5add1fba19d9
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86164961"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647739"
 ---
 # <a name="migrate-applications-to-microsoft-authentication-library-msal"></a>将应用程序迁移到 Microsoft 身份验证库 (MSAL)
 
@@ -51,16 +51,19 @@ ms.locfileid: "86164961"
 ## <a name="frequently-asked-questions-faq"></a>常见问题 (FAQ)
 
 __问：是否要弃用 ADAL？__  
-答：是的。 从 2020 年 6 月 30 日开始，我们将不再为 ADAL 添加新功能。 在 2022 年 6 月 30 日之前，我们将继续为 ADAL 添加关键的安全修复程序。
+答：是的。 从 2020 年 6 月 30 日开始，我们将不再为 ADAL 添加新功能。 在 2022 年 6 月 30 日之前，我们将继续为 ADAL 添加关键的安全修复程序。 在此日期之后，使用 ADAL 的应用将继续工作，但我们建议升级到 MSAL，以利用最新功能并保持安全。
+
+__问：我的现有 ADAL 应用是否会停止工作？__  
+答：不是。 你的现有应用将继续正常运行，不会进行修改。 如果计划在 2022 年 6 月 30 日之后继续使用它们，则应考虑将应用更新到 MSAL 以确保其安全性，但如果要维持现有功能，则无需迁移到 MSAL。
 
 __问：如何知道哪些应用正在使用 ADAL？__  
-答：如果你有应用程序的源代码，可以参考上述迁移指南来确定应用使用的库和了解如何将其迁移到 MSAL。 如果你没有访问应用程序源代码的权限，可以[提交一个支持请求](developer-support-help-options.md#open-a-support-request)，获取已注册应用程序和每个应用程序所使用的库的列表。
-
-__问：我的现有 ADAL 应用是否会继续工作？__  
-答：你的现有应用将继续正常运行，不会进行修改。 如果计划在 2022 年 6 月 30 日之后继续使用它们，应考虑将其更新到 MSAL 以确保其安全性，但如果要维持现有功能，则无需迁移到 MSAL。
+答：如果你有应用程序的源代码，可以参考上述迁移指南来确定应用使用的库和了解如何将其迁移到 MSAL。 如果你与 ISV 合作，则建议你直接与他们联系，以了解其迁移到 MSAL 的历程。
 
 __问：为什么应设法迁移到 MSAL？__  
 答：MSAL 包含 ADAL 中没有的新功能，包括增量许可、单一登录和令牌缓存管理。 此外，与 ADAL 不同，MSAL 在 2022 年 6 月 30 日之后会继续接收安全补丁。 [了解详细信息](msal-overview.md)。
+
+__问：Microsoft 是否会将其自己的应用更新到 MSAL？__  
+是。 在支持结束截止时间之前，Microsoft 正在将其应用程序迁移到 MSAL，从而确保它们可从 MSAL 的持续安全和功能改进中受益。
 
 __问：是否会发布一种工具，来帮助我将应用从 ADAL 迁移到 MSAL？__  
 答：否。 由于库之间存在差异，需要专门投入资源来开发和维护这个工具，而这些资源本可用于改进 MSAL。 但是，我们在前面提供了一组迁移指南，可帮助你对应用程序进行所需的更改。
@@ -74,6 +77,6 @@ __问：如何获取有关迁移应用程序的帮助？__
 ## <a name="next-steps"></a>后续步骤
 
 - [更新应用程序以使用 Microsoft 身份验证库和 Microsoft Graph API](https://techcommunity.microsoft.com/t5/azure-active-directory-identity/update-your-applications-to-use-microsoft-authentication-library/ba-p/1257363)
-- [了解关于 Microsoft 标识平台 (MSAL) 的详细信息](/active-directory/develop/v2-overview)
-- [查看我们的 MSAL 代码示例](/active-directory/develop/sample-v2-code)
+- [Microsoft 标识平台概述](v2-overview.md)
+- [查看我们的 MSAL 代码示例](sample-v2-code.md)
 

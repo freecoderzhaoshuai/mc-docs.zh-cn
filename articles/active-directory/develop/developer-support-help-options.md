@@ -1,24 +1,23 @@
 ---
-title: Azure AD 应用开发人员的支持和帮助选项 | Microsoft Docs
+title: Azure AD 应用开发人员的支持和帮助选项
 description: 了解在创建与 Microsoft 标识 (Azure Active Directory) 集成的应用程序时，如何获取所遇到的开发相关问题的帮助和支持
 services: active-directory
 author: rwike77
 manager: CelesteDG
-ms.assetid: 820acdb7-d316-4c3b-8de9-79df48ba3b06
 ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 02/24/2020
+ms.date: 08/18/2020
 ms.author: v-junlch
 ms.reviewer: jmprieur, saeeda
 ms.custom: aaddev
-ms.openlocfilehash: 43b9119fce956c9521c025dcc2509774631a6d0d
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 25fd24f3f3affd3febf5dfeb0a6fa9fd32cc6eac
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77653289"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647494"
 ---
 # <a name="support-and-help-options-for-developers"></a>开发人员的支持和帮助选项
 
@@ -63,6 +62,7 @@ Stack Overflow 是开发相关问题的首选渠道。 在这里，开发人员�
 | ADAL 库 | [[adal]](https://stackoverflow.com/questions/tagged/adal) |
 | MSAL 库     | [[msal]](https://stackoverflow.com/questions/tagged/msal) |
 | OWIN 中间件  | [[azure-active-directory]](https://stackoverflow.com/questions/tagged/azure-active-directory) |
+| [Azure B2B](../external-identities/what-is-b2b.md)  | [[azure-ad-b2b]](https://stackoverflow.com/questions/tagged/azure-ad-b2b) |
 | [Azure B2C](https://www.azure.cn/home/features/active-directory-b2c/)  | [[azure-ad-b2c]](https://stackoverflow.com/questions/tagged/azure-ad-b2c) |
 | [Microsoft 图形 API](https://developer.microsoft.com/graph/) | [[microsoft-graph]](https://stackoverflow.com/questions/tagged/microsoft-graph) |
 | 与身份验证或授权主题相关的其他任何方面 | [[azure-active-directory]](https://stackoverflow.com/questions/tagged/azure-active-directory) |
@@ -91,4 +91,3 @@ Stack Overflow 中的以下帖子包含有关如何提问和如何添加源代�
 
 还可以尝试通过[虚拟代理](https://www.azure.cn/support/contact/?ws=support)获取支持或提出问题。
 
-<!-- Update_Description: wording update -->

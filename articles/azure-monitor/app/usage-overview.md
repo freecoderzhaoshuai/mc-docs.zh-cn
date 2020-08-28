@@ -4,14 +4,14 @@ description: 了解用户，以及他们将应用用于哪些目的。
 ms.topic: conceptual
 author: Johnnytechn
 origin.date: 09/19/2019
-ms.date: 07/17/2020
+ms.date: 08/18/2020
 ms.author: v-johya
-ms.openlocfilehash: c2c7c5fc7d472dfb84e311c0f57e54b0324c52a7
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: 8c693a2174db902ce81c2c0480f52a3c02f9ccf3
+ms.sourcegitcommit: 06113a16e9d68fa9c47676d5454ac9a26f4518b8
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244426"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88513436"
 ---
 # <a name="usage-analysis-with-application-insights"></a>Application Insights 使用分析
 
@@ -31,7 +31,8 @@ Web 或移动应用有哪些最热门的功能？ 用户是否使用应用实现
     <script type="text/javascript">
     var sdkInstance="appInsightsSDK";window[sdkInstance]="appInsights";var aiName=window[sdkInstance],aisdk=window[aiName]||function(e){function n(e){t[e]=function(){var n=arguments;t.queue.push(function(){t[e].apply(t,n)})}}var t={config:e};t.initialize=!0;var i=document,a=window;setTimeout(function(){var n=i.createElement("script");n.src=e.url||"https://az416426.vo.msecnd.net/scripts/b/ai.2.min.js",i.getElementsByTagName("script")[0].parentNode.appendChild(n)});try{t.cookie=i.cookie}catch(e){}t.queue=[],t.version=2;for(var r=["Event","PageView","Exception","Trace","DependencyData","Metric","PageViewPerformance"];r.length;)n("track"+r.pop());n("startTrackPage"),n("stopTrackPage");var s="Track"+r[0];if(n("start"+s),n("stop"+s),n("setAuthenticatedUserContext"),n("clearAuthenticatedUserContext"),n("flush"),!(!0===e.disableExceptionTracking||e.extensionConfig&&e.extensionConfig.ApplicationInsightsAnalytics&&!0===e.extensionConfig.ApplicationInsightsAnalytics.disableExceptionTracking)){n("_"+(r="onerror"));var o=a[r];a[r]=function(e,n,i,a,s){var c=o&&o(e,n,i,a,s);return!0!==c&&t["_"+r]({message:e,url:n,lineNumber:i,columnNumber:a,error:s}),c},e.autoExceptionInstrumented=!0}return t}(
     {
-      instrumentationKey:"INSTRUMENTATION_KEY"
+      instrumentationKey:"INSTRUMENTATION_KEY",
+      endpointUrl: "TelemetryChannel_Endpoint_Address"
     }
     );window[aiName]=aisdk,aisdk.queue&&0===aisdk.queue.length&&aisdk.trackPageView({});
     </script>
@@ -44,6 +45,10 @@ Web 或移动应用有哪些最热门的功能？ 用户是否使用应用实现
 4. **获取遥测：** 在调试模式下运行项目几分钟，并在“Application Insights”中的“概述”边栏选项卡中查找结果。
 
     发布应用以监视应用性能，并查看用户使用该应用在执行哪些操作。
+
+> [!NOTE]
+> 可以将 TelemetryChannel_Endpoint_Address 的占位符值替换为此[文档](/azure-monitor/app/custom-endpoints?tabs=js)中 Azure 中国区的实际终结点地址。
+<!--Customized in MC-->
 
 ## <a name="include-user-and-session-id-in-your-telemetry"></a>在遥测中包括用户和会话 ID
 若要持续跟踪用户，Application Insights 需要识别用户的方法。 事件工具是唯一不需要用户 ID 或会话 ID 的使用情况工具。

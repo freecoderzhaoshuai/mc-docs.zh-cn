@@ -4,15 +4,15 @@ description: Application Insights 遥测关联
 ms.topic: conceptual
 author: Johnnytechn
 origin.date: 06/07/2019
-ms.date: 05/28/2020
+ms.date: 08/18/2020
 ms.reviewer: sergkanz
 ms.author: v-johya
-ms.openlocfilehash: e37d828247d72dfb16e6e340e2f6bf9ff3476582
-ms.sourcegitcommit: be0a8e909fbce6b1b09699a721268f2fc7eb89de
+ms.openlocfilehash: ada1da9dea201bb09f95d6e680151613426b5626
+ms.sourcegitcommit: 06113a16e9d68fa9c47676d5454ac9a26f4518b8
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84199317"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88513438"
 ---
 # <a name="telemetry-correlation-in-application-insights"></a>Application Insights 中的遥测关联
 
@@ -182,6 +182,7 @@ public void ConfigureServices(IServiceCollection services)
 
   const appInsights = new ApplicationInsights({ config: {
     instrumentationKey: 'YOUR_INSTRUMENTATION_KEY_GOES_HERE',
+    endpointUrl: "TelemetryChannel_Endpoint_Address",
     distributedTracingMode: DistributedTracingModes.W3C
     /* ...other configuration options... */
   } });
@@ -196,6 +197,7 @@ public void ConfigureServices(IServiceCollection services)
   (
     {
       instrumentationKey:"INSTRUMENTATION_KEY",
+      endpointUrl: "TelemetryChannel_Endpoint_Address",
       distributedTracingMode: 2 // DistributedTracingModes.W3C
       /* ...other configuration options... */
     }
@@ -203,6 +205,10 @@ public void ConfigureServices(IServiceCollection services)
   window[aiName]=aisdk,aisdk.queue&&0===aisdk.queue.length&&aisdk.trackPageView({});
   </script>
   ```
+
+> [!NOTE]
+> 你可以将 TelemetryChannel_Endpoint_Address 的占位符值替换为此[文档](/azure-monitor/app/custom-endpoints?tabs=js)中的 Azure 中国区域的实际终结点地址。
+<!--Customized in MC-->
 
 ## <a name="opentracing-and-application-insights"></a>OpenTracing 和 Application Insights
 
