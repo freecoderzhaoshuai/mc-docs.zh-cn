@@ -6,13 +6,13 @@ ms.subservice: logs
 ms.topic: conceptual
 author: Johnnytechn
 ms.author: v-johya
-ms.date: 05/28/2020
-ms.openlocfilehash: d6dd99efa8d93a313a89897794345c21f8c73f44
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.date: 08/20/2020
+ms.openlocfilehash: 6530cd90052a46b72214e00813ae61a416923ace
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440442"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148695"
 ---
 # <a name="azure-monitor-log-queries"></a>Azure Monitor 日志查询
 
@@ -27,15 +27,15 @@ Azure Monitor 日志在 Azure 数据资源管理器之上构建，Azure Monitor 
 
 ## <a name="concepts"></a>概念
 
-- [在 Azure Monitor 中分析日志数据](../../azure-monitor/log-query/log-query-overview.md)简要概述了日志查询以及如何构建 Azure Monitor 日志数据。
-- [查看和分析 Azure Monitor 中的日志数据](../../azure-monitor/log-query/log-query-overview.md)介绍了可在其中创建和运行日志查询的门户。
+- [在 Azure Monitor 中分析日志数据](./log-query-overview.md)简要概述了日志查询以及如何构建 Azure Monitor 日志数据。
+- [查看和分析 Azure Monitor 中的日志数据](./log-query-overview.md)介绍了可在其中创建和运行日志查询的门户。
 
 ## <a name="reference"></a>参考
 
 - [查询语言参考](https://docs.microsoft.com/azure/kusto/query)是 Kusto 查询语言的完整语言参考。
 - [Azure Monitor 日志查询语言差异](data-explorer-difference.md)介绍了不同 Kusto 查询语言版本之间的差异。
-- [Azure Monitor 日志记录中的标准属性](../../azure-monitor/platform/log-standard-properties.md)介绍了所有 Azure Monitor 日志数据的标准属性。
-- [在 Azure Monitor 中执行跨资源日志查询](../../azure-monitor/log-query/cross-workspace-query.md)介绍了如何编写使用多个 Log Analytics 工作区和 Application Insights 应用程序中的数据的日志查询。
+- [Azure Monitor 日志记录中的标准属性](../platform/log-standard-properties.md)介绍了所有 Azure Monitor 日志数据的标准属性。
+- [在 Azure Monitor 中执行跨资源日志查询](./cross-workspace-query.md)介绍了如何编写使用多个 Log Analytics 工作区和 Application Insights 应用程序中的数据的日志查询。
 
 ## <a name="examples"></a>示例
 
@@ -59,4 +59,5 @@ Azure Monitor 日志在 Azure 数据资源管理器之上构建，Azure Monitor 
 ## <a name="next-steps"></a>后续步骤
 
 - 访问完整的 [Kusto 查询语言参考文档](https://docs.microsoft.com/azure/kusto/query/)。
+
 

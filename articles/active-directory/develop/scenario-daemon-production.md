@@ -2,25 +2,21 @@
 title: 将调用 Web API 的守护程序应用移到生产环境 - Microsoft 标识平台 | Azure
 description: 了解如何将调用 Web API 的守护程序应用移到生产环境
 services: active-directory
-documentationcenter: dev-center-name
 author: jmprieur
 manager: CelesteDG
-editor: ''
 ms.service: active-directory
 ms.subservice: develop
-ms.devlang: na
 ms.topic: conceptual
-ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/06/2020
+ms.date: 08/19/2020
 ms.author: v-junlch
 ms.custom: aaddev
-ms.openlocfilehash: cb26fcf49689471c31e2356da27aa97e424c24ec
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: e534a66fe19a8445eafb452c99bb996959e4d032
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291043"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647567"
 ---
 # <a name="daemon-app-that-calls-web-apis---move-to-production"></a>调用 Web API 的守护程序应用 - 移到生产环境
 
@@ -45,8 +41,8 @@ ms.locfileid: "79291043"
 
 - 快速入门：[使用应用的标识获取令牌并从控制台应用中调用 Microsoft Graph API](./quickstart-v2-netcore-daemon.md)。
 - 以下内容的参考文档：
-  - 实例化 [ConfidentialClientApplication](https://docs.microsoft.com/dotnet/api/microsoft.identity.client.confidentialclientapplicationbuilder)
-  - 调用 [AcquireTokenForClient](https://docs.microsoft.com/dotnet/api/microsoft.identity.client.acquiretokenforclientparameterbuilder)
+  - 实例化 [ConfidentialClientApplication](https://docs.microsoft.com/dotnet/api/microsoft.identity.client.confidentialclientapplicationbuilder)。
+  - 调用 [AcquireTokenForClient](https://docs.microsoft.com/dotnet/api/microsoft.identity.client.acquiretokenforclientparameterbuilder)。
 - 其他示例/教程：
   - [microsoft-identity-platform-console-daemon](https://github.com/Azure-Samples/microsoft-identity-platform-console-daemon) 提供一个简单的 .NET Core 守护程序控制台应用程序，该应用程序显示某个租户的用户在查询 Microsoft Graph。
 
@@ -68,5 +64,5 @@ ms.locfileid: "79291043"
 
 MSAL Java 目前为公共预览版。 有关详细信息，请参阅 [MSAL Java 开发示例](https://github.com/AzureAD/microsoft-authentication-library-for-java/tree/dev/src/samples)。
 
-<!-- Update_Description: wording update -->
+---
 

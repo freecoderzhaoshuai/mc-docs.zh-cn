@@ -1,22 +1,23 @@
 ---
 title: 教程：注册应用程序
 titleSuffix: Azure AD B2C
-description: 了解如何使用 Azure 门户在 Azure Active Directory B2C 中注册 Web 应用程序。
+description: 按照此教程进行操作，了解如何使用 Azure 门户在 Azure Active Directory B2C 中注册 Web 应用程序。
 services: active-directory-b2c
 author: msmimart
 manager: celestedg
 ms.service: active-directory
 ms.workload: identity
-ms.topic: article
-ms.date: 06/28/2020
+ms.topic: tutorial
+ms.date: 08/25/2020
+ms.custom: project-no-code
 ms.author: v-junlch
 ms.subservice: B2C
-ms.openlocfilehash: 053d853f32b3b32b36aaca1745caf966cdd29e5c
-ms.sourcegitcommit: 3a8a7d65d0791cdb6695fe6c2222a1971a19f745
+ms.openlocfilehash: 208d581eda5c287dcba99f58e711dd4e3a75d61c
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2020
-ms.locfileid: "85516465"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946538"
 ---
 # <a name="tutorial-register-a-web-application-in-azure-active-directory-b2c"></a>教程：在 Azure Active Directory B2C 中注册 Web 应用
 
@@ -62,7 +63,7 @@ ms.locfileid: "85516465"
 
 完成应用程序注册后，启用隐式授权流：
 
-1. 在“管理”下，选择“身份验证”。 
+1. 在左侧菜单中的“管理”下，选择“身份验证” 。
 1. 在“隐式授权”下，选中“访问令牌”和“ID 令牌”复选框  。
 1. 选择“保存” 。
 
@@ -73,7 +74,7 @@ ms.locfileid: "85516465"
 1. 在 Azure 门户中，搜索并选择“Azure AD B2C”。
 1. 选择“应用程序(旧版)”，然后选择“添加” 。
 1. 输入应用程序的名称。 例如，“webapp1”。
-1. 对于“包括 Web 应用/Web API”和“允许隐式流”，请选择“是”。  
+1. 对于“包括 Web 应用/Web API”和“允许隐式流”，请选择“是”。
 1. 对于“回复 URL”，请输入 Azure AD B2C 要将应用程序请求的任何令牌返回到的终结点。 例如，可将其设置为在 `https://localhost:44316` 上本地侦听。 如果尚不知道端口号，可以先输入占位符值，以后再进行更改。
 
     出于测试目的（如本教程），可以将其设置为 `https://jwt.ms`，以便显示令牌的内容以供检查。 对于本教程，将“回复 URL”设置为 `https://jwt.ms`。
@@ -95,7 +96,7 @@ ms.locfileid: "85516465"
 #### <a name="app-registrations"></a>[应用注册](#tab/app-reg-ga/)
 
 1. 在“Azure AD B2C - 应用注册”页中，选择已创建的应用程序，例如 webapp1。
-1. 在“管理”下，选择“证书和机密”。 
+1. 在左侧菜单中“管理”下，选择“证书和机密”。 
 1. 选择“新建客户端机密”。
 1. 在“说明”框中输入客户端机密的说明。 例如，*clientsecret1*。
 1. 在“过期时间”下，选择机密持续生效的时间，然后选择“添加”。
@@ -104,7 +105,7 @@ ms.locfileid: "85516465"
 #### <a name="applications-legacy"></a>[应用程序(旧版)](#tab/applications-legacy/)
 
 1. 在“Azure AD B2C - 应用程序”页中，选择已创建的应用程序，例如 webapp1。
-1. 选择“密钥”，然后选择“生成密钥”。 
+1. 选择“密钥”，然后选择“生成密钥”。
 1. 选择“保存”以查看密钥。 记下“应用密钥”值。 在应用程序的代码中将此值用作应用程序机密。
 
 * * *

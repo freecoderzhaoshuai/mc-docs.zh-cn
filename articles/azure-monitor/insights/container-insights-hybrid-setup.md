@@ -4,13 +4,13 @@ description: 本文介绍了如何配置适用于容器的 Azure Monitor 以监�
 ms.topic: conceptual
 author: Johnnytechn
 ms.author: v-johya
-ms.date: 07/17/2020
-ms.openlocfilehash: 7516582c20f4e080089ba7f9a04f8d179d0804e8
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.date: 08/20/2020
+ms.openlocfilehash: 97c1f3743faf4259a1765e42eea6067399e00757
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244531"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148627"
 ---
 # <a name="configure-hybrid-kubernetes-clusters-with-azure-monitor-for-containers"></a>为混合 Kubernetes 群集配置适用于容器的 Azure Monitor
 
@@ -24,7 +24,7 @@ ms.locfileid: "87244531"
 
     - 本地 Kubernetes
     
-    - Azure 和 Azure Stack 的 AKS 引擎。 有关详细信息，请参阅 [Azure Stack 上的 AKS 引擎](https://docs.microsoft.com/azure-stack/user/azure-stack-kubernetes-aks-engine-overview?view=azs-1908)
+    - Azure 和 Azure Stack 的 AKS 引擎。 有关详细信息，请参阅 [Azure Stack 上的 AKS 引擎](/azure-stack/user/azure-stack-kubernetes-aks-engine-overview?view=azs-1908)
     
     - [OpenShift](https://docs.openshift.com/container-platform/4.3/welcome/index.html) 版本 4 及更高版本，位于本地或其他云环境中。
 
@@ -35,7 +35,6 @@ ms.locfileid: "87244531"
 - 支持的适用于主节点和工作器节点的 Linux OS 版本包括：Ubuntu（18.04 LTS 和 16.04 LTS）和 Red Hat Enterprise Linux CoreOS 43.81。
 
 - 支持的访问控制：Kubernetes RBAC 和非 RBAC
-<!-- Not available in Azure Stack about AKS Engine-->
 
 ## <a name="prerequisites"></a>先决条件
 
@@ -205,7 +204,7 @@ ms.locfileid: "87244531"
     }
     ```
 
-7. 使用在第 3 步复制的值编辑 **workspaceResourceId** 的值。对于 **workspaceRegion**，请在运行 Azure CLI 命令 [az monitor log-analytics workspace show](https://docs.microsoft.com/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-show) 后复制 **Region** 值。
+7. 使用在第 3 步复制的值编辑 **workspaceResourceId** 的值。对于 **workspaceRegion**，请在运行 Azure CLI 命令 [az monitor log-analytics workspace show](https://docs.microsoft.com/cli/azure/monitor/log-analytics/workspace?view=azure-cli-latest#az-monitor-log-analytics-workspace-list) 后复制 **Region** 值。
 
 8. 在一个本地文件夹中将该文件另存为 containerSolutionParams.json。
 

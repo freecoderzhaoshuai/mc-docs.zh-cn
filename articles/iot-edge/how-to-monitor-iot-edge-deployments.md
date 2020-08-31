@@ -5,17 +5,18 @@ author: kgremban
 manager: philmea
 ms.author: v-tawe
 origin.date: 04/21/2020
-ms.date: 07/01/2020
+ms.date: 08/27/2020
 ms.topic: conceptual
 ms.reviewer: veyalla
 ms.service: iot-edge
+ms.custom: devx-track-azurecli
 services: iot-edge
-ms.openlocfilehash: 20103462d6cad57304bf314eadac5e8c10b9d316
-ms.sourcegitcommit: 4f84bba7e509a321b6f68a2da475027c539b8fd3
+ms.openlocfilehash: d6c5a35c20742ad7a93f36cc17d90ed2bc8724a5
+ms.sourcegitcommit: c8e590d907f20bbc9c4c05d9bfc93cf7cb1d776f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85796180"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88957763"
 ---
 # <a name="monitor-iot-edge-deployments"></a>监视 IoT Edge 部署
 

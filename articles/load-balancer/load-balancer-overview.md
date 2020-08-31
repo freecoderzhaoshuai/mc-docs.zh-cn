@@ -13,18 +13,18 @@ ms.custom: seodec18
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 origin.date: 1/14/2020
-ms.date: 07/20/2020
+ms.date: 08/31/2020
 ms.author: v-jay
-ms.openlocfilehash: b62de61446f4e9110c4dff753522c52e6e67d8ac
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.openlocfilehash: 73853ba5be59be74f355700a67596713986084c8
+ms.sourcegitcommit: f8ed85740f873c15c239ab6ba753e4b76e030ba7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440463"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045769"
 ---
 # <a name="what-is-azure-load-balancer"></a>什么是 Azure 负载均衡器？
 
-“负载均衡”是指在一组后端资源或服务器之间均衡地分配负载（传入网络流量）。  
+“负载均衡”是指在一组后端资源或服务器之间均衡地分配负载（传入网络流量）。 
 
 Azure 负载均衡器在开放式系统互连 (OSI) 模型的第四层上运行。 它是客户端的单一联系点。 负载均衡器将抵达负载均衡器前端的入站流量分配到后端池实例。 这些流取决于所配置的负载均衡规则和运行状况探测。 后端池实例可以是 Azure 虚拟机，或虚拟机规模集中的实例。
 
@@ -33,7 +33,7 @@ Azure 负载均衡器在开放式系统互连 (OSI) 模型的第四层上运行�
 **[内部（或专用）负载平衡器](./components.md#frontend-ip-configurations)** 用于仅在前端需要专用 IP 的情况。 内部负载均衡器用于对虚拟网络内部的流量进行负载均衡。 负载均衡器前端可以在混合方案中从本地网络进行访问。
 
 <p align="center">
-  <img src="./media/load-balancer-overview/load-balancer.svg" width="512" title="Azure 负载均衡器">
+  <img src="./media/load-balancer-overview/load-balancer.svg" alt="Figure depicts both public and internal load balancers directing traffic to port 80 on multiple servers on a Web tier and port 443 on multiple servers on a business tier." width="512" title="Azure 负载均衡器">
 </p>
 
 图：*使用公共和内部负载均衡器对多层应用程序进行均衡*
@@ -66,7 +66,7 @@ Azure 负载均衡器在开放式系统互连 (OSI) 模型的第四层上运行�
 ### <a name="secure-by-default"></a><a name="securebydefault"></a>默认保护
 
 标准负载均衡器的核心是零信任网络安全模型。 标准负载均衡器默认情况下保护你的虚拟网络并且是虚拟网络的一部分。 虚拟网络是一个专用的隔离网络。  这意味着除非由网络安全组打开，否则，标准负载均衡器和标准公用 IP 地址将对入站流关闭。 NSG 用于显式允许允许的流量。  如果虚拟机资源的子网或 NIC 上没有 NSG，禁止流量到达此资源。 若要详细了解 NSG 以及如何将其应用于自己的方案，请参阅[网络安全组](../virtual-network/security-overview.md)。
-默认情况下，基本负载均衡器对 Internet 是开放的。
+默认情况下，基本负载均衡器对 Internet 是开放的。 此外，负载均衡器不会存储客户数据。
 
 ## <a name="pricing-and-sla"></a>定价和 SLA
 

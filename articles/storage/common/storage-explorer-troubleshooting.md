@@ -6,15 +6,15 @@ author: WenJason
 manager: digimobile
 ms.service: storage
 ms.topic: troubleshooting
-origin.date: 06/15/2018
-ms.date: 07/20/2020
+origin.date: 07/28/2018
+ms.date: 08/24/2020
 ms.author: v-jay
-ms.openlocfilehash: a2a3df62c1a1b1af6c0c7299b8c2f13c9eb3b9e0
-ms.sourcegitcommit: 31da682a32dbb41c2da3afb80d39c69b9f9c1bc6
+ms.openlocfilehash: 552caff468cb578c761cde3f87fdc068bc3b0307
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86414640"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753399"
 ---
 # <a name="azure-storage-explorer-troubleshooting-guide"></a>Azure 存储资源管理器故障排除指南
 
@@ -49,7 +49,7 @@ Azure 存储资源管理器是一个独立的应用，使用它可在 Windows、
 
 Azure 存储提供两个访问层：“管理”和“数据”。  订阅和存储帐户是通过管理层访问的。 容器、Blob 和其他数据资源是通过数据层访问的。 例如，若要从 Azure 获取存储帐户的列表，应向管理终结点发送请求。 若要列出帐户中的 Blob 容器，应向相应的服务终结点发送请求。
 
-RBAC 角色可以授予你进行管理或数据层访问的权限。 例如，“读取者”角色授予对管理层资源的只读访问权限。
+Azure 角色可以授予你进行管理或数据层访问的权限。 例如，“读取者”角色授予对管理层资源的只读访问权限。
 
 严格地讲，“读取者”角色不提供数据层的权限，并非一定要有该角色才能访问数据层。
 
@@ -68,9 +68,9 @@ RBAC 角色可以授予你进行管理或数据层访问的权限。 例如，�
 
 目前，对于其他资源类型，我们尚未制定与 RBAC 相关的解决方案。 一种解决方法是请求一个 SAS URI 并将其[附加到资源](/vs-azure-tools-storage-manage-with-storage-explorer?tabs=linux#use-a-shared-access-signature-uri)。
 
-### <a name="recommended-built-in-rbac-roles"></a>建议的内置 RBAC 角色
+### <a name="recommended-azure-built-in-roles"></a>建议的 Azure 内置角色
 
-有几个内置 RBAC 角色可以提供使用存储资源管理器所需的权限。 其中一些角色是：
+有几个 Azure 内置角色可以提供使用存储资源管理器所需的权限。 其中一些角色是：
 - [所有者](/role-based-access-control/built-in-roles#owner)：管理所有内容，包括对资源的访问权限。 **注意**：此角色将授予你密钥访问权限。
 - [参与者](/role-based-access-control/built-in-roles#contributor)：管理所有内容，不包括对资源的访问权限。 **注意**：此角色将授予你密钥访问权限。
 - [读者](/role-based-access-control/built-in-roles#reader)：读取和列出资源。
@@ -132,6 +132,10 @@ RBAC 角色可以授予你进行管理或数据层访问的权限。 例如，�
 1. 删除所有帐户，然后关闭存储资源管理器。
 2. 从计算机中删除 .IdentityService 文件夹。 在 Windows 中，该文件夹位于 `C:\users\<username>\AppData\Local`。 对于 Mac 和 Linux，可以在用户目录的根目录中找到该文件夹。
 3. 如果运行 Mac 或 Linux，则还需要从操作系统的密钥存储中删除 Microsoft.Developer.IdentityService 条目。 在 Mac 上，密钥存储是 *Gnome Keychain* 应用程序。 对于 Linux，该应用程序通常称为 _Keyring_，但名称可能会有所不同，具体取决于分发版。
+
+### <a name="conditional-access"></a>条件性访问
+
+由于存储资源管理器使用的 Azure AD 库中存在限制，在 Windows 10、Linux 或 macOS 上使用存储资源管理器时，不支持条件访问。
 
 ## <a name="mac-keychain-errors"></a>Mac 密钥链错误
 
@@ -332,7 +336,7 @@ snap connect storage-explorer:password-manager-service :password-manager-service
 2. 安装 [.NET Core 运行时](https://docs.microsoft.com/dotnet/core/install/linux)：
    ```bash
    wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb; \
-     dpkg -i packages-microsoft-prod.deb; \
+     sudo dpkg -i packages-microsoft-prod.deb; \
      sudo apt-get update; \
      sudo apt-get install -y apt-transport-https && \
      sudo apt-get update && \
@@ -345,7 +349,7 @@ snap connect storage-explorer:password-manager-service :password-manager-service
 2. 安装 [.NET Core 运行时](https://docs.microsoft.com/dotnet/core/install/linux)：
    ```bash
    wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb; \
-     dpkg -i packages-microsoft-prod.deb; \
+     sudo dpkg -i packages-microsoft-prod.deb; \
      sudo apt-get update; \
      sudo apt-get install -y apt-transport-https && \
      sudo apt-get update && \
@@ -358,7 +362,7 @@ snap connect storage-explorer:password-manager-service :password-manager-service
 2. 安装 [.NET Core 运行时](https://docs.microsoft.com/dotnet/core/install/linux)：
    ```bash
    wget https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb; \
-     dpkg -i packages-microsoft-prod.deb; \
+     sudo dpkg -i packages-microsoft-prod.deb; \
      sudo apt-get update; \
      sudo apt-get install -y apt-transport-https && \
      sudo apt-get update && \

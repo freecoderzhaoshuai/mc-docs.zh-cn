@@ -3,17 +3,17 @@ title: Azure 服务总线身份验证和授权 | Azure
 description: 使用共享访问签名 (SAS) 身份验证向服务总线验证应用程序。
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
 author: rockboyfor
-ms.openlocfilehash: 0f1d2b41f8e96e85534e3bf1962bdbca1be63ec2
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: bd84b7d38fcb708b40dee1185da58045116ba1c7
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162400"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947105"
 ---
 # <a name="service-bus-authentication-and-authorization"></a>服务总线身份验证和授权
 可通过两种方式验证和授权对 Azure 服务总线资源的访问：Azure Activity Directory (Azure AD) 和共享访问签名 (SAS)。 本文将详细介绍如何使用这两种类型的安全机制。 
@@ -35,7 +35,7 @@ ms.locfileid: "87162400"
 ## <a name="shared-access-signature"></a>共享访问签名
 通过 [SAS 身份验证](service-bus-sas.md)可向具有特定权限的用户授予对服务总线资源的访问权限。 服务总线中的 SAS 身份验证涉及配置具有服务总线资源相关权限的加密密钥。 客户端随后即可通过提供 SAS 令牌获取该资源的访问权限，该令牌由要访问的资源 URI 和签有已配置密钥的过期时间组成。
 
-可以在服务总线命名空间上配置用于 SAS 的密钥。 该密钥将应用到该命名空间中的所有消息传送实体。 还可在服务总线队列和主题上配置密钥。 [Azure 中继](../service-bus-relay/relay-authentication-and-authorization.md)也支持 SAS。
+可以在服务总线命名空间上配置用于 SAS 的密钥。 该密钥将应用到该命名空间中的所有消息传送实体。 还可在服务总线队列和主题上配置密钥。 [Azure 中继](../azure-relay/relay-authentication-and-authorization.md)也支持 SAS。
 
 若要使用 SAS，可以为命名空间、队列或主题配置 [SharedAccessAuthorizationRule](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule?view=azure-dotnet) 对象。 此规则由以下元素组成：
 
@@ -51,7 +51,7 @@ ms.locfileid: "87162400"
 Azure .NET SDK 2.0 版和更高版本支持服务总线的 SAS 身份验证。 SAS 支持 [SharedAccessAuthorizationRule](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule?view=azure-dotnet)。 允许将连接字符串作为参数的所有 API 都支持 SAS 连接字符串。
 
 > [!IMPORTANT]
-> 如果结合使用 Azure Active Directory 访问控制（又称为访问控制服务或 ACS）与服务总线，请注意当前对此方法的支持有限，应[迁移应用程序以使用 SAS](service-bus-migrate-acs-sas.md) 或通过 Azure AD 使用 OAuth 2.0 身份验证（推荐）。有关弃用 ACS 的详细信息，请参阅[此博客文章](https://blogs.msdn.microsoft.com/servicebus/2017/06/01/upcoming-changes-to-acs-enabled-namespaces/)。
+> 如果结合使用 Azure Active Directory 访问控制（又称为访问控制服务或 ACS）与服务总线，请注意当前对此方法的支持有限，应[迁移应用程序以使用 SAS](service-bus-migrate-acs-sas.md) 或通过 Azure AD 使用 OAuth 2.0 身份验证（推荐）。有关弃用 ACS 的详细信息，请参阅[此博客文章](https://docs.microsoft.com/archive/blogs/servicebus/upcoming-changes-to-acs-enabled-namespaces)。
 
 ## <a name="next-steps"></a>后续步骤
 有关使用 Azure AD 进行身份验证的详细信息，请参阅以下文章：

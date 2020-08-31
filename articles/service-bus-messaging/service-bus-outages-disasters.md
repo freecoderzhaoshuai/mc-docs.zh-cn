@@ -3,17 +3,17 @@ title: 使 Azure 服务总线应用程序免受服务中断和灾难影响
 description: 本文提供了用于保护应用程序免受潜在的 Azure 服务总线中断影响的技术。
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+ms.date: 08/31/2020
 ms.testscope: yes|no
-ms.testdate: 07/20/2020Null
+ms.testdate: 07/20/2020
 ms.author: v-yeche
 author: rockboyfor
-ms.openlocfilehash: d574364e3d6d6e0978c701ecce12df56db957862
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: b3a8a2e74cc44aad158b2634473ffb5983d801e1
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162329"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946940"
 ---
 # <a name="best-practices-for-insulating-applications-against-service-bus-outages-and-disasters"></a>使应用程序免受服务总线中断和灾难影响的最佳实践
 
@@ -67,7 +67,7 @@ ms.locfileid: "87162329"
 [使用服务总线标准层进行异地复制][Geo-replication with Service Bus Standard Tier]示例演示了消息传送实体的被动复制。
 
 ## <a name="protecting-relay-endpoints-against-datacenter-outages-or-disasters"></a>保护中继终结点免受数据中心中断或灾难的影响
-[Azure 中继](../service-bus-relay/relay-what-is-it.md)终结点的异地复制使得公开中继终结点的服务在服务总线中断时可用。 若要实现异地复制，该服务必须在不同的命名空间中创建两个中继终结点。 命名空间必须位于不同的数据中心，且两个终结点必须具有不同的名称。 例如，可在 **contosoPrimary.servicebus.chinacloudapi.cn/myPrimaryService** 下访问主要终结点，而在 **contosoSecondary.servicebus.chinacloudapi.cn/mySecondaryService** 下访问其辅助终结点。
+[Azure 中继](../azure-relay/relay-what-is-it.md)终结点的异地复制使得公开中继终结点的服务在服务总线中断时可用。 若要实现异地复制，该服务必须在不同的命名空间中创建两个中继终结点。 命名空间必须位于不同的数据中心，且两个终结点必须具有不同的名称。 例如，可在 **contosoPrimary.servicebus.chinacloudapi.cn/myPrimaryService** 下访问主要终结点，而在 **contosoSecondary.servicebus.chinacloudapi.cn/mySecondaryService** 下访问其辅助终结点。
 
 该服务随后侦听两个终结点，客户端可通过其中任一终结点调用服务。 客户端应用程序随机选取一个中继作为主要终结点，并向活动终结点发送请求。 如果操作失败并返回错误代码，此故障指示中继终结点不可用。 应用程序会打开通向备份终结点的通道并重新发送请求。 此时，活动终结点与备份终结点将互换角色：客户端应用程序会将旧的活动终结点认定为新的备份终结点，而将旧的备份终结点认定为新的活动终结点。 如果两次发送操作都失败，则两个实体的角色将保持不变并返回错误。
 
@@ -76,7 +76,8 @@ ms.locfileid: "87162329"
 
 * [Azure 服务总线异地灾难恢复](service-bus-geo-dr.md)
 * [Azure SQL 数据库业务连续性][Azure SQL Database Business Continuity]
-* [设计适用于 Azure 的弹性应用程序][Azure resiliency technical guidance]
+
+<!--Not Avaialble on * [Designing resilient applications for Azure][Azure resiliency technical guidance]-->
 
 [Service Bus Authentication]: service-bus-authentication-and-authorization.md
 [Partitioned messaging entities]: service-bus-partitioning.md
@@ -88,7 +89,8 @@ ms.locfileid: "87162329"
 
 [Geo-replication with Service Bus Standard Tier]: https://github.com/Azure/azure-service-bus/tree/master/samples/DotNet/Microsoft.ServiceBus.Messaging/GeoReplication
 [Azure SQL Database Business Continuity]:../azure-sql/database/business-continuity-high-availability-disaster-recover-hadr-overview.md
-[Azure resiliency technical guidance]: https://docs.microsoft.com/azure/architecture/resiliency
+
+<!--Not Avaialble on [Azure resiliency technical guidance]: https://docs.microsoft.com/azure/architecture/resiliency-->
 
 [1]: ./media/service-bus-outages-disasters/az.png
 

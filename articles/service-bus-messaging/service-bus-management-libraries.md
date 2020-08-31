@@ -4,17 +4,17 @@ description: 本文介绍如何使用 Azure 服务总线管理库动态预配服
 ms.devlang: dotnet
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+ms.date: 08/31/2020
 ms.testscope: yes
 ms.testdate: 07/20/2020
 ms.author: v-yeche
 author: rockboyfor
-ms.openlocfilehash: 09cca43dfa40ba98d5f4cec692598bf9b13df651
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: f083eccb43d6f5767237da1c783bffee3d9bbaaa
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162431"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947064"
 ---
 # <a name="service-bus-management-libraries"></a>服务总线管理库
 
@@ -31,11 +31,11 @@ Azure 服务总线管理库可以动态预配服务总线命名空间和实体�
 
 若要开始使用服务总线管理库，必须使用 Azure Active Directory (Azure AD) 服务进行身份验证。 Azure AD 要求身份验证为服务主体，并且该主体提供对 Azure 资源的访问权限。 有关创建服务主体的信息，请参阅以下文章之一：  
 
-* [使用 Azure 门户创建可访问资源的 Active Directory 应用程序和服务主体](/azure-resource-manager/resource-group-create-service-principal-portal)
-* [使用 Azure PowerShell 创建服务主体来访问资源](/azure-resource-manager/resource-group-authenticate-service-principal)
-* [使用 Azure CLI 创建服务主体来访问资源](/azure-resource-manager/resource-group-authenticate-service-principal-cli)
+* [使用 Azure 门户创建可访问资源的 Active Directory 应用程序和服务主体](../active-directory/develop/howto-create-service-principal-portal.md)
+* [使用 Azure PowerShell 创建服务主体来访问资源](../active-directory/develop/howto-authenticate-service-principal-powershell.md)
+* [使用 Azure CLI 创建服务主体来访问资源](https://docs.azure.cn/cli/create-an-azure-service-principal-azure-cli?view=azure-cli-latest)
 
-这些教程提供 `AppId`（客户端 ID）、`TenantId` 和 `ClientSecret`（身份验证密钥），这些都将用于管理库进行的身份验证。 对于用于运行的资源组，需要至少具有 [Azure 服务总线数据所有者](/role-based-access-control/built-in-roles#azure-service-bus-data-owner)或[参与者](/role-based-access-control/built-in-roles#contributor)权限 。
+这些教程提供 `AppId`（客户端 ID）、`TenantId` 和 `ClientSecret`（身份验证密钥），这些都将用于管理库进行的身份验证。 对于用于运行的资源组，需要至少具有 [Azure 服务总线数据所有者](../role-based-access-control/built-in-roles.md#azure-service-bus-data-owner)或[参与者](../role-based-access-control/built-in-roles.md#contributor)权限 。
 
 ## <a name="programming-pattern"></a>编程模式
 

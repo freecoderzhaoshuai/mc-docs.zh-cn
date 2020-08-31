@@ -10,14 +10,14 @@ ms.topic: overview
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 origin.date: 06/04/2020
-ms.date: 07/20/2020
+ms.date: 08/31/2020
 ms.author: v-jay
-ms.openlocfilehash: f85de529cb12e6a3d29b300cb039575c0fc321e2
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.openlocfilehash: 9e273591fef2e48fe7a998fd3070308866919e8e
+ms.sourcegitcommit: f8ed85740f873c15c239ab6ba753e4b76e030ba7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440509"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045802"
 ---
 # <a name="azure-load-balancer-components"></a>Azure 负载均衡器组件
 
@@ -40,7 +40,7 @@ IP 地址的性质决定了所创建的负载均衡器的类型。 选择“专�
 |  | 公共负载均衡器  | Internal 负载均衡器（内部负载均衡器） |
 | ---------- | ---------- | ---------- |
 | 前端 IP 配置| 公共 IP 地址 | 专用 IP 地址|
-| 说明 | 公共负载均衡器将传入流量的公共 IP 和端口映射到 VM 的专用 IP 和端口。 负载均衡器将来自 VM 的响应流量映射到另一个方向。 你可以通过应用负载均衡规则，在多个 VM 或服务之间分配特定类型的流量。 例如，可将 Web 请求流量负载分配到多个 Web 服务器。| 内部负载均衡器将流量分配给虚拟网络内的各个资源。 Azure 会限制对虚拟网络的负载均衡前端 IP 地址的访问。 前端 IP 地址和虚拟网络不会直接在 Internet 终结点上公开。 内部业务线应用程序可在 Azure 中运行，并可从 Azure 内或从本地资源访问这些应用程序。 |
+| **说明** | 公共负载均衡器将传入流量的公共 IP 和端口映射到 VM 的专用 IP 和端口。 负载均衡器将来自 VM 的响应流量映射到另一个方向。 你可以通过应用负载均衡规则，在多个 VM 或服务之间分配特定类型的流量。 例如，可将 Web 请求流量负载分配到多个 Web 服务器。| 内部负载均衡器将流量分配给虚拟网络内的各个资源。 Azure 会限制对虚拟网络的负载均衡前端 IP 地址的访问。 前端 IP 地址和虚拟网络不会直接在 Internet 终结点上公开。 内部业务线应用程序可在 Azure 中运行，并可从 Azure 内或从本地资源访问这些应用程序。 |
 | 支持的 SKU | 基本、标准 | 基本、标准 |
 
 ![分层的负载均衡器示例](./media/load-balancer-overview/load-balancer.png)
@@ -76,7 +76,7 @@ IP 地址的性质决定了所创建的负载均衡器的类型。 选择“专�
 例如，使用端口 80 的负载均衡规则将流量从前端 IP 路由到后端实例的端口 80。
 
 <p align="center">
-  <img src="./media/load-balancer-components/lbrules.svg" width="512" title="负载均衡规则">
+  <img src="./media/load-balancer-components/lbrules.svg" alt= "Figure depicts how Azure Load Balancer directs frontend port 80 to three instances of backend port 80." width="512" title="负载均衡规则">
 </p>
 
 图：负载均衡规则
@@ -98,7 +98,7 @@ IP 地址的性质决定了所创建的负载均衡器的类型。 选择“专�
 HA 端口负载均衡规则可帮助实现关键方案，如虚拟网络内部网络虚拟设备 (NVA) 的高可用性和缩放。 当大量端口必须进行负载均衡时，此功能可以帮助完成。
 
 <p align="center">
-  <img src="./media/load-balancer-components/harules.svg" width="512" title="HA 端口规则">
+  <img src="./media/load-balancer-components/harules.svg" alt="Figure depicts how Azure Load Balancer directs all frontend ports to three instances of all backend ports" width="512" title="HA 端口规则">
 </p>
 
 图：HA 端口规则
@@ -112,7 +112,7 @@ HA 端口负载均衡规则可帮助实现关键方案，如虚拟网络内部�
 例如需要让远程桌面协议 (RDP) 或安全外壳 (SSH) 会话对后端池中的 VM 实例进行分隔。 可将多个内部终结点映射到同一前端 IP 地址上的多个端口。 可以使用前端 IP 地址来远程管理 VM，无需额外配置跳转盒。
 
 <p align="center">
-  <img src="./media/load-balancer-components/inboundnatrules.svg" width="512" title="入站 NAT 规则">
+  <img src="./media/load-balancer-components/inboundnatrules.svg" alt="Figure depicts how Azure Load Balancer directs frontend ports 3389, 443, and 80 to backend ports with the same values on separate servers." width="512" title="入站 NAT 规则">
 </p>
 
 图：入站 NAT 规则

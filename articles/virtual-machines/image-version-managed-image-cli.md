@@ -7,15 +7,18 @@ ms.subservice: imaging
 ms.topic: how-to
 ms.workload: infrastructure
 origin.date: 05/04/2020
-ms.date: 07/06/2020
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.reviewer: akjosh
-ms.openlocfilehash: 6d3a9ebc98d885541ff5ef1b2558f20ffebdbe87
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: ad9ed7ebc5a7d883dbac5b894ecf946386a1ed2d
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945996"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052389"
 ---
 # <a name="migrate-from-a-managed-image-to-an-image-version-using-the-azure-cli"></a>使用 Azure CLI 从托管映像迁移到映像版本
 如果打算将现有托管映像迁移到共享映像库，可以直接从托管映像创建共享映像库映像。 测试新映像后，可以删除源托管映像。 还可以使用 [PowerShell](image-version-managed-image-powershell.md) 从托管映像迁移到共享映像库。
@@ -38,9 +41,9 @@ ms.locfileid: "85945996"
 
 映像定义名称可能包含大写或小写字母、数字、点、短划线和句点。 
 
-若要详细了解可为映像定义指定的值，请参阅[映像定义](/virtual-machines/linux/shared-image-galleries#image-definitions)。
+若要详细了解可为映像定义指定的值，请参阅[映像定义](./linux/shared-image-galleries.md#image-definitions)。
 
-使用 [az sig image-definition create](https://docs.microsoft.com/cli/azure/sig/image-definition?view=azure-cli-latest#az-sig-image-definition-create) 在库中创建一个映像定义。
+使用 [az sig image-definition create](https://docs.microsoft.com/cli/azure/sig?view=azure-cli-latest#az-sig-image-definition-create) 在库中创建一个映像定义。
 
 在此示例中，映像定义名为 myImageDefinition，适用于[通用化](./linux/shared-image-galleries.md#generalized-and-specialized-images) Linux OS 映像。 若要使用 Windows OS 创建映像的定义，请使用 `--os-type Windows`。 
 
@@ -61,7 +64,7 @@ az sig image-definition create \
 
 ## <a name="create-the-image-version"></a>创建映像版本
 
-使用 [az image gallery create-image-version](https://docs.microsoft.com/cli/azure/sig/image-version?view=azure-cli-latest#az-sig-image-version-create) 创建版本。 你需要传入托管映像的 ID 以作为创建映像版本时要使用的基线。 可以使用 [az image list](https://docs.azure.cn/cli/image?view?view=azure-cli-latest#az-image-list) 获取映像的 ID。 
+使用 [az image gallery create-image-version](https://docs.microsoft.com/cli/azure/sig?view=azure-cli-latest#az-sig-image-version-create) 创建版本。 你需要传入托管映像的 ID 以作为创建映像版本时要使用的基线。 可以使用 [az image list](https://docs.azure.cn/cli/image?view?view=azure-cli-latest#az-image-list) 获取映像的 ID。 
 
 ```azurecli
 az image list --query "[].[name, id]" -o tsv
@@ -80,10 +83,12 @@ az sig image-version create \
    --gallery-name $gallery \
    --gallery-image-definition $imageDef \
    --gallery-image-version 1.0.0 \
-   --target-regions "chinaeast=1" "chinaeast2=1=premium_lrs" \
+   --target-regions "chinaeast=1" "chinaeast2=1=standard_lrs" \
    --replica-count 2 \
    --managed-image $imageID
 ```
+
+<!--CORRECT ON "chinaeast=1" "chinaeast2=1=standard_lrs"-->
 
 > [!NOTE]
 > 需等待映像版本彻底生成并复制完毕，然后才能使用同一托管映像来创建另一映像版本。
@@ -95,5 +100,6 @@ az sig image-version create \
 
 从[通用化映像版本](vm-generalized-image-version-cli.md)创建 VM。
 
-<!-- Update_Description: new article about image version managed image cli -->
-<!--NEW.date: 06/01/2020-->
+<!--Not Available on For information about how to supply purchase plan information, see [Supply Azure Marketplace purchase plan information when creating images](marketplace-images.md).-->
+
+<!-- Update_Description: update meta properties, wording update, update link -->

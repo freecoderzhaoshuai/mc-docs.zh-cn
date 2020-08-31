@@ -3,22 +3,22 @@ title: 使用 Active Directory 联合身份验证服务 (AD FS) 将 Kubernetes �
 description: 了解如何使用 Active Directory 联合身份验证服务 (AD FS) 将 Kubernetes 部署到 Azure Stack Hub。
 author: WenJason
 ms.topic: article
-origin.date: 3/12/2020
-ms.date: 06/22/2020
+origin.date: 07/24/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: waltero
 ms.lastreviewed: 3/12/2020
-ms.openlocfilehash: 03431cbb9cd2e6942fb775f56e7b7c3b6cfd2505
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 8157fc49c4cff68c400c24f9f97272517ee2e5a5
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096856"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867805"
 ---
 # <a name="deploy-kubernetes-to-azure-stack-hub-using-active-directory-federated-services"></a>使用 Active Directory 联合身份验证服务将 Kubernetes 部署到 Azure Stack Hub
 
 > [!Note]  
-> 仅使用 Kubernetes Azure Stack 市场项将群集部署为概念证明。 有关 Azure Stack 上支持的 Kubernetes 群集，请使用  [AKS 引擎](azure-stack-kubernetes-aks-engine-overview.md)。
+> 仅使用 Kubernetes Azure Stack 市场项将部署群集作为概念证明。 有关 Azure Stack 上支持的 Kubernetes 群集，请使用 [AKS 引擎](azure-stack-kubernetes-aks-engine-overview.md)。
 
 可以按照本文中的步骤部署和设置 Kubernetes 的资源。 如果 Active Directory 联合身份验证服务 (AD FS) 是你的标识管理服务，请按照这些步骤进行操作。
 

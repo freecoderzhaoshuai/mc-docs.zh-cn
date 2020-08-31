@@ -8,15 +8,15 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 05/28/2020
+ms.date: 08/19/2020
 ms.author: v-junlch
 ms.custom: aaddev
-ms.openlocfilehash: df875d7661069e79e877af43943165b430a0489a
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: 20b612052b59db1e1c8f56175bda95ad0437bdfb
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186861"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647666"
 ---
 # <a name="a-web-app-that-calls-web-apis-remove-accounts-from-the-token-cache-on-global-sign-out"></a>调用 Web API 的 Web 应用：在全局注销时从令牌缓存中删除帐户
 
@@ -30,7 +30,7 @@ ms.locfileid: "84186861"
 
 # <a name="aspnet-core"></a>[ASP.NET Core](#tab/aspnetcore)
 
-Microsoft.Identity.Web 负责为你实现注销。
+Microsoft.Identity.Web 负责为你实现注销。 有关详细信息，请参阅 [Microsoft.Identity.Web 源代码](https://github.com/AzureAD/microsoft-identity-web/blob/c29f1a7950b940208440bebf0bcb524a7d6bee22/src/Microsoft.Identity.Web/WebAppExtensions/WebAppCallsWebApiAuthenticationBuilderExtensions.cs#L168-L176)
 
 # <a name="aspnet"></a>[ASP.NET](#tab/aspnet)
 
@@ -51,22 +51,22 @@ Python 示例不会在全局注销时删除缓存中的帐户。
 # <a name="aspnet-core"></a>[ASP.NET Core](#tab/aspnetcore)
 
 > [!div class="nextstepaction"]
-> [获取 Web 应用的令牌](/active-directory/develop/scenario-web-app-call-api-acquire-token?tabs=aspnetcore)
+> [获取 Web 应用的令牌](./scenario-web-app-call-api-acquire-token.md?tabs=aspnetcore)
 
 # <a name="aspnet"></a>[ASP.NET](#tab/aspnet)
 
 > [!div class="nextstepaction"]
-> [获取 Web 应用的令牌](/active-directory/develop/scenario-web-app-call-api-acquire-token?tabs=aspnet)
+> [获取 Web 应用的令牌](./scenario-web-app-call-api-acquire-token.md?tabs=aspnet)
 
 # <a name="java"></a>[Java](#tab/java)
 
 > [!div class="nextstepaction"]
-> [获取 Web 应用的令牌](/active-directory/develop/scenario-web-app-call-api-acquire-token?tabs=java)
+> [获取 Web 应用的令牌](./scenario-web-app-call-api-acquire-token.md?tabs=java)
 
 # <a name="python"></a>[Python](#tab/python)
 
 > [!div class="nextstepaction"]
-> [获取 Web 应用的令牌](/active-directory/develop/scenario-web-app-call-api-acquire-token?tabs=python)
+> [获取 Web 应用的令牌](./scenario-web-app-call-api-acquire-token.md?tabs=python)
 
 ---
 

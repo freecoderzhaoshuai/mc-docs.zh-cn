@@ -3,17 +3,17 @@ title: 使用 Azure 服务总线提高性能的最佳做法
 description: 介绍如何使用服务总线在交换中转消息时优化性能。
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
 author: rockboyfor
-ms.openlocfilehash: 6fc4e00f27f95af60cd6d0c509fc23c5e790fdf2
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 93760a173f7f405e80155af8c9590d5b431aa02f
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162361"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946993"
 ---
 # <a name="best-practices-for-performance-improvements-using-service-bus-messaging"></a>使用服务总线消息传递改进性能的最佳实践
 
@@ -409,16 +409,16 @@ var queue = namespaceManager.CreateQueue(queueDescription);
 
 <!-- .NET Framework SDK, Microsoft.Azure.ServiceBus -->
 
+<!--Available on Azure China now-->
+
 [MessagingFactory]: https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.messagingfactory
 [BatchFlushInterval]: https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.messagesender.batchflushinterval
 [ForcePersistence]: https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.forcepersistence
 [EnablePartitioning]: https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.queuedescription.enablepartitioning
 [TopicDescription.EnableFiltering]: https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.topicdescription.enablefilteringmessagesbeforepublishing
 
-<!--Available on Azure China now-->
-
 <!-- Local links -->
 
 [Partitioned messaging entities]: service-bus-partitioning.md
 
-<!-- Update_Description: update meta properties, wording update, update link?view=azure-dotnet -->
+<!-- Update_Description: update meta properties, wording update, update link -->

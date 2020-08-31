@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: conceptual
 origin.date: 09/15/2019
 ms.date: 08/13/2020
-ms.openlocfilehash: b236ac58c042eeee3e4cf6b20b3b7f09201cffa5
-ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
+ms.openlocfilehash: 14f735403c084f6379d070a0aa050b1a94370da7
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/18/2020
-ms.locfileid: "88515857"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951299"
 ---
 # <a name="use-azure-data-factory-command-activity-to-run-azure-data-explorer-control-commands"></a>使用 Azure 数据工厂命令活动运行 Azure 数据资源管理器控制命令
 
@@ -153,7 +153,7 @@ ms.locfileid: "88515857"
     > 命令活动具有以下限制：
     > * 大小限制：1 MB 响应大小
     > * 时间限制：20 分钟（默认），1 小时（最大）。
-    > * 如果需要，可以使用 [AdminThenQuery](https://docs.microsoft.com/azure/kusto/management/index#combining-queries-and-control-commands) 将查询追加到结果，以减少最终的大小/时间。
+    > * 如果需要，可以使用 [AdminThenQuery](https://docs.azure.cn/kusto/management/index#combining-queries-and-control-commands) 将查询追加到结果，以减少最终的大小/时间。
 
 1. 管道现已准备就绪。 可以单击管道名称返回到主管道视图。
 

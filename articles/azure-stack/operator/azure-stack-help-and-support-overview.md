@@ -4,20 +4,18 @@ description: 获取 Microsoft Azure Stack Hub 的支持。
 author: WenJason
 ms.topic: article
 origin.date: 02/26/2020
-ms.date: 07/20/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: shisab
 ms.lastreviewed: 02/26/2020
-ms.openlocfilehash: 6349d20ee0ca5b63e92a32846cadab710d9d56a8
-ms.sourcegitcommit: e9ffd50aa5eaab402a94bfabfc70de6967fe6278
+ms.openlocfilehash: 217cf7c72de86a3bdc00f8e0dc265e028860681c
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2020
-ms.locfileid: "86307749"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867967"
 ---
 # <a name="azure-stack-hub-help-and-support"></a>Azure Stack Hub 帮助和支持
-
-::: moniker range=">= azs-2002"
 
 Azure Stack Hub 操作员可以使用“帮助 + 支持”收集诊断日志并将其发送到 Microsoft 进行故障排除。 可以从管理员门户访问 Azure Stack Hub 门户中的“帮助 + 支持”。 它提供一些资源，可帮助操作员了解有关 Azure Stack 的详细信息、查看其支持选项并获得专家帮助。  
 
@@ -67,13 +65,10 @@ Azure Stack Hub 操作员可以使用“帮助 + 支持”收集诊断日志并�
 
 可以通过两种方式将诊断日志发送到 Microsoft：
 
-- [主动发送日志](azure-stack-configure-automatic-diagnostic-log-collection-tzl.md)：如果启用，日志收集将由特定的运行状况警报触发。
-- [立即发送日志](azure-stack-configure-on-demand-diagnostic-log-collection-portal-tzl.md)：可以手动选择特定滑动窗口作为日志收集的时间范围。
+- [主动发送日志](./azure-stack-configure-automatic-diagnostic-log-collection.md?view=azs-2002)：如果启用，日志收集将由特定的运行状况警报触发。
+- [立即发送日志](./azure-stack-configure-on-demand-diagnostic-log-collection-portal.md?view=azs-2002)：可以手动选择特定滑动窗口作为日志收集的时间范围。
 
 ![诊断日志收集选项](media/azure-stack-help-and-support/banner-enable-automatic-log-collection.png)
-
-::: moniker-end
-::: moniker range="<= azs-1910"
 
 ## <a name="diagnostic-log-collection"></a>诊断日志收集
 
@@ -102,10 +97,8 @@ Azure Stack Hub 操作员可以使用“帮助 + 支持”收集诊断日志并�
 
 选择管理员门户右上角的“帮助”（问号），然后选择“新建支持请求”，从 Azure Stack Hub 社区的专家处获取帮助 。 由于 ASDK 是一个评估环境，因此我们不会通过 Azure 支持提供官方支持。
 
-::: moniker-end
-
 ## <a name="next-steps"></a>后续步骤
 
-- 了解[诊断日志收集](azure-stack-diagnostic-log-collection-overview-tzl.md)。
+- 了解[诊断日志收集](./azure-stack-diagnostic-log-collection-overview.md?view=azs-2002)。
 - 了解如何[查找云 ID](azure-stack-find-cloud-id.md)。
 - 了解如何[排查 Azure Stack Hub 问题](azure-stack-troubleshooting.md)。

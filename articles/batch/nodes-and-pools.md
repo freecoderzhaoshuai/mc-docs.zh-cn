@@ -2,14 +2,17 @@
 title: Azure Batch 中的节点和池
 description: 从开发的角度来了解计算节点和池及其在 Azure Batch 工作流中的运用。
 ms.topic: conceptual
-origin.date: 05/12/2020
-ms.date: 06/28/2020
-ms.openlocfilehash: 5bcce7d4821e5e8b331f3648bc02f9ca0470300e
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+origin.date: 06/16/2020
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: 06/28/2020
+ms.author: v-yeche
+ms.openlocfilehash: 56358c40910a5e23ba6beda38d099585a71e9c4c
+ms.sourcegitcommit: e633c458126612223fbf7a8853dbf19acc7f0fa5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85706581"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88654996"
 ---
 # <a name="nodes-and-pools-in-azure-batch"></a>Azure Batch 中的节点和池
 
@@ -19,7 +22,7 @@ ms.locfileid: "85706581"
 
 节点是专门用于处理一部分应用程序工作负荷的 Azure 虚拟机 (VM) 或云服务 VM。 节点大小确定了 CPU 核心数目、内存容量，以及分配给节点的本地文件系统大小。
 
-可以使用 [Azure 虚拟机市场](https://market.azure.cn/marketplace/apps/filter?filters=virtual-machine-images)提供的 Azure 云服务映像或自己准备的自定义映像创建 Windows 或 Linux 节点池。
+可以使用 [Azure 虚拟机市场](https://market.azure.cn/marketplace/apps/filter?search=compute&filters=virtual-machine-images&page=1)提供的 Azure 云服务映像或自己准备的自定义映像创建 Windows 或 Linux 节点池。
 
 节点可以运行节点操作系统环境支持的任何可执行文件或脚本。 可执行文件或脚本包括 \*.exe、\*.cmd、\*.bat 和 PowerShell 脚本（适用于 Windows），以及二进制文件、shell 和 Python 脚本（适用于 Linux）。
 
@@ -28,6 +31,8 @@ Batch 中的所有计算节点还包括：
 - 任务可引用的标准[文件夹结构](files-and-directories.md)和关联的[环境变量](jobs-and-tasks.md)。
 - **防火墙** 设置。
 - [远程访问](error-handling.md#connect-to-compute-nodes) Windows（远程桌面协议 (RDP)）和 Linux（安全外壳 (SSH)）节点。
+
+默认情况下，节点可以彼此通信，但无法与不属于同一池的虚拟机通信。 若要允许节点安全地与其他虚拟机或本地网络通信，可以[在 Azure 虚拟网络 (VNet) 的子网中](batch-virtual-network.md)预配该池。 当你这样做时，可以通过公共 IP 地址访问节点。 这些公共 IP 地址由 Batch 创建，可能会在池的生存期内更改。 你还可以[创建具有所控制的静态公共 IP 地址的池](create-pool-public-ip.md)，这样可确保它们不会意外更改。
 
 ## <a name="pools"></a>池
 
@@ -89,28 +94,37 @@ Batch 中提供了两种类型的池配置。
 
 ### <a name="container-support-in-virtual-machine-pools"></a>虚拟机池中的容器支持
 
-使用 Batch API 创建虚拟机配置池时，可以将池设置为在 Docker 容器中运行任务。 目前，必须使用支持 Docker 容器的映像创建池。 将 Windows Server 2016 Datacenter 与 Azure 市场中的容器映像配合使用，或者提供自定义 VM 映像（其中包含 Docker Community Edition 或 Enterprise Edition 以及任何必需的驱动程序）。 池设置必须包括[容器配置](/rest/api/batchservice/pool/add)，该配置在创建池时将容器映像复制到 VM。 然后，在池中运行的任务即可引用容器映像和容器运行选项。
+使用 Batch API 创建虚拟机配置池时，可以将池设置为在 Docker 容器中运行任务。 目前，必须使用支持 Docker 容器的映像创建池。 将 Windows Server 2016 Datacenter 与 Azure 市场中的容器映像配合使用，或者提供自定义 VM 映像（其中包含 Docker Community Edition 或 Enterprise Edition 以及任何必需的驱动程序）。 池设置必须包括[容器配置](https://docs.microsoft.com/rest/api/batchservice/pool/add)，该配置在创建池时将容器映像复制到 VM。 然后，在池中运行的任务即可引用容器映像和容器运行选项。
 
 有关详细信息，请参阅[在 Azure Batch 上运行 Docker 容器应用程序](batch-docker-container-workloads.md)。
+
+<!--MOONCAKE CUSTOMIZE ON 08/19/2020-->
 
 ## <a name="node-type-and-target"></a>节点类型和目标
 
 创建池时，可以指定所需的节点类型和每种类型的目标节点数。 有两种类型的节点：
 
-- 专用节点。 专用计算节点将为工作负荷保留。 它们比低优先级节点开销高，但可确保永远不会被抢占。
-- 低优先级节点。 低优先级节点利用 Azure 中的多余容量运行 Batch 工作负荷。 低优先级节点每小时的成本比专用节点低，可支持需要大量计算能力的工作负荷。 有关详细信息，请参阅[在 Batch 中使用低优先级 VM](batch-low-pri-vms.md)。
+- 专用节点。 专用计算节点将为工作负荷保留。 保证它们永远不会被抢占。
 
-当 Azure 的多余容量不足时，低优先级节点可能会被抢占。 如果某个节点在运行任务时被抢占，这些任务将重新排队并在计算节点重新变为可用后，重新运行。 对于作业完成时间很灵活且工作分布在多个节点上的工作负荷来说，低优先级节点是一个很好选择。 在决定为自己的方案使用低优先级节点之前，请确保会因其他资源优先使用而导致丢失的工作是最少的，且这些工作易于重新创建。
+    <!--Not Available on are more expensive than low-priority nodes-->
+    <!--Not Available on - **Low-priority nodes.** -->
 
-在同一池中可同时有低优先级计算节点和专用计算节点。 每种类型的节点都有其自己的目标设置，你可以为其指定所需的节点数。
+<!--Not Avaialble on Low-priority nodes may be preempted when Azure has insufficient surplus capacity. If a node is preempted while running tasks, the tasks are requeued and run again once a compute node becomes available again. Low-priority nodes are a good option for workloads where the job completion time is flexible and the work is distributed across many nodes. Before you decide to use low-priority nodes for your scenario, make sure that any work lost due to pre-emption will be minimal and easy to recreate.-->
+
+专用类型的节点有其自己的目标设置，你可以为其指定所需的节点数。
 
 计算节点数之所以称为*目标*，是因为在某些情况下，池可能无法达到所需的节点数。 例如，如果池先达到了 Batch 帐户的[核心配额](batch-quota-limit.md)，则该池可能达不到目标。 或者，如果已将限制最大节点数的自动缩放公式应用于池，则该池也可能达不到目标。
 
-有关低优先级节点和专用节点的定价信息，请参阅 [Batch 定价](https://www.azure.cn/pricing/details/batch/)。
+有关专用节点的定价信息，请参阅 [Batch 定价](https://www.azure.cn/pricing/details/batch/)。
+
+<!--Not Avaialble on both low-priority and-->
+<!--MOONCAKE CUSTOMIZE ON 08/19/2020-->
 
 ## <a name="node-size"></a>节点大小
 
-创建 Azure Batch 池时，可以在 Azure 提供的几乎所有 VM 系列和大小中进行选择。 Azure 提供一系列适用于不同工作负荷的 VM 大小，包括专用[启用了 GPU](../virtual-machines/linux/sizes-gpu.md) 的 VM 大小。 
+创建 Azure Batch 池时，可以在 Azure 提供的几乎所有 VM 系列和大小中进行选择。 Azure 提供一系列适用于不同工作负荷的 VM 大小，包括专用[启用了 GPU](../virtual-machines/sizes-gpu.md) 的 VM 大小。 
+
+<!--Not Available on [HPC](../virtual-machines/sizes-hpc.md)-->
 
 有关详细信息，请参阅[在 Azure Batch 池中选择适用于计算节点的 VM 大小](batch-pool-vm-sizes.md)。
 
@@ -118,7 +132,7 @@ Batch 中提供了两种类型的池配置。
 
 对于动态工作负荷，可以将自动缩放策略应用于池。 Batch 服务将定期评估公式，并根据计算方案的当前工作负载和资源使用情况动态调整池中的节点数目。 这样，便可做到只使用所需资源并可释放不需要的资源，因而能够降低运行应用程序的整体成本。
 
-可通过编写 [自动缩放公式](batch-automatic-scaling.md#automatic-scaling-formulas) 并将该公式与池相关联，来启用自动缩放。 Batch 服务使用该公式来确定池中下一个缩放间隔（可配置的间隔）的目标节点数目。 可以在创建池时指定池的自动缩放设置，或稍后在池上启用缩放。 还可以更新已启用缩放的池上的缩放设置。
+可通过编写 [自动缩放公式](batch-automatic-scaling.md#autoscale-formulas) 并将该公式与池相关联，来启用自动缩放。 Batch 服务使用该公式来确定池中下一个缩放间隔（可配置的间隔）的目标节点数目。 可以在创建池时指定池的自动缩放设置，或稍后在池上启用缩放。 还可以更新已启用缩放的池上的缩放设置。
 
 例如，也许某个作业需要提交大量要执行的任务。 你可以将缩放公式分配到池，以根据当前的排队任务数和作业中任务的完成率来调整池中的节点数目。 Batch 服务将定期评估公式，并根据工作负荷和其他公式设置来调整池的大小。 该服务在有大量排队的任务时按需添加节点，在没有排队的任务或正在运行的任务时删除节点。
 
@@ -163,13 +177,16 @@ Batch 中提供了两种类型的池配置。
 
 ## <a name="virtual-network-vnet-and-firewall-configuration"></a>虚拟网络 (VNet) 和防火墙配置
 
-在 Batch 中预配计算节点池时，可以将池与 Azure [虚拟网络 (VNet)](../virtual-network/virtual-networks-overview.md) 的子网相关联。 若要使用 Azure VNet，Batch 客户端 API 必须使用 Azure Active Directory (AD) 身份验证。 有关 Azure AD 的 Azure Batch 支持，请参阅[使用 Active Directory 对 Batch 服务解决方案进行身份验证](batch-aad-auth.md)。  
+在 Batch 中预配计算节点池时，可以将池与 Azure [虚拟网络 (VNet)](../virtual-network/virtual-networks-overview.md) 的子网相关联。 若要使用 Azure VNet，Batch 客户端 API 必须使用 Azure Active Directory (AD) 身份验证。 有关 Azure AD 的 Azure Batch 支持，请参阅[使用 Active Directory 对 Batch 服务解决方案进行身份验证](batch-aad-auth.md)。
 
 ### <a name="vnet-requirements"></a>VNet 要求
 
 [!INCLUDE [batch-virtual-network-ports](../../includes/batch-virtual-network-ports.md)]
 
 若要详细了解如何在 VNet 中设置 Batch 池，请参阅[通过虚拟网络创建虚拟机池](batch-virtual-network.md)。
+
+> [!TIP]
+> 若要确保用于访问节点的公共 IP 地址不会更改，可以[使用所控制的指定公共 IP 地址创建池](create-pool-public-ip.md)。
 
 ## <a name="pool-and-compute-node-lifetime"></a>池和计算节点生存期
 
@@ -185,7 +202,7 @@ Batch 中提供了两种类型的池配置。
 
 在加密或解密任务的敏感信息（例如 [Azure 存储帐户](accounts.md#azure-storage-accounts)的密钥）时，通常需要使用证书。 为此，可以在节点上安装证书。 加密的机密通过命令行参数或内嵌在某个任务资源中来传递给任务，已安装的证书可用于解密机密。
 
-可以使用[添加证书](https://docs.microsoft.com/rest/api/batchservice/certificate/add)操作 (Batch REST) 或 [CertificateOperations.CreateCertificate](https://docs.microsoft.com/dotnet/api/microsoft.azure.batch.certificateoperations) 方法 (Batch .NET) 将证书添加到 Batch 帐户。 然后，可以将该证书与新池或现有池相关联。
+可以使用[添加证书](https://docs.microsoft.com/rest/api/batchservice/certificate/add)操作 (Batch REST) 或 [CertificateOperations.CreateCertificate](https://docs.azure.cn/dotnet/api/microsoft.azure.batch.certificateoperations?view=azure-dotnet) 方法 (Batch .NET) 将证书添加到 Batch 帐户。 然后，可以将该证书与新池或现有池相关联。
 
 将证书与池关联后，Batch 服务将在池中的每个节点上安装该证书。 在启动节点之后、启动任何任务（包括[启动任务](jobs-and-tasks.md#start-task)和[作业管理器任务](jobs-and-tasks.md#job-manager-task)）之前，Batch 服务将安装相应的证书。
 
@@ -194,3 +211,5 @@ Batch 中提供了两种类型的池配置。
 ## <a name="next-steps"></a>后续步骤
 
 - 了解[作业和任务](jobs-and-tasks.md)。
+
+<!-- Update_Description: update meta properties, wording update, update link -->

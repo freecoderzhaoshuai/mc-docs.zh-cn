@@ -8,15 +8,15 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 06/30/2020
+ms.date: 08/19/2020
 ms.author: v-junlch
-ms.custom: aaddev, tracking-python
-ms.openlocfilehash: d816f4b151835231ec9c6977cf11892935329b5d
-ms.sourcegitcommit: 1008ad28745709e8d666f07a90e02a79dbbe2be5
+ms.custom: aaddev, devx-track-python
+ms.openlocfilehash: a7594141f519a19f7edc82e9ead768acece1c5a6
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945114"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647675"
 ---
 # <a name="a-web-app-that-calls-web-apis-code-configuration"></a>调用 Web API 的 Web 应用：代码配置
 
@@ -33,7 +33,7 @@ Microsoft 身份验证库 (MSAL) 中的以下库支持 Web 应用的授权代码
 
 | MSAL 库 | 说明 |
 |--------------|-------------|
-| ![MSAL.NET](./media/sample-v2-code/logo_NET.png) <br/> MSAL.NET  | 支持 .NET Framework 和 .NET Core 平台。 不支持通用 Windows 平台 (UWP)、Xamarin.iOS 和 Xamarin.Android，因为这些平台用于生成公共客户端应用。 对于 ASP.NET Core Web 应用和 Web API，MSAL.NET 封装在名为 Microsoft.Identity.Web 的更高级别库中|
+| ![MSAL.NET](./media/sample-v2-code/logo_NET.png) <br/> MSAL.NET  | 支持 .NET Framework 和 .NET Core 平台。 不支持通用 Windows 平台 (UWP)、Xamarin.iOS 和 Xamarin.Android，因为这些平台用于生成公共客户端应用。 对于 ASP.NET Core Web 应用和 Web API，MSAL.NET 会封装在名为 [Microsoft.Identity.Web](https://github.com/AzureAD/microsoft-identity-web/wiki) 的更高级别库中|
 | ![MSAL Python](./media/sample-v2-code/logo_python.png) <br/> 适用于 Python 的 MSAL | 支持 Python Web 应用。 |
 | ![MSAL Java](./media/sample-v2-code/logo_java.png) <br/> 适用于 Java 的 MSAL | 支持 Java Web 应用。 |
 
@@ -49,8 +49,8 @@ public void ConfigureServices(IServiceCollection services)
 {
     // more code here
 
-    services.AddSignIn(Configuration, "AzureAd")
-            .AddWebAppCallsProtectedWebApi(Configuration,
+    services.AddMicrosoftWebAppAuthentication(Configuration, "AzureAd")
+            .AddMicrosoftWebAppCallsdWebApi(Configuration,
                                            initialScopes: new string[] { "https://microsoftgraph.chinacloudapi.cn/user.read" })
             .AddInMemoryTokenCaches();
 
@@ -91,7 +91,7 @@ public void ConfigureServices(IServiceCollection services)
 
 # <a name="aspnet-core"></a>[ASP.NET Core](#tab/aspnetcore)
 
-Microsoft.Identity.Web 通过设置正确的 OpenID Connect 设置、订阅代码接收的事件和兑换代码来简化代码。 兑换授权代码不需要其他任何代码。
+Microsoft.Identity.Web 通过设置正确的 OpenID Connect 设置、订阅代码接收的事件和兑换代码来简化代码。 兑换授权代码不需要其他任何代码。 请参阅 [Microsoft.Identity.Web 源代码](https://github.com/AzureAD/microsoft-identity-web/blob/c29f1a7950b940208440bebf0bcb524a7d6bee22/src/Microsoft.Identity.Web/WebAppExtensions/WebAppCallsWebApiAuthenticationBuilderExtensions.cs#L140)，详细了解其原理。
 
 # <a name="aspnet"></a>[ASP.NET](#tab/aspnet)
 
@@ -272,8 +272,8 @@ ASP.NET Core 教程使用依赖关系注入，让你能够在应用的 Startup.c
 
 ```csharp
 // Use a distributed token cache by adding:
-    services.AddSignIn(Configuration, "AzureAd")
-            .AddWebAppCallsProtectedWebApi(Configuration,
+    services.AddMicrosoftWebAppAuthentication(Configuration, "AzureAd")
+            .AddMicrosoftWebAppCallsWebApi(Configuration,
                                            initialScopes: new string[] { "https://microsoftgraph.chinacloudapi.cn/user.read" })
             .AddDistributedTokenCaches();
 
@@ -297,7 +297,7 @@ services.AddDistributedSqlServerCache(options =>
 });
 ```
 
-若要详细了解令牌缓存提供程序，另请参阅本教程的 [ASP.NET Core Web 应用教程 | 令牌缓存](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2/tree/master/2-WebApp-graph-user/2-2-TokenCache)阶段。
+有关令牌缓存提供程序的详细信息，另请参阅 Microsoft.Identity.Web 的[令牌缓存序列化](https://github.com/AzureAD/microsoft-identity-web/wiki/token-cache-serialization)一文，以及 Web 应用教程的 [ASP.NET Core Web 应用教程 | 令牌缓存](https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2/tree/master/2-WebApp-graph-user/2-2-TokenCache)部分。
 
 # <a name="aspnet"></a>[ASP.NET](#tab/aspnet)
 
@@ -342,7 +342,7 @@ IAuthenticationResult getAuthResultBySilentFlow(HttpServletRequest httpRequest, 
   }
 
   SilentParameters parameters = SilentParameters.builder(
-          Collections.singleton("https://microsoftgraph.chinacloudapi.cn/user.read"),
+          Collections.singleton("https://microsoftgraph.chinacloudapi.cn/User.Read"),
           result.account()).build();
 
   CompletableFuture<IAuthenticationResult> future = app.acquireTokenSilently(parameters);

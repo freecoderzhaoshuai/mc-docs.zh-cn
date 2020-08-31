@@ -8,12 +8,12 @@ origin.date: 10/30/2018
 ms.date: 08/13/2020
 ms.author: v-tawe
 ms.custom: seodec18
-ms.openlocfilehash: fb4c77ec3a5587518da9d8eec217c623ef410526
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 27233aee4f170152772382a480a7d4ad48a917b1
+ms.sourcegitcommit: c8e590d907f20bbc9c4c05d9bfc93cf7cb1d776f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88229014"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88957821"
 ---
 # <a name="azure-app-service-on-linux-faq"></a>Linux 上的 Azure 应用服务常见问题解答
 
@@ -123,7 +123,7 @@ Provide the full registry URL, including `http://` or `https://`.
 
 **What is the format for the image name in the private registry option?**
 
-Add the full image name, including the private registry URL (for example, myacr.azurecr.io/dotnet:latest). Image names that use a custom port [cannot be entered through the portal](https://feedback.azure.com/forums/169385-web-apps/suggestions/31304650). To set `docker-custom-image-name`, use the [`az` command-line tool](https://docs.microsoft.com/cli/azure/webapp/config/container?view=azure-cli-latest#az-webapp-config-container-set).
+Add the full image name, including the private registry URL (for example, myacr.azurecr.cn/dotnet:latest). Image names that use a custom port [cannot be entered through the portal](https://feedback.azure.com/forums/169385-web-apps/suggestions/31304650). To set `docker-custom-image-name`, use the [`az` command-line tool](https://docs.microsoft.com/cli/azure/webapp/config/container?view=azure-cli-latest#az-webapp-config-container-set).
 
 **Can I expose more than one port on my custom container image?**
 
@@ -154,13 +154,13 @@ In order to use ACR with multi-container, **all container images** need to be ho
 Create the following application settings:
 
 - DOCKER_REGISTRY_SERVER_USERNAME
-- DOCKER_REGISTRY_SERVER_URL (full URL, ex: `https://<server-name>.azurecr.io`)
+- DOCKER_REGISTRY_SERVER_URL (full URL, ex: `https://<server-name>.azurecr.cn`)
 - DOCKER_REGISTRY_SERVER_PASSWORD (enable admin access in ACR settings)
 
 Within the configuration file, reference your ACR image like the following example:
 
 ```yaml
-image: <server-name>.azurecr.io/<image-name>:<tag>
+image: <server-name>.azurecr.cn/<image-name>:<tag>
 ```
 
 **How do I know which container is internet accessible?**

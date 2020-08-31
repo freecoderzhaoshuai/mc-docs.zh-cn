@@ -8,13 +8,13 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 03/12/2020
-ms.date: 07/01/2020
-ms.openlocfilehash: 05d6e02dad0427998a430b229f1b6689045936d5
-ms.sourcegitcommit: 9bc3e55f01e0999f05e7b4ebaea95f3ac91d32eb
+ms.date: 08/18/2020
+ms.openlocfilehash: 4861b962bd80027ac3563d30368ffa2107df9e97
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86226184"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88516120"
 ---
 # <a name="query-limits"></a>查询限制
 
@@ -79,7 +79,9 @@ Kusto 客户端库当前假定存在此限制。 虽然你可以无限地增大�
 
 客户如果不想在一个批操作中拉取所有数据，可以尝试以下解决方法：
 * 将某些 SDK 切换到流式传输模式（KustoConnectionStringBuilder 上的 Streaming=true 属性）
-* 切换到 .NET v2 API：让 Kusto 团队了解你是否遇到了此问题，以便我们可以提高流式传输客户端的优先级。
+* 切换到 .NET v2 API
+
+让 Kusto 团队了解你是否遇到了此问题，以便我们提高流式传输客户端的优先级。
 
 Kusto 提供的许多客户端库能够以将“无限大的”结果流式传输给调用方的方式来处理这些结果。 请使用这些库中的一个，并将其配置为流式传输模式。 例如，使用 .NET Framework 客户端 (Microsoft.Azure.Kusto.Data)，并将连接字符串的 streaming 属性设置为 *true*，或使用始终会流式传输结果的 *ExecuteQueryV2Async()* 调用。
 

@@ -8,13 +8,13 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 10/23/2018
-ms.date: 07/31/2020
-ms.openlocfilehash: 13b9c90c875039eeef9bfa69b9faecbdc1c1250d
-ms.sourcegitcommit: 4e1bc2e9b2a12dbcc05c52db5dbd1ae290aeb18d
+ms.date: 08/18/2020
+ms.openlocfilehash: d10180b4707cbaa61d9d9e9f78c052d9e73363d6
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87509225"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515762"
 ---
 # <a name="bin_at"></a>bin_at()
 
@@ -28,7 +28,7 @@ ms.locfileid: "87509225"
 ## <a name="arguments"></a>参数
 
 * *表达式*：数值类型（包括 `datetime` 和 `timespan`）的标量表达式，指示要舍入的值。
-* BinSize：与 Expression 类型相同的标量常数，指示每个 bin 的大小。 
+* BinSize：数值类型或 `timespan` 的标量常量（适用于 `datetime` 或 `timespan` 表达式），指示每个箱的大小。
 * FixedPoint：与 Expression 类型相同的标量常数，指示 Expression 的一个值，该值是一个“固定点”（即 `bin_at(fixed_point, bin_size, fixed_point) == fixed_point` 的一个值 `fixed_point`） 。
 
 ## <a name="returns"></a>返回

@@ -6,15 +6,15 @@ ms.author: v-jay
 ms.service: azure-stack
 ms.topic: how-to
 origin.date: 12/09/2019
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.reviewer: jfggdl
 ms.lastreviewed: 12/09/2019
-ms.openlocfilehash: 1482b6f69de8dfbc314da5b6111abc323593fbde
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 74cbe0ab6663de720dd0d8851fc5a17454188c80
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096448"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868094"
 ---
 # <a name="how-to-do-capacity-planning-for-event-hubs-on-azure-stack-hub"></a>如何针对 Azure Stack Hub 上的事件中心进行容量规划
 
@@ -41,7 +41,7 @@ ms.locfileid: "85096448"
 
 ## <a name="resource-provider-resource-consumption"></a>资源提供程序的资源消耗  
 
-事件中心资源提供程序的资源消耗是恒定的，与用户创建的群集的数量或大小无关。 下表显示了 Azure Stack Hub 上的事件中心资源提供程序使用的核心数量，以及其他资源的大致消耗量。 事件中心资源提供程序对其部署使用 [D2_V2](/azure-stack/user/azure-stack-vm-sizes#dv2-series) VM 类型。
+事件中心资源提供程序的资源消耗是恒定的，与用户创建的群集的数量或大小无关。 下表显示了 Azure Stack Hub 上的事件中心资源提供程序使用的核心数量，以及其他资源的大致消耗量。 事件中心资源提供程序对其部署使用 [D2_V2](../user/azure-stack-vm-sizes.md#dv2-series) VM 类型。
 
 |                                  | VM 类型 | 群集节点数 | 核心数 | VM 存储 | 内存 | 存储帐户 | 公共 IP |
 |----------------------------------|---------|---------------|-------|------------|--------|------------------|------------|
@@ -69,8 +69,3 @@ ms.locfileid: "85096448"
 ## <a name="next-steps"></a>后续步骤
 
 在开始安装过程之前，请完成[在 Azure Stack Hub 上安装事件中心的先决条件](event-hubs-rp-prerequisites.md)一文中的操作。
-
-
-
-
-

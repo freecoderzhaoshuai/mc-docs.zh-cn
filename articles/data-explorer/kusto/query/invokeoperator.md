@@ -8,13 +8,13 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 02/13/2020
-ms.date: 08/06/2020
-ms.openlocfilehash: 318fad78be76a26483bc67aba9ea859bd6648827
-ms.sourcegitcommit: 7ceeca89c0f0057610d998b64c000a2bb0a57285
+ms.date: 08/18/2020
+ms.openlocfilehash: 16c2ed61ee488be7c2fa585099de5b6471c95a64
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87841382"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88516048"
 ---
 # <a name="invoke-operator"></a>invoke 运算符
 
@@ -24,25 +24,24 @@ ms.locfileid: "87841382"
 T | invoke foo(param1, param2)
 ```
 
-**语法**
+> [!NOTE]
+> 若要更详细地了解如何声明可接受表格参数的 lambda 表达式，请参阅 [let 语句](./letstatement.md)。
+ 
+## <a name="syntax"></a>语法
 
 `T | invoke` *function*`(`[*param1*`,` *param2*]`)`
 
-**参数**
+## <a name="arguments"></a>参数
 
 * *T*：表格源。
 * function：要计算的 lambda 表达式名称或函数名。
 * param1、param2 ...：其他 lambda 参数。
 
-**返回**
+## <a name="returns"></a>返回
 
 返回已计算的表达式的结果。
 
-**备注**
-
-若要更详细地了解如何声明可接受表格参数的 lambda 表达式，请参阅 [let 语句](./letstatement.md)。
-
-**示例**
+## <a name="example"></a>示例
 
 下面的示例演示如何使用 `invoke` 运算符来调用 lambda 表达式：
 

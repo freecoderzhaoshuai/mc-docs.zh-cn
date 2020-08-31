@@ -3,17 +3,17 @@ title: Azure 服务总线主题筛选器 | Azure
 description: 本文介绍订阅者如何通过指定筛选器来定义希望从主题接收的消息。
 ms.topic: conceptual
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
 author: rockboyfor
-ms.openlocfilehash: d246c0eb20d821e30ad5cbdea4def80eaf384ee2
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: eedc474cff78d15babc8da6ba5bc4b1db07b29df
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162153"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946989"
 ---
 # <a name="topic-filters-and-actions"></a>主题筛选器和操作
 

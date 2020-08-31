@@ -1,33 +1,27 @@
 ---
-title: PowerShell 示例 - 使用 Azure PowerShell 对多个网站进行负载均衡 | Microsoft Docs
+title: 对多个网站进行负载均衡 - Azure PowerShell - Azure 负载均衡器
 description: 本 Azure PowerShell 脚本示例演示如何对指向同一虚拟机的多个网站进行负载均衡
-services: load-balancer
 documentationcenter: load-balancer
 author: WenJason
-manager: digimobile
-editor: tysonn
-tags: ''
-ms.assetid: ''
 ms.service: load-balancer
 ms.devlang: powershell
 ms.topic: sample
-ms.tgt_pltfrm: ''
 ms.workload: infrastructure
 origin.date: 04/20/2018
-ms.date: 03/04/2019
+ms.date: 08/31/2020
 ms.author: v-jay
-ms.openlocfilehash: b3099590041ea09904bc24503f772bd59c7ad415
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 152b2f4cad19ed563d6786b1130684a116e8260d
+ms.sourcegitcommit: f8ed85740f873c15c239ab6ba753e4b76e030ba7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "63829783"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045760"
 ---
 # <a name="azure-powershell-script-example-load-balance-multiple-websites"></a>Azure PowerShell 脚本示例：对多个网站进行负载均衡
 
 本 Azure PowerShell 脚本示例使用可用性集中的两个虚拟机 (VM) 创建虚拟网络。 负载均衡器会将两个单独 IP 地址的流量定向到两台 VM。 运行脚本后，可将 Web 服务器软件部署到 VM 上，并可承载多个网站，其中每个网站都有其自身的 IP 地址。
 
-必要时，请使用 [Azure PowerShell 指南](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/)中的说明安装 Azure PowerShell，并运行 `Connect-AzAccount -Environment AzureChinaCloud` 创建与 Azure 的连接。
+必要时，请使用 [Azure PowerShell 指南](https://docs.microsoft.com/powershell/azure/)中的说明安装 Azure PowerShell，并运行 `Connect-AzAccount -Environment AzureChinaCloud` 创建与 Azure 的连接。
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
@@ -185,7 +179,7 @@ Remove-AzResourceGroup -Name myResourceGroup
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 可在 [Azure 网络概述文档](../powershell-samples.md?toc=%2fnetworking%2ftoc.json)中找到其他网络 PowerShell 脚本示例。
 <!-- Update_Description: new articles on load balancer windows powershell load balance with multiple webists vm -->

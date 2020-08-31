@@ -5,13 +5,14 @@ author: yegu-ms
 ms.author: v-junlch
 ms.service: cache
 ms.topic: conceptual
-ms.date: 08/10/2020
-ms.openlocfilehash: 0e03cf9e7b9b573179bfade270b61866ad80a817
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.custom: devx-track-csharp
+ms.date: 08/24/2020
+ms.openlocfilehash: 29b720479d9f0d0855aa9ce66bab8137aeb8ca4c
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223131"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947042"
 ---
 # <a name="troubleshoot-azure-cache-for-redis-timeouts"></a>排查 Azure Cache for Redis 超时问题
 
@@ -120,6 +121,6 @@ StackExchange.Redis 使用名为 `synctimeout` 的配置设置进行同步操作
 
 - [排查 Azure Cache for Redis 客户端问题](cache-troubleshoot-client.md)
 - [排查 Azure Cache for Redis 服务器端问题](cache-troubleshoot-server.md)
-- [如何制定基准和测试缓存的性能？](cache-faq.md#how-can-i-benchmark-and-test-the-performance-of-my-cache)
+- [如何制定基准和测试缓存的性能？](cache-management-faq.md#how-can-i-benchmark-and-test-the-performance-of-my-cache)
 - [如何监视 Azure Redis 缓存](cache-how-to-monitor.md)
 

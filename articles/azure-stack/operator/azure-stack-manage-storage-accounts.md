@@ -4,16 +4,16 @@ description: 了解如何查找、管理、恢复和回收 Azure Stack Hub 存�
 author: WenJason
 ms.topic: how-to
 origin.date: 03/04/2020
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: xiaofmao
 ms.lastreviewed: 03/19/2019
-ms.openlocfilehash: 12d015581f759af162e677ab3bf0ba52e3e85216
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 6a763a55d1bc3b40ae2fb18192c2fd6372e7455f
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096299"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867745"
 ---
 # <a name="manage-azure-stack-hub-storage-accounts"></a>管理 Azure Stack Hub 存储帐户
 
@@ -124,7 +124,7 @@ OR
 **使用 PowerShell 回收容量：**
 
 1. 确认已安装并配置 Azure PowerShell。 如果未安装，请遵照以下说明： 
-   * 若要安装最新版本的 Azure PowerShell 并将其与 Azure 订阅相关联，请参阅[如何安装和配置 Azure PowerShell](https://azure.microsoft.com/documentation/articles/powershell-install-configure/)。
+   * 若要安装最新版本的 Azure PowerShell 并将其与 Azure 订阅相关联，请参阅[如何安装和配置 Azure PowerShell](https://docs.microsoft.com/powershell/azure/)。
    有关 Azure 资源管理器 cmdlet 的详细信息，请参阅[将 Azure PowerShell 与 Azure 资源管理器配合使用](/azure-resource-manager/manage-resources-powershell)
 2. 运行以下 cmdlet：
 

@@ -5,20 +5,22 @@ author: rockboyfor
 ms.service: virtual-machines
 ms.topic: how-to
 origin.date: 03/04/2020
-ms.date: 07/06/2020
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 4845ad03625d172540642a83dcc9805701a09fdb
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: f73fc25ac44a64344610762db7a9a9dd61330608
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946049"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052435"
 ---
 # <a name="move-resources-in-a-maintenance-control-configuration-to-another-region"></a>将维护控制配置中的资源移到另一区域
 
 按照本文所述将与维护控制配置关联的资源移到另一 Azure 区域。 出于多种原因，你可能需要移动配置。 例如，利用新的区域、部署在特定区域中可用的功能或服务、满足内部策略和治理要求，或者应对容量规划。
 
-使用带自定义维护配置的维护控制，你可以对如何将平台更新应用到 [Windows](/virtual-machines/maintenance-control-cli?toc=/virtual-machines/windows/toc.json&bc=/virtual-machines/windows/breadcrumb/toc.json) VM、[Linux](/virtual-machines/maintenance-control-cli?toc=%2Fazure%2Fvirtual-machines%2Flinux%2Ftoc.json&bc=%2Fvirtual-machines%2Flinux%2Fbreadcrumb%2Ftoc.json&view=azure-java-stable) VM 和 Azure 专用主机进行控制。 跨区域移动维护控制有几种场景：
+使用带自定义维护配置的维护控制，你可以对如何将平台更新应用到 [Windows](./maintenance-control-cli.md?toc=/virtual-machines/windows/toc.json&bc=/virtual-machines/windows/breadcrumb/toc.json) VM、[Linux](./maintenance-control-cli.md?toc=%2Fvirtual-machines%2Flinux%2Ftoc.json&bc=%2Fvirtual-machines%2Flinux%2Fbreadcrumb%2Ftoc.json&view=azure-java-stable) VM 和 Azure 专用主机进行控制。 跨区域移动维护控制有几种场景：
 
 - 若要移动与维护配置关联的资源，但不移动配置本身，请按照本文中的说明操作。
 - 若要移动维护控制配置，但不移动与配置关联的资源，请按照[这些说明](move-region-maintenance-configuration.md)操作。
@@ -49,7 +51,7 @@ ms.locfileid: "85946049"
     $adh | 专用主机名 | "myHost"
     $adhParentName | 父资源名称 | "HostGroup"
 
-2. 使用 PowerShell [Get-AZConfigurationAssignment](https://docs.microsoft.com/powershell/module/az.maintenance/Get-AzConfigurationAssignment?view=azps-3.5.0) 命令检索维护配置：
+2. 使用 PowerShell [Get-AZConfigurationAssignment](https://docs.microsoft.com/powershell/module/az.maintenance/get-azconfigurationassignment?view=azps-3.5.0) 命令检索维护配置：
 
     - 对于 Azure 专用主机，请运行：
         ```
@@ -61,7 +63,7 @@ ms.locfileid: "85946049"
         ```
         Get-AzConfigurationAssignment -ResourceGroupName $rgName -ResourceName $vmName -ProviderName Microsoft.Compute -ResourceType virtualMachines | Format-Table Name
         ```
-3. 使用 CLI [az maintenance assignment](https://docs.microsoft.com/cli/azure/ext/maintenance/maintenance/assignment?view=azure-cli-latest#az-maintenance-assignment) 命令检索维护配置：
+3. 使用 CLI [az maintenance assignment](https://docs.microsoft.com/cli/azure/ext?view=azure-cli-latest#az-maintenance-assignment) 命令检索维护配置：
 
     - 对于 Azure 专用主机，请运行：
 
@@ -77,7 +79,7 @@ ms.locfileid: "85946049"
 
 ## <a name="move"></a>移动 
 
-1. [按照这些说明](/site-recovery/azure-to-azure-tutorial-migrate?toc=/virtual-machines/windows/toc.json&bc=/virtual-machines/windows/breadcrumb/toc.json)将 Azure VM 移到新区域。
+1. [按照这些说明](../site-recovery/azure-to-azure-tutorial-migrate.md?toc=/virtual-machines/windows/toc.json&bc=/virtual-machines/windows/breadcrumb/toc.json)将 Azure VM 移到新区域。
 2. 移动资源后，根据需要将维护配置重新应用于新区域中的资源，具体取决于是否移动了维护配置。 可以使用 [PowerShell](../virtual-machines/maintenance-control-powershell.md) 或 [CLI](../virtual-machines/maintenance-control-cli.md) 将维护配置应用于资源。
 
 ## <a name="verify-the-move"></a>验证移动情况

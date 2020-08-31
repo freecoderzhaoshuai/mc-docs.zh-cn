@@ -1,20 +1,16 @@
 ---
 title: 将分区动态添加到 Azure 事件中心的某个事件中心
 description: 本文介绍如何将分区动态添加到 Azure 事件中心的某个事件中心。
-services: event-hubs
-author: spelluru
-ms.service: event-hubs
 ms.topic: how-to
-origin.date: 04/23/2020
-ms.date: 07/01/2020
+origin.date: 06/23/2020
+ms.date: 08/21/2020
 ms.author: v-tawe
-ms.reviewer: shvija
-ms.openlocfilehash: 4a778ae8da9dec12fc41b2b99ca0155ec38650bc
-ms.sourcegitcommit: 4f84bba7e509a321b6f68a2da475027c539b8fd3
+ms.openlocfilehash: 3f27d26c73e4ec1c0a104639b64694dcc159a3a2
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85802760"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715321"
 ---
 # <a name="dynamically-add-partitions-to-an-event-hub-apache-kafka-topic-in-azure-event-hubs"></a>动态将分区添加到 Azure 事件中心的事件中心（Apache Kafka 主题）
 事件中心通过分区使用者模式提供消息流式处理功能，在此模式下，每个使用者只读取消息流的特定子集或分区。 此模式支持事件处理的水平缩放，同时提供队列和主题中不可用的其他面向流的功能。 分区是事件中心内保留的有序事件。 当较新的事件到达时，它们将添加到此序列的末尾。 有关一般分区的详细信息，请参阅[分区](event-hubs-scalability.md#partitions)
@@ -70,7 +66,7 @@ az eventhubs eventhub update --resource-group MyResourceGroupName --namespace-na
 ## <a name="event-hubs-clients"></a>事件中心客户端
 让我们看看事件中心上的分区计数更新时，事件中心客户端的行为。 
 
-向现有的事件中心添加分区后，事件中心客户端从服务接收到“MessagingException”，其作用是通知客户端：实体元数据（实体是事件中心，元数据是分区信息）已更改。 客户端将自动重新打开 AMQP 链接，然后该链接会选取已更改的元数据信息。 然后客户端正常运行。
+向现有的事件中心添加分区后，事件中心客户端会从服务接收到 `MessagingException`，其作用是通知客户端：实体元数据（实体是事件中心，元数据是分区信息）已更改。 客户端将自动重新打开 AMQP 链接，然后该链接会选取已更改的元数据信息。 然后客户端正常运行。
 
 ### <a name="senderproducer-clients"></a>发送方/生成者客户端
 事件中心提供三个发送方选项：
@@ -90,7 +86,7 @@ az eventhubs eventhub update --resource-group MyResourceGroupName --namespace-na
 ## <a name="apache-kafka-clients"></a>Apache Kafka 客户端
 本部分介绍在更新事件中心的分区计数时，使用 Azure 事件中心的 Kafka 终结点的 Apache Kafka 客户端的行为。 
 
-将 Apache Kafka 协议与事件中心配合使用的 Kafka 客户端与使用 AMQP 协议的事件中心客户端的行为有所不同。 Kafka 客户端每 `metadata.max.age.ms` 毫秒更新一次其元数据。 在客户端配置中指定此值。 `librdkafka` 库也使用相同的配置。 元数据更新会就服务更改通知客户端，包括分区计数增加。 有关配置的列表，请参阅[事件中心的 Apache Kafka 配置](https://github.com/Azure/azure-event-hubs-for-kafka/blob/master/CONFIGURATION.md)
+将 Apache Kafka 协议与事件中心配合使用的 Kafka 客户端与使用 AMQP 协议的事件中心客户端的行为有所不同。 Kafka 客户端每 `metadata.max.age.ms` 毫秒更新一次其元数据。 在客户端配置中指定此值。 `librdkafka` 库也使用相同的配置。 元数据更新会就服务更改通知客户端，包括分区计数增加。 有关配置的列表，请参阅[事件中心的 Apache Kafka 配置](apache-kafka-configurations.md)。
 
 ### <a name="senderproducer-clients"></a>发送方/生成者客户端
 生成者始终规定发送请求包含每组生产记录的分区目标。 因此，所有生成分区操作都是在客户端上使用生成者的中转站元数据视图完成的。 在将新分区添加到生成者的元数据视图后，它们将可用于生成者请求。
@@ -106,7 +102,7 @@ az eventhubs eventhub update --resource-group MyResourceGroupName --namespace-na
     > 虽然现有数据保持了排序状态，但由于添加了分区，分区计数更改，因此在这之后哈希的消息的分区哈希将中断。
 - 在以下情况下，建议将分区添加到现有主题或事件中心实例：
     - 使用轮循机制（默认）的方法来发送事件时
-     - Kafka 默认分区策略，例如 StickyAssignor 策略
+     - Kafka 默认分区策略，例如“粘滞分配器”策略
 
 
 ## <a name="next-steps"></a>后续步骤

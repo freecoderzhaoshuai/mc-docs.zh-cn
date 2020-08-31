@@ -11,12 +11,12 @@ author: Blackmist
 origin.date: 11/04/2019
 ms.date: 03/09/2020
 ms.custom: seoapril2019
-ms.openlocfilehash: ae82d58d4d28bae3ff13f18aeb86f23e57122e21
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: e854ab19a3a174d7fed6843cb871b64a9910f6cb
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228224"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947185"
 ---
 # <a name="use-an-azure-resource-manager-template-to-create-a-workspace-for-azure-machine-learning"></a>使用 Azure 资源管理器模板创建 Azure 机器学习的工作区
 
@@ -375,38 +375,6 @@ New-AzResourceGroupDeployment `
 > [!IMPORTANT]
 > Application Insights 不支持部署到虚拟网络后面。
 
-### <a name="only-deploy-workspace-behind-private-endpoint"></a>仅将工作区部署到专用终结点后面
-
-如果关联的资源不在虚拟网络后面，则可以将 **privateEndpointType** 参数设置为 `AutoAproval` 或 `ManualApproval`，以将工作区部署到专用终结点后面。 对于新的和现有的工作区，都可以这样做。 更新现有工作区时，请使用现有工作区中的信息填写模板参数。
-
-> [!IMPORTANT]
-> 部署仅在支持专用终结点的区域中有效。
-
-# <a name="azure-cli"></a>[Azure CLI](#tab/azcli)
-
-```azurecli
-az deployment group create \
-    --name "exampledeployment" \
-    --resource-group "examplegroup" \
-    --template-uri "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-machine-learning-advanced/azuredeploy.json" \
-    --parameters workspaceName="exampleworkspace" \
-      location="chinaeast" \
-      privateEndpointType="AutoApproval"
-```
-
-# <a name="azure-powershell"></a>[Azure PowerShell](#tab/azpowershell)
-
-```azurepowershell
-New-AzResourceGroupDeployment `
-  -Name "exampledeployment" `
-  -ResourceGroupName "examplegroup" `
-  -TemplateUri "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-machine-learning-advanced/azuredeploy.json" `
-  -workspaceName "exampleworkspace" `
-  -location "chinaeast" `
-  -privateEndpointType "AutoApproval"
-```
-
----
 
 ### <a name="use-a-new-virtual-network"></a>使用新的虚拟网络
 

@@ -5,24 +5,24 @@ author: WenJason
 ms.service: storage
 ms.topic: conceptual
 origin.date: 05/28/2020
-ms.date: 07/20/2020
+ms.date: 08/24/2020
 ms.author: v-jay
 ms.subservice: files
 services: storage
-ms.openlocfilehash: 2eb13963a9877602894714b78b81874f48f46a8f
-ms.sourcegitcommit: 31da682a32dbb41c2da3afb80d39c69b9f9c1bc6
+ms.openlocfilehash: eeabe0c65f1597774745271b0ec8aa5829a88a0a
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86414756"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753366"
 ---
 # <a name="prevent-accidental-deletion-of-azure-file-shares"></a>防止意外删除 Azure 文件共享
 
-Azure 存储现在为文件共享（预览版）提供了软删除功能。 使用软删除，可在应用程序或其他存储帐户用户错误地删除了数据后恢复数据。
+Azure 存储现在为文件共享（预览版）提供了软删除功能。 使用软删除，可在应用程序或其他存储帐户用户错误地删除了文件共享后恢复文件共享。
 
 ## <a name="how-soft-delete-preview-works"></a>软删除（预览版）的工作原理
 
-启用 Azure 文件共享的软删除后，如果删除文件共享，它将转换为软删除状态，而不是被永久删除。 可配置软删除数据被永久删除前的可恢复时间。
+启用 Azure 文件共享的软删除后，如果删除文件共享，它将转换为软删除状态，而不是被永久删除。 可配置软删除数据被永久删除前的可恢复时间，并在此保留期内随时取消删除共享。 取消删除之后，共享和所有内容（包括快照）将还原到删除之前的状态。 软删除仅适用于文件共享级别 - 删除的单个文件仍会被永久删除。
 
 可以在新的或现有的文件共享上启用软删除。 此外，软删除还向后兼容，因此无需对应用程序进行任何更改即可利用软删除提供的保护。 
 

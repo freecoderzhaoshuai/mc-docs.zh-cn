@@ -9,16 +9,16 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 05/27/2020
+ms.date: 08/18/2020
 ms.author: v-junlch
 ms.reviewer: saeeda
-ms.custom: aaddev
-ms.openlocfilehash: 8a1b0c624b02af0c34cb27293f48233e074deb91
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.custom: devx-track-csharp, aaddev
+ms.openlocfilehash: f28d2c4bd335b5e7c0cdea70dd3e84a318c8f067
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186881"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647618"
 ---
 # <a name="token-cache-serialization-in-msalnet"></a>MSAL.NET 中的令牌缓存序列化
 [获取令牌](msal-acquire-cache-tokens.md)后，Microsoft 身份验证库 (MSAL) 会缓存该令牌。  在通过其他方法获取令牌之前，应用程序代码应该先尝试从缓存中获取令牌。  本文介绍 MSAL.NET 中令牌缓存的默认序列化和自定义序列化。
@@ -86,7 +86,7 @@ static class TokenCacheHelper
   /// <summary>
   /// Path to the token cache. Note that this could be something different for instance for MSIX applications:
   /// private static readonly string CacheFilePath =
-  $"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\{AppName}\msalcache.bin";
+$"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\{AppName}\msalcache.bin";
   /// </summary>
   public static readonly string CacheFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location + ".msalcache.bin3";
 
@@ -271,12 +271,15 @@ namespace CommonCacheMsalV3
 
 ### <a name="token-cache-for-a-web-app-confidential-client-application"></a>Web 应用（机密客户端应用程序）的令牌缓存
 
-在 Web 应用或 Web API 中，缓存可以利用会话、Redis 缓存或数据库。
+在 Web 应用或 Web API 中，缓存可以利用会话、Redis 缓存或数据库。 在 Web 应用或 Web API 中，应该为每个帐户保留一个令牌缓存。 
 
-在 Web 应用或 Web API 中，为每个帐户保留一个令牌缓存。  对于 Web 应用，令牌缓存应使用帐户 ID 进行键控。  对于 Web API，帐户应使用用于调用该 API 的令牌的哈希值进行键控。 MSAL.NET 在 .NET Framework 和 .NET Core 子平台中提供自定义令牌缓存序列化。 访问缓存时会触发事件，应用可以选择是对缓存进行序列化还是反序列化。 在处理用户的机密客户端应用程序（登录用户并调用 Web API 的 Web 应用程序，以及调用下游 Web API 的 Web API）中，可能会有许多用户，并且会对这些用户进行并行处理。 出于安全和性能方面的原因，我们建议为每个用户序列化一个缓存。 序列化事件基于已处理用户的标识来计算缓存密钥，并对该用户的令牌缓存进行序列化/反序列化操作。
+对于 Web 应用，令牌缓存应使用帐户 ID 进行键控。
+
+对于 Web API，帐户应使用用于调用该 API 的令牌的哈希值进行键控。
+
+MSAL.NET 在 .NET Framework 和 .NET Core 子平台中提供自定义令牌缓存序列化。 访问缓存时会触发事件，应用可以选择是对缓存进行序列化还是反序列化。 在处理用户的机密客户端应用程序（登录用户并调用 Web API 的 Web 应用程序，以及调用下游 Web API 的 Web API）中，可能会有许多用户，并且会对这些用户进行并行处理。 出于安全和性能方面的原因，我们建议为每个用户序列化一个缓存。 序列化事件基于已处理用户的标识来计算缓存密钥，并对该用户的令牌缓存进行序列化/反序列化操作。
 
 [Microsoft.Identity.Web](https://github.com/AzureAD/microsoft-identity-web) 库提供了一个预览版 NuGet 包 [Microsoft.Identity.Web](https://www.nuget.org/packages/Microsoft.Identity.Web)，其中包含令牌缓存序列化：
-
 
 | 扩展方法 | Microsoft.Identity.Web 子命名空间 | 说明  |
 | ---------------- | --------- | ------------ |
@@ -284,7 +287,7 @@ namespace CommonCacheMsalV3
 | `AddSessionTokenCaches` | `TokenCacheProviders.Session` | 令牌缓存将绑定到用户会话。 如果 ID 令牌包含许多声明，则此选项不是理想的选择，因为 Cookie 会变得太大。
 | `AddDistributedTokenCaches` | `TokenCacheProviders.Distributed` | 令牌缓存是针对 ASP.NET Core `IDistributedCache` 实现的适配器，因此允许你在分布式内存缓存、Redis 缓存、分布式 NCache 或 SQL Server 缓存之间进行选择。 有关 `IDistributedCache` 实现的详细信息，请参阅 https://docs.microsoft.com/aspnet/core/performance/caching/distributed#distributed-memory-cache 。
 
-使用内存中缓存的简单案例：
+下面是一个示例，说明了如何在 ASP.NET Core 应用程序的 [Startup](https://docs.microsoft.com/aspnet/core/fundamentals/startup) 类的 [ConfigureServices](https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.hosting.startupbase.configureservices) 方法中使用内存中缓存：
 
 ```C#
 // or use a distributed Token Cache by adding
@@ -292,7 +295,6 @@ namespace CommonCacheMsalV3
     services.AddWebAppCallsProtectedWebApi(Configuration, new string[] { scopesToRequest })
             .AddInMemoryTokenCaches();
 ```
-
 
 可能的分布式缓存的示例：
 

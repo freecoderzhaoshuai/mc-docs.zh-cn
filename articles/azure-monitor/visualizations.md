@@ -5,14 +5,14 @@ ms.subservice: ''
 ms.topic: conceptual
 author: Johnnytechn
 ms.author: v-johya
-ms.date: 07/17/2020
+ms.date: 08/20/2020
 origin.date: 11/24/2018
-ms.openlocfilehash: 045b02dd2761507a6d3536f641c3100ea5985ca7
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.openlocfilehash: bc9b28ffca6c86fa9ca6e0514993d8462980ca70
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508462"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148624"
 ---
 # <a name="visualizing-data-from-azure-monitor"></a>可视化 Azure Monitor 中的数据
 本文概述了将 Azure Monitor 中存储的日志和指标数据可视化时可使用的方法。
@@ -20,7 +20,7 @@ ms.locfileid: "87508462"
 图表和图形等可视化效果有助于你分析监视数据，从而深入了解问题并识别模式。 根据使用的工具，你还可以选择与组织内外的其他用户共享可视化效果。
 
 ## <a name="workbooks"></a>工作簿
-[工作簿](../azure-monitor/platform/workbooks-overview.md)是交互式文档，可以让用户深入了解团队内部的数据、调查和协作。 例如，工作簿在故障排查指南和事件分析方面非常有用。
+[工作簿](./platform/workbooks-overview.md)是交互式文档，可以让用户深入了解团队内部的数据、调查和协作。 例如，工作簿在故障排查指南和事件分析方面非常有用。
 
 ![工作簿](./media/visualizations/workbook.png)
 
@@ -80,6 +80,7 @@ ms.locfileid: "87508462"
 - 无 Azure 集成。 无法通过 Azure 资源管理器管理仪表板和模型。
 - 需要将查询结果导入到 Power BI 模型中进行配置。 结果大小和刷新存在限制。
 - 每天的数据刷新次数限制为 8 次。
+<!--Not available in MC: ## Grafana-->
 
 ### <a name="advantages"></a>优点
 - 丰富的可视化效果。
@@ -132,7 +133,7 @@ ms.locfileid: "87508462"
 - 了解[由 Azure Monitor 收集的数据](platform/data-platform.md)。
 - 了解 [Azure 仪表板](../azure-portal/azure-portal-dashboards.md)。
 - 了解 [Azure Monitor 中的视图](platform/view-designer.md)。
-- 了解[工作簿](../azure-monitor/platform/workbooks-overview.md)。
-- 了解如何[将日志数据导入 Power BI](../azure-monitor/platform/powerbi.md)。
+- 了解[工作簿](./platform/workbooks-overview.md)。
+- 了解如何[将日志数据导入 Power BI](./platform/powerbi.md)。
 
 

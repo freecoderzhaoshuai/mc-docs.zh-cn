@@ -4,20 +4,20 @@ description: Azure 计算单位的概念概述。 ACU 提供了一种在 Azure S
 author: rockboyfor
 ms.service: virtual-machines
 ms.subservice: sizes
-ms.topic: article
+ms.topic: conceptual
 ms.workload: infrastructure-services
 origin.date: 02/03/2020
-ms.date: 07/27/2020
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
 ms.reviewer: davberg
-ms.openlocfilehash: b82270824682e1f9b584ade21f1fa69ff3a07561
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: 2a4fc9f1ac8c87844fc618507feb909522b1efa8
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244354"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052431"
 ---
 <!--Verified successfully-->
 <!--Partical Content from verified-->

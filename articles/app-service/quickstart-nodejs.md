@@ -8,12 +8,12 @@ ms.date: 08/13/2020
 ms.author: v-tawe
 ms.custom: mvc, devcenter, seodec18
 zone_pivot_groups: app-service-platform-windows-linux
-ms.openlocfilehash: c480fcc87ae729a53bdb524e0febb0e9f38e5a2e
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 2c223680d760cbe36cd767963cd2142b4d4ab109
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228956"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515948"
 ---
 # <a name="create-a-nodejs-web-app-in-azure"></a>在 Azure 中创建 Node.js Web 应用
 
@@ -182,7 +182,7 @@ export HTTP_PROXY=http://username:password@proxy:8080
 ::: zone pivot="platform-linux"  
 ## <a name="prerequisites"></a>先决条件
 
-如果你没有 Azure 帐户，请[立即注册](https://wd.azure.cn/pricing/1rmb-trial/)一个免费帐户来试用任何服务组合，并获得 200 美元的 Azure 信用额度。
+如果没有 Azure 帐户，请[立即注册](https://wd.azure.cn/pricing/1rmb-trial/)一个包含 1,500 元 Azure 额度的试用帐户，以试用任何服务组合。
 
 需要连同 [Node.js 和 npm](https://nodejs.org/en/download)（Node.js 包管理器）一起安装 [Visual Studio Code](https://code.visualstudio.com/)。
 

@@ -8,17 +8,21 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 02/13/2020
-ms.date: 07/31/2020
-ms.openlocfilehash: 19e8ba2f9f654eea6aee45f02d533fa647596807
-ms.sourcegitcommit: 4e1bc2e9b2a12dbcc05c52db5dbd1ae290aeb18d
+ms.date: 08/18/2020
+ms.openlocfilehash: 9104aba239ccd07f29022235916843bac31ad648
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87509552"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515786"
 ---
 # <a name="anyif-aggregation-function"></a>anyif()（聚合函数）
 
 为 [summarize 运算符](summarizeoperator.md)中的每个组任意选择一条记录，其谓词为“true”。 该函数返回每个此类记录的表达式值。
+
+> [!NOTE]
+> 若要根据复合组键的值获取一个列的示例值，则可使用此函数，前提是某些谓词为“true”。
+> 如果存在这样的值，该函数会尝试返回非 null/非空值。
 
 ## <a name="syntax"></a>语法
 
@@ -32,12 +36,6 @@ ms.locfileid: "87509552"
 ## <a name="returns"></a>返回
 
 `anyif` 聚合函数返回为每条记录计算的表达式的值，这些记录是从每个 summarize 运算符的组中随机选择而来。 只能选择 Predicate 返回“true”的记录。 如果 Predicate 不返回“true”，则生成 null 值。
-
-**备注**
-
-若你想要根据复合组键值获取一列的示例值，此函数非常有用，前提是某些谓词为“true”。
-
-如果存在这样的值，该函数将尝试返回非 null/非空值。
 
 ## <a name="examples"></a>示例
 

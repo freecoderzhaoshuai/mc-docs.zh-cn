@@ -3,25 +3,27 @@ title: Azure CLI for Batch 入门
 description: Azure CLI 中用于管理 Azure Batch 服务资源的 Batch 命令简介
 ms.topic: how-to
 origin.date: 07/24/2018
-ms.date: 06/28/2020
-ms.author: v-tawe
-ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 4e6be38b983536f94ca5cb4ab14ebdc35b109183
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: 06/28/2020
+ms.author: v-yeche
+ms.custom: H1Hack27Feb2017, devx-track-azurecli
+ms.openlocfilehash: a5cc521812ff4b027b03c08e7ae5207c922c67d4
+ms.sourcegitcommit: e633c458126612223fbf7a8853dbf19acc7f0fa5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85613406"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88654952"
 ---
 # <a name="manage-batch-resources-with-azure-cli"></a>使用 Azure CLI 管理 Batch 资源
 
 Azure CLI 是 Azure 的命令行体验，用于管理 Azure 资源。 它可以在 macOS、Linux 和 Windows 上使用。 Azure CLI 经过了优化，可从命令行管理 Azure 资源。 可以使用 Azure CLI 管理 Azure Batch 帐户，以及管理池、作业、任务等资源。 对于通过 Batch API、Azure 门户和 Batch PowerShell cmdlet 执行的任务，许多都可以使用 Azure CLI 来编写脚本。
 
-本文概述如何将 [Azure CLI 2.0 版](/cli)与 Batch 配合使用。 请参阅 [Azure CLI 入门](/cli/get-started-with-azure-cli)，大致了解如何将 CLI 与 Azure 配合使用。
+本文概述如何将 [Azure CLI 2.0 版](https://docs.azure.cn/cli/index?view=azure-cli-latest)与 Batch 配合使用。 请参阅 [Azure CLI 入门](https://docs.azure.cn/cli/get-started-with-azure-cli?view=azure-cli-latest)，大致了解如何将 CLI 与 Azure 配合使用。
 
 ## <a name="set-up-the-azure-cli"></a>设置 Azure CLI
 
-若要在本地安装 Azure CLI，请执行[安装 Azure CLI](/cli/install-azure-cli) 中概述的步骤。
+若要在本地安装 Azure CLI，请执行[安装 Azure CLI](https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest) 中概述的步骤。
 
 > [!TIP]
 > 建议经常更新 Azure CLI 安装，利用服务更新和增强功能。
@@ -38,9 +40,7 @@ Azure CLI 是 Azure 的命令行体验，用于管理 Azure 资源。 它可以�
 
 如有疑问，请使用 `-h` 命令行选项获取有关任何 Azure CLI 命令的帮助。
 
-
-
-另请参阅 Azure CLI 参考文档，详细了解[适用于 Batch 的 Azure CLI 命令](/cli/batch)。 
+另请参阅 Azure CLI 参考文档，详细了解[适用于 Batch 的 Azure CLI 命令](https://docs.azure.cn/cli/batch?view=azure-cli-latest)。 
 
 ## <a name="log-in-and-authenticate"></a>登录并进行身份验证
 
@@ -51,12 +51,12 @@ Azure CLI 是 Azure 的命令行体验，用于管理 Azure 资源。 它可以�
 
 ### <a name="log-in-to-azure"></a>登录 Azure
 
-可以通过多种不同的方式登录到 Azure，详见[使用 Azure CLI 登录](/cli/authenticate-azure-cli)：
+可以通过多种不同的方式登录到 Azure，详见[使用 Azure CLI 登录](https://docs.azure.cn/cli/authenticate-azure-cli?view=azure-cli-latest)：
 
-1. [以交互方式登录](/cli/authenticate-azure-cli)。 从命令行自行运行 Azure CLI 命令时，请以交互方式登录。
-2. [使用服务主体登录](/cli/authenticate-azure-cli)。 从脚本或应用程序运行 Azure CLI 命令时，请使用服务主体登录。
+1. [以交互方式登录](https://docs.azure.cn/cli/authenticate-azure-cli?view=azure-cli-latest)。 从命令行自行运行 Azure CLI 命令时，请以交互方式登录。
+2. [使用服务主体登录](https://docs.azure.cn/cli/authenticate-azure-cli?view=azure-cli-latest)。 从脚本或应用程序运行 Azure CLI 命令时，请使用服务主体登录。
 
-本文的目的是介绍如何以交互方式登录到 Azure。 在命令行中键入 [az login](/cli/reference-index#az-login)：
+本文的目的是介绍如何以交互方式登录到 Azure。 在命令行中键入 [az login](https://docs.azure.cn/cli/reference-index?view=azure-cli-latest#az-login)：
 
 ```azurecli
 # Log in to Azure China and authenticate interactively.
@@ -66,25 +66,25 @@ az login
 
 `az login` 命令返回一个可用于身份验证的令牌，如下所示。 请按提供的说明打开网页，并将令牌提交到 Azure：
 
-![登录 Azure](./media/batch-cli-get-started/az-login.png)
+:::image type="content" source="./media/batch-cli-get-started/az-login.png" alt-text="登录 Azure":::
 
 “示例 shell 脚本”部分中列出的示例也演示了如何以交互方式登录到 Azure，从而启动 Azure CLI 会话。 登录后，即可调用命令来处理 Batch Management 资源，包括 Batch 帐户、密钥、应用程序包和配额。  
 
 ### <a name="log-in-to-your-batch-account"></a>登录到 Batch 帐户
 
-若要使用 Azure CLI 来管理 Batch 资源（例如池、作业和任务），需登录到 Batch 帐户并进行身份验证。 若要登录到 Batch 服务，请使用 [az batch account login](/cli/batch/account#az-batch-account-login) 命令。 
+若要使用 Azure CLI 来管理 Batch 资源（例如池、作业和任务），需登录到 Batch 帐户并进行身份验证。 若要登录到 Batch 服务，请使用 [az batch account login](https://docs.azure.cn/cli/batch/account?view=azure-cli-latest#az-batch-account-login) 命令。 
 
 可以使用两个选项对 Batch 帐户进行身份验证：
 
 - **使用 Azure Active Directory (Azure AD) 身份验证** 
 
     将 Azure CLI 与 Batch 配合使用时，通过 Azure AD 进行身份验证是默认设置，建议用于大多数方案。 
-    
+
     如上一部分所述，以交互方式登录到 Azure 时，系统会缓存凭据，因此 Azure CLI 可以使用这些相同的凭据将你登录到 Batch 帐户。 如果通过服务主体登录到 Azure，也会使用这些凭据登录到 Batch 帐户。
 
-    Azure AD 的优势是提供基于角色的访问控制 (RBAC)。 使用 RBAC 时，用户的访问权限取决于分配给他们的角色，而不是是否拥有帐户密钥。 可以管理 RBAC 角色而不是帐户密钥，让 Azure AD 负责访问权限和身份验证。  
+    Azure AD 的优势是提供基于角色的访问控制 (RBAC)。 使用 RBAC 时，用户的访问权限取决于分配给他们的角色，而不是是否拥有帐户密钥。 你可以管理 Azure 角色而不是帐户密钥，让 Azure AD 处理访问权限和身份验证。  
 
-     若要使用 Azure AD 登录到 Batch 帐户，请调用 [az batch account login](/cli/batch/account#az-batch-account-login) 命令： 
+    若要使用 Azure AD 登录到 Batch 帐户，请调用 [az batch account login](https://docs.azure.cn/cli/batch/account?view=azure-cli-latest#az-batch-account-login) 命令： 
 
     ```azurecli
     az batch account login -g myresource group -n mybatchaccount
@@ -161,16 +161,17 @@ az batch task list --job-id job001
 * 使用 `-h` 获取任何 CLI 命令的 **帮助文本**
 * 使用 `-v` 和 `-vv` 显示**详细的**命令输出。 包括 `-vv` 标志时，Azure CLI 显示实际的 REST 请求和响应。 使用这些开关可以方便地显示完整的错误输出。
 * 可以使用 `--json` 选项查看 **JSON 格式的命令输出**。 例如， `az batch pool show pool001 --json` 以 JSON 格式显示 pool001 的属性。 然后，可以复制并修改此输出，以便在 `--json-file` 中使用（请参阅本文前面的“JSON 文件”）。
+
 <!---Loc Comment: Please, check link [JSON files] since it's not redirecting to any location.--->
 
 ## <a name="next-steps"></a>后续步骤
 
-* 请参阅 [Azure CLI 文档](/cli)。
+* 请参阅 [Azure CLI 文档](https://docs.azure.cn/cli/index?view=azure-cli-latest)。
 * 了解 [Batch 服务工作流和主要资源](batch-service-workflow-features.md)，例如池、节点、作业和任务。
 * 在[使用 Azure Batch CLI 模板和文件传输](batch-cli-templates.md)中了解如何在不编写代码的情况下使用 Batch 模板来创建池、作业和任务。
 
 [github_readme]: https://github.com/Azure/azure-xplat-cli/blob/dev/README.md
-[rest_api]: https://msdn.microsoft.com/library/azure/dn820158.aspx
-[rest_add_pool]: https://msdn.microsoft.com/library/azure/dn820174.aspx
+[rest_api]: https://docs.microsoft.com/rest/api/batchservice/
+[rest_add_pool]: https://docs.microsoft.com/rest/api/batchservice/pool/add
 
-<!-- Update_Description: wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

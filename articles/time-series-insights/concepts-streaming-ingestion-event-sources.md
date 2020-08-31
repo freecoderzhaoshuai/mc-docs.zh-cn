@@ -8,13 +8,13 @@ ms.workload: big-data
 ms.service: time-series-insights
 services: time-series-insights
 ms.topic: conceptual
-ms.date: 08/04/2020
-ms.openlocfilehash: 0a058ce82954af1c59b1cb5f0d155c996b0e5c94
-ms.sourcegitcommit: 36e7f37481969f92138bfe70192b1f4a2414caf7
+ms.date: 08/20/2020
+ms.openlocfilehash: ff0eaa297bec085d17c6de3e98aeafaf79ba4095
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87801843"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715342"
 ---
 # <a name="azure-time-series-insights-gen2-event-sources"></a>Azure 时序见解第 2 代事件源
 
@@ -27,40 +27,40 @@ ms.locfileid: "87801843"
 
 ## <a name="create-or-edit-event-sources"></a>创建或编辑事件源
 
-事件源资源可以与 Azure 时序见解第 2 代环境位于同一 Azure 订阅中，也可以位于不同的订阅中。你可以使用 [Azure CLI](https://github.com/Azure/azure-cli-extensions/tree/master/src/timeseriesinsights)、[ARM 模板](time-series-insights-manage-resources-using-azure-resource-manager-template.md)和 [REST API](https://docs.microsoft.com/rest/api/time-series-insights/management(gen1/gen2)/eventsources) 来创建、编辑或删除环境的事件源。
+事件源资源可以与 Azure 时序见解第 2 代环境位于同一 Azure 订阅中，也可以位于不同的订阅中。你可以使用 Azure 门户、[Azure CLI](https://github.com/Azure/azure-cli-extensions/tree/master/src/timeseriesinsights)、[ARM 模板](time-series-insights-manage-resources-using-azure-resource-manager-template.md)和 [REST API](https://docs.microsoft.com/rest/api/time-series-insights/management(gen1/gen2)/eventsources) 来创建、编辑或删除环境的事件源。
 
 连接事件源时，Azure 时序见解第 2 代环境会从最早的事件开始，读取当前存储在 IoT 中心或事件中心的所有事件。
 
 > [!IMPORTANT]
 >
-> * 将事件源附加到 Azure 时序见解第 2 代环境时，可能会遇到较高的初始延迟。
-> 事件源的延迟取决于 IoT 中心或事件中心内当前的事件数。
-> * 在事件源数据第一次引入后，高延迟会降低。 如果持续遇到较高的延迟，请通过 Azure 门户提交支持票证。
+> - 将事件源附加到 Azure 时序见解第 2 代环境时，可能会遇到较高的初始延迟。
+> - 事件源的延迟取决于 IoT 中心或事件中心内当前的事件数。
+> - 在事件源数据第一次引入后，高延迟会降低。 如果持续遇到较高的延迟，请通过 Azure 门户提交支持票证。
 
 ## <a name="streaming-ingestion-best-practices"></a>流式引入最佳做法
 
-* 始终为 Azure 时序见解第 2 代环境创建唯一的使用者组以使用来自事件源的数据。 重新使用使用者组可能会导致随机断开连接，并且可能会导致数据丢失。
+- 始终为 Azure 时序见解第 2 代环境创建唯一的使用者组以使用来自事件源的数据。 重新使用使用者组可能会导致随机断开连接，并且可能会导致数据丢失。
 
-* 在同一 Azure 区域中配置 Azure 时序见解第 2 代环境和 IoT 中心和/或事件中心。 尽管可以在单独的区域中配置事件源，但此方案不受支持，并且我们不能保证高可用性。
+- 在同一 Azure 区域中配置 Azure 时序见解第 2 代环境和 IoT 中心和/或事件中心。 尽管可以在单独的区域中配置事件源，但此方案不受支持，并且我们不能保证高可用性。
 
-* 请勿超出环境的[吞吐量速率限制](./concepts-streaming-ingress-throughput-limits.md)或每个分区的限制。
+- 请勿超出环境的[吞吐量速率限制](./concepts-streaming-ingress-throughput-limits.md)或每个分区的限制。
 
-* 配置一个当你的环境在处理数据的过程中遇到问题时要发送的延迟[警报](https://review.docs.microsoft.com/azure/time-series-insights/time-series-insights-environment-mitigate-latency?branch=pr-en-us-117938#monitor-latency-and-throttling-with-alerts)。
+- 配置一个当你的环境在处理数据的过程中遇到问题时要发送的延迟[警报](/time-series-insights/time-series-insights-environment-mitigate-latency#monitor-latency-and-throttling-with-alerts)。
 
-* 流式传输引入仅限用于近实时数据和最新数据，不支持流式传输历史数据。
+- 流式传输引入仅限用于近实时数据和最新数据，不支持流式传输历史数据。
 
-* 了解如何对属性进行转义以及 JSON [数据如何平展和存储。](./concepts-json-flattening-escaping-rules.md)
+- 了解如何对属性进行转义以及 JSON [数据如何平展和存储。](./concepts-json-flattening-escaping-rules.md)
 
-* 提供事件源连接字符串时，请遵循最低权限原则。 对于事件中心，请配置仅包含“发送”声明的共享访问策略；对于 IoT 中心，请仅使用“服务连接”权限。
+- 提供事件源连接字符串时，请遵循最低权限原则。 对于事件中心，请配置仅包含“发送”声明的共享访问策略；对于 IoT 中心，请仅使用“服务连接”权限。
 
 ### <a name="historical-data-ingestion"></a>历史数据引入
 
 Azure 时序见解第 2 代目前不支持使用流式传输管道导入历史数据。 如果需要将过去的数据导入到环境中，请遵循以下准则：
 
-* 不要并行传输实时和历史数据。 引入无序数据将导致查询性能下降。
-* 按时间顺序引入历史数据，以获得最佳性能。
-* 不超过以下引入吞吐率上限。
-* 如果数据早于你的 Warm 存储保留期，请禁用 Warm 存储。
+- 不要并行传输实时和历史数据。 引入无序数据将导致查询性能下降。
+- 按时间顺序引入历史数据，以获得最佳性能。
+- 不超过以下引入吞吐率上限。
+- 如果数据早于你的 Warm 存储保留期，请禁用 Warm 存储。
 
 ## <a name="event-source-timestamp"></a>事件源时间戳
 
@@ -82,11 +82,7 @@ Azure 时序见解第 2 代目前不支持使用流式传输管道导入历史�
 
 ## <a name="next-steps"></a>后续步骤
 
-* 阅读 [JSON 平展和转义规则](./concepts-json-flattening-escaping-rules.md)以了解如何存储事件。 
+- 阅读 [JSON 平展和转义规则](./concepts-json-flattening-escaping-rules.md)以了解如何存储事件。
 
-* 了解你的环境的[吞吐量限制](./concepts-streaming-ingress-throughput-limits.md)
-
-
-
-
+- 了解你的环境的[吞吐量限制](./concepts-streaming-ingress-throughput-limits.md)
 

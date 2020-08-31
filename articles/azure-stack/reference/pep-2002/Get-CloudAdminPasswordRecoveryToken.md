@@ -4,16 +4,16 @@ description: PowerShell Azure Stack 特权终结点 - Get-CloudAdminPasswordReco
 author: WenJason
 ms.topic: reference
 origin.date: 04/27/2020
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: fiseraci
 ms.lastreviewed: 04/27/2020
-ms.openlocfilehash: a6f0b44c0b64008f1c085d21d7e3db4a25e88382
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 97f993e39e46ff71753356c14883f75668bd77d9
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096801"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867727"
 ---
 # <a name="get-cloudadminpasswordrecoverytoken"></a>Get-CloudAdminPasswordRecoveryToken
 
@@ -56,4 +56,4 @@ Accept wildcard characters: False
 
 ## <a name="next-steps"></a>后续步骤
 
-有关如何访问和使用特权终结点的信息，请参阅[使用 Azure Stack Hub 中的特权终结点](/azure-stack/operator/azure-stack-privileged-endpoint)。
+有关如何访问和使用特权终结点的信息，请参阅[使用 Azure Stack Hub 中的特权终结点](../../operator/azure-stack-privileged-endpoint.md)。

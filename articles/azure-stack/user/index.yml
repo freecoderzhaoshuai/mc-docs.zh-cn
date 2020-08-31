@@ -9,13 +9,13 @@ metadata:
   author: WenJason
   ms.author: v-jay
   origin.date: 03/19/2020
-  ms.date: 05/18/2020
-  ms.openlocfilehash: 52bea827e7d84d685f04fe8ff3be65443e2fb424
-  ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+  ms.date: 08/31/2020
+  ms.openlocfilehash: 8d368137875d90f9fa4b8b7b01530a56b81f9f81
+  ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 06/19/2020
-  ms.locfileid: "85096339"
+  ms.lasthandoff: 08/26/2020
+  ms.locfileid: "88867966"
 landingContent:
 - title: 关于 Azure Stack Hub
   linkLists:
@@ -48,7 +48,7 @@ landingContent:
   - linkListType: get-started
     links:
     - text: 安装 Azure Stack Hub PowerShell
-      url: /azure-stack/operator/azure-stack-powershell-install
+      url: ../operator/azure-stack-powershell-install.md
     - text: 为 Azure Stack Hub 安装 CLI
       url: azure-stack-version-profiles-azurecli2.md
   - linkListType: sample

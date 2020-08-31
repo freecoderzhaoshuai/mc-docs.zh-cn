@@ -2,16 +2,17 @@
 title: 如何停止监视 Azure Kubernetes 服务群集 | Microsoft Docs
 description: 本文介绍如何停止使用用于容器的 Azure Monitor 监视 Azure AKS 群集。
 ms.topic: conceptual
-author: lingliw
-ms.author: v-lingwu
+author: Johnnytechn
+ms.author: v-johya
 origin.date: 08/09/2019
-ms.date: 08/19/2019
-ms.openlocfilehash: b4fe4452686da1389b968575b677495cc319a1f9
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.date: 08/20/2020
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: e477198f7b989ba783b7d159138d619f17551e19
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79290897"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148555"
 ---
 # <a name="how-to-stop-monitoring-your-azure-kubernetes-service-aks-with-azure-monitor-for-containers"></a>如何停止使用用于容器的 Azure Monitor 监视 Azure Kubernetes 服务 (AKS)
 
@@ -19,7 +20,8 @@ ms.locfileid: "79290897"
 
 
 ## <a name="azure-cli"></a>Azure CLI
-使用 [az aks disable-addons](/cli//aks?view=azure-cli-latest#az-aks-disable-addons) 命令禁用容器的 Azure Monitor。 该命令从群集节点中删除代理，它不会删除已收集并存储在 Azure Monitor 资源中的解决方案或数据。  
+
+使用 [az aks disable-addons](https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-disable-addons) 命令禁用容器的 Azure Monitor。 该命令从群集节点中删除代理，它不会删除已收集并存储在 Azure Monitor 资源中的解决方案或数据。  
 
 ```azurecli
 az aks disable-addons -a monitoring -n MyExistingManagedCluster -g MyExistingManagedClusterRG
@@ -39,7 +41,7 @@ az aks disable-addons -a monitoring -n MyExistingManagedCluster -g MyExistingMan
 >模板需要部署在群集所在的资源组中。 如果在使用此模板时省略任何其他属性或加载项，则可能导致从群集中删除这些属性或加载项。 例如，*enableRBAC*（用于群集中实施的 RBAC 策略），或 *aksResourceTagValues*（如果为 AKS 群集指定了标记）。  
 >
 
-如果选择使用 Azure CLI，首先需要在本地安装和使用 CLI。 必须运行 Azure CLI 2.0.27 版或更高版本。 若要确定版本，请运行 `az --version`。 如果需要安装或升级 Azure CLI，请参阅[安装 Azure CLI](https://docs.azure.cn/zh-cn/cli/install-azure-cli?view=azure-cli-latest)。 
+如果选择使用 Azure CLI，首先需要在本地安装和使用 CLI。 必须运行 Azure CLI 2.0.27 版或更高版本。 若要确定版本，请运行 `az --version`。 如果需要安装或升级 Azure CLI，请参阅[安装 Azure CLI](/cli/install-azure-cli)。
 
 ### <a name="create-template"></a>创建模板
 
@@ -59,9 +61,8 @@ az aks disable-addons -a monitoring -n MyExistingManagedCluster -g MyExistingMan
       "aksResourceLocation": {
         "type": "string",
         "metadata": {
-           "description": "Location of the AKS resource e.g. \"China East\""
+           "description": "Location of the AKS resource e.g. \"China East2\""
          }
-       }
        },
     "aksResourceTagValues": {
       "type": "object",
@@ -69,7 +70,7 @@ az aks disable-addons -a monitoring -n MyExistingManagedCluster -g MyExistingMan
         "description": "Existing all tags on AKS Cluster Resource"
         }
       }
-    },
+     },
     "resources": [
       {
         "name": "[split(parameters('aksResourceId'),'/')[8]]",
@@ -93,6 +94,7 @@ az aks disable-addons -a monitoring -n MyExistingManagedCluster -g MyExistingMan
     ```
 
 2. 将此文件以“OptOutTemplate.json”文件名保存到本地文件夹  。
+
 3. 将以下 JSON 语法粘贴到文件中：
 
     ```json
@@ -119,7 +121,7 @@ az aks disable-addons -a monitoring -n MyExistingManagedCluster -g MyExistingMan
 
 4. 使用可在选定群集的“属性”页面上找到的 AKS 群集的值，编辑 **aksResourceId** 和 **aksResourceLocation** 的值  。
 
-    ![容器属性页面](media/container-insights-optout/container-properties-page.png)
+    ![容器属性页面](./media/container-insights-optout/container-properties-page.png)
 
     位于“属性”页时，还请复制“工作区资源 ID”   。 如果决定稍后删除 Log Analytics 工作区，则需要此值。 不在此流程中执行删除 Log Analytics 工作区的操作。
 
@@ -136,13 +138,13 @@ az aks disable-addons -a monitoring -n MyExistingManagedCluster -g MyExistingMan
 ```azurecli
 az cloud set --name AzureChinaCloud
 az login   
-az account set --subscription "Subscription Name" 
+az account set --subscription "Subscription Name"
 az group deployment create --resource-group <ResourceGroupName> --template-file ./OptOutTemplate.json --parameters @./OptOutParam.json  
 ```
 
 配置更改可能需要几分钟才能完成。 完成后，系统会返回包含结果的消息，如下所示：
 
-```azurecli
+```output
 ProvisioningState       : Succeeded
 ```
 
@@ -160,12 +162,12 @@ New-AzResourceGroupDeployment -Name opt-out -ResourceGroupName <ResourceGroupNam
 
 配置更改可能需要几分钟才能完成。 完成后，系统会返回包含结果的消息，如下所示：
 
-```powershell
+```output
 ProvisioningState       : Succeeded
 ```
 
 
 ## <a name="next-steps"></a>后续步骤
 
-如果创建的工作区仅用于支持监视群集且不再被需要，则需要手动删除它。 如果不熟悉如何删除工作区，请参阅[使用 Azure 门户删除 Azure Log Analytics 工作区](/azure-monitor/platform/delete-workspace)。 不要忘记之前在步骤 4 中复制的“工作区资源 ID”，稍后将会需要  。 
+如果创建的工作区仅用于支持监视群集且不再被需要，则需要手动删除它。 如果不熟悉如何删除工作区，请参阅[使用 Azure 门户删除 Azure Log Analytics 工作区](../platform/delete-workspace.md)。 不要忘记之前在步骤 4 中复制的“工作区资源 ID”，稍后将会需要  。
 

@@ -5,16 +5,16 @@ author: WenJason
 manager: digimobile
 ms.topic: article
 origin.date: 10/11/2019
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: anwestg
 ms.lastreviewed: 08/20/2019
-ms.openlocfilehash: 13ef613b3ad085145ce61a99a812bf2bc7df2ebf
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: c1c4132d5776dfc1cdd5daf404880ccc2b410ff1
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096484"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868010"
 ---
 # <a name="app-service-on-azure-stack-hub-update-7-release-notes"></a>Azure Stack Hub 上的应用服务 Update 7 发行说明
 
@@ -119,7 +119,7 @@ Azure Stack Hub 上的 Azure 应用服务 Update 7 包含以下改进和修复�
 
 ## <a name="known-issues-for-cloud-admins-operating-azure-app-service-on-azure-stack-hub"></a>云管理员在操作基于 Azure Stack Hub 的 Azure 应用服务时的已知问题
 
-请参阅 [Azure Stack Hub 1907 发行说明](azure-stack-release-notes-1907.md)中的文档
+请参阅 [Azure Stack Hub 1907 发行说明](./release-notes.md?view=azs-2002)中的文档
 
 ## <a name="next-steps"></a>后续步骤
 

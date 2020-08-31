@@ -4,16 +4,16 @@ description: PowerShell Azure Stack 特权终结点 - Set-SyslogClient 的参考
 author: WenJason
 ms.topic: reference
 origin.date: 04/27/2020
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: digimobile
 ms.reviewer: fiseraci
 ms.lastreviewed: 04/27/2020
-ms.openlocfilehash: 19816085c38d6c63ff0abfb5cf16c392487f5771
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: b237bec8fe146565ac3e4fd2865b15c6e0e0c372
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096821"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867984"
 ---
 # <a name="set-syslogclient"></a>Set-SyslogClient
 
@@ -107,4 +107,4 @@ Accept wildcard characters: False
 
 ## <a name="next-steps"></a>后续步骤
 
-有关如何访问和使用特权终结点的信息，请参阅[使用 Azure Stack Hub 中的特权终结点](/azure-stack/operator/azure-stack-privileged-endpoint)。
+有关如何访问和使用特权终结点的信息，请参阅[使用 Azure Stack Hub 中的特权终结点](../../operator/azure-stack-privileged-endpoint.md)。

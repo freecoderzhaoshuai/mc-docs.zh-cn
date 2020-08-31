@@ -1,21 +1,21 @@
 ---
 title: Azure 存储分析日志记录
-description: 了解如何记录针对 Azure 存储发出的请求的详细信息。
+description: 使用存储分析记录有关 Azure 存储请求的详细信息。 了解记录了哪些请求、如何存储日志，如何启用存储日志记录，等等。
 author: WenJason
 ms.service: storage
 ms.subservice: common
 ms.topic: conceptual
-origin.date: 05/09/2019
-ms.date: 07/20/2020
+origin.date: 07/23/2020
+ms.date: 08/24/2020
 ms.author: v-jay
 ms.reviewer: fryu
 ms.custom: monitoring
-ms.openlocfilehash: 4c18aa3cf995b6727d8ad37fc5c4956cd7a36023
-ms.sourcegitcommit: 31da682a32dbb41c2da3afb80d39c69b9f9c1bc6
+ms.openlocfilehash: 379a659abee2ecd9f34c917fa2a05d85c6b7a0d4
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86414699"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753626"
 ---
 # <a name="azure-storage-analytics-logging"></a>Azure 存储分析日志记录
 
@@ -31,7 +31,7 @@ ms.locfileid: "86414699"
 ## <a name="requests-logged-in-logging"></a>日志记录中记录的请求
 ### <a name="logging-authenticated-requests"></a>记录经过身份验证的请求
 
- 将记录以下类型的已经过身份验证的请求：
+ 将记录以下类型的经过身份验证的请求：
 
 - 成功的请求
 - 失败的请求，包括超时、限制、网络、授权和其他错误
@@ -42,7 +42,7 @@ ms.locfileid: "86414699"
 
 ### <a name="logging-anonymous-requests"></a>记录匿名请求
 
- 将记录以下类型的匿名请求：
+ 记录以下类型的匿名请求：
 
 - 成功的请求
 - 服务器错误
@@ -65,7 +65,7 @@ ms.locfileid: "86414699"
 你可以使用大多数存储浏览工具查看 blob 的元数据；你也可以通过 PowerShell 或编程方式读取此信息。 下面的 PowerShell 代码片段是一个示例，该示例说明了如何按名称筛选日志 blob 的列表来指定时间，以及如何按元数据进行筛选以仅标识包含“写入”操作的日志。  
 
  ```powershell
- Get-AzureStorageBlob -Container '$logs' |  
+ Get-AzStorageBlob -Container '$logs' |  
  Where-Object {  
      $_.Name -match 'table/2014/05/21/05' -and   
      $_.ICloudBlob.Metadata.LogType -match 'write'  
@@ -138,20 +138,20 @@ ms.locfileid: "86414699"
 
 ### <a name="enable-storage-logging-using-powershell"></a>使用 PowerShell 启用存储日志记录  
 
- 你可以使用本地计算机上的 PowerShell 在存储帐户中配置存储日志记录，具体方法是：使用 Azure PowerShell cmdlet Get-AzureStorageServiceLoggingProperty 检索当前设置，然后使用 cmdlet Set-AzureStorageServiceLoggingProperty 更改当前设置 。  
+ 可在本地计算机上使用 PowerShell 在存储帐户中配置存储日志记录，方法是：使用 Azure PowerShell cmdlet **Get-AzStorageServiceLoggingProperty** 检索当前设置，使用 cmdlet **Set-AzStorageServiceLoggingProperty** 更改当前设置。  
 
  控制存储日志记录的 cmdlet 使用 LoggingOperations 参数，该参数是一个字符串，包含要记录的请求类型的逗号分隔列表。 三种可能的请求类型是“读取”、“写入”和“删除”  。 要关闭日志记录，请对 LoggingOperations 参数使用值“无” 。  
 
  以下命令在保留期设为 5 天的情况下，在默认存储帐户中为队列服务中的读取、写入和删除请求打开日志记录：  
 
 ```powershell
-Set-AzureStorageServiceLoggingProperty -ServiceType Queue -LoggingOperations read,write,delete -RetentionDays 5  
+Set-AzStorageServiceLoggingProperty -ServiceType Queue -LoggingOperations read,write,delete -RetentionDays 5  
 ```  
 
  以下命令在默认存储帐户中为表服务关闭日志记录：  
 
 ```powershell
-Set-AzureStorageServiceLoggingProperty -ServiceType Table -LoggingOperations none  
+Set-AzStorageServiceLoggingProperty -ServiceType Table -LoggingOperations none  
 ```  
 
  若要了解如何配置 Azure PowerShell cmdlet 来使用 Azure 订阅并了解如何选择要使用的默认存储帐户，请参阅：[如何安装和配置 Azure PowerShell](https://azure.microsoft.com/documentation/articles/install-configure-powershell/)。  
@@ -224,7 +224,7 @@ azcopy copy 'https://mystorageaccount.blob.core.chinacloudapi.cn/$logs/queue' 'C
 
 要了解有关如何下载特定文件的详细信息，请参阅[下载特定文件](/storage/common/storage-use-azcopy-blobs?toc=%2fstorage%2fblobs%2ftoc.json#download-specific-files)。
 
-下载了日志数据后，你可以在文件中查看日志条目。 这些日志文件使用带分隔符的文本格式，包括 Microsoft Message Analyzer 在内的许多日志读取工具都可以分析此格式（有关详细信息，请参阅[对 Azure 存储进行监视、诊断和故障排除](storage-monitoring-diagnosing-troubleshooting.md)指南）。 不同工具使用不同设施对日志文件内容进行格式化、筛选、排序和搜索。 有关存储日志记录日志文件格式和内容的详细信息，请参阅[存储分析日志格式](https://docs.microsoft.com/rest/api/storageservices/storage-analytics-log-format)和[存储分析记录的操作和状态消息](https://docs.microsoft.com/rest/api/storageservices/storage-analytics-logged-operations-and-status-messages)。
+下载日志数据后，可以查看文件中的日志条目。 这些日志文件使用带分隔符的文本格式，包括 Microsoft Message Analyzer 在内的许多日志读取工具都可以分析此格式（有关详细信息，请参阅[对 Azure 存储进行监视、诊断和故障排除](storage-monitoring-diagnosing-troubleshooting.md)指南）。 不同的工具提供不同的功能用于筛选、排序和搜索日志文件的内容及设置其格式。 有关存储日志记录日志文件格式和内容的详细信息，请参阅[存储分析日志格式](https://docs.microsoft.com/rest/api/storageservices/storage-analytics-log-format)和[存储分析记录的操作和状态消息](https://docs.microsoft.com/rest/api/storageservices/storage-analytics-logged-operations-and-status-messages)。
 
 ## <a name="next-steps"></a>后续步骤
 

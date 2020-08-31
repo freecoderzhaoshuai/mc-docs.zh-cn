@@ -5,21 +5,20 @@ description: 为何要将应用程序添加到 Azure AD，如何添加？
 services: active-directory
 author: rwike77
 manager: CelesteDG
-ms.assetid: 3321d130-f2a8-4e38-b35e-0959693f3576
 ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 03/20/2020
+ms.date: 08/17/2020
 ms.author: v-junlch
 ms.custom: aaddev
 ms.reviewer: lenalepa, sureshja
-ms.openlocfilehash: 8f93977ad673127aa799c8dc604c8ba00e111eeb
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 3cf64427ed92083510654919abda1f2636be3c1d
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80243163"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647557"
 ---
 # <a name="how-and-why-applications-are-added-to-azure-ad"></a>如何以及为何将应用程序添加到 Azure AD
 
@@ -59,7 +58,7 @@ Azure AD 中的应用程序有两种表示形式：
 * 本地用户和组应用程序角色分配的记录
 * 授予应用程序的本地用户和管理员权限的记录
   * 例如：应用程序访问特定用户电子邮件的权限
-* 本地策略的记录
+* 本地策略（包括条件访问策略）的记录
 * 应用程序的备用本地设置的记录
   * 声明转换规则
   * 属性映射（用户设置）
@@ -75,25 +74,6 @@ Azure AD 中的应用程序有两种表示形式：
   * 某些 Office 365 服务（如 SharePoint）会不断地创建服务主体，以允许在组件（包括工作流）之间进行安全通信。
 * 当管理员从应用库添加应用程序时（这也会创建基础应用对象）
 * 通过 Microsoft Graph API 或 PowerShell 以编程方式实现
-
-## <a name="how-are-application-objects-and-service-principals-related-to-each-other"></a>如何将应用程序对象与服务主体彼此相关？
-
-应用程序的主目录中包含一个应用程序对象，该对象由运行该应用程序的每个目录（包括该应用程序的主目录）中的一个或多个服务主体引用。
-
-![显示应用对象与服务主体之间的关系][apps_service_principals_directory]
-
-在上面的关系图中，Microsoft 在内部维护两个用于发布应用程序的目录（左侧显示）：
-
-* 一个目录用于 Microsoft 应用程序（Microsoft 服务目录）
-* 一个目录用于预先集成的第三方应用程序（应用库目录）
-
-与 Azure AD 集成的应用程序发布者/供应商需有一个发布目录（在右侧显示为“某个 SaaS 目录”）。
-
-自行添加的应用程序（在关系图中显示为**你的应用**）包括：
-
-* 开发的应用（与 Azure AD 集成）
-* 为了进行单一登录而连接的应用程序
-* 使用 Azure AD 应用程序代理发布的应用
 
 ### <a name="notes-and-exceptions"></a>备注和例外情况
 
@@ -118,7 +98,7 @@ Azure AD 中的应用程序有两种表示形式：
 
 ## <a name="who-has-permission-to-add-applications-to-my-azure-ad-instance"></a>谁有权向我的 Azure AD 实例添加应用程序？
 
-尽管有些任务只能由全局管理员执行（例如，从应用库添加应用程序，以及将应用程序配置为使用应用程序代理），但默认情况下，目录中的所有用户都有权添加他们正在开发的应用程序，并通过许可来决定要共享哪些应用程序/授予对其组织数据的访问权限。 当目录中的第一个用户登录到应用程序并授予许可时，会在租户中创建一个服务主体；否则，许可授予信息将存储在现有的服务主体中。
+尽管有些任务只能由全局管理员执行，但默认情况下，目录中的所有用户都有权注册正在开发的应用程序对象，并通过许可来决定要共享哪些应用程序/授予对其组织数据的访问权限。 当目录中的第一个用户登录到应用程序并授予许可时，会在租户中创建一个服务主体；否则，许可授予信息将存储在现有的服务主体中。
 
 允许用户注册和许可应用程序最初听上去可能令人担忧，但请记住以下要点：
 

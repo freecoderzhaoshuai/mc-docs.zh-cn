@@ -4,17 +4,19 @@ description: 列出了 Azure 中虚拟机可用的不同 GPU 优化大小。 针
 author: rockboyfor
 ms.service: virtual-machines
 ms.subservice: sizes
-ms.topic: article
+ms.topic: conceptual
 ms.workload: infrastructure-services
 origin.date: 02/03/2020
-ms.date: 07/06/2020
+ms.date: 08/31/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 71db9c460f6975465ee058c2d2306f1dea6201bc
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 52a29ad8af6975a1be74df0f7331d34d3b46cdbc
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945703"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052358"
 ---
 # <a name="gpu-optimized-virtual-machine-sizes"></a>GPU 优化虚拟机大小
 
@@ -36,19 +38,17 @@ GPU 优化 VM 大小是具有单个、多个或部分 GPU 的专用虚拟机。 
 若要利用 Azure NCv3 系列 VM 的 GPU 功能，必须安装 NVIDIA 驱动程序。
 
 <!--Not Available on  or AMD GPU which installed on NVV4 series-->
-
 <!--CORRECT ON NCv3 series-->
-
 <!--Not Available on [NVIDIA GPU Driver Extension](/virtual-machines/extensions/hpccompute-gpu-windows)-->
 
-可以手动安装 NVIDIA GPU 驱动程序。 请参阅[在运行 Windows 的 N 系列 VM 上安装 NVIDIA GPU 驱动程序](/virtual-machines/windows/n-series-driver-setup)或[在运行 Linux 的 N 系列 VM 上安装 NVIDIA GPU 驱动程序](/virtual-machines/linux/n-series-driver-setup)，以了解受支持的操作系统、驱动程序以及安装和验证步骤。
+可以手动安装 NVIDIA GPU 驱动程序。 请参阅[在运行 Windows 的 N 系列 VM 上安装 NVIDIA GPU 驱动程序](./windows/n-series-driver-setup.md)或[在运行 Linux 的 N 系列 VM 上安装 NVIDIA GPU 驱动程序](./linux/n-series-driver-setup.md)，以了解受支持的操作系统、驱动程序以及安装和验证步骤。
 
-<!--Not Available on [Install AMD GPU drivers on N-series VMs running Windows](/virtual-machines/windows/n-series-amd-driver-setup)-->
+<!--Not Available on [Install AMD GPU drivers on N-series VMs running Windows](./windows/n-series-amd-driver-setup.md)-->
 <!--Which installed on NVV4 series-->
 
 ## <a name="deployment-considerations"></a>部署注意事项
 
-- 有关 N 系列 VM 的可用性，请查看[可用产品(按区域)](https://azure.microsoft.com/global-infrastructure/services/?products=virtual-machines)。
+- 有关 N 系列 VM 的可用性，请查看[可用产品(按区域)](https://azure.microsoft.com/regions/services/)。
 
 - N 系列 VM 只能按 Resource Manager 部署模型部署。
 

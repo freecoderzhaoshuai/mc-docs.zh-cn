@@ -1,23 +1,23 @@
 ---
 title: 使用 Azurite 模拟器进行本地 Azure 存储开发
-description: Azurite 开源模拟器（预览版）提供一个免费的本地环境用于测试 Azure 存储应用程序。
+description: Azurite 开源模拟器提供一个免费的本地环境，用于测试 Azure 存储应用程序。
 author: WenJason
 ms.author: v-jay
-origin.date: 05/01/2020
-ms.date: 06/01/2020
+origin.date: 07/15/2020
+ms.date: 08/24/2020
 ms.service: storage
 ms.subservice: common
-ms.topic: conceptual
-ms.openlocfilehash: 8515d055b9468719698451c1db5e1a087039b6c8
-ms.sourcegitcommit: be0a8e909fbce6b1b09699a721268f2fc7eb89de
+ms.topic: how-to
+ms.openlocfilehash: 4e2b4e2550f6c1974fbb050e68dc88963ba3a92f
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84199741"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753425"
 ---
-# <a name="use-the-azurite-emulator-for-local-azure-storage-development-and-testing-preview"></a>使用 Azurite 模拟器进行本地 Azure 存储开发和测试（预览）
+# <a name="use-the-azurite-emulator-for-local-azure-storage-development"></a>使用 Azurite 模拟器进行本地 Azure 存储开发
 
-Azurite 版本 3.2 开源模拟器（预览版）提供一个免费的本地环境用于测试 Azure blob 和队列存储应用程序。 如果你对应用程序在本地的工作状况感到满意，可以改用云中的 Azure 存储帐户。 该仿真器在 Windows、Linux 和 macOS 上提供跨平台支持。 Azurite v3 支持 Azure Blob 服务实现的 API。
+Azurite 开源模拟器提供一个免费的本地环境，用于测试 Azure Blob 和队列存储应用程序。 如果你对应用程序在本地的工作状况感到满意，可以改用云中的 Azure 存储帐户。 该仿真器在 Windows、Linux 和 macOS 上提供跨平台支持。
 
 Azurite 是未来的存储仿真器平台。 Azurite 取代了 [Azure 存储仿真器](storage-use-emulator.md)。 Azurite 将持续更新，以支持最新版本的 Azure 存储 API。
 
@@ -35,8 +35,6 @@ Azurite 是未来的存储仿真器平台。 Azurite 取代了 [Azure 存储仿�
 ![Visual Studio Code 扩展市场](media/storage-use-azurite/azurite-vs-code-extension.png)
 
 也可在浏览器中导航到 [Visual Studio Code 扩展市场](https://marketplace.visualstudio.com/items?itemName=Azurite.azurite)。 选择“安装”按钮打开 Visual Studio Code，并直接转到 Azurite 扩展页。
-
-可以在 Visual Studio Code 状态栏中快速启动或关闭 Azurite。 单击“[Azurite Blob 服务]”或“[Azurite 队列服务]”。
 
 该扩展支持以下 Visual Studio Code 命令。 若要打开命令面板，请在 Visual Studio Code 中按 F1。 
 
@@ -68,6 +66,7 @@ Azurite 是未来的存储仿真器平台。 Azurite 取代了 [Azure 存储仿�
    - **Azurite:队列主机** - 队列服务的侦听终结点。 默认设置为 127.0.0.1。
    - **Azurite:队列端口** - 队列服务的侦听端口。 默认端口为 10001。
    - **Azurite:无提示** - 无提示模式会禁用访问日志。 默认值是 **false**秒。
+   - **Azurite:跳过 API 版本检查** - 跳过请求 API 版本检查。 默认值是 **false**秒。
 
 ## <a name="install-and-run-azurite-by-using-npm"></a>使用 NPM 安装并运行 Azurite
 
@@ -311,6 +310,15 @@ azurite --oauth basic --cert path/server.pem --key path/key.pem
 > OAuth 需要 HTTPS 终结点。 请确保通过提供 `--cert` 开关和 `--oauth` 开关来启用 HTTPS。
 
 Azurite 通过为 `--oauth` 开关指定 `basic` 参数来支持基本身份验证。 Azurite 会执行基本身份验证，例如验证传入的持有者令牌；检查颁发者、受众和到期时间。 Azurite 不会检查令牌签名或权限。
+
+### <a name="skip-api-version-check"></a>跳过 API 版本检查
+
+**可选** - 启动时，Azurite 会检查请求的 API 版本是否有效。 以下命令会跳过 API 版本检查：
+
+```console
+azurite --skipApiVersionCheck
+```
+
 
 ## <a name="authorization-for-tools-and-sdks"></a>工具和 SDK 的授权
 

@@ -9,18 +9,18 @@ metadata:
   ms.subservice: templates
   ms.topic: landing-page
   ms.collection: na
+  origin.date: 07/30/2020
   author: rockboyfor
-  origin.date: 03/09/2020
-  ms.date: 07/13/2020
+  ms.date: 08/24/2020
   ms.testscope: no
   ms.testdate: 
   ms.author: v-yeche
-  ms.openlocfilehash: d84af5aad5ab76802b400da44a8d442641aa85c9
-  ms.sourcegitcommit: 2bd0be625b21c1422c65f20658fe9f9277f4fd7c
+  ms.openlocfilehash: 9479911d6ea51c408dac383316e3d9c3134bb2f4
+  ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 07/17/2020
-  ms.locfileid: "86440953"
+  ms.lasthandoff: 08/25/2020
+  ms.locfileid: "88807834"
 landingContent:
 - title: 关于 ARM 模板
   linkLists:
@@ -30,8 +30,12 @@ landingContent:
       url: overview.md
   - linkListType: concept
     links:
-    - text: 最佳实践
+    - text: 最佳做法
       url: template-best-practices.md
+    - text: 常见问题
+      url: frequently-asked-questions.md
+    - text: 模板规格
+      url: template-specs.md
     - text: 部署模式
       url: deployment-modes.md
     - text: 链接的模板
@@ -44,24 +48,16 @@ landingContent:
       url: quickstart-create-templates-use-the-portal.md
     - text: 创建模板 - VS Code
       url: quickstart-create-templates-use-visual-studio-code.md
-    - text: 创建模板 - Visual Studio
-      url: create-visual-studio-deployment-project.md
   - linkListType: tutorial
     links:
     - text: 入门教程
       url: template-tutorial-create-first-template.md
-    - text: 部署多个实例
-      url: template-tutorial-create-multiple-instances.md
-    - text: 设置部署顺序
-      url: template-tutorial-create-templates-with-dependent-resources.md
-    - text: 集成密钥保管库
-      url: template-tutorial-use-key-vault.md
+    - text: 部署
+      url: deployment-tutorial-local-template.md
 - title: 开发模板
   linkLists:
   - linkListType: how-to-guide
     links:
-    - text: 使用 VS Code
-      url: use-vs-code-to-create-template.md
     - text: 使用函数
       url: template-functions.md
     - text: 定义参数
@@ -90,6 +86,8 @@ landingContent:
       url: deploy-portal.md
     - text: REST API
       url: deploy-rest.md
+    - text: “部署到 Azure”按钮
+      url: deploy-to-azure-button.md
     - text: 模拟部署
       url: template-deploy-what-if.md
 - title: 作用域内部署
@@ -102,6 +100,8 @@ landingContent:
       url: deploy-to-management-group.md
     - text: 租户
       url: deploy-to-tenant.md
+    - text: 跨范围部署
+      url: cross-scope-deployment.md
 - title: 浏览参考内容
   linkLists:
   - linkListType: reference
@@ -122,6 +122,8 @@ landingContent:
   linkLists:
   - linkListType: how-to-guide
     links:
+    - text: 测试工具包
+      url: test-toolkit.md
     - text: 导出模板
       url: export-template-portal.md
     - text: CI/CD

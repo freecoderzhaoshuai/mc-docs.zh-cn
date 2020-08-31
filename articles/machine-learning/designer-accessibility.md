@@ -10,12 +10,12 @@ ms.author: v-yiso
 author: peterclu
 origin.date: 01/09/2020
 ms.date: 03/09/2020
-ms.openlocfilehash: 2a0b28d12136df04558a1cdfdb297f8792c85a6c
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 08c2086af0297258d0224730579c7d05a11aa489
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78155341"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947069"
 ---
 # <a name="use-a-keyboard-to-use-azure-machine-learning-designer-preview"></a>通过键盘使用 Azure 机器学习设计器（预览版）
 
@@ -79,5 +79,5 @@ ms.locfileid: "78155341"
 
 ## <a name="next-steps"></a>后续步骤
 
-- [启用高对比度或更改主题](../azure-portal/azure-portal-change-theme-high-contrast.md)
+- [启用高对比度或更改主题](../azure-portal/set-preferences.md#choose-a-theme-or-enable-high-contrast)
 - [Microsoft 的辅助功能相关工具](https://www.microsoft.com/accessibility)

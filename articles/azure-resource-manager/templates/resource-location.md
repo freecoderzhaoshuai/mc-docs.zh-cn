@@ -3,14 +3,18 @@ title: 模板资源位置
 description: 介绍如何在 Azure 资源管理器模板中设置资源位置。
 ms.topic: conceptual
 origin.date: 09/04/2019
-ms.date: 06/22/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.author: v-yeche
-ms.openlocfilehash: cc0217212b8226c15fccd7d9b19b196ed6b20cc8
-ms.sourcegitcommit: 48b5ae0164f278f2fff626ee60db86802837b0b4
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: e4a2dda6eb1b7125bd6ed9c4fa2df32a13b957a9
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85098609"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807743"
 ---
 <!--Verify successfully-->
 # <a name="set-resource-location-in-arm-template"></a>在 ARM 模板中设置资源位置
@@ -71,6 +75,7 @@ az provider show \
     }
   },
   "variables": {
+    
     "storageAccountName": "[concat('storage', uniquestring(resourceGroup().id))]"
   },
   "resources": [

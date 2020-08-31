@@ -4,16 +4,16 @@ description: 了解如何在 Azure Stack Hub 中使用 Linux 计算机托管 AKS
 author: WenJason
 ms.topic: article
 origin.date: 06/19/2020
-ms.date: 07/20/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: waltero
 ms.lastreviewed: 06/19/2020
-ms.openlocfilehash: 262ed180af61c5a11fe273f700882988aae293b9
-ms.sourcegitcommit: e9ffd50aa5eaab402a94bfabfc70de6967fe6278
+ms.openlocfilehash: 7060938c16171d5a801632b71c8cafb36bada0e5
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2020
-ms.locfileid: "86307434"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867774"
 ---
 # <a name="install-the-aks-engine-on-linux-in-azure-stack-hub"></a>在 Azure Stack Hub 中的 Linux 上安装 AKS 引擎
 
@@ -32,7 +32,7 @@ AKS 引擎是一种用于部署和管理 Kubernetes 群集的命令行工具。 
 
 可以安装客户端 VM，以便在连接到 Internet 的 Azure Stack Hub 上管理 Kubernetes 群集。
 
-1. 在 Azure Stack Hub 中创建 Linux VM。 有关说明，请参阅[快速入门：通过使用 Azure Stack Hub 门户创建 Linux 服务器 VM](/azure-stack/user/azure-stack-quick-linux-portal)。
+1. 在 Azure Stack Hub 中创建 Linux VM。 有关说明，请参阅[快速入门：通过使用 Azure Stack Hub 门户创建 Linux 服务器 VM](./azure-stack-quick-linux-portal.md)。
 2. 连接到 VM。
 3. 在[受支持的 Kubernetes 版本](https://github.com/Azure/aks-engine/blob/master/docs/topics/azure-stack.md#supported-aks-engine-versions)表中查找 AKS 引擎的版本。 AKS 基础映像必须已在 Azure Stack Hub 市场中提供。 运行该命令时，必须指定版本 `--version v0.51.0`。 如果不指定版本，该命令将安装最新版，这样可能就会需要市场中未提供的 VHD 映像。
 4. 运行以下命令：
@@ -52,9 +52,9 @@ AKS 引擎是一种用于部署和管理 Kubernetes 群集的命令行工具。 
 
 1.  在可访问 Internet 的计算机上，转到 GitHub [Azure/aks-engine](https://github.com/Azure/aks-engine/releases/latest)。 下载用于 Linux 计算机的存档 (*.tar.gz)，例如 `aks-engine-v0.xx.x-linux-amd64.tar.gz`。
 
-2.  在 Azure Stack Hub 实例中创建存储帐户，以上传包含 AKS 引擎二进制文件的存档文件 (*.tar.gz)。 有关使用 Azure 存储资源管理器的说明，请参阅 [Azure 存储资源管理器与 Azure Stack Hub](/azure-stack/user/azure-stack-storage-connect-se)。
+2.  在 Azure Stack Hub 实例中创建存储帐户，以上传包含 AKS 引擎二进制文件的存档文件 (*.tar.gz)。 有关使用 Azure 存储资源管理器的说明，请参阅 [Azure 存储资源管理器与 Azure Stack Hub](./azure-stack-storage-connect-se.md)。
 
-3. 在 Azure Stack Hub 中创建 Linux VM。 有关说明，请参阅[快速入门：通过使用 Azure Stack Hub 门户创建 Linux 服务器 VM](/azure-stack/user/azure-stack-quick-linux-portal)。
+3. 在 Azure Stack Hub 中创建 Linux VM。 有关说明，请参阅[快速入门：通过使用 Azure Stack Hub 门户创建 Linux 服务器 VM](./azure-stack-quick-linux-portal.md)。
 
 3.  从上传存档文件 (*.tar.gz) 的 Azure Stack Hub 存储帐户 Blob URL 将文件下载到管理 VM。 将该存档提取到 `/usr/local/bin` 目录。
 

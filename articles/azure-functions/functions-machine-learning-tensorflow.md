@@ -3,15 +3,15 @@ title: 将 Python 和 TensorFlow 用于 Azure 中的机器学习
 description: 在机器学习模型中使用 Python、TensorFlow 和 Azure Functions 以根据图像内容对图像进行分类。
 author: anthonychu
 ms.topic: tutorial
-ms.date: 08/12/2020
+ms.date: 08/24/2020
 ms.author: v-junlch
-ms.custom: mvc, tracking-python
-ms.openlocfilehash: 770502ec42b1fe2af5aae64a7c3fb5e52c61b330
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.custom: mvc, devx-track-python
+ms.openlocfilehash: 5b64c83d4a50f6cb6273724cc3eecc208bd6d5e2
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223316"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947041"
 ---
 # <a name="tutorial-apply-machine-learning-models-in-azure-functions-with-python-and-tensorflow"></a>教程：在 Azure Functions 中使用 Python 和 TensorFlow 应用机器学习模型
 
@@ -86,7 +86,7 @@ cd start
 ```
 
 ```powershell
-py -m venv .venv
+py -3.7 -m venv .venv
 ```
 
 ```powershell
@@ -100,7 +100,7 @@ cd start
 ```
 
 ```cmd
-py -m venv .venv
+py -3.7 -m venv .venv
 ```
 
 ```cmd

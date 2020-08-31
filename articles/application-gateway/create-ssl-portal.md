@@ -5,14 +5,14 @@ services: application-gateway
 author: vhorne
 ms.service: application-gateway
 ms.topic: tutorial
-ms.date: 08/03/2020
+ms.date: 08/17/2020
 ms.author: v-junlch
-ms.openlocfilehash: 569e8502214451eb09020f4de765a78f89700852
-ms.sourcegitcommit: 36e7f37481969f92138bfe70192b1f4a2414caf7
+ms.openlocfilehash: f0081de567860fa9f7afeecfaddd492ac7b5729b
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87796249"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647576"
 ---
 # <a name="tutorial-configure-an-application-gateway-with-tls-termination-using-the-azure-portal"></a>教程：使用 Azure 门户配置带有 TLS 终止的应用程序网关
 
@@ -30,7 +30,7 @@ ms.locfileid: "87796249"
 
 [!INCLUDE [updated-for-az](../../includes/updated-for-az.md)]
 
-## <a name="sign-in-to-azure"></a>登录 Azure
+## <a name="prerequisites"></a>先决条件
 
 通过 [https://portal.azure.cn](https://portal.azure.cn) 登录到 Azure 门户
 
@@ -261,6 +261,10 @@ Export-PfxCertificate `
     随即显示受保护的 IIS 网站，如下例所示：
 
     ![在应用程序网关中测试基 URL](./media/create-ssl-portal/application-gateway-iistest.png)
+
+## <a name="clean-up-resources"></a>清理资源
+
+不再需要时，请删除资源组及所有相关资源。 为此，请选择资源组，然后选择“删除资源组”。
 
 ## <a name="next-steps"></a>后续步骤
 

@@ -1,9 +1,9 @@
 - name: 虚拟机文档
   href: index.yml
 - name: Azure 中的 Linux 虚拟机
-  href: 'https://docs.azure.cn/virtual-machines/linux/'
+  href: ./linux/index.yml
 - name: Azure 中的 Windows 虚拟机
-  href: 'https://docs.azure.cn/virtual-machines/windows/'
+  href: ./windows/index.yml
 - name: VM 扩展文档
   href: ./extensions/overview.md
 - name: 经典部署

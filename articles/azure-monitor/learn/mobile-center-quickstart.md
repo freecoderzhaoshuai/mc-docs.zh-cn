@@ -6,15 +6,15 @@ ms.topic: quickstart
 author: Johnnytechn
 ms.author: v-johya
 origin.date: 10/03/2018
-ms.date: 05/28/2020
+ms.date: 08/20/2020
 ms.reviewer: daviste
 ms.custom: mvc
-ms.openlocfilehash: 001a81fab046baad642dd0ca95fa38c128099721
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: 642da6dc846349ecc8962f7232933f04f7331d17
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440489"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148569"
 ---
 # <a name="start-analyzing-your-mobile-app-with-app-center-and-application-insights"></a>开始使用 App Center 和 Application Insights 分析移动应用
 
@@ -72,7 +72,7 @@ Analytics.trackEvent("Video clicked")
 2. 选择“创建资源” > “开发人员工具” > “Application Insights”。
 
     > [!NOTE]
-    > 如果这是你首次创建 Application Insights 资源，可以通过访问[创建 Application Insights 资源](/azure-monitor/app/create-new-resource)文档来了解更多信息。
+    > 如果这是你首次创建 Application Insights 资源，可以通过访问[创建 Application Insights 资源](../app/create-new-resource.md)文档来了解更多信息。
 
     随后会显示一个配置对话框。 请使用下表填写输入字段。
 
@@ -125,7 +125,7 @@ Application Insights 可以查询、分段、筛选和分析来自应用的自�
    1. 通过单击文本编辑器中查询的任意位置，选择此查询。
    2. 然后，单击“运行”运行查询。 
 
-   详细了解有关 [Application Insights 分析](../../azure-monitor/log-query/log-query-overview.md)和 [Log Analytics 查询语言](https://aka.ms/LogAnalyticsLanguageReference)的信息。
+   详细了解有关 [Application Insights 分析](../log-query/log-query-overview.md)和 [Log Analytics 查询语言](https://aka.ms/LogAnalyticsLanguageReference)的信息。
 
 
 2. **分段和筛选自定义事件遥测。** 从 Application Insights“概述”页面上，选择目录中的“用户”。
@@ -168,5 +168,6 @@ Application Insights 可以查询、分段、筛选和分析来自应用的自�
 ## <a name="next-steps"></a>后续步骤
 
 > [!div class="nextstepaction"]
-> [了解客户如何使用应用](../../azure-monitor/app/usage-overview.md)
+> [了解客户如何使用应用](../app/usage-overview.md)
+
 

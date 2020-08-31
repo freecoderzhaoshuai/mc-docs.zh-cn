@@ -201,7 +201,7 @@ groups:
   - id: programming-language-java
     title: Java
   - id: programming-language-javascript
-    title: Javascript
+    title: JavaScript
   - id: programming-language-other
     title: 其他语言...
 - id: programming-languages-set-diberry-3core
@@ -211,7 +211,7 @@ groups:
   - id: programming-language-csharp
     title: C#
   - id: programming-language-javascript
-    title: Javascript
+    title: JavaScript
   - id: programming-language-python
     title: Python
 - id: java-build-tools-set
@@ -307,7 +307,7 @@ groups:
   - id: programming-language-csharp
     title: C#
   - id: programming-language-javascript
-    title: Javascript
+    title: JavaScript
   - id: programming-language-python
     title: Python
 - id: programming-languages-set-eighteen
@@ -333,7 +333,7 @@ groups:
   - id: programming-language-python
     title: Python
   - id: programming-language-javascript
-    title: Javascript
+    title: JavaScript
   - id: programming-language-more
     title: 更多语言...
 - id: programming-languages-set-two-with-js-spx
@@ -351,7 +351,7 @@ groups:
   - id: programming-language-python
     title: Python
   - id: programming-language-javascript
-    title: Javascript
+    title: JavaScript
   - id: programming-language-more
     title: 更多语言...
 - id: programming-languages-set-two-with-js-go
@@ -369,7 +369,7 @@ groups:
   - id: programming-language-python
     title: Python
   - id: programming-language-javascript
-    title: Javascript
+    title: JavaScript
   - id: programming-language-more
     title: 更多语言...
 - id: programming-languages-set-two-with-js-go-spx
@@ -389,7 +389,7 @@ groups:
   - id: programming-language-python
     title: Python
   - id: programming-language-javascript
-    title: Javascript
+    title: JavaScript
   - id: programming-language-more
     title: 更多语言...
 - id: programming-languages-speech-services-one-nomore
@@ -407,7 +407,7 @@ groups:
   - id: programming-language-python
     title: Python
   - id: programming-language-javascript
-    title: Javascript
+    title: JavaScript
 - id: programming-languages-speech-services-one-nomore-no-go
   title: 编程语言
   prompt: 选择编程语言
@@ -421,7 +421,7 @@ groups:
   - id: programming-language-python
     title: Python
   - id: programming-language-javascript
-    title: Javascript
+    title: JavaScript
 - id: programming-languages-speech-services-nomore-variant
   title: 编程语言
   prompt: 选择编程语言
@@ -435,7 +435,7 @@ groups:
   - id: programming-language-python
     title: Python
   - id: programming-language-javascript
-    title: Javascript
+    title: JavaScript
   - id: programming-language-objectivec
     title: Objective-C
 - id: programming-languages-set-nineteen
@@ -494,10 +494,62 @@ groups:
     title: Azure 数据资源管理器
   - id: azuremonitor
     title: Azure Monitor
+- id: app-service-platform-windows-linux
+  title: 应用服务平台
+  prompt: 选择托管平台
+  pivots:
+  - id: platform-linux
+    title: Linux
+  - id: platform-windows
+    title: Windows
+- id: app-service-containers-windows-linux
+  title: 应用服务与自定义容器
+  prompt: 选择自定义容器平台
+  pivots:
+  - id: container-linux
+    title: Linux 容器
+  - id: container-windows
+    title: Windows 容器
+- id: aml-control-methods
+  title: Azure 机器学习控制平面
+  prompt: 选择 Azure 机器学习控制平面接口
+  pivots:
+  - id: py-sdk
+    title: Python SDK
+  - id: cli
+    title: Azure CLI
+- id: speech-full-stack
+  title: 编程语言
+  prompt: 选择编程语言
+  pivots:
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-cpp
+    title: C++
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-spx
+    title: CLI
+- id: programming-languages-voice-assistants
+  title: 编程语言
+  prompt: 选择编程语言
+  pivots:
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-go
+    title: Go
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-more
+    title: 更多语言...
 metadata:
-  ms.openlocfilehash: 1e4277ef6510b7e66820742a00f871192aa88c46
-  ms.sourcegitcommit: 7ceeca89c0f0057610d998b64c000a2bb0a57285
+  ms.openlocfilehash: 512b6ac154d2e51de7fc0d0626be8540a5aeb08f
+  ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 08/06/2020
-  ms.locfileid: "87841163"
+  ms.lasthandoff: 08/27/2020
+  ms.locfileid: "88951243"

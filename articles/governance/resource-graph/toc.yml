@@ -4,22 +4,43 @@
   items:
     - name: 什么是 Azure Resource Graph？
       displayName: 'Resource Manager, query language, rbac, permissions'
-      href: overview.md
+      href: ./overview.md
 - name: 快速入门
   expanded: true
   items:
-    - name: 运行自己的第一个查询 - Azure 门户
+    - name: 运行自己的第一个查询 - 门户
       displayName: 'portal, resource, graph, explorer'
-      href: first-query-portal.md
+      href: ./first-query-portal.md
     - name: 运行自己的第一个查询 - Azure CLI
       displayName: 'extension, docker'
-      href: first-query-azurecli.md
-    - name: 运行自己的第一个查询 - PowerShell
+      href: ./first-query-azurecli.md
+    - name: 运行自己的第一个查询 - Azure PowerShell
       displayName: 'module, docker, Az.ResourceGraph'
-      href: first-query-powershell.md
+      href: ./first-query-powershell.md
+    - name: 运行自己的第一个查询 - .NET
+      displayName: 'core, auth, dotnet'
+      href: ./first-query-dotnet.md
+    - name: 运行自己的第一个查询 - Go
+      displayName: 'package, sdk, golang'
+      href: ./first-query-go.md
+    - name: 运行第一个查询 - JavaScript
+      displayName: 'library, node, arm-resourcegraph'
+      href: ./first-query-javascript.md
+    - name: 运行自己的第一个查询 - Python
+      displayName: 'library, azure-mgmt, cli'
+      href: ./first-query-python.md
+    - name: 运行自己的第一个查询 - Ruby
+      displayName: 'gem, azure-mgmt'
+      href: ./first-query-ruby.md
+    - name: 运行自己的第一个查询 - REST
+      displayName: 'armclient, postman'
+      href: ./first-query-rest-api.md
+    - name: 创建共享查询 - Azure CLI
+      displayName: 'extension, docker, queries'
+      href: ./shared-query-azure-cli.md
     - name: 部署共享查询 - ARM 模板
       displayName: 'resource manager, queries'
-      href: shared-query-template.md
+      href: ./shared-query-template.md
 - name: 教程
   items:
     - name: 在 Azure 门户中创建和共享查询
@@ -47,6 +68,10 @@
     - name: 针对受限制请求的指南
       displayName: 'pagination, batching, throttling, parallel'
       href: ./concepts/guidance-for-throttled-requests.md
+    - name: 安全性
+      items:
+        - name: Azure 安全基准的安全基线
+          href: ./concepts/azure-security-benchmark-baseline.md
 - name: 操作指南
   items:
     - name: 获取资源更改
@@ -71,7 +96,7 @@
       href: 'https://docs.microsoft.com/java/api/overview/azure/resourcegraph/management?view=azure-java-stable'
     - name: 用于 Java 的 Azure SDK (Maven)
       href: 'https://search.maven.org/artifact/com.microsoft.azure.resourcegraph.v2019_04_01/azure-mgmt-resourcegraph/1.0.0-beta/jar'
-    - name: 用于 Node 的 Azure SDK
+    - name: 用于 JavaScript 的 Azure SDK
       href: 'https://docs.microsoft.com/javascript/api/@azure/arm-resourcegraph'
     - name: 用于 Python 的 Azure SDK
       href: 'https://docs.microsoft.com/python/api/azure-mgmt-resourcegraph/azure.mgmt.resourcegraph'
@@ -81,15 +106,15 @@
       href: 'https://docs.microsoft.com/rest/api/azure-resourcegraph/'
     - name: OpenAPI
       href: 'https://github.com/Azure/azure-rest-api-specs/tree/master/specification/resourcegraph/resource-manager/Microsoft.ResourceGraph/stable/2019-04-01'
-    - name: Resource Manager 模板
+    - name: 资源管理器模板
       href: 'https://docs.microsoft.com/azure/templates/microsoft.resourcegraph/allversions'
     - name: Resource Graph 表和资源类型
       href: ./reference/supported-tables-resources.md
 - name: 资源
   items:
+    - name: GitHub - 治理示例
+      href: 'https://github.com/Azure-Samples/Governance/tree/master/src/resource-graph'
     - name: 定价计算器
       href: 'https://www.azure.cn/pricing/calculator/'
-    - name: GitHub 示例存储库
-      href: 'https://github.com/Azure-Samples/Governance/tree/master/src/resource-graph'
     - name: UserVoice
       href: 'https://feedback.azure.com/forums/915958-azure-governance?category_id=345061'

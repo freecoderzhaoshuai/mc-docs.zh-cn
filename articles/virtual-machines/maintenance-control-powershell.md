@@ -5,14 +5,17 @@ author: rockboyfor
 ms.service: virtual-machines
 ms.topic: how-to
 ms.workload: infrastructure-services
-ms.date: 07/06/2020
+origin.date: 01/31/2020
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 6e443d021c665a4df8c24ea59a2e08b562e779a0
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: b55b0aa25e22cccf4d89b08542c791f07f0db7ed
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945691"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052366"
 ---
 <!--Verified successfully-->
 # <a name="control-updates-with-maintenance-control-and-azure-powershell"></a>使用维护控制和 Azure PowerShell 来控制更新
@@ -21,11 +24,11 @@ ms.locfileid: "85945691"
 
 ## <a name="enable-the-powershell-module"></a>启用 PowerShell 模块
 
-确保 `PowerShellGet` 为最新版本。
+确保 `PowerShellGet` 为最新版本。    
 
-```powershell
-Install-Module -Name PowerShellGet -Repository PSGallery -Force
-```
+```powershell   
+Install-Module -Name PowerShellGet -Repository PSGallery -Force 
+``` 
 
 安装 `Az.Maintenance` PowerShell 模块。     
 

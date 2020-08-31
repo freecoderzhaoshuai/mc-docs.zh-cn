@@ -5,15 +5,15 @@ services: application-gateway
 author: vhorne
 ms.service: application-gateway
 ms.topic: article
-ms.date: 08/03/2020
+ms.date: 08/17/2020
 ms.author: v-junlch
 ms.custom: references_regions
-ms.openlocfilehash: 7f99e041006266ce1e2c386f28a11290598fd9fa
-ms.sourcegitcommit: 36e7f37481969f92138bfe70192b1f4a2414caf7
+ms.openlocfilehash: ecb3b2ab1f30f8a4f2ca2be20d73ab0e7340cfbe
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87796327"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647617"
 ---
 # <a name="frequently-asked-questions-about-application-gateway"></a>应用程序网关常见问题
 
@@ -259,7 +259,7 @@ v2 SKU 可以自动确保新实例分布到各个容错域和更新域中。 如
 
 ### <a name="what-certificates-does-application-gateway-support"></a>应用程序网关支持哪些证书？
 
-应用程序网关支持自签名证书、证书颁发机构 (CA) 证书、扩展验证 (EV) 证书和通配符证书。
+应用程序网关支持自签名证书、证书颁发机构 (CA) 证书、扩展验证 (EV) 证书、多域 (SAN) 证书和通配符证书。
 
 ### <a name="what-cipher-suites-does-application-gateway-support"></a>应用程序网关支持哪些加密套件？
 
@@ -466,30 +466,6 @@ AGIC 会尝试自动将路由表资源关联到应用程序网关子网，但 AG
 - 已部署了应用程序网关 v2
 - 应用程序网关子网上有 NSG
 - 已在该 NSG 上启用 NSG 流日志
-
-### <a name="how-do-i-use-application-gateway-v2-with-only-private-frontend-ip-address"></a>如何实现将应用程序网关 V2 仅用于专用前端 IP 地址？
-
-应用程序网关 V2 目前不支持仅专用 IP 模式。 它支持以下组合
-* 专用 IP 和公共 IP
-* 仅公共 IP
-
-但若要将应用程序网关 V2 仅用于专用 IP，则可按以下过程操作：
-1. 使用公共和专用前端 IP 地址创建应用程序网关
-2. 不要为公共前端 IP 地址创建任何侦听器。 如果没有为其创建侦听器，应用程序网关将不会侦听公共 IP 地址上的任何流量。
-3. 为应用程序网关子网创建并附加一个[网络安全组](/virtual-network/security-overview)，使用以下配置（按优先级顺序排列）：
-    
-    a. 允许的流量来自使用 **GatewayManager** 服务标记的“源”，其“目标”为“任意”，“目标端口”为 **65200-65535**。 此端口范围是进行 Azure 基础结构通信所必需的。 这些端口通过证书身份验证进行保护（锁定）。 如果没有适当的证书，外部实体（包括网关用户管理员）将无法对这些终结点做出任何更改
-    
-    b. 允许源为“AzureLoadBalancer”服务标记且目标端口为“Any”的流量
-    
-    c. 拒绝源为“Internet”服务标记且目标端口为“Any”的所有入站流量。 在入站规则中为此规则指定“最低优先级”
-    
-    d. 保留默认规则（如允许 VirtualNetwork 入站），这样就不会阻止在该专用 IP 地址上进行的访问
-    
-    e. 不能阻止出站 Internet 连接。 否则会遇到日志记录、指标等问题。
-
-仅适用于专用 IP 的访问的 NSG 配置示例：![仅适用于专用 IP 访问的应用程序网关 V2 NSG 配置](./media/application-gateway-faq/appgw-privip-nsg.png)
-
 
 ## <a name="next-steps"></a>后续步骤
 

@@ -5,16 +5,16 @@ author: rockboyfor
 ms.service: virtual-machines
 ms.topic: conceptual
 origin.date: 05/10/2019
-ms.date: 08/10/2020
-ms.testscope: yes|no
-ms.testdate: 08/10/2020null
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 0a3d14a8095fa31a98a9e4b8fb2ff2c488d71f41
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: c82cbf70a0e915664a79ad90e07832ccd1f419f5
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842722"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052430"
 ---
 <!--Verified successfully-->
 <!--The Rename file form articles/virtual-machines/windows/availability.md-->
@@ -42,14 +42,15 @@ Azure 平台进行定期维护时，此方法可确保至少有一个应用程�
 
 ## <a name="virtual-machines-scale-sets"></a>虚拟机规模集 
 
-使用 Azure 虚拟机规模集可以创建并管理一组负载均衡的 VM。 可以根据需求或定义的计划自动增减 VM 实例的数目。 规模集为应用程序提供高可用性，用于集中管理、配置和更新许多 VM。 建议在一个规模集内创建两个或多个 VM，使应用程序高度可用，并满足 [99.95% Azure SLA](https://www.azure.cn/support/sla/virtual-machines/) 的要求。 规模集本身是免费的，你只需为创建的每个 VM 实例付费。 当单个 VM 使用 [Azure 高级 SSD](/virtual-machines/windows/disks-types#premium-ssd) 时，Azure SLA 适用于计划外维护事件。 规模集内的虚拟机可以跨多个更新域和容错域部署，以最大程度地提高因数据中心中断、计划内或计划外维护事件而导致停机时的可用性和复原能力。
+
+使用 Azure 虚拟机规模集可以创建并管理一组负载均衡的 VM。 可以根据需求或定义的计划自动增减 VM 实例的数目。 规模集为应用程序提供高可用性，用于集中管理、配置和更新许多 VM。 建议在一个规模集内创建两个或多个 VM，使应用程序高度可用，并满足 [99.95% Azure SLA](https://www.azure.cn/support/sla/virtual-machines/) 的要求。 规模集本身是免费的，你只需为创建的每个 VM 实例付费。 当单个 VM 使用 [Azure 高级 SSD](./windows/disks-types.md#premium-ssd) 时，Azure SLA 适用于计划外维护事件。 规模集内的虚拟机可以跨多个更新域和容错域部署，以最大程度地提高因数据中心中断、计划内或计划外维护事件而导致停机时的可用性和复原能力。
 
 <!--Not Available on  Virtual machines in a scale set can also be deployed into a single Availability zone, or regionally. Availability zone deployment options may differ based on the orchestration mode.-->
 <!--Not Available on Availablity zones-->
 
 **容错域和更新域**
 
-虚拟机规模集通过协调容错域和更新域简化了高可用性设计。 只需为规模集定义容错域计数。 规模集可用的容错域的数量可能因地区而异。 请参阅[管理 Azure 中的虚拟机的可用性](/virtual-machines/windows/manage-availability)。
+虚拟机规模集通过协调容错域和更新域简化了高可用性设计。 只需为规模集定义容错域计数。 规模集可用的容错域的数量可能因地区而异。 请参阅[管理 Azure 中的虚拟机的可用性](./windows/manage-availability.md)。
 
 ## <a name="availability-sets"></a>可用性集
 
@@ -67,8 +68,7 @@ Azure 平台进行定期维护时，此方法可确保至少有一个应用程�
 
 :::image type="content" source="./media/virtual-machines-common-manage-availability/ud-fd-configuration.png" alt-text="可用性集":::
 
-<!--Not Available on ## Next steps-->
-<!--Not Available on [Azure availability best practices](https://docs.microsoft.com/azure/architecture/checklist/resiliency-per-service)-->
+## <a name="next-steps"></a>后续步骤
+现在即可开始使用这些可用性和冗余功能构建 Azure 环境。 有关最佳实践的信息，请参阅 [Azure 可用性的最佳实践](https://docs.microsoft.com/azure/architecture/checklist/resiliency-per-service)。
 
-<!-- Update_Description: new article about availability -->
-<!--NEW.date: 08/10/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

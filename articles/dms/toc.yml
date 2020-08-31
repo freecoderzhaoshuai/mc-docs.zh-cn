@@ -12,6 +12,7 @@
         - name: 门户
           href: quickstart-create-data-migration-service-portal.md
         - name: ARM 模板
+          displayName: Resource Manager
           href: create-dms-resource-manager-template.md
 - name: 概念
   items:
@@ -52,6 +53,8 @@
           href: tutorial-rds-mysql-server-azure-db-for-mysql-online.md
     - name: 迁移 PostgreSQL
       items:
+        - name: 到 Azure DB for PostgreSQL（门户）
+          href: tutorial-postgresql-azure-postgresql-online-portal.md
         - name: 到 Azure DB for PostgreSQL (Az CLI)
           href: tutorial-postgresql-azure-postgresql-online.md
     - name: 迁移 RDS PostgreSQL

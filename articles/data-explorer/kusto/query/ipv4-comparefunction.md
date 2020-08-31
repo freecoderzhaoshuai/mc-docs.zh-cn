@@ -8,13 +8,13 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 02/24/2020
-ms.date: 08/06/2020
-ms.openlocfilehash: 675f8ef949bb16b03292768ba478800cb2cdca40
-ms.sourcegitcommit: 7ceeca89c0f0057610d998b64c000a2bb0a57285
+ms.date: 08/18/2020
+ms.openlocfilehash: f8a471f72f1366a78c06cadb697ef353a4522ef4
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87841380"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88516047"
 ---
 # <a name="ipv4_compare"></a>ipv4_compare()
 
@@ -27,11 +27,11 @@ ipv4_compare('192.168.1.1/24', '192.168.1.255/24') == 0
 ipv4_compare('192.168.1.1', '192.168.1.255', 24) == 0
 ```
 
-**语法**
+## <a name="syntax"></a>语法
 
 `ipv4_compare(`*Expr1*`, `*Expr2*`[ ,`*PrefixMask*`])`
 
-**参数**
+## <a name="arguments"></a>参数
 
 * Expr1、Expr2：表示 IPv4 地址的字符串表达式。 可以使用 [IP 前缀表示法](#ip-prefix-notation)对 IPv4 字符串进行掩码操作。
 * PrefixMask：从 0 到 32 的整数，表示所考虑的最有效位的数目。
@@ -41,9 +41,9 @@ ipv4_compare('192.168.1.1', '192.168.1.255', 24) == 0
 IP 地址可以通过斜杠 (`/`) 字符使用 `IP-prefix notation` 进行定义。
 斜杠 (`/`) 左边的 IP 地址是基本 IP 地址。 斜杠 (`/`) 右边的数字（1 到 32）是网络掩码中连续位的数目。 
 
-**示例：** 192.168.2.0/24 将具有关联的网络/子网掩码，其中包含 24 个连续位或点分十进制格式的 255.255.255.0。
+例如，192.168.2.0/24 将具有关联的网络/子网掩码，其中包含 24 个连续位或点分十进制格式的 255.255.255.0。
 
-**返回**
+## <a name="returns"></a>返回
 
 * `0`：如果第一个 IPv4 字符串参数的长表示形式等于第二个 IPv4 字符串参数
 * `1`：如果第一个 IPv4 字符串参数的长表示形式大于第二个 IPv4 字符串参数

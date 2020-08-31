@@ -5,12 +5,12 @@ ms.author: v-tawe
 origin.date: 03/23/2019
 ms.date: 04/20/2020
 ms.topic: conceptual
-ms.openlocfilehash: c0f863acb9e3ca2f3834e1c353e34ef887fc8a14
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 7572bbb5a9a0e10d65cac6186c8bb6d46acf2c1b
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917109"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951272"
 ---
 # <a name="understand-azure-policy-effects"></a>了解 Azure Policy 效果
 
@@ -432,7 +432,7 @@ Kubernetes.
         },
         {
             "field": "location",
-            "equals": "chinaeast22"
+            "equals": "chinaeast2"
         }
     ]
 },
@@ -495,7 +495,7 @@ Example: Gatekeeper v2 admission control rule to allow only the specified contai
         },
         {
             "field": "location",
-            "equals": "chinaeast22"
+            "equals": "chinaeast2"
         }
     ]
 },

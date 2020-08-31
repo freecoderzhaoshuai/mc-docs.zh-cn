@@ -10,12 +10,12 @@ metadata:
   origin.date: 07/21/2020
   ms.date: 08/10/2020
   ms.author: v-yeche
-  ms.openlocfilehash: f891ea089e3d826d9deb49e33f5702f080586152
-  ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+  ms.openlocfilehash: 3205fefac706417750380ef22ecf6a30e1dd63a4
+  ms.sourcegitcommit: e633c458126612223fbf7a8853dbf19acc7f0fa5
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 08/06/2020
-  ms.locfileid: "87842662"
+  ms.lasthandoff: 08/20/2020
+  ms.locfileid: "88654953"
 landingContent:
 - title: 关于 Azure Kubernetes 服务 (AKS)
   linkLists:
@@ -23,6 +23,8 @@ landingContent:
     links:
     - text: 什么是 AKS？
       url: intro-kubernetes.md
+    - text: Azure 中国的 AKS 最佳做法
+      url: https://github.com/Azure/container-service-for-azure-china/blob/master/aks/README.md
   - linkListType: concept
     links:
     - text: AKS 的 Kubernetes 核心概念

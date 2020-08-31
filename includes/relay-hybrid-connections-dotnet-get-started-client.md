@@ -1,11 +1,20 @@
 ---
-ms.openlocfilehash: 9474df1204416adaf8e7d73ce3b0a12a313d9a99
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+author: rockboyfor
+ms.service: service-bus-relay
+ms.topic: include
+origin.date: 11/09/2018
+ms.date: 07/27/2020
+ms.testscope: yes
+ms.testdate: 07/27/2020
+ms.author: v-yeche
+ms.openlocfilehash: fd110dc44fd1381b2f3e037a9e381f582d989dfc
+ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "63847082"
+ms.lasthandoff: 07/24/2020
+ms.locfileid: "88947132"
 ---
+<!--Verified successfully-->
 ### <a name="create-a-console-application"></a>创建控制台应用程序
 
 在 Visual Studio 中创建新的**控制台应用 (.NET Framework)** 项目。
@@ -14,6 +23,9 @@ ms.locfileid: "63847082"
 
 1. 右键单击新创建的项目，然后选择“管理 NuGet 包”  。
 2. 选择“浏览”，然后搜索 **Microsoft.Azure.Relay**。 在搜索结果中，选择“Microsoft Azure 中继”。  
+
+    <!--CORRECT ON Microsoft Azure Relay-->
+
 3. 选择“安装”  即可完成安装。 关闭对话框。
 
 ### <a name="write-code-to-send-messages"></a>编写发送消息的代码
@@ -30,7 +42,7 @@ ms.locfileid: "63847082"
 2. 将常量添加到 `Program` 类，用于保存混合连接的连接详细信息。 将括号中的占位符替换为在创建混合连接时获得的值。 请务必使用完全限定的命名空间名称。
    
     ```csharp
-    private const string RelayNamespace = "{RelayNamespace}.servicebus.windows.net";
+    private const string RelayNamespace = "{RelayNamespace}.servicebus.chinacloudapi.cn";
     private const string ConnectionName = "{HybridConnectionName}";
     private const string KeyName = "{SASKeyName}";
     private const string Key = "{SASKey}";
@@ -115,7 +127,7 @@ ms.locfileid: "63847082"
     {
         class Program
         {
-            private const string RelayNamespace = "{RelayNamespace}.servicebus.windows.net";
+            private const string RelayNamespace = "{RelayNamespace}.servicebus.chinacloudapi.cn";
             private const string ConnectionName = "{HybridConnectionName}";
             private const string KeyName = "{SASKeyName}";
             private const string Key = "{SASKey}";
@@ -135,8 +147,8 @@ ms.locfileid: "63847082"
    
                 // Initiate the connection.
                 var relayConnection = await client.CreateConnectionAsync();
-   
-                // Run two conucrrent loops on the connection. One 
+
+                // Run two concurrent loops on the connection. One 
                 // reads input from the console and then writes it to the connection 
                 // with a stream writer. The other reads lines of input from the 
                 // connection with a stream reader and then writes them to the console. 
@@ -186,3 +198,4 @@ ms.locfileid: "63847082"
     }
     ```
 
+<!-- Update_Description: update meta properties, wording update, update link -->

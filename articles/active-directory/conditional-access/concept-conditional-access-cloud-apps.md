@@ -1,29 +1,29 @@
 ---
 title: 条件访问策略中的云应用或操作 - Azure Active Directory
-description: 什么是 Azure AD 条件访问策略中的云应用或操作
+description: Azure AD 条件访问策略中的云应用或操作是什么
 services: active-directory
 ms.service: active-directory
 ms.subservice: conditional-access
 ms.topic: conceptual
-ms.date: 05/29/2020
+ms.date: 08/27/2020
 ms.author: v-junlch
 author: MicrosoftGuyJFlo
 manager: daveba
 ms.reviewer: calebb
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: f998dc8374f82a9e66e864892243b5fe36303377
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: 8060e88e2fa6826d553f084b368c7d00ef4c3576
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186676"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046380"
 ---
 # <a name="conditional-access-cloud-apps-or-actions"></a>条件访问：云应用或操作
 
-云应用或操作是条件访问策略中的关键信号。 使用条件访问策略，管理员可以分配对特定应用程序或操作的控制。
+云应用或操作是条件访问策略中的一个关键信号。 管理员可以使用条件访问策略将控制措施分配给特定的应用程序或操作。
 
 - 管理员可以从包含内置 Microsoft 应用程序和任何 Azure AD 集成应用程序的应用程序列表中进行选择。
-- 管理员可以选择不基于云应用程序但基于用户操作来定义策略。 唯一受支持的操作是注册安全信息（预览版），允许条件访问围绕组合的安全信息注册体验来强制实施控制。
+- 管理员可以选择定义一个并非基于云应用程序，而是基于用户操作的策略。 唯一受支持的操作是注册安全信息（预览版），允许条件访问围绕组合的安全信息注册体验来强制实施控制。
 
 ![定义条件访问策略并指定云应用](./media/concept-conditional-access-cloud-apps/conditional-access-cloud-apps-or-actions.png)
 
@@ -31,7 +31,7 @@ ms.locfileid: "84186676"
 
 许多现有的 Azure 云应用程序都包含在你可以从中进行选择的应用程序列表中。 
 
-管理员可以为来自 Microsoft 的以下云应用分配条件访问策略。 某些应用（例如 Office 365（预览版）和 Azure 管理）包含多个相关的子应用或服务。 以下列表不完整，并且可能会发生更改。
+管理员可以向 Microsoft 提供的以下云应用分配条件访问策略。 某些应用（例如 Office 365（预览版）和 Azure 管理）包含多个相关的子应用或服务。 以下列表并不完整，且随时可能会更改。
 
 - [Office 365（预览版）](#office-365-preview)
 - Azure Analysis Services
@@ -47,10 +47,10 @@ ms.locfileid: "84186676"
 - Microsoft Flow
 - Microsoft Forms
 - Microsoft Intune
-- Microsoft Intune 注册 
+- [Microsoft Intune 注册](https://docs.microsoft.com/intune/enrollment/multi-factor-authentication)
 - Microsoft Planner
 - Microsoft PowerApps
-- 必应中的 Microsoft 搜索
+- Microsoft 必应搜索
 - Microsoft StaffHub
 - Microsoft Stream
 - Microsoft Teams
@@ -59,7 +59,7 @@ ms.locfileid: "84186676"
 - Office 365 Yammer
 - Office Delve
 - Office Sway
-- Outlook 组
+- Outlook Groups
 - Power BI 服务
 - Project Online
 - Skype for Business Online
@@ -68,11 +68,11 @@ ms.locfileid: "84186676"
 
 ### <a name="office-365-preview"></a>Office 365（预览版）
 
-Office 365 提供基于云的高效生产和协作服务，如 Exchange、SharePoint 和 Microsoft Teams。 Office 365 云服务已深度集成，以确保用户拥有顺畅的协作体验。 在创建策略时，此集成可能会导致混淆，因为某些应用（例如 Microsoft Teams）依赖于其他应用，例如 SharePoint 或 Exchange。
+Office 365 提供基于云的生产力和协作服务，如 Exchange、SharePoint 和 Microsoft Teams。 Office 365 云服务已深度集成，以确保提供顺利的协作体验。 在创建策略时，这种集成可能会造成混淆，因为某些应用（如 Microsoft Teams）依赖于 SharePoint 或 Exchange 等其他一些应用。
 
-使用 Office 365（预览版）应用可以一次同时将这些服务作为目标。 建议使用新的 Office 365（预览版）应用，而不是以单个云应用作为目标，以避免[服务依赖项](service-dependencies.md)出现问题。 以此组应用程序作为目标有助于避免因策略和依赖关系不一致而导致的问题。
+在 Office 365（预览版）应用中可以一次性将所有这些服务作为目标。 我们建议使用新的 Office 365（预览版）应用，而不要将单个云应用作为目标，以免[服务依赖关系](service-dependencies.md)出现问题。 将这一组应用程序作为目标有助于避免因策略和依赖关系不一致而导致的问题。
 
-如果需要，管理员可以选择从策略中排除特定应用，方法是在策略中包括 Office 365（预览版）应用并排除他们选择的特定应用。
+如果需要，管理员可以选择从策略中排除特定的应用，只需在策略中包含 Office 365（预览版）应用，并排除所选的特定应用即可。
 
 Office 365（预览版）客户端应用中包含的关键应用程序：
 
@@ -83,7 +83,7 @@ Office 365（预览版）客户端应用中包含的关键应用程序：
    - Microsoft Teams
    - Office 365 Exchange Online
    - Office 365 SharePoint Online
-   - Office 365 搜索服务
+   - Office 365 Search Service
    - Office 365 Yammer
    - Office Delve
    - Office Online
@@ -117,5 +117,5 @@ Azure 管理应用程序包括多个基础服务。
 - [条件访问：条件](concept-conditional-access-conditions.md)
 
 - [条件访问常见策略](concept-conditional-access-policy-common.md)
-- [客户端应用程序依赖项](service-dependencies.md)
+- [客户端应用程序依赖关系](service-dependencies.md)
 

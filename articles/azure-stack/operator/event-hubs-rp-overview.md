@@ -6,15 +6,15 @@ ms.author: v-jay
 ms.service: azure-stack
 ms.topic: how-to
 origin.date: 12/09/2019
-ms.date: 05/18/2020
+ms.date: 08/31/2020
 ms.reviewer: jfggdl
 ms.lastreviewed: 12/09/2019
-ms.openlocfilehash: f2e0e905c9dbf9079b36dbda9e9669d10192533d
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: d9f6e3e7fa1c4b3ae6d6a347f99812138f7eaf07
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83423034"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867960"
 ---
 # <a name="event-hubs-on-azure-stack-hub-overview"></a>Azure Stack Hub 上的事件中心概述
 
@@ -24,7 +24,7 @@ ms.locfileid: "83423034"
 
 ## <a name="features"></a>功能
 
-请参阅 [Azure Stack Hub 用户文档](/azure-stack/user/event-hubs-overview)，以便在 Azure Stack 上的事件中心与 Azure 事件中心之间进行功能比较。
+请参阅 [Azure Stack Hub 用户文档](../user/event-hubs-overview.md)，以便在 Azure Stack 上的事件中心与 Azure 事件中心之间进行功能比较。
 
 ## <a name="feature-documentation"></a>功能文档
 

@@ -4,16 +4,16 @@ description: 了解如何在 Azure Stack Hub 中使用 Powershell 监视更新�
 author: WenJason
 ms.topic: how-to
 origin.date: 03/04/2020
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.lastreviewed: 08/23/2019
 ms.reviewer: ppacent
-ms.openlocfilehash: 6c848ea362fea648e504109321db507b099015e1
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 1ac5edbed822109c0b12c95daef87b6ceb5cf49d
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096374"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867829"
 ---
 # <a name="monitor-updates-with-powershell-in-azure-stack-hub"></a>在 Azure Stack Hub 中使用 Powershell 监视更新
 
@@ -51,4 +51,4 @@ Get-AzsUpdateRun -Name 5173e9f4-3040-494f-b7a7-738a6331d55c -UpdateName Microsof
 
 ## <a name="next-steps"></a>后续步骤
 
--   [在 Azure Stack Hub 中管理更新](/azure-stack/operator/azure-stack-updates)
+- [在 Azure Stack Hub 中管理更新](./azure-stack-updates.md)

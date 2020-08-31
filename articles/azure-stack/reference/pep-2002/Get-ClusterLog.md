@@ -4,16 +4,16 @@ description: PowerShell Azure Stack 特权终结点 - Get-ClusterLog 的参考�
 author: WenJason
 ms.topic: reference
 origin.date: 04/27/2020
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: fiseraci
 ms.lastreviewed: 04/27/2020
-ms.openlocfilehash: b1cc9b3b850de75b40c43f34eb88cb7787c9695f
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: fc26931ad8af747365c5340b9cab840219c12a1d
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096920"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867724"
 ---
 # <a name="get-clusterlog"></a>Get-ClusterLog
 
@@ -226,4 +226,4 @@ Accept wildcard characters: False
 
 [https://go.microsoft.com/fwlink/?LinkId=216212](https://go.microsoft.com/fwlink/?LinkId=216212)
 
-有关如何访问和使用特权终结点的信息，请参阅[使用 Azure Stack Hub 中的特权终结点](/azure-stack/operator/azure-stack-privileged-endpoint)。
+有关如何访问和使用特权终结点的信息，请参阅[使用 Azure Stack Hub 中的特权终结点](../../operator/azure-stack-privileged-endpoint.md)。

@@ -1,19 +1,19 @@
 ---
 title: 使用 Azure CLI 创建 Azure 数据资源管理器群集和数据库
 description: 了解如何使用 Azure CLI 创建 Azure 数据资源管理器群集和数据库
-author: radennis
+author: orspod
 ms.author: v-tawe
-ms.reviewer: orspodek
+ms.reviewer: radennis
 ms.service: data-explorer
 ms.topic: conceptual
 origin.date: 06/03/2019
-ms.date: 06/09/2020
-ms.openlocfilehash: d2df1f58fe1b1ed06dcce7f0510a8af6b2f5ef56
-ms.sourcegitcommit: 73697fa9c19a40d235df033400c74741e7d0f3f4
+ms.date: 08/18/2020
+ms.openlocfilehash: 1f413d33d43825b8039877025c98447f51a7813d
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84574903"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515873"
 ---
 # <a name="create-an-azure-data-explorer-cluster-and-database-by-using-azure-cli"></a>使用 Azure CLI 创建 Azure 数据资源管理器群集和数据库
 
@@ -51,13 +51,19 @@ Azure 数据资源管理器是一项快速、完全托管的数据分析服务�
     ```azurecli
     az account set --subscription MyAzureSub
     ```
+   
+1. 安装扩展以使用最新的 Kusto CLI 版本：
+
+    ```azurecli
+    az extension add -n kusto
+    ```
 
 ## <a name="create-the-azure-data-explorer-cluster"></a>创建 Azure 数据资源管理器群集
 
 1. 请使用以下命令创建群集：
 
     ```azurecli
-    az kusto cluster create --name azureclitest --sku name="Standard_D13_v2" tier="Standard" --resource-group testrg --location chinaeast2
+    az kusto cluster create --cluster-name azureclitest --sku name="Standard_D13_v2" tier="Standard" --resource-group testrg --location chinaeast2
     ```
 
    |**设置** | **建议的值** | **字段说明**|
@@ -72,7 +78,7 @@ Azure 数据资源管理器是一项快速、完全托管的数据分析服务�
 1. 运行以下命令，检查群集是否已成功创建：
 
     ```azurecli
-    az kusto cluster show --name azureclitest --resource-group testrg
+    az kusto cluster show --cluster-name azureclitest --resource-group testrg
     ```
 
 如果结果包含带 `Succeeded` 值的 `provisioningState`，则表示已成功创建群集。
@@ -90,12 +96,12 @@ Azure 数据资源管理器是一项快速、完全托管的数据分析服务�
    | cluster-name | *azureclitest* | 将在其中创建数据库的群集的名称。|
    | database-name | *clidatabase* | 数据库名称。|
    | resource-group | *testrg* | 将在其中创建群集的资源组名称。 |
-   | read-write-database | *P365D* *P31D* *chinaeast2* | 数据库类型。 参数：soft-delete-period - 表示供查询使用的数据的保留时间。 有关详细信息，请参阅[保留策略](https://docs.microsoft.com/azure/data-explorer/kusto/management/retentionpolicy)。 hot-cache-period - 表示数据将在缓存中保留的时间。 有关详细信息，请参阅[缓存策略](https://docs.microsoft.com/azure/data-explorer/kusto/management/cachepolicy)。 location - 这是会在其中创建数据库的位置。 |
+   | read-write-database | *P365D* *P31D* *chinaeast2* | 数据库类型。 参数：soft-delete-period - 表示供查询使用的数据的保留时间。 有关详细信息，请参阅[保留策略](/data-explorer/kusto/management/retentionpolicy)。 hot-cache-period - 表示数据将在缓存中保留的时间。 有关详细信息，请参阅[缓存策略](/data-explorer/kusto/management/cachepolicy)。 location - 这是会在其中创建数据库的位置。 |
 
 1. 若要查看已创建的数据库，请运行以下命令：
 
     ```azurecli
-    az kusto database show --name clidatabase --resource-group testrg --cluster-name azureclitest
+    az kusto database show --database-name clidatabase --resource-group testrg --cluster-name azureclitest
     ```
 
 现在，你有了一个群集和一个数据库。
@@ -106,7 +112,7 @@ Azure 数据资源管理器是一项快速、完全托管的数据分析服务�
 * 若要清理资源，请删除群集。 删除群集时，也会删除其中的所有数据库。 使用以下命令删除群集：
 
     ```azurecli
-    az kusto cluster delete --name azureclitest --resource-group testrg
+    az kusto cluster delete --cluster-name azureclitest --resource-group testrg
     ```
 
 ## <a name="next-steps"></a>后续步骤

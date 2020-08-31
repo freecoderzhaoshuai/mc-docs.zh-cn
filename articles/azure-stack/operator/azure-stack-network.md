@@ -4,16 +4,16 @@ description: 了解如何规划数据中心网络与 Azure Stack Hub 集成式�
 author: WenJason
 ms.topic: article
 origin.date: 03/04/2020
-ms.date: 05/18/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: wamota
 ms.lastreviewed: 06/04/2019
-ms.openlocfilehash: ff5d8fd7225b8fd29baa628ed3dc15bd2973eaa1
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: aa5582faa7f0de6fbe2f24f56e0b7fcf0801350a
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422488"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867865"
 ---
 # <a name="network-integration-planning-for-azure-stack"></a>Azure Stack 的网络集成规划
 
@@ -93,7 +93,7 @@ HLH 也托管部署 VM (DVM)。 此 DVM 在 Azure Stack 部署期间使用，在
 
 ## <a name="permitted-networks"></a>允许的网络
 
-从版本 1910 开始，部署工作表将包含此新字段，允许操作员更改某些访问控制列表 (ACL)，以允许从受信任的数据中心网络范围访问网络设备管理接口和硬件生命周期主机 (HLH)。 更改访问控制列表后，操作员可以允许特定网络范围内的管理 Jumpbox VM 访问交换机管理接口、HLH OS 和 HLH BMC。 操作员可在此列表中提供一个或多个子网；如果留空，则默认为拒绝访问。 借助此项新功能，在部署后，就不需要根据[修改 Azure Stack 交换机配置中的特定设置](/azure-stack/operator/azure-stack-customer-defined#access-control-list-updates)所述进行人工干预。
+从版本 1910 开始，部署工作表将包含此新字段，允许操作员更改某些访问控制列表 (ACL)，以允许从受信任的数据中心网络范围访问网络设备管理接口和硬件生命周期主机 (HLH)。 更改访问控制列表后，操作员可以允许特定网络范围内的管理 Jumpbox VM 访问交换机管理接口、HLH OS 和 HLH BMC。 操作员可在此列表中提供一个或多个子网；如果留空，则默认为拒绝访问。 借助此项新功能，在部署后，就不需要根据[修改 Azure Stack 交换机配置中的特定设置](./azure-stack-customer-defined.md#access-control-list-updates)所述进行人工干预。
 
 ## <a name="next-steps"></a>后续步骤
 

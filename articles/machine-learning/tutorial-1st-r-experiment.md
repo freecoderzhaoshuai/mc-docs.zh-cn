@@ -10,12 +10,12 @@ ms.reviewer: sgilley
 author: revodavid
 ms.author: davidsmi
 ms.date: 02/07/2020
-ms.openlocfilehash: a6f670878f3a18c6b3d7c8a69767fc90d8bc1804
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 2d3d4a3c1a618f1a407e3e3aa84314e3fe5a3858
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228499"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946957"
 ---
 # <a name="tutorial-use-r-to-create-a-machine-learning-model"></a>教程：使用 R 创建机器学习模型
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -102,22 +102,15 @@ Azure 机器学习工作区是云中的基础资源，用于试验、训练和�
 * 创建用于训练的远程计算目标
 
 ### <a name="install-required-packages"></a>安装所需程序包
-
- * 从 CRAN 安装最新版本。
-
-    ```R
-    # install the latest version from CRAN
-    install.packages("azuremlsdk")
-    azuremlsdk::install_azureml(envname = 'r-reticulate')
-    ```
+计算实例已安装了来自 CRAN 的最新版本的 R SDK。 如果要从 GitHub 安装开发版本来获取最新的 bug 修补程序，请运行以下操作：
     
-* 或从 GitHub 安装开发版本。
+```R
+remotes::install_github('https://github.com/Azure/azureml-sdk-for-r')
+azuremlsdk::install_azureml()
+```
 
-    ```R
-    # or install the development version from GitHub
-    remotes::install_github('https://github.com/Azure/azureml-sdk-for-r')
-    azuremlsdk::install_azureml(envname = 'r-reticulate')
-    ```
+> [!WARNING]
+> 在安装过程中，如果收到“`Would you like to install Miniconda? [Y/n]:`”提示，请使用“`n`”响应，因为计算实例已经安装了 Anaconda，并且不需要安装 Miniconda。
 
 现在，继续导入 azuremlsdk 包。
 

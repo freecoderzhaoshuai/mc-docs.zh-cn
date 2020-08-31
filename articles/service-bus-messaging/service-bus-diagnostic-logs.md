@@ -3,17 +3,17 @@ title: Azure 服务总线诊断日志 | Azure
 description: 本文概述了可用于 Azure 服务总线的所有操作和诊断日志。
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
 author: rockboyfor
-ms.openlocfilehash: 096dbb79a540598a5fc023f87cb336e78ffaaf0a
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 479e55d999fac80ec7c1216b83ae11e41e9089e4
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162394"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947160"
 ---
 # <a name="enable-diagnostics-logs-for-service-bus"></a>为服务总线启用诊断日志
 
@@ -94,19 +94,19 @@ Azure 服务总线目前支持活动日志和操作日志，这些日志捕获�
     a. 在“名称”框中，输入诊断设置的名称。  
 
     b. 为诊断日志选择以下三个目标之一：  
-        - 如果选择“存档到存储帐户”，则需要配置用于存储诊断日志的存储帐户。  
-        - 如果选择“流式传输到事件中心”，则需要配置要将诊断日志流式传输到的事件中心。
-   - 如果选择“发送到 Log Analytics”，则需要指定要将诊断发送到的 Log Analytics 实例。  
+    - 如果选择“存档到存储帐户”，则需要配置用于存储诊断日志的存储帐户。  
+    - 如果选择“流式传输到事件中心”，则需要配置要将诊断日志流式传输到的事件中心。
+    - 如果选择“发送到 Log Analytics”，则需要指定要将诊断发送到的 Log Analytics 实例。  
 
     c. 选中“OperationalLogs”复选框。
 
-        ![The "Diagnostics settings" pane](./media/service-bus-diagnostic-logs/image3.png)
+    ![“诊断设置”窗格](./media/service-bus-diagnostic-logs/image3.png)
 
 1. 选择“保存” 。
 
 新设置将在大约 10 分钟后生效。 日志将显示在“诊断日志”窗格中配置的存档目标中。
 
-有关配置诊断设置的详细信息，请参阅 [Azure 诊断日志概述](../azure-monitor/platform/diagnostic-logs-overview.md)。
+有关配置诊断设置的详细信息，请参阅 [Azure 诊断日志概述](../azure-monitor/platform/platform-logs-overview.md)。
 
 ## <a name="next-steps"></a>后续步骤
 

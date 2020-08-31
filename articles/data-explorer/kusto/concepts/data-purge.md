@@ -8,13 +8,13 @@ ms.reviewer: kedamari
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 05/12/2020
-ms.date: 07/01/2020
-ms.openlocfilehash: 1d0b81fb9349c532e7c0286e69a8fec334104889
-ms.sourcegitcommit: 9bc3e55f01e0999f05e7b4ebaea95f3ac91d32eb
+ms.date: 08/18/2020
+ms.openlocfilehash: 7c8cffa08e0fdb450411201b84b6cfb83ba80f44
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86226196"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88516105"
 ---
 # <a name="data-purge"></a>数据清除
 
@@ -37,10 +37,10 @@ ms.locfileid: "86226196"
 
 有选择性地从 Azure 数据资源管理器中清除数据的过程通过以下步骤进行：
 
-1. 阶段 1：提供包含 Azure 数据资源管理器表名和每记录谓词的输入，指示要删除的记录。 Kusto 会扫描表，尝试标识将参与数据清除过程的数据分片。 所标识的分片包含符合谓词条件的一个或多个记录。
-1. 阶段 2：（软删除）将表中的每个数据分片（在步骤 (1) 中标识）替换为重新引入的版本。 重新引入的版本不应有符合谓词条件的记录。 如果没有向表中引入新数据，则在本阶段结束时，查询将不再返回符合谓词条件的数据。 清除软删除阶段的持续时间取决于以下参数： 
+1. 阶段 1：提供包含 Azure 数据资源管理器表名和每记录谓词的输入，指示要删除的记录。 Kusto 会扫描表，尝试标识将参与数据清除过程的数据区。 所标识的区包含符合谓词条件的一个或多个记录。
+1. 阶段 2：（软删除）将表中的每个数据区（在步骤 (1) 中标识）替换为重新引入的版本。 重新引入的版本不应有符合谓词条件的记录。 如果没有向表中引入新数据，则在本阶段结束时，查询将不再返回符合谓词条件的数据。 清除软删除阶段的持续时间取决于以下参数： 
      * 必须清除的记录数 
-     * 群集的数据分片中的记录分布情况 
+     * 群集的数据区中的记录分布情况 
      * 群集中的节点数  
      * 它为清除操作准备的备用容量
      * 几个其他因素：阶段 2 的持续时间可能短至几秒，也可能长达数小时。
@@ -77,7 +77,7 @@ ms.locfileid: "86226196"
 
 ## <a name="trigger-the-purge-process"></a>触发清除过程
 
-> [!Note]
+> [!NOTE]
 > 清除执行是通过对数据管理终结点 https://ingest- [YourClusterName].[Region].kusto.chinacloudapi.cn 运行 [purge table *TableName* records](#purge-table-tablename-records-command) 命令来调用的。
 
 ### <a name="purge-table-tablename-records-command"></a>Purge table TableName records 命令
@@ -86,24 +86,24 @@ ms.locfileid: "86226196"
 
 * 编程调用：要由应用程序调用的单个步骤。 调用此命令将直接触发清除执行序列。
 
-    **语法**
+  **语法**
 
-     ```kusto
-     // Connect to the Data Management service
-     #connect "https://ingest-[YourClusterName].[region].kusto.chinacloudapi.cn" 
-     
-     .purge table [TableName] records in database [DatabaseName] with (noregrets='true') <| [Predicate]
-     ```
+  ```kusto
+  // Connect to the Data Management service
+  #connect "https://ingest-[YourClusterName].[region].kusto.chinacloudapi.cn" 
+ 
+  .purge table [TableName] records in database [DatabaseName] with (noregrets='true') <| [Predicate]
+   ```
 
-    > [!NOTE]
-    > 使用 CslCommandGenerator API（在 [Kusto 客户端库](../api/netfx/about-kusto-data.md) NuGet 程序包中提供）生成此命令。
+  > [!NOTE]
+  > 使用 CslCommandGenerator API（在 [Kusto 客户端库](../api/netfx/about-kusto-data.md) NuGet 程序包中提供）生成此命令。
 
 * 人为调用：一个两步过程，需要显式确认为单个步骤。 第一次调用此命令将返回验证令牌，需要提供该令牌才能运行实际清除操作。 此序列降低了无意中删除错误数据的风险。 对于含有重要冷缓存数据的大型表，使用此选项可能需要很长时间才能完成相应过程。
     <!-- If query times-out on DM endpoint (default timeout is 10 minutes), it is recommended to use the [engine `whatif` command](#purge-whatif-command) directly againt the engine endpoint while increasing the [server timeout limit](../concepts/querylimits.md#limit-on-request-execution-time-timeout). Only after you have verified the expected results using the engine whatif command, issue the purge command via the DM endpoint using the 'noregrets' option. -->
 
-     **语法**
+  **语法**
 
-     ```kusto
+  ```kusto
      // Connect to the Data Management service
      #connect "https://ingest-[YourClusterName].[region].kusto.chinacloudapi.cn" 
      
@@ -112,7 +112,7 @@ ms.locfileid: "86226196"
 
      // Step #2 - input the verification token to execute purge
      .purge table [TableName] records in database [DatabaseName] with (verificationtoken='<verification token from step #1>') <| [Predicate]
-     ```
+  ```
     
     | parameters  | 说明  |
     |---------|---------|
@@ -133,50 +133,50 @@ ms.locfileid: "86226196"
 
 若要在两步激活方案中开始清除，请运行以下命令的步骤 1：
 
-    ```kusto
+ ```kusto
     // Connect to the Data Management service
      #connect "https://ingest-[YourClusterName].[region].kusto.chinacloudapi.cn" 
      
     .purge table MyTable records in database MyDatabase <| where CustomerId in ('X', 'Y')
-    ```
+ ```
 
-    **Output**
+**输出**
 
-    | NumRecordsToPurge | EstimatedPurgeExecutionTime| VerificationToken
-    |--|--|--
-    | 1,596 | 00:00:02 | e43c7184ed22f4f23c7a9d7b124d196be2e570096987e5baadf65057fa65736b
+ | NumRecordsToPurge | EstimatedPurgeExecutionTime| VerificationToken
+ |---|---|---
+ | 1,596 | 00:00:02 | e43c7184ed22f4f23c7a9d7b124d196be2e570096987e5baadf65057fa65736b
 
-    Then, validate the NumRecordsToPurge before running step #2. 
+然后，在运行步骤 2 之前验证 NumRecordsToPurge。 
 
 若要在两步激活方案中完成清除，请使用从步骤 1 返回的验证令牌来运行步骤 2：
 
-    ```kusto
-    .purge table MyTable records in database MyDatabase
-    with (verificationtoken='e43c7184ed22f4f23c7a9d7b124d196be2e570096987e5baadf65057fa65736b')
-    <| where CustomerId in ('X', 'Y')
-    ```
+```kusto
+.purge table MyTable records in database MyDatabase
+ with(verificationtoken='e43c7184ed22f4f23c7a9d7b124d196be2e570096987e5baadf65057fa65736b')
+<| where CustomerId in ('X', 'Y')
+```
 
-    **Output**
+**输出**
 
-    | `OperationId` | `DatabaseName` | `TableName`|`ScheduledTime` | `Duration` | `LastUpdatedOn` |`EngineOperationId` | `State` | `StateDetails` |`EngineStartTime` | `EngineDuration` | `Retries` |`ClientRequestId` | `Principal`|
-    |--|--|--|--|--|--|--|--|--|--|--|--|--|--|
-    | c9651d74-3b80-4183-90bb-bbe9e42eadc4 |MyDatabase |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |计划 | | | |0 |KE.RunCommand;1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD app id=...|
+| `OperationId` | `DatabaseName` | `TableName`|`ScheduledTime` | `Duration` | `LastUpdatedOn` |`EngineOperationId` | `State` | `StateDetails` |`EngineStartTime` | `EngineDuration` | `Retries` |`ClientRequestId` | `Principal`|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| c9651d74-3b80-4183-90bb-bbe9e42eadc4 |MyDatabase |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |计划 | | | |0 |KE.RunCommand;1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD app id=...|
 
 #### <a name="example-single-step-purge"></a>示例：单步清除
 
 若要在单步激活方案中触发清除，请运行以下命令：
 
-    ```kusto
-    // Connect to the Data Management service
-     #connect "https://ingest-[YourClusterName].[region].kusto.chinacloudapi.cn" 
-     
-    .purge table MyTable records in database MyDatabase with (noregrets='true') <| where CustomerId in ('X', 'Y')
-    ```
+```kusto
+// Connect to the Data Management service
+  #connect "https://ingest-[YourClusterName].[region].kusto.chinacloudapi.cn" 
+ 
+.purge table MyTable records in database MyDatabase with (noregrets='true') <| where CustomerId in ('X', 'Y')
+```
 
 **输出**
 
 | `OperationId` |`DatabaseName` |`TableName` |`ScheduledTime` |`Duration` |`LastUpdatedOn` |`EngineOperationId` |`State` |`StateDetails` |`EngineStartTime` |`EngineDuration` |`Retries` |`ClientRequestId` |`Principal`|
-|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | c9651d74-3b80-4183-90bb-bbe9e42eadc4 |MyDatabase |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |计划 | | | |0 |KE.RunCommand;1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD app id=...|
 
 ### <a name="cancel-purge-operation-command"></a>Cancel purge operation 命令
@@ -190,28 +190,28 @@ ms.locfileid: "86226196"
 
 ```kusto
  .cancel purge <OperationId>
- ```
+```
 
 **示例**
 
 ```kusto
  .cancel purge aa894210-1c60-4657-9d21-adb2887993e1
- ```
+```
 
 **输出**
 
 此命令的输出与“show purges *OperationId*”命令的输出相同，它显示正在取消的清除操作的更新后状态。 如果尝试成功，则操作状态将更新为 `Abandoned`。 否则，操作状态不会更改。 
 
 |`OperationId` |`DatabaseName` |`TableName` |`ScheduledTime` |`Duration` |`LastUpdatedOn` |`EngineOperationId` |`State` |`StateDetails` |`EngineStartTime` |`EngineDuration` |`Retries` |`ClientRequestId` |`Principal`
-|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 |c9651d74-3b80-4183-90bb-bbe9e42eadc4 |MyDatabase |MyTable |2019-01-20 11:41:05.4391686 |00:00:00.1406211 |2019-01-20 11:41:05.4391686 | |已放弃 | | | |0 |KE.RunCommand;1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD app id=...
 
 ## <a name="track-purge-operation-status"></a>跟踪清除操作状态 
 
-> [!Note]
+> [!NOTE]
 > 可以通过 [show purges](#show-purges-command) 命令来跟踪清除操作，该命令针对数据管理终结点 https://ingest- [YourClusterName].[region].kusto.chinacloudapi.cn 来执行。
 
-Status = 'Completed' 表示清除操作的第一阶段成功完成，也就是说，记录已软删除，再也不能对其进行查询。 客户**不需要**跟踪和验证第二阶段（硬删除）的完成情况。 此阶段由 Azure 数据资源管理器在内部进行监视。
+Status = 'Completed' 表示清除操作的第一阶段成功完成，也就是说，记录已软删除，再也不能对其进行查询。 客户不需要跟踪和验证第二阶段（硬删除）的完成情况。 此阶段由 Azure 数据资源管理器在内部进行监视。
 
 ### <a name="show-purges-command"></a>Show purges 命令
 
@@ -247,7 +247,7 @@ Status = 'Completed' 表示清除操作的第一阶段成功完成，也就是�
 **输出** 
 
 |`OperationId` |`DatabaseName` |`TableName` |`ScheduledTime` |`Duration` |`LastUpdatedOn` |`EngineOperationId` |`State` |`StateDetails` |`EngineStartTime` |`EngineDuration` |`Retries` |`ClientRequestId` |`Principal`
-|--|--|--|--|--|--|--|--|--|--|--|--|--|--|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 |c9651d74-3b80-4183-90bb-bbe9e42eadc4 |MyDatabase |MyTable |2019-01-20 11:41:05.4391686 |00:00:33.6782130 |2019-01-20 11:42:34.6169153 |a0825d4d-6b0f-47f3-a499-54ac5681ab78 |已完成 |清除已成功完成（存储项目待删除） |2019-01-20 11:41:34.6486506 |00:00:04.4687310 |0 |KE.RunCommand;1d0ad28b-f791-4f5a-a60f-0e32318367b7 |AAD app id=...
 
 * `OperationId` - 执行清除时返回的 DM 操作 ID。 
@@ -273,7 +273,7 @@ Status = 'Completed' 表示清除操作的第一阶段成功完成，也就是�
 
 清除表包括删除表，并将其标记为已清除，以便[清除过程](#purge-process)中描述的硬删除过程在其上运行。 如果删除表但不清除它，则不会删除其所有存储项目。 将根据最初在表上设置的硬保留策略来删除这些项目。 如果适合你的方案，`purge table allrecords` 命令将很快速高效，并且更适合在清除记录过程中使用。 
 
-> [!Note]
+> [!NOTE]
 > 此命令是通过对数据管理终结点 https://ingest- [YourClusterName].[region].kusto.chinacloudapi.cn 运行 [purge table *TableName* allrecords](#purge-table-tablename-allrecords-command) 命令来调用的。
 
 ### <a name="purge-table-tablename-allrecords-command"></a>Purge table *TableName* allrecords 命令
@@ -329,7 +329,7 @@ Status = 'Completed' 表示清除操作的第一阶段成功完成，也就是�
     **输出**
 
     | `VerificationToken`|
-    |--|
+    |---|
     | e43c7184ed22f4f23c7a9d7b124d196be2e570096987e5baadf65057fa65736b|
 
 1.  若要在两步激活方案中完成清除，请使用从步骤 1 返回的验证令牌来运行步骤 2：

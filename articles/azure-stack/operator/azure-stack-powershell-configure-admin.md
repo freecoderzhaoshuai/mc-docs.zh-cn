@@ -3,17 +3,17 @@ title: 使用 PowerShell 连接到 Azure Stack Hub
 description: 了解如何使用 PowerShell 连接到 Azure Stack Hub。
 author: WenJason
 ms.topic: article
-origin.date: 5/27/2020
-ms.date: 06/22/2020
+origin.date: 8/4/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: thoroet
-ms.lastreviewed: 09/19/2019
-ms.openlocfilehash: 238d3d9a5b3bc62242f1e7bb1bf65c9c7811b7c4
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.lastreviewed: 8/4/2020
+ms.openlocfilehash: 63be3d0929601f6bc0ef01a185e771595dc441cc
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096284"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867859"
 ---
 # <a name="connect-to-azure-stack-hub-with-powershell"></a>使用 PowerShell 连接到 Azure Stack Hub
 
@@ -62,8 +62,7 @@ ms.locfileid: "85096284"
   Login-AzureRmAccount -EnvironmentName "AzureStackAdmin"
   ```
 
-> [!Note]  
-> AD FS 仅支持通过用户标识进行交互式身份验证。 如果需要凭据对象，则必须使用服务主体 (SPN)。 若要详细了解如何在设置服务主体时将 Azure Stack Hub 和 AD FS 作为标识管理服务，请参阅[管理 AD FS 应用标识](azure-stack-create-service-principals.md#manage-an-ad-fs-app-identity)。
+[!Include [AD FS only supports interactive authentication with user identities](../includes/note-powershell-adfs.md)]
 
 ## <a name="test-the-connectivity"></a>测试连接
 

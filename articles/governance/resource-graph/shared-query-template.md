@@ -1,35 +1,37 @@
 ---
 title: 快速入门：使用模板创建共享查询
-description: 在本快速入门中，我们使用资源管理器模板创建 Resource Graph 共享查询，以便按 OS 对虚拟机计数。
-origin.date: 04/28/2020
-ms.date: 06/01/2020
+description: 在本快速入门中，我们使用 Azure 资源管理器模板（ARM 模板）来创建 Resource Graph 共享查询，以便按 OS 对虚拟机计数。
+origin.date: 07/06/2020
+ms.date: 08/27/2020
 ms.author: v-tawe
 ms.topic: quickstart
 ms.custom: subject-armqs
-ms.openlocfilehash: f473ee9c039913ec8cc8b83800492507c2175f64
-ms.sourcegitcommit: 9811bf312e0d037cb530eb16c8d85238fd276949
+ms.openlocfilehash: c224e78f1c25797cba48a82d37436ab37767f075
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84275652"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951260"
 ---
-# <a name="quickstart-create-a-shared-query-by-using-a-resource-manager-template"></a>快速入门：使用资源管理器模板创建共享查询
+# <a name="quickstart-create-a-shared-query-by-using-an-arm-template"></a>快速入门：使用 ARM 模板创建共享查询
 
-可以将 Resource Graph 查询另存为专用查询或共享查询。  专用查询保存到个人门户配置文件中，不显示给其他人。 共享查询是一个资源管理器对象，可通过权限和基于角色的访问权限与他人共享。 可以通过共享查询以通用且一致的方式执行资源发现操作。 本快速入门使用资源管理器模板来创建共享查询。
+可以将 Resource Graph 查询另存为专用查询或共享查询。  专用查询保存到个人门户配置文件中，不显示给其他人。 共享查询是一个资源管理器对象，可通过权限和基于角色的访问权限与他人共享。 可以通过共享查询以通用且一致的方式执行资源发现操作。 本快速入门使用 Azure 资源管理器模板（ARM 模板）来创建共享查询。
 
 [!INCLUDE [About Azure Resource Manager](../../../includes/resource-manager-quickstart-introduction.md)]
+
+如果你的环境满足先决条件，并且你熟悉如何使用 ARM 模板，请选择“部署到 Azure”按钮。 Azure 门户中会打开模板。
+
+:::image type="content" source="../../media/template-deployments/deploy-to-azure.svg" alt-text="部署用于创建 Azure 共享查询的 ARM 模板" border="false" link="https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fresourcegraph-sharedquery-countos%2Fazuredeploy.json":::
 
 ## <a name="prerequisites"></a>先决条件
 
 如果没有 Azure 订阅，请在开始前创建一个[试用帐户](https://wd.azure.cn/pricing/1rmb-trial/)。
 
-## <a name="create-a-shared-query"></a>创建共享查询
+## <a name="review-the-template"></a>查看模板
 
 在本快速入门中，我们创建一个名为“按 OS 进行 VM 计数”的共享查询。 若要使用 Resource Graph 资源管理器在 SDK 或门户中尝试此查询，请参阅[示例 - 按 OS 类型对虚拟机进行计数](./samples/starter.md#count-os)。
 
-### <a name="review-the-template"></a>查看模板
-
-本快速入门中使用的模板来自 [Azure 快速入门模板](https://azure.microsoft.com/resources/templates/resourcegraph-sharedquery-countos/)。
+本快速入门中使用的模板来自 [Azure 快速启动模板](https://azure.microsoft.com/resources/templates/resourcegraph-sharedquery-countos/)。
 
 ```json
 {
@@ -77,18 +79,18 @@ ms.locfileid: "84275652"
 
 - [Microsoft.ResourceGraph/queries](https://docs.microsoft.com/azure/templates/microsoft.resourcegraph/queries)
 
-### <a name="deploy-the-template"></a>部署模板
+## <a name="deploy-the-template"></a>部署模板
 
 > [!NOTE]
 > Azure Resource Graph 服务免费。 有关详细信息，请参阅 [Azure Resource Graph 概述](./overview.md)。
 
 1. 选择下图登录到 Azure 门户并打开模板：
 
-   [![将策略模板部署到 Azure](../../media/template-deployments/deploy-to-azure.svg)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fresourcegraph-sharedquery-countos%2Fazuredeploy.json)
+   :::image type="content" source="../../media/template-deployments/deploy-to-azure.svg" alt-text="部署用于创建 Azure 共享查询的 ARM 模板" border="false" link="https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fresourcegraph-sharedquery-countos%2Fazuredeploy.json":::
 
 1. 选择或输入以下值：
 
-   | 名称 | Value |
+   | 名称 | 值 |
    |------|-------|
    | 订阅 | 选择 Azure 订阅。 |
    | 资源组 | 选择“新建”，指定名称，然后选择“确定”。  |
@@ -104,7 +106,7 @@ ms.locfileid: "84275652"
 
 - 若要查找更多示例模板，请参阅 [Azure 快速入门模板](https://azure.microsoft.com/resources/templates/?resourceType=Microsoft.Authorization&pageNumber=1&sort=Popular)。
 - 若要查看模板参考，请转到 [Azure 模板参考](https://docs.microsoft.com/azure/templates/microsoft.resourcegraph/allversions)。
-- 若要了解如何开发资源管理器模板，请参阅 [Azure 资源管理器文档](../../azure-resource-manager/management/overview.md)。
+- 若要了解如何开发 ARM 模板，请参阅 [Azure 资源管理器文档](../../azure-resource-manager/management/overview.md)。
 - 若要了解订阅级部署，请参阅[在订阅级别创建资源组和资源](../../azure-resource-manager/templates/deploy-to-subscription.md)。
 
 ## <a name="validate-the-deployment"></a>验证部署

@@ -3,17 +3,18 @@ title: 使用 Azure Stack Hub 中的特权终结点
 description: 了解如何以操作员身份使用 Azure Stack Hub 中的特权终结点 (PEP)。
 author: WenJason
 ms.topic: article
-origin.date: 04/20/2020
-ms.date: 05/18/2020
+origin.date: 04/28/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: fiseraci
-ms.lastreviewed: 1/8/2020
-ms.openlocfilehash: 4acdfdcae6aa03507565806d6fcf6e57a63b0ca9
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.lastreviewed: 04/28/2020
+ms.custom: conteperfq4
+ms.openlocfilehash: e3a2d839877bda1b84259b415e082627363c67f9
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096457"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868070"
 ---
 # <a name="use-the-privileged-endpoint-in-azure-stack-hub"></a>使用 Azure Stack Hub 中的特权终结点
 
@@ -200,5 +201,5 @@ PEP 记录你在 PowerShell 会话中执行的每项操作（及其相应的输�
 
 ## <a name="next-steps"></a>后续步骤
 
-- [Azure Stack Hub 诊断工具](azure-stack-diagnostic-log-collection-overview-tzl.md)
+- [Azure Stack Hub 诊断工具](./azure-stack-diagnostic-log-collection-overview.md?view=azs-2002)
 - [Azure Stack Hub 特权终结点参考](../reference/pep-2002/index.md)

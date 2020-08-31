@@ -6,17 +6,17 @@ documentationcenter: ruby
 ms.devlang: ruby
 ms.topic: quickstart
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+ms.date: 08/24/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
 author: rockboyfor
-ms.openlocfilehash: 75d25044e36dde60d6b1ae2ac9104a32c7e52673
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: ed7c421f71a91ae77ae537e16b9f0b2f30d0c59d
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162345"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946991"
 ---
 # <a name="quickstart-how-to-use-service-bus-topics-and-subscriptions-with-ruby"></a>快速入门：如何通过 Ruby 使用服务总线主题和订阅
 

@@ -1,22 +1,22 @@
 ---
 title: 使用 Active Directory 授予对 Blob 和队列的访问权限
 titleSuffix: Azure Storage
-description: 使用 Azure Active Directory 授予对 Azure Blob 和队列的访问权限。
+description: 使用 Azure Active Directory (Azure AD) 授予对 Azure Blob 和队列的访问权限。 分配 Azure 角色以授予访问权限。 使用 Azure AD 帐户访问数据。
 services: storage
 author: WenJason
 ms.service: storage
 ms.topic: conceptual
-origin.date: 2/23/2020
-ms.date: 07/20/2020
+origin.date: 07/16/2020
+ms.date: 08/24/2020
 ms.author: v-jay
 ms.reviewer: ozgun
 ms.subservice: common
-ms.openlocfilehash: 471cd572e5871ca1ab568394d3ff9dd89dba9a9a
-ms.sourcegitcommit: 31da682a32dbb41c2da3afb80d39c69b9f9c1bc6
+ms.openlocfilehash: 9dec9b1bcb55d544942649dcea11beee4b960f06
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86414570"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753424"
 ---
 # <a name="authorize-access-to-blobs-and-queues-using-azure-active-directory"></a>使用 Azure Active Directory 授予对 Blob 和队列的访问权限
 
@@ -36,27 +36,27 @@ Azure 表存储不支持通过 Azure AD 进行授权。 使用共享密钥授权
 
 身份验证步骤要求应用程序在运行时请求 OAuth 2.0 访问令牌。 如果应用程序在 Azure 实体（如 Azure VM、虚拟机规模集或 Azure Functions 应用）中运行，则可以使用[托管标识](../../active-directory/managed-identities-azure-resources/overview.md)访问 blob 或队列。 若要了解如何授权托管标识向 Azure Blob 或队列服务发出的请求，请参阅[使用 Azure Active Directory 和 Azure 资源的托管标识授权访问 Blob 和队列](storage-auth-aad-msi.md)。
 
-授权步骤需要将一个或多个 RBAC 角色分配给安全主体。 Azure 存储提供 RBAC 角色，这些角色涵盖了针对 Blob 和队列数据的通用权限集。 分配给安全主体的角色确定了该主体拥有的权限。 若要详细了解如何为 Azure 存储分配 RBAC 角色，请参阅[通过 RBAC 管理存储数据访问权限](storage-auth-aad-rbac.md)。
+授权步骤要求将一个或多个 Azure 角色分配给安全主体。 Azure 存储提供了 Azure 角色，这些角色涵盖了针对 Blob 和队列数据的通用权限集。 分配给安全主体的角色确定了该主体拥有的权限。 若要详细了解如何为 Azure 存储分配 Azure 角色，请参阅[通过 RBAC 管理存储数据访问权限](storage-auth-aad-rbac.md)。
 
 向 Azure Blob 或队列服务发出请求的本机应用程序和 Web 应用程序也可以使用 Azure AD 进行访问授权。 若要了解如何请求访问令牌并使用它来授权对 Blob 或队列数据的请求，请参阅[从 Azure 存储应用程序使用 Azure AD 授予对 Azure 存储的访问权限](storage-auth-aad-app.md)。
 
-## <a name="assign-rbac-roles-for-access-rights"></a>分配 RBAC 角色以授予访问权限
+## <a name="assign-azure-roles-for-access-rights"></a>分配 Azure 角色以授予访问权限
 
-Azure Active Directory (Azure AD) 通过[基于角色的访问控制 (RBAC)](../../role-based-access-control/overview.md) 授权访问受保护的资源。 Azure 存储定义了一组内置的 RBAC 角色，它们包含用于访问 Blob 和队列数据的通用权限集。 还可以定义自定义角色来访问 Blob 和队列数据。
+Azure Active Directory (Azure AD) 通过 [Azure 基于角色的访问控制 (Azure RBAC)](../../role-based-access-control/overview.md) 授予对受保护资源的访问权限。 Azure 存储定义了一组内置的 Azure 角色，它们包含用于访问 Blob 和队列数据的通用权限集。 还可以定义自定义角色来访问 Blob 和队列数据。
 
-将 RBAC 角色分配到 Azure AD 安全主体后，Azure 会向该安全主体授予对这些资源的访问权限。 可以将访问权限限定于订阅、资源组、存储帐户、单个容器或队列级别。 Azure AD 安全主体可以是用户、组、应用程序服务主体，也可以是 [Azure 资源的托管标识](../../active-directory/managed-identities-azure-resources/overview.md)。
+将 Azure 角色分配到 Azure AD 安全主体后，Azure 会向该安全主体授予对这些资源的访问权限。 可以将访问权限限定于订阅、资源组、存储帐户、单个容器或队列级别。 Azure AD 安全主体可以是用户、组、应用程序服务主体，也可以是 [Azure 资源的托管标识](../../active-directory/managed-identities-azure-resources/overview.md)。
 
-### <a name="built-in-rbac-roles-for-blobs-and-queues"></a>适用于 Blob 和队列的内置 RBAC 角色
+### <a name="azure-built-in-roles-for-blobs-and-queues"></a>适用于 Blob 和队列的内置 Azure 角色
 
 [!INCLUDE [storage-auth-rbac-roles-include](../../../includes/storage-auth-rbac-roles-include.md)]
 
-若要了解如何将内置 RBAC 角色分配给安全主体，请参阅以下文章之一：
+若要了解如何将内置 Azure 角色分配给安全主体，请参阅以下文章之一：
 
 - [在 Azure 门户中使用 RBAC 授予对 Azure Blob 和队列数据的访问权限](storage-auth-aad-rbac-portal.md)
 - [在 Azure CLI 中使用 RBAC 授予对 Azure Blob 和队列数据的访问权限](storage-auth-aad-rbac-cli.md)
 - [在 PowerShell 中使用 RBAC 授予对 Azure Blob 和队列数据的访问权限](storage-auth-aad-rbac-powershell.md)
 
-有关如何为 Azure 存储定义内置角色的详细信息，请参阅[了解角色定义](../../role-based-access-control/role-definitions.md#management-and-data-operations)。 若要了解如何创建自定义 RBAC 角色，请参阅[针对 Azure 基于角色的访问控制创建自定义角色](../../role-based-access-control/custom-roles.md)。
+有关如何为 Azure 存储定义内置角色的详细信息，请参阅[了解角色定义](../../role-based-access-control/role-definitions.md#management-and-data-operations)。 若要了解如何创建 Azure 自定义角色，请参阅 [Azure 自定义角色](../../role-based-access-control/custom-roles.md)。
 
 ### <a name="access-permissions-for-data-operations"></a>数据操作访问权限
 
@@ -72,9 +72,9 @@ Azure Active Directory (Azure AD) 通过[基于角色的访问控制 (RBAC)](../
 
 ### <a name="data-access-from-the-azure-portal"></a>通过 Azure 门户访问数据
 
-Azure 门户可以使用 Azure AD 帐户或帐户访问密钥来访问 Azure 存储帐户中的 Blob 和队列数据。 Azure 门户使用哪种授权方案取决于分配给你的 RBAC 角色。
+Azure 门户可以使用 Azure AD 帐户或帐户访问密钥来访问 Azure 存储帐户中的 Blob 和队列数据。 Azure 门户使用哪种授权方案取决于分配给你的 Azure 角色。
 
-当你尝试访问 Blob 或队列数据时，Azure 门户首先会检查你是否拥有一个包含 **Microsoft.Storage/storageAccounts/listkeys/action** 的 RBAC 角色。 如果你拥有包含此操作的角色，则 Azure 门户将使用帐户密钥通过共享密钥授权来访问 Blob 和队列数据。 如果你不拥有包含此操作的角色，则 Azure 门户会尝试使用你的 Azure AD 帐户访问数据。
+当你尝试访问 Blob 或队列数据时，Azure 门户首先会检查你是否分配有一个包含“Microsoft.Storage/storageAccounts/listkeys/action”的 Azure 角色。 如果你拥有包含此操作的角色，则 Azure 门户将使用帐户密钥通过共享密钥授权来访问 Blob 和队列数据。 如果你不拥有包含此操作的角色，则 Azure 门户会尝试使用你的 Azure AD 帐户访问数据。
 
 若要使用 Azure AD 帐户通过 Azure 门户访问 Blob 或队列数据，需要拥有访问 Blob 和队列数据的权限，另外还需要拥有在 Azure 门户中浏览存储帐户资源的权限。 Azure 存储提供的内置角色授予对 Blob 和队列资源的访问权限，但不授予对存储帐户资源的权限。 出于此原因，访问门户还需要分配范围为存储帐户或更高级别的 Azure 资源管理器角色，例如[读取者](../../role-based-access-control/built-in-roles.md#reader)角色。 “读取者”角色授予限制性最高的权限，但也接受可授予存储帐户管理资源访问权限的其他 Azure 资源管理器角色。 若要详细了解如何分配权限，使用户能够使用 Azure AD 帐户在 Azure 门户中访问数据，请参阅[在 Azure 门户中使用 RBAC 授予对 Azure Blob 和队列数据的访问权限](storage-auth-aad-rbac-portal.md)。
 

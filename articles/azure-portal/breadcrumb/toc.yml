@@ -1,0 +1,7 @@
+- name: Azure
+  tocHref: /
+  topicHref: /index
+  items:
+    - name: Azure 门户文档
+      tocHref: /azure-portal/
+      topicHref: /azure-portal/index

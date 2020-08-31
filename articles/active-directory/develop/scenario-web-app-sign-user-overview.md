@@ -1,26 +1,22 @@
 ---
-title: 用于登录用户的 Web 应用（概述）- Microsoft 标识平台
+title: 从 Web 应用登录用户 - Microsoft 标识平台 | Azure
 description: 了解如何构建用于登录用户的 Web 应用（概述）
 services: active-directory
-documentationcenter: dev-center-name
 author: jmprieur
 manager: CelesteDG
 ms.service: active-directory
 ms.subservice: develop
-ms.devlang: na
 ms.topic: conceptual
-ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 12/10/2019
+ms.date: 08/19/2020
 ms.author: v-junlch
 ms.custom: aaddev, identityplatformtop40
-ms.collection: M365-identity-device-management
-ms.openlocfilehash: daf578012dfd3f602d7ae69d13a74b5e91acb5c8
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 5a170e089b1caa6ac6249ec0f87abda92dc6148c
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75335397"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647660"
 ---
 # <a name="scenario-web-app-that-signs-in-users"></a>方案：用于登录用户的 Web 应用
 
@@ -86,23 +82,22 @@ Web 应用可对 Web 浏览器中的用户进行身份验证。 在此方案中�
 # <a name="aspnet-core"></a>[ASP.NET Core](#tab/aspnetcore)
 
 > [!div class="nextstepaction"]
-> [应用注册](/active-directory/develop/scenario-web-app-sign-user-app-registration?tabs=aspnetcore)
+> [应用注册](./scenario-web-app-sign-user-app-registration.md?tabs=aspnetcore)
 
 # <a name="aspnet"></a>[ASP.NET](#tab/aspnet)
 
 > [!div class="nextstepaction"]
-> [应用注册](/active-directory/develop/scenario-web-app-sign-user-app-registration?tabs=aspnet)
+> [应用注册](./scenario-web-app-sign-user-app-registration.md?tabs=aspnet)
 
 # <a name="java"></a>[Java](#tab/java)
 
 > [!div class="nextstepaction"]
-> [应用注册](/active-directory/develop/scenario-web-app-sign-user-app-registration?tabs=java)
+> [应用注册](./scenario-web-app-sign-user-app-registration.md?tabs=java)
 
 # <a name="python"></a>[Python](#tab/python)
 
 > [!div class="nextstepaction"]
-> [应用注册](/active-directory/develop/scenario-web-app-sign-user-app-registration?tabs=python)
+> [应用注册](./scenario-web-app-sign-user-app-registration.md?tabs=python)
 
 ---
 
-<!-- Update_Description: wording update -->

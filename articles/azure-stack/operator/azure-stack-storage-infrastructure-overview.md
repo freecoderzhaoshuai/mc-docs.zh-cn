@@ -5,17 +5,17 @@ description: 了解如何管理 Azure Stack Hub 的存储基础结构。
 author: WenJason
 ms.topic: conceptual
 origin.date: 05/11/2020
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.lastreviewed: 5/5/2020
 ms.reviewer: jiaha
 ms.custom: contperfq4
-ms.openlocfilehash: 01a5962d11ba522b262148e9f935e7c87142d7aa
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 2c6fe1a2c66a6633a939c4994103be8c97b978ba
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096254"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868004"
 ---
 # <a name="azure-stack-hub-storage-infrastructure-overview"></a>Azure Stack Hub 存储基础结构概述
 
@@ -98,7 +98,7 @@ VM 临时卷和对象存储卷的数目等于 Azure Stack Hub 部署中的节点
 - 即使节点出现故障或者被删除，卷数也会保持相同。
 
 > [!NOTE]
-> 如果使用 [Azure Stack 开发工具包 (ASDK)](/azure-stack/asdk/)，则会创建包含多个[共享](azure-stack-manage-storage-shares.md)的单个卷。
+> 如果使用 [Azure Stack 开发工具包 (ASDK)](../asdk/index.yml)，则会创建包含多个[共享](azure-stack-manage-storage-shares.md)的单个卷。
 
 ### <a name="fault-tolerance-and-mirroring"></a>容错和镜像
 

@@ -6,14 +6,14 @@ ms.author: v-tawe
 ms.reviewer: tzgitlin
 ms.service: data-explorer
 ms.topic: conceptual
-origin.date: 01/08/2020
-ms.date: 05/09/2020
-ms.openlocfilehash: de5989efbc723fafc90d835f1b5d53fe3affd77c
-ms.sourcegitcommit: bfbd6694da33f703481386f2a3f16850c4e94bfa
+origin.date: 08/13/2020
+ms.date: 08/18/2020
+ms.openlocfilehash: 3ac9b9805053a8cdced9337bdca779bee319d1f3
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83417631"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515698"
 ---
 # <a name="ingest-data-from-event-hub-into-azure-data-explorer"></a>将数据从事件中心引入到 Azure 数据资源管理器
 
@@ -23,7 +23,9 @@ ms.locfileid: "83417631"
 > * [Python](data-connection-event-hub-python.md)
 > * [Azure Resource Manager 模板](data-connection-event-hub-resource-manager.md)
 
-Azure 数据资源管理器是一项快速且高度可缩放的数据探索服务，适用于日志和遥测数据。 Azure 数据资源管理器可从事件中心引入（加载数据），是一个大数据流式处理平台和事件引入服务。 [事件中心](/event-hubs/event-hubs-about)每秒可以近实时处理数百万个事件。 在本文中，将创建事件中心，从 Azure 数据资源管理器中连接到该事件中心，并查看通过系统的数据流。
+[!INCLUDE [data-connector-intro](includes/data-connector-intro.md)]
+
+Azure 数据资源管理器可从事件中心引入（加载数据），是一个大数据流式处理平台和事件引入服务。 [事件中心](/event-hubs/event-hubs-about)每秒可以近实时处理数百万个事件。 在本文中，将创建事件中心，从 Azure 数据资源管理器中连接到该事件中心，并查看通过系统的数据流。
 
 ## <a name="prerequisites"></a>先决条件
 
@@ -40,15 +42,15 @@ Azure 数据资源管理器是一项快速且高度可缩放的数据探索服�
 
 在本文中，将生成示例数据并将其发送到事件中心。 第一步是创建事件中心。 通过使用 Azure 资源管理器模板在 Azure 门户中执行此操作。
 
-1. 若要创建事件中心，请使用以下按钮开始部署。 右键单击并选择“在新窗口中打开”  ，以便按本文中的剩余步骤操作。
+1. 若要创建事件中心，请使用以下按钮开始部署。 右键单击并选择“在新窗口中打开”****，以便按本文中的剩余步骤操作。
 
-    [![“部署到 Azure”](media/ingest-data-event-hub/deploybutton.png)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-event-hubs-create-event-hub-and-consumer-group%2Fazuredeploy.json)
+    [![部署到 Azure](media/ingest-data-event-hub/deploybutton.png)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-event-hubs-create-event-hub-and-consumer-group%2Fazuredeploy.json)
 
-    “部署到 Azure”  按钮将转到 Azure 门户以填写部署窗体。
+    “部署到 Azure”**** 按钮将转到 Azure 门户以填写部署窗体。
 
     ![“部署到 Azure”](media/ingest-data-event-hub/deploy-to-azure.png)
 
-1. 选择要在其中创建事件中心的订阅，并创建名为 test-hub-rg  的资源组。
+1. 选择要在其中创建事件中心的订阅，并创建名为 test-hub-rg** 的资源组。
 
     ![创建资源组](media/ingest-data-event-hub/create-resource-group.png)
 
@@ -60,29 +62,29 @@ Azure 数据资源管理器是一项快速且高度可缩放的数据探索服�
 
     **设置** | **建议的值** | **字段说明**
     |---|---|---|
-    | 订阅 | 你的订阅 | 选择要用于事件中心的 Azure 订阅。|
-    | 资源组 | test-hub-rg  | 创建新的资源组。 |
-    | 位置 | *中国东部 2* | 对于本文，选择“中国东部 2”  。 对于生产系统，请选择最能满足你需求的区域。 在与 Kusto 群集相同的位置创建事件中心命名空间以获得最佳性能（对于具有高吞吐量的事件中心命名空间来说最重要）。
-    | 命名空间名称 | 唯一的命名空间名称 | 选择用于标识命名空间的唯一名称。 例如，mytestnamespace  。 域名 *servicebus.chinacloudapi.cn* 将追加到所提供的名称。 字段只能包含字母、数字和连字符。 名称必须以字母开头，并且必须以字母或数字结尾。 值长度必须介于 6 到 50 个字符之间。
-    | 事件中心名称 | test-hub  | 事件中心位于命名空间下，该命名空间提供唯一的范围容器。 事件中心名称在命名空间中必须唯一。 |
-    | 使用者组名称 | test-group  | 使用者组允许多个使用应用程序各自具有事件流的单独视图。 |
+    | 订阅 | 订阅 | 选择要用于事件中心的 Azure 订阅。|
+    | 资源组 | test-hub-rg** | 创建新的资源组。 |
+    | 位置 | *中国东部 2* | 对于本文，选择“中国东部 2”**。 对于生产系统，请选择最能满足你需求的区域。 在与 Kusto 群集相同的位置创建事件中心命名空间以获得最佳性能（对于具有高吞吐量的事件中心命名空间来说最重要）。
+    | 命名空间名称 | 唯一的命名空间名称 | 选择用于标识命名空间的唯一名称。 例如，mytestnamespace**。 域名 *servicebus.chinacloudapi.cn* 将追加到所提供的名称。 字段只能包含字母、数字和连字符。 名称必须以字母开头，并且必须以字母或数字结尾。 值长度必须介于 6 到 50 个字符之间。
+    | 事件中心名称 | *test-hub* | 事件中心位于命名空间下，该命名空间提供唯一的范围容器。 事件中心名称在命名空间中必须唯一。 |
+    | 使用者组名称 | *test-group* | 使用者组允许多个使用应用程序各自具有事件流的单独视图。 |
     | | |
 
-1. 选择“购买”  ，确认你要在订阅中创建资源。
+1. 选择“购买”****，确认你要在订阅中创建资源。
 
-1. 在工具栏上选择“通知”以监视预配过程。  部署成功可能需要几分钟时间，但现在可以继续执行下一步。
+1. 在工具栏上选择“通知”以监视预配过程。**** 部署成功可能需要几分钟时间，但现在可以继续执行下一步。
 
     ![通知](media/ingest-data-event-hub/notifications.png)
 
 ## <a name="create-a-target-table-in-azure-data-explorer"></a>在 Azure 数据资源管理器中创建目标表
 
-现在，在 Azure 数据资源管理器中创建一个表，事件中心会向该表发送数据。 在“先决条件”  中预配的群集和数据库中创建表。
+现在，在 Azure 数据资源管理器中创建一个表，事件中心会向该表发送数据。 在“先决条件”**** 中预配的群集和数据库中创建表。
 
-1. 在 Azure 门户中导航到群集，然后选择“查询”。 
+1. 在 Azure 门户中导航到群集，然后选择“查询”。****
 
     ![查询应用程序链接](media/ingest-data-event-hub/query-explorer-link.png)
 
-1. 将以下命令复制到窗口中，然后选择“运行”  以创建将接收引入数据的表 (TestTable)。
+1. 将以下命令复制到窗口中，然后选择“运行”**** 以创建将接收引入数据的表 (TestTable)。
 
     ```Kusto
     .create table TestTable (TimeStamp: datetime, Name: string, Metric: int, Source:string)
@@ -90,7 +92,7 @@ Azure 数据资源管理器是一项快速且高度可缩放的数据探索服�
 
     ![运行创建查询](media/ingest-data-event-hub/run-create-query.png)
 
-1. 将以下命令复制到窗口中，然后选择“运行”  将传入的 JSON 数据映射到表 (TestTable) 的列名和数据类型。
+1. 将以下命令复制到窗口中，然后选择“运行”**** 将传入的 JSON 数据映射到表 (TestTable) 的列名和数据类型。
 
     ```Kusto
     .create table TestTable ingestion json mapping 'TestMapping' '[{"column":"TimeStamp", "Properties": {"Path": "$.timeStamp"}},{"column":"Name", "Properties": {"Path":"$.name"}} ,{"column":"Metric", "Properties": {"Path":"$.metric"}}, {"column":"Source", "Properties": {"Path":"$.source"}}]'
@@ -100,13 +102,13 @@ Azure 数据资源管理器是一项快速且高度可缩放的数据探索服�
 
 现在，请通过 Azure 数据资源管理器连接到事件中心。 当此连接建立好以后，流入事件中心的数据会流式传输到此前在本文中创建的测试表。
 
-1. 在工具栏上选择“通知”  ，以验证事件中心部署是否成功。
+1. 在工具栏上选择“通知”****，以验证事件中心部署是否成功。
 
-1. 在创建的群集下，选择“数据库”  ，然后选择“TestDatabase”  。
+1. 在创建的群集下，选择“数据库”****，然后选择“TestDatabase”****。
 
     ![选择测试数据库](media/ingest-data-event-hub/select-test-database.png)
 
-1. 选择“数据引入”  ，然后选择“添加数据连接”  。 然后使用以下信息填写窗体。 完成后，选择“创建”  。
+1. 选择“数据引入”****，然后选择“添加数据连接”****。 然后使用以下信息填写窗体。 完成后，选择“创建”****。
 
     ![事件中心连接](media/ingest-data-event-hub/event-hub-connection.png)
 
@@ -114,28 +116,28 @@ Azure 数据资源管理器是一项快速且高度可缩放的数据探索服�
 
     **设置** | **建议的值** | **字段说明**
     |---|---|---|
-    | 数据连接名称 | test-hub-connection  | 要在 Azure 数据资源管理器中创建的连接的名称。|
+    | 数据连接名称 | *test-hub-connection* | 要在 Azure 数据资源管理器中创建的连接的名称。|
     | 事件中心命名空间 | 唯一的命名空间名称 | 先前选择的用于标识命名空间的名称。 |
-    | 事件中心 | test-hub  | 你创建的事件中心。 |
-    | 使用者组 | test-group  | 在创建的事件中心定义的使用者组。 |
-    | 事件系统属性 | 选择相关属性 | [事件中心系统属性](/service-bus-messaging/service-bus-amqp-protocol-guide#message-annotations)。 如果每个事件消息有多个记录，则系统属性将添加到第一个记录中。 添加系统属性时，[创建](https://docs.microsoft.com/azure/data-explorer/kusto/management/create-table-command)或[更新](https://docs.microsoft.com/azure/data-explorer/kusto/management/alter-table-command)表架构和[映射](https://docs.microsoft.com/azure/data-explorer/kusto/management/mappings)以包括所选属性。 |
-    | 压缩 | *无* | 事件中心消息有效负载的压缩类型。 支持的压缩类型：None、GZip  。|
+    | 事件中心 | *test-hub* | 你创建的事件中心。 |
+    | 使用者组 | *test-group* | 在创建的事件中心定义的使用者组。 |
+    | 事件系统属性 | 选择相关属性 | [事件中心系统属性](/service-bus-messaging/service-bus-amqp-protocol-guide#message-annotations)。 如果每个事件消息有多个记录，则系统属性将添加到第一个记录中。 添加系统属性时，[创建](/data-explorer/kusto/management/create-table-command)或[更新](/data-explorer/kusto/management/alter-table-command)表架构和[映射](/data-explorer/kusto/management/mappings)以包括所选属性。 |
+    | 压缩 | *无* | 事件中心消息有效负载的压缩类型。 支持的压缩类型：None、GZip。|
     | | |
 
     **目标表：**
 
-    路由引入数据有两个选项：静态和动态。   
-    本文将使用静态路由，需在其中指定表名、数据格式和映射。 因此，请让“我的数据包含路由信息”保留未选中状态。 
+    路由引入数据有两个选项：静态和动态。**** 
+    本文将使用静态路由，需在其中指定表名、数据格式和映射。 因此，请让“我的数据包含路由信息”保留未选中状态。****
 
      **设置** | **建议的值** | **字段说明**
     |---|---|---|
-    | 表 | TestTable  | 在“TestDatabase”  中创建的表。 |
-    | 数据格式 | *JSON* | 支持的格式为 Avro、CSV、JSON、多行 JSON、PSV、SOHSV、SCSV、TSV、TSVE、TXT、ORC 和 PARQUET。 |
-    | 列映射 | TestMapping  | 在 **TestDatabase** 中创建的[映射](https://docs.microsoft.com/azure/data-explorer/kusto/management/mappings)，它将传入的 JSON 数据映射到 **TestTable** 的列名称和数据类型。 对于 JSON 或多行 JSON 是必需的，对于其他格式是可选的。|
+    | 表 | *TestTable* | 在“TestDatabase”**** 中创建的表。 |
+    | 数据格式 | *JSON* | 支持的格式为 Avro、CSV、JSON、MULTILINE JSON、ORC、PARQUET、PSV、SCSV、SOHSV、TSV、TXT、TSVE、APACHEAVRO 和 W3CLOG。 |
+    | 列映射 | TestMapping** | 在 **TestDatabase** 中创建的[映射](/data-explorer/kusto/management/mappings)，它将传入的 JSON 数据映射到 **TestTable** 的列名称和数据类型。 对于 JSON 或多行 JSON 是必需的，对于其他格式是可选的。|
     | | |
 
     > [!NOTE]
-    > * 选择“我的数据包含路由信息”  以使用动态路由，其中你的数据包含必要的路由信息，如[示例应用](https://github.com/Azure-Samples/event-hubs-dotnet-ingest)注释中所示。 如果同时设置了静态和动态属性，则动态属性将覆盖静态属性。 
+    > * 选择“我的数据包含路由信息”**** 以使用动态路由，其中你的数据包含必要的路由信息，如[示例应用](https://github.com/Azure-Samples/event-hubs-dotnet-ingest)注释中所示。 如果同时设置了静态和动态属性，则动态属性将覆盖静态属性。 
     > * 只有创建数据连接后进入队列的事件才会被引入。
     > * 还可以通过动态属性设置压缩类型，如[示例应用](https://github.com/Azure-Samples/event-hubs-dotnet-ingest)中所示。
     > * GZip 压缩有效负载不支持 Avro、ORC 和 PARQUET 格式以及事件系统属性。
@@ -146,11 +148,11 @@ Azure 数据资源管理器是一项快速且高度可缩放的数据探索服�
 
 运行在先决条件中列出的[示例应用](https://github.com/Azure-Samples/event-hubs-dotnet-ingest)时，需要事件中心命名空间的连接字符串。
 
-1. 在创建的事件中心命名空间下，选择“共享访问策略”  ，然后选择“RootManageSharedAccessKey”  。
+1. 在创建的事件中心命名空间下，选择“共享访问策略”****，然后选择“RootManageSharedAccessKey”****。
 
     ![共享访问策略](media/ingest-data-event-hub/shared-access-policies.png)
 
-1. 复制“连接字符串 - 主键”  。 请将其粘贴到下一节。
+1. 复制“连接字符串 - 主键”。 请将其粘贴到下一节。
 
     ![连接字符串](media/ingest-data-event-hub/connection-string.png)
 
@@ -160,7 +162,7 @@ Azure 数据资源管理器是一项快速且高度可缩放的数据探索服�
 
 1. 在 Visual Studio 中打开示例应用解决方案。
 
-1. 在 program.cs  文件中，将 `connectionString` 常量更新为从事件中心命名空间复制的连接字符串。
+1. 在 program.cs 文件中，将 `eventHubName` 常量更新为事件中心的名称，并将 `connectionString` 常量更新为从事件中心命名空间复制的连接字符串。
 
     ```csharp
     const string eventHubName = "test-hub";
@@ -168,7 +170,7 @@ Azure 数据资源管理器是一项快速且高度可缩放的数据探索服�
     const string connectionString = @"<YourConnectionString>";
     ```
 
-1. 构建并运行应用程序。 应用将消息发送到事件中心，并且每十秒显示一次状态。
+1. 构建并运行应用。 应用将消息发送到事件中心，并且每十秒显示一次状态。
 
 1. 应用发送一些消息后，继续执行下一步：查看到事件中心和测试表的数据流。
 
@@ -198,23 +200,23 @@ Azure 数据资源管理器是一项快速且高度可缩放的数据探索服�
     ![消息结果集](media/ingest-data-event-hub/message-result-set.png)
 
     > [!NOTE]
-    > * Azure 数据资源管理器具有用于数据引入的聚合（批处理）策略，旨在优化引入过程。 默认情况下，该策略配置为 5 分钟或 500 MB 数据，因此你可能会遇到延迟。 有关聚合选项，请参阅[批处理策略](https://docs.microsoft.com/azure/data-explorer/kusto/management/batchingpolicy)。 
+    > * Azure 数据资源管理器具有用于数据引入的聚合（批处理）策略，旨在优化引入过程。 默认情况下，该策略配置为 5 分钟或 500 MB 数据，因此你可能会遇到延迟。 有关聚合选项，请参阅[批处理策略](/data-explorer/kusto/management/batchingpolicy)。 
     > * 事件中心引入包括 10 秒或 1 MB 的事件中心响应时间。 
-    > * 配置表以支持流式处理并消除响应时间延迟。 请参阅[流式处理策略](https://docs.microsoft.com/azure/data-explorer/kusto/management/streamingingestionpolicy)。 
+    > * 配置表以支持流式处理并消除响应时间延迟。 请参阅[流式处理策略](/data-explorer/kusto/management/streamingingestionpolicy)。 
 
 ## <a name="clean-up-resources"></a>清理资源
 
-如果不打算再次使用事件中心，请清理 test-hub-rg  ，以避免产生费用。
+如果不打算再次使用事件中心，请清理 test-hub-rg****，以避免产生费用。
 
-1. 在 Azure 门户的最左侧选择“资源组”，，然后选择创建的资源组。   
+1. 在 Azure 门户的最左侧选择“资源组”，，然后选择创建的资源组。****  
 
     如果左侧菜单处于折叠状态，请选择 ![“展开”按钮](media/ingest-data-event-hub/expand.png) 将其展开。
 
    ![选择要删除的资源组](media/ingest-data-event-hub/delete-resources-select.png)
 
-1. 在“test-resource-group”  下，选择“删除资源组”  。
+1. 在“test-resource-group”**** 下，选择“删除资源组”****。
 
-1. 在新窗口中，键入要删除的资源组的名称 (test-hub-rg  )，然后选择“删除”  。
+1. 在新窗口中，键入要删除的资源组的名称 (test-hub-rg**)，然后选择“删除”****。
 
 ## <a name="next-steps"></a>后续步骤
 

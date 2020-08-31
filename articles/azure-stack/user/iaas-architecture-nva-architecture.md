@@ -4,22 +4,22 @@ description: 了解如何在 Azure Stack Hub 上部署高度可用的网络虚�
 author: WenJason
 ms.topic: how-to
 origin.date: 04/20/2020
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: kivenkat
 ms.lastreviewed: 11/01/2019
-ms.openlocfilehash: 5b6c4992b42fbc61c8b716776f4823aa571dc910
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 67b4447b8b591810c58a11e203e3828895c1b441
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096438"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867974"
 ---
 # <a name="deploy-highly-available-network-virtual-appliances-on-azure-stack-hub"></a>在 Azure Stack Hub 上部署高度可用的网络虚拟设备
 
 本文介绍如何在 Azure Stack Hub 中部署一组网络虚拟设备 (NVA) 以实现高可用性。 NVA 通常用来控制从外围网络（也称为 DMZ）到其他网络或子网的网络流量流。 本文包括了仅用于入口、仅用于出口和同时用于入口和出口的示例体系结构。
 
-[Azure Stack Hub 市场](/azure-stack/operator/azure-stack-marketplace-azure-items)中提供了不同供应商的 NVA，可以使用其中的一个来获得最佳性能。
+[Azure Stack Hub 市场](../operator/azure-stack-marketplace-azure-items.md)中提供了不同供应商的 NVA，可以使用其中的一个来获得最佳性能。
 
 该体系结构具有以下组件。
 
@@ -27,7 +27,7 @@ ms.locfileid: "85096438"
 
 -   **虚拟网络和子网**。 每个 Azure VM 都会部署到可细分为子网的虚拟网络中。 为每个层创建一个单独的子网。
 
--   **第 7 层负载均衡器**。 Azure Stack Hub 中尚未提供应用程序网关，不过，[Azure Stack Hub 市场](/azure-stack/operator/azure-stack-marketplace-azure-items)中提供了替代方案，例如：[A10 vThunder ADC](https://market.azure.cn/zh-cn/marketplace/apps/a10networks-cn.a10-thunder-adc-411-p2?tab=PlansAndPrice)
+-   **第 7 层负载均衡器**。 Azure Stack Hub 中尚未提供应用程序网关，不过，[Azure Stack Hub 市场](../operator/azure-stack-marketplace-azure-items.md)中提供了替代方案，例如：[A10 vThunder ADC](https://market.azure.cn/zh-cn/marketplace/apps/a10networks-cn.a10-thunder-adc-411-p2?tab=PlansAndPrice)
 
 -   **负载均衡器**。 使用 [Azure 负载均衡器](/load-balancer/load-balancer-overview)可将网络流量从 Web 层分配到业务层，以及从业务层分配到 SQL Server。
 

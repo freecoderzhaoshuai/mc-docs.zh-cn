@@ -6,20 +6,20 @@ ms.topic: tutorial
 origin.date: 10/24/2019
 author: Johnnytechn
 ms.author: v-johya
-ms.date: 07/17/2020
-ms.openlocfilehash: 20383d84ae6c080eb389d0431f2e0bad9c27cf71
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.date: 08/20/2020
+ms.openlocfilehash: 4ccc33c3174f5e16e66bf5e8b24c06e6cb7d9b99
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440466"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148548"
 ---
 # <a name="get-started-with-log-queries-in-azure-monitor"></a>Azure Monitor 中的日志查询入门
 
 > [!NOTE]
-> 如果要从至少一台虚拟机收集数据，则可以在自己的环境中完成此练习。 如果没有，请使用[演示环境](https://portal.loganalytics.io/demo)，其中包含大量示例数据。
+> 如果要从至少一台虚拟机收集数据，则可以在自己的环境中完成此练习。 如果没有，请使用[演示环境](https://portal.azure.cn/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade)，其中包含大量示例数据。  如果你知道如何采用 KQL 进行查询，只是需要基于资源类型快速创建有用的查询，请参阅[保存的示例查询窗格](saved-queries.md)。
 
-本教程介绍如何在 Azure Monitor 中编写日志查询。 具体内容包括：
+在本教程中，你将学习在 Azure Monitor 中编写日志查询。 具体内容包括：
 
 - 了解查询结构
 - 将查询结果排序

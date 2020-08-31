@@ -4,17 +4,17 @@ description: 本文介绍 Azure 数据资源管理器中的 .create tables。
 services: data-explorer
 author: orspod
 ms.author: v-tawe
-ms.reviewer: rkarlin
+ms.reviewer: alexans
 ms.service: data-explorer
 ms.topic: reference
-origin.date: 02/04/2020
-ms.date: 07/01/2020
-ms.openlocfilehash: c18de5441c8d3491f5360bb243a07b10556755e9
-ms.sourcegitcommit: c17e965d4ffd82fd7cd86b2648fcb0053a65df00
+origin.date: 07/05/2020
+ms.date: 08/18/2020
+ms.openlocfilehash: 44db0254d285bc7d5b44831d1cc745965e41ad52
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86470430"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515903"
 ---
 # <a name="create-tables"></a>.create tables
 
@@ -26,14 +26,14 @@ ms.locfileid: "86470430"
 
 **语法**
 
-`.create` `tables` TableName1 ([columnName:columnType], ...) [`,` TableName2 ([columnName:columnType], ...) ... ] 
+`.create` `tables` *TableName1* ([columnName:columnType], ...) [`,` *TableName2* ([columnName:columnType], ...) ... ] [`with` `(` `folder` `=` *FolderName*] `)`]
 
 如果已经存在任何表，命令将返回成功。
-
-**示例**
+ 
+**示例** 
 
 ```kusto
-.create tables
+.create tables 
   MyLogs (Level:string, Timestamp:datetime, UserId:string, TraceId:string, Message:string, ProcessId:int32),
   MyUsers (UserId:string, Name:string)
 ```

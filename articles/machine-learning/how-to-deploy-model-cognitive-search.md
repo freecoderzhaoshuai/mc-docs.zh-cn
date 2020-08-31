@@ -10,12 +10,12 @@ ms.author: larryfr
 author: larryfr
 ms.reviewer: larryfr
 ms.date: 06/11/2020
-ms.openlocfilehash: c4cb4ab7dbb2b78094402c86837759d5f3ab07d3
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: ea7842899d7c154f4ffe0184c00f219675b3d09f
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097815"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946784"
 ---
 # <a name="deploy-a-model-for-use-with-cognitive-search"></a>部署用于认知搜索的模型
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -29,7 +29,6 @@ Azure 机器学习可以将经过训练的模型部署为 Web 服务。 然后�
 > [!IMPORTANT]
 > 本文中的信息特定于模型的部署。 本文提供有关受支持的部署配置的信息，这些配置允许认知搜索使用模型。
 >
-> 有关如何配置认知搜索以使用部署的模型的信息，请参阅[使用 Azure 机器学习构建和部署自定义技能](../search/cognitive-search-tutorial-aml-custom-skill.md)教程。
 >
 > 有关本教程基于的示例，请参阅 [https://github.com/Azure-Samples/azure-search-python-samples/tree/master/AzureML-Custom-Skill](https://github.com/Azure-Samples/azure-search-python-samples/tree/master/AzureML-Custom-Skill)。
 
@@ -305,9 +304,6 @@ print(resp.text)
 {"sentiment": {"sentence": "This is a nice place for a relaxing evening out with friends. The owners seem pretty nice, too. I have been there a few times including last night. Recommend.", "terms": [{"text": "place", "type": "AS", "polarity": "POS", "score": 1.0, "start": 15, "len": 5}, {"text": "nice", "type": "OP", "polarity": "POS", "score": 1.0, "start": 10, "len": 4}]}}
 ```
 
-## <a name="connect-to-cognitive-search"></a>连接到认知搜索
-
-有关在认知搜索中使用此模型的信息，请参阅[使用 Azure 机器学习构建和部署自定义技能](../search/cognitive-search-tutorial-aml-custom-skill.md)教程。
 
 ## <a name="clean-up-the-resources"></a>清理资源
 
@@ -321,6 +317,3 @@ aks_service.delete()
 aks_target.delete()
 ```
 
-## <a name="next-steps"></a>后续步骤
-
-* [使用 Azure 机器学习构建和部署自定义技能](../search/cognitive-search-tutorial-aml-custom-skill.md)

@@ -5,14 +5,14 @@ ms.subservice: logs
 ms.topic: conceptual
 author: Johnnytechn
 ms.author: v-johya
-ms.date: 05/28/2020
+ms.date: 08/20/2020
 origin.date: 01/25/2019
-ms.openlocfilehash: d6f566303b968da5906ba8967da097b1562bad13
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: 44d5e03a48056fcdc44c221517e126a8b8678bff
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440630"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148661"
 ---
 # <a name="app-expression-in-azure-monitor-query"></a>Azure Monitor 查询中的 app() 表达式
 
@@ -73,6 +73,7 @@ union
 ## <a name="next-steps"></a>后续步骤
 
 - 参阅 [workspace 表达式](workspace-expression.md)，以引用 Log Analytics 工作区。
-- 了解 [Azure Monitor 数据是如何存储的](../../azure-monitor/log-query/log-query-overview.md)。
+- 了解 [Azure Monitor 数据是如何存储的](./log-query-overview.md)。
 - 访问有关 [Kusto 查询语言](https://docs.microsoft.com/azure/kusto/query/)的完整文档。
+
 

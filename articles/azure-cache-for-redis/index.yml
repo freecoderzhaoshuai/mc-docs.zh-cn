@@ -8,13 +8,13 @@ metadata:
   ms.topic: landing-page
   author: yegu-ms
   ms.author: v-junlch
-  ms.date: 12/30/2019
-  ms.openlocfilehash: 8a8a3bb56aa9dfd1430472c1e5666ec326cc8987
-  ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+  ms.date: 08/24/2020
+  ms.openlocfilehash: 0b6c303ab47b072e53b47483ee0cd31d625c07d9
+  ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 04/17/2020
-  ms.locfileid: "75624424"
+  ms.lasthandoff: 08/27/2020
+  ms.locfileid: "88947089"
 landingContent:
 - title: 关于用于 Redis 的 Azure 缓存
   linkLists:
@@ -22,13 +22,11 @@ landingContent:
     links:
     - text: 什么是 Azure Redis 缓存？
       url: cache-overview.md
-    - text: 了解用于 Redis 的 Azure 缓存高级层
-      url: cache-premium-tier-intro.md
   - linkListType: whats-new
     links:
     - text: 常见问题
       url: cache-faq.md
-    - text: 针对 Azure Cache for Redis 的最佳做法
+    - text: Azure Redis 缓存的最佳做法
       url: cache-best-practices.md
     - text: Azure Redis 缓存的 ASP.NET 会话状态提供程序
       url: cache-aspnet-session-state-provider.md
@@ -36,17 +34,17 @@ landingContent:
   linkLists:
   - linkListType: quickstart
     links:
-    - text: 编写 .NET Framework 应用
+    - text: 编码 .NET Framework 应用
       url: cache-dotnet-how-to-use-azure-redis-cache.md
-    - text: 编写 .NET Core 应用
+    - text: 编码 .NET Core 应用
       url: cache-dotnet-core-quickstart.md
-    - text: 编写 ASP.NET Web 应用
+    - text: 编码 ASP.NET Web 应用
       url: cache-web-app-howto.md
-    - text: 编写 Java 应用
+    - text: 编码 Java 应用
       url: cache-java-get-started.md
-    - text: 编写 Node.js 应用
+    - text: 编码 Node.js 应用
       url: cache-nodejs-get-started.md
-    - text: 编写 Python 应用
+    - text: 编码 Python 应用
       url: cache-python-get-started.md
   - linkListType: tutorial
     links:
@@ -76,7 +74,7 @@ landingContent:
       url: https://docs.microsoft.com/powershell/module/az.rediscache
     - text: Azure CLI
       url: /cli/redis
-- title: 故障排除
+- title: 疑难解答
   linkLists:
   - linkListType: how-to-guide
     links:

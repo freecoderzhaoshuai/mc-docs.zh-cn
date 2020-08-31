@@ -14,15 +14,15 @@ ms.devlang: na
 ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: big-data
-origin.date: 03/02/2020
+origin.date: 08/06/2020
 ms.author: v-yiso
-ms.date: 04/06/2020
-ms.openlocfilehash: 4d19bb892e55dd0369671d70f827fd06efb55e7c
-ms.sourcegitcommit: 3de7d92ac955272fd140ec47b3a0a7b1e287ca14
+ms.date: 08/31/2020
+ms.openlocfilehash: 193c996877ee9977862335b4acdf28fa0b2f6190
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84723192"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715379"
 ---
 # <a name="use-external-metadata-stores-in-azure-hdinsight"></a>使用外部元数据存储 - Azure HDInsight
 
@@ -47,10 +47,10 @@ HDInsight 中的 Apache Hive 元存储是 Apache Hadoop 体系结构的必备部
 
 * 不可与其他群集共享默认元存储。
 
-* 默认元存储使用基本 Azure SQL DB，它具有 5 个 DTU（数据库事务单位）的限制。
-此默认元存储通常用于相对简单的工作负荷。 即不需要多个群集且不需要在群集生命周期之外保留的元数据的工作负荷。
+* 建议将默认元存储仅用于简单工作负载。 即不需要多个群集且不需要在群集生命周期之外保留的元数据的工作负荷。
 
-* 对于生产工作负荷，我们建议迁移到外部元存储。 请参阅以下部分了解更多详细信息。
+> [!IMPORTANT]
+> 默认元存储提供具有基本层 5 DTU 限制（不可升级）的 Azure SQL 数据库！ 适用于基本测试目的。 对于大型工作负载或生产工作负载，建议迁移到外部元存储。
 
 ## <a name="custom-metastore"></a>自定义元存储
 

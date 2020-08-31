@@ -3,17 +3,17 @@ title: Azure 服务总线 - 消息到期时间
 description: 本文介绍 Azure 服务总线消息的到期时间和生存时间。 此截止时间过后，将不再传递该消息。
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
 author: rockboyfor
-ms.openlocfilehash: b4f6e0e60d361a623eaa4263750e524a9177b8d9
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: dd6d497b5fa668595b5cf5451beff5c009c7ffc5
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162364"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946994"
 ---
 # <a name="message-expiration-time-to-live"></a>消息过期时间（生存时间）
 
@@ -32,9 +32,9 @@ ms.locfileid: "87162364"
 发送到队列或主题中的所有消息附带一个默认的过期时间，该时间是使用 [defaultMessageTimeToLive](https://docs.microsoft.com/azure/templates/microsoft.servicebus/namespaces/queues) 属性在实体级别设置的，或者也可以在创建期间在门户中设置，并且以后可以调整。 默认过期时间是针对发送到未显式设置 [TimeToLive](https://docs.azure.cn/dotnet/api/microsoft.azure.servicebus.message.timetolive?view=azure-dotnet#Microsoft_Azure_ServiceBus_Message_TimeToLive) 的实体的所有消息使用的。 默认过期时间还充当 **TimeToLive** 值的上限。 **TimeToLive** 过期时间长于默认值的消息在排队之前，会以无提示方式调整为 **defaultMessageTimeToLive** 值。
 
 > [!NOTE]
-> 如果没有另外指定，则中转消息的默认 [TimeToLive](https://docs.azure.cn/dotnet/api/microsoft.azure.servicebus.message.timetolive?view=azure-dotnet#Microsoft_Azure_ServiceBus_Message_TimeToLive) 值为 [TimeSpan.Max](https://docs.azure.cn/dotnet/api/system.timespan.maxvalue?view=azure-dotnet)。
+> 如果没有另外指定，则中转消息的默认 [TimeToLive](https://docs.azure.cn/dotnet/api/microsoft.azure.servicebus.message.timetolive?view=azure-dotnet#Microsoft_Azure_ServiceBus_Message_TimeToLive) 值为 [TimeSpan.Max](https://docs.microsoft.com/dotnet/api/system.timespan.maxvalue?view=azure-dotnet)。
 >
-> 对于消息传送实体（队列和主题），服务总线标准层和高级层的默认到期时间也是 [TimeSpan.Max](https://docs.azure.cn/dotnet/api/system.timespan.maxvalue?view=azure-dotnet)。  对于基本层，默认到期时间为 14 天。
+> 对于消息传送实体（队列和主题），服务总线标准层和高级层的默认到期时间也是 [TimeSpan.Max](https://docs.microsoft.com/dotnet/api/system.timespan.maxvalue?view=azure-dotnet)。  对于基本层，默认到期时间为 14 天。
 
 可以选择性地通过设置 [EnableDeadLetteringOnMessageExpiration](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.queuedescription.enabledeadletteringonmessageexpiration?view=azure-dotnet#Microsoft_ServiceBus_Messaging_QueueDescription_EnableDeadLetteringOnMessageExpiration) 属性或者在门户中选中相应的框，将已过期的消息移到[死信队列](service-bus-dead-letter-queues.md)。 如果保持禁用该选项，将会丢弃已过期的消息。 可以通过评估由中转站存储在用户属性部分中的 [DeadletterReason](service-bus-dead-letter-queues.md#moving-messages-to-the-dlq) 属性（在本例中，该值为 [TTLExpiredException](service-bus-dead-letter-queues.md#moving-messages-to-the-dlq)），将已移到死信队列的已过期消息与其他死信消息区分开来。
 

@@ -5,15 +5,15 @@ author: yegu-ms
 ms.service: cache
 ms.devlang: java
 ms.topic: quickstart
-ms.date: 06/16/2020
+ms.date: 08/24/2020
 ms.author: v-junlch
-ms.custom: mvc, seo-java-august2019, seo-java-september2019
-ms.openlocfilehash: ce6d537e55a0d5cd71c979f43f2fc49e2cb77d82
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.custom: mvc, seo-java-august2019, seo-java-september2019, devx-track-java
+ms.openlocfilehash: 958120ce2d547f80607f659d2c45ac2a863c5ddc
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097307"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946984"
 ---
 # <a name="quickstart-use-azure-cache-for-redis-with-java"></a>快速入门：将 Azure Redis 缓存与 Java 配合使用
 
@@ -30,12 +30,24 @@ ms.locfileid: "85097307"
 
 [!INCLUDE [redis-cache-access-keys](../../includes/redis-cache-access-keys.md)]
 
-为**主机名**和**主**访问密钥添加环境变量。 你将通过代码使用这些变量，而不是直接在代码中包含敏感信息。
+## <a name="setting-up-the-working-environment"></a>设置工作环境 
+
+根据操作系统，为“主机名”和“主访问密钥”添加环境变量。 打开命令提示符或终端窗口，设置以下值：
 
 ```CMD 
-set REDISCACHEHOSTNAME=contosoCache.redis.cache.chinacloudapi.cn
-set REDISCACHEKEY=XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+set REDISCACHEHOSTNAME=<YOUR_HOST_NAME>.redis.cache.chinacloudapi.cn
+set REDISCACHEKEY=<YOUR_PRIMARY_ACCESS_KEY>
 ```
+
+```bash
+export REDISCACHEHOSTNAME=<YOUR_HOST_NAME>.redis.cache.chinacloudapi.cn
+export REDISCACHEKEY=<YOUR_PRIMARY_ACCESS_KEY>
+```
+
+将占位符替换为以下值：
+
+- `<YOUR_HOST_NAME>`：在 Azure 门户中从 Azure Cache for Redis 资源的“属性”部分中获取的 DNS 主机名。
+- `<YOUR_PRIMARY_ACCESS_KEY>`：在 Azure 门户中从 Azure Cache for Redis 资源的“访问密钥”部分中获取的主访问密钥。
 
 ## <a name="create-a-new-java-app"></a>新建 Java 应用
 
@@ -126,7 +138,7 @@ mvn compile
 mvn exec:java -D exec.mainClass=example.demo.App
 ```
 
-在以下示例中可以看到，`Message` 键事先已包含一个缓存值，该值是使用 Azure 门户中的 Redis 控制台设置的。 应用更新了该缓存值。 应用还执行了 `PING` 和 `CLIENT LIST` 命令。
+在下面的示例中，可以看到 `Message` 键以前有一个缓存值，该值是使用 Azure 门户中的 Redis 控制台设置的。 应用更新了该缓存值。 应用还执行了 `PING` 和 `CLIENT LIST` 命令。
 
 ![Azure Redis 缓存应用已完成](./media/cache-java-get-started/azure-cache-redis-complete.png)
 
@@ -142,11 +154,11 @@ mvn exec:java -D exec.mainClass=example.demo.App
 
 1. 登录到 [Azure 门户](https://portal.azure.cn)，然后选择“资源组”。 
 
-1. 在“按名称筛选”文本框中键入资源组的名称  。 本文的说明使用了名为 *TestResources* 的资源组。 在结果列表中的资源组上，选择“...”，然后选择“删除资源组”   。
+1. 在“按名称筛选”文本框中键入资源组的名称。 本文的说明使用了名为 *TestResources* 的资源组。 在结果列表中的资源组上，选择“...”，然后选择“删除资源组”   。
 
    ![删除的 Azure 资源组](./media/cache-java-get-started/azure-cache-redis-delete-resource-group.png)
 
-1. 系统会要求确认是否删除资源组。 键入资源组的名称进行确认，然后选择“删除”  。
+1. 系统会要求确认是否删除资源组。 键入资源组的名称进行确认，然后选择“删除”。
 
 片刻之后，将会删除该资源组及其包含的所有资源。
 

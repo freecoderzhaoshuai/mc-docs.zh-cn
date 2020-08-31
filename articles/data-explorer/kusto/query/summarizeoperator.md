@@ -8,23 +8,24 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 03/20/2020
-ms.date: 08/06/2020
-ms.openlocfilehash: fa31bb483e2fd16e139510a325537b5b66df42f7
-ms.sourcegitcommit: 7ceeca89c0f0057610d998b64c000a2bb0a57285
+ms.date: 08/18/2020
+ms.openlocfilehash: 82d93d6bafceaff57b265d5ef2aa2d95a0440ebc
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87841330"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515653"
 ---
 # <a name="summarize-operator"></a>summarize 运算符
 
 生成可聚合输入表内容的表。
 
 ```kusto
-T | summarize count(), avg(price) by fruit, supplier
+Sales | summarize NumTransactions=count(), Total=sum(UnitPrice * NumUnits) by Fruit, StartOfMonth=startofmonth(SellDateTime)
 ```
 
-该表显示每个供应商提供的每种水果的数量和平均价格。 水果与供应商的每个不同组合在输出中各占一行。 输出列显示计数、平均价格、水果和供应商。 忽略所有其他输入列。
+返回一个表，其中包含销售交易数目和每种水果每个销售月份的总金额。
+输出列显示交易数目、交易价值、水果、以及记录了交易的月份开始时的日期/时间。
 
 ```kusto
 T | summarize count() by price_range=bin(price, 10.0)
@@ -32,15 +33,16 @@ T | summarize count() by price_range=bin(price, 10.0)
 
 此表显示每个价格区间（[0,10.0]、[10.0,20.0] 等）内的项数。 此示例中有一列表示计数，还有一列表示价格范围。 忽略所有其他输入列。
 
-**语法**
+## <a name="syntax"></a>语法
 
 *T* `| summarize` [[*Column* `=`] *Aggregation* [`,` ...]] [`by` [*Column* `=`] *GroupExpression* [`,` ...]]
 
-**参数**
+## <a name="arguments"></a>参数
 
 * *Column*：结果列的可选名称。 默认为派生自表达式的名称。
 * *聚合：* 对[聚合函数](summarizeoperator.md#list-of-aggregation-functions)（例如 `count()` 或 `avg()`）的调用，以列名作为参数。 请参阅[聚合函数的列表](summarizeoperator.md#list-of-aggregation-functions)。
-* *GroupExpression*：各列的表达式，提供一组非重复值。 它通常是已提供一组受限值的列名称，或是将数字或时间列用作参数的 `bin()`。 
+* GroupExpression：一个可以引用输入数据的标量表达式。
+  所有组表达式有多少个不同的值，输出就会包含多少个记录。
 
 > [!NOTE]
 > 当输入表为空时，输出取决于是否使用了 GroupExpression：
@@ -48,7 +50,7 @@ T | summarize count() by price_range=bin(price, 10.0)
 > * 如果未提供 GroupExpression，则输出将为单个（空）行。
 > * 如果提供了 GroupExpression，则输出将不包含任何行。
 
-**返回**
+## <a name="returns"></a>返回
 
 输入行将排列成与 `by` 表达式具有相同值的组。 然后，对每个组计算指定的聚合函数，从而为每组生成行。 结果包含 `by` 列，还至少包含用于每个计算聚合的一列。 （某些聚合函数返回多个列。）
 
@@ -116,7 +118,7 @@ T | summarize count() by price_range=bin(price, 10.0)
 
 :::image type="content" source="images/summarizeoperator/summarize-price-by-supplier.png" alt-text="按水果和供应商汇总价格":::
 
-**示例**
+## <a name="example"></a>示例
 
 确定表中有 `ActivityType` 和 `CompletionStatus` 的哪些唯一组合。 没有聚合函数，只是有分组依据键。 输出将只显示这些结果的列：
 
@@ -131,7 +133,7 @@ Activities | summarize by ActivityType, completionStatus
 |`dancing`|`abandoned`
 |`singing`|`completed`
 
-**示例**
+## <a name="example"></a>示例
 
 查找 Activities 表中所有记录的最小和最大时间戳。 没有 group by 子句，因此输出中只有一行：
 
@@ -143,7 +145,7 @@ Activities | summarize Min = min(Timestamp), Max = max(Timestamp)
 |---|---
 |`1975-06-09 09:21:45` | `2015-12-24 23:45:00`
 
-**示例**
+## <a name="example"></a>示例
 
 为每个大陆创建一行，并显示发生活动的城市的计数。 由于“continent”的值很少，因此“by”子句中不需要使用任何分组函数：
 
@@ -156,7 +158,7 @@ Activities | summarize Min = min(Timestamp), Max = max(Timestamp)
 |`2673`|`North America`|
 
 
-**示例**
+## <a name="example"></a>示例
 
 下面的示例将计算每个活动类型的直方图。 由于 `Duration` 有许多值，因此请使用 `bin` 将其值按 10 分钟的间隔分组：
 

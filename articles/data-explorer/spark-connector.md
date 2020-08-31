@@ -3,17 +3,17 @@ title: 使用适用于 Apache Spark 的 Azure 数据资源管理器连接器在 
 description: 本主题介绍如何在 Azure 数据资源管理器与 Apache Spark 群集之间移动数据。
 author: orspod
 ms.author: v-tawe
-ms.reviewer: michazag
+ms.reviewer: maraheja
 ms.service: data-explorer
 ms.topic: conceptual
-origin.date: 01/14/2020
-ms.date: 06/09/2020
-ms.openlocfilehash: 445d636a09ce9d31cd36b953163fdfd3436961ea
-ms.sourcegitcommit: 73697fa9c19a40d235df033400c74741e7d0f3f4
+origin.date: 07/29/2020
+ms.date: 08/13/2020
+ms.openlocfilehash: 04dc466735491b79612a88fc217bb655d2f9f73d
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84574875"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88516021"
 ---
 # <a name="azure-data-explorer-connector-for-apache-spark"></a>适用于 Apache Spark 的 Azure 数据资源管理器连接器
 
@@ -47,7 +47,7 @@ ms.locfileid: "84574875"
 
 ### <a name="build-prerequisites"></a>生成先决条件
 
-1. 安装[依赖项](https://github.com/Azure/azure-kusto-spark#dependencies)中列出的库，包括以下 [Kusto Java SDK](https://docs.microsoft.com/azure/data-explorer/kusto/api/java/kusto-java-client-library) 库：
+1. 安装[依赖项](https://github.com/Azure/azure-kusto-spark#dependencies)中列出的库，包括以下 [Kusto Java SDK](/data-explorer/kusto/api/java/kusto-java-client-library) 库：
     * [Kusto 数据客户端](https://mvnrepository.com/artifact/com.microsoft.azure.kusto/kusto-data)
     * [Kusto 引入客户端](https://mvnrepository.com/artifact/com.microsoft.azure.kusto/kusto-ingest)
 
@@ -112,11 +112,14 @@ mvn clean install
 
 Azure AD 应用程序身份验证是最简单且最常用的身份验证方法，建议将其用于 Azure 数据资源管理器 Spark 连接器。
 
-|属性  |说明  |
-|---------|---------|
-|**KUSTO_AAD_CLIENT_ID**     |   Azure AD 应用程序（客户端）标识符。      |
-|**KUSTO_AAD_AUTHORITY_ID**     |  Azure AD 身份验证颁发机构。 Azure AD 目录（租户）ID。        |
-|**KUSTO_AAD_CLIENT_PASSWORD**    |    客户端的 Azure AD 应用程序密钥。     |
+|属性  |选项字符串  |说明  |
+|---------|---------|---------|
+|**KUSTO_AAD_APP_ID**     |kustoAadAppId     |   Azure AD 应用程序（客户端）标识符。      |
+|**KUSTO_AAD_AUTHORITY_ID**     |kustoAadAuthorityID     |  Azure AD 身份验证颁发机构。 Azure AD 目录（租户）ID。        |
+|**KUSTO_AAD_APP_SECRET**    |kustoAadAppSecret     |    客户端的 Azure AD 应用程序密钥。     |
+
+> [!NOTE]
+> 较旧的 API 版本（低于 2.0.0）有以下命名：“kustoAADClientID”、“kustoClientAADClientPassword”、“kustoAADAuthorityID”
 
 ### <a name="azure-data-explorer-privileges"></a>Azure 数据资源管理器权限
 
@@ -125,7 +128,7 @@ Azure AD 应用程序身份验证是最简单且最常用的身份验证方法�
 * 对于读取操作（数据源），Azure AD 标识必须对目标数据库拥有“查看者”特权，或者对目标表拥有“管理员”特权。  
 * 对于写入操作（数据接收器），Azure AD 标识必须对目标数据库拥有“引入者”特权。  此外，它必须对目标数据库拥有“用户”特权，这样才能创建新表。  如果目标表已存在，则必须配置对目标表的“管理员”权限。 
  
-有关 Azure 数据资源管理器主体角色的详细信息，请参阅[基于角色的授权](https://docs.microsoft.com/azure/data-explorer/kusto/management/access-control/role-based-authorization)。 有关如何管理安全角色，请参阅[安全角色管理](https://docs.microsoft.com/azure/data-explorer/kusto/management/security-roles)。
+有关 Azure 数据资源管理器主体角色的详细信息，请参阅[基于角色的授权](/data-explorer/kusto/management/access-control/role-based-authorization)。 有关如何管理安全角色，请参阅[安全角色管理](/data-explorer/kusto/management/security-roles)。
 
 ## <a name="spark-sink-writing-to-azure-data-explorer"></a>Spark 接收器：写入 Azure 数据资源管理器
 
@@ -154,8 +157,8 @@ Azure AD 应用程序身份验证是最简单且最常用的身份验证方法�
       .option(KustoSinkOptions.KUSTO_CLUSTER, cluster)
       .option(KustoSinkOptions.KUSTO_DATABASE, database)
       .option(KustoSinkOptions.KUSTO_TABLE, "Demo3_spark")
-      .option(KustoSinkOptions.KUSTO_AAD_CLIENT_ID, appId)
-      .option(KustoSinkOptions.KUSTO_AAD_CLIENT_PASSWORD, appKey)
+      .option(KustoSinkOptions.KUSTO_AAD_APP_ID, appId)
+      .option(KustoSinkOptions.KUSTO_AAD_APP_SECRET, appKey)
       .option(KustoSinkOptions.KUSTO_AAD_AUTHORITY_ID, authorityId)
       .option(KustoSinkOptions.KUSTO_TABLE_CREATE_OPTIONS, "CreateIfNotExist")
       .mode(SaveMode.Append)
@@ -195,7 +198,7 @@ Azure AD 应用程序身份验证是最简单且最常用的身份验证方法�
 
 ## <a name="spark-source-reading-from-azure-data-explorer"></a>Spark 源：从 Azure 数据资源管理器读取数据
 
-1. 读取[少量数据](https://docs.microsoft.com/azure/data-explorer/kusto/concepts/querylimits)时，可以定义数据查询：
+1. 读取[少量数据](/data-explorer/kusto/concepts/querylimits)时，可以定义数据查询：
 
     ```scala
     import com.microsoft.kusto.spark.datasource.KustoSourceOptions
@@ -205,8 +208,8 @@ Azure AD 应用程序身份验证是最简单且最常用的身份验证方法�
 
     val query = s"$table | where (ColB % 1000 == 0) | distinct ColA"
     val conf: Map[String, String] = Map(
-          KustoSourceOptions.KUSTO_AAD_CLIENT_ID -> appId,
-          KustoSourceOptions.KUSTO_AAD_CLIENT_PASSWORD -> appKey
+          KustoSourceOptions.KUSTO_AAD_APP_ID -> appId,
+          KustoSourceOptions.KUSTO_AAD_APP_SECRET -> appKey
         )
 
     val df = spark.read.format("com.microsoft.kusto.spark.datasource").
@@ -243,8 +246,8 @@ Azure AD 应用程序身份验证是最简单且最常用的身份验证方法�
 
         ```scala
          val conf3 = Map(
-              KustoSourceOptions.KUSTO_AAD_CLIENT_ID -> appId,
-              KustoSourceOptions.KUSTO_AAD_CLIENT_PASSWORD -> appKey
+              KustoSourceOptions.KUSTO_AAD_APP_ID -> appId,
+              KustoSourceOptions.KUSTO_AAD_APP_SECRET -> appKey
               KustoSourceOptions.KUSTO_BLOB_STORAGE_SAS_URL -> storageSas)
         val df2 = spark.read.kusto(cluster, database, "ReallyBigTable", conf3)
         

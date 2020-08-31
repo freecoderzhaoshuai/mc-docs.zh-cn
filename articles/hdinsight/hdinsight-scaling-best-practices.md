@@ -6,15 +6,15 @@ ms.reviewer: jasonh
 ms.service: hdinsight
 ms.custom: hdinsightactive
 ms.topic: conceptual
-origin.date: 02/26/2020
-ms.date: 03/23/2020
+origin.date: 04/29/2020
+ms.date: 08/31/2020
 ms.author: v-yiso
-ms.openlocfilehash: 1d2ba772fef2e069144103f81605bb6212bcea97
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 6e75dfb8aa8956558a1b74c45794298034fa6514
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917041"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715380"
 ---
 # <a name="scale-azure-hdinsight-clusters"></a>缩放 Azure HDInsight 群集
 
@@ -22,7 +22,7 @@ HDInsight 提供弹性，可让你选择纵向扩展和纵向缩减群集中的�
 
 在定期批处理之前纵向扩展群集，使群集拥有足够的资源。  在完成处理并且用量下降后，可将 HDInsight 群集纵向缩减为使用更少的工作器节点。
 
-可以使用下述方法之一手动缩放群集。
+可以使用下述方法之一手动缩放群集。 也可使用[自动缩放](hdinsight-autoscale-clusters.md)选项来自动纵向缩放以响应某些指标。
 
 > [!NOTE]  
 > 只支持使用 HDInsight 3.1.3 或更高版本的群集。 如果不确定群集的版本，可以查看“属性”页面。

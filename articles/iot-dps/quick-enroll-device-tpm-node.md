@@ -4,18 +4,18 @@ description: 快速入门 - 使用 Node.js 服务 SDK 将 TPM 设备注册到 Az
 author: wesmc7777
 ms.author: v-tawe
 origin.date: 11/08/2019
-ms.date: 03/23/2020
+ms.date: 08/27/2020
 ms.topic: quickstart
 ms.service: iot-dps
 services: iot-dps
 ms.devlang: nodejs
-ms.custom: mvc
-ms.openlocfilehash: 9fbb62971fceeef0d6c2e58100148434725b8ad8
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: mvc, devx-track-javascript
+ms.openlocfilehash: fdf425dcd04ebb523b23ef9da3c7df183a53f17d
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79133792"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951304"
 ---
 # <a name="quickstart-enroll-tpm-device-to-iot-hub-device-provisioning-service-using-nodejs-service-sdk"></a>快速入门：使用 Node.js 服务 SDK 将 TPM 设备注册到 IoT 中心设备预配服务
 

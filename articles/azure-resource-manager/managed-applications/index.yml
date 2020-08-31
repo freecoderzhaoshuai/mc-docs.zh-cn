@@ -7,16 +7,18 @@ metadata:
   ms.service: managed-applications
   ms.topic: landing-page
   ms.collection: na
-  author: rockboyfor
-  ms.author: v-yeche
   origin.date: 01/02/2020
-  ms.date: 01/20/2020
-  ms.openlocfilehash: fd634ac3639b52a57d2c2cc1332a76048d216051
-  ms.sourcegitcommit: be0a8e909fbce6b1b09699a721268f2fc7eb89de
+  author: rockboyfor
+  ms.date: 08/24/2020
+  ms.testscope: yes
+  ms.testdate: 08/24/2020
+  ms.author: v-yeche
+  ms.openlocfilehash: bdc88ac2282e97a94dd2d266f2ff489855746a38
+  ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 05/29/2020
-  ms.locfileid: "84199714"
+  ms.lasthandoff: 08/25/2020
+  ms.locfileid: "88807689"
 landingContent:
 - title: 关于托管应用程序
   linkLists:
@@ -37,7 +39,7 @@ landingContent:
   - linkListType: quickstart
     links:
     - text: 发布应用程序定义
-      url: publish-managed-app-definition-quickstart.md
+      url: ./publish-service-catalog-app.md
     - text: 部署服务目录应用
       url: deploy-service-catalog-quickstart.md
   - linkListType: tutorial

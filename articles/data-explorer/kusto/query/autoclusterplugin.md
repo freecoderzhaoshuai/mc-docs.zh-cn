@@ -8,13 +8,13 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 02/13/2020
-ms.date: 07/31/2020
-ms.openlocfilehash: 3a539b27f7d88ffe15f0ccd5fb4150bbe71d2148
-ms.sourcegitcommit: 4e1bc2e9b2a12dbcc05c52db5dbd1ae290aeb18d
+ms.date: 08/18/2020
+ms.openlocfilehash: a360eaf05118b96651dcbd320eb2afa363db4f15
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87509161"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515771"
 ---
 # <a name="autocluster-plugin"></a>autocluster 插件
 
@@ -23,6 +23,10 @@ T | evaluate autocluster()
 ```
 
 `autocluster` 在数据中查找离散属性（维度）的常见模式。 然后，它将原始查询的结果（无论是 100 行还是 10 万行）减少到少量模式。 开发该插件的目的是为了帮助分析故障（如异常或崩溃），但该插件也有可能用于处理任何筛选出的数据集。
+
+> [!NOTE]
+> `autocluster` 主要基于以下文章中的 Seed-Expand 算法：[使用离散属性的遥测数据挖掘算法](https://www.scitepress.org/DigitalLibrary/PublicationsDetail.aspx?ID=d5kcrO+cpEU=&t=1)。 
+
 
 ## <a name="syntax"></a>语法
 
@@ -41,7 +45,10 @@ T | evaluate autocluster()
 >
 > 找到所需行时，可通过将该行的特定值添加到 `where` 筛选器，来对其进行深入研究。
 
-**参数（全部可选）**
+## <a name="arguments"></a>参数 
+
+> [!NOTE] 
+> 所有参数均为可选。
 
 `T | evaluate autocluster(`[*SizeWeight*, *WeightColumn*, *NumSeeds*, *CustomWildcard*, *CustomWildcard*, ...]`)`
 
@@ -50,13 +57,13 @@ T | evaluate autocluster()
 |参数        | 类型、范围、默认值              |说明                | 示例                                        |
 |----------------|-----------------------------------|---------------------------|------------------------------------------------|
 | SizeWeight     | 0 < double < 1 [默认值：0.5]   | 允许控制泛型（高覆盖率）和信息性（多共享的）值之间的平衡。 如果增加该值，它通常会减少模式数量，并且每个模式所占覆盖率百分比可能会更大。 如果减少该值，它通常会产生更多特定模式，这些模式具有更多共享值，而覆盖率百分比会比较小。 该底层公式是加权几何平均值，介于规一化泛型分数和信息性分数之间，以 `SizeWeight` 和 `1-SizeWeight` 为权重                   | `T | evaluate autocluster(0.8)`                |
-|WeightColumn    | column_name                     | 根据指定的权重考虑输入中的每一行（默认情况下每行具有权重“1”）。 该参数必须是数值列（如 int、long、real）的名称。 权重列的常见用法是对已嵌入每一行的数据进行采样或存储/聚合。                                                                                                       | `T | evaluate autocluster('~', sample_Count)` |
+|WeightColumn    | column_name                     | 根据指定的权重考虑输入中的每一行（默认情况下每行具有权重“1”）。 该参数必须是数值列（如 int、long、real）的名称。 权重列的常见用法是对已嵌入每一行的数据进行采样或存储/聚合。                                                                                                       | `T | evaluate autocluster('~', sample_Count)` | 
 | NumSeeds        | int [默认值：25]              | 种子数决定算法初始本地搜索点的数量。 在有些情况下（具体取决于数据结构），如果增加种子数，那么，结果的数量（或质量）会由于搜索空间扩大而提高（代价是降低了查询速度）。 该值在两个方向上对结果的影响都会渐渐减少，因此，如果将它减小到 5 以下，它带来的性能改进将可以忽略不计。 如果增加到 50 以上，它将很难生成更多的模式。                                         | `T | evaluate autocluster('~', '~', 15)`       |
 | CustomWildcard  | *"any_value_per_type"*           | 为结果表中的特定类型设置通配符值。 它将指示当前模式对此列没有限制。 默认值为 null，因为字符串默认值是一个空字符串。 如果默认值是数据中的正常值，则应使用其他通配符值（如 `*`）。                                                                                                                | `T | evaluate autocluster('~', '~', '~', '*', int(-1), double(-1), long(0), datetime(1900-1-1))` |
 
 ## <a name="examples"></a>示例
 
-### <a name="example"></a>示例
+### <a name="using-autocluster"></a>使用 autocluster
 
 <!-- csl: https://help.kusto.chinacloudapi.cn:443/Samples -->
 ```kusto
@@ -73,7 +80,7 @@ StormEvents
 |1|512|8.7||雷雨大风|YES
 |2|898|15.3|德克萨斯||
 
-### <a name="example-with-custom-wildcards"></a>使用自定义通配符的示例
+### <a name="using-custom-wildcards"></a>使用自定义通配符
 
 <!-- csl: https://help.kusto.chinacloudapi.cn:443/Samples -->
 ```kusto
@@ -94,5 +101,3 @@ StormEvents
 
 * [basket](./basketplugin.md)
 * [reduce](./reduceoperator.md)
-
-* `autocluster` 主要基于以下文章中的 Seed-Expand 算法：[使用离散属性的遥测数据挖掘算法](https://www.scitepress.org/DigitalLibrary/PublicationsDetail.aspx?ID=d5kcrO+cpEU=&t=1)。 

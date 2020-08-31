@@ -8,13 +8,13 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 02/24/2019
-ms.date: 08/06/2020
-ms.openlocfilehash: 119d8afd06e0cb2d2c45086affe9ed440ad81672
-ms.sourcegitcommit: 7ceeca89c0f0057610d998b64c000a2bb0a57285
+ms.date: 08/18/2020
+ms.openlocfilehash: a4e88075a3f9fa52c6a0489276648e32401ddd79
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87841267"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515658"
 ---
 # <a name="mv-expand-operator"></a>mv-expand 运算符
 
@@ -22,13 +22,13 @@ ms.locfileid: "87841267"
 
 `mv-expand` 应用于 [dynamic](./scalar-data-types/dynamic.md) 类型的数组或属性包，以便集合中的每个值都获得一个单独的行。 将复制扩展行中的所有其他列。 
 
-**语法**
+## <a name="syntax"></a>语法
 
 *T* `| mv-expand ` [`bagexpansion=`(`bag` | `array`)] [`with_itemindex=`*IndexColumnName*] *ColumnName* [`,` *ColumnName* ...] [`limit` *Rowlimit*]
 
 *T* `| mv-expand ` [`bagexpansion=`(`bag` | `array`)] [*Name* `=`] *ArrayExpression* [`to typeof(`*Typename*`)`] [, [*Name* `=`] *ArrayExpression* [`to typeof(`*Typename*`)`] ...] [`limit` *Rowlimit*]
 
-**参数**
+## <a name="arguments"></a>参数
 
 * *ColumnName*：在结果中，已命名列中的数组将扩展为多行。 
 * *ArrayExpression*：生成数组的表达式。 如果使用此形式，则会添加新列并保留现有列。
@@ -41,7 +41,7 @@ ms.locfileid: "87841267"
 
 * IndexColumnName：如果指定了 `with_itemindex`，则输出将包含一个名为 IndexColumnName 的附加列，该列包含原始展开集合中的项的索引（从 0 开始）。 
 
-**返回**
+## <a name="returns"></a>返回
 
 用于已命名列或数组表达式中任何数组的每个值的多个行。
 如果指定了多个列或表达式，则它们会并行展开。 对于每个输入行，将存在与最长展开表达式中的元素数相同的输出行数（较短的列表用 null 填充）。 如果行中的值为空数组，则该行在展开后无内容（不会显示在结果集中）。 但是，如果行中的值不是数组，则该行将按原样保留在结果集中。 
@@ -91,15 +91,22 @@ datatable (a:int, b:dynamic, c:dynamic)[1,dynamic({"prop1":"a", "prop2":"b"}), d
 
 <!-- csl: https://help.kusto.chinacloudapi.cn:443/Samples -->
 ```kusto
-datatable (a:int, b:dynamic, c:dynamic)[1,dynamic({"prop1":"a", "prop2":"b"}), dynamic([5])]
-| mv-expand b 
+datatable (a:int, b:dynamic, c:dynamic)
+  [
+  1,
+  dynamic({"prop1":"a", "prop2":"b"}),
+  dynamic([5, 6])
+  ]
+| mv-expand b
 | mv-expand c
 ```
 
 |a|b|c|
 |---|---|---|
-|1|{"prop1":"a"}|5|
-|1|{"prop2":"b"}|5|
+|1|{  "prop1": "a"}|5|
+|1|{  "prop1": "a"}|6|
+|1|{  "prop2": "b"}|5|
+|1|{  "prop2": "b"}|6|
 
 ### <a name="convert-output"></a>转换输出
 

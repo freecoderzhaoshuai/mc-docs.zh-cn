@@ -1,17 +1,16 @@
 ---
 title: 浏览 Azure 资源
 description: 了解如何使用 Resource Graph 查询语言浏览资源并发现资源的连接方式。
-author: DCtheGeek
 ms.author: v-tawe
-origin.date: 10/18/2019
-ms.date: 03/02/2020
+origin.date: 08/10/2020
+ms.date: 08/27/2020
 ms.topic: conceptual
-ms.openlocfilehash: 8326719e48a4aaee1332ad3bcc0f67706dd848f8
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: df23fadcc3da6f66cc98628f0c8ae2520258a0db
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77494022"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951220"
 ---
 # <a name="explore-your-azure-resources-with-resource-graph"></a>使用 Resource Graph 浏览 Azure 资源
 
@@ -138,6 +137,10 @@ JSON 结果的结构类似于下面的示例：
   {
     "count_": 215,
     "location": "chinanorth"
+  },
+  {
+    "count_": 59,
+    "location": "chinaeast2"
   }
 ]
 ```
@@ -206,8 +209,8 @@ Resources
 | where type =~ 'Microsoft.Compute/disks' and id == '/subscriptions/<subscriptionId>/resourceGroups/MyResourceGroup/providers/Microsoft.Compute/disks/ContosoVM1_OsDisk_1_9676b7e1b3c44e2cb672338ebe6f5166'
 ```
 
-在运行查询之前，如何知道“类型”  现在是 Microsoft.Compute/disks  ？
-如果查看完整 ID，会看到作为字符串一部分的 /providers/Microsoft.Compute/disks/  。 此字符串片段为你提供了要搜索的类型的提示。 另一种方法是按类型删除限制，而只搜索 ID 字段。 由于 ID 是唯一的，因此只返回一条记录，并且 ID 的 type  属性提供该详细信息。
+在运行查询之前，如何知道“类型”  现在是 Microsoft.Compute/disks  ？ 如果查看完整 ID，会看到作为字符串一部分的 /providers/Microsoft.Compute/disks/  。
+此字符串片段为你提供了要搜索的类型的提示。 另一种方法是按类型删除限制，而只搜索 ID 字段。 由于 ID 是唯一的，因此只返回一条记录，并且 ID 的 type  属性提供该详细信息。
 
 > [!NOTE]
 > 要使此示例起作用，必须使用自己的环境中的结果替换 ID 字段。

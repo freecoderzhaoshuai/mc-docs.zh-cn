@@ -1,6 +1,6 @@
 ---
-title: 快速入门：查看使用 Azure Active Directory (Azure AD) 租户进行标识管理的应用程序
-description: 本快速入门使用 Azure 门户查看 Azure Active Directory (Azure AD) 租户中的应用程序。
+title: 快速入门：查看使用 Azure Active Directory (Azure AD) 租户进行标识管理的应用程序列表
+description: 本快速入门使用 Azure 门户查看已注册以便使用 Azure Active Directory (Azure AD) 租户进行标识管理的应用程序列表。
 services: active-directory
 author: kenwith
 manager: celestedg
@@ -8,21 +8,20 @@ ms.service: active-directory
 ms.subservice: app-mgmt
 ms.workload: identity
 ms.topic: quickstart
-ms.date: 07/07/2020
+ms.date: 08/27/2020
 ms.author: v-junlch
 ms.reviewer: arvinh
 ms.custom: it-pro
-ms.collection: M365-identity-device-management
-ms.openlocfilehash: d8c144ba1dc0ddedd73af874b5e285e4ef553542
-ms.sourcegitcommit: 92b9b1387314b60661f5f62db4451c9ff2c49500
+ms.openlocfilehash: db3b9427f14455c83573b3662a53c130e590f477
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86164831"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046487"
 ---
-# <a name="quickstart-view-applications-using-your-azure-active-directory-azure-ad-tenant-for-identity-management"></a>快速入门：查看使用 Azure Active Directory (Azure AD) 租户进行标识管理的应用程序
+# <a name="quickstart-view-the-list-of-applications-that-are-using-your-azure-active-directory-azure-ad-tenant-for-identity-management"></a>快速入门：查看使用 Azure Active Directory (Azure AD) 租户进行标识管理的应用程序列表
 
-开始使用 Azure AD 作为组织使用的应用程序的标识和授权管理 (IAM) 系统。 在本快速入门中，你将查看已设置为使用 Azure AD 租户作为其标识提供者的应用程序（也称为应用）。
+将 Azure AD 用作组织使用的应用程序的标识和访问管理 (IAM) 系统以开始使用。 在本快速入门中，你将查看已设置为使用 Azure AD 租户作为其标识提供者 (IdP) 的应用程序（也称为应用）。
 
 ## <a name="prerequisites"></a>先决条件
 
@@ -68,10 +67,8 @@ ms.locfileid: "86164831"
 3. 尝试输入应用程序名称的头几个字母。 此示例显示以 **Sales** 开头的所有应用程序。
     ![示例演示以 Sales 开头的所有应用](./media/view-applications-portal/search-by-prefix.png)
 
-## <a name="next-steps"></a>后续步骤
+## <a name="clean-up-resources"></a>清理资源
 
-在本快速入门中，你已了解如何查看 Azure AD 租户中的应用程序， 以及如何按应用程序类型、状态和可见性筛选应用程序列表。 另外还介绍了如何搜索特定应用程序。
+你没有在此快速入门中创建任何新资源，因此没有要清理的内容。
 
-- [配置应用](add-application-portal-configure.md)
-- [删除应用](delete-application-portal.md)
 

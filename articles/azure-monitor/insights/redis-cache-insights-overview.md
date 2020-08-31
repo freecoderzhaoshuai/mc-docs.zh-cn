@@ -4,13 +4,13 @@ description: 本文介绍了适用于 Azure Redis Cache 的 Azure Monitor 功能
 ms.topic: conceptual
 author: Johnnytechn
 ms.author: v-johya
-ms.date: 07/17/2020
-ms.openlocfilehash: 8c872826ff45de307a91fdec20d3bb3b6e7ec4cd
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.date: 08/20/2020
+ms.openlocfilehash: b9d0fa55607d226bbe191ef17e8e895e36bd8a95
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244269"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148618"
 ---
 # <a name="explore-azure-monitor-for-azure-cache-for-redis-preview"></a>探究适用于 Azure Cache for Redis（预览版）的 Azure Monitor
 
@@ -120,7 +120,7 @@ ms.locfileid: "87244269"
 
 ### <a name="metric-definitions"></a>指标定义
 
-有关构成这些工作簿的指标定义的完整列表，请查看[可用指标和报告时间间隔](/azure-cache-for-redis/cache-how-to-monitor#available-metrics-and-reporting-intervals)一文。
+有关构成这些工作簿的指标定义的完整列表，请查看[可用指标和报告时间间隔](../../azure-cache-for-redis/cache-how-to-monitor.md#available-metrics-and-reporting-intervals)一文。
 
 ## <a name="view-from-an-azure-cache-for-redis-resource"></a>从 Azure Cache for Redis 资源查看
 
@@ -156,7 +156,7 @@ ms.locfileid: "87244269"
 
 ## <a name="pin-export-and-expand"></a>固定、导出和展开
 
-若要将任何指标部分固定到 [Azure 仪表板](/azure-portal/azure-portal-dashboards)，请选择该部分右上角的图钉符号。
+若要将任何指标部分固定到 [Azure 仪表板](../../azure-portal/azure-portal-dashboards.md)，请选择该部分右上角的图钉符号。
 
 ![突出显示图钉符号的指标部分](./media/cosmosdb-insights-overview/pin.png)
 
@@ -185,6 +185,8 @@ ms.locfileid: "87244269"
 如需故障排查指南，请参阅[故障排除文章](troubleshoot-workbooks.md)中提供的基于工作簿的专用见解。
 
 ## <a name="next-steps"></a>后续步骤
+
+* 配置[指标警报](../platform/alerts-metric.md)和[服务运行状况通知](../../service-health/alerts-activity-log-service-notifications-portal.md)来设置自动警报，以帮助检测问题。
 
 * 查看[使用 Azure Monitor 工作簿创建交互式报表](../platform/workbooks-overview.md)，了解工作簿支持的方案、创作和自定义报表的方式，以及更多信息。
 

@@ -1,20 +1,20 @@
 ---
 title: Azure Stack Hub 上的应用服务 Update 6 发行说明
 description: Azure Stack Hub 上的 Azure 应用服务 Update 6 发行说明，包括新功能、修复和已知问题。
-author: apwestgarth
+author: WenJason
 manager: digimobile
 ms.topic: article
 origin.date: 06/24/2019
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: anwestg
 ms.lastreviewed: 08/20/2019
-ms.openlocfilehash: 99c874b3ae53a5bcdf82ccabc0190e98abe6f56f
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 4feb575d431802ae6f271b48aee587cc62348042
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096380"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868007"
 ---
 # <a name="app-service-on-azure-stack-hub-update-6-release-notes"></a>Azure Stack Hub 上的应用服务 Update 6 发行说明
 
@@ -99,7 +99,7 @@ Azure Stack Hub 上的 Azure 应用服务 Update 6 包含以下改进和修复�
 
 ## <a name="known-issues-for-cloud-admins-operating-azure-app-service-on-azure-stack-hub"></a>云管理员在操作基于 Azure Stack Hub 的 Azure 应用服务时的已知问题
 
-请参阅 [Azure Stack Hub 1908 发行说明](/azure-stack/operator/release-notes?view=azs-1908)中的文档
+请参阅 [Azure Stack Hub 1908 发行说明](./release-notes.md?view=azs-1908)中的文档
 
 ## <a name="known-issues-for-tenants-deploying-applications-on-azure-app-service-on-azure-stack-hub"></a>将应用程序部署到基于 Azure Stack Hub 的 Azure 应用服务的租户的已知问题
 

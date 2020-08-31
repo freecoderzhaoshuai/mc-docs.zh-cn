@@ -1,17 +1,20 @@
 ---
 title: 教程 - 将变量添加到模板
 description: 将变量添加到 Azure 资源管理器模板以简化语法。
-author: rockboyfor
 origin.date: 03/27/2020
-ms.date: 04/30/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.topic: tutorial
 ms.author: v-yeche
-ms.openlocfilehash: c1abf7f20ea8c7307aea140c90661e3a0f197409
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: e59d1d00252646e8e48505b6396b4674f8a5505c
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596066"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807790"
 ---
 # <a name="tutorial-add-variables-to-your-arm-template"></a>教程：将变量添加到 ARM 模板
 
@@ -45,7 +48,6 @@ ms.locfileid: "82596066"
         "Standard_GRS",
         "Standard_RAGRS",
         "Premium_LRS",
-        "Standard_GZRS",
         "Standard_RAGZRS"
       ]
     },
@@ -96,7 +98,6 @@ ms.locfileid: "82596066"
         "Standard_GRS",
         "Standard_RAGRS",
         "Premium_LRS",
-        "Standard_GZRS",
         "Standard_RAGZRS"
       ]
     },

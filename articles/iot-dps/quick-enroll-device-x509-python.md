@@ -4,18 +4,18 @@ description: 本快速入门使用组注册。 本快速入门将使用 Python �
 author: wesmc7777
 ms.author: v-tawe
 origin.date: 11/08/2019
-ms.date: 07/01/2020
+ms.date: 08/27/2020
 ms.topic: quickstart
 ms.service: iot-dps
 services: iot-dps
 ms.devlang: python
-ms.custom: mvc, tracking-python
-ms.openlocfilehash: 7651df79fce9e501ca915c193a46ff02d9224e28
-ms.sourcegitcommit: 4f84bba7e509a321b6f68a2da475027c539b8fd3
+ms.custom: mvc, devx-track-python
+ms.openlocfilehash: 56c12d81a683c7980667f5caf4704bbbc3e3c2e9
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85796128"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951294"
 ---
 # <a name="quickstart-enroll-x509-devices-to-the-device-provisioning-service-using-python"></a>快速入门：使用 Python 将 X.509 设备注册到设备预配服务
 
@@ -39,7 +39,8 @@ ms.locfileid: "85796128"
 对于本快速入门，必须具有一个包含中间或根 CA X.509 证书的公共部分的 .pem 或.cer 文件。 此证书必须上传到预配服务，并由该服务进行验证。
 
 若要详细了解如何将基于 X.509 证书的公钥基础结构 (PKI) 与 Azure IoT 中心和设备预配服务配合使用，请参阅 [X.509 CA 证书安全概述](https://docs.azure.cn/iot-hub/iot-hub-x509ca-overview)。
-[Azure IoT C SDK](https://github.com/Azure/azure-iot-sdk-c) 包含的测试工具可以帮助你创建 X.509 证书链、从该链上传根证书或中间证书，以及通过服务执行所有权证明操作，对证书进行验证。 根据设计，使用 SDK 工具创建的证书只能用于**开发测试**。 这些证书**不得在生产环境中使用**。 它们包含硬编码的密码（“1234”），在 30 天后过期。 若要了解如何获取适用于生产用途的证书，请参阅 Azure IoT 中心文档中的[如何获取 X.509 CA 证书](/iot-hub/iot-hub-x509ca-overview#how-to-get-an-x509-ca-certificate)。
+
+[Azure IoT C SDK](https://github.com/Azure/azure-iot-sdk-c) 包含的测试工具可以帮助你创建 X.509 证书链、从该链上传根证书或中间证书，以及通过服务执行所有权证明操作，对证书进行验证。 根据设计，使用 SDK 工具创建的证书只能用于**开发测试**。 这些证书**不得在生产环境中使用**。 它们包含硬编码的密码（“1234”），在 30 天后过期。 若要了解如何获取适用于生产用途的证书，请参阅 Azure IoT 中心文档中的[如何获取 X.509 CA 证书](https://docs.azure.cn/iot-hub/iot-hub-x509ca-overview#how-to-get-an-x509-ca-certificate)。
 
 若要使用此测试工具来生成证书，请执行以下步骤：
 

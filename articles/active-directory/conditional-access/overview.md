@@ -5,19 +5,19 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: conditional-access
 ms.topic: overview
-ms.date: 07/08/2020
+ms.date: 08/27/2020
 ms.author: v-junlch
 author: MicrosoftGuyJFlo
 manager: daveba
 ms.reviewer: calebb
 ms.collection: M365-identity-device-management
 ms.custom: contperfq4
-ms.openlocfilehash: 253706dc4517a43c7d3590020f2fffe88aa5c69f
-ms.sourcegitcommit: 92b9b1387314b60661f5f62db4451c9ff2c49500
+ms.openlocfilehash: 7105d58e26bd2597eaa8bf1538a9349b7e57e196
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86164996"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046399"
 ---
 # <a name="what-is-conditional-access"></a>什么是条件访问？
 
@@ -38,7 +38,8 @@ Azure Active Directory 使用条件访问作为一种工具来统合信号、做
 
 ![概念性条件访问的流程](./media/overview/conditional-access-overview-how-it-works.png)
 
-完成第一因素身份验证后将强制执行条件访问策略。 在遇到拒绝服务 (DoS) 攻击等情景中，条件访问不应充当组织的第一道防线，但可以使用这些事件的信号来确定访问权限。
+> [!IMPORTANT]
+> 完成第一因素身份验证后将强制执行条件访问策略。 在遇到拒绝服务 (DoS) 攻击等情景中，条件访问不应充当组织的第一道防线，但它可以使用这些事件的信号来确定访问权限。
 
 ## <a name="common-signals"></a>常见信号
 
@@ -96,7 +97,7 @@ Azure Active Directory 使用条件访问作为一种工具来统合信号、做
 ## <a name="next-steps"></a>后续步骤
 
 - [条件访问策略构建方法详解](concept-conditional-access-policies.md)
-- [规划条件访问部署](plan-conditional-access.md)
-[了解 Microsoft Cloud App Security](https://docs.microsoft.com/cloud-app-security/what-is-cloud-app-security)
-[了解 Microsoft Intune](https://docs.microsoft.com/intune/index)
+- [计划条件访问部署](plan-conditional-access.md)
+- [了解 Microsoft Cloud App Security](https://docs.microsoft.com/cloud-app-security/what-is-cloud-app-security)
+- [了解 Microsoft Intune](https://docs.microsoft.com/intune/index)
 

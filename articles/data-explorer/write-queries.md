@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: conceptual
 origin.date: 04/07/2019
 ms.date: 07/08/2020
-ms.openlocfilehash: f540ffa040e2c291159f2fd75f0544a54b5cb47c
-ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
+ms.openlocfilehash: 6977da4ddb870ba71ee3ecc32fb25ab14d5ff4e5
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/18/2020
-ms.locfileid: "88516043"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951289"
 ---
 # <a name="write-queries-for-azure-data-explorer"></a>Azure 数据资源管理器的编写查询
 
@@ -757,7 +757,7 @@ cluster("MyCluster").database("Wiki").PageViews
 
 ### <a name="activity_counts_metrics-plugin"></a>activity_counts_metrics 插件
 
-[**activity_counts_metrics plugin**](https://docs.microsoft.com/azure/kusto/query/activity-counts-metrics-plugin)：计算有用的活动指标（总计数值、非重复计数值、新值的非重复计数和聚合非重复计数）。 计算每个时间窗口的指标，然后将它们进行比较，并与之前的所有时间窗口进行聚合。
+[**activity_counts_metrics plugin**](/kusto/query/activity-counts-metrics-plugin)：计算有用的活动指标（总计数值、非重复计数值、新值的非重复计数和聚合非重复计数）。 计算每个时间窗口的指标，然后将它们进行比较，并与之前的所有时间窗口进行聚合。
 
 以下查询通过计算每日活动计数来分析用户采用。
 

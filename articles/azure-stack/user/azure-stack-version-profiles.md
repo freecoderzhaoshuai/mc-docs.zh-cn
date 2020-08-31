@@ -4,16 +4,16 @@ description: 了解 Azure Stack Hub 中的 API 版本配置文件。
 author: WenJason
 ms.topic: article
 origin.date: 05/04/2020
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: sijuman
 ms.lastreviewed: 07/24/2019
-ms.openlocfilehash: 51ee3dfe6e2111214afb0575862221a9363b8285
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 4de0c5fc9466c5b8197e0999b6dfef51403b07cd
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096301"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867762"
 ---
 # <a name="manage-api-version-profiles-in-azure-stack-hub"></a>管理 Azure Stack Hub 中的 API 版本配置文件
 
@@ -74,7 +74,7 @@ API 配置文件可与使用 Azure 资源管理器的工具（例如 PowerShell�
 - **.NET** <br>
 使用 .NET API 配置文件获取资源提供程序包中每个资源类型的最新且最稳定的版本。 有关详细信息，请参阅[在 Azure Stack Hub 中将 API 版本配置文件与 .NET 配合使用](azure-stack-version-profiles-net.md)。
 - **PowerShell**  
-使用通过 PowerShell 库提供的 **AzureRM.Bootstrapper** 模块来获取使用 API 版本配置文件所需的 PowerShell cmdlet。 有关信息，请参阅[使用适用于 PowerShell 的 API 版本配置文件](azure-stack-version-profiles-powershell.md)。
+使用通过 PowerShell 库提供的 **AzureRM.Bootstrapper** 模块来获取使用 API 版本配置文件所需的 PowerShell cmdlet。 有关信息，请参阅[使用适用于 PowerShell 的 API 版本配置文件](../operator/azure-stack-powershell-install.md?view=azs-2002)。
 - **Azure CLI**  
 将环境配置更新为使用 Azure Stack Hub 特定的 API 版本配置文件。 有关信息，请参阅[使用适用于 Azure CLI 的 API 版本配置文件](azure-stack-version-profiles-azurecli2.md)。
 - **Go**  

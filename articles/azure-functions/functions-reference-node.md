@@ -3,14 +3,14 @@ title: Azure Functions JavaScript 开发者参考
 description: 了解如何使用 JavaScript 开发函数。
 ms.assetid: 45dedd78-3ff9-411f-bb4b-16d29a11384c
 ms.topic: conceptual
-ms.date: 08/12/2020
+ms.date: 08/24/2020
 ms.custom: devx-track-javascript
-ms.openlocfilehash: 9b632d7eb737030c4a913ad66268468ba4baa507
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: 79144b23dc2d3e22a5f7ee5260b9da233a9ec28a
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223298"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947040"
 ---
 # <a name="azure-functions-javascript-developer-guide"></a>Azure Functions JavaScript 开发人员指南
 
@@ -20,7 +20,7 @@ ms.locfileid: "88223298"
 
 | 入门 | 概念| 指导式学习 |
 | -- | -- | -- | 
-| <ul><li>[使用 Visual Studio Code 的 Node.js 函数](/azure-functions/functions-create-first-function-vs-code?pivots=programming-language-javascript)</li><li>[使用终端/命令提示符的 Node.js 函数](/azure-functions/functions-create-first-azure-function-azure-cli?pivots=programming-language-javascript)</li></ul> | <ul><li>[开发人员指南](functions-reference.md)</li><li>[托管选项](functions-scale.md)</li><li>[TypeScript 函数](#typescript)</li><li>[性能&nbsp;注意事项](functions-best-practices.md)</li></ul> | <ul><li>[创建无服务器应用程序](https://docs.microsoft.com/learn/paths/create-serverless-applications/)</li><li>[将 Node.js 和 Express API 重构到无服务器 API](https://docs.microsoft.com/learn/modules/shift-nodejs-express-apis-serverless/)</li></ul> |
+| <ul><li>[使用 Visual Studio Code 的 Node.js 函数](./functions-create-first-function-vs-code.md?pivots=programming-language-javascript)</li><li>[使用终端/命令提示符的 Node.js 函数](./functions-create-first-azure-function-azure-cli.md?pivots=programming-language-javascript)</li></ul> | <ul><li>[开发人员指南](functions-reference.md)</li><li>[托管选项](functions-scale.md)</li><li>[TypeScript 函数](#typescript)</li><li>[性能&nbsp;注意事项](functions-best-practices.md)</li></ul> | <ul><li>[创建无服务器应用程序](https://docs.microsoft.com/learn/paths/create-serverless-applications/)</li><li>[将 Node.js 和 Express API 重构到无服务器 API](https://docs.microsoft.com/learn/modules/shift-nodejs-express-apis-serverless/)</li></ul> |
 
 ## <a name="javascript-function-basics"></a>JavaScript 函数基础知识
 

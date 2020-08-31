@@ -4,19 +4,19 @@ description: 了解 Azure Stack 开发工具包以及如何使用它来评估 Az
 author: WenJason
 ms.topic: overview
 origin.date: 11/27/2019
-ms.date: 07/20/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: misainat
 ms.lastreviewed: 11/27/2019
-ms.openlocfilehash: 36ea30b10e392098d83711b12a6281c3edc4939c
-ms.sourcegitcommit: e9ffd50aa5eaab402a94bfabfc70de6967fe6278
+ms.openlocfilehash: 2fba6524f7e14fc2ce60c67425a99c9c59086226
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2020
-ms.locfileid: "86307384"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867785"
 ---
 # <a name="what-is-the-azure-stack-development-kit-asdk"></a>什么是 Azure Stack 开发工具包 (ASDK)？
-[Azure Stack Hub 集成系统](../operator/azure-stack-overview.md)的大小范围为 4 到 16 个节点，由硬件合作伙伴和 Azure 共同提供支持。 使用 Azure Stack Hub 集成系统可为生产工作负荷启用新方案。 如果你是 Azure Stack Hub 操作员，想要管理集成系统基础结构并提供服务，请参阅我们的[操作员文档](/azure-stack/operator)。
+[Azure Stack Hub 集成系统](../operator/azure-stack-overview.md)的大小范围为 4 到 16 个节点，由硬件合作伙伴和 Azure 共同提供支持。 使用 Azure Stack Hub 集成系统可为生产工作负荷启用新方案。 如果你是 Azure Stack Hub 操作员，想要管理集成系统基础结构并提供服务，请参阅我们的[操作员文档](../operator/index.yml)。
 
 ASDK 用于对 Azure Stack Hub 进行单节点部署，可以**免费**下载和使用。 所有 ASDK 组件都安装在单个主计算机上运行的虚拟机 (VM) 中，该计算机必须满足或超过[最低硬件要求](asdk-deploy-considerations.md#hardware)。 ASDK 旨在提供一个环境，你可以在其中评估 Azure Stack Hub，并在非生产环境中使用与 Azure 一致的 API 和工具开发新型应用。 
 

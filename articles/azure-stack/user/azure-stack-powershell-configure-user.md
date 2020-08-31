@@ -3,17 +3,17 @@ title: 以用户身份使用 PowerShell 连接到 Azure Stack Hub
 description: 了解如何使用 PowerShell 连接到 Azure Stack Hub。
 author: WenJason
 ms.topic: article
-origin.date: 1/22/2020
-ms.date: 02/24/2020
+origin.date: 8/4/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: thoroet
-ms.lastreviewed: 10/02/2019
-ms.openlocfilehash: 7381ab24774ed6aab60866e78f40a90a30866118
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.lastreviewed: 8/4/2020
+ms.openlocfilehash: 29c6d07c4865776332be49792493637ccdecc372
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77541045"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867704"
 ---
 # <a name="connect-to-azure-stack-hub-with-powershell-as-a-user"></a>以用户身份使用 PowerShell 连接到 Azure Stack Hub
 
@@ -37,7 +37,7 @@ ms.locfileid: "77541045"
 - **Azure AD 租户名称**  
   用于管理 Azure Stack Hub 的 Azure AD 租户名称。 例如，yourdirectory.partner.onmschina.cn。
 - **Azure 资源管理器终结点**  
-  对于 Azure Stack 开发工具包，此值设置为 https://management.local.azurestack.external 。 若要为 Azure Stack Hub 集成系统获取此值，请与服务提供商联系。
+  对于 Azure Stack 开发工具包，此值设置为 `https://management.local.azurestack.external` 。 若要为 Azure Stack Hub 集成系统获取此值，请与服务提供商联系。
 
 ## <a name="connect-to-azure-stack-hub-with-azure-ad"></a>使用 Azure AD 连接到 Azure Stack Hub
 
@@ -74,6 +74,8 @@ foreach($s in (Get-AzureRmSubscription)) {
 Get-AzureRmResourceProvider -ListAvailable | Register-AzureRmResourceProvider
     }
 ```
+
+[!Include [AD FS only supports interactive authentication with user identities](../includes/note-powershell-adfs.md)]
 
 ## <a name="test-the-connectivity"></a>测试连接
 

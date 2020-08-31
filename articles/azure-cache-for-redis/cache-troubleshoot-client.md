@@ -5,13 +5,13 @@ author: yegu-ms
 ms.author: v-junlch
 ms.service: cache
 ms.topic: troubleshooting
-ms.date: 08/10/2020
-ms.openlocfilehash: 7d2dd3035236650b17df3393a74303e26771332b
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.date: 08/24/2020
+ms.openlocfilehash: c4cd8a33ee23b87ff14fe183b16c8b1422edab1b
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223137"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947045"
 ---
 # <a name="troubleshoot-azure-cache-for-redis-client-side-issues"></a>排查 Azure Cache for Redis 客户端问题
 
@@ -53,7 +53,7 @@ ms.locfileid: "88223137"
 - 请注意，在 `IOCP` 部分和 `WORKER` 部分，`Busy` 值大于 `Min` 值。 这种差异意味着 `ThreadPool` 设置需要调整。
 - 也可参看 `in: 64221`。 此值表示客户端的内核套接字层收到了 64,211 字节，但应用程序尚未读取这些字节。 这种差异通常意味着，应用程序（例如 StackExchange.Redis）从网络读取数据的速度没有服务器向你发送数据的速度快。
 
-可以[配置 `ThreadPool` 设置](cache-faq.md#important-details-about-threadpool-growth)，确保线程池在流量激增的情况下快速扩展。
+可以[配置 `ThreadPool` 设置](cache-management-faq.md#important-details-about-threadpool-growth)，确保线程池在流量激增的情况下快速扩展。
 
 ## <a name="high-client-cpu-usage"></a>客户端 CPU 使用率过高
 
@@ -108,5 +108,5 @@ ms.locfileid: "88223137"
 ## <a name="additional-information"></a>其他信息
 
 - [排查 Azure Cache for Redis 服务器端问题](cache-troubleshoot-server.md)
-- [如何制定基准和测试缓存性能？](cache-faq.md#how-can-i-benchmark-and-test-the-performance-of-my-cache)
+- [如何制定基准和测试缓存性能？](cache-management-faq.md#how-can-i-benchmark-and-test-the-performance-of-my-cache)
 

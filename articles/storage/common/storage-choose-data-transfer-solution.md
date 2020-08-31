@@ -1,20 +1,20 @@
 ---
 title: 选择 Azure 数据传输解决方案 | Microsoft Docs
-description: 了解基于环境中的数据大小和可用网络带宽如何选择 Azure 数据传输解决方案
+description: 了解如何基于环境中的数据大小和可用网络带宽选择 Azure 数据传输解决方案。
 services: storage
 author: WenJason
 ms.service: storage
 ms.subservice: blobs
-ms.topic: article
+ms.topic: conceptual
 origin.date: 06/03/2019
-ms.date: 06/01/2020
+ms.date: 08/24/2020
 ms.author: v-jay
-ms.openlocfilehash: bdb7f272bded5857a0d34c84e0e9e518d285aaba
-ms.sourcegitcommit: be0a8e909fbce6b1b09699a721268f2fc7eb89de
+ms.openlocfilehash: 6a2e962d97f8d31a57c42d1311c0b1834fabb434
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84199511"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753422"
 ---
 # <a name="choose-an-azure-solution-for-data-transfer"></a>选择 Azure 数据传输解决方案
 
@@ -30,13 +30,33 @@ ms.locfileid: "84199511"
 
 数据移动可以是以下类型：
 
-- **使用可发运设备脱机传输** - 在要进行脱机一次性批量数据传输时使用可发运设备。 Azure 会向你寄送磁盘或安全的专用设备。 或者，你可以购买并发运自己的磁盘。 将数据复制到设备，然后将它发运给在其中上传数据的 Azure。  适用于此示例的选项为“导入/导出”（使用自己的磁盘）。
+- **使用可发运设备脱机传输** - 在要进行脱机一次性批量数据传输时使用可发运设备。 Azure 会向你寄送磁盘或安全的专用设备。 或者，你可以购买并发运自己的磁盘。 将数据复制到设备，然后将它发运给在其中上传数据的 Azure。  可用于这种情况的选项包括 Data Box Disk 和导入/导出（使用你自己的磁盘）。
 
 - **网络传输** - 通过网络连接将数据传输到 Azure。 这可以通过多种方法来实现。
 
     - **图形界面** - 如果偶尔仅传输几个文件，并且无需自动执行数据传输，则可以选择图形界面工具（如 Azure 存储资源管理器或 Azure 门户中基于 Web 的浏览工具）。
     - **脚本化或编程传输** - 可以使用我们提供的优化软件工具，或直接调用我们的 REST API/SDK。 可用的可编写脚本工具有 AzCopy、Azure PowerShell 和 Azure CLI。 对于编程接口，请使用用于 .NET、Java、Python、Node/JS、C++、Go、PHP 或 Ruby 的 SDK 之一。
     - **托管数据管道** - 可以设置云管道，以在多个 Azure 服务、本地或这两者的组合之间定期传输文件。 使用 Azure 数据工厂可设置和管理数据管道，以及移动和转换数据以进行分析。
+
+## <a name="selecting-a-data-transfer-solution"></a>选择数据传输解决方案
+
+回答以下问题以帮助选择数据传输解决方案：
+
+- 可用网络带宽是否有限或不存在，并且你要传输大型数据集？
+  
+    如果是，请参阅：[方案 1：在网络带宽不存在或较低的情况下传输大型数据集](storage-solution-large-dataset-low-network.md)。
+- 是否要通过网络传输大型数据集并且具有中等到较高网络带宽？
+
+    如果是，请参阅：[方案 2：在网络带宽中等或较高的情况下传输大型数据集](storage-solution-large-dataset-moderate-high-network.md)。
+- 是否偶尔要通过网络仅传输几个文件？
+
+    如果是，请参阅[方案 3：在网络带宽有限或中等的情况下传输小型数据集](storage-solution-small-dataset-low-moderate-network.md)。
+- 是否在寻找采用固定时间间隔的时间点数据传输？
+
+    如果是，请使用[方案 4：定期数据传输](storage-solution-periodic-data-transfer.md)中概述的脚本化/编程选项。
+- 是否在寻找持续数据传输？
+
+    如果是，请使用[方案 4：定期数据传输](storage-solution-periodic-data-transfer.md)中概述的脚本化/编程选项。
 
 ## <a name="data-transfer-feature-in-azure-portal"></a>Azure 门户中的数据传输功能
 
@@ -48,6 +68,9 @@ ms.locfileid: "84199511"
 - [阅读 AzCopy 概述](/storage/common/storage-use-azcopy-v10)。
 - [快速入门：使用 PowerShell 上传、下载和列出 blob](../blobs/storage-quickstart-blobs-powershell.md)
 - [快速入门：使用 Azure CLI 创建、下载和列出 blob](../blobs/storage-quickstart-blobs-cli.md)
+- 学习内容：
+
+    - [Azure Data Box Disk](/databox/)。
 - [了解什么是 Azure 数据工厂](/data-factory/copy-activity-overview)。
 - 使用 REST API 传输数据
 

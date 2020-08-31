@@ -2,15 +2,19 @@
 title: 教程 - 部署本地 Azure 资源管理器模板
 description: 了解如何从本地计算机部署 Azure 资源管理器模板
 origin.date: 05/20/2020
-ms.date: 06/22/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.topic: tutorial
 ms.author: v-yeche
-ms.openlocfilehash: 8d89d6213c56f92c14e1fe7e6c01c736b17b870e
-ms.sourcegitcommit: 48b5ae0164f278f2fff626ee60db86802837b0b4
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 328dab46772a834a01ecd7932369918df470bb6e
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85098418"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807702"
 ---
 # <a name="tutorial-deploy-a-local-azure-resource-manager-template"></a>教程：部署本地 Azure 资源管理器模板
 
@@ -34,7 +38,7 @@ ms.locfileid: "85098418"
 
 ### <a name="editor-optional"></a>编辑器（可选）
 
-模板是一些 JSON 文件。 若要查看/编辑模板，需要一个好用的 JSON 编辑器。 我们建议使用带有资源管理器工具扩展的 Visual Studio Code。 如果需要安装这些工具，请参阅[使用 Visual Studio Code 创建 Azure 资源管理器模板](use-vs-code-to-create-template.md)。
+模板是一些 JSON 文件。 若要查看/编辑模板，需要一个好用的 JSON 编辑器。 我们建议使用带有资源管理器工具扩展的 Visual Studio Code。 如果需要安装这些工具，请参阅[快速入门：使用 Visual Studio Code 创建 Azure 资源管理器模板](quickstart-create-templates-use-visual-studio-code.md)。
 
 ## <a name="review-template"></a>审阅模板
 
@@ -67,7 +71,8 @@ ms.locfileid: "85098418"
         "Standard_LRS",
         "Standard_GRS",
         "Standard_RAGRS",
-        "Premium_LRS"
+        "Premium_LRS",
+        "Standard_RAGZRS"
       ],
       "metadata": {
         "description": "Specify the storage account type."
@@ -83,7 +88,6 @@ ms.locfileid: "85098418"
   },
   "variables": {
     "storageAccountEndPoint": "https://core.chinacloudapi.cn/",
-
     "storageAccountName": "[concat(parameters('projectName'), 'store')]",
     "webAppName": "[concat(parameters('projectName'), 'WebApp')]",
     "appServicePlanName": "[concat(parameters('projectName'), 'Plan')]"
@@ -165,6 +169,8 @@ Connect-AzAccount -Environment AzureChinaCloud
 
 # <a name="azure-cli"></a>[Azure CLI](#tab/azure-cli)
 
+[!INCLUDE [azure-cli-2-azurechinacloud-environment-parameter](../../../includes/azure-cli-2-azurechinacloud-environment-parameter.md)]
+
 ```azurecli
 az cloud set -n AzureChinaCloud
 az login
@@ -177,12 +183,10 @@ az login
 # <a name="powershell"></a>[PowerShell](#tab/azure-powershell)
 
 ```azurepowershell
-Select-AzSubscription [SubscriptionID/SubscriptionName]
+Set-AzContext [SubscriptionID/SubscriptionName]
 ```
 
 # <a name="azure-cli"></a>[Azure CLI](#tab/azure-cli)
-
-[!INCLUDE [azure-cli-2-azurechinacloud-environment-parameter](../../../includes/azure-cli-2-azurechinacloud-environment-parameter.md)]
 
 ```azurecli
 az account set --subscription [SubscriptionID/SubscriptionName]
@@ -277,5 +281,4 @@ az deployment group create \
 > [!div class="nextstepaction"]
 > [部署链接模板](./deployment-tutorial-linked-template.md)
 
-<!-- Update_Description: new article about deployment tutorial local template -->
-<!--NEW.date: 04/30/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

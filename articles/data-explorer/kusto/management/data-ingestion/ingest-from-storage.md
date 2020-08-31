@@ -8,17 +8,17 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 03/24/2020
-ms.date: 07/01/2020
-ms.openlocfilehash: 7d9a08232930b2a16ee621d08d6c2248e0085daa
-ms.sourcegitcommit: 9bc3e55f01e0999f05e7b4ebaea95f3ac91d32eb
+ms.date: 08/18/2020
+ms.openlocfilehash: 0f7a2944b4c37987fd3bddb8d7a2d5a21af9c0ce
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86226199"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515889"
 ---
 # <a name="the-ingest-into-command-pull-data-from-storage"></a>.ingest into 命令（从存储中拉取数据）
 
-`.ingest into` 命令通过从一个或多个云存储项目“拉取”数据，将数据引入表中。
+`.ingest into` 命令通过从一个或多个云存储文件“拉取”数据，将数据引入表中。
 例如，此命令可以从 Azure Blob 存储中检索 1000 个 CSV 格式的 blob，对其进行分析，然后将它们一起引入到单个目标表中。
 数据将追加到表，不会影响现有记录，也不会修改表的架构。
 
@@ -33,7 +33,9 @@ ms.locfileid: "86226199"
 * TableName：要将数据引入到其中的表的名称。
   表名在上下文中始终相对于数据库，如果未提供架构映射对象，则其架构是将为数据采用的架构。
 
-* SourceDataLocator：`string` 类型的文本，或由 `(` 和 `)` 字符括起来的以逗号分隔的此类文本列表，表示包含要拉取的数据的存储项目。 请参阅[存储连接字符串](../../api/connection-strings/storage.md)。
+* SourceDataLocator：`string` 类型的文本，或由 `(` 和 `)` 字符括起来的以逗号分隔的此类文本列表，表示[存储连接字符串](../../api/connection-strings/storage.md)。 Kusto 使用 URI 格式来描述那些包含要拉取的数据的存储文件。 
+  * 单个连接字符串必须引用由存储帐户托管的单个文件。 
+  * 可以通过指定以逗号分隔的多个连接字符串来引入多个文件，也可以通过从[外部表](../../query/schema-entities/externaltables.md)的查询进行[引入](ingest-from-query.md)来这样做。
 
 > [!NOTE]
 > 对于包含实际凭据的 *SourceDataPointer*，强烈建议为其使用[经过模糊处理的字符串文本](../../query/scalar-data-types/string.md#obfuscated-string-literals)。
@@ -49,7 +51,7 @@ ms.locfileid: "86226199"
 |名称       |类型      |说明                                                                |
 |-----------|----------|---------------------------------------------------------------------------|
 |ExtentId   |`guid`    |该命令生成的数据分片的唯一标识符。|
-|ItemLoaded |`string`  |与此记录相关的一个或多个存储项目。             |
+|ItemLoaded |`string`  |与此记录相关的一个或多个存储文件。             |
 |持续时间   |`timespan`|执行引入所花费的时间。                                     |
 |HasErrors  |`bool`    |此记录是否表示引入失败。                |
 |OperationId|`guid`    |表示操作的唯一 ID。 可以与 `.show operation` 命令一起使用。|
@@ -85,4 +87,3 @@ ms.locfileid: "86226199"
 .ingest into table T ('adl://contoso.azuredatalakestore.net/Path/To/File/file1.ext;impersonate')
   with (format='csv')
 ```
-

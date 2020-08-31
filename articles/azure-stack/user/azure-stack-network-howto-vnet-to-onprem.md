@@ -4,16 +4,16 @@ description: 了解如何为 Azure Stack Hub 设置 VPN 网关。
 author: WenJason
 ms.topic: how-to
 origin.date: 04/20/2020
-ms.date: 05/18/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: sijuman
 ms.lastreviewed: 10/03/2019
-ms.openlocfilehash: 3d6d61f03e980a23803756874c603be5191d33fb
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: a79daddd5589a23fb60edd20a144d056380068ce
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422038"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867823"
 ---
 # <a name="set-up-vpn-gateway-for-azure-stack-hub-using-fortigate-nva"></a>使用 FortiGate NVA 为 Azure Stack Hub 设置 VPN 网关
 
@@ -24,7 +24,7 @@ ms.locfileid: "83422038"
 -  有权访问可提供足够容量用于部署此解决方案所需的计算、网络和资源的 Azure Stack Hub 集成系统。 
 
     > [!Note]  
-    > 由于 ASDK 的网络限制，本文中的说明**不**适用于 Azure Stack 开发工具包 (ASDK)。 有关详细信息，请参阅 [ASDK 的要求和注意事项](/azure-stack/asdk/asdk-deploy-considerations)。
+    > 由于 ASDK 的网络限制，本文中的说明**不**适用于 Azure Stack 开发工具包 (ASDK)。 有关详细信息，请参阅 [ASDK 的要求和注意事项](../asdk/asdk-deploy-considerations.md)。
 
 -  有权访问本地网络中的托管 Azure Stack Hub 集成系统的 VPN 设备。 该设备需要根据[部署参数](#deployment-parameters)中所述的参数创建 IPSec 隧道。
 
@@ -242,7 +242,7 @@ ms.locfileid: "83422038"
 
 若要验证连接：
 
-1. 在 Azure Stack Hub VNET 和本地网络上的系统中创建 VM。 可根据以下文章中的说明创建 VM：[快速入门：使用 Azure Stack Hub 门户创建 Windows 服务器 VM](/azure-stack/user/azure-stack-quick-windows-portal)。
+1. 在 Azure Stack Hub VNET 和本地网络上的系统中创建 VM。 可根据以下文章中的说明创建 VM：[快速入门：使用 Azure Stack Hub 门户创建 Windows 服务器 VM](./azure-stack-quick-windows-portal.md)。
 
 2. 创建 Azure Stack Hub VM 和准备本地系统时，请检查：
 

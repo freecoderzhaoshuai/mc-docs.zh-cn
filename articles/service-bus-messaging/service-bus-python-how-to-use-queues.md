@@ -6,17 +6,17 @@ documentationcenter: python
 ms.devlang: python
 ms.topic: quickstart
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+ms.date: 08/31/2020
 ms.testscope: yes
 ms.testdate: 07/20/2020
 ms.author: v-yeche
-ms.custom: seo-python-october2019, tracking-python
-ms.openlocfilehash: 130c16ee419f09a0b7ab7762ad4c477f811930ab
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.custom: seo-python-october2019, devx-track-python
+ms.openlocfilehash: 9ae9e2290bb4af647da42a473d660c3809e51ca9
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162441"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946936"
 ---
 # <a name="quickstart-use-azure-service-bus-queues-with-python"></a>快速入门：通过 Python 使用 Azure 服务总线队列
 

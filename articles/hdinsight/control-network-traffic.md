@@ -7,12 +7,12 @@ ms.reviewer: jasonh
 ms.service: hdinsight
 ms.topic: conceptual
 ms.date: 05/04/2020
-ms.openlocfilehash: 712678673ae9e7d19bac582047ec8aa883fd04da
-ms.sourcegitcommit: 3de7d92ac955272fd140ec47b3a0a7b1e287ca14
+ms.openlocfilehash: 3235126fa3768097a45a1ddea551d7e555c63b4f
+ms.sourcegitcommit: f9a819b7429a2cca868eba0d9241d4e6b3cf905a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84723779"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88866204"
 ---
 # <a name="control-network-traffic-in-azure-hdinsight"></a>在 Azure HDInsight 中控制网络流量
 
@@ -36,7 +36,7 @@ ms.locfileid: "84723779"
 
 3. 为计划将 HDInsight 安装到其中的子网创建或修改网络安全组。
 
-    * ____ 网络安全组：在端口 443 上允许来自 IP 地址的入站流量。____ ____ 这将确保 HDInsight 管理服务可以从虚拟网络外部访问群集。
+    * ____ 网络安全组：在端口 443 上允许来自 IP 地址的入站流量。____ ____ 这将确保 HDInsight 管理服务可以从虚拟网络外部访问群集。 对于启用了 Kafka REST 代理的群集，还要在端口 9400 上允许入站流量  。 这将确保 Kafka REST 代理服务器可访问。
 
 有关网络安全组的详细信息，请参阅[网络安全组概述](../virtual-network/security-overview.md)。
 

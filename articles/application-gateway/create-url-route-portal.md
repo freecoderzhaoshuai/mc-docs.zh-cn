@@ -5,14 +5,14 @@ services: application-gateway
 author: vhorne
 ms.service: application-gateway
 ms.topic: tutorial
-ms.date: 04/26/2020
+ms.date: 08/17/2020
 ms.author: v-junlch
-ms.openlocfilehash: a16a713f5571e4a46f284babeab54977a55a440c
-ms.sourcegitcommit: e3512c5c2bbe61704d5c8cbba74efd56bfe91927
+ms.openlocfilehash: 83d085ef9dda3e9f996cff0e4316b7d7a0e12e83
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82267653"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647575"
 ---
 # <a name="tutorial-create-an-application-gateway-with-path-based-routing-rules-using-the-azure-portal"></a>教程：通过 Azure 门户使用基于路径的路由规则创建应用程序网关
 
@@ -33,9 +33,9 @@ ms.locfileid: "82267653"
 
 [!INCLUDE [updated-for-az](../../includes/updated-for-az.md)]
 
-## <a name="sign-in-to-azure"></a>登录 Azure
+## <a name="prerequisites"></a>先决条件
 
-通过 [https://portal.azure.cn](https://portal.azure.cn) 登录到 Azure 门户
+在 [https://portal.azure.cn](https://portal.azure.cn) 中登录 Azure 门户。
 
 ## <a name="create-virtual-machines"></a>创建虚拟机
 
@@ -80,16 +80,17 @@ ms.locfileid: "82267653"
 2. 运行以下命令以在虚拟机上安装 IIS： 
 
     ```azurepowershell
-    $publicSettings = @{ "fileUris" = (,"https://raw.githubusercontent.com/Azure/azure-docs-powershell-samples/master/application-gateway/iis/appgatewayurl.ps1");  "commandToExecute" = "powershell -ExecutionPolicy Unrestricted -File appgatewayurl.ps1" }
-    Set-AzVMExtension `
-      -ResourceGroupName myResourceGroupAG `
-      -Location chinanorth2 `
-      -ExtensionName IIS `
-      -VMName myVM1 `
-      -Publisher Microsoft.Compute `
-      -ExtensionType CustomScriptExtension `
-      -TypeHandlerVersion 1.4 `
-      -Settings $publicSettings
+         $publicSettings = @{ "fileUris" = (,"https://raw.githubusercontent.com/Azure/azure-docs-powershell-samples/master/application-gateway/iis/appgatewayurl.ps1");  "commandToExecute" = "powershell -ExecutionPolicy Unrestricted -File appgatewayurl.ps1" }
+
+        Set-AzVMExtension `
+         -ResourceGroupName myResourceGroupAG `
+         -Location chinanorth2 `
+         -ExtensionName IIS `
+         -VMName myVM1 `
+         -Publisher Microsoft.Compute `
+         -ExtensionType CustomScriptExtension `
+         -TypeHandlerVersion 1.4 `
+         -Settings $publicSettings
     ```
 
 3. 使用刚刚完成的步骤创建另外两个虚拟机并安装 IIS。 在 Set-AzVMExtension 中输入 *myVM2* 和 *myVM3* 作为名称，并输入 VMName 值。
@@ -205,8 +206,12 @@ ms.locfileid: "82267653"
 
    端口 8080 上的侦听器将此请求路由到“视频”  后端池。
 
+## <a name="clean-up-resources"></a>清理资源
+
+不再需要时，请删除资源组及所有相关资源。 为此，请选择资源组，然后选择“删除资源组”。
 
 ## <a name="next-steps"></a>后续步骤
 
-- [在 Azure 应用程序网关上启用端到端 TLS](application-gateway-backend-ssl.md)
+> [!div class="nextstepaction"]
+> [在 Azure 应用程序网关上启用端到端 TLS](application-gateway-backend-ssl.md)
 

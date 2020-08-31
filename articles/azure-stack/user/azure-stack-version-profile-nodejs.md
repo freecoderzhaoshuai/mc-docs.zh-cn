@@ -4,16 +4,16 @@ description: 了解如何在 Azure Stack Hub 中将 API 版本配置文件与 No
 author: WenJason
 ms.topic: article
 origin.date: 04/30/2020
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: sijuman
 ms.lastreviewed: 04/30/2020
-ms.openlocfilehash: 4ab74c81330ba28a3038d819652c52edf3cfae44
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 3435aa88195957e7b379c72f882a648c40323a06
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096518"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867766"
 ---
 # <a name="use-api-version-profiles-with-nodejs-software-development-kit-sdk-in-azure-stack-hub"></a>在 Azure Stack Hub 中将 API 版本配置文件与 Node.js 软件开发工具包 (SDK) 配合使用
 
@@ -87,7 +87,7 @@ API 配置文件是资源提供程序和 API 版本的组合。 可以使用 API
 | --- | --- | --- |
 | 租户 ID | TENANT\_ID | Azure Stack Hub [租户 ID](/azure-stack/azure-stack-identity-overview) 的值。 |
 | 客户端 ID | CLIENT\_ID | 在本文档上一部分创建服务主体时保存的服务主体应用程序 ID。  |
-| 订阅 ID | AZURE\_SUBSCRIPTION\_ID：[订阅 ID](/azure-stack/operator/service-plan-offer-subscription-overview#subscriptions) 用于访问 Azure Stack Hub 中的套餐。  |
+| 订阅 ID | AZURE\_SUBSCRIPTION\_ID：[订阅 ID](../operator/service-plan-offer-subscription-overview.md#subscriptions) 用于访问 Azure Stack Hub 中的套餐。  |
 | 客户端机密 | APPLICATION\_SECRET | 创建服务主体时保存的服务主体应用程序机密。 |
 | 资源管理器终结点 | ARM\_ENDPOINT | 参阅 [Azure Stack Hub 资源管理器终结点](/azure-stack/user/azure-stack-version-profiles-ruby#the-azure-stack-hub-resource-manager-endpoint)。 |
 

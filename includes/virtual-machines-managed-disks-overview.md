@@ -5,19 +5,20 @@ services: virtual-machines
 author: rockboyfor
 ms.service: virtual-machines
 ms.topic: include
-origin.date: 07/17/2020
-ms.date: 08/10/2020
-ms.testscope: no
-ms.testdate: 07/06/2020
+origin.date: 08/11/2020
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.author: v-yeche
 ms.custom: include file
-ms.openlocfilehash: 3bed8e7cc2770268ced4a6ced6eb7c2751aa839e
-ms.sourcegitcommit: c4b0a0ddd52ceca82cfdbdbdf07aad00d0f3ed03
+ms.openlocfilehash: b87c5b90d04220ddcd8b5882fc4acf0bdc14d7b5
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715924"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946922"
 ---
+<!--Verify Successfully-->
 ## <a name="benefits-of-managed-disks"></a>托管磁盘的好处
 
 接下来让我们看一下使用托管磁盘可以获得的一些好处。
@@ -55,6 +56,8 @@ ms.locfileid: "88715924"
 
 ## <a name="security"></a>安全性
 
+<!--Not Available on ### Private Links-->
+
 ### <a name="encryption"></a>加密
 
 托管磁盘提供两种不同的加密。 第一种是服务器端加密 (SSE)，由存储服务执行。 第二种是 Azure 磁盘加密 (ADE)，可以在 VM 的 OS 和数据磁盘上启用。
@@ -89,7 +92,7 @@ Azure 磁盘加密允许加密 IaaS 虚拟机使用的 OS 磁盘和数据磁盘�
 
 每个 VM 包含一个不是托管磁盘的临时磁盘。 临时磁盘为应用程序和进程提供短期存储，仅用于存储页面或交换文件等数据。 在[维护事件](../articles/virtual-machines/windows/manage-availability.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json#understand-vm-reboots---maintenance-vs-downtime)期间或[重新部署 VM](../articles/virtual-machines/troubleshooting/redeploy-to-new-node-windows.md?toc=%2Fvirtual-machines%2Fwindows%2Ftoc.json) 时，临时磁盘上的数据可能会丢失。 在 VM 成功标准重启期间，临时磁盘上的数据将保留。  
 
-在 Azure Linux VM 上，临时磁盘通常为“/dev/sdb”；在 Windows VM 上，临时磁盘默认为 D:。 临时磁盘未通过服务器端加密进行加密（请参阅[加密](#encryption)）。
+在 Azure Linux VM 上，临时磁盘通常为“/dev/sdb”；在 Windows VM 上，临时磁盘默认为 D:。 务器端加密不会加密临时磁盘，除非你在主机上启用加密。
 
 ## <a name="managed-disk-snapshots"></a>托管磁盘快照
 
@@ -119,8 +122,6 @@ Azure 磁盘加密允许加密 IaaS 虚拟机使用的 OS 磁盘和数据磁盘�
 
 除了所包含的磁盘，快照无法感知任何其他磁盘。 因此，如果在要求对多个磁盘进行协调的方案（例如条带化方案）中使用，则会出现问题。 快照彼此之间将需要相互协调，而目前并不支持此功能。
 
-<!--Pending on verify-->
-
 ## <a name="disk-allocation-and-performance"></a>磁盘分配和性能
 
 下图描绘了如何使用三级预配系统为磁盘实时分配带宽和 IOPS：
@@ -133,14 +134,11 @@ Azure 磁盘加密允许加密 IaaS 虚拟机使用的 OS 磁盘和数据磁盘�
 
 :::image type="content" source="media/virtual-machines-managed-disks-overview/example-vm-allocation.png" alt-text="Standard_DS1v1 示例分配":::
 
-<!--MOONCAKE: REMOVE , which gets the precedence over other low priority of network traffic-->
-<!--Not Available on low priority-->
-
 Azure 对磁盘流量使用优先网络通道。 在出现网络争用时，这有助于磁盘保持预期的性能。 类似地，Azure 存储在后台使用自动负载均衡来处理资源争用和其他问题。 Azure 存储在你创建磁盘时分配所需资源，并应用主动和被动资源均衡来处理流量级别。 这进一步确保磁盘保持其预期的 IOPS 和吞吐量目标。 可以根据需要使用 VM 级别和磁盘级别的指标来跟踪性能和设置警报。
 
-请参阅[为实现高性能而设计](../articles/virtual-machines/windows/premium-storage-performance.md)一文，了解优化 VM + 磁盘配置以实现所需性能的最佳做法
+<!--Not Available on  which gets the precedence over other low priority of network traffic-->
 
-<!--Pending on verify-->
+请参阅[为实现高性能而设计](../articles/virtual-machines/windows/premium-storage-performance.md)一文，了解优化 VM + 磁盘配置以实现所需性能的最佳做法
 
 ## <a name="next-steps"></a>后续步骤
 

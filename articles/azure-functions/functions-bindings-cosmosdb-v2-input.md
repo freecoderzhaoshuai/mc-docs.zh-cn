@@ -3,14 +3,15 @@ title: 适用于 Functions 2.x 及更高版本的 Azure Cosmos DB 输入绑定
 description: 了解如何在 Azure Functions 中使用 Azure Cosmos DB 输入绑定。
 author: craigshoemaker
 ms.topic: reference
-ms.date: 07/14/2020
+ms.date: 08/24/2020
 ms.author: v-junlch
-ms.openlocfilehash: 673ec2179011949ea1f233bdc99729a9e6686f27
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.custom: devx-track-csharp
+ms.openlocfilehash: d4372c94b4165822d6e4b9f3200f2aefada71086
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440357"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946959"
 ---
 # <a name="azure-cosmos-db-input-binding-for-azure-functions-2x-and-higher"></a>适用于 Azure Functions 2.x 及更高版本的 Azure Cosmos DB 输入绑定
 
@@ -42,8 +43,12 @@ namespace CosmosDBSamplesV2
 {
     public class ToDoItem
     {
+        [JsonProperty("id")]
         public string Id { get; set; }
+        
+        [JsonProperty("partitionKey")]
         public string PartitionKey { get; set; }
+        
         public string Description { get; set; }
     }
 }

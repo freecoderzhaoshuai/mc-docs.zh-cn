@@ -4,14 +4,14 @@ description: 本文介绍在不将 kubectl 与适用于容器的 Azure Monitor �
 ms.topic: conceptual
 author: Johnnytechn
 ms.author: v-johya
-ms.date: 07/17/2020
+ms.date: 08/20/2020
 ms.custom: references_regions
-ms.openlocfilehash: 31800e8b3e94f92fdf4a3619828e68ba4b0998ea
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: bd9bb40bb35a4dd0eca2b8d7adc6ab4d1f344469
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244721"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148625"
 ---
 # <a name="how-to-set-up-the-live-data-preview-feature"></a>如何设置实时数据（预览版）功能
 
@@ -44,7 +44,7 @@ Azure 门户会提示你验证你用于 Azure Active Directory 群集的登录�
 >对你的群集的授权由 Kubernetes 以及为它配置的安全模型管理。 访问此功能的用户需要有权下载 Kubernetes 配置 (*kubeconfig*)，类似于运行 `az aks get-credentials -n {your cluster name} -g {your resource group}`。 如果启用了 Azure RBAC 并且 AKS 群集未启用 RBAC 授权，则此配置文件包含 **Azure Kubernetes 服务群集用户角色**的授权和身份验证令牌。 当为 AKS 启用了 Azure Active Directory (AD) 基于 SAML 的单一登录时，它包含有关 Azure AD 的信息和客户端注册详细信息。
 
 >[!IMPORTANT]
->此功能的用户需要具有群集的 [Azure Kubernetes 群集用户角色](../../role-based-access-control/built-in-roles.md#azure-kubernetes-service-cluster-user-role)才能下载 `kubeconfig` 并使用此功能。 用户**不**需要具有群集的参与者访问权限便可使用此功能。 
+>此功能的用户需要具有群集的 [Azure Kubernetes 群集用户角色](../../role-based-access-control/built-in-roles.md)才能下载 `kubeconfig` 并使用此功能。 用户**不**需要具有群集的参与者访问权限便可使用此功能。
 
 ## <a name="using-clustermonitoringuser-with-rbac-enabled-clusters"></a>将 clusterMonitoringUser 用于启用了 RBAC 的群集
 
@@ -110,7 +110,7 @@ AKS 在 2020 年 1 月发布了此新的角色绑定，因此在 2020 年 1 月�
 有关 Kubernetes 中的高级安全设置的详细信息，请查看 [Kubernetes 文档](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)。
 
 >[!NOTE]
->如果你要创建新的启用了 RBAC 的群集，请参阅[将 Azure Active Directory 与 Azure Kubernetes 服务集成](../../aks/azure-ad-integration.md)并按照步骤来配置 Azure AD 身份验证。 在创建客户端应用程序的步骤中，该部分中的一个注释突出显示了你需要为适用于容器的 Azure Monitor 创建的与下面步骤 3 中指定的 URL 匹配的两个重定向 URL。
+>如果你要创建新的启用了 RBAC 的群集，请参阅[将 Azure Active Directory 与 Azure Kubernetes 服务集成](../../aks/azure-ad-integration-cli.md)并按照步骤来配置 Azure AD 身份验证。 在创建客户端应用程序的步骤中，该部分中的一个注释突出显示了你需要为适用于容器的 Azure Monitor 创建的与下面步骤 3 中指定的 URL 匹配的两个重定向 URL。
 
 ### <a name="client-registration-reconfiguration"></a>重新配置客户端注册
 

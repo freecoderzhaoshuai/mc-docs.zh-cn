@@ -8,16 +8,16 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 05/28/2020
+ms.date: 08/20/2020
 ms.author: v-junlch
 ms.reviewer: saeeda
 ms.custom: aaddev, identityplatformtop40
-ms.openlocfilehash: a93afd953011c0446381b8ec55bb3ec8a82690be
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: 36dbe14b3dc66c217fe4e044d9c0f49a9a655be6
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186844"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647530"
 ---
 # <a name="supported-account-types"></a>支持的帐户类型
 
@@ -33,9 +33,9 @@ ms.locfileid: "84186844"
 - 如果你是 ISV，可以编写一个应用程序来登录用户：
 
   - 在任何组织中。 这样的应用程序称为“多租户”Web 应用程序。 你有时会看到它使用工作或学校帐户登录用户。
-  - 通过其工作或学校。
-
-- 如果你正在为消费者应用程序编写业务，还可以借助 Azure AD B2C 使用其社交身份登录用户。
+  - 通过其工作或学校
+    
+- 如果你编写企业对消费者应用程序，则还可以借助 Azure Active Directory B2C (Azure AD B2C) 使用用户的社交标识来登录用户。
 
 ## <a name="account-type-support-in-authentication-flows"></a>身份验证流中的帐户类型支持
 

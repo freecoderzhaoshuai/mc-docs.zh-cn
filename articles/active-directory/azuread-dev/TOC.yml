@@ -6,6 +6,8 @@
   href: sample-v1-code.md
 - name: 概念
   items:
+    - name: Microsoft 标识平台的发展
+      href: about-microsoft-identity-platform.md
     - name: 为何更新到 v2.0
       href: azure-ad-endpoint-comparison.md
     - name: 应用程序类型
@@ -67,6 +69,8 @@
           href: ../develop/consent-framework.md?toc=/active-directory/azuread-dev/toc.json&bc=/active-directory/azuread-dev/breadcrumb/toc.json
         - name: 应用程序同意体验
           href: ../develop/application-consent-experience.md?toc=/active-directory/azuread-dev/toc.json&bc=/active-directory/azuread-dev/breadcrumb/toc.json
+    - name: 条件性访问
+      href: conditional-access-dev-guide.md
     - name: 国家云
       href: ../develop/authentication-national-cloud.md?toc=/active-directory/azuread-dev/toc.json&bc=/active-directory/azuread-dev/breadcrumb/toc.json
 - name: 操作指南
@@ -117,20 +121,22 @@
       items:
         - name: 发布到 Office 365 卖家仪表板
           href: 'https://docs.microsoft.com/office/dev/store/use-the-seller-dashboard-to-submit-to-the-office-store'
-    - name: 使用 Azure AD 图形 API
-      href: ../develop/active-directory-graph-api-quickstart.md?toc=/active-directory/azuread-dev/toc.json&bc=/active-directory/azuread-dev/breadcrumb/toc.json
+    - name: 使用 Microsoft Graph API
+      href: ../develop/microsoft-graph-intro.md?toc=/active-directory/azuread-dev/toc.json&bc=/active-directory/azuread-dev/breadcrumb/toc.json
+    - name: 针对开发人员的 AD FS
+      href: 'https://docs.microsoft.com/windows-server/identity/ad-fs/ad-fs-overview'
 - name: 参考
   items:
     - name: 身份验证库
       displayName: ADAL
       href: active-directory-authentication-libraries.md
-    - name: Azure AD 图形 API
-      href: ../develop/active-directory-graph-api.md?toc=/active-directory/azuread-dev/toc.json&bc=/active-directory/azuread-dev/breadcrumb/toc.json
+    - name: Microsoft Graph API
+      href: ../develop/microsoft-graph-intro.md?toc=/active-directory/azuread-dev/toc.json&bc=/active-directory/azuread-dev/breadcrumb/toc.json
     - name: 应用程序清单
       href: ../develop/reference-app-manifest.md?toc=/active-directory/azuread-dev/toc.json&bc=/active-directory/azuread-dev/breadcrumb/toc.json
     - name: 身份验证和授权错误代码
       href: ../develop/reference-aadsts-error-codes.md?toc=/active-directory/azuread-dev/toc.json&bc=/active-directory/azuread-dev/breadcrumb/toc.json
-    - name: 重大变化
+    - name: 中断性变更
       href: ../develop/reference-breaking-changes.md?toc=/active-directory/azuread-dev/toc.json&bc=/active-directory/azuread-dev/breadcrumb/toc.json
 - name: 资源
   items:
@@ -143,3 +149,5 @@
     - name: 获取帮助
       displayName: 'support, help options'
       href: ../develop/developer-support-help-options.md?toc=/active-directory/azuread-dev/toc.json&bc=/active-directory/azuread-dev/breadcrumb/toc.json
+    - name: Azure 资源的托管标识
+      href: ../managed-identities-azure-resources/overview.md

@@ -5,17 +5,16 @@ description: 了解如何在 Azure Stack Hub 中轮换机密。
 author: WenJason
 ms.topic: how-to
 origin.date: 04/03/2020
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.reviewer: ppacent
 ms.author: v-jay
 ms.lastreviewed: 12/13/2019
-monikerRange: '>=azs-1802'
-ms.openlocfilehash: 3994f68a4c0e59690469df4aca04e1d4457c5709
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 918f40552f6bdc6721d9a484dcf133cc6e1b1fcb
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096329"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867836"
 ---
 # <a name="rotate-secrets-in-azure-stack-hub"></a>在 Azure Stack Hub 中轮换机密
 
@@ -26,12 +25,12 @@ ms.locfileid: "85096329"
 ## <a name="rotate-secrets-overview"></a>机密轮换概述
 
 1. 准备好用于机密轮换的证书。
-2. 查看 Azure Stack Hub [公钥基础结构证书要求](/azure-stack/operator/azure-stack-pki-certs)。
+2. 查看 Azure Stack Hub [公钥基础结构证书要求](./azure-stack-pki-certs.md)。
 3. [使用特权终结点](azure-stack-privileged-endpoint.md)并运行 **Test-azurestack** 以确认一切正常。  
 4. 查看[机密轮换前的步骤](#pre-steps-for-secret-rotation)。
-5. [验证 Azure Stack Hub PKI 证书](/azure-stack/operator/azure-stack-validate-pki-certs)。 请确保密码中没有特殊字符，例如 `*` 或 `)`。
-6. 请确保 PFX 加密为 **TripleDES-SHA1**。 如果遇到问题，请参阅[修复 Azure Stack Hub PKI 证书的常见问题](/azure-stack/operator/azure-stack-remediate-certs#pfx-encryption)。
-7. 准备文件夹结构。  可以在[轮换外部机密](/azure-stack/operator/azure-stack-rotate-secrets#rotating-external-secrets)部分中找到示例。
+5. [验证 Azure Stack Hub PKI 证书](./azure-stack-validate-pki-certs.md)。 请确保密码中没有特殊字符，例如 `*` 或 `)`。
+6. 请确保 PFX 加密为 **TripleDES-SHA1**。 如果遇到问题，请参阅[修复 Azure Stack Hub PKI 证书的常见问题](./azure-stack-remediate-certs.md#pfx-encryption)。
+7. 准备文件夹结构。  可以在[轮换外部机密](#rotating-external-secrets)部分中找到示例。
 8. [开始机密轮换](#use-powershell-to-rotate-secrets)。
 
 ## <a name="rotate-secrets"></a>轮换机密
@@ -153,7 +152,7 @@ Azure Stack Hub 使用各种机密来维持 Azure Stack Hub 基础结构资源�
 
 轮换外部机密：
 
-1. 在前期步骤中新建的 \Certificates\\\<IdentityProvider> 目录内，根据 [Azure Stack PKI 证书要求](azure-stack-pki-certs.md#mandatory-certificates)的“必需证书”部分中所述的格式，将新的替换外部证书集放入目录结构 。
+1. 在前期步骤中新建的 \Certificates\\\<IdentityProvider> 目录内，根据 [Azure Stack PKI 证书要求](azure-stack-pki-certs.md)的“必需证书”部分中所述的格式，将新的替换外部证书集放入目录结构 。
 
     Azure AD 标识提供者的文件夹结构示例：
     ```powershell
@@ -201,7 +200,7 @@ Azure Stack Hub 使用各种机密来维持 Azure Stack Hub 基础结构资源�
     > [!IMPORTANT]  
     > 不要输入会话。 请将会话存储为变量。
 
-3. 运行 **[Invoke-Command](https://docs.microsoft.com/powershell/module/microsoft.powershell.core/Invoke-Command?view=powershell-5.1)** 。 将特权终结点 PowerShell 会话变量作为 **Session** 参数传递。
+3. 运行 **[Invoke-Command](https://docs.microsoft.com/powershell/module/microsoft.powershell.core/invoke-command?view=powershell-5.1)** 。 将特权终结点 PowerShell 会话变量作为 **Session** 参数传递。
 
 4. 结合以下参数运行 **Start-SecretRotation**：
     - **PfxFilesPath**  

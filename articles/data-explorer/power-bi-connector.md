@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: conceptual
 origin.date: 07/10/2019
 ms.date: 05/09/2020
-ms.openlocfilehash: f2f0563228b0ae222359d023ddce9cf3c8c14226
-ms.sourcegitcommit: bfbd6694da33f703481386f2a3f16850c4e94bfa
+ms.openlocfilehash: 8e83d594c44f51941fad268572d5e371adc56e34
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83417611"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515745"
 ---
 # <a name="visualize-data-using-the-azure-data-explorer-connector-for-power-bi"></a>使用 Power BI 的 Azure 数据资源管理器连接器直观显示数据
 
@@ -45,7 +45,7 @@ Azure 数据资源管理器是一项快速且高度可缩放的数据探索服�
 
     **设置** | **值** | **字段说明**
     |---|---|---|
-    | 群集 | *https://help.kusto.chinacloudapi.cn* | 帮助群集的 URL。 其他群集的 URL 采用 *https://\<ClusterName\>.\<区域\>.kusto.chinacloudapi.cn* 格式。 |
+    | 群集 | *https://help.kusto.chinacloudapi.cn* | 帮助群集的 URL。 其他群集的 URL 采用 https://\<ClusterName\>.\<Region\>.kusto.chinacloudapi.cn 格式。 |
     | 数据库 | 留空 | 托管在要连接到的群集上的数据库。 我们会在后面的步骤中选择此项。 |
     | 表名称 | 留空 | 数据库中的一个表，或者类似 <code>StormEvents \| take 1000</code> 的查询。 我们会在后面的步骤中选择此项。 |
     | 高级选项 | 留空 | 查询选项，例如结果集大小。 |
@@ -58,7 +58,7 @@ Azure 数据资源管理器是一项快速且高度可缩放的数据探索服�
     > 在以下情况下使用**导入**模式：
     > * 数据集很小。
     > * 不需要接近实时的数据。 
-    > * 数据已聚合，或在 Kusto 中执行[聚合](https://docs.microsoft.com/azure/data-explorer/kusto/query/summarizeoperator#list-of-aggregation-functions)    
+    > * 数据已聚合，或在 Kusto 中执行[聚合](/data-explorer/kusto/query/summarizeoperator#list-of-aggregation-functions)    
     >
     > 在以下情况下使用 **DirectQuery** 模式：
     > * 数据集非常大。 

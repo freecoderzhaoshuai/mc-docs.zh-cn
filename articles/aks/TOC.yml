@@ -1,9 +1,12 @@
 - name: Azure Kubernetes 服务 (AKS)
   href: ./index.yml
 - name: 概述
+  expanded: true
   items:
     - name: 关于 AKS
       href: intro-kubernetes.md
+    - name: Azure 中国的 AKS 最佳做法
+      href: 'https://github.com/Azure/container-service-for-azure-china/blob/master/aks/README.md'
 - name: 快速入门
   expanded: true
   items:
@@ -66,7 +69,7 @@
       href: concepts-scale.md
     - name: 节点自动修复
       href: node-auto-repair.md
-    - name: 最佳实践
+    - name: 最佳做法
       items:
         - name: 概述
           href: best-practices.md

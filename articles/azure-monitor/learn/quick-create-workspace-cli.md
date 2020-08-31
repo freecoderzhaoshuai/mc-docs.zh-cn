@@ -5,14 +5,14 @@ ms.subservice: logs
 ms.topic: conceptual
 author: Johnnytechn
 ms.author: v-johya
-ms.date: 07/17/2020
+ms.date: 08/20/2020
 origin.date: 03/12/2019
-ms.openlocfilehash: df10ae29754fac82cfe13a5fee0e6aa3b5fe1a6e
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.openlocfilehash: 5184fc53829ff5336fa522e5b1381dda4bd27beb
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440458"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148684"
 ---
 # <a name="create-a-log-analytics-workspace-with-azure-cli-20"></a>使用 Azure CLI 2.0 创建 Log Analytics 工作区
 
@@ -24,8 +24,8 @@ Azure CLI 2.0 用于从命令行或脚本创建和管理 Azure 资源。 本快�
 
 对于其他源，如环境中的 Azure VM 和 Windows VM 或 Linux VM，请参阅以下主题：
 
-* [从 Azure 虚拟机收集数据](../learn/quick-collect-azurevm.md)
-* [从混合 Linux 计算机收集数据](../learn/quick-collect-linux-computer.md)
+* [从 Azure 虚拟机收集数据](./quick-collect-azurevm.md)
+* [从混合 Linux 计算机收集数据](./quick-collect-linux-computer.md)
 * [从混合 Windows 计算机收集数据](quick-collect-windows-computer.md)
 
 如果没有 Azure 订阅，请在开始之前创建[试用版](https://www.azure.cn/pricing/1rmb-trial)。
@@ -50,7 +50,7 @@ Azure CLI 2.0 用于从命令行或脚本创建和管理 Azure 资源。 本快�
 
 ### <a name="create-and-deploy-template"></a>创建和部署模板
 
-1. 将以下 JSON 语法复制并粘贴到文件中：
+1. 将以下 JSON 语法复制并粘贴到该文件中：
 
     ```json
     {
@@ -119,17 +119,18 @@ Azure CLI 2.0 用于从命令行或脚本创建和管理 Azure 资源。 本快�
 ![部署完成后的示例结果](./media/quick-create-workspace-cli/template-output-01.png)
 
 ## <a name="troubleshooting"></a>疑难解答
-如果创建了一个工作区，该工作区已在过去 14 天内删除且处于[软删除状态](/azure-monitor/platform/delete-workspace#soft-delete-behavior)，那么该操作可能会有不同的结果，具体取决于你的工作区配置：
+如果创建了一个工作区，该工作区已在过去 14 天内删除且处于[软删除状态](../platform/delete-workspace.md#soft-delete-behavior)，那么该操作可能会有不同的结果，具体取决于你的工作区配置：
 1. 如果你提供的工作区名称、资源组、订阅和区域与已删除的工作区中的相同，则将恢复你的工作区，包括其数据、配置和连接的代理。
 2. 如果你使用相同的工作区名称，但提供不同的资源组、订阅或区域，则将收到“工作区名称 workspace-name 不是唯一的或存在冲突”错误 。 若要替换软删除，同时永久删除你的工作区并创建新的同名工作区，请按照以下步骤，先恢复工作区再执行永久删除：
-   * [恢复](/azure-monitor/platform/delete-workspace#recover-workspace)工作区
-   * [永久删除](/azure-monitor/platform/delete-workspace#permanent-workspace-delete)工作区
+   * [恢复](../platform/delete-workspace.md#recover-workspace)工作区
+   * [永久删除](../platform/delete-workspace.md#permanent-workspace-delete)工作区
    * 使用相同的工作区名称创建新的工作区
 
 ## <a name="next-steps"></a>后续步骤
 现在，你已有可用的工作区，可以配置监视遥测收集、运行日志搜索分析该数据，以及添加管理解决方案以提供其他数据和分析见解。  
 
-* 若要启用通过 Azure 诊断或 Azure 存储从 Azure 资源收集数据，请参阅[收集要在 Log Analytics 中使用的 Azure 服务日志和指标](../platform/collect-azure-metrics-logs.md)。  
+* 若要启用通过 Azure 诊断或 Azure 存储从 Azure 资源收集数据，请参阅[收集要在 Log Analytics 中使用的 Azure 服务日志和指标](../platform/resource-logs.md#send-to-log-analytics-workspace)。  
 * 连接 [Configuration Manager](../platform/collect-sccm.md) 以导入作为层次结构中集合成员的计算机。  
 * 查看可用的[监视解决方案](../insights/solutions.md)以及如何从工作区添加或删除解决方案。
+
 

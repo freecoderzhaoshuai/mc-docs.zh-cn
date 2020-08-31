@@ -1,19 +1,21 @@
 ---
-title: Azure 中虚拟机的维护
+title: 维护和更新
 description: 概述在 Azure 中运行的虚拟机的维护和更新。
 author: rockboyfor
 ms.service: virtual-machines
 ms.workload: infrastructure-services
 ms.topic: conceptual
 origin.date: 05/22/2020
-ms.date: 07/06/2020
+ms.date: 08/31/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 162869f68ac6fa49fcc40d262bd1804f4e2437cb
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: b83c65e2737f4990b8fb7384a0194ee6d6e91157
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946031"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052376"
 ---
 # <a name="maintenance-for-virtual-machines-in-azure"></a>Azure 中虚拟机的维护
 
@@ -81,7 +83,7 @@ Azure 定期更新平台，以提高虚拟机的主机基础结构的可靠性�
 
 #### <a name="paired-regions"></a>配对区域
 
-每个 Azure 区域将与同一邻近地理范围内的另一区域配对。 它们共同构成了一个区域对。 在计划内维护阶段，Azure 只会更新一个区域对中单个区域内的 VM。 例如，更新中国北部的 VM 时，Azure 不会同时更新中国东部的任何 VM。  了解区域对的工作原理有助于更好地跨区域分配 VM。 有关详细信息，请参阅 [Azure 区域对](/best-practices-availability-paired-regions)。
+每个 Azure 区域将与同一邻近地理范围内的另一区域配对。 它们共同构成了一个区域对。 在计划内维护阶段，Azure 只会更新一个区域对中单个区域内的 VM。 例如，更新中国北部的 VM 时，Azure 不会同时更新中国东部的任何 VM。  了解区域对的工作原理有助于更好地跨区域分配 VM。 有关详细信息，请参阅 [Azure 区域对](../best-practices-availability-paired-regions.md)。
 
 #### <a name="availability-sets-and-scale-sets"></a>可用性集和规模集
 

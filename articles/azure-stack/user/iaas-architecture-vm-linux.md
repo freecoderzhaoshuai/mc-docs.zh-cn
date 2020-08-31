@@ -4,16 +4,16 @@ description: 了解如何在 Azure Stack Hub 上运行 Linux 虚拟机。
 author: WenJason
 ms.topic: how-to
 origin.date: 04/20/2020
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: kivenkat
 ms.lastreviewed: 11/01/2019
-ms.openlocfilehash: d42806cf26e25c04a4bf6e55646d73835f67bcbb
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 29752323780f35c006fcf24a5a3c96841d6077f9
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096428"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867972"
 ---
 # <a name="run-a-linux-virtual-machine-on-azure-stack-hub"></a>在 Azure Stack Hub 上运行 Linux 虚拟机
 
@@ -29,19 +29,19 @@ ms.locfileid: "85096428"
 
 ## <a name="virtual-machine"></a>虚拟机
 
-可以通过发布的映像列表或上传到 Azure Stack Hub Blob 存储的自定义托管映像或虚拟硬盘 (VHD) 文件来预配 VM。 Azure Stack Hub 支持运行大量常用的 Linux 发行版，包括 CentOS、Debian、Red Hat Enterprise、Ubuntu 和 SUSE。 有关详细信息，请参阅 [Azure Stack Hub 上的 Linux](/azure-stack/operator/azure-stack-linux)。 还可以选择联合 Azure Stack Hub 市场中提供的某个已发布 Linux 映像。
+可以通过发布的映像列表或上传到 Azure Stack Hub Blob 存储的自定义托管映像或虚拟硬盘 (VHD) 文件来预配 VM。 Azure Stack Hub 支持运行大量常用的 Linux 发行版，包括 CentOS、Debian、Red Hat Enterprise、Ubuntu 和 SUSE。 有关详细信息，请参阅 [Azure Stack Hub 上的 Linux](../operator/azure-stack-linux.md)。 还可以选择联合 Azure Stack Hub 市场中提供的某个已发布 Linux 映像。
 
-Azure Stack Hub 提供了与 Azure 不同的虚拟机大小。 有关详细信息，请参阅 [Azure Stack Hub 中的虚拟机大小](/azure-stack/user/azure-stack-vm-sizes)。 若要将现有工作负荷转移到 Azure Stack Hub，一开始请先使用与本地服务器/Azure 最匹配的 VM 大小。 然后从 CPU、内存和每秒磁盘输入/输出操作次数 (IOPS) 等方面测量实际工作负荷的性能，并根据需要调整大小。
+Azure Stack Hub 提供了与 Azure 不同的虚拟机大小。 有关详细信息，请参阅 [Azure Stack Hub 中的虚拟机大小](./azure-stack-vm-sizes.md)。 若要将现有工作负荷转移到 Azure Stack Hub，一开始请先使用与本地服务器/Azure 最匹配的 VM 大小。 然后从 CPU、内存和每秒磁盘输入/输出操作次数 (IOPS) 等方面测量实际工作负荷的性能，并根据需要调整大小。
 
 ## <a name="disks"></a>磁盘
 
 成本取决于预配磁盘的容量。 IOPS 和吞吐量（即数据传输速率）取决于 VM 大小，因此在预配磁盘时，请全面考虑三个因素（容量、IOPS 和吞吐量）。
 
-Azure Stack Hub 上的磁盘 IOPS（每秒输入/输出操作次数）是 [VM 大小](/azure-stack/user/azure-stack-vm-sizes)（而不是磁盘类型）的函数。 这意味着，对于 Standard_Fs 系列 VM，不管你选择 SSD 还是 HDD 作为磁盘类型，单个额外的数据磁盘的 IOPS 限制都是 2300。 施加的 IOPS 限制是一种上限（最大可能值），目的是防止邻域干扰。 它不是你会在特定 VM 大小上获得的 IOPS 的保证。
+Azure Stack Hub 上的磁盘 IOPS（每秒输入/输出操作次数）是 [VM 大小](./azure-stack-vm-sizes.md)（而不是磁盘类型）的函数。 这意味着，对于 Standard_Fs 系列 VM，不管你选择 SSD 还是 HDD 作为磁盘类型，单个额外的数据磁盘的 IOPS 限制都是 2300。 施加的 IOPS 限制是一种上限（最大可能值），目的是防止邻域干扰。 它不是你会在特定 VM 大小上获得的 IOPS 的保证。
 
-我们还建议使用[托管磁盘](/azure-stack/user/azure-stack-managed-disk-considerations)。 托管磁盘可代你处理存储，简化磁盘管理。 托管磁盘不需要存储帐户。 只需指定磁盘的大小和类型，就可以将它部署为高度可用的资源。
+我们还建议使用[托管磁盘](./azure-stack-managed-disk-considerations.md)。 托管磁盘可代你处理存储，简化磁盘管理。 托管磁盘不需要存储帐户。 只需指定磁盘的大小和类型，就可以将它部署为高度可用的资源。
 
-OS 磁盘是存储在 [Azure Stack Hub 存储](/azure-stack/user/azure-stack-storage-overview)中的 VHD，因此即使主机关闭，OS 磁盘也仍然存在。 对于 Linux VM，OS 磁盘是 /dev/sda1。 我们还建议创建一个或多个[数据磁盘](/azure-stack/user/azure-stack-manage-vm-disks)（用于保存应用程序数据的持久性 VHD）。
+OS 磁盘是存储在 [Azure Stack Hub 存储](./azure-stack-storage-overview.md)中的 VHD，因此即使主机关闭，OS 磁盘也仍然存在。 对于 Linux VM，OS 磁盘是 /dev/sda1。 我们还建议创建一个或多个[数据磁盘](./azure-stack-manage-vm-disks.md)（用于保存应用程序数据的持久性 VHD）。
 
 刚创建的 VHD 尚未格式化， 登录到 VM 对磁盘进行格式化。 在 Linux shell 中，数据磁盘显示为 /dev/sdc、/dev/sdd 等。 可以运行 lsblk 以列出块设备，包括磁盘。 若要使用数据磁盘，请创建一个分区和文件系统，然后装载磁盘。 例如：
 
@@ -67,11 +67,11 @@ sudo mount /dev/sdc1 /data1
 
 -   虚拟网络。 每个 VM 都会部署到可细分为多个子网的虚拟网络中。
 
--   **网络接口 (NIC)** 。 NIC 使 VM 能够与虚拟网络进行通信。 如果 VM 需要多个 NIC，请注意每种 [VM 大小](/azure-stack/user/azure-stack-vm-sizes)都定义了最大 NIC 数量。
+-   **网络接口 (NIC)** 。 NIC 使 VM 能够与虚拟网络进行通信。 如果 VM 需要多个 NIC，请注意每种 [VM 大小](./azure-stack-vm-sizes.md)都定义了最大 NIC 数量。
 
--   **公共 IP 地址/VIP**。 需要使用公共 IP 地址才能与 VM 通信 - 例如，通过远程桌面 (RDP)。 公共 IP 地址可以是动态的或静态的。 默认是动态的。 如果 VM 需要多个 NIC，请注意每种 [VM 大小](/azure-stack/user/azure-stack-vm-sizes)都定义了最大 NIC 数量。
+-   **公共 IP 地址/VIP**。 需要使用公共 IP 地址才能与 VM 通信 - 例如，通过远程桌面 (RDP)。 公共 IP 地址可以是动态的或静态的。 默认是动态的。 如果 VM 需要多个 NIC，请注意每种 [VM 大小](./azure-stack-vm-sizes.md)都定义了最大 NIC 数量。
 
--   还可以为 IP 地址创建完全限定的域名 (FQDN)。 然后，可以在 DNS 中注册指向 FQDN 的 [CNAME 记录](https://en.wikipedia.org/wiki/CNAME_record)。 有关详细信息，请参阅[在 Azure 门户中创建完全限定的域名](/virtual-machines/virtual-machines-linux-portal-create-fqdn)。
+-   还可以为 IP 地址创建完全限定的域名 (FQDN)。 然后，可以在 DNS 中注册指向 FQDN 的 [CNAME 记录](https://en.wikipedia.org/wiki/CNAME_record)。 有关详细信息，请参阅[在 Azure 门户中创建完全限定的域名](/virtual-machines/windows/portal-create-fqdn)。
 
 -   **网络安全组 (NSG)。** 网络安全组用于允许或拒绝向 VM 传送网络流量。 NSG 可与子网或单个 VM 实例相关联。
 
@@ -79,13 +79,13 @@ sudo mount /dev/sdc1 /data1
 
 ## <a name="operations"></a>操作
 
-**SSH**。 在创建 Linux VM 之前，生成 2048 位 RSA 公共/专用密钥对。 创建 VM 时，请使用公钥文件。 有关详细信息，请参阅[如何在 Azure 中将 SSH 用于 Linux](/virtual-machines/virtual-machines-linux-mac-create-ssh-keys)。
+**SSH**。 在创建 Linux VM 之前，生成 2048 位 RSA 公共/专用密钥对。 创建 VM 时，请使用公钥文件。 有关详细信息，请参阅[如何在 Azure 中将 SSH 用于 Linux](/virtual-machines/linux/mac-create-ssh-keys)。
 
-**诊断**。 启用监视和诊断，包括基本运行状况指标、诊断基础结构日志和[启动诊断](https://azure.microsoft.com/blog/boot-diagnostics-for-virtual-machines-v2/)。 如果 VM 陷入不可启动状态，启动诊断有助于诊断启动故障。 创建用于存储日志的 Azure 存储帐户。 标准的本地冗余存储 (LRS) 帐户足以存储诊断日志。 有关详细信息，请参阅[启用监视和诊断](/azure-stack/user/azure-stack-metrics-azure-data)。
+**诊断**。 启用监视和诊断，包括基本运行状况指标、诊断基础结构日志和[启动诊断](https://azure.microsoft.com/blog/boot-diagnostics-for-virtual-machines-v2/)。 如果 VM 陷入不可启动状态，启动诊断有助于诊断启动故障。 创建用于存储日志的 Azure 存储帐户。 标准的本地冗余存储 (LRS) 帐户足以存储诊断日志。 有关详细信息，请参阅[启用监视和诊断](./azure-stack-metrics-azure-data.md)。
 
-**可用性**。 由于 Azure Stack Hub 操作员计划的计划内维护，你的 VM 可能需要重新启动。 为了提高可用性，请在[可用性集](/azure-stack/operator/app-service-deploy-ha)中部署多个 VM。
+**可用性**。 由于 Azure Stack Hub 操作员计划的计划内维护，你的 VM 可能需要重新启动。 为了提高可用性，请在[可用性集](../operator/azure-stack-app-service-deploy.md?view=azs-2002)中部署多个 VM。
 
-**备份** 有关保护 Azure Stack Hub IaaS VM 的建议，请参阅[此文](/azure-stack/user/azure-stack-manage-vm-protect)。
+**备份** 有关保护 Azure Stack Hub IaaS VM 的建议，请参阅[此文](./azure-stack-manage-vm-protect.md)。
 
 **停止 VM**。 Azure 对“已停止”和“已解除分配”状态进行了区分。 VM 状态为“已停止”时，将计费，但 VM 为“已解除分配”状态时，则不计费。 在 Azure Stack Hub 门户中，“停止”按钮可解除分配 VM。 如果在已登录时通过 OS 关闭，VM 会停止，但不会解除分配，因此仍会产生费用。
 
@@ -95,7 +95,7 @@ sudo mount /dev/sdc1 /data1
 
 将 VM 载入到 [Azure 安全中心](/security-center/quick-onboard-azure-stack)以获取 Azure 资源的安全状态的中心视图。 安全中心监视潜在的安全问题，并全面描述了部署的安全运行状况。 安全中心针对每个 Azure 订阅进行配置。 根据[将 Azure 订阅载入安全中心标准版](/security-center/security-center-get-started)中所述启用安全数据收集。 启用数据收集后，安全中心会自动扫描该订阅下创建的所有 VM。
 
-**修补程序管理**。 若要在 VM 上配置修补程序管理，请参阅[此文](/azure-stack/user/vm-update-management)。 如果启用，安全中心会检查是否缺少任何安全更新和关键更新。 使用 VM 上的[组策略设置](https://docs.microsoft.com/windows-server/administration/windows-server-update-services/deploy/4-configure-group-policy-settings-for-automatic-updates)可启用自动系统更新。
+**修补程序管理**。 若要在 VM 上配置修补程序管理，请参阅[此文](./vm-update-management.md)。 如果启用，安全中心会检查是否缺少任何安全更新和关键更新。 使用 VM 上的[组策略设置](https://docs.microsoft.com/windows-server/administration/windows-server-update-services/deploy/4-configure-group-policy-settings-for-automatic-updates)可启用自动系统更新。
 
 **反恶意软件**。 如果启用，安全中心将检查是否已安装反恶意软件。 还可以使用安全中心从 Azure 门户中安装反恶意软件。
 
@@ -104,9 +104,9 @@ sudo mount /dev/sdc1 /data1
 > [!Note]  
 > RBAC 不限制已登录到 VM 的用户可以执行的操作。 这些权限由来宾 OS 上的帐户类型决定。
 
-**审核日志**。 使用[活动日志](/azure-stack/user/azure-stack-metrics-azure-data?#activity-log)可查看预配操作和其他 VM 事件。
+**审核日志**。 使用[活动日志](./azure-stack-metrics-azure-data.md?#activity-log)可查看预配操作和其他 VM 事件。
 
-**数据加密**。 Azure Stack Hub 使用静态加密来保护存储子系统级别的用户数据和基础结构数据。 Azure Stack Hub 的存储子系统按照 128 位 AES 加密法使用 BitLocker 进行加密。 有关更多详细信息，请参阅[此文](/azure-stack/operator/azure-stack-security-bitlocker)。
+**数据加密**。 Azure Stack Hub 使用静态加密来保护存储子系统级别的用户数据和基础结构数据。 Azure Stack Hub 的存储子系统按照 128 位 AES 加密法使用 BitLocker 进行加密。 有关更多详细信息，请参阅[此文](../operator/azure-stack-security-bitlocker.md)。
 
 ## <a name="next-steps"></a>后续步骤
 

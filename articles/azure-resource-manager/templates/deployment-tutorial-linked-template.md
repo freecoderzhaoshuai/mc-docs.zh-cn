@@ -2,15 +2,19 @@
 title: 教程 - 部署链接模板
 description: 了解如何部署链接模板
 origin.date: 03/13/2020
-ms.date: 05/08/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.topic: tutorial
 ms.author: v-yeche
-ms.openlocfilehash: e6e579d72488f89a94b03f59cda662050abd7835
-ms.sourcegitcommit: 81241aa44adbcac0764e2b5eb865b96ae56da6b7
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 1c56fe22d04211c4e63cae0031cb067c4158c0aa
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/09/2020
-ms.locfileid: "83002051"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807871"
 ---
 # <a name="tutorial-deploy-a-linked-template"></a>教程：部署链接模板
 
@@ -51,7 +55,8 @@ ms.locfileid: "83002051"
         "Standard_LRS",
         "Standard_GRS",
         "Standard_RAGRS",
-        "Premium_LRS"
+        "Premium_LRS",
+        "Standard_RAGZRS"
       ],
       "metadata": {
         "description": "Specify the storage account type."
@@ -67,7 +72,6 @@ ms.locfileid: "83002051"
   },
   "variables": {
     
-
     "storageAccountName": "[concat(parameters('projectName'), 'store')]",
     "webAppName": "[concat(parameters('projectName'), 'WebApp')]",
     "appServicePlanName": "[concat(parameters('projectName'), 'Plan')]"
@@ -142,7 +146,6 @@ ms.locfileid: "83002051"
   "contentVersion": "1.0.0.0",
   "parameters": {
     "storageAccountEndPoint": "https://core.chinacloudapi.cn/",
-
     "storageAccountName": {
       "type": "string",
       "metadata": {
@@ -162,7 +165,8 @@ ms.locfileid: "83002051"
         "Standard_LRS",
         "Standard_GRS",
         "Standard_RAGRS",
-        "Premium_LRS"
+        "Premium_LRS",
+        "Standard_RAGZRS"
       ],
       "metadata": {
         "description": "Specify the storage account type."
@@ -231,7 +235,6 @@ ms.locfileid: "83002051"
   },
   "variables": {
     "storageAccountEndPoint": "https://core.chinacloudapi.cn/",
-
     "storageAccountName": "[concat(parameters('projectName'), 'store')]",
     "webAppName": "[concat(parameters('projectName'), 'WebApp')]",
     "appServicePlanName": "[concat(parameters('projectName'), 'Plan')]"
@@ -248,7 +251,6 @@ ms.locfileid: "83002051"
         },
         "parameters": {
           "storageAccountEndPoint": "https://core.chinacloudapi.cn/",
-
           "storageAccountName": {
             "value": "[variables('storageAccountName')]"
           },
@@ -310,7 +312,8 @@ ms.locfileid: "83002051"
 
 以下 PowerShell 脚本将创建存储帐户，创建容器，然后将链接模板从 GitHub 存储库复制到该容器。 链接模板的副本存储在 [GitHub](https://raw.githubusercontent.com/Azure/azure-docs-json-samples/master/get-started-deployment/linked-template/linkedStorageAccount.json) 中。
 
-<!--Not Availablre on Select **Try-it** to open the local Shell, select **Copy** to copy the PowerShell script, and right-click the shell pane to paste the script:-->
+<!--Not Available on Azure Cloud shell-->
+<!--Not Available on Select **Try-it** to open the local Shell, select **Copy** to copy the PowerShell script, and right-click the shell pane to paste the script:-->
 
 > [!IMPORTANT]
 > 存储帐户名称长度必须为 3 到 24 个字符，并且只能使用数字和小写字母。 该名称必须是唯一的。 在模板中，存储帐户名称是追加了“store”的项目名称，项目名称的长度必须介于 3 到 11 个字符之间。 因此，项目名称必须符合存储帐户名称要求，且短于 11 个字符。
@@ -437,10 +440,10 @@ az deployment group create \
 
 通过删除资源组来清理你部署的资源。
 
-1. 在 Azure 门户上的左侧菜单中选择“资源组”  。
-2. 在“按名称筛选”字段中输入资源组名称。 
+1. 在 Azure 门户上的左侧菜单中选择“资源组”。
+2. 在“按名称筛选”字段中输入资源组名称。
 3. 选择资源组名称。
-4. 在顶部菜单中选择“删除资源组”。 
+4. 在顶部菜单中选择“删除资源组”。
 
 ## <a name="next-steps"></a>后续步骤
 
@@ -449,5 +452,4 @@ az deployment group create \
 > [!div class="nextstepaction"]
 > [创建管道](./deployment-tutorial-pipeline.md)
 
-<!-- Update_Description: new article about deployment tutorial linked template -->
-<!--NEW.date: 04/30/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

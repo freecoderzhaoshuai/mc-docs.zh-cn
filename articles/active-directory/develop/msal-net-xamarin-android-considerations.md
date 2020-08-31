@@ -9,17 +9,16 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 02/24/2020
+ms.date: 08/18/2020
 ms.author: v-junlch
 ms.reviewer: saeeda
-ms.custom: aaddev
-ms.collection: M365-identity-device-management
-ms.openlocfilehash: 87d3348db91f9435c1dbaa26381ce870c5a396ff
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp, aaddev
+ms.openlocfilehash: dccd1050ce99b5de99fffcfc75cbda525fb4ba45
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77653437"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647554"
 ---
 # <a name="considerations-for-using-xamarin-android-with-msalnet"></a>将 Xamarin Android 与 MSAL.NET 配合使用时的注意事项
 本文介绍将 Xamarin Android 与适用于 .NET 的 Microsoft 身份验证库 (MSAL.NET) 配合使用时的注意事项。
@@ -146,7 +145,7 @@ var authResult = AcquireTokenInteractive(scopes)
 
 ### <a name="error-the-name-authenticationcontinuationhelper-doesnt-exist-in-the-current-context"></a>错误：名称 AuthenticationContinuationHelper 不存在于当前上下文中
 
-如果有错误指出 `AuthenticationContinuationHelper` 不存在于当前上下文中，原因可能是 Visual Studio 错误地更新了 Android.csproj* 文件。 有时， *\<HintPath>* 文件路径会错误地包含 *netstandard13* 而不是 *monoandroid90*。
+如果有错误指出 `AuthenticationContinuationHelper` 不存在于当前上下文中，原因可能是 Visual Studio 错误地更新了 Android.csproj* 文件。 有时候，\<HintPath> 文件路径会错误地包含 netstandard13 而非 monoandroid90。
 
 此示例包含正确的文件路径：
 

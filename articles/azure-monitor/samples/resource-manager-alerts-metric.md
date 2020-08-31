@@ -1,18 +1,18 @@
 ---
-title: 使用 Resource Manager 模板创建指标警报
-description: 了解如何使用资源管理器模板创建指标警报。
+title: 用于指标警报的资源管理器模板示例
+description: 本文提供用于在 Azure Monitor 中创建指标警报的示例资源管理器模板。
 author: bwren
 ms.author: v-johya
 services: azure-monitor
 ms.topic: sample
-ms.date: 07/15/2020
+ms.date: 08/20/2020
 ms.subservice: alerts
-ms.openlocfilehash: d492f35b04c3d857f39b84dccffd66d7ea641317
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.openlocfilehash: aed1cefa022af37d67b4719c9fb9c3b1a8ea7ca6
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440565"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148654"
 ---
 # <a name="resource-manager-template-samples-for-metric-alert-rules-in-azure-monitor"></a>用于 Azure Monitor 指标警报规则的资源管理器模板示例
 
@@ -23,7 +23,7 @@ ms.locfileid: "86440565"
 有关可用于指标警报规则的资源列表，请参阅 [Azure Monitor 中的指标警报支持的资源](../platform/alerts-metric-near-real-time.md)。 有关警报规则的架构和属性的说明，请参阅[指标警报 - 创建或更新](https://docs.microsoft.com/rest/api/monitor/metricalerts/createorupdate)。
 
 > [!NOTE]
-> 用于针对资源类型创建指标警报的资源模板：Azure Log Analytics 工作区（即 `Microsoft.OperationalInsights/workspaces`）需要执行其他步骤。 有关详细信息，请参阅[日志指标警报 - 资源模板](../../azure-monitor/platform/alerts-metric-logs.md#resource-template-for-metric-alerts-for-logs)。
+> 用于针对资源类型创建指标警报的资源模板：Azure Log Analytics 工作区（即 `Microsoft.OperationalInsights/workspaces`）需要执行其他步骤。 有关详细信息，请参阅[日志指标警报 - 资源模板](../platform/alerts-metric-logs.md#resource-template-for-metric-alerts-for-logs)。
 
 
 
@@ -712,9 +712,9 @@ ms.locfileid: "86440565"
 2. **ApiName** - 只对“GetBlob”和“PutBlob”维度值监视不同的时序 。
 
 例如，该警报规则监视的几个潜在时序是：
-- Metric = 事务、ResponseType = 成功、ApiName = GetBlob  
-- Metric = 事务、ResponseType = 成功、ApiName = PutBlob  
-- Metric = 事务、ResponseType = 服务器超时、ApiName = GetBlob  
+- Metric = 事务、ResponseType = 成功、ApiName = GetBlob
+- Metric = 事务、ResponseType = 成功、ApiName = PutBlob
+- Metric = 事务、ResponseType = 服务器超时、ApiName = GetBlob
 - Metric = Transactions，ResponseType = Server Timeout，ApiName = PutBlob
 
 ### <a name="template-file"></a>模板文件
@@ -903,9 +903,9 @@ ms.locfileid: "86440565"
 2. **ApiName** - 只对“GetBlob”和“PutBlob”维度值监视不同的时序 。
 
 例如，该警报规则监视的几个潜在时序是：
-- Metric = 事务、ResponseType = 成功、ApiName = GetBlob  
-- Metric = 事务、ResponseType = 成功、ApiName = PutBlob  
-- Metric = 事务、ResponseType = 服务器超时、ApiName = GetBlob  
+- Metric = 事务、ResponseType = 成功、ApiName = GetBlob
+- Metric = 事务、ResponseType = 成功、ApiName = PutBlob
+- Metric = 事务、ResponseType = 服务器超时、ApiName = GetBlob
 - Metric = Transactions，ResponseType = Server Timeout，ApiName = PutBlob
 
 >[!NOTE]
@@ -1090,11 +1090,1765 @@ ms.locfileid: "86440565"
 
 
 
-<!--Not available in MC-->
-<!--Not available in MC-->
+<!--Not available in MC: ## Custom metric, static threshold-->
+## <a name="multiple-resources"></a>多个资源
+
+对于同一 Azure 区域中的资源，Azure Monitor 支持使用单个指标警报规则监视相同类型的多个资源。 此功能目前仅在 Azure 公有云中受支持，并且仅适用于虚拟机、SQL Server 数据库、SQL Server 弹性池和 Data Box 边缘设备。 另外，此功能仅适用于平台指标，不支持自定义指标。
+
+动态阈值警报规则还可以帮助一次为数百个指标系列（甚至不同类型）创建定制阈值，从而减少需要管理的警报规则。
+
+本部分将介绍适用于三种方案的 Azure 资源管理器模板，它们用于使用单个规则监视多个资源。
+
+- 监视一个或多个资源组中的所有虚拟机（在单个 Azure 区域中）。
+- 监视单个订阅中的所有虚拟机（在单个 Azure 区域中）。
+- 监视单个订阅中的虚拟机列表（在单个 Azure 区域中）。
+
+> [!NOTE]
+>
+> 在监视多个资源的指标警报规则中，仅允许包含一个条件。
+
+### <a name="static-threshold-alert-on-all-virtual-machines-in-one-or-more-resource-groups"></a>一个或多个资源组中所有虚拟机上的静态阈值警报
+
+此模板将创建静态阈值指标警报规则，用于监视一个或多个资源组中的所有虚拟机（在单个 Azure 区域中）的 CPU 百分比。
+
+将下面的 json 保存为 all-vms-in-resource-group-static.json 以用于此演练。
+
+### <a name="template-file"></a>模板文件
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "alertName": {
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Name of the alert"
+            }
+        },
+        "alertDescription": {
+            "type": "string",
+            "defaultValue": "This is a metric alert",
+            "metadata": {
+                "description": "Description of alert"
+            }
+        },
+        "alertSeverity": {
+            "type": "int",
+            "defaultValue": 3,
+            "allowedValues": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "metadata": {
+                "description": "Severity of alert {0,1,2,3,4}"
+            }
+        },
+        "isEnabled": {
+            "type": "bool",
+            "defaultValue": true,
+            "metadata": {
+                "description": "Specifies whether the alert is enabled"
+            }
+        },
+        "targetResourceGroup":{
+            "type": "array",
+            "minLength": 1,
+            "metadata": {
+                "description": "Full path of the resource group(s) where target resources to be monitored are in. For example - /subscriptions/00000000-0000-0000-0000-0000-00000000/resourceGroups/ResourceGroupName"
+            }
+        },
+        "targetResourceRegion":{
+            "type": "string",
+            "allowedValues": [
+                "ChinaNorth",
+        "ChinaNorth2",
+        "ChinaEast",
+                "ChinaEast2"
+            ],
+            "metadata": {
+                "description": "Azure region in which target resources to be monitored are in (without spaces). For example: ChinaNorth"
+            }
+        },
+        "targetResourceType": {
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Resource type of target resources to be monitored. Currently only supported resource type is Microsoft.Compute/virtualMachines"
+            }
+        },
+        "metricName": {
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Name of the metric used in the comparison to activate the alert."
+            }
+        },
+        "operator": {
+            "type": "string",
+            "defaultValue": "GreaterThan",
+            "allowedValues": [
+                "Equals",
+                "NotEquals",
+                "GreaterThan",
+                "GreaterThanOrEqual",
+                "LessThan",
+                "LessThanOrEqual"
+            ],
+            "metadata": {
+                "description": "Operator comparing the current value with the threshold value."
+            }
+        },
+        "threshold": {
+            "type": "string",
+            "defaultValue": "0",
+            "metadata": {
+                "description": "The threshold value at which the alert is activated."
+            }
+        },
+        "timeAggregation": {
+            "type": "string",
+            "defaultValue": "Average",
+            "allowedValues": [
+                "Average",
+                "Minimum",
+                "Maximum",
+                "Total",
+                "Count"
+            ],
+            "metadata": {
+                "description": "How the data that is collected should be combined over time."
+            }
+        },
+        "windowSize": {
+            "type": "string",
+            "defaultValue": "PT5M",
+            "allowedValues": [
+                "PT1M",
+                "PT5M",
+                "PT15M",
+                "PT30M",
+                "PT1H",
+                "PT6H",
+                "PT12H",
+                "PT24H"
+            ],
+            "metadata": {
+                "description": "Period of time used to monitor alert activity based on the threshold. Must be between one minute and one day. ISO 8601 duration format."
+            }
+        },
+        "evaluationFrequency": {
+            "type": "string",
+            "defaultValue": "PT1M",
+            "allowedValues": [
+                "PT1M",
+                "PT5M",
+                "PT15M",
+                "PT30M"
+            ],
+            "metadata": {
+                "description": "how often the metric alert is evaluated represented in ISO 8601 duration format"
+            }
+        },
+        "actionGroupId": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "The ID of the action group that is triggered when the alert is activated or deactivated"
+            }
+        }
+    },
+    "variables": {  },
+    "resources": [
+        {
+            "name": "[parameters('alertName')]",
+            "type": "Microsoft.Insights/metricAlerts",
+            "location": "global",
+            "apiVersion": "2018-03-01",
+            "tags": {},
+            "properties": {
+                "description": "[parameters('alertDescription')]",
+                "severity": "[parameters('alertSeverity')]",
+                "enabled": "[parameters('isEnabled')]",
+                "scopes": "[parameters('targetResourceGroup')]",
+                "targetResourceType": "[parameters('targetResourceType')]",
+                "targetResourceRegion": "[parameters('targetResourceRegion')]",
+                "evaluationFrequency":"[parameters('evaluationFrequency')]",
+                "windowSize": "[parameters('windowSize')]",
+                "criteria": {
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria",
+                    "allOf": [
+                        {
+                            "name" : "1st criterion",
+                            "metricName": "[parameters('metricName')]",
+                            "dimensions":[],
+                            "operator": "[parameters('operator')]",
+                            "threshold" : "[parameters('threshold')]",
+                            "timeAggregation": "[parameters('timeAggregation')]"
+                        }
+                    ]
+                },
+                "actions": [
+                    {
+                        "actionGroupId": "[parameters('actionGroupId')]"
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+### <a name="parameter-file"></a>参数文件
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "alertName": {
+            "value": "Multi-resource metric alert via Azure Resource Manager template"
+        },
+        "alertDescription": {
+            "value": "New Multi-resource metric alert created via template"
+        },
+        "alertSeverity": {
+            "value":3
+        },
+        "isEnabled": {
+            "value": true
+        },
+        "targetResourceGroup":{
+            "value": [
+                "/subscriptions/replace-with-subscription-id/resourceGroups/replace-with-resource-group-name1",
+                "/subscriptions/replace-with-subscription-id/resourceGroups/replace-with-resource-group-name2"
+            ]
+        },
+        "targetResourceRegion":{
+            "value": "SouthCentralUS"
+        },
+        "targetResourceType":{
+            "value": "Microsoft.Compute/virtualMachines"
+        },
+        "metricName": {
+            "value": "Percentage CPU"
+        },
+        "operator": {
+          "value": "GreaterThan"
+        },
+        "threshold": {
+            "value": "0"
+        },
+        "timeAggregation": {
+            "value": "Average"
+        },
+        "actionGroupId": {
+            "value": "/subscriptions/replace-with-subscription-id/resourceGroups/replace-with-resource-group-name/providers/Microsoft.Insights/actionGroups/replace-with-action-group-name"
+        }
+    }
+}
+```
+
+
+
+### <a name="dynamic-thresholds-alert-on-all-virtual-machines-in-one-or-more-resource-groups"></a>一个或多个资源组中所有虚拟机上的动态阈值警报
+此示例将创建动态阈值指标警报规则，用于监视一个或多个资源组中的所有虚拟机（在单个 Azure 区域中）的 CPU 百分比。
+
+### <a name="template-file"></a>模板文件
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "alertName": {
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Name of the alert"
+            }
+        },
+        "alertDescription": {
+            "type": "string",
+            "defaultValue": "This is a metric alert",
+            "metadata": {
+                "description": "Description of alert"
+            }
+        },
+        "alertSeverity": {
+            "type": "int",
+            "defaultValue": 3,
+            "allowedValues": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "metadata": {
+                "description": "Severity of alert {0,1,2,3,4}"
+            }
+        },
+        "isEnabled": {
+            "type": "bool",
+            "defaultValue": true,
+            "metadata": {
+                "description": "Specifies whether the alert is enabled"
+            }
+        },
+        "targetResourceGroup":{
+            "type": "array",
+            "minLength": 1,
+            "metadata": {
+                "description": "Full path of the resource group(s) where target resources to be monitored are in. For example - /subscriptions/00000000-0000-0000-0000-0000-00000000/resourceGroups/ResourceGroupName"
+            }
+        },
+        "targetResourceRegion":{
+            "type": "string",
+            "allowedValues": [
+                "ChinaNorth",
+                "ChinaNorth2",
+                "CentralUS",
+                "NorthCentralUS",
+                "SouthCentralUS",
+                "WestCentralUS",
+                "ChinaNorth",
+                "ChinaNorth2",
+                "CanadaEast",
+                "CanadaCentral",
+                "BrazilSouth",
+                "NorthEurope",
+                "chinanorth",
+                "FranceCentral",
+                "FranceSouth",
+                "UKWest",
+                "UKSouth",
+                "GermanyCentral",
+                "GermanyNortheast",
+                "GermanyNorth",
+                "GermanyWestCentral",
+                "SwitzerlandNorth",
+                "SwitzerlandWest",
+                "NorwayEast",
+                "NorwayWest",
+                "SoutheastAsia",
+                "EastAsia",
+                "AustraliaEast",
+                "AustraliaSoutheast",
+                "AustraliaCentral",
+                "AustraliaCentral2",
+                "ChinaEast",
+                "ChinaNorth",
+                "ChinaEast2",
+                "ChinaNorth2",
+                "CentralIndia",
+                "WestIndia",
+                "SouthIndia",
+                "ChinaNorth",
+                "ChinaNorth",
+                "KoreaCentral",
+                "KoreaSouth",
+                "SouthAfricaWest",
+                "SouthAfricaNorth",
+                "UAECentral",
+                "UAENorth"
+            ],
+            "metadata": {
+                "description": "Azure region in which target resources to be monitored are in (without spaces). For example: ChinaNorth"
+            }
+        },
+        "targetResourceType": {
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Resource type of target resources to be monitored. Currently only supported resource type is Microsoft.Compute/virtualMachines"
+            }
+        },
+        "metricName": {
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Name of the metric used in the comparison to activate the alert."
+            }
+        },
+        "operator": {
+            "type": "string",
+            "defaultValue": "GreaterOrLessThan",
+            "allowedValues": [
+                "GreaterThan",
+                "LessThan",
+                "GreaterOrLessThan"
+            ],
+            "metadata": {
+                "description": "Operator comparing the current value with the threshold value."
+            }
+        },
+        "alertSensitivity": {
+            "type": "string",
+            "defaultValue": "Medium",
+            "allowedValues": [
+                "High",
+                "Medium",
+                "Low"
+            ],
+            "metadata": {
+                "description": "Tunes how 'noisy' the Dynamic Thresholds alerts will be: 'High' will result in more alerts while 'Low' will result in fewer alerts."
+            }
+        },
+        "numberOfEvaluationPeriods": {
+            "type": "string",
+            "defaultValue": "4",
+            "metadata": {
+                "description": "The number of periods to check in the alert evaluation."
+            }
+        },
+        "minFailingPeriodsToAlert": {
+            "type": "string",
+            "defaultValue": "3",
+            "metadata": {
+                "description": "The number of unhealthy periods to alert on (must be lower or equal to numberOfEvaluationPeriods)."
+            }
+        },
+        "timeAggregation": {
+            "type": "string",
+            "defaultValue": "Average",
+            "allowedValues": [
+                "Average",
+                "Minimum",
+                "Maximum",
+                "Total",
+                "Count"
+            ],
+            "metadata": {
+                "description": "How the data that is collected should be combined over time."
+            }
+        },
+        "windowSize": {
+            "type": "string",
+            "defaultValue": "PT5M",
+            "allowedValues": [
+                "PT5M",
+                "PT15M",
+                "PT30M",
+                "PT1H"
+            ],
+            "metadata": {
+                "description": "Period of time used to monitor alert activity based on the threshold. Must be between five minutes and one hour. ISO 8601 duration format."
+            }
+        },
+        "evaluationFrequency": {
+            "type": "string",
+            "defaultValue": "PT5M",
+            "allowedValues": [
+                "PT5M",
+                "PT15M",
+                "PT30M",
+                "PT1H"
+            ],
+            "metadata": {
+                "description": "how often the metric alert is evaluated represented in ISO 8601 duration format"
+            }
+        },
+        "actionGroupId": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "The ID of the action group that is triggered when the alert is activated or deactivated"
+            }
+        }
+    },
+    "variables": {  },
+    "resources": [
+        {
+            "name": "[parameters('alertName')]",
+            "type": "Microsoft.Insights/metricAlerts",
+            "location": "global",
+            "apiVersion": "2018-03-01",
+            "tags": {},
+            "properties": {
+                "description": "[parameters('alertDescription')]",
+                "severity": "[parameters('alertSeverity')]",
+                "enabled": "[parameters('isEnabled')]",
+                "scopes": "[parameters('targetResourceGroup')]",
+                "targetResourceType": "[parameters('targetResourceType')]",
+                "targetResourceRegion": "[parameters('targetResourceRegion')]",
+                "evaluationFrequency":"[parameters('evaluationFrequency')]",
+                "windowSize": "[parameters('windowSize')]",
+                "criteria": {
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria",
+                    "allOf": [
+                        {
+                            "criterionType": "DynamicThresholdCriterion",
+                            "name" : "1st criterion",
+                            "metricName": "[parameters('metricName')]",
+                            "dimensions":[],
+                            "operator": "[parameters('operator')]",
+                            "alertSensitivity": "[parameters('alertSensitivity')]",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": "[parameters('numberOfEvaluationPeriods')]",
+                                "minFailingPeriodsToAlert": "[parameters('minFailingPeriodsToAlert')]"
+                            },
+                            "timeAggregation": "[parameters('timeAggregation')]"
+                        }
+                    ]
+                },
+                "actions": [
+                    {
+                        "actionGroupId": "[parameters('actionGroupId')]"
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+### <a name="parameter-file"></a>参数文件
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "alertName": {
+            "value": "Multi-resource metric alert with Dynamic Thresholds via Azure Resource Manager template"
+        },
+        "alertDescription": {
+            "value": "New Multi-resource metric alert with Dynamic Thresholds created via template"
+        },
+        "alertSeverity": {
+            "value":3
+        },
+        "isEnabled": {
+            "value": true
+        },
+        "targetResourceGroup":{
+            "value": [
+                "/subscriptions/replace-with-subscription-id/resourceGroups/replace-with-resource-group-name1",
+                "/subscriptions/replace-with-subscription-id/resourceGroups/replace-with-resource-group-name2"
+            ]
+        },
+        "targetResourceRegion":{
+            "value": "SouthCentralUS"
+        },
+        "targetResourceType":{
+            "value": "Microsoft.Compute/virtualMachines"
+        },
+        "metricName": {
+            "value": "Percentage CPU"
+        },
+        "operator": {
+          "value": "GreaterOrLessThan"
+        },
+        "alertSensitivity": {
+            "value": "Medium"
+        },
+        "numberOfEvaluationPeriods": {
+            "value": "4"
+        },
+        "minFailingPeriodsToAlert": {
+            "value": "3"
+        },
+        "timeAggregation": {
+            "value": "Average"
+        },
+        "actionGroupId": {
+            "value": "/subscriptions/replace-with-subscription-id/resourceGroups/replace-with-resource-group-name/providers/Microsoft.Insights/actionGroups/replace-with-action-group-name"
+        }
+    }
+}
+```
+
+
+### <a name="static-threshold-alert-on-all-virtual-machines-in-a-subscription"></a>订阅中所有虚拟机上的静态阈值警报
+此示例将创建静态阈值指标警报规则，用于监视单个订阅中的所有虚拟机（在单个 Azure 区域中）的 CPU 百分比。
+
+### <a name="template-file"></a>模板文件
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "alertName": {
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Name of the alert"
+            }
+        },
+        "alertDescription": {
+            "type": "string",
+            "defaultValue": "This is a metric alert",
+            "metadata": {
+                "description": "Description of alert"
+            }
+        },
+        "alertSeverity": {
+            "type": "int",
+            "defaultValue": 3,
+            "allowedValues": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "metadata": {
+                "description": "Severity of alert {0,1,2,3,4}"
+            }
+        },
+        "isEnabled": {
+            "type": "bool",
+            "defaultValue": true,
+            "metadata": {
+                "description": "Specifies whether the alert is enabled"
+            }
+        },
+        "targetSubscription":{
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Azure Resource Manager path up to subscription ID. For example - /subscriptions/00000000-0000-0000-0000-0000-00000000"
+            }
+        },
+        "targetResourceRegion":{
+            "type": "string",
+            "allowedValues": [
+                "ChinaNorth",
+                "ChinaNorth2",
+                "CentralUS",
+                "NorthCentralUS",
+                "SouthCentralUS",
+                "WestCentralUS",
+                "ChinaNorth",
+                "ChinaNorth2",
+                "CanadaEast",
+                "CanadaCentral",
+                "BrazilSouth",
+                "NorthEurope",
+                "chinanorth",
+                "FranceCentral",
+                "FranceSouth",
+                "UKWest",
+                "UKSouth",
+                "GermanyCentral",
+                "GermanyNortheast",
+                "GermanyNorth",
+                "GermanyWestCentral",
+                "SwitzerlandNorth",
+                "SwitzerlandWest",
+                "NorwayEast",
+                "NorwayWest",
+                "SoutheastAsia",
+                "EastAsia",
+                "AustraliaEast",
+                "AustraliaSoutheast",
+                "AustraliaCentral",
+                "AustraliaCentral2",
+                "ChinaEast",
+                "ChinaNorth",
+                "ChinaEast2",
+                "ChinaNorth2",
+                "CentralIndia",
+                "WestIndia",
+                "SouthIndia",
+                "ChinaNorth",
+                "ChinaNorth",
+                "KoreaCentral",
+                "KoreaSouth",
+                "SouthAfricaWest",
+                "SouthAfricaNorth",
+                "UAECentral",
+                "UAENorth"
+            ],
+            "metadata": {
+                "description": "Azure region in which target resources to be monitored are in (without spaces). For example: ChinaNorth"
+            }
+        },
+        "targetResourceType": {
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Resource type of target resources to be monitored. Currently only supported resource type is Microsoft.Compute/virtualMachines"
+            }
+        },
+        "metricName": {
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Name of the metric used in the comparison to activate the alert."
+            }
+        },
+        "operator": {
+            "type": "string",
+            "defaultValue": "GreaterThan",
+            "allowedValues": [
+                "Equals",
+                "NotEquals",
+                "GreaterThan",
+                "GreaterThanOrEqual",
+                "LessThan",
+                "LessThanOrEqual"
+            ],
+            "metadata": {
+                "description": "Operator comparing the current value with the threshold value."
+            }
+        },
+        "threshold": {
+            "type": "string",
+            "defaultValue": "0",
+            "metadata": {
+                "description": "The threshold value at which the alert is activated."
+            }
+        },
+        "timeAggregation": {
+            "type": "string",
+            "defaultValue": "Average",
+            "allowedValues": [
+                "Average",
+                "Minimum",
+                "Maximum",
+                "Total",
+                "Count"
+            ],
+            "metadata": {
+                "description": "How the data that is collected should be combined over time."
+            }
+        },
+        "windowSize": {
+            "type": "string",
+            "defaultValue": "PT5M",
+            "allowedValues": [
+                "PT1M",
+                "PT5M",
+                "PT15M",
+                "PT30M",
+                "PT1H",
+                "PT6H",
+                "PT12H",
+                "PT24H"
+            ],
+            "metadata": {
+                "description": "Period of time used to monitor alert activity based on the threshold. Must be between one minute and one day. ISO 8601 duration format."
+            }
+        },
+        "evaluationFrequency": {
+            "type": "string",
+            "defaultValue": "PT1M",
+            "allowedValues": [
+                "PT1M",
+                "PT5M",
+                "PT15M",
+                "PT30M",
+                "PT1H"
+            ],
+            "metadata": {
+                "description": "how often the metric alert is evaluated represented in ISO 8601 duration format"
+            }
+        },
+        "actionGroupId": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "The ID of the action group that is triggered when the alert is activated or deactivated"
+            }
+        }
+    },
+    "variables": {  },
+    "resources": [
+        {
+            "name": "[parameters('alertName')]",
+            "type": "Microsoft.Insights/metricAlerts",
+            "location": "global",
+            "apiVersion": "2018-03-01",
+            "tags": {},
+            "properties": {
+                "description": "[parameters('alertDescription')]",
+                "severity": "[parameters('alertSeverity')]",
+                "enabled": "[parameters('isEnabled')]",
+                "scopes": ["[parameters('targetSubscription')]"],
+                "targetResourceType": "[parameters('targetResourceType')]",
+                "targetResourceRegion": "[parameters('targetResourceRegion')]",
+                "evaluationFrequency":"[parameters('evaluationFrequency')]",
+                "windowSize": "[parameters('windowSize')]",
+                "criteria": {
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria",
+                    "allOf": [
+                        {
+                            "name" : "1st criterion",
+                            "metricName": "[parameters('metricName')]",
+                            "dimensions":[],
+                            "operator": "[parameters('operator')]",
+                            "threshold" : "[parameters('threshold')]",
+                            "timeAggregation": "[parameters('timeAggregation')]"
+                        }
+                    ]
+                },
+                "actions": [
+                    {
+                        "actionGroupId": "[parameters('actionGroupId')]"
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+### <a name="parameter-file"></a>参数文件
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "alertName": {
+            "value": "Multi-resource sub level metric alert via Azure Resource Manager template"
+        },
+        "alertDescription": {
+            "value": "New Multi-resource sub level metric alert created via template"
+        },
+        "alertSeverity": {
+            "value":3
+        },
+        "isEnabled": {
+            "value": true
+        },
+        "targetSubscription":{
+            "value": "/subscriptions/replace-with-subscription-id"
+        },
+        "targetResourceRegion":{
+            "value": "SouthCentralUS"
+        },
+        "targetResourceType":{
+            "value": "Microsoft.Compute/virtualMachines"
+        },        
+        "metricName": {
+            "value": "Percentage CPU"
+        },
+        "operator": {
+          "value": "GreaterThan"
+        },
+        "threshold": {
+            "value": "0"
+        },
+        "timeAggregation": {
+            "value": "Average"
+        },
+        "actionGroupId": {
+            "value": "/subscriptions/replace-with-subscription-id/resourceGroups/replace-with-resource-group-name/providers/Microsoft.Insights/actionGroups/replace-with-action-group-name"
+        }
+    }
+}
+```
+
+### <a name="dynamic-thresholds-alert-on-all-virtual-machines-in-a-subscription"></a>订阅中所有虚拟机上的动态阈值警报
+此示例将创建动态阈值指标警报规则，用于监视单个订阅中的所有虚拟机（在单个 Azure 区域中）的 CPU 百分比。
+
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "alertName": {
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Name of the alert"
+            }
+        },
+        "alertDescription": {
+            "type": "string",
+            "defaultValue": "This is a metric alert",
+            "metadata": {
+                "description": "Description of alert"
+            }
+        },
+        "alertSeverity": {
+            "type": "int",
+            "defaultValue": 3,
+            "allowedValues": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "metadata": {
+                "description": "Severity of alert {0,1,2,3,4}"
+            }
+        },
+        "isEnabled": {
+            "type": "bool",
+            "defaultValue": true,
+            "metadata": {
+                "description": "Specifies whether the alert is enabled"
+            }
+        },
+        "targetSubscription":{
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Azure Resource Manager path up to subscription ID. For example - /subscriptions/00000000-0000-0000-0000-0000-00000000"
+            }
+        },
+        "targetResourceRegion":{
+            "type": "string",
+            "allowedValues": [
+                "ChinaNorth",
+                "ChinaNorth2",
+                "CentralUS",
+                "NorthCentralUS",
+                "SouthCentralUS",
+                "WestCentralUS",
+                "ChinaNorth",
+                "ChinaNorth2",
+                "CanadaEast",
+                "CanadaCentral",
+                "BrazilSouth",
+                "NorthEurope",
+                "chinanorth",
+                "FranceCentral",
+                "FranceSouth",
+                "UKWest",
+                "UKSouth",
+                "GermanyCentral",
+                "GermanyNortheast",
+                "GermanyNorth",
+                "GermanyWestCentral",
+                "SwitzerlandNorth",
+                "SwitzerlandWest",
+                "NorwayEast",
+                "NorwayWest",
+                "SoutheastAsia",
+                "EastAsia",
+                "AustraliaEast",
+                "AustraliaSoutheast",
+                "AustraliaCentral",
+                "AustraliaCentral2",
+                "ChinaEast",
+                "ChinaNorth",
+                "ChinaEast2",
+                "ChinaNorth2",
+                "CentralIndia",
+                "WestIndia",
+                "SouthIndia",
+                "ChinaNorth",
+                "ChinaNorth",
+                "KoreaCentral",
+                "KoreaSouth",
+                "SouthAfricaWest",
+                "SouthAfricaNorth",
+                "UAECentral",
+                "UAENorth"
+            ],
+            "metadata": {
+                "description": "Azure region in which target resources to be monitored are in (without spaces). For example: ChinaNorth"
+            }
+        },
+        "targetResourceType": {
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Resource type of target resources to be monitored. Currently only supported resource type is Microsoft.Compute/virtualMachines"
+            }
+        },
+        "metricName": {
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Name of the metric used in the comparison to activate the alert."
+            }
+        },
+        "operator": {
+            "type": "string",
+            "defaultValue": "GreaterOrLessThan",
+            "allowedValues": [
+                "GreaterThan",
+                "LessThan",
+                "GreaterOrLessThan"
+            ],
+            "metadata": {
+                "description": "Operator comparing the current value with the threshold value."
+            }
+        },
+        "alertSensitivity": {
+            "type": "string",
+            "defaultValue": "Medium",
+            "allowedValues": [
+                "High",
+                "Medium",
+                "Low"
+            ],
+            "metadata": {
+                "description": "Tunes how 'noisy' the Dynamic Thresholds alerts will be: 'High' will result in more alerts while 'Low' will result in fewer alerts."
+            }
+        },
+        "numberOfEvaluationPeriods": {
+            "type": "string",
+            "defaultValue": "4",
+            "metadata": {
+                "description": "The number of periods to check in the alert evaluation."
+            }
+        },
+        "minFailingPeriodsToAlert": {
+            "type": "string",
+            "defaultValue": "3",
+            "metadata": {
+                "description": "The number of unhealthy periods to alert on (must be lower or equal to numberOfEvaluationPeriods)."
+            }
+        },
+        "timeAggregation": {
+            "type": "string",
+            "defaultValue": "Average",
+            "allowedValues": [
+                "Average",
+                "Minimum",
+                "Maximum",
+                "Total",
+                "Count"
+            ],
+            "metadata": {
+                "description": "How the data that is collected should be combined over time."
+            }
+        },
+        "windowSize": {
+            "type": "string",
+            "defaultValue": "PT5M",
+            "allowedValues": [
+                "PT5M",
+                "PT15M",
+                "PT30M",
+                "PT1H"
+            ],
+            "metadata": {
+                "description": "Period of time used to monitor alert activity based on the threshold. Must be between five minutes and one hour. ISO 8601 duration format."
+            }
+        },
+        "evaluationFrequency": {
+            "type": "string",
+            "defaultValue": "PT5M",
+            "allowedValues": [
+                "PT5M",
+                "PT15M",
+                "PT30M",
+                "PT1H"
+            ],
+            "metadata": {
+                "description": "how often the metric alert is evaluated represented in ISO 8601 duration format"
+            }
+        },
+        "actionGroupId": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "The ID of the action group that is triggered when the alert is activated or deactivated"
+            }
+        }
+    },
+    "variables": {  },
+    "resources": [
+        {
+            "name": "[parameters('alertName')]",
+            "type": "Microsoft.Insights/metricAlerts",
+            "location": "global",
+            "apiVersion": "2018-03-01",
+            "tags": {},
+            "properties": {
+                "description": "[parameters('alertDescription')]",
+                "severity": "[parameters('alertSeverity')]",
+                "enabled": "[parameters('isEnabled')]",
+                "scopes": ["[parameters('targetSubscription')]"],
+                "targetResourceType": "[parameters('targetResourceType')]",
+                "targetResourceRegion": "[parameters('targetResourceRegion')]",
+                "evaluationFrequency":"[parameters('evaluationFrequency')]",
+                "windowSize": "[parameters('windowSize')]",
+                "criteria": {
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria",
+                    "allOf": [
+                        {
+                            "criterionType": "DynamicThresholdCriterion",
+                            "name" : "1st criterion",
+                            "metricName": "[parameters('metricName')]",
+                            "dimensions":[],
+                            "operator": "[parameters('operator')]",
+                            "alertSensitivity": "[parameters('alertSensitivity')]",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": "[parameters('numberOfEvaluationPeriods')]",
+                                "minFailingPeriodsToAlert": "[parameters('minFailingPeriodsToAlert')]"
+                            },
+                            "timeAggregation": "[parameters('timeAggregation')]"
+                        }
+                    ]
+                },
+                "actions": [
+                    {
+                        "actionGroupId": "[parameters('actionGroupId')]"
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+### <a name="parameter-file"></a>参数文件
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "alertName": {
+            "value": "Multi-resource sub level metric alert with Dynamic Thresholds via Azure Resource Manager template"
+        },
+        "alertDescription": {
+            "value": "New Multi-resource sub level metric alert with Dynamic Thresholds created via template"
+        },
+        "alertSeverity": {
+            "value":3
+        },
+        "isEnabled": {
+            "value": true
+        },
+        "targetSubscription":{
+            "value": "/subscriptions/replace-with-subscription-id"
+        },
+        "targetResourceRegion":{
+            "value": "SouthCentralUS"
+        },
+        "targetResourceType":{
+            "value": "Microsoft.Compute/virtualMachines"
+        },
+        "metricName": {
+            "value": "Percentage CPU"
+        },
+        "operator": {
+          "value": "GreaterOrLessThan"
+        },
+        "alertSensitivity": {
+            "value": "Medium"
+        },
+        "numberOfEvaluationPeriods": {
+            "value": "4"
+        },
+        "minFailingPeriodsToAlert": {
+            "value": "3"
+        },
+        "timeAggregation": {
+            "value": "Average"
+        },
+        "actionGroupId": {
+            "value": "/subscriptions/replace-with-subscription-id/resourceGroups/replace-with-resource-group-name/providers/Microsoft.Insights/actionGroups/replace-with-action-group-name"
+        }
+    }
+}
+```
+
+
+### <a name="static-threshold-alert-on-a-list-of-virtual-machines"></a>虚拟机列表上的静态阈值警报
+此示例将创建静态阈值指标警报规则，用于监视单个订阅中的虚拟机（在单个 Azure 区域中）列表的 CPU 百分比。
+
+### <a name="parameter-file"></a>参数文件
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "alertName": {
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Name of the alert"
+            }
+        },
+        "alertDescription": {
+            "type": "string",
+            "defaultValue": "This is a metric alert",
+            "metadata": {
+                "description": "Description of alert"
+            }
+        },
+        "alertSeverity": {
+            "type": "int",
+            "defaultValue": 3,
+            "allowedValues": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "metadata": {
+                "description": "Severity of alert {0,1,2,3,4}"
+            }
+        },
+        "isEnabled": {
+            "type": "bool",
+            "defaultValue": true,
+            "metadata": {
+                "description": "Specifies whether the alert is enabled"
+            }
+        },
+        "targetResourceId":{
+            "type": "array",
+            "minLength": 1,
+            "metadata": {
+                "description": "array of Azure resource Ids. For example - /subscriptions/00000000-0000-0000-0000-0000-00000000/resourceGroup/resource-group-name/Microsoft.compute/virtualMachines/vm-name"
+            }
+        },
+        "targetResourceRegion":{
+            "type": "string",
+            "allowedValues": [
+                "ChinaNorth",
+                "ChinaNorth2",
+                "CentralUS",
+                "NorthCentralUS",
+                "SouthCentralUS",
+                "WestCentralUS",
+                "ChinaNorth",
+                "ChinaNorth2",
+                "CanadaEast",
+                "CanadaCentral",
+                "BrazilSouth",
+                "NorthEurope",
+                "chinanorth",
+                "FranceCentral",
+                "FranceSouth",
+                "UKWest",
+                "UKSouth",
+                "GermanyCentral",
+                "GermanyNortheast",
+                "GermanyNorth",
+                "GermanyWestCentral",
+                "SwitzerlandNorth",
+                "SwitzerlandWest",
+                "NorwayEast",
+                "NorwayWest",
+                "SoutheastAsia",
+                "EastAsia",
+                "AustraliaEast",
+                "AustraliaSoutheast",
+                "AustraliaCentral",
+                "AustraliaCentral2",
+                "ChinaEast",
+                "ChinaNorth",
+                "ChinaEast2",
+                "ChinaNorth2",
+                "CentralIndia",
+                "WestIndia",
+                "SouthIndia",
+                "ChinaNorth",
+                "ChinaNorth",
+                "KoreaCentral",
+                "KoreaSouth",
+                "SouthAfricaWest",
+                "SouthAfricaNorth",
+                "UAECentral",
+                "UAENorth"
+            ],
+            "metadata": {
+                "description": "Azure region in which target resources to be monitored are in (without spaces). For example: ChinaNorth"
+            }
+        },
+        "targetResourceType": {
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Resource type of target resources to be monitored. Currently only supported resource type is Microsoft.Compute/virtualMachines"
+            }
+        },
+        "metricName": {
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Name of the metric used in the comparison to activate the alert."
+            }
+        },
+        "operator": {
+            "type": "string",
+            "defaultValue": "GreaterThan",
+            "allowedValues": [
+                "Equals",
+                "NotEquals",
+                "GreaterThan",
+                "GreaterThanOrEqual",
+                "LessThan",
+                "LessThanOrEqual"
+            ],
+            "metadata": {
+                "description": "Operator comparing the current value with the threshold value."
+            }
+        },
+        "threshold": {
+            "type": "string",
+            "defaultValue": "0",
+            "metadata": {
+                "description": "The threshold value at which the alert is activated."
+            }
+        },
+        "timeAggregation": {
+            "type": "string",
+            "defaultValue": "Average",
+            "allowedValues": [
+                "Average",
+                "Minimum",
+                "Maximum",
+                "Total",
+                "Count"
+            ],
+            "metadata": {
+                "description": "How the data that is collected should be combined over time."
+            }
+        },
+        "windowSize": {
+            "type": "string",
+            "defaultValue": "PT5M",
+            "allowedValues": [
+                "PT1M",
+                "PT5M",
+                "PT15M",
+                "PT30M",
+                "PT1H",
+                "PT6H",
+                "PT12H",
+                "PT24H"
+            ],
+            "metadata": {
+                "description": "Period of time used to monitor alert activity based on the threshold. Must be between one minute and one day. ISO 8601 duration format."
+            }
+        },
+        "evaluationFrequency": {
+            "type": "string",
+            "defaultValue": "PT1M",
+            "allowedValues": [
+                "PT1M",
+                "PT5M",
+                "PT15M",
+                "PT30M",
+                "PT1H"
+            ],
+            "metadata": {
+                "description": "how often the metric alert is evaluated represented in ISO 8601 duration format"
+            }
+        },
+        "actionGroupId": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "The ID of the action group that is triggered when the alert is activated or deactivated"
+            }
+        }
+    },
+    "variables": {  },
+    "resources": [
+        {
+            "name": "[parameters('alertName')]",
+            "type": "Microsoft.Insights/metricAlerts",
+            "location": "global",
+            "apiVersion": "2018-03-01",
+            "tags": {},
+            "properties": {
+                "description": "[parameters('alertDescription')]",
+                "severity": "[parameters('alertSeverity')]",
+                "enabled": "[parameters('isEnabled')]",
+                "scopes": "[parameters('targetResourceId')]",
+                "targetResourceType": "[parameters('targetResourceType')]",
+                "targetResourceRegion": "[parameters('targetResourceRegion')]",
+                "evaluationFrequency":"[parameters('evaluationFrequency')]",
+                "windowSize": "[parameters('windowSize')]",
+                "criteria": {
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria",
+                    "allOf": [
+                        {
+                            "name" : "1st criterion",
+                            "metricName": "[parameters('metricName')]",
+                            "dimensions":[],
+                            "operator": "[parameters('operator')]",
+                            "threshold" : "[parameters('threshold')]",
+                            "timeAggregation": "[parameters('timeAggregation')]"
+                        }
+                    ]
+                },
+                "actions": [
+                    {
+                        "actionGroupId": "[parameters('actionGroupId')]"
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+### <a name="parameter-file"></a>参数文件
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "alertName": {
+            "value": "Multi-resource metric alert by list via Azure Resource Manager template"
+        },
+        "alertDescription": {
+            "value": "New Multi-resource metric alert by list created via template"
+        },
+        "alertSeverity": {
+            "value":3
+        },
+        "isEnabled": {
+            "value": true
+        },
+        "targetResourceId":{
+            "value": [
+                "/subscriptions/replace-with-subscription-id/resourceGroups/replace-with-resource-group-name1/Microsoft.Compute/virtualMachines/replace-with-vm-name1",
+                "/subscriptions/replace-with-subscription-id/resourceGroups/replace-with-resource-group-name2/Microsoft.Compute/virtualMachines/replace-with-vm-name2"
+            ]
+        },
+        "targetResourceRegion":{
+            "value": "SouthCentralUS"
+        },
+        "targetResourceType":{
+            "value": "Microsoft.Compute/virtualMachines"
+        },
+        "metricName": {
+            "value": "Percentage CPU"
+        },
+        "operator": {
+          "value": "GreaterThan"
+        },
+        "threshold": {
+            "value": "0"
+        },
+        "timeAggregation": {
+            "value": "Average"
+        },
+        "actionGroupId": {
+            "value": "/subscriptions/replace-with-subscription-id/resourceGroups/replace-with-resource-group-name/providers/Microsoft.Insights/actionGroups/replace-with-action-group-name"
+        }
+    }
+}
+```
+
+
+### <a name="dynamic-thresholds-alert-on-a-list-of-virtual-machines"></a>虚拟机列表上的动态阈值警报
+此示例将创建动态阈值指标警报规则，用于监视单个订阅中的虚拟机（在单个 Azure 区域中）列表的 CPU 百分比。
+
+### <a name="parameter-file"></a>参数文件
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "alertName": {
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Name of the alert"
+            }
+        },
+        "alertDescription": {
+            "type": "string",
+            "defaultValue": "This is a metric alert",
+            "metadata": {
+                "description": "Description of alert"
+            }
+        },
+        "alertSeverity": {
+            "type": "int",
+            "defaultValue": 3,
+            "allowedValues": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ],
+            "metadata": {
+                "description": "Severity of alert {0,1,2,3,4}"
+            }
+        },
+        "isEnabled": {
+            "type": "bool",
+            "defaultValue": true,
+            "metadata": {
+                "description": "Specifies whether the alert is enabled"
+            }
+        },
+        "targetResourceId":{
+            "type": "array",
+            "minLength": 1,
+            "metadata": {
+                "description": "array of Azure resource Ids. For example - /subscriptions/00000000-0000-0000-0000-0000-00000000/resourceGroup/resource-group-name/Microsoft.compute/virtualMachines/vm-name"
+            }
+        },
+        "targetResourceRegion":{
+            "type": "string",
+            "allowedValues": [
+                "ChinaNorth",
+                "ChinaNorth2",
+                "CentralUS",
+                "NorthCentralUS",
+                "SouthCentralUS",
+                "WestCentralUS",
+                "ChinaNorth",
+                "ChinaNorth2",
+                "CanadaEast",
+                "CanadaCentral",
+                "BrazilSouth",
+                "NorthEurope",
+                "chinanorth",
+                "FranceCentral",
+                "FranceSouth",
+                "UKWest",
+                "UKSouth",
+                "GermanyCentral",
+                "GermanyNortheast",
+                "GermanyNorth",
+                "GermanyWestCentral",
+                "SwitzerlandNorth",
+                "SwitzerlandWest",
+                "NorwayEast",
+                "NorwayWest",
+                "SoutheastAsia",
+                "EastAsia",
+                "AustraliaEast",
+                "AustraliaSoutheast",
+                "AustraliaCentral",
+                "AustraliaCentral2",
+                "ChinaEast",
+                "ChinaNorth",
+                "ChinaEast2",
+                "ChinaNorth2",
+                "CentralIndia",
+                "WestIndia",
+                "SouthIndia",
+                "ChinaNorth",
+                "ChinaNorth",
+                "KoreaCentral",
+                "KoreaSouth",
+                "SouthAfricaWest",
+                "SouthAfricaNorth",
+                "UAECentral",
+                "UAENorth"
+            ],
+            "metadata": {
+                "description": "Azure region in which target resources to be monitored are in (without spaces). For example: ChinaNorth"
+            }
+        },
+        "targetResourceType": {
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Resource type of target resources to be monitored. Currently only supported resource type is Microsoft.Compute/virtualMachines"
+            }
+        },
+        "metricName": {
+            "type": "string",
+            "minLength": 1,
+            "metadata": {
+                "description": "Name of the metric used in the comparison to activate the alert."
+            }
+        },
+        "operator": {
+            "type": "string",
+            "defaultValue": "GreaterOrLessThan",
+            "allowedValues": [
+                "GreaterThan",
+                "LessThan",
+                "GreaterOrLessThan"
+            ],
+            "metadata": {
+                "description": "Operator comparing the current value with the threshold value."
+            }
+        },
+        "alertSensitivity": {
+            "type": "string",
+            "defaultValue": "Medium",
+            "allowedValues": [
+                "High",
+                "Medium",
+                "Low"
+            ],
+            "metadata": {
+                "description": "Tunes how 'noisy' the Dynamic Thresholds alerts will be: 'High' will result in more alerts while 'Low' will result in fewer alerts."
+            }
+        },
+        "numberOfEvaluationPeriods": {
+            "type": "string",
+            "defaultValue": "4",
+            "metadata": {
+                "description": "The number of periods to check in the alert evaluation."
+            }
+        },
+        "minFailingPeriodsToAlert": {
+            "type": "string",
+            "defaultValue": "3",
+            "metadata": {
+                "description": "The number of unhealthy periods to alert on (must be lower or equal to numberOfEvaluationPeriods)."
+            }
+        },
+        "timeAggregation": {
+            "type": "string",
+            "defaultValue": "Average",
+            "allowedValues": [
+                "Average",
+                "Minimum",
+                "Maximum",
+                "Total",
+                "Count"
+            ],
+            "metadata": {
+                "description": "How the data that is collected should be combined over time."
+            }
+        },
+        "windowSize": {
+            "type": "string",
+            "defaultValue": "PT5M",
+             "allowedValues": [
+                "PT5M",
+                "PT15M",
+                "PT30M",
+                "PT1H"
+            ],
+            "metadata": {
+                "description": "Period of time used to monitor alert activity based on the threshold. Must be between five minutes and one hour. ISO 8601 duration format."
+            }
+        },
+        "evaluationFrequency": {
+            "type": "string",
+            "defaultValue": "PT5M",
+             "allowedValues": [
+                "PT5M",
+                "PT15M",
+                "PT30M",
+                "PT1H"
+            ],
+            "metadata": {
+                "description": "how often the metric alert is evaluated represented in ISO 8601 duration format"
+            }
+        },
+        "actionGroupId": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "The ID of the action group that is triggered when the alert is activated or deactivated"
+            }
+        }
+    },
+    "variables": {  },
+    "resources": [
+        {
+            "name": "[parameters('alertName')]",
+            "type": "Microsoft.Insights/metricAlerts",
+            "location": "global",
+            "apiVersion": "2018-03-01",
+            "tags": {},
+            "properties": {
+                "description": "[parameters('alertDescription')]",
+                "severity": "[parameters('alertSeverity')]",
+                "enabled": "[parameters('isEnabled')]",
+                "scopes": "[parameters('targetResourceId')]",
+                "targetResourceType": "[parameters('targetResourceType')]",
+                "targetResourceRegion": "[parameters('targetResourceRegion')]",
+                "evaluationFrequency":"[parameters('evaluationFrequency')]",
+                "windowSize": "[parameters('windowSize')]",
+                "criteria": {
+                    "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria",
+                    "allOf": [
+                        {
+                            "criterionType": "DynamicThresholdCriterion",
+                            "name" : "1st criterion",
+                            "metricName": "[parameters('metricName')]",
+                            "dimensions":[],
+                            "operator": "[parameters('operator')]",
+                            "alertSensitivity": "[parameters('alertSensitivity')]",
+                            "failingPeriods": {
+                                "numberOfEvaluationPeriods": "[parameters('numberOfEvaluationPeriods')]",
+                                "minFailingPeriodsToAlert": "[parameters('minFailingPeriodsToAlert')]"
+                            },
+                            "timeAggregation": "[parameters('timeAggregation')]"
+                        }
+                    ]
+                },
+                "actions": [
+                    {
+                        "actionGroupId": "[parameters('actionGroupId')]"
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+### <a name="parameter-file"></a>参数文件
+
+```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "alertName": {
+            "value": "Multi-resource metric alert with Dynamic Thresholds by list via Azure Resource Manager template"
+        },
+        "alertDescription": {
+            "value": "New Multi-resource metric alert with Dynamic Thresholds by list created via template"
+        },
+        "alertSeverity": {
+            "value":3
+        },
+        "isEnabled": {
+            "value": true
+        },
+        "targetResourceId":{
+            "value": [
+                "/subscriptions/replace-with-subscription-id/resourceGroups/replace-with-resource-group-name1/Microsoft.Compute/virtualMachines/replace-with-vm-name1",
+                "/subscriptions/replace-with-subscription-id/resourceGroups/replace-with-resource-group-name2/Microsoft.Compute/virtualMachines/replace-with-vm-name2"
+            ]
+        },
+        "targetResourceRegion":{
+            "value": "SouthCentralUS"
+        },
+        "targetResourceType":{
+            "value": "Microsoft.Compute/virtualMachines"
+        },
+        "metricName": {
+            "value": "Percentage CPU"
+        },
+        "operator": {
+          "value": "GreaterOrLessThan"
+        },
+        "alertSensitivity": {
+            "value": "Medium"
+        },
+        "numberOfEvaluationPeriods": {
+            "value": "4"
+        },
+        "minFailingPeriodsToAlert": {
+            "value": "3"
+        },
+        "timeAggregation": {
+            "value": "Average"
+        },
+        "actionGroupId": {
+            "value": "/subscriptions/replace-with-subscription-id/resourceGroups/replace-with-resource-group-name/providers/Microsoft.Insights/actionGroups/replace-with-action-group-name"
+        }
+    }
+}
+```
+
 
 ## <a name="availability-test-with-metric-alert"></a>具有指标警报的可用性测试
-[Application Insights 可用性测试](../../azure-monitor/app/monitor-web-app-availability.md)可帮助监视全球各地的网站/应用程序的可用性。 当可用性测试在一定数量的位置失败时，可用性测试警报会通知你。 可用性测试会对与指标警报 (Microsoft.Insights/metricAlerts) 相同的资源类型发出警报。 以下示例将创建一个简单的可用性测试和相关警报。
+[Application Insights 可用性测试](../app/monitor-web-app-availability.md)可帮助监视全球各地的网站/应用程序的可用性。 当可用性测试在一定数量的位置失败时，可用性测试警报会通知你。 可用性测试会对与指标警报 (Microsoft.Insights/metricAlerts) 相同的资源类型发出警报。 以下示例将创建一个简单的可用性测试和相关警报。
 
 > [!NOTE]
 > `&amp`; 是 & 的 HTML 实体引用。 URL 参数仍由单个 & 分隔，但如果在 HTML 中提到了 URL，则需要对其进行编码。 因此，如果 pingURL 参数值中包含“&”，则必须使用“`&amp`;”对其进行转义。
@@ -1233,4 +2987,5 @@ ms.locfileid: "86440565"
 - [获取 Azure Monitor 的其他示例模板](resource-manager-samples.md)。
 - [详细了解警报](../platform/alerts-overview.md)。
 - [获取使用资源管理器模板创建操作组的示例](resource-manager-action-groups.md)
+
 

@@ -4,18 +4,18 @@ description: 本教程使用适用于 IoT 中心设备预配服务 (DPS) 的 Jav
 author: wesmc7777
 ms.author: wesmc
 origin.date: 11/12/2019
-ms.date: 03/02/2020
+ms.date: 08/27/2020
 ms.topic: tutorial
 ms.service: iot-dps
 services: iot-dps
 ms.devlang: java
-ms.custom: mvc
-ms.openlocfilehash: 6a89edf32e777340b2be3238bc6134e4c1e93393
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: mvc, devx-track-java
+ms.openlocfilehash: 773d4d6805603f62858620d4bf702f57f874647d
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80586671"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951215"
 ---
 # <a name="tutorial-create-and-provision-a-simulated-x509-device-using-java-device-and-service-sdk-and-group-enrollments-for-iot-hub-device-provisioning-service"></a>教程：使用适用于 IoT 中心设备预配服务的 Java 设备和服务 SDK 与组登记来创建和预配模拟的 X.509 设备
 

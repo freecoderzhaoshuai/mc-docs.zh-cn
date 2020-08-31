@@ -2,17 +2,17 @@
 author: WenJason
 ms.service: storage
 ms.topic: include
-origin.date: 10/26/2018
-ms.date: 01/14/2019
+origin.date: 07/17/2020
+ms.date: 08/24/2020
 ms.author: v-jay
-ms.openlocfilehash: 85072774791ab7ab91757bb8f6779810badeee53
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 1388c5011b82ff08fc3d852eedd9d9a097eaf085
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "67850777"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753418"
 ---
-存储模拟器支持单一固定的帐户和众所周知的用于共享密钥身份验证的身份验证密钥。 此帐户和密钥是允许用于存储模拟器的唯一共享密钥凭据。 它们分别是：
+Azurite 支持单一固定的帐户和众所周知的用于共享密钥身份验证的身份验证密钥。 此帐户和密钥是允许用于 Azurite 的唯一共享密钥凭据。 它们分别是：
 
 ```
 Account name: devstoreaccount1
@@ -20,13 +20,13 @@ Account key: Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZ
 ```
 
 > [!NOTE]
-> 存储模拟器支持的身份验证密钥仅用于测试客户端身份验证代码的功能。 它没有任何安全用途。 不能在存储模拟器中使用生产存储帐户和密钥。 不应将开发帐户用于生产数据。
+> Azurite 支持的身份验证密钥仅用于测试客户端身份验证代码的功能。 它没有任何安全用途。 不能在 Azurite 中使用生产存储帐户和密钥。 不应将开发帐户用于生产数据。
 > 
-> 存储模拟器仅支持通过 HTTP 进行连接。 但是，若要访问生产性 Azure 存储帐户中的资源，建议使用 HTTPS 协议。
+> Azurite 仅支持通过 HTTP 进行连接。 但是，若要访问生产性 Azure 存储帐户中的资源，建议使用 HTTPS 协议。
 > 
 
 #### <a name="connect-to-the-emulator-account-using-a-shortcut"></a>使用快捷方式连接到模拟器帐户
-从应用程序连接到存储模拟器的最简单方式是在应用程序的配置文件内配置一个引用快捷方式 `UseDevelopmentStorage=true` 的连接字符串。 以下是 *app.config* 文件中指向存储模拟器的连接字符串示例： 
+从应用程序连接到 Azurite 的最简单方法是在应用程序的配置文件中配置一个引用快捷方式 `UseDevelopmentStorage=true` 的连接字符串。 以下是 *app.config* 文件中连接对象为 Azurite 的连接字符串的示例： 
 
 ```xml
 <appSettings>
@@ -42,16 +42,7 @@ DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;
 AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;
 EndpointSuffix=core.chinacloudapi.cn;
 BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;
-TableEndpoint=http://127.0.0.1:10002/devstoreaccount1;
 QueueEndpoint=http://127.0.0.1:10001/devstoreaccount1;
 ```
 
 此值等同于如上所示的快捷方式 `UseDevelopmentStorage=true`。
-
-#### <a name="specify-an-http-proxy"></a>指定 HTTP 代理
-还可以指定一个 HTTP 代理，以便在针对存储模拟器测试服务时进行使用。 针对存储服务调试操作时，这对观察 HTTP 请求和响应很有用。 要指定代理，请将 `DevelopmentStorageProxyUri` 选项添加到连接字符串，并将它的值设置为代理 URI。 例如，下面是一个指向存储模拟器并配置 HTTP 代理的连接字符串：
-
-```
-UseDevelopmentStorage=true;DevelopmentStorageProxyUri=http://myProxyUri
-```
-

@@ -1,21 +1,18 @@
 ---
 title: Azure 管理概述 - Azure 治理
 description: Azure 应用程序和资源管理领域概述及 Azure 管理工具上内容的链接。
-author: DCtheGeek
-manager: carmonm
-ms.service: governance
-ms.topic: article
-origin.date: 12/06/2018
-ms.date: 12/16/2019
+origin.date: 07/06/2020
+ms.date: 08/27/2020
 ms.author: v-tawe
-ms.openlocfilehash: 7a1b33b7a56912a30de30e7a1cc01e2bbc32aaad
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.topic: overview
+ms.openlocfilehash: a2523adc725d8b2b78986e364e4a74a2ac10d658
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75335350"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951213"
 ---
-# <a name="overview-of-management-services-in-azure"></a>Azure 中的管理服务概述
+# <a name="what-are-the-azure-management-areas"></a>什么是 Azure 管理区域？
 
 Azure 中的监管是 Azure 管理的一个方面。 本文介绍了在 Azure 中部署和维护资源的不同管理领域。
 
@@ -23,7 +20,7 @@ Azure 中的监管是 Azure 管理的一个方面。 本文介绍了在 Azure �
 
 下图说明了维护任何应用程序或资源所需的不同管理方面。 可将这些不同的区域视为一个生命周期。 每个区域都需要在资源的整个生存期内保持连续。 此资源生命周期始于其初始部署，贯穿其持续操作，在其停用时结束。
 
-![Azure 中的管理原则](../monitoring/media/management-overview/management-capabilities.png)
+:::image type="content" source="../monitoring/media/management-overview/management-capabilities.png" alt-text="Azure 中的管理原则" border="false":::
 
 没有一个 Azure 服务完全满足特定管理区域的要求。 但搭配多个服务就能实现这一点。 某些服务（如 Application Insight）可为 Web 应用程序提供有针对性的监视功能。 其他服务（例如 Azure Monitor 日志）可为其他服务存储管理数据。 可使用此功能分析由不同服务收集的不同类型的数据。
 
@@ -31,7 +28,7 @@ Azure 中的监管是 Azure 管理的一个方面。 本文介绍了在 Azure �
 
 ## <a name="monitor"></a>监视
 
-监视是一种数据收集和分析操作，用于审核资源的性能、运行状况及可用性。 有效的监视策略有助于了解组件的运行情况，并通过通知延长正常运行时间。 请阅读监视概述，了解[监视 Azure 应用程序和资源](/azure-monitor/overview)中使用的不同服务。
+监视是一种数据收集和分析操作，用于审核资源的性能、运行状况及可用性。 有效的监视策略有助于了解组件的运行情况，并通过通知延长正常运行时间。 请阅读监视概述，了解[监视 Azure 应用程序和资源](../azure-monitor/overview.md)中使用的不同服务。
 
 ## <a name="configure"></a>配置
 
@@ -43,16 +40,35 @@ Azure 中的监管是 Azure 管理的一个方面。 本文介绍了在 Azure �
 <!-- /cost-management/ not available -->
 
 “治理”提供了机制和流程来保持对 Azure 中的应用程序和资源的控制。 它涉及规划计划和设置战略优先级。
-Azure 中的治理主要是通过两个服务实现的。 [Azure Policy ](./policy/overview.md)允许你创建、分配和管理策略定义，以强制执行资源规则。 此功能可使这些资源符合企业标准。
+Azure 中的治理主要是通过两个服务实现的。 [Azure Policy ](./policy/overview.md)允许你创建、分配和管理策略定义，以强制执行资源规则。
+此功能可使这些资源符合企业标准。
+
 ## <a name="secure"></a>安全
 
-管理资源和数据的安全性。 安全计划涉及评估威胁、收集和分析数据以及应用程序和资源的符合性。 安全监视和威胁分析由 [Azure 安全中心](/security-center/)提供，该中心包括跨混合云工作负荷的统一安全管理和高级威胁防护。 请参阅 [Azure 安全性简介](../security/security-get-started-overview.md)的全面信息，以及有关保护 Azure 资源的指南。
+管理资源和数据的安全性。 安全计划涉及评估威胁、收集和分析数据以及应用程序和资源的符合性。 安全监视和威胁分析由 [Azure 安全中心](../security-center/security-center-intro.md)提供，该中心包括跨混合云工作负荷的统一安全管理和高级威胁防护。 请参阅 [Azure 安全性简介](../security/fundamentals/overview.md)的全面信息，以及有关保护 Azure 资源的指南。
 
 ## <a name="protect"></a>保护
 
-保护是指保持应用程序和数据可用，即使是超出控制范围的中断也是如此。 Azure 中的保护由两个服务提供。 [Azure 备份](../backup/backup-introduction-to-azure-backup.md)提供数据备份和恢复（在云中或本地）。 [Azure Site Recovery](../site-recovery/site-recovery-overview.md) 可在发生灾难期间提供业务连续性和即时恢复。
+保护是指保持应用程序和数据可用，即使是超出控制范围的中断也是如此。 Azure 中的保护由两个服务提供。 [Azure 备份](../backup/backup-overview.md)提供数据备份和恢复（在云中或本地）。 [Azure Site Recovery](../site-recovery/site-recovery-overview.md) 可在发生灾难期间提供业务连续性和即时恢复。
 
-## <a name="migrate"></a>迁移
+<!-- Migrate Service is not available in mc -->
+<!-- >
+## Migrate
 
-迁移指的是将当前在本地运行的工作负荷转换到 Azure 云中。
-Azure Migrate 是一项服务，可帮助你评估本地虚拟机是否适合迁移到 Azure。 Azure Site Recovery [从本地](../site-recovery/migrate-tutorial-on-premises-azure.md)或[从 Amazon Web Services](../site-recovery/migrate-tutorial-aws-azure.md) 迁移虚拟机。 [Azure 数据库迁移](../dms/dms-overview.md)会帮助你将数据库源迁移到 Azure 数据平台。
+Migration refers to transitioning workloads currently running on-premises to the Azure cloud.
+[Azure Migrate](../migrate/migrate-services-overview.md) is a service that helps you assess the migration
+suitability of on-premises virtual machines to Azure. Azure Site Recovery migrates virtual machines
+[from on-premises](../site-recovery/migrate-tutorial-on-premises-azure.md) or [from Amazon Web
+Services](../site-recovery/migrate-tutorial-aws-azure.md). [Azure Database
+Migration](../dms/dms-overview.md) assists you in migrating database sources to Azure Data
+platforms.
+-->
+
+<!--
+## Next Steps
+
+To learn more about Azure Governance, see these articles:
+
+- See the [Azure Governance hub](./index.yml).
+- See [Governance in the Cloud Adoption Framework for Azure](/azure/cloud-adoption-framework/govern/)
+-->

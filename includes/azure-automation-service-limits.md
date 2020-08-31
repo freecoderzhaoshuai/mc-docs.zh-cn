@@ -6,15 +6,15 @@ author: WenJason
 ms.service: automation
 ms.topic: include
 origin.date: 12/13/2018
-ms.date: 05/11/2020
+ms.date: 08/10/2020
 ms.author: v-jay
 ms.custom: include file
-ms.openlocfilehash: 23df2f5bb9fb90354c3537808ce832a8b697664b
-ms.sourcegitcommit: 95efd248f5ee3701f671dbd5cfe0aec9c9959a24
+ms.openlocfilehash: 18101df5082303316164d89dc3e866da02909e61
+ms.sourcegitcommit: e6b216b180734783219378410e13192e314a4497
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82516018"
+ms.lasthandoff: 08/05/2020
+ms.locfileid: "88753606"
 ---
 #### <a name="process-automation"></a>流程自动化
 
@@ -42,3 +42,10 @@ ms.locfileid: "82516018"
 
 <sup>1</sup>沙盒是可以由多个作业使用的共享环境。 使用同一沙盒的作业受沙盒的资源限制约束。
 
+#### <a name="update-management"></a>更新管理
+
+下表显示了更新管理的限制。
+
+| **资源** | **限制**| **备注** |
+|---|---|---|
+|每个更新部署的计算机数|1000||

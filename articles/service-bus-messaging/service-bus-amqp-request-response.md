@@ -3,17 +3,17 @@ title: Azure 服务总线中的 AMQP 1.0 请求/响应操作
 description: 本文定义了 Azure 服务总线中基于 AMQP 请求/响应的操作列表。
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
 author: rockboyfor
-ms.openlocfilehash: 45091000cb8573c646e655c7a2485ea409feea95
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: da94f84845d587e532290edaae0c196807bd0a84
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162130"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947108"
 ---
 # <a name="amqp-10-in-azure-service-bus-request-response-based-operations"></a>Azure 服务总线中的 AMQP 1.0：基于请求/响应的操作
 

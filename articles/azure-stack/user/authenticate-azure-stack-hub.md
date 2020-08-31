@@ -3,21 +3,21 @@ title: 如何获取 Azure Stack Hub 的身份验证信息
 description: 了解如何获取 Azure Stack Hub 的身份验证信息
 author: WenJason
 ms.topic: how-to
-origin.date: 12/13/2019
-ms.date: 03/23/2020
+origin.date: 04/20/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: sijuman
 ms.lastreviewed: 12/13/2019
-ms.openlocfilehash: 315cebd1931f7ed195d1de981da9e7f30d7ce75f
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: d88ba238889a336c8c0b7a820f5dc1525fd58cf5
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79547084"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867750"
 ---
 # <a name="get-authentication-information-for-azure-stack-hub"></a>获取 Azure Stack Hub 的身份验证信息
 
-若要对 Azure Stack Hub 进行身份验证，需要提供订阅 ID、租户 ID 和位置以及 Azure Stack Hub 资源管理器终结点。 可以从 [Azure Stack Hub 资源管理器终结点](/azure-stack/user/azure-stack-version-profiles-ruby?view=azs-1910#the-azure-stack-hub-resource-manager-endpoint)为 Azure Stack Hub 获取这些值。 或者，可以使用本文中的步骤获取它们。
+若要对 Azure Stack Hub 进行身份验证，需要提供订阅 ID、租户 ID 和位置以及 Azure Stack Hub 资源管理器终结点。 可以从 [Azure Stack Hub 资源管理器终结点](./azure-stack-version-profiles-ruby.md?view=azs-1910#the-azure-stack-hub-resource-manager-endpoint)为 Azure Stack Hub 获取这些值。 或者，可以使用本文中的步骤获取它们。
 
 ## <a name="values-needed-to-authenticate"></a>进行身份验证所需的值
 
@@ -75,4 +75,4 @@ Azure 资源管理器终结点是用于 Azure Stack Hub 的部署和管理服务
 
 ## <a name="next-steps"></a>后续步骤
 
-详细了解如何在 Azure Stack Hub 中使用 [Azure Stack Hub 资源管理器](/azure-stack/user/azure-stack-version-profiles?view=azs-1910)。
+详细了解如何在 Azure Stack Hub 中使用 [Azure Stack Hub 资源管理器](./azure-stack-version-profiles.md?view=azs-1910)。

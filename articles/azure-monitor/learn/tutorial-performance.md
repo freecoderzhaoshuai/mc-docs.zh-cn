@@ -6,14 +6,14 @@ ms.topic: tutorial
 author: Johnnytechn
 ms.author: v-johya
 origin.date: 08/13/2019
-ms.date: 07/17/2020
+ms.date: 08/28/2020
 ms.custom: mvc
-ms.openlocfilehash: b1a61741d19058bdd3584bec1cef328e8aefa8df
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.openlocfilehash: e92c42402bff985fa95a1dcb96e551e0055d9d7f
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440319"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148678"
 ---
 # <a name="find-and-diagnose-performance-issues-with-azure-application-insights"></a>使用 Azure Application Insights 查找和诊断性能问题
 
@@ -33,8 +33,8 @@ Azure Application Insights 从应用程序收集遥测，以帮助分析操作�
 - 使用以下工作负荷安装 [Visual Studio 2019](https://www.visualstudio.com/downloads/)：
     - ASP.NET 和 Web 开发
     - Azure 开发
-- 将 .NET 应用程序部署到 Azure 并[启用 Application Insights SDK](../../azure-monitor/app/asp-net.md)。
-- 对应用程序[启用 Application Insights profiler](../../azure-monitor/app/profiler.md#installation)。
+- 将 .NET 应用程序部署到 Azure 并[启用 Application Insights SDK](../app/asp-net.md)。
+- 对应用程序[启用 Application Insights profiler](../app/profiler.md#installation)。
 
 ## <a name="log-in-to-azure"></a>登录 Azure
 通过 [https://portal.azure.cn](https://portal.azure.cn) 登录到 Azure 门户。
@@ -57,12 +57,12 @@ Application Insights 收集应用程序中不同操作的性能详细信息。 �
 
 4.  右侧的性能面板显示所选操作的不同请求的持续时间的分布情况。  缩小窗口，从大约第 95 个百分点值开始。 “前 3 个依赖项”见解卡大致说明了外部依赖项可能是造成事务速度慢的原因。  单击带示例数的按钮即可查看示例列表。 然后即可选择任意示例来查看事务详细信息。
 
-5.  可以大致看到，调用 Fabrikamaccount Azure 表所花的时间占了事务总持续时间的大部分。 也可看到有一个异常导致其失败。 可以单击列表中的任意项，然后就可以在右侧查看其详细信息。 [详细了解事务诊断体验](../../azure-monitor/app/transaction-diagnostics.md)
+5.  可以大致看到，调用 Fabrikamaccount Azure 表所花的时间占了事务总持续时间的大部分。 也可看到有一个异常导致其失败。 可以单击列表中的任意项，然后就可以在右侧查看其详细信息。 [详细了解事务诊断体验](../app/transaction-diagnostics.md)
 
     ![操作端到端详细信息](./media/tutorial-performance/4-end-to-end.png)
     
 
-6.  [探查器](../../azure-monitor/app/profiler-overview.md)可显示操作所运行的实际代码和每步所需的时间，因而可以更深入地进行代码级别的诊断。 由于探查器周期性运行，所以可能未记录到某些操作。  随着时间推移，应可记录到更多操作。  若要对操作启用探查器，请单击“探查器跟踪”。
+6.  [探查器](../app/profiler-overview.md)可显示操作所运行的实际代码和每步所需的时间，因而可以更深入地进行代码级别的诊断。 由于探查器周期性运行，所以可能未记录到某些操作。  随着时间推移，应可记录到更多操作。  若要对操作启用探查器，请单击“探查器跟踪”。
 5.  跟踪显示每个操作的单个事件，以便诊断整个操作持续时间的根本原因。  单击持续时间最长的示例。
 6.  单击“热路径”，以突出显示对操作总持续时间贡献最大的一系列特定事件。  在此示例中，可以看到最慢的调用来自 *FabrikamFiberAzureStorage.GetStorageTableData* 方法。 最耗时的部分是 *CloudTable.CreateIfNotExist* 方法。 如果每次调用该函数时都执行这行代码，则将使用不必要的网络调用和 CPU 资源。 修复该代码的最佳方式是将此行放入仅执行一次的某个启动方法中。
 
@@ -107,11 +107,4 @@ Application Insights 不仅可以识别要优化的服务器进程，还可以�
 3.  智能诊断是日志的一项功能，用于标识数据中的唯一模式。 单击折线图中的智能诊断点时，将运行相同查询但排除导致异常的记录。 查询的注释部分显示了这些记录的详细信息，因此可以识别出导致持续时间过长的页面视图的属性。
 
     ![带智能诊断功能的日志](./media/tutorial-performance/11-page-view-logs-dsmart.png)
-
-
-## <a name="next-steps"></a>后续步骤
-既已了解如何标识运行时异常，可继续学习下一个教程，了解如何创建警报以响应失败。
-
-> [!div class="nextstepaction"]
-> [根据应用程序运行状况发出警报](../../azure-monitor/learn/tutorial-alert.md)
 

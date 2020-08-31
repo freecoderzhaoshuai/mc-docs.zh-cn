@@ -1,30 +1,24 @@
 ---
-let application: MSALPublicClientApplication!
-title: 将应用迁移到 MSAL.ObjectiveC | Microsoft 标识平台
-description: 了解适用于 ObjectiveC 的 Microsoft 身份验证库（适用于 iOS 和 macOS 的 MSAL）与适用于 ObjectiveC 的 Azure AD 身份验证库 (ADAL.ObjC) 之间的差异，以及如何迁移到适用于 iOS 和 macOS 的 MSAL。
+title: ADAL 到 MSAL 的迁移指南 (MSAL iOS/macOS) | Azure
+titleSuffix: Microsoft identity platform
+description: 了解适用于 iOS 和 macOS 的 MSAL 与适用于 ObjectiveC 的 Azure AD 身份验证库 (ADAL.ObjC) 之间的差异，以及如何迁移到适用于 iOS/macOS 的 MSAL。
 services: active-directory
-documentationcenter: dev-center-name
-author: TylerMSFT
+author: mmacy
 manager: CelesteDG
-editor: ''
 ms.service: active-directory
 ms.subservice: develop
-ms.devlang: na
 ms.topic: conceptual
-ms.tgt_pltfrm: na
 ms.workload: identity
-origin.date: 08/28/2019
-ms.date: 11/01/2019
+ms.date: 08/18/2020
 ms.author: v-junlch
 ms.reviewer: oldalton
 ms.custom: aaddev
-ms.collection: M365-identity-device-management
-ms.openlocfilehash: 46ee2fb47751c8a2b77b3eb0d9e06821a1f166e3
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 3475295c8fba56e51dbb74108c48f29a6ab5bf84
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "73831039"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647685"
 ---
 # <a name="migrate-applications-to-msal-for-ios-and-macos"></a>将应用程序迁移到适用于 iOS 和 macOS 的 MSAL
 
@@ -50,7 +44,7 @@ Microsoft 标识平台与 Azure Active Directory v1.0 之前存在一些重要�
 * Azure Active Directory v1.0 终结点要求在应用程序注册过程中提前声明所有权限。 这意味着，这些权限是静态的。
 * Microsoft 标识平台允许动态请求权限。 应用只能根据需求请求权限，并在需求提高时请求更多的权限。
 
-有关 Azure Active Directory v1.0 与 Microsoft 标识平台之间的差异的详细信息，请参阅[为何要更新到 Microsoft 标识平台 (v2.0)？](/active-directory/develop/azure-ad-endpoint-comparison)。
+有关 Azure Active Directory v1.0 与 Microsoft 标识平台之间的差异的详细信息，请参阅[为何要更新到 Microsoft 标识平台 (v2.0)？](../azuread-dev/azure-ad-endpoint-comparison.md)。
 
 ## <a name="adal-and-msal-library-differences"></a>ADAL 与 MSAL 库的差异
 
@@ -72,7 +66,7 @@ MSAL 公共 API 反映 Azure AD v1.0 与 Microsoft 标识平台之间的一些�
 
 * 提供应用所需的所有权限的列表。 例如： 
 
-    `@[@"https://graph.microsot.com/directory.read", @"https://microsoftgraph.chinacloudapi.cn/directory.write"]`
+    `@[@"https://microsoftgraph.chinacloudapi.cn/directory.read", @"https://microsoftgraph.chinacloudapi.cn/directory.write"]`
 
     在本例中，应用将请求 `directory.read` 和 `directory.write` 权限。 如果用户以前未为此应用许可这些权限，则系统会要求他们许可这些权限。 应用程序还可能会收到用户已许可的其他权限。 系统只会提示用户许可新的权限或尚未授予的权限。
 
@@ -82,7 +76,7 @@ MSAL 公共 API 反映 Azure AD v1.0 与 Microsoft 标识平台之间的一些�
 
 若要使用 `/.default` 范围，请将 `/.default` 追加到资源标识符。 例如：`https://microsoftgraph.chinacloudapi.cn/.default`。 如果资源以斜杠 (`/`) 结尾，则仍应追加 `/.default`，包括前导正斜杠，也就是说，范围中应包含两个正斜杠 (`//`)。
 
-可在[此处](/active-directory/develop/v2-permissions-and-consent#the-default-scope)阅读有关使用“/.default”范围的详细信息
+可在[此处](./v2-permissions-and-consent.md#the-default-scope)阅读有关使用“/.default”范围的详细信息
 
 ### <a name="supporting-different-webview-types--browsers"></a>支持不同的 WebView 类型和浏览器
 
@@ -136,7 +130,7 @@ MSAL 引入了一些令牌获取调用更改：
 
 MSAL 更明确地区分应用可以处理的错误，以及需要用户干预的错误。 开发人员必须处理的错误数有限：
 
-* `MSALErrorInteractionRequired`：用户必须执行交互式请求。 此错误是各种可能的原因造成的，例如身份验证会话过期、刷新令牌过期或已吊销、缓存中没有有效的令牌，等等。
+* `MSALErrorInteractionRequired`：用户必须执行交互式请求。 此错误是各种可能的原因造成的，例如身份验证会话过期、条件访问策略已更改、刷新令牌过期或已吊销、缓存中没有有效的令牌，等等。
 * `MSALErrorServerDeclinedScopes`：请求未完全完成，未授予某些范围的访问权限。 此错误的可能原因是用户拒绝许可一个或多个范围的权限。
 
 [`MSALError` 列表](https://github.com/AzureAD/microsoft-authentication-library-for-objc/blob/master/MSAL/src/public/MSALError.h#L128)中的所有其他错误的处理是可选的。 可以使用这些错误中的信息来改善用户体验。
@@ -145,7 +139,7 @@ MSAL 更明确地区分应用可以处理的错误，以及需要用户干预的
 
 ### <a name="broker-support"></a>中介支持
 
-从版本 0.3.0 开始，MSAL 使用 Microsoft Authenticator 应用为中介身份验证提供支持。
+从版本 0.3.0 开始，MSAL 使用 Microsoft Authenticator 应用为中介身份验证提供支持。 Microsoft Authenticator 还支持条件访问方案。 条件访问方案的示例包括使用设备合规性策略（要求用户通过 Intune 注册设备或向 AAD 注册以获取令牌） 和移动应用管理 (MAM) 条件访问策略（要求在应用获得令牌之前提供合规性证明）。
 
 若要为应用程序启用中介：
 
@@ -187,6 +181,9 @@ MSAL 更明确地区分应用可以处理的错误，以及需要用户干预的
     }
     ```
 
+### <a name="business-to-business-b2b"></a>企业到企业 (B2B)
+
+在 ADAL 中，只要应用请求了某个租户的令牌，就需要为该租户创建单独的 `ADAuthenticationContext` 实例。 在 MSAL 中不再需要这样做。 在 MSAL 中，可以创建 `MSALPublicClientApplication` 的单个实例，并通过为 acquireToken 和 acquireTokenSilent 调用指定不同的颁发机构，将该实例用于任何 AAD 云和组织。
 
 ## <a name="sso-in-partnership-with-other-sdks"></a>在与其他 SDK 的合作方案中实现 SSO
 
@@ -228,11 +225,11 @@ iOS 上的 MSAL 还支持其他两种类型的 SSO：
 
 重定向 URI 应采用以下格式：`msauth.<app.bundle.id>://auth`。 将 `<app.bundle.id>` 替换为应用程序的捆绑 ID。 在 [Azure 门户](https://portal.azure.cn/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredAppsPreview)中指定重定向 URI。
 
-（仅适用于 iOS）若要支持基于证书的身份验证，需要在应用程序和 Azure 门户中，使用以下格式额外注册一个重定向 URI：`msauth://code/<broker-redirect-uri-in-url-encoded-form>`。 例如： `msauth://code/msauth.com.microsoft.mybundleId%3A%2F%2Fauth`
+（仅适用于 iOS）若要支持基于证书的身份验证，需要在应用程序和 Azure 门户中，使用以下格式额外注册一个重定向 URI：`msauth://code/<broker-redirect-uri-in-url-encoded-form>`。 例如 `msauth://code/msauth.com.microsoft.mybundleId%3A%2F%2Fauth`
 
 建议所有应用注册这两个重定向 URI。
 
-若要添加对增量许可的支持，请在“API 权限”选项卡下的应用注册中，选择应用配置为请求访问的 API 和权限。 
+若要添加对增量许可的支持，请在“API 权限”选项卡下的应用注册中，选择应用配置为请求访问的 API 和权限。****
 
 如果从 ADAL 迁移并希望同时支持 AAD 和 MSA 帐户，则需要更新现有的应用程序注册才能支持这两种帐户。 我们目前不建议更新现有的生产应用来支持 AAD 和 MSA。 应该创建支持 AAD 和 MSA 的另一个客户端 ID 用于测试，在确认所有方案正常后，再更新现有应用。
 
@@ -323,8 +320,8 @@ func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>)
 
 若要启用令牌缓存，请执行以下操作：
 1. 确保应用程序已正确签名
-2. 转到 Xcode 项目设置 >“功能”选项卡   >   “启用密钥链共享”
-3. 单击 **+** 并输入以下“密钥链组”  条目：3.a 对于 iOS，输入 `com.microsoft.adalcache` 3.b 对于 macOS，输入 `com.microsoft.identity.universalstorage`
+2. 转到 Xcode 项目设置 >“功能”选项卡 > “启用密钥链共享”
+3. 单击 **+** 并输入以下“密钥链组”条目：3.a 对于 iOS，输入 `com.microsoft.adalcache` 3.b 对于 macOS，输入 `com.microsoft.identity.universalstorage`
 
 ### <a name="create-msalpublicclientapplication-and-switch-to-its-acquiretoken-and-acquiretokesilent-calls"></a>创建 MSALPublicClientApplication 并切换到其 acquireToken 和 acquireTokeSilent 调用
 

@@ -1,17 +1,20 @@
 ---
 title: 教程 - 使用参数文件部署模板
 description: 使用参数文件，其中包含的值可用于部署 Azure 资源管理器模板。
-author: rockboyfor
 origin.date: 03/27/2020
-ms.date: 04/30/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.topic: tutorial
 ms.author: v-yeche
-ms.openlocfilehash: 5830d89ce1deb66d1178e88949355b61b23283a1
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 1e1a3cbb4c26b85b1e462a2be084eb0d657c79ed
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596110"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807921"
 ---
 # <a name="tutorial-use-parameter-files-to-deploy-your-arm-template"></a>教程：使用参数文件部 ARM 模板
 
@@ -45,7 +48,6 @@ ms.locfileid: "82596110"
         "Standard_GRS",
         "Standard_RAGRS",
         "Premium_LRS",
-        "Standard_GZRS",
         "Standard_RAGZRS"
       ]
     },

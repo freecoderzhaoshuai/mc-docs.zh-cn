@@ -8,14 +8,15 @@ ms.service: iot-edge
 services: iot-edge
 ms.topic: conceptual
 origin.date: 06/12/2019
-ms.date: 07/01/2020
+ms.date: 08/27/2020
 ms.author: v-tawe
-ms.openlocfilehash: 7a1b2aa0e63704845bd6fc31a8107bd31e48f78e
-ms.sourcegitcommit: 4f84bba7e509a321b6f68a2da475027c539b8fd3
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: d3509d6943c2d44568e8a5c9d66bd28522863259
+ms.sourcegitcommit: c8e590d907f20bbc9c4c05d9bfc93cf7cb1d776f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85796182"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88957785"
 ---
 # <a name="run-azure-iot-edge-on-windows-server-virtual-machines"></a>在 Windows Server 虚拟机上运行 Azure IoT Edge
 
@@ -105,6 +106,6 @@ ms.locfileid: "85796182"
 
 若要将现有安装更新到最新版本的 IoT Edge，请参阅[更新 IoT Edge 安全守护程序和运行时](how-to-update-iot-edge.md)。
 
-在 [Windows 虚拟机文档](/virtual-machines/windows/)中详细了解如何使用 Windows 虚拟机。
+在 [Windows 虚拟机文档](https://docs.azure.cn/virtual-machines/windows/)中详细了解如何使用 Windows 虚拟机。
 
 若要在安装后通过 SSH 连接到此 VM，请遵循使用远程桌面或远程 PowerShell [安装 OpenSSH for Windows Server](https://docs.microsoft.com/windows-server/administration/openssh/openssh_install_firstuse#installing-openssh-with-powershell) 的指导。

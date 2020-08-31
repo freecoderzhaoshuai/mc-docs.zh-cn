@@ -9,15 +9,15 @@ metadata:
   ms.subservice: users-groups-roles
   manager: daveba
   ms.topic: landing-page
-  ms.date: 03/25/2020
+  ms.date: 08/26/2020
   author: curtand
   ms.author: v-junlch
-  ms.openlocfilehash: adddaf20291dd612335c6333971a7081356be906
-  ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+  ms.openlocfilehash: 8e7aeb4ce802b7eae7804ec4e711687e982de80b
+  ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 04/17/2020
-  ms.locfileid: "80243184"
+  ms.lasthandoff: 08/27/2020
+  ms.locfileid: "88946710"
 landingContent:
 - title: 关于用户、组、角色和许可证
   linkLists:
@@ -29,7 +29,9 @@ landingContent:
       url: roles-custom-overview.md
   - linkListType: concept
     links:
-    - text: 比较 Azure RBAC 角色与 Azure AD 管理员角色
+    - text: 委托管理权限
+      url: roles-concept-delegation.md
+    - text: 比较 Azure 角色与 Azure AD 管理员角色
       url: /role-based-access-control/rbac-and-directory-admin-roles?context=azure/active-directory/users-groups-roles/context/ugr-context
 - title: 入门
   linkLists:
@@ -37,6 +39,8 @@ landingContent:
     links:
     - text: 添加用户
       url: /active-directory/fundamentals/add-users-azure-active-directory?context=azure/active-directory/users-groups-roles/context/ugr-context
+    - text: 设置组的过期策略
+      url: groups-quickstart-expiration.md
     - text: 将许可证分配给用户
       url: /active-directory/fundamentals/license-users-groups?context=azure/active-directory/users-groups-roles/context/ugr-context
 - title: 分配 Azure AD 管理员角色
@@ -65,6 +69,8 @@ landingContent:
     links:
     - text: PowerShell 中的组设置
       url: groups-settings-v2-cmdlets.md
+    - text: 设置组的命名策略
+      url: groups-naming-policy.md
 - title: 添加域
   linkLists:
   - linkListType: how-to-guide

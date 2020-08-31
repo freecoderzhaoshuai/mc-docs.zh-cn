@@ -1,17 +1,19 @@
 ---
 title: 使用 Azure Batch 和 Batch Explorer 渲染 Blender 场景
 description: 教程 - 如何使用 Azure Batch 和 Batch Explorer 客户端应用程序渲染 Blender 场景中的多个帧
-author: mscurrell
 origin.date: 08/02/2018
-ms.date: 10/19/2018
-ms.author: v-lingwu
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes|no
+ms.testdate: 08/24/2020null
+ms.author: v-yeche
 ms.topic: tutorial
-ms.openlocfilehash: 1a3fa27663fb61b5d2a30a1c2b148e716208c2d0
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+ms.openlocfilehash: 2d9077a0114f23f64a562a64cf55a9436bf1b80a
+ms.sourcegitcommit: e633c458126612223fbf7a8853dbf19acc7f0fa5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85611862"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88654978"
 ---
 # <a name="tutorial-render-a-blender-scene-using-batch-explorer"></a>教程：使用 Batch Explorer 渲染 Blender 场景
 
@@ -26,11 +28,13 @@ ms.locfileid: "85611862"
 
 ## <a name="prerequisites"></a>先决条件
 
-需要预付的订阅或试用帐户。
+若要以“按使用付费”模式使用 Batch 中的渲染应用程序，需要有一个标准预付费套餐订阅或其他 Azure 购买选项。 如果使用的是提供货币额度的免费 Azure 套餐，则不支持按使用付费的许可。
 
-需要有一个具有关联的存储帐户的 Azure Batch 帐户。  请参阅任何 Batch 快速入门文章（例如 [CLI 文章](/batch/quick-create-cli)），了解如何创建 Batch 帐户。
+需要有一个具有关联的存储帐户的 Azure Batch 帐户。  请参阅任何 Batch 快速入门文章（例如 [CLI 文章](./quick-create-cli.md)），了解如何创建 Batch 帐户。
 
-就本教程中指定的 VM 大小和 VM 数目来说，需要至少包含 50 个核心的低优先级核心配额；可以使用默认配额，但必须使用较小的 VM 大小，这意味着图像渲染的时间会变长。 请求提高核心配额的过程详见[此文](/batch/batch-quota-limit)。
+就本教程中指定的 VM 大小和 VM 数目来说，需要至少包含 50 个核心的核心配额；可以使用默认配额，但必须使用较小的 VM 大小，这意味着图像渲染的时间会变长。 请求提高核心配额的过程详见[此文](./batch-quota-limit.md)。
+
+<!--Not Available on FEATURE low-priority-->
 
 最后，必须安装适用于 Windows、OSX 和 Linux 的 [Batch Explorer](https://azure.github.io/BatchExplorer/)。 它是可选的，但如果安装了 [Blender](https://www.blender.org/download/)，则可查看示例模型文件。
 
@@ -46,7 +50,7 @@ ms.locfileid: "85611862"
 * 从左侧的主菜单中，选择“数据”菜单项。
 * 确保在下拉菜单中选中“文件组”。
 * 选择“+”按钮，创建新的名为“blender-classroom”的“空文件组”
-  * 文件组就是带“fgrp-”前缀的 Azure 存储 Blob 容器；它是一种约定，用于筛选掉存储帐户中的其他容器
+    * 文件组就是带“fgrp-”前缀的 Azure 存储 Blob 容器；它是一种约定，用于筛选掉存储帐户中的其他容器
 
 ![场景文件的文件组](./media/tutorial-rendering-batchexplorer-blender/batch_explorer_scene_filegroup.png)
 
@@ -77,12 +81,14 @@ ms.locfileid: "85611862"
 ![Blender 库项](./media/tutorial-rendering-batchexplorer-blender/batch_explorer_gallery_item.png)
 
 * 选择“创建以后使用的池”按钮
-  * 保留池名称“blender-windows”
-  * 将“专用 VM 计数”设置为“0”
-  * 将“低优先级 VM 计数”设置为“3”
-  * 将“节点大小”设置为“Standard_F16”- 可以选择其他 VM 大小，但渲染帧所需的时间将主要取决于核心数。
+    * 保留池名称“blender-windows”
+    * 将“专用 VM 计数”设置为“3”
+
+        <!--Not Available on FEATURE Low priority-->
+        
+    * 将“节点大小”设置为“Standard_F16”- 可以选择其他 VM 大小，但渲染帧所需的时间将主要取决于核心数。
 * 选择用于创建池的绿色按钮
-  * 池差不多会立即创建，但分配和启动 VM 需要数分钟。
+    * 池差不多会立即创建，但分配和启动 VM 需要数分钟。
 
 ![用于 Blender 的池模板](./media/tutorial-rendering-batchexplorer-blender/batch_explorer_pool_template.png)
 
@@ -138,7 +144,8 @@ ms.locfileid: "85611862"
 * 可以在右键单击后选择“删除”，也可选择池上方的垃圾桶图标
 
 ## <a name="next-steps"></a>后续步骤
-- 通过 Batch Explorer 在“库”部分浏览可用的渲染应用程序。
-- 每个应用程序都有多个可用的模板，这些模板会随时间而扩展。  例如，Blender 的模板可将单个图像拆分成多个图块，这样就可以并行渲染图像的各个部分。
-- 如需渲染功能的全面介绍，请查看[此处](/batch/batch-rendering-service)提供的一系列文章。
+* 通过 Batch Explorer 在“库”部分浏览可用的渲染应用程序。
+* 每个应用程序都有多个可用的模板，这些模板会随时间而扩展。  例如，Blender 的模板可将单个图像拆分成多个图块，这样就可以并行渲染图像的各个部分。
+* 如需渲染功能的全面介绍，请查看[此处](./batch-rendering-service.md)提供的一系列文章。
 
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -8,13 +8,13 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: conceptual
 origin.date: 01/28/2020
-ms.date: 05/09/2020
-ms.openlocfilehash: 51927860f26faaebb44ccf2a9eda41803418c425
-ms.sourcegitcommit: bfbd6694da33f703481386f2a3f16850c4e94bfa
+ms.date: 08/18/2020
+ms.openlocfilehash: 6c5f5e09be2b6e5bc462078f9b9439b5ca5607b9
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83417572"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515876"
 ---
 # <a name="query-data-in-azure-monitor-using-azure-data-explorer-preview"></a>使用 Azure 数据资源管理器（预览版）查询 Azure Monitor 中的数据
 
@@ -37,7 +37,7 @@ Azure 数据资源管理器代理流：
 
 1. 在 Azure 数据资源管理器 UI (https://dataexplorer.azure.cn/clusters) 中，选择“添加群集”。 
 
-1. 在“添加群集”窗口中，添加 LA 或 AI 群集的 URL。  
+1. 在“添加群集”窗口中，添加 LA 或 AI 群集的 URL。 
     
     * 对于 LA：`https://ade.loganalytics.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.operationalinsights/workspaces/<workspace-name>`
     * 对于 AI：`https://ade.applicationinsights.io/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.insights/components/<ai-app-name>`
@@ -46,11 +46,15 @@ Azure 数据资源管理器代理流：
 
     ![添加群集](media/adx-proxy/add-cluster.png)
 
-    如果将某个连接添加到多个代理群集，请为每个代理群集指定不同的名称。 否则它们全部以相同的名称显示在左窗格。
+    >[!NOTE]
+    >如果将某个连接添加到多个代理群集，请为每个代理群集指定不同的名称。 否则它们全部以相同的名称显示在左窗格。
 
 1. 建立连接后，LA 或 AI 群集将与本机 ADX 群集一起显示在左窗格中。 
 
     ![Log Analytics 和 Azure 数据资源管理器群集](media/adx-proxy/la-adx-clusters.png)
+
+> [!NOTE]
+> 可映射的 Azure Monitor 工作区数限制为 100 个。
 
 ## <a name="run-queries"></a>运行查询
 
@@ -59,13 +63,13 @@ Azure 数据资源管理器代理流：
 > [!TIP]
 > * 数据库名称应与代理群集中指定的资源名称相同。 名称区分大小写。
 > * 在跨群集查询中，请确保 Application Insights 应用和 Log Analytics 工作区的命名正确。
->     * 如果名称包含特殊字符，将按代理群集名称中的 URL 编码替换这些字符。 
->     * 如果名称包含的字符不符合 [KQL 标识符命名规则](https://docs.microsoft.com/azure/data-explorer/kusto/query/schema-entities/entity-names)，这些字符将由短划线 **-** 字符替换。
+> * 如果名称包含特殊字符，将按代理群集名称中的 URL 编码替换这些字符。 
+> * 如果名称包含的字符不符合 [KQL 标识符命名规则](kusto/query/schema-entities/entity-names.md)，这些字符将由短划线 **-** 字符替换。
 
 ### <a name="direct-query-from-your-la-or-ai-adx-proxy-cluster"></a>从 LA 或 AI ADX 代理群集直接查询
 
 在 LA 或 AI 群集上运行查询。 验证是否在左窗格中选择了群集。 
-
+ 
 ```kusto
 Perf | take 10 // Demonstrate query through the proxy on the LA workspace
 ```
@@ -88,7 +92,22 @@ union <ADX table>, cluster(CL1).database(<workspace-name>).<table name>
 
    [ ![从 Azure 数据资源管理器代理运行交叉查询](media/adx-proxy/cross-query-adx-proxy.png)](media/adx-proxy/cross-query-adx-proxy.png#lightbox)
 
-使用 [`join` 运算符](https://docs.microsoft.com/azure/data-explorer/kusto/query/joinoperator)（而不是 union）可能需要指定 [`hint`](https://docs.microsoft.com/azure/data-explorer/kusto/query/joinoperator#join-hints) 才能针对 Azure 数据资源管理器本机群集（而不是针对代理）运行查询。 
+使用 [`join` 运算符](kusto/query/joinoperator.md)（而不是 union）可能需要指定 [`hint`](kusto/query/joinoperator.md#join-hints) 才能针对 Azure 数据资源管理器本机群集（而不是针对代理）运行查询。 
+
+## <a name="function-supportability"></a>函数可支持性
+
+Azure 数据资源管理器代理群集支持 Application Insights 和 Log Analytics 的函数。
+此功能允许跨群集查询直接引用 Azure Monitor 表格函数。
+代理支持以下命令：
+
+* `.show functions`
+* `.show function {FunctionName}`
+* `.show database {DatabaseName} schema as json`
+
+下图描述了一个从 Azure 数据资源管理器 Web UI 查询表格函数的示例。 若要使用此函数，请在“查询”窗口中运行名称。
+
+  [ ![从 Azure 数据资源管理器 Web UI 查询表格函数](media/adx-proxy/function-query-adx-proxy.png)](media/adx-proxy/function-query-adx-proxy.png#lightbox)
+
 
 ## <a name="additional-syntax-examples"></a>其他语法示例
 

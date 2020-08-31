@@ -5,15 +5,15 @@ author: yegu-ms
 ms.author: v-junlch
 ms.service: cache
 ms.devlang: dotnet
-ms.custom: mvc
+ms.custom: devx-track-csharp, mvc
 ms.topic: quickstart
-ms.date: 07/10/2020
-ms.openlocfilehash: e319af90443b9bc142ad6466f8eeba6b49da0b61
-ms.sourcegitcommit: 65a7360bb14b0373e18ec8eaa288ed3ac7b24ef4
+ms.date: 08/24/2020
+ms.openlocfilehash: d5c3f47fc11c1ea6917d73e812a69a3da59811ef
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86219736"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946967"
 ---
 # <a name="quickstart-use-azure-cache-for-redis-with-a-net-core-app"></a>快速入门：将 Azure Redis 缓存与 .NET Core 应用配合使用
 
@@ -194,7 +194,7 @@ static void Main(string[] args)
 
 保存 *Program.cs*。
 
-Azure Redis 缓存具有可配置的数据库数量（默认为 16 个），因此可以通过逻辑方式隔离 Azure Redis 缓存中的数据。 该代码连接到默认数据库 DB 0。 有关详细信息，请参阅[什么是 Redis 数据库？](cache-faq.md#what-are-redis-databases)和[默认 Redis 服务器配置](cache-configure.md#default-redis-server-configuration)。
+Azure Redis 缓存具有可配置的数据库数量（默认为 16 个），因此可以通过逻辑方式隔离 Azure Redis 缓存中的数据。 该代码连接到默认数据库 DB 0。 有关详细信息，请参阅[什么是 Redis 数据库？](cache-development-faq.md#what-are-redis-databases)和[默认 Redis 服务器配置](cache-configure.md#default-redis-server-configuration)。
 
 可以使用 `StringSet` 和 `StringGet` 方法来存储和检索缓存项。
 

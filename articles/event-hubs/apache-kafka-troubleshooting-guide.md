@@ -1,30 +1,22 @@
 ---
 title: 排查适用于 Apache Kafka 的 Azure 事件中心的问题
 description: 本文介绍如何排查适用于 Apache Kafka 的 Azure 事件中心的问题
-services: event-hubs
-documentationcenter: ''
-author: ShubhaVijayasarathy
-manager: ''
-ms.service: event-hubs
-ms.devlang: na
 ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: na
 ms.author: v-tawe
-origin.date: 04/01/2020
-ms.date: 05/29/2020
-ms.openlocfilehash: 7be298604452d9dca11c2a6c721a278d66b00b63
-ms.sourcegitcommit: be0a8e909fbce6b1b09699a721268f2fc7eb89de
+origin.date: 06/23/2020
+ms.date: 08/21/2020
+ms.openlocfilehash: 6a8d74ce9eafea67771af23d6d661d552a1688fe
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84199904"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715361"
 ---
 # <a name="apache-kafka-troubleshooting-guide-for-event-hubs"></a>针对事件中心的 Apache Kafka 故障排除指南
 本文提供的故障排除技巧适用于你在使用适用于 Apache Kafka 的事件中心时可能会遇到的问题。 
 
 ## <a name="server-busy-exception"></a>服务器繁忙异常
-由于 Kafka 限制，你可能会收到“服务器忙”异常。 使用 AMQP 客户端时，事件中心会在遇到服务限制时立即返回“服务器忙”异常。 它相当于“稍后重试”消息。 在 Kafka 中，消息在完成前会存在延迟。 将在生成/提取响应中以 `throttle_time_ms` 形式返回延迟时间长度（以毫秒为单位）。 大多数情况下，系统不会在事件中心仪表板上将这些延迟的请求记录为 ServerBusy 异常， 而是使用响应的 `throttle_time_ms` 值来指示吞吐量已超出预配的配额。
+由于 Kafka 限制，你可能会收到“服务器忙”异常。 使用 AMQP 客户端时，事件中心会在遇到服务限制时立即返回“服务器忙”异常。 它相当于“稍后重试”消息。 在 Kafka 中，消息在完成前会存在延迟。 将在生成/提取响应中以 `throttle_time_ms` 形式返回延迟时间长度（以毫秒为单位）。 大多数情况下，系统不会在事件中心仪表板上将这些延迟的请求记录为“服务器忙”异常， 而是使用响应的 `throttle_time_ms` 值来指示吞吐量已超出预配的配额。
 
 如果流量过多，服务会出现以下行为：
 
@@ -65,7 +57,7 @@ org.apache.kafka.common.errors.UnknownServerException: The server experienced an
 - **SASL 身份验证** - 将框架与事件中心所需的 SASL 身份验证协议配合使用可能不是看起来那么容易。 看看你是否可以在 SASL 身份验证的基础上使用框架的资源来排查配置问题。 
 
 ## <a name="limits"></a>限制
-我们可以将 Apache Kafka 与事件中心 Kafka 进行比较。 大多数情况下，用于 Kafka 生态系统的事件中心的默认值、属性、错误代码和常规行为与 Apache Kafka 相同。 下面列出了这二者明显不同的情况（或事件中心施加了某个限制而 Kafka 没有施加该限制的情况）：
+我们可以将 Apache Kafka 与事件中心 Kafka 进行比较。 大多数情况下，事件中心 Kafka 的默认值、属性、错误代码和常规行为与 Apache Kafka 的相同。 下面列出了这二者明显不同的情况（或事件中心施加了某个限制而 Kafka 没有施加该限制的情况）：
 
 - `group.id` 属性的最大长度为 256 个字符
 - `offset.metadata.max.bytes` 的最大大小为 1024 个字节
@@ -78,4 +70,4 @@ org.apache.kafka.common.errors.UnknownServerException: The server experienced an
 - [针对事件中心的 Apache Kafka 开发人员指南](apache-kafka-developer-guide.md)
 - [针对事件中心的 Apache Kafka 迁移指南](apache-kafka-migration-guide.md)
 - [常见问题解答 - 用于 Apache Kafka 的事件中心](apache-kafka-frequently-asked-questions.md)
-- [建议的配置](https://github.com/Azure/azure-event-hubs-for-kafka/blob/master/CONFIGURATION.md)
+- [建议的配置](apache-kafka-configurations.md)

@@ -3,14 +3,17 @@ title: 排查迁移错误
 description: 使用 Azure Resource Manager 将资源移到新的资源组或订阅。
 ms.topic: conceptual
 origin.date: 08/27/2019
-ms.date: 01/20/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: dd168d76ed08952553f0bfac2b5b3f2d9391cbba
-ms.sourcegitcommit: 2d8950c6c255361eb6c66406988e25c69cf4e0f5
+ms.openlocfilehash: 3497aef22b105c5ca78c04c043b70a7050da9558
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/14/2020
-ms.locfileid: "83392343"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807718"
 ---
 <!--Verified successfully-->
 # <a name="troubleshoot-moving-azure-resources-to-new-resource-group-or-subscription"></a>排查将 Azure 资源移到新的资源组或订阅时遇到的问题
@@ -36,7 +39,7 @@ ms.locfileid: "83392343"
 
 * [应用服务](./move-limitations/app-service-move-limitations.md)
     
-    <!--Not Available on * [Azure DevOps Services](https://docs.microsoft.com/azure/devops/organizations/billing/change-azure-subscription?toc=/azure/azure-resource-manager/toc.json)-->
+    <!--Not Available on * [Azure DevOps Services](https://docs.microsoft.com/azure/devops/organizations/billing/change-azure-subscription?toc=/azure-resource-manager/toc.json)-->
 
 * [经典部署模型](./move-limitations/classic-model-move-limitations.md)
 * [联网](./move-limitations/networking-move-limitations.md)

@@ -7,21 +7,21 @@ manager: CelesteDG
 ms.service: active-directory
 ms.subservice: develop
 ms.workload: identity
-ms.topic: conceptual
-ms.date: 05/28/2020
+ms.topic: reference
+ms.date: 08/18/2020
 ms.author: v-junlch
 ms.reviewer: hirsin
 ms.custom: aaddev
-ms.openlocfilehash: a1bbd65fd666b36450d37d47d4f6b506ea4f1b1b
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: 6d2b287edb9fa1352646491a83ed053083faa2f6
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186867"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647594"
 ---
 # <a name="whats-new-for-authentication"></a>身份验证的新增功能
 
->获取有关此页更新的通知。 只需将[此 URL](https://docs.microsoft.com/api/search/rss?search=%22whats%20new%20for%20authentication%22&locale=en-us) 添加到 RSS 源阅读器即可。
+> 通过将此 URL 粘贴到 RSS 源阅读器中即可在此页面更新时获得通知：<br/>`https://docs.microsoft.com/api/search/rss?search=%22whats%20new%20for%20authentication%22&locale=en-us`
 
 身份验证系统会持续更改和添加功能，以增强安全性并提高标准符合性。 为了让大家随时了解最新的开发成果，本文将提供有关以下详细信息的信息：
 
@@ -80,7 +80,7 @@ ms.locfileid: "84186867"
 
 **受影响的终结点**：v1.0 和 v2.0
 
-**受影响的协议**：使用 POST 的任何位置（[客户端凭据](/active-directory/develop/v2-oauth2-client-creds-grant-flow)、[授权代码兑换](/active-directory/develop/v2-oauth2-auth-code-flow)、[ROPC](/active-directory/develop/v2-oauth-ropc)、[OBO](/active-directory/develop/v2-oauth2-on-behalf-of-flow)和[刷新令牌兑换](/active-directory/develop/v2-oauth2-auth-code-flow#refresh-the-access-token)）
+**受影响的协议**：使用 POST 的任何位置（[客户端凭据](./v2-oauth2-client-creds-grant-flow.md)、[授权代码兑换](./v2-oauth2-auth-code-flow.md)、[ROPC](./v2-oauth-ropc.md)、[OBO](./v2-oauth2-on-behalf-of-flow.md)和[刷新令牌兑换](./v2-oauth2-auth-code-flow.md#refresh-the-access-token)）
 
 从 9 月 2 日那一周开始，使用 POST 方法的身份验证请求会按更严格的 HTTP 标准进行验证。  具体说来，空格和双引号 (“) 将不再从请求表单值中删除。 这些更改不应造成任何现有客户端出现中断，将确保发送到 Azure AD 的请求每次都能够得到可靠的处理。 在将来（见上），我们计划还要拒绝重复参数并忽略请求中的 BOM。
 
@@ -95,9 +95,9 @@ ms.locfileid: "84186867"
 
 **生效日期**：2019 年 6 月 26 日
 
-**受影响的终结点**：[v1.0](/active-directory/develop/v1-oauth2-client-creds-grant-flow) 和 [v2.0](/active-directory/develop/v2-oauth2-client-creds-grant-flow)
+**受影响的终结点**：[v1.0](../azuread-dev/v1-oauth2-client-creds-grant-flow.md) 和 [v2.0](./v2-oauth2-client-creds-grant-flow.md)
 
-**受影响的协议**：[客户端凭据（仅限应用的令牌）](/active-directory/develop/v1-oauth2-client-creds-grant-flow)
+**受影响的协议**：[客户端凭据（仅限应用的令牌）](../azuread-dev/v1-oauth2-client-creds-grant-flow.md)
 
 一项安全更改已在 7 月 26 日上线，它会更改颁发仅限应用的令牌的方式（通过客户端凭据授予）。 以前，允许应用程序获取令牌来调用任何其他应用，无论该应用程序是否在租户中存在或者是否向其许可了角色。  此行为现已更新，对于设置为单租户（默认值）的资源（有时称为 Web API），客户端应用程序必须在资源租户中存在。  请注意，仍不需要客户端与 API 之间的现有许可，应用应该仍会执行其自身的授权检查，以确保 `roles` 声明存在并且包含 API 所需的值。
 

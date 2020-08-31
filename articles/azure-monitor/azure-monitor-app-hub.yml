@@ -9,12 +9,12 @@ metadata:
   ms.topic: hub-page
   manager: carmonm
   ms.date: 07/17/2020
-  ms.openlocfilehash: fa6a92fbd34770e4c3b3ab98cfd61e22cde15ca9
-  ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+  ms.openlocfilehash: f8a8daf503412b772ad90571c1b1b388374b5ad7
+  ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 07/28/2020
-  ms.locfileid: "87254855"
+  ms.lasthandoff: 08/30/2020
+  ms.locfileid: "89148568"
 highlightedContent:
   items:
   - title: 什么是 Application Insights？
@@ -103,9 +103,6 @@ conceptualContent:
     - url: ./learn/tutorial-performance.md
       itemType: how-to-guide
       text: 查找和诊断性能问题
-    - url: ./learn/tutorial-alert.md
-      itemType: how-to-guide
-      text: 监视应用程序运行状况并根据情况发出警报
     - url: ./learn/tutorial-users.md
       itemType: how-to-guide
       text: 理解用户行为

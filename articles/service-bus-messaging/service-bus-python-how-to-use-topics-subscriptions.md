@@ -6,17 +6,17 @@ author: rockboyfor
 ms.devlang: python
 ms.topic: quickstart
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+ms.date: 08/31/2020
 ms.testscope: yes
 ms.testdate: 07/20/2020
 ms.author: v-yeche
-ms.custom: tracking-python
-ms.openlocfilehash: 50151672fb54e32d7f52fb8302b15dc7c94e92d9
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.custom: devx-track-python
+ms.openlocfilehash: 7582e2666889b7b2bd60502647606b80cfc97041
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162278"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946909"
 ---
 # <a name="quickstart-use-service-bus-topics-and-subscriptions-with-python"></a>快速入门：通过 Python 使用服务总线主题和订阅
 

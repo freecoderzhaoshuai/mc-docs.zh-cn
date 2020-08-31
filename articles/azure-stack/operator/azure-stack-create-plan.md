@@ -8,18 +8,17 @@ ms.date: 06/22/2020
 ms.author: v-jay
 ms.reviewer: efemmano
 ms.lastreviewed: 06/11/2019
-ms.openlocfilehash: f1d36260a23dc3c271aef15ffed48e14156a3fb2
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: e82ca617a2955701d165444091b98ebb67ac58ba
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096247"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867760"
 ---
 # <a name="create-a-plan-in-azure-stack-hub"></a>在 Azure Stack Hub 中创建计划
 
 [Azure Stack Hub 计划](azure-stack-overview.md)是一个或多个服务及其配额的分组。 作为提供商，可以创建提供给用户的计划。 而用户可以订阅你的套餐，以使用套餐中包含的计划、服务和配额。 此示例演示如何创建一个包括计算、网络和存储资源提供程序的计划。 订阅方使用此计划可以预配虚拟机。
 
-::: moniker range=">=azs-1902"
 ## <a name="create-a-plan-1902-and-later"></a>创建计划（1902 和更高版本）
 
 1. 登录到 Azure Stack Hub 管理员门户 `https://adminportal.local.azurestack.external`。
@@ -61,9 +60,7 @@ ms.locfileid: "85096247"
 10. 准备就绪后，选择“创建”以创建计划。
 
 11. 若要查看新计划，请在左侧单击“所有服务”，选择“计划”，然后搜索计划并选择其名称。 如果资源列表很长，可使用“搜索”来通过名称定位你的计划。
-::: moniker-end
 
-::: moniker range="<=azs-1901"
 ## <a name="create-a-plan-1901-and-earlier"></a>创建计划（1901 和更低版本）
 
 1. 登录到 Azure Stack Hub 管理员门户 `https://adminportal.local.azurestack.external`。
@@ -107,7 +104,6 @@ ms.locfileid: "85096247"
 10. 若要查看新计划，请选择“所有资源”，然后搜索该计划并选择其名称。 如果资源列表很长，可使用“搜索”来通过名称定位你的计划。
 
     ![在 Azure Stack Hub 中查看新计划](media/azure-stack-create-plan/plan-overview1901.png)
-::: moniker-end
 
 ## <a name="next-steps"></a>后续步骤
 

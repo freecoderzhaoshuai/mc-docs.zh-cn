@@ -6,16 +6,17 @@ keywords: ''
 author: mgblythe
 ms.author: v-tawe
 origin.date: 01/08/2020
-ms.date: 06/22/2020
+ms.date: 08/27/2020
 ms.topic: how-to
+ms.custom: devx-track-javascript
 ms.service: azure-portal
 manager: mtillman
-ms.openlocfilehash: 969da0e4b5eb4c84c0a8863f334e6c1a28927ec0
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+ms.openlocfilehash: b38280abe5485b5c474d16b123dceab422290be7
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85613301"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947038"
 ---
 # <a name="use-a-markdown-tile-on-azure-dashboards-to-show-custom-content"></a>在 Azure 仪表板上使用 Markdown 磁贴显示自定义内容
 

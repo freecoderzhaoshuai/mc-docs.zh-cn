@@ -6,18 +6,18 @@ ms.subservice: logs
 ms.topic: conceptual
 author: Johnnytechn
 ms.author: v-johya
-ms.date: 05/28/2020
-ms.openlocfilehash: d07c069f1ed7342995a59ac619c7ff2ff3d30a36
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.date: 08/20/2020
+ms.openlocfilehash: 598a0da1791b195c0aef753fa3636cfc2e12a050
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440444"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148542"
 ---
 # <a name="overview-of-log-queries-in-azure-monitor"></a>Azure Monitor 中的日志查询概述
 日志查询可帮助你充分利用 [Azure Monitor 日志](../platform/data-platform-logs.md)中收集的数据的价值。 使用功能强大的查询语言，只需编写极少量的代码即可联接多个表中的数据、聚合大型数据集，以及执行复杂的操作。 只要收集了支持数据，并且你了解如何构造适当的查询，就几乎能够解答任何问题和执行分析。
 
-Azure Monitor 中的某些功能（例如[见解](../insights/insights-overview.md)和[解决方案](../insights/solutions-inventory.md)）可以处理日志数据，且不会在基础查询中透露你的身份。 若要充分利用 Azure Monitor 的其他功能，应该了解如何构造查询，以及如何使用它们以交互方式分析 Azure Monitor 日志中的数据。
+Azure Monitor 中的某些功能（例如[见解](../insights/insights-overview.md)和[解决方案](../monitor-reference.md)）可以处理日志数据，且不会在基础查询中透露你的身份。 若要充分利用 Azure Monitor 的其他功能，应该了解如何构造查询，以及如何使用它们以交互方式分析 Azure Monitor 日志中的数据。
 
 可以使用本文作为起点来了解 Azure Monitor 中的日志查询。 其中解答了常见问题，并提供了包含更多详细信息的其他文档和课程的链接。
 

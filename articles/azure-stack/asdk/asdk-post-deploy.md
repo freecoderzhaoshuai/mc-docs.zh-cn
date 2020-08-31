@@ -4,16 +4,16 @@ description: 了解安装 Azure Stack 开发工具包 (ASDK) 后要进行的建�
 author: WenJason
 ms.topic: article
 origin.date: 07/31/2019
-ms.date: 05/18/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: misainat
 ms.lastreviewed: 07/31/2019
-ms.openlocfilehash: ed4b9f7558bb7ea740b5313f67471daa69a0eef8
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: f2d4e795dfcb1b8360779154bad8d042a0aecbb6
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422414"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867790"
 ---
 # <a name="post-deployment-configurations-for-asdk"></a>ASDK 的部署后配置
 
@@ -48,7 +48,7 @@ Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
 
   # Install and import the API Version Profile required by Azure Stack into the current PowerShell session.
   Use-AzureRmProfile -Profile 2019-03-01-hybrid -Force
-  Install-Module -Name AzureStack -RequiredVersion 1.8.0
+  Install-Module -Name AzureStack -RequiredVersion 1.8.2
   ```
 
   如果安装成功，输出中会显示 AzureRM 和 AzureStack 模块。

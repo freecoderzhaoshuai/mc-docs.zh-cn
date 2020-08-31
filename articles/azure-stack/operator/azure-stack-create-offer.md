@@ -8,18 +8,17 @@ ms.date: 06/22/2020
 ms.author: v-jay
 ms.reviewer: efemmano
 ms.lastreviewed: 06/11/2019
-ms.openlocfilehash: 8898fde793096b8dc56b6f20629ad30e851554d6
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 83e7057d7e1c43f75382223c972e31eda2e231a3
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096249"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867753"
 ---
 # <a name="create-an-offer-in-azure-stack-hub"></a>在 Azure Stack Hub 中创建套餐
 
 [套餐](azure-stack-overview.md)是提供者提供给用户购买或订阅的一个或多个计划的组合。 本文介绍如何创建包含[创建的计划](azure-stack-create-plan.md)的套餐。 订阅方可以使用此套餐设置虚拟机 (VM)。
 
-::: moniker range=">=azs-1902"
 ## <a name="create-an-offer-1902-and-later"></a>创建套餐（1902 和更高版本）
 
 1. 登录到 Azure Stack Hub 管理员门户`https://adminportal.local.azurestack.external`，依次选择“+ 创建资源”、“套餐 + 计划”、“套餐”**** **** ****。
@@ -64,9 +63,7 @@ ms.locfileid: "85096249"
 2. 选择“套餐设置”。**** 选择要使用的状态（例如“公开”），然后选择“保存”。**** ****
 
    ![Azure Stack Hub 套餐设置](media/azure-stack-create-offer/offer-settings.png)
-::: moniker-end
 
-::: moniker range="<=azs-1901"
 ## <a name="create-an-offer-1901-and-earlier"></a>创建套餐（1901 和更低版本）
 
 1. 登录到 Azure Stack Hub 管理员门户`https://adminportal.local.azurestack.external`，依次选择“+ 创建资源”、“租户套餐 + 计划”、“套餐”**** **** ****。
@@ -100,7 +97,6 @@ ms.locfileid: "85096249"
 
 > [!NOTE]
 > 还可以使用 PowerShell 来创建默认套餐、计划和配额。 有关详细信息，请参阅 [Azure Stack Hub PowerShell 模块 1.4.0](https://docs.microsoft.com/powershell/azure/azure-stack/overview?view=azurestackps-1.4.0)。
-::: moniker-end
 
 ## <a name="next-steps"></a>后续步骤
 

@@ -5,17 +5,17 @@ description: 了解如何在指定时刻及时创建 blob 的只读快照以备�
 services: storage
 author: WenJason
 ms.service: storage
-ms.topic: article
+ms.topic: how-to
 origin.date: 04/02/2020
-ms.date: 06/01/2020
+ms.date: 08/24/2020
 ms.author: v-jay
 ms.subservice: blobs
-ms.openlocfilehash: d1c8d68e45ae77da4c14d2c33936d3d540225983
-ms.sourcegitcommit: be0a8e909fbce6b1b09699a721268f2fc7eb89de
+ms.openlocfilehash: 12b3b7e4f3cb15ddae646555486c564f6b6fed54
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84199997"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753464"
 ---
 # <a name="create-and-manage-a-blob-snapshot-in-net"></a>在 .NET 中创建和管理 blob 快照
 
@@ -25,7 +25,7 @@ ms.locfileid: "84199997"
 
 ## <a name="create-a-snapshot"></a>创建快照
 
-# <a name="net-version-12x"></a>[.NET 版本 12.x](#tab/v12)
+# <a name="net-v12"></a>[.NET v12](#tab/dotnet)
 
 要使用 12.x 版用于 .NET 的 Azure 存储客户端库创建块 blob 快照，请使用以下任一方法：
 
@@ -78,7 +78,7 @@ private static async Task CreateBlockBlobSnapshot(string accountName, string con
 }
 ```
 
-# <a name="net-version-11x"></a>[.NET 版本 11.x](#tab/v11)
+# <a name="net-v11"></a>[.NET v11](#tab/dotnet11)
 
 要使用 11.x 版用于 .NET 的 Azure 存储客户端库创建块 blob 快照，请使用以下任一方法：
 
@@ -127,7 +127,7 @@ private static async Task CreateBlockBlobSnapshot(CloudBlobContainer container)
 
 若要删除 blob，必须先删除该 blob 的所有快照。 可以单独删除快照，或指定在删除源 Blob 时删除所有快照。 如果尝试删除仍包含快照的 Blob，会发生错误。
 
-# <a name="net-version-12x"></a>[.NET 版本 12.x](#tab/v12)
+# <a name="net-v12"></a>[.NET v12](#tab/dotnet)
 
 要使用 12.x 版用于 .NET 的 Azure 存储客户端库删除 blob 及其快照，请使用以下任一方法，并包括 [DeleteSnapshotsOption](https://docs.microsoft.com/dotnet/api/azure.storage.blobs.models.deletesnapshotsoption) 枚举：
 
@@ -142,7 +142,7 @@ private static async Task CreateBlockBlobSnapshot(CloudBlobContainer container)
 await blobClient.DeleteIfExistsAsync(DeleteSnapshotsOption.IncludeSnapshots, null, default);
 ```
 
-# <a name="net-version-11x"></a>[.NET 版本 11.x](#tab/v11)
+# <a name="net-v11"></a>[.NET v11](#tab/dotnet11)
 
 要使用 11.x 版用于 .NET 的 Azure 存储客户端库删除 blob 及其快照，请使用以下任一 blob 删除方法，并包括 [DeleteSnapshotsOption](https://docs.microsoft.com/dotnet/api/microsoft.azure.storage.blob.deletesnapshotsoption) 枚举：
 

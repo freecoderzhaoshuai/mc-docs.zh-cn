@@ -3,27 +3,31 @@ author: ccompy
 ms.service: app-service-web
 ms.topic: include
 origin.date: 02/27/2020
-ms.date: 04/20/2020
+ms.date: 08/13/2020
 ms.author: v-tawe
-ms.openlocfilehash: ea6608098681559065537dea4ff058b8f762e793
-ms.sourcegitcommit: 981a75a78f8cf74ab5a76f9e6b0dc5978387be4b
+ms.openlocfilehash: dd7a00c0cabdb0f04fcd144d734e789e034eebb3
+ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/22/2020
-ms.locfileid: "83801331"
+ms.lasthandoff: 08/14/2020
+ms.locfileid: "89046365"
 ---
 虽然此功能很容易设置，但这并不意味着你的体验不会遇到任何问题。 如果在访问所需终结点时遇到问题，可以使用某些实用程序来测试从应用控制台发出的连接。 可以使用两种控制台。 一种是 Kudu 控制台，另一种是 Azure 门户中的控制台。 若要访问应用中的 Kudu 控制台，请转到“工具” > “Kudu”。 此外，还可以通过 [sitename].scm.chinacloudsites.cn 访问 Kudo 控制台。 打开网站负载后，转到“调试控制台”选项卡。若要从应用访问 Azure 门户托管的控制台，请转到“工具” > “控制台”。
 
 #### <a name="tools"></a>工具
 由于存在安全约束，因此无法通过控制台运行 ping、nslookup 和 tracert 工具  。 为了填补此空白，我们添加了两个单独的工具。 我们添加了名为 nameresolver.exe 的工具，用于测试 DNS 功能。 语法为：
 
-    nameresolver.exe hostname [optional: DNS Server]
+```console
+nameresolver.exe hostname [optional: DNS Server]
+```
 
 可以使用 nameresolver 来检查应用所需的主机名。 可以通过这种方式来测试 DNS 是否配置错误，或者测试你是否有权访问 DNS 服务器。 若要了解可供应用在控制台中使用的 DNS 服务器，请查看环境变量 WEBSITE_DNS_SERVER 和 WEBSITE_DNS_ALT_SERVER。
 
 可以使用下一工具测试与主机的 TCP 连接情况，以及端口组合情况。 该工具名为 **tcpping**，语法为：
 
-    tcpping.exe hostname [optional: port]
+```console
+tcpping.exe hostname [optional: port]
+```
 
 **tcpping** 实用程序会告知是否可访问特定主机和端口。 只有满足以下条件才会显示成功：存在侦听主机和端口组合的应用程序，且可从应用对指定主机和端口进行网络访问。
 
@@ -59,7 +63,9 @@ ms.locfileid: "83801331"
 
 * 连接到虚拟网络中的某个 VM，尝试在该处访问资源主机:端口。 若要针对 TCP 访问权限进行测试，请使用 PowerShell 命令 test-netconnection。 语法为：
 
-      test-netconnection hostname [optional: -Port]
+```powershell
+test-netconnection hostname [optional: -Port]
+```
 
 * 在某个 VM 中启动应用程序，然后使用 tcpping 测试能否在应用的控制台中访问该主机和端口。
 

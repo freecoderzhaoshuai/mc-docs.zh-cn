@@ -9,12 +9,12 @@ ms.date: 05/18/2020
 ms.author: v-jay
 ms.reviewer: efemmano
 ms.lastreviewed: 06/11/2019
-ms.openlocfilehash: 20e6ac74d3e785e24f9a1ba38f2607dccab1b5fd
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: 5b624525b346ce24a164de06f4b09fd95009c2e7
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422429"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868101"
 ---
 # <a name="create-add-on-plans-in-azure-stack-hub"></a>在 Azure Stack Hub 中创建附加计划
 
@@ -29,7 +29,6 @@ ms.locfileid: "83422429"
 
 附加计划的创建方法与基本计划的[创建方法相同](azure-stack-create-plan.md)。 两者之间的差异是在将计划添加到套餐时确定的。 计划被指定为基本计划或附加计划。 将附加计划添加到现有套餐时，可能需要长达一小时的时间才会在订阅中显示附加资源。
 
-::: moniker range=">=azs-1902"
 ## <a name="create-an-add-on-plan-1902-and-later"></a>创建附加计划（1902 及更高版本）
 
 1. 以云管理员身份登录到 Azure Stack Hub 管理员门户。
@@ -49,9 +48,6 @@ ms.locfileid: "83422429"
 6. 查看随套餐提供的附加计划的列表，验证新附加计划是否已列出。
 
     ![[在 Azure Stack 管理员门户中查看附加计划列表](media/create-add-on-plan/add-on4.png "创建附加计划")](media/create-add-on-plan/add-on4lg.png#lightbox)
-::: moniker-end
-
-::: moniker range="<=azs-1901"
 
 ## <a name="create-an-add-on-plan-1901-and-earlier"></a>创建附加计划（1901 及更低版本）
 
@@ -73,7 +69,6 @@ ms.locfileid: "83422429"
 
     ![在 Azure Stack 管理员门户中查看附加计划列表](media/create-add-on-plan/4.PNG)
 
-::: moniker-end
 
 ## <a name="next-steps"></a>后续步骤
 

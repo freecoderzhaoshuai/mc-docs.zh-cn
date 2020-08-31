@@ -1,21 +1,21 @@
 ---
 title: 教程 - 创建 Azure Active Directory B2C 租户
-description: 了解如何通过使用 Azure 门户创建 Azure Active Directory B2C 租户来准备注册应用程序。
+description: 按照本教程进行操作，了解如何通过使用 Azure 门户创建 Azure Active Directory B2C 租户来准备注册应用程序。
 services: B2C
 author: msmimart
 manager: celestedg
 ms.service: active-directory
 ms.workload: identity
 ms.topic: tutorial
-ms.date: 07/28/2020
+ms.date: 08/25/2020
 ms.author: v-junlch
 ms.subservice: B2C
-ms.openlocfilehash: 656899a2fbeda070f1cfd1ccfae3efa0faa8ff6d
-ms.sourcegitcommit: dd2bc914f6fc2309f122b1c7109e258ceaa7c868
+ms.openlocfilehash: 13172374916934c0588bafcadc998fa0df5e123d
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87297711"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946552"
 ---
 # <a name="tutorial-create-an-azure-active-directory-b2c-tenant"></a>教程：创建 Azure Active Directory B2C 租户
 
@@ -30,6 +30,8 @@ ms.locfileid: "87297711"
 > * 在 Azure 门户中将 Azure AD B2C 资源添加为“收藏夹”中的项
 
 在下一个教程中，学习如何注册应用程序。
+
+## <a name="prerequisites"></a>先决条件
 
 如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
 
@@ -104,4 +106,3 @@ ms.locfileid: "87297711"
 > [!div class="nextstepaction"]
 > [注册应用程序 >](tutorial-register-applications.md)
 
-<!-- Update_Description: wording update -->

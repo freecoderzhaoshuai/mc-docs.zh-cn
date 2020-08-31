@@ -3,17 +3,16 @@ title: Log Analytics 智能分析示例 | Azure Docs
 description: 使用 Log Analytics 中的智能分析函数执行用户活动分析的示例。
 ms.subservice: logs
 ms.topic: conceptual
-author: lingliw
-manager: digimobile
+author: Johnnytechn
+ms.author: v-johya
+ms.date: 08/20/2020
 origin.date: 01/15/2019
-ms.date: 6/4/2019
-ms.author: v-lingwu
-ms.openlocfilehash: 579564be80b9b2e3aef18eb264d7a7d73601b43d
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: c1f3461116f677a5a8a6f883383b9963393b3663
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78850266"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148544"
 ---
 # <a name="log-analytics-smart-analytics-examples"></a>Log Analytics 智能分析示例
 本文包含使用 Log Analytics 中的智能分析函数执行用户活动分析的示例。 可以使用这些示例来分析你自己的由 Application Insights 监视的应用程序，或者使用这些查询中的概念来对其他数据进行类似的分析。 
@@ -87,7 +86,7 @@ week
 ```
 此示例生成以下输出。
 
-![队列分析输出](media/smart-analytics/cohorts.png)
+![队列分析输出](./media/smart-analytics/cohorts.png)
 
 ## <a name="rolling-monthly-active-users-and-user-stickiness"></a>滚动每月活动用户数和用户粘性
 以下示例结合 [series_fir](https://docs.microsoft.com/azure/kusto/query/series-firfunction) 函数使用时序分析，该函数用于执行滑动窗口计算。 受监视的示例应用程序是一个通过自定义事件跟踪用户活动的网上商店。 查询跟踪两种类型的用户活动：_AddToCart_和 _Checkout_，并将活动用户定义为在给定的一天内至少执行了一次结算的用户。 
@@ -135,7 +134,7 @@ customEvents
 
 此示例生成以下输出。
 
-![滚动每月用户数输出](media/smart-analytics/rolling-mau.png)
+![滚动每月用户数输出](./media/smart-analytics/rolling-mau.png)
 
 以下示例将上述查询转换为可重用的函数，并使用该函数来计算滚动用户粘性。 此查询中的活动用户定义为在给定的一天内至少执行了一次结算的用户。
 
@@ -177,7 +176,7 @@ on Timestamp
 
 此示例生成以下输出。
 
-![用户粘性输出](media/smart-analytics/user-stickiness.png)
+![用户粘性输出](./media/smart-analytics/user-stickiness.png)
 
 ## <a name="regression-analysis"></a>回归分析
 此示例演示如何专门根据应用程序的跟踪日志，为服务中断创建自动检测器。 该检测器会在应用程序的相对错误和警告跟踪数量中查找异常的突发性增长。
@@ -218,6 +217,4 @@ traces
 
 - 有关语言的详细信息，请参阅[数据资源管理器语言参考](https://docs.microsoft.com/azure/kusto/query)。
 - 演练[有关在 Log Analytics 中编写查询的课程](get-started-queries.md)。
-
-
 

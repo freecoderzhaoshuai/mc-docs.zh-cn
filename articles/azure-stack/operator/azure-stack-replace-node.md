@@ -5,16 +5,16 @@ description: 了解如何更换 Azure Stack Hub 集成系统上的物理缩放�
 author: WenJason
 ms.topic: how-to
 origin.date: 03/04/2020
-ms.date: 05/18/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: thoroet
 ms.lastreviewed: 11/11/2019
-ms.openlocfilehash: 379b624530817fde93efad563dc1233e348de8a7
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: 4ff6b5db9d0eb6fc54fbef6cec5cda16d1d623b6
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422107"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868036"
 ---
 # <a name="replace-a-scale-unit-node-on-an-azure-stack-hub-integrated-system"></a>更换 Azure Stack Hub 集成系统上的缩放单元节点
 
@@ -30,7 +30,7 @@ ms.locfileid: "83422107"
 *根据硬件的物理条件，可能不需要此操作。
 
 > [!Note]  
-> 如果关闭操作确实失败，则建议先执行清空操作，再执行停止操作。 有关详细信息，请参阅 [Azure Stack Hub 中的缩放单元节点操作](/azure-stack/operator/azure-stack-node-actions)。
+> 如果关闭操作确实失败，则建议先执行清空操作，再执行停止操作。 有关详细信息，请参阅 [Azure Stack Hub 中的缩放单元节点操作](./azure-stack-node-actions.md)。
 
 ## <a name="review-alert-information"></a>查看警报信息
 

@@ -1,22 +1,22 @@
 ---
 title: 教程：自定义用户界面
 titleSuffix: Azure AD B2C
-description: 了解如何使用 Azure 门户在 Azure Active Directory B2C 中自定义应用程序的用户界面 (UI)。
+description: 按照此教程进行操作，了解如何使用 Azure 门户在 Azure Active Directory B2C 中自定义应用程序的用户界面 (UI)。
 services: B2C
 author: msmimart
 manager: celestedg
 ms.service: active-directory
 ms.workload: identity
-ms.topic: conceptual
-ms.date: 05/18/2020
+ms.topic: tutorial
+ms.date: 08/25/2020
 ms.author: v-junlch
 ms.subservice: B2C
-ms.openlocfilehash: f94073df9d700f74ce8981467c8a24e43f6e71c0
-ms.sourcegitcommit: 87e789550ea49ff77c7f19bc68fad228009fcf44
+ms.openlocfilehash: 04633deb0d27f5848f4a4d86c57a3967fabe7bfa
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/21/2020
-ms.locfileid: "83748102"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946543"
 ---
 # <a name="tutorial-customize-the-interface-of-user-experiences-in-azure-active-directory-b2c"></a>教程：在 Azure Active Directory B2C 中自定义用户界面体验
 
@@ -139,7 +139,7 @@ ms.locfileid: "83748102"
 ## <a name="update-the-user-flow"></a>更新用户流
 
 1. 选择 Azure 门户左上角的“所有服务”，然后搜索并选择“Azure AD B2C” 。
-2. 依次选择“用户流(策略)”和“B2C_1_signupsignin1”用户流。
+2. 选择“用户流”，然后选择“B2C_1_signupsignin1”用户流。
 3. 选择“页面布局”，然后在“统一注册或登录页面”下，对“使用自定义页面内容”单击“是”   。
 4. 在“自定义页面 URI”中，输入之前记录的“custom-ui.html”文件的 URI。
 5. 在页面顶部，选择“保存”。

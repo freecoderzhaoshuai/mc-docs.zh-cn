@@ -3,17 +3,17 @@ title: 对用户而言，什么是 Azure Stack Hub？
 description: 了解如何以开发者身份使用 Azure Stack Hub。
 author: WenJason
 ms.topic: article
-origin.date: 3/19/2020
-ms.date: 05/18/2020
+origin.date: 7/24/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: sijuman
 ms.lastreviewed: 3/19/2020
-ms.openlocfilehash: f51e9887a55582bd87f3cb4b977e64d4c8203d2e
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: eadb7f053eb49f0dc38323b5d304636edd10ff50
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422888"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867795"
 ---
 # <a name="what-is-azure-stack-hub"></a>什么是 Azure Stack Hub？
 
@@ -21,9 +21,9 @@ Azure Stack Hub 是一个混合云平台，可用于通过公司或服务提供�
 
 ## <a name="how-to-use-azure-stack-hub"></a>如何使用 Azure Stack Hub
 
-如果你是 Azure Stack Hub 操作员并想要管理基础结构和提供服务，请参阅[操作员文档](/azure-stack/operator/)。
+如果你是 Azure Stack Hub 操作员并想要管理基础结构和提供服务，请参阅[操作员文档](../operator/index.yml)。
 
-如果你是对 Azure Stack 开发工具包 (ASDK)、Azure Stack Hub（可以免费下载和使用）的单节点部署感兴趣的 Azure Stack Hub 用户，请参阅 [ASDK 文档](/azure-stack/asdk/)。
+如果你是对 Azure Stack 开发工具包 (ASDK)、Azure Stack Hub（可以免费下载和使用）的单节点部署感兴趣的 Azure Stack Hub 用户，请参阅 [ASDK 文档](../asdk/index.yml)。
 
 ## <a name="next-steps"></a>后续步骤
 

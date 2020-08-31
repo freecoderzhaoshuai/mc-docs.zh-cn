@@ -3,14 +3,14 @@ title: 有关 .NET 中的持久实体的开发人员指南 - Azure Functions
 description: 如何通过 Azure Functions 的 Durable Functions 扩展使用 .NET 中的持久实体。
 author: sebastianburckhardt
 ms.topic: conceptual
-ms.date: 07/17/2020
+ms.date: 08/24/2020
 ms.author: v-junlch
-ms.openlocfilehash: d53b097472b6197711ccbd9d5d8c92b43ae2e982
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.openlocfilehash: 649a0d67a5159de6ec86a17ce304aa9f060e2412
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440431"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946878"
 ---
 # <a name="developers-guide-to-durable-entities-in-net"></a>有关 .NET 中的持久实体的开发人员指南
 
@@ -471,7 +471,7 @@ public static void Counter([EntityTrigger] IDurableEntityContext ctx)
             ctx.SetState(0);
             break;
         case "get":
-            ctx.Return(ctx.GetState<int>()));
+            ctx.Return(ctx.GetState<int>());
             break;
         case "delete":
             ctx.DeleteState();

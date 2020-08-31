@@ -1,19 +1,18 @@
 ---
 title: Azure Monitor 中的容量和性能解决方案 | Microsoft Docs
 description: 使用 Monitor 中的容量和性能解决方案来帮助了解 Hyper-V 服务器的容量。
-author: lingliw
-manager: digimobile
 ms.subservice: logs
 ms.topic: conceptual
+author: Johnnytechn
+ms.author: v-johya
+ms.date: 08/20/2020
 origin.date: 07/13/2017
-ms.date: 01/21/2019
-ms.author: v-lingwu
-ms.openlocfilehash: e39f48334d9fe10ceecb7567b152ca5953d9250a
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 62d2182a6f76ba93dd1c15f2150631189d09e2fe
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78850332"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148631"
 ---
 # <a name="plan-hyper-v-virtual-machine-capacity-with-the-capacity-and-performance-solution-deprecated"></a>使用容量和性能解决方案（已弃用）规划 Hyper-V 虚拟机容量
 
@@ -43,9 +42,9 @@ ms.locfileid: "78850332"
 
 | 连接的源 | 支持 | 说明 |
 |---|---|---|
-| [Windows 代理](../../azure-monitor/platform/agent-windows.md) | 是 | 解决方案从 Windows 代理收集容量和性能数据信息。 |
-| [Linux 代理](../../azure-monitor/learn/quick-collect-linux-computer.md) | 否    | 解决方案不从直接 Linux 代理收集容量和性能数据信息。|
-| [Azure 存储帐户](../../azure-monitor/platform/resource-logs-collect-workspace.md) | 否 | Azure 存储不包括容量和性能数据。|
+| [Windows 代理](../platform/agent-windows.md) | 是 | 解决方案从 Windows 代理收集容量和性能数据信息。 |
+| [Linux 代理](../learn/quick-collect-linux-computer.md) | 否 | 解决方案不从直接 Linux 代理收集容量和性能数据信息。|
+| [Azure 存储帐户](../platform/resource-logs.md#send-to-log-analytics-workspace) | 否 | Azure 存储不包括容量和性能数据。|
 
 ## <a name="prerequisites"></a>必备条件
 
@@ -56,7 +55,7 @@ ms.locfileid: "78850332"
 
 执行以下步骤，将容量和性能解决方案添加到工作区。
 
-- 使用[从解决方案库中添加 Log Analytics 解决方案](../../azure-monitor/insights/solutions.md)中描述的过程，将容量和性能解决方案添加到 Log Analytics 工作区。
+- 使用[从解决方案库中添加 Log Analytics 解决方案](./solutions.md)中描述的过程，将容量和性能解决方案添加到 Log Analytics 工作区。
 
 ## <a name="management-packs"></a>管理包
 
@@ -73,6 +72,7 @@ New Management Pack with id:"Microsoft.IntelligencePacks.CapacityPerformance", v
 
 更新容量和性能解决方案后，版本号会更改。
 
+<!--Not avaiable in MC: Connect Operations Manager to Log Analytics-->
 
 ## <a name="using-the-solution"></a>使用解决方案
 
@@ -109,7 +109,7 @@ New Management Pack with id:"Microsoft.IntelligencePacks.CapacityPerformance", v
 
 不同组织的生产计算环境相差很大。 另外，容量和性能工作负荷可能取决于 VM 的运行方式以及你所认为正常的标准。 特定的用于衡量性能的过程可能不适用于环境。 因此，更通用的说明性指导帮助性更大。 Azure 发布了各种说明性的关于如何衡量性能的指导文章。
 
-总之，该解决方案从包括性能计数器在内的各种源收集容量和性能数据。 请使用在解决方案的各个图面中提供的该容量和性能数据，并将结果与 [Measuring Performance on Hyper-V](https://msdn.microsoft.com/library/cc768535.aspx)（衡量 Hyper-V 上的性能）一文中的结果进行比较。 虽然该文已发布了一段时间，但指标、注意事项和准则仍然有效。 该文包含指向其他有用资源的链接。
+总之，该解决方案从包括性能计数器在内的各种源收集容量和性能数据。 请使用在解决方案的各个图面中提供的该容量和性能数据，并将结果与 [Measuring Performance on Hyper-V](https://www.microsoft.com/en-us/download/details.aspx?id=56495)（衡量 Hyper-V 上的性能）一文中的结果进行比较。 虽然该文已发布了一段时间，但指标、注意事项和准则仍然有效。 该文包含指向其他有用资源的链接。
 
 
 ## <a name="sample-log-searches"></a>示例日志搜索
@@ -129,8 +129,6 @@ New Management Pack with id:"Microsoft.IntelligencePacks.CapacityPerformance", v
 
 
 ## <a name="next-steps"></a>后续步骤
-* 使用 [Log Analytics 中的日志搜索](../../azure-monitor/log-query/log-query-overview.md)查看详细的容量和性能数据。
-
-
+* 使用 [Log Analytics 中的日志搜索](../log-query/log-query-overview.md)查看详细的容量和性能数据。
 
 

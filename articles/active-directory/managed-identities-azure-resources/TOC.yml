@@ -120,20 +120,14 @@
           href: how-to-view-managed-identity-service-principal-powershell.md
 - name: 参考
   items:
-    - name: CLI
-      href: 'https://docs.microsoft.com/en-us/cli/azure/identity'
-    - name: PowerShell
-      href: 'https://docs.microsoft.com/powershell/module/az.managedserviceidentity#managed_service_identity'
     - name: .NET
       href: /dotnet/api/microsoft.azure.management.resourcemanager.fluent.authentication#azure-dotnet
     - name: Java
       href: 'https://github.com/Azure/azure-libraries-for-java#ready-to-run-code-samples-for-virtual-machines'
+    - name: JavaScript
+      href: 'https://docs.microsoft.com/javascript/api/overview/azure/identity-readme?view=azure-node-latest'
     - name: Python
-      href: 'https://docs.microsoft.com/windows/python/'
-    - name: Ruby
-      href: 'https://rubygems.org/gems/azure_mgmt_msi'
-    - name: Node.js
-      href: 'https://nodejs.org/en/docs/'
+      href: 'https://docs.microsoft.com/python/api/overview/azure/identity-readme?view=azure-python'
     - name: Go
       href: 'https://golang.org/doc/'
 - name: 资源
@@ -144,5 +138,5 @@
       href: services-support-managed-identities.md
     - name: Stack Overflow
       href: 'https://stackoverflow.com/questions/tagged/azure-msi'
-    - name: AAD 开发者论坛
+    - name: Azure AD 开发者论坛
       href: 'https://feedback.azure.com/forums/169401-azure-active-directory/category/164757-developer-experiences'

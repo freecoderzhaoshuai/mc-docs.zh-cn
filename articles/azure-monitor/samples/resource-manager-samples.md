@@ -5,14 +5,14 @@ author: Johnnytechn
 ms.author: v-johya
 services: azure-monitor
 ms.topic: sample
-ms.date: 07/15/2020
+ms.date: 08/20/2020
 ms.subservice: ''
-ms.openlocfilehash: 8547b4db752dc44d3cb443dc082286084cd971ad
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.openlocfilehash: 210015613548af6c6fcc1e74489ef7dfedcaba5b
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440570"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148644"
 ---
 # <a name="resource-manager-template-samples-for-azure-monitor"></a>用于 Azure Monitor 的资源管理器模板示例
 
@@ -37,7 +37,7 @@ New-AzResourceGroupDeployment -Name AzureMonitorDeployment -ResourceGroupName my
 ```azurecli
 az login
 az deployment group create \
-    --name AlertDeployment \
+    --name AzureMonitorDeployment \
     --resource-group ResourceGroupofTargetResource \
     --template-file azure-monitor-deploy.json \
     --parameters azure-monitor-deploy.parameters.json
@@ -49,7 +49,7 @@ az deployment group create \
 - 警报
   - [日志警报规则](resource-manager-alerts-log.md) - 来自日志查询和 Azure 活动日志的警报。
   - [指标警报规则](resource-manager-alerts-metric.md) - 来自使用不同类型逻辑的指标的警报。
-- Application Insights - 即将发布。
+- [Application Insights](resource-manager-app-resource.md)
 - [诊断设置](resource-manager-diagnostic-settings.md) - 创建诊断设置以转发来自不同资源类型的日志和指标。
 - [日志查询](resource-manager-log-queries.md) - 在 Log Analytics 工作区中创建保存的日志查询。
 - [Log Analytics 工作区](resource-manager-workspace.md) - 创建 Log Analytics 工作区，并配置来自 Log Analytics 代理的不同数据源的集合。

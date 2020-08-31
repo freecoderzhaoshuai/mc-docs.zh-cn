@@ -2,18 +2,21 @@
 title: include 文件
 description: include 文件
 services: service-bus-messaging
-author: spelluru
+author: rockboyfor
 ms.service: service-bus-messaging
 ms.topic: include
-ms.date: 02/20/2019
-ms.author: spelluru
+origin.date: 02/20/2019
+ms.date: 07/27/2020
+ms.testscope: no
+ms.testdate: ''
+ms.author: v-yeche
 ms.custom: include file
-ms.openlocfilehash: 05a788d66568a746df3f474d0cf3f2f9beac45fd
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 16536b16f52b8980a8b51c941ad4107c59f16c92
+ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "63855292"
+ms.lasthandoff: 07/24/2020
+ms.locfileid: "88946996"
 ---
 ## <a name="create-a-topic-using-the-azure-portal"></a>使用 Azure 门户创建主题
 1. 在“服务总线命名空间”  页面上，选择左侧菜单中的“主题”  。
@@ -34,3 +37,5 @@ ms.locfileid: "63855292"
 
     ![创建订阅页面](./media/service-bus-create-topics-subscriptions-portal/create-subscription-page.png)
 4. 重复上述步骤两次，创建名为 **S2** 和 **S3** 的订阅。
+
+<!-- Update_Description: update meta properties, wording update, update link -->

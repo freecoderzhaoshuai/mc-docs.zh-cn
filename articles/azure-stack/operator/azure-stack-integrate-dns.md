@@ -4,16 +4,16 @@ description: 了解如何将 Azure Stack Hub DNS 与数据中心 DNS 集成。
 author: WenJason
 ms.topic: article
 origin.date: 04/10/2020
-ms.date: 05/18/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: wfayed
 ms.lastreviewed: 08/21/2019
-ms.openlocfilehash: c3faca77c45f8fe8f68216904480b0204b7157c8
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: c35768bead35e4e1985e1a71b0a6c140f013990c
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422617"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868035"
 ---
 # <a name="azure-stack-hub-datacenter-dns-integration"></a>Azure Stack Hub 数据中心 DNS 集成
 
@@ -134,7 +134,7 @@ Azure Stack Hub DNS 服务器的 FQDN 具有以下格式：
 
 若要将 Azure Stack Hub 与 DNS 基础结构集成，最简单也最安全的方式是将区域从托管父区域的服务器进行条件性转发。 如果可以直接控制为 Azure Stack Hub 外部 DNS 命名空间托管父区域的 DNS 服务器，建议使用此方法。
 
-如果你不熟悉如何使用 DNS 进行条件转发，请参阅以下 TechNet 文章：[为域名分配条件转发器](https://technet.microsoft.com/library/cc794735)，或特定于 DNS 解决方案的文档。
+如果你不熟悉如何使用 DNS 进行条件转发，请参阅以下 TechNet 文章：[为域名分配条件转发器](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc794735(v=ws.10))，或特定于 DNS 解决方案的文档。
 
 如果已将外部 Azure Stack Hub DNS 区域指定为类似公司域名的子域那样，则无法使用条件性转发。 必须配置 DNS 委托。
 

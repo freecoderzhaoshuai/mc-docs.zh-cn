@@ -4,15 +4,15 @@ description: 了解 Azure Stack Hub 管理基础知识。
 author: WenJason
 ms.topic: article
 origin.date: 06/16/2020
-ms.date: 07/20/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.lastreviewed: 06/16/2020
-ms.openlocfilehash: 33ae70c5e5479f21f7857d8795c176fe260491d2
-ms.sourcegitcommit: e9ffd50aa5eaab402a94bfabfc70de6967fe6278
+ms.openlocfilehash: 87d18d724897a5259bed46e1882c988f92453191
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2020
-ms.locfileid: "86307394"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867738"
 ---
 # <a name="azure-stack-hub-administration-basics"></a>Azure Stack Hub 管理基础知识
 
@@ -97,7 +97,7 @@ Azure Stack Hub 使用 Azure 资源管理器作为其基础的部署、管理和
 
 ## <a name="what-to-tell-your-users"></a>需要告知用户的内容
 
-需要让用户知道如何使用 Azure Stack Hub 中的服务、如何连接到环境，以及如何订阅套餐。 除了根据需要提供用户自定义文档，还可以引导用户访问 [Azure Stack Hub 用户文档](/azure-stack/user/)。
+需要让用户知道如何使用 Azure Stack Hub 中的服务、如何连接到环境，以及如何订阅套餐。 除了根据需要提供用户自定义文档，还可以引导用户访问 [Azure Stack Hub 用户文档](../user/index.yml)。
 
 **了解如何使用 Azure Stack Hub 中的服务**
 

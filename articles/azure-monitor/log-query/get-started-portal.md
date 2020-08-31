@@ -6,13 +6,13 @@ ms.topic: tutorial
 origin.date: 07/19/2019
 author: Johnnytechn
 ms.author: v-johya
-ms.date: 07/17/2020
-ms.openlocfilehash: fafd6a23182ab36777a890808da96a167a8c3760
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.date: 08/20/2020
+ms.openlocfilehash: b18d322d265a78ff4cf2f09d74fd2974062865e8
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440480"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148609"
 ---
 # <a name="tutorial-get-started-with-log-analytics-queries"></a>教程：Log Analytics 查询入门
 
@@ -33,7 +33,7 @@ ms.locfileid: "86440480"
 ## <a name="open-log-analytics"></a>打开 Log Analytics
 若要使用 Log Analytics，需要登录到 Azure 帐户。 如果没有 Azure 帐户，请[创建一个试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
 
-若要完成本教程中的大部分步骤，可以使用[此演示环境](https://portal.loganalytics.io/demo)，其中包含了大量示例数据。 使用演示环境无法保存查询，或将结果固定到仪表板。
+若要完成本教程中的大部分步骤，可以使用[此演示环境](https://portal.azure.cn/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade)，其中包含了大量示例数据。 使用演示环境无法保存查询，或将结果固定到仪表板。
 
 如果使用 Azure Monitor 来收集至少一个 Azure 资源中的日志数据，则你也可以使用自己的环境。 若要打开 Log Analytics 工作区，请在 Azure Monitor 的左侧导航栏中选择“日志”。 
 
@@ -81,7 +81,7 @@ search in (Event) "error"
 默认情况下，Log Analytics 会将查询时间范围限制为过去 24 小时。 若要设置不同的时间范围，可将显式的 **TimeGenerated** 筛选器添加到查询，或使用“时间范围”控件。
 
 ### <a name="use-the-time-range-control"></a>使用“时间范围”控件
-若要使用“时间范围”控件，请在顶部栏中选择该控件，然后从下拉列表中选择一个值，或选择“自定义”以创建自定义时间范围。 
+若要使用“时间范围”控件，请在顶部栏中选择该控件，然后从下拉列表中选择一个值，或选择“自定义”以创建自定义时间范围。
 
 ![时间选取器](./media/get-started-portal/time-picker.png)
 
@@ -97,9 +97,9 @@ Log Analytics 将结果数限制为最多 10,000 条记录。 类似于 `Event` 
 ### <a name="filter-by-restricting-table-elements"></a>通过限制表元素进行筛选
 若要通过限制查询中的表元素将 `Event` 查询结果筛选为“Error”事件：
 
-1. 在查询结果中，选择“EventLevelName”列中包含“Error”的任何记录旁边的下拉箭头。  
+1. 在查询结果中，选择“EventLevelName”列中包含“Error”的任何记录旁边的下拉箭头。 
    
-1. 在展开的详细信息中，悬停鼠标并选择“EventLevelName”旁边的“...”，然后选择“包含‘Error’”。   
+1. 在展开的详细信息中，悬停鼠标并选择“EventLevelName”旁边的“...”，然后选择“包含‘Error’”。 
    
    ![向查询添加筛选器](./media/get-started-portal/add-filter.png)
    
@@ -115,7 +115,7 @@ Log Analytics 将结果数限制为最多 10,000 条记录。 类似于 `Event` 
 ### <a name="filter-by-explicitly-filtering-results"></a>通过显式筛选结果进行筛选
 若要通过筛选查询结果将 `Event` 查询结果筛选为“Error”事件：
 
-1. 在查询结果中，选择列标题“EventLevelName”旁边的“筛选器”图标。  
+1. 在查询结果中，选择列标题“EventLevelName”旁边的“筛选器”图标。 
    
 1. 在弹出窗口的第一个字段中选择“等于”，然后在下一个字段中输入 *error*。 
    
@@ -150,7 +150,7 @@ Event
 
 ![条形图](./media/get-started-portal/bar-chart.png)
 
-结果将显示在堆积条形图中。 选择其他选项（例如“堆积柱形图”或“饼图”）可显示结果的其他视图。 
+结果将显示在堆积条形图中。 选择其他选项（例如“堆积柱形图”或“饼图”）可显示结果的其他视图。
 
 ![饼图](./media/get-started-portal/pie-chart.png)
 
@@ -164,7 +164,7 @@ Event
 
 ![固定到仪表板](./media/get-started-portal/pin-dashboard.png)
 
-在“固定到另一个仪表板”窗格中，选择或创建要固定到的共享仪表板，然后选择“应用”。  表或图表将显示在所选的 Azure 仪表板上。
+在“固定到另一个仪表板”窗格中，选择或创建要固定到的共享仪表板，然后选择“应用”。 表或图表将显示在所选的 Azure 仪表板上。
 
 ![已固定到仪表板的图表](./media/get-started-portal/pin-dashboard2.png)
 
@@ -186,11 +186,11 @@ Event
    
 1. 在“保存”对话框中，使用字符 a-z、A-Z、0-9、空格、连字符、下划线、句点、括号或竖线为查询指定“名称”。 
    
-1. 选择是要将查询保存为“查询”还是“函数”。  函数是其他查询可以引用的查询。 
+1. 选择是要将查询保存为“查询”还是“函数”。 函数是其他查询可以引用的查询。 
    
    若要将查询保存为函数，请提供**函数别名** - 供其他查询用来调用此查询的短名称。
    
-1. 提供“查询资源管理器”的**类别**以用于查询。
+1. 如果位于 Log Analytics 工作区中，请提供“查询资源管理器”的类别以用于查询。 （类别不可用于 Application Insights 查询）
    
 1. 选择“保存” 。
    
@@ -202,7 +202,7 @@ Event
 ![查询资源管理器](./media/get-started-portal/query-explorer.png)
 
 ### <a name="export-and-share-queries"></a>导出和共享查询
-若要导出查询，请在顶部栏上选择“导出”，然后从下拉列表中选择“导出到 CSV - 所有列”、“导出到 CSV - 显示的列”或“导出到 Power BI (M 查询)”。   
+若要导出查询，请在顶部栏上选择“导出”，然后从下拉列表中选择“导出到 CSV - 所有列”、“导出到 CSV - 显示的列”或“导出到 Power BI (M 查询)”。
 
 若要共享查询的链接，请在顶部栏上选择“复制链接”，然后选择“复制查询链接”、“复制查询文本”或“复制查询结果”以复制到剪贴板。    可将查询链接发送给有权访问同一工作区的其他人。
 

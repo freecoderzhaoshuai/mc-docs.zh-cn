@@ -6,17 +6,17 @@ services: storage
 author: WenJason
 ms.service: storage
 ms.topic: how-to
-origin.date: 04/02/2020
-ms.date: 07/20/2020
+origin.date: 07/13/2020
+ms.date: 08/24/2020
 ms.author: v-jay
-ms.reviewer: cbrooks
+ms.reviewer: ozgun
 ms.subservice: common
-ms.openlocfilehash: 7dea7c7a3eefdc0a2b0e260fbebe3125b2f323bd
-ms.sourcegitcommit: 31da682a32dbb41c2da3afb80d39c69b9f9c1bc6
+ms.openlocfilehash: 4c0d67bb018b9d8c9622c64776b0001f16b7fb1d
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86414641"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753408"
 ---
 # <a name="configure-customer-managed-keys-with-azure-key-vault-by-using-powershell"></a>通过 PowerShell 使用 Azure Key Vault 配置客户管理的密钥
 
@@ -40,15 +40,16 @@ $storageAccount = Set-AzStorageAccount -ResourceGroupName <resource_group> `
 
 ## <a name="create-a-new-key-vault"></a>创建新的 Key Vault
 
-若要使用 PowerShell 创建新的 Key Vault，请调用 [New-AzKeyVault](https://docs.microsoft.com/powershell/module/az.keyvault/new-azkeyvault)。 必须为用来存储客户管理的密钥（用于 Azure 存储加密）的 Key Vault 启用两项密钥保护设置：“软删除”和“不要清除”。 
+若要使用 PowerShell 创建新密钥保管库，请安装 [Az. KeyVault](https://www.powershellgallery.com/packages/Az.KeyVault/2.0.0) PowerShell 模块的版本 2.0.0 或更高版本。 然后调用 [New-AzKeyVault](https://docs.microsoft.com/powershell/module/az.keyvault/new-azkeyvault) 来创建新密钥保管库。
 
-请记得将括号中的占位符值替换为你自己的值。
+必须为用来存储客户管理的密钥（用于 Azure 存储加密）的 Key Vault 启用两项密钥保护设置：“软删除”和“不要清除”。  在 Az.KeyVault 模块的版本 2.0.0 和更高版本中，当创建新密钥保管库时，默认会启用软删除。
+
+以下示例在启用了“软删除”和“请勿清除”属性的情况下创建新密钥保管库 。 请记得将括号中的占位符值替换为你自己的值。
 
 ```powershell
 $keyVault = New-AzKeyVault -Name <key-vault> `
     -ResourceGroupName <resource_group> `
     -Location <location> `
-    -EnableSoftDelete `
     -EnablePurgeProtection
 ```
 
@@ -79,9 +80,27 @@ Azure 存储加密支持 2048、3072 和 4096 大小的 RSA 密钥。 有关密�
 
 ## <a name="configure-encryption-with-customer-managed-keys"></a>配置使用客户管理的密钥进行加密
 
-Azure 存储加密默认使用 Microsoft 托管的密钥。 此步骤将 Azure 存储帐户配置为使用客户管理的密钥，并指定要与存储帐户关联的密钥。
+Azure 存储加密默认使用 Microsoft 托管的密钥。 在这一步中，请将 Azure 存储帐户配置为通过 Azure Key Vault 使用客户管理的密钥，然后指定要与存储帐户关联的密钥。
 
-调用 [Set-AzStorageAccount](https://docs.microsoft.com/powershell/module/az.storage/set-azstorageaccount) 以更新存储帐户的加密设置，如以下示例所示。 包括 **-KeyvaultEncryption** 选项，以便为存储帐户启用客户管理的密钥。 请记得将括号中的占位符值替换为自己的值，并使用前面示例中定义的变量。
+在使用客户管理的密钥配置加密时，可以选择在关联的密钥保管库中的版本发生更改时自动轮换用于加密的密钥。 也可以显式指定在手动更新密钥版本之前要用于加密的密钥版本。
+
+### <a name="configure-encryption-for-automatic-rotation-of-customer-managed-keys"></a>为自动轮换客户管理的密钥配置加密
+
+若要为自动轮换客户管理的密钥配置加密，请安装 [Az. Storage](https://www.powershellgallery.com/packages/Az.Storage) 模块版本 2.0.0 或更高版本。
+
+若要自动轮换客户管理的密钥，请在为存储帐户配置客户管理的密钥时省略密钥版本。 调用 [AzStorageAccount](https://docs.microsoft.com/powershell/module/az.storage/set-azstorageaccount) 以更新存储帐户的加密设置（如以下示例所示），并包含 -KeyvaultEncryption 选项，以便为存储帐户启用客户管理的密钥。 请记得将括号中的占位符值替换为自己的值，并使用前面示例中定义的变量。
+
+```powershell
+Set-AzStorageAccount -ResourceGroupName $storageAccount.ResourceGroupName `
+    -AccountName $storageAccount.StorageAccountName `
+    -KeyvaultEncryption `
+    -KeyName $key.Name `
+    -KeyVaultUri $keyVault.VaultUri
+```
+
+### <a name="configure-encryption-for-manual-rotation-of-key-versions"></a>为手动轮换密钥版本配置加密
+
+若要显式指定用于加密的密钥版本，请在为存储帐户配置使用客户管理的密钥进行加密时提供该密钥版本。 调用 [AzStorageAccount](https://docs.microsoft.com/powershell/module/az.storage/set-azstorageaccount) 以更新存储帐户的加密设置（如以下示例所示），并包含 -KeyvaultEncryption 选项，以便为存储帐户启用客户管理的密钥。 请记得将括号中的占位符值替换为自己的值，并使用前面示例中定义的变量。
 
 ```powershell
 Set-AzStorageAccount -ResourceGroupName $storageAccount.ResourceGroupName `
@@ -92,9 +111,7 @@ Set-AzStorageAccount -ResourceGroupName $storageAccount.ResourceGroupName `
     -KeyVaultUri $keyVault.VaultUri
 ```
 
-## <a name="update-the-key-version"></a>更新密钥版本
-
-创建密钥的新版本时，需将存储帐户更新为使用新版本。 首先调用 [Get-AzKeyVaultKey](https://docs.microsoft.com/powershell/module/az.keyvault/get-azkeyvaultkey) 以获取最新密钥版本。 然后调用 [Set-AzStorageAccount](https://docs.microsoft.com/powershell/module/az.storage/set-azstorageaccount) 更新存储帐户的加密设置，以使用新的密钥版本，如上一部分中所示。
+手动轮换密钥版本时，需要更新存储帐户的加密设置以使用新版本。 首先调用 [Get-AzKeyVaultKey](https://docs.microsoft.com/powershell/module/az.keyvault/get-azkeyvaultkey) 以获取最新密钥版本。 然后调用 [Set-AzStorageAccount](https://docs.microsoft.com/powershell/module/az.storage/set-azstorageaccount) 来更新存储帐户的加密设置，以使用该密钥的新版本，如前面示例所示。
 
 ## <a name="use-a-different-key"></a>使用其他密钥
 
@@ -102,7 +119,7 @@ Set-AzStorageAccount -ResourceGroupName $storageAccount.ResourceGroupName `
 
 ## <a name="revoke-customer-managed-keys"></a>撤销客户托管密钥
 
-如果你认为密钥可能已泄露，则可以通过删除密钥保管库访问策略来撤销客户托管密钥。 若要撤销客户托管密钥，请调用 [Remove-AzKeyVaultAccessPolicy](https://docs.microsoft.com/powershell/module/az.keyvault/remove-azkeyvaultaccesspolicy) 命令，如下例所示。 请记得将括号中的占位符值替换为自己的值，并使用前面示例中定义的变量。
+通过删除密钥保管库访问策略可以撤消客户管理的密钥。 若要撤销客户托管密钥，请调用 [Remove-AzKeyVaultAccessPolicy](https://docs.microsoft.com/powershell/module/az.keyvault/remove-azkeyvaultaccesspolicy) 命令，如下例所示。 请记得将括号中的占位符值替换为自己的值，并使用前面示例中定义的变量。
 
 ```powershell
 Remove-AzKeyVaultAccessPolicy -VaultName $keyVault.VaultName `

@@ -1,19 +1,19 @@
 ---
 title: Azure 文件存储性能故障排除指南
-description: Azure 文件共享的已知性能问题和相关解决方法。
+description: 排查 Azure 文件共享的已知性能问题。 遇到这些问题时，找出潜在的原因和相关解决方法。
 author: WenJason
 ms.service: storage
-ms.topic: conceptual
+ms.topic: troubleshooting
 origin.date: 04/25/2019
-ms.date: 03/09/2020
+ms.date: 08/24/2020
 ms.author: v-jay
 ms.subservice: files
-ms.openlocfilehash: 7572eccf2b02d9f172efc53fb35544169df2ccdc
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 57f63920ca9cf13e2a55eccb62b00561cabf1c90
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78412299"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753365"
 ---
 # <a name="troubleshoot-azure-files-performance-issues"></a>排查 Azure 文件存储性能问题
 
@@ -29,15 +29,15 @@ ms.locfileid: "78412299"
 
 1. 登录到 [Azure 门户](https://portal.azure.cn)。
 
-1. 选择“所有服务”，然后搜索“指标”   。
+1. 选择“所有服务”，然后搜索“指标”********。
 
-1. 选择“指标”  。
+1. 选择“指标”。
 
 1. 选择你的存储帐户作为资源。
 
-1. 选择“文件”作为指标命名空间。 
+1. 选择“文件”作为指标命名空间。****
 
-1. 选择“事务”作为指标。 
+1. 选择“事务”作为指标。****
 
 1. 添加 **ResponseType** 的筛选器，并检查是否有任何请求的响应代码为 **SuccessWithThrottling**（适用于 SMB）或 **ClientThrottlingError**（适用于 REST）。
 
@@ -114,7 +114,7 @@ ms.locfileid: "78412299"
 ### <a name="workaround"></a>解决方法
 
 - 如果可能，请避免短时间内在同一目录中使用过多的打开/关闭句柄。
-- 对于 Linux VM，请指定 **actimeo=\<sec>** 作为装载选项，以增大目录条目缓存超时。 默认情况下，该超时为 1 秒，使用更大的值（例如 3 或 5）可能有所帮助。
+- 对于 Linux VM，请指定“actimeo=\<sec>”作为装载选项，以增大目录条目缓存超时。 默认情况下，该超时为 1 秒，使用更大的值（例如 3 或 5）可能有所帮助。
 - 对于 Linux VM，请将内核升级到 4.20 或更高版本。
 
 ## <a name="low-iops-on-centosrhel"></a>CentOS/RHEL 上的 IOPS 较低
@@ -175,35 +175,35 @@ CentOS/RHEL 不支持大于 1 的 IO 深度。
 
 ## <a name="how-to-create-an-alert-if-a-file-share-is-throttled"></a>如何创建文件共享受到限制时的警报
 
-1. 在 [Azure 门户](https://portal.azure.cn)中单击“监视”。  
-
-2. 依次单击“警报”、“+ 新建警报规则”。  
-
-3. 单击“选择”  以选择要对其发出警报的文件共享所在的**存储帐户/文件**资源，然后单击“完成”  。 例如，如果存储帐户名称为“contoso”，则选择“contoso/文件”资源。
-
-4. 单击“添加”以添加条件。 
-
-5. 你将看到存储帐户支持的信号列表，请选择“事务”  指标。
-
-6. 在“配置信号逻辑”  边栏选项卡上，转到“响应类型”  维度，单击“维度值”  下拉列表，并选择 **SuccessWithThrottling**（对于 SMB）或 **ClientThrottlingError**（对于 REST）。 
+1. 在 Azure 门户 中转到自己的存储帐户。
+2. 在“监视”部分中单击“警报”，然后单击“+ 新建警报规则”。 
+3. 单击“编辑资源”，为存储帐户选择“文件资源类型”，然后单击“完成”。 例如，如果存储帐户名称为“contoso”，则选择“contoso/文件”资源。
+4. 单击“选择条件”以添加条件。
+5. 你将看到存储帐户支持的信号列表，请选择“事务”指标。
+6. 在“配置信号逻辑”边栏选项卡上，单击“维度名称”下拉列表，然后选择“响应类型”。
+7. 单击“维度值”下拉列表，并选择“SuccessWithThrottling”（对于 SMB）或“ClientThrottlingError”（对于 REST）。
 
   > [!NOTE]
-  > 如果 SuccessWithThrottling 或 ClientThrottlingError 维度值未列出，则意味着资源尚未受到限制。  若要添加维度值，请单击“维度值”  下拉列表旁边的 **+** ，键入 **SuccessWithThrottling** 或 **ClientThrottlingError**，单击“确定”  ，然后重复步骤 #6。
+  > 如果 SuccessWithThrottling 或 ClientThrottlingError 维度值未列出，则意味着资源尚未受到限制。 若要添加维度值，请单击“维度值”下拉列表旁边的“添加自定义值”，键入“SuccessWithThrottling”或“ClientThrottlingError”，单击“确定”，然后重复步骤 7。
 
-7. 转到“文件共享”  维度，单击“维度值”  下拉列表，并选择要对其发出警报的文件共享。 
+8. 单击“维度名称”下拉列表并选择“文件共享”。
+9. 单击“维度值”下拉列表，并选择要对其发出警报的文件共享。
 
   > [!NOTE]
-  > 如果文件共享是标准文件共享，则“维度值”下拉列表将为空，因为每共享指标不可用于标准文件共享。 如果存储帐户中的任何文件共享受到限制，则会触发标准文件共享的限制警报，并且警报不会识别哪个文件共享受到限制。 因为每共享指标不可用于标准文件共享，所以建议为每个存储帐户使用一个文件共享。 
+  > 如果文件共享是标准文件共享，请选择“所有当前值和将来值”。 “维度值”下拉列表不会列出文件共享，因为每共享指标不可用于标准文件共享。 如果存储帐户中的任何文件共享受到限制，则会触发标准文件共享的限制警报，并且警报不会识别哪个文件共享受到限制。 因为每共享指标不可用于标准文件共享，所以建议为每个存储帐户使用一个文件共享。
 
-8. 定义用来评估指标警报规则的**警报参数**（阈值、运算符、聚合粒度和频率），然后单击“完成”  。
+10. 定义“警报参数”（阈值、运算符、聚合粒度和评估频率），然后单击“完成”。
 
   > [!TIP]
-  > 如果使用的是静态阈值，并且文件共享当前受到限制，则指标图表可以帮助确定合理的阈值。 如果使用的是动态阈值，则指标图表将显示基于最新数据计算出的阈值。
+  > 如果你使用的是静态阈值，并且文件共享当前受到限制，则可通过指标图表来确定合理的阈值。 如果使用的是动态阈值，则指标图表将显示基于最新数据计算出的阈值。
 
-9. 通过选择现有操作组或创建新的操作组，将一个**操作组**（电子邮件、短信，等等）添加到警报中。
-
-10. 填写**警报详细信息**，例如**警报规则名称**、**说明**和**严重性**。
-
-11. 单击“创建警报规则”以创建警报  。
+11. 单击“选择操作组”，通过选择现有操作组或创建新的操作组，将一个操作组（电子邮件、短信等）添加到警报中。
+12. 填写**警报详细信息**，例如**警报规则名称**、**说明**和**严重性**。
+13. 单击“创建警报规则”以创建警报。
 
 若要详细了解如何在 Azure Monitor 中配置警报，请参阅 [Microsoft Azure 中的警报概述](/azure-monitor/platform/alerts-overview)。
+
+## <a name="see-also"></a>另请参阅
+* [在 Windows 中排查 Azure 文件问题](storage-troubleshoot-windows-file-connection-problems.md)
+* [在 Linux 中排查 Azure 文件问题](storage-troubleshoot-linux-file-connection-problems.md)
+* [有关 Azure 文件的常见问题解答 (FAQ)](storage-files-faq.md)

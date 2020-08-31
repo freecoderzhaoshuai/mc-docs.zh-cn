@@ -8,13 +8,13 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 03/18/2019
-ms.date: 08/06/2020
-ms.openlocfilehash: 79bd221bc49b1a6c83df692c326d4ca80906950c
-ms.sourcegitcommit: 7ceeca89c0f0057610d998b64c000a2bb0a57285
+ms.date: 08/18/2020
+ms.openlocfilehash: d20f2991eafcf3ad8f2da771aeee37ce60164354
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87841386"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515878"
 ---
 # <a name="in-and-in-operators"></a>in 和 !in 运算符
 
@@ -24,9 +24,15 @@ ms.locfileid: "87841386"
 Table1 | where col in ('value1', 'value2')
 ```
 
-**语法**
+> [!NOTE]
+> * 向运算符添加“~”会使值的搜索不区分大小写：`x in~ (expression)` 或 `x !in~ (expression)`。
+> * 在表格表达式中，会选择结果集的第一列。
+> * 表达式列表最多可生成 `1,000,000` 个值。
+> * 嵌套数组将平展为单个值列表。 例如，`x in (dynamic([1,[2,3]]))` 重命名为 `x in (1,2,3)`。
+ 
+## <a name="syntax"></a>语法
 
-区分大小写的语法：
+### <a name="case-sensitive-syntax"></a>区分大小写的语法
 
 *T* `|` `where` *col* `in` `(`*list of scalar expressions*`)`   
 *T* `|` `where` *col* `in` `(`*tabular expression*`)`   
@@ -34,7 +40,7 @@ Table1 | where col in ('value1', 'value2')
 *T* `|` `where` *col* `!in` `(`*list of scalar expressions*`)`  
 *T* `|` `where` *col* `!in` `(`*tabular expression*`)`   
 
-不区分大小写的语法：
+### <a name="case-insensitive-syntax"></a>不区分大小写的语法
 
 *T* `|` `where` *col* `in~` `(`*list of scalar expressions*`)`   
 *T* `|` `where` *col* `in~` `(`*tabular expression*`)`   
@@ -42,27 +48,20 @@ Table1 | where col in ('value1', 'value2')
 *T* `|` `where` *col* `!in~` `(`*list of scalar expressions*`)`  
 *T* `|` `where` *col* `!in~` `(`*tabular expression*`)`   
 
-**参数**
+## <a name="arguments"></a>参数
 
 * T：其记录待筛选的表格输入。
 * col - 要筛选的列。
 * list of expressions - 以逗号分隔的表格、标量或文本表达式的列表。
 * tabular expression - 包含一组值的表格表达式。 如果表达式包含多个列，则使用第一列。
 
-**返回**
+## <a name="returns"></a>返回
 
 其谓词为 `true` 的 T 中的行。
 
-**备注**
+## <a name="examples"></a>示例  
 
-* 表达式列表最多可生成 `1,000,000` 个值。
-* 嵌套数组将平展为单个值列表。 例如，`x in (dynamic([1,[2,3]]))` 重命名为 `x in (1,2,3)`。
-* 在表格表达式中，会选择结果集的第一列。
-* 向运算符添加“~”会使值的搜索不区分大小写：`x in~ (expression)` 或 `x !in~ (expression)`。
-
-**示例：**  
-
-**“in”运算符的简单用法：**  
+### <a name="use-in-operator"></a>使用“in”运算符
 
 <!-- csl: https://help.kusto.chinacloudapi.cn:443/Samples -->
 ```kusto
@@ -75,8 +74,7 @@ StormEvents
 |---|
 |4775|  
 
-
-**“in~”运算符的简单用法：**  
+### <a name="use-in-operator"></a>使用“in~”运算符  
 
 <!-- csl: https://help.kusto.chinacloudapi.cn:443/Samples -->
 ```kusto
@@ -89,7 +87,7 @@ StormEvents
 |---|
 |4775|  
 
-**“!in”运算符的简单用法：**  
+### <a name="use-in-operator"></a>使用“!in”运算符
 
 <!-- csl: https://help.kusto.chinacloudapi.cn:443/Samples -->
 ```kusto
@@ -103,7 +101,7 @@ StormEvents
 |54291|  
 
 
-**使用动态数组：**
+### <a name="use-dynamic-array"></a>使用动态数组
 
 <!-- csl: https://help.kusto.chinacloudapi.cn:443/Samples -->
 ```kusto
@@ -117,8 +115,7 @@ StormEvents
 |---|
 |3218|
 
-
-**子查询示例：**  
+### <a name="subquery"></a>子查询
 
 <!-- csl: https://help.kusto.chinacloudapi.cn:443/Samples -->
 ```kusto
@@ -150,7 +147,7 @@ StormEvents
 |---|
 |14242|  
 
-**其他示例中的 Top：**  
+### <a name="top-with-other-example"></a>其他示例中的 Top
 
 <!-- csl: https://help.kusto.chinacloudapi.cn:443/Samples -->
 ```kusto
@@ -170,7 +167,7 @@ Lightning_By_State
 | 佐治亚州   | 106                  |
 | 其他     | 415                  |
 
-**使用函数返回的静态列表：**  
+### <a name="use-a-static-list-returned-by-a-function"></a>使用函数返回的静态列表
 
 <!-- csl: https://help.kusto.chinacloudapi.cn:443/Samples -->
 ```kusto

@@ -7,15 +7,18 @@ ms.subservice: imaging
 ms.topic: how-to
 ms.workload: infrastructure
 origin.date: 05/01/2020
-ms.date: 07/06/2020
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.reviewer: akjosh
-ms.openlocfilehash: 2df3df809c60e589d8515417e78bb0b30eddb86c
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 33938eef6ab19ae2803985d884b16956f3d51535
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945994"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052384"
 ---
 <!--Verified successfully-->
 # <a name="create-an-image-version-from-a-vm-in-azure-using-the-azure-cli"></a>使用 Azure CLI 从 Azure 中的 VM 创建映像版本
@@ -56,11 +59,11 @@ az vm get-instance-view -g MyResourceGroup -n MyVm --query id
 
 请确保映像定义的类型正确。 如果已通用化 VM（使用适用于 Windows 的 Sysprep，或适用于 Linux 的 waagent -deprovision），则应使用 `--os-state generalized` 创建通用化映像定义。 若要在不删除现有用户帐户的情况下使用 VM，请使用 `--os-state specialized` 创建专用化映像定义。
 
-若要详细了解可为映像定义指定的值，请参阅[映像定义](/virtual-machines/linux/shared-image-galleries#image-definitions)。
+若要详细了解可为映像定义指定的值，请参阅[映像定义](./linux/shared-image-galleries.md#image-definitions)。
 
-使用 [az sig image-definition create](https://docs.microsoft.com/cli/azure/sig/image-definition?view=azure-cli-latest#az-sig-image-definition-create) 在库中创建一个映像定义。
+使用 [az sig image-definition create](https://docs.microsoft.com/cli/azure/sig?view=azure-cli-latest#az-sig-image-definition-create) 在库中创建一个映像定义。
 
-在此示例中，映像定义名为 myImageDefinition，适用于[专用化](/virtual-machines/linux/shared-image-galleries#generalized-and-specialized-images) Linux OS 映像。 若要使用 Windows OS 创建映像的定义，请使用 `--os-type Windows`。 
+在此示例中，映像定义名为 myImageDefinition，适用于[专用化](./linux/shared-image-galleries.md#generalized-and-specialized-images) Linux OS 映像。 若要使用 Windows OS 创建映像的定义，请使用 `--os-type Windows`。 
 
 ```azurecli 
 az sig image-definition create \
@@ -76,7 +79,7 @@ az sig image-definition create \
 
 ## <a name="create-the-image-version"></a>创建映像版本
 
-使用 [az image gallery create-image-version](https://docs.microsoft.com/cli/azure/sig/image-version?view=azure-cli-latest#az-sig-image-version-create) 从 VM 创建映像版本。  
+使用 [az image gallery create-image-version](https://docs.microsoft.com/cli/azure/sig?view=azure-cli-latest#az-sig-image-version-create) 从 VM 创建映像版本。  
 
 允许用于映像版本的字符为数字和句点。 数字必须在 32 位整数范围内。 格式：*MajorVersion*.*MinorVersion*.*Patch*。
 
@@ -102,7 +105,7 @@ az sig image-version create \
 > [!NOTE]
 > You need to wait for the image version to completely finish being built and replicated before you can use the same managed image to create another image version.
 >
-> You can also store your image in Premiun storage by a adding `--storage-account-type  premium_lrs`, or locally Redundant Storage by adding `--storage-account-type  standard_lrs` when you create the image version.
+> You can also store your image in Premium storage by adding `--storage-account-type  premium_lrs`, or locally Redundant Storage by adding `--storage-account-type  standard_lrs` when you create the image version.
 >
 
 <!--CORRECT ON or locally Redundant Storage by adding `--storage-account-type  standard_lrs`-->
@@ -110,5 +113,7 @@ az sig image-version create \
 ## <a name="next-steps"></a>后续步骤
 
 使用 Azure CLI 从[通用化映像](vm-generalized-image-version-cli.md)创建 VM。
+
+<!--Not Available on [Supply Azure Marketplace purchase plan information when creating images](marketplace-images.md)-->
 
 <!-- Update_Description: update meta properties, wording update, update link -->

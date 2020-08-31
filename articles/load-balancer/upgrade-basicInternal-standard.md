@@ -5,18 +5,18 @@ services: load-balancer
 author: WenJason
 ms.service: load-balancer
 ms.topic: how-to
-origin.date: 02/23/2020
-ms.date: 07/20/2020
+origin.date: 08/07/2020
+ms.date: 08/31/2020
 ms.author: v-jay
-ms.openlocfilehash: 9865c3315131aeb67148e11276d3b56a3b54056a
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.openlocfilehash: 001a704bf52c1a550d6f22baa504d0c8b007766c
+ms.sourcegitcommit: f8ed85740f873c15c239ab6ba753e4b76e030ba7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440351"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045748"
 ---
 # <a name="upgrade-azure-internal-load-balancer--no-outbound-connection-required"></a>升级 Azure 内部负载均衡器 - 不需出站连接
-[Azure 标准负载均衡器](load-balancer-overview.md)通过区域冗余提供丰富的功能和高可用性。 有关负载均衡器 SKU 的详细信息，请参阅[比较表](/load-balancer/concepts-limitations#skus)。
+[Azure 标准负载均衡器](load-balancer-overview.md)提供丰富的功能和高可用性。 有关负载均衡器 SKU 的详细信息，请参阅[比较表](/load-balancer/skus#skus)。
 
 本文介绍了一个 PowerShell 脚本，该脚本会创建一个其配置与基本负载均衡器相同的标准负载均衡器，并会将流量从基本负载均衡器迁移到标准负载均衡器。
 
@@ -49,7 +49,7 @@ ms.locfileid: "86440351"
 
 ## <a name="download-the-script"></a>下载脚本
 
-从 [PowerShell 库](https://www.powershellgallery.com/packages/AzureILBUpgrade/3.0)下载迁移脚本。
+从 [PowerShell 库](https://www.powershellgallery.com/packages/AzureILBUpgrade/4.0)下载迁移脚本。
 ## <a name="use-the-script"></a>使用脚本
 
 根据本地 PowerShell 环境的设置和首选项，可以使用两个选项：

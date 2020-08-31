@@ -1,17 +1,20 @@
 ---
 title: 教程 - 将资源添加到模板
 description: 介绍创建第一个 Azure 资源管理器模板的步骤。 了解模板文件语法，以及如何部署存储帐户。
-author: rockboyfor
 origin.date: 03/27/2020
-ms.date: 04/30/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.topic: tutorial
 ms.author: v-yeche
-ms.openlocfilehash: 361ceca2b46527be037a10fa01dc32fbef38cf5e
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: d776bd991080c40d5ebfe60726df509a21aa5b9c
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596064"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807814"
 ---
 # <a name="tutorial-add-a-resource-to-your-arm-template"></a>教程：将资源添加到 ARM 模板
 

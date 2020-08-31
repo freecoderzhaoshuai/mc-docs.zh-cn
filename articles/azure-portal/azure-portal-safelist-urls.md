@@ -6,16 +6,16 @@ keywords: ''
 author: mgblythe
 ms.author: v-tawe
 origin.date: 04/10/2020
-ms.date: 04/20/2020
+ms.date: 08/27/2020
 ms.topic: conceptual
 ms.service: azure-portal
 manager: mtillman
-ms.openlocfilehash: 5eadaa590c8dbad09e066b526064fa948095150d
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.openlocfilehash: a5af85ee255ad7b54dbb85943eea0a7c1480bbc1
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82127059"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947018"
 ---
 # <a name="safelist-the-azure-portal-urls-on-your-firewall-or-proxy-server"></a>在防火墙或代理服务器上将 Azure 门户 URL 加入安全列表
 
@@ -54,6 +54,7 @@ Azure 门户的安全列表的 URL 终结点特定于部署组织时所在的 Az
 #### <a name="us-government-cloud"></a>[美国政府云](#tab/us-government-cloud)
 
 ```
+*.applicationinsights.us
 *.azure.us
 *.loganalytics.us
 *.microsoft.us

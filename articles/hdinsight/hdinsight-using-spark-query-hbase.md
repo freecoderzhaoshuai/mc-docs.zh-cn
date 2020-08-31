@@ -11,19 +11,19 @@ ms.service: hdinsight
 ms.custom: hdinsightactive
 ms.devlang: na
 ms.topic: article
-origin.date: 04/20/2020
+origin.date: 08/12/2020
 ms.author: v-yiso
-ms.date: 06/22/2020
-ms.openlocfilehash: 3d7bfed40d60a622d1d37c3a29983ab536053cf7
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.date: 08/31/2020
+ms.openlocfilehash: 7d2d90156dd5d1826f35a44afa0c89a0e6e0cc0a
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917345"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715378"
 ---
 # <a name="use-apache-spark-to-read-and-write-apache-hbase-data"></a>使用 Apache Spark 读取和写入 Apache HBase 数据
 
-通常使用 Apache HBase 的低级别 API（扫描、获取和放置）或者通过 Apache Phoenix 使用 SQL 语法来查询 Apache HBase。 Apache 还提供 Apache Spark HBase 连接器。 连接器是用于查询并修改 HBase 存储的数据的方便且有效的替代方案。
+通常使用 Apache HBase 的低级别 API（扫描、获取和放置）或者通过 Apache Phoenix 使用 SQL 语法来查询 Apache HBase。 Apache 还提供 Apache Spark HBase 连接器。 对于查询和修改 HBase 存储的数据，使用该连接器是一种便捷高效的替代方式。
 
 ## <a name="prerequisites"></a>先决条件
 
@@ -34,11 +34,10 @@ ms.locfileid: "87917345"
 
 ## <a name="overall-process"></a>整体进程
 
-启用 Spark 群集查询 HDInsight 群集的概述过程如下所示：
+让 Spark 群集能够查询 HBase 群集的主要过程如下所示：
 
 1. 在 HBase 中准备一些示例数据。
-2. 从 HBase 集群配置文件夹 (/etc/hbase/conf) 中获取 hbase-site.xml 文件。
-3. 将 hbase-site.xml 的副本放在 Spark 2 配置文件夹 (/etc/spark2/conf)。
+2. 从 HBase 群集配置文件夹 (/etc/hbase/conf) 获取 hbase-site.xml 文件，并将 hbase-site.xml 的副本放入 Spark 2 配置文件夹 (/etc/spark2/conf)。 （可选：使用 HDInsight 团队提供的脚本来自动执行此过程）
 4. 运行 `spark-shell`，在 `packages` 中按 Maven 坐标来引用 Spark HBase 连接器。
 5. 定义将架构从 Spark 映射到 HBase 的目录。
 6. 使用 RDD 或 DataFrame API 与 HBase 数据进行交互。
@@ -83,9 +82,52 @@ ms.locfileid: "87917345"
     ```hbase
     exit
     ```
+    
+## <a name="run-scripts-to-set-up-connection-between-clusters"></a>运行脚本以设置群集之间的连接
 
-## <a name="copy-hbase-sitexml-to-spark-cluster"></a>将 hbase-site.xml 复制到 Spark 群集
-将 hbase-site.xml 从本地存储复制到 Spark 群集默认存储所在的根目录。  编辑以下命令以反映配置。  然后，在与 HBase 群集建立的 SSH 会话中输入该命令：
+若要设置群集之间的通信，请执行以下步骤，在群集上运行两个脚本。 这些脚本将自动执行下面“手动设置通信”一节中所述的文件复制过程。 
+
+* 从 HBase 群集运行的脚本会将 `hbase-site.xml` 和 HBase IP 映射信息上传到 Spark 群集所附加的默认存储。 
+* 从 Spark 群集运行的脚本设置两个 cron 作业，以定期运行两个帮助器脚本：  
+    1.  HBase cron 作业 � 将新的 `hbase-site.xml` 文件和 HBase IP 映射从 Spark 默认存储帐户下载到本地节点
+    2.  Spark cron 作业 � 检查是否发生了 Spark 缩放以及群集是否安全。 如果是，则编辑 `/etc/hosts` 以包含本地存储的 HBase IP 映射
+
+__注意__：在继续之前，请确保已将 Spark 群集的存储帐户作为辅助存储帐户添加到了 HBase 群集。 请确保按以下所示顺序运行脚本。
+
+
+1. 在 HBase 群集上使用[脚本操作](hdinsight-hadoop-customize-cluster-linux.md#script-action-to-a-running-cluster)以应用更改（考虑以下因素）： 
+
+
+    |properties | Value |
+    |---|---|
+    |Bash 脚本 URI|`https://hdiconfigactions.blob.core.windows.net/hbasesparkconnectorscript/connector-hbase.sh`|
+    |节点类型|区域|
+    |parameters|`-s SECONDARYS_STORAGE_URL`|
+    |持久化|是|
+
+    * `SECONDARYS_STORAGE_URL` 是 Spark 端默认存储的 URL。 参数示例：`-s wasb://sparkcon-2020-08-03t18-17-37-853z@sparkconhdistorage.blob.core.windows.net`
+
+
+2.  在 Spark 群集上使用脚本操作以应用更改（考虑以下因素）：
+
+    |properties | Value |
+    |---|---|
+    |Bash 脚本 URI|`https://hdiconfigactions.blob.core.windows.net/hbasesparkconnectorscript/connector-spark.sh`|
+    |节点类型|头、辅助角色、Zookeeper|
+    |parameters|`-s "SPARK-CRON-SCHEDULE"`（可选）`-h "HBASE-CRON-SCHEDULE"`（可选）|
+    |持久化|是|
+
+
+    * 可以指定希望此群集自动检查更新的频率。 默认值：-s �*/1 * * * *� -h 0（在此示例中，Spark cron 每分钟运行一次，而 HBase cron 不运行）
+    * 由于默认情况下未设置 HBase cron，因此在对 HBase 群集执行缩放时需要重新运行此脚本。 如果 HBase 群集经常缩放，可以选择自动设置 HBase cron 作业。 例如：`-h "*/30 * * * *"` 将脚本配置为每 30 分钟执行一次检查。 这样将会定期运行 HBase cron 计划，以自动将公共存储帐户上的新 HBase 信息下载到本地节点。
+    
+    
+
+## <a name="set-up-communication-manually-optional-if-provided-script-in-above-step-fails"></a>手动设置通信（可选，如果上述步骤中提供的脚本失败）
+
+__注意：__ 每当其中一个群集经历缩放活动时，都需要执行这些步骤。
+
+1. 将 hbase-site.xml 从本地存储复制到 Spark 群集默认存储所在的根目录。  编辑以下命令以反映配置。  然后，在与 HBase 群集建立的 SSH 会话中输入该命令：
 
 | 语法值 | 新值|
 |---|---|
@@ -103,7 +145,6 @@ hdfs dfs -copyFromLocal /etc/hbase/conf/hbase-site.xml wasbs://SPARK_STORAGE_CON
 exit
 ```
 
-## <a name="put-hbase-sitexml-on-your-spark-cluster"></a>将 hbase-site.xml 放置于 Spark 集群上
 
 1. 使用 SSH 连接到 Spark 集群的头节点。 编辑以下命令，将 `SPARKCLUSTER` 替换为 Spark 群集的名称，然后输入该命令：
 

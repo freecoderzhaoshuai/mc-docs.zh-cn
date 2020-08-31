@@ -3,14 +3,17 @@ title: 安全控件
 description: 用于评估 Azure 资源管理器服务的内置安全控制的清单。
 ms.topic: conceptual
 origin.date: 09/04/2019
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.date: 01/06/2020
-ms.openlocfilehash: 663683ed8e34499633ba1837dbe1a26678ff4879
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 6e02df5f571c390e385856c19c8e157a084466ac
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75631406"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807703"
 ---
 <!--Verify successfully-->
 # <a name="security-controls-for-azure-resource-manager"></a>Azure 资源管理器的安全控制
@@ -50,7 +53,7 @@ ms.locfileid: "75631406"
 
 | 安全控制 | Yes/No | 注释|
 |---|---|--|
-| 身份验证| 是 | 基于 [Azure Active Directory](/active-directory)。|
+| 身份验证| 是 | 基于 [Azure Active Directory](../../active-directory/index.yml)。|
 | 授权| 是 | |
 
 ## <a name="configuration-management"></a>配置管理
@@ -59,7 +62,8 @@ ms.locfileid: "75631406"
 |---|---|--|
 | 配置管理支持（配置的版本控制等）| 是 |  |
 
-<!--Not Available on ## Next steps-->
-<!--Not Available on [built-in security controls across Azure services](../security/fundamentals/security-controls.md)-->
+## <a name="next-steps"></a>后续步骤
+
+- 详细了解[跨 Azure 服务的内置安全控制](../../security/fundamentals/security-controls.md)。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

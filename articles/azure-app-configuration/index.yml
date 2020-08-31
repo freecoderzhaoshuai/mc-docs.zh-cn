@@ -1,0 +1,144 @@
+### YamlMime:Landing
+title: Azure 应用配置文档
+summary: 了解如何使用 Azure 应用配置（一项托管服务，可帮助开发人员轻松且安全地集中管理其应用程序和功能设置）。
+metadata:
+  title: Azure 应用配置文档
+  description: 了解如何使用 Azure 应用配置（一项托管服务，可帮助开发人员轻松且安全地集中管理其应用程序和功能设置）。
+  author: lisaguthrie
+  ms.author: lcozzens
+  ms.service: azure-app-configuration
+  ms.topic: landing-page
+  ms.date: 02/03/2020
+  ms.openlocfilehash: a369168351e778fbf89bbf93f12b0089b5029a5f
+  ms.sourcegitcommit: f9a819b7429a2cca868eba0d9241d4e6b3cf905a
+  ms.translationtype: HT
+  ms.contentlocale: zh-CN
+  ms.lasthandoff: 08/26/2020
+  ms.locfileid: "88866718"
+landingContent:
+- title: 关于 Azure 应用配置
+  linkLists:
+  - linkListType: overview
+    links:
+    - text: 什么是 Azure 应用程序配置？
+      url: overview.md
+    - text: 常见问题
+      url: faq.md
+  - linkListType: video
+    links:
+    - text: Azure 应用配置入门
+      url: https://channel9.msdn.com/Shows/Azure-Friday/Getting-started-with-Azure-App-Configuration
+    - text: 特色管理
+      url: https://channel9.msdn.com/Shows/NET-Community-Standups/ASPNET-Community-Standup-May-21st-2019-Introducing-MicrosoftFeatureManagement
+    - text: 轻松执行集中式配置
+      url: https://channel9.msdn.com/Events/dotnetConf/NET-Conf-2019/B210
+    - text: Cloud Native Show 上的 Azure 应用配置
+      url: https://www.youtube.com/watch?v=DJqmA5PcfzE
+    - text: Azure Friday 功能筛选
+      url: https://channel9.msdn.com/Shows/Azure-Friday/How-Azure-App-Configuration-helps-developers-roll-out-new-features?ocid=AID747781&wt.mc_id=azfr-c9-scottha&wt.mc_id=CFID0553
+  - linkListType: whats-new
+    links:
+    - text: 遵循我们的公告
+      url: https://github.com/Azure/AppConfiguration-Announcements/issues/
+    - text: Azure 更新信息
+      url: https://azure.microsoft.com/updates/?query=%22App%20Configuration%22
+  - linkListType: concept
+    links:
+    - text: 应用配置中的键和值
+      url: concept-key-value.md
+    - text: 使用 GitHub Actions 同步应用配置实例
+      url: concept-github-action.md
+- title: 使用 Azure 应用配置创建并编码
+  linkLists:
+  - linkListType: quickstart
+    links:
+    - text: 编码 .NET Core 应用
+      url: quickstart-dotnet-core-app.md
+    - text: 编码 .NET Framework 应用
+      url: quickstart-dotnet-app.md
+    - text: 编写 ASP.NET Core 应用代码
+      url: quickstart-aspnet-core-app.md
+    - text: 使用 C# 编写 Azure Functions 应用代码
+      url: quickstart-azure-functions-csharp.md
+    - text: 编写 Spring Boot 应用代码
+      url: quickstart-java-spring-app.md
+    - text: Azure 资源管理器模板
+      url: quickstart-resource-manager.md
+  - linkListType: tutorial
+    links:
+    - text: 在 ASP.NET Core 应用中使用动态配置
+      url: enable-dynamic-configuration-aspnet-core.md
+    - text: 在 .NET Core 应用中使用动态配置
+      url: enable-dynamic-configuration-dotnet-core.md
+    - text: 在 .NET Framework 应用中使用动态配置
+      url: enable-dynamic-configuration-dotnet.md
+    - text: 在 Azure Functions 应用中使用动态配置
+      url: enable-dynamic-configuration-azure-functions-csharp.md
+  - linkListType: tutorial
+    links:
+    - text: 与 CI/CD 管道集成
+      url: integrate-ci-cd-pipeline.md
+    - text: 使用 Helm 与 Kubernetes 部署集成
+      url: integrate-kubernetes-deployment-helm.md
+  - linkListType: tutorial
+    links:
+    - text: 在 ASP.NET Core 应用中使用 Key Vault 引用
+      url: use-key-vault-references-dotnet-core.md
+    - text: 在 Spring Boot 应用中使用 Key Vault 引用
+      url: use-key-vault-references-spring-boot.md
+  - linkListType: sample
+    links:
+    - text: 在 Azure CLI 中使用键值
+      url: scripts/cli-work-with-keys.md
+- title: 将功能标志添加到应用
+  linkLists:
+  - linkListType: concept
+    links:
+    - text: 什么是功能标志？
+      url: concept-feature-management.md
+  - linkListType: quickstart
+    links:
+    - text: .NET Core 应用
+      url: use-feature-flags-dotnet-core.md
+    - text: ASP.NET Core 应用
+      url: quickstart-feature-flag-aspnet-core.md
+    - text: .NET Framework 应用
+      url: quickstart-feature-flag-dotnet.md
+    - text: Spring Boot 应用
+      url: quickstart-feature-flag-spring-boot.md
+  - linkListType: tutorial
+    links:
+    - text: 管理功能标志
+      url: manage-feature-flags.md
+  - linkListType: reference
+    links:
+    - text: .NET Core 库
+      url: https://go.microsoft.com/fwlink/?linkid=2091700
+    - text: .NET Core 筛选器库
+      url: https://go.microsoft.com/fwlink/?linkid=2091601
+- title: 配置 SDK 和示例
+  linkLists:
+  - linkListType: sample
+    links:
+    - text: Azure CLI 示例
+      url: cli-samples.md
+  - linkListType: reference
+    links:
+    - text: Azure CLI
+      url: https://docs.microsoft.com/cli/azure/appconfig?view=azure-cli-latest
+    - text: .NET Core 提供程序
+      url: https://go.microsoft.com/fwlink/?linkid=2074664
+    - text: .NET Framework 生成器
+      url: https://go.microsoft.com/fwlink/?linkid=2074663
+    - text: 用于 .Net 的 Azure SDK
+      url: https://go.microsoft.com/fwlink/?linkid=2092056
+    - text: Spring Boot 提供程序
+      url: https://go.microsoft.com/fwlink/?linkid=2074659
+    - text: 用于 Java 的 Azure SDK
+      url: https://go.microsoft.com/fwlink/?linkid=2098196
+    - text: 用于 Python 的 Azure SDK
+      url: https://go.microsoft.com/fwlink/?linkid=2103727
+    - text: 用于 JavaScript 的 Azure SDK
+      url: https://go.microsoft.com/fwlink/?linkid=2103664
+    - text: REST
+      url: https://go.microsoft.com/fwlink/?linkid=2078296

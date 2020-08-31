@@ -8,14 +8,14 @@ ms.service: active-directory
 ms.subservice: domain-services
 ms.workload: identity
 ms.topic: tutorial
-ms.date: 08/07/2020
+ms.date: 08/21/2020
 ms.author: v-junlch
-ms.openlocfilehash: b80359bedcba7ed447ba0a131cfe2149cf417f93
-ms.sourcegitcommit: a5eb9a47feefb053ddbaab4b15c395972c372339
+ms.openlocfilehash: a0f9ec9337356117c469700b997959cb2a81a336
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88028639"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715363"
 ---
 # <a name="tutorial-create-and-use-replica-sets-for-resiliency-or-geolocation-in-azure-active-directory-domain-services-preview"></a>教程：在 Azure Active Directory 域服务（预览版）中创建和使用针对复原能力或地理位置的副本集
 
@@ -42,11 +42,11 @@ ms.locfileid: "88028639"
     * 如果你没有 Azure 订阅，请[创建一个帐户](https://www.azure.cn/pricing/1rmb-trial)。
 * 与订阅关联的 Azure Active Directory 租户，可以与本地目录或仅限云的目录同步。
     * 如果需要，请[创建一个 Azure Active Directory 租户][create-azure-ad-tenant]或[将 Azure 订阅关联到你的帐户][associate-azure-ad-tenant]。
-* 使用副本集创建的并在 Azure AD 租户中配置的 Azure Active Directory 域服务托管域。
+* 使用 Azure 资源管理器部署模型创建的并在 Azure AD 租户中配置的 Azure Active Directory 域服务托管域。
     * 如果需要，请[创建并配置 Azure Active Directory 域服务托管域][tutorial-create-instance]。
 
     > [!IMPORTANT]
-    > 确保创建使用副本集的托管域。 在此预览版之前创建的现有托管域不支持副本集。 此外，至少需要为托管域使用“企业版”SKU。 如果需要，请[更改托管域的 SKU][howto-change-sku]。
+    > 使用经典部署模型创建的托管域无法使用副本集。 此外，至少需要为托管域使用“企业版”SKU。 如果需要，请[更改托管域的 SKU][howto-change-sku]。
 
 ## <a name="sign-in-to-the-azure-portal"></a>登录到 Azure 门户
 
@@ -70,7 +70,7 @@ ms.locfileid: "88028639"
 
 ## <a name="create-a-replica-set"></a>创建副本集
 
-在你创建托管域（如 aaddscontoso.com）时，系统创建一个初始副本集。 附加副本集会共享相同的命名空间和配置。 对 Azure AD DS 进行的更改（包括配置、用户标识和凭据、组、组策略对象、计算机对象以及其他更改）会应用于使用 AD DS 复制的托管域中的所有副本集。
+创建托管域（如 aaddscontoso.com）时，将创建初始副本集。 其他副本集共享相同的命名空间和配置。 对 Azure AD DS 进行的更改（包括配置、用户标识和凭据、组、组策略对象、计算机对象以及其他更改）会应用于使用 AD DS 复制的托管域中的所有副本集。
 
 在本教程中，在 Azure 区域中创建与初始 Azure AD DS 副本集不同的附加副本集。
 

@@ -4,18 +4,18 @@ description: 用于容器的 Azure Monitor 收集指标和日志数据，本文�
 ms.topic: conceptual
 author: Johnnytechn
 origin.date: 10/15/2019
-ms.date: 07/17/2020
+ms.date: 08/20/2020
 ms.author: v-johya
-ms.openlocfilehash: 2ed78a17a78a85bf60d97692fd5149290b50040a
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: 6990a202fa50e2e6c21613128f65a927cabba82b
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244505"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148626"
 ---
 # <a name="how-to-query-logs-from-azure-monitor-for-containers"></a>如何从用于容器的 Azure Monitor 查询日志
 
-适用于容器的 Azure Monitor 从容器主机和容器收集性能指标、清单数据和运行状况状态信息。 每三分钟收集一次数据，并将其转发到 Azure Monitor 中的 Log Analytics 工作区。 此数据可用于 Azure Monitor 中的[查询](../../azure-monitor/log-query/log-query-overview.md)。 此数据可应用于包括迁移计划、容量分析、发现和按需性能故障排除在内的方案。
+适用于容器的 Azure Monitor 从容器主机和容器收集性能指标、清单数据和运行状况状态信息。 每三分钟收集一次数据，并将其转发到 Azure Monitor 中的 Log Analytics 工作区。 此数据可用于 Azure Monitor 中的[查询](../log-query/log-query-overview.md)。 此数据可应用于包括迁移计划、容量分析、发现和按需性能故障排除在内的方案。
 
 ## <a name="container-records"></a>容器记录
 
@@ -115,4 +115,5 @@ KubeMonAgentEvents | where Level != "Info"
 ## <a name="next-steps"></a>后续步骤
 
 用于容器的 Azure Monitor 不包含预定义的警报集。 请查看[使用用于容器的 Azure Monitor 创建性能警报](container-insights-alerts.md)，了解如何针对高 CPU 和内存利用率创建建议的警报以支持 DevOps 或操作流程和过程。 
+
 

@@ -6,15 +6,15 @@ ms.author: v-jay
 ms.service: azure-stack
 ms.topic: how-to
 origin.date: 11/27/2019
-ms.date: 05/18/2020
+ms.date: 08/31/2020
 ms.reviewer: jfggdl
 ms.lastreviewed: 11/27/2019
-ms.openlocfilehash: 920ee5940cc570060bcd8ed3066fb4b9df48b837
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: 1ee8cb369b7bcbbdc29914d6908a1ba30a56c789
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83423105"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867975"
 ---
 # <a name="event-hubs-on-azure-stack-hub-overview"></a>Azure Stack Hub 上的事件中心概述
 
@@ -67,7 +67,7 @@ ms.locfileid: "83423105"
 
 ### <a name="operator-documentation"></a>操作员文档 
  
-若要详细了解 Azure Stack Hub 上的事件中心操作员体验，请参阅[事件中心操作员文档](/azure-stack/operator/event-hubs-rp-overview)。 此文档提供有关活动的信息，例如：
+若要详细了解 Azure Stack Hub 上的事件中心操作员体验，请参阅[事件中心操作员文档](../operator/event-hubs-rp-overview.md)。 此文档提供有关活动的信息，例如：
 
 - 安装事件中心。
 - 使事件中心可供用户使用。

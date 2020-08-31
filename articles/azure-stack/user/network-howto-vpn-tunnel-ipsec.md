@@ -3,21 +3,21 @@ title: 如何在 Azure Stack Hub 中使用 IPSEC 创建 VPN 隧道
 description: 了解如何在 Azure Stack Hub 中使用 IPSEC 创建 VPN 隧道。
 author: WenJason
 ms.topic: how-to
-origin.date: 1/22/2020
-ms.date: 05/18/2020
+origin.date: 5/27/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: sijuman
 ms.lastreviewed: 09/19/2019
-ms.openlocfilehash: b1fd5f72db73b05726eddf1d5b9e890ecdeb2406
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: 9a70e14ce833cbf38a8c341b8114f5c7ca68205e
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422360"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868081"
 ---
 # <a name="how-to-create-a-vpn-tunnel-using-ipsec--in-azure-stack-hub"></a>如何在 Azure Stack Hub 中使用 IPSEC 创建 VPN 隧道
 
-可以使用此解决方案中的 Azure Stack Hub 资源管理器模板来连接同一 Azure Stack Hub 环境中的两个 Azure Stack Hub VNet。 使用内置虚拟网络网关[无法连接 Azure Stack Hub VNet](/azure-stack/user/azure-stack-network-differences)。 目前，必须使用网络虚拟设备 (NVA) 在两个 Azure Stack Hub VNet 之间创建 VPN 隧道。 此解决方案模板会部署两个安装了 RRAS 的 Windows Server 2016 VM。 此解决方案配置两个 RRAS 服务器以使用两个 VNET 之间的 S2SVPN IKEv2 隧道。 创建适当的 NSG 和 UDR 规则以允许在指定为“内部”的每个 VNET 上的子网之间进行路由  
+可以使用此解决方案中的 Azure Stack Hub 资源管理器模板来连接同一 Azure Stack Hub 环境中的两个 Azure Stack Hub VNet。 使用内置虚拟网络网关[无法连接 Azure Stack Hub VNet](./azure-stack-network-differences.md)。 目前，必须使用网络虚拟设备 (NVA) 在两个 Azure Stack Hub VNet 之间创建 VPN 隧道。 此解决方案模板会部署两个安装了 RRAS 的 Windows Server 2016 VM。 此解决方案配置两个 RRAS 服务器以使用两个 VNET 之间的 S2SVPN IKEv2 隧道。 创建适当的 NSG 和 UDR 规则以允许在指定为“内部”的每个 VNET 上的子网之间进行路由  
 
 此解决方案是一个基础，它使得 VPN 隧道不仅可以在 Azure Stack Hub 实例内部创建，而且还可以在 Azure Stack Hub 实例之间创建，以及创建到本地网络等其他资源（通过使用 Windows RRAS S2S VPN 隧道）。
 

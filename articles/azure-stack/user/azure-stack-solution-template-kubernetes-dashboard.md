@@ -4,16 +4,16 @@ description: 了解如何在 Azure Stack Hub 中访问 Kubernetes 仪表板
 author: WenJason
 ms.topic: article
 origin.date: 5/27/2020
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: waltero
 ms.lastreviewed: 06/18/2019
-ms.openlocfilehash: 78decfa1f7a7fbc02f5574dac8bd8aec39c740fa
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 5af77cf4fe55ba81bf25994e7d4d9a2eac16219c
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096848"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867802"
 ---
 # <a name="access-the-kubernetes-dashboard-in-azure-stack-hub"></a>在 Azure Stack Hub 中访问 Kubernetes 仪表板 
 
@@ -127,7 +127,7 @@ Kubernetes 包含一个可用于基本管理操作的 Web 仪表板。 使用此
 
 ### <a name="custom-virtual-networks"></a>自定义虚拟网络
 
-在[自定义虚拟网络](/azure-stack/user/kubernetes-aks-engine-custom-vnet)中部署 Kubernetes 后，如果访问 Kubernetes 仪表板时遇到连接问题，请确保目标子网已链接到 AKS 引擎创建的路由表和网络安全组资源。
+在[自定义虚拟网络](./kubernetes-aks-engine-custom-vnet.md)中部署 Kubernetes 后，如果访问 Kubernetes 仪表板时遇到连接问题，请确保目标子网已链接到 AKS 引擎创建的路由表和网络安全组资源。
 
 确保网络安全组规则允许主节点与 Kubernetes 仪表板 pod IP 之间的通信。 可以使用主节点上的 ping 命令来对此进行验证。
 

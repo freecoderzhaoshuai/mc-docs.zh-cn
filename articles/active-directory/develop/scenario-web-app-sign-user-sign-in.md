@@ -8,15 +8,15 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 05/28/2020
+ms.date: 08/19/2020
 ms.author: v-junlch
-ms.custom: aaddev
-ms.openlocfilehash: eaf69f81f6cbfc27c06f5ad7f0de354aa7a6fa42
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.custom: aaddev, devx-track-python
+ms.openlocfilehash: 86817eef3f1109ad044806aada4c5259b1bbeac6
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186651"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647661"
 ---
 # <a name="web-app-that-signs-in-users-sign-in-and-sign-out"></a>用于登录用户的 Web 应用：登录和注销
 
@@ -335,7 +335,7 @@ else
 - 调用 `Signout()`，让 OpenID Connect 中间件联系 Microsoft 标识平台 `logout` 终结点。 然后，终结点将会：
 
   - 从浏览器中清除会话 Cookie。
-  - 回调注销 URL。 默认情况下，注销 URL 会显示已注销视图页 [SignedOut.html](https://github.com/aspnet/AspNetCore/blob/master/src/Azure/AzureAD/Authentication.AzureAD.UI/src/Areas/AzureAD/Pages/Account/SignedOut.cshtml)。 此页也作为 MIcrosoft.Identity.Web 的一部分提供。
+  - 回调注销 URL。 默认情况下，注销 URL 会显示已注销视图页 [SignedOut.cshtml.cs](https://github.com/AzureAD/microsoft-identity-web/blob/master/src/Microsoft.Identity.Web.UI/Areas/MicrosoftIdentity/Pages/Account/SignedOut.cshtml.cs)。 此页也作为 MIcrosoft.Identity.Web 的一部分提供。
 
 # <a name="aspnet"></a>[ASP.NET](#tab/aspnet)
 

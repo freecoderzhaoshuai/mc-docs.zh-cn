@@ -3,14 +3,17 @@ title: 无效模板错误
 description: 说明如何在部署 Azure 资源管理器模板时解决无效模板错误。
 ms.topic: troubleshooting
 origin.date: 05/22/2020
-ms.date: 06/22/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 083c0dde2acd56b59eb6e77c807a8bbfc13b1ec8
-ms.sourcegitcommit: 48b5ae0164f278f2fff626ee60db86802837b0b4
+ms.openlocfilehash: 7e743e092be9961fa565701ae941c99e57808273
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85098415"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807697"
 ---
 # <a name="resolve-errors-for-invalid-template"></a>解决无效模板错误
 
@@ -50,7 +53,7 @@ Message=Deployment template validation failed
 
 如果未提供匹配的语法，该模板会生成一个不同于所需的值。
 
-收到此类错误时，请仔细检查表达式语法。 考虑使用 [Visual Studio](create-visual-studio-deployment-project.md) 或 [Visual Studio Code](use-vs-code-to-create-template.md) 等 JSON 编辑器，此类编辑器在出现语法错误时可以发出警告。
+收到此类错误时，请仔细检查表达式语法。 考虑使用 [Visual Studio](create-visual-studio-deployment-project.md) 或 [Visual Studio Code](quickstart-create-templates-use-visual-studio-code.md) 等 JSON 编辑器，此类编辑器在出现语法错误时可以发出警告。
 
 <a name="incorrect-segment-lengths"></a>
 
@@ -117,7 +120,7 @@ for type {resource-type} has incorrect segment lengths.
 
 ## <a name="solution-3---parameter-is-not-valid"></a>解决方案 3 - 参数无效
 
-如果所提供的的参数值不是允许值之一，则会收到类似于以下错误的消息：
+如果你提供的参数值不是允许值之一，则会收到类似于以下错误的消息：
 
 ```
 Code=InvalidTemplate;
@@ -132,7 +135,7 @@ part of the allowed values
 
 ## <a name="solution-4---too-many-target-resource-groups"></a>解决方案 4 - 太多目标资源组
 
-你可能在之前的部署中看到此错误，原因是你被限制为一个部署使用 5 个目标资源组。 在 2020 年 5 月，此限额被上调到了 800 个资源组。 有关详细信息，[将 Azure 资源部署到多个订阅或资源组](cross-resource-group-deployment.md)。
+你可能在之前的部署中看到此错误，原因是你被限制为一个部署使用 5 个目标资源组。 在 2020 年 5 月，此限额被上调到了 800 个资源组。 有关详细信息，[将 Azure 资源部署到多个订阅或资源组](cross-scope-deployment.md)。
 
 <a name="circular-dependency"></a>
 
@@ -145,7 +148,7 @@ part of the allowed values
 1. 在模板中找到循环依赖项中标识的资源。
 2. 检查该资源的 **dependsOn** 属性并使用 **reference** 函数查看其所依赖的资源。
 3. 检查这些资源，看其依赖于哪些资源。 顺着这些依赖项检查下去，直到找到依赖于原始资源的资源。
-5. 对于循环依赖项所牵涉的资源，请仔细检查所有使用 **dependsOn** 属性的情况，确定不需要的依赖项。 删除这些依赖项。 如果不确定某个依赖项是否为必需依赖项，可尝试删除它。
+5. 对于循环依赖项所牵涉的资源，请仔细检查所有使用 dependsOn 属性的情况，确定不需要的依赖项。 删除这些依赖项。 如果不确定某个依赖项是否必需，可尝试删除它。
 6. 重新部署模板。
 
 部署模板时，删除 **dependsOn** 属性中的值可能导致错误。 如果遇到错误，可将依赖项添加回模板。

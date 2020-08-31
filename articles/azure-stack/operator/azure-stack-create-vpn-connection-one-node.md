@@ -4,16 +4,16 @@ description: 向云操作员介绍如何在两个单节点 Azure Stack 开发工
 author: WenJason
 ms.topic: conceptual
 origin.date: 01/22/2020
-ms.date: 05/18/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: misainat
 ms.lastreviewed: 01/22/2020
-ms.openlocfilehash: 647629257d5de2cc575d9be621aabbf17379934d
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: 7764dc9364f2984544dd6540a951fabe6668fc32
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422393"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868079"
 ---
 # <a name="create-a-site-to-site-vpn-connection-between-two-virtual-networks-in-different-asdk-environments"></a>在不同 ASDK 环境中的两个虚拟网络之间创建站点到站点 VPN 连接
 
@@ -43,7 +43,7 @@ ms.locfileid: "83422393"
 
 ## <a name="prepare-an-offer-on-poc1-and-poc2"></a>在 POC1 和 POC2 中准备产品
 
-在 POC1 和 POC2 中准备一个产品，使用户能够订阅该产品并部署虚拟机 (VM)。 有关如何创建产品的信息，请参阅[向 Azure Stack Hub 用户提供 VM](azure-stack-tutorial-tenant-vm.md)。
+在 POC1 和 POC2 中准备一个产品，使用户能够订阅该产品并部署虚拟机 (VM)。 有关如何创建产品的信息，请参阅[向 Azure Stack Hub 用户提供 VM](./tutorial-offer-services.md?view=azs-2002)。
 
 ## <a name="review-and-complete-the-network-configuration-table"></a>查看并填写网络配置表
 

@@ -6,13 +6,13 @@ ms.subservice: logs
 ms.topic: conceptual
 origin.date: 06/26/2018
 ms.author: v-johya
-ms.date: 05/28/2020
-ms.openlocfilehash: 4b858a5e23e9ccba21f7ebf50296a5af97d2ebc5
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.date: 08/28/2020
+ms.openlocfilehash: d7fbffc585919980dd34be197231cf91c8e73b07
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244694"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148547"
 ---
 # <a name="inventory-and-data-collection-details-for-monitoring-solutions-in-azure"></a>Azure 中的监视解决方案的清单和数据收集详细信息
 [监视解决方案](solutions.md)使用 Azure 中的服务来了解特定应用程序或服务的操作。 监视解决方案通常收集日志数据并提供查询和视图，用于分析收集的数据。 可以在 Azure Monitor 中针对你使用的任何应用程序和服务添加监视解决方案。 这些解决方案通常是免费提供的，但收集的数据可能会产生使用费用。
@@ -35,8 +35,6 @@ ms.locfileid: "87244694"
 | **监视解决方案** | **平台** | **Microsoft Monitoring Agent** | **Operations Manager 代理** | **Azure 存储** | **是否需要 Operations Manager？** | **通过管理组发送 Operations Manager 代理数据** | **收集频率** |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [活动日志分析](../platform/activity-log-collect.md) | Azure | | | | | | 通知时 |
-| [AD 复制状态](ad-replication-status.md) |Windows |&#8226; |&#8226; | | |&#8226; |5 天 |
-| [代理运行状况](solution-agenthealth.md) | Windows 和 Linux | &#8226; | &#8226; | | | &#8226; | 1 分钟 |
 | [警报管理](../platform/alert-management-solution.md) (Nagios) |Linux |&#8226; | | | | |到达时 |
 | [警报管理](../platform/alert-management-solution.md) (Zabbix) |Linux |&#8226; | | | | |1 分钟 |
 | [警报管理](../platform/alert-management-solution.md) (Operations Manager) |Windows | |&#8226; | |&#8226; |&#8226; |3 分钟 |
@@ -49,15 +47,10 @@ ms.locfileid: "87244694"
 | [容器](containers.md) | Windows 和 Linux | &#8226; | &#8226; |  |  |  | 3 分钟 |
 | [密钥保管库分析](azure-key-vault.md) |Windows | | | | | |通知时 |
 | [网络性能监视器](network-performance-monitor.md) | Windows | &#8226; | &#8226; |  |  |  | 每隔 5 秒钟进行 TCP 握手，每隔 3 分钟发送数据 |
-| [Office 365 分析（预览版）](solution-office-365.md) |Windows | | | | | |通知时 |
 | **监视解决方案** | **平台** | **Microsoft Monitoring Agent** | **Operations Manager 代理** | **Azure 存储** | **是否需要 Operations Manager？** | **通过管理组发送 Operations Manager 代理数据** | **收集频率** |
-| [SQL 评估](sql-assessment.md) |Windows |&#8226; |&#8226; | | |&#8226; |7 天 |
 | [SurfaceHub](surface-hubs.md) |Windows |&#8226; | | | | |到达时 |
-| [System Center Operations Manager 评估（预览版）](scom-assessment.md) | Windows | &#8226; | &#8226; |  |  | &#8226; | 七天 |
 | [更新管理](../../automation/automation-update-management.md) | Windows |&#8226; |&#8226; | | |&#8226; |每天和安装更新后的 15 分钟内至少两次 |
 | [升级准备情况](https://docs.microsoft.com/windows/deployment/upgrade/upgrade-readiness-get-started) | Windows | &#8226; |  |  |  |  | 2 天 |
-| [VMware 监视（已弃用）](vmware.md) | Linux | &#8226; |  |  |  |  | 3 分钟 |
-| [Wire Data 2.0（预览版）](wire-data.md) |Windows（2012 R2 / 8.1 或更高版本） |&#8226; |&#8226; | | | | 1 分钟 |
 
 
 

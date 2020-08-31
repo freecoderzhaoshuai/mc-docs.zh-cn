@@ -23,16 +23,20 @@
       href: tutorial-access-api-with-certificates.md
     - name: 将日志流式传输到事件中心
       href: tutorial-azure-monitor-stream-logs-to-event-hub.md
+    - name: 日志分析向导
+      href: tutorial-log-analytics-wizard.md
 - name: 概念
   items:
     - name: 审核日志
       href: concept-audit-logs.md
     - name: 登录日志
       href: concept-sign-ins.md
+    - name: Azure Monitor 中的 Azure AD 日志
+      href: concept-activity-logs-azure-monitor.md
 - name: 操作指南
   expanded: true
   items:
-    - name: 报告
+    - name: 报表
       items:
         - name: 管理 Azure AD 中的非活动用户帐户
           href: howto-manage-inactive-user-accounts.md
@@ -40,8 +44,16 @@
           href: howto-troubleshoot-sign-in-errors.md
         - name: 配置报告 API 的先决条件
           href: howto-configure-prerequisites-for-reporting-api.md
+        - name: 如何使用 Azure AD 工作簿
+          href: howto-use-azure-monitor-workbooks.md
     - name: 监视
       items:
+        - name: 在 Azure Monitor 日志中分析活动日志
+          href: howto-analyze-activity-logs-log-analytics.md
+        - name: 安装和使用用于 Azure AD 的日志分析视图
+          href: howto-install-use-log-analytics-views.md
+        - name: 将活动日志与 Azure Monitor 日志集成
+          href: howto-integrate-activity-logs-with-log-analytics.md
         - name: 将活动日志与 ArcSight 集成
           href: howto-integrate-activity-logs-with-arcsight.md
         - name: 将活动日志与 Splunk 集成
@@ -52,6 +64,8 @@
       items:
         - name: 缺少审核数据
           href: troubleshoot-missing-audit-data.md
+        - name: 针对已验证的域更改审核数据
+          href: troubleshoot-audit-data-verified-domain.md
 - name: 参考
   expanded: true
   items:

@@ -8,15 +8,15 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 03/02/2020
-ms.date: 07/01/2020
-ms.openlocfilehash: 8ed8435a6c4f93403577d37826bb080e53a8ae25
-ms.sourcegitcommit: c17e965d4ffd82fd7cd86b2648fcb0053a65df00
+ms.date: 08/18/2020
+ms.openlocfilehash: ef81e9bdc4dbcfb2f155f5a5284c27d7687c4281
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86470373"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515919"
 ---
-# <a name="capacity-policy-control-commands"></a>容量策略控制命令
+# <a name="capacity-policy-commands"></a>容量策略命令
 
 以下控制命令可用于管理群集的[容量策略](../management/capacitypolicy.md)。
 
@@ -32,9 +32,10 @@ ms.locfileid: "86470373"
 
 **输出**
 
-| 策略名称    | 实体名称 | 策略                                           | 子实体                       | 实体类型 |
-| -------------- | ----------- | ------------------------------------------------ | ------------------------------------ | ----------- |
-| CapacityPolicy |             | 表示策略的 JSON 格式字符串 | 群集中的数据库列表 | 群集     |
+|策略名称 | 实体名称 | 策略 | 子实体 | 实体类型
+|---|---|---|---|---
+|CapacityPolicy | | 表示策略的 JSON 格式字符串 | 群集中的数据库列表 |群集
+
 
 ## <a name="alter-cluster-policy-capacity"></a>更改群集策略容量
 
@@ -47,7 +48,7 @@ ms.locfileid: "86470373"
 
 **示例：**
 
-- 显式更改群集策略的所有属性：
+* 显式更改群集策略的所有属性：
 
 ```kusto
 .alter cluster policy capacity
@@ -72,7 +73,7 @@ ms.locfileid: "86470373"
 '}'
 ```
 
-- 更改群集级别策略的单个属性，并保持所有其他属性不变：
+* 更改群集级别策略的单个属性，并保持所有其他属性不变：
 
 ```kusto
 .alter-merge cluster policy capacity

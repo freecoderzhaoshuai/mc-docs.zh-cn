@@ -12,14 +12,14 @@ ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 origin.date: 06/24/2020
-ms.date: 07/20/2020
+ms.date: 08/31/2020
 ms.author: v-jay
-ms.openlocfilehash: 7a6bda8b20cda30284ddb73ab44e3c793554aa15
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.openlocfilehash: 3625aefdb73e39d905a0f5784aae93e3f2d04089
+ms.sourcegitcommit: f8ed85740f873c15c239ab6ba753e4b76e030ba7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440551"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045770"
 ---
 # <a name="outbound-connections-in-azure"></a>Azure 中的出站连接
 
@@ -37,7 +37,7 @@ Azure 负载均衡器可通过各种机制提供出站连接。 本文介绍了�
 | SNAT 端口| TCP | SNAT 端口是可用于特定公共 IP 源地址的临时端口。 每个到单个目标 IP 地址、端口的流使用一个 SNAT 端口。 对于到相同的目标 IP 地址、端口和协议的多个 TCP 流，每个 TCP 流使用一个 SNAT 端口。 这可以确保源自相同的公共 IP 地址，并到相同的目标 IP 地址、端口和协议的流的唯一性。 每个流均流到不同目标 IP 地址、端口和协议的多个流共用一个 SNAT 端口。 目标 IP 地址、端口和协议使流保持唯一，无需使用其他源端口来区分公共 IP 地址空间中的流。|
 |SNAT 端口 | UDP | UDP SNAT 端口由与 TCP SNAT 端口不同的算法管理。  负载均衡器对 UDP 使用称为“端口受限锥形 NAT”的算法。  无论目标 IP 地址、端口如何，每个流都会使用一个 SNAT 端口。|
 | 耗尽 | - | 如果 SNAT 端口资源已经耗尽，那么在现有流释放 SNAT 端口之前出站流会失败。 当流关闭时，负载均衡器将回收 SNAT 端口，并使用 [4 分钟空闲超时](../load-balancer/troubleshoot-outbound-connection.md#idletimeout)回收空闲流中的 SNAT 端口。 由于使用的算法不同，UDP SNAT端口的耗尽速度通常比 TCP SNAT 端口快得多。 在进行设计和规模测试时必须考虑到这种差异。|
-| SNAT 端口释放行为 | TCP | 如果服务器/客户端均发送 FINACK，则 SNAT 端口在 240 秒后释放。 如果出现 RST，则 SNAT 端口会在 15 秒后释放。 如果已达到空闲超时，则会释放端口。|
+| SNAT 端口释放行为 | TCP | 如果服务器/客户端均发送 FINACK，则 SNAT 端口在 240 秒后释放。 如果出现 RST，则 SNAT 端口在 15 秒后释放。 如果已达到空闲超时，则会释放端口。|
 | SNAT 端口释放行为 | UDP |如果已达到空闲超时，则会释放端口。|
 | SNAT 端口重用 | TCP、UDP | 释放某个端口以后，即可根据需要重复使用该端口。  可以将 SNAT 端口视为一个适用于给定场景的从低到高的序列，第一个可用 SNAT 端口用于新的连接。|
 

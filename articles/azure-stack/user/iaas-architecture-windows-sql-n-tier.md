@@ -4,16 +4,16 @@ description: 了解如何在 Azure Stack Hub 上运行使用 SQL Server 的 Wind
 author: WenJason
 ms.topic: how-to
 origin.date: 04/20/2020
-ms.dtae: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: kivenkat
 ms.lastreviewed: 11/01/2019
-ms.openlocfilehash: a4d5ddbb17e5f2e62fa4b16ea71169008d2840cc
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: fda836b340aaea8c62d67d4c2983d1ea7a57446f
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096344"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867970"
 ---
 # <a name="windows-n-tier-application-on-azure-stack-hub-with-sql-server"></a>Azure Stack Hub 上使用 SQL Server 的 Windows N 层应用程序
 
@@ -35,7 +35,7 @@ ms.locfileid: "85096344"
 
 -   **虚拟网络和子网**。 每个 Azure VM 都会部署到可细分为子网的虚拟网络中。 为每个层创建一个单独的子网。
 
--   **第 7 层负载均衡器**。 Azure Stack Hub 中尚未提供应用程序网关，不过，[Azure Stack Hub 市场](/azure-stack/operator/azure-stack-marketplace-azure-items?view=azs-1908)中提供了替代方案，例如：[A10 vThunder ADC](https://market.azure.cn/zh-cn/marketplace/apps/a10networks-cn.a10-thunder-adc-411-p2?tab=Overview)
+-   **第 7 层负载均衡器**。 Azure Stack Hub 中尚未提供应用程序网关，不过，[Azure Stack Hub 市场](../operator/azure-stack-marketplace-azure-items.md?view=azs-1908)中提供了替代方案，例如：[A10 vThunder ADC](https://market.azure.cn/zh-cn/marketplace/apps/a10networks-cn.a10-thunder-adc-411-p2?tab=Overview)
 
 -   **负载均衡器**。 使用 [Azure 负载均衡器](/load-balancer/load-balancer-overview)可将网络流量从 Web 层分配到业务层，以及从业务层分配到 SQL Server。
 
@@ -99,15 +99,15 @@ ms.locfileid: "85096344"
 
 ## <a name="sql-server-always-on-availability-groups"></a>SQL Server Always On 可用性组
 
-建议使用 [Always On 可用性组](https://msdn.microsoft.com/library/hh510230.aspx)以实现 SQL Server 高可用性。 在 Windows Server 2016 之前，Always On 可用性组需要一个域控制器，并且可用性组中的所有节点必须在同一 AD 域中。
+建议使用 [Always On 可用性组](https://docs.microsoft.com/sql/database-engine/availability-groups/windows/always-on-availability-groups-sql-server?view=sql-server-ver15)以实现 SQL Server 高可用性。 在 Windows Server 2016 之前，Always On 可用性组需要一个域控制器，并且可用性组中的所有节点必须在同一 AD 域中。
 
 为实现 VM 层高可用性，所有 SQL VM 应位于可用性集中。
 
-其他层通过[可用性组侦听器](https://msdn.microsoft.com/library/hh213417.aspx)连接到数据库。 该侦听程序使得 SQL 客户端能够在不知道 SQL Server 物理实例名称的情况下进行连接。 访问数据库的 VM 必须加入域。 客户端（在本例中为另一个层）使用 DNS 将该侦听程序的虚拟网络名称解析为 IP 地址。
+其他层通过[可用性组侦听器](https://docs.microsoft.com/sql/database-engine/availability-groups/windows/listeners-client-connectivity-application-failover?view=sql-server-ver15)连接到数据库。 该侦听程序使得 SQL 客户端能够在不知道 SQL Server 物理实例名称的情况下进行连接。 访问数据库的 VM 必须加入域。 客户端（在本例中为另一个层）使用 DNS 将该侦听程序的虚拟网络名称解析为 IP 地址。
 
 如下所述配置 SQL Server Always On 可用性组：
 
-1.  创建一个 Windows Server 故障转移群集 (WSFC) 群集、一个 SQL Server Always On 可用性组和一个主要副本。 有关详细信息，请参阅 [Always On 可用性组入门](https://msdn.microsoft.com/library/gg509118.aspx)。
+1.  创建一个 Windows Server 故障转移群集 (WSFC) 群集、一个 SQL Server Always On 可用性组和一个主要副本。 有关详细信息，请参阅 [Always On 可用性组入门](https://docs.microsoft.com/sql/database-engine/availability-groups/windows/getting-started-with-always-on-availability-groups-sql-server?view=sql-server-ver15)。
 
 2.  创建一个具有静态专用 IP 地址的内部负载均衡器。
 
@@ -122,11 +122,11 @@ ms.locfileid: "85096344"
 
 在故障转移期间，现有的客户端连接将关闭。 在故障转移完成后，新连接将被路由到新的主要副本。
 
-如果应用程序执行的读取操作多于写入操作，则可以将一些只读查询转移到次要副本。 请参阅[使用侦听器连接到只读次要副本（只读路由）](https://technet.microsoft.com/library/hh213417.aspx#ConnectToSecondary)。
+如果应用程序执行的读取操作多于写入操作，则可以将一些只读查询转移到次要副本。 请参阅[使用侦听器连接到只读次要副本（只读路由）](https://docs.microsoft.com/sql/database-engine/availability-groups/windows/listeners-client-connectivity-application-failover?view=sql-server-ver15#ConnectToSecondary)。
 
-通过执行可用性组的[强制手动故障转移](https://msdn.microsoft.com/library/ff877957.aspx)来测试部署。
+通过执行可用性组的[强制手动故障转移](https://docs.microsoft.com/sql/database-engine/availability-groups/windows/perform-a-forced-manual-failover-of-an-availability-group-sql-server?view=sql-server-ver15)来测试部署。
 
-有关 SQL 性能优化，另请参阅[在 Azure Stack Hub 中优化 SQL 服务器性能的最佳做法](/azure-stack/user/azure-stack-sql-server-vm-considerations)一文。
+有关 SQL 性能优化，另请参阅[在 Azure Stack Hub 中优化 SQL 服务器性能的最佳做法](./azure-stack-sql-server-vm-considerations.md)一文。
 
 **Jumpbox**
 
@@ -146,7 +146,7 @@ Jumpbox 的性能要求非常低，因此请选择一个较小的 VM 大小。 �
 
 -   在部署 VM 后使用扩展对其进行配置。 使用此方法时，启动新 VM 实例的所需时间可能会长于启动不带扩展的 VM 的所需时间。
 
--   使用自定义磁盘映像部署[托管磁盘](/azure-stack/user/azure-stack-managed-disk-considerations)。 此选项的部署速度可能更快。 但是，它要求将映像保持最新。
+-   使用自定义磁盘映像部署[托管磁盘](./azure-stack-managed-disk-considerations.md)。 此选项的部署速度可能更快。 但是，它要求将映像保持最新。
 
 有关详细信息，请参阅[规模集的设计注意事项](/virtual-machine-scale-sets/virtual-machine-scale-sets-design-overview)。 对于 Azure Stack Hub，此设计注意事项基本上适用，但需要另外注意几点：
 
@@ -160,7 +160,7 @@ Jumpbox 的性能要求非常低，因此请选择一个较小的 VM 大小。 �
 
 ## <a name="subscription-limits"></a>订阅限制
 
-每个 Azure Stack Hub 租户订阅已有默认限制，包括 Azure Stack Hub 操作员为每个区域配置的 VM 最大数目。 有关详细信息，请参阅 [Azure Stack Hub 服务、计划、套餐和订阅概述](/azure-stack/operator/service-plan-offer-subscription-overview)。 另请参阅 [Azure Stack Hub 中的配额类型](/azure-stack/operator/azure-stack-quota-types)。
+每个 Azure Stack Hub 租户订阅已有默认限制，包括 Azure Stack Hub 操作员为每个区域配置的 VM 最大数目。 有关详细信息，请参阅 [Azure Stack Hub 服务、计划、套餐和订阅概述](../operator/service-plan-offer-subscription-overview.md)。 另请参阅 [Azure Stack Hub 中的配额类型](../operator/azure-stack-quota-types.md)。
 
 ## <a name="security-considerations"></a>安全注意事项
 
@@ -170,7 +170,7 @@ Jumpbox 的性能要求非常低，因此请选择一个较小的 VM 大小。 �
 
 **外围网络**。 请考虑添加一个网络虚拟设备 (NVA) 以在 Internet 与 Azure 虚拟网络之间创建一个外围网络。 NVA 是虚拟设备的一个通用术语，可以执行与网络相关的任务，例如防火墙、包检查、审核和自定义路由。
 
-**加密**。 加密敏感的静态数据并使用 [Azure Stack Hub 中的 Key Vault](/azure-stack/user/azure-stack-key-vault-manage-portal) 管理数据库加密密钥。 有关详细信息，请参阅 [为 Azure VM 上的 SQL Server 配置 Azure 密钥保管库集成](/virtual-machines/virtual-machines-windows-ps-sql-keyvault)。 另外，建议将应用程序机密（例如数据库连接字符串）也存储在 Key Vault 中。
+**加密**。 加密敏感的静态数据并使用 [Azure Stack Hub 中的 Key Vault](./azure-stack-key-vault-manage-portal.md) 管理数据库加密密钥。 有关详细信息，请参阅 [为 Azure VM 上的 SQL Server 配置 Azure 密钥保管库集成](/azure-sql/virtual-machines/windows/azure-key-vault-integration-configure)。 另外，建议将应用程序机密（例如数据库连接字符串）也存储在 Key Vault 中。
 
 ## <a name="next-steps"></a>后续步骤
 

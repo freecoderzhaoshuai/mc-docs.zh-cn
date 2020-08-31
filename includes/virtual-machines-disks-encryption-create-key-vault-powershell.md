@@ -6,18 +6,19 @@ author: rockboyfor
 ms.service: virtual-machines
 ms.topic: include
 origin.date: 06/15/2020
-ms.date: 07/13/2020
+ms.date: 08/10/2020
 ms.testscope: yes
 ms.testdate: 07/13/2020
 ms.author: v-yeche
 ms.custom: include file
-ms.openlocfilehash: 58dd65cc854d67ed40bada0759a5fb7a563be022
-ms.sourcegitcommit: 6c9e5b3292ade56d812e7e214eeb66aeb9b8776e
+ms.openlocfilehash: 016fa6d00a8b07bac1cfb43bae4a5c2419f3a25c
+ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86218834"
+ms.lasthandoff: 08/07/2020
+ms.locfileid: "88946933"
 ---
+<!--Verified successfully-->
 1. 请确保已安装最新的 [Azure PowerShell 版本](https://docs.microsoft.com/powershell/azure/install-az-ps)，并已使用 `Connect-AzAccount -Environment AzureChinaCloud` 登录到 Azure 帐户
 
 1. 创建 Azure Key Vault 和加密密钥的实例。

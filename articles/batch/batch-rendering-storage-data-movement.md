@@ -1,35 +1,40 @@
 ---
 title: 用于渲染的存储和数据移动
-description: 了解用于渲染资产和输出文件工作负载的多种存储与数据移动选项。
+description: 了解用于渲染资产和输出文件工作负荷的各种存储与数据移动选项。
 services: batch
 ms.service: batch
-author: mscurrell
-ms.author: markscu
-origin.date: 08/02/2019
-ms.date: 09/07/2018
-ms.topic: conceptual
-ms.openlocfilehash: f372acec09705b50b7b425e0a7d03e05bf155669
-ms.sourcegitcommit: cbaa1aef101f67bd094f6ad0b4be274bbc2d2537
+author: rockboyfor
+origin.date: 08/02/2018
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: 08/02/2019
+ms.author: v-yeche
+ms.topic: how-to
+ms.openlocfilehash: 941646666ffa0c7745d992e2c054f8240cc1c682
+ms.sourcegitcommit: e633c458126612223fbf7a8853dbf19acc7f0fa5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/28/2020
-ms.locfileid: "84126702"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88654967"
 ---
 # <a name="storage-and-data-movement-options-for-rendering-asset-and-output-files"></a>用于渲染资产和输出文件的存储与数据移动选项
 
 有多个选项可以创建场景和资产文件用于渲染池 VM 上的应用程序：
 
-* [Azure Blob 存储](/storage/blobs/storage-blobs-introduction)：
-  * 将场景和资产文件从本地文件系统上传到 Blob 存储。 当应用程序由某个任务运行时，会将所需的文件从 Blob 存储复制到 VM，使渲染应用程序能够访问它们。 输出文件由渲染应用程序写入 VM 磁盘，然后复制到 Blob 存储。  如果需要，可将输出文件从 Blob 存储下载到本地文件系统。
-  * Azure blob 存储是简单且经济高效的选项，适合小型项目。  由于每个池 VM 上需要所有资产文件，一旦资产文件的数量和大小增加，就需要谨慎确保文件传输尽量高效。  
-* 通过 blobfuse 充当文件系统的 Azure 存储：
-  * 对于 Linux VM，使用 blobfuse 虚拟文件系统驱动程序时，可以公开一个存储帐户，并将其用作文件系统。
-  * 此选项的优势在于，它极其经济高效，文件系统不需要任何 VM，此外，VM 上的 blobfuse 缓存可避免重复为多个作业和任务下载相同的文件。  数据移动也很简单，因为文件只是一些 Blob，可以使用标准的 API 和工具（例如 azcopy）在本地文件系统与 Azure 存储之间复制文件。
+* [Azure Blob 存储](../storage/blobs/storage-blobs-introduction.md)：
+    * 将场景和资产文件从本地文件系统上传到 Blob 存储。 当应用程序由某个任务运行时，会将所需的文件从 Blob 存储复制到 VM，使渲染应用程序能够访问它们。 输出文件由渲染应用程序写入 VM 磁盘，然后复制到 Blob 存储。  如果需要，可将输出文件从 Blob 存储下载到本地文件系统。
+    * Azure blob 存储是简单且经济高效的选项，适合小型项目。  由于每个池 VM 上需要所有资产文件，一旦资产文件的数量和大小增加，就需要谨慎确保文件传输尽量高效。  
+    
+    <!--Not Available on [blobfuse](../storage/blobs/storage-how-to-mount-container-linux.md)-->
+    
 * 文件系统或文件共享：
-  * 根据 VM 操作系统和性能/规模要求，选项包括 [Azure 文件](/storage/files/storage-files-introduction)、使用附有 NFS 磁盘的 VM、使用附有分布式文件系统（例如 GlusterFS）磁盘的多个 VM，或使用第三方产品/服务。
-  * [Avere Systems](https://www.averesystems.com/) 已由 Microsoft 收购，在不久的将来，将会推出理想的解决方案进行大规模的高性能渲染。  借助 Avere 解决方案能够创建可与 Blob 存储或本地 NAS 设备配合工作的基于 Azure 的 NFS 或 SMB 缓存。
-  * 使用文件系统可以直接在文件系统中读取或写入文件，或者在文件系统与池 VM 之间复制文件。
-  * 使用共享文件系统可以在要使用的项目与作业之间共享大量的资产，而渲染任务只需访问所需的内容。
+    * 根据 VM 操作系统和性能/规模要求，选项包括 [Azure 文件](/storage/files/storage-files-introduction)、使用附有 NFS 磁盘的 VM、使用附有分布式文件系统（例如 GlusterFS）磁盘的多个 VM，或使用第三方产品/服务。
+    * [Avere Systems](https://www.averesystems.com/) 已由 Microsoft 收购，在不久的将来，将会推出理想的解决方案进行大规模的高性能渲染。  借助 Avere 解决方案能够创建可与 Blob 存储或本地 NAS 设备配合工作的基于 Azure 的 NFS 或 SMB 缓存。
+        
+        <!--CORRECT ON Microsoft-->
+    
+    * 使用文件系统可以直接在文件系统中读取或写入文件，或者在文件系统与池 VM 之间复制文件。
+    * 使用共享文件系统可以在要使用的项目与作业之间共享大量的资产，而渲染任务只需访问所需的内容。
 
 ## <a name="using-azure-blob-storage"></a>使用 Azure Blob 存储
 
@@ -37,10 +42,13 @@ ms.locfileid: "84126702"
 
 ### <a name="copying-files-between-client-and-blob-storage"></a>在客户端与 Blob 存储之间复制文件
 
-若要向/从 Azure 存储复制文件，可以使用各种机制，包括存储 Blob API、[Azure 存储数据移动库](https://github.com/Azure/azure-storage-net-data-movement)、适用于 [Windows](/storage/common/storage-use-azcopy) 或 [Linux](/storage/common/storage-use-azcopy-linux) 的 azcopy 命令行工具、[Azure 存储资源管理器](https://azure.microsoft.com/features/storage-explorer/)和 [Azure Batch Explorer](https://azure.github.io/BatchExplorer/)。
+<!--MOONCAKE: SCORECARD the azcopy command-line-->
+
+若要向/从 Azure 存储复制文件，可以使用各种机制，包括存储 Blob API、[Azure 存储数据移动库](https://github.com/Azure/azure-storage-net-data-movement)、适用于 [Windows](../storage/common/storage-use-azcopy-v10.md) 或 [Linux](../storage/common/storage-use-azcopy-v10.md) 的 azcopy 命令行工具、[Azure 存储资源管理器](https://azure.microsoft.com/features/storage-explorer/)和 [Azure Batch Explorer](https://azure.github.io/BatchExplorer/)。
+
+<!--MOONCAKE: SCORECARD the azcopy command-line-->
 
 例如，使用 azcopy 可按如下所示转移文件夹中的所有资产：
-
 
 `azcopy /source:. /dest:https://account.blob.core.chinacloudapi.cn/rendering/project /destsas:"?st=2018-03-30T16%3A26%3A00Z&se=2020-03-31T16%3A26%3A00Z&sp=rwdl&sv=2017-04-17&sr=c&sig=sig" /Y`
 
@@ -68,13 +76,7 @@ Azure Batch 内置支持在存储帐户与 Batch 池 VM 之间复制文件。  �
 
 可以使用[输出文件](https://docs.microsoft.com/rest/api/batchservice/task/add#outputfile)将文件从池 VM 复制到存储。  任务完成后，可将一个或多个文件从 VM 复制到指定的存储帐户。  应复制渲染的输出，但可能还需要存储日志文件。
 
-## <a name="using-a-blobfuse-virtual-file-system-for-linux-vm-pools"></a>对 Linux VM 池使用 blobfuse 虚拟文件系统
-
-Blobfuse 是适用于 Azure Blob 存储的虚拟文件系统驱动程序，用于通过 Linux 文件系统访问存储帐户中以 Blob 形式存储的文件。
-
-池节点启动时可以装载文件系统，或者，可以在执行作业准备任务（仅当在节点上运行作业中的第一个任务时才运行的任务）过程中进行装载。  可将 Blobfuse 配置为同时利用 ramdisk 和 VM 本地 SSD 来缓存文件，如果节点上的多个任务访问某些相同的文件，则此配置可以大幅提高性能。
-
-我们[提供了示例模板](https://github.com/Azure/BatchExplorer-data/tree/master/ncj/vray/render-linux-with-blobfuse-mount)用于通过 blobfuse 文件系统运行独立的 V-ray 渲染器，可将这些模板用作其他应用程序的模板的基础。
+<!--Not Avaialble on ## Using a blobfuse virtual file system for Linux VM pools-->
 
 ### <a name="accessing-files"></a>访问文件
 
@@ -86,9 +88,9 @@ Blobfuse 是适用于 Azure Blob 存储的虚拟文件系统驱动程序，用�
 
 ## <a name="using-azure-files-with-windows-vms"></a>对 Windows VM 使用 Azure 文件
 
-[Azure 文件](/storage/files/storage-files-introduction)在云中提供可通过 SMB 协议访问的完全托管式文件共享。  Azure 文件基于 Azure Blob 存储；它非常[经济高效](https://www.azure.cn/pricing/details/storage/files/)，可以使用数据复制将其配置到另一个区域，以实现全局冗余。  应评审[缩放目标](/storage/files/storage-files-scale-targets#azure-files-scale-targets)，以确定是否应该针对特定的预测池大小和资产文件数量使用 Azure 文件。
+[Azure 文件](../storage/files/storage-files-introduction.md)在云中提供可通过 SMB 协议访问的完全托管式文件共享。  Azure 文件基于 Azure Blob 存储；它非常[经济高效](https://www.azure.cn/pricing/details/storage/files/)，可以使用数据复制将其配置到另一个区域，以实现全局冗余。  应评审[缩放目标](../storage/files/storage-files-scale-targets.md#azure-files-scale-targets)，以确定是否应该针对特定的预测池大小和资产文件数量使用 Azure 文件。
 
-此[博客文章](https://blogs.msdn.microsoft.com/windowsazurestorage/2014/05/26/persisting-connections-to-microsoft-azure-files/)和[文档](/storage/files/storage-how-to-use-files-windows)介绍了如何装载 Azure 文件共享。
+此[文档](../storage/files/storage-how-to-use-files-windows.md)介绍了如何装载 Azure 文件共享。
 
 ### <a name="mounting-an-azure-files-share"></a>装载 Azure 文件共享
 
@@ -125,12 +127,20 @@ Blobfuse 是适用于 Azure Blob 存储的虚拟文件系统驱动程序，用�
 
 ### <a name="copying-input-asset-files-from-blob-storage-to-batch-pool-vms"></a>将输入资产文件从 Blob 存储复制到 Batch 池 VM
 
-支持 Azure 存储的所有主要 API 和工具（例如 azcopy、Azure CLI、存储资源管理器、Azure PowerShell、Batch Explorer 等）都支持 Azure 文件。
+<!--MOONCAKE: SCORECARD REQUIREMENT for example,-->
+
+支持 Azure 存储的所有主要 API 和工具（例如 azcopy、Azure CLI、存储资源管理器、Azure PowerShell、Batch Explorer 等）都支持 Azure 文件存储。
+
+<!--Not Available on [Azure File Sync](../storage/files/storage-sync-files-planning.md)-->
 
 ## <a name="next-steps"></a>后续步骤
 
 有关存储选项的详细信息，请参阅深度文档：
 
-- [Azure blob 存储](/storage/blobs/storage-blobs-introduction)
-- [Azure 文件](/storage/files/storage-files-introduction)
+* [Azure blob 存储](../storage/blobs/storage-blobs-introduction.md)
 
+    <!--Not Available on * [Blobfuse](../storage/blobs/storage-how-to-mount-container-linux.md)-->
+    
+* [Azure 文件](../storage/files/storage-files-introduction.md)
+
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -3,14 +3,17 @@ title: 面向开发人员的 API 和工具
 description: 了解通过 Azure Batch 服务开发解决方案时可以使用的 API 和工具。
 ms.topic: conceptual
 origin.date: 05/22/2020
-ms.date: 06/28/2020
-ms.author: v-tawe
-ms.openlocfilehash: d9e6eeb1fca9ca8bf68b6aab95e69bfda4a7703a
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
+ms.author: v-yeche
+ms.custom: seodec18
+ms.openlocfilehash: aef6a643be075cfe6f0ae8c68a7a9b0a4b30b583
+ms.sourcegitcommit: e633c458126612223fbf7a8853dbf19acc7f0fa5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85613409"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88655004"
 ---
 # <a name="overview-of-batch-apis-and-tools"></a>批处理 API 和工具概述
 
@@ -32,11 +35,11 @@ ms.locfileid: "85613409"
 
 Azure Batch 具有两组 API，一个用于服务级别，另一个用于管理级别。 命名通常相似，但它们返回不同的结果。
 
-活动日志中只跟踪来自管理 API 的操作。 服务级别 API 会绕过 Azure 资源管理层，并且不会进行记录。
+活动日志中只跟踪来自管理 API 的操作。 服务级别 API 会绕过 Azure 资源管理层 (management.chinacloudapi.cn)，并且不会进行记录。
 
 例如，[用于删除池的 Batch 服务 API](https://docs.microsoft.com/rest/api/batchservice/pool/delete) 直接以批处理帐户为目标：`DELETE {batchUrl}/pools/{poolId}`
 
-而[用于删除池的 Batch 管理 API](https://docs.microsoft.com/rest/api/batchmanagement/pool/delete) 的目标是 management.azure.com 层：`DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/pools/{poolName}`
+而[用于删除池的 Batch 管理 API](https://docs.microsoft.com/rest/api/batchmanagement/pool/delete) 的目标是 management.chinacloudapi.cn 层：`DELETE https://management.chinacloudapi.cn/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Batch/batchAccounts/{accountName}/pools/{poolName}`
 
 ## <a name="batch-service-apis"></a>批处理服务 API
 
@@ -44,11 +47,11 @@ Azure Batch 具有两组 API，一个用于服务级别，另一个用于管理�
 
 | API | API 参考 | 下载 | 教程 | 代码示例 | 更多信息 |
 | --- | --- | --- | --- | --- | --- |
-| **批处理 REST** |[docs.microsoft.com](https://docs.microsoft.com/rest/api/batchservice/) |空值 |- |- | [支持的版本](/rest/api/batchservice/batch-service-rest-api-versioning) |
-| **Batch .NET** |[docs.microsoft.com](https://docs.microsoft.com/dotnet/api/overview/azure/batch?view=azure-dotnet) |[NuGet](https://www.nuget.org/packages/Microsoft.Azure.Batch/) |- |[GitHub](https://github.com/Azure-Samples/azure-batch-samples/tree/master/CSharp) | [发行说明](https://aka.ms/batch-net-dataplane-changelog) |
-| **Batch Python** |[docs.microsoft.com](https://docs.microsoft.com/python/api/overview/azure/batch/client?view=azure-python) |[PyPI](https://pypi.org/project/azure-batch/) |-|[GitHub](https://github.com/Azure-Samples/azure-batch-samples/tree/master/Python/Batch) | [自述文件](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/batch/azure-batch/README.md) |
-| **批处理 Node.js** |[docs.microsoft.com](https://docs.microsoft.com/javascript/api/overview/azure/batch/client?view=azure-node-latest) |[npm](https://www.npmjs.com/package/azure-batch) |[教程](batch-nodejs-get-started.md) |- | [自述文件](https://github.com/Azure/azure-sdk-for-node/tree/master/lib/services/batch) |
-| **批处理 Java** |[docs.microsoft.com](https://docs.microsoft.com/java/api/overview/azure/batch?view=azure-java-stable) |[Maven](https://search.maven.org/search?q=a:azure-batch) |- |[GitHub](https://github.com/Azure-Samples/azure-batch-samples/tree/master/Java) | [自述文件](https://github.com/Azure/azure-batch-sdk-for-java)|
+| **批处理 REST** |[Azure REST API - Docs](https://docs.microsoft.com/rest/api/batchservice/) |空值 |- |- | [支持的版本](https://docs.microsoft.com/rest/api/batchservice/batch-service-rest-api-versioning) |
+| **Batch .NET** |[用于 .NET 的 Azure SDK - Docs](https://docs.azure.cn/dotnet/api/overview/batch?view=azure-dotnet) |[NuGet](https://www.nuget.org/packages/Microsoft.Azure.Batch/) |[教程](tutorial-parallel-dotnet.md) |[GitHub](https://github.com/Azure-Samples/azure-batch-samples/tree/master/CSharp) | [发行说明](https://aka.ms/batch-net-dataplane-changelog) |
+| **Batch Python** |[用于 Python 的 Azure SDK - Docs](https://docs.microsoft.com/python/api/overview/azure/batch/client?view=azure-python) |[PyPI](https://pypi.org/project/azure-batch/) |[教程](tutorial-parallel-python.md)|[GitHub](https://github.com/Azure-Samples/azure-batch-samples/tree/master/Python/Batch) | [自述文件](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/batch/azure-batch/README.md) |
+| **批处理 Node.js** |[用于 JavaScript 的 Azure SDK - Docs](https://docs.microsoft.com/javascript/api/overview/azure/batch/client?view=azure-node-latest) |[npm](https://www.npmjs.com/package/azure-batch) |[教程](batch-nodejs-get-started.md) |- | [自述文件](https://github.com/Azure/azure-sdk-for-node/tree/master/lib/services/batch) |
+| **批处理 Java** |[用于 Java 的 Azure SDK - Docs](https://docs.azure.cn/java/api/overview/azure/batch?view=azure-java-stable) |[Maven](https://search.maven.org/search?q=a:azure-batch) |- |[GitHub](https://github.com/Azure-Samples/azure-batch-samples/tree/master/Java) | [自述文件](https://github.com/Azure/azure-batch-sdk-for-java)|
 
 ## <a name="batch-management-apis"></a>批处理管理 API
 
@@ -56,27 +59,27 @@ Azure Batch 具有两组 API，一个用于服务级别，另一个用于管理�
 
 | API | API 参考 | 下载 | 教程 | 代码示例 |
 | --- | --- | --- | --- | --- |
-| **批次管理 REST** |[docs.microsoft.com](https://docs.microsoft.com/rest/api/batchmanagement/) |- |- |[GitHub](https://github.com/Azure-Samples/batch-dotnet-manage-batch-accounts) |
-| **Batch Management .NET** |[docs.microsoft.com](https://docs.microsoft.com/dotnet/api/overview/azure/batch/management?view=azure-dotnet) |[NuGet](https://www.nuget.org/packages/Microsoft.Azure.Management.Batch/) | [教程](batch-management-dotnet.md) |[GitHub](https://github.com/Azure-Samples/azure-batch-samples/tree/master/CSharp) |
-| **批次管理 Python** |[docs.microsoft.com](https://docs.microsoft.com/python/api/overview/azure/batch/management?view=azure-python) |[PyPI](https://pypi.org/project/azure-mgmt-batch/) |- |- |
-| **批次管理 Node.js** |[docs.microsoft.com](https://docs.microsoft.com/javascript/api/overview/azure/batch/management?view=azure-node-latest) |[npm](https://www.npmjs.com/package/azure-arm-batch) |- |- | 
-| **批次管理 Java** |[docs.microsoft.com](https://docs.microsoft.com/java/api/overview/azure/batch/management?view=azure-java-stable) |[Maven](https://search.maven.org/search?q=a:azure-batch) |- |- |
+| **批次管理 REST** |[Azure REST API - Docs](https://docs.microsoft.com/rest/api/batchmanagement/) |- |- |[GitHub](https://github.com/Azure-Samples/batch-dotnet-manage-batch-accounts) |
+| **Batch Management .NET** |[用于 .NET 的 Azure SDK - Docs](https://docs.azure.cn/dotnet/api/overview/batch/management?view=azure-dotnet) |[NuGet](https://www.nuget.org/packages/Microsoft.Azure.Management.Batch/) | [教程](batch-management-dotnet.md) |[GitHub](https://github.com/Azure-Samples/azure-batch-samples/tree/master/CSharp) |
+| **批次管理 Python** |[用于 Python 的 Azure SDK - Docs](https://docs.microsoft.com/python/api/overview/azure/batch/management?view=azure-python) |[PyPI](https://pypi.org/project/azure-mgmt-batch/) |- |- |
+| **批次管理 Node.js** |[用于 JavaScript 的 Azure SDK - Docs](https://docs.microsoft.com/javascript/api/overview/azure/batch/management?view=azure-node-latest) |[npm](https://www.npmjs.com/package/azure-arm-batch) |- |- | 
+| **批次管理 Java** |[用于 Java 的 Azure SDK - Docs](https://docs.azure.cn/java/api/overview/azure/batch/management?view=azure-java-stable) |[Maven](https://search.maven.org/search?q=a:azure-batch) |- |- |
 
 ## <a name="batch-command-line-tools"></a>批处理命令行工具
 
 这些命令行工具提供的功能与批处理服务和批处理管理 API 相同： 
 
-- [Batch PowerShell cmdlet](https://docs.microsoft.com/powershell/module/az.batch/)：[Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview) 模块中的 Azure Batch cmdlet 可让用户使用 PowerShell 管理 Batch 资源。
-- [Azure CLI](/cli/)：Azure CLI 是一个跨平台工具集，提供用来与许多 Azure 服务（包括 Batch 服务和 Batch 管理服务）交互的 shell 命令。 请参阅[使用 Azure CLI 管理批处理资源](batch-cli-get-started.md)，详细了解如何将 Azure CLI 与批处理配合使用。
+- [Batch PowerShell cmdlet](https://docs.microsoft.com/powershell/module/az.batch/)：[Azure PowerShell](https://docs.microsoft.com/powershell/azure/) 模块中的 Azure Batch cmdlet 可让用户使用 PowerShell 管理 Batch 资源。
+- [Azure CLI](https://docs.azure.cn/cli/index?view=azure-cli-latest)：Azure CLI 是一个跨平台工具集，提供用来与许多 Azure 服务（包括 Batch 服务和 Batch 管理服务）交互的 shell 命令。 请参阅[使用 Azure CLI 管理批处理资源](batch-cli-get-started.md)，详细了解如何将 Azure CLI 与批处理配合使用。
 
 ## <a name="other-tools-for-application-development"></a>适合应用程序开发的其他工具
 
 这些附加工具可能有助于生成和调试 Batch 应用程序和服务。
 
-* [Azure 门户](https://portal.azure.cn/)：可以在 Azure 门户中创建、监视和删除 Batch 池、作业和任务。 用户运行作业时，可以查看这些资源和其他资源的状态信息，甚至可以从池中的计算节点下载文件。 例如，在进行故障排除时下载失败任务的 `stderr.txt`。 用户还可以下载可用于登录到计算节点的远程桌面 (RDP) 文件。
-* [Azure Batch Explorer](https://azure.github.io/BatchExplorer/)：Batch Explorer（以前称为 BatchLabs）是一个功能丰富的免费独立客户端工具，可帮助创建、调试和监视 Azure Batch 应用程序。 下载适用于 Mac、Linux 或 Windows 的[安装包](https://azure.github.io/BatchExplorer/)。
-* [Azure Batch Shipyard](https://github.com/Azure/batch-shipyard)：Batch Shipyard 是一个帮助在 Azure Batch 上预配、执行和监视基于容器的批处理和 HPC 工作负荷的工具。
-* [Azure 存储资源管理器](https://storageexplorer.com/)：严格地说，虽然存储资源管理器不算是 Azure Batch 工具，但却是开发和调试 Batch 解决方案时的另一个很有用的工具。
+- [Azure 门户](https://portal.azure.cn/)：可以在 Azure 门户中创建、监视和删除 Batch 池、作业和任务。 用户运行作业时，可以查看这些资源和其他资源的状态信息，甚至可以从池中的计算节点下载文件。 例如，在进行故障排除时下载失败任务的 `stderr.txt`。 用户还可以下载可用于登录到计算节点的远程桌面 (RDP) 文件。
+- [Azure Batch Explorer](https://azure.github.io/BatchExplorer/)：Batch Explorer（以前称为 BatchLabs）是一个功能丰富的免费独立客户端工具，可帮助创建、调试和监视 Azure Batch 应用程序。 下载适用于 Mac、Linux 或 Windows 的[安装包](https://azure.github.io/BatchExplorer/)。
+- [Azure Batch Shipyard](https://github.com/Azure/batch-shipyard)：Batch Shipyard 是一个帮助在 Azure Batch 上预配、执行和监视基于容器的批处理和 HPC 工作负荷的工具。
+- [Azure 存储资源管理器](https://azure.microsoft.com/features/storage-explorer/)：严格地说，虽然存储资源管理器不算是 Azure Batch 工具，但却是开发和调试 Batch 解决方案时的另一个很有用的工具。
 
 ## <a name="additional-resources"></a>其他资源
 
@@ -86,6 +89,8 @@ Azure Batch 具有两组 API，一个用于服务级别，另一个用于管理�
 
 ## <a name="next-steps"></a>后续步骤
 
-- 了解 [Batch 服务工作流和主要资源](batch-service-workflow-features.md)（如池、节点、作业和任务）。
-- 请参阅 [Node.js 教程](batch-nodejs-get-started.md)，了解如何使用 javaScript 和 Batch NodeJS 库在常见的 Batch 工作流中执行简单的工作负载。
+- 了解 [Batch 服务工作流和主要资源](batch-service-workflow-features.md)，例如池、节点、作业和任务。
+- [Get started with the Azure Batch library for .NET](tutorial-parallel-dotnet.md) （适用于 .NET 的 Azure Batch 库入门），了解如何使用 C# 和 Batch .NET 库在常见的 Batch 工作流中执行简单的工作负荷。 也提供 [Python 版](tutorial-parallel-python.md)和 [Node.js 教程](batch-nodejs-get-started.md)。
 - 下载 [GitHub 上的代码示例](https://github.com/Azure-Samples/azure-batch-samples)，了解 C# 和 Python 如何与 Batch 交互以计划和处理示例工作负荷。
+
+<!-- Update_Description: update meta properties, wording update, update link -->

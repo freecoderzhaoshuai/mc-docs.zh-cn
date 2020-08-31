@@ -309,7 +309,7 @@
           href: migration-classic-resource-manager-errors.md
         - name: 用于迁移的社区工具
           href: migration-classic-resource-manager-community-tools.md
-        - name: 常见问题解答
+        - name: 常见问题
           href: migration-classic-resource-manager-faq.md
     - name: 使用映像
       displayName: 'SIG, AMI, image'
@@ -530,7 +530,7 @@
           items:
             - name: 代理概述
               href: ../../azure-monitor/platform/agents-overview.md?toc=/virtual-machines/windows/toc.json&bc=/virtual-machines/windows/breadcrumb/toc.json
-            - name: 常见问题解答
+            - name: 常见问题
               href: ../../azure-monitor/faq.md?toc=/virtual-machines/windows/toc.json&bc=/virtual-machines/windows/breadcrumb/toc.json#agents
             - name: Azure 诊断扩展
               items:
@@ -551,7 +551,7 @@
                       href: ../../azure-monitor/platform/diagnostics-extension-versions.md?toc=/virtual-machines/windows/toc.json&bc=/virtual-machines/windows/breadcrumb/toc.json
                     - name: JSON Lines 资源日志格式
                       href: ../../azure-monitor/platform/diagnostic-logs-append-blobs.md?toc=/virtual-machines/windows/toc.json&bc=/virtual-machines/windows/breadcrumb/toc.json
-                    - name: 疑难解答
+                    - name: 故障排除
                       href: ../../azure-monitor/platform/diagnostics-extension-troubleshooting.md?toc=/virtual-machines/windows/toc.json&bc=/virtual-machines/windows/breadcrumb/toc.json
             - name: Log Analytics 代理
               items:
@@ -714,7 +714,7 @@
           href: /active-directory/managed-identities-azure-resources/qs-configure-cli-windows-vm?toc=/virtual-machines/windows/toc.json&bc=/virtual-machines/windows/breadcrumb/toc.json
         - name: PowerShell
           href: /active-directory/managed-identities-azure-resources/qs-configure-powershell-windows-vm?toc=/virtual-machines/windows/toc.json&bc=/virtual-machines/windows/breadcrumb/toc.json
-        - name: Azure 资源管理器模板
+        - name: Azure Resource Manager 模板
           displayName: ARM
           href: /active-directory/managed-identities-azure-resources/qs-configure-template-windows-vm?toc=/virtual-machines/windows/toc.json&bc=/virtual-machines/windows/breadcrumb/toc.json
         - name: REST
@@ -727,7 +727,7 @@
           href: ../extensions/extensions-rmpolicy-howto-ps.md?toc=/virtual-machines/windows/toc.json&bc=/virtual-machines/windows/breadcrumb/toc.json
         - name: 导出扩展
           href: ../extensions/export-templates.md?toc=/virtual-machines/windows/toc.json&bc=/virtual-machines/windows/breadcrumb/toc.json
-        - name: 疑难解答
+        - name: 故障排除
           href: ../extensions/troubleshoot.md?toc=/virtual-machines/windows/toc.json&bc=/virtual-machines/windows/breadcrumb/toc.json
         - name: Azure 磁盘加密
           href: ../extensions/azure-disk-enc-windows.md?toc=/virtual-machines/windows/toc.json&bc=/virtual-machines/windows/breadcrumb/toc.json
@@ -743,8 +743,6 @@
           href: ../extensions/vmsnapshot-windows.md?toc=/virtual-machines/windows/toc.json&bc=/virtual-machines/windows/breadcrumb/toc.json
         - name: 网络观察程序代理
           href: ../extensions/network-watcher-windows.md?toc=/virtual-machines/windows/toc.json&bc=/virtual-machines/windows/breadcrumb/toc.json
-        - name: NVIDIA GPU 驱动程序
-          href: ../extensions/hpccompute-gpu-windows.md?toc=/virtual-machines/windows/toc.json&bc=/virtual-machines/windows/breadcrumb/toc.json
         - name: Azure Monitor
           items:
             - name: 诊断扩展
@@ -817,5 +815,5 @@
       href: 'https://stackoverflow.com/questions/tagged/azure-virtual-machine'
     - name: 视频
       href: 'https://www.azure.cn/video-center/'
-    - name: 常见问题解答
+    - name: 常见问题
       href: faq.md

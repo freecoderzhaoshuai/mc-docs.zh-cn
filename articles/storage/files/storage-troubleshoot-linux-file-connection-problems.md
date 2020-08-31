@@ -1,25 +1,25 @@
 ---
 title: 在 Linux 中排查 Azure 文件问题 | Microsoft Docs
-description: 在 Linux 中排查 Azure 文件问题
+description: 在 Linux 中排查 Azure 文件存储问题。 请查看从 Linux 客户端进行连接时与 Azure 文件存储相关的常见问题，并查看可能的解决方法。
 author: WenJason
 ms.service: storage
-ms.topic: conceptual
+ms.topic: troubleshooting
 origin.date: 10/16/2018
-ms.date: 06/01/2020
+ms.date: 08/24/2020
 ms.author: v-jay
 ms.subservice: files
-ms.openlocfilehash: c4d7e4a67b62a18db26be5d81169a4e21f57741d
-ms.sourcegitcommit: be0a8e909fbce6b1b09699a721268f2fc7eb89de
+ms.openlocfilehash: e69578711f3fe37dd7a08fb224937f1fef015c44
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84199808"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753369"
 ---
 # <a name="troubleshoot-azure-files-problems-in-linux"></a>在 Linux 中排查 Azure 文件问题
 
 本文列出了从 Linux 客户端连接时与 Azure 文件相关的常见问题。 并提供了这些问题的可能原因和解决方法。 
 
-除本文中的疑难解答步骤之外，还可使用 [AzFileDiagnostics](https://gallery.technet.microsoft.com/Troubleshooting-tool-for-02184089) 确保 Linux 客户端满足正确的先决条件。 AzFileDiagnostics 自动检测本文中提到的大多数症状。 它有助于设置环境以获得最佳性能。 也可以在 [Azure 文件共享疑难解答](/storage/files/storage-troubleshoot-windows-file-connection-problems)中找到此信息。 疑难解答提供了帮助你解决连接、映射和装载 Azure 文件共享问题的步骤。
+除本文中的疑难解答步骤之外，还可使用 [AzFileDiagnostics](https://github.com/Azure-Samples/azure-files-samples/tree/master/AzFileDiagnostics/Linux) 确保 Linux 客户端满足正确的先决条件。 AzFileDiagnostics 自动检测本文中提到的大多数症状。 它有助于设置环境以获得最佳性能。 也可以在 [Azure 文件共享疑难解答](/storage/files/storage-troubleshoot-windows-file-connection-problems)中找到此信息。 疑难解答提供了帮助你解决连接、映射和装载 Azure 文件共享问题的步骤。
 
 ## <a name="cannot-connect-to-or-mount-an-azure-file-share"></a>无法连接或装载 Azure 文件共享
 
@@ -31,12 +31,12 @@ ms.locfileid: "84199808"
 
 |   | SMB 2.1 <br>（装载在同一 Azure 区域内的 VM 上） | SMB 3.0 <br>（从本地和跨区域装载） |
 | --- | :---: | :---: |
-| Ubuntu Server | 14.04+ | 16.04+ |
-| RHEL | 7+ | 7.5+ |
-| CentOS | 7+ |  7.5+ |
-| Debian | 8+ |   |
-| openSUSE | 13.2+ | 42.3+ |
-| SUSE Linux Enterprise Server | 12 | 12 SP3+ |
+| **Ubuntu Server** | 14.04+ | 16.04+ |
+| **RHEL** | 7+ | 7.5+ |
+| **CentOS** | 7+ |  7.5+ |
+| **Debian** | 8+ |   |
+| **openSUSE** | 13.2+ | 42.3+ |
+| **SUSE Linux Enterprise Server** | 12 | 12 SP3+ |
 
 - 客户端上未安装 CIFS 实用程序 (cifs-utils)。
 - 客户端上未安装最低的 SMB/CIFS 版本 2.1。
@@ -85,9 +85,9 @@ ms.locfileid: "84199808"
 
 ### <a name="cause"></a>原因
 
-已达到文件所允许的并发打开句柄数上限。
+已达到文件或目录所允许的并发打开句柄数上限。
 
-单个文件有 2000 个打开句柄配额。 当你拥有 2000 个打开句柄时，会显示一条错误消息，指示已达到此配额。
+单个文件或目录的打开句柄配额为 2000 个。 当你拥有 2000 个打开句柄时，会显示一条错误消息，指示已达到此配额。
 
 ### <a name="solution"></a>解决方案
 
@@ -277,7 +277,7 @@ sudo mount -t cifs //<storage-account-name>.file.core.chinacloudapi.cn/<share-na
 Linux 内核中的此重新连接问题现已在以下更改中进行了修复：
 
 - [修复重新连接以在 socket 重新连接后缩短 smb3 会话的重新连接延迟时间](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/fs/cifs?id=4fcd1813e6404dd4420c7d12fb483f9320f0bf93)
-- [在 socket 重新连接后立即调用 echo 服务](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=b8c600120fc87d53642476f48c8055b38d6e14c7)
+- [socket 重新连接后立即调用 echo 服务](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=b8c600120fc87d53642476f48c8055b38d6e14c7)
 - [CIFS：修复重新连接期间潜在的内存损坏](https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=53e0e11efe9289535b060a51d4cf37c25e0d0f2b)
 - [CIFS：修复重新连接期间潜在的互斥双锁（对于内核 v4.9 及更高版本）](https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=96a988ffeb90dba33a71c3826086fe67c897a183)
 

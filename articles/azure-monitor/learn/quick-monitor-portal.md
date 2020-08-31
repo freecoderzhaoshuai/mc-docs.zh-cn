@@ -6,20 +6,20 @@ ms.topic: quickstart
 author: Johnnytechn
 ms.author: v-johya
 origin.date: 06/26/2019
-ms.date: 05/28/2020
+ms.date: 08/20/2020
 ms.custom: mvc
-ms.openlocfilehash: 977c29e219edf2779ac7516a271d6369646ccc1f
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: b1dd614cf628027bf373876b3568eadf5b686300
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440721"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148680"
 ---
 # <a name="start-monitoring-your-aspnet-web-application"></a>开始监视 ASP.NET Web 应用程序
 
 使用 Azure Application Insights，可轻松监视 Web 应用程序的可用性、性能和使用情况。  还可以快速确定并诊断应用程序中的错误，而无需等待用户报告这些错误。  使用从 Application Insights 收集的有关应用的性能和效率的信息，可在维护和改进应用程序时做出明智的选择。
 
-本快速入门演示如何将 Application Insights 添加到现有 ASP.NET Web 应用程序并开始分析实时统计信息，这只是可用来分析应用程序的各种方法之一。 如果没有 ASP.NET Web 应用程序，则可以按照[创建 ASP.NET Web 应用快速入门](../../app-service/app-service-web-get-started-dotnet-framework.md)创建一个。
+本快速入门演示如何将 Application Insights 添加到现有 ASP.NET Web 应用程序并开始分析实时统计信息，这只是可用来分析应用程序的各种方法之一。 如果没有 ASP.NET Web 应用程序，则可以按照[创建 ASP.NET Web 应用快速入门](../../app-service/quickstart-dotnet-framework.md)创建一个。
 
 ## <a name="prerequisites"></a>先决条件
 若要完成本快速入门教程，需先执行以下操作：
@@ -77,7 +77,7 @@ Application Insights 收集应用程序的遥测数据，而不考虑应用程�
 
     ![实时流](./media/quick-monitor-portal/7livemetrics.png)
 
-    如果已准备好在 Azure 中托管应用程序，则可以立即发布它。 按照[创建 ASP.NET Web 应用快速入门](../../app-service/app-service-web-get-started-dotnet.md#update-the-app-and-redeploy)中所述的步骤进行操作。
+    如果已准备好在 Azure 中托管应用程序，则可以立即发布它。 按照[创建 ASP.NET Web 应用快速入门](../../app-service/quickstart-dotnetcore.md#update-the-app-and-redeploy)中所述的步骤进行操作。
 
 5. 如果使用 Visual Studio 来添加 Application Insights 监视，则可自动添加客户端监视。 若要手动向应用程序添加客户端监视，请将以下 JavaScript 添加到应用程序中：
 

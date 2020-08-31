@@ -7,15 +7,15 @@ ms.topic: conceptual
 ms.workload: infrastructure-services
 origin.date: 09/18/2019
 ms.date: 08/10/2020
-ms.testscope: yes|no
-ms.testdate: 08/10/2020null
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: a17556e848eea1709f02fd02d31bcf71c7e5e340
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 174ffe941d02763907ab03f9b78b422848977007
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842723"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052368"
 ---
 <!--Verified successfully-->
 <!--Rename articles content only-->
@@ -62,12 +62,11 @@ Azure 计算提供独立于特定硬件类型并专用于单个客户的虚拟�
 ### <a name="q-is-there-any-cost-delta-for-moving-to-a-non-isolated-virtual-machine"></a>问：迁移到非独立虚拟机是否有成本增量？
 **答**：否
 
-
 ### <a name="q-when-are-the-other-isolated-sizes-going-to-retire"></a>问：其他独立大小将于何时停用？
 **答**：我们将在官方弃用独立大小前 12 个月进行提醒。
 
 ### <a name="q-im-an-azure-service-fabric-customer-relying-on-the-silver-or-gold-durability-tiers-does-this-change-impact-me"></a>问：我是依赖于白银或黄金耐久性层级的 Azure Service Fabric 客户。 此更改是否会影响我？
-**答**：否。 Service Fabric 的[耐久性层级](/service-fabric/service-fabric-cluster-capacity#the-durability-characteristics-of-the-cluster)提供的保证即使在此更改发生后也将继续履行。 如果你出于其他原因而需要物理硬件隔离，可能仍需采取上述措施之一。 
+**答**：否。 Service Fabric 的[耐久性层级](../service-fabric/service-fabric-cluster-capacity.md#durability-characteristics-of-the-cluster)提供的保证即使在此更改发生后也将继续履行。 如果你出于其他原因而需要物理硬件隔离，可能仍需采取上述措施之一。 
 
 <!--Not Available on ### Q: What are the milestones for D15_v2 or DS15_v2 isolation retirement?-->
 
@@ -75,5 +74,4 @@ Azure 计算提供独立于特定硬件类型并专用于单个客户的虚拟�
 
 客户还可以选择利用[对嵌套虚拟机的 Azure 支持](https://azure.microsoft.com/blog/nested-virtualization-in-azure/)，对这些独立的虚拟机资源进一步细分。
 
-<!-- Update_Description: new article about isolation -->
-<!--NEW.date: 08/10/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

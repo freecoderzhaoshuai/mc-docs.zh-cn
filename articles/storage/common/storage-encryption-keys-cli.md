@@ -6,17 +6,18 @@ services: storage
 author: WenJason
 ms.service: storage
 ms.topic: how-to
-origin.date: 04/02/2020
-ms.date: 07/20/2020
+origin.date: 07/13/2020
+ms.date: 08/24/2020
 ms.author: v-jay
 ms.reviewer: ozgun
 ms.subservice: common
-ms.openlocfilehash: 860f465f44c0d8bea79c566f405f2dc036a73344
-ms.sourcegitcommit: 31da682a32dbb41c2da3afb80d39c69b9f9c1bc6
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: bd34d5e27c47df73b4c302f5fa3885920ce10f8e
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86414643"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753409"
 ---
 # <a name="configure-customer-managed-keys-with-azure-key-vault-by-using-azure-cli"></a>通过 Azure CLI 使用 Azure Key Vault 配置客户管理的密钥
 
@@ -31,6 +32,7 @@ ms.locfileid: "86414643"
 若要使用 Azure CLI 分配托管标识，请调用 [az storage account update](/cli/storage/account#az-storage-account-update)。 请记得将括号中的占位符值替换为你自己的值。
 
 ```azurecli
+az login
 az account set --subscription <subscription-id>
 
 az storage account update \
@@ -91,9 +93,33 @@ Azure 存储加密支持 2048、3072 和 4096 大小的 RSA 密钥。 有关密�
 
 ## <a name="configure-encryption-with-customer-managed-keys"></a>配置使用客户管理的密钥进行加密
 
-Azure 存储加密默认使用 Microsoft 托管的密钥。 配置客户管理的密钥的 Azure 存储帐户，并指定要与存储帐户关联的密钥。
+Azure 存储加密默认使用 Microsoft 托管的密钥。 在这一步中，请将 Azure 存储帐户配置为通过 Azure Key Vault 使用客户管理的密钥，然后指定要与存储帐户关联的密钥。
 
-若要更新存储帐户的加密设置，请调用 [az storage account update](/cli/storage/account#az-storage-account-update)，如以下示例所示。 包括 `--encryption-key-source` 参数并将其设置为 `Microsoft.Keyvault` 即可为存储帐户启用客户托管密钥。 此示例还会查询密钥保管库 URI 和最新密钥版本，需要使用这两个值才能将密钥与存储帐户关联。 请记得将括号中的占位符值替换为你自己的值。
+在使用客户管理的密钥配置加密时，可以选择当关联的密钥保管库中的版本发生更改时自动轮换用于加密的密钥。 也可显式指定在手动更新密钥版本之前用于加密的密钥版本。
+
+### <a name="configure-encryption-for-automatic-rotation-of-customer-managed-keys"></a>配置加密以自动轮换客户管理的密钥
+
+若要配置加密以自动轮换客户管理的密钥，请安装 [Azure CLI 2.4.0](/cli/release-notes-azure-cli#april-21-2020) 或更高版本。 有关详细信息，请参阅[安装 Azure CLI](/cli/install-azure-cli?view=azure-cli-latest)。
+
+若要自动轮换客户管理的密钥，请在为存储帐户配置客户管理的密钥时省略密钥版本。 请调用 [az storage account update](/cli/storage/account#az-storage-account-update)，以便更新存储帐户的加密设置，如以下示例所示。 包括 `--encryption-key-source` 参数并将其设置为 `Microsoft.Keyvault` 即可为帐户启用客户管理的密钥。 请记得将括号中的占位符值替换为你自己的值。
+
+```azurecli
+key_vault_uri=$(az keyvault show \
+    --name <key-vault> \
+    --resource-group <resource_group> \
+    --query properties.vaultUri \
+    --output tsv)
+az storage account update
+    --name <storage-account> \
+    --resource-group <resource_group> \
+    --encryption-key-name <key> \
+    --encryption-key-source Microsoft.Keyvault \
+    --encryption-key-vault $key_vault_uri
+```
+
+### <a name="configure-encryption-for-manual-rotation-of-key-versions"></a>配置加密以手动轮换密钥版本
+
+若要显式指定用于加密的密钥版本，请在为存储帐户配置使用客户管理的密钥进行的加密时提供该密钥版本。 请调用 [az storage account update](/cli/storage/account#az-storage-account-update)，以便更新存储帐户的加密设置，如以下示例所示。 包括 `--encryption-key-source` 参数并将其设置为 `Microsoft.Keyvault` 即可为帐户启用客户管理的密钥。 请记得将括号中的占位符值替换为你自己的值。
 
 ```azurecli
 key_vault_uri=$(az keyvault show \
@@ -115,9 +141,7 @@ az storage account update
     --encryption-key-vault $key_vault_uri
 ```
 
-## <a name="update-the-key-version"></a>更新密钥版本
-
-创建密钥的新版本时，需将存储帐户更新为使用新版本。 首先，通过调用 [az keyvault show](/cli/keyvault#az-keyvault-show) 查询 Key Vault URI，并通过调用 [az keyvault key list-versions](/cli/keyvault/key#az-keyvault-key-list-versions) 查询密钥版本。 然后调用 [az storage account update](/cli/storage/account#az-storage-account-update) 更新存储帐户的加密设置，以使用新的密钥版本，如上一部分中所示。
+手动轮换密钥版本时，需要更新存储帐户的加密设置以使用新版本。 首先，通过调用 [az keyvault show](/cli/keyvault#az-keyvault-show) 查询 Key Vault URI，并通过调用 [az keyvault key list-versions](/cli/keyvault/key#az-keyvault-key-list-versions) 查询密钥版本。 然后调用 [az storage account update](/cli/storage/account#az-storage-account-update) 来更新存储帐户的加密设置，以使用新的密钥版本，如上一示例所示。
 
 ## <a name="use-a-different-key"></a>使用其他密钥
 
@@ -125,7 +149,7 @@ az storage account update
 
 ## <a name="revoke-customer-managed-keys"></a>撤销客户托管密钥
 
-如果你认为密钥可能已泄露，则可以通过删除密钥保管库访问策略来撤销客户托管密钥。 若要撤销客户托管密钥，请调用 [az keyvault delete-policy](/cli/keyvault#az-keyvault-delete-policy) 命令，如下例所示。 请记得将括号中的占位符值替换为自己的值，并使用前面示例中定义的变量。
+可以通过删除密钥保管库访问策略来撤销客户管理的密钥。 若要撤销客户托管密钥，请调用 [az keyvault delete-policy](/cli/keyvault#az-keyvault-delete-policy) 命令，如下例所示。 请记得将括号中的占位符值替换为自己的值，并使用前面示例中定义的变量。
 
 ```azurecli
 az keyvault delete-policy \

@@ -3,17 +3,17 @@ title: 如何使用 Fortinet FortiGate NVA 在 Azure Stack Hub 中建立 VNET �
 description: 了解如何使用 Fortinet FortiGate NVA 在 Azure Stack Hub 中建立 VNET 到 VNET 连接
 author: WenJason
 ms.topic: how-to
-origin.date: 1/22/2020
-ms.date: 05/18/2020
+origin.date: 5/27/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: sijuman
 ms.lastreviewed: 10/03/2019
-ms.openlocfilehash: c407ac62e8f034abd406013cc332c21edbb83da5
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: 90b7c87fff7801681a7634ccc34bf8f077ea4e83
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422036"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867721"
 ---
 # <a name="establish-a-vnet-to-vnet-connection-in-azure-stack-hub-with-fortinet-fortigate-nva"></a>使用 Fortinet FortiGate NVA 在 Azure Stack Hub 中建立 VNET 到 VNET 连接
 
@@ -26,7 +26,7 @@ ms.locfileid: "83422036"
 -  有权访问可提供足够容量用于部署此解决方案所需的计算、网络和资源的 Azure Stack Hub 集成系统。 
 
     > [!Note]  
-    > 由于 ASDK 的网络限制，本文中的说明**不**适用于 Azure Stack 开发工具包 (ASDK)。 有关详细信息，请参阅 [ASDK 的要求和注意事项](/azure-stack/asdk/asdk-deploy-considerations)。
+    > 由于 ASDK 的网络限制，本文中的说明**不**适用于 Azure Stack 开发工具包 (ASDK)。 有关详细信息，请参阅 [ASDK 的要求和注意事项](../asdk/asdk-deploy-considerations.md)。
 
 -  已下载网络虚拟设备 (NVA) 解决方案并将其发布到 Azure Stack Hub 市场。 NVA 控制从外围网络到其他网络或子网的网络流量。 此过程使用 [Fortinet FortiGate 下一代防火墙单一 VM 解决方案](https://market.azure.cn/zh-cn/marketplace/apps/fortinet-cn.fortinet_fortigate-vm_v6_0?tab=Overview)。
 

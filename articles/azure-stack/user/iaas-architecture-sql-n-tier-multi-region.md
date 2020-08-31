@@ -4,16 +4,16 @@ description: 了解如何在多个 Azure Stack Hub 区域中运行 N 层应用�
 author: WenJason
 ms.topic: how-to
 origin.date: 04/20/2020
-ms.date: 05/18/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: kivenkat
 ms.lastreviewed: 11/01/2019
-ms.openlocfilehash: 9dfb714bd943e038aefafa289cd0ba1c7d265de4
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: 5722730f7663d7ce1a47e610834e4b88bb63ce56
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422574"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867973"
 ---
 # <a name="run-an-n-tier-application-in-multiple-azure-stack-hub-regions-for-high-availability"></a>在多个 Azure Stack Hub 区域中运行 N 层应用程序以实现高可用性
 
@@ -36,9 +36,9 @@ ms.locfileid: "83422574"
 
 -   **虚拟网络**。 为每个区域创建一个单独的虚拟网络。 请确保地址空间不重叠。
 
--   **SQL Server Always On 可用性组**。 如果使用的是 SQL Server，建议使用 [SQL Always On 可用性组](https://msdn.microsoft.com/library/hh510230.aspx)以实现高可用性。 创建同时包含两个区域中的 SQL Server 实例的单个可用性组。
+-   **SQL Server Always On 可用性组**。 如果使用的是 SQL Server，建议使用 [SQL Always On 可用性组](https://docs.microsoft.com/sql/database-engine/availability-groups/windows/always-on-availability-groups-sql-server?view=sql-server-ver15)以实现高可用性。 创建同时包含两个区域中的 SQL Server 实例的单个可用性组。
 
--   **VNET 到 VNET VPN 连接**。 由于 VNET 对等互连尚不可在 Azure Stack Hub 上使用，因此请使用 VNET 到 VNET VPN 连接来连接两个 VNET。 有关详细信息，请参阅 [Azure Stack Hub 中的 VNET 到 VNET](/azure-stack/user/azure-stack-network-howto-vnet-to-vnet?view=azs-1908)。
+-   **VNET 到 VNET VPN 连接**。 由于 VNET 对等互连尚不可在 Azure Stack Hub 上使用，因此请使用 VNET 到 VNET VPN 连接来连接两个 VNET。 有关详细信息，请参阅 [Azure Stack Hub 中的 VNET 到 VNET](./azure-stack-network-howto-vnet-to-vnet.md?view=azs-1908)。
 
 ## <a name="recommendations"></a>建议
 
@@ -106,7 +106,7 @@ az network traffic-manager endpoint update --resource-group <resource-group> --p
 
 -   为每个域控制器提供一个静态 IP 地址。
 
--   创建 [VPN](/azure-stack/user/azure-stack-vpn-gateway-about-vpn-gateways)，以便启用两个虚拟网络之间的通信。
+-   创建 [VPN](./azure-stack-vpn-gateway-about-vpn-gateways.md)，以便启用两个虚拟网络之间的通信。
 
 -   针对每个虚拟网络，将两个区域中的域控制器的 IP 地址添加到 DNS 服务器列表。 可以使用以下 CLI 命令。 有关详细信息，请参阅[更改 DNS 服务器](/virtual-network/manage-virtual-network#change-dns-servers)。
 
@@ -114,7 +114,7 @@ az network traffic-manager endpoint update --resource-group <resource-group> --p
     az network vnet update --resource-group <resource-group> --name <vnet-name> --dns-servers "10.0.0.4,10.0.0.6,172.16.0.4,172.16.0.6"
     ```
 
--   创建一个 [Windows Server 故障转移群集](https://msdn.microsoft.com/library/hh270278.aspx) (WSFC) 群集，使其包括两个区域中的 SQL Server 实例。
+-   创建一个 [Windows Server 故障转移群集](https://docs.microsoft.com/sql/sql-server/failover-clusters/windows/windows-server-failover-clustering-wsfc-with-sql-server?view=sql-server-ver15) (WSFC) 群集，使其包括两个区域中的 SQL Server 实例。
 
 -   创建一个 SQL Server Always On 可用性组，使其包括主要区域和次要区域中的 SQL Server 实例。 有关步骤，请参阅[将 Always On 可用性组扩展到远程 Azure 数据中心 (PowerShell)](https://techcommunity.microsoft.com/t5/DataCAT/Extending-AlwaysOn-Availability-Group-to-Remote-Azure-Datacenter/ba-p/305217)。
 
@@ -135,10 +135,10 @@ az network traffic-manager endpoint update --resource-group <resource-group> --p
 
 对于 SQL Server 群集，有两个故障转移方案需要考虑：
 
--   主要区域中的所有 SQL Server 数据库副本都失败。 例如，在发生区域性中断期间可能会出现此情况。 在这种情况下，必须手动故障转移可用性组，尽管流量管理器在前端会自动进行故障转移。 请按照[执行可用性组的强制手动故障转移 (SQL Server)](https://msdn.microsoft.com/library/ff877957.aspx) 一文中的步骤进行操作，该文章介绍了如何在 SQL Server 2016 中使用 SQL Server Management Studio、Transact-SQL 或 PowerShell 执行强制故障转移。
+-   主要区域中的所有 SQL Server 数据库副本都失败。 例如，在发生区域性中断期间可能会出现此情况。 在这种情况下，必须手动故障转移可用性组，尽管流量管理器在前端会自动进行故障转移。 请按照[执行可用性组的强制手动故障转移 (SQL Server)](https://docs.microsoft.com/sql/database-engine/availability-groups/windows/perform-a-forced-manual-failover-of-an-availability-group-sql-server?view=sql-server-ver15) 一文中的步骤进行操作，该文章介绍了如何在 SQL Server 2016 中使用 SQL Server Management Studio、Transact-SQL 或 PowerShell 执行强制故障转移。
 
     > [!Warning]  
-    > 使用强制故障转移时存在数据丢失风险。 在主要区域恢复联机状态后，创建数据库快照并使用 [tablediff](https://msdn.microsoft.com/library/ms162843.aspx) 查明差异。
+    > 使用强制故障转移时存在数据丢失风险。 在主要区域恢复联机状态后，创建数据库快照并使用 [tablediff](https://docs.microsoft.com/sql/tools/tablediff-utility?view=sql-server-ver15) 查明差异。
 
 -   流量管理器故障转移到次要区域，但主要 SQL Server 数据库副本仍然可用。 例如，前端层可能会失败，但不会影响 SQL Server VM。 在这种情况下，Internet 流量将路由到次要区域中，并且该区域仍可以连接到主要副本。 但是，延迟将有所增加，因为 SQL Server 连接是跨区域的。 在此情况下，应当执行手动故障转移，如下所述：
 

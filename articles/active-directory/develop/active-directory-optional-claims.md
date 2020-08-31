@@ -1,37 +1,37 @@
 ---
 title: 向 Azure AD 应用提供可选声明
 titleSuffix: Microsoft identity platform
-description: 如何将自定义或附加的声明添加到 Azure Active Directory 颁发的 JSON Web 令牌 (JWT) 令牌。
+description: 如何将自定义的或附加的声明添加到 Microsoft 标识平台颁发的 JSON Web 令牌 (JWT) 令牌。
 author: rwike77
 manager: CelesteDG
 ms.service: active-directory
 ms.subservice: develop
 ms.topic: how-to
 ms.workload: identity
-ms.date: 07/08/2020
+ms.date: 08/17/2020
 ms.author: v-junlch
 ms.reviewer: paulgarn, hirsin, keyam
 ms.custom: aaddev
-ms.openlocfilehash: 894f9f9ff6a758905815c95aa442b45c2a623a77
-ms.sourcegitcommit: 92b9b1387314b60661f5f62db4451c9ff2c49500
+ms.openlocfilehash: 67ea354b5205f1b939250a6f03f2657fc4c0a1bc
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86164987"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647555"
 ---
-# <a name="how-to-provide-optional-claims-to-your-azure-ad-app"></a>如何：向 Azure AD 应用提供可选声明
+# <a name="how-to-provide-optional-claims-to-your-app"></a>如何：向应用提供可选声明
 
 应用程序开发人员可以在其 Azure AD 应用程序中使用可选声明来指定他们希望在发送到其应用程序的令牌中使用哪些声明。
 
 使用可选声明可以：
 
 - 选择要包含在应用程序令牌中的附加声明。
-- 更改 Azure AD 在令牌中返回的某些声明的行为。
+- 更改 Microsoft 标识平台在令牌中返回的某些声明的行为。
 - 添加和访问应用程序的自定义声明。
 
 如需标准声明的列表，请参阅[访问令牌](access-tokens.md)和 [id_token](id-tokens.md) 声明文档。
 
-尽管在 v1.0 和 v2.0 格式令牌以及 SAML 令牌中都支持可选声明，但在从 v1.0 移动到 v2.0 时，它们提供了其最大值。 [v2.0 Microsoft 标识平台终结点](active-directory-appmodel-v2-overview.md)的目标之一是减小令牌大小，以确保客户端获得最佳性能。 因此，以前包含在访问令牌和 ID 令牌中的多个声明不再在 v2.0 令牌中提供，必须根据应用程序专门请求这些声明。
+尽管在 v1.0 和 v2.0 格式令牌以及 SAML 令牌中都支持可选声明，但在从 v1.0 移动到 v2.0 时，它们提供了其最大值。 [v2.0 Microsoft 标识平台终结点](./v2-overview.md)的目标之一是减小令牌大小，以确保客户端获得最佳性能。 因此，以前包含在访问令牌和 ID 令牌中的多个声明不再在 v2.0 令牌中提供，必须根据应用程序专门请求这些声明。
 
 **表 1：适用性**
 
@@ -52,12 +52,10 @@ ms.locfileid: "86164987"
 |----------------------------|----------------|------------|-----------|--------|
 | `auth_time`                | 用户上次进行身份验证的时间。 请参阅 OpenID Connect 规范。| JWT        |           |  |
 | `tenant_region_scope`      | 资源租户的区域 | JWT        |           | |
-| `home_oid`                 | 对于来宾用户，表示该用户在用户主租户中的对象 ID。| JWT        |           | |
 | `sid`                      | 会话 ID，用于基于会话的用户注销。 | JWT        | Azure AD 帐户。   |         |
 | `platf`                    | 设备平台    | JWT        |           | 限制为可以验证设备类型的托管设备。|
 | `verified_primary_email`   | 源自用户的 PrimaryAuthoritativeEmail      | JWT        |           |         |
 | `verified_secondary_email` | 源自用户的 SecondaryAuthoritativeEmail   | JWT        |           |        |
-| `enfpolids`                | 强制实施的策略 ID。 针对当前用户评估的策略 ID 列表。 | JWT |  |  |
 | `vnet`                     | VNET 说明符信息。 | JWT        |           |      |
 | `fwd`                      | IP 地址。| JWT    |   | 添加请求方客户端（如果位于 VNET 中）的原始 IPv4 地址 |
 | `ctry`                     | 用户所在国家/地区 | JWT |  | Azure AD 返回 `ctry` 可选声明（如果存在）且声明的值是标准的双字母国家/地区代码，例如 FR、JP、SZ 等。 |
@@ -67,8 +65,8 @@ ms.locfileid: "86164987"
 | `xms_tpl`                  | 租户首选语言| JWT | | 资源租户的首选语言（如果已设置）。 已格式化 LL（“en”）。 |
 | `ztdid`                    | 零接触部署 ID | JWT | | 用于 [Windows AutoPilot](https://docs.microsoft.com/windows/deployment/windows-autopilot/windows-10-autopilot) 的设备标识 |
 | `email`                    | 此用户的可寻址电子邮件（如果此用户有）。  | JWT、SAML | MSA、Azure AD | 如果用户是租户中的来宾，则默认包含此值。  对于托管用户（租户内部的用户），它必须通过此可选声明进行请求，或者仅在 v2.0 上使用 OpenID 范围进行请求。| 
-| `groups`| 组声明的可选格式 |JWT、SAML| |与[应用程序清单](reference-app-manifest.md)中的 GroupMembershipClaims 设置（也是必需的）结合使用。 有关详细信息，请参阅下面的[组声明](#configuring-groups-optional-claims)。 
 | `acct`                | 租户中的用户帐户状态 | JWT、SAML | | 如果用户是租户的成员，则该值为 `0`。 如果他们是来宾，则该值为 `1`。 |
+| `groups`| 组声明的可选格式 |JWT、SAML| |与[应用程序清单](reference-app-manifest.md)中的 GroupMembershipClaims 设置（也是必需的）结合使用。 
 | `upn`                      | UserPrincipalName | JWT、SAML  |           | 尽管会自动包含此声明，但可以将它指定为可选声明，以附加额外的属性，在来宾用例中修改此声明的行为。  |
 | `idtyp`                    | 令牌类型   | JWT 访问令牌 | 特别之处：仅在仅限应用的访问令牌中 |  当令牌为仅限应用的令牌时，值为 `app`。 这是 API 确定令牌是应用令牌还是应用+用户令牌最准确的方法。|
 
@@ -78,7 +76,7 @@ ms.locfileid: "86164987"
 
 **表 3：仅限 v2.0 的可选声明**
 
-| JWT 声明     | 名称                            | 说明                                | 注释 |
+| JWT 声明     | 名称                            | 说明                                | 说明 |
 |---------------|---------------------------------|-------------|-------|
 | `ipaddr`      | IP 地址                      | 客户端从中登录的 IP 地址。   |       |
 | `onprem_sid`  | 本地安全标识符 |                                             |       |
@@ -138,7 +136,7 @@ ms.locfileid: "86164987"
 1. 选择“添加可选声明”。
 1. 选择要配置的令牌类型。
 1. 选择要添加的可选声明。
-1. 选择“添加”  。
+1. 选择 **添加** 。
 
 **通过应用程序清单配置可选声明：**
 
@@ -287,7 +285,7 @@ ms.locfileid: "86164987"
     }
     ```
 
-   | 可选声明架构 | Value |
+   | 可选声明架构 | 值 |
    |----------|-------------|
    | **name：** | 必须是“groups” |
    | **source：** | 未使用。 省略或指定 null |
@@ -361,8 +359,8 @@ ms.locfileid: "86164987"
 可以使用多个选项来更新应用程序标识配置中的属性，以启用和配置可选声明：
 
 - 可以使用“令牌配置”UI（请参阅下面的示例）
-- 可以使用“清单”（请参阅下面的示例）。 请先阅读[了解 Azure AD 应用程序清单文档](/active-directory/develop/active-directory-application-manifest)中的清单简介。
-- 也可以编写使用 [Microsoft Graph API](https://docs.microsoft.com/graph/use-the-api?context=graph%2Fapi%2F1.0&view=graph-rest-1.0) 的应用程序来更新应用程序。 Microsoft Graph API 参考指南中的 [OptionalClaims](https://docs.microsoft.com/graph/api/resources/optionalclaims?view=graph-rest-1.0) 类型可帮助你配置可选声明。
+- 可以使用“清单”（请参阅下面的示例）。 请先阅读[了解 Azure AD 应用程序清单文档](./reference-app-manifest.md)中的清单简介。
+- 也可以编写使用 [Microsoft Graph API](https://docs.microsoft.com/graph/use-the-api?context=graph%2fapi%2f1.0&view=graph-rest-1.0) 的应用程序来更新应用程序。 Microsoft Graph API 参考指南中的 [OptionalClaims](https://docs.microsoft.com/graph/api/resources/optionalclaims?view=graph-rest-1.0) 类型可帮助你配置可选声明。
 
 **示例：**
 
@@ -378,7 +376,7 @@ ms.locfileid: "86164987"
 
 1. 通过身份验证后，在页面右上角选择 Azure AD 租户。
 
-1. 在左侧菜单中，选择“Azure Active Directory”。
+1. 从左侧菜单中选择“Azure Active Directory”。
 
 1. 在“管理”部分下选择“应用注册” 。
 
@@ -403,7 +401,7 @@ ms.locfileid: "86164987"
 1. 从左侧菜单中选择“Azure Active Directory”。
 1. 在列表中找到要为其配置可选声明的应用程序并选择它。
 1. 在“管理”部分下，选择“清单”打开内联的清单编辑器 。
-1. 可使用此编辑器直接编辑清单。 该清单遵循 [Application 实体](/active-directory/develop/reference-app-manifest)的架构，保存后会自动设置格式。 新元素将添加到 `OptionalClaims` 属性。
+1. 可使用此编辑器直接编辑清单。 该清单遵循 [Application 实体](./reference-app-manifest.md)的架构，保存后会自动设置格式。 新元素将添加到 `OptionalClaims` 属性。
 
     ```json
     "optionalClaims": {

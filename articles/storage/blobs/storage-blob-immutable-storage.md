@@ -10,12 +10,12 @@ ms.date: 07/20/2020
 ms.author: v-jay
 ms.reviewer: hux
 ms.subservice: blobs
-ms.openlocfilehash: f3394cf860f64b0763631b0e1a22b13d1af2b2dc
-ms.sourcegitcommit: 31da682a32dbb41c2da3afb80d39c69b9f9c1bc6
+ms.openlocfilehash: 1afc4d41bf9a49eec8a3510a6067c2c8d7f139db
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86414690"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753406"
 ---
 # <a name="store-business-critical-blob-data-with-immutable-storage"></a>使用不可变的存储来存储业务关键型 Blob 数据
 
@@ -79,7 +79,7 @@ Azure Blob 存储的不可变存储支持两类 WORM 或不可变策略：基于
 
 追加 Blob 由数据块组成，并针对审核和日志记录方案所需的数据追加操作进行了优化。 按照设计，追加 Blob 只允许将新块添加到 Blob 末尾。 无论是否不可变，基本上都不允许修改或删除追加 Blob 中的现有块。 若要详细了解追加 Blob，请参阅[关于追加 Blob](https://docs.microsoft.com/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs#about-append-blobs)。
 
-仅基于时间的保留策略具有 `allowProtectedAppendWrites` 设置，该设置允许将新块写入追加 Blob，同时维持不可变性保护和符合性。 在启用的情况下，你可以直接在受策略保护的容器中创建追加 Blob，并使用 *AppendBlock* API 继续向现有追加 Blob 的末尾添加新数据块。 只能添加新块，而不能修改或删除任何现有块。 时间保留不可变性保护仍适用，系统会阻止删除追加 Blob，直到有效的保留期结束。 启用此设置不影响块 Blob 或页 Blob 的不可变性行为。
+仅基于时间的保留策略具有 `allowProtectedAppendWrites` 设置，该设置允许将新块写入追加 Blob，同时维持不可变性保护和符合性。 在启用此设置的情况下，你可以直接在受策略保护的容器中创建追加 Blob，并使用 AppendBlock API 继续向现有追加 Blob 的末尾添加新数据块。 只能添加新块，而不能修改或删除任何现有块。 时间保留不可变性保护仍适用，系统会阻止删除追加 Blob，直到有效的保留期结束。 启用此设置不影响块 Blob 或页 Blob 的不可变性行为。
 
 由于此设置是基于时间的保留策略的一部分，因此在有效保留期内追加 Blob 仍会保持不可变状态。 由于新数据可以在最初创建追加 Blob 之后追加，因此确定保留期的方式略有不同。 有效保留期是追加 Blob 的**上次修改时间**和用户指定的保留时间间隔之差。 类似地，当延长保留时间间隔时，不可变存储使用用户指定的保留时间间隔的最新值来计算有效保留期。
 

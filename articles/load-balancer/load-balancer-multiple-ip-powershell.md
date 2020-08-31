@@ -7,19 +7,19 @@ documentationcenter: na
 author: WenJason
 ms.service: load-balancer
 ms.devlang: na
-ms.topic: article
+ms.topic: how-to
 ms.custom: seodec18
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 origin.date: 09/25/2017
-ms.date: 06/08/2020
+ms.date: 08/31/2020
 ms.author: v-jay
-ms.openlocfilehash: 4c74841e3505c13447d11b81f7b682a179477be0
-ms.sourcegitcommit: 9811bf312e0d037cb530eb16c8d85238fd276949
+ms.openlocfilehash: bc6022e62d92676ad0e2c50d75373d8365fef02f
+ms.sourcegitcommit: f8ed85740f873c15c239ab6ba753e4b76e030ba7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84275625"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045778"
 ---
 # <a name="load-balancing-on-multiple-ip-configurations-using-powershell"></a>使用 PowerShell 在多个 IP 配置上进行负载均衡
 
@@ -39,7 +39,7 @@ ms.locfileid: "84275625"
 
 按照以下步骤来实现本文所概述的场景：
 
-1. 安装 Azure PowerShell 中的说明进行操作。 有关安装最新版本的 Azure PowerShell、选择订阅和登录帐户的信息，请参阅 [如何安装和配置 Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview) 。
+1. 安装 Azure PowerShell 中的说明进行操作。 有关安装最新版本的 Azure PowerShell、选择订阅和登录帐户的信息，请参阅 [如何安装和配置 Azure PowerShell](https://docs.microsoft.com/powershell/azure/) 。
 2. 使用以下设置创建资源组：
 
     ```powershell
@@ -47,7 +47,7 @@ ms.locfileid: "84275625"
     $myResourceGroup = "contosofabrikam"
     ```
 
-    有关详细信息，请参阅[创建资源组](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fload-balancer%2ftoc.json)中的第 2 步。
+    有关详细信息，请参阅[创建资源组](../virtual-machines/scripts/virtual-machines-windows-powershell-sample-create-vm.md?toc=%2fload-balancer%2ftoc.json)中的第 2 步。
 
 3. [创建可用性集](../virtual-machines/windows/tutorial-availability-sets.md?toc=%2fload-balancer%2ftoc.json)来包含 VM。 对于此场景，请使用以下命令：
 
@@ -55,14 +55,14 @@ ms.locfileid: "84275625"
     New-AzAvailabilitySet -ResourceGroupName "contosofabrikam" -Name "myAvailset" -Location "China North"
     ```
 
-4. 按照[创建 Windows VM](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fload-balancer%2ftoc.json) 中步骤 3 至 5 的说明准备创建具有单个 NIC 的 VM。 执行步骤 6.1，使用以下命令而不是步骤 6.2：
+4. 按照[创建 Windows VM](../virtual-machines/scripts/virtual-machines-windows-powershell-sample-create-vm.md?toc=%2fload-balancer%2ftoc.json) 中步骤 3 至 5 的说明准备创建具有单个 NIC 的 VM。 执行步骤 6.1，使用以下命令而不是步骤 6.2：
 
     ```powershell
     $availset = Get-AzAvailabilitySet -ResourceGroupName "contosofabrikam" -Name "myAvailset"
     New-AzVMConfig -VMName "VM1" -VMSize "Standard_DS1_v2" -AvailabilitySetId $availset.Id
     ```
 
-    然后完成[创建 Windows VM](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fload-balancer%2ftoc.json) 的步骤 6.3 至 6.8。
+    然后完成[创建 Windows VM](../virtual-machines/scripts/virtual-machines-windows-powershell-sample-create-vm.md?toc=%2fload-balancer%2ftoc.json) 的步骤 6.3 至 6.8。
 
 5. 向每个 VM 中添加另一个 IP 配置。 按照[将多个 IP 地址分配给虚拟机](../virtual-network/virtual-network-multiple-ip-addresses-powershell.md#add)文章中的说明执行操作。 请使用以下配置设置：
 

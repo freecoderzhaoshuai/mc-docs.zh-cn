@@ -1,23 +1,28 @@
 ---
-title: 从托管映像预配自定义池
-description: 从托管映像资源创建 Batch 池，以使用软件和数据为应用程序预配计算节点。
+title: 使用托管映像创建自定义映像池
+description: 从托管映像创建 Batch 自定义映像池，以使用软件和数据为应用程序预配计算节点。
 ms.topic: conceptual
-origin.date: 05/22/2020
-ms.date: 06/28/2020
-ms.author: v-tawe
-ms.openlocfilehash: bddf9bfbdeaf9704b4d7f7045857f020a954cc0d
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+origin.date: 07/01/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes|no
+ms.testdate: 06/28/2020
+ms.author: v-yeche
+ms.openlocfilehash: ee188b33e5b85afc5852c944bb967bd1a050a1d1
+ms.sourcegitcommit: e633c458126612223fbf7a8853dbf19acc7f0fa5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85613403"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88654948"
 ---
-# <a name="use-a-managed-image-to-create-a-pool-of-virtual-machines"></a>使用托管映像创建虚拟机池
+# <a name="use-a-managed-image-to-create-a-custom-image-pool"></a>使用托管映像创建自定义映像池
 
-若要为 Batch 池的虚拟机 (VM) 创建自定义映像，可以使用托管映像创建[共享映像库](batch-sig-images.md)。 还支持只使用托管映像，但仅适用于最高 2019-08-01（含）的 API 版本。
+若要为 Batch 池的虚拟机 (VM) 创建自定义映像池，可以使用托管映像创建[共享映像库映像](batch-sig-images.md)。 还支持只使用托管映像，但仅适用于最高 2019-08-01（含）的 API 版本。 
 
 > [!IMPORTANT]
 > 在大多数情况下，应使用共享映像库创建自定义映像。 使用共享映像库可以更快地预配池、缩放更大数量的 VM 以及在预配 VM 时提高可靠性。 若要了解详细信息，请参阅[使用共享映像库创建自定义池](batch-sig-images.md)。
+
+本主题说明如何只使用托管映像创建自定义映像池。
 
 ## <a name="prerequisites"></a>先决条件
 
@@ -28,26 +33,26 @@ ms.locfileid: "85613403"
 
 - Azure Active Directory (Azure AD) 身份验证。 Batch 客户端 API 必须使用 Azure AD 身份验证。 有关 Azure AD 的 Azure Batch 支持，请参阅[使用 Active Directory 对 Batch 服务解决方案进行身份验证](batch-aad-auth.md)。
 
-## <a name="prepare-a-custom-image"></a>准备自定义映像
+## <a name="prepare-a-managed-image"></a>准备托管映像
 
-在 Azure 中，可以通过以下项来准备托管映像：
+在 Azure 中，可以通过以下项准备托管映像：
 
 - Azure VM 的 OS 和数据磁盘快照
-- 包含托管磁盘的通用 Azure VM
+- 带托管磁盘的通用 Azure VM
 - 已上传到云的通用本地 VHD
 
 若要使用托管映像可靠地缩放 Batch 池，建议仅使用第一种方法创建托管映像：使用 VM 磁盘的快照。 以下步骤展示了如何准备 VM、创建快照，然后基于该快照创建托管映像。
 
 ### <a name="prepare-a-vm"></a>准备 VM
 
-若要为映像创建新 VM，请使用 Batch 支持的第一方 Azure 市场映像作为托管映像的基础映像。 只有第一方映像才能用作基础映像。 若要获取 Azure Batch 支持的 Azure 市场映像参考的完整列表，请参阅[列出节点代理 SKU](/java/api/com.microsoft.azure.batch.protocol.accounts.listnodeagentskus) 操作。
+若要为映像创建新 VM，请使用 Batch 支持的第一方 Azure 市场映像作为托管映像的基础映像。 仅第一方映像可以用作基础映像。 若要获取 Azure Batch 支持的 Azure 市场映像参考的完整列表，请参阅[列出节点代理 SKU](https://docs.azure.cn/java/api/com.microsoft.azure.batch.protocol.accounts.listnodeagentskus) 操作。
 
 > [!NOTE]
 > 不能使用具有附加许可和购买条款的第三方映像作为基础映像。 有关这些市场映像的信息，请参阅 [Linux](../virtual-machines/linux/cli-ps-findimage.md#deploy-an-image-with-marketplace-terms) 或 [Windows](../virtual-machines/windows/cli-ps-findimage.md#deploy-an-image-with-marketplace-terms) VM 指南。
 
 - 确保使用托管磁盘创建 VM。 这是创建 VM 时的默认存储设置。
 - 不要在 VM 上安装自定义脚本扩展等 Azure 扩展。 如果映像包含预装的扩展，在部署 Batch 池时 Azure 可能会遇到问题。
-- 使用附加的数据磁盘时，需要在 VM 中装载并格式化这些磁盘，然后才能使用这些磁盘。
+- 使用附加的数据磁盘时，需要从 VM 中装载和格式化磁盘，才能使用它们。
 - 确保所提供的基础 OS 映像使用默认临时驱动器。 Batch 节点代理目前需要使用默认的临时驱动器。
 - VM 开始运行后，请通过 RDP（适用于 Windows）或 SSH（适用于 Linux）进行连接。 安装所需的任何软件，或复制所需的数据。  
 
@@ -57,9 +62,9 @@ ms.locfileid: "85613403"
 
 ### <a name="create-an-image-from-one-or-more-snapshots"></a>基于一个或多个快照创建映像
 
-若要基于快照创建托管映像，请使用 Azure 命令行工具，例如 [az image create](/cli/image) 命令。 可以通过指定 OS 磁盘快照并选择性地指定一个或多个数据磁盘快照来创建映像。
+若要基于快照创建托管映像，请使用 Azure 命令行工具，例如 [az image create](https://docs.azure.cn/cli/image?view=azure-cli-latest#az-image-create) 命令。 可以通过指定 OS 磁盘快照并选择性地指定一个或多个数据磁盘快照来创建映像。
 
-## <a name="create-a-pool-from-a-custom-image"></a>通过自定义映像创建池
+## <a name="create-a-pool-from-a-managed-image"></a>从托管映像创建池
 
 找到托管映像的资源 ID 后，便可通过该映像创建自定义映像池。 以下步骤演示如何使用 Batch 服务或 Batch 管理创建自定义映像池。
 
@@ -130,16 +135,18 @@ REST API URI
 
 另请注意以下注意事项：
 
-- **大小限制** - 使用自定义映像时，Batch 会将池大小限制为 2500 个专用计算节点，或 1000 个低优先级节点。
+- **大小限制** - 当你使用自定义映像时，Batch 会将池大小限制为 2500 个专用计算节点。
+    
+    <!--Not Available on  or 1000 low-priority nodes,-->
+    
+    如果使用相同的映像（或基于同一基础快照的多个映像）来创建多个池，则池中的计算节点总数不能超过上述限制。 不建议将某个映像或其基础快照用于多个池。
 
-  如果使用相同的映像（或基于同一基础快照的多个映像）来创建多个池，则池中的计算节点总数不能超过上述限制。 不建议将某个映像或其基础快照用于多个池。
-
-  如果使用[入站 NAT 池](pool-endpoint-configuration.md)来配置池，可以降低限制。
+    如果使用[入站 NAT 池](pool-endpoint-configuration.md)来配置池，可以降低限制。
 
 - **调整超时** - 如果池包含固定数目的节点（不会自动缩放），请增大 resizeTimeout 属性的值，例如 20-30 分钟。 如果在超时期限内池未达到其目标大小，请再次执行[调整大小操作](https://docs.microsoft.com/rest/api/batchservice/pool/resize)。
 
-  如果你打算创建包含 300 个以上的计算节点的池，可能需要多次调整池大小才能达到目标大小。
-  
+    如果你打算创建包含 300 个以上的计算节点的池，可能需要多次调整池大小才能达到目标大小。
+
 使用[共享映像库](batch-sig-images.md)可以通过自定义映像和更多的共享映像副本创建更大的池。 使用共享映像，池达到稳定状态所用的时间最多可加快 25%，并且 VM 空闲延迟时间最多可缩短 30%。
 
 ## <a name="considerations-for-using-packer"></a>使用 Packer 的注意事项
@@ -156,4 +163,5 @@ REST API URI
 
 - 了解如何使用[共享映像库](batch-sig-images.md)创建自定义池。
 - 有关 Batch 的详细概述，请参阅 [Batch 服务工作流和资源](batch-service-workflow-features.md)。
-<!-- Update_Description: wording update -->
+
+<!-- Update_Description: update meta properties, wording update, update link -->

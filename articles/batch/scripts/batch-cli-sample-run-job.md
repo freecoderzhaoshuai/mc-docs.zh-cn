@@ -1,32 +1,28 @@
 ---
 title: Azure CLI 脚本示例 - 运行批处理作业
 description: 此脚本将创建一个批处理作业，并将一系列任务添加到该作业。 它还演示了如何监视作业及其任务。
-services: batch
-documentationcenter: ''
-author: dlepow
-manager: jeconnoc
-editor: tysonn
-ms.assetid: ''
-ms.service: batch
-ms.devlang: azurecli
 ms.topic: sample
-ms.tgt_pltfrm: multiple
-ms.workload: na
+author: rockboyfor
 origin.date: 12/12/2019
-ms.date: 2/3/2020
-ms.author: v-lingwu
-ms.openlocfilehash: b7527c74375decb0e4dacb7c9b75dffbb8dbcd5a
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.date: 08/24/2020
+ms.testscope: yes|no
+ms.testdate: 08/24/2020null
+ms.author: v-yeche
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 0c0b0f3814eb71da283bf8a7ebd003faf969a60d
+ms.sourcegitcommit: e633c458126612223fbf7a8853dbf19acc7f0fa5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77028582"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88654928"
 ---
 # <a name="cli-example-run-a-job-and-tasks-with-azure-batch"></a>CLI 示例：使用 Azure Batch 运行作业和任务
 
 此脚本将创建一个批处理作业，并将一系列任务添加到该作业。 它还演示了如何监视作业及其任务。 
 
-如果选择在本地安装并使用 CLI，本文要求运行 Azure CLI 2.0.20 或更高版本。 运行 `az --version` 即可查找版本。 如果需要进行安装或升级，请参阅[安装 Azure CLI 2.0](/cli/install-azure-cli)。 
+[!INCLUDE [azure-cli-2-azurechinacloud-environment-parameter](../../../includes/azure-cli-2-azurechinacloud-environment-parameter.md)]
+
+如果选择在本地安装并使用 CLI，本文要求运行 Azure CLI 2.0.20 或更高版本。 运行 `az --version` 即可查找版本。 如果需要进行安装或升级，请参阅[安装 Azure CLI](https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest)。 
 
 ## <a name="example-script"></a>示例脚本
 
@@ -60,10 +56,9 @@ az batch account login \
 az batch pool create \
     --id mypool \
     --vm-size Standard_A1 \
-    --target-dedicated 2
-    --image canonical:ubuntuserver:16.04.0-LTS \
+    --target-dedicated 2 \
+    --image canonical:ubuntuserver:16.04-LTS \
     --node-agent-sku-id "batch.node.ubuntu 16.04"
-
 
 # Create a new job to encapsulate the tasks that are added.
 az batch job create \
@@ -77,7 +72,8 @@ az batch task create \
     --command-line "/bin/bash -c 'printenv AZ_BATCH_TASK_WORKING_DIR'"
 
 # To add many tasks at once, specify the tasks
-# in a JSON file, and pass it to the command. See tasks.json for formatting.
+# in a JSON file, and pass it to the command. 
+# For format, see https://github.com/Azure/azure-docs-cli-python-samples/blob/master/batch/run-job/tasks.json.
 az batch task create \
     --job-id myjob \
     --json-file tasks.json
@@ -95,7 +91,9 @@ az batch job show --job-id myjob
 az batch task show \
     --job-id myjob \
     --task-id task1
+
 ```
+
 ## <a name="clean-up-deployment"></a>清理部署
 
 运行以下命令以删除资源组及其相关的所有资源。
@@ -110,19 +108,19 @@ az group delete --name myResourceGroup
 
 | Command | 说明 |
 |---|---|
-| [az group create](/cli/group#az-group-create) | 创建用于存储所有资源的资源组。 |
-| [az batch account create](/cli/batch/account#az-batch-account-create) | 创建批处理帐户。 |
-| [az batch account login](/cli/batch/account#az-batch-account-login) | 针对指定的批处理帐户进行身份验证，以便进一步进行 CLI 交互。  |
-| [az batch pool create](/cli/batch/pool#az-batch-pool-create) | 创建计算节点池。  |
-| [az batch job create](/cli/batch/job#az-batch-job-create) | 创建批处理作业。  |
-| [az batch task create](/cli/batch/task#az-batch-task-create) | 将任务添加到指定的批处理作业。  |
-| [az batch job set](/cli/batch/job#az-batch-job-set) | 更新批处理作业的属性。  |
-| [az batch job show](/cli/batch/job#az-batch-job-show) | 检索指定批处理作业的详细信息。  |
-| [az batch task show](/cli/batch/task#az-batch-task-show) | 从指定的批处理作业中检索任务的详细信息。  |
-| [az group delete](/cli/group#az-group-delete) | 删除资源组，包括所有嵌套的资源。 |
+| [az group create](https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-create) | 创建用于存储所有资源的资源组。 |
+| [az batch account create](https://docs.azure.cn/cli/batch/account?view=azure-cli-latest#az-batch-account-create) | 创建批处理帐户。 |
+| [az batch account login](https://docs.azure.cn/cli/batch/account?view=azure-cli-latest#az-batch-account-login) | 针对指定的批处理帐户进行身份验证，以便进一步进行 CLI 交互。  |
+| [az batch pool create](https://docs.azure.cn/cli/batch/pool?view=azure-cli-latest#az-batch-pool-create) | 创建计算节点池。  |
+| [az batch job create](https://docs.azure.cn/cli/batch/job?view=azure-cli-latest#az-batch-job-create) | 创建批处理作业。  |
+| [az batch task create](https://docs.azure.cn/cli/batch/task?view=azure-cli-latest#az-batch-task-create) | 将任务添加到指定的批处理作业。  |
+| [az batch job set](https://docs.azure.cn/cli/batch/job?view=azure-cli-latest#az-batch-job-set) | 更新批处理作业的属性。  |
+| [az batch job show](https://docs.azure.cn/cli/batch/job?view=azure-cli-latest#az-batch-job-show) | 检索指定批处理作业的详细信息。  |
+| [az batch task show](https://docs.azure.cn/cli/batch/task?view=azure-cli-latest#az-batch-task-show) | 从指定的批处理作业中检索任务的详细信息。  |
+| [az group delete](https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-delete) | 删除资源组，包括所有嵌套的资源。 |
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure CLI 的详细信息，请参阅 [Azure CLI 文档](/cli)。
+有关 Azure CLI 的详细信息，请参阅 [Azure CLI 文档](https://docs.azure.cn/cli/index?view=azure-cli-latest)。
 
-<!-- Update_Description: link update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

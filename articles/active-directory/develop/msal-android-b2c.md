@@ -1,33 +1,28 @@
 ---
-title: Azure AD B2C（适用于 Android 的 Microsoft 身份验证库）| Azure
+title: Azure AD B2C (MSAL Android) | Azure
+titleSuffix: Microsoft identity platform
 description: 了解将 Azure AD B2C 与适用于 Android 的 Microsoft 身份验证库 (MSAL.Android) 配合使用时的具体注意事项。
 services: active-directory
-documentationcenter: dev-center-name
 author: brianmel
-manager: omkrishn
-editor: ''
+manager: CelesteDG
 ms.service: active-directory
 ms.subservice: develop
-ms.devlang: na
 ms.topic: conceptual
-ms.tgt_pltfrm: na
 ms.workload: identity
-origin.date: 09/18/2019
-ms.date: 11/01/2019
+ms.date: 08/18/2020
 ms.author: v-junlch
 ms.reviewer: rapong
 ms.custom: aaddev
-ms.collection: M365-identity-device-management
-ms.openlocfilehash: 2c3f790d71135afd9bba2edde7923c80fb6d5cfe
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 2d1422f17a866aa6098d32474301168bd62fd192
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "73831038"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647682"
 ---
 # <a name="use-msal-for-android-with-b2c"></a>将适用于 Android 的 MSAL 与 B2C 配合使用
 
-借助 Microsoft 身份验证库 (MSAL)，应用程序开发人员可以使用 [Azure Active Directory B2C (Azure AD B2C)](/active-directory-b2c/) 通过社交和本地标识对用户进行身份验证。 Azure AD B2C 是一个标识管理服务。 使用该服务可以在客户使用你的应用程序时，自定义和控制他们的注册和登录方式以及管理其个人资料。
+借助 Microsoft 身份验证库 (MSAL)，应用程序开发人员可以使用 [Azure Active Directory B2C (Azure AD B2C)](../../active-directory-b2c/index.yml) 通过社交和本地标识对用户进行身份验证。 Azure AD B2C 是一个标识管理服务。 使用该服务可以在客户使用你的应用程序时，自定义和控制他们的注册和登录方式以及管理其个人资料。
 
 ## <a name="configure-known-authorities-and-redirect-uri"></a>配置已知的颁发机构和重定向 URI
 
@@ -59,7 +54,7 @@ ms.locfileid: "73831038"
 }
 ```
 
-`redirect_uri` 必须在应用配置中注册，此外还必须在 `AndroidManifest.xml` 中注册，以便在运行[授权代码授予流](/active-directory-b2c/active-directory-b2c-reference-oauth-code)期间支持重定向。
+`redirect_uri` 必须在应用配置中注册，此外还必须在 `AndroidManifest.xml` 中注册，以便在运行[授权代码授予流](../../active-directory-b2c/authorization-code-flow.md)期间支持重定向。
 
 ## <a name="initialize-ipublicclientapplication"></a>初始化 IPublicClientApplication
 
@@ -232,7 +227,7 @@ String tenantId = account.getTenantId();
 
 ### <a name="idtoken-claims"></a>IdToken 声明
 
-IdToken 中返回的声明由安全令牌服务 (STS) 而不是 MSAL 填充。 根据所用的标识提供者 (IdP)，可能缺少某些声明。 某些 IdP 目前不提供 `preferred_username` 声明。 由于 MSAL 将此声明用于缓存，因此，已使用一个占位符值 `MISSING FROM THE TOKEN RESPONSE` 来代替此声明。 有关 B2C IdToken 声明的详细信息，请参阅 [Azure Active Directory B2C 中的令牌概述](/active-directory-b2c/active-directory-b2c-reference-tokens#claims)
+IdToken 中返回的声明由安全令牌服务 (STS) 而不是 MSAL 填充。 根据所用的标识提供者 (IdP)，可能缺少某些声明。 某些 IdP 目前不提供 `preferred_username` 声明。 由于 MSAL 将此声明用于缓存，因此，已使用一个占位符值 `MISSING FROM THE TOKEN RESPONSE` 来代替此声明。 有关 B2C IdToken 声明的详细信息，请参阅 [Azure Active Directory B2C 中的令牌概述](../../active-directory-b2c/tokens-overview.md#claims)
 
 ## <a name="managing-accounts-and-policies"></a>管理帐户和策略
 
@@ -244,5 +239,5 @@ B2C 将每个策略视为单独的颁发机构。 因此，从每个策略返回
 
 ## <a name="next-steps"></a>后续步骤
 
-若要详细了解 Azure Active Directory B2C (Azure AD B2C)，请参阅[什么是 Azure Active Directory B2C？](/active-directory-b2c/active-directory-b2c-overview)
+若要详细了解 Azure Active Directory B2C (Azure AD B2C)，请参阅[什么是 Azure Active Directory B2C？](../../active-directory-b2c/overview.md)
 

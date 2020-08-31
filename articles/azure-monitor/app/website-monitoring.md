@@ -5,14 +5,14 @@ ms.topic: quickstart
 author: Johnnytechn
 ms.author: v-johya
 origin.date: 07/15/2019
-ms.date: 05/28/2020
+ms.date: 08/18/2020
 ms.custom: mvc
-ms.openlocfilehash: a3cc8d7ff1583a65f8a8d8ada7268f51bab7b3e7
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: cda158f30c9ffafe90961a6ef0058a0fe20107c3
+ms.sourcegitcommit: 06113a16e9d68fa9c47676d5454ac9a26f4518b8
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440467"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88513437"
 ---
 # <a name="quickstart-start-monitoring-your-website-with-azure-monitor-application-insights"></a>快速入门：开始使用 Azure Monitor Application Insights 监视你的网站
 
@@ -73,7 +73,8 @@ Application Insights 可以从任何连接 Internet 的应用程序收集遥测�
    <script type="text/javascript">
       var sdkInstance="appInsightsSDK";window[sdkInstance]="appInsights";var aiName=window[sdkInstance],aisdk=window[aiName]||function(e){function n(e){t[e]=function(){var n=arguments;t.queue.push(function(){t[e].apply(t,n)})}}var t={config:e};t.initialize=!0;var i=document,a=window;setTimeout(function(){var n=i.createElement("script");n.src=e.url||"https://az416426.vo.msecnd.net/scripts/b/ai.2.min.js",i.getElementsByTagName("script")[0].parentNode.appendChild(n)});try{t.cookie=i.cookie}catch(e){}t.queue=[],t.version=2;for(var r=["Event","PageView","Exception","Trace","DependencyData","Metric","PageViewPerformance"];r.length;)n("track"+r.pop());n("startTrackPage"),n("stopTrackPage");var s="Track"+r[0];if(n("start"+s),n("stop"+s),n("setAuthenticatedUserContext"),n("clearAuthenticatedUserContext"),n("flush"),!(!0===e.disableExceptionTracking||e.extensionConfig&&e.extensionConfig.ApplicationInsightsAnalytics&&!0===e.extensionConfig.ApplicationInsightsAnalytics.disableExceptionTracking)){n("_"+(r="onerror"));var o=a[r];a[r]=function(e,n,i,a,s){var c=o&&o(e,n,i,a,s);return!0!==c&&t["_"+r]({message:e,url:n,lineNumber:i,columnNumber:a,error:s}),c},e.autoExceptionInstrumented=!0}return t}(
       {
-         instrumentationKey:"INSTRUMENTATION_KEY"
+         instrumentationKey:"INSTRUMENTATION_KEY",
+         endpointUrl: "TelemetryChannel_Endpoint_Address"
       }
       );window[aiName]=aisdk,aisdk.queue&&0===aisdk.queue.length&&aisdk.trackPageView({});
    </script>
@@ -82,6 +83,10 @@ Application Insights 可以从任何连接 Internet 的应用程序收集遥测�
 1. 编辑 ``hello_world.html``，添加检测密钥。
 
 1. 在本地浏览器会话中打开 ``hello_world.html``。 此操作创建单个页面视图。 可以刷新浏览器，生成多个测试性的页面视图。
+
+> [!NOTE]
+> 你可以将 TelemetryChannel_Endpoint_Address 的占位符值替换为此[文档](/azure-monitor/app/custom-endpoints?tabs=js)中的 Azure 中国区域的实际终结点地址。
+<!--Customized in MC-->
 
 ## <a name="monitor-your-website-in-the-azure-portal"></a>在 Azure 门户中监视网站
 

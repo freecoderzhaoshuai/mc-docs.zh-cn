@@ -8,13 +8,13 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 10/30/2019
-ms.date: 07/01/2020
-ms.openlocfilehash: b76b792ddb254c1499b51670048fa9334bcd91e2
-ms.sourcegitcommit: 9bc3e55f01e0999f05e7b4ebaea95f3ac91d32eb
+ms.date: 08/18/2020
+ms.openlocfilehash: 2e826deed806bb35a32c9dc874a7760c36b32cb4
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86226374"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515905"
 ---
 # <a name="kustoingest-errors-and-exceptions"></a>Kusto.Ingest 错误和异常
 在客户端上处理引入时发生的任何错误都通过 C# 异常来指示。
@@ -88,7 +88,10 @@ ms.locfileid: "86226374"
 |UpdatePolicy_IngestionError                    | 调用更新策略失败。 发生引入错误|
 |UpdatePolicy_UnknownError                      | 调用更新策略失败。 发生未知错误|
 |BadRequest_MissingJsonMappingtFailure          | 没有使用 jsonMapping 参数引入 JSON 模式|
-|BadRequest_InvalidOrEmptyBlob                  | Blob 无效或是空的 zip 存档|
+|BadRequest_InvalidBlob                         | 引擎无法打开和读取非 zip blob|
+|BadRequest_EmptyBlob                           | 空 blob|
+|BadRequest_EmptyArchive                        | zip 文件不包含任何已存档的元素|
+|BadRequest_EmptyBlobUri                        | 指定的 blob URI 为空|
 |BadRequest_DatabaseNotExist                    | 数据库不存在|
 |BadRequest_TableNotExist                       | 表不存在|
 |BadRequest_InvalidKustoIdentityToken           | Kusto 标识令牌无效|

@@ -1,11 +1,20 @@
 ---
-ms.openlocfilehash: 216d9ffb5758e3b3af43c66a400a281f3b64cf98
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+author: rockboyfor
+ms.service: service-bus-relay
+ms.topic: include
+origin.date: 11/09/2018
+ms.date: 07/27/2020
+ms.testscope: yes
+ms.testdate: 07/27/2020
+ms.author: v-yeche
+ms.openlocfilehash: a6d2d311f6b981210a0779fc0d5f79d4d42473b3
+ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "63845469"
+ms.lasthandoff: 07/24/2020
+ms.locfileid: "88947122"
 ---
+<!--Verified successfully-->
 确保已[创建中继命名空间][namespace-how-to]。
 
 1. 登录到 [Azure 门户](https://portal.azure.cn)。
@@ -25,4 +34,6 @@ ms.locfileid: "63845469"
     
 7. 选择“创建”  。
 
-[namespace-how-to]: ../articles/service-bus-relay/relay-create-namespace-portal.md 
+[namespace-how-to]: ../articles/service-bus-relay/relay-create-namespace-portal.md
+
+<!-- Update_Description: update meta properties, wording update, update link -->

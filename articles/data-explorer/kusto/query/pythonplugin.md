@@ -8,15 +8,15 @@ ms.reviewer: adieldar
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 04/01/2020
-ms.date: 08/06/2020
+ms.date: 08/18/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: fea0b531981815aa9f7e43938958bf5384f951cd
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: fb3bd5a96232e02f47583d9b6fb4f7d8f1dd9423
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917147"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88515686"
 ---
 # <a name="python-plugin"></a>Python 插件
 
@@ -59,7 +59,7 @@ Python 插件使用 Python 脚本运行用户定义函数 (UDF)。 Python 脚本
 
 * 默认禁用该插件。
 * 若要启用该插件，请参阅[先决条件](../concepts/sandboxes.md#prerequisites)列表。
-* 在 Azure 门户中，在群集的[“配置”选项卡](../../language-extensions.md)中启用或禁用插件。
+* 在 Azure 门户的群集的[“配置”选项卡](../../language-extensions.md)中启用或禁用插件。
 
 ## <a name="python-sandbox-image"></a>Python 沙盒映像
 
@@ -135,7 +135,7 @@ print "This is an example for using 'external_artifacts'"
     * 还可以使用[分区运算符](partitionoperator.md)对输入数据集进行分区。
 * 尽可能使用 Kusto 的查询语言来实现 Python 脚本的逻辑。
 
-    **示例**
+    ## <a name="example"></a>示例
 
     ```kusto    
     .show operations
@@ -160,7 +160,7 @@ print "This is an example for using 'external_artifacts'"
      * Python 脚本中用于 Python 字符串的双引号字符 (`"`)
 * 使用 [`externaldata` 运算符](externaldata-operator.md)获取存储在外部位置（例如 Azure Blob 存储）中的脚本内容。
   
-    **示例**
+    ## <a name="example"></a>示例
 
     ```kusto
     let script = 

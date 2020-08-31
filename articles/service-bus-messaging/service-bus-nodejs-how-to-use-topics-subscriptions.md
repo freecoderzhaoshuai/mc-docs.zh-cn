@@ -4,17 +4,18 @@ description: 了解如何通过使用 azure/service-bus 包的 Node.js 应用在
 author: rockboyfor
 ms.devlang: nodejs
 ms.topic: quickstart
-origin.date: 06/23/2020
-ms.date: 07/27/2020
+origin.date: 08/31/2020
+ms.date: 08/24/2020
 ms.testscope: yes
-ms.testdate: 07/20/2020
+ms.testdate: 08/17/2020
 ms.author: v-yeche
-ms.openlocfilehash: 741500fc29ee65f81167fa4d5d82da08db98d55f
-ms.sourcegitcommit: 3cf647177c22b24f76236c57cae19482ead6a283
+ms.custom: devx-track-javascript
+ms.openlocfilehash: 390f783a2b55725b55442f72c2afbdcf51ed3042
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88029674"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946941"
 ---
 # <a name="quickstart-how-to-use-service-bus-topics-and-subscriptions-with-nodejs-and-the-azure-sb-package"></a>快速入门：如何通过 Node.js 和 azure-sb 包使用服务总线主题与订阅
 本教程介绍如何使用 [azure-sb](https://www.npmjs.com/package/azure-sb) 包创建 Node.js 应用程序，用于将消息发送到服务总线主题，并从服务总线订阅接收消息。 示例以 JavaScript 编写并使用 Node.js [Azure 模块](https://www.npmjs.com/package/azure)，该模块在内部使用 `azure-sb` 包。
@@ -22,7 +23,7 @@ ms.locfileid: "88029674"
 > [!IMPORTANT]
 > [azure-sb](https://www.npmjs.com/package/azure-sb) 包使用[服务总线 REST 运行时 API](https://docs.microsoft.com/rest/api/servicebus/service-bus-runtime-rest)。 可以使用新的 [@azure/service-bus](https://www.npmjs.com/package/@azure/service-bus) 包获得更快的体验，因为该包使用更快的 [AMQP 1.0 协议](service-bus-amqp-overview.md)。 
 > 
-> 若要详细了解新包，请参阅[如何通过 Node.js 和 @azure/service-bus 包使用服务总线主题和订阅](/service-bus-messaging/service-bus-nodejs-how-to-use-topics-subscriptions-new-package)，否则请继续阅读以了解如何使用 [azure](https://www.npmjs.com/package/azure) 包。
+> 若要详细了解新包，请参阅[如何通过 Node.js 和 @azure/service-bus 包使用服务总线主题和订阅](./service-bus-nodejs-how-to-use-topics-subscriptions-new-package.md)，否则请继续阅读以了解如何使用 [azure](https://www.npmjs.com/package/azure) 包。
 
 本文涉及的方案包括：
 
@@ -75,11 +76,9 @@ var azure = require('azure');
 ```
 
 ### <a name="set-up-a-service-bus-connection"></a>设置服务总线连接
-Azure 模块读取你在准备[前提条件](#prerequisites)时获得的连接字符串的环境变量 `AZURE_SERVICEBUS_CONNECTION_STRING`。 如果再次需要有关获取连接字符串的说明，请参阅[获取连接字符串](service-bus-quickstart-topics-subscriptions-portal.md)。 如果未设置此环境变量，则在调用 `createServiceBusService` 时必须指定帐户信息。
+Azure 模块读取你在准备[前提条件](#prerequisites)时获得的连接字符串的环境变量 `AZURE_SERVICEBUS_CONNECTION_STRING`。 如果再次需要有关获取连接字符串的说明，请参阅[获取连接字符串](service-bus-quickstart-topics-subscriptions-portal.md#get-the-connection-string)。 如果未设置此环境变量，则在调用 `createServiceBusService` 时必须指定帐户信息。
 
 有关设置 Azure 云服务环境变量的示例，请参阅[设置环境变量](../container-instances/container-instances-environment-variables.md#azure-cli-example)。
-
-<!--Not Available on #get-the-connection-string-->
 
 ## <a name="create-a-topic"></a>创建主题
 可以通过 **ServiceBusService** 对象处理主题。 以下代码创建 **ServiceBusService** 对象。 将它添加到靠近 **server.js** 文件顶部、用于导入 azure 模块的语句之后的位置：
@@ -256,7 +255,7 @@ var message = {
     }
 }
 
-for (i = 0;i < 5;i++) {
+for (var i = 0; i < 5; i++) {
     message.customProperties.messagenumber=i;
     message.body='This is Message #'+i;
     serviceBusService.sendTopicMessage(topic, message, function(error) {
@@ -308,7 +307,7 @@ serviceBusService.receiveSubscriptionMessage('MyTopic', 'HighMessages', { isPeek
 如果应用程序在处理消息之后，但在调用 `deleteMessage` 方法之前崩溃，则在应用程序重启时会将该消息重新传送给它。 此行为通常称为“至少处理一次”。 也就是说，每条消息将至少被处理一次，但在某些情况下，同一消息可能会被重新传送。 如果方案不允许重复处理，则应该向应用程序添加逻辑来处理重复消息传送。 可以使用消息的 MessageId 属性，该属性在各次传送尝试中保持不变。
 
 ## <a name="delete-topics-and-subscriptions"></a>删除主题和订阅
-除非设置了 [autoDeleteOnIdle 属性](https://docs.microsoft.com/javascript/api/@azure/arm-servicebus/sbsubscription?view=azure-node-latest#autodeleteonidle)，否则主题和订阅是持久性的，必须通过 [Azure 门户][Azure portal]或以编程方式显式删除。
+除非设置了 [AutoDeleteOnIdle 属性](https://docs.microsoft.com/javascript/api/@azure/arm-servicebus/sbsubscription?view=azure-node-latest#autodeleteonidle)，否则主题和订阅是持久性的，必须通过 [Azure 门户][Azure portal]或以编程方式显式删除。
 下面的示例演示如何删除名为 `MyTopic` 的主题：
 
 ```javascript

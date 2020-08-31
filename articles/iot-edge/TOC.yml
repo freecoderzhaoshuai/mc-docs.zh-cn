@@ -185,12 +185,16 @@
       items:
         - name: Azure DevOps
           href: how-to-ci-cd.md
-    - name: 疑难解答
+    - name: 故障排除
       items:
         - name: 标准诊断步骤
           href: troubleshoot.md
         - name: 常见错误解决方法
           href: troubleshoot-common-errors.md
+- name: 参考
+  items:
+    - name: Azure CLI
+      href: 'https://docs.microsoft.com/cli/azure/azure-cli-reference-for-IoT'
 - name: 资源
   items:
     - name: Azure IoT 服务

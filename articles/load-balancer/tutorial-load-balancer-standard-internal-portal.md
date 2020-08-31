@@ -13,15 +13,15 @@ ms.topic: tutorial
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 origin.date: 01/08/2020
-ms.date: 07/20/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.custom: seodec18
-ms.openlocfilehash: 4835d34e3facb0c5c4c411d405d03d73e4ffe7b2
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.openlocfilehash: 12b54a414e6a5f2e2a0924bb5fbc8ccc64717daf
+ms.sourcegitcommit: f8ed85740f873c15c239ab6ba753e4b76e030ba7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440337"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045761"
 ---
 # <a name="tutorial-balance-internal-traffic-load-with-a-standard-load-balancer-in-the-azure-portal"></a>教程：在 Azure 门户中使用标准负载均衡器对内部流量负载进行均衡
 
@@ -33,29 +33,27 @@ ms.locfileid: "86440337"
 
 若要完成本教程中的这些步骤，请通过 [https://portal.azure.cn](https://portal.azure.cn) 登录 Azure 门户。
 
-## <a name="create-a-vnet-back-end-servers-and-a-test-vm"></a>创建 VNet、后端服务器和测试 VM
+## <a name="virtual-network-and-parameters"></a>虚拟网络和参数
+在本部分中，你需要将步骤中的以下参数替换为以下信息：
 
-首先，创建虚拟网络 (VNet)。 在 VNet 中，创建两个 VM，用于标准负载均衡器的后端池，再创建第三个 VM，用于测试负载均衡器。 
+| 参数                   | 值                |
+|-----------------------------|----------------------|
+| **\<resource-group-name>**  | myResourceGroupSLB |
+| **\<virtual-network-name>** | myVNet          |
+| **\<region-name>**          | 中国东部 2      |
+| **\<IPv4-address-space>**   | 10.3.0.0\16          |
+| **\<subnet-name>**          | myBackendSubnet        |
+| **\<subnet-address-range>** | 10.3.0.0\24          |
 
-### <a name="create-a-virtual-network"></a>创建虚拟网络
-
-1. 在门户的左上方，选择“创建资源” > “网络” > “虚拟网络”。
+[!INCLUDE [virtual-networks-create-new](../../includes/virtual-networks-create-new.md)]
    
-1. 在“创建虚拟网络”窗格中键入或选择以下值：
-   
-   - **名称**：键入“MyVNet”。
-   - **ResourceGroup**：选择“新建”，输入 **MyResourceGroupLB**，然后选择“确定” 。 
-   - **子网** > **名称**：键入“MyBackendSubnet”。
-   
-1. 选择“创建” 。
 
-   ![创建虚拟网络](./media/tutorial-load-balancer-basic-internal-portal/2-load-balancer-virtual-network.png)
 
-### <a name="create-virtual-machines"></a>创建虚拟机
+## <a name="create-virtual-machines"></a>创建虚拟机
 
-1. 在门户左上角，选择“创建资源” > “计算” > “Windows Server 2016 Datacenter”。   
+1. 在门户左上角，选择“创建资源” > “计算” > “Windows Server 2016 Datacenter”。 
    
-1. 在“创建虚拟机”中，在“基本信息”选项卡中键入或选择以下值： 
+1. 在“创建虚拟机”中，在“基本信息”选项卡中键入或选择以下值：
    - **订阅** > **资源组**：下拉并选择“MyResourceGroupLB”。
    - **实例详细信息** > **虚拟机名称**：键入 **MyVM1**。
    - “实例详细信息” > “区域”： 选择“中国东部 2”。
@@ -89,11 +87,11 @@ ms.locfileid: "86440337"
 
 使用门户创建标准内部负载均衡器。 创建的名称和 IP 地址自动配置为负载均衡器的前端。
 
-1. 在门户的左上方，选择“创建资源” > “网络” > “负载均衡器”。  
+1. 在门户的左上方，选择“创建资源” > “网络” > “负载均衡器”。
    
 2. 在“创建负载均衡器”页的“基本”选项卡中输入或选择以下信息，接受其余的默认设置，然后选择“查看 + 创建”  ：
 
-    | 设置                 | Value                                              |
+    | 设置                 | “值”                                              |
     | ---                     | ---                                                |
     | 订阅               | 选择订阅。    |    
     | 资源组         | 选择“新建”并在文本框中键入 MyResourceGroupLB。|
@@ -120,7 +118,7 @@ ms.locfileid: "86440337"
 
 1. 在左侧菜单中选择“所有资源”，然后在资源列表中选择“MyLoadBalancer”。 
    
-1. 在“设置”下，依次选择“后端池”、“添加”。  
+1. 在“设置”下，依次选择“后端池”、“添加”。
    
 1. 在“添加后端池”页上，键入或选择以下值：
    
@@ -130,7 +128,7 @@ ms.locfileid: "86440337"
    1. 将 **MyVM1** 和 **MyVM2** 添加到后端池。
    2. 添加每台计算机以后，请在下拉列表中选择其**网络 IP 配置**。 
      
-1. 选择“添加”  。
+1. 选择 **添加** 。
    
    ![添加后端地址池](./media/tutorial-load-balancer-standard-internal-portal/3-load-balancer-backend-02.png)
    
@@ -144,7 +142,7 @@ ms.locfileid: "86440337"
 
 1. 在左侧菜单中选择“所有资源”，然后在资源列表中选择“MyLoadBalancer”。 
    
-1. 在“设置”下，依次选择“运行状况探测”、“添加”。  
+1. 在“设置”下，依次选择“运行状况探测”、“添加”。
    
 1. 在“添加运行状况探测”页上，键入或选择以下值：
    
@@ -155,7 +153,7 @@ ms.locfileid: "86440337"
    - **时间间隔**：键入 **15**。 时间间隔是两次探测尝试之间的秒数。
    - **不正常阈值**：键入 **2**。 此值是将 VM 视为不正常之前发生的连续探测失败次数。
    
-1. 选择“确定” 。
+1. 选择“确定”。
    
    ![添加探测](./media/tutorial-load-balancer-basic-internal-portal/4-load-balancer-probes.png)
 
@@ -167,9 +165,9 @@ ms.locfileid: "86440337"
 
 **若要创建负载均衡器规则，请执行以下操作：**
 
-1. 在左侧菜单中选择“所有资源”，然后在资源列表中选择“MyLoadBalancer”。 
+1. 在左侧菜单中选择“所有资源”，然后在资源列表中选择“MyLoadBalancer”。
    
-1. 在“设置”下，依次选择“负载均衡规则”、“添加”。  
+1. 在“设置”下，依次选择“负载均衡规则”、“添加”。
    
 1. 在“添加负载均衡规则”页上，键入或选择以下值（如果还没有这些值）：
    
@@ -183,7 +181,7 @@ ms.locfileid: "86440337"
    
 若要使用 Azure 门户配置[高可用性端口](load-balancer-ha-ports-overview.md)，请选中“HA 端口”复选框。 选中时，会自动填充相关端口和协议配置。 
 
-1. 选择“确定” 。
+1. 选择“确定”。
    
    ![添加负载均衡器规则](./media/tutorial-load-balancer-basic-internal-portal/5-load-balancing-rules.png)
 
@@ -204,7 +202,7 @@ ms.locfileid: "86440337"
 
 1. 在门户的左侧菜单中选择“所有资源”。 在资源列表中，选择“MyResourceGroupLB”资源组中的每个 VM。
    
-1. 在“概览”页上选择“连接”，然后选择“下载 RDP 文件”。   
+1. 在“概览”页上选择“连接”，然后选择“下载 RDP 文件”。 
    
 1. 打开下载的 RDP 文件，然后选择“连接”。
    

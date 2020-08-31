@@ -9,16 +9,16 @@ ms.service: active-directory
 ms.subservice: develop
 ms.custom: aaddev
 ms.workload: identity
-ms.topic: conceptual
-ms.date: 06/29/2020
+ms.topic: how-to
+ms.date: 08/17/2020
 ms.author: v-junlch
 ms.reviewer: paulgarn, hirsin, jeedes, luleon
-ms.openlocfilehash: e535bb89c0dabc96879f985ef4c4bf14e7c7cb27
-ms.sourcegitcommit: 1008ad28745709e8d666f07a90e02a79dbbe2be5
+ms.openlocfilehash: ed846707ad1040fbe02b43dd2fc597108509335e
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945121"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647570"
 ---
 # <a name="how-to-customize-claims-emitted-in-tokens-for-a-specific-app-in-a-tenant-preview"></a>如何：为租户中的特定应用自定义在令牌中发出的声明（预览版）
 
@@ -261,13 +261,15 @@ ms.locfileid: "85945121"
 **数据类型：** 具有一个或多个声明架构条目的 JSON Blob
 
 **摘要：** 此属性定义除了基本声明集与核心声明集之外，在受此策略影响的令牌中存在的声明。
-对于此属性中定义的每个声明架构条目，都需要特定信息。 指定数据来源（**Value** 或 **Source/ID 对**）以及数据作为哪种声明发出（**声明类型**）。
+对于此属性中定义的每个声明架构条目，都需要特定信息。 指定数据来源（“Value”、“Source/ID 对”或“Source/ExtensionID 对”）以及数据作为哪种声明发出（声明类型）。
 
 ### <a name="claim-schema-entry-elements"></a>声明架构条目元素
 
 **Value：** Value 元素将静态值定义为要在声明中发出的数据。
 
-**Source/ID 对：** Source 和 ID 元素定义声明中的数据的来源。 
+**Source/ID 对：** Source 和 ID 元素定义声明中的数据的来源。  
+
+**Source/ExtensionID 对：** Source 元素和 ExtensionID 元素定义声明中的数据源自的目录架构扩展属性。 有关详细信息，请参阅[在声明中使用目录架构扩展属性](active-directory-schema-extensions.md)。
 
 将 Source 元素设置为下列值之一： 
 
@@ -284,52 +286,52 @@ ID 元素标识源中用于为声明提供值的属性。 下表列出对 Source
 
 #### <a name="table-3-valid-id-values-per-source"></a>表 3：每个 Source 的有效 ID 值
 
-| Source | ID | 说明 |
+| 源 | ID | 说明 |
 |-----|-----|-----|
-| User | surname | 家族名称 |
-| User | givenname | 名 |
-| User | displayname | 显示名称 |
-| User | objectid | ObjectID |
-| User | mail | 电子邮件地址 |
-| User | userprincipalname | 用户主体名称 |
-| User | department|Department|
-| User | onpremisessamaccountname | 本地 SAM 帐户名称 |
-| User | netbiosname| NetBios 名称 |
-| User | dnsdomainname | DNS 域名 |
-| User | onpremisesecurityidentifier | 本地安全标识符 |
-| User | companyname| 组织名称 |
-| User | streetaddress | 街道地址 |
-| User | postalcode | 邮政编码 |
-| User | preferredlanguange | 首选语言 |
-| User | onpremisesuserprincipalname | 本地 UPN |
-| User | mailNickname | 邮件别名 |
-| User | extensionattribute1 | 扩展属性 1 |
-| User | extensionattribute2 | 扩展属性 2 |
-| User | extensionattribute3 | 扩展属性 3 |
-| User | extensionattribute4 | 扩展属性 4 |
-| User | extensionattribute5 | 扩展属性 5 |
-| User | extensionattribute6 | 扩展属性 6 |
-| User | extensionattribute7 | 扩展属性 7 |
-| User | extensionattribute8 | 扩展属性 8 |
-| User | extensionattribute9 | 扩展属性 9 |
-| User | extensionattribute10 | 扩展属性 10 |
-| User | extensionattribute11 | 扩展属性 11 |
-| User | extensionattribute12 | 扩展属性 12 |
-| User | extensionattribute13 | 扩展属性 13 |
-| User | extensionattribute14 | 扩展属性 14 |
-| User | extensionattribute15 | 扩展属性 15 |
-| User | othermail | 其他邮件 |
-| User | country | 国家/地区 |
-| User | city | 城市 |
-| User | state | 状态 |
-| User | jobtitle | 职务 |
-| User | employeeid | 员工 ID |
-| User | facsimiletelephonenumber | 传真电话号码 |
+| 用户 | surname | 家族名称 |
+| 用户 | givenname | 名 |
+| 用户 | displayname | 显示名称 |
+| 用户 | objectid | ObjectID |
+| 用户 | mail | 电子邮件地址 |
+| 用户 | userprincipalname | 用户主体名称 |
+| 用户 | department|部门|
+| 用户 | onpremisessamaccountname | 本地 SAM 帐户名称 |
+| 用户 | netbiosname| NetBios 名称 |
+| 用户 | dnsdomainname | DNS 域名 |
+| 用户 | onpremisesecurityidentifier | 本地安全标识符 |
+| 用户 | companyname| 组织名称 |
+| 用户 | streetaddress | 街道地址 |
+| 用户 | postalcode | 邮政编码 |
+| 用户 | preferredlanguange | 首选语言 |
+| 用户 | onpremisesuserprincipalname | 本地 UPN |
+| 用户 | mailNickname | 邮件别名 |
+| 用户 | extensionattribute1 | 扩展属性 1 |
+| 用户 | extensionattribute2 | 扩展属性 2 |
+| 用户 | extensionattribute3 | 扩展属性 3 |
+| 用户 | extensionattribute4 | 扩展属性 4 |
+| 用户 | extensionattribute5 | 扩展属性 5 |
+| 用户 | extensionattribute6 | 扩展属性 6 |
+| 用户 | extensionattribute7 | 扩展属性 7 |
+| 用户 | extensionattribute8 | 扩展属性 8 |
+| 用户 | extensionattribute9 | 扩展属性 9 |
+| 用户 | extensionattribute10 | 扩展属性 10 |
+| 用户 | extensionattribute11 | 扩展属性 11 |
+| 用户 | extensionattribute12 | 扩展属性 12 |
+| 用户 | extensionattribute13 | 扩展属性 13 |
+| 用户 | extensionattribute14 | 扩展属性 14 |
+| 用户 | extensionattribute15 | 扩展属性 15 |
+| 用户 | othermail | 其他邮件 |
+| 用户 | country | 国家/地区 |
+| 用户 | city | 城市 |
+| 用户 | state | 状态 |
+| 用户 | jobtitle | 职务 |
+| 用户 | employeeid | 员工 ID |
+| 用户 | facsimiletelephonenumber | 传真电话号码 |
 | User | assignedroles | 分配给用户的应用角色列表|
 | application、resource、audience | displayname | 显示名称 |
 | application、resource、audience | objectid | ObjectID |
 | application、resource、audience | 标记 | 服务主体标记 |
-| 公司 | tenantcountry | 租户的国家/地区 |
+| Company | tenantcountry | 租户的国家/地区 |
 
 **TransformationID：** 仅当 Source 元素设置为“transformation”时，才必须提供 TransformationID 元素。
 
@@ -362,7 +364,7 @@ ID 元素标识源中用于为声明提供值的属性。 下表列出对 Source
 |TransformationMethod|预期输入|预期输出|说明|
 |-----|-----|-----|-----|
 |联接|string1、string2、分隔符|outputClaim|联接输入字符串（之间使用分隔符）。 例如：string1：“foo@bar.com”、string2：“sandbox”、separator：“.”会生成 outputClaim：“foo@bar.com.sandbox”|
-|ExtractMailPrefix|mail|outputClaim|提取电子邮件地址的本地部分。 例如：mail：“foo@bar.com”会生成 outputClaim：“foo”。 如果未提供 \@ 符号，则按原样返回原始输入字符串。|
+|ExtractMailPrefix|电子邮件或 UPN|提取的字符串|ExtensionAttributes 1-15 或为用户（例如 johndoe@contoso.com）存储 UPN 或电子邮件地址值的任何其他架构扩展。 提取电子邮件地址的本地部分。 例如：mail：“foo@bar.com”会生成 outputClaim：“foo”。 如果未提供 \@ 符号，则按原样返回原始输入字符串。|
 
 **InputClaims：** 使用 InputClaims 元素可将数据从声明架构条目传递给转换。 它具有两个属性：**ClaimTypeReferenceId** 和 **TransformationClaimType**。
 
@@ -385,7 +387,7 @@ ID 元素标识源中用于为声明提供值的属性。 下表列出对 Source
 
 #### <a name="table-5-attributes-allowed-as-a-data-source-for-saml-nameid"></a>表 5：允许作为 SAML NameID 数据源的属性
 
-|Source|ID|说明|
+|源|ID|说明|
 |-----|-----|-----|
 | User | mail|电子邮件地址|
 | User | userprincipalname|用户主体名称|
@@ -405,14 +407,14 @@ ID 元素标识源中用于为声明提供值的属性。 下表列出对 Source
 | User | extensionattribute12 | 扩展属性 12 |
 | User | extensionattribute13 | 扩展属性 13 |
 | User | extensionattribute14 | 扩展属性 14 |
-| User | extensionattribute15 | 扩展属性 15 |
+| 用户 | extensionattribute15 | 扩展属性 15 |
 
 #### <a name="table-6-transformation-methods-allowed-for-saml-nameid"></a>表 6：允许用于 SAML NameID 的转换方法
 
 | TransformationMethod | 限制 |
 | ----- | ----- |
 | ExtractMailPrefix | 无 |
-| Join | 要联接的后缀必须是资源租户的已验证域。 |
+| 联接 | 要联接的后缀必须是资源租户的已验证域。 |
 
 ### <a name="custom-signing-key"></a>自定义签名密钥
 
@@ -435,6 +437,9 @@ https://login.partner.microsoftonline.cn/{tenant}/v2.0/.well-known/openid-config
 ### <a name="example-claims-mapping-policies"></a>声明映射策略示例
 
 在 Azure AD 中，在可以为特定服务主体自定义令牌中发出的声明时，可以实现许多方案。 在此部分中，我们会演练几个常见方案，它们可帮助你理解如何使用声明映射策略类型。
+
+> [!NOTE]
+> 创建声明映射策略时，还可以根据令牌中的目录架构扩展属性发出声明。 使用与扩展属性对应的 ExtensionID，而不是 `ClaimsSchema` 元素中的 ID。  有关扩展属性的更多信息，请参阅[使用目录架构扩展属性](active-directory-schema-extensions.md)。
 
 #### <a name="prerequisites"></a>先决条件
 
@@ -525,5 +530,7 @@ https://login.partner.microsoftonline.cn/{tenant}/v2.0/.well-known/openid-config
       Add-AzureADServicePrincipalPolicy -Id <ObjectId of the ServicePrincipal> -RefObjectId <ObjectId of the Policy>
       ```
 
-<!-- Update_Description: wording update -->
+## <a name="see-also"></a>另请参阅
+
+- 若要详细了解扩展属性，请参阅[在声明中使用目录架构扩展属性](active-directory-schema-extensions.md)。
 

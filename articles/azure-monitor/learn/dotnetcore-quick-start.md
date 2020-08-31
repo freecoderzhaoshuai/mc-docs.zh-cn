@@ -6,20 +6,20 @@ ms.topic: quickstart
 author: Johnnytechn
 ms.author: v-johya
 origin.date: 06/26/2019
-ms.date: 05/28/2020
+ms.date: 08/20/2020
 ms.custom: mvc
-ms.openlocfilehash: b25ce8ffb0f90c939be4253e7e75d3e2b7f762b2
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: 1b14db1d2be70347f95674cf064d59b82d718b4d
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440669"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148582"
 ---
 # <a name="start-monitoring-your-aspnet-core-web-application"></a>开始监视 ASP.NET Core Web 应用程序
 
 使用 Azure Application Insights，可轻松监视 Web 应用程序的可用性、性能和使用情况。 还可以快速确定并诊断应用程序中的错误，而无需等待用户报告这些错误。 
 
-本快速入门介绍如何将 Application Insights SDK 添加到现有 ASP.NET Core Web 应用程序。 若要了解如何在没有 Visual Studio 的情况下配置 Application Insights，请查看此[文章](/azure-monitor/app/asp-net-core)。
+本快速入门介绍如何将 Application Insights SDK 添加到现有 ASP.NET Core Web 应用程序。 若要了解如何在没有 Visual Studio 的情况下配置 Application Insights，请查看此[文章](../app/asp-net-core.md)。
 
 ## <a name="prerequisites"></a>先决条件
 
@@ -31,7 +31,7 @@ ms.locfileid: "84440669"
 - [安装 .NET Core 2.0 SDK](https://dotnet.microsoft.com/download)
 - 将需要 Azure 订阅和现有 .NET Core Web 应用程序。
 
-如果没有 ASP.NET Core Web 应用程序，可以使用分步指南来[创建 ASP.NET Core 应用并添加 Application Insights](../../azure-monitor/app/asp-net-core.md)。
+如果没有 ASP.NET Core Web 应用程序，可以使用分步指南来[创建 ASP.NET Core 应用并添加 Application Insights](../app/asp-net-core.md)。
 
 如果没有 Azure 订阅，请在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial/)。
 
@@ -46,7 +46,7 @@ Application Insights 可以从任何连接 Internet 的应用程序收集遥测�
 1. 选择“创建资源” > “开发人员工具” > “Application Insights”。
 
    > [!NOTE]
-   >如果这是你首次创建 Application Insights 资源，可以通过访问[创建 Application Insights 资源](/azure-monitor/app/create-new-resource)文档来了解更多信息。
+   >如果这是你首次创建 Application Insights 资源，可以通过访问[创建 Application Insights 资源](../app/create-new-resource.md)文档来了解更多信息。
 
     此时会显示配置对话框，请使用下表填写输入字段。
 
@@ -97,7 +97,7 @@ Application Insights 可以从任何连接 Internet 的应用程序收集遥测�
 
    ![“运行状况概述时间线”图](./media/dotnetcore-quick-start/7kpidashboards.png)
 
-5. 在左侧单击“指标”。 使用指标资源管理器调查资源的运行状况和利用率。 可以单击“添加新图表”创建其他自定义视图，或者选择“编辑”修改现有的图表类型、高度、调色板、分组和指标。 例如，可以制作一个图表来显示浏览器页面的平均加载时间，只需从指标下拉列表中选取“浏览器页面加载时间”并从聚合中选择“平均”即可。 若要详细了解 Azure 指标资源管理器，请访问 [Azure 指标资源管理器入门](../../azure-monitor/platform/metrics-getting-started.md)。
+5. 在左侧单击“指标”。 使用指标资源管理器调查资源的运行状况和利用率。 可以单击“添加新图表”创建其他自定义视图，或者选择“编辑”修改现有的图表类型、高度、调色板、分组和指标。 例如，可以制作一个图表来显示浏览器页面的平均加载时间，只需从指标下拉列表中选取“浏览器页面加载时间”并从聚合中选择“平均”即可。 若要详细了解 Azure 指标资源管理器，请访问 [Azure 指标资源管理器入门](../platform/metrics-getting-started.md)。
 
      ![“指标”选项卡：浏览器网页平均加载时间图表](./media/dotnetcore-quick-start/8metrics.png)
 
@@ -113,4 +113,6 @@ Application Insights 可以从任何连接 Internet 的应用程序收集遥测�
 ## <a name="next-steps"></a>后续步骤
 
 > [!div class="nextstepaction"]
-> [查找和诊断运行时异常](/azure-monitor/learn/tutorial-runtime-exceptions)
+> [查找和诊断运行时异常](./tutorial-runtime-exceptions.md)
+
+

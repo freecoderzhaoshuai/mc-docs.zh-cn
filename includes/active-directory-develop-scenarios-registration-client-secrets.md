@@ -11,32 +11,30 @@ ms.devlang: na
 ms.topic: include
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/05/2020
+ms.date: 08/17/2020
 ms.author: v-junlch
 ms.custom: include file
-ms.openlocfilehash: 822120294a0d9b825de190d791ba6410f62cb7ec
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: edb4a833f0ef8b43e55a21bbbdbd305321cdee16
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77067625"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88655060"
 ---
 ## <a name="register-secrets-or-certificates"></a>注册机密或证书
 
 与任何机密客户端应用程序一样，你需要注册机密或证书。 可以通过 [Azure 门户](https://portal.azure.cn/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredAppsPreview)中的交互体验或使用命令行工具（如 PowerShell）注册应用程序机密。
 
-### <a name="register-client-secrets-by-using-the-application-registration-portal"></a>使用应用程序注册门户注册客户端机密
+### <a name="register-client-secrets-by-using-the-portal"></a>使用门户注册客户端机密
 
 在应用程序的“证书和机密”  页上管理客户端凭据：
 
 ![“证书和机密”页](../articles/active-directory/develop/media/quickstart-update-azure-ad-app-preview/credentials-certificates-secrets.png)
 
-- 应用程序机密（也称为客户端密码）由 Azure AD 在机密客户端应用程序注册期间生成。 选择“新建客户端密码”  时，将发生此生成。 此时，必须将机密字符串复制到剪贴板中以便在应用中使用，然后再选择“保存”  。 此字符串将不再显示。
-- 在应用程序注册过程中，请使用“上传证书”  按钮来上传证书。 Azure AD 仅支持在应用程序上直接注册的证书，而不遵循证书链。
+- 可以通过在 Azure 门户的应用注册中选择”新建客户端机密”来创建客户端机密。 创建客户端机密时，必须在记录机密的字符串后再从“证书和机密”窗格中离开。 不会再次显示该机密的字符串。
+- 在应用程序注册过程中，请使用“上传证书”**** 按钮来上传证书。 Azure AD 仅支持在应用程序上直接注册的证书，而不遵循证书链。
 
 有关详细信息，请参阅[快速入门：将客户端应用程序配置为访问 Web API | 将凭据添加到应用程序](../articles/active-directory/develop/quickstart-configure-app-access-web-apis.md#add-credentials-to-your-web-application)。
-
-
 
 ### <a name="register-client-secrets-by-using-powershell"></a>使用 PowerShell 注册客户端机密
 

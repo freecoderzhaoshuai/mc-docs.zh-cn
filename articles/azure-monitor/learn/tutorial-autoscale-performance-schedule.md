@@ -5,16 +5,16 @@ author: Johnnytechn
 services: azure-monitor
 ms.topic: tutorial
 origin.date: 12/11/2017
-ms.date: 05/28/2020
+ms.date: 08/20/2020
 ms.author: v-johya
 ms.custom: mvc
 ms.subservice: autoscale
-ms.openlocfilehash: 8fbb409d3370d6d06352e16912b2b542d1bfec07
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: 2c06f81f874449b52f9972188fa0494f7e995917
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440718"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148677"
 ---
 # <a name="create-an-autoscale-setting-for--azure-resources-based-on-performance-data-or-a-schedule"></a>基于性能数据或调度为 Azure 资源创建自动缩放设置 | Microsoft 文档
 
@@ -181,9 +181,9 @@ ms.locfileid: "84440718"
 > * 清理资源
 
 
-若要了解有关自动缩放设置的详细信息，请继续查看[自动缩放概述](../../azure-monitor/platform/autoscale-overview.md)。
+若要了解有关自动缩放设置的详细信息，请继续查看[自动缩放概述](../platform/autoscale-overview.md)。
 
 > [!div class="nextstepaction"]
-> [存档监视数据](tutorial-archive-data.md)
+> [存档监视数据](../platform/platform-logs-overview.md)
 
 

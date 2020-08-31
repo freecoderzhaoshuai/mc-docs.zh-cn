@@ -14,18 +14,20 @@ origin.date: 02/25/2020
 ms.date: 03/23/2020
 ms.author: v-yiso
 ms.custom: mvc
-ms.openlocfilehash: 628e570a0e0c8820d5a70161852dc8b35368584d
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: d14eefbbf6e897b54de298aac9fb1f860726c585
+ms.sourcegitcommit: f9a819b7429a2cca868eba0d9241d4e6b3cf905a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186445"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88866205"
 ---
 # <a name="quickstart-create-apache-spark-cluster-in-azure-hdinsight-using-azure-portal"></a>快速入门：使用 Azure 门户在 Azure HDInsight 中创建 Apache Spark 群集
 
 在本快速入门中，你将使用 Azure 门户在 Azure HDInsight 中创建 Apache Spark 群集。 然后你将创建一个 Jupyter 笔记本，并使用它来针对 Apache Hive 表运行 Spark SQL 查询。 Azure HDInsight 是适用于企业的分析服务，具有托管、全面且开源的特点。 用于 HDInsight 的 Apache Spark 框架使用内存中处理功能实现快速数据分析和群集计算。 使用 Jupyter 笔记本，可以与数据进行交互、将代码和 Markdown 文本结合使用，以及进行简单的可视化。
 
 有关可用配置的详细说明，请参阅[在 HDInsight 中设置群集](../hdinsight-hadoop-provision-linux-clusters.md)。 有关使用门户创建群集的详细信息，请参阅[在门户中创建群集](../hdinsight-hadoop-create-linux-clusters-portal.md)。
+
+如果将多个群集一起使用，则需创建一个虚拟网络；如果使用的是 Spark 群集，则还需使用 Hive Warehouse Connector。 有关详细信息，请参阅[为 Azure HDInsight 规划虚拟网络](../hdinsight-plan-virtual-network-deployment.md)和[将 Apache Spark 和 Apache Hive 与 Hive Warehouse Connector 集成](../interactive-query/apache-hive-warehouse-connector.md)。
 
 > [!IMPORTANT]  
 > HDInsight 群集是基于分钟按比例收费，而不管用户是否正在使用它们。 请务必在使用完之后删除群集。 有关详细信息，请参阅本文的[清理资源](#clean-up-resources)部分。
@@ -38,7 +40,7 @@ ms.locfileid: "84186445"
 
 你将使用 Azure 门户创建一个 HDInsight 群集，它使用 Azure 存储 Blob 作为群集存储。 有关使用 Data Lake Storage Gen2 的详细信息，请参阅[快速入门：在 HDInsight 中设置群集](../../storage/data-lake-storage/quickstart-create-connect-hdi-cluster.md)。
 
-1. 登录到 [Azure 门户](https://portal.azure.cn/)。
+1. 登录 [Azure 门户](https://portal.azure.cn/)。
 
 1. 在顶部菜单中，选择“+ 创建资源”。
 
@@ -77,7 +79,7 @@ ms.locfileid: "84186445"
 
     选择“查看 + 创建”以继续。
 
-1. 在“查看 + 创建”下，选择“创建”。  创建群集大约需要 20 分钟时间。 必须先创建群集，才能继续下一会话。
+1. 在“查看 + 创建”中，选择“创建”。 创建群集大约需要 20 分钟时间。 必须先创建群集，才能继续下一会话。
 
 如果在创建 HDInsight 群集时遇到问题，可能是因为你没有这样做的适当权限。 有关详细信息，请参阅[访问控制要求](../hdinsight-hadoop-customize-cluster-linux.md#access-control)。
 
@@ -91,7 +93,7 @@ Jupyter Notebook 是支持各种编程语言的交互式笔记本环境。 通�
 
    ![创建 Jupyter Notebook 以运行交互式 Spark SQL 查询](./media/apache-spark-jupyter-spark-sql-use-portal/hdinsight-spark-create-jupyter-interactive-spark-sql-query.png "创建 Jupyter Notebook 以运行交互式 Spark SQL 查询")
 
-   新 Notebook 随即会创建，并以 Untitled(Untitled.pynb) 名称打开。
+   新笔记本随即已创建，并以 Untitled(Untitled.pynb) 名称打开。
 
 ## <a name="run-apache-spark-sql-statements"></a>运行 Apache Spark SQL 语句
 

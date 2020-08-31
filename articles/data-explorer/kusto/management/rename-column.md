@@ -8,22 +8,22 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 02/11/2020
-ms.date: 07/01/2020
-ms.openlocfilehash: 834dab2d0d42361decb8730a7e06126a27acf217
-ms.sourcegitcommit: c17e965d4ffd82fd7cd86b2648fcb0053a65df00
+ms.date: 08/18/2020
+ms.openlocfilehash: b729ff719d48e8e96bf867381c47c01d0b08850c
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86470335"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88516102"
 ---
-# <a name="rename-column"></a>rename column
+# <a name="rename-column"></a>.rename column
 
 更改现有表列的名称。
 若要更改多个列的名称，请参阅[以下内容](#rename-columns)。
 
 **语法**
 
-`.rename` `column` [*DatabaseName* `.`] _TableName_ `.` _ColumnExistingName_ `to` _ColumnNewName_
+`.rename` `column` [*DatabaseName* `.`] *TableName* `.` *ColumnExistingName* `to` *ColumnNewName*
 
 其中 DatabaseName、TableName、ColumnExistingName 和 ColumnNewName 是相应实体的名称，并遵循[标识符命名规则](../query/schema-entities/entity-names.md)   。
 
@@ -33,6 +33,6 @@ ms.locfileid: "86470335"
 
 **语法**
 
-`.rename` `columns` _Col1_ `=` [_DatabaseName_ `.` [*TableName* `.` *Col2*]] `,` ...
+`.rename` `columns` *Col1* `=` [*DatabaseName* `.` [*TableName* `.` *Col2*]] `,` ...
 
 该命令可用于交换两列的名称（每列均重命名为另一列的名称。）

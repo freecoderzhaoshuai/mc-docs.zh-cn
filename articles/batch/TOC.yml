@@ -13,14 +13,25 @@
       href: quick-create-portal.md
     - name: 运行 Batch 作业 - .NET
       href: quick-run-dotnet.md
+    - name: 运行 Batch 作业 - Python
+      href: quick-run-python.md
+    - name: 创建 Batch 帐户 - ARM 模板
+      href: quick-create-template.md
+      displayName: Resource Manager
 - name: 教程
   items:
+    - name: 并行文件处理 - .NET
+      href: tutorial-parallel-dotnet.md
+    - name: 并行文件处理 - Python
+      href: tutorial-parallel-python.md
     - name: 使用 Arnold 进行场景呈现
       href: tutorial-rendering-cli.md
     - name: 使用 Batch Explorer 进行渲染
       href: tutorial-rendering-batchexplorer-blender.md
     - name: 将 OCR 与 Batch 和 Functions 配合使用
       href: tutorial-batch-functions.md
+    - name: 将 Python 脚本与数据工厂配合使用
+      href: tutorial-run-python-batch-azure-data-factory.md
 - name: 示例
   items:
     - name: 代码示例
@@ -31,14 +42,38 @@
           href: 'https://github.com/Azure/azure-batch-samples'
     - name: Azure CLI
       href: cli-samples.md
+    - name: Azure Policy 内置策略定义
+      displayName: 'samples, policies, definitions'
+      href: ./policy-samples.md
 - name: 概念
   items:
-    - name: 开发人员功能
-      href: batch-api-basics.md
+    - name: 安全性
+      items:
+        - name: Azure Policy 的安全控件
+          displayName: 'regulatory, compliance, standards, domains'
+          href: ./security-controls-policy.md
+        - name: 安全基线
+          href: security-baseline.md
+    - name: Batch 服务工作流和资源
+      displayName: developer features
+      href: batch-service-workflow-features.md
+      items:
+        - name: 批处理帐户
+          displayName: storage account
+          href: accounts.md
+        - name: 节点和池
+          displayName: 'compute node, application package, scaling, schedule, os'
+          href: nodes-and-pools.md
+        - name: 作业和任务
+          displayName: Batch job
+          href: jobs-and-tasks.md
+        - name: 文件和目录
+          displayName: Batch file
+          href: files-and-directories.md
     - name: API 和工具
       href: batch-apis-tools.md
-    - name: 检测和处理 Batch 服务错误
-      href: batch-retry-after-errors.md
+    - name: 错误处理和检测
+      href: error-handling.md
     - name: 最佳做法
       href: best-practices.md
     - name: 配额和限制
@@ -49,12 +84,12 @@
       href: high-availability-disaster-recovery.md
     - name: 任务运行时环境变量
       href: batch-compute-node-environment-variables.md
-    - name: Batch 与 Azure Policy 的集成
-      href: batch-integration-policies.md
 - name: 操作指南
   items:
     - name: 管理 Batch 帐户
       items:
+        - name: 管理帐户
+          href: batch-manage-account-basics.md
         - name: 使用门户管理 Batch 帐户
           href: batch-account-create-portal.md
         - name: 使用批处理管理 .NET 来管理 Azure Batch 帐户
@@ -69,6 +104,10 @@
           href: batch-aad-auth-management.md
         - name: 使用 Batch 安全地访问 Key Vault
           href: credential-access-key-vault.md
+        - name: 将证书与 Batch 配合使用
+          href: batch-certificates.md
+    - name: 使用应用程序包
+      href: batch-application-packages.md
     - name: 将文件和应用程序复制到池节点
       items:
         - name: 将应用程序和数据复制到池节点
@@ -91,10 +130,14 @@
           href: batch-custom-images.md
         - name: 在虚拟网络中创建池
           href: batch-virtual-network.md
+        - name: 创建具有公共 IP 地址的池
+          href: create-pool-public-ip.md
         - name: 装载虚拟文件系统
           href: virtual-file-mount.md
         - name: 装载 Azure 文件共享
           href: pool-file-shares.md
+        - name: 使用 RDMA 或 GPU 实例
+          href: batch-pool-compute-intensive-sizes.md
         - name: 使用 Linux 计算节点
           href: batch-linux-nodes.md
         - name: 检查池和节点错误
@@ -144,40 +187,42 @@
               href: batch-cli-templates.md
     - name: 使用 Batch Node.js SDK
       href: batch-nodejs-get-started.md
-- name: 运行工作负荷
-  items:
-    - name: MPI 作业
-      href: batch-mpi.md
-    - name: 渲染
+    - name: 运行工作负荷
       items:
-        - name: 使用 Azure 进行渲染
-          href: batch-rendering-service.md
-        - name: 渲染 VM 映像
-          href: batch-rendering-applications.md
-        - name: Batch 渲染功能
-          href: batch-rendering-functionality.md
-        - name: 使用 Batch 渲染
-          href: batch-rendering-using.md
-        - name: 使用渲染器管理器
-          href: batch-rendering-render-managers.md
-        - name: 渲染应用程序参考
-          href: batch-rendering-application-reference.md
-        - name: 存储和数据移动
-          href: batch-rendering-storage-data-movement.md
-        - name: 渲染体系结构
-          href: batch-rendering-architectures.md
-    - name: 使用 Batch 和数据工厂进行数据处理
-      href: ../data-factory/transform-data-using-dotnet-custom-activity.md?toc=%2fbatch%2ftoc.json
+        - name: MPI 作业
+          href: batch-mpi.md
+        - name: 容器工作负荷
+          href: batch-docker-container-workloads.md
+        - name: 渲染
+          items:
+            - name: 使用 Azure 进行渲染
+              href: batch-rendering-service.md
+            - name: 渲染 VM 映像
+              href: batch-rendering-applications.md
+            - name: Batch 渲染功能
+              href: batch-rendering-functionality.md
+            - name: 使用 Batch 渲染
+              href: batch-rendering-using.md
+            - name: 使用渲染器管理器
+              href: batch-rendering-render-managers.md
+            - name: 渲染应用程序参考
+              href: batch-rendering-application-reference.md
+            - name: 存储和数据移动
+              href: batch-rendering-storage-data-movement.md
+            - name: 渲染体系结构
+              href: batch-rendering-architectures.md
+        - name: 使用 Batch 和数据工厂进行数据处理
+          href: ../data-factory/transform-data-using-dotnet-custom-activity.md?toc=%2fbatch%2ftoc.json
 - name: 参考
   items:
     - name: Azure CLI
-      href: /cli/batch
+      href: 'https://docs.azure.cn/cli/batch?view=azure-cli-latest'
     - name: Azure PowerShell
-      href: 'https://docs.microsoft.com/powershell/module/azurerm.batch'
+      href: 'https://docs.microsoft.com/powershell/module/az.batch'
     - name: .NET
-      href: /dotnet/api/overview/batch
+      href: 'https://docs.azure.cn/dotnet/api/overview/batch'
     - name: Java
-      href: /java/api/overview/batch
+      href: 'https://docs.azure.cn/java/api/overview/batch'
     - name: Node.js
       href: 'https://docs.microsoft.com/javascript/api/overview/azure/batch'
     - name: Python
@@ -209,17 +254,23 @@
           href: batch-task-fail-event.md
 - name: 资源
   items:
+    - name: Azure 更新
+      href: 'https://www.azure.cn/updates/'
     - name: Batch 社区
       href: 'https://github.com/Azure/Batch'
+    - name: Batch 反馈
+      href: 'https://support.azure.cn/support/contact/'
+    - name: 有关 Batch 的 Azure 问答页
+      href: 'https://docs.microsoft.com/answers/topics/azure-batch.html'
     - name: Batch Shipyard
       href: 'https://github.com/Azure/batch-shipyard'
     - name: 博客
-      href: 'https://blogs.technet.microsoft.com/windowshpc/'
+      href: 'https://docs.microsoft.com/archive/blogs/windowshpc/'
     - name: 定价
       href: 'https://www.azure.cn/pricing/details/batch/'
     - name: 定价计算器
       href: 'https://www.azure.cn/pricing/calculator/'
-    - name: Resource Manager 模板
-      href: 'https://docs.microsoft.com/azure/templates/microsoft.batch/batchaccounts'
     - name: Stack Overflow
-      href: 'http://stackoverflow.com/questions/tagged/azure-batch'
+      href: 'https://stackoverflow.com/questions/tagged/azure-batch'
+    - name: 视频
+      href: 'https://www.azure.cn/video-center/'

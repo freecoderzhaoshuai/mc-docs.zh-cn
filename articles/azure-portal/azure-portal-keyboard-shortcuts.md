@@ -15,13 +15,13 @@ ms.workload: na
 origin.date: 12/20/2019
 ms.author: v-tawe
 ms.custom: accessibility
-ms.date: 02/17/2020
-ms.openlocfilehash: 16ee8ec775b386a44c53323fc35cdb30641541bb
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.date: 08/27/2020
+ms.openlocfilehash: 23fb9912ae3a0f17df4155abc74edab57d5374e2
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77028193"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947035"
 ---
 # <a name="keyboard-shortcuts-in-the-azure-portal"></a>Azure 门户中的键盘快捷方式
 
@@ -56,5 +56,5 @@ ms.locfileid: "77028193"
 
 ## <a name="next-steps"></a>后续步骤
 
-- [启用高对比度或更改主题](azure-portal-change-theme-high-contrast.md)
-- [支持的浏览器和设备](../azure-preview-portal-supported-browsers-devices.md)
+- [启用高对比度或更改主题](set-preferences.md#choose-a-theme-or-enable-high-contrast)
+- [支持的浏览器和设备](azure-portal-supported-browsers-devices.md)

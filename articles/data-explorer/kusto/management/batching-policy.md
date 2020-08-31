@@ -1,6 +1,6 @@
 ---
-title: Kusto IngestionBatching 策略管理 - Azure 数据资源管理器
-description: 本文介绍 Azure 数据资源管理器中的 IngestionBatching 策略。
+title: Kusto IngestionBatching 策略管理命令 - Azure 数据资源管理器
+description: 本文介绍 Azure 数据资源管理器中的 IngestionBatching 策略命令。
 services: data-explorer
 author: orspod
 ms.author: v-tawe
@@ -8,15 +8,15 @@ ms.reviewer: rkarlin
 ms.service: data-explorer
 ms.topic: reference
 origin.date: 02/19/2020
-ms.date: 07/01/2020
-ms.openlocfilehash: d706fa3ae013ff80befab3d827c4bdbe806aac4b
-ms.sourcegitcommit: c17e965d4ffd82fd7cd86b2648fcb0053a65df00
+ms.date: 08/18/2020
+ms.openlocfilehash: d275e8fe81d63b6bc91f19416eee2d9e59363407
+ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86470498"
+ms.lasthandoff: 08/18/2020
+ms.locfileid: "88516082"
 ---
-# <a name="ingestionbatching-policy"></a>IngestionBatching 策略
+# <a name="ingestionbatching-policy-command"></a>IngestionBatching 策略命令
 
 [ingestionBatching 策略](batchingpolicy.md)是一个策略对象，用于根据指定的设置确定在数据引入期间数据聚合应何时停止。
 

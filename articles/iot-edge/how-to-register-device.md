@@ -5,17 +5,18 @@ author: kgremban
 manager: philmea
 ms.author: v-tawe
 origin.date: 01/08/2020
-ms.date: 07/01/2020
+ms.date: 08/27/2020
 ms.topic: conceptual
 ms.reviewer: menchi
 ms.service: iot-edge
+ms.custom: devx-track-azurecli
 services: iot-edge
-ms.openlocfilehash: 5ea13a5726a27ae40fc59c49c5be12a3a827eaf9
-ms.sourcegitcommit: 4f84bba7e509a321b6f68a2da475027c539b8fd3
+ms.openlocfilehash: 85f66bc0e0f2209f201d7dcbf068c4bdb35b1102
+ms.sourcegitcommit: c8e590d907f20bbc9c4c05d9bfc93cf7cb1d776f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85796275"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88957773"
 ---
 # <a name="register-an-azure-iot-edge-device"></a>注册 Azure IoT Edge 设备
 

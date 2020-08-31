@@ -11,12 +11,12 @@ author: jpe316
 origin.date: 07/24/2020
 ms.date: 08/24/2020
 ms.custom: seodec18, tracking-python
-ms.openlocfilehash: 27dd1b656c2de7bdb5a258aa563490650e99a9b0
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 857539c2bd70dd85ea6d414026f2195575e8aade
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228412"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947163"
 ---
 # <a name="build-scikit-learn-models-at-scale-with-azure-machine-learning"></a>使用 Azure 机器学习大规模构建 scikit-learn 模型
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -88,6 +88,7 @@ dependencies:
 from azureml.core import Environment
 
 myenv = Environment.from_conda_specification(name = "myenv", file_path = "sklearn-env.yml")
+myenv.docker.enabled = True
 ```
 
 #### <a name="use-a-curated-environment"></a>使用特选环境
@@ -106,7 +107,7 @@ env = Environment.get(workspace=ws, name="AzureML-Tutorial")
 from azureml.core import ScriptRunConfig
 
 sklearnconfig = ScriptRunConfig(source_directory='.', script='train_iris.py')
-src.run_config.environment = myenv
+sklearnconfig.run_config.environment = myenv
 ```
 
 若要针对远程群集进行提交，可以将 run_config.target 更改为所需的计算目标。

@@ -4,16 +4,16 @@ description: 了解 Azure Stack Hub 中托管磁盘和托管映像的差异与�
 author: WenJason
 ms.topic: article
 origin.date: 05/04/2020
-ms.date: 07/20/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: jiahan
 ms.lastreviewed: 03/23/2019
-ms.openlocfilehash: 3cf7e85fbfb5f0ea2e727ff97b2b0f4bcf567d6d
-ms.sourcegitcommit: e9ffd50aa5eaab402a94bfabfc70de6967fe6278
+ms.openlocfilehash: b96d7c479d9b878847348696628de0c2a6c4076f
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2020
-ms.locfileid: "86307429"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867812"
 ---
 # <a name="azure-stack-hub-managed-disks-differences-and-considerations"></a>Azure Stack Hub 托管磁盘：差异与注意事项
 
@@ -205,6 +205,7 @@ $Image = Get-AzureRmImage -ResourceGroupName $ImageRG -ImageName $ImageName
 $VmConfig = New-AzureRmVMConfig -VMName $VirtualMachineName -VMSize "Standard_D1" | `
 Set-AzureRmVMOperatingSystem -Linux -ComputerName $VirtualMachineName -Credential $Cred | `
 Set-AzureRmVMSourceImage -Id $Image.Id | `
+Set-AzureRmVMOSDisk -VM $VmConfig -CreateOption FromImage -Linux | `
 Add-AzureRmVMNetworkInterface -Id $Nic.Id
 
 # Create a virtual machine

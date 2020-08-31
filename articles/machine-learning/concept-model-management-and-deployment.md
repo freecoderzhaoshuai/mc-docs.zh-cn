@@ -12,12 +12,12 @@ ms.author: v-yiso
 origin.date: 02/21/2020
 ms.date: 03/09/2020
 ms.custom: seodec18
-ms.openlocfilehash: 1c775295f6c8a3193cd08b956d4933aa8d2c35bd
-ms.sourcegitcommit: 2bd0be625b21c1422c65f20658fe9f9277f4fd7c
+ms.openlocfilehash: 572b07187a780224ba30ecbbc9a47cc006d2045a
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86441110"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947056"
 ---
 # <a name="mlops-model-management-deployment-and-monitoring-with-azure-machine-learning"></a>MLOps：使用 Azure 机器学习进行模型管理、部署和监视
 
@@ -75,7 +75,7 @@ ML 管道可以包含从数据准备、到特征提取、到超参数优化、�
 ### <a name="profile-models"></a>分析模型
 
 Azure 机器学习可帮助你了解部署模型时要创建的服务的 CPU 和内存要求。 分析可测试运行模型并返回 CPU 使用率、内存使用率和响应延迟等信息的服务。 它还根据资源使用率提供 CPU 和内存建议。
-有关详细信息，请参阅[部署模型](how-to-deploy-and-where.md#profilemodel)的“分析”部分。
+有关详细信息，请参阅[部署模型](how-to-deploy-profile-model.md)的“分析”部分。
 
 ### <a name="package-and-debug-models"></a>打包和调试模型
 

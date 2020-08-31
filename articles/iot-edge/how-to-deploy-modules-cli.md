@@ -1,21 +1,22 @@
 ---
 title: 从 Azure CLI 命令行部署模块 - Azure IoT Edge
-description: 将 Azure CLI 与 Azure IoT 扩展结合使用，根据部署清单的配置将 IoT Edge 模块从 IoT 中心推送到 IoT Edge 设备。
+description: 将 Azure CLI 与 Azure IoT 扩展结合使用，以将 IoT Edge 模块从 IoT 中心推送到 IoT Edge 设备（按照部署清单的配置）。
 author: kgremban
 manager: philmea
 ms.author: v-tawe
 origin.date: 08/16/2019
-ms.date: 06/01/2020
+ms.date: 08/27/2020
 ms.topic: conceptual
 ms.reviewer: menchi
 ms.service: iot-edge
+ms.custom: devx-track-azurecli
 services: iot-edge
-ms.openlocfilehash: f76a93507b1ba6c44054959db98a4568d3b38a19
-ms.sourcegitcommit: 9811bf312e0d037cb530eb16c8d85238fd276949
+ms.openlocfilehash: 41909fc2b6b7fbaaa8912c9292225ab1b51c81d4
+ms.sourcegitcommit: c8e590d907f20bbc9c4c05d9bfc93cf7cb1d776f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84275575"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88957819"
 ---
 # <a name="deploy-azure-iot-edge-modules-with-azure-cli"></a>使用 Azure CLI 部署 Azure IoT Edge 模块
 
@@ -25,7 +26,7 @@ ms.locfileid: "84275575"
 
 本文介绍了如何创建 JSON 部署清单，然后使用此文件将部署推送至 IoT Edge 设备。 要了解如何创建基于设备的共享标记而面向多台设备的部署，请参阅[大规模地部署和监视 IoT Edge 模块](how-to-deploy-cli-at-scale.md)
 
-## <a name="prerequisites"></a>必备条件
+## <a name="prerequisites"></a>先决条件
 
 * Azure 订阅中的 [IoT 中心](../iot-hub/iot-hub-create-using-cli.md)。
 * 已安装 IoT Edge 运行时的 [IoT Edge 设备](how-to-register-device.md#register-with-the-azure-cli)。

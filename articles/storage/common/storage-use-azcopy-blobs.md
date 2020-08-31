@@ -4,17 +4,17 @@ description: 本文包含一系列 AzCopy 示例命令，以帮助你创建容�
 author: WenJason
 ms.service: storage
 ms.topic: how-to
-origin.date: 04/10/2020
-ms.date: 07/20/2020
+origin.date: 07/07/2020
+ms.date: 08/24/2020
 ms.author: v-jay
 ms.subservice: common
 ms.reviewer: dineshm
-ms.openlocfilehash: e3c71b5595ee9564bc195f881483c424ae117486
-ms.sourcegitcommit: 31da682a32dbb41c2da3afb80d39c69b9f9c1bc6
+ms.openlocfilehash: fc0f1f4ed71e7b9a6d8b6bacce031b1bb4948382
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86414733"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753391"
 ---
 # <a name="transfer-data-with-azcopy-and-blob-storage"></a>使用 AzCopy 和 Blob 存储传输数据
 
@@ -112,7 +112,7 @@ AzCopy 是一个命令行实用工具，可用于向/从存储帐户复制数据
 
 ### <a name="upload-specific-files"></a>上传特定的文件
 
-可以指定完整的文件名，或使用包含通配符 (*) 的部分名称。
+可以使用完整的文件名、包含通配符 (*) 的部分名称或者日期和时间来上传特定文件。
 
 #### <a name="specify-multiple-complete-file-names"></a>指定多个完整文件名
 
@@ -141,6 +141,18 @@ AzCopy 是一个命令行实用工具，可用于向/从存储帐户复制数据
 还可以使用 `--exclude-pattern` 选项来排除文件。 有关详细信息，请参阅 [azcopy copy](storage-ref-azcopy-copy.md) 参考文档。
 
 `--include-pattern` 和 `--exclude-pattern` 选项仅适用于文件名，而不适用于路径。  若要复制目录树中存在的所有文本文件，请使用 `–recursive` 选项获取整个目录树，然后使用 `–include-pattern` 并指定 `*.txt` 来获取所有文本文件。
+
+#### <a name="upload-files-that-were-modified-after-a-date-and-time"></a>上传在某个日期和时间之后修改的文件 
+
+结合 `--include-after` 选项使用 [azcopy copy](storage-ref-azcopy-copy.md) 命令。 以 ISO-8601 格式指定日期和时间（例如 `2020-08-19T15:04:00Z`）。 
+
+|    |     |
+|--------|-----------|
+| **语法** | `azcopy copy '<local-directory-path>\*' 'https://<storage-account-name>.<blob or dfs>.core.chinacloudapi.cn/<container-or-directory-name>'  --include-after <Date-Time-in-ISO-8601-format>` |
+| **示例** | `azcopy copy 'C:\myDirectory\*' 'https://mystorageaccount.blob.core.chinacloudapi.cn/mycontainer/FileDirectory'  --include-after '2020-08-19T15:04:00Z'` |
+| **示例**（分层命名空间） | `azcopy copy 'C:\myDirectory\*' 'https://mystorageaccount.dfs.core.chinacloudapi.cn/mycontainer/FileDirectory'   --include-after '2020-08-19T15:04:00Z'` |
+
+如需详细的参考，请查看 [azcopy copy](storage-ref-azcopy-copy.md) 参考文档。
 
 ## <a name="download-files"></a>下载文件
 
@@ -203,7 +215,7 @@ AzCopy 是一个命令行实用工具，可用于向/从存储帐户复制数据
 
 ### <a name="download-specific-files"></a>下载特定的文件
 
-可以指定完整的文件名，或使用包含通配符 (*) 的部分名称。
+可以使用完整的文件名、包含通配符 (*) 的部分名称或者日期和时间来下载特定文件。 
 
 #### <a name="specify-multiple-complete-file-names"></a>指定多个完整文件名
 
@@ -233,6 +245,18 @@ AzCopy 是一个命令行实用工具，可用于向/从存储帐户复制数据
 
 `--include-pattern` 和 `--exclude-pattern` 选项仅适用于文件名，而不适用于路径。  若要复制目录树中存在的所有文本文件，请使用 `–recursive` 选项获取整个目录树，然后使用 `–include-pattern` 并指定 `*.txt` 来获取所有文本文件。
 
+#### <a name="download-files-that-were-modified-after-a-date-and-time"></a>下载在某个日期和时间之后修改的文件 
+
+结合 `--include-after` 选项使用 [azcopy copy](storage-ref-azcopy-copy.md) 命令。 以 ISO-8601 格式指定日期和时间（例如 `2020-08-19T15:04:00Z`）。 
+
+|    |     |
+|--------|-----------|
+| **语法** | `azcopy copy 'https://<storage-account-name>.<blob or dfs>.core.chinacloudapi.cn/<container-or-directory-name>/*' '<local-directory-path>' --include-after <Date-Time-in-ISO-8601-format>` |
+| **示例** | `azcopy copy 'https://mystorageaccount.blob.core.chinacloudapi.cn/mycontainer/FileDirectory/*' 'C:\myDirectory'  --include-after '2020-08-19T15:04:00Z'` |
+| **示例**（分层命名空间） | `azcopy copy 'https://mystorageaccount.dfs.core.chinacloudapi.cn/mycontainer/FileDirectory/*' 'C:\myDirectory'  --include-after '2020-08-19T15:04:00Z'` |
+
+如需详细的参考，请查看 [azcopy copy](storage-ref-azcopy-copy.md) 参考文档。
+
 ## <a name="copy-blobs-between-storage-accounts"></a>在存储帐户之间复制 Blob
 
 可以使用 AzCopy 将 Blob 复制到其他存储帐户。 复制操作是同步的，因此，当命令返回时，表示已复制所有文件。 
@@ -260,7 +284,7 @@ AzCopy 使用[服务器到服务器](https://docs.microsoft.com/rest/api/storage
 >
 > |方案|标志|
 > |---|---|
-> |将文件复制为追加 Blob 或页 Blob。|**--blob-type**=\[BlockBlob\|PageBlob\|AppendBlob\]|
+> |将 Blob 复制为块 Blob、页 Blob 或追加 Blob。|**--blob-type**=\[BlockBlob\|PageBlob\|AppendBlob\]|
 > |复制到特定访问层（如存档层）。|**--block-blob-tier**=\[None\|Hot\|Cool\|Archive\]|
 > |自动解压缩文件。|**--decompress**=\[gzip\|deflate\]|
 > 

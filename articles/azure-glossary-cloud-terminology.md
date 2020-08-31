@@ -14,14 +14,14 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 08/16/2017
-ms.date: 07/13/2020
+ms.date: 08/27/2020
 ms.author: v-tawe
-ms.openlocfilehash: a7c4fd658e4d7011c18f63a81041401d2db36cff
-ms.sourcegitcommit: c17e965d4ffd82fd7cd86b2648fcb0053a65df00
+ms.openlocfilehash: 0a3ab604bebbb7e617c88613e1efdaba5b091651
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86469982"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951204"
 ---
 # <a name="azure-glossary-a-dictionary-of-cloud-terminology-on-the-azure-platform"></a>Azure 词汇表：Azure 平台上的云术语字典
 

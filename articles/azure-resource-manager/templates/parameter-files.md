@@ -3,16 +3,17 @@ title: 创建参数文件
 description: 创建用于在 Azure 资源管理器模板部署过程中传入值的参数文件
 ms.topic: conceptual
 origin.date: 06/19/2020
-ms.date: 07/13/2020
+author: rockboyfor
+ms.date: 08/24/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: f78d02a2ae893931e907d843a36f4ff47eb1e4d1
-ms.sourcegitcommit: 2bd0be625b21c1422c65f20658fe9f9277f4fd7c
+ms.openlocfilehash: b4fbe0d93515ba2d99b76b554619641e1ab5227b
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86441014"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807917"
 ---
 <!--Verify successfully-->
 # <a name="create-resource-manager-parameter-file"></a>创建资源管理器参数文件
@@ -196,8 +197,8 @@ ms.locfileid: "86441014"
 
 请参阅：
 
-- [使用 ARM 模板和 Azure CLI 部署资源](./deploy-powershell.md#pass-parameter-values)
-- [使用 ARM 模板和 Azure PowerShell 部署资源](./deploy-cli.md#parameters)
+- [使用 ARM 模板和 Azure CLI 部署资源](./deploy-cli.md#parameters)
+- [使用 ARM 模板和 Azure PowerShell 部署资源](./deploy-powershell.md#pass-parameter-values)
 
 ## <a name="file-name"></a>文件名
 

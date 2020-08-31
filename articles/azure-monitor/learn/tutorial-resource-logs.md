@@ -3,22 +3,22 @@ title: 从 Azure 资源收集资源日志并使用 Azure Monitor 进行分析
 description: 本教程介绍如何将诊断设置配置为将 Azure 资源中的资源日志收集到 Log Analytics 工作区中，以通过日志查询对这些这些日志进行分析。
 ms.subservice: ''
 ms.topic: tutorial
-author: lingliw
-ms.author: v-lingwu
+author: Johnnytechn
+ms.author: v-johya
+ms.date: 08/20/2020
 origin.date: 12/15/2019
-ms.date: 02/19/2020
-ms.openlocfilehash: d92e2d5ef19bb54f072230a93df3d57d44088856
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 748090b067fb84012add3442f77070a239803837
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78850286"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148673"
 ---
 # <a name="tutorial-collect-and-analyze-resource-logs-from-an-azure-resource"></a>教程：从 Azure 资源收集和分析资源日志
 
 资源日志提供有关 Azure 资源详细操作的见解，有助于监控其运行状况和可用性。 Azure 资源会自动生成资源日志，但必须配置这些日志的收集位置。 本教程将指导你完成创建诊断设置以收集 Azure 订阅中某个资源的资源日志，并使用日志查询对其进行分析。
 
-本教程介绍如何执行下列操作：
+在本教程中，你将了解如何执行以下操作：
 
 > [!div class="checklist"]
 > * 在 Azure Monitor 中创建 Log Analytics 工作区
@@ -32,7 +32,7 @@ ms.locfileid: "78850286"
 
 
 ## <a name="log-in-to-azure"></a>登录 Azure
-通过 [https://portal.azure.com](https://portal.azure.cn) 登录到 Azure 门户。
+通过 [https://portal.azure.cn](https://portal.azure.cn) 登录到 Azure 门户。
 
 
 ## <a name="create-a-workspace"></a>创建工作区
@@ -47,9 +47,9 @@ Azure Monitor 中的 Log Analytics 工作区可从各种源收集和索引日志
    - **订阅**：选择用于存储工作区的订阅。 此订阅无需与要监控资源的订阅相同。
    - **资源组**：选择现有资源组，或单击“新建”，创建一个新资源组  。 此资源组无需与要监控资源的资源组相同。
    - **位置**：选择一个 Azure 区域或创建一个新区域。 此区域无需与要监控资源的位置相同。
-   - **定价层**：选择“免费”将保留 7 天的数据  。 之后可以更改定价层。 单击“Log Analytics 定价”链接以了解有关不同定价层的详细信息  。
+   - **定价层**：选择“即用即付”  作为定价层。 之后可以更改定价层。 单击“Log Analytics 定价”链接以了解有关不同定价层的详细信息  。
 
-    ![新建工作区](media/tutorial-resource-logs/new-workspace.png)
+    ![新建工作区](./media/tutorial-resource-logs/new-workspace.png)
 
 3. 单击“确定”以创建工作区  。
 
@@ -59,18 +59,18 @@ Azure Monitor 中的 Log Analytics 工作区可从各种源收集和索引日志
 1. 在资源设置菜单的“监控”部分，选择“诊断设置”   。
 2. 此时应该会显示“未定义任何诊断设置”消息。 单击“添加诊断设置”  。
 
-    ![诊断设置](media/tutorial-resource-logs/diagnostic-settings.png)
+    ![诊断设置](./media/tutorial-resource-logs/diagnostic-settings.png)
 
 3. 每个诊断设置都有三个基本组成部分：
  
-   - **名称**：此部分影响不大，只提供描述信息。
+   - **Name**：此部分影响不大，只提供描述信息。
    - **目标**：要将日志发送到的一个或多个目标。 所有 Azure 服务共享同一组三个可能的目标。 每个诊断设置都可以定义一个或多个目标，但不能定义特定类型的多个目标。 
    - **类别**：要发送到每个目标的日志类别。 每个 Azure 服务的类别集将有所不同。
 
 4. 选择“发送到 Log Analytics 工作区”，然后选择所创建的工作区  。
 5. 选择要收集的类别。 请参阅每个服务的文档以了解其可用类别的定义。
 
-    ![诊断设置](media/tutorial-resource-logs/diagnostic-setting.png)
+    ![诊断设置](./media/tutorial-resource-logs/diagnostic-setting.png)
 
 6. 单击“保存”以保存这些设置  。
 
@@ -85,9 +85,9 @@ Azure Monitor 中的 Log Analytics 工作区可从各种源收集和索引日志
     > [!NOTE]
     > 如果从 Azure Monitor 菜单中打开“日志”，则会将范围设置为“Log Analytics 工作区”。 在这种情况下，所有查询都将包括工作区中的所有记录。
    
-    ![日志](media/tutorial-resource-logs/logs.png)
+    ![日志](./media/tutorial-resource-logs/logs.png)
 
-4. 示例中显示的服务将资源日志写入 AzureDiagnostics 表，但其他服务可能会写入其他表  。 请参阅 [Azure 资源日志支持的服务、架构和类别](../platform/diagnostic-logs-schema.md)，以查看不同 Azure 服务使用的表。
+4. 示例中显示的服务将资源日志写入 AzureDiagnostics 表，但其他服务可能会写入其他表  。 请参阅 [Azure 资源日志支持的服务、架构和类别](../platform/resource-logs-schema.md)，以查看不同 Azure 服务使用的表。
 
     > [!NOTE]
     > 多个服务将资源日志写入 AzureDiagnostics 表。 如果从 Azure Monitor 菜单中启动 Log Analytics，则需要添加包含 `ResourceProvider` 列的 `where` 语句来指定特定服务。 从资源菜单启动 Log Analytics 时，范围设置为仅来自此资源的记录，因此不需要此列。 请参阅服务文档了解示例查询。
@@ -96,7 +96,7 @@ Azure Monitor 中的 Log Analytics 工作区可从各种源收集和索引日志
 5. 键入查询，然后单击“运行”以检查结果  。 
 6. 有关编写日志查询的教程，请参阅 [Azure Monitor 中的日志查询入门](../log-query/get-started-queries.md)。
 
-    ![日志查询](media/tutorial-resource-logs/log-query-1.png)
+    ![日志查询](./media/tutorial-resource-logs/log-query-1.png)
 
 
 
@@ -106,3 +106,4 @@ Azure Monitor 中的 Log Analytics 工作区可从各种源收集和索引日志
 
 > [!div class="nextstepaction"]
 > [Azure Monitor 中的日志查询入门](../log-query/get-started-queries.md)
+

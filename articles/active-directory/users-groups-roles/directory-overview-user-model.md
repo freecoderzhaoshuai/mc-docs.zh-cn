@@ -1,12 +1,12 @@
 ---
-title: 用户、组、许可和角色概述 - Azure AD | Microsoft Docs
+title: Azure Active Directory 中的用户、组、许可和角色
 description: Azure Active Directory 中分配的用户和许可证、管理员角色与组成员身份之间的关系
 keywords: ''
 author: curtand
 manager: daveba
 ms.author: v-junlch
 ms.reviewer: vincesm
-ms.date: 06/01/2020
+ms.date: 08/26/2020
 ms.topic: overview
 ms.service: active-directory
 ms.subservice: users-groups-roles
@@ -14,16 +14,16 @@ ms.workload: identity
 services: active-directory
 ms.custom: it-pro;seo-update-azuread-jan
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 049dcd45e2bb3a46e7a94cc6a3d49e3033523dfd
-ms.sourcegitcommit: 9811bf312e0d037cb530eb16c8d85238fd276949
+ms.openlocfilehash: 083854f04731ad24c3e3ff3895e1af3d57e86c25
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84275599"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947171"
 ---
-# <a name="users-groups-licensing-and-roles-for-large-organizations"></a>大型组织的用户、组、许可和角色
+# <a name="what-is-enterprise-user-management"></a>什么是企业用户管理？
 
-本文为 Azure AD 管理员介绍最重要[标识管理](/active-directory/fundamentals/active-directory-whatis)任务在用户的组、许可证、已部署企业应用与管理员角色方面的关系。 随着组织的不断发展，可以使用 Azure AD 组和管理员角色来实现以下目的：
+本文为 Azure AD 管理员介绍最重要标识管理任务在用户的组、许可证、已部署企业应用与管理员角色方面的关系。 随着组织的不断发展，可以使用 Azure AD 组和管理员角色来实现以下目的：
 
 * 将许可证分配到组，而无需逐个分配
 * 委托权限，以将 Azure AD 管理工作分配给特权更低的角色
@@ -50,7 +50,7 @@ ms.locfileid: "84275599"
 
  角色名称 | 权限摘要
  --------- | -------------------
- **应用程序管理员** | 可以添加和管理企业应用程序与应用程序注册。 
+ **应用程序管理员** | 可以添加和管理企业应用程序与应用程序注册，以及配置代理应用程序设置。 应用程序管理员可以查看条件访问策略和设备，但不能对其进行管理。
  **云应用程序管理员** | 可以添加和管理企业应用程序与企业应用注册。 此角色具有应用程序管理员的所有权限。
 **应用程序开发人员** | 可以添加和更新应用程序注册，但不能管理企业应用程序。
 
@@ -58,7 +58,7 @@ ms.locfileid: "84275599"
 
 ## <a name="assign-app-access"></a>分配应用访问权限
 
-可以使用 Azure AD 为组分配对 [Azure AD 租户中部署的企业应用](/active-directory/manage-apps/methods-for-assigning-users-and-groups)的访问权限。 
+可以使用 Azure AD 为组分配对 [Azure AD 组织中部署的企业应用](/active-directory/manage-apps/methods-for-assigning-users-and-groups?context=azure/active-directory/users-groups-roles/context/ugr-context)的访问权限。 
 
 在 Azure AD 中，还可以精细控制你有权访问的应用和组之间流动的数据。 在[企业应用程序](https://portal.azure.cn/#blade/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/AllApps)中打开一个应用，并选择“预配”以执行以下操作：
 
@@ -72,6 +72,5 @@ ms.locfileid: "84275599"
 
 入门级的 Azure AD 管理员可在 [Azure Active Directory 基础知识](/active-directory/fundamentals/index)中获取基础知识。
 
-或者，可以开始[创建组](/active-directory/fundamentals/active-directory-groups-create-azure-portal)、[分配许可证](/active-directory/fundamentals/license-users-groups)、[分配应用访问权限](/active-directory/manage-apps/methods-for-assigning-users-and-groups)或[分配管理员角色](directory-assign-admin-roles.md)。
+或者，可以开始[创建组](/active-directory/fundamentals/active-directory-groups-create-azure-portal?context=azure/active-directory/users-groups-roles/context/ugr-context)、[分配许可证](/active-directory/fundamentals/license-users-groups?context=azure/active-directory/users-groups-roles/context/ugr-context)、[分配应用访问权限](/active-directory/manage-apps/methods-for-assigning-users-and-groups?context=azure/active-directory/users-groups-roles/context/ugr-context)或[分配管理员角色](directory-assign-admin-roles.md)。
 
-<!-- Update_Description: wording update -->

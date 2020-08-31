@@ -8,15 +8,15 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: quickstart
 ms.workload: identity
-ms.date: 07/08/2020
+ms.date: 08/18/2020
 ms.author: v-junlch
-ms.custom: aaddev, identityplatformtop40, scenarios:getting-started, languages:ASP.NET
-ms.openlocfilehash: 0da5d0e44979c91b74ca25569119f5ce1fea2bef
-ms.sourcegitcommit: 92b9b1387314b60661f5f62db4451c9ff2c49500
+ms.custom: devx-track-csharp, aaddev, identityplatformtop40, scenarios:getting-started, languages:ASP.NET
+ms.openlocfilehash: 49bddf4fa99f895dd01a99e521e95c3da9a8fbd7
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86164946"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647612"
 ---
 # <a name="quickstart-call-an-aspnet-web-api-protected-by-microsoft-identity-platform"></a>快速入门：调用受 Microsoft 标识平台保护的 ASP.NET Web API
 
@@ -80,15 +80,16 @@ ms.locfileid: "86164946"
 1. 在 Visual Studio 中打开解决方案，然后打开 **TodoListService** 项目根目录下的 **Web.config** 文件。
 1. 将 `ida:ClientId` 参数的值替换为刚刚在 Azure 门户中注册的应用程序的“客户端 ID (应用程序 ID)”。
 
-### <a name="add-the-new-scope-to-the-todolistclients-appconfig"></a>将新范围添加到 *TodoListClient* 的 app.config
+### <a name="add-the-new-scope-to-the-todolistclients-appconfig"></a>将新范围添加到“TodoListClient”的 app.config 中
 
-1. 打开 **TodoListClient** 项目根文件夹中的 **app.config** 文件，然后粘贴刚刚在 `TodoListServiceScope` 参数下为 *TodoListService* 注册的应用程序中的“应用程序 ID”，并替换字符串 `{Enter the Application ID of your TodoListService from the app registration portal}`。
+* 打开 **TodoListClient** 项目根文件夹中的 **app.config** 文件，然后粘贴刚刚在 `TodoListServiceScope` 参数下为 *TodoListService* 注册的应用程序中的“应用程序 ID”，并替换字符串 `{Enter the Application ID of your TodoListService from the app registration portal}`。
 
-   > 注意：请确保此 ID 使用以下格式：
-   >
-   > `api://{TodoListService-Application-ID}/access_as_user`
-   >
-   >（其中，{TodoListService-Application-ID} 是表示 TodoListService 的应用程序 ID 的 GUID）。
+  > [!NOTE]
+  > 请确保它使用以下格式：
+  >
+  > `api://{TodoListService-Application-ID}/access_as_user`
+  >
+  >（其中，{TodoListService-Application-ID} 是表示 TodoListService 的应用程序 ID 的 GUID）。
 
 ## <a name="register-the-client-app-todolistclient"></a>注册客户端应用 (TodoListClient)
 
@@ -102,15 +103,27 @@ ms.locfileid: "86164946"
    - 在“名称”部分输入一个会显示给应用用户的有意义的应用程序名称，例如 `NativeClient-DotNet-TodoListClient`。
    - 将“支持的帐户类型”更改为“任何组织目录中的帐户”。 
    - 选择“注册”以创建应用程序。
-1. 在应用的“概述”页中，选择“身份验证”部分。
-   - 在“重定向 URI” | “建议用于公共客户端(移动、桌面)的重定向 URI”部分中，选中 https://login.partner.microsoftonline.cn/common/oauth2/nativeclient  
-   - 选择“保存” 。
+   
+   > [!NOTE]
+   > 在 TodoListClient 项目的 app.config 中，将 `ida:Tenant` 的默认值设置为 `common`。
+   >
+   > `common` 表示可以使用工作或学校帐户登录（因为你选择了“任何组织目录中的帐户”）。
+   >
+   > `organizations` 表示可以使用工作或学校帐户登录。
+   >
+   >
+   
+1. 在应用的“概览”页中，选择“身份验证”部分。
+   1. 在“平台配置”下，选择“添加平台”按钮 。
+   1. 对于“移动和桌面应用程序”，请选择“移动和桌面应用程序” 。
+   1. 对于“重定向 URI”，请选择“https://login.partner.microsoftonline.cn/common/oauth2/nativeclient”复选框 。
+   1. 选择“配置” 。   
 1. 选择“API 权限”部分
-   - 单击“添加权限”按钮，然后
-   - 选择“我的 API”选项卡。
-   - 在 API 列表中，选择 `AppModelv2-NativeClient-DotNet-TodoListService API` 或你为 Web API 输入的名称。
-   - 如果未选中 **access_as_user** 权限，请将其选中。 如有必要，请使用搜索框。
-   - 选择“添加权限”按钮
+   1. 选择“添加权限”按钮。
+   1. 选择“我的 API”选项卡。
+   1. 在 API 列表中，选择 `AppModelv2-NativeClient-DotNet-TodoListService API` 或你为 Web API 输入的名称。
+   1. 如果未选中 **access_as_user** 权限，请将其选中。 如有必要，请使用搜索框。
+   1. 选择“添加权限”按钮。
 
 ### <a name="configure-your-todolistclient-project"></a>配置 *TodoListClient* 项目
 

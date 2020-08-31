@@ -2,16 +2,18 @@
 author: rockboyfor
 ms.service: azure-policy
 ms.topic: include
-origin.date: 06/10/2020
-ms.date: ''
+origin.date: 06/23/2020
+ms.date: 08/10/2020
+ms.testscope: yes
+ms.testdate: 08/10/2020
 ms.author: v-yeche
 ms.custom: generated
-ms.openlocfilehash: 6dd2c3c52d8a245eaa0d7c06f84ee2a1a1e46941
-ms.sourcegitcommit: 48b5ae0164f278f2fff626ee60db86802837b0b4
+ms.openlocfilehash: e0defd531979baa2359f5f285483ecc7a485c14f
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102086"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951962"
 ---
 <!--NOT AVAILABLE ON MOONCAKE-->
 <!--NOT AVAILABLE ON includes/policy/samples/bycat/policies-managed-application.md-->

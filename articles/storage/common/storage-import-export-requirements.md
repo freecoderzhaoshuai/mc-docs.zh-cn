@@ -6,15 +6,15 @@ services: storage
 ms.service: storage
 ms.topic: conceptual
 origin.date: 08/12/2019
-ms.date: 07/20/2020
+ms.date: 08/24/2020
 ms.author: v-jay
 ms.subservice: common
-ms.openlocfilehash: 21633921c2c1a72b2e67e71d5cc26f3a79400dd9
-ms.sourcegitcommit: 31da682a32dbb41c2da3afb80d39c69b9f9c1bc6
+ms.openlocfilehash: 6ee56e7e8b0417e20358298d4b1105e229c9c8f3
+ms.sourcegitcommit: ecd6bf9cfec695c4e8d47befade8c462b1917cf0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/16/2020
-ms.locfileid: "86414638"
+ms.lasthandoff: 08/23/2020
+ms.locfileid: "88753427"
 ---
 # <a name="azure-importexport-system-requirements"></a>Azure 导入/导出系统要求
 
@@ -51,7 +51,7 @@ Azure 导入/导出服务支持以下类型的存储帐户：
 每个作业只能用于将数据传入/传出一个存储帐户。 换言之，一个导入/导出作业不能跨多个存储帐户。 有关创建新存储帐户的信息，请参阅[如何创建存储帐户](storage-account-create.md)。
 
 > [!IMPORTANT]
-> Azure 导入导出服务不支持已启用 [虚拟网络服务终结点](../../virtual-network/virtual-network-service-endpoints-overview.md) 功能的存储帐户。 
+> 对于已启用[虚拟网络服务终结点](../../virtual-network/virtual-network-service-endpoints-overview.md) 功能的存储帐户，请使用“允许受信任的 Microsoft 服务...”设置，[允许导入/导出](/storage/common/storage-network-security)服务将数据导入到 Azure 或从其导出。
 
 ## <a name="supported-storage-types"></a>受支持的存储类型
 

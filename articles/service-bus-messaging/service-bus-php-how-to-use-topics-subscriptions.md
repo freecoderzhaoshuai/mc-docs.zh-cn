@@ -4,17 +4,17 @@ description: 本教程介绍如何通过 PHP 应用程序使用 Azure 服务总�
 ms.devlang: PHP
 ms.topic: quickstart
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+ms.date: 08/31/2020
 ms.testscope: yes
 ms.testdate: 07/20/2020
 ms.author: v-yeche
 author: rockboyfor
-ms.openlocfilehash: 8fc937d50dcfaa88a1ae0cc5503552ec92717d9e
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 4fe2947822a8c5afa04998c73f5d53bc3646611a
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162123"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946939"
 ---
 # <a name="quickstart-how-to-use-service-bus-topics-and-subscriptions-with-php"></a>快速入门：如何通过 PHP 使用服务总线主题和订阅
 

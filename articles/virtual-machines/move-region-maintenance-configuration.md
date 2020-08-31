@@ -6,20 +6,22 @@ ms.service: virtual-machines
 ms.topic: how-to
 ms.tgt_pltfrm: vm
 origin.date: 03/04/2020
-ms.date: 07/06/2020
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 3ab6b3de168145ad87d0d5c0f9bc84657e1e0402
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 77b6f3718f6e2d5bdd988b793ca7f2db5696d625
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945642"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052443"
 ---
 # <a name="move-a-maintenance-control-configuration-to-another-region"></a>将维护控制配置移动到另一个区域
 
 按照本文将维护控制配置移动到另一个 Azure 区域。 出于多种原因，你可能需要移动配置。 例如，利用新的区域、部署在特定区域中可用的功能或服务、满足内部策略和治理要求，或者响应容量规划。
 
-使用带自定义维护配置的维护控制，你可以对如何将平台更新应用到 [Windows](/virtual-machines/maintenance-control-cli?toc=/virtual-machines/windows/toc.json&bc=/virtual-machines/windows/breadcrumb/toc.json) VM、[Linux](/virtual-machines/maintenance-control-cli?toc=%2Fazure%2Fvirtual-machines%2Flinux%2Ftoc.json&bc=%2Fazure%2Fvirtual-machines%2Flinux%2Fbreadcrumb%2Ftoc.json&view=azure-java-stable) VM 和 Azure 专用主机进行控制。 跨区域移动维护控制有几种场景：
+使用带自定义维护配置的维护控制，你可以对如何将平台更新应用到 [Windows](./maintenance-control-cli.md?toc=/virtual-machines/windows/toc.json&bc=/virtual-machines/windows/breadcrumb/toc.json) VM、[Linux](./maintenance-control-cli.md?toc=%2Fvirtual-machines%2Flinux%2Ftoc.json&bc=%2Fvirtual-machines%2Flinux%2Fbreadcrumb%2Ftoc.json&view=azure-java-stable) VM 和 Azure 专用主机进行控制。 跨区域移动维护控制有几种场景：
 
 - 若要移动维护控制配置，但不移动与配置关联的资源，请按本文中的说明进行操作。
 - 若要移动与维护配置关联的资源，但不移动配置本身，请按照[这些说明](move-region-maintenance-configuration-resources.md)进行操作。
@@ -39,7 +41,7 @@ ms.locfileid: "85945642"
 
 ## <a name="prepare-and-move"></a>准备并移动 
 
-1. 检索每个订阅中的所有维护配置。 运行 CLI 命令 [az maintenance configuration list](https://docs.microsoft.com/cli/azure/ext/maintenance/maintenance/configuration?view=azure-cli-latest#ext-maintenance-az-maintenance-configuration-list) 来执行此操作，将 $subId 替换为你的订阅 ID。
+1. 检索每个订阅中的所有维护配置。 运行 CLI 命令 [az maintenance configuration list](https://docs.microsoft.com/cli/azure/ext?view=azure-cli-latest#ext-maintenance-az-maintenance-configuration-list) 来执行此操作，将 $subId 替换为你的订阅 ID。
 
     ```
     az maintenance configuration list --subscription $subId --query "[*].{Name:name, Location:location, ResGroup:resourceGroup}" --output table

@@ -12,12 +12,12 @@ ms.topic: conceptual
 origin.date: 06/04/2020
 ms.data: 08/24/2020
 ms.custom: seodec18
-ms.openlocfilehash: 5f70914b45fa69056b271f110609d4d0d0b695ed
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 49a543505ef7594ee3ad62732edf38d422113ad1
+ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228398"
+ms.lasthandoff: 08/21/2020
+ms.locfileid: "88715345"
 ---
 # <a name="track-model-metrics-and-deploy-ml-models-with-mlflow-and-azure-machine-learning-preview"></a>使用 MLflow 和 Azure 机器学习（预览版）跟踪模型指标并部署 ML 模型
 
@@ -246,9 +246,9 @@ from azureml.core.webservice import Webservice, AksWebservice
 
 # Set the web service configuration (using default here with app insights)
 aks_config = AksWebservice.deploy_configuration(enable_app_insights=True, compute_target_name='aks-mlflow')
+```
 
-
-Then, deploy the image by using the Azure Machine Learning SDK [deploy()](Then, register and deploy the model by using the Azure Machine Learning SDK [deploy](/python/api/azureml-core/azureml.core.model.model?view=azure-ml-py#deploy-workspace--name--models--inference-config-none--deployment-config-none--deployment-target-none--overwrite-false-) method. 
+然后，使用 Azure 机器学习 SDK [deploy()] 来部署映像（然后，使用 Azure 机器学习 SDK [deploy](/python/api/azureml-core/azureml.core.model.model?view=azure-ml-py#deploy-workspace--name--models--inference-config-none--deployment-config-none--deployment-target-none--overwrite-false-) 方法来注册和部署模型）。 
 
 ```python
 # Webservice creation using single command

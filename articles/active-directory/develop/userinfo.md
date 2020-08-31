@@ -9,16 +9,16 @@ ms.service: active-directory
 ms.subservice: develop
 ms.workload: identity
 ms.topic: conceptual
-ms.date: 06/29/2020
+ms.date: 08/19/2020
 ms.author: v-junlch
 ms.reviewer: hirsin
 ms.custom: aaddev
-ms.openlocfilehash: b6c56798787d784dcad1eabf990a84d676ed3126
-ms.sourcegitcommit: 1008ad28745709e8d666f07a90e02a79dbbe2be5
+ms.openlocfilehash: 4cdc82e80ddeb18ffe31fa3f9b2fa13626ec3af9
+ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945330"
+ms.lasthandoff: 08/20/2020
+ms.locfileid: "88647500"
 ---
 # <a name="microsoft-identity-platform-userinfo-endpoint"></a>Microsoft 标识平台的 UserInfo 终结点
 
@@ -56,7 +56,7 @@ UserInfo 是一个标准的 OAuth 持有者令牌 API，与任何其他 Microsof
 >
 > 在下一部分中，你可以使用此访问令牌。
 
-与任何其他 Microsoft Graph 令牌一样，你在此处收到的令牌可能不是 JWT。 
+与任何其他 Microsoft Graph 令牌一样，你在此处收到的令牌可能不是 JWT。 如果登录了一个 Microsoft 帐户用户，它将是加密令牌格式。 这是因为 Microsoft Graph 具有特殊的令牌颁发模式。 这不会影响你使用访问令牌调用 UserInfo 终结点的能力。
 
 ### <a name="calling-the-api"></a>调用 API
 

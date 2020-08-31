@@ -23,6 +23,8 @@
               href: quick-create-simulated-device-symm-key.md
             - name: Java
               href: quick-create-simulated-device-symmetric-key-java.md
+            - name: Python
+              href: quick-create-device-symmetric-key-python.md
         - name: X.509 证书证明
           items:
             - name: C
@@ -161,7 +163,7 @@
   items:
     - name: REST API
       href: /rest/api/iot-dps
-    - name: Resource Manager 模板
+    - name: 资源管理器模板
       href: 'https://docs.microsoft.com/azure/templates/microsoft.devices/deviceprovisioning-allversions'
     - name: 适用于 C 的 Azure IoT SDK
       href: 'https://github.com/Azure/azure-iot-sdk-c'
@@ -173,6 +175,8 @@
       href: 'https://github.com/Azure/azure-iot-sdk-java'
     - name: 适用于 .NET 的 Azure IoT SDK
       href: 'https://github.com/Azure/azure-iot-sdk-csharp'
+    - name: Azure CLI
+      href: 'https://docs.microsoft.com/cli/azure/azure-cli-reference-for-IoT'
 - name: 资源
   items:
     - name: Azure IoT 服务

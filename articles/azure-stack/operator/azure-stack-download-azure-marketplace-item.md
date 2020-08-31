@@ -3,18 +3,18 @@ title: 从 Azure 下载市场项并发布到 Azure Stack Hub
 description: 了解如何从 Azure 下载市场项并发布到 Azure Stack Hub。
 author: WenJason
 ms.topic: conceptual
-origin.date: 04/13/2020
-ms.date: 06/22/2020
+origin.date: 07/09/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: avishwan
 ms.lastreviewed: 12/23/2019
 zone_pivot_groups: state-connected-disconnected
-ms.openlocfilehash: 7e3cc326c3151ba25d73962ca9f68a843fc5e539
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: e8893d8147b8da87c0220aeca13adfbb8481dd14
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096476"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867845"
 ---
 # <a name="download-marketplace-items-to-azure-stack-hub"></a>将市场项下载到 Azure Stack Hub 
 
@@ -22,8 +22,8 @@ ms.locfileid: "85096476"
 
 有两种下载市场产品的场景：
 
-- **联网场景**：需将 Azure Stack Hub 环境连接到 Internet。 使用 Azure Stack Hub 管理员门户查找和下载项。
 - **离线或部分联网场景**：需使用市场联合集成工具访问 Internet 来下载市场项。 然后，将下载内容传输到离线 Azure Stack Hub 安装中。 此场景使用 PowerShell。
+- **联网场景**：需将 Azure Stack Hub 环境连接到 Internet。 使用 Azure Stack Hub 管理员门户查找和下载项。
 
 有关可下载的市场项的完整列表，请参阅 [Azure Stack Hub 的 Azure 市场项](azure-stack-marketplace-azure-items.md)。 有关 Azure Stack Hub 市场的最新添加、删除和更新的列表，请参阅 [Azure Stack Hub 市场更改](azure-stack-marketplace-changes.md)一文。
 

@@ -10,74 +10,76 @@ metadata:
   ms.topic: hub-page
   author: rockboyfor
   origin.date: 02/14/2020
-  ms.date: 04/27/2020
+  ms.date: 08/31/2020
+  ms.testscope: yes
+  ms.testdate: 08/31/2020
   ms.author: v-yeche
-  ms.openlocfilehash: d2db8356b9991a92b000bf12c51e5ada1c3eccdb
-  ms.sourcegitcommit: 2d8950c6c255361eb6c66406988e25c69cf4e0f5
+  ms.openlocfilehash: 117f8c551b80204d937773e897ad4f34e2bfe30c
+  ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 05/14/2020
-  ms.locfileid: "83392434"
+  ms.lasthandoff: 08/28/2020
+  ms.locfileid: "89052377"
 highlightedContent:
   items:
   - title: 使用 Azure CLI 创建 Linux 虚拟机
     itemType: quickstart
-    url: https://docs.azure.cn/virtual-machines/linux/quick-create-cli
+    url: ./linux/quick-create-cli.md
   - title: 使用 PowerShell 创建 Windows 虚拟机
     itemType: quickstart
-    url: https://docs.azure.cn/virtual-machines/windows/quick-create-powershell
+    url: ./windows/quick-create-powershell.md
   - title: 在门户中创建虚拟机规模集
     itemType: quickstart
-    url: https://docs.azure.cn/virtual-machine-scale-sets/quick-create-portal
+    url: ../virtual-machine-scale-sets/quick-create-portal.md
   - title: 专用主机 - 用于承载一个或多个虚拟机的物理服务器。
     itemType: concept
-    url: https://docs.azure.cn/virtual-machines/linux/dedicated-hosts
+    url: ./linux/dedicated-hosts.md
   - title: 邻近放置组 - 使 VM 尽可能相近，以便降低延迟。
     itemType: how-to-guide
-    url: https://docs.azure.cn/virtual-machines/linux/proximity-placement-groups
+    url: ./linux/proximity-placement-groups.md
 conceptualContent:
   items:
   - title: Linux 虚拟机
     links:
-    - url: https://docs.azure.cn/virtual-machines/linux/endorsed-distros
+    - url: ./linux/endorsed-distros.md
       itemType: concept
       text: 认可的发行版
-    - url: https://docs.azure.cn/virtual-machines/linux/tutorial-manage-disks
+    - url: ./linux/tutorial-manage-disks.md
       itemType: tutorial
       text: 创建和管理磁盘
-    - url: https://docs.azure.cn/virtual-machines/troubleshooting/linux-index
+    - url: ./troubleshooting/linux-index.yml
       itemType: how-to-guide
       text: 排查 Linux 虚拟机问题
     footerLink:
-      url: https://docs.azure.cn/virtual-machines/linux/
+      url: ./linux/index.yml
       text: 查看更多
   - title: Windows 虚拟机
     links:
-    - url: https://docs.azure.cn/virtual-machines/windows/quick-create-powershell
+    - url: ./windows/quick-create-powershell.md
       itemType: how-to-guide
       text: 使用 PowerShell 创建 VM
-    - url: https://docs.azure.cn/virtual-machines/windows/tutorial-manage-data-disk
+    - url: ./windows/tutorial-manage-data-disk.md
       itemType: tutorial
       text: 创建和管理磁盘
-    - url: https://docs.azure.cn/active-directory/managed-identities-azure-resources/qs-configure-portal-windows-vm?context=azure/virtual-machines/windows/context/windows-vm-context
+    - url: ../active-directory/managed-identities-azure-resources/qs-configure-portal-windows-vm.md?context=azure/virtual-machines/windows/context/windows-vm-context
       itemType: how-to-guide
       text: 配置托管标识
-    - url: https://docs.azure.cn/virtual-machines/troubleshooting/index
+    - url: ./troubleshooting/index.yml
       itemType: how-to-guide
       text: 排查 Windows 虚拟机问题
     footerLink:
-      url: https://docs.azure.cn/virtual-machines/windows/
+      url: ./windows/index.yml
       text: 查看更多
   - title: 虚拟机规模集
     links:
-    - url: https://docs.azure.cn/virtual-machine-scale-sets/quick-create-powershell
+    - url: ../virtual-machine-scale-sets/quick-create-powershell.md
       itemType: how-to-guide
       text: 使用 PowerShell 创建规模集
-    - url: https://docs.azure.cn/virtual-machine-scale-sets/orchestration-modes
+    - url: ../virtual-machine-scale-sets/orchestration-modes.md
       itemType: concept
       text: 业务流程模式
     footerLink:
-      url: https://docs.azure.cn/virtual-machine-scale-sets/
+      url: ../virtual-machine-scale-sets/index.yml
       text: 查看更多
 tools:
   title: 工具
@@ -100,8 +102,8 @@ additionalContent:
     - title: 模板库
       links:
       - text: 浏览快速入门模板库
-        url: https://github.com/Azure/azure-quickstart-templates/?resourceType=Microsoft.Compute&pageNumber=1&sort=Popular
+        url: https://azure.microsoft.com/resources/templates/?resourceType=Microsoft.Compute&pageNumber=1&sort=Popular
     - title: 故障排除
       links:
       - text: 有关排查错误的信息
-        url: https://docs.azure.cn/virtual-machines/troubleshooting/
+        url: ./troubleshooting/index.yml

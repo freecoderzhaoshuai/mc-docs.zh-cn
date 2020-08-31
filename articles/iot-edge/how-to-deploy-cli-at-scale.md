@@ -6,16 +6,17 @@ author: kgremban
 manager: philmea
 ms.author: v-tawe
 origin.date: 04/14/2020
-ms.date: 07/01/2020
+ms.date: 08/27/2020
 ms.topic: conceptual
 ms.service: iot-edge
+ms.custom: devx-track-azurecli
 services: iot-edge
-ms.openlocfilehash: f7d5bfb2ca6e2e25b2f815a33235afe8affb862a
-ms.sourcegitcommit: 4f84bba7e509a321b6f68a2da475027c539b8fd3
+ms.openlocfilehash: 53ef927566b6be721762b06b8f33948a2a25daea
+ms.sourcegitcommit: c8e590d907f20bbc9c4c05d9bfc93cf7cb1d776f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85796158"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88957820"
 ---
 # <a name="deploy-and-monitor-iot-edge-modules-at-scale-using-the-azure-cli"></a>使用 Azure CLI 大规模部署并监视 IoT Edge 模块
 

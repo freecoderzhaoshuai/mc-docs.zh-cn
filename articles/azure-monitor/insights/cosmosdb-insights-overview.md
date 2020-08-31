@@ -5,13 +5,13 @@ ms.subservice: ''
 ms.topic: conceptual
 author: Johnnytechn
 ms.author: v-johya
-ms.date: 07/17/2020
-ms.openlocfilehash: 94ab03fe3ce79e651376112cd11bc153fec81ccb
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.date: 08/20/2020
+ms.openlocfilehash: 500711dc14058f71d899cf38926dc8906a0c545b
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244497"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148692"
 ---
 # <a name="explore-azure-monitor-for-azure-cosmos-db"></a>探究适用于 Azure Cosmos DB 的 Azure Monitor
 
@@ -98,7 +98,7 @@ ms.locfileid: "87244497"
 
 ## <a name="pin-export-and-expand"></a>固定、导出和展开
 
-可以将任一指标部分固定到 [Azure 仪表板](https://docs.azure.cn/azure-portal/azure-portal-dashboards)，方法是选择该部分右上角的图钉图标。
+可以将任一指标部分固定到 [Azure 仪表板](../../azure-portal/azure-portal-dashboards.md)，方法是选择该部分右上角的图钉图标。
 
 ![仪表板指标部分的图钉示例](./media/cosmosdb-insights-overview/pin.png)
 
@@ -125,6 +125,8 @@ ms.locfileid: "87244497"
 如需故障排查指南，请参阅[故障排除文章](troubleshoot-workbooks.md)中提供的基于工作簿的专用见解。
 
 ## <a name="next-steps"></a>后续步骤
+
+* 配置[指标警报](../platform/alerts-metric.md)和[服务运行状况通知](../../service-health/alerts-activity-log-service-notifications-portal.md)来设置自动警报，以帮助检测问题。
 
 * 查看[使用 Azure Monitor 工作簿创建交互式报表](../platform/workbooks-overview.md)，了解工作簿旨在支持的方案、创作新报表和自定义现有报表的方式，以及更多信息。
 
