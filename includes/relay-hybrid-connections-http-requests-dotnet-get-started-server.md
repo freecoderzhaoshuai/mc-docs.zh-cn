@@ -2,19 +2,23 @@
 title: include 文件
 description: include 文件
 services: service-bus-relay
-author: clemensv
+author: rockboyfor
 ms.service: service-bus-relay
 ms.topic: include
-ms.date: 05/02/2018
-ms.author: clemensv
+origin.date: 05/02/2018
+ms.date: 07/27/2020
+ms.testscope: yes|no
+ms.testdate: 07/27/2020Null
+ms.author: v-yeche
 ms.custom: include file
-ms.openlocfilehash: c3acbdccce4f52bca4cb93f757a65399248fff16
-ms.sourcegitcommit: cada23b6400453ff9c08cfb08393e635e2fddac1
+ms.openlocfilehash: 87b717ad7d97da2f7f6058bdc0e1a9b12a0867ca
+ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/21/2020
-ms.locfileid: "83734522"
+ms.lasthandoff: 07/24/2020
+ms.locfileid: "88947128"
 ---
+<!--Verified successfully-->
 ### <a name="create-a-console-application"></a>创建控制台应用程序
 
 在 Visual Studio 中创建新的**控制台应用 (.NET Framework)** 项目。
@@ -24,6 +28,9 @@ ms.locfileid: "83734522"
 1. 右键单击新创建的项目，然后选择“管理 NuGet 包”。
 2. 选择“包括预发行版”选项。 
 3. 选择“浏览”，然后搜索 **Microsoft.Azure.Relay**。 在搜索结果中，选择“Microsoft Azure 中继”。
+
+    <!--CORRECT ON Microsoft Azure Relay-->
+
 4. 对于版本，选择 **2.0.0-preview1-20180523**。 
 5. 选择“安装”即可完成安装。 关闭对话框。
 
@@ -43,7 +50,7 @@ ms.locfileid: "83734522"
    
     ```csharp
     // replace {RelayNamespace} with the name of your namespace
-    private const string RelayNamespace = "{RelayNamespace}.servicebus.windows.net";
+    private const string RelayNamespace = "{RelayNamespace}.servicebus.chinacloudapi.cn";
 
     // replace {HybridConnectionName} with the name of your hybrid connection
     private const string ConnectionName = "{HybridConnectionName}";
@@ -117,7 +124,7 @@ ms.locfileid: "83734522"
    
         public class Program
         {
-            private const string RelayNamespace = "{RelayNamespace}.servicebus.windows.net";
+            private const string RelayNamespace = "{RelayNamespace}.servicebus.chinacloudapi.cn";
             private const string ConnectionName = "{HybridConnectionName}";
             private const string KeyName = "{SASKeyName}";
             private const string Key = "{SASKey}";
@@ -168,3 +175,4 @@ ms.locfileid: "83734522"
     }
     ```
 
+<!-- Update_Description: update meta properties, wording update, update link -->

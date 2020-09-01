@@ -8,18 +8,18 @@ author: WenJason
 ms.service: load-balancer
 ms.devlang: na
 ms.topic: how-to
-ms.custom: seodec18
+ms.custom: seodec18, devx-track-azurecli
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 origin.date: 09/25/2017
-ms.date: 07/20/2020
+ms.date: 08/31/2020
 ms.author: v-jay
-ms.openlocfilehash: 934b2cc1d16db0bc7eaa0b7bfe84c1dfa9dbcaab
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.openlocfilehash: 88c811d6615d3e969b5cf7cc1089f54419b001cc
+ms.sourcegitcommit: f8ed85740f873c15c239ab6ba753e4b76e030ba7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440341"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045786"
 ---
 # <a name="create-an-internal-load-balancer-using-a-template"></a>使用模板创建内部负载均衡器
 
@@ -41,7 +41,7 @@ ms.locfileid: "86440341"
 
 若要使用 PowerShell 部署下载的模板，请执行以下步骤。
 
-1. 如果从未使用过 Azure PowerShell，请参阅 [How to Install and Configure Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview)（如何安装和配置 Azure PowerShell），并始终按照说明进行操作，以登录到 Azure 并选择订阅。
+1. 如果从未使用过 Azure PowerShell，请参阅 [How to Install and Configure Azure PowerShell](https://docs.microsoft.com/powershell/azure/)（如何安装和配置 Azure PowerShell），并始终按照说明进行操作，以登录到 Azure 并选择订阅。
 2. 将参数文件下载到本地磁盘。
 3. 编辑该文件并将其保存。
 4. 运行 **New-AzResourceGroupDeployment** cmdlet 以使用模板创建资源组。

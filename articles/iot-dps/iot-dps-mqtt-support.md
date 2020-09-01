@@ -10,19 +10,19 @@ ms.author: ravokkar
 ms.custom:
 - amqp
 - mqtt
-ms.openlocfilehash: 2031fd5551e013687d1f48845a9f14b90ca4da92
-ms.sourcegitcommit: 9811bf312e0d037cb530eb16c8d85238fd276949
+ms.openlocfilehash: 73ef62df5574641fd03a3d73f3aed9f8770ca5e5
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84275617"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951316"
 ---
 # <a name="communicate-with-your-dps-using-the-mqtt-protocol"></a>使用 MQTT 协议与 DPS 通信
 
 DPS 可让设备使用以下协议来与 DPS 设备终结点通信：
 
 * 在端口 8883 上使用 [MQTT v3.1.1](https://mqtt.org/)
-* 在端口 443 上使用基于 WebSocket 的 [MQTT v3.1.1](http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html#_Toc398718127)。
+* 在端口 443 上使用基于 WebSocket 的 [MQTT v3.1.1](https://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html#_Toc398718127)。
 
 DPS 不是功能完备的 MQTT 中转站，并未支持 MQTT v3.1.1 标准中指定的所有行为。 本文介绍设备如何使用受支持的 MQTT 行为通过 DPS 进行通信。
 

@@ -3,18 +3,18 @@ title: 为 Azure Stack Hub 注册创建自定义角色
 titleSuffix: Azure Stack Hub
 description: 了解如何创建自定义角色，以避免使用全局管理员身份注册 Azure Stack Hub。
 author: WenJason
-ms.topic: article
-origin.date: 03/27/2020
-ms.date: 06/22/2020
+ms.topic: how-to
+origin.date: 08/05/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: rtiberiu
 ms.lastreviewed: 06/10/2019
-ms.openlocfilehash: 8f61e15faec61b8685031fa7ac87a6d1130e94ba
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: ede223bcf989dd9ce12f2613d0862824fa1719c9
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096525"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868032"
 ---
 # <a name="create-a-custom-role-for-azure-stack-hub-registration"></a>为 Azure Stack Hub 注册创建自定义角色
 
@@ -54,7 +54,7 @@ ms.locfileid: "85096525"
         "Microsoft.Authorization/roleAssignments/delete",
         "Microsoft.Authorization/permissions/read",
         "Microsoft.Authorization/locks/read",
-        "Microsoft.Authorization/locks/write
+        "Microsoft.Authorization/locks/write"
       ],
       "NotActions": [
       ],

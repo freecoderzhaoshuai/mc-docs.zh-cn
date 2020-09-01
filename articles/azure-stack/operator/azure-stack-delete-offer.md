@@ -4,16 +4,16 @@ description: 了解如何删除 Azure Stack Hub 配额、计划、套餐和订�
 author: WenJason
 ms.topic: article
 origin.date: 08/13/2019
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: efemmano
 ms.lastreviewed: 04/25/2019
-ms.openlocfilehash: e909b4628df3d91a2c0ea3f7ae73e30162c18106
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 2c15f471fe65ee24a4ca49117514f852a57ef4dc
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096348"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867848"
 ---
 # <a name="delete-quotas-plans-offers-and-subscriptions"></a>删除配额、计划、套餐和订阅
 
@@ -60,8 +60,9 @@ ms.locfileid: "85096348"
 
 或者，可以使用以下 REST API 删除某些配额：
 
-- [计算](https://docs.microsoft.com/rest/api/azurestack/quotas%20(compute)/delete)
+- [计算](https://docs.microsoft.com/rest/api/azurestack/quotas/delete)
 - [网络](https://docs.microsoft.com/rest/api/azurestack/quotas%20(network)/delete)
+- [存储](https://docs.microsoft.com/rest/api/azurestack/storagequotas/delete)
 
 > [!NOTE]
 > 如果当前有任何计划正在使用某个配额，则无法删除该配额。 必须先删除引用该配额的计划。

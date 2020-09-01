@@ -5,16 +5,16 @@ description: 了解如何创建和上传包含 Red Hat Linux 操作系统的 Azu
 author: WenJason
 ms.topic: article
 origin.date: 05/04/2020
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: kivenkat
 ms.lastreviewed: 12/11/2019
-ms.openlocfilehash: e21e2cee0de60073da654d6b8ae6e911e8a929ae
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 1021bb7300dce0bafa2f26b6ad8a9d0368ad2e58
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096453"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868031"
 ---
 # <a name="prepare-a-red-hat-based-virtual-machine-for-azure-stack-hub"></a>为 Azure Stack Hub 准备基于 Red Hat 的虚拟机
 
@@ -24,7 +24,7 @@ ms.locfileid: "85096453"
 
 ## <a name="prepare-a-red-hat-based-vm-from-hyper-v-manager"></a>通过 Hyper-V 管理器准备基于 Red Hat 的 VM
 
-本部分假设已从 Red Hat 网站获取 ISO 文件并将 RHEL 映像安装到虚拟硬盘 (VHD)。 有关如何使用 Hyper-V 管理器来安装操作系统映像的详细信息，请参阅[安装 Hyper-V 角色和配置 VM](https://technet.microsoft.com/library/hh846766.aspx)。
+本部分假设已从 Red Hat 网站获取 ISO 文件并将 RHEL 映像安装到虚拟硬盘 (VHD)。 有关如何使用 Hyper-V 管理器来安装操作系统映像的详细信息，请参阅[安装 Hyper-V 角色和配置 VM](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh846766(v=ws.11))。
 
 ### <a name="rhel-installation-notes"></a>RHEL 安装说明
 

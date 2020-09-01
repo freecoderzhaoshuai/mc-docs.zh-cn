@@ -11,18 +11,21 @@ metadata:
   author: mtillman
   ms.author: v-junlch
   manager: daveba
-  ms.date: 05/27/2020
-  ms.openlocfilehash: 572b2a0ca60af8fe11637f89e4bac8f80793db3a
-  ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+  ms.date: 08/28/2020
+  ms.openlocfilehash: 3e97ecd33c81411ad3e0cf95ca6e65960902f352
+  ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 05/29/2020
-  ms.locfileid: "84186594"
+  ms.lasthandoff: 08/28/2020
+  ms.locfileid: "89046474"
 highlightedContent:
   items:
   - title: 什么是 Azure AD？
     itemType: overview
     url: ./fundamentals/active-directory-whatis.md
+  - title: 保护远程工作人员
+    itemType: get-started
+    url: https://docs.microsoft.com/enterprise-mobility-security/remote-work/
   - title: 向用户分配角色
     itemType: how-to-guide
     url: ./fundamentals/active-directory-users-assign-role-azure-portal.md
@@ -34,6 +37,14 @@ highlightedContent:
     url: ./fundamentals/active-directory-how-subscriptions-associated-directory.md
 conceptualContent:
   items:
+  - title: 应用程序管理
+    links:
+    - url: ./manage-apps/view-applications-portal.md
+      itemType: quickstart
+      text: 查看使用你的租户进行标识管理的应用
+    footerLink:
+      url: ./manage-apps/index.yml
+      text: 查看详细信息
   - title: 身份验证
     links:
     - url: ./authentication/overview-authentication.md
@@ -48,32 +59,7 @@ conceptualContent:
     footerLink:
       url: ./authentication/index.yml
       text: 查看更多
-  - title: 企业对企业 (B2B)
-    links:
-    - url: ./b2b/what-is-b2b.md
-      itemType: overview
-      text: 什么是 Azure AD B2B？
-    - url: ./b2b/add-users-administrator.md
-      itemType: how-to-guide
-      text: 在门户中添加来宾用户
-    - url: ./b2b/o365-external-user.md
-      itemType: concept
-      text: B2B 和 Office 365 共享
-    footerLink:
-      url: ./b2b/index.yml
-      text: 查看更多
-  - title: 企业对客户 (B2C)
-    links:
-    - url: ../active-directory-b2c/overview.md
-      itemType: overview
-      text: 什么是 Azure AD B2C？
-    - url: ../active-directory-b2c/tutorial-create-tenant.md
-      itemType: tutorial
-      text: 创建 Azure AD B2C 租户
-    footerLink:
-      url: ../active-directory-b2c/index.yml
-      text: 查看更多
-  - title: 条件访问
+  - title: 条件性访问
     links:
     - url: ./conditional-access/overview.md
       itemType: overview
@@ -86,21 +72,21 @@ conceptualContent:
       text: 基于位置的条件
     footerLink:
       url: ./conditional-access/index.yml
-      text: 查看更多
-  - title: 开发人员
+      text: 查看详细信息
+  - title: 域服务
     links:
-    - url: ./develop/v2-overview.md
+    - url: ../active-directory-domain-services/overview.md
       itemType: overview
-      text: 关于 Microsoft 标识平台
-    - url: ./develop/v2-oauth2-auth-code-flow.md
-      itemType: concept
-      text: OAuth 2.0 代码流授权
-    - url: ./develop/quickstart-register-app.md
+      text: 什么是 Azure AD 域服务？
+    - url: ../active-directory-domain-services/tutorial-create-instance.md
       itemType: quickstart
-      text: 将应用注册到 Microsoft 标识平台
+      text: 启用 Azure AD 域服务
+    - url: ../active-directory-domain-services/manage-group-policy.md
+      itemType: how-to-guide
+      text: 管理组策略
     footerLink:
-      url: ./develop/index.yml
-      text: 查看更多
+      url: ../active-directory-domain-services/index.yml
+      text: 查看详细信息
   - title: 企业用户
     links:
     - url: ./users-groups-roles/groups-settings-v2-cmdlets.md
@@ -111,7 +97,21 @@ conceptualContent:
       text: Azure AD 服务限制和局限性
     footerLink:
       url: ./users-groups-roles/index.yml
-      text: 查看更多
+      text: 查看详细信息
+  - title: 外部标识
+    links:
+    - url: ./b2b/compare-with-b2c.md
+      itemType: overview
+      text: 比较适用于外部用户的解决方案
+    - url: ../active-directory-b2c/active-directory-b2c-overview.md
+      itemType: overview
+      text: 将应用扩展到消费者 (B2C)
+    - url: ./b2b/what-is-b2b.md
+      itemType: overview
+      text: 与组织外部的用户协作 (B2B)
+    footerLink:
+      url: ./b2b/index.yml
+      text: 查看详细信息
   - title: 混合标识
     links:
     - url: ./hybrid/whatis-hybrid-identity.md
@@ -122,6 +122,17 @@ conceptualContent:
       text: Azure AD Connect 自定义安装
     footerLink:
       url: ./hybrid/index.yml
+      text: 查看详细信息
+  - title: 标识治理
+    links:
+    - url: ./governance/entitlement-management-access-package-first.md
+      itemType: how-to-guide
+      text: 创建访问包
+    - url: ./governance/create-access-review.md
+      itemType: how-to-guide
+      text: 创建组或应用的访问评审
+    footerLink:
+      url: ./governance/index.yml
       text: 查看更多
   - title: Azure 资源的托管标识
     links:
@@ -136,6 +147,20 @@ conceptualContent:
       text: 支持托管标识的服务
     footerLink:
       url: ./managed-identities-azure-resources/index.yml
+      text: 查看详细信息
+  - title: Microsoft 标识平台
+    links:
+    - url: ./develop/v2-overview.md
+      itemType: overview
+      text: 关于 Microsoft 标识平台
+    - url: ./develop/v2-oauth2-auth-code-flow.md
+      itemType: concept
+      text: OAuth 2.0 代码流授权
+    - url: ./develop/quickstart-register-app.md
+      itemType: quickstart
+      text: 将应用注册到 Microsoft 标识平台
+    footerLink:
+      url: ./develop/index.yml
       text: 查看更多
   - title: Privileged Identity Management (PIM)
     links:
@@ -164,10 +189,13 @@ conceptualContent:
       text: 登录错误代码参考
     footerLink:
       url: ./reports-monitoring/index.yml
-      text: 查看更多
+      text: 查看详细信息
 additionalContent:
   sections:
   - items:
+    - title: Microsoft 365
+      summary: 探索 Microsoft 365，一个包括 Azure AD 的完整解决方案。
+      url: https://docs.microsoft.com/microsoft-365/
     - title: Azure AD PowerShell
       summary: 了解如何安装和使用 Azure AD PowerShell 模块。
       url: https://docs.microsoft.com/powershell/module/azuread/

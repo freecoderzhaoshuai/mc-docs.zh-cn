@@ -1,17 +1,19 @@
 ---
 title: CredentialsCombo UI 元素
 description: 介绍了 Azure 门户的 Microsoft.Compute.CredentialsCombo UI 元素。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 09/29/2018
-ms.date: 01/20/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 3681c698267bbd35e812d0e6485eadf4456ce5b0
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: f4e92ad488010f72d09c12472a2215aa2edf6f28
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "76170797"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807907"
 ---
 # <a name="microsoftcomputecredentialscombo-ui-element"></a>Microsoft.Compute.CredentialsCombo UI 元素
 
@@ -21,15 +23,15 @@ ms.locfileid: "76170797"
 
 对于 Windows，用户可以看到：
 
-![Microsoft.Compute.CredentialsCombo Windows](./media/managed-application-elements/microsoft.compute.credentialscombo-windows.png)
+:::image type="content" source="./media/managed-application-elements/microsoft-compute-credentialscombo-windows.png" alt-text="Microsoft.Compute.CredentialsCombo Windows":::
 
 对于选择了密码的 Linux，用户可以看到：
 
-![Microsoft.Compute.CredentialsCombo Linux 密码](./media/managed-application-elements/microsoft.compute.credentialscombo-linux-password.png)
+:::image type="content" source="./media/managed-application-elements/microsoft-compute-credentialscombo-linux-password.png" alt-text="Microsoft.Compute.CredentialsCombo Linux 密码":::
 
 对于选择了 SSH 公钥的 Linux，用户可以看到：
 
-![Microsoft.Compute.CredentialsCombo Linux 密钥](./media/managed-application-elements/microsoft.compute.credentialscombo-linux-key.png)
+:::image type="content" source="./media/managed-application-elements/microsoft-compute-credentialscombo-linux-key.png" alt-text="Microsoft.Compute.CredentialsCombo Linux 密钥":::
 
 ## <a name="schema"></a>架构
 
@@ -123,5 +125,4 @@ ms.locfileid: "76170797"
 * 有关创建 UI 定义的简介，请参阅 [CreateUiDefinition 入门](create-uidefinition-overview.md)。
 * 有关 UI 元素中的公用属性的说明，请参阅 [CreateUiDefinition 元素](create-uidefinition-elements.md)。
 
-<!-- Update_Description: new article about microsoft compute credentialscombo -->
-<!--NEW.date: 01/20/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

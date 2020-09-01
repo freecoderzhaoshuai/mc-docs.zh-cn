@@ -10,13 +10,13 @@ metadata:
   author: WenJason
   ms.author: v-jay
   origin.date: 11/04/2019
-  ms.date: 03/23/2019
-  ms.openlocfilehash: eafc932520a154174180b5ad1d67dcfd0d79f490
-  ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+  ms.date: 08/31/2019
+  ms.openlocfilehash: 01e3324b2b2b9258b2d4f9a556191a944c02e836
+  ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 04/17/2020
-  ms.locfileid: "79547052"
+  ms.lasthandoff: 08/26/2020
+  ms.locfileid: "88868034"
 highlightedContent:
   items:
   - title: Azure Stack 系列公告
@@ -24,18 +24,18 @@ highlightedContent:
     url: http://aka.ms/AzsFamAnnounce
   - title: 比较 Azure Stack 系列的产品和解决方案
     itemType: overview
-    url: /azure-stack/operator/compare-azure-azure-stack
+    url: ./operator/compare-azure-azure-stack.md
 productDirectory:
   items:
   - title: Azure Stack Hub
     imageSrc: media/index/azure-stack-hub.svg
     links:
-    - url: /azure-stack/operator/azure-stack-overview
+    - url: ./operator/azure-stack-overview.md
       text: 什么是 Azure Stack Hub？
   - title: Azure Stack HCI
     imageSrc: media/index/azure-stack-hci.svg
     links:
-    - url: /azure-stack/hci/overview
+    - url: ./hci/overview.md
       text: Azure Stack HCI 概述
 conceptualContent:
   title: 混合模式和解决方案示例
@@ -57,9 +57,12 @@ conceptualContent:
     - url: /azure-stack/hybrid/pattern-cicd-pipeline
       itemType: architecture
       text: DevOps 混合 CI/CD
+    - url: /azure-stack/hybrid/pattern-retail-footfall-detection
+      itemType: architecture
+      text: 客流量检测（零售）
     - url: /azure-stack/hybrid/pattern-geo-distributed
       itemType: architecture
-      text: 地理分散的应用
+      text: 地区分布式应用
   - title: 部署混合解决方案示例
     links:
     - url: /azure-stack/hybrid/solution-deployment-guide-cross-cloud-scaling
@@ -68,40 +71,43 @@ conceptualContent:
     - url: https://aka.ms/hybriddevopsdeploy
       itemType: tutorial
       text: DevOps 混合 CI/CD
+    - url: /azure-stack/hybrid/solution-deployment-guide-retail-footfall-detection
+      itemType: tutorial
+      text: 客流量检测（零售）
     - url: /azure-stack/hybrid/solution-deployment-guide-geo-distributed
       itemType: tutorial
-      text: 地理分散的应用
+      text: 地区分布式应用
 additionalContent:
   sections:
   - title: Azure Stack Hub
     items:
-    - title: 操作员
+    - title: 运算符
       links:
-      - url: /azure-stack/operator/azure-stack-manage-portals
+      - url: ./operator/azure-stack-manage-portals.md
         text: 使用管理员门户
-      - url: /azure-stack/operator/release-notes
+      - url: ./operator/release-notes.md
         text: 发行说明
-      - url: /azure-stack/operator/azure-stack-servicing-policy
+      - url: ./operator/azure-stack-servicing-policy.md
         text: Azure Stack Hub 服务策略
-      - url: /azure-stack/operator/azure-stack-create-service-principals
+      - url: ./operator/azure-stack-create-service-principals.md
         text: 使用应用标识访问资源
     - title: 用户
       links:
-      - url: /azure-stack/user/azure-stack-quick-windows-portal
+      - url: ./user/azure-stack-quick-windows-portal.md
         text: 部署 VM
-      - url: /azure-stack/user/azure-stack-vm-sizes
+      - url: ./user/azure-stack-vm-sizes.md
         text: 支持的 VM 大小
-      - url: /azure-stack/user/azure-stack-considerations
+      - url: ./user/azure-stack-considerations.md
         text: 构建应用的重要注意事项
-      - url: /azure-stack/user/azure-stack-key-vault-manage-portal
+      - url: ./user/azure-stack-key-vault-manage-portal.md
         text: 创建和管理密钥保管库
     - title: Azure Stack 开发工具包 (ASDK)
       links:
-      - url: /azure-stack/asdk/asdk-deploy-considerations
+      - url: ./asdk/asdk-deploy-considerations.md
         text: ASDK 要求和注意事项
-      - url: /azure-stack/asdk/asdk-download
+      - url: ./asdk/asdk-download.md
         text: 下载并提取 ASDK
-      - url: /azure-stack/asdk/asdk-prepare-host
+      - url: ./asdk/asdk-prepare-host.md
         text: 准备 ASDK 主机
   - title: Azure Stack HCI
     items:
@@ -122,7 +128,7 @@ additionalContent:
       - url: https://docs.microsoft.com/windows-server/virtualization/hyper-v/hyper-v-on-windows-server
         text: Hyper-V
       - url: https://docs.microsoft.com/windows-server/storage/storage-spaces/storage-spaces-direct-overview
-        text: 存储空间直通
+        text: Storage Spaces Direct
       - url: https://docs.microsoft.com/windows-server/networking/sdn
         text: 软件定义的网络
       - url: https://docs.microsoft.com/windows-server/failover-clustering/failover-clustering-overview

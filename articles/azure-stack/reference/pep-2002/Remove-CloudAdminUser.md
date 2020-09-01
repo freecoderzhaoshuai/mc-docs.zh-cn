@@ -4,16 +4,16 @@ description: PowerShell Azure Stack 特权终结点 - Remove-CloudAdminUser 参�
 author: WenJason
 ms.topic: reference
 origin.date: 04/27/2020
-ms.date: 06/22/2020
+ms.date: 08/30/2020
 ms.author: v-jay
 ms.reviewer: fiseraci
 ms.lastreviewed: 04/27/2020
-ms.openlocfilehash: c7cfcb89c34b7cda251541326ca5111614739849
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 81d5d9cfa067fb192ca7d02d1cdffb8ed588902d
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096974"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867992"
 ---
 # <a name="remove-cloudadminuser"></a>Remove-CloudAdminUser
 
@@ -73,4 +73,4 @@ Accept wildcard characters: False
 
 ## <a name="next-steps"></a>后续步骤
 
-有关如何访问和使用特权终结点的信息，请参阅[使用 Azure Stack Hub 中的特权终结点](/azure-stack/operator/azure-stack-privileged-endpoint)。
+有关如何访问和使用特权终结点的信息，请参阅[使用 Azure Stack Hub 中的特权终结点](../../operator/azure-stack-privileged-endpoint.md)。

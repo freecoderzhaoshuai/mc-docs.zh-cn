@@ -1,18 +1,18 @@
 ---
 title: 使用 Azure Site Recovery 保护 Azure Stack HCI VM
 description: 使用 Windows Admin Center 通过 Azure Site Recovery 保护 Azure Stack HCI VM。
-ms.topic: article
+ms.topic: how-to
 author: WenJason
 ms.author: v-jay
 origin.date: 04/30/2020
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.localizationpriority: low
-ms.openlocfilehash: 3ae877bd73b6178cc26ec20602c4ade83f715460
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 07c70c81ba68ea98ef18e3bdd85346a4698ecd4a
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096953"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868066"
 ---
 # <a name="protect-azure-stack-hci-vms-using-azure-site-recovery"></a>使用 Azure Site Recovery 保护 Azure Stack HCI VM
 
@@ -54,13 +54,13 @@ Azure Site Recovery 包括以下两个组件：复制和故障转移。 复制�
 
    - **订阅：** 要用于此主机上的 VM 复制的 Azure 订阅。
    - **资源组：** 一个新资源组名称。
-   - **恢复服务保管库：** 此主机上受保护 VM 的 Azure Site Recovery 保管库的名称。  
+   - **恢复服务保管库：** 此主机上受保护 VM 的 Azure Site Recovery 保管库的名称。
    - **位置：** 应在其中创建 Azure Site Recovery 资源的 Azure 区域。
 
     :::image type="content" source="media/azure-site-recovery/set-up-host-with-asr.png" alt-text="Windows Admin Center 中的“通过 Azure Site Recovery 设置主机”页面。":::
 
 1. 等待，直至看到通知：**Site Recovery 设置已完成**。
- 
+
 此过程最长可能需要 10 分钟。 你可以转到“通知”（Windows Admin Center 右上角的钟形图标）来查看进度。
 
 >[!NOTE]
@@ -82,11 +82,11 @@ Azure Site Recovery 包括以下两个组件：复制和故障转移。 复制�
 
     :::image type="content" source="media/azure-site-recovery/protect-vm-setting-asr.png" alt-text="在 Windows Admin Center 中定义 Azure Site Recovery 的存储帐户来保护 VM。":::
 
-    Azure Site Recovery 启动复制过程。 如果“虚拟机清单”网格的“受保护”列中的值变为“是”，则 VM 受保护。   此过程可能需要几分钟时间。  
+    Azure Site Recovery 启动复制过程。 如果“虚拟机清单”网格的“受保护”列中的值变为“是”，则 VM 受保护。   此过程可能需要几分钟时间。
 
 ## <a name="step-3-configure-and-run-a-test-failover-in-the-azure-portal"></a>步骤 3：在 Azure 门户中配置并运行测试性故障转移
 在开始 VM 复制之前，不需要完成此步骤。 VM 仅由复制提供保护。 但是，我们建议在设置 Azure Site Recovery 时配置故障转移设置。
- 
+
 请完成以下步骤来准备到 Azure VM 的故障转移：
 1. 设置一个 Azure 网络，以便已进行故障转移的虚拟机将其附加到此 VNET。 若要了解详细信息，请参阅[设置从本地 Hyper-V VM 到 Azure 的灾难恢复](/site-recovery/hyper-v-site-walkthrough-prepare-azure)。
 

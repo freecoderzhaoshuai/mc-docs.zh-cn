@@ -1,17 +1,19 @@
 ---
 title: TextBlock UI 元素
 description: 介绍了 Azure 门户的 Microsoft.Common.TextBlock UI 元素。 用于向界面添加文本。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 06/27/2018
-ms.date: 01/20/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 8199fadee5b252fe8403c4c116352defa42fab5a
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 56adde47215a6527b24e209c6b1cf5f2d7a1d632
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "76170665"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807911"
 ---
 # <a name="microsoftcommontextblock-ui-element"></a>Microsoft.Common.TextBlock UI 元素
 
@@ -19,7 +21,7 @@ ms.locfileid: "76170665"
 
 ## <a name="ui-sample"></a>UI 示例
 
-![Microsoft.Common.TextBox](./media/managed-application-elements/microsoft.common.textblock.png)
+:::image type="content" source="./media/managed-application-elements/microsoft-common-textblock.png" alt-text="Microsoft.Common.TextBox":::
 
 ## <a name="schema"></a>架构
 
@@ -49,5 +51,4 @@ ms.locfileid: "76170665"
 * 有关创建 UI 定义的简介，请参阅 [CreateUiDefinition 入门](create-uidefinition-overview.md)。
 * 有关 UI 元素中的公用属性的说明，请参阅 [CreateUiDefinition 元素](create-uidefinition-elements.md)。
 
-<!-- Update_Description: new article about microsoft common textblock -->
-<!--NEW.date: 01/20/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

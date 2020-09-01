@@ -4,16 +4,16 @@ description: PowerShell Azure Stack 特权终结点 - New-CloudAdminUser 参考
 author: WenJason
 ms.topic: reference
 origin.date: 04/27/2020
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: fiseraci
 ms.lastreviewed: 04/27/2020
-ms.openlocfilehash: 7673fd9ccc2eee78120c8c9cea88745fcc498658
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 59a57347b634f4db795616209bb68abcde281508
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096943"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867998"
 ---
 # <a name="new-cloudadminuser"></a>New-CloudAdminUser
 
@@ -72,4 +72,4 @@ Accept wildcard characters: False
 
 ## <a name="next-steps"></a>后续步骤
 
-有关如何访问和使用特权终结点的信息，请参阅[使用 Azure Stack Hub 中的特权终结点](/azure-stack/operator/azure-stack-privileged-endpoint)。
+有关如何访问和使用特权终结点的信息，请参阅[使用 Azure Stack Hub 中的特权终结点](../../operator/azure-stack-privileged-endpoint.md)。

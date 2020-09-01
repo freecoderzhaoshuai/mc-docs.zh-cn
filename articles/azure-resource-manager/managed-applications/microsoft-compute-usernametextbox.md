@@ -1,17 +1,19 @@
 ---
 title: UserNameTextBox UI 元素
 description: 介绍了 Azure 门户的 Microsoft.Compute.UserNameTextBox UI 元素。 使用户能够提供 Windows 或 Linux 用户名。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 06/27/2018
-ms.date: 01/20/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 1e6d8ac7f7798aabf248047ec9475f8340f3e3ce
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 396c3c575834972ff507190218ce4a8d0970dcaf
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "76170789"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807899"
 ---
 # <a name="microsoftcomputeusernametextbox-ui-element"></a>Microsoft.Compute.UserNameTextBox UI 元素
 
@@ -19,7 +21,7 @@ ms.locfileid: "76170789"
 
 ## <a name="ui-sample"></a>UI 示例
 
-![Microsoft.Compute.UserNameTextBox](./media/managed-application-elements/microsoft.compute.usernametextbox.png)
+:::image type="content" source="./media/managed-application-elements/microsoft-compute-usernametextbox.png" alt-text="Microsoft.Compute.UserNameTextBox":::
 
 ## <a name="schema"></a>架构
 
@@ -59,5 +61,4 @@ ms.locfileid: "76170789"
 * 有关创建 UI 定义的简介，请参阅 [CreateUiDefinition 入门](create-uidefinition-overview.md)。
 * 有关 UI 元素中的公用属性的说明，请参阅 [CreateUiDefinition 元素](create-uidefinition-elements.md)。
 
-<!-- Update_Description: new article about microsoft compute usernametextbox -->
-<!--NEW.date: 01/20/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

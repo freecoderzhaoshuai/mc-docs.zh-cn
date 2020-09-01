@@ -11,12 +11,12 @@ origin.date: 04/01/2020
 ms.date: 08/18/2020
 zone_pivot_group_filename: data-explorer/zone-pivot-groups.json
 zone_pivot_groups: kql-flavors
-ms.openlocfilehash: fb3bd5a96232e02f47583d9b6fb4f7d8f1dd9423
-ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
+ms.openlocfilehash: c86b82d11d41967cd045976b387f6e085852e2aa
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/18/2020
-ms.locfileid: "88515686"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951235"
 ---
 # <a name="python-plugin"></a>Python 插件
 
@@ -64,7 +64,7 @@ Python 插件使用 Python 脚本运行用户定义函数 (UDF)。 Python 脚本
 ## <a name="python-sandbox-image"></a>Python 沙盒映像
 
 * Python 沙盒映像基于 Anaconda 5.2.0 发行版和 Python 3.6 引擎 。
-  请参阅 [Anaconda 包](http://docs.anaconda.com/anaconda/packages/old-pkg-lists/5.2.0/py3.6_win-64/)的列表。
+  请参阅 [Anaconda 包](https://docs.anaconda.com/anaconda/packages/old-pkg-lists/5.2.0/py3.6_win-64/)的列表。
   
   > [!NOTE]
   > 有一小部分包可能与运行插件的沙盒所实施的限制不兼容。

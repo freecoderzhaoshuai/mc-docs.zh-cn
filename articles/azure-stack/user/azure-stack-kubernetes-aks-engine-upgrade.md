@@ -4,16 +4,16 @@ description: 了解如何升级 Azure Stack Hub 上的 Kubernetes 群集。
 author: WenJason
 ms.topic: article
 origin.date: 4/23/2020
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: waltero
 ms.lastreviewed: 4/23/2020
-ms.openlocfilehash: 8a80d2104b08c8226efdbef69c263589f953bc6b
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 47bdddb23d5269be84d72189790fd163dacf6ba9
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096795"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867695"
 ---
 # <a name="upgrade-a-kubernetes-cluster-on-azure-stack-hub"></a>升级 Azure Stack Hub 上的 Kubernetes 群集
 
@@ -66,7 +66,7 @@ Azure 不管理群集。 但可使用 Azure 提供的工具和 VM 映像来管�
     | azure-env | AzureStackCloud | 若要向 AKS 引擎指示目标平台是 Azure Stack Hub，请使用 `AzureStackCloud`。 |
     | location | local | Azure Stack Hub 的区域名称。 对于 ASDK，此区域设置为 `local`。 |
     | resource-group | kube-rg | 输入新资源组的名称，或者选择现有资源组。 资源名称必须为字母数字，且必须小写。 |
-    | subscription-id | xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx | 输入订阅 ID。 有关详细信息，请参阅[订阅套餐](/azure-stack/user/azure-stack-subscribe-services#subscribe-to-an-offer) |
+    | subscription-id | xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx | 输入订阅 ID。 有关详细信息，请参阅[订阅套餐](./azure-stack-subscribe-services.md#subscribe-to-an-offer) |
     | api-model | ./kubernetes-azurestack.json | 群集配置文件的路径或 API 模型。 |
     | client-id | xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx | 输入服务主体 GUID。 Azure Stack Hub 管理员创建服务主体时标识为应用程序 ID 的客户端 ID。 |
     | client-secret | xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx | 输入服务主体密码。 这是在创建服务时设置的客户端机密。 |

@@ -1,17 +1,20 @@
 ---
 title: 教程 - 从 Azure 门户导出模板
 description: 了解如何使用导出的模板完成模板开发。
-author: rockboyfor
 origin.date: 03/27/2020
-ms.date: 04/30/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.topic: tutorial
 ms.author: v-yeche
-ms.openlocfilehash: b66e3133f398c18be4152e2fc409a76af3449c30
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 6db0b85ba8810cab5ca40ac94bd876071b791705
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596065"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807873"
 ---
 # <a name="tutorial-use-exported-template-from-the-azure-portal"></a>教程：从 Azure 门户使用导出的模板
 
@@ -45,7 +48,6 @@ ms.locfileid: "82596065"
         "Standard_GRS",
         "Standard_RAGRS",
         "Premium_LRS",
-        "Standard_GZRS",
         "Standard_RAGZRS"
       ]
     },
@@ -98,7 +100,7 @@ ms.locfileid: "82596065"
     - **区域**：选择一个 Azure 位置。 例如，**中国北部**。
     - **定价层**：为了节省成本，请将 SKU 更改为“基本 B1”（在“开发/测试”下）。 
 
-    ![资源管理器模板 - 在门户中导出模板](./media/template-tutorial-export-template/resource-manager-template-export.png)
+    :::image type="content" source="./media/template-tutorial-export-template/resource-manager-template-export.png" alt-text="资源管理器模板 - 在门户中导出模板":::
 1. 选择“查看并创建”。 
 1. 选择“创建”  。 创建资源需要花费片刻时间。
 
@@ -106,17 +108,17 @@ ms.locfileid: "82596065"
 
 1. 选择“转到资源”。 
 
-    ![转到资源](./media/template-tutorial-export-template/resource-manager-template-export-go-to-resource.png)
+    :::image type="content" source="./media/template-tutorial-export-template/resource-manager-template-export-go-to-resource.png" alt-text="转到资源":::
 
 1. 选择“导出模板”  。
 
-    ![资源管理器模板 - 导出模板](./media/template-tutorial-export-template/resource-manager-template-export-template.png)
+    :::image type="content" source="./media/template-tutorial-export-template/resource-manager-template-export-template.png" alt-text="资源管理器模板 - 导出模板":::
 
    导出模板功能将提取资源的当前状态，并生成用于部署该资源的模板。 导出模板可能有助于快速获取部署资源所需的 JSON。
 
 1. 将 **Microsoft.Web/serverfarms** 定义和参数定义复制到模板。
 
-    ![资源管理器模板 - 导出模板 - 导出的模板](./media/template-tutorial-export-template/resource-manager-template-exported-template.png)
+    :::image type="content" source="./media/template-tutorial-export-template/resource-manager-template-exported-template.png" alt-text="资源管理器模板 - 导出模板 - 导出的模板":::
 
 > [!IMPORTANT]
 > 通常，导出的模板比创建模板时所需的信息更详细。 例如，导出的模板中的 SKU 对象包含五个属性。 此模板是可行的，但你只需使用 **name** 属性。 可以从导出的模板着手，然后根据要求对其进行修改。
@@ -147,7 +149,6 @@ ms.locfileid: "82596065"
         "Standard_GRS",
         "Standard_RAGRS",
         "Premium_LRS",
-        "Standard_GZRS",
         "Standard_RAGZRS"
       ]
     },

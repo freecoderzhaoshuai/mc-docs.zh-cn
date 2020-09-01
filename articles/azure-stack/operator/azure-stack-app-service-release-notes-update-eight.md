@@ -5,16 +5,16 @@ author: WenJason
 manager: digimobile
 ms.topic: article
 origin.date: 05/05/2020
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
-ms.reviewer: ''
+ms.reviewer: anwestg
 ms.lastreviewed: 03/25/2019
-ms.openlocfilehash: 05c0b997c685b0b57c8c1d811e8f30e649509ab7
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 45a9287264799b74ac11da288cadd18e5c13b3d5
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096488"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868018"
 ---
 # <a name="app-service-on-azure-stack-hub-update-8-release-notes"></a>Azure Stack Hub 上的应用服务 Update 8 发行说明
 
@@ -299,7 +299,7 @@ Azure Stack Hub 上的 Azure 应用服务的所有新部署将对所有虚拟机
 
 ## <a name="known-issues-for-cloud-admins-operating-azure-app-service-on-azure-stack-hub"></a>云管理员在操作基于 Azure Stack Hub 的 Azure 应用服务时的已知问题
 
-请参阅 [Azure Stack Hub 1907 发行说明](azure-stack-release-notes-1907.md)中的文档。
+请参阅 [Azure Stack Hub 1907 发行说明](./release-notes.md?view=azs-2002)中的文档。
 
 ## <a name="next-steps"></a>后续步骤
 

@@ -7,13 +7,13 @@ ms.reviewer: mblythe
 ms.service: data-explorer
 ms.topic: conceptual
 origin.date: 08/05/2019
-ms.date: 03/23/2020
-ms.openlocfilehash: 8da032b4ef25f95a06bb93053f2de76d533d0acf
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.date: 05/09/2020
+ms.openlocfilehash: 41f3652e1e0e13a3ac211fdc677588946c3ded1a
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79543302"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951345"
 ---
 # <a name="query-data-using-the-azure-data-explorer-python-library"></a>使用 Azure 数据资源管理器 Python 库查询数据
 
@@ -39,7 +39,7 @@ pip install azure-kusto-data
 
 > [!NOTE]
 > 请将终结点从  
-> `CLOUD_LOGIN_URL = "https://login.microsoftonline.com/"` 到 `CLOUD_LOGIN_URL = "https://login.partner.microsoftonline.cn"`  
+> `CLOUD_LOGIN_URL = "https://login.partner.microsoftonline.cn"` 到 `CLOUD_LOGIN_URL = "https://login.partner.microsoftonline.cn"`  
 > （在下载的库文件 `<YourPythonInstallPath>\Lib\site-packages\azure\kusto\data\security.py` 中），使其可在 Azure 中国内运行。
 
 ## <a name="add-import-statements-and-constants"></a>添加导入语句和常量

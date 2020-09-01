@@ -5,19 +5,19 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: authentication
 ms.topic: how-to
-ms.date: 06/02/2020
+ms.date: 08/28/2020
 ms.author: v-junlch
 author: iainfoulds
 manager: daveba
 ms.reviewer: annaba
 ms.collection: M365-identity-device-management
 ms.custom: has-adal-ref
-ms.openlocfilehash: 58a9b59f52f5d3980e81d91b0781b101cf86d6ae
-ms.sourcegitcommit: 9811bf312e0d037cb530eb16c8d85238fd276949
+ms.openlocfilehash: b7389754df8b5cd9b12a4bc2bba7b8e00a8109fe
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84275376"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046298"
 ---
 # <a name="get-started-with-certificate-based-authentication-in-azure-active-directory"></a>Azure Active Directory 中基于证书的身份验证入门
 
@@ -69,6 +69,7 @@ ms.locfileid: "84275376"
 
 证书颁发机构的架构如下所示：
 
+```csharp
     class TrustedCAsForPasswordlessAuth
     {
        CertificateAuthorityInformation[] certificateAuthorities;
@@ -90,13 +91,16 @@ ms.locfileid: "84275376"
         RootAuthority = 0,
         IntermediateAuthority = 1
     }
+```
 
-对于此配置，可以使用 [Azure Active Directory PowerShell 版本 2](https://docs.microsoft.com/powershell/azure/install-adv2?view=azureadps-2.0)：
+对于此配置，可以使用 [Azure Active Directory PowerShell 版本 2](https://docs.microsoft.com/powershell/azure/active-directory/install-adv2?view=azureadps-2.0)：
 
 1. 使用管理员特权启动 Windows PowerShell。
 2. 安装 Azure AD 模块 [2.0.0.33](https://www.powershellgallery.com/packages/AzureAD/2.0.0.33) 或更高版本。
 
-        Install-Module -Name AzureAD -RequiredVersion 2.0.0.33
+```powershell
+    Install-Module -Name AzureAD -RequiredVersion 2.0.0.33
+```
 
 作为第一个配置步骤，需建立与租户的连接。 与租户建立连接后，即可查看、添加、删除和修改目录中定义的受信任的证书颁发机构。
 
@@ -104,39 +108,49 @@ ms.locfileid: "84275376"
 
 若要建立与租户的连接，请使用 [Connect-AzureAD](https://docs.microsoft.com/powershell/module/azuread/connect-azuread?view=azureadps-2.0) cmdlet：
 
+```azurepowershell
     Connect-AzureAD -AzureEnvironmentName AzureChinaCloud
+```
 
 ### <a name="retrieve"></a>检索
 
 若要检索目录中定义的受信任的证书颁发机构，请使用 [Get-AzureADTrustedCertificateAuthority](https://docs.microsoft.com/powershell/module/azuread/get-azureadtrustedcertificateauthority?view=azureadps-2.0) cmdlet。
 
+```azurepowershell
     Get-AzureADTrustedCertificateAuthority
+```
 
 ### <a name="add"></a>添加
 
 若要创建受信任的证书颁发机构，请使用 [New-AzureADTrustedCertificateAuthority](https://docs.microsoft.com/powershell/module/azuread/new-azureadtrustedcertificateauthority?view=azureadps-2.0) cmdlet，并将 **crlDistributionPoint** 属性设为正确的值：
 
+```azurepowershell
     $cert=Get-Content -Encoding byte "[LOCATION OF THE CER FILE]"
     $new_ca=New-Object -TypeName Microsoft.Open.AzureAD.Model.CertificateAuthorityInformation
     $new_ca.AuthorityType=0
     $new_ca.TrustedCertificate=$cert
     $new_ca.crlDistributionPoint="<CRL Distribution URL>"
     New-AzureADTrustedCertificateAuthority -CertificateAuthorityInformation $new_ca
+```
 
 ### <a name="remove"></a>删除
 
 若要删除受信任的证书颁发机构，请使用 [Remove-AzureADTrustedCertificateAuthority](https://docs.microsoft.com/powershell/module/azuread/remove-azureadtrustedcertificateauthority?view=azureadps-2.0) cmdlet：
 
+```azurepowershell
     $c=Get-AzureADTrustedCertificateAuthority
     Remove-AzureADTrustedCertificateAuthority -CertificateAuthorityInformation $c[2]
+```
 
 ### <a name="modify"></a>修改
 
 若要修改受信任的证书颁发机构，请使用 [Set-AzureADTrustedCertificateAuthority](https://docs.microsoft.com/powershell/module/azuread/set-azureadtrustedcertificateauthority?view=azureadps-2.0) cmdlet：
 
+```azurepowershell
     $c=Get-AzureADTrustedCertificateAuthority
     $c[0].AuthorityType=1
     Set-AzureADTrustedCertificateAuthority -CertificateAuthorityInformation $c[0]
+```
 
 ## <a name="step-3-configure-revocation"></a>步骤 3：配置吊销
 
@@ -152,17 +166,23 @@ ms.locfileid: "84275376"
 
 1. 使用管理员凭据连接到 MSOL 服务：
 
+```powershell
         $msolcred = get-credential
         connect-msolservice -AzureEnvironment AzureChinaCloud -credential $msolcred
+```
 
 2. 检索用户的当前 StsRefreshTokensValidFrom 值：
 
+```powershell
         $user = Get-MsolUser -UserPrincipalName test@yourdomain.com`
         $user.StsRefreshTokensValidFrom
+```
 
 3. 将用户的新 StsRefreshTokensValidFrom 值配置为等于当前时间戳：
 
+```powershell
         Set-MsolUser -UserPrincipalName test@yourdomain.com -StsRefreshTokensValidFrom ("03/05/2016")
+```
 
 所设日期必须属于将来。 如果日期不属于将来，则不会设置 **StsRefreshTokensValidFrom** 属性。 如果日期属于将来，则将 **StsRefreshTokensValidFrom** 设置为当前时间（而不是由 Set-MsolUser 命令指示的日期）。
 

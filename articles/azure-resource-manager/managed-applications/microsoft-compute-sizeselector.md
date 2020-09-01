@@ -1,17 +1,19 @@
 ---
 title: SizeSelector UI 元素
 description: 介绍了 Azure 门户的 Microsoft.Compute.SizeSelector UI 元素。 用于选择虚拟机的大小。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 06/27/2018
-ms.date: 01/20/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 0546003ade0d7e13de717e59a1b180d450f10329
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 7ffc215f5782655d15f5f2af6d7f8edb01e09034
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "76170799"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807853"
 ---
 # <a name="microsoftcomputesizeselector-ui-element"></a>Microsoft.Compute.SizeSelector UI 元素
 
@@ -21,11 +23,11 @@ ms.locfileid: "76170799"
 
 用户会看到一个选择器，其中包含元素定义中的默认值。
 
-![Microsoft.Compute.SizeSelector](./media/managed-application-elements/microsoft.compute.sizeselector.png)
+:::image type="content" source="./media/managed-application-elements/microsoft-compute-sizeselector.png" alt-text="Microsoft.Compute.SizeSelector":::
 
 选择控件后，用户会看到可用大小的展开视图。
 
-![展开的 Microsoft.Compute.SizeSelector](./media/managed-application-elements/microsoft.compute.sizeselector-expanded.png)
+:::image type="content" source="./media/managed-application-elements/microsoft-compute-sizeselector-expanded.png" alt-text="展开的 Microsoft.Compute.SizeSelector":::
 
 ## <a name="schema"></a>架构
 
@@ -82,5 +84,4 @@ ms.locfileid: "76170799"
 * 有关创建 UI 定义的简介，请参阅 [CreateUiDefinition 入门](create-uidefinition-overview.md)。
 * 有关 UI 元素中的公用属性的说明，请参阅 [CreateUiDefinition 元素](create-uidefinition-elements.md)。
 
-<!-- Update_Description: new article about microsoft compute sizeselector -->
-<!--NEW.date: 01/20/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

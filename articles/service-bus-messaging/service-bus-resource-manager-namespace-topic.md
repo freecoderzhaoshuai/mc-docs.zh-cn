@@ -6,16 +6,17 @@ author: rockboyfor
 ms.topic: quickstart
 ms.tgt_pltfrm: dotnet
 origin.date: 06/23/2020
-ms.date: 07/27/2020
-ms.testscope: yes
-ms.testdate: 07/20/2020
+ms.date: 08/31/2020
+ms.testscope: no
+ms.testdate: 08/17/2020
 ms.author: v-yeche
-ms.openlocfilehash: c06e7cd48cefaf2a34fa97cbff8d0bddfea62b25
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: b7276cdf6bbd3c58472842e55e47fc9b3cf23ebd
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162348"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946992"
 ---
 # <a name="quickstart-create-a-service-bus-namespace-with-topic-and-subscription-using-an-azure-resource-manager-template"></a>快速入门：使用 Azure 资源管理器模板创建包含主题和订阅的服务总线命名空间
 
@@ -43,7 +44,7 @@ ms.locfileid: "87162348"
 
 若要自动运行部署，请单击以下按钮：
 
-[![部署到 Azure](./media/service-bus-resource-manager-namespace-topic/deploybutton.png)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-servicebus-create-topic-and-subscription%2Fazuredeploy.json)
+[:::image type="content" source="./media/service-bus-resource-manager-namespace-topic/deploybutton.png" alt-text="部署到 Azure":::](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F201-servicebus-create-topic-and-subscription%2Fazuredeploy.json)
 
 ## <a name="parameters"></a>参数
 
@@ -131,7 +132,7 @@ ms.locfileid: "87162348"
     }]
 ```
 
-<!--Not Available on Azure Templates-->
+<!--Not Available on Azure global templates reference link-->
 
 ## <a name="commands-to-run-deployment"></a>运行部署的命令
 
@@ -157,10 +158,10 @@ az group deployment create \<my-resource-group\> --name \<my-deployment-name\> -
 * [使用服务总线 Explorer 管理服务总线资源](https://github.com/paolosalvatori/ServiceBusExplorer/releases)
 
 [Authoring Azure Resource Manager templates]: ../azure-resource-manager/templates/template-syntax.md
-[Azure Quickstart Templates]: https://azure.microsoft.com/documentation/templates/?term=service+bus
+[Azure Quickstart Templates]: https://github.com/Azure/azure-quickstart-templates/?term=service+bus
 [Learn more about Service Bus topics and subscriptions]: service-bus-queues-topics-subscriptions.md
-[Using Azure PowerShell with Azure Resource Manager]: ../azure-resource-manager/powershell-azure-resource-manager.md
-[Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../azure-resource-manager/xplat-cli-azure-resource-manager.md
+[Using Azure PowerShell with Azure Resource Manager]: ../azure-resource-manager/management/manage-resources-powershell.md
+[Using the Azure CLI for Mac, Linux, and Windows with Azure Resource Management]: ../azure-resource-manager/management/manage-resources-cli.md
 [Service Bus namespace with topic and subscription]: https://github.com/Azure/azure-quickstart-templates/blob/master/201-servicebus-create-topic-and-subscription/
 
 <!-- Update_Description: update meta properties, wording update, update link -->

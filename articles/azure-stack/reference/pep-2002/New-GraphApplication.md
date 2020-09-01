@@ -4,16 +4,16 @@ description: PowerShell Azure Stack 特权终结点参考 - New-GraphApplication
 author: WenJason
 ms.topic: reference
 origin.date: 04/27/2020
-ms.date: 06/22/2020
+ms.date: 08/30/2020
 ms.author: v-jay
 ms.reviewer: fiseraci
 ms.lastreviewed: 04/27/2020
-ms.openlocfilehash: 13ee29ce714109d3a879b5b2a386bd0985252c59
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 8ff7c2a5969d8ee1967c0a6942faf41cb0d36cb7
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096940"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867996"
 ---
 # <a name="new-graphapplication"></a>New-GraphApplication
 
@@ -116,4 +116,4 @@ Accept wildcard characters: False
 
 ## <a name="next-steps"></a>后续步骤
 
-若要了解如何访问和使用特权终结点，请参阅[使用 Azure Stack Hub 中的特权终结点](/azure-stack/operator/azure-stack-privileged-endpoint)。
+若要了解如何访问和使用特权终结点，请参阅[使用 Azure Stack Hub 中的特权终结点](../../operator/azure-stack-privileged-endpoint.md)。

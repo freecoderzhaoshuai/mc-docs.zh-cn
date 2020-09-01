@@ -10,12 +10,12 @@ ms.custom: hdinsightactive,hdiseo17may2017
 ms.topic: conceptual
 origin.date: 05/14/2020
 ms.date: 08/31/2020
-ms.openlocfilehash: 28e96324af29bc9fd11e03ba5ee59993f8da1c1e
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 86e521fcb7b6e4e876a46cd1db4e8e656457b6eb
+ms.sourcegitcommit: f9a819b7429a2cca868eba0d9241d4e6b3cf905a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715381"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88866203"
 ---
 # <a name="what-are-the-default-and-recommended-node-configurations-for-azure-hdinsight"></a>Azure HDInsight 的默认和推荐节点配置是什么？
 
@@ -27,7 +27,7 @@ ms.locfileid: "88715381"
 
 如果需要群集中有 32 个以上辅助节点，头节点大小应选择至少具有 8 个核心和 14 GB RAM。 
 
-只有启用了“加速写入功能”的 Kafka 和 HBase 群集才是具有数据磁盘的群集类型。 在这些方案中，HDInsight 支持 P30 和 S30 磁盘大小。
+只有启用了“加速写入功能”的 Kafka 和 HBase 群集才是具有数据磁盘的群集类型。 在这些方案中，HDInsight 支持 P30 和 S30 磁盘大小。 对于所有其他群集类型，HDInsight 向其提供托管磁盘空间。 从 2019 年 7 月 11 日开始，新创建的群集中每个节点的托管磁盘大小为 128 GB。 此项不能更改。
 
 下表中总结了本文档中使用的所有最小推荐 VM 类型的规范。
 

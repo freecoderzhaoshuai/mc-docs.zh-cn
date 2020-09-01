@@ -13,16 +13,16 @@ ms.topic: overview
 ms.tgt_pltfrm: na
 ms.workload: identity
 ms.subservice: report-monitor
-ms.date: 05/25/2020
+ms.date: 08/26/2020
 ms.author: v-junlch
 ms.reviewer: dhanyahk
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 027f1224edf7b3eb01edca574db2df65167331a5
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: bc07d30fd8152fcc703175335acd12f2466c8ba5
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186961"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947063"
 ---
 # <a name="what-is-azure-active-directory-monitoring"></a>什么是 Azure Active Directory 监视？
 
@@ -59,9 +59,13 @@ ms.locfileid: "84186961"
 
 ## <a name="send-logs-to-azure-monitor-logs"></a>将日志发送到 Azure Monitor 日志
 
-[Azure Monitor 日志](/azure-monitor/log-query/log-query-overview)是一项解决方案，可以将不同源的监视数据合并，并提供查询语言和分析引擎，让你深入了解应用程序和资源的操作。 通过将 Azure AD 活动日志发送到 Azure Monitor 日志，可以快速检索和监视收集的数据以及针对其发出警报。 
+[Azure Monitor 日志](/azure-monitor/log-query/log-query-overview)是一项解决方案，可以将不同源的监视数据合并，并提供查询语言和分析引擎，让你深入了解应用程序和资源的操作。 通过将 Azure AD 活动日志发送到 Azure Monitor 日志，可以快速检索和监视收集的数据以及针对其发出警报。 了解如何[将数据发送到 Azure Monitor 日志](howto-integrate-activity-logs-with-log-analytics.md)。
+
+也可安装针对 Azure AD 活动日志预生成的视图，以便监视涉及登录和审核事件的常见场景。 了解如何[安装和使用用于 Azure AD 活动日志的 Log Analytics 视图](howto-install-use-log-analytics-views.md)。
 
 ## <a name="next-steps"></a>后续步骤
 
+* [Azure Monitor 中的活动日志](concept-activity-logs-azure-monitor.md)
 * [将日志流式传输到事件中心](tutorial-azure-monitor-stream-logs-to-event-hub.md)
+* [将日志发送到 Azure Monitor 日志](howto-integrate-activity-logs-with-log-analytics.md)
 

@@ -1,17 +1,20 @@
 ---
 title: 教程 - 使用快速启动模板
 description: 了解如何使用 Azure 快速入门模板来完成模板开发。
-author: rockboyfor
 origin.date: 03/27/2020
-ms.date: 04/30/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.topic: tutorial
 ms.author: v-yeche
-ms.openlocfilehash: be709a34847a81e87faa4ca58ee3a2f98554e664
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 9df58564cafddb5ca95b664b90c29f81240d2cde
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596121"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807867"
 ---
 # <a name="tutorial-use-azure-quickstart-templates"></a>教程：使用 Azure 快速入门模板
 
@@ -44,9 +47,7 @@ ms.locfileid: "82596121"
         "Standard_LRS",
         "Standard_GRS",
         "Standard_RAGRS",
-        "Premium_LRS",
-        "Standard_GZRS",
-        "Standard_RAGZRS"
+        "Premium_LRS"
       ]
     },
     "location": {
@@ -116,7 +117,7 @@ ms.locfileid: "82596121"
 1. 选择“azuredeploy.json”。 
 1. 查看模板。 具体说来，请查找 `Microsoft.Web/sites` 资源。
 
-    ![资源管理器模板快速入门网站](./media/template-tutorial-quickstart-template/resource-manager-template-quickstart-template-web-site.png)
+    :::image type="content" source="./media/template-tutorial-quickstart-template/resource-manager-template-quickstart-template-web-site.png" alt-text="资源管理器模板快速入门网站":::
 
 ## <a name="revise-existing-template"></a>修订现有模板
 
@@ -140,7 +141,6 @@ ms.locfileid: "82596121"
         "Standard_GRS",
         "Standard_RAGRS",
         "Premium_LRS",
-        "Standard_GZRS",
         "Standard_RAGZRS"
       ]
     },

@@ -4,14 +4,14 @@ description: 遵循这些最佳做法了解如何有效使用 Azure Redis 缓存
 author: joncole
 ms.service: cache
 ms.topic: conceptual
-ms.date: 08/10/2020
+ms.date: 08/24/2020
 ms.author: v-junlch
-ms.openlocfilehash: c6a24408d033ac35f5ae6fc516e2ca3f44a644e7
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: 8f2fc59c1ce2cbe8a9175ff3b3d3ce416ac27961
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223218"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947090"
 ---
 # <a name="best-practices-for-azure-cache-for-redis"></a>Azure Redis 缓存的最佳做法 
 遵循这些最佳做法可帮助最大化性能并在 Azure 中经济、高效地利用 Azure Redis 缓存实例。
@@ -55,7 +55,7 @@ ms.locfileid: "88223218"
  * [Jedis (Java)](https://gist.github.com/JonCole/925630df72be1351b21440625ff2671f#file-redis-bestpractices-java-jedis-md)
  * [Node.js](https://gist.github.com/JonCole/925630df72be1351b21440625ff2671f#file-redis-bestpractices-node-js-md)
  * [PHP](https://gist.github.com/JonCole/925630df72be1351b21440625ff2671f#file-redis-bestpractices-php-md)
- * [Asp.Net 会话状态提供程序](https://gist.github.com/JonCole/925630df72be1351b21440625ff2671f#file-redis-bestpractices-session-state-provider-md)
+ * [ASP.NET 会话状态提供程序](https://gist.github.com/JonCole/925630df72be1351b21440625ff2671f#file-redis-bestpractices-session-state-provider-md)
 
 
 ## <a name="when-is-it-safe-to-retry"></a>何时可以安全重试？
@@ -79,7 +79,7 @@ ms.locfileid: "88223218"
  * **考虑使用高级层 Redis 实例**。  这些缓存大小具有更好的网络延迟和吞吐量，因为它们是在 CPU 和网络两方面都更好的硬件上运行的。
  
      > [!NOTE]
-     > [此处发布](cache-faq.md#azure-cache-for-redis-performance)了我们观测到的性能结果供你参考。   另请注意，SSL/TLS 会增大一些开销，因此，如果你使用传输加密，延迟和/或吞吐量可能会有变化。
+     > [此处发布](cache-planning-faq.md#azure-cache-for-redis-performance)了我们观测到的性能结果供你参考。   另请注意，SSL/TLS 会增大一些开销，因此，如果你使用传输加密，延迟和/或吞吐量可能会有变化。
  
 ### <a name="redis-benchmark-examples"></a>Redis 基准示例
 **测试前的设置**：使用下列延迟和吞吐量测试命令所需的数据准备缓存实例。

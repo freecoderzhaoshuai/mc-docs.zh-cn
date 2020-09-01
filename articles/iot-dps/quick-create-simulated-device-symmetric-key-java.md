@@ -4,20 +4,20 @@ description: 本快速入门将使用 Java 设备 SDK 创建一个将对称密�
 author: wesmc7777
 ms.author: v-tawe
 origin.date: 01/30/2020
-ms.date: 03/02/2020
+ms.date: 08/27/2020
 ms.topic: quickstart
 ms.service: iot-dps
 services: iot-dps
 manager: eliotgra
-ms.custom: mvc
-ms.openlocfilehash: 06b15fe87ad602376313123d7591d9bd82f5ebcc
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: mvc, devx-track-java
+ms.openlocfilehash: 875addb060254594e17fe4d33ddbca1c1516847d
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80586805"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951315"
 ---
-# <a name="quickstart-provision-a-simulated-device-with-symmetric-keys"></a>快速入门：使用对称密钥预配模拟设备
+# <a name="quickstart-provision-a-simulated-device-to-iot-hub-with-symmetric-keys"></a>快速入门：使用对称密钥向 IoT 中心预配模拟设备
 
 本快速入门介绍如何在 Windows 开发计算机上创建和运行设备模拟器。 你将配置此模拟设备，以使用对称密钥对设备预配服务 (DPS) 实例进行身份验证，并将此模拟设备分配到 IoT 中心。 将使用[适用于 Java 的 Microsoft Azure IoT SDK](https://github.com/Azure/azure-iot-sdk-java) 中的示例代码来模拟启动预配的设备的启动序列。 将根据 DPS 服务实例的单个注册来识别该设备，然后将其分配到 IoT 中心。
 
@@ -89,7 +89,7 @@ ms.locfileid: "80586805"
 
 在本部分，你将更新向 DPS 实例发送设备启动序列的设备示例代码。 此启动序列使得设备可被识别、完成身份验证，并分配到与 DPS 实例链接的 IoT 中心。
 
-1. 在“设备预配服务”菜单中选择“概述”，并记下“ID 范围”和“预配服务全局终结点”。   
+1. 在“设备预配服务”菜单中选择“概述”，并记下“ID 范围”和“预配服务全局终结点”。
 
     ![服务信息](./media/java-quick-create-simulated-device-x509/extract-dps-endpoints.png)
 
@@ -133,7 +133,7 @@ ms.locfileid: "80586805"
       Message received! Response status: OK_EMPTY
     ```
 
-6. 在 Azure 门户中，导航到已链接到预配服务的 IoT 中心，然后打开“Device Explorer”边栏选项卡。  将模拟的对称密钥设备成功预配到中心后，设备 ID 会显示在“Device Explorer”边栏选项卡上，“状态”为“已启用”。     如果在运行示例设备应用程序之前已打开边栏选项卡，则可能需要按顶部的“刷新”按钮  。 
+6. 在 Azure 门户中，导航到已链接到预配服务的 IoT 中心，然后打开“Device Explorer”边栏选项卡。 将模拟的对称密钥设备成功预配到中心后，设备 ID 会显示在“Device Explorer”边栏选项卡上，“状态”为“已启用”。  如果在运行示例设备应用程序之前已打开边栏选项卡，则可能需要按顶部的“刷新”按钮  。 
 
     ![设备注册到 IoT 中心](./media/quick-create-simulated-device-symm-key-java/hubregistration-java.png) 
 

@@ -10,14 +10,14 @@ ms.topic: overview
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 origin.date: 05/01/2020
-ms.date: 06/08/2020
+ms.date: 08/31/2020
 ms.author: v-jay
-ms.openlocfilehash: c3fe31b6a21033c87705292577d253189d985c91
-ms.sourcegitcommit: 9811bf312e0d037cb530eb16c8d85238fd276949
+ms.openlocfilehash: 7869fa3313c5709dde63730ca96a14da98971682
+ms.sourcegitcommit: f8ed85740f873c15c239ab6ba753e4b76e030ba7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84275667"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045756"
 ---
 # <a name="azure-load-balancer-skus"></a>Azure 负载均衡器 SKU
 
@@ -39,14 +39,14 @@ Azure 负载均衡器有两种风格或 SKU。
 | 后端池终结点 | 单个虚拟网络中的任何虚拟机或虚拟机规模集。 | 单个可用性集或虚拟机规模集中的虚拟机。 |
 | [运行状况探测](./load-balancer-custom-probe-overview.md#types) | TCP、HTTP、HTTPS | TCP、HTTP |
 | [运行状况探测停止行为](./load-balancer-custom-probe-overview.md#probedown) | TCP 连接在实例探测停止时以及在所有探测停止时保持活动状态。 | TCP 连接在实例探测停止时保持活动状态。 所有 TCP 连接在所有探测停止时都会终止。 |
-| 诊断 | [Azure Monitor 多维指标](./load-balancer-standard-diagnostics.md) | [Azure Monitor 日志](./load-balancer-monitor-log.md) |
+| **诊断** | [Azure Monitor 多维指标](./load-balancer-standard-diagnostics.md) | [Azure Monitor 日志](./load-balancer-monitor-log.md) |
 | HA 端口 | [可用于内部负载均衡器](./load-balancer-ha-ports-overview.md) | 不可用 |
 | 默认保护 | 除非网络安全组允许，否则对入站流关闭。 请注意，允许从 VNet 到内部负载均衡器的内部流量。 | 默认处于打开状态。 可选的网络安全组。 |
-| 出站规则 | [声明性出站 NAT 配置](./load-balancer-outbound-rules-overview.md) | 不可用 |
-| 空闲时 TCP 重置 | [可用于任何规则](./load-balancer-tcp-reset.md) | 不可用 |
+| **出站规则** | [声明性出站 NAT 配置](./load-balancer-outbound-rules-overview.md) | 不可用 |
+| **在空闲时重置 TCP** | [可用于任何规则](./load-balancer-tcp-reset.md) | 不可用 |
 | [多个前端](./load-balancer-multivip-overview.md) | 入站和[出站](./load-balancer-outbound-connections.md) | 仅限入站 |
 | 管理操作 | 大多数操作都小于 30 秒 | 通常为 60 - 90 多秒 |
-| SLA | [99.99%](https://www.azure.cn/support/sla/load-balancer/) | 不可用 | 
+| **SLA** | [99.99%](https://www.azure.cn/support/sla/load-balancer/) | 不可用 | 
 
 有关详细信息，请参阅[负载均衡器限制](/azure-resource-manager/management/azure-subscription-service-limits#load-balancer)。 对于标准负载均衡器，请参阅[概述](load-balancer-standard-overview.md)、[定价](https://www.azure.cn/pricing/details/load-balancer/)和 [SLA](https://www.azure.cn/support/sla/load-balancer/)。
 

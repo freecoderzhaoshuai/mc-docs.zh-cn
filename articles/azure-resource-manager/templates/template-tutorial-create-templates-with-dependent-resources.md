@@ -1,19 +1,19 @@
 ---
 title: 具有依赖资源的模板
 description: 了解如何使用多个资源创建 Azure 资源管理器模板，以及如何使用 Azure 门户部署该模板
-author: rockboyfor
 origin.date: 04/23/2020
-ms.date: 07/13/2020
+author: rockboyfor
+ms.date: 08/24/2020
 ms.testscope: yes
-ms.testdate: 07/13/2020
+ms.testdate: 08/24/2020
 ms.topic: tutorial
 ms.author: v-yeche
-ms.openlocfilehash: 08e77aa11e1afc78ea3d43b3118bd83a5118f730
-ms.sourcegitcommit: 2bd0be625b21c1422c65f20658fe9f9277f4fd7c
+ms.openlocfilehash: 31210f0dd9ae90a61fd77d8c44578dff606791b8
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440988"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807874"
 ---
 <!--Verify successfully on 06/17/2020 by harris-->
 # <a name="tutorial-create-arm-templates-with-dependent-resources"></a>教程：创建包含所依赖资源的 ARM 模板
@@ -24,7 +24,7 @@ ms.locfileid: "86440988"
 
 本教程介绍如何创建存储帐户、虚拟机、虚拟网络以及一些其他的依赖资源。 某些资源的部署依赖于另一资源的存在。 例如，创建虚拟机的前提是其存储帐户和网络接口存在。 可通过将一个资源标记为依赖于其他资源来定义此关系。 Resource Manager 将评估资源之间的依赖关系，并根据其依赖顺序进行部署。 如果资源互不依赖，资源管理器将以并行方式部署资源。 有关详细信息，请参阅[在 ARM 模板中定义部署资源的顺序](./define-resource-dependency.md)。
 
-![资源管理器模板依赖资源部署顺序图](./media/template-tutorial-create-templates-with-dependent-resources/resource-manager-template-dependent-resources-diagram.png)
+:::image type="content" source="./media/template-tutorial-create-templates-with-dependent-resources/resource-manager-template-dependent-resources-diagram.png" alt-text="资源管理器模板依赖资源部署顺序图":::
 
 本教程涵盖以下任务：
 
@@ -39,7 +39,7 @@ ms.locfileid: "86440988"
 
 若要完成本文，需要做好以下准备：
 
-* 包含资源管理器工具扩展的 Visual Studio Code。 请参阅[使用 Visual Studio Code 创建 ARM 模板](use-vs-code-to-create-template.md)。
+* 包含资源管理器工具扩展的 Visual Studio Code。 请参阅[快速入门：使用 Visual Studio Code 创建 Azure 资源管理器模板](quickstart-create-templates-use-visual-studio-code.md)。
 * 若要提高安全性，请使用为虚拟机管理员帐户生成的密码。 以下是密码生成示例：
 
     ```console
@@ -73,7 +73,7 @@ Azure 快速入门模板是 ARM 模板的存储库。 无需从头开始创建�
 
 1. 在 Visual Studio Code 中折叠元素，直到只能在 **resources** 中看到第一级元素和第二级元素：
 
-    ![Visual Studio Code Azure 资源管理器模板](./media/template-tutorial-create-templates-with-dependent-resources/resource-manager-template-visual-studio-code.png)
+    :::image type="content" source="./media/template-tutorial-create-templates-with-dependent-resources/resource-manager-template-visual-studio-code.png" alt-text="Visual Studio Code Azure 资源管理器模板":::
 
     有六个通过此模板定义的资源：
 
@@ -92,23 +92,23 @@ Azure 快速入门模板是 ARM 模板的存储库。 无需从头开始创建�
     
     <!-- Not Available on [template reference](https://docs.microsoft.com/azure/templates/Microsoft.Storage/storageAccounts)-->
 
-    ![Visual Studio Code Azure 资源管理器模板存储帐户定义](./media/template-tutorial-create-templates-with-dependent-resources/resource-manager-template-storage-account-definition.png)
+    :::image type="content" source="./media/template-tutorial-create-templates-with-dependent-resources/resource-manager-template-storage-account-definition.png" alt-text="Visual Studio Code Azure 资源管理器模板存储帐户定义":::
 
 1. 展开第二个资源。 资源类型为 `Microsoft.Network/publicIPAddresses`。
     
     <!-- Not Available on [template reference](https://docs.microsoft.com/azure/templates/microsoft.network/publicipaddresses)-->
 
-    ![Visual Studio Code Azure 资源管理器模板公共 IP 地址定义](./media/template-tutorial-create-templates-with-dependent-resources/resource-manager-template-public-ip-address-definition.png)
+    :::image type="content" source="./media/template-tutorial-create-templates-with-dependent-resources/resource-manager-template-public-ip-address-definition.png" alt-text="Visual Studio Code Azure 资源管理器模板公共 IP 地址定义":::
 
 1. 展开第三个资源。 资源类型为 `Microsoft.Network/networkSecurityGroups`。
 
     <!--Not Avaiable on [template reference](https://docs.microsoft.com/azure/templates/microsoft.network/networksecuritygroups)-->
 
-    ![Visual Studio Code Azure 资源管理器模板网络安全组定义](./media/template-tutorial-create-templates-with-dependent-resources/resource-manager-template-network-security-group-definition.png)
+    :::image type="content" source="./media/template-tutorial-create-templates-with-dependent-resources/resource-manager-template-network-security-group-definition.png" alt-text="Visual Studio Code Azure 资源管理器模板网络安全组定义":::
 
 1. 展开第四个资源。 资源类型为 `Microsoft.Network/virtualNetworks`：
-    
-    ![Visual Studio Code Azure 资源管理器模板虚拟网络 dependsOn](./media/template-tutorial-create-templates-with-dependent-resources/resource-manager-template-virtual-network-definition.png)
+
+    :::image type="content" source="./media/template-tutorial-create-templates-with-dependent-resources/resource-manager-template-virtual-network-definition.png" alt-text="Visual Studio Code Azure 资源管理器模板虚拟网络 dependsOn":::
 
     使用 dependsOn 元素可将一个资源定义为与一个或多个资源相依赖。 此资源依赖于另一个资源：
 
@@ -126,7 +126,7 @@ Azure 快速入门模板是 ARM 模板的存储库。 无需从头开始创建�
 
 下图演示了此模板的资源和依赖项信息：
 
-![Visual Studio Code Azure 资源管理器模板依赖项图](./media/template-tutorial-create-templates-with-dependent-resources/resource-manager-template-visual-studio-code-dependency-diagram.png)
+:::image type="content" source="./media/template-tutorial-create-templates-with-dependent-resources/resource-manager-template-visual-studio-code-dependency-diagram.png" alt-text="Visual Studio Code Azure 资源管理器模板依赖项图":::
 
 指定依赖项可以让资源管理器有效地部署此解决方案。 它以并行方式部署存储帐户、公共 IP 地址和虚拟网络，因为这些没有依赖项。 部署公共 IP 地址和虚拟网络资源以后，会创建网络接口。 所有其他的资源都部署以后，资源管理器会部署虚拟机。
 

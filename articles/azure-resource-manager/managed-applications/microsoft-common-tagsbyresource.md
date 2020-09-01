@@ -1,17 +1,19 @@
 ---
 title: TagsByResource UI 元素
 description: 介绍了 Azure 门户的 Microsoft.Common.TagsByResource UI 元素。 用于在部署期间将标记应用到资源。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 11/11/2019
-ms.date: 01/20/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 24b9ca9a69edd9c1fa7a3478e7930e6d296ac515
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: ef66549c4582295fe616af13c0649d944c1c0134
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "76170667"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807913"
 ---
 # <a name="microsoftcommontagsbyresource-ui-element"></a>Microsoft.Common.TagsByResource UI 元素
 
@@ -19,7 +21,7 @@ ms.locfileid: "76170667"
 
 ## <a name="ui-sample"></a>UI 示例
 
-![Microsoft.Common.DropDown](./media/managed-application-elements/microsoft.common.tagsbyresource.png)
+:::image type="content" source="./media/managed-application-elements/microsoft-common-tagsbyresource.png" alt-text="Microsoft.Common.DropDown":::
 
 ## <a name="schema"></a>架构
 
@@ -77,5 +79,4 @@ ms.locfileid: "76170667"
 - 有关创建 UI 定义的简介，请参阅 [CreateUiDefinition 入门](create-uidefinition-overview.md)。
 - 有关 UI 元素中的公用属性的说明，请参阅 [CreateUiDefinition 元素](create-uidefinition-elements.md)。
 
-<!-- Update_Description: new article about microsoft common tagsbyresource -->
-<!--NEW.date: 01/20/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

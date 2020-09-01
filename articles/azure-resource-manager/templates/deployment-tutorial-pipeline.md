@@ -2,15 +2,17 @@
 title: 使用 Azure Pipelines 进行持续集成
 description: 了解如何持续构建、测试和部署 Azure 资源管理器模板。
 origin.date: 04/22/2020
-ms.date: 06/22/2020
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 06/22/2020
 ms.topic: tutorial
 ms.author: v-yeche
-ms.openlocfilehash: 985f42596e42da2bd07cf9241fb29cdda3229e0c
-ms.sourcegitcommit: 48b5ae0164f278f2fff626ee60db86802837b0b4
+ms.openlocfilehash: b4c02633596ce7fcfb23d4fa64efa56a382932b4
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85098421"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807727"
 ---
 <!--Verified successfully on 04/30/2020-->
 # <a name="tutorial-continuous-integration-of-azure-resource-manager-templates-with-azure-pipelines"></a>教程：使用 Azure Pipelines 持续集成 Azure 资源管理器模板
@@ -23,7 +25,7 @@ Azure DevOps 提供开发人员服务，以支持团队规划工作、协作开�
 
 > [!NOTE]
 > 选择项目名称。 完成本教程后，请将任意“AzureRmPipeline”替换为自己的项目名称。
-> 此项目名称用于生成资源名称。  其中一个资源是存储帐户。 存储帐户名称必须为 3 到 24 个字符，只能使用数字和小写字母。 此名称必须唯一。 在模板中，存储帐户名称是追加了“store”的项目名称，项目名称的长度必须介于 3 到 11 个字符之间。 因此，项目名称必须符合存储帐户名称要求，且短于 11 个字符。
+> 此项目名称用于生成资源名称。  其中一个资源是存储帐户。 存储帐户名称长度必须为 3 到 24 个字符，并且只能使用数字和小写字母。 该名称必须是唯一的。 在模板中，存储帐户名称是追加了“store”的项目名称，项目名称的长度必须介于 3 到 11 个字符之间。 因此，项目名称必须符合存储帐户名称要求，且短于 11 个字符。
 
 本教程涵盖以下任务：
 
@@ -41,7 +43,7 @@ Azure DevOps 提供开发人员服务，以支持团队规划工作、协作开�
 
 若要完成本文，需要做好以下准备：
 
-* **GitHub 帐户**，用于为模板创建存储库。 如果没有 GitHub 帐户，可以[免费创建一个](https://github.com)。
+* **GitHub 帐户**，用于为模板创建存储库。 如果没有帐户，可以[免费创建一个帐户](https://github.com)。
     
     <!--Not Available on [Build GitHub repositories](https://docs.microsoft.com/azure/devops/pipelines/repos/github)-->
     
@@ -50,7 +52,7 @@ Azure DevOps 提供开发人员服务，以支持团队规划工作、协作开�
     
     <!--CORRECT ON URL on https://docs.microsoft.com/azure/devops/organizations/accounts/create-organization?view=azure-devops-->
     
-* （可选）**包含资源管理器工具扩展的 Visual Studio Code**。 请参阅[使用 Visual Studio Code 创建 Azure 资源管理器模板](use-vs-code-to-create-template.md)。
+* （可选）**包含资源管理器工具扩展的 Visual Studio Code**。 请参阅[快速入门：使用 Visual Studio Code 创建 Azure 资源管理器模板](quickstart-create-templates-use-visual-studio-code.md)。
 
 ## <a name="prepare-a-github-repository"></a>准备 GitHub 存储库
 
@@ -63,15 +65,11 @@ GitHub 用于存储项目源代码，包括资源管理器模板。 有关其他
 1. 登录 [GitHub](https://github.com)。
 1. 选择右上角的帐户图像，然后选择“你的存储库”。
 
-    ![Azure 资源管理器 Azure DevOps Azure Pipelines 创建 GitHub 存储库](./media/deployment-tutorial-pipeline/azure-resource-manager-devops-pipelines-github-repository.png)
+    :::image type="content" source="./media/deployment-tutorial-pipeline/azure-resource-manager-devops-pipelines-github-repository.png" alt-text="Azure 资源管理器 Azure DevOps Azure Pipelines 创建 GitHub 存储库":::
 
 1. 选择“新建”（一个绿色的按钮）。
 1. 在“存储库名称”中，输入存储库名称。  例如，“AzureRmPipeline-repo”。 请将任意“AzureRmPipeline”替换为自己的项目名称。 可以选择“公共”或“专用”以完成本教程 。 然后，选择“创建存储库”。
-1. 记下 URL。 存储库 URL 格式如下：
-
-    ```url
-    https://github.com/[YourAccountName]/[YourRepositoryName]
-    ```
+1. 记下 URL。 存储库 URL 的格式为：`https://github.com/[YourAccountName]/[YourRepositoryName]`。
 
 此存储库称为远程存储库。 同一项目中的每个开发人员都可以克隆自己的本地存储库，并将更改合并到远程存储库。
 
@@ -106,7 +104,7 @@ GitHub 用于存储项目源代码，包括资源管理器模板。 有关其他
 
 azuredeploy.json 已添加到本地存储库。 下一步，将模板上传到远程存储库。
 
-1. 打开 Git Shell 或 Git Bash（如果未打开） 。
+1. 请打开 Git Shell 或 Git Bash（如果未打开） 。
 1. 将目录更改为本地存储库中的 CreateWebApp 文件夹。
 1. 验证 azuredeploy.json 文件是否位于该文件夹中。
 1. 运行以下命令：
@@ -132,22 +130,25 @@ azuredeploy.json 已添加到本地存储库。 下一步，将模板上传到�
 1. 登录 [Azure DevOps](https://dev.azure.com)。
 1. 从左侧选择一个 DevOps 组织。
 
-    ![Azure 资源管理器 Azure DevOps Azure Pipelines 创建 Azure DevOps 项目](./media/deployment-tutorial-pipeline/azure-resource-manager-devops-pipelines-create-devops-project.png)
+    :::image type="content" source="./media/deployment-tutorial-pipeline/azure-resource-manager-devops-pipelines-create-devops-project.png" alt-text="Azure 资源管理器 Azure DevOps Azure Pipelines 创建 Azure DevOps 项目":::
 
-1. 选择“新建项目”。 如果没有任何项目，将自动打开“创建项目”页面。
+1. 选择“新建项目”。  如果没有任何项目，将自动打开“创建项目”页面。
 1. 输入以下值：
 
     * **项目名称**：输入项目名称。 可以使用在本教程开头选择的项目名称。
     * **版本控制**：选择“Git”。 可能需要展开“高级”才能看到“版本控制” 。
 
     可以使用其他属性的默认值。
-1. 选择“创建” 。
+1. 选择“创建”。
 
 创建服务连接，用于将项目部署到 Azure。
 
 1. 从左侧菜单的底部选择“项目设置”。
 1. 在“管道”下，选择“服务连接” 。
 1. 依次选择“新建服务连接”、“Azure 资源管理器”、“下一步”。  
+    
+    <!--MOONCAKE CUSTOMIZATION ON 04/30/2020-->
+    
 1. 依次选择“服务主体(手动)”、“下一步”。 
 
     <!--MOONCAKE CUSTOMIZATION ON 04/30/2020-->
@@ -180,9 +181,9 @@ azuredeploy.json 已添加到本地存储库。 下一步，将模板上传到�
    
     ![Azure 资源管理器 Azure DevOps 创建 Azure 连接](./media/deployment-tutorial-pipeline/azure-resource-manager-devops-pipelines-create-connection-chenye.png)
     
-    <!--MOONCAKE CUSTOMIZATION ON 04/30/2020-->
-    
 1. 选择“验证并保存”。
+
+    <!--MOONCAKE CUSTOMIZATION ON 04/30/2020-->
 
 ## <a name="create-a-pipeline"></a>创建管道
 
@@ -197,7 +198,7 @@ azuredeploy.json 已添加到本地存储库。 下一步，将模板上传到�
 1. 选择“新建管道”。
 1. 从“连接”选项卡中，选择“GitHub” 。 如果系统要求输入 GitHub 凭据，然后按照说明进行操作。 如果看到以下屏幕，请选择“仅选择存储库”，并验证存储库是否位于列表中，然后选择“批准和安装” 。
 
-    ![Azure 资源管理器 Azure DevOps Azure Pipelines“仅选择存储库”](./media/deployment-tutorial-pipeline/azure-resource-manager-devops-pipelines-only-select-repositories.png)
+    :::image type="content" source="./media/deployment-tutorial-pipeline/azure-resource-manager-devops-pipelines-only-select-repositories.png" alt-text="Azure 资源管理器 Azure DevOps Azure Pipelines“仅选择存储库”":::
 
 1. 从“选择”选项卡中，选择自己的存储库。  默认名称为“[YourAccountName]/[YourGitHubRepositoryName]”。
 1. 从“配置”选项卡中，选择“初级管道” 。 它显示了“azure-pipelines.yml”管道文件，其中包含两个脚本步骤。
@@ -209,7 +210,7 @@ azuredeploy.json 已添加到本地存储库。 下一步，将模板上传到�
 
     * **deploymentScope**：选择“资源组”。 若要详细了解范围，请参阅[部署范围](deploy-rest.md#deployment-scope)。
     * **Azure 资源管理器连接**：选择前面创建的服务连接名称。
-    * **订阅**：指定目标订阅 ID。
+    * 订阅：指定目标订阅 ID。
     * **操作**：选择“创建或更新资源组”操作，执行 2 项操作 - 1. 如果提供了新的资源组名称，则创建资源组；2. 部署指定的模板。
     * **资源组**：输入新的资源组名称。 例如，“AzureRmPipeline-rg”。
     * **位置**：选择资源组的位置，例如“中国北部”。
@@ -220,25 +221,25 @@ azuredeploy.json 已添加到本地存储库。 下一步，将模板上传到�
     * **部署模式**：选择“增量”。
     * **部署名称**：输入 **DeployPipelineTemplate**。 选择“高级”，然后可以看到“部署名称”。 
 
-    ![Azure 资源管理器 Azure DevOps Azure Pipelines 步骤](./media/deployment-tutorial-pipeline/resource-manager-template-pipeline-configure.png)
+    :::image type="content" source="./media/deployment-tutorial-pipeline/resource-manager-template-pipeline-configure.png" alt-text="Azure 资源管理器 Azure DevOps Azure Pipelines 步骤":::
 
-1. 选择“添加”  。
+1. 选择“添加”   。
 
     有关任务的详细信息，请参阅 [Azure 资源组部署任务](https://docs.microsoft.com/azure/devops/pipelines/tasks/deploy/azure-resource-group-deployment)和 [Azure 资源管理器模板部署任务](https://github.com/microsoft/azure-pipelines-tasks/blob/master/Tasks/AzureResourceManagerTemplateDeploymentV3/README.md)
 
     yml 文件应如下所示：
 
-    ![Azure 资源管理器 Azure DevOps Azure Pipelines yaml](./media/deployment-tutorial-pipeline/azure-resource-manager-devops-pipelines-yml.png)
+    :::image type="content" source="./media/deployment-tutorial-pipeline/azure-resource-manager-devops-pipelines-yml.png" alt-text="Azure 资源管理器 Azure DevOps Azure Pipelines yaml":::
 
 1. 选择“保存并运行”。
 1. 在“保存并运行”窗格中，再次选择“保存并运行”。  YAML 文件的副本将保存到已连接的存储库中。 浏览到存储库即可查看该 YAML 文件。
 1. 验证管道是否成功执行。
 
-    ![Azure 资源管理器 Azure DevOps Azure Pipelines yaml](./media/deployment-tutorial-pipeline/azure-resource-manager-devops-pipelines-status.png)
+    :::image type="content" source="./media/deployment-tutorial-pipeline/azure-resource-manager-devops-pipelines-status.png" alt-text="Azure 资源管理器 Azure DevOps Azure Pipelines yaml":::
 
 ## <a name="verify-the-deployment"></a>验证部署
 
-1. 登录到 [Azure 门户](https://portal.azure.cn)。
+1. 登录 [Azure 门户](https://portal.azure.cn)。
 1. 打开资源组。 名称是在管道 YAML 文件中指定的名称。  你将看到创建了一个存储帐户。  存储帐户名称以“存储”开头。
 1. 选择存储帐户名称以将其打开。
 1. 选择“属性”。 注意“复制”是“本地冗余存储(LRS)” 。
@@ -250,7 +251,7 @@ azuredeploy.json 已添加到本地存储库。 下一步，将模板上传到�
 1. 在 Visual Studio Code 或任何文本编辑器中，打开本地存储库中的 **linkedStorageAccount.json**。
 1. 将“storageAccountType”的“defaultValue”更新为“Standard_GRS”  。 请参阅下面的屏幕截图：
 
-    ![Azure 资源管理器 Azure DevOps Azure Pipelines 更新 yaml](./media/deployment-tutorial-pipeline/azure-resource-manager-devops-pipelines-update-yml.png)
+    :::image type="content" source="./media/deployment-tutorial-pipeline/azure-resource-manager-devops-pipelines-update-yml.png" alt-text="Azure 资源管理器 Azure DevOps Azure Pipelines 更新 yaml":::
 
 1. 保存更改。
 1. 从 Git Bash/Shell 运行以下命令，将更改推送到远程存储库。
@@ -287,5 +288,4 @@ azuredeploy.json 已添加到本地存储库。 下一步，将模板上传到�
 > [!div class="nextstepaction"]
 > [利用模板参考](./template-tutorial-use-template-reference.md)
 
-<!-- Update_Description: new article about deployment tutorial pipeline -->
-<!--NEW.date: 04/30/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -4,16 +4,18 @@ description: 如何更换 Azure Stack HCI 上的故障驱动器。
 author: WenJason
 ms.author: v-jay
 ms.topic: how-to
-origin.date: 06/24/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: 88e3c6c0b4832e869e5b6663b79dc24790c19493
-ms.sourcegitcommit: e9ffd50aa5eaab402a94bfabfc70de6967fe6278
+origin.date: 07/21/2020
+ms.date: 08/31/2020
+ms.openlocfilehash: 78a8407d8fc58be514f406ee8e8ea7ef2dc54d2f
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2020
-ms.locfileid: "86307423"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868051"
 ---
 # <a name="replace-failed-drives-on-azure-stack-hci"></a>更换 Azure Stack HCI 上的故障驱动器
+
+> 适用于：Azure Stack HCI 版本 20H2；Windows Server 2019
 
 Azure Stack HCI 可使用直接连接的 SATA、SAS、NVMe 或永久性内存驱动器，每个驱动器使用物理方式仅连接到一个服务器。 如果驱动器发生故障，你将需要访问物理服务器硬件来更换它。
 

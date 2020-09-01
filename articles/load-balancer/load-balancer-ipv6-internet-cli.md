@@ -13,14 +13,14 @@ ms.custom: seodec18
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 origin.date: 06/25/2018
-ms.date: 07/20/2020
+ms.date: 08/31/2020
 ms.author: v-jay
-ms.openlocfilehash: 65d19f0a2990be34e5f047eb82c2a8f71ad47d29
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.openlocfilehash: 819c37e3cce71dfc417cabf5bb283d9767d33893
+ms.sourcegitcommit: f8ed85740f873c15c239ab6ba753e4b76e030ba7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440338"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045783"
 ---
 # <a name="create-a-public-load-balancer-with-ipv6-using-azure-cli"></a>使用 Azure CLI 创建使用 IPv6 的公共负载均衡器
 
@@ -269,7 +269,7 @@ Azure load balancer 是位于第 4 层 (TCP, UDP) 的负载均衡器。 该负�
 
 ## <a name="create-the-back-end-vm-resources-and-attach-each-nic"></a>创建后端 VM 资源并附加每个 NIC
 
-若要创建 VM，必须有一个存储帐户。 若要实现负载均衡，VM 必须是可用性集的成员。 有关创建 VM 的详细信息，请参阅[使用 PowerShell 创建 Azure VM](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fload-balancer%2ftoc.json)。
+若要创建 VM，必须有一个存储帐户。 若要实现负载均衡，VM 必须是可用性集的成员。 有关创建 VM 的详细信息，请参阅[使用 PowerShell 创建 Azure VM](../virtual-machines/windows/quick-create-powershell.md?toc=%2fload-balancer%2ftoc.json)。
 
 1. 设置 PowerShell 变量：
 

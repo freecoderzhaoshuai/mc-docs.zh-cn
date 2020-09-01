@@ -1,11 +1,20 @@
 ---
-ms.openlocfilehash: 0ea18d5d4440e0f29dbf020f4cdf075b131e46ea
-ms.sourcegitcommit: cada23b6400453ff9c08cfb08393e635e2fddac1
+author: rockboyfor
+ms.service: service-bus-relay
+ms.topic: include
+origin.date: 11/09/2018
+ms.date: 07/27/2020
+ms.testscope: yes
+ms.testdate: 07/27/2020
+ms.author: v-yeche
+ms.openlocfilehash: 258214f8e2cff72c39687bcd68b03736550503c7
+ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/21/2020
-ms.locfileid: "83734526"
+ms.lasthandoff: 07/24/2020
+ms.locfileid: "88947124"
 ---
+<!--Verified successfully-->
 ### <a name="create-a-nodejs-application"></a>创建 Node.js 应用程序
 
 创建一个名为 `listener.js` 的新 JavaScript 文件。
@@ -84,3 +93,4 @@ ms.locfileid: "83734526"
     });
     ```
 
+<!-- Update_Description: update meta properties, wording update, update link -->

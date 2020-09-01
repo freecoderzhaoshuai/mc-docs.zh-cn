@@ -1,5 +1,5 @@
 ---
-title: 如何在虚拟机规模集上配置 Azure 资源的托管标识
+title: 在 Azure VMSS 上配置托管标识 - Azure AD
 description: 分步说明如何使用 Azure 门户在虚拟机规模集上配置 Azure 资源的托管标识。
 services: active-directory
 documentationcenter: ''
@@ -9,19 +9,18 @@ editor: ''
 ms.service: active-directory
 ms.subservice: msi
 ms.devlang: na
-ms.topic: conceptual
+ms.topic: quickstart
 ms.tgt_pltfrm: na
 ms.workload: identity
-origin.date: 02/20/2018
-ms.date: 08/05/2019
+ms.date: 08/27/2020
 ms.author: v-junlch
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: fb8597e9e765c0d83f61219234a33e8dc748f7af
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 7f45e5252f010123b6ad53565372bdc3027182b6
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "68818658"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046336"
 ---
 # <a name="configure-managed-identities-for-azure-resources-on-a-virtual-machine-scale-set-using-the-azure-portal"></a>使用 Azure 门户在虚拟机规模集上配置 Azure 资源的托管标识
 
@@ -33,7 +32,7 @@ Azure 资源的托管标识在 Azure Active Directory 中为 Azure 服务提供�
 
 - 如果不熟悉 Azure 资源的托管标识，请查阅[概述部分](overview.md)。
 - 如果还没有 Azure 帐户，请先[注册试用帐户](https://www.azure.cn/pricing/1rmb-trial/)，然后再继续。
-- 若要执行本文中的管理操作，帐户需要以下基于 Azure 角色的访问控制分配：
+- 若要执行本文中的管理操作，帐户需要以下 Azure 角色分配：
 
     > [!NOTE]
     > 无需其他 Azure AD 目录角色分配。
@@ -106,6 +105,4 @@ Azure 资源的托管标识在 Azure Active Directory 中为 Azure 服务提供�
 ## <a name="next-steps"></a>后续步骤
 
 - 使用 Azure 门户，授予 Azure 虚拟机规模集托管标识[对另一个 Azure 资源的访问权限](howto-assign-access-portal.md)。
-
-
 

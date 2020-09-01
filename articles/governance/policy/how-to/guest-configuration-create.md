@@ -2,15 +2,15 @@
 title: 如何创建适用于 Windows 的来宾配置策略
 description: 了解如何创建适用于 Windows 的 Azure Policy 来宾配置策略。
 ms.author: v-tawe
-origin.date: 03/20/2019
-ms.date: 08/06/2020
+origin.date: 03/20/2020
+ms.date: 08/27/2020
 ms.topic: how-to
-ms.openlocfilehash: 7c3e5b9237775d3a6ccae89a06f878ca928c9613
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: d5bee6eec2d4e735d19ec7d726061d22bbf79886
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917088"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951229"
 ---
 # <a name="how-to-create-guest-configuration-policies-for-windows"></a>如何创建适用于 Windows 的来宾配置策略
 
@@ -309,6 +309,8 @@ $uri = publish `
 - **版本**：策略版本。
 - **路径**：在其中创建策略定义的目标路径。
 - Platform：来宾配置策略和内容包的目标平台 (Windows/Linux)。
+- Tag 向策略定义添加一个或多个标记筛选器
+- Category 在策略定义中设置类别元数据字段
 
 下面的示例在自定义策略包的指定路径中创建策略定义：
 
@@ -329,15 +331,7 @@ New-GuestConfigurationPolicy `
 - deployIfNotExists.json
 - Initiative.json
 
-cmdlet 输出返回一个对象，其中包含策略文件的计划显示名称和路径。
-
-> [!Note]
-> 最新的来宾配置模块包含新参数：
-> - Tag 向策略定义添加一个或多个标记筛选器
->   - 请参阅[使用标记筛选来宾配置策略](#filtering-guest-configuration-policies-using-tags)部分。
-> - Category 在策略定义中设置类别元数据字段
->   - 如果不包含此参数，类别默认为“来宾配置”。
-> 这些功能处于预览状态，需要来宾配置模块版本 1.20.1（可以使用 `Install-Module GuestConfiguration -AllowPrerelease` 来安装）。
+cmdlet 输出中会返回一个对象，其中包含策略文件的计划显示名称和路径。
 
 最后，使用 `Publish-GuestConfigurationPolicy` cmdlet 发布策略定义。 cmdlet 只有 Path 参数，此参数指向 `New-GuestConfigurationPolicy` 创建的 JSON 文件的位置。
 
@@ -379,9 +373,6 @@ New-AzRoleDefinition -Role $role
 ```
 
 ### <a name="filtering-guest-configuration-policies-using-tags"></a>使用标记筛选来宾配置策略
-
-> [!Note]
-> 此功能处于预览状态，需要来宾配置模块版本 1.20.1（可以使用 `Install-Module GuestConfiguration -AllowPrerelease` 来安装）。
 
 来宾配置模块中由 cmdlet 创建的策略定义可以视需要选择包括标记筛选器。 `New-GuestConfigurationPolicy` 的 Tag 参数支持包含各个标记条目的哈希表数组。 标记会添加到策略定义的 `If` 部分，并且不能通过策略分配进行修改。
 
@@ -441,10 +432,6 @@ New-GuestConfigurationPolicy
 ```
 
 ## <a name="extending-guest-configuration-with-third-party-tools"></a>使用第三方工具扩展来宾配置
-
-> [!Note]
-> 此功能处于预览状态，需要来宾配置模块版本 1.20.3（可以使用 `Install-Module GuestConfiguration -AllowPrerelease` 来安装）。
-> 在版本 1.20.3 中，此功能仅适用于审核 Windows 计算机的策略定义
 
 可以扩展来宾配置的项目包以包含第三方工具。
 扩展来宾配置要求开发两个组件。
@@ -575,14 +562,9 @@ New-GuestConfigurationPackage `
 - **版本**：运行 `New-GuestConfigurationPolicy` cmdlet 时，必须指定高于当前发布版本的版本号。 此属性更新来宾配置分配版本，这样代理就能识别更新后的包。
 - contentHash：此属性由 `New-GuestConfigurationPolicy` cmdlet 自动更新。 它是 `New-GuestConfigurationPackage` 创建的包的哈希值。 对于你发布的 `.zip` 文件，此属性必须是正确的。 如果只更新了 contentUri 属性，扩展就不会接受内容包。
 
-发布更新后的包的最简单方法是，重复本文中描述的过程，并提供更新后的版本号。 此过程保证所有属性都已正确更新。
+发布更新后的包的最简单方法是，重复本文中描述的过程，并提供更新后的版本号。 该过程可保证正确更新所有属性。
 
-## <a name="converting-windows-group-policy-content-to-azure-policy-guest-configuration"></a>将 Windows 组策略内容转换为 Azure 策略来宾配置
-
-审核 Windows 计算机时，来宾配置是 PowerShell Desired State Configuration 语法的实现。 DSC 社区发布了相应工具，用于将导出的组策略模板转换为 DSC 格式。 通过将此工具与上述来宾配置 cmdlet 结合使用，可以转换 Windows 组策略内容并打包/发布它以供 Azure 策略审核。 有关使用该工具的详细信息，请参阅文章[快速入门：将组策略转换为 DSC](https://docs.microsoft.com/powershell/scripting/dsc/quickstarts/gpo-quickstart)。
-转换了内容后，创建包并将它发布为 Azure 策略的以上步骤与任何 DSC 内容相同。
-
-## <a name="optional-signing-guest-configuration-packages"></a>可选：对来宾配置包进行签名
+## <a name="optional-signing-guest-configuration-packages"></a>可选：为 Guest Configuration 包签名
 
 来宾配置自定义策略使用 SHA256 哈希来验证策略包是否没有更改。
 客户还可以选择使用证书对包进行签名，并强制来宾配置扩展只允许已签名的内容。

@@ -9,18 +9,18 @@ keywords: ipv6, azure 负载均衡器, 双堆栈, 公共 ip, 本机 ipv6, 移动
 ms.service: load-balancer
 ms.custom: seodec18
 ms.devlang: na
-ms.topic: article
+ms.topic: how-to
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 origin.date: 09/25/2017
-ms.date: 06/08/2020
+ms.date: 08/31/2020
 ms.author: v-jay
-ms.openlocfilehash: 231b892d74ecf6b226bfd39497b1c5ffe5965939
-ms.sourcegitcommit: 9811bf312e0d037cb530eb16c8d85238fd276949
+ms.openlocfilehash: 30ab49a6fe2182b96cf62d862524ce92932669a8
+ms.sourcegitcommit: f8ed85740f873c15c239ab6ba753e4b76e030ba7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84275472"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045785"
 ---
 # <a name="get-started-creating-an-internet-facing-load-balancer-with-ipv6-using-powershell-for-resource-manager"></a>开始使用用于 Resource Manager 的 PowerShell 创建具有 IPv6 的面向 Internet 的负载均衡器
 
@@ -200,7 +200,7 @@ Azure load balancer 是位于第 4 层 (TCP, UDP) 的负载均衡器。 该负�
 
 ## <a name="create-virtual-machines-and-assign-the-newly-created-nics"></a>创建虚拟机并分配新建的 NIC
 
-有关创建 VM 的详细信息，请参阅[使用 Resource Manager 和 Azure PowerShell 创建并预先配置 Windows 虚拟机](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fload-balancer%2ftoc.json)
+有关创建 VM 的详细信息，请参阅[使用 Resource Manager 和 Azure PowerShell 创建并预先配置 Windows 虚拟机](../virtual-machines/windows/quick-create-powershell.md?toc=%2fload-balancer%2ftoc.json)
 
 1. 创建可用性集和存储帐户
 

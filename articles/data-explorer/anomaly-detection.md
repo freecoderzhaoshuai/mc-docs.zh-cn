@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: conceptual
 origin.date: 04/24/2019
 ms.date: 06/09/2020
-ms.openlocfilehash: ea7fd29c3071bd211dc972518204621efa6cf3ad
-ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
+ms.openlocfilehash: 7a412649a2f58710e603a9693d2218cd393cf461
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/18/2020
-ms.locfileid: "88515682"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951322"
 ---
 # <a name="anomaly-detection-and-forecasting-in-azure-data-explorer"></a>在 Azure 数据资源管理器中进行异常情况检测和预测
 
@@ -55,7 +55,7 @@ demo_make_series2
 
 ## <a name="time-series-anomaly-detection"></a>时序异常情况检测
 
-函数 [`series_decompose_anomalies()`](https://docs.microsoft.com/azure/kusto/query/series-decompose-anomaliesfunction) 查找一组时序中的异常点。 此函数调用 `series_decompose()` 来生成分解模型，然后对残余组件运行 [`series_outliers()`](https://docs.microsoft.com/azure/kusto/query/series-outliersfunction)。 `series_outliers()` 使用 Tukey 隔离测试计算残余组件的每个点的异常评分。 异常评分大于 1.5 或小于 -1.5 分别表示异常有轻微的上升或下降。 异常评分大于 3.0 或小于 -3.0 表示明显的异常。 
+函数 [`series_decompose_anomalies()`](/kusto/query/series-decompose-anomaliesfunction) 查找一组时序中的异常点。 此函数调用 `series_decompose()` 来生成分解模型，然后对残余组件运行 [`series_outliers()`](/kusto/query/series-outliersfunction)。 `series_outliers()` 使用 Tukey 隔离测试计算残余组件的每个点的异常评分。 异常评分大于 1.5 或小于 -1.5 分别表示异常有轻微的上升或下降。 异常评分大于 3.0 或小于 -3.0 表示明显的异常。 
 
 使用以下查询可以检测内部 Web 服务流量的异常：
 

@@ -1,19 +1,19 @@
 ---
-title: Azure 中继异常及其解决方法
+title: Azure 中继异常及其解决方法 | Azure
 description: Azure 中继异常以及解决这些异常应采取的建议操作的列表。
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 07/27/2020
-ms.testscope: no
+author: rockboyfor
+ms.date: 08/31/2020
+ms.testscope: yes|no
 ms.testdate: ''
 ms.author: v-yeche
-author: rockboyfor
-ms.openlocfilehash: e45d9d8192230569eae73639dc5d9feadd80f7bf
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 354f61e8f549086780267fcc25c10a2a482881ea
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162415"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947118"
 ---
 # <a name="azure-relay-exceptions"></a>Azure 中继异常
 
@@ -23,16 +23,16 @@ ms.locfileid: "87162415"
 
 中继 API 生成的异常可以分为以下类别。 此外还列出了解决这些异常应采取的建议操作。
 
-* **用户编码错误**：[System.ArgumentException](https://msdn.microsoft.com/library/system.argumentexception.aspx)、[System.InvalidOperationException](https://msdn.microsoft.com/library/system.invalidoperationexception.aspx)、[System.OperationCanceledException](https://msdn.microsoft.com/library/system.operationcanceledexception.aspx)、[System.Runtime.Serialization.SerializationException](https://msdn.microsoft.com/library/system.runtime.serialization.serializationexception.aspx)。 
+*   **用户编码错误**：[System.ArgumentException](https://docs.microsoft.com/dotnet/api/system.argumentexception?view=netcore-3.1)、[System.InvalidOperationException](https://docs.microsoft.com/dotnet/api/system.invalidoperationexception?view=netcore-3.1)、[System.OperationCanceledException](https://docs.microsoft.com/dotnet/api/system.operationcanceledexception?view=netcore-3.1)、[System.Runtime.Serialization.SerializationException](https://docs.microsoft.com/dotnet/api/system.runtime.serialization.serializationexception?view=netcore-3.1)。 
 
     常规操作：继续之前尝试修复代码。
-* **设置/配置错误**：[System.UnauthorizedAccessException](https://msdn.microsoft.com/library/system.unauthorizedaccessexception.aspx)。 
+*   **设置/配置错误**：[System.UnauthorizedAccessException](https://docs.microsoft.com/dotnet/api/system.unauthorizedaccessexception?view=netcore-3.1)。 
 
     常规操作：检查配置。 必要时更改配置。
-* **暂时性异常**：[Microsoft.ServiceBus.Messaging.MessagingException](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.messagingexception?view=azure-dotnet)、[Microsoft.ServiceBus.Messaging.ServerBusyException](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.serverbusyexception?view=azure-dotnet)、[Microsoft.ServiceBus.Messaging.MessagingCommunicationException](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.messagingcommunicationexception?view=azure-dotnet)。 
+*   **暂时性异常**：[Microsoft.ServiceBus.Messaging.MessagingException](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.messagingexception?view=azure-dotnet)、[Microsoft.ServiceBus.Messaging.ServerBusyException](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.serverbusyexception?view=azure-dotnet)、[Microsoft.ServiceBus.Messaging.MessagingCommunicationException](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.messagingcommunicationexception?view=azure-dotnet)。 
 
     常规操作：重试操作或通知用户。
-* **其他异常**：[System.Transactions.TransactionException](https://msdn.microsoft.com/library/system.transactions.transactionexception.aspx)、[System.TimeoutException](https://msdn.microsoft.com/library/system.timeoutexception.aspx)。 
+*   **其他异常**：[System.Transactions.TransactionException](https://docs.microsoft.com/dotnet/api/system.transactions.transactionexception?view=netcore-3.1)、[System.TimeoutException](https://docs.microsoft.com/dotnet/api/system.timeoutexception?view=netcore-3.1)。 
 
     **常规操作**：特定于异常类型。 请参阅以下部分中的表。 
 
@@ -42,11 +42,11 @@ ms.locfileid: "87162415"
 
 | **异常类型** | **说明** | **建议的操作** | **自动或立即重试注意事项** |
 | --- | --- | --- | --- |
-| [超时](https://msdn.microsoft.com/library/system.timeoutexception.aspx) |服务器在 [OperationTimeout](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.messagingfactorysettings.operationtimeout?view=azure-dotnet) 控制的指定时间内未响应请求的操作。 服务器可能已完成请求的操作。 这可能是由于网络或其他基础结构延迟造成的。 |检查系统状态的一致性，并根据需要重试。 请参阅 [TimeoutException](#timeoutexception)。 |在某些情况下，重试可能会有帮助；在代码中添加重试逻辑。 |
-| [操作无效](https://msdn.microsoft.com/library/system.invalidoperationexception.aspx) |不允许在服务器或服务中执行请求的用户操作。 有关详细信息，请查看异常消息。 |检查代码和文档。 确保请求的操作有效。 |重试不会解决问题。 |
-| [操作已取消](https://msdn.microsoft.com/library/system.operationcanceledexception.aspx) |尝试对已关闭、中止或释放的对象调用某个操作。 在极少数的情况下，已释放环境事务。 |检查代码并确保代码不会对已释放的对象调用操作。 |重试不会解决问题。 |
-| [未授权访问](https://msdn.microsoft.com/library/system.unauthorizedaccessexception.aspx) |[TokenProvider](https://docs.azure.cn/dotnet/api/microsoft.servicebus.tokenprovider?view=azure-dotnet) 对象无法获取令牌，该令牌无效，或者令牌不包含执行操作所需的声明。 |确保使用正确的值创建令牌提供程序。 检查访问控制服务的配置。 |在某些情况下，重试可能会有帮助；在代码中添加重试逻辑。 |
-| [参数异常](https://msdn.microsoft.com/library/system.argumentexception.aspx)；<br /> [参数为 Null](https://msdn.microsoft.com/library/system.argumentnullexception.aspx)；<br />[参数超出范围](https://msdn.microsoft.com/library/system.argumentoutofrangeexception.aspx) |出现下述一个或多个情况：<br />提供给该方法的一个或多个参数均无效。<br /> 提供给 [NamespaceManager](https://docs.azure.cn/dotnet/api/microsoft.servicebus.namespacemanager?view=azure-dotnet) 或 [Create](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.messagingfactory.create?view=azure-dotnet) 的 URI 包含一个或多个路径段。<br />提供给 [NamespaceManager](https://docs.azure.cn/dotnet/api/microsoft.servicebus.namespacemanager?view=azure-dotnet) 或 [Create](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.messagingfactory.create?view=azure-dotnet) 的 URI 方案无效。 <br />属性值大于 32 KB。 |检查调用代码并确保参数正确。 |重试不会解决问题。 |
+| [超时](https://docs.microsoft.com/dotnet/api/system.timeoutexception?view=netcore-3.1) |服务器在 [OperationTimeout](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.messagingfactorysettings.operationtimeout?view=azure-dotnet) 控制的指定时间内未响应请求的操作。 服务器可能已完成请求的操作。 这可能是由于网络或其他基础结构延迟造成的。 |检查系统状态的一致性，并根据需要重试。 请参阅 [TimeoutException](#timeoutexception)。 |在某些情况下，重试可能会有帮助；在代码中添加重试逻辑。 |
+| [操作无效](https://docs.microsoft.com/dotnet/api/system.invalidoperationexception?view=netcore-3.1) |不允许在服务器或服务中执行请求的用户操作。 有关详细信息，请查看异常消息。 |检查代码和文档。 确保请求的操作有效。 |重试不会解决问题。 |
+| [操作已取消](https://docs.microsoft.com/dotnet/api/system.operationcanceledexception?view=netcore-3.1) |尝试对已关闭、中止或释放的对象调用某个操作。 在极少数的情况下，已释放环境事务。 |检查代码并确保代码不会对已释放的对象调用操作。 |重试不会解决问题。 |
+| [未授权访问](https://docs.microsoft.com/dotnet/api/system.unauthorizedaccessexception?view=netcore-3.1) |[TokenProvider](https://docs.azure.cn/dotnet/api/microsoft.servicebus.tokenprovider?view=azure-dotnet) 对象无法获取令牌，该令牌无效，或者令牌不包含执行操作所需的声明。 |确保使用正确的值创建令牌提供程序。 检查访问控制服务的配置。 |在某些情况下，重试可能会有帮助；在代码中添加重试逻辑。 |
+| [参数异常](https://docs.microsoft.com/dotnet/api/system.argumentexception?view=netcore-3.1)；<br /> [参数为 Null](https://docs.microsoft.com/dotnet/api/system.argumentnullexception?view=netcore-3.1)；<br />[参数超出范围](https://docs.microsoft.com/dotnet/api/system.argumentoutofrangeexception?view=netcore-3.1) |出现下述一个或多个情况：<br />提供给该方法的一个或多个参数均无效。<br /> 提供给 [NamespaceManager](https://docs.azure.cn/dotnet/api/microsoft.servicebus.namespacemanager?view=azure-dotnet) 或 [Create](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.messagingfactory.create?view=azure-dotnet) 的 URI 包含一个或多个路径段。<br />提供给 [NamespaceManager](https://docs.azure.cn/dotnet/api/microsoft.servicebus.namespacemanager?view=azure-dotnet) 或 [Create](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.messagingfactory.create?view=azure-dotnet) 的 URI 方案无效。 <br />属性值大于 32 KB。 |检查调用代码并确保参数正确。 |重试不会解决问题。 |
 | [服务器忙](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.serverbusyexception?view=azure-dotnet) |服务目前无法处理请求。 |客户端可以等待一段时间，并重试操作。 |客户端可以在特定的时间间隔后重试。 如果重试导致其他异常，请检查该异常的重试行为。 |
 | [超出配额](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.quotaexceededexception?view=azure-dotnet) |消息实体已达到其最大允许大小。 |通过从实体或其子队列接收消息在该实体中创建空间。 请参阅[QuotaExceededException](#quotaexceededexception)。 |如果同时已删除消息，则重试可能会有帮助。 |
 | [超出消息大小](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.messagesizeexceededexception?view=azure-dotnet) |消息有效负载超出 256 KB 限制。 请注意，256 KB 限制是指总消息大小。 总消息大小可能包括系统属性和任何 Azure .NET 开销。 |减少消息负载的大小，并重试操作。 |重试不会解决问题。 |
@@ -55,17 +55,17 @@ ms.locfileid: "87162415"
 
 [QuotaExceededException](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.quotaexceededexception?view=azure-dotnet) 指示已超出某个特定实体的配额。
 
-对于中继，此异常包含 [System.ServiceModel.QuotaExceededException](https://msdn.microsoft.com/library/system.servicemodel.quotaexceededexception.aspx)，指示已超过此终结点的最大侦听器数目。 这会以异常消息的 **MaximumListenersPerEndpoint** 值表示。
+对于中继，此异常包含 [System.ServiceModel.QuotaExceededException](https://docs.microsoft.com/dotnet/api/system.servicemodel.quotaexceededexception?view=dotnet-plat-ext-3.1)，指示已超过此终结点的最大侦听器数目。 这会以异常消息的 **MaximumListenersPerEndpoint** 值表示。
 
 ## <a name="timeoutexception"></a>TimeoutException
-[TimeoutException](https://msdn.microsoft.com/library/system.timeoutexception.aspx) 指示用户启动的操作所用的时间超过操作超时值。 
+[TimeoutException](https://docs.microsoft.com/dotnet/api/system.timeoutexception?view=netcore-3.1) 指示用户启动的操作所用的时间超过操作超时值。 
 
-检查 [ServicePointManager.DefaultConnectionLimit](https://msdn.microsoft.com/library/system.net.servicepointmanager.defaultconnectionlimit) 属性的值。 达到此限制也可能导致 [TimeoutException](https://msdn.microsoft.com/library/system.timeoutexception.aspx)。
+检查 [ServicePointManager.DefaultConnectionLimit](https://docs.microsoft.com/dotnet/api/system.net.servicepointmanager.defaultconnectionlimit?view=netcore-3.1#System_Net_ServicePointManager_DefaultConnectionLimit) 属性的值。 达到此限制也可能导致 [TimeoutException](https://docs.microsoft.com/dotnet/api/system.timeoutexception?view=netcore-3.1)。
 
 对于中继，可能会在第一次打开中继发送方连接时收到超时异常。 此异常有两个常见的原因：
 
-* [OpenTimeout](https://msdn.microsoft.com/library/wcf.opentimeout.aspx) 值可能太小（甚至只有几分之一秒）。
-* 本地中继侦听器可能无响应（或者可能遇到禁止侦听器接受新客户端连接的防火墙规则问题），而 [OpenTimeout](https://msdn.microsoft.com/library/wcf.opentimeout.aspx) 值约小于 20 秒。
+* [OpenTimeout](https://docs.microsoft.com/previous-versions/) 值可能太小（甚至只有几分之一秒）。
+* 本地中继侦听器可能无响应（或者可能遇到禁止侦听器接受新客户端连接的防火墙规则问题），而 [OpenTimeout](https://docs.microsoft.com/previous-versions/) 值约小于 20 秒。
 
 示例：
 

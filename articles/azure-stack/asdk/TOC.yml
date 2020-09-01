@@ -54,9 +54,11 @@
 - name: 相关内容
   items:
     - name: Azure Stack Hub 操作员文档
-      href: /azure-stack/operator
+      href: ../operator/index.yml
     - name: Azure Stack Hub 用户文档
-      href: /azure-stack/user/
+      href: ../user/index.yml
+    - name: Azure 混合云文档
+      href: 'https://docs.microsoft.com/hybrid'
 - name: 资源
   items:
     - name: Azure Stack MSDN 论坛

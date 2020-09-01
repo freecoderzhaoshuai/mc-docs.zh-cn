@@ -1,17 +1,16 @@
 ---
 title: 快速入门：第一个门户查询
 description: 本快速入门介绍在 Azure 门户中使用 Azure Resource Graph 资源管理器运行第一个查询的步骤。
-author: DCtheGeek
 ms.author: v-tawe
-origin.date: 11/21/2019
-ms.date: 03/02/2020
+origin.date: 08/10/2020
+ms.date: 08/27/2020
 ms.topic: quickstart
-ms.openlocfilehash: 82cf143c41381cfd047ac02716807b04f5a10641
-ms.sourcegitcommit: 5afd7c4c3be9b80c4c67ec55f66fcf347aad74c6
+ms.openlocfilehash: ab27065377f5459128bedd8925df25f2bea64e26
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85942559"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951340"
 ---
 # <a name="quickstart-run-your-first-resource-graph-query-using-azure-resource-graph-explorer"></a>快速入门：使用 Azure Resource Graph Explorer 运行第一个 Resource Graph 查询
 
@@ -39,11 +38,11 @@ ms.locfileid: "85942559"
 1. 更新查询，以将 `order by` 条件指定为 **Name** 属性：`Resources | project name, type | limit 5 | order by name asc`。 然后选择“运行查询”。
 
    > [!NOTE]
-   > 与第一个查询一样，多次运行此查询可能会为每个请求生成一组不同的资源。 查询命令的顺序非常重要。 在本例中，`order by` 位于 `limit` 之后。 这将首先限制查询结果，然后对其进行排序。
+   > 与第一个查询一样，多次运行此查询可能会为每个请求生成一组不同的资源。 查询命令的顺序非常重要。 在本例中，`order by` 位于 `limit` 之后。 命令按此顺序执行，首先会限制查询结果，然后对它们进行排序。
 
 1. 将查询更新为先按 **Name** 属性应用 `order by`，然后对前五个结果应用 `limit`：`Resources | project name, type | order by name asc | limit 5`。 然后选择“运行查询”。
 
-假设环境中没有任何变化，则多次运行最后一个查询时，返回的结果将是一致的且符合预期的 -- 按 **Name** 属性排序，但仍限制为前五个结果。
+假设环境中没有任何变化，则多次运行最后一个查询时，返回的结果将是一致的且按 Name 属性排序，但仍限制为前五个结果。
 
 ### <a name="schema-browser"></a>架构浏览器
 
@@ -54,7 +53,7 @@ ms.locfileid: "85942559"
 
 ## <a name="create-a-chart-from-the-resource-graph-query"></a>基于 Resource Graph 查询创建图表
 
-运行上述最后一个查询后，如果你选择“图表”选项卡，则会看到一条消息，指出“该结果集与饼图可视化效果不兼容。” 列出结果的查询无法生成图表，但提供资源计数的查询则可以。 让我们使用[示例查询 - 按 OS 类型统计虚拟机数目](./samples/starter.md#count-virtual-machines-by-os-type)，基于 Resource Graph 查询创建可视化效果。
+运行上述最后一个查询后，如果你选择“图表”选项卡，则会看到一条消息，指出“该结果集与饼图可视化效果不兼容。” 列出结果的查询无法生成图表，但提供资源计数的查询则可以。 让我们使用[示例查询 - 按 OS 类型统计虚拟机数目](./samples/starter.md#count-os)，基于 Resource Graph 查询创建可视化效果。
 
 1. 在窗口中的“查询 1”部分输入以下查询，然后选择“运行查询”。 
 
@@ -93,11 +92,11 @@ ms.locfileid: "85942559"
 
 - [Resource Graph Explorer - 示例仪表板 #1](https://github.com/Azure-Samples/Governance/blob/master/src/resource-graph/portal-dashboards/sample-1/resourcegraphexplorer-sample-1.json)
 
-  [![示例仪表板 #1 的示例插图](./media/arge-sample1-small.png)](./media/arge-sample1-large.png#lightbox)
+  :::image type="content" source="./media/arge-sample1-small.png" alt-text="示例仪表板 #1 示例图像" lightbox="./media/arge-sample1-large.png":::
 
 - [Resource Graph Explorer - 示例仪表板 #2](https://github.com/Azure-Samples/Governance/blob/master/src/resource-graph/portal-dashboards/sample-2/resourcegraphexplorer-sample-2.json)
 
-  [![示例仪表板 #2 的示例插图](./media/arge-sample2-small.png)](./media/arge-sample2-large.png#lightbox)
+  :::image type="content" source="./media/arge-sample2-small.png" alt-text="示例仪表板 #2 示例图像" lightbox="./media/arge-sample2-large.png":::
 
 > [!NOTE]
 > 上述示例仪表板屏幕截图中的计数和图表根据 Azure 环境的不同而异。

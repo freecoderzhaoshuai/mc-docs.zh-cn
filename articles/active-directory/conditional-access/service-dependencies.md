@@ -4,19 +4,19 @@ description: 了解如何在 Azure Active Directory 条件访问中使用条件�
 services: active-directory
 ms.service: active-directory
 ms.subservice: conditional-access
-ms.topic: article
-ms.date: 05/29/2020
+ms.topic: conceptual
+ms.date: 08/27/2020
 ms.author: v-junlch
 author: MicrosoftGuyJFlo
 manager: daveba
 ms.reviewer: calebb
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 0c8ae76d3b2d4710c4c92c1b333b160c859646dc
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: 1f37f6fc769232f6fc7be6ebbe55baa883bc5758
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186776"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046316"
 ---
 # <a name="what-are-service-dependencies-in-azure-active-directory-conditional-access"></a>Azure Active Directory 条件访问中的服务依赖项是什么？ 
 
@@ -50,12 +50,14 @@ ms.locfileid: "84186776"
 |                     | SharePoint                                  | 早期绑定 |
 | Microsoft Teams     | Exchange                                    | 早期绑定 |
 |                     | MS Planner                                  | 后期绑定  |
+|                     | Microsoft Stream                            | 后期绑定  |
 |                     | SharePoint                                  | 早期绑定 |
 |                     | Skype for Business Online                   | 早期绑定 |
 | Office 门户       | Exchange                                    | 后期绑定  |
 |                     | SharePoint                                  | 后期绑定  |
 | Outlook 组      | Exchange                                    | 早期绑定 |
 |                     | SharePoint                                  | 早期绑定 |
+| PowerApps           | Azure 管理（门户和 API） | 早期绑定 |
 |                     | Azure Active Directory              | 早期绑定 |
 | Project             | Dynamics CRM                                | 早期绑定 |
 | Skype for Business  | Exchange                                    | 早期绑定 |

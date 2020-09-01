@@ -3,15 +3,18 @@ title: 删除资源组和资源
 description: 介绍如何删除资源组和资源。 它介绍删除资源组时 Azure 资源管理器如何为资源的删除排序。 它描述响应代码以及资源管理器如何处理它们以确定是否成功删除。
 ms.topic: conceptual
 origin.date: 09/03/2019
-ms.date: 06/22/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.author: v-yeche
-ms.custom: seodec18
-ms.openlocfilehash: 7b7cf0f7aa17121e849c7a706abc6da763c11a8d
-ms.sourcegitcommit: 48b5ae0164f278f2fff626ee60db86802837b0b4
+ms.custom: seodec18, devx-track-azurecli
+ms.openlocfilehash: 33d2c954ecbf15853ab7e9aa29f2baf5fea7c56e
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85098680"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807890"
 ---
 # <a name="azure-resource-manager-resource-group-and-resource-deletion"></a>Azure 资源管理器资源组和资源删除
 
@@ -81,7 +84,7 @@ az group delete --name ExampleResourceGroup
 
 1. 选择“删除资源组”****。
 
-    ![删除资源组](./media/delete-resource-group/delete-group.png)
+    :::image type="content" source="./media/delete-resource-group/delete-group.png" alt-text="删除资源组":::
 
 1. 若要确认删除，请键入资源组的名称
 
@@ -115,7 +118,7 @@ az resource delete \
 
 1. 选择“删除” ****。 以下屏幕截图显示了虚拟机的管理选项。
 
-    ![删除资源](./media/delete-resource-group/delete-resource.png)
+    :::image type="content" source="./media/delete-resource-group/delete-resource.png" alt-text="删除资源":::
 
 1. 出现提示时，确认删除。
 

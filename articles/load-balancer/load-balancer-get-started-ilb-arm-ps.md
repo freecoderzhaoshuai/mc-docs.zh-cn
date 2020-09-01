@@ -12,14 +12,14 @@ ms.custom: seodec18
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 origin.date: 07/02/2020
-ms.date: 07/20/2020
+ms.date: 08/31/2020
 ms.author: v-jay
-ms.openlocfilehash: d16b9370f0fec58c2c426a7141a384542e0ab18a
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.openlocfilehash: 5d1ffa410b2300ec53cfa8f37209cc34ccddc633
+ms.sourcegitcommit: f8ed85740f873c15c239ab6ba753e4b76e030ba7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440343"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045794"
 ---
 # <a name="create-an-internal-load-balancer-by-using-the-azure-powershell-module"></a>使用 Azure PowerShell 模块创建内部负载均衡器
 
@@ -251,7 +251,7 @@ Primary              : False
 
 使用 `Add-AzVMNetworkInterface` 命令将 NIC 分配到虚拟机。
 
-有关如何创建虚拟机和分配 NIC 的分步说明，请参阅[使用 PowerShell 创建 Azure VM](../virtual-machines/virtual-machines-windows-ps-create.md?toc=%2fload-balancer%2ftoc.json)。
+有关如何创建虚拟机和分配 NIC 的分步说明，请参阅[使用 PowerShell 创建 Azure VM](../virtual-machines/scripts/virtual-machines-windows-powershell-sample-create-vm.md?toc=%2fload-balancer%2ftoc.json)。
 
 ## <a name="add-the-network-interface"></a>添加网络接口
 

@@ -1,18 +1,20 @@
 ---
 title: 跨云重用模板
 description: 开发可针对不同的云环境一致地工作的 Azure 资源管理器模板。 创建适用于 Azure Stack 的新模板或更新现有模板。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 12/09/2018
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
 ms.custom: seodec18
-ms.openlocfilehash: ad099783957bcb1e008c28456d2d3ce58a6e09cf
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 0a37ccd957e3746431ed79831acac82616a5d318
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426343"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807716"
 ---
 # <a name="develop-arm-templates-for-cloud-consistency"></a>开发用于确保云一致性的 ARM 模板
 
@@ -26,15 +28,15 @@ Azure 在很多位置提供了面向企业的智能云服务，其中包括：
 
     <!--MOONCAKE: CORRECT ON Microsoft-managed Azure platform-->
     
-* 独立主权云，例如 Azure 德国、Azure 中国云和 Azure 中国世纪互联。 主权云提供具有大部分相同的强大功能的一致平台，全球 Azure 客户均有权访问。
+* 独立主权云，例如 Azure 德国、Azure 美国政府和 Azure 中国世纪互联。 主权云提供具有大部分相同的强大功能的一致平台，全球 Azure 客户均有权访问。
     
-    <!--MOONCAKE: sovereign cloud correct-->
+    <!--MOONCAKE: CORRECT ON Azure US Government-->
     
 * Azure Stack，一种混合云平台，可从组织数据中心提供 Azure 服务。 企业可以在自己的数据中心中设置 Azure Stack，或者使用服务提供商提供的 Azure 服务，在他们的设施（有时称为托管区域）中运行 Azure Stack。
 
 在所有这些云的核心，Azure 资源管理器提供一个 API，用于实现各种用户界面与 Azure 平台的通信。 此 API 提供了强大的基础结构即代码功能。 使用 Azure 资源管理器可以部署和配置 Azure 云平台上提供的任何类型的资源。 只用一个模板即可将完整的应用程序部署和配置为操作结束状态。
 
-![Azure 环境](./media/templates-cloud-consistency/environments.png)
+:::image type="content" source="./media/templates-cloud-consistency/environments.png" alt-text="Azure 环境":::
 
 全球 Azure、主权云、托管云以及你的数据中心的云具有一致性，可帮助你从 Azure 资源管理器中受益。 在设置了基于模板的资源部署和配置后，就可以在这些云中重复使用部署投入。
 
@@ -222,51 +224,53 @@ Azure 资源管理器在运行时评估主要模板并检索和评估每个嵌�
 
 由于敏捷开发以及各种更新和新服务不断引入 Azure，[区域可能在服务和更新的可用性方面有所差异](https://status.azure.com/status/)。 经过严格的内部测试之后，通常向参与验证计划的小范围受众客户推介新服务或现有服务的更新。 客户验证成功后，就会在部分 Azure 区域中提供服务或更新，然后引入到更多区域，推广到主权云，甚至还可能提供给 Azure Stack 的客户。
 
-明白了 Azure 区域和云在其可用的服务方面可能有所差异，你就可以做出一些模板相关的积极决策。 建议首先开始检查云的可用资源提供程序。 通过资源提供程序可以了解到可用于 Azure 服务的一系列资源和操作。
+<!--Mooncake Correct on [regions can differ](https://status.azure.com/status/)--.
 
-模板部署和配置资源。 资源类型由资源提供程序提供。 例如，计算资源提供程序 (Microsoft.Compute) 提供多个资源类型，例如 virtualMachines 和 availabilitySets。 每个资源提供程序均可向常见协定定义的 Azure 资源管理器提供一个 API，从而可以跨所有资源提供程序实现一致、统一的创作体验。 但全球 Azure 中可用的资源提供程序在主权云或 Azure Stack 区域中可能不可用。
+Knowing that Azure regions and clouds may differ in their available services, you can make some proactive decisions about your templates. A good place to start is by examining the available resource providers for a cloud. A resource provider tells you the set of resources and operations that are available for an Azure service.
 
-![资源提供程序](./media/templates-cloud-consistency/resource-providers.png)
+A template deploys and configures resources. A resource type is provided by a resource provider. For example, the compute resource provider (Microsoft.Compute), provides multiple resource types such as virtualMachines and availabilitySets. Each resource provider provides an API to Azure Resource Manager defined by a common contract, enabling a consistent, unified authoring experience across all resource providers. However, a resource provider that is available in global Azure may not be available in a sovereign cloud or an Azure Stack region.
 
-要验证资源提供程序在给定云中是否可用，请在 Azure 命令行界面 ([CLI](https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest)) 中运行以下脚本：
+:::image type="content" source="./media/templates-cloud-consistency/resource-providers.png" alt-text="Resource providers":::
+
+To verify the resource providers that are available in a given cloud, run the following script in the Azure command line interface ([CLI](https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest)):
 
 ```azurecli
 az provider list --query "[].{Provider:namespace, Status:registrationState}" --out table
 ```
 
-此外还可以使用以下 PowerShell cmdlet 查看可用的资源提供程序：
+You can also use the following PowerShell cmdlet to see available resource providers:
 
 ```powershell
 Get-AzureRmResourceProvider -ListAvailable | Select-Object ProviderNamespace, RegistrationState
 ```
 
-### <a name="verify-the-version-of-all-resource-types"></a>验证所有资源类型的版本
+### Verify the version of all resource types
 
-虽然所有资源类型都有一组共用的属性，但每个资源也有自己特定的属性。 有时会通过新的 API 版本向现有资源类型添加新功能和相关属性。 模板中的资源有自己的 API 版本属性 - `apiVersion`。 利用此版本控制可确保模板中的现有资源配置不受平台更改的影响。
+A set of properties is common for all resource types, but each resource also has its own specific properties. New features and related properties are added to existing resource types at times through a new API version. A resource in a template has its own API version property - `apiVersion`. This versioning ensures that an existing resource configuration in a template is not affected by changes on the platform.
 
-引入到全球 Azure 中现有资源类型的新 API 版本在所有区域、主权云或者 Azure Stack 中可能不会立即可用。 要查看可用资源提供程序、资源类型和云的 API 版本的列表，可以在 Azure 门户中使用资源浏览器。 在“所有服务”菜单中搜索资源浏览器。 在资源浏览器中展开提供程序节点，返回该云中所有可用的资源提供程序、资源类型和 API 版本。
+New API versions introduced to existing resource types in global Azure might not immediately be available in all regions, sovereign clouds, or Azure Stack. To view a list of the available resource providers, resource types, and API versions for a cloud, you can use Resource Explorer in Azure portal. Search for Resource Explorer in the All Services menu. Expand the Providers node in Resource Explorer to return all the available resource providers, their resource types, and API versions in that cloud.
 
-要在 Azure CLI 中列出给定云中所有资源类型的可用 API 版本，请运行以下脚本：
+To list the available API version for all resource types in a given cloud in Azure CLI, run the following script:
 
 ```azurecli
 az provider list --query "[].{namespace:namespace, resourceType:resourceType[]}"
 ```
 
-还可以使用以下 PowerShell cmdlet：
+You can also use the following PowerShell cmdlet:
 
 ```powershell
 Get-AzureRmResourceProvider | select-object ProviderNamespace -ExpandProperty ResourceTypes | ft ProviderNamespace, ResourceTypeName, ApiVersions
 ```
 
-### <a name="refer-to-resource-locations-with-a-parameter"></a>使用参数引用资源位置
+### Refer to resource locations with a parameter
 
-模板始终部署到驻留在区域中的资源组。 除了部署本身，模板中的每个资源还具有位置属性，可用于指定要部署的区域。 若要开发用于实现云一致性的模板，则需要一种动态方式来引用资源位置，因为每个 Azure Stack 可以包含唯一的位置名称。 资源通常部署在同一区域中作为资源组，但为了支持跨区域应用程序可用性等方案，可以跨区域分布资源。
+A template is always deployed into a resource group that resides in a region. Besides the deployment itself, each resource in a template also has a location property that you use to specify the region to deploy in. To develop your template for cloud consistency, you need a dynamic way to refer to resource locations, because each Azure Stack can contain unique location names. Usually resources are deployed in the same region as the resource group, but to support scenarios such as cross-region application availability, it can be useful to spread resources across regions.
 
-在模板中指定资源属性时，虽然可以对区域名称进行硬编码，但此方法不保证可以将模板部署到其他 Azure Stack 环境，因为那里很可能不存在区域名称。
+Even though you could hardcode the region names when specifying the resource properties in a template, this approach doesn't guarantee that the template can be deployed to other Azure Stack environments, because the region name most likely doesn't exist there.
 
-为了适应不同的区域，请将输入参数位置添加到具有默认值的模板。 如果在部署期间未指定任何值，则使用默认值。
+To accommodate different regions, add an input parameter location to the template with a default value. The default value will be used if no value is specified during deployment.
 
-模板函数 `[resourceGroup()]` 返回一个对象，其中包含以下键值对：
+The template function `[resourceGroup()]` returns an object that contains the following key/value pairs:
 
 ```json
 {
@@ -281,7 +285,7 @@ Get-AzureRmResourceProvider | select-object ProviderNamespace -ExpandProperty Re
 }
 ```
 
-通过引用输入参数的 defaultValue 中对象的位置键，Azure 资源管理器在运行时将 `[resourceGroup().location]` 模板函数替换为模板部署到的资源组的位置。
+By referencing the location key of the object in the defaultValue of the input parameter, Azure Resource Manager will, at runtime, replace the `[resourceGroup().location]` template function with the name of the location of the resource group the template is deployed to.
 
 ```json
 "parameters": {
@@ -302,13 +306,13 @@ Get-AzureRmResourceProvider | select-object ProviderNamespace -ExpandProperty Re
     ...
 ```
 
-使用此模板函数，可以向任意云部署模板，且不必提前知悉区域名称。 此外，模板中特定资源的位置可能不同于资源组位置。 在这种情况下，可以通过对该特定资源使用其他输入参数来进行配置，同时在同一模板中的其他资源仍然使用初始位置输入参数。
+With this template function, you can deploy your template to any cloud without even knowing the region names in advance. In addition, a location for a specific resource in the template can differ from the resource group location. In this case, you can configure it by using additional input parameters for that specific resource, while the other resources in the same template still use the initial location input parameter.
 
-### <a name="track-versions-using-api-profiles"></a>使用 API 配置文件跟踪版本
+### <a name="track-versions-using-api-profiles"></a>Track versions using API profiles
 
-跟踪所有可用资源提供程序和 Azure Stack 中存在的相关 API 版本非常具有挑战性。 例如，在撰写本文时，Azure 中 Microsoft.Compute/availabilitySets 的最新 API 版本为 `2018-04-01`，而 Azure 和 Azure Stack 的通用 API 版本为 `2016-03-30`。 在所有 Azure 和 Azure Stack 位置之间共享的 Microsoft.Storage/storageAccounts 的通用 API 版本为 `2016-01-01`，而在 Azure 中的最新 API 版本为 `2018-02-01`。
+It can be very challenging to keep track of all the available resource providers and related API versions that are present in Azure Stack. For example, at the time of writing, the latest API version for **Microsoft.Compute/availabilitySets** in Azure is `2018-04-01`, while the available API version common to Azure and Azure Stack is `2016-03-30`. The common API version for **Microsoft.Storage/storageAccounts** shared among all Azure and Azure Stack locations is `2016-01-01`, while the latest API version in Azure is `2018-02-01`.
 
-为此，资源管理器在模板中引入了 API 配置文件的概念。 使用 API 配置文件，模板中的每个资源都配置了 `apiVersion` 元素，用于描述该特定资源的 API 版本。
+For this reason, Resource Manager introduced the concept of API profiles to templates. Without API profiles, each resource in a template is configured with an `apiVersion` element that describes the API version for that specific resource.
 
 ```json
 {
@@ -349,7 +353,7 @@ Get-AzureRmResourceProvider | select-object ProviderNamespace -ExpandProperty Re
 }
 ```
 
-API 配置文件版本充当 Azure 和 Azure Stack 通用的每种资源类型的单个 API 版本的别名。 不应为模板中的每种资源指定 API 版本，而是仅在称为 `apiProfile` 的新根元素中指定 API 配置文件版本，并省略各个资源的 `apiVersion` 元素。
+An API profile version acts as an alias for a single API version per resource type common to Azure and Azure Stack. Instead of specifying an API version for each resource in a template, you specify only the API profile version in a new root element called `apiProfile` and omit the `apiVersion` element for the individual resources.
 
 ```json
 {
@@ -389,9 +393,9 @@ API 配置文件版本充当 Azure 和 Azure Stack 通用的每种资源类型�
 }
 ```
 
-API 配置文件可确保 API 版本可跨位置使用，因此不需要手动验证 apiVersions 在特定位置中是否可用。 为了确保 Azure Stack 环境中存在 API 配置文件引用的 API 版本，Azure Stack 操作员必须根据支持策略将解决方案保持最新。 如果系统超过六个月未更新，会被视为不合规，必须更新环境。
+The API profile ensures that the API versions are available across locations, so you do not have to manually verify the apiVersions that are available in a specific location. To ensure the API versions referenced by your API profile are present in an Azure Stack environment, the Azure Stack operators must keep the solution up-to-date based on the policy for support. If a system is more than six months out of date, it is considered out of compliance, and the environment must be updated.
 
-模板中 API 配置文件不是必需元素。 即使添加该元素，它也将仅用于未指定 `apiVersion` 的资源。 此元素允许逐步更改，但不要求对现有模板进行任何更改。
+The API profile isn't a required element in a template. Even if you add the element, it will only be used for resources for which no `apiVersion` is specified. This element allows for gradual changes but doesn't require any changes to existing templates.
 
 ```json
 {
@@ -432,27 +436,27 @@ API 配置文件可确保 API 版本可跨位置使用，因此不需要手动�
 }
 ```
 
-## <a name="check-endpoint-references"></a>检查终结点引用
+## Check endpoint references
 
-资源可以具有对平台上其他服务的引用。 例如，公共 IP 可以分配获得公共 DNS 名称。 公有云、主权云和 Azure Stack 解决方案有自己不同的终结点命名空间。 在大多数情况下，资源仅需要一个前缀作为模板中的输入。 在运行时，Azure 资源管理器将终结点值追加到其中。 某些终结点值需要在模板中显式指定。
+Resources can have references to other services on the platform. For example, a public IP can have a public DNS name assigned to it. The public cloud, the sovereign clouds, and Azure Stack solutions have their own distinct endpoint namespaces. In most cases, a resource requires only a prefix as input in the template. During runtime, Azure Resource Manager appends the endpoint value to it. Some endpoint values need to be explicitly specified in the template.
 
 > [!NOTE]
-> 为了开发用于实现一致性的模板，请勿对终结点命名空间进行硬编码。
+> To develop templates for cloud consistency, don't hardcode endpoint namespaces.
 
-以下两个示例是在创建资源时需要显式指定的常见终结点命名空间：
+The following two examples are common endpoint namespaces that need to be explicitly specified when creating a resource:
 
-* 存储帐户（blob、队列、表和文件）
-* 数据库和 Azure Redis 缓存的连接字符串
+* Storage accounts (blob, queue, table and file)
+* Connection strings for databases and Azure Cache for Redis
 
-终结点命名空间还可在模板输出中用作部署完成时发送给用户的信息。 以下为常见示例：
+Endpoint namespaces can also be used in the output of a template as information for the user when the deployment completes. The following are common examples:
 
-* 存储帐户（blob、队列、表和文件）
-* 连接字符串（MySql、SQLServer、SQLAzure、Custom、NotificationHub、ServiceBus、EventHub、ApiHub、DocDb、RedisCache、PostgreSQL）
-* 流量管理器
-* 公共 IP 地址的 domainNameLabel
-* 云服务
+* Storage accounts (blob, queue, table and file)
+* Connection strings (MySql, SQLServer, SQLAzure, Custom, NotificationHub, ServiceBus, EventHub, ApiHub, DocDb, RedisCache, PostgreSQL)
+* Traffic Manager
+* domainNameLabel of a public IP address
+* Cloud services
 
-一般情况下，请避免在模板中使用硬编码终结点。 最佳做法是使用引用模板函数动态检索终结点。 例如，最常进行硬编码的终结点是存储帐户的终结点命名空间。 每个存储帐户均有唯一的 FQDN，它通过连接存储帐户的名称与终结点命名空间来构造。 名为 mystorageaccount1 的 blob 存储帐户会因为云的不同而产生不同的 FQDN：
+In general, avoid hardcoded endpoints in a template. The best practice is to use the reference template function to retrieve the endpoints dynamically. For example, the endpoint most commonly hardcoded is the endpoint namespace for storage accounts. Each storage account has a unique FQDN that is constructed by concatenating the name of the storage account with the endpoint namespace. A blob storage account named mystorageaccount1 results in different FQDNs depending on the cloud:
 
 <!--Notice: Global Azure Cloud should be mystorageaccount1.blob.core.windows.net-->
 
@@ -594,7 +598,7 @@ Get-AzureRmVMSize -Location "China North"
 
 ### <a name="verify-that-vm-extensions-are-available-in-azure-stack"></a>验证 VM 扩展在 Azure Stack 中是否使用
 
-云一致性的另一个注意事项是使用[虚拟机扩展](../../virtual-machines/windows/extensions-features.md)配置 VM 内的资源。 并非所有的 VM 扩展在 Azure Stack 均可用 模板可指定专用于 VM 扩展的资源，从而在模板内创建依赖关系和条件。
+云一致性的另一个注意事项是使用[虚拟机扩展](../../virtual-machines/extensions/features-windows.md)配置 VM 内的资源。 并非所有的 VM 扩展在 Azure Stack 均可用 模板可指定专用于 VM 扩展的资源，从而在模板内创建依赖关系和条件。
 
 例如，如果要配置运行 Microsoft SQL Server 的 VM，VM 扩展可以配置 SQL Server 作为模板部署的一部分。 如果部署模板也包含配置为在运行 SQL Server 的 VM 上创建数据库的应用程序服务器，想象一下会发生什么情况。 除了使用应用程序服务器的 VM 扩展外，还可以在成功返回 SQL Server VM 扩展资源时配置应用程序服务器的依赖关系。 此方法可确保在指示应用程序服务器创建数据库时，运行 SQL Server 的 VM 已配置并且可用。
 
@@ -604,16 +608,16 @@ Get-AzureRmVMSize -Location "China North"
 
 存在很多类型的 VM 扩展。 在开发用于实现云一致性的模板时，请务必仅使用在模板的所有目标区域均可用的扩展。
 
-要检索可用于特定区域（在本示例中为 `chinanorth`）的 VM 扩展列表，请运行以下 Azure CLI 命令：
+要检索可用于特定区域（在本示例中为 `myLocation`）的 VM 扩展列表，请运行以下 Azure CLI 命令：
 
 ```azurecli
-az vm extension image list --location "chinanorth"
+az vm extension image list --location myLocation
 ```
 
 此外还可执行 Azure PowerShell [Get-AzureRmVmImagePublisher](https://docs.microsoft.com/powershell/module/az.compute/get-azvmimagepublisher) cmdlet，并使用 `-Location` 指定虚拟机映像的位置。 例如：
 
 ```powershell
-Get-AzureRmVmImagePublisher -Location 'chinanorth' | Get-AzureRmVMExtensionImageType | Get-AzureRmVMExtensionImage | Select Type, Version
+Get-AzureRmVmImagePublisher -Location myLocation | Get-AzureRmVMExtensionImageType | Get-AzureRmVMExtensionImage | Select Type, Version
 ```
 
 #### <a name="ensure-that-versions-are-available"></a>请确保该版本可用
@@ -675,7 +679,7 @@ Get-AzureRmVMExtensionImage -Location myLocation -PublisherName Microsoft.PowerS
 
 下图展示了团队使用集成开发环境 (IDE) 的开发过程的典型示例。 在时间线中的不同阶段执行不同的测试类型。 在这里，两名开发者正在处理同一解决方案，但这种情况同样适用于单个开发者或一个大型团队。 每个开发者通常会创建中央存储库的本地副本，这样每个人都可以处理本地副本，并且不会影响可能使用同一文件的其他用户。
 
-![工作流](./media/templates-cloud-consistency/workflow.png)
+Workflow
 
 请考虑以下用于测试和自动化的提示：
 

@@ -1,6 +1,6 @@
 ---
-title: PowerShell 示例 - 对传入 VM 的流量进行负载均衡以实现高可用性 - Azure
-titlesuffix: Azure Load Balancer
+title: 对传入 VM 的流量进行负载均衡以实现高可用性 - Azure PowerShell
+titleSuffix: Azure Load Balancer
 description: 本 Azure PowerShell 脚本示例演示如何对传入 VM 的流量进行负载均衡以实现高可用性
 services: load-balancer
 documentationcenter: load-balancer
@@ -11,20 +11,20 @@ ms.topic: sample
 ms.tgt_pltfrm: ''
 ms.workload: infrastructure
 origin.date: 04/20/2018
-ms.date: 03/04/2019
+ms.date: 08/31/2020
 ms.author: v-jay
-ms.openlocfilehash: 918a354837676c8142513ec49dc232e15e18f414
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 9e3e6c03cc757991d35f02e5f441841cc428582b
+ms.sourcegitcommit: f8ed85740f873c15c239ab6ba753e4b76e030ba7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "63829789"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045759"
 ---
 # <a name="azure-powershell-script-example-load-balance-traffic-to-vms-for-high-availability"></a>Azure PowerShell 脚本示例：对传入 VM 的流量进行负载均衡以实现高可用性
 
 本 Azure PowerShell 脚本示例创建运行多个 Windows 虚拟机（使用高度可用且负载均衡的配置进行配置）所需的所有项。 运行脚本后，即可拥有已加入到 Azure 可用性集并可通过 Azure 负载均衡器访问的 3 个虚拟机。
 
-必要时，请使用 [Azure PowerShell 指南](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/)中的说明安装 Azure PowerShell，并运行 `Connect-AzAccount -Environment AzureChinaCloud` 创建与 Azure 的连接。
+必要时，请使用 [Azure PowerShell 指南](https://docs.microsoft.com/powershell/azure/)中的说明安装 Azure PowerShell，并运行 `Connect-AzAccount -Environment AzureChinaCloud` 创建与 Azure 的连接。
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
@@ -185,7 +185,7 @@ Remove-AzResourceGroup -Name myResourceGroup
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 可在 [Azure 网络概述文档](../powershell-samples.md?toc=%2fnetworking%2ftoc.json)中找到其他网络 PowerShell 脚本示例。
 <!-- Update_Description: new articles on load balancer windows powershell sample nlb -->

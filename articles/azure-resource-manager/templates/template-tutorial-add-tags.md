@@ -1,17 +1,20 @@
 ---
 title: 教程 - 将标记添加到模板中的资源
 description: 将标记添加到在 Azure 资源管理器模板中部署的资源。 可以通过标记对资源进行逻辑组织。
-author: rockboyfor
 origin.date: 03/27/2020
-ms.date: 04/30/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.topic: tutorial
 ms.author: v-yeche
-ms.openlocfilehash: 11a3a6e21b0bfd30a73e9ea05ed0bf9560b6d1d7
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: b7de7ffb3898919ef1335385bba2e394bfa26779
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596126"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807794"
 ---
 # <a name="tutorial-add-tags-in-your-arm-template"></a>教程：在 ARM 模板中添加标记
 
@@ -45,7 +48,6 @@ ms.locfileid: "82596126"
         "Standard_GRS",
         "Standard_RAGRS",
         "Premium_LRS",
-        "Standard_GZRS",
         "Standard_RAGZRS"
       ]
     },
@@ -162,7 +164,6 @@ ms.locfileid: "82596126"
         "Standard_GRS",
         "Standard_RAGRS",
         "Premium_LRS",
-        "Standard_GZRS",
         "Standard_RAGZRS"
       ]
     },
@@ -307,7 +308,7 @@ az deployment group create \
 1. 选择已部署到的资源组。
 1. 选择一项资源，例如存储帐户资源。 可以看到，它现在有标记。
 
-    ![显示标记](./media/template-tutorial-add-tags/show-tags.png)
+    :::image type="content" source="./media/template-tutorial-add-tags/show-tags.png" alt-text="显示标记":::
 
 ## <a name="clean-up-resources"></a>清理资源
 

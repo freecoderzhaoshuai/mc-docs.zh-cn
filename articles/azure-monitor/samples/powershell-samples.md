@@ -5,13 +5,13 @@ ms.subservice: ''
 ms.topic: sample
 author: Johnnytechn
 ms.author: v-johya
-ms.date: 07/15/2020
-ms.openlocfilehash: 02ea8e58826ae658bb72607616ad5620fb74c8bc
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.date: 08/20/2020
+ms.openlocfilehash: ffead506713ed471e9d62674a7c1c74431a76388
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440568"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148700"
 ---
 # <a name="azure-monitor-powershell-samples"></a>Azure Monitor PowerShell 示例
 本文说明可帮助访问 Azure Monitor 功能的示例 PowerShell 命令。
@@ -22,7 +22,7 @@ ms.locfileid: "86440568"
 [!INCLUDE [updated-for-az](../../../includes/updated-for-az.md)]
 
 ## <a name="set-up-powershell"></a>设置 PowerShell
-如果尚未安装，请在计算机上安装要运行的 PowerShell。 有关详细信息，请参阅[如何安装和配置 PowerShell](https://docs.microsoft.com/powershell/azure/overview)。
+如果尚未安装，请在计算机上安装要运行的 PowerShell。 有关详细信息，请参阅[如何安装和配置 PowerShell](https://docs.microsoft.com/powershell/azure/)。
 
 ## <a name="examples-in-this-article"></a>本文中的示例
 本文中的示例演示如何使用 Azure Monitor cmdlet。 还可以在 [Azure Monitor (Insights) Cmdlet](https://docs.microsoft.com/powershell/module/az.applicationinsights) 上查看 Azure Monitor PowerShell cmdlet 的完整列表。
@@ -151,11 +151,11 @@ Get-AzAlertRule -ResourceGroup montest -TargetResourceId /subscriptions/s1/resou
 | 参数 | value |
 | --- | --- |
 | 名称 |simpletestdiskwrite |
-| 此警报规则的位置 |ChinaNorth |
-| resourceGroup |montest |
+| 此警报规则的位置 |chinaeast2 |
+| ResourceGroup |montest |
 | TargetResourceId |/subscriptions/s1/resourceGroups/montest/providers/Microsoft.Compute/virtualMachines/testconfig |
 | 创建的警报的 MetricName |\PhysicalDisk(_Total)\Disk Writes/sec。See the `Get-MetricDefinitions` cmdlet about how to retrieve the exact metric names |
-| operator |GreaterThan |
+| 运算符后的表达式 |GreaterThan |
 | 阈值（此指标的计数/秒） |1 |
 | WindowSize（hh:mm:ss 格式） |00:05:00 |
 | 聚合（在这种情况下使用平均计数的指标的统计信息） |平均值 |
@@ -177,7 +177,7 @@ $actionWebhook = New-AzAlertRuleWebhook -ServiceUri https://example.com?token=my
 在经典虚拟机上创建关于 CPU %指标的警报规则
 
 ```powershell
-Add-AzMetricAlertRule -Name vmcpu_gt_1 -Location "ChinaNorth" -ResourceGroup myrg1 -TargetResourceId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.ClassicCompute/virtualMachines/my_vm1 -MetricName "Percentage CPU" -Operator GreaterThan -Threshold 1 -WindowSize 00:05:00 -TimeAggregationOperator Average -Action $actionEmail, $actionWebhook -Description "alert on CPU > 1%"
+Add-AzMetricAlertRule -Name vmcpu_gt_1 -Location "chinaeast2" -ResourceGroup myrg1 -TargetResourceId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.ClassicCompute/virtualMachines/my_vm1 -MetricName "Percentage CPU" -Operator GreaterThan -Threshold 1 -WindowSize 00:05:00 -TimeAggregationOperator Average -Action $actionEmail, $actionWebhook -Description "alert on CPU > 1%"
 ```
 
 检索警报规则
@@ -213,7 +213,7 @@ $condition2 = New-AzActivityLogAlertCondition -Field 'operationName' -Equal 'Mic
 $additionalWebhookProperties = New-Object "System.Collections.Generic.Dictionary``2[System.String,System.String]"
 $additionalWebhookProperties.Add('customProperty', 'someValue')
 $actionGrp1 = New-AzActionGroup -ActionGroupId '/subscriptions/<subid>/providers/Microsoft.Insights/actiongr1' -WebhookProperty $additionalWebhookProperties
-Set-AzActivityLogAlert -Location 'chinanorth' -Name 'alert on VM create' -ResourceGroupName 'myResourceGroup' -Scope '/subscriptions/<subid>' -Action $actionGrp1 -Condition $condition1, $condition2
+Set-AzActivityLogAlert -Location 'Global' -Name 'alert on VM create' -ResourceGroupName 'myResourceGroup' -Scope '/subscriptions/<subid>' -Action $actionGrp1 -Condition $condition1, $condition2
 
 ```
 
@@ -269,7 +269,7 @@ $notification1= New-AzAutoscaleNotification -CustomEmails ashwink@microsoft.com 
 最后，创建自动缩放设置以添加之前创建的配置文件。 
 
 ```powershell
-Add-AzAutoscaleSetting -Location "ChinaNorth" -Name "MyScaleVMSSSetting" -ResourceGroup big2 -TargetResourceId /subscriptions/s1/resourceGroups/big2/providers/Microsoft.Compute/virtualMachineScaleSets/big2 -AutoscaleProfiles $profile1 -Notifications $notification1
+Add-AzAutoscaleSetting -Location "chinaeast2" -Name "MyScaleVMSSSetting" -ResourceGroup big2 -TargetResourceId /subscriptions/s1/resourceGroups/big2/providers/Microsoft.Compute/virtualMachineScaleSets/big2 -AutoscaleProfiles $profile1 -Notifications $notification1
 ```
 
 有关管理自动缩放设置的详细信息，请参阅 [Get AutoscaleSetting](https://msdn.microsoft.com/library/mt282461.aspx)。
@@ -319,7 +319,7 @@ Remove-AzAutoscalesetting -ResourceGroup myrg1 -Name MyScaleVMSSSetting
 
 ### <a name="add-a-log-profile-without-data-retention"></a>添加没有数据保留期的日志配置文件
 ```powershell
-Add-AzLogProfile -Name my_log_profile_s1 -StorageAccountId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/my_storage -Location chinanorth,chinanorth2,chinaeast,chinaeast2
+Add-AzLogProfile -Name my_log_profile_s1 -StorageAccountId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/my_storage -Location global,chinanorth,chinanorth2,chinaeast,chinaeast2
 ```
 
 ### <a name="remove-a-log-profile"></a>删除日志配置文件
@@ -331,14 +331,14 @@ Remove-AzLogProfile -name my_log_profile_s1
 可以用天数将 **-RetentionInDays** 属性指定为一个正整数，会在此期间保留数据。
 
 ```powershell
-Add-AzLogProfile -Name my_log_profile_s1 -StorageAccountId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/my_storage -Location chinanorth,chinanorth2,chinaeast,chinaeast2 -RetentionInDays 90
+Add-AzLogProfile -Name my_log_profile_s1 -StorageAccountId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/my_storage -Location global,chinanorth,chinanorth2,chinaeast,chinaeast2 -RetentionInDays 90
 ```
 
 ### <a name="add-log-profile-with-retention-and-eventhub"></a>添加具有保留期和 EventHub 的日志配置文件
 除了将数据路由到存储帐户，还可以流式传输到事件中心。 在此预览版本中，存储帐户配置是必需的，但事件中心配置是可选的。
 
 ```powershell
-Add-AzLogProfile -Name my_log_profile_s1 -StorageAccountId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/my_storage -serviceBusRuleId /subscriptions/s1/resourceGroups/Default-ServiceBus-ChinaNorth/providers/Microsoft.ServiceBus/namespaces/mytestSB/authorizationrules/RootManageSharedAccessKey -Location chinanorth,chinanorth2,chinaeast,chinaeast2 -RetentionInDays 90
+Add-AzLogProfile -Name my_log_profile_s1 -StorageAccountId /subscriptions/s1/resourceGroups/myrg1/providers/Microsoft.Storage/storageAccounts/my_storage -serviceBusRuleId /subscriptions/s1/resourceGroups/Default-ServiceBus-ChinaNorth/providers/Microsoft.ServiceBus/namespaces/mytestSB/authorizationrules/RootManageSharedAccessKey -Location global,chinanorth,chinanorth2,chinaeast,chinaeast2 -RetentionInDays 90
 ```
 
 ## <a name="configure-diagnostics-logs"></a>配置诊断日志
@@ -399,5 +399,4 @@ Set-AzDiagnosticSetting -ResourceId /subscriptions/s1/resourceGroups/insights-in
 ```
 
 可以组合这些命令以将数据发送到多个目标。
-
 

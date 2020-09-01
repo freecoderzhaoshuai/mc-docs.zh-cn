@@ -1,19 +1,21 @@
 ---
 title: 市场中的托管应用
 description: 介绍通过市场提供的 Azure 托管应用程序。
-author: rockboyfor
 ms.topic: tutorial
 origin.date: 07/17/2019
-ms.date: 01/20/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.author: v-yeche
-ms.openlocfilehash: c7503cad7f6e4f281b1b2316cf1479ba9b8e12ed
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: a2e7ed35e80da4c90fc537cd9060300965e8b680
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78209155"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807895"
 ---
-# <a name="azure-managed-applications-in-the-marketplace"></a>市场中的 Azure 托管应用程序
+# <a name="tutorial-publish-azure-managed-applications-in-the-marketplace"></a>教程：在市场中发布 Azure 托管应用程序
 
 供应商可以使用 Azure 托管应用程序向所有 Azure 市场客户提供其解决方案。 这些供应商可以包括托管服务提供商 (MSP)、独立软件供应商 (ISV) 和系统集成商 (SI)。 托管应用程序可减少客户的维护和服务开销。 供应商通过市场出售基础结构和软件。 他们可以将服务和操作支持附加到托管应用程序。 有关详细信息，请参阅[托管应用程序概述](overview.md)。
 
@@ -23,7 +25,7 @@ ms.locfileid: "78209155"
 
 若要完成本文中的操作，必须已有包含托管应用程序定义的 .zip 文件。 有关详细信息，请参阅[创建服务目录应用程序](publish-service-catalog-app.md)。
 
-有几个业务先决条件。 它们具有以下特点：
+有几个业务先决条件。 它们分别是：
 
 * 公司或其子公司必须位于市场支持销售的国家/地区。
 * 产品必须按与市场支持的计费模型兼容的方式获得许可。
@@ -59,7 +61,7 @@ ms.locfileid: "78209155"
 
 * **产品/服务 ID**：此唯一标识符标识发布者配置文件内的产品/服务。 此 ID 显示在产品 URL、Resource Manager 模板和计费报表中。 它只能由小写字母数字字符或短划线 (-) 组成。 ID 不能以短划线结尾。 不能超过 50 个字符。 此字段在套餐推出后处于锁定状态。
 * **发布者 ID**：使用此下拉列表，可以选择要在其下发布此产品/服务的发布者配置文件。 此字段在套餐推出后处于锁定状态。
-* **名称**：此产品/服务显示名称会显示在市场和门户中。 该名称不能超过 50 个字符。 其中包含产品的可识别品牌名称。 除非销售需要，否则不要在此处包含公司名称。 如果要在自己的网站上销售此产品/服务，请确保名称与在网站上显示的名称完全相同。
+* **Name**：此产品/服务显示名称会显示在市场和门户中。 该名称不能超过 50 个字符。 其中包含产品的可识别品牌名称。 除非销售需要，否则不要在此处包含公司名称。 如果要在自己的网站上销售此产品/服务，请确保名称与在网站上显示的名称完全相同。
 
 完成后，选择“保存”  保存进度。
 
@@ -84,7 +86,7 @@ SKU 在市场中显示在父级产品/服务下。 它在 Azure 门户中显示�
    填写以下字段：
 
    * **标题**：输入此 SKU 的标题。 此标题出现在该项的库中。
-   * **摘要**：为此 SKU 输入简短摘要。 此文本显示在标题下方。
+   * **汇总**：为此 SKU 输入简短摘要。 此文本显示在标题下方。
    * **说明**：输入关于此 SKU 的详细说明。
    * **SKU 类型**：允许的值为“托管应用程序”和“解决方案模板”。   对于本例，请选择“托管应用程序”。 
    * **国家/地区可用性**：选择托管应用程序可用的国家/地区。
@@ -103,7 +105,7 @@ SKU 在市场中显示在父级产品/服务下。 它在 Azure 门户中显示�
 
      有关可用操作，请参阅 [Azure 资源管理器资源提供程序操作](../../role-based-access-control/resource-provider-operations.md)。 例如，若要允许使用者重启虚拟机，请将 `Microsoft.Compute/virtualMachines/restart/action` 添加到允许的操作。 自动允许 `*/read` 操作，因此你不需要包括该设置。
    * **PrincipalId**：此属性是被授予对客户订阅中资源的访问权限的用户、用户组或应用程序的 Azure Active Directory (Azure AD) 标识符。 Role Definition 描述权限。
-   * **角色定义**：此属性是 Azure AD 提供的所有基于角色的访问控制 (RBAC) 内置角色的列表。 你可以选择最合适的角色用于代表客户管理资源。
+   * **角色定义**：此属性是 Azure AD 提供的所有 Azure 内置角色的列表。 你可以选择最合适的角色用于代表客户管理资源。
    * **策略设置**：向托管应用程序应用 [Azure Policy](../../governance/policy/overview.md) 以指定所部署的解决方案的符合性要求。 从可用选项中，选择要应用的策略。 对于“策略参数”  ，请提供包含参数值的 JSON 字符串。 有关策略定义和参数值的格式，请参阅 [Azure Policy 示例](../../governance/policy/samples/index.md)。
 
 可以添加多个授权。 我们建议你创建 AD 用户组，并在“PrincipalId”  中指定其 ID。 以此，可以将更多的用户添加到用户组，而无需更新 SKU。
@@ -114,6 +116,8 @@ SKU 在市场中显示在父级产品/服务下。 它在 Azure 门户中显示�
 
 市场窗体要求填写将显示在 [Azure 市场](https://market.azure.cn/)和 [Azure 门户](https://portal.azure.cn/)中的字段。
 
+<!--Correct on the market.azure.cn-->
+
 ### <a name="preview-subscription-ids"></a>预览订阅 ID
 
 输入 Azure 订阅 ID 列表，可以在发布后访问套餐。 通过这些列入允许列表的订阅，可以在推出套餐前测试预览的套餐。 你可以在合作伙伴门户中编译最多 100 个订阅的允许列表。
@@ -122,29 +126,31 @@ SKU 在市场中显示在父级产品/服务下。 它在 Azure 门户中显示�
 
 从列表中选择最多五个与产品/服务最相关的类别。 这些类别用于将产品/服务映射到在 [Azure 市场](https://market.azure.cn/)和 [Azure 门户](https://portal.azure.cn/)中提供的产品类别。
 
+<!--Correct on the market.azure.cn-->
+
 #### <a name="azure-marketplace"></a>Azure 市场
 
 托管应用程序的摘要将显示以下字段：
 
-![市场摘要](./media/publish-marketplace-app/publishvm10.png)
+:::image type="content" source="./media/publish-marketplace-app/publishvm10.png" alt-text="市场摘要":::
 
 托管应用程序的“概述”  选项卡将显示以下字段：
 
-![市场概述](./media/publish-marketplace-app/publishvm11.png)
+:::image type="content" source="./media/publish-marketplace-app/publishvm11.png" alt-text="市场概述":::
 
 托管应用程序的“计划 + 定价”  选项卡将显示以下字段：
 
-![市场计划](./media/publish-marketplace-app/publishvm15.png)
+:::image type="content" source="./media/publish-marketplace-app/publishvm15.png" alt-text="市场计划":::
 
 #### <a name="azure-portal"></a>Azure 门户
 
 托管应用程序的摘要将显示以下字段：
 
-![门户摘要](./media/publish-marketplace-app/publishvm12.png)
+:::image type="content" source="./media/publish-marketplace-app/publishvm12.png" alt-text="门户摘要":::
 
 托管应用程序的概述将显示以下字段：
 
-![门户概述](./media/publish-marketplace-app/publishvm13.png)
+:::image type="content" source="./media/publish-marketplace-app/publishvm13.png" alt-text="门户概述":::
 
 #### <a name="logo-guidelines"></a>徽标准则
 
@@ -165,7 +171,7 @@ SKU 在市场中显示在父级产品/服务下。 它在 Azure 门户中显示�
 * 以白色显示发布者显示名称、计划标题和套餐详细摘要。 因此，不要在特大图标的背景下使用浅色。 特大图标不允许使用黑色、白色或透明背景。
 * 列出产品/服务后，会以编程方式在特大徽标内嵌入元素。 嵌入的元素包括发布者显示名称、计划标题、套餐长摘要和“创建”按钮。  因此，在设计特大徽标时，请勿输入任何文本。 在右侧留出空白区域，因为文本是以编程方式包含在该空白区域中的。 右侧的文本空白区域应为 415 x 100 像素。 它从左侧偏移了 370 个像素。
 
-    ![特大徽标示例](./media/publish-marketplace-app/publishvm14.png)
+    :::image type="content" source="./media/publish-marketplace-app/publishvm14.png" alt-text="特大徽标示例":::
 
 ## <a name="support-form"></a>支持窗体
 
@@ -182,5 +188,4 @@ SKU 在市场中显示在父级产品/服务下。 它在 Azure 门户中显示�
 * 有关托管应用程序的简介，请参阅[托管应用程序概述](overview.md)。
 * 有关发布服务目录托管应用程序的信息，请参阅[创建和发布服务目录托管应用程序](publish-service-catalog-app.md)。
 
-<!-- Update_Description: new article about publish marketplace app -->
-<!--NEW.date: 01/20/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

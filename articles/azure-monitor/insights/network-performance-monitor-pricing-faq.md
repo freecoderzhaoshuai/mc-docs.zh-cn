@@ -1,19 +1,18 @@
 ---
 title: Azure 网络性能监视器的定价常见问题解答 | Azure Docs
 description: 常见问题解答 - Azure 网络性能监视器
-author: lingliw
-manager: digimobile
 ms.subservice: logs
 ms.topic: conceptual
+author: Johnnytechn
+ms.author: v-johya
+ms.date: 08/20/2020
 origin.date: 04/02/2018
-ms.date: 04/12/2019
-ms.author: v-lingwu
-ms.openlocfilehash: 80aaf19caeef6756a7f59189716e38a724b3c0fc
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 3bb5fb38b1efc6b374e1120538c25baedc933029
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78850325"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148583"
 ---
 # <a name="pricing-changes-for-azure-network-performance-monitor"></a>Azure 网络性能监视器的定价变化
 
@@ -26,7 +25,7 @@ ms.locfileid: "78850325"
 **在旧模型中如何计收性能监视器的使用费？**
 
 NPM 的计费基于以下两个组件的用量和消耗量：
-* **节点**：所有综合事务都在节点上发起和终结。 节点也称为代理或 Azure 管理代理。
+* **节点**：所有综合事务都在节点上发起和终结。 节点也称为代理或 Microsoft 管理代理。
 * **Data**：各种网络测试的结果存储在 Log Analytics 工作区中。
 
 在旧模型中，帐单是根据节点数和生成的数据量计算的。 
@@ -63,7 +62,7 @@ ExpressRoute 监视器的费用根据监视期间生成的数据量计费。 有
 
 **我使用 ExpressRoute 监视器来监视多条 ExpressRoute 线路。费用是否根据监视的线路数来计收？**
 
-我们不会根据线路数或对等互连类型（例如专用对等互连、Azure 对等互连）来计费， 而是根据数据量计费，如前所述。
+我们不会根据线路数或对等互连类型（例如专用对等互连、Microsoft 对等互连）来计费， 而是根据数据量计费，如前所述。
 
 **当 ExpressRoute 监视单条线路时，生成的数据量有多大？**
 
@@ -109,8 +108,4 @@ ExpressRoute 监视器的费用根据监视期间生成的数据量计费。 有
 ## <a name="references"></a>参考
 
 [Log Analytics 定价常见问题解答](https://www.azure.cn/pricing/details/monitor/)：常见问题解答部分提供了有关免费层、每个节点的定价和其他定价详细信息。
-
-
-
-
 

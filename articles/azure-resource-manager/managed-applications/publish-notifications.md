@@ -4,14 +4,16 @@ description: 使用 Webhook 终结点配置托管应用程序，以接收有关�
 ms.topic: conceptual
 author: rockboyfor
 origin.date: 11/01/2019
-ms.date: 03/23/2020
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 90a7c537f50293bad2334ac0efb04d5b752e79ce
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: f9a5e695792f88a49ca76b998436a596d69e08a2
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79543877"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807872"
 ---
 # <a name="azure-managed-applications-with-notifications"></a>提供通知的 Azure 托管应用程序
 
@@ -32,7 +34,7 @@ Azure 托管应用程序通知可让发布者根据托管应用程序实例的�
 #### <a name="azure-portal"></a>Azure 门户
 若要开始，请参阅[通过 Azure 门户发布服务目录应用程序](./publish-portal.md)。
 
-![Azure 门户中的服务目录应用程序定义通知](./media/publish-notifications/service-catalog-notifications.png)
+:::image type="content" source="./media/publish-notifications/service-catalog-notifications.png" alt-text="Azure 门户中的服务目录应用程序定义通知":::
 
 #### <a name="rest-api"></a>REST API
 
@@ -63,10 +65,9 @@ Azure 托管应用程序通知可让发布者根据托管应用程序实例的�
 ```
 ## <a name="add-azure-marketplace-managed-application-notifications"></a>添加 Azure 市场托管应用程序通知
 
-<!--Not Available on [Create an Azure application offer](../../marketplace/cloud-partner-portal/azure-applications/cpp-create-offer.md)-->
+<!--Not Available on [Create an Azure application offer](../../marketplace/partner-center-portal/create-new-azure-apps-offer.md)-->
 
-![Azure 门户中的 Azure 市场托管应用程序通知](./media/publish-notifications/marketplace-notifications.png)
-
+:::image type="content" source="./media/publish-notifications/marketplace-notifications.png" alt-text="Azure 门户中的 Azure 市场托管应用程序通知":::
 ## <a name="event-triggers"></a>事件触发器
 下表描述了 EventType 和 ProvisioningState 的所有可能组合及其触发器：
 
@@ -200,5 +201,4 @@ billingDetails | 仅为 Azure 市场托管应用程序指定。  托管应用程
 
 托管应用程序通知服务预期 Webhook 终结点在通知中返回 `200 OK` 响应。 如果 Webhook 终结点返回大于或等于 500 的 HTTP 错误代码、返回错误代码 429，或暂时不可访问，则通知服务将会重试。 如果 Webhook 终结点在 10 小时内一直不可用，则会删除通知消息，并且重试将会停止。
 
-<!-- Update_Description: new article about publish notifications -->
-<!--NEW.date: 01/20/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

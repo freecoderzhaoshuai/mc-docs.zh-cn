@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: conceptual
 origin.date: 05/19/2020
 ms.date: 08/18/2020
-ms.openlocfilehash: 8cb82b3bf6a474e4069d2e6820dd456b189c8dec
-ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
+ms.openlocfilehash: 6879700f8c2e6f74f1bb7d7d874cd6f14fadd81e
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/18/2020
-ms.locfileid: "88515974"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951339"
 ---
 # <a name="kustoexplorer-installation-and-user-interface"></a>Kusto.Explorer 安装和用户界面
 
@@ -337,4 +337,4 @@ Kusto.Explorer 尝试在结果面板中解释每行的严重性或详细级别�
 * [Kusto.Explorer 代码分析器](kusto-explorer-code-analyzer.md)
 * [Kusto.Explorer 代码导航](kusto-explorer-codenav.md)
 * [Kusto.Explorer 代码重构](kusto-explorer-refactor.md)
-* [Kusto 查询语言 (KQL)](https://docs.microsoft.com/azure/kusto/query/)
+* [Kusto 查询语言 (KQL)](/kusto/query/)

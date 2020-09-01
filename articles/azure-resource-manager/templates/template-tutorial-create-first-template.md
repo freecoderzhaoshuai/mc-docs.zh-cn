@@ -1,17 +1,20 @@
 ---
 title: 教程 - 创建和部署模板
 description: 创建第一个 Azure 资源管理器模板。 本教程将介绍模板文件语法，以及如何部署存储帐户。
-author: rockboyfor
 origin.date: 06/10/2020
-ms.date: 06/22/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.topic: tutorial
 ms.author: v-yeche
-ms.openlocfilehash: bc41a515c6afd99fed5db08fe84fed9f982c36f0
-ms.sourcegitcommit: 48b5ae0164f278f2fff626ee60db86802837b0b4
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 9e5be8487675556ddf47f0806780430fd1da0fc8
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85098603"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807796"
 ---
 # <a name="tutorial-create-and-deploy-your-first-arm-template"></a>教程：创建和部署第一个 ARM 模板
 
@@ -29,7 +32,7 @@ ms.locfileid: "85098603"
 
 ### <a name="editor"></a>编辑器
 
-模板是一些 JSON 文件。 若要创建模板，需要一个好用的 JSON 编辑器。 我们建议使用带有资源管理器工具扩展的 Visual Studio Code。 如果需要安装这些工具，请参阅[使用 Visual Studio Code 创建 ARM 模板](use-vs-code-to-create-template.md)。
+模板是一些 JSON 文件。 若要创建模板，需要一个好用的 JSON 编辑器。 我们建议使用带有资源管理器工具扩展的 Visual Studio Code。 如果需要安装这些工具，请参阅[快速入门：使用 Visual Studio Code 创建 Azure 资源管理器模板](quickstart-create-templates-use-visual-studio-code.md)。
 
 ### <a name="command-line-deployment"></a>命令行部署
 
@@ -66,7 +69,7 @@ ms.locfileid: "85098603"
 
     VS Code 环境如下所示：
 
-    ![资源管理器模板 - Visual Studio Code First 模板](./media/template-tutorial-create-first-template/resource-manager-visual-studio-code-first-template.png)
+    :::image type="content" source="./media/template-tutorial-create-first-template/resource-manager-visual-studio-code-first-template.png" alt-text="资源管理器模板 - Visual Studio Code First 模板":::
 
     此模板不部署任何资源。 我们从一个空白模板开始，以便可以熟悉模板的部署步骤，同时尽量减少出错的可能性。
 
@@ -169,11 +172,11 @@ az deployment group create \
 
 # <a name="powershell"></a>[PowerShell](#tab/azure-powershell)
 
-![PowerShell 部署预配状态](./media/template-tutorial-create-first-template/resource-manager-deployment-provisioningstate.png)
+:::image type="content" source="./media/template-tutorial-create-first-template/resource-manager-deployment-provisioningstate.png" alt-text="PowerShell 部署预配状态":::
 
 # <a name="azure-cli"></a>[Azure CLI](#tab/azure-cli)
 
-![Azure CLI 部署预配状态](./media/template-tutorial-create-first-template/azure-cli-provisioning-state.png)
+:::image type="content" source="./media/template-tutorial-create-first-template/azure-cli-provisioning-state.png" alt-text="Azure CLI 部署预配状态":::
 
 ---
 
@@ -184,7 +187,7 @@ az deployment group create \
 
 可以通过在 Azure 门户中浏览资源组来验证部署。
 
-1. 登录到 [Azure 门户](https://portal.azure.cn)。
+1. 登录 [Azure 门户](https://portal.azure.cn)。
 
 1. 在左侧菜单中选择“资源组”。
 
@@ -192,15 +195,15 @@ az deployment group create \
 
 1. 请注意，在概述的右上角显示了部署状态。 选择“1 成功”。
 
-    ![查看部署状态](./media/template-tutorial-create-first-template/deployment-status.png)
+    :::image type="content" source="./media/template-tutorial-create-first-template/deployment-status.png" alt-text="查看部署状态":::
 
 1. 将会看到该资源组的部署历史记录。 选择“blanktemplate”。
 
-    ![选择部署](./media/template-tutorial-create-first-template/select-from-deployment-history.png)
+    :::image type="content" source="./media/template-tutorial-create-first-template/select-from-deployment-history.png" alt-text="选择部署":::
 
 1. 将会看到部署摘要。 在本例中，显示的信息不是很多，因此尚未部署任何资源。 在本教学系列的后续教程中，你可能会发现，查看部署历史记录中的摘要非常有用。 请注意，在左侧可以查看部署过程中使用的输入、输出和模板。
 
-    ![查看部署摘要](./media/template-tutorial-create-first-template/view-deployment-summary.png)
+    :::image type="content" source="./media/template-tutorial-create-first-template/view-deployment-summary.png" alt-text="查看部署摘要":::
 
 ## <a name="clean-up-resources"></a>清理资源
 

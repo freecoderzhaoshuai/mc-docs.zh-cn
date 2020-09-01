@@ -1,21 +1,20 @@
 ---
-title: 将块 Blob 存储在设备上 - Azure IoT Edge
+title: 将块 Blob 存储在设备上 - Azure IoT Edge |Microsoft Docs
 description: 了解分层和生存时间功能、查看支持的 Blob 存储操作，以及连接到 Blob 存储帐户。
-author: arduppal
-manager: brymat
+author: kgremban
 ms.author: v-tawe
 ms.reviewer: arduppal
 origin.date: 12/13/2019
-ms.date: 03/02/2020
+ms.date: 08/27/2020
 ms.topic: conceptual
 ms.service: iot-edge
 services: iot-edge
-ms.openlocfilehash: d6e9b027fa177316c56be78c6b09b555157e9296
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 06c2424d67bd4898b3109d1804d339886ec32aae
+ms.sourcegitcommit: c8e590d907f20bbc9c4c05d9bfc93cf7cb1d776f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77494474"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88957769"
 ---
 # <a name="store-data-at-the-edge-with-azure-blob-storage-on-iot-edge"></a>使用 IoT Edge 上的 Azure Blob 存储在边缘中存储数据
 
@@ -160,7 +159,7 @@ sudo chmod -R 700 <blob-dir>
 
 ## <a name="configure-log-files"></a>配置日志文件
 
-若要了解如何为模块配置日志文件，请参阅这些[生产最佳做法](/iot-edge/production-checklist#set-up-logs-and-diagnostics)。
+若要了解如何为模块配置日志文件，请参阅这些[生产最佳做法](https://docs.azure.cn/iot-edge/production-checklist#set-up-logs-and-diagnostics)。
 
 ## <a name="connect-to-your-blob-storage-module"></a>连接到 blob 存储模块
 
@@ -173,7 +172,10 @@ sudo chmod -R 700 <blob-dir>
   * `http://<device IP >:11002/<account name>`
   * `http://<IoT Edge device hostname>:11002/<account name>`
   * `http://<fully qualified domain name>:11002/<account name>`
-
+ 
+ > [!IMPORTANT]
+ > 调用模块时，Azure IoT Edge 区分大小写，存储 SDK 也默认为小写。 虽然在 [Azure 市场](how-to-deploy-modules-portal.md#deploy-modules-from-azure-marketplace)中此模块的名称为 **AzureBlobStorageonIoTEdge**，但将名称更改为小写有助于确保与 IoT Edge 上的 Azure Blob 存储模块建立的连接不会中断。
+ 
 ## <a name="azure-blob-storage-quickstart-samples"></a>Azure Blob 存储快速入门示例
 
 Azure Blob 存储文档包括多种语言的快速入门示例代码。 可以通过将 Blob 终结点更改为连接到本地 Blob 存储模块来运行这些示例，以测试 IoT Edge 上的 Azure Blob 存储。
@@ -287,7 +289,7 @@ IoT Edge 上的 Blob 存储模块使用 Azure 存储 SDK，并与适用于块 Bl
 
 这是此模块[在 Docker 中心的发行说明](https://hub.docker.com/_/microsoft-azure-blob-storage)
 
-## <a name="feedback"></a>反馈
+## <a name="suggestions"></a>建议
 
 你的反馈对我们很重要，我们的目标是使此模块及其功能有用且易用。 请分享你的反馈并告诉我们该如何改进。
 

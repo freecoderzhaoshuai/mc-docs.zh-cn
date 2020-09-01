@@ -10,16 +10,22 @@
   items:
     - name: 分配策略 - 门户
       displayName: 'assign, compliance'
-      href: assign-policy-portal.md
-    - name: 分配策略 - Azure PowerShell
-      displayName: 'assign, compliance'
-      href: assign-policy-powershell.md
+      href: ./assign-policy-portal.md
     - name: 分配策略 - Azure CLI
       displayName: 'assign, compliance'
-      href: assign-policy-azurecli.md
+      href: ./assign-policy-azurecli.md
+    - name: 分配策略 - Azure PowerShell
+      displayName: 'assign, compliance'
+      href: ./assign-policy-powershell.md
+    - name: 分配策略 - Python
+      displayName: 'assign, compliance'
+      href: ./assign-policy-python.md
+    - name: 分配策略 - REST
+      displayName: 'armclient, postman'
+      href: ./assign-policy-rest-api.md
     - name: 分配策略 - ARM 模板
       displayName: 'assign, compliance, resource manager'
-      href: assign-policy-template.md
+      href: ./assign-policy-template.md
 - name: 教程
   items:
     - name: 创建和管理 Azure Policy
@@ -46,10 +52,12 @@
           href: ./samples/pattern-logical-operators.md
         - name: 字段
           href: ./samples/pattern-fields.md
-        - name: parameters
+        - name: 参数
           href: ./samples/pattern-parameters.md
         - name: 效果详细信息
           href: ./samples/pattern-effect-details.md
+        - name: Tags
+          href: ./samples/pattern-tags.md
         - name: Value 运算符
           href: ./samples/pattern-value-operator.md
         - name: Count 运算符
@@ -60,13 +68,16 @@
           href: ./samples/pattern-deploy-resources.md
 - name: 概念
   items:
-    - name: Azure Policy 定义结构
+    - name: 定义结构
       displayName: 'parameters, location, rule, alias, initiatives'
       href: ./concepts/definition-structure.md
-    - name: 了解 Policy 效果
+    - name: 了解效果
       displayName: 'order, evaluation'
       href: ./concepts/effects.md
-    - name: Azure Policy 分配结构
+    - name: 计划结构
+      displayName: 'parameters, groups, domains, policies'
+      href: ./concepts/initiative-definition-structure.md
+    - name: 分配结构
       displayName: 'parameters, enforcementmode, policyDefinitionId'
       href: ./concepts/assignment-structure.md
     - name: 评估新策略的影响
@@ -78,6 +89,10 @@
     - name: 使用来宾配置审核 VM
       displayName: 'provider, tools, definition'
       href: ./concepts/guest-configuration.md
+    - name: 安全性
+      items:
+        - name: Azure 安全基准的安全基线
+          href: ./concepts/azure-security-benchmark-baseline.md
 - name: 操作指南
   items:
     - name: 适用于 VS Code 的 Azure Policy 扩展
@@ -89,12 +104,17 @@
     - name: 为数组属性创作策略
       displayName: 'array property, alias, aliases, in, notIn, type, defaultValue'
       href: ./how-to/author-policies-for-arrays.md
-    - name: 在 Windows 上创建 Guest Configuration 策略
-      displayName: 'powershell, dsc, chef, windows'
-      href: ./how-to/guest-configuration-create.md
-    - name: 在 Linux 上创建 Guest Configuration 策略
-      displayName: 'powershell, dsc, chef, linux'
-      href: ./how-to/guest-configuration-create-linux.md
+    - name: 来宾配置
+      items:
+        - name: 在 Windows 上创建 Guest Configuration 策略
+          displayName: 'powershell, dsc, chef, windows'
+          href: ./how-to/guest-configuration-create.md
+        - name: 在 Linux 上创建 Guest Configuration 策略
+          displayName: 'powershell, dsc, chef, linux'
+          href: ./how-to/guest-configuration-create-linux.md
+        - name: 根据组策略创建 Guest Configuration 策略
+          displayName: 'powershell, dsc, grouppolicy, windows'
+          href: ./how-to/guest-configuration-create-group-policy.md
     - name: 获取符合性数据
       displayName: 'evaluation, scan, summarize, query, events, log analytics'
       href: ./how-to/get-compliance-data.md
@@ -104,6 +124,8 @@
     - name: 修正不符合资源
       displayName: 'managed identity, task, definition, roleDefinitionIds'
       href: ./how-to/remediate-resources.md
+- name: 故障排除
+  href: ./troubleshoot/general.md
 - name: 参考
   items:
     - name: Azure CLI
@@ -128,7 +150,7 @@
           href: 'https://docs.microsoft.com/java/api/com.microsoft.azure.management.resources.policyassignment?view=azure-java-stable'
         - name: 策略定义
           href: 'https://docs.microsoft.com/java/api/com.microsoft.azure.management.resources.PolicyDefinitions?view=azure-java-stable'
-    - name: 用于 Node 的 Azure SDK
+    - name: 用于 JavaScript 的 Azure SDK
       items:
         - name: 策略
           href: 'https://docs.microsoft.com/javascript/api/@azure/arm-policy'
@@ -170,11 +192,15 @@
           href: 'https://docs.microsoft.com/azure/templates/microsoft.authorization/policysetdefinitions'
 - name: 资源
   items:
+    - name: 已知问题
+      href: 'https://github.com/azure/azure-policy#known-issues'
     - name: GitHub - Azure Policy 示例
       href: 'https://github.com/Azure/azure-policy'
     - name: GitHub - 社区策略存储库
       href: 'https://github.com/Azure/Community-Policy'
+    - name: 有关 Azure Policy 的 Microsoft Q&A
+      href: 'https://docs.microsoft.com/answers/topics/azure-policy.html'
     - name: 定价计算器
       href: 'https://www.azure.cn/pricing/calculator/'
     - name: UserVoice
-      href: 'https://feedback.azure.com/forums/915958-azure-governance'
+      href: 'https://feedback.azure.com/forums/915958-azure-governance?category_id=345055'

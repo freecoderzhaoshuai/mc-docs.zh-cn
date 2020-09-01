@@ -2,19 +2,23 @@
 title: include 文件
 description: include 文件
 services: service-bus-relay
-author: clemensv
+author: rockboyfor
 ms.service: service-bus-relay
 ms.topic: include
-ms.date: 05/02/2018
-ms.author: clemensv
+origin.date: 08/16/2018
+ms.date: 07/27/2020
+ms.testscope: yes
+ms.testdate: 07/27/2020
+ms.author: v-yeche
 ms.custom: include file
-ms.openlocfilehash: a85a53fb6ddc0e297d4a6c6c1819921546b90510
-ms.sourcegitcommit: cada23b6400453ff9c08cfb08393e635e2fddac1
+ms.openlocfilehash: 3ec36c99f7604947faa838a665fd9b6fa12773b4
+ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/21/2020
-ms.locfileid: "83734521"
+ms.lasthandoff: 07/24/2020
+ms.locfileid: "88947129"
 ---
+<!--Verified successfully-->
 ### <a name="create-a-console-application"></a>创建控制台应用程序
 
 如果创建中继时已禁用“需要客户端授权”选项，可使用任何浏览器向混合连接 URL 发送请求。 若要访问受保护的终结点，需在 `ServiceBusAuthorization` 标头中创建并传递令牌，如下所示。
@@ -26,6 +30,9 @@ ms.locfileid: "83734521"
 1. 右键单击新创建的项目，然后选择“管理 NuGet 包”。
 2. 选择“包括预发行版”选项。 
 3. 选择“浏览”，然后搜索 **Microsoft.Azure.Relay**。 在搜索结果中，选择“Microsoft Azure 中继”。
+
+    <!--CORRECT ON Microsoft Azure Relay-->
+
 4. 对于版本，选择 **2.0.0-preview1-20180523**。 
 5. 选择“安装”即可完成安装。 关闭对话框。
 
@@ -44,7 +51,7 @@ ms.locfileid: "83734521"
 2. 将常量添加到 `Program` 类，用于保存混合连接的连接详细信息。 将括号中的占位符替换为在创建混合连接时获得的值。 请务必使用完全限定的命名空间名称。
    
     ```csharp
-    private const string RelayNamespace = "{RelayNamespace}.servicebus.windows.net";
+    private const string RelayNamespace = "{RelayNamespace}.servicebus.chinacloudapi.cn";
     private const string ConnectionName = "{HybridConnectionName}";
     private const string KeyName = "{SASKeyName}";
     private const string Key = "{SASKey}";
@@ -89,7 +96,7 @@ ms.locfileid: "83734521"
     {
         class Program
         {
-            private const string RelayNamespace = "{RelayNamespace}.servicebus.windows.net";
+            private const string RelayNamespace = "{RelayNamespace}.servicebus.chinacloudapi.cn";
             private const string ConnectionName = "{HybridConnectionName}";
             private const string KeyName = "{SASKeyName}";
             private const string Key = "{SASKey}";
@@ -119,3 +126,4 @@ ms.locfileid: "83734521"
     }
     ```
 
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -9,12 +9,12 @@ ms.service: data-explorer
 ms.topic: reference
 origin.date: 08/13/2020
 ms.date: 08/18/2020
-ms.openlocfilehash: b03652cd8412b0a56d79f92d3046a99a14af62a5
-ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
+ms.openlocfilehash: 4e9bf86560d6ac6844108ac748b05d69b966ab41
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/18/2020
-ms.locfileid: "88556474"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951344"
 ---
 # <a name="connect-to-event-hub"></a>连接到事件中心
 
@@ -46,7 +46,7 @@ ms.locfileid: "88556474"
 | 标记（预览版） | 将要与引入的数据（格式设置为 JSON 数组字符串）关联的[标记](kusto/management/extents-overview.md#extent-tagging)的列表。 使用标记时存在[性能影响](kusto/management/extents-overview.md#performance-notes-1)。 |
 
 <!--| Database | Name of the existing target database.|-->
-<!--| Tags | String representing [tags](https://docs.microsoft.com/azure/kusto/management/extents-overview#extent-tagging) that will be attached to resulting extent. |-->
+<!--| Tags | String representing [tags](/kusto/management/extents-overview#extent-tagging) that will be attached to resulting extent. |-->
 
 ## <a name="set-events-routing"></a>设置事件路由
 

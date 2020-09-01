@@ -4,16 +4,16 @@ description: 了解可与 Azure Stack Hub 配合使用的标识提供者。
 author: WenJason
 ms.topic: conceptual
 origin.date: 04/10/2020
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: fiseraci
 ms.lastreviewed: 01/14/2019
-ms.openlocfilehash: 10be1ef92535edaaedf676146570a251c5530813
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: af063302d4cfc20be5ba62fce6ef96182caa85fb
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096468"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868038"
 ---
 # <a name="overview-of-identity-providers-for-azure-stack-hub"></a>Azure Stack Hub 的标识提供者概述
 
@@ -138,7 +138,7 @@ Azure Stack Hub 的标识包括用户帐户、组和服务主体。
 |层    |各层之间的身份验证  |
 |---------|---------|
 |工具与客户端，例如管理员门户     | 为了访问或修改 Azure Stack Hub 中的资源，工具和客户端将使用 [JSON Web 令牌](/active-directory/develop/active-directory-token-and-claims)来调用 Azure 资源管理器。 <br>Azure 资源管理器验证 JSON Web 令牌并扫视所颁发令牌中的声明，以评估用户或服务主体在 Azure Stack Hub 中的授权级别。** |
-|Azure 资源管理器及其核心服务     |Azure 资源管理器与资源提供程序通信，以传输用户的通信。 <br> 传输通过 [Azure 资源管理器模板](/azure-stack/user/azure-stack-arm-templates)使用直接命令式调用或声明式调用。** **|
+|Azure 资源管理器及其核心服务     |Azure 资源管理器与资源提供程序通信，以传输用户的通信。 <br> 传输通过 [Azure 资源管理器模板](../user/azure-stack-arm-templates.md)使用直接命令式调用或声明式调用。** **|
 |资源提供程序     |传递给资源提供程序的调用通过基于证书的身份验证进行保护。 <br>随后，Azure 资源管理器和资源提供程序持续通过 API 通信。 对于从 Azure 资源管理器 收到的每个调用，资源提供程序使用该证书来验证调用。|
 |基础结构和业务逻辑     |资源提供程序使用所选的身份验证模式与业务逻辑和基础结构通信。 Azure Stack Hub 随附的默认资源提供程序使用 Windows 身份验证来保护此通信。|
 
@@ -189,7 +189,7 @@ Azure Stack Hub 中基于角色的访问控制 (RBAC) 与 Azure 中的实现一�
 
 ### <a name="authenticate-with-azure-cli"></a>使用 Azure CLI 进行身份验证
 
-有关使用 Azure PowerShell 在 Azure Stack Hub 中进行身份验证的信息，请参阅[安装和配置与 Azure Stack Hub 配合使用的 Azure CLI](/azure-stack/user/azure-stack-version-profiles-azurecli2)。
+有关使用 Azure PowerShell 在 Azure Stack Hub 中进行身份验证的信息，请参阅[安装和配置与 Azure Stack Hub 配合使用的 Azure CLI](../user/azure-stack-version-profiles-azurecli2.md)。
 
 ## <a name="next-steps"></a>后续步骤
 

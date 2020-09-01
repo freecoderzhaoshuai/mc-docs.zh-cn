@@ -1,23 +1,24 @@
 ---
-title: 连接下游设备 - Azure IoT Edge
+title: 连接下游设备 - Azure IoT Edge | Microsoft Docs
 description: 如何将下游或叶设备连接到 Azure IoT Edge 网关设备。
 author: kgremban
 manager: philmea
 ms.author: v-tawe
-origin.date: 12/08/2019
-ms.date: 07/01/2020
+origin.date: 06/02/2020
+ms.date: 08/27/2020
 ms.topic: conceptual
 ms.service: iot-edge
 services: iot-edge
 ms.custom:
 - amqp
 - mqtt
-ms.openlocfilehash: 091fb6a6381fca61ea37d4f921b3790df0a5c7a3
-ms.sourcegitcommit: 4f84bba7e509a321b6f68a2da475027c539b8fd3
+- devx-track-javascript
+ms.openlocfilehash: fe0223aa2056b3ad31ab538041a5a3f8213b624c
+ms.sourcegitcommit: c8e590d907f20bbc9c4c05d9bfc93cf7cb1d776f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85796163"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88957798"
 ---
 # <a name="connect-a-downstream-device-to-an-azure-iot-edge-gateway"></a>将下游设备连接到 Azure IoT Edge 网关
 

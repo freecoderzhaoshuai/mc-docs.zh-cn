@@ -1,17 +1,19 @@
 ---
 title: StorageAccountSelector UI 元素
 description: 介绍了 Azure 门户的 Microsoft.Storage.StorageAccountSelector UI 元素。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 06/28/2018
-ms.date: 01/20/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 586ee5fa2c274ccb65afba938f803c2fc6ab97d8
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: c6c193aa99b052876fe24e2fd0f207f9ce0eb973
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "76170779"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807844"
 ---
 # <a name="microsoftstoragestorageaccountselector-ui-element"></a>Microsoft.Storage.StorageAccountSelector UI 元素
 
@@ -21,11 +23,11 @@ ms.locfileid: "76170779"
 
 此控件显示默认值。
 
-![Microsoft.Storage.StorageAccountSelector](./media/managed-application-elements/microsoft.storage.storageaccountselector.png)
+:::image type="content" source="./media/managed-application-elements/microsoft-storage-storageaccountselector.png" alt-text="Microsoft.Storage.StorageAccountSelector":::
 
 此控件允许用户创建一个新的存储帐户或选择一个现有存储帐户。
 
-![Microsoft.Storage.StorageAccountSelector 新](./media/managed-application-elements/microsoft.storage.storageaccountselector-new.png)
+:::image type="content" source="./media/managed-application-elements/microsoft-storage-storageaccountselector-new.png" alt-text="Microsoft.Storage.StorageAccountSelector 新":::
 
 ## <a name="schema"></a>架构
 
@@ -72,5 +74,4 @@ ms.locfileid: "76170779"
 * 有关创建 UI 定义的简介，请参阅 [CreateUiDefinition 入门](create-uidefinition-overview.md)。
 * 有关 UI 元素中的公用属性的说明，请参阅 [CreateUiDefinition 元素](create-uidefinition-elements.md)。
 
-<!-- Update_Description: new article about microsoft storage storageaccountselector -->
-<!--NEW.date: 01/20/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

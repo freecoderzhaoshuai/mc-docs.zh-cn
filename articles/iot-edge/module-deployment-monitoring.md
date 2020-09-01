@@ -1,20 +1,20 @@
 ---
-title: 设备组的自动部署 - Azure IoT Edge
+title: 设备组的自动部署 - Azure IoT Edge | Microsoft Docs
 description: 使用 Azure IoT Edge 中的自动部署来管理基于共享标记的设备组
 author: kgremban
 manager: philmea
 ms.author: v-tawe
 origin.date: 01/30/2020
-ms.date: 06/01/2020
+ms.date: 08/27/2020
 ms.topic: conceptual
 ms.service: iot-edge
 services: iot-edge
-ms.openlocfilehash: c639466022b2bccd8f7deab136edf5161591a7b0
-ms.sourcegitcommit: 9811bf312e0d037cb530eb16c8d85238fd276949
+ms.openlocfilehash: 59419796c541a9f96480b035f503a35073fc8e96
+ms.sourcegitcommit: c8e590d907f20bbc9c4c05d9bfc93cf7cb1d776f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84275597"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88957823"
 ---
 # <a name="understand-iot-edge-automatic-deployments-for-single-devices-or-at-scale"></a>了解单设备或大规模的 IoT Edge 自动部署
 
@@ -70,7 +70,7 @@ loT Edge 自动部署会分配 IoT Edge 模块映像，这些映像在一组 IoT
 * tags.environment ='prod'
 * tags.environment = 'prod' AND tags.location = 'chinaeast'
 * tags.environment = 'prod' OR tags.location = 'chinaeast'
-* tags.operator = 'John' AND tags.environment = 'prod' NOT deviceId = 'linuxprod1'
+* tags.operator = 'John' AND tags.environment = 'prod' AND NOT deviceId = 'linuxprod1'
 * properties.reported.devicemodel = '4000x'
 
 构造目标条件时请注意以下约束：

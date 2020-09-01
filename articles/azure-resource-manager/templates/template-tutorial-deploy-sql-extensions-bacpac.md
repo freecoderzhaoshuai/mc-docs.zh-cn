@@ -1,19 +1,19 @@
 ---
 title: 使用模板导入 SQL BACPAC 文件
 description: 了解如何使用 Azure SQL 数据库扩展，以通过 Azure 资源管理器模板导入 SQL BACPAC 文件。
-author: rockboyfor
 origin.date: 12/09/2019
-ms.date: 07/13/2020
-ms.testscope: no
-ms.testdate: ''
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.topic: tutorial
 ms.author: v-yeche
-ms.openlocfilehash: 72dbac5e36ed72a92e7dffe08260e456874be69c
-ms.sourcegitcommit: 2bd0be625b21c1422c65f20658fe9f9277f4fd7c
+ms.openlocfilehash: 65469cc5c355e1f6c31c5cc4192df83ae80a8d08
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440918"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807720"
 ---
 <!--Verify successfully-->
 # <a name="tutorial-import-sql-bacpac-files-with-arm-templates"></a>教程：使用 ARM 模板导入 SQL BACPAC 文件
@@ -38,7 +38,7 @@ ms.locfileid: "86440918"
 
 若要完成本文，需要做好以下准备：
 
-* 包含资源管理器工具扩展的 Visual Studio Code。 请参阅[使用 Visual Studio Code 创建 ARM 模板](./use-vs-code-to-create-template.md)。
+* 包含资源管理器工具扩展的 Visual Studio Code。 请参阅[快速入门：使用 Visual Studio Code 创建 Azure 资源管理器模板](./quickstart-create-templates-use-visual-studio-code.md)。
 * 若要增强安全性，请使用为服务器管理员帐户生成的密码。 下面是一个可用于生成密码的示例：
 
     ```console
@@ -178,7 +178,7 @@ BACPAC 文件在 [GitHub](https://github.com/Azure/azure-docs-json-samples/raw/m
 
         该模板如下所示：
 
-        ![带防火墙规则定义的模板](./media/template-tutorial-deploy-sql-extensions-bacpac/resource-manager-tutorial-deploy-sql-extensions-bacpac-firewall.png)
+        :::image type="content" source="./media/template-tutorial-deploy-sql-extensions-bacpac/resource-manager-tutorial-deploy-sql-extensions-bacpac-firewall.png" alt-text="带防火墙规则定义的模板":::
 
     * 使用以下 JSON 将 SQL 数据库扩展资源添加到数据库定义：
 
@@ -205,7 +205,7 @@ BACPAC 文件在 [GitHub](https://github.com/Azure/azure-docs-json-samples/raw/m
 
         该模板如下所示：
 
-        ![带 SQL 数据库扩展的模板](./media/template-tutorial-deploy-sql-extensions-bacpac/resource-manager-tutorial-deploy-sql-extensions-bacpac.png)
+        :::image type="content" source="./media/template-tutorial-deploy-sql-extensions-bacpac/resource-manager-tutorial-deploy-sql-extensions-bacpac.png" alt-text="带 SQL 数据库扩展的模板":::
 
         若要了解资源定义，请参阅 [SQL 数据库扩展参考](https://docs.microsoft.com/azure/templates/microsoft.sql/servers/databases/extensions)。 下面是一些重要元素：
 
@@ -341,7 +341,7 @@ $storageAccountKey = Read-Host -Prompt "Enter the storage account key"
 $bacpacUrl = Read-Host -Prompt "Enter the URL of the BACPAC file"
 $resourceGroupName = "${projectName}rg"
 
-New-AzResourceGroup -Name $resourceGroupName -Location $location
+#New-AzResourceGroup -Name $resourceGroupName -Location $location
 New-AzResourceGroupDeployment `
     -ResourceGroupName $resourceGroupName `
     -adminUser $adminUsername `
@@ -363,7 +363,7 @@ Write-Host "Press [ENTER] to continue ..."
 
 在 Azure 门户中，从新部署的资源组中选择数据库。 选择“查询编辑器(预览)”，然后输入管理员凭据。 此时会看到两个表导入到数据库中。
 
-![查询编辑器（预览版）](./media/template-tutorial-deploy-sql-extensions-bacpac/resource-manager-tutorial-deploy-sql-extensions-bacpac-query-editor.png)
+:::image type="content" source="./media/template-tutorial-deploy-sql-extensions-bacpac/resource-manager-tutorial-deploy-sql-extensions-bacpac-query-editor.png" alt-text="查询编辑器（预览版）":::
 
 ## <a name="clean-up-resources"></a>清理资源
 

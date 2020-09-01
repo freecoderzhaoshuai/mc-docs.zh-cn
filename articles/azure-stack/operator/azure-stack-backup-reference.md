@@ -4,16 +4,16 @@ description: Azure Stack Hub 中基础结构备份服务的参考资料。
 author: WenJason
 ms.topic: article
 origin.date: 02/12/2019
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: hectorl
 ms.lastreviewed: 10/25/2019
-ms.openlocfilehash: aa48974d96911e920a021aaadeec565b44b04f3e
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 28a4f6b3b8e1c3d33a0f2316b4bd3ca68436d5f2
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096378"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867873"
 ---
 # <a name="infrastructure-backup-service-reference"></a>基础结构备份服务参考
 
@@ -76,30 +76,11 @@ Azure Stack Hub 由许多服务构成，其中包括门户、Azure 资源管理�
 
 #### <a name="smb-encryption"></a>SMB 加密
 
-**1907 及更高版本**
-
 如果服务器端启用了 SMB 加密，基础结构备份服务支持将备份数据传输到外部存储位置。 如果服务器不支持 SMB 加密或未启用该功能，则基础结构备份服务将回退到未加密的数据传输。 外部存储位置上放置的备份数据始终是静态加密的，并且不依赖于 SMB 加密。
 
 #### <a name="storage-location-sizing"></a>存储位置大小调整
 
 建议每天至少进行两次备份，并且保留最多七天的备份。 在 Azure Stack Hub 上启用基础结构备份时，这是默认行为。
-
-**1907 及更高版本**
-
-***连接到 Azure AD 标识提供者的系统***
-
-| 环境规模 | 预计的备份大小 | 所需的空间总量 |
-|-------------------|--------------------------|--------------------------------|
-| 4-16 个节点/ASDK   | 1 GB                     | 20 GB                          |
-
-***通过 ADFS 连接到公司 AD 标识提供者的系统***
-
-| 环境规模 | 预计的备份大小 | 所需的空间总量 |
-|-------------------|--------------------------|--------------------------------|
-| 4-16 个节点        | 20 GB                    | 280 GB                        |
-| ASDK              | 10 GB                    | 140 GB                        |
-
-**1907 以前版本**
 
 | 环境规模 | 预计的备份大小 | 所需的空间总量 |
 |-------------------|--------------------------|--------------------------------|

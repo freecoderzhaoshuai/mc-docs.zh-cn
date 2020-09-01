@@ -3,16 +3,17 @@ title: 模板结构和语法
 description: 使用声明性 JSON 语法描述 Azure Resource Manager 模板的结构和属性。
 ms.topic: conceptual
 origin.date: 06/22/2020
-ms.date: 07/13/2020
+author: rockboyfor
+ms.date: 08/24/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 608aee5d70764df56530ce9157daf5ee64b243a0
-ms.sourcegitcommit: 2bd0be625b21c1422c65f20658fe9f9277f4fd7c
+ms.openlocfilehash: 5521b7d97f9b9923ea983131aa5d1267459aa21f
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86441004"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807823"
 ---
 # <a name="understand-the-structure-and-syntax-of-arm-templates"></a>了解 ARM 模板的结构和语法
 
@@ -20,8 +21,7 @@ ms.locfileid: "86441004"
 
 本文面向对 ARM 模板有一定了解的用户， 其中提供了有关模板结构的详细信息。 如果需要通过分步教程来了解创建模板的过程，请参阅[教程：创建和部署第一个 Azure 资源管理器模板](template-tutorial-create-first-template.md)。
 
-<a name="template-format"></a>
-## <a name="template-format"></a>模板格式
+## <a name="template-format"></a><a name="template-format"></a>模板格式
 
 使用最简单的结构时，模板有以下元素：
 
@@ -40,7 +40,7 @@ ms.locfileid: "86441004"
 
 | 元素名称 | 必须 | 说明 |
 |:--- |:--- |:--- |
-| $schema |是 |描述模板语言版本的 JSON 架构文件所在的位置。 所用版本号取决于部署范围和 JSON 编辑器。<br /><br />如果使用的是[具有 Azure 资源管理器工具扩展的 VS Code](use-vs-code-to-create-template.md)，请使用最新版本进行资源组部署：<br />`https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#`<br /><br />其他编辑器（包括 Visual Studio）可能无法处理此架构。 对于这些编辑器，请使用：<br />`https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#`<br /><br />对于订阅部署，请使用：<br />`https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#`<br /><br />对于管理组部署，请使用：<br />`https://schema.management.azure.com/schemas/2019-08-01/managementGroupDeploymentTemplate.json#`<br /><br />对于租户部署，请使用：<br />`https://schema.management.azure.com/schemas/2019-08-01/tenantDeploymentTemplate.json#` |
+| $schema |是 |描述模板语言版本的 JSON 架构文件所在的位置。 所用版本号取决于部署范围和 JSON 编辑器。<br /><br />如果使用的是[具有 Azure 资源管理器工具扩展的 VS Code](quickstart-create-templates-use-visual-studio-code.md)，请使用最新版本进行资源组部署：<br />`https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#`<br /><br />其他编辑器（包括 Visual Studio）可能无法处理此架构。 对于这些编辑器，请使用：<br />`https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#`<br /><br />对于订阅部署，请使用：<br />`https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#`<br /><br />对于管理组部署，请使用：<br />`https://schema.management.azure.com/schemas/2019-08-01/managementGroupDeploymentTemplate.json#`<br /><br />对于租户部署，请使用：<br />`https://schema.management.azure.com/schemas/2019-08-01/tenantDeploymentTemplate.json#` |
 | contentVersion |是 |模板的版本（例如 1.0.0.0）。 可为此元素提供任意值。 使用此值记录模板中的重要更改。 使用模板部署资源时，此值可用于确保使用正确的模板。 |
 | apiProfile |否 | 用作资源类型 API 版本集合的 API 版本。 使用此值可以避免为模板中的每个资源指定 API 版本。 如果你指定 API 配置文件版本但不指定资源类型的 API 版本，则资源管理器将使用配置文件中为该资源类型定义的 API 版本。<br /><br />将模板部署到不同的环境（例如 Azure Stack 和全球 Azure）时，API 配置文件属性非常有用。 使用 API 配置文件版本可确保模板自动使用两个环境均支持的版本。 有关最新 API 配置文件版本以及配置文件中定义的资源 API 版本的列表，请参阅 [API 配置文件](https://github.com/Azure/azure-rest-api-specs/tree/master/profile)。<br /><br />有关详细信息，请参阅[使用 API 配置文件跟踪版本](templates-cloud-consistency.md#track-versions-using-api-profiles)。 |
 | [parameters](#parameters) |否 |执行部署以自定义资源部署时提供的值。 |
@@ -51,8 +51,7 @@ ms.locfileid: "86441004"
 
 每个元素均有可设置的属性。 本文稍后将更详细地介绍模板的各个节。
 
-<a name="parameters"></a>
-## <a name="parameters"></a>parameters
+## <a name="parameters"></a><a name="parameters"></a>参数
 
 在模板的 parameters 节中，可以指定在部署资源时能够输入的值。 一个模板中最多可以有 256 个参数。 可以通过使用包含多个属性的对象来减少参数的数目。
 
@@ -89,8 +88,7 @@ ms.locfileid: "86441004"
 
 有关如何使用参数的示例，请参阅 [Azure 资源管理器模板中的参数](template-parameters.md)。
 
-<a name="data-types"></a>
-### <a name="data-types"></a>数据类型
+### <a name="data-types"></a><a name="data-types"></a>数据类型
 
 对于作为内联参数传递的整数，值的范围可能受限于用于部署的 SDK 或命令行工具。 例如，使用 PowerShell 部署模板时，整数类型的范围可能为 -2147483648 到 2147483647。 为了避免此限制，请在[参数文件](parameter-files.md)中指定大的整数值。 资源类型会针对整数属性应用其自己的限制。
 
@@ -102,8 +100,7 @@ ms.locfileid: "86441004"
 
 如需通过示例了解如何设置数据类型的格式，请参阅[参数类型格式](parameter-files.md#parameter-type-formats)。
 
-<a name="variables"></a>
-## <a name="variables"></a>变量
+## <a name="variables"></a><a name="variables"></a>变量
 
 在 variables 节中构造可在整个模板中使用的值。 不需要定义变量，但使用变量可以减少复杂的表达式，从而简化模板。
 
@@ -138,8 +135,8 @@ ms.locfileid: "86441004"
 
 有关如何使用变量的示例，请参阅 [Azure 资源管理器模板中的变量](template-variables.md)。
 
-<a name="functions"></a>
-## <a name="functions"></a>函数
+
+## <a name="functions"></a><a name="functions"></a>函数
 
 在模板中，可以创建自己的函数。 这些函数可在模板中使用。 通常，定义不想要在整个模板中重复执行的复杂表达式。 从模板中支持的表达式和[函数](template-functions.md)创建用户定义函数。
 
@@ -261,10 +258,9 @@ ms.locfileid: "86441004"
 | properties |否 |特定于资源的配置设置。 properties 的值与创建资源时，在 REST API 操作（PUT 方法）的请求正文中提供的值相同。 还可以指定副本数组，为一个属性创建多个实例。 |
 | resources |否 |依赖于所定义的资源的子资源。 只能提供父资源的架构允许的资源类型。 不隐式表示对父资源的依赖。 必须显式定义该依赖关系。 请参阅[设置子资源的名称和类型](child-resource-name-type.md)。 |
 
-<!--Not Available on Line 239,240,250 To determine available values, see [template reference](https://docs.microsoft.com/azure/templates/)-->
+<!--Not Available on Line 2,3,13  To determine available values, see [template reference](https://docs.microsoft.com/azure/templates/)-->
 
-<a name="outputs"></a>
-## <a name="outputs"></a>Outputs
+## <a name="outputs"></a><a name="outputs"></a>输出
 
 在 Outputs 节中，可以指定从部署返回的值。 一般情况下，将从已部署的资源返回值。
 
@@ -319,9 +315,9 @@ ms.locfileid: "86441004"
   ],
 ```
 
-在 Visual Studio Code 中，[Azure 资源管理器工具扩展](use-vs-code-to-create-template.md#install-resource-manager-tools-extension)可以自动检测资源管理器模板并相应地更改语言模式。 如果在 VS Code 右下角看到 **Azure 资源管理器模板**，则可使用内联注释。 内联注释不再标记为无效。
+在 Visual Studio Code 中，[Azure 资源管理器工具扩展](quickstart-create-templates-use-visual-studio-code.md)可以自动检测资源管理器模板并相应地更改语言模式。 如果在 VS Code 右下角看到 **Azure 资源管理器模板**，则可使用内联注释。 内联注释不再标记为无效。
 
-![Visual Studio Code Azure 资源管理器模板模式](./media/template-syntax/resource-manager-template-editor-mode.png)
+:::image type="content" source="./media/template-syntax/resource-manager-template-editor-mode.png" alt-text="Visual Studio Code Azure 资源管理器模板模式":::
 
 ### <a name="metadata"></a>Metadata
 
@@ -351,7 +347,7 @@ ms.locfileid: "86441004"
 
 通过门户部署模板时，在说明中提供的文本自动用作该参数的提示。
 
-![显示参数提示](./media/template-syntax/show-parameter-tip.png)
+:::image type="content" source="./media/template-syntax/show-parameter-tip.png" alt-text="显示参数提示":::
 
 对于资源，添加 `comments` 元素或元数据对象。 以下示例同时显示了注释元素和元数据对象。
 

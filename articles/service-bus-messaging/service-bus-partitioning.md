@@ -1,19 +1,19 @@
 ---
-title: 创建分区的 Azure 服务总线队列和主题
+title: 创建分区的 Azure 服务总线队列和主题 | Azure
 description: 介绍如何使用多个消息中转站对服务总线队列和主题进行分区。
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+ms.date: 08/24/2020
 ms.testscope: yes|no
 ms.testdate: 07/20/2020Null
 ms.author: v-yeche
 author: rockboyfor
-ms.openlocfilehash: 60a085104efa03558df8ccedd36f2ce6bc35c00c
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 3800f9b05a52f382ef8b707715c480ea348b4564
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162328"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946937"
 ---
 # <a name="partitioned-queues-and-topics"></a>分区队列和主题
 
@@ -154,7 +154,7 @@ committableTransaction.Commit();
 [QueueDescription.EnablePartitioning]: https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.queuedescription.enablepartitioning
 [TopicDescription.EnablePartitioning]: https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.topicdescription.enablepartitioning
 [QueueDescription.ForwardTo]: https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.queuedescription.forwardto
-[AMQP 1.0 support for Service Bus partitioned queues and topics]: service-bus-partitioned-queues-and-topics-amqp-overview.md
+[AMQP 1.0 support for Service Bus partitioned queues and topics]: ./service-bus-amqp-protocol-guide.md
 
 <!--Available on Azure China now-->
 

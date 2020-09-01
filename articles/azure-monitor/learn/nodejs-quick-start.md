@@ -1,63 +1,55 @@
 ---
-title: 快速入门 - 使用 Azure Monitor Application Insights 监视 Node.js
-description: 提供有关快速安装 Node.js Web 应用以使用 Azure Monitor Application Insights 进行监视的说明
-ms.service: azure-monitor
+title: 快速入门：使用 Azure Monitor Application Insights 监视 Node.js
+description: 提供有关快速设置 Node.js Web 应用以使用 Azure Monitor Application Insights 进行监视的说明
 ms.subservice: application-insights
 ms.topic: quickstart
-author: lingliw
-ms.author: v-lingwu
+author: Johnnytechn
+ms.author: v-johya
+ms.date: 08/20/2020
 origin.date: 07/12/2019
-ms.date: 08/12/2019
-ms.custom: mvc, seo-javascript-september2019, seo-javascript-october2019
-ms.openlocfilehash: c9e5445f5d3c059cfc8de1ed198d3bf791b77a12
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: mvc, seo-javascript-september2019, seo-javascript-october2019, devx-track-javascript
+ms.openlocfilehash: e65be5e3a14ff8f4bee675dc55ec83b03e940d5a
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78850300"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148581"
 ---
 # <a name="quickstart-start-monitoring-your-nodejs-web-application-with-azure-application-insights"></a>快速入门：使用 Azure Application Insights 开始监视 Node.js Web 应用程序
 
-本快速入门介绍如何将用于 Node.js 的 0.22 版 Application Insights SDK 添加到现有 Node.js Web 应用程序。
+在本快速入门中，会将用于 Node.js 的 Application Insights SDK 版本 0.22 添加到现有 Node.js Web 应用程序中。
 
 使用 Azure Application Insights，可轻松监视 Web 应用程序的可用性、性能和使用情况。 还可以快速确定并诊断应用程序中的错误，而无需等待用户报告这些错误。 使用 0.20 版 SDK 发行版及更高版本，可以监视常见的第三方包，包括 MongoDB、MySQL 和 Redis。
 
 ## <a name="prerequisites"></a>先决条件
 
-若要完成本快速入门教程，需先执行以下操作：
-
-- 需要 Azure 订阅和现有 Node.js Web 应用程序。
-
-如果没有 Node.js Web 应用程序，则可以按照[创建 Node.js Web 应用快速入门](/app-service/app-service-web-get-started-nodejs)创建一个。
-
-如果没有 Azure 订阅，请在开始前创建一个[试用帐户](https://www.azure.cn/zh-cn/pricing/1rmb-trial-full/?form-type=identityauth)。
-
-## <a name="sign-in-to-the-azure-portal"></a>登录到 Azure 门户
-
-登录到 [Azure 门户](https://portal.azure.cn/)。
+* 具有活动订阅的 Azure 帐户。 [创建试用帐户](https://www.azure.cn/pricing/1rmb-trial/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)。
+* 正常运行的 Node.js 应用程序。
 
 ## <a name="enable-application-insights"></a>启用 Application Insights
 
-Application Insights 可以从任何连接 Internet 的应用程序收集遥测数据，而不考虑它是在本地运行还是在云中运行。 按照以下步骤开始查看此数据。
+无论是在本地运行还是在云中运行，Application Insights 都可以从任何与 Internet 连接的应用程序中收集遥测数据。 按照以下步骤开始查看此数据。
 
-1. 选择“创建资源”   >   “开发人员工具” >   “Application Insights”。
+1. 登录 [Azure 门户](https://portal.azure.cn/)。
+
+2. 选择“创建资源”   >   “开发人员工具” >   “Application Insights”。
 
    ![添加 Azure Application Insights 资源](./media/nodejs-quick-start/azure-app-insights-create-resource.png)
 
    > [!NOTE]
-   >如果这是你首次创建 Application Insights 资源，可以通过访问[创建 Application Insights 资源](/azure-monitor/app/create-new-resource)文档来了解更多信息。
+   >如果这是你首次创建 Application Insights 资源，可以通过访问[创建 Application Insights 资源](../app/create-new-resource.md)文档来了解更多信息。
 
    此时会显示配置页，请使用下表填写输入字段。 
 
-    | 设置        | Value           | 说明  |
+    | 设置        | 值           | 说明  |
    | ------------- |:-------------|:-----|
    | **名称**      | 全局唯一值 | 标识所监视的应用的名称 |
-   | **资源组**     | MyResourceGroup      | 用于托管 App Insights 数据的新资源组的名称。 可创建新的资源组或使用现有资源组。 |
-   | **位置** | 中国东部 | 选择离你近的位置或离托管应用的位置近的位置 |
+   | **资源组**     | myResourceGroup      | 用于托管 AppInsights 数据的新资源组的名称。 可创建新的资源组或使用现有资源组。 |
+   | **位置** | 中国东部 2 | 选择离你近的位置或离托管应用的位置近的位置 |
 
-2. 选择“创建”  。
+3. 选择“创建”  。
 
-## <a name="configure-app-insights-sdk"></a>配置 App Insights SDK
+## <a name="configure-appinsights-sdk"></a>配置 AppInsights SDK
 
 1. 选择“概述”，然后复制应用程序的**检测密钥**。 
 
@@ -69,7 +61,7 @@ Application Insights 可以从任何连接 Internet 的应用程序收集遥测�
    npm install applicationinsights --save
    ```
 
-3. 编辑应用的第一个 .js 文件并将以下两行添加到脚本的最顶部部分。 如果使用的是 [Node.js 快速入门应用](/app-service/app-service-web-get-started-nodejs)，则将修改 index.js 文件。 将 &lt;instrumentation_key&gt; 替换为应用程序的检测密钥。 
+3. 编辑应用的第一个 .js  文件并将以下两行添加到脚本的最顶部。 如果使用的是 [Node.js 快速入门应用](../../app-service/quickstart-nodejs.md)，则将修改 index.js  文件。 将 `<instrumentation_key>` 替换为应用程序的检测密钥。 
 
    ```JavaScript
    const appInsights = require('applicationinsights');
@@ -121,15 +113,18 @@ Application Insights 可以从任何连接 Internet 的应用程序收集遥测�
    </script>
    ```
 
-5. 在左侧，选择“指标”。  使用指标资源管理器调查资源的运行状况和利用率。 可以选择“添加新图表”  创建其他自定义视图，或者选择“编辑”  修改现有的图表类型、高度、调色板、分组和指标。 例如，可以制作一个图表来显示浏览器页面的平均加载时间，只需从指标下拉列表中选择“浏览器页面加载时间”并从聚合中选择“平均”即可。 若要详细了解 Azure 指标资源管理器，请访问 [Azure 指标资源管理器入门](../../azure-monitor/platform/metrics-getting-started.md)。
+5. 在左侧，选择“指标”。  使用指标资源管理器调查资源的运行状况和利用率。 可以选择“添加新图表”  创建其他自定义视图，或者选择“编辑”  修改现有的图表类型、高度、调色板、分组和指标。 例如，可以制作一个图表来显示浏览器页面的平均加载时间，只需从指标下拉列表中选择“浏览器页面加载时间”并从聚合中选择“平均”即可。 若要详细了解 Azure 指标资源管理器，请访问 [Azure 指标资源管理器入门](../platform/metrics-getting-started.md)。
 
    ![Application Insights“服务器指标”图](./media/nodejs-quick-start/azure-app-insights-server-metrics.png)
 
-若要了解有关监视 Node.js 的详细信息，请查看[其他 App Insights Node.js 文档](../../azure-monitor/app/nodejs.md)。
+若要详细了解如何监视 Node.js，请查看[其他 AppInsights Node.js 文档](../app/nodejs.md)。
 
 ## <a name="clean-up-resources"></a>清理资源
 
 完成测试后，即可删除资源组和所有相关资源。 为此，请执行以下步骤。
+
+> [!NOTE]
+> 如果使用了现有资源组，以下说明将不起作用，只需删除单个 Application Insights 资源即可。 请记住，无论何时删除资源组，属于该组的所有底层资源都将被删除。
 
 1. 在 Azure 门户的左侧菜单中，选择“资源组”  ，然后选择“myResourceGroup”  。
 2. 在资源组页上选择“删除”  ，在文本框中输入 **myResourceGroup**，然后选择“删除”  。
@@ -137,7 +132,6 @@ Application Insights 可以从任何连接 Internet 的应用程序收集遥测�
 ## <a name="next-steps"></a>后续步骤
 
 > [!div class="nextstepaction"]
-> [查找和诊断性能问题](/azure-monitor/log-query/log-query-overview)
-
+> [查找和诊断性能问题](../log-query/log-query-overview.md)
 
 

@@ -4,17 +4,17 @@ description: 了解如何更新 Azure Stack Hub 上的 Azure 应用服务。
 author: WenJason
 ms.topic: article
 origin.date: 05/05/2019
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: anwestg
 ms.lastreviewed: 01/13/2019
 zone_pivot_groups: state-connected-disconnected
-ms.openlocfilehash: c5b17690d033bda2270184318f775112a2defd44
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 77b1512acc66570d42d25614d857ad7df8fd15d6
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096490"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868021"
 ---
 # <a name="update-azure-app-service-on-azure-stack-hub"></a>更新 Azure Stack Hub 上的 Azure 应用服务
 
@@ -97,7 +97,7 @@ ms.locfileid: "85096490"
 * 受 Active Directory 联合身份验证服务 (AD FS) 保护。
 
 > [!IMPORTANT]
-> 在运行升级之前，必须已完成[在断开连接的环境中的 Azure Stack Hub 上部署 Azure 应用服务](azure-stack-app-service-deploy-offline.md)。 
+> 在运行升级之前，必须已完成[在断开连接的环境中的 Azure Stack Hub 上部署 Azure 应用服务](./azure-stack-app-service-deploy.md?pivots=state-disconnected&view=azs-2002)。 
 
 ## <a name="run-the-app-service-resource-provider-installer"></a>运行应用服务资源提供程序安装程序
 

@@ -1,17 +1,19 @@
 ---
 title: Section UI 元素
 description: 介绍了 Azure 门户的 Microsoft.Common.Section UI 元素。 用于对门户中的元素进行分组，以便部署托管应用程序。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 06/27/2018
-ms.date: 01/20/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 35b3251f4d6bfad14691455b93dfed36c3931947
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 0d74c1d4d130150ac67661d3aba37a60953beae1
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "76170668"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807811"
 ---
 # <a name="microsoftcommonsection-ui-element"></a>Microsoft.Common.Section UI 元素
 
@@ -19,7 +21,7 @@ ms.locfileid: "76170668"
 
 ## <a name="ui-sample"></a>UI 示例
 
-![Microsoft.Common.Section](./media/managed-application-elements/microsoft.common.section.png)
+:::image type="content" source="./media/managed-application-elements/microsoft-common-section.png" alt-text="Microsoft.Common.Section":::
 
 ## <a name="schema"></a>架构
 
@@ -50,7 +52,7 @@ ms.locfileid: "76170668"
 - 此元素不支持 `toolTip` 属性。
 
 ## <a name="sample-output"></a>示例输出
-若要访问 `elements` 中的元素的输出值，请使用 [basics()](create-uidefinition-functions.md#basics) 或 [steps()](create-uidefinition-functions.md#steps) 函数和点表示法：
+若要访问 `elements` 中的元素的输出值，请使用 [basics()](create-ui-definition-referencing-functions.md#basics) 或 [steps()](create-ui-definition-referencing-functions.md#steps) 函数和点表示法：
 
 ```json
 steps('configuration').section1.text1
@@ -63,5 +65,4 @@ steps('configuration').section1.text1
 * 有关创建 UI 定义的简介，请参阅 [CreateUiDefinition 入门](create-uidefinition-overview.md)。
 * 有关 UI 元素中的公用属性的说明，请参阅 [CreateUiDefinition 元素](create-uidefinition-elements.md)。
 
-<!-- Update_Description: new article about microsoft common section -->
-<!--NEW.date: 01/20/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

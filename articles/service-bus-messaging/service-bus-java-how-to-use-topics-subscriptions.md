@@ -4,18 +4,18 @@ description: 在本快速入门中，先编写 Java 代码，将消息发送到�
 ms.devlang: Java
 ms.topic: quickstart
 origin.date: 06/23/2020
-ms.date: 07/27/2020
-ms.testscope: yes
-ms.testdate: 07/20/2020
-ms.author: v-yeche
 author: rockboyfor
-ms.custom: seo-java-july2019, seo-java-august2019, seo-java-september2019
-ms.openlocfilehash: a5af9ad2c506dbc394add87a1c0628f75df3e34b
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/17/2020
+ms.author: v-yeche
+ms.custom: seo-java-july2019, seo-java-august2019, seo-java-september2019, devx-track-java
+ms.openlocfilehash: b3e56d6e4589c2b994002222297f580be29b9d43
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162392"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947068"
 ---
 # <a name="quickstart-use-service-bus-topics-and-subscriptions-with-java"></a>快速入门：通过 Java 使用服务总线主题和订阅
 
@@ -34,9 +34,9 @@ ms.locfileid: "87162392"
 3. [Azure SDK for Java][Azure SDK for Java]。
 
 ## <a name="configure-your-application-to-use-service-bus"></a>配置应用程序以使用服务总线
-在生成本示例之前，请确保已安装 [Azure SDK for Java][Azure SDK for Java] 。 如果使用了 Eclipse，则可以安装包含 Azure SDK for Java 的 [Azure Toolkit for Eclipse][Azure Toolkit for Eclipse] 。 然后，可将 Microsoft Azure Libraries for Java 添加到项目  ：
+在生成本示例之前，请确保已安装 [Azure SDK for Java][Azure SDK for Java] 。 如果使用了 Eclipse，则可以安装包含 Azure SDK for Java 的 [Azure Toolkit for Eclipse][Azure Toolkit for Eclipse] 。 然后，可以将 **Azure Libraries for Java** 添加到项目：
 
-![将适用于 Java 的 Azure 库添加到 Eclipse 项目](media/service-bus-java-how-to-use-topics-subscriptions/eclipse-azure-libraries-java.png)
+:::image type="content" source="media/service-bus-java-how-to-use-topics-subscriptions/eclipse-azure-libraries-java.png" alt-text="将适用于 Java 的 Azure 库添加到 Eclipse 项目":::
 
 还需要将以下 JAR 添加到 Java 生成路径中：
 
@@ -455,12 +455,12 @@ Message sending: Id = 9
 ## <a name="next-steps"></a>后续步骤
 有关详细信息，请参阅[服务总线队列、主题和订阅][Service Bus queues, topics, and subscriptions]。
 
-[Azure SDK for Java]: https://docs.microsoft.com/java/api/overview/azure/
+[Azure SDK for Java]: https://docs.azure.cn/java/api/overview/
 [Azure Toolkit for Eclipse]: https://docs.azure.cn/java/eclipse/azure-toolkit-for-eclipse?view=azure-java-stable
 [Service Bus queues, topics, and subscriptions]: service-bus-queues-topics-subscriptions.md
-[SqlFilter]: /dotnet/api/microsoft.azure.servicebus.sqlfilter
-[SqlFilter.SqlExpression]: /dotnet/api/microsoft.azure.servicebus.sqlfilter.sqlexpression
-[BrokeredMessage]: /dotnet/api/microsoft.servicebus.messaging.brokeredmessage
+[SqlFilter]: https://docs.azure.cn/dotnet/api/microsoft.azure.servicebus.sqlfilter
+[SqlFilter.SqlExpression]: https://docs.azure.cn/dotnet/api/microsoft.azure.servicebus.sqlfilter.sqlexpression
+[BrokeredMessage]: https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.brokeredmessage
 
 <!--Available on Azure China now-->
 

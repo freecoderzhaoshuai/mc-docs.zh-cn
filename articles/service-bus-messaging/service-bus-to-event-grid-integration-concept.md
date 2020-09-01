@@ -5,16 +5,17 @@ documentationcenter: .net
 author: rockboyfor
 ms.topic: conceptual
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+ms.date: 08/24/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 0513040ad9eb26d010b77e9abdf08113032bea94
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 49edc892c836aa46126a8a2844ccf0e5353751cb
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162265"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946606"
 ---
 # <a name="azure-service-bus-to-event-grid-integration-overview"></a>Azure 服务总线到事件网格的集成概述
 
@@ -42,9 +43,9 @@ Azure 服务总线已推出与 Azure 事件网格集成的新功能。 此功能
 * [ActiveMessagesWithNoListenersAvailable](#active-messages-available-event)
 * DeadletterMessagesAvailable
 
-此外，服务总线使用标准的事件网格安全性和[身份验证机制](/event-grid/security-authentication)。
+此外，服务总线使用标准的事件网格安全性和[身份验证机制](../event-grid/security-authentication.md)。
 
-有关详细信息，请参阅 [Azure 事件网格事件架构](/event-grid/event-schema)。
+有关详细信息，请参阅 [Azure 事件网格事件架构](../event-grid/event-schema.md)。
 
 #### <a name="active-messages-available-event"></a>活动消息可用事件
 
@@ -123,21 +124,21 @@ Azure 服务总线已推出与 Azure 事件网格集成的新功能。 此功能
 2. 在左窗格中，选择“事件网格”。 
 3. 选择“事件订阅”。  
 
-   下图显示了包含事件网格订阅的命名空间：
+    下图显示了包含事件网格订阅的命名空间：
 
-   ![事件网格订阅](./media/service-bus-to-event-grid-integration-concept/sbtoeventgridportal.png)
+    :::image type="content" source="./media/service-bus-to-event-grid-integration-concept/sbtoeventgridportal.png" alt-text="事件网格订阅":::
 
-   下图演示了如何在不使用任何特定筛选器的情况下订阅函数或 Webhook：
+    下图演示了如何在不使用任何特定筛选器的情况下订阅函数或 Webhook：
 
-   ![21][]
+    ![21][]
 
 ## <a name="azure-cli-instructions"></a>Azure CLI 说明
 
-首先，请确保已安装 Azure CLI 2.0 或更高版本。 [下载安装程序](/cli/install-azure-cli?view=azure-cli-latest)。 按 **Windows + X**，然后使用管理员权限打开新的 PowerShell 控制台。 或者，也可以在 Azure 门户中使用命令外壳。
+首先，请确保已安装 Azure CLI 2.0 或更高版本。 [下载安装程序](https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest)。 按 **Windows + X**，然后使用管理员权限打开新的 PowerShell 控制台。 或者，也可以在 Azure 门户中使用命令外壳。
 
 执行以下代码：
 
- ```azurecli
+```azurecli
 az cloud set -n AzureChinaCloud
 az login
 
@@ -173,9 +174,9 @@ New-AzEVentGridSubscription -EventSubscriptionName "<YOUR EVENT GRID SUBSCRIPTIO
 ## <a name="next-steps"></a>后续步骤
 
 * 获取服务总线和事件网格的[示例](service-bus-to-event-grid-integration-example.md)。
-* 详细了解[事件网格](/event-grid/)。
-* 详细了解 [Azure Functions](/azure-functions/)。
-* 了解有关[逻辑应用](/logic-apps/)的详细信息。
+* 详细了解[事件网格](../event-grid/index.yml)。
+* 详细了解 [Azure Functions](../azure-functions/index.yml)。
+* 了解有关[逻辑应用](../logic-apps/index.yml)的详细信息。
 * 详细了解[服务总线](/service-bus/)。
 
 [1]: ./media/service-bus-to-event-grid-integration-concept/sbtoeventgrid1.png

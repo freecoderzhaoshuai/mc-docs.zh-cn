@@ -3,17 +3,17 @@ title: 使用 Azure 门户和主题/订阅更新清单
 description: 本教程介绍如何从主题和订阅发送和接收消息，以及如何使用 .NET 添加和使用筛选器规则
 author: rockboyfor
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+ms.date: 08/31/2020
 ms.testscope: yes
 ms.testdate: 07/20/2020
 ms.author: v-yeche
 ms.topic: tutorial
-ms.openlocfilehash: 41c8d4e3886e25dc0dcc8d049428bbcc553e7941
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 33fe58ea5721b573fd3ee53458152c5fdbabd931
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162192"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946997"
 ---
 # <a name="tutorial-update-inventory-using-azure-portal-and-topicssubscriptions"></a>教程：使用 Azure 门户和主题/订阅更新库存
 
@@ -29,7 +29,7 @@ Azure 服务总线是一种多租户云消息传送服务，可以在应用程�
 
 此方案的一个示例是为多个零售店更新库存分类。 在此方案中，每个商店或商店组都获取适用于它们的消息来更新其分类。 本教程展示了如何使用订阅和筛选器实现此方案。 首先，创建一个包含 3 个订阅的主题，添加一些规则和筛选器，然后从主题和订阅发送和接收消息。
 
-![主题](./media/service-bus-tutorial-topics-subscriptions-portal/about-service-bus-topic.png)
+:::image type="content" source="./media/service-bus-tutorial-topics-subscriptions-portal/about-service-bus-topic.png" alt-text="topic":::
 
 如果没有 Azure 订阅，可在开始前创建一个[试用帐户][]。
 
@@ -85,15 +85,15 @@ Azure 服务总线是一种多租户云消息传送服务，可以在应用程�
     - 执行操作 2：添加自己的筛选器。
     - 执行操作 3：（可选）删除自己的筛选器。 请注意，这不会重新创建默认筛选器。
 
-    ![显示 2 的输出](./media/service-bus-tutorial-topics-subscriptions-portal/create-rules.png)
+    :::image type="content" source="./media/service-bus-tutorial-topics-subscriptions-portal/create-rules.png" alt-text="显示 2 的输出":::
 
 8. 创建筛选器以后，即可发送消息。 按 4 即可观察到 10 条消息发送到主题：
 
-    ![发送输出](./media/service-bus-tutorial-topics-subscriptions-portal/send-output.png)
+    :::image type="content" source="./media/service-bus-tutorial-topics-subscriptions-portal/send-output.png" alt-text="发送输出":::
 
 9. 按 5 即可观察到这些消息被接收。 如果没有返回 10 条消息，请按“m”以显示菜单，然后再次按 5。
 
-    ![接收输出](./media/service-bus-tutorial-topics-subscriptions-portal/receive-output.png)
+    :::image type="content" source="./media/service-bus-tutorial-topics-subscriptions-portal/receive-output.png" alt-text="接收输出":::
 
 ## <a name="clean-up-resources"></a>清理资源
 
@@ -410,11 +410,11 @@ private async Task ReceiveMessages(string subscription)
 若要详细了解如何使用服务总线的发布/订阅功能，请转到下一教程。
 
 > [!div class="nextstepaction"]
-> [使用 PowerShell 和主题/订阅更新库存](service-bus-tutorial-topics-subscriptions-powershell.md)
+> [通过事件网格响应事件](service-bus-to-event-grid-integration-example.md)
 
 [试用帐户]: https://www.azure.cn/pricing/1rmb-trial/
-[fully qualified domain name]: https://wikipedia.org/wiki/Fully_qualified_domain_name
-[Azure portal]: https://portal.azure.cn/
+<!--Not Avaiable on [fully qualified domain name]: https://wikipedia.org/wiki/Fully_qualified_domain_name-->
+[Azure 门户]：https://portal.azure.cn/
 
 [connection-string]: ./media/service-bus-tutorial-topics-subscriptions-portal/connection-string.png
 [service-bus-flow]: ./media/service-bus-tutorial-topics-subscriptions-portal/about-service-bus-topic.png

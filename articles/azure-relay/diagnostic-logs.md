@@ -3,17 +3,17 @@ title: 混合连接的诊断日志
 description: 本文概述了可用于 Azure 中继的所有活动和诊断日志。
 ms.topic: how-to
 origin.date: 06/23/2020
-ms.date: 07/27/2020
-ms.testscope: yes
+ms.date: 08/31/2020
+ms.testscope: no
 ms.testdate: 07/20/2020
 ms.author: v-yeche
 author: rockboyfor
-ms.openlocfilehash: 06fac01bd09ec99a7581c5a4cdab4997265d72a6
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: dbbcdabb0c6a87d772b66b9e89a71584b3b9fe02
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162204"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947102"
 ---
 <!--Verified successfully-->
 # <a name="enable-diagnostics-logs-for-azure-relay-hybrid-connections"></a>为 Azure 中继混合连接启用诊断日志
@@ -27,7 +27,7 @@ ms.locfileid: "87162204"
 ## <a name="view-activity-logs"></a>查看活动日志
 若要查看 Azure 中继命名空间的活动日志，请切换到 Azure 门户中的“活动日志”页。
 
-![Azure 中继 - 活动日志](./media/diagnostic-logs/activity-log.png)
+:::image type="content" source="./media/diagnostic-logs/activity-log.png" alt-text="Azure 中继 - 活动日志":::
 
 ## <a name="enable-diagnostic-logs"></a>启用诊断日志
 
@@ -38,7 +38,7 @@ ms.locfileid: "87162204"
 
 1. 在 [Azure 门户](https://portal.azure.cn)中，转到 Azure 中继命名空间，然后在“监视”下选择“诊断设置” 。
 1. 在“诊断设置”页中，选择“添加诊断设置” 。  
-
+    
     ![“添加诊断设置”链接](./media/diagnostic-logs/add-diagnostic-setting.png)
 
 1. 通过以下步骤配置诊断设置：
@@ -49,10 +49,10 @@ ms.locfileid: "87162204"
         2. 如果选择“流式传输到事件中心”，请配置要将诊断日志流式传输到的事件中心。
         3. 如果选择“发送到 Log Analytics”，请指定要将诊断发送到其中的 Log Analytics 实例。  
 
-        ![示例诊断设置](./media/diagnostic-logs/sample-diagnostic-settings.png)
+        :::image type="content" source="./media/diagnostic-logs/sample-diagnostic-settings.png" alt-text="示例诊断设置":::
 1. 选择工具栏上的“保存”以保存设置。
 
-新设置将在大约 10 分钟后生效。 日志将显示在“诊断日志”窗格中配置的存档目标中。 有关配置诊断设置的详细信息，请参阅 [Azure 诊断日志概述](../azure-monitor/platform/diagnostic-logs-overview.md)。
+新设置将在大约 10 分钟后生效。 日志将显示在“诊断日志”窗格中配置的存档目标中。 有关配置诊断设置的详细信息，请参阅 [Azure 诊断日志概述](../azure-monitor/platform/platform-logs-overview.md)。
 
 ## <a name="schema-for-hybrid-connections-events"></a>混合连接事件的架构
 混合连接事件日志 JSON 字符串包括下表中列出的元素：

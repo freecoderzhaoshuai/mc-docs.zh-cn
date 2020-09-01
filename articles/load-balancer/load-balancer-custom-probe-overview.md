@@ -8,19 +8,19 @@ author: WenJason
 manager: digimobile
 ms.service: load-balancer
 ms.devlang: na
-ms.topic: article
+ms.topic: how-to
 ms.custom: seodec18
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 origin.date: 09/17/2019
-ms.date: 06/08/2020
+ms.date: 08/31/2020
 ms.author: v-jay
-ms.openlocfilehash: e3106d280c969604e1afe5f477c792874b58c482
-ms.sourcegitcommit: 9811bf312e0d037cb530eb16c8d85238fd276949
+ms.openlocfilehash: cf6a73d499031a1587ecd82ce35b6e1e77a8d58e
+ms.sourcegitcommit: f8ed85740f873c15c239ab6ba753e4b76e030ba7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84275386"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045793"
 ---
 # <a name="load-balancer-health-probes"></a>负载均衡器运行状况探测
 
@@ -30,8 +30,8 @@ ms.locfileid: "84275386"
 
 | | 标准 SKU | 基本 SKU |
 | --- | --- | --- |
-| [探测类型](#types) | TCP、HTTP、HTTPS | TCP、HTTP |
-| [探测停止行为](#probedown) | 所有探测停止，所有 TCP 流继续。 | 所有探测停止，所有 TCP 流过期。 | 
+| **[探测类型](#types)** | TCP、HTTP、HTTPS | TCP、HTTP |
+| **[探测停止行为](#probedown)** | 所有探测停止，所有 TCP 流继续。 | 所有探测停止，所有 TCP 流过期。 | 
 
 
 >[!IMPORTANT]
@@ -93,8 +93,8 @@ ms.locfileid: "84275386"
 
 || TCP | HTTP | HTTPS |
 | --- | --- | --- | --- |
-| 标准 SKU |    &#9989; |   &#9989; |   &#9989; |
-| 基本 SKU |   &#9989; |   &#9989; | &#10060; |
+| **标准 SKU** |    &#9989; |   &#9989; |   &#9989; |
+| **基本 SKU** |   &#9989; |   &#9989; | &#10060; |
 
 ### <a name="tcp-probe"></a><a name="tcpprobe"></a>TCP 探测
 

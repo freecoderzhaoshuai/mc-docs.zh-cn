@@ -4,16 +4,16 @@ description: 服务总线消息传送示例演示 Azure 服务总线消息传送
 author: rockboyfor
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+ms.date: 08/24/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: fed2bd2259bf7fc2e7a45b1c0f2e249d2fdf0b8f
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 7adfce9b6087cc7477f711299d64adb197259f35
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162255"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946604"
 ---
 # <a name="service-bus-messaging-samples"></a>服务总线消息传送示例
 服务总线消息传送示例演示[服务总线消息传送](https://www.azure.cn/home/features/service-bus/)中的关键功能。 目前，可以在以下两个位置找到这些示例：
@@ -33,6 +33,6 @@ ms.locfileid: "87162255"
 有关服务总线的概念性概述，请参阅以下主题。
 
 * [服务总线消息传送概述](service-bus-messaging-overview.md)
-* [服务总线体系结构](service-bus-architecture.md)
+* [服务总线体系结构](./service-bus-messaging-overview.md)
 
 <!-- Update_Description: update meta properties, wording update, update link -->

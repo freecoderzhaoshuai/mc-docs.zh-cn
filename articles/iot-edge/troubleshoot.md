@@ -1,20 +1,20 @@
 ---
-title: 故障排除 - Azure IoT Edge
+title: 故障排除 - Azure IoT Edge | Microsoft Docs
 description: 通过本文了解 Azure IoT Edge 的标准诊断技能，例如检索组件状态和日志
 author: kgremban
 manager: philmea
 ms.author: v-tawe
 origin.date: 04/27/2020
-ms.date: 06/01/2020
+ms.date: 08/27/2020
 ms.topic: conceptual
 ms.service: iot-edge
 services: iot-edge
-ms.openlocfilehash: 0001538dff032728c4c74da87a37fc5dde25a613
-ms.sourcegitcommit: 9811bf312e0d037cb530eb16c8d85238fd276949
+ms.openlocfilehash: 8a92ab503f8c6d5394b5638d4c0f08d2d154a0aa
+ms.sourcegitcommit: c8e590d907f20bbc9c4c05d9bfc93cf7cb1d776f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84275571"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88957809"
 ---
 # <a name="troubleshoot-your-iot-edge-device"></a>排除 IoT Edge 设备故障
 
@@ -142,7 +142,7 @@ iotedge support-bundle --since 6h
   * 添加系统级环境变量：
 
       ```powershell
-      [Environment]::SetEnvironmentVariable("IOTEDGE_LOG", "edgelet=debug", [EnvironmentVariableTarget]::Machine)
+      [Environment]::SetEnvironmentVariable("IOTEDGE_LOG", "debug", [EnvironmentVariableTarget]::Machine)
       ```
 
   * 重启 IoT Edge 安全守护程序：

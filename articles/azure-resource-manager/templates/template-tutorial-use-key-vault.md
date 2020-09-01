@@ -3,16 +3,18 @@ title: 在模板中使用 Azure Key Vault
 description: 了解如何在资源管理器模板部署期间使用 Azure Key Vault 来传递安全参数值
 author: rockboyfor
 origin.date: 04/23/2020
-ms.date: 06/22/2020
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.topic: tutorial
 ms.author: v-yeche
 ms.custom: seodec18
-ms.openlocfilehash: ccf1707296fe68fc16ad594fc1970453fbd7f503
-ms.sourcegitcommit: 48b5ae0164f278f2fff626ee60db86802837b0b4
+ms.openlocfilehash: fc742864946a511c4e20a50753923e602dfbfda8
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85098717"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807923"
 ---
 <!-- Verify successfully-->
 <!-- CORRECT THE LOCATION DEFAULT VALUE TO [parameters('location')]-->
@@ -22,7 +24,7 @@ ms.locfileid: "85098717"
 
 在[设置资源部署顺序](./template-tutorial-create-templates-with-dependent-resources.md)教程中，你需要创建虚拟机 (VM)。 需提供 VM 管理员用户名和密码。 可以不提供密码，而是将密码预先存储在 Azure 密钥保管库中，然后自定义模板，以便在部署过程中从密钥保管库检索密码。
 
-![显示具有密钥保管库的资源管理器模板的集成的关系图](./media/template-tutorial-use-key-vault/resource-manager-template-key-vault-diagram.png)
+:::image type="content" source="./media/template-tutorial-use-key-vault/resource-manager-template-key-vault-diagram.png" alt-text="显示具有密钥保管库的资源管理器模板的集成的关系图":::
 
 本教程涵盖以下任务：
 
@@ -40,7 +42,7 @@ ms.locfileid: "85098717"
 
 若要完成本文，需要做好以下准备：
 
-* 包含资源管理器工具扩展的 Visual Studio Code。 请参阅[使用 Visual Studio Code 创建 ARM 模板](use-vs-code-to-create-template.md)。
+* 包含资源管理器工具扩展的 Visual Studio Code。 请参阅[快速入门：使用 Visual Studio Code 创建 Azure 资源管理器模板](quickstart-create-templates-use-visual-studio-code.md)。
 * 若要增强安全性，请使用为 VM 管理员帐户生成的密码。 以下是密码生成示例：
 
     ```console
@@ -141,15 +143,16 @@ Azure 快速入门模板是 ARM 模板的存储库。 无需从头开始创建�
 1. 选择“打开”以打开该文件。 方案与以下教程中使用的方案相同[：创建包含依赖资源的 ARM 模板](./template-tutorial-create-templates-with-dependent-resources.md)。
     该模板定义了六个资源：
 
-    * `Microsoft.Storage/storageAccounts`。
-    * `Microsoft.Network/publicIPAddresses`。
-    * `Microsoft.Network/networkSecurityGroups`。
-    * `Microsoft.Network/virtualNetworks`。
-    * `Microsoft.Network/networkInterfaces`。
-    * `Microsoft.Compute/virtualMachines`。
+    * `Microsoft.Storage/storageAccounts`.
+    * `Microsoft.Network/publicIPAddresses`.
+    * `Microsoft.Network/networkSecurityGroups`.
+    * `Microsoft.Network/virtualNetworks`.
+    * `Microsoft.Network/networkInterfaces`.
+    * `Microsoft.Compute/virtualMachines`.
 
         <!-- Not Available on  [template reference](https://docs.microsoft.com/azure/templates/Microsoft.Storage/storageAccounts)-->
         <!-- Not Available on  [template reference](https://docs.microsoft.com/azure/templates/microsoft.network/publicipaddresses)-->
+        <!-- Not Available on  [template reference](https://docs.microsoft.com/azure/templates/microsoft.network/networksecuritygroups)-->
         <!-- Not Available on  [template reference](https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks)-->
         <!-- Not Available on  [template reference](https://docs.microsoft.com/azure/templates/microsoft.network/networkinterfaces)-->
         <!-- Not Available on  [template reference](https://docs.microsoft.com/azure/templates/microsoft.compute/virtualmachines)-->
@@ -185,7 +188,7 @@ Azure 快速入门模板是 ARM 模板的存储库。 无需从头开始创建�
     > [!IMPORTANT]
     > 将“id”值替换为你在上一过程中创建的密钥保管库的资源 ID。 secretName 将硬编码为“vmAdminPassword”。  请参阅[准备密钥保管库](#prepare-a-key-vault)。
 
-    ![集成密钥保管库和资源管理器模板虚拟机部署参数文件](./media/template-tutorial-use-key-vault/resource-manager-tutorial-create-vm-parameters-file.png)
+    :::image type="content" source="./media/template-tutorial-use-key-vault/resource-manager-tutorial-create-vm-parameters-file.png" alt-text="集成密钥保管库和资源管理器模板虚拟机部署参数文件":::
 
 1. 请更新以下值：
 
@@ -198,24 +201,25 @@ Azure 快速入门模板是 ARM 模板的存储库。 无需从头开始创建�
 
 ## <a name="deploy-the-template"></a>部署模板
 
-按照[部署模板](./template-tutorial-create-templates-with-dependent-resources.md#deploy-the-template)中的说明执行操作。 在本地电脑上下载 azuredeploy.json 和 azuredeploy.parameters.json，然后使用以下 PowerShell 脚本部署模板：
-
 <!--Not Available on You need to upload both **azuredeploy.json** and **azuredeploy.parameters.json** to the Cloud shell-->
+<!--Verified successfully on support $HOME FOR BOTH POWERSHELL AND CLI-->
 
-```azurepowershell
-$projectName = Read-Host -Prompt "Enter the same project name that is used for creating the key vault"
-$location = Read-Host -Prompt "Enter the same location that is used for creating the key vault (i.e. chinaeast)"
-$resourceGroupName = "${projectName}rg"
+1. 运行以下 PowerShell 脚本以部署该模板。
 
-New-AzResourceGroupDeployment `
-    -ResourceGroupName $resourceGroupName `
-    -TemplateFile azuredeploy.json `
-    -TemplateParameterFile azuredeploy.parameters.json
+    ```azurepowershell
+    $projectName = Read-Host -Prompt "Enter the same project name that is used for creating the key vault"
+    $location = Read-Host -Prompt "Enter the same location that is used for creating the key vault (i.e. chinaeast)"
+    $resourceGroupName = "${projectName}rg"
 
-Write-Host "Press [ENTER] to continue ..."
-```
+    New-AzResourceGroupDeployment `
+        -ResourceGroupName $resourceGroupName `
+        -TemplateFile "$HOME/azuredeploy.json" `
+        -TemplateParameterFile "$HOME/azuredeploy.parameters.json"
 
-部署模板时，请使用密钥保管库中使用的同一资源组。 此方法使你更轻松地清理资源，因为你需要仅删除一个资源组，而不是两个资源组。
+    Write-Host "Press [ENTER] to continue ..."
+    ```
+
+    部署模板时，请使用密钥保管库中使用的同一资源组。 此方法使你更轻松地清理资源，因为你需要仅删除一个资源组，而不是两个资源组。
 
 ## <a name="validate-the-deployment"></a>验证部署
 
@@ -223,7 +227,7 @@ Write-Host "Press [ENTER] to continue ..."
 
 1. 打开 [Azure 门户](https://portal.azure.cn)。
 
-1. 选择“资源组” >  **\<*YourResourceGroupName*>**  > “simpleWinVM”。
+1. 选择“资源组” > \<*YourResourceGroupName*> > “simpleWinVM”  。
 1. 选择顶部的“连接”。
 1. 选择“下载 RDP 文件”，然后遵照说明使用密钥保管库中存储的密码登录到虚拟机。
 

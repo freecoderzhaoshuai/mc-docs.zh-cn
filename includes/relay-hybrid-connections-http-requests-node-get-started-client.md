@@ -2,19 +2,23 @@
 title: include 文件
 description: include 文件
 services: service-bus-relay
-author: clemensv
+author: rockboyfor
 ms.service: service-bus-relay
 ms.topic: include
-ms.date: 05/02/2018
-ms.author: clemensv
+origin.date: 05/02/2018
+ms.date: 07/27/2020
+ms.testscope: yes
+ms.testdate: 07/27/2020
+ms.author: v-yeche
 ms.custom: include file
-ms.openlocfilehash: 04cb694f556d1b53344c0fd95947a258170c4f88
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: fdaf6ad404abbb030ca4ddee0a751c09b36579f5
+ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "63845474"
+ms.lasthandoff: 07/24/2020
+ms.locfileid: "88947121"
 ---
+<!--Verified successfully-->
 ### <a name="create-a-nodejs-application"></a>创建 Node.js 应用程序
 
 如果创建中继时已禁用“需要客户端授权”选项，可使用任何浏览器向混合连接 URL 发送请求。 若要访问受保护的终结点，需在 `ServiceBusAuthorization` 标头中创建并传递令牌，如下所示。
@@ -35,15 +39,15 @@ ms.locfileid: "63845474"
 
 2. 将以下常量添加到 `sender.js` 文件，用于保存混合连接详细信息。 将括号中的占位符替换为在创建混合连接时获得的值。
    
-   1. `const ns` - 中继命名空间。 请务必使用完全限定的命名空间名称，例如 `{namespace}.servicebus.windows.net`。
-   2. `const path` - 混合连接的名称。
-   3. `const keyrule` - SAS 密钥的名称。
-   4. `const key` - SAS 密钥值。
+    1. `const ns` - 中继命名空间。 请务必使用完全限定的命名空间名称，例如 `{namespace}.servicebus.chinacloudapi.cn`。
+    2. `const path` - 混合连接的名称。
+    3. `const keyrule` - SAS 密钥的名称。
+    4. `const key` - SAS 密钥值。
 
 3. 将以下代码添加到 `sender.js` 文件。 可以发现，该代码与 Node.js HTTPS 客户端的常规用法并无太大不同，只是前者添加了授权标头。
    
     ```js
-   https.get({
+    https.get({
         hostname : ns,
         path : (!path || path.length == 0 || path[0] !== '/'?'/':'') + path,
         port : 443,
@@ -71,15 +75,15 @@ ms.locfileid: "63845474"
     });
     ```
     sender.js 文件的内容应如下所示：
-   
+
     ```js
     const https = require('hyco-https');
-       
+
     const ns = "{RelayNamespace}";
     const path = "{HybridConnectionName}";
     const keyrule = "{SASKeyName}";
     const key = "{SASKeyValue}";
-   
+
     https.get({
         hostname : ns,
         path : (!path || path.length == 0 || path[0] !== '/'?'/':'') + path,
@@ -108,3 +112,4 @@ ms.locfileid: "63845474"
     });
     ```
 
+<!-- Update_Description: update meta properties, wording update, update link -->

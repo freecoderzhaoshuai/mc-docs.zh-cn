@@ -8,13 +8,13 @@ metadata:
   ms.topic: landing-page
   author: ggailey777
   ms.author: v-junlch
-  ms.date: 02/18/2020
-  ms.openlocfilehash: 5c76c91ce65570d49b9ea110506d3568a7115160
-  ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+  ms.date: 08/24/2020
+  ms.openlocfilehash: b3b0e8b75e616058904971bfc597d9dc8b4be1ff
+  ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 04/17/2020
-  ms.locfileid: "77494511"
+  ms.lasthandoff: 08/27/2020
+  ms.locfileid: "88946983"
 landingContent:
 - title: 关于 Azure Functions
   linkLists:
@@ -33,7 +33,7 @@ landingContent:
     - text: 创建第一个函数 (C#)
       url: functions-create-your-first-function-visual-studio.md
     - text: 创建第一个函数 (Java)
-      url: functions-create-first-java-maven.md
+      url: functions-create-first-azure-function-azure-cli.md
     - text: 创建第一个函数 (JavaScript)
       url: functions-create-first-function-vs-code.md?pivots=programming-language-javascript
     - text: 创建第一个函数 (PowerShell)
@@ -76,17 +76,23 @@ landingContent:
       url: functions-deployment-slots.md
     - text: 自动执行资源部署
       url: functions-infrastructure-as-code.md
+  - linkListType: how-to-guide
+    links:
+    - text: 使用 Jenkins 插件进行部署
+      url: https://docs.microsoft.com/azure/developer/jenkins/deploy-to-azure-functions
 - title: 性能和监视
   linkLists:
   - linkListType: concept
     links:
+    - text: 监视函数
+      url: functions-monitoring.md
     - text: 优化性能
       url: functions-best-practices.md
     - text: 网络注意事项
       url: functions-networking-options.md
   - linkListType: how-to-guide
     links:
-    - text: 故障排除
+    - text: 疑难解答
       url: functions-recover-storage-account.md
 - title: 长时间运行的函数
   linkLists:

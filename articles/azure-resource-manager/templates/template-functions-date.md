@@ -3,16 +3,17 @@ title: 模板函数 - 日期
 description: 介绍了可在 Azure 资源管理器模板中用来处理日期的函数。
 ms.topic: conceptual
 origin.date: 06/22/2020
-ms.date: 07/13/2020
+author: rockboyfor
+ms.date: 08/24/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 092bc1a54095d064c62ae92c50f39880eeaf6aea
-ms.sourcegitcommit: 2bd0be625b21c1422c65f20658fe9f9277f4fd7c
+ms.openlocfilehash: e34ae3d2f168a431dfcfb4b81f9616a7f83a75c9
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86441009"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807806"
 ---
 # <a name="date-functions-for-arm-templates"></a>ARM 模板的日期函数
 
@@ -31,8 +32,8 @@ ms.locfileid: "86441009"
 
 | 参数 | 必须 | 类型 | 说明 |
 |:--- |:--- |:--- |:--- |
-| base | 是 | string | 用于相加的起始日期/时间值。 使用 [ISO 8601 时间戳格式](https://en.wikipedia.org/wiki/ISO_8601)。 |
-| duration | 是 | string | 要与 base 相加的时间值。 它可以是负值。 使用 [ISO 8601 持续时间格式](https://en.wikipedia.org/wiki/ISO_8601#Durations)。 |
+| base | 是 | string | 用于相加的起始日期/时间值。 使用 ISO 8601 时间戳格式。 |
+| duration | 是 | string | 要与 base 相加的时间值。 它可以是负值。 使用 ISO 8601 持续时间格式。 |
 | format | 否 | string | 日期时间结果的输出格式。 如果未提供，则将使用 base 值的格式。 使用[标准格式字符串](https://docs.microsoft.com/dotnet/standard/base-types/standard-date-and-time-format-strings)或[自定义格式字符串](https://docs.microsoft.com/dotnet/standard/base-types/custom-date-and-time-format-strings)。 |
 
 ### <a name="return-value"></a>返回值

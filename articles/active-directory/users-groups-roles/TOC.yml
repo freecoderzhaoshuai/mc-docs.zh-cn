@@ -12,6 +12,10 @@
       href: /active-directory/fundamentals/license-users-groups
     - name: 授权执行无限次应用注册
       href: roles-quickstart-app-registration-limits.md
+    - name: 设置组过期策略
+      href: groups-quickstart-expiration.md
+    - name: 设置组命名策略
+      href: groups-quickstart-naming-policy.md
 - name: 概念
   expanded: true
   items:
@@ -32,12 +36,22 @@
       items:
         - name: 创建用户
           href: /active-directory/fundamentals/add-users-azure-active-directory
+        - name: 批量创建用户
+          href: users-bulk-add.md
         - name: 管理用户个人资料
           href: /active-directory/fundamentals/active-directory-users-profile-azure-portal
+        - name: 下载用户信息
+          href: users-bulk-download.md
         - name: 将用户分配到管理员角色
           href: /active-directory/fundamentals/active-directory-users-assign-role-azure-portal
+        - name: 批量删除用户
+          href: users-bulk-delete.md
         - name: 还原已删除的用户
           href: /active-directory/fundamentals/active-directory-users-restore
+        - name: 批量还原用户
+          href: users-bulk-restore.md
+        - name: 撤消用户的访问权限
+          href: users-revoke-access.md
         - name: 添加 B2B 用户
           href: /active-directory/b2b/what-is-b2b
         - name: 向 B2B 用户分配角色
@@ -76,6 +90,10 @@
           href: /active-directory/fundamentals/active-directory-accessmanagement-managing-group-owners
         - name: 管理组中的组
           href: /active-directory/fundamentals/active-directory-groups-membership-azure-portal
+        - name: 设置组命名策略
+          href: groups-naming-policy.md
+        - name: 设置组自助服务
+          href: groups-self-service-management.md
     - name: 分配许可证
       items:
         - name: 将许可证分配给用户
@@ -115,6 +133,20 @@
               href: roles-custom-available-permissions.md
             - name: 委托应用管理权限
               href: roles-delegate-app-roles.md
+        - name: 通过组来管理角色分配
+          items:
+            - name: 基于组的角色分配预览
+              href: roles-groups-concept.md
+            - name: 向组分配角色
+              href: roles-groups-assign-role.md
+            - name: 从组中删除角色分配
+              href: roles-groups-remove-assignment.md
+            - name: 查看组的角色分配
+              href: roles-groups-view-assignments.md
+            - name: 使组符合 PIM 中的角色
+              href: roles-groups-pim-eligible.md
+            - name: 常见问题解答和故障排除
+              href: roles-groups-faq-troubleshooting.md
         - name: 按任务分配的最低权限角色
           href: roles-delegate-by-task.md
         - name: Microsoft 365 角色
@@ -127,6 +159,16 @@
           items:
             - name: 管理单元概述
               href: directory-administrative-units.md
+            - name: 添加和管理 AU
+              href: roles-admin-units-manage.md
+            - name: 在 AU 中添加和管理用户
+              href: roles-admin-units-add-manage-users.md
+            - name: 在 AU 中添加和管理组
+              href: roles-admin-units-add-manage-groups.md
+            - name: 分配 AU 范围的角色
+              href: roles-admin-units-assign-roles.md
+            - name: 常见问题解答和故障排除
+              href: roles-admin-units-faq-troubleshoot.md
     - name: 管理登录
       items:
         - name: 登录选项

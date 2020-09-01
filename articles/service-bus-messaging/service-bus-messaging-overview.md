@@ -3,17 +3,17 @@ title: Azure 服务总线消息传送概述 | Azure
 description: 本文粗略概述了 Azure 服务总线（一种完全托管的企业集成消息代理）。
 ms.topic: overview
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-author: rockboyfor
-ms.openlocfilehash: ffbbe1291720daa56073ee5f3e5621e175ab8119
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: c388acd26f3adbb8a69d6df2c406f49fdfa1dd5f
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162429"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946607"
 ---
 # <a name="what-is-azure-service-bus"></a>什么是 Azure 服务总线？
 
@@ -38,7 +38,7 @@ Azure 服务总线是一种完全托管的企业集成消息中转站。 服务�
 
 消息可以发送到队列，也可以从其接收。 在能够使用接收应用程序接收并处理消息之前，可以通过队列来存储消息。
 
-![队列](./media/service-bus-messaging-overview/about-service-bus-queue.png)
+:::image type="content" source="./media/service-bus-messaging-overview/about-service-bus-queue.png" alt-text="队列":::
 
 队列中的消息会排队，并在到达时加盖时间戳。 获得接受后，消息会安全地存储在冗余存储中。 消息以拉取模式传送，即仅按请求传送消息。
 
@@ -46,7 +46,7 @@ Azure 服务总线是一种完全托管的企业集成消息中转站。 服务�
 
 也可通过主题发送和接收消息。 队列通常用于点到点通信，而主题则用于发布/订阅方案。
 
-![主题](./media/service-bus-messaging-overview/about-service-bus-topic.png)
+:::image type="content" source="./media/service-bus-messaging-overview/about-service-bus-topic.png" alt-text="主题":::
 
 主题可以有多个独立的订阅。 主题的订阅者可以收到发送到该主题的每个消息的副本。 订阅是命名实体。 订阅可以保留，但会过期或自动删除。
 
@@ -99,7 +99,7 @@ Azure 服务总线是一种完全托管的企业集成消息中转站。 服务�
 ### <a name="security-protocols"></a>安全协议
 <a name="sas-rbac-and-managed-identities-for-azure-resources"></a>
 
-服务总线支持多种安全协议，例如[共享访问签名](service-bus-sas.md) (SAS)、[基于角色的访问控制](authenticate-application.md) (RBAC)、[适用于 Azure 资源的托管标识](service-bus-managed-service-identity.md)。
+服务总线支持多种安全协议，例如[共享访问签名](service-bus-sas.md) (SAS)、[Azure 基于角色的访问控制 (Azure RBAC)](authenticate-application.md) 和[适用于 Azure 资源的托管标识](service-bus-managed-service-identity.md)。
 
 ### <a name="geo-disaster-recovery"></a>异地灾难恢复
 

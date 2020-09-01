@@ -1,17 +1,19 @@
 ---
 title: FileUpload UI 元素
 description: 介绍了 Azure 门户的 Microsoft.Common.FileUpload UI 元素。 使用户在部署托管应用程序时需要上传文件。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 09/05/2018
-ms.date: 01/20/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: c74cb1b5fa091b1de81685799a9247b43fba8875
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: e57def4c907096ea2fa89e7f40d5604754e1b8a7
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "76170681"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807837"
 ---
 # <a name="microsoftcommonfileupload-ui-element"></a>Microsoft.Common.FileUpload UI 元素
 
@@ -19,7 +21,7 @@ ms.locfileid: "76170681"
 
 ## <a name="ui-sample"></a>UI 示例
 
-![Microsoft.Common.FileUpload](./media/managed-application-elements/microsoft.common.fileupload.png)
+:::image type="content" source="./media/managed-application-elements/microsoft-common-fileupload.png" alt-text="Microsoft.Common.FileUpload":::
 
 ## <a name="schema"></a>架构
 
@@ -84,7 +86,7 @@ ms.locfileid: "76170681"
 - `constraints.accept` 指定在浏览器的文件对话框中显示的文件类型。 有关允许的值，请参阅 [HTML5 规范](https://html.spec.whatwg.org/multipage/input.html#attr-input-accept)。 默认值为 **null**。
 - 如果 `options.multiple` 设置为 **true**，则会允许用户在浏览器的文件对话框中选择多个文件。 默认值是 **false**秒。
 - 此元素支持基于 `options.uploadMode` 的值以两种模式上传文件。 如果指定了 **file**，则输出会以 blob 形式包含文件的内容。 如果指定了 **url**，则文件会被上传到一个临时位置，并且输出会包含 blob 的 URL。 临时 blob 在 24 小时后会被清除。 默认值为 **file**。
-- 上传的文件受到保护。 输出 URL 包括用于在部署期间访问文件的 [SAS 令牌](../../storage/common/storage-dotnet-shared-access-signature-part-1.md?toc=%2fstorage%2fblobs%2ftoc.json)。
+- 上传的文件受到保护。 输出 URL 包括用于在部署期间访问文件的 [SAS 令牌](../../storage/common/storage-sas-overview.md?toc=/storage/blobs/toc.json)。
 - `options.openMode` 的值决定了如何读取文件。 如果文件应当为纯文本，请指定 **text**；否则，请指定 **binary**。 默认值为 **text**。
 - 如果 `options.uploadMode` 设置为 **file** 并且 `options.openMode` 设置为 **binary**，则输出将是 base64 编码的。
 - `options.encoding` 指定在读取文件时要使用的编码。 默认值为 **UTF-8**，并且仅当 `options.openMode` 设置为 **text** 时使用。
@@ -94,5 +96,4 @@ ms.locfileid: "76170681"
 * 有关创建 UI 定义的简介，请参阅 [CreateUiDefinition 入门](create-uidefinition-overview.md)。
 * 有关 UI 元素中的公用属性的说明，请参阅 [CreateUiDefinition 元素](create-uidefinition-elements.md)。
 
-<!-- Update_Description: new article about microsoft common fileupload -->
-<!--NEW.date: 01/20/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

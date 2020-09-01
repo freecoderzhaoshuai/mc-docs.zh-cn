@@ -1,19 +1,20 @@
 ---
-title: Azure 中继 Node API 概述
+title: Azure 中继节点 API 概述 | Azure
 description: 本文概述了用于 Azure 中继服务的 Node.js API。 它还演示了如何使用 hyco-ws Node 包。
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-author: rockboyfor
-ms.openlocfilehash: ef570127eb8fc5be0a1fbde5c28c56405e471503
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.custom: devx-track-javascript
+ms.openlocfilehash: f9dc286d2ce032220372d35bc640c58a07a730c3
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162206"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947115"
 ---
 # <a name="relay-hybrid-connections-node-api-overview"></a>中继混合连接节点 API 概述
 

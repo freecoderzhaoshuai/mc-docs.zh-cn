@@ -1,19 +1,18 @@
 ---
-title: Azure PowerShell 脚本示例 - 创建 Log Analytics 工作区 | Azure Docs
+title: 创建 Log Analytics 工作区 - Azure PowerShell
 description: Azure PowerShell 脚本示例 - 创建 Log Analytics 工作区
 ms.subservice: logs
 ms.topic: sample
-author: lingliw
-manager: digimobile
+author: bwren
+ms.author: v-johya
+ms.date: 08/20/2020
 origin.date: 09/07/2017
-ms.date: 03/06/2020
-ms.author: v-lingwu
-ms.openlocfilehash: 567c337938fb48036e47397ba2f6a86d3a29c35a
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: ba74fa3e0a072ef413a0319566f0bf2365576509
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79452540"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148693"
 ---
 # <a name="create-a-log-analytics-workspace-with-powershell"></a>使用 PowerShell 创建 Log Analytics 工作区
 
@@ -21,18 +20,18 @@ ms.locfileid: "79452540"
 
 [!INCLUDE [sample-powershell-install](../../../includes/sample-powershell-install-no-ssh.md)]
 
-[!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
+如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
 
 ## <a name="sample-script"></a>示例脚本
 
 [!INCLUDE [updated-for-az](../../../includes/updated-for-az.md)]
 
-```PowerShell
+```powershell
 #Variables for common values
 $ResourceGroupName = "ResourceGroup01"
 $SubscriptionID = "SubscriptionID"
 $WorkspaceName = "DefaultWorkspace-" + (Get-Random -Maximum 99999) + "-" + $ResourceGroupName
-$Location = "China East"
+$Location = "chinaeast2"
 
 # Stop the script if any errors occur
 $ErrorActionPreference = "Stop"
@@ -84,23 +83,21 @@ try {
 
 }
 
+
 ```
 
 ## <a name="script-explanation"></a>脚本说明
 
 此脚本使用以下命令在订阅中创建新的 Log Analytics 工作区。 表中的每条命令均链接到特定于命令的文档。
 
-| Command | 说明 |
+| 命令 | 说明 |
 |---|---|
-| [Get-AzOperationalInsightsWorkspace](/powershell/module/az.operationalinsights/get-azoperationalinsightsworkspace) | 获取现有工作区的相关信息。 |
-| [New-AzOperationalInsightsWorkspace](/powershell/module/az.operationalinsights/new-azoperationalinsightsworkspace) | 在指定的资源组和位置中创建一个工作区。 |
+| [Get-AzOperationalInsightsWorkspace](https://docs.microsoft.com/powershell/module/az.operationalinsights/get-azoperationalinsightsworkspace) | 获取现有工作区的相关信息。 |
+| [New-AzOperationalInsightsWorkspace](https://docs.microsoft.com/powershell/module/az.operationalinsights/new-azoperationalinsightsworkspace) | 在指定的资源组和位置中创建一个工作区。 |
 
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
-
-
-
+有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 

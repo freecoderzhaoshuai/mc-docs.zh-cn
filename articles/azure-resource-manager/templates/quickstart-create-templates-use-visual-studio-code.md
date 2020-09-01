@@ -1,17 +1,19 @@
 ---
 title: 创建模板 - Visual Studio Code
 description: 使用 Visual Studio Code 和可在资源管理器模板上运行的 Azure 资源管理器工具扩展。
-author: rockboyfor
 origin.date: 04/17/2020
-ms.date: 06/22/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.topic: quickstart
 ms.author: v-yeche
-ms.openlocfilehash: 8e1e6e0bab05fb604bcc76887b7d70699254e220
-ms.sourcegitcommit: 48b5ae0164f278f2fff626ee60db86802837b0b4
+ms.openlocfilehash: 9f5d309ab344372512c03e3684811d545373fd5e
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85098611"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807764"
 ---
 # <a name="quickstart-create-azure-resource-manager-templates-with-visual-studio-code"></a>快速入门：使用 Visual Studio Code 创建 Azure 资源管理器模板
 
@@ -23,35 +25,35 @@ ms.locfileid: "85098611"
 
 ## <a name="create-an-arm-template"></a>创建 ARM 模板
 
-使用 Visual Studio Code 创建并打开名为 azuredeploy.json 的新文件。  在代码编辑器中输入 `arm`，该命令将启动用于创建 ARM 模板基架的 Azure 资源管理器片段。
+使用 Visual Studio Code 创建并打开名为 azuredeploy.json 的新文件。 在代码编辑器中输入 `arm`，该命令将启动用于创建 ARM 模板基架的 Azure 资源管理器片段。
 
 选择 `arm!` 以创建一个仅限用于 Azure 资源组部署的模板。
 
-![此图显示了 Azure 资源管理器基架](./media/quickstart-create-templates-use-visual-studio-code/1.png)
+:::image type="content" source="./media/quickstart-create-templates-use-visual-studio-code/1.png" alt-text="此图显示了 Azure 资源管理器基架片段":::
 
 此片段将创建 ARM 模板的构建基块。
 
-![此图显示了具有完整基架的 ARM 模板](./media/quickstart-create-templates-use-visual-studio-code/2.png)
+:::image type="content" source="./media/quickstart-create-templates-use-visual-studio-code/2.png" alt-text="此图显示了具有完整基架的 ARM 模板":::
 
-请注意，Visual Studio Code 语言模式已从“JSON”更改为“Azure 资源管理器模板”。   该扩展包含特定于 ARM 模板的语言服务器，该服务器提供特定于 ARM 模板的验证、完成和其他语言服务。
+请注意，Visual Studio Code 语言模式已从“JSON”更改为“Azure 资源管理器模板”。 该扩展包含特定于 ARM 模板的语言服务器，该服务器提供特定于 ARM 模板的验证、完成和其他语言服务。
 
-![此图显示了“Azure 资源管理器”用作 Visual Studio Code 语言模式](./media/quickstart-create-templates-use-visual-studio-code/3.png)
+:::image type="content" source="./media/quickstart-create-templates-use-visual-studio-code/3.png" alt-text="此图显示了“Azure 资源管理器”用作 Visual Studio Code 语言模式":::
 
 ## <a name="add-an-azure-resource"></a>添加 Azure 资源
 
 该扩展包含许多 Azure 资源的片段。 使用这些片段可以轻松地将资源添加到模板部署中。
 
-将光标置于模板的 resources 块中，键入 `storage`，然后选择“arm-storage”片段。  
+将光标置于模板的 resources 块中，键入 `storage`，然后选择“arm-storage”片段。
 
-![此图显示了正在向 ARM 模板中添加的资源](./media/quickstart-create-templates-use-visual-studio-code/4.png)
+:::image type="content" source="./media/quickstart-create-templates-use-visual-studio-code/4.png" alt-text="此图显示了正在向 ARM 模板中添加的资源":::
 
 此操作会将一个存储资源添加到模板。
 
-![此图显示了 ARM 模板中的 Azure 存储资源](./media/quickstart-create-templates-use-visual-studio-code/5.png)
+:::image type="content" source="./media/quickstart-create-templates-use-visual-studio-code/5.png" alt-text="此图显示了 ARM 模板中的 Azure 存储资源":::
 
-可以使用 Tab 键在存储帐户的各个可配置属性之间切换。 
+可以使用 Tab 键在存储帐户的各个可配置属性之间切换。
 
-![此图显示了如何使用 Tab 键切换资源配置](./media/quickstart-create-templates-use-visual-studio-code/6.png)
+:::image type="content" source="./media/quickstart-create-templates-use-visual-studio-code/6.png" alt-text="此图显示了如何使用 Tab 键切换资源配置":::
 
 ## <a name="completion-and-validation"></a>完成和验证
 
@@ -59,35 +61,35 @@ ms.locfileid: "85098611"
 
 首先，将存储帐户类型更新为某个无效值，例如 `megaStorage`。 可以看到，此操作导致生成了一条警告，指出 `megaStorage` 不是有效值。
 
-![此图显示了无效的存储配置](./media/quickstart-create-templates-use-visual-studio-code/7.png)
+:::image type="content" source="./media/quickstart-create-templates-use-visual-studio-code/7.png" alt-text="此图显示了无效的存储配置":::
 
 若要使用完成功能，请删除 `megaStorage`，将光标置于双引号内部，然后按 `ctrl` + `space`。 此操作会显示有效值的完成列表。
 
-![此图显示了扩展自动完成功能](./media/quickstart-create-templates-use-visual-studio-code/8.png)
+:::image type="content" source="./media/quickstart-create-templates-use-visual-studio-code/8.png" alt-text="此图显示了扩展自动完成功能":::
 
 ## <a name="add-template-parameters"></a>添加模板参数
 
 现在，创建并使用一个参数来指定存储帐户名称。
 
-将光标置于 parameters 块内，添加一个回车符，键入 `par`，然后选择 `arm-param-value` 片段。 此操作会将一个泛型参数添加到模板。
+将光标置于 parameters 块内，添加一个回车符，键入 `"`，然后选择 `new-parameter` 片段。 此操作会将一个泛型参数添加到模板。
 
-![此图显示了正在向 ARM 模板中添加的参数](./media/quickstart-create-templates-use-visual-studio-code/9.png)
+:::image type="content" source="./media/quickstart-create-templates-use-visual-studio-code/9.png" alt-text="此图显示了正在向 ARM 模板中添加的参数":::
 
 将参数名称更新为 `storageAccountName`，将说明更新为 `Storage Account Name`。
 
-![此图显示了 ARM 模板中已完成的参数](./media/quickstart-create-templates-use-visual-studio-code/10.png)
+:::image type="content" source="./media/quickstart-create-templates-use-visual-studio-code/10.png" alt-text="此图显示了 ARM 模板中已完成的参数":::
 
 Azure 存储帐户名称的最小长度为 3 个字符，最大长度为 24 个字符。 将 `minLength` 和 `maxLength` 添加到参数，并提供适当的值。
 
-![此图显示了正在向 ARM 模板参数中添加的 minLength 和 maxLength](./media/quickstart-create-templates-use-visual-studio-code/11.png)
+:::image type="content" source="./media/quickstart-create-templates-use-visual-studio-code/11.png" alt-text="此图显示了正在向 ARM 模板参数中添加的 minLength 和 maxLength":::
 
-现在，在存储资源中，将名称属性更新为使用该参数。 为此，请删除当前名称。 输入双引号和左方括号 `[`，这会生成 ARM 模板函数的列表。 从列表中选择“parameters”。  
+现在，在存储资源中，将名称属性更新为使用该参数。 为此，请删除当前名称。 输入双引号和左方括号 `[`，这会生成 ARM 模板函数的列表。 从列表中选择“parameters”。 
 
-![此图显示了在 ARM 模板资源中使用参数时的自动完成功能](./media/quickstart-create-templates-use-visual-studio-code/12.png)
+:::image type="content" source="./media/quickstart-create-templates-use-visual-studio-code/12.png" alt-text="此图显示了在 ARM 模板资源中使用参数时的自动完成功能":::
 
-在圆括号内部输入单引号 `'` 会生成模板中定义的所有参数（在本例中为 storageAccountName）的列表。  选择该参数。
+在圆括号内部输入单引号 `'` 会生成模板中定义的所有参数（在本例中为 storageAccountName）的列表。 选择该参数。
 
-![此图显示了 ARM 模板资源中已完成的参数](./media/quickstart-create-templates-use-visual-studio-code/13.png)
+:::image type="content" source="./media/quickstart-create-templates-use-visual-studio-code/13.png" alt-text="此图显示了 ARM 模板资源中已完成的参数":::
 
 ## <a name="create-a-parameter-file"></a>创建参数文件
 
@@ -95,23 +97,23 @@ Azure 存储帐户名称的最小长度为 3 个字符，最大长度为 24 个�
 
 在扩展中可以从现有模板轻松创建参数文件。 若要创建，请在代码编辑器中右键单击模板，然后选择 `Select/Create Parameter File`。
 
-![此图显示了从 ARM 模板通过右键单击来创建参数文件](./media/quickstart-create-templates-use-visual-studio-code/14.png)
+:::image type="content" source="./media/quickstart-create-templates-use-visual-studio-code/14.png" alt-text="此图显示了从 ARM 模板通过右键单击来创建参数文件":::
 
 选择 `New` > `All Parameters`，然后选择参数文件的名称和位置。
 
-![此图显示了在从 ARM 模板创建参数文件时出现的名称和保存文件对话框](./media/quickstart-create-templates-use-visual-studio-code/15.png)
+:::image type="content" source="./media/quickstart-create-templates-use-visual-studio-code/15.png" alt-text="此图显示了在从 ARM 模板创建参数文件时出现的名称和保存文件对话框":::
 
 此操作会创建一个新的参数文件，并将该文件映射到从其创建了该文件的模板。 选择模板后，可以在 Visual Studio Code 状态栏中查看和修改当前的模板/参数文件映射。
 
-![](./media/quickstart-create-templates-use-visual-studio-code/16.png)
+:::image type="content" source="./media/quickstart-create-templates-use-visual-studio-code/16.png" alt-text="显示 Visual Studio Code 状态栏中的模板/参数文件映射的图像。":::
 
 现在，参数文件已映射到模板，扩展会将模板和参数文件一同验证。 若要通过实际操作来了解此验证，请将一个双字符值添加到参数文件中的 `storageAccountName` 参数，然后保存该文件。
 
-![此图显示了由于参数文件问题而失效的模板](./media/quickstart-create-templates-use-visual-studio-code/17.png)
+:::image type="content" source="./media/quickstart-create-templates-use-visual-studio-code/17.png" alt-text="此图显示了由于参数文件问题而失效的模板":::
 
 导航回到 ARM 模板，此时可以看到，其中引发了一个错误，指出值不符合参数条件。
 
-![此图显示了一个有效的 ARM 模板](./media/quickstart-create-templates-use-visual-studio-code/18.png)
+:::image type="content" source="./media/quickstart-create-templates-use-visual-studio-code/18.png" alt-text="此图显示了一个有效的 ARM 模板":::
 
 将值更新为某个适当值，保存文件，然后导航回到模板。 可以看到，有关参数的错误已解决。
 

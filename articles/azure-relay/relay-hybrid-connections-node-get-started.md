@@ -3,18 +3,20 @@ title: Azure 中继混合连接 - 节点中的 WebSocket
 description: 为 Azure 中继混合连接 Websocket 编写 Node.js 控制台应用程序
 ms.topic: conceptual
 origin.date: 06/23/2020
-ms.date: 07/27/2020
-ms.testscope: yes
-ms.testdate: 07/20/2020
-ms.author: v-yeche
 author: rockboyfor
-ms.openlocfilehash: 5fbd22b4c6c1b38bb13542ae91e2c24fcdcb669c
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.date: 08/31/2020
+ms.testscope: no
+ms.testdate: ''
+ms.author: v-yeche
+ms.custom: devx-track-javascript
+ms.openlocfilehash: 644c2aa5f5056475ad66629531179fda55ee727a
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162420"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947125"
 ---
+<!--Verified successfully-->
 # <a name="get-started-with-relay-hybrid-connections-websockets-in-nodejs"></a>开始在 Node.js 中使用中继混合连接 WebSocket
 
 [!INCLUDE [relay-selector-hybrid-connections](../../includes/relay-selector-hybrid-connections.md)]
@@ -56,7 +58,7 @@ ms.locfileid: "87162420"
 2. 运行客户端应用程序：在 Node.js 命令提示符处键入 `node sender.js`，然后输入某些文本。
 3. 确保服务器应用程序控制台输出了客户端应用程序中输入的文本。
 
-    ![running-applications](./media/relay-hybrid-connections-node-get-started/running-applications.png)
+    :::image type="content" source="./media/relay-hybrid-connections-node-get-started/running-applications.png" alt-text="running-applications":::
 
 祝贺你，现已使用 Node.js 创建端到端混合连接应用程序！
 

@@ -50,7 +50,7 @@
           href: 'https://docs.microsoft.com/samples/browse/?products=azure-functions&languages=csharp'
         - name: Java
           href: 'https://docs.microsoft.com/samples/browse/?products=azure-functions&languages=java'
-        - name: Javascript
+        - name: JavaScript
           href: 'https://docs.microsoft.com/samples/browse/?products=azure-functions&languages=javascript'
         - name: PowerShell
           href: 'https://docs.microsoft.com/samples/browse/?products=azure-functions&languages=azurepowershell'
@@ -79,6 +79,7 @@
           href: functions-bindings-example.md
         - name: 注册绑定扩展
           href: functions-bindings-register.md
+          displayName: 'bundles, extension bundles'
         - name: 绑定表达式模式
           href: functions-bindings-expressions-patterns.md
         - name: 使用绑定返回值
@@ -95,7 +96,7 @@
           href: functions-reference-csharp.md
         - name: F#
           href: functions-reference-fsharp.md
-        - name: Javascript
+        - name: JavaScript
           href: functions-reference-node.md
         - name: Java
           href: functions-reference-java.md
@@ -214,8 +215,6 @@
           displayName: 'app setting, application setting'
         - name: 设置运行时版本
           href: set-runtime-version.md
-        - name: 手动注册扩展
-          href: install-update-binding-extensions-manual.md
         - name: 禁用函数
           href: disable-function.md
         - name: 异地灾难恢复
@@ -267,7 +266,7 @@
           href: functions-create-serverless-api.md
         - name: 管理本地资源
           href: functions-hybrid-powershell.md
-    - name: 疑难解答
+    - name: 故障排除
       items:
         - name: 排查存储问题
           href: functions-recover-storage-account.md

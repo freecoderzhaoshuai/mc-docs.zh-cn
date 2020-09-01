@@ -3,17 +3,17 @@ title: 可用于 Azure Stack Hub 的 Azure 市场项
 description: 了解哪些 Azure 市场项可以在 Azure Stack Hub 中使用。
 author: WenJason
 ms.topic: article
-origin.date: 05/07/2020
-ms.date: 06/22/2020
+origin.date: 08/07/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: ihcherie
 ms.lastreviewed: 01/21/2019
-ms.openlocfilehash: af60b6007764748723093c0c8773213776c3e1db
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 3014017bca16231a5dfc07da643f9c12f2610149
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096551"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868082"
 ---
 # <a name="azure-marketplace-items-available-for-azure-stack-hub"></a>可用于 Azure Stack Hub 的 Azure 市场项
 
@@ -21,7 +21,7 @@ ms.locfileid: "85096551"
 
 只要有所用虚拟机 (VM) 扩展的更新，就应下载它们。 随产品一起提供的扩展不会在普通的修补和更新过程中更新，因此请经常查看更新。 其他扩展只能通过市场管理获取。
 
-|  | 项名称 | 说明 | 发布者 | OS 类型 |
+| 映像 | 项名称 | 说明 | 发布者 | OS 类型 |
 | --- | --- | --- | --- | --- |
 |![SQL IaaS 扩展(SqlIaasExtension)](media/azure-stack-marketplace-azure-items/cse.png) | [SQL IaaS 扩展 (SqlIaasExtension)](/virtual-machines/windows/sql/virtual-machines-windows-sql-server-agent-extension)| **下载此扩展以部署任何“Windows 上的 SQL Server”市场项 - 此扩展是必需的。** | Microsoft | Windows |
 |![自定义脚本扩展](media/azure-stack-marketplace-azure-items/cse.png) | [自定义脚本扩展](/virtual-machines/windows/extensions-customscript)| **请下载此更新，此更新针对用于 Windows 的自定义脚本扩展的内置版本。** | Microsoft | Windows |
@@ -36,7 +36,7 @@ ms.locfileid: "85096551"
 
 Azure Stack Hub 支持下述 Azure 市场 VM 和解决方案模板。 请根据说明单独下载任何依赖项。 SQL Server 和 Machine Learning Server 之类的应用需要适当的许可，除非已标记为“免费”或“试用”。
 
-|  | 项名称 | 说明 | 发布者 |
+| 映像 | 项名称 | 说明 | 发布者 |
 | --- | --- | --- | --- |
 | ![SharePoint Server 2013 试用版](media/azure-stack-marketplace-azure-items/sharepoint.png) | [SharePoint Server 2013 试用版](https://market.azure.cn/zh-cn/marketplace/apps/microsoftsharepoint.microsoftsharepointserver?tab=Overview) | Windows Server 2012 Datacenter 和 Visual Studio 2019 社区版上的 Microsoft SharePoint Server 2013 试用版。 | Microsoft |
 | ![SharePoint Server 2016 试用版](media/azure-stack-marketplace-azure-items/sharepoint.png) | [SharePoint Server 2016 试用版](https://market.azure.cn/zh-cn/marketplace/apps/microsoftsharepoint.microsoftsharepointserver?tab=Overview) | Windows Server 2016 Datacenter 上的 Microsoft SharePoint Server 2016 试用版。 | Microsoft |
@@ -46,7 +46,7 @@ Azure Stack Hub 支持下述 Azure 市场 VM 和解决方案模板。 请根据�
 
 ## <a name="linux-distributions"></a>Linux 发行版
 
-|  | 项名称 | 说明 | 发布者 |
+| 映像 | 项名称 | 说明 | 发布者 |
 | --- | --- | --- | --- |
 | ![Clear Linux OS](media/azure-stack-marketplace-azure-items/clearlinux.png) | [Clear Linux OS](https://market.azure.cn/zh-cn/marketplace/apps/CoreOS.CoreOS?tab=Overview) | 一个针对 Intel 体系结构优化的参考性 Linux 发行版 | Clear Linux Project |
 | ![CoreOS Linux (Stable)](media/azure-stack-marketplace-azure-items/coreos.png) | [CoreOS Linux (Stable)](https://market.azure.cn/zh-cn/marketplace/apps/CoreOS.CoreOS?tab=Overview) | CoreOS 是一种新式的最小型 Linux 发行版，可以方便地运行容器、管理群集以及无缝地更新服务器 - 所有组件都支持仓库级计算。 | CoreOS |
@@ -61,7 +61,7 @@ Azure Stack Hub 支持下述 Azure 市场 VM 和解决方案模板。 请根据�
 
 ## <a name="third-party-byol-free-trial-images-and-solution-templates"></a>第三方 BYOL 版、免费版和试用版映像以及解决方案模板
 
-|  | 项名称 | 说明 | 发布者 |
+| 映像 | 项名称 | 说明 | 发布者 |
 | --- | --- | --- | --- |
 | ![A10 vThunder ADC](media/azure-stack-marketplace-azure-items/a10.png) | [A10 vThunder ADC](https://market.azure.cn/zh-cn/marketplace/apps/a10networks-cn.a10-thunder-adc-411-p2?tab=PlansAndPrice) | 适用于 Azure 的 A10 Networks vThunder ADC（应用程序交付控制器）专为实现高性能、灵活性和易于部署的应用交付和服务器负载均衡而构建，并经过优化以在 Azure 云中本机运行。 | A10 Networks |
 | ![Barracuda Email Security Gateway](media/azure-stack-marketplace-azure-items/barracuda.png) | [Barracuda Email Security Gateway](https://market.azure.cn/zh-cn/marketplace/apps/vstecscloud.barracuda_email_security_gateway_2?tab=Overview) | 一种电子邮件安全网关，用于防范入站电子邮件产生的威胁。 | Barracuda Networks, Inc. |

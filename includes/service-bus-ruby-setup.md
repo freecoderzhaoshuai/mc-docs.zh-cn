@@ -1,10 +1,18 @@
 ---
-ms.openlocfilehash: 3467e62d8e6a5fb885a651e7f646de6e4db8a9dd
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+author: rockboyfor
+ms.service: service-bus
+ms.topic: include
+origin.date: 11/09/2018
+ms.date: 07/27/2020
+ms.testscope: no
+ms.testdate: 07/27/2020
+ms.author: v-yeche
+ms.openlocfilehash: 096025e99fa16c3e91b165ffd7f5dee4d55b5eec
+ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "63860070"
+ms.lasthandoff: 07/24/2020
+ms.locfileid: "88946990"
 ---
 ## <a name="create-a-ruby-application"></a>创建 Ruby 应用程序
 有关说明，请参阅[在 Azure 上创建 Ruby 应用程序](../articles/virtual-machines/linux/classic/ruby-rails-web-app.md)。
@@ -36,4 +44,17 @@ signer = Azure::ServiceBus::Auth::SharedAccessSigner.new
 sb_host = "https://#{Azure.sb_namespace}.servicebus.chinacloudapi.cn"
 ```
 
-将命名空间值设置为创建的值，而不是整个 URL 的值。 例如，使用 **"yourexamplenamespace"** ，而不是 "yourexamplenamespace.servicebus.chinacloudapi.cn"。
+将命名空间值设置为创建的值，而不是整个 URL 的值。 例如，使用 **"yourexamplenamespace"**，而不是 "yourexamplenamespace.servicebus.chinacloudapi.cn"。
+
+使用多个命名空间时，可以在创建 `SharedAccessSigner` 对象时将密钥及其名称传递到构造函数
+
+```ruby
+sb_namespace = '<your azure service bus namespace>'
+sb_sas_key_name = '<your azure service bus access keyname>'
+sb_sas_key = '<your azure service bus access key>'
+
+signer = Azure::ServiceBus::Auth::SharedAccessSigner.new(sb_sas_key_name, sb_sas_key)
+sb_host = "https://#{sb_namespace}.servicebus.chinacloudapi.cn"
+```
+
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -1,17 +1,19 @@
 ---
 title: VirtualNetworkCombo UI 元素
 description: 介绍了 Azure 门户的 Microsoft.Network.VirtualNetworkCombo UI 元素。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 06/28/2018
-ms.date: 01/20/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 9a3fc4013d18eb7fb8e74222e4492043e1bce0ca
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 0e5cd8553c4bd87333c07b41522834c128c3adc0
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "76170783"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807893"
 ---
 # <a name="microsoftnetworkvirtualnetworkcombo-ui-element"></a>Microsoft.Network.VirtualNetworkCombo UI 元素
 
@@ -21,11 +23,11 @@ ms.locfileid: "76170783"
 
 当用户选取一个新的虚拟网络时，用户可以自定义每个子网的名称和地址前缀。 配置子网是可选的。
 
-![Microsoft.Network.VirtualNetworkCombo 新](./media/managed-application-elements/microsoft.network.virtualnetworkcombo-new.png)
+:::image type="content" source="./media/managed-application-elements/microsoft-network-virtualnetworkcombo-new.png" alt-text="Microsoft.Network.VirtualNetworkCombo 新":::
 
 当用户选取一个现有虚拟网络时，用户必须将部署模板所需的每个子网映射到现有子网。 在此情况下，配置子网是必需的。
 
-![Microsoft.Network.VirtualNetworkCombo 现有](./media/managed-application-elements/microsoft.network.virtualnetworkcombo-existing.png)
+:::image type="content" source="./media/managed-application-elements/microsoft-network-virtualnetworkcombo-existing.png" alt-text="Microsoft.Network.VirtualNetworkCombo 现有":::
 
 ## <a name="schema"></a>架构
 
@@ -120,5 +122,4 @@ ms.locfileid: "76170783"
 * 有关创建 UI 定义的简介，请参阅 [CreateUiDefinition 入门](create-uidefinition-overview.md)。
 * 有关 UI 元素中的公用属性的说明，请参阅 [CreateUiDefinition 元素](create-uidefinition-elements.md)。
 
-<!-- Update_Description: new article about microsoft network virtualnetworkcombo -->
-<!--NEW.date: 01/20/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

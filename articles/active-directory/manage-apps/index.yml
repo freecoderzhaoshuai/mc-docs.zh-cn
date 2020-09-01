@@ -8,17 +8,23 @@ metadata:
   ms.subservice: app-mgmt
   ms.workload: identity
   ms.topic: landing-page
-  ms.date: 07/07/2020
-  author: msmimart
+  ms.date: 08/27/2020
+  author: kenwith
   ms.author: v-junlch
   manager: celested
-  ms.openlocfilehash: 581048c8dfa763400654a759cffa6aaa472babc2
-  ms.sourcegitcommit: 92b9b1387314b60661f5f62db4451c9ff2c49500
+  ms.openlocfilehash: 774c4e143739abf5dfc325a47ee46b3922aa6c09
+  ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 07/09/2020
-  ms.locfileid: "86164827"
+  ms.lasthandoff: 08/28/2020
+  ms.locfileid: "89046463"
 landingContent:
+- title: 关于应用程序管理
+  linkLists:
+  - linkListType: quickstart
+    links:
+    - text: 快速入门系列
+      url: view-applications-portal.md
 - title: 管理云应用
   linkLists:
   - linkListType: how-to-guide

@@ -1,17 +1,20 @@
 ---
 title: 教程 - 将输出添加到模板
 description: 将输出添加到 Azure 资源管理器模板以简化语法。
-author: rockboyfor
 origin.date: 03/27/2020
-ms.date: 04/30/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.topic: tutorial
 ms.author: v-yeche
-ms.openlocfilehash: 27758f00af58679b4a2c767da2dc6259ea6b93ea
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: da6aab8c2030e32425b76b803a097a56e278e084
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596073"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807824"
 ---
 # <a name="tutorial-add-outputs-to-your-arm-template"></a>教程：将输出添加到 ARM 模板
 
@@ -45,7 +48,6 @@ ms.locfileid: "82596073"
         "Standard_GRS",
         "Standard_RAGRS",
         "Premium_LRS",
-        "Standard_GZRS",
         "Standard_RAGZRS"
       ]
     },
@@ -101,7 +103,6 @@ ms.locfileid: "82596073"
         "Standard_GRS",
         "Standard_RAGRS",
         "Premium_LRS",
-        "Standard_GZRS",
         "Standard_RAGZRS"
       ]
     },
@@ -204,23 +205,23 @@ az deployment group create \
 1. 我们会在资源组中有至少一个（也可能有多个）存储帐户，具体取决于所执行的步骤。
 1. 此外还会在历史记录中列出多个成功的部署。 选择该链接。
 
-    ![选择部署](./media/template-tutorial-add-outputs/select-deployments.png)
+    :::image type="content" source="./media/template-tutorial-add-outputs/select-deployments.png" alt-text="选择部署":::
 
 1. 可以在历史记录中看到所有部署。 选择名为 **addoutputs** 的部署。
 
-    ![显示部署历史记录](./media/template-tutorial-add-outputs/show-history.png)
+    :::image type="content" source="./media/template-tutorial-add-outputs/show-history.png" alt-text="显示部署历史记录":::
 
 1. 可以查看输入。
 
-    ![显示输入](./media/template-tutorial-add-outputs/show-inputs.png)
+    :::image type="content" source="./media/template-tutorial-add-outputs/show-inputs.png" alt-text="显示输入":::
 
 1. 可以查看输出。
 
-    ![显示输出](./media/template-tutorial-add-outputs/show-outputs.png)
+    :::image type="content" source="./media/template-tutorial-add-outputs/show-outputs.png" alt-text="显示输出":::
 
 1. 可以查看模板。
 
-    ![显示模板](./media/template-tutorial-add-outputs/show-template.png)
+    :::image type="content" source="./media/template-tutorial-add-outputs/show-template.png" alt-text="显示模板":::
 
 ## <a name="clean-up-resources"></a>清理资源
 

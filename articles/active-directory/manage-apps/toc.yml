@@ -1,6 +1,7 @@
 - name: 应用程序管理文档
   href: index.yml
 - name: 快速入门
+  expanded: true
   items:
     - name: 查看你的应用
       href: view-applications-portal.md
@@ -9,40 +10,45 @@
     - name: 删除应用
       href: delete-application-portal.md
 - name: 概念
-  expanded: true
+  expanded: false
   items:
-    - name: 查看租户应用 - 门户
-      href: view-applications-portal.md
-- name: 操作指南
-  items:
-    - name: 云应用集成
+    - name: 应用程序安全性
       items:
-        - name: 更改名称或徽标
-          href: change-name-or-logo-portal.md
+        - name: 云应用可见性和控制
+          href: cloud-app-security.md
+- name: 操作指南
+  expanded: false
+  items:
     - name: 分配用户和管理对应用的访问权限
       items:
         - name: 授予租户范围的管理员许可
           href: grant-admin-consent.md
-        - name: 应用程序类型
-          href: application-types.md
         - name: 将用户分配到应用
           href: assign-user-or-group-access-portal.md
-        - name: 分配了意外的用户
-          href: ways-users-get-assigned-to-applications.md
+        - name: 查看向应用授予的权限
+          href: manage-application-permissions.md
         - name: 删除用户或组访问权限
           href: remove-user-or-group-access-portal.md
         - name: 禁用用户登录
           href: disable-user-sign-in-portal.md
-    - name: 排查用户登录问题
+    - name: 故障排除
       items:
-        - name: 意外的许可提示
-          href: application-sign-in-unexpected-user-consent-prompt.md
-        - name: “用户同意”错误
-          href: application-sign-in-unexpected-user-consent-error.md
-        - name: 登录到 Microsoft 应用时出现问题
-          href: application-sign-in-problem-first-party-microsoft.md
-        - name: 登录自定义开发的应用时出现的问题
-          href: application-sign-in-problem-custom-dev.md
+        - name: 排查用户登录问题
+          items:
+            - name: 意外的许可提示
+              href: application-sign-in-unexpected-user-consent-prompt.md
+            - name: “用户同意”错误
+              href: application-sign-in-unexpected-user-consent-error.md
+            - name: 登录到 Microsoft 应用时出现问题
+              href: application-sign-in-problem-first-party-microsoft.md
+            - name: 登录自定义开发的应用时出现的问题
+              href: application-sign-in-problem-custom-dev.md
+        - name: 排查应用列表和分配问题
+          items:
+            - name: 为租户管理应用程序列表
+              href: application-types.md
+            - name: 分配了意外的用户
+              href: ways-users-get-assigned-to-applications.md
 - name: 资源
   items:
     - name: 开发人员的支持和帮助选项

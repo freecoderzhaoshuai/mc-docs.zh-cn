@@ -11,17 +11,17 @@ ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: conceptual
-ms.date: 04/23/2020
+ms.topic: how-to
+ms.date: 08/27/2020
 ms.subservice: hybrid
 ms.author: v-junlch
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: f6cdd1411893a6a68a933f03df97594bfb416ba9
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.openlocfilehash: 54feca7caa8b986609bcf88abba1fb467c98cd39
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82126574"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946867"
 ---
 # <a name="azure-ad-connect-sync-configure-filtering"></a>Azure AD Connect 同步：配置筛选
 使用筛选功能可以控制本地目录中的哪些对象应该出现在 Azure Active Directory (Azure AD) 中。 默认配置采用配置的林中所有域内的所有对象。 我们一般建议使用这种配置。 使用 Exchange Online 和 Skype for Business 等 Office 365 工作负荷的用户将受益于完整的全局地址列表，因为这样可以发送电子邮件和呼叫每个联系人。 使用默认配置时，用户获得的体验与使用 Exchange 或 Lync 的本地实现获得的相同。
@@ -57,7 +57,7 @@ Azure AD Connect 只删除其曾经认为在范围中的对象。 如果 Azure A
 
 如果有多个林，必须将本主题中所述的筛选配置应用到每个林（假设要让所有林使用相同的配置）。
 
-### <a name="disable-the-scheduled-task"></a>禁用计划的任务 <a name="disable-scheduled-task"></a>
+### <a name="disable-the-scheduled-task"></a>禁用计划任务
 若要禁用每隔 30 分钟触发同步周期一次的内置计划程序，请遵循以下步骤：
 
 1. 转到 PowerShell 提示符。
@@ -130,7 +130,7 @@ Azure AD Connect 只删除其曾经认为在范围中的对象。 如果 Azure A
 6.  在“域和 OU 筛选”页上，单击“刷新”。    新域现在将显示，删除的域会消失。
    ![分区](./media/how-to-connect-sync-configure-filtering/update2.png)  
 
-### <a name="update-the-run-profiles"></a>更新运行配置文件 <a name="update-run-profiles"></a>
+### <a name="update-the-run-profiles"></a>更新运行配置文件
 如果已修改域筛选器，则还需要更新运行配置文件。
 
 1. 在“连接器”列表中，确保已选择在上一个步骤中更改的连接器。  从“操作”中选择“配置运行配置文件”。    
@@ -157,7 +157,7 @@ Azure AD Connect 只删除其曾经认为在范围中的对象。 如果 Azure A
 4. 若要关闭“配置运行配置文件”对话框，请单击“确定”。  
 5.  若要完成配置，需要运行“完全导入”和“增量同步”。   请继续阅读 [应用并检查更改](#apply-and-verify-changes)部分。
 
-## <a name="organizational-unit-based-filtering"></a>基于组织单位的筛选<a name="organizational-unitbased-filtering"></a>
+## <a name="organizational-unit-based-filtering"></a>基于组织单位的筛选
 更改基于 OU 的筛选的首选方法是运行安装向导并更改[域和 OU 筛选](how-to-connect-install-custom.md#domain-and-ou-filtering)。 使用安装向导可以自动完成本主题中所述的所有任务。
 
 仅当出于某种原因而无法运行安装向导时，才遵循以下步骤。
@@ -281,7 +281,7 @@ Azure AD Connect 安装向导始终创建此配置。
 8. 单击“保存”  。
 9. 若要完成配置，需要运行 **完全同步**。请继续阅读 [应用并检查更改](#apply-and-verify-changes)部分。
 
-## <a name="apply-and-verify-changes"></a>应用并验证更改 <a name="apply-and-verify-changes"></a>
+## <a name="apply-and-verify-changes"></a>应用并验证更改
 更改配置后，必须将这些更改应用到系统中现有的对象。 也可能需要处理同步引擎中当前不存在的对象，因此同步引擎需要再次读取源系统来验证其内容。
 
 如果使用域或组织单位筛选更改了配置，则需要执行完全导入，然后执行增量同步。    
@@ -315,7 +315,7 @@ Azure AD Connect 安装向导始终创建此配置。
 1. 从“开始”菜单启动“任务计划程序”   。
 2. 在“任务计划程序库”正下方找到名为“Azure AD 同步计划程序”的任务，单击右键，然后选择“启用”。   
 
-## <a name="group-based-filtering"></a>基于组的筛选 <a name="group-based-filtering"></a>
+## <a name="group-based-filtering"></a>基于组的筛选
 首次使用[自定义安装设置](how-to-connect-install-custom.md#sync-filtering-based-on-groups)安装 Azure AD Connect 时，可配置基于组的筛选。 这种筛选专用于只需同步一小组对象的试验部署。 禁用基于组的筛选后，将无法重新启用它。 *不支持*在自定义配置中使用基于组的筛选。 仅支持使用安装向导配置此功能。 完成试验后，请使用本主题所述的其他某个筛选选项。 将基于 OU 的筛选与基于组的筛选结合使用时，必须包含组及其成员所在的 OU。
 
 同步多个 AD 林时，可以通过为每个 AD 连接器指定不同组来配置基于组的筛选。 如果希望在一个 AD 林中同步某个用户，且同一用户在其他 AD 林中具有一个或多个相应的对象，则必须确保用户对象及其所有相应对象都在基于组的筛选范围内。 例如：

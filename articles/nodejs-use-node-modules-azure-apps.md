@@ -13,14 +13,14 @@ ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
 origin.date: 08/17/2016
-ms.date: 07/13/2020
+ms.date: 08/27/2020
 ms.author: v-tawe
-ms.openlocfilehash: 6acb58a56fe9cfcbc91e2c272356bcb8967e2617
-ms.sourcegitcommit: c17e965d4ffd82fd7cd86b2648fcb0053a65df00
+ms.openlocfilehash: fd9b7813dad5415ab61bba39e169c7bf96e8be27
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86469984"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951313"
 ---
 # <a name="using-nodejs-modules-with-azure-applications"></a>将 Node.js 模块与 Azure 应用程序一起使用
 本文档提供有关将 Node.js 模块与托管在 Azure 中的应用程序一起使用的指南。 其中提供有关确保应用程序使用特定版本的模块以及对 Azure 使用本机模块的指南。
@@ -86,10 +86,11 @@ package.json 文件的一个潜在问题是它仅指定顶级依赖项的版本�
 >
 
 ## <a name="next-steps"></a>后续步骤
-了解如何将 Node.js 模块与 Azure 一起使用后，请学习如何[指定 Node.js 版本](https://github.com/squillace/nodejs-microservice)、[生成和部署 Node.js Web 应用](app-service/app-service-web-get-started-nodejs.md)，以及[如何使用适用于 Mac 和 Linux 的 Azure 命令行接口](https://azure.microsoft.com/blog/using-windows-azure-with-the-command-line-tools-for-mac-and-linux/)。
+了解如何将 Node.js 模块与 Azure 一起使用后，请学习如何[指定 Node.js 版本](https://github.com/squillace/nodejs-microservice)、[生成和部署 Node.js Web 应用](app-service/quickstart-nodejs.md)，以及[如何使用适用于 Mac 和 Linux 的 Azure 命令行接口](https://azure.microsoft.com/blog/using-windows-azure-with-the-command-line-tools-for-mac-and-linux/)。
 
-有关详细信息，请参阅 [Node.js 开发人员中心](https://docs.microsoft.com/azure/javascript/)。
+有关详细信息，请参阅 [Node.js 开发人员中心](https://docs.microsoft.com/azure/developer/javascript/)。
 
 [specify the Node.js version]: nodejs-specify-node-version-azure-apps.md
 [How to use the Azure Command-Line Interface for Mac and Linux]:cli-install-nodejs.md
-[Custom Website Deployment Scripts with Kudu]: https://channel9.msdn.com/Shows/Azure-Friday/Custom-Web-Site-Deployment-Scripts-with-Kudu-with-David-Ebbo
+
+<!-- [Custom Website Deployment Scripts with Kudu]: https://channel9.msdn.com/Shows/Azure-Friday/Custom-Web-Site-Deployment-Scripts-with-Kudu-with-David-Ebbo -->

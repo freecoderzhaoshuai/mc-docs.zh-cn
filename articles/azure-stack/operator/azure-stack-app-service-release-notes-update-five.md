@@ -5,16 +5,16 @@ author: WenJason
 manager: digimobile
 ms.topic: article
 origin.date: 05/05/2019
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: anwestg
 ms.lastreviewed: 03/25/2019
-ms.openlocfilehash: b3f36d9b19e96f3fad9942337d916c14e3540146
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: f636c0f0de625c8e9545608b25b50ac61162b726
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096487"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868016"
 ---
 # <a name="app-service-on-azure-stack-hub-update-5-release-notes"></a>Azure Stack Hub 上的应用服务 Update 5 发行说明
 
@@ -222,7 +222,7 @@ Azure Stack Hub 上的 Azure 应用服务 Update 5 包含以下改进和修复�
 
 ## <a name="known-issues-for-cloud-admins-operating-azure-app-service-on-azure-stack-hub"></a>云管理员在操作基于 Azure Stack Hub 的 Azure 应用服务时的已知问题
 
-请参阅 [Azure Stack Hub 1809 发行说明](azure-stack-update-1903.md)中的文档。
+请参阅 [Azure Stack Hub 1809 发行说明](./release-notes.md?view=azs-2002)中的文档。
 
 ## <a name="next-steps"></a>后续步骤
 

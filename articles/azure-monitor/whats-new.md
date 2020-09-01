@@ -7,12 +7,12 @@ origin.date: 03/05/2020
 author: Johnnytechn
 ms.author: v-johya
 ms.date: 07/17/2020
-ms.openlocfilehash: 607ea44b2a9cff4c6d43a8d32e03be0a6e04b9ca
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.openlocfilehash: 5e9ebd0d34a18fdd56abc8e72dce6bad73204f17
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508461"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148604"
 ---
 # <a name="whats-new-in-azure-monitor-documentation"></a>Azure Monitor 文档中有哪些新增内容？
 
@@ -85,9 +85,6 @@ ms.locfileid: "87508461"
 ### <a name="metrics"></a>指标
 - [Azure Monitor 按资源类型支持的指标](platform/metrics-supported.md) - 阐明了来宾指标和指标路由。 
 
-### <a name="solutions"></a>解决方案
-- [使用 Azure Monitor 优化 SQL Server 环境](insights/sql-assessment.md) - 添加到了支持的 SQL Server 版本。
-
 
 
 ### <a name="visualizations"></a>可视化效果
@@ -115,10 +112,6 @@ ms.locfileid: "87508461"
 #### <a name="azure-monitor-for-containers"></a>用于容器的 Azure Monitor
 - [将 Azure Active Directory 与 Azure Kubernetes 服务集成](../aks/azure-ad-integration.md) - 添加了有关以下事项的说明：创建客户端应用程序来支持启用了 RBAC 的群集以支持将 Azure Monitor 用于容器。
 
-#### <a name="office-365"></a>Office 365
-- [Azure 中的 Office 365 管理解决方案](insights/solution-office-365.md) - 更新了弃用日期。
-
-
 ### <a name="logs"></a>日志
 - [管理 Azure Monitor 日志的使用情况和成本](platform/manage-cost-storage.md) - 改进了示例查询来帮助你更好地了解使用情况。
 
@@ -143,9 +136,6 @@ ms.locfileid: "87508461"
 - [为用于容器的 Azure Monitor 创建性能警报](insights/container-insights-alerts.md) - 修订了信息，并更新了使用工作区上下文警报针对工作区中存储的性能数据创建警报的步骤。
 - [使用用于容器的 Azure Monitor 监视 Kubernetes](insights/container-insights-analyze.md) - 更新了概述文章，以及有关 Windows Kubernetes 群集支持的分析文章。
 - [如何管理用于容器的 Azure Monitor 代理](insights/container-insights-manage-agent.md) - 更新了有关在 Azure Red Hat OpenShift 与其他类型的 Kubernetes 群集中进行指标擦除的行为和配置的详细信息。
-
-#### <a name="office-365"></a>Office 365
-- [Azure 中的 Office 365 管理解决方案](insights/solution-office-365.md) - 添加了有关在 Azure Sentinel 中迁移到 Office 365 解决方案的详细信息和常见问题解答。 删除了“加入”部分。
 
 
 
@@ -190,10 +180,7 @@ ms.locfileid: "87508461"
 ### <a name="insights-and-solutions"></a>见解和解决方案
 - [用于容器的 Azure Monitor 常见问题解答](insights/container-insights-faq.md) - 添加了有关“映像”和“名称”字段的问题。
 - [配置用于容器的 Azure Monitor 代理数据收集](insights/container-insights-agent-config.md) - 添加了 enrich_container_logs 的设置。
-- [使用 Azure Monitor 监视 Active Directory 复制状态](insights/ad-replication-status.md) - 更新了.NET Framework 先决条件。
 - [Azure 中的网络性能监视器解决方案](insights/network-performance-monitor.md) - 添加了支持的区域。
-- [使用 Azure Monitor 优化 SQL Server 环境](insights/sql-assessment.md) - 更新了 .NET Framework 先决条件。
-- [使用 Azure Log Analytics 优化 System Center Operations Manager 环境](insights/scom-assessment.md) - 更新了 .NET Framework 先决条件。
 
 ### <a name="logs"></a>日志
 - [删除和恢复 Azure Log Analytics 工作区](platform/delete-workspace.md) - 添加了 PowerShell 方法。

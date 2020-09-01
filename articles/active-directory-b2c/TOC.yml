@@ -195,7 +195,7 @@
                       href: phone-number-claims-transformations.md
                     - name: StringCollection
                       href: stringcollection-transformations.md
-                    - name: String
+                    - name: 字符串
                       href: string-transformations.md
                 - name: 谓词
                   href: predicates.md
@@ -313,6 +313,8 @@
       displayName: security
     - name: 用户流版本
       href: user-flow-versions.md
+    - name: 旧版用户流
+      href: user-flow-versions-legacy.md
 - name: 资源
   items:
     - name: Azure 路线图

@@ -4,18 +4,18 @@ description: 本教程介绍如何创建 Java 应用程序来向 Azure 服务总
 ms.devlang: Java
 ms.topic: quickstart
 origin.date: 06/23/2020
-ms.date: 07/27/2020
-ms.testscope: yes
-ms.testdate: 07/20/2020
-ms.author: v-yeche
 author: rockboyfor
-ms.custom: seo-java-july2019, seo-java-august2019, seo-java-september2019
-ms.openlocfilehash: ba40a2d1c26f8fd3007dbe7ef078860eff6e8520
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/17/2020
+ms.author: v-yeche
+ms.custom: seo-java-july2019, seo-java-august2019, seo-java-september2019, devx-track-java
+ms.openlocfilehash: 808035528dc59fb9c17be0023dc985182ec5ce7c
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162117"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946611"
 ---
 # <a name="quickstart-use-azure-service-bus-queues-with-java-to-send-and-receive-messages"></a>快速入门：通过 Java 使用 Azure 服务总线队列发送和接收消息
 
@@ -41,7 +41,7 @@ ms.locfileid: "87162117"
 
 <!--CORRECT ON **Microsoft Azure Libraries for Java**-->
 
-![将适用于 Java 的 Azure 库添加到 Eclipse 项目](./media/service-bus-java-how-to-use-queues/eclipse-azure-libraries-java.png)
+:::image type="content" source="./media/service-bus-java-how-to-use-queues/eclipse-azure-libraries-java.png" alt-text="将适用于 Java 的 Azure 库添加到 Eclipse 项目":::
 
 将以下 `import` 语句添加到 Java 文件顶部：
 
@@ -195,4 +195,4 @@ public void run() throws Exception {
 [Queues, topics, and subscriptions]: service-bus-queues-topics-subscriptions.md
 [BrokeredMessage]: https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.brokeredmessage
 
-<!-- Update_Description: update meta properties, wording update, update link-->
+<!-- Update_Description: update meta properties, wording update, update link?view=azure-dotnet -->

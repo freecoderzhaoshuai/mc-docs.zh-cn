@@ -6,17 +6,17 @@ ms.service: virtual-machines
 ms.workload: infrastructure-services
 ms.topic: how-to
 origin.date: 07/23/2020
-ms.date: 08/24/2020
+ms.date: 08/31/2020
 ms.testscope: yes
-ms.testdate: 08/24/2020
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.subservice: disks
-ms.openlocfilehash: 3d42bb42a997d3bd77d5bc4e01eca639b5bf8b43
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 9bd07b3007f40d315f49f938ba963df2497c1ff3
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715667"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052404"
 ---
 <!--Verified successfully-->
 <!--Transfer from an include file-->
@@ -54,7 +54,7 @@ ms.locfileid: "88715667"
 
 部署 VM 和实例的映像时，其大小上限取决于 VM 缓存的大小。 例如，市场中的标准 Windows Server 映像大约为 127 GiB，这意味着所需 VM 大小的缓存大于 127 GiB。 在此示例中，[Standard_DS2_v2](dv2-dsv2-series.md) 的缓存大小为 86 GiB，不够大。 Standard_DS3_v2 的缓存大小为 172 GiB，足够大。 在此示例中，Standard_DS3_v2 是 DSv2 系列中能够用于此映像的最小大小。 市场中的基本 Linux 映像以及 `[smallsize]` 所表示的 Windows Server 映像通常为大约 30 GiB，可以使用大多数可用的 VM 大小。
 
-临时磁盘还要求 VM 大小支持高级存储。 大小通常（但并非总是）在名称中包含 `s`，例如 DSv2 和 EsV3。 有关详细信息，请参阅 [Azure VM 大小](./windows/sizes.md)，其中详述了哪些大小支持高级存储。
+临时磁盘还要求 VM 大小支持高级存储。 大小通常（但并非总是）在名称中包含 `s`，例如 DSv2 和 EsV3。 有关详细信息，请参阅 [Azure VM 大小](sizes.md)，其中详述了哪些大小支持高级存储。
 
 <!--Not Available on ## Preview - Ephemeral OS Disks can now be stored on temp disks-->
 <!--REASON: Not Available on Dav3, Dav4, Eav4 and Eav3 series-->
@@ -214,6 +214,7 @@ A:是的，可以将托管数据磁盘附加到使用临时 OS 磁盘的 VM。
 
 <!--Not Available on GS-->
 <!--MOONCAKE CORRECCT on $vmSizes = Get-AzComputeResourceSku | where {$_.ResourceType -eq 'virtualMachines' -and $_.Locations.contains('chinaeast')}-->
+<!--CORRECT ON $_.Locations.contains-->
 
 ```powershell
 
@@ -258,5 +259,4 @@ foreach($vmSize in $vmSizes)
 ## <a name="next-steps"></a>后续步骤
 可以使用 [Azure CLI](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-create) 创建具有临时 OS 磁盘的 VM。
 
-<!-- Update_Description: new article about ephemeral os disks -->
-<!--NEW.date: 08/24/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->
