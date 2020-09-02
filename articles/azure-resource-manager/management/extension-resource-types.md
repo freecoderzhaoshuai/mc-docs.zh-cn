@@ -2,15 +2,18 @@
 title: 扩展资源类型
 description: 列出用于扩展其他资源类型的功能的 Azure 资源类型。
 ms.topic: conceptual
-origin.date: 04/06/2020
-ms.date: 04/30/2020
+origin.date: 07/28/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.author: v-yeche
-ms.openlocfilehash: 9c5a8de30143f21ee0c117393fc0617d19f367a9
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: 180c90600cb788a8944ce10c708a55225a441f8b
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596091"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807916"
 ---
 <!--Verified successfully/Redirect file-->
 # <a name="resource-types-that-extend-capabilities-of-other-resources"></a>用于扩展其他资源的功能的资源类型
@@ -31,6 +34,7 @@ ms.locfileid: "82596091"
 - Microsoft.Authorization/permissions
 - Microsoft.Authorization/policyAssignments
 - Microsoft.Authorization/policyDefinitions
+- Microsoft.Authorization/policyExemptions
 - Microsoft.Authorization/policySetDefinitions
 - Microsoft.Authorization/roleAssignments
 - Microsoft.Authorization/roleAssignmentsUsageMetrics
@@ -77,11 +81,11 @@ ms.locfileid: "82596091"
 - Microsoft.Maintenance/configurationAssignments
 - Microsoft.Maintenance/updates
 - Microsoft.ManagedIdentity/Identities
-
-    <!--Not Available on - Microsoft.ManagedServices/*-->
-    
+- Microsoft.ManagedServices/registrationAssignments
+- Microsoft.ManagedServices/registrationDefinitions
 - Microsoft.OperationalInsights/storageInsightConfigs
 - Microsoft.OperationsManagement/managementassociations
+- Microsoft.PolicyInsights/attestations
 - Microsoft.PolicyInsights/policyEvents
 - Microsoft.PolicyInsights/policyStates
 - Microsoft.PolicyInsights/policyTrackedResources
@@ -105,7 +109,7 @@ ms.locfileid: "82596091"
 - Microsoft.Security/complianceResults
 - Microsoft.Security/dataCollectionAgents
 - Microsoft.Security/deviceSecurityGroups
-- Microsoft.Security/networkData
+- Microsoft.Security/jitPolicies
 - Microsoft.Security/serverVulnerabilityAssessments
 
     <!--Not Available on - Microsoft.SecurityInsights/*-->
@@ -120,5 +124,4 @@ ms.locfileid: "82596091"
 
 <!--Not Available on [Event Grid Event Subscriptions](https://docs.microsoft.com/azure/templates/microsoft.eventgrid/2019-06-01/eventsubscriptions)-->
 
-<!-- Update_Description: new article about extension resource types -->
-<!--NEW.date: 03/09/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->
