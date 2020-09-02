@@ -2,17 +2,18 @@
 title: 完整模式删除
 description: 显示资源类型如何在 Azure 资源管理器模板中进行完全模式删除。
 ms.topic: conceptual
-origin.date: 06/15/2020
-ms.date: 07/13/2020
-ms.testscope: no
-ms.testdate: ''
+origin.date: 07/06/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.author: v-yeche
-ms.openlocfilehash: 5be3a83bea536af27717ab17a7dea992db16473f
-ms.sourcegitcommit: 2bd0be625b21c1422c65f20658fe9f9277f4fd7c
+ms.openlocfilehash: 21a32647456b920540c3f4c886b2ac7659e9196e
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86441027"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807777"
 ---
 # <a name="deletion-of-azure-resources-for-complete-mode-deployments"></a>针对完全模式部署的 Azure 资源删除
 
@@ -22,7 +23,7 @@ ms.locfileid: "86441027"
 
 标记为 **No** 的资源类型不在模板中时不会自动删除；但是，如果删除了父资源，则会删除它们。 有关此行为的完整描述，请参阅 [Azure 资源管理器部署模式](deployment-modes.md)。
 
-如果部署到[模板中的多个资源组](cross-resource-group-deployment.md)，则可以删除部署操作中指定的资源组中的资源。 辅助资源组中的资源不会被删除。
+如果部署到[模板中的多个资源组](cross-scope-deployment.md)，则可以删除部署操作中指定的资源组中的资源。 辅助资源组中的资源不会被删除。
 
 跳转到资源提供程序命名空间：
 > [!div class="op_single_selector"]
@@ -36,6 +37,7 @@ ms.locfileid: "86441027"
 > - [Microsoft.AzureActiveDirectory](#microsoftazureactivedirectory)
 > - [Microsoft.AzureStack](#microsoftazurestack)
 > - [Microsoft.Batch](#microsoftbatch)
+> - [Microsoft.Blueprint](#microsoftblueprint)
 > - [Microsoft.Cache](#microsoftcache)
 > - [Microsoft.Cdn](#microsoftcdn)
 > - [Microsoft.ClassicCompute](#microsoftclassiccompute)
@@ -47,6 +49,7 @@ ms.locfileid: "86441027"
 > - [Microsoft.ContainerInstance](#microsoftcontainerinstance)
 > - [Microsoft.ContainerRegistry](#microsoftcontainerregistry)
 > - [Microsoft.ContainerService](#microsoftcontainerservice)
+> - [Microsoft.DataBox](#microsoftdatabox)
 > - [Microsoft.DataFactory](#microsoftdatafactory)
 > - [Microsoft.DBforMariaDB](#microsoftdbformariadb)
 > - [Microsoft.DBforMySQL](#microsoftdbformysql)
@@ -57,6 +60,7 @@ ms.locfileid: "86441027"
 > - [Microsoft.EventHub](#microsofteventhub)
 > - [Microsoft.Features](#microsoftfeatures)
 > - [Microsoft.HDInsight](#microsofthdinsight)
+> - [Microsoft.ImportExport](#microsoftimportexport)
 > - [Microsoft.IoTCentral](#microsoftiotcentral)
 > - [Microsoft.KeyVault](#microsoftkeyvault)
 > - [Microsoft.Kusto](#microsoftkusto)
@@ -64,12 +68,17 @@ ms.locfileid: "86441027"
 > - [Microsoft.MachineLearningServices](#microsoftmachinelearningservices)
 > - [Microsoft.Maintenance](#microsoftmaintenance)
 > - [Microsoft.ManagedIdentity](#microsoftmanagedidentity)
+> - [Microsoft.ManagedServices](#microsoftmanagedservices)
+> - [Microsoft.Management](#microsoftmanagement)
+> - [Microsoft.Media](#microsoftmedia)
 > - [Microsoft.Network](#microsoftnetwork)
 > - [Microsoft.NotificationHubs](#microsoftnotificationhubs)
 > - [Microsoft.OperationalInsights](#microsoftoperationalinsights)
 > - [Microsoft.OperationsManagement](#microsoftoperationsmanagement)
 > - [Microsoft.PolicyInsights](#microsoftpolicyinsights)
 > - [Microsoft.Portal](#microsoftportal)
+> - [Microsoft.PowerBI](#microsoftpowerbi)
+> - [Microsoft.PowerBIDedicated](#microsoftpowerbidedicated)
 > - [Microsoft.RecoveryServices](#microsoftrecoveryservices)
 > - [Microsoft.Relay](#microsoftrelay)
 > - [Microsoft.ResourceGraph](#microsoftresourcegraph)
@@ -84,6 +93,7 @@ ms.locfileid: "86441027"
 > - [Microsoft.SQL](#microsoftsql)
 > - [Microsoft.Storage](#microsoftstorage)
 > - [Microsoft.StreamAnalytics](#microsoftstreamanalytics)
+> - [Microsoft.TimeSeriesInsights](#microsofttimeseriesinsights)
 > - [Microsoft.Web](#microsoftweb)
 
 ## <a name="microsoftaad"></a>Microsoft.AAD
@@ -198,6 +208,7 @@ ms.locfileid: "86441027"
 > | 资源类型 | 完整模式删除 |
 > | ------------- | ----------- |
 > | cloudManifestFiles | 否 |
+> | edgeSubscriptions | 是 |
 > | registrations | 是 |
 > | registrations / customerSubscriptions | 否 |
 > | registrations / products | 否 |
@@ -375,7 +386,6 @@ ms.locfileid: "86441027"
 > | sharedVMImages / versions | 否 |
 > | snapshots | 是 |
 > | sshPublicKeys | 是 |
-> | swiftlets | 是 |
 > | virtualMachines | 是 |
 > | virtualMachines / extensions | 是 |
 > | virtualMachines / metricDefinitions | 否 |
@@ -387,6 +397,7 @@ ms.locfileid: "86441027"
 > | virtualMachineScaleSets / virtualMachines | 否 |
 > | virtualMachineScaleSets / virtualMachines / networkInterfaces | 否 |
 
+<!--Not Available on ## Microsoft.ConnectedCache-->
 <!--Not Available on ## Microsoft.Consumption-->
 
 ## <a name="microsoftcontainerinstance"></a>Microsoft.ContainerInstance
@@ -449,7 +460,14 @@ ms.locfileid: "86441027"
 <!--Not Available on ## Microsoft.CostManagement-->
 <!--Not Available on ## Microsoft.CustomerLockbox-->
 <!--Not Available on ## Microsoft.CustomProviders-->
-<!--Not Available on ## Microsoft.DataBox-->
+
+## <a name="microsoftdatabox"></a>Microsoft.DataBox
+
+> [!div class="mx-tableFixed"]
+> | 资源类型 | 完整模式删除 |
+> | ------------- | ----------- |
+> | jobs | 是 |
+
 <!--Not Available on ## Microsoft.DataBoxEdge-->
 <!--Not Available on ## Microsoft.Databricks-->
 <!--Not Available on ## Microsoft.DataCatalog-->
@@ -477,7 +495,7 @@ ms.locfileid: "86441027"
 > | services | 是 |
 > | services/projects | 是 |
 
-<!--Not Available on ## Microsoft.DataShare-->
+<!--Not Available on ## Microsoft.DataProtection-->
 <!--Not Available on ## Microsoft.DataShare-->
 
 ## <a name="microsoftdbformariadb"></a>Microsoft.DBforMariaDB
@@ -673,13 +691,13 @@ ms.locfileid: "86441027"
 > | 资源类型 | 完整模式删除 |
 > | ------------- | ----------- |
 > | deletedVaults | 否 |
-> | hsmPools | 是 |
-> | managedHSMs | 是 |
 > | vaults | 是 |
 > | vaults / accessPolicies | 否 |
 > | vaults / eventGridFilters | 否 |
 > | vaults / secrets | 否 |
 
+<!--Not Available on > | hsmPools | Yes |-->
+<!--Not Available on > | managedHSMs | Yes |-->
 <!-- Not Available on ## Microsoft.Kubernetes-->
 <!-- Not Available on ## Microsoft.KubernetesConfiguration-->
 
@@ -742,7 +760,15 @@ ms.locfileid: "86441027"
 > | userAssignedIdentities | 是 |
 
 <!--Not Available on ## Microsoft.ManagedNetwork-->
-<!--Not Available on ## Microsoft.ManagedServices-->
+
+## <a name="microsoftmanagedservices"></a>Microsoft.ManagedServices
+
+> [!div class="mx-tableFixed"]
+> | 资源类型 | 完整模式删除 |
+> | ------------- | ----------- |
+> | marketplaceRegistrationDefinitions | 否 |
+> | registrationAssignments | 否 |
+> | registrationDefinitions | 否 |
 
 ## <a name="microsoftmanagement"></a>Microsoft.Management
 
@@ -792,6 +818,8 @@ ms.locfileid: "86441027"
 <!--Not Available on ## Microsoft.MixedReality-->
 <!-- Not Available on ## Microsoft.NetApp-->
 
+<!--MOONCAKE CUSTOMIZATION-->
+<!--Not Available on DDOS, FRONT DOORS, PRIVATE LINK-->
 ## <a name="microsoftnetwork"></a>Microsoft.Network
 
 > [!div class="mx-tableFixed"]
@@ -805,8 +833,6 @@ ms.locfileid: "86441027"
 > | bastionHosts | 是 |
 > | bgpServiceCommunities | 否 |
 > | connections | 是 |
-> | ddosCustomPolicies | 是 |
-> | ddosProtectionPlans | 是 |
 > | dnsOperationStatuses | 否 |
 > | dnszones | 是 |
 > | dnszones / A | 否 |
@@ -827,9 +853,6 @@ ms.locfileid: "86441027"
 > | expressRoutePorts | 是 |
 > | expressRouteServiceProviders | 否 |
 > | firewallPolicies | 是 |
-> | frontdoors | 是 |
-> | frontdoorWebApplicationFirewallManagedRuleSets | 否 |
-> | frontdoorWebApplicationFirewallPolicies | 是 |
 > | getDnsResourceReference | 否 |
 > | internalNotify | 否 |
 > | loadBalancers | 是 |
@@ -858,7 +881,6 @@ ms.locfileid: "86441027"
 > | privateDnsZones / TXT | 否 |
 > | privateDnsZones / virtualNetworkLinks | 是 |
 > | privateEndpoints | 是 |
-> | privateLinkServices | 是 |
 > | publicIPAddresses | 是 |
 > | publicIPPrefixes | 是 |
 > | routeFilters | 是 |
@@ -878,6 +900,8 @@ ms.locfileid: "86441027"
 > | vpnSites | 是 |
 > | webApplicationFirewallPolicies | 是 |
 
+<!--MOONCAKE CUSTOMIZATION-->
+<!--Not Available on DDOS, FRONT DOORS, PRIVATE LINK-->
 <!--Not Available on ## Microsoft.Notebooks-->
 
 ## <a name="microsoftnotificationhubs"></a>Microsoft.NotificationHubs
@@ -946,7 +970,11 @@ ms.locfileid: "86441027"
 > [!div class="mx-tableFixed"]
 > | 资源类型 | 完整模式删除 |
 > | ------------- | ----------- |
+> | tenants | 是 |
+> | tenants / workspaces | 否 |
 > | workspaceCollections | 是 |
+
+<!--Not Available on privateLinkService -->
 
 ## <a name="microsoftpowerbidedicated"></a>Microsoft.PowerBIDedicated
 
@@ -1063,6 +1091,8 @@ ms.locfileid: "86441027"
 > | iotSecuritySolutions / analyticsModels | 否 |
 > | iotSecuritySolutions / analyticsModels / aggregatedAlerts | 否 |
 > | iotSecuritySolutions / analyticsModels / aggregatedRecommendations | 否 |
+> | iotSecuritySolutions / iotAlerts | 否 |
+> | iotSecuritySolutions / iotAlertTypes | 否 |
 > | jitNetworkAccessPolicies | 否 |
 > | 策略 | 否 |
 > | pricings | 否 |
@@ -1167,7 +1197,7 @@ ms.locfileid: "86441027"
 > | servers | 是 |
 > | servers / administrators | 否 |
 > | servers / communicationLinks | 否 |
-> | servers / databases | 是 |
+> | servers/databases | 是 |
 > | servers / encryptionProtector | 否 |
 > | servers / firewallRules | 否 |
 > | servers / keys | 否 |
