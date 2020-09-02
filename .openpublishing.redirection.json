@@ -1,5 +1,76 @@
 {
-    "redirections": [{
+    "redirections": [
+        {
+            "source_path": "articles/cognitive-services/Speech-Service/quickstarts/text-to-speech/async-synthesis-long-form-audio.md",
+            "redirect_url": "/cognitive-services/speech-service/long-audio-api",
+            "redirect_document_id": true
+        },
+        {
+          "source_path": "articles/cognitive-services/Speech-Service/translate-speech-to-speech.md",
+          "redirect_url": "/cognitive-services/speech-service/get-started-speech-translation",
+          "redirect_document_id": false
+        },
+        {
+          "source_path": "articles/cognitive-services/Speech-Service/translate-speech-to-text.md",
+          "redirect_url": "/cognitive-services/speech-service/get-started-speech-translation",
+          "redirect_document_id": false
+        },
+        {
+          "source_path": "articles/cognitive-services/Speech-Service/translate-speech-to-text-multiple-languages.md",
+          "redirect_url": "/cognitive-services/speech-service/get-started-speech-translation",
+          "redirect_document_id": false
+        },
+        {
+          "source_path": "articles/cognitive-services/Speech-Service/quickstarts/text-to-speech.md",
+          "redirect_url": "/cognitive-services/speech-service/get-started-text-to-speech",
+          "redirect_document_id": true
+        },
+        {
+          "source_path": "articles/cognitive-services/Speech-Service/quickstarts/text-to-speech-audio-file.md",
+          "redirect_url": "/cognitive-services/speech-service/get-started-text-to-speech",
+          "redirect_document_id": false
+        },
+        {
+          "source_path": "articles/cognitive-services/Speech-Service/scenario-availability.md",
+          "redirect_url": "/cognitive-services/speech-service/speech-sdk",
+          "redirect_document_id": true
+        },
+        {
+          "source_path": "articles/cognitive-services/Speech-Service/speech-translation-basics.md",
+          "redirect_url": "/cognitive-services/speech-service/get-started-speech-translation",
+          "redirect_document_id": true
+        },
+        {
+          "source_path": "articles/cognitive-services/Speech-Service/text-to-speech-basics.md",
+          "redirect_url": "/cognitive-services/speech-service/get-started-text-to-speech",
+          "redirect_document_id": false
+        },
+        {
+          "source_path": "articles/cognitive-services/Speech-Service/quickstart-nodejs-get-text-to-speech-voices.md",
+          "redirect_url": "/cognitive-services/speech-service/text-to-speech-basics",
+          "redirect_document_id": false
+        },
+        {
+          "source_path": "articles/cognitive-services/Speech-Service/quickstart-nodejs-text-to-speech.md",
+          "redirect_url": "/cognitive-services/speech-service/text-to-speech-basics",
+          "redirect_document_id": false
+        },
+        {
+          "source_path": "articles/cognitive-services/Speech-Service/quickstart-python-text-to-speech.md",
+          "redirect_url": "/cognitive-services/speech-service/text-to-speech-basics",
+          "redirect_document_id": false
+        },
+        {
+          "source_path": "articles/cognitive-services/Speech-Service/quickstart-python-get-text-to-speech-voices.md",
+          "redirect_url": "/cognitive-services/speech-service/text-to-speech-basics",
+          "redirect_document_id": false
+        },
+        {
+          "source_path": "articles/cognitive-services/Speech-Service/get-started.md",
+          "redirect_url": "/cognitive-services/speech-service/overview#try-the-speech-service",
+          "redirect_document_id": false
+        },
+        {
             "source_path": "articles/azure-portal/azure-portal-export-delete-settings.md",
             "redirect_url": "/azure-portal/set-preferences#export-user-settings",
             "redirect_document_id": false
@@ -24733,7 +24804,7 @@
         {
             "source_path": "articles/log-analytics/log-analytics-sql-assessment.md",
             "redirect_url": "/azure-monitor/insights/sql-assessment",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path": "articles/operations-management-suite/oms-solution-agenthealth.md",
