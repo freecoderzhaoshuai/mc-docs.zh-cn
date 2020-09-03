@@ -27390,18 +27390,18 @@
             "redirect_document_id": false
         },
         {
-            "source_path":   "articles/azure-stack/operator/azure-stack-azsreadiness-cmdlet.md",
-            "redirect_url":   "/azure-stack/operator/azure-stack-validate-identity",
-            "redirect_document_id":  false
+            "source_path": "articles/azure-stack/operator/azure-stack-azsreadiness-cmdlet.md",
+            "redirect_url": "/azure-stack/operator/azure-stack-validate-identity",
+            "redirect_document_id": false
         },
         {
-            "source_path":   "articles/azure-stack/operator/azure-stack-update-servicing-policy.md",
-            "redirect_url":   "/azure-stack/operator/azure-stack-servicing-policy",
-            "redirect_document_id":  false
+            "source_path": "articles/azure-stack/operator/azure-stack-update-servicing-policy.md",
+            "redirect_url": "/azure-stack/operator/azure-stack-servicing-policy",
+            "redirect_document_id": false
         },
         {
-            "source_path":   "articles/azure-stack/operator/app-service-deploy-ha.md",
-            "redirect_url":   "/azure-stack/operator/azure-stack-app-service-deploy",
+            "source_path": "articles/azure-stack/operator/app-service-deploy-ha.md",
+            "redirect_url": "/azure-stack/operator/azure-stack-app-service-deploy",
             "redirect_document_id": false
 
         },
@@ -27419,7 +27419,23 @@
             "source_path": "articles/load-balancer/configure-load-balancer-outbound-powershell.md",
             "redirect_url": "/load-balancer/quickstart-create-standard-load-balancer-powershell?tabs=option-1-create-load-balancer-standard#create-outbound-rule-configuration",
             "redirect_document_id": false
-        }
+        },
+        {
+            "source_path": "articles/media-services/latest/media-services-high-availability-streaming.md",
+            "redirect_url": "/media-services/latest/media-services-high-availability-encoding",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/media-services/latest/upload-files-rest-how-to.md",
+            "redirect_url": "/media-services/latest/how-to-upload-media.md",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/media-services/live-video-analytics-edge/analyze-with-ai-your-choice-how-to.md",
+            "redirect_url": "/media-services/live-video-analytics-edge/http-data-contract",
+            "redirect_document_id": false
+         }
+
 
 
 
