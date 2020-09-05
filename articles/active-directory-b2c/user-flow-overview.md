@@ -1,5 +1,6 @@
 ---
 title: Azure Active Directory B2C 中的用户流 | Microsoft Docs
+titleSuffix: Azure AD B2C
 description: 详细了解 Azure Active Directory B2C 的可扩展策略框架以及如何创建各种用户流。
 services: active-directory-b2c
 author: msmimart
@@ -7,23 +8,20 @@ manager: celestedg
 ms.service: active-directory
 ms.workload: identity
 ms.topic: conceptual
-ms.date: 03/04/2020
+ms.date: 08/25/2020
+ms.custom: project-no-code
 ms.author: v-junlch
 ms.subservice: B2C
-ms.openlocfilehash: 11ac35004ca980b28bf963ba4df75c60160340a4
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 8e0170195e1ad7d6acbbc122d3ccd184472e7644
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78266087"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946537"
 ---
 # <a name="user-flows-in-azure-active-directory-b2c"></a>Azure Active Directory B2C 中的用户流
 
-Azure Active Directory B2C (Azure AD B2C) 可扩展的策略框架是服务的核心优势。 策略充分描述了标识体验，例如注册、登录或配置文件编辑。 若要帮助设置最常见的标识任务，Azure AD B2C 门户应包括名为“用户流”  的预定义且可配置的策略。
-
-## <a name="what-are-user-flows"></a>什么是用户流？
-
-用户流可让你通过配置以下设置来控制应用程序的行为：
+为了帮助给应用程序设置最常见的标识任务，Azure AD B2C 门户中提供了预定义的可配置策略，这些策略被称为“用户流”。 利用用户流，可以确定用户在执行登录、注册、编辑配置文件或重置密码等操作时与应用程序交互的方式。 利用用户流，可以控制以下功能：
 
 - 用于登录的帐户类型，例如社交帐户
 - 从使用者收集的属性，例如名字、邮政编码和鞋码
@@ -61,17 +59,25 @@ client_id=2d4d11a2-f814-46a7-890a-274a72a7309e      // Your registered Applicati
 
 ## <a name="user-flow-versions"></a>用户流版本
 
-Azure 门户中一直在添加[新版本的用户流](user-flow-versions.md)。 当你开始使用 Azure AD B2C 时，系统会建议使用经过测试的用户流。 创建新用户流时，可从“建议”选项卡中选择所需的用户流。 
+Azure AD B2C 包括多种类型的用户流：
 
-目前建议使用以下用户流：
-
-- **注册和登录** - 通过一项配置处理注册和登录体验。 根据上下文将用户引导至正确的路径。 建议优先使用此用户流，而不要使用**注册**用户流或**登录**用户流。
+- **注册和登录** - 通过一项配置处理注册和登录体验。 根据上下文将用户引导至正确的路径。 还包括单独的“注册”或“登录”用户流 。 不过我们通常建议使用合并的注册和登录用户流。
 - **个人资料编辑** - 让用户编辑其个人资料信息。
 - **密码重置** - 用于配置是否允许用户重置其密码以及如何重置密码。
 
+大多数用户流类型都有“推荐”和“标准”两个版本 。 有关详细信息，请参阅[用户流版本](user-flow-versions.md)。
+
+> [!IMPORTANT]
+> 如果你以前在 Azure AD B2C 中使用过用户流，会发现我们已更改了引用用户流版本的方式。 之前，我们提供 V1（生产就绪）版本，还提供了 V1.1 和 V2（预览版）版本。 现在，我们已将用户流合并为两个版本：
+>
+>- “推荐”用户流是用户流的新预览版本。 它们已经过全面测试，而且合并了旧版 V2 和 V1.1 版本的所有功能 。 今后我们将会维护和更新这些新的推荐用户流。 转到这些新的推荐用户流后，新功能一经发布你就会有新功能的使用权限。
+>- “标准”用户流（以前称为 V1）是正式发布的、可随时用于生产的用户流 。 如果你的用户流是关键任务型，并且依赖高度稳定的版本，则可继续使用标准用户流，只是要知道这些版本将不会得到维护和更新。
+>
+>所有旧的预览版用户流（V1.1 和 V2）都将在 2021 年 8 月 1 日之前逐渐被弃用。 强烈建议尽早[切换到新的推荐用户流](user-flow-versions.md#how-to-switch-to-a-new-recommended-user-flow)，以便始终能够利用最新功能和更新。
+
 ## <a name="linking-user-flows"></a>链接用户流
 
-使用本地帐户的**注册或登录**用户流在体验的第一个页面上包含“忘记了密码?”链接  。 单击此链接不会自动触发密码重置用户流。
+使用本地帐户的**注册或登录**用户流在体验的第一个页面上包含“忘记了密码?”链接****。 单击此链接不会自动触发密码重置用户流。
 
 而是将错误代码 `AADB2C90118` 返回给应用程序。 应用程序需要通过运行一个可重置密码的特定用户流来处理此错误代码。 有关示例，请查看演示用户流链接方法的[简单 ASP.NET 示例](https://github.com/AzureADQuickStarts/B2C-WebApp-OpenIDConnect-DotNet-SUSI)。
 
