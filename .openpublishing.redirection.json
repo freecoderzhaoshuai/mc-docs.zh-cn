@@ -13061,6 +13061,11 @@
             "redirect_document_id": "False"
         },
         {
+            "source_path": "articles/monitoring-and-diagnostics/monitoring-autoscale-get-started.md",
+            "redirect_url": "/azure-monitor/platform/autoscale-get-started",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "articles/monitoring-and-diagnostics/insights-powershell-samples.md",
             "redirect_url": "/azure-monitor/platform/powershell-quickstart-samples",
             "redirect_document_id": "false"
