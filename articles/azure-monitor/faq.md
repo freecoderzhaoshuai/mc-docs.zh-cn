@@ -7,13 +7,13 @@ ms.topic: conceptual
 author: Johnnytechn
 ms.author: v-johya
 origin.date: 01/23/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: 97efe910bf653c0665d0e3fc68e20d8e26f017a4
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.date: 08/20/2020
+ms.openlocfilehash: 65049b80f09fd614a88f9b90aed044cdc3ca86db
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508384"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148640"
 ---
 # <a name="azure-monitor-frequently-asked-questions"></a>Azure Monitor 常见问题解答
 
@@ -21,7 +21,7 @@ ms.locfileid: "87508384"
 
 ## <a name="general"></a>常规
 
-### <a name="what-is-azure-monitor"></a>什么是 Azure Monitor？
+### <a name="what-is-azure-monitor"></a>说明是 Azure Monitor？
 [Azure Monitor](overview.md) 是 Azure 中的一项服务，可通过它监视 Azure、其他云环境或本地中应用程序和服务的性能和可用性。 Azure Monitor 将多个源中的数据收集到一个公共数据平台，你可在这里分析趋势和异常。 Azure Monitor 中的丰富功能可帮助你快速确定和应对可能会影响你的应用程序的关键情况。
 
 ### <a name="whats-the-difference-between-azure-monitor-log-analytics-and-application-insights"></a>Azure Monitor、Log Analytics 和 Application Insights 之间有何区别？
@@ -31,7 +31,7 @@ ms.locfileid: "87508384"
 自动启用的 Azure Monitor 功能（如收集指标和活动日志）免费提供。 存在与其他功能（例如日志查询和警报）相关的费用。 有关详细定价信息，请参阅 [Azure Monitor 定价页](https://www.azure.cn/pricing/details/monitor/)。
 
 ### <a name="how-do-i-enable-azure-monitor"></a>如何启用 Azure Monitor？
-在你创建新的 Azure 订阅时就会启用 Azure Monitor，并自动收集[活动日志](platform/activity-logs-overview.md)和平台[指标](platform/data-platform-metrics.md)。 创建[诊断设置](platform/diagnostic-settings.md)可收集有关 Azure 资源操作的更多详细信息，添加[监视解决方案](insights/solutions.md)和[见解](insights/insights-overview.md)可为特定服务收集的收集数据提供额外的分析。 
+在你创建新的 Azure 订阅时就会启用 Azure Monitor，并自动收集[活动日志](./platform/platform-logs-overview.md)和平台[指标](platform/data-platform-metrics.md)。 创建[诊断设置](platform/diagnostic-settings.md)可收集有关 Azure 资源操作的更多详细信息，添加[监视解决方案](insights/solutions.md)和[见解](insights/insights-overview.md)可为特定服务收集的收集数据提供额外的分析。 
 
 ### <a name="how-do-i-access-azure-monitor"></a>如何访问 Azure Monitor？
 可通过 Azure 门户中的“监视”菜单访问各项 Azure Monitor 功能和数据。 通过不同 Azure 服务的菜单的“监视”部分，可访问相同的工具，其中数据经过筛选，指向特定的资源。 也可通过 CLI、PowerShell 和 REST API 针对各种场景来访问 Azure Monitor 数据。
@@ -119,12 +119,12 @@ Azure 资源的[平台指标](insights/monitor-azure-resource.md#monitoring-data
 
 
 ### <a name="what-is-an-action-rule"></a>什么是操作规则？
-通过操作规则，可修改匹配特定条件的一组警报的行为。 你可通过它执行诸如在维护时段内禁用警报操作之类的要求。 你还可将操作组应用于一组警报，而不是将其直接应用于警报规则。 请参阅[操作规则](platform/alerts-action-rules.md)。
+通过操作规则，可修改匹配特定条件的一组警报的行为。 这样，你便可以在维护时段履行禁用警报操作之类的要求。 你还可将操作组应用于一组警报，而不是将其直接应用于警报规则。 请参阅[操作规则](platform/alerts-action-rules.md)。
 
 ## <a name="agents"></a>代理
 
 ### <a name="does-azure-monitor-require-an-agent"></a>Azure Monitor 需要代理吗？
-只在从虚拟机中的操作系统和工作负载收集数据时，才需要代理。 虚拟机可位于 Azure、其他云环境或本地。 请参阅 [Azure Monitor 代理概述](platform/agents-overview.md)。
+只在从虚拟机中的操作系统和工作负载收集数据时，才需要代理。 虚拟机可位于 Azure、其他云环境或本地。 请参阅 [Azure Monitor 代理的概述](platform/agents-overview.md)。
 
 
 ### <a name="whats-the-difference-between-the-azure-monitor-agents"></a>Azure Monitor 代理之间有何区别？
@@ -202,7 +202,7 @@ WireData
 * [设置 ASP.NET 服务器](app/monitor-performance-live-website-now.md)
 * [设置 Java 服务器](app/java-agent.md)
 
-应该部署多少个 Application Insights？：
+*应该部署多少个 Application Insights 资源：*
 
 * [如何设计 Application Insights 部署：一个还是多个 Application Insights 资源？](app/separate-resources.md)
 
@@ -308,7 +308,7 @@ WireData
 
 * 浏览器遥测：收集发送方的 IP 地址。
 * 服务器遥测：Application Insights 模块收集客户端 IP 地址。 如果设置了 `X-Forwarded-For`，则不会进行收集。
-* 要详细了解如何在 Application Insights 中收集 IP 地址和地理位置数据，请参阅本[文章](/azure-monitor/app/ip-collection)。
+* 若要详细了解如何在 Application Insights 中收集 IP 地址和地理位置数据，请参阅[此文](./app/ip-collection.md)。
 
 
 可以配置 `ClientIpHeaderTelemetryInitializer`，从不同的标头获取 IP 地址。 例如，在某些系统中，代理、负载均衡器或 CDN 会将其移动到 `X-Originating-IP`。 [了解详细信息](https://apmtips.com/posts/2016-07-05-client-ip-address/)。
@@ -321,7 +321,7 @@ WireData
 
 ### <a name="what-happens-to-application-insights-telemetry-when-a-server-or-device-loses-connection-with-azure"></a>服务器或设备与 Azure 断开连接后，Application Insight 的遥测数据会怎么样？
 
-所有 SDK（包括 Web SDK）都包含“可靠传输”。 当服务器或设备与 Azure 断开连接后，遥测数据[本地存储在文件系统](/azure-monitor/app/data-retention-privacy#does-the-sdk-create-temporary-local-storage) (Server SDK) 或 HTML5 会话存储 (Web SDK) 中。 SDK 会定期重新尝试发送此遥测数据，直到引入服务将其视为“过时”（日志 48 小时后过时，指标 30 分钟后过时）。 过时的遥测将被删除。 在某些情况下（例如本地存储已满时），将不进行重试。
+所有 SDK（包括 Web SDK）都包含“可靠传输”。 当服务器或设备与 Azure 断开连接后，遥测数据[本地存储在文件系统](./app/data-retention-privacy.md#does-the-sdk-create-temporary-local-storage) (Server SDK) 或 HTML5 会话存储 (Web SDK) 中。 SDK 会定期重新尝试发送此遥测数据，直到引入服务将其视为“过时”（日志 48 小时后过时，指标 30 分钟后过时）。 过时的遥测将被删除。 在某些情况下（例如本地存储已满时），将不进行重试。
 
 
 ### <a name="could-personal-data-be-sent-in-the-telemetry"></a>是否可能会在遥测中发送个人数据？
@@ -403,7 +403,7 @@ WireData
 
 #### <a name="querying-the-telemetry"></a>查询遥测
 
-使用 [REST API](https://dev.applicationinsights.io/) 运行 [Analytics](log-query/log-query-overview.md) 查询。
+使用 [REST API](https://dev.applicationinsights.io/) 运行 [Analytics](./log-query/log-query-overview.md) 查询。
 
 ### <a name="how-can-i-set-an-alert-on-an-event"></a>如何设置事件警报？
 
@@ -501,6 +501,15 @@ Azure 警报仅出现在指标上。 创建一个每当事件发生时都跨越�
 [platforms]: app/platforms.md
 [start]: app/app-insights-overview.md
 
+### <a name="http-502-and-503-responses-are-not-always-captured-by-application-insights"></a>HTTP 502 和 503 响应并不总是由 Application Insights 捕获
+
+“502 错误的网关”和“503 服务不可用”错误并不总是由 Application Insights 捕获。 如果仅将客户端 JavaScript 用于监视，则这是预期的行为，因为错误响应会在包含 HTML 标头且会呈现监视性的 JavaScript 代码片段的页面之前返回。 
+
+如果从启用了服务器端监视的服务器发送了 502 或 503 响应，则 Application Insights SDK 会收集这些错误。 
+
+但某些情况下，即使在应用程序的 Web 服务器上启用了服务器端监视，也不会由 Application Insights 捕获 502 或 503 错误。 许多新式 Web 服务器不允许客户端直接通信，而是使用反向代理之类的解决方案在客户端和前端 Web 服务器之间来回传递信息。 
+
+在这种情况下，由于反向代理层出现问题，可能会将 502 或 503 响应返回到客户端，该响应不会被 Application Insights 直接捕获。 可能需要将日志从反向代理转发到 Log Analytics，并创建自定义规则来检查 502/503 响应，这样有助于检测该层中的问题 若要详细了解 502 和 503 错误的常见原因，请参阅 Azure 应用服务[故障排除文章中的“502 错误的网关”和“503 服务不可用”](../app-service/troubleshoot-http-502-http-503.md)。     
 
 ## <a name="azure-monitor-for-containers"></a>用于容器的 Azure Monitor
 
