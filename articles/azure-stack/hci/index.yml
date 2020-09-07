@@ -1,20 +1,20 @@
 ### YamlMime:Landing
 title: Azure Stack HCI 文档
-summary: Azure Stack HCI 是超融合的 Windows Server 2019 群集，可在本地环境使用经过验证的硬件来运行虚拟化工作负载，使客户可以轻松合并旧基础结构并连接到 Azure 以实现云服务。
+summary: Azure Stack HCI 是超融合的群集，可在本地环境使用经过验证的硬件来运行虚拟化工作负载，使客户可以轻松合并旧基础结构并连接到 Azure 以实现云服务。
 metadata:
   title: Azure Stack HCI 文档
-  description: Azure Stack HCI 是超融合的 Windows Server 2019 群集，可在本地环境使用经过验证的硬件来运行虚拟化工作负荷。
+  description: Azure Stack HCI 是超融合的群集，可在本地环境使用经过验证的硬件来运行虚拟化工作负载。
   ms.topic: landing-page
   author: WenJason
   ms.author: v-jay
-  origin.date: 04/17/2020
-  ms.date: 05/18/2020
-  ms.openlocfilehash: d4249a9def9a3b0dad495316e84edae436658f9c
-  ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+  origin.date: 07/21/2020
+  ms.date: 08/31/2020
+  ms.openlocfilehash: a0d7ecfc493275ece5ea596bfb785733c7d75d90
+  ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 05/15/2020
-  ms.locfileid: "83422981"
+  ms.lasthandoff: 08/26/2020
+  ms.locfileid: "88868078"
 landingContent:
 - title: 关于 Azure Stack HCI
   linkLists:
@@ -26,33 +26,89 @@ landingContent:
     links:
     - text: 在 Windows 管理中心使用 Azure Stack HCI
       url: get-started.md
-- title: 管理 Azure Stack HCI
+- title: 部署 Azure Stack HCI
+  linkLists:
+  - linkListType: deploy
+    links:
+    - text: 开始之前
+      url: deploy/before-you-start.md
+    - text: 部署 Azure Stack HCI 操作系统
+      url: deploy/operating-system.md
+    - text: 创建群集
+      url: deploy/create-cluster.md
+    - text: 设置群集见证
+      url: deploy/witness.md
+    - text: 注册到 Azure
+      url: deploy/register-with-azure.md
+    - text: 验证 Azure Stack HCI 群集
+      url: deploy/validate.md
+- title: 管理存储
   linkLists:
   - linkListType: how-to-guide
     links:
     - text: 创建卷
       url: manage/create-volumes.md
+    - text: 创建延伸卷
+      url: manage/create-stretched-volumes.md
     - text: 扩展卷
       url: manage/extend-volumes.md
     - text: 删除卷
       url: manage/delete-volumes.md
     - text: 更换驱动器
       url: manage/replace-drives.md
-    - text: 使用 Azure Monitor 进行监视
-      url: manage/azure-monitor.md
-    - text: 将 GPU 附加到 Linux VM
-      url: manage/attach-gpu-to-linux-vm.md
+- title: 管理 VM
+  linkLists:
+  - linkListType: how-to-guide
+    links:
+    - text: 使用 Windows Admin Center 管理 VM
+      url: manage/vm.md
+    - text: 使用 PowerShell 管理 VM
+      url: manage/vm-powershell.md
+    - text: 设置 VM 相关性规则
+      url: deploy/before-you-start.md
+- title: 管理群集
+  linkLists:
+  - linkListType: how-to-guide
+    links:
+    - text: 使用 Windows Admin Center 管理群集
+      url: manage/cluster.md
+    - text: 使用 PowerShell 管理群集
+      url: manage/cluster-powershell.md
+    - text: 添加或删除服务器
+      url: manage/add-cluster.md
+    - text: 更新群集
+      url: manage/update-cluster.md
+    - text: 更改语言
+      url: manage/vm-powershell.md
 - title: Azure Stack HCI 概念
   linkLists:
   - linkListType: concept
     links:
+    - text: 延伸群集
+      url: concepts/stretched-clusters.md
+    - text: 计费
+      url: concepts/billing.md
+    - text: 更新和升级
+      url: concepts/updates.md
     - text: 选择驱动器
       url: concepts/choose-drives.md
     - text: 规划卷
       url: concepts/plan-volumes.md
-    - text: 了解缓存
-      url: concepts/cache.md
     - text: 容错和存储效率
       url: concepts/fault-tolerance.md
-    - text: 群集和存储池仲裁
-      url: concepts/quorum.md
+    - text: 安全注意事项
+      url: concepts/security.md
+- title: 连接到 Azure
+  linkLists:
+  - linkListType: how-to-guide
+    links:
+    - text: 将 Windows Admin Center 注册到 Azure
+      url: manage/register-windows-admin-center.md
+    - text: 使用 Azure Site Recovery
+      url: manage/azure-site-recovery.md
+    - text: 使用 Azure Monitor 进行监视
+      url: manage/azure-monitor.md
+    - text: 使用 Azure 网络适配器
+      url: manage/use-azure-network-adapter.md
+    - text: 使用 Azure 备份
+      url: manage/use-azure-backup.md

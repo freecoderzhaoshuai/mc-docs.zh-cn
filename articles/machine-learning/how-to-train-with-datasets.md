@@ -5,19 +5,19 @@ description: 了解如何在训练中使用数据集
 services: machine-learning
 ms.service: machine-learning
 ms.subservice: core
-ms.topic: how-to
 ms.author: sihhu
 author: MayMSFT
 manager: cgronlun
 ms.reviewer: nibaccam
 ms.date: 07/31/2020
-ms.custom: tracking-python
-ms.openlocfilehash: 1cbc578ad16c1959ca7a3cd7966000f3085c4403
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.topic: conceptual
+ms.custom: how-to, devx-track-python
+ms.openlocfilehash: 267a44b24958c9ded1642ae7713c99b832e1b712
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228408"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946948"
 ---
 # <a name="train-with-datasets-in-azure-machine-learning"></a>使用 Azure 机器学习中的数据集进行训练
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -30,7 +30,7 @@ Azure 机器学习数据集提供了与 Azure 机器学习训练产品（例如 
 
 若要创建数据集并使用数据集进行训练，需要具有以下各项：
 
-* Azure 订阅。 如果没有 Azure 订阅，请在开始前创建一个试用帐户。 立即试用[免费版或付费版 Azure 机器学习](https://www.azure.cn/pricing/1rmb-trial)。
+* Azure 订阅。 如果没有 Azure 订阅，请在开始操作前先创建一个免费帐户。 立即试用[免费版或付费版 Azure 机器学习](https://aka.ms/AMLFree)。
 
 * [Azure 机器学习工作区](how-to-manage-workspace.md)。
 
@@ -80,7 +80,7 @@ web_path ='https://dprepdata.blob.core.windows.net/demo/Titanic.csv'
 titanic_ds = Dataset.Tabular.from_delimited_files(path=web_path)
 ```
 
-TabularDataset 对象提供将 TabularDataset 中的数据加载到 pandas 或 spark 数据帧中的功能，以便你可以使用熟悉的数据准备和训练库，且无需离开笔记本。 若要利用此功能，请参阅[访问和浏览输入数据集](#access-and-explore-input-datasets)。
+TabularDataset 对象提供将 TabularDataset 中的数据加载到 pandas 或 Spark 数据帧中的功能，以便你可以使用熟悉的数据准备和训练库，且无需离开笔记本。 若要利用此功能，请参阅[访问和浏览输入数据集](#access-and-explore-input-datasets)。
 
 ### <a name="configure-the-estimator"></a>配置估算器
 
@@ -190,7 +190,6 @@ X_test = load_data(X_test_path, False) / 255.0
 y_train = load_data(y_train_path, True).reshape(-1)
 y_test = load_data(y_test, True).reshape(-1)
 ```
-
 
 ## <a name="mount-vs-download"></a>装载和下载
 

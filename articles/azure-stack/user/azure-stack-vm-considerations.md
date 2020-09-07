@@ -3,17 +3,17 @@ title: Azure Stack Hub VM 功能
 description: 了解使用 Azure Stack Hub 中的 VM 时的不同功能和注意事项。
 author: WenJason
 ms.topic: article
-origin.date: 2/3/2020
-ms.date: 05/18/2020
+origin.date: 5/27/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: kivenkat
 ms.lastreviewed: 10/09/2019
-ms.openlocfilehash: 92552c86024c944a71255c89d12949407c9be65f
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: ce7d001ea6260099fbe0714ea87905123a0de2c6
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422583"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867756"
 ---
 # <a name="azure-stack-hub-vm-features"></a>Azure Stack Hub VM 功能
 
@@ -25,7 +25,7 @@ Azure Stack Hub 虚拟机 (VM) 提供可按需缩放的计算资源。 在部署
 | --- | --- | --- |
 | 虚拟机映像 | Azure 市场包含可用于创建 VM 的映像。 若要查看 Azure 市场中的可用映像列表，请参阅 [Azure 市场](https://market.azure.cn/zh-cn)页。 | Azure Stack Hub 市场中默认不会提供任何映像。 Azure Stack Hub 云管理员必须先将映像发布或下载到 Azure Stack Hub 市场，然后用户才能使用这些映像。 |
 | VHD 代系 | 第二代 VM 支持第一代 VM 所不支持的某些关键特性。 这些特性包括更大的内存和虚拟化持久性内存 (vPMEM)。 在本地运行的第二代 VM 具有 Azure 中尚不支持的一些功能。 有关详细信息，请参阅[对 Azure 上的第 2 代 VM 的支持](/virtual-machines/windows/generation-2)  | Azure Stack Hub 仅支持第一代 VM。 可以将第一代 VM 从 VHDX 转换为 VHD 文件格式，从动态扩展磁盘转换为固定大小磁盘。 无法更改 VM 的代次。 有关详细信息，请参阅[对 Azure 上的第 2 代 VM 的支持](/virtual-machines/windows/generation-2)。 |
-| 虚拟机大小 | Azure 支持各种不同的 VM 大小。 若要了解可用的大小和选项，请参阅 [Windows VM 大小](/virtual-machines/virtual-machines-windows-sizes)和 [Linux VM 大小](/virtual-machines/linux/sizes)主题。 | Azure Stack Hub 支持一部分可在 Azure 中使用的 VM 大小。 若要查看支持的大小列表，请参阅本文的 [VM 大小](#vm-sizes)部分。 |
+| 虚拟机大小 | Azure 支持各种不同的 VM 大小。 若要了解可用的大小和选项，请参阅 [Azure VM 大小](/virtual-machines/sizes)。 | Azure Stack Hub 支持一部分可在 Azure 中使用的 VM 大小。 若要查看支持的大小列表，请参阅本文的 [VM 大小](#vm-sizes)部分。 |
 | 虚拟机配额 | [配额限制](/azure-resource-manager/management/azure-subscription-service-limits#managing-limits)由 Azure 设置 | Azure Stack Hub 云管理员在提供 VM 给其用户之前，必须先分配配额。 |
 | 虚拟机扩展 |Azure 支持多种不同的 VM 扩展。 若要了解可用的扩展，请参阅 [VM 扩展和功能](/virtual-machines/windows/extensions-features)一文。| Azure Stack Hub 支持一部分可在 Azure 中使用的扩展，每个扩展有特定的版本。 Azure Stack Hub 云管理员可以选择要将哪些扩展提供给其用户使用。 若要查看支持的扩展列表，请参阅本文的 [VM 扩展](#vm-extensions)部分。 |
 | 虚拟机网络 | 分配给租户 VM 的公共 IP 地址可通过 Internet 访问。<br><br><br>Azure VM 具有固定的 DNS 名称。 | 只能在 Azure Stack 开发工具包环境中访问分配给租户 VM 的公共 IP 地址。 用户必须能够通过 [RDP](../asdk/asdk-connect.md#connect-to-azure-stack-using-rdp) 或 [VPN](../asdk/asdk-connect.md#connect-to-azure-stack-using-vpn) 访问 Azure Stack 开发工具包，才能连接到在 Azure Stack Hub 中创建的 VM。<br><br>在特定 Azure Stack Hub 实例中创建的 VM 的 DNS 名称基于云管理员配置的值。 |
@@ -106,9 +106,9 @@ Get-AzureRmResourceProvider | `
 必须根据产品使用权利和 Microsoft 许可条款使用 Windows 产品。 Azure Stack Hub 使用[自动 VM 激活](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/dn303421(v%3dws.11)) (AVMA) 来激活 Windows Server VM。
 
 - Azure Stack Hub 主机使用 Windows Server 2016 的 AVMA 密钥激活 Windows。 运行 Windows Server 2012 R2 或更高版本的所有 VM 都将自动激活。
-- 运行 Windows Server 2012 或更早版本的 VM 不会自动激活，必须使用 [MAK 激活](https://technet.microsoft.com/library/ff793438.aspx)进行激活。 若要使用 MAK 激活，必须提供自己的产品密钥。
+- 运行 Windows Server 2012 或更早版本的 VM 不会自动激活，必须使用 [MAK 激活](https://docs.microsoft.com/previous-versions/tn-archive/ff793438(v=technet.10))进行激活。 若要使用 MAK 激活，必须提供自己的产品密钥。
 
-Azure 使用 KMS 激活来激活 Windows VM。 如果将 VM 从 Azure Stack Hub 移到 Azure 并且遇到了激活问题，请参阅[排查 Azure Windows VM 激活问题](/virtual-machines/windows/troubleshoot-activation-problems)。 可以在 Azure 支持团队博客文章 [Troubleshooting Windows activation failures on Azure VMs](https://blogs.msdn.microsoft.com/mast/2017/06/14/troubleshooting-windows-activation-failures-on-azure-vms/)（排查 Azure VM 上的 Windows 激活故障）中找到其他信息。
+Azure 使用 KMS 激活来激活 Windows VM。 如果将 VM 从 Azure Stack Hub 移到 Azure 并且遇到了激活问题，请参阅[排查 Azure Windows VM 激活问题](/virtual-machines/windows/troubleshoot-activation-problems)。 可以在 Azure 支持团队博客文章 [Troubleshooting Windows activation failures on Azure VMs](https://docs.microsoft.com/archive/blogs/mast/troubleshooting-windows-activation-failures-on-azure-vms)（排查 Azure VM 上的 Windows 激活故障）中找到其他信息。
 
 ## <a name="high-availability"></a>高可用性
 

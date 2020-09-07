@@ -1,18 +1,20 @@
 ---
 title: 使用模板参考
 description: 使用 Azure 资源管理器模板参考来创建模板。
-author: rockboyfor
 origin.date: 04/23/2020
-ms.date: 06/22/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.topic: tutorial
 ms.author: v-yeche
 ms.custom: seodec18
-ms.openlocfilehash: 98853e6df737c2a2a618e603d3c93298c6ca08d5
-ms.sourcegitcommit: 48b5ae0164f278f2fff626ee60db86802837b0b4
+ms.openlocfilehash: 7d02bdc2e792011c62965c3517d14c5310c4171f
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85098714"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807922"
 ---
 # <a name="tutorial-utilize-the-resource-manager-template-reference"></a>教程：利用资源管理器模板参考
 
@@ -20,7 +22,7 @@ ms.locfileid: "85098714"
 
 在本教程中，请使用 Azure 快速入门模板中提供的基础模板。 可以使用模板参考文档来自定义模板。
 
-![资源管理器模板参考部署存储帐户](./media/template-tutorial-use-template-reference/resource-manager-template-tutorial-deploy-storage-account.png)
+:::image type="content" source="./media/template-tutorial-use-template-reference/resource-manager-template-tutorial-deploy-storage-account.png" alt-text="资源管理器模板参考部署存储帐户":::
 
 本教程涵盖以下任务：
 
@@ -37,27 +39,27 @@ ms.locfileid: "85098714"
 
 若要完成本文，需要做好以下准备：
 
-* 包含资源管理器工具扩展的 Visual Studio Code。 请参阅[使用 Visual Studio Code 创建 ARM 模板](use-vs-code-to-create-template.md)。
+* 包含资源管理器工具扩展的 Visual Studio Code。 请参阅[快速入门：使用 Visual Studio Code 创建 Azure 资源管理器模板](quickstart-create-templates-use-visual-studio-code.md)。
 
 ## <a name="open-a-quickstart-template"></a>打开快速入门模板
 
 [Azure 快速入门模板](https://github.com/Azure/azure-quickstart-templates/)是 ARM 模板的存储库。 无需从头开始创建模板，只需找到一个示例模板并对其自定义即可。 本快速入门中使用的模板称为[创建标准存储帐户](https://github.com/Azure/azure-quickstart-templates/tree/master/101-storage-account-create/)。 该模板定义 Azure 存储帐户资源。
 
-1. 在 Visual Studio Code 中，选择“文件”>“打开文件”。  
-1. 在“文件名”中粘贴以下 URL： 
+1. 在 Visual Studio Code 中，选择“文件”>“打开文件”。 
+1. 在“文件名”中粘贴以下 URL：
 
     ```url
     https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-storage-account-create/azuredeploy.json
     ```
 
-1. 选择“打开”以打开该文件。 
-1. 选择“文件”>“另存为”，将该文件作为 **azuredeploy.json** 保存到本地计算机。  
+1. 选择“打开”以打开该文件。
+1. 选择“文件”>“另存为”，将该文件作为 **azuredeploy.json** 保存到本地计算机。 
 
 ## <a name="understand-the-schema"></a>了解架构
 
 1. 在 VS Code 中将模板折叠到根级别。 你使用最简单的结构，其中包含以下元素：
 
-    ![资源管理器模板的最简单结构](./media/template-tutorial-use-template-reference/resource-manager-template-simplest-structure.png)
+    :::image type="content" source="./media/template-tutorial-use-template-reference/resource-manager-template-simplest-structure.png" alt-text="资源管理器模板的最简单结构":::
 
     * **$schema**：指定描述模板语言版本的 JSON 架构文件所在的位置。
     * **contentVersion**：为此元素指定任意值，以便记录模板中的重要更改。
@@ -66,43 +68,57 @@ ms.locfileid: "85098714"
     * **resources**：指定已在资源组中部署或更新的资源类型。
     * **outputs**：指定部署后返回的值。
 
-1. 展开“resources”  。 已定义 `Microsoft.Storage/storageAccounts` 资源。 SKU 名称使用参数值。  此参数称为 **storageAccountType**。
+1. 展开“resources”。 已定义 `Microsoft.Storage/storageAccounts` 资源。 SKU 名称使用参数值。  此参数称为 **storageAccountType**。
 
-    ![资源管理器模板存储帐户定义](./media/template-tutorial-use-template-reference/resource-manager-template-storage-resource.png)
+    :::image type="content" source="./media/template-tutorial-use-template-reference/resource-manager-template-storage-resource.png" alt-text="资源管理器模板存储帐户定义":::
 
 1. 展开 **parameters** 即可查看 **storageAccountType** 是如何定义的。 此参数有四个允许的值。 需找到其他允许的值，然后修改参数定义。
 
-    ![资源管理器模板存储帐户资源 SKU](./media/template-tutorial-use-template-reference/resource-manager-template-storage-resources-skus-old.png)
+    :::image type="content" source="./media/template-tutorial-use-template-reference/resource-manager-template-storage-resources-skus-old.png" alt-text="资源管理器模板存储帐户资源 SKU":::
 
 <!--Not Available on ## Find the template reference-->
 <!--Not Available on ## Edit the template-->
 ## <a name="deploy-the-template"></a>部署模板
 
-有关部署过程，请参阅 Visual Studio Code 快速入门中的[部署模板](quickstart-create-templates-use-visual-studio-code.md#deploy-the-template)部分。 部署模板时，请使用新添加的值指定 **storageAccountType** 参数，例如 **Premium_ZRS**。 如果使用原始快速入门模板，部署会失败，因为 Premium_ZRS  在Azure 中国云上是不允许使用的值。  若要传递参数值，请将以下开关添加到部署命令：
+<!--Not Available on [Azure local Shell](https://shell.azure.com)-->
 
-# <a name="cli"></a>[CLI](#tab/CLI)
+1. 在本地 Shell 中运行以下命令。 选择用于显示 PowerShell 代码或 CLI 代码的选项卡。
 
-```azurecli
---parameters storageAccountType='Premium_LRS'
-```
+    # <a name="cli"></a>[CLI](#tab/CLI)
 
-# <a name="powershell"></a>[PowerShell](#tab/PowerShell)
+    ```azurecli
+    echo "Enter a project name that is used to generate resource group name:" &&
+    read projectName &&
+    echo "Enter the location (i.e. chinaeast):" &&
+    read location &&
+    resourceGroupName="${projectName}rg" &&
+    az group create --name $resourceGroupName --location "$location" &&
+    az deployment group create --resource-group $resourceGroupName --template-file "$HOME/azuredeploy.json" --parameters storageAccountType='Standard_RAGRS'
+    ```
 
-```azurepowershell
--storageAccountType "Premium_LRS"
-```
+    # <a name="powershell"></a>[PowerShell](#tab/PowerShell)
 
-<!--CORRCT TO UPDATE TO Premium_LRS-->
----
+    ```azurepowershell
+    $projectName = Read-Host -Prompt "Enter a project name that is used to generate resource group name"
+    $location = Read-Host -Prompt "Enter the location (i.e. chinaeast)"
+    $resourceGroupName = "${projectName}rg"
+
+    New-AzResourceGroup -Name $resourceGroupName -Location "$location"
+    New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile "$HOME/azuredeploy.json" -storageAccountType "Standard_RAGRS"
+    ```
+
+    ---
+
+ 部署模板时，请使用新添加的值（例如 Standard_RAGRS）指定 storageAccountType 参数。 如果使用原始快速入门模板，部署会失败，因为 Standard_RAGRS 不是允许的值。
 
 ## <a name="clean-up-resources"></a>清理资源
 
 不再需要 Azure 资源时，请通过删除资源组来清理部署的资源。
 
-1. 在 Azure 门户上的左侧菜单中选择“资源组”  。
-2. 在“按名称筛选”字段中输入资源组名称。 
+1. 在 Azure 门户上的左侧菜单中选择“资源组”。
+2. 在“按名称筛选”字段中输入资源组名称。
 3. 选择资源组名称。  应会看到，该资源组中总共有六个资源。
-4. 在顶部菜单中选择“删除资源组”。 
+4. 在顶部菜单中选择“删除资源组”。
 
 ## <a name="next-steps"></a>后续步骤
 
@@ -111,5 +127,4 @@ ms.locfileid: "85098714"
 > [!div class="nextstepaction"]
 > [创建多个实例](./template-tutorial-create-multiple-instances.md)
 
-<!-- Update_Description: new article about template tutorial use template reference -->
-<!--NEW.date: 06/16/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

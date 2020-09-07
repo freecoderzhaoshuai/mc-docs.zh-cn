@@ -1,16 +1,16 @@
 ---
 title: 如何使用管理组 - Azure 治理
 description: 了解如何查看、维护、更新和删除管理组层次结构。
-origin.date: 04/15/2020
-ms.date: 08/06/2020
+origin.date: 08/10/2020
+ms.date: 08/27/2020
 ms.author: v-tawe
 ms.topic: conceptual
-ms.openlocfilehash: d2ede1ca67fe4858ebead3275ab7a1c915ae7bb3
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 0a9550097e5d33f3ec9752c2508314c636a2fa78
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917125"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951347"
 ---
 # <a name="manage-your-resources-with-management-groups"></a>使用管理组管理资源
 
@@ -67,11 +67,9 @@ az account management-group update --name 'Contoso' --display-name 'Contoso Grou
 
 若要删除某个管理组，必须满足以下要求：
 
-1. 该管理组下面没有任何子管理组或订阅。
+1. 该管理组下面没有任何子管理组或订阅。 若要将订阅或管理组移到另一个管理组，请参阅[在层次结构中移动管理组和订阅](#moving-management-groups-and-subscriptions)。
 
-   - 若要将订阅或管理组移到另一个管理组，请参阅[在层次结构中移动管理组和订阅](#moving-management-groups-and-subscriptions)。
-
-1. 你需要拥有对管理组的写入权限（“所有者”、“参与者”或“管理组参与者”）。 若要查看自己拥有哪些权限，请选择管理组，然后选择“IAM”。 若要详细了解 RBAC 角色，请参阅  
+1. 你需要拥有对管理组的写入权限（“所有者”、“参与者”或“管理组参与者”）。 若要查看自己拥有哪些权限，请选择管理组，然后选择“IAM”。 若要详细了解 Azure 角色，请参阅  
    [通过 RBAC 管理访问和权限](../../role-based-access-control/overview.md)。
 
 ### <a name="delete-in-the-portal"></a>在门户中删除
@@ -115,7 +113,7 @@ az account management-group delete --name 'Contoso'
 
 ## <a name="view-management-groups"></a>查看管理组
 
-可以查看你对其拥有直接管理角色或继承 RBAC 角色的任何管理组。  
+可以查看你对其拥有直接管理角色或继承 Azure 角色的任何管理组。  
 
 ### <a name="view-in-the-portal"></a>在门户中查看
 
@@ -217,7 +215,7 @@ az account management-group show --name 'Contoso' -e -r
 
 如果订阅上的“所有者”角色继承自当前管理组，你的移动目标会受限。 只能将订阅移到你在其中拥有“所有者”角色的另一管理组。 不能将它移到你在其中是参与者的管理组，因为你会失去订阅的所有权。 如果你直接分配到订阅的“所有者”角色的（而不是从管理组继承的），可将该订阅移到你身为参与者的任何管理组。
 
-若要查看自己在 Azure 门户中拥有哪些权限，请选择管理组，然后选择“IAM”。 有关 RBAC 角色的详细信息，请参阅[使用 RBAC 管理访问权限和权限](../../role-based-access-control/overview.md)。
+若要查看自己在 Azure 门户中拥有哪些权限，请选择管理组，然后选择“IAM”。 有关 Azure 角色的详细信息，请参阅[使用 RBAC 管理访问权限和权限](../../role-based-access-control/overview.md)。
 
 ## <a name="move-subscriptions"></a>移动订阅 
 

@@ -4,14 +4,14 @@ description: 了解如何使用 Azure PowerShell 对 Azure Redis 缓存执行管
 author: yegu-ms
 ms.service: cache
 ms.topic: conceptual
-ms.date: 07/10/2020
+ms.date: 08/24/2020
 ms.author: v-junlch
-ms.openlocfilehash: fad13e4ccbbe52c2f19d059674459851b8ddc274
-ms.sourcegitcommit: 65a7360bb14b0373e18ec8eaa288ed3ac7b24ef4
+ms.openlocfilehash: 78701ffe47dcace7256a34d99ddf082362e7b9a2
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86219731"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946924"
 ---
 # <a name="manage-azure-cache-for-redis-with-azure-powershell"></a>使用 Azure PowerShell 管理 Azure Redis 缓存
 > [!div class="op_single_selector"]
@@ -599,7 +599,7 @@ ms.locfileid: "86219731"
 可以使用 `Import-AzRedisCache` cmdlet 将数据导入 Azure Redis 缓存实例。
 
 > [!IMPORTANT]
-> 导入/导出仅适用于[高级层](cache-premium-tier-intro.md)缓存。 有关导入/导出的详细信息，请参阅[在 Azure Redis 缓存中导入和导出数据](cache-how-to-import-export-data.md)。
+> 导入/导出仅适用于[高级层](cache-overview.md#service-tiers)缓存。 有关导入/导出的详细信息，请参阅[在 Azure Redis 缓存中导入和导出数据](cache-how-to-import-export-data.md)。
 > 
 > 
 
@@ -663,7 +663,7 @@ ms.locfileid: "86219731"
 可以使用 `Export-AzRedisCache` cmdlet 将数据从 Azure Redis 缓存实例导出。
 
 > [!IMPORTANT]
-> 导入/导出仅适用于[高级层](cache-premium-tier-intro.md)缓存。 有关导入/导出的详细信息，请参阅[在 Azure Redis 缓存中导入和导出数据](cache-how-to-import-export-data.md)。
+> 导入/导出仅适用于[高级层](cache-overview.md#service-tiers)缓存。 有关导入/导出的详细信息，请参阅[在 Azure Redis 缓存中导入和导出数据](cache-how-to-import-export-data.md)。
 > 
 > 
 
@@ -728,7 +728,7 @@ ms.locfileid: "86219731"
 可以使用 `Reset-AzRedisCache` cmdlet 重启 Azure Redis 缓存实例。
 
 > [!IMPORTANT]
-> 重启仅适用于[高级层](cache-premium-tier-intro.md)缓存。 有关如何重启缓存的详细信息，请参阅[缓存管理 - 重启](cache-administration.md#reboot)。
+> 重启仅适用于[高级层](cache-overview.md#service-tiers)缓存。 有关如何重启缓存的详细信息，请参阅[缓存管理 - 重启](cache-administration.md#reboot)。
 > 
 > 
 

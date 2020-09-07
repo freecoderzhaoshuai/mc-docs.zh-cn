@@ -6,17 +6,17 @@ ms.service: cosmos-db
 ms.subservice: cosmosdb-sql
 ms.devlang: dotnet
 ms.topic: reference
-origin.date: 05/11/2020
-ms.date: 08/17/2020
-ms.testscope: no
-ms.testdate: ''
+origin.date: 08/05/2020
+ms.date: 08/24/2020
+ms.testscope: yes|no
+ms.testdate: 08/24/2020null
 ms.author: v-yeche
-ms.openlocfilehash: da8623f2fbfee20e4cd4609a84ab8c6ac17e20e2
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: e3340a83e2407dcac74c4e05a783591e16a82f11
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222410"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807767"
 ---
 # <a name="azure-cosmos-db-net-sdk-v3-for-sql-api-download-and-release-notes"></a>适用于 SQL API 的 Azure Cosmos DB .NET SDK v3：下载和发行说明
 > [!div class="op_single_selector"]
@@ -47,6 +47,39 @@ ms.locfileid: "88222410"
 预览功能被视为单独的分支，在准备就绪之前不会包含在正式版本中。 每个预览版本都列出了所有已启用的附加功能。
 
 该格式基于[保留 Changelog](https://keepachangelog.com/en/1.0.0/)，而此项目遵循[语义化版本控制](https://semver.org/spec/v2.0.0.html)。
+
+<a name="3.13.0-preview"></a>
+### <a name="3130-preview---2020-08-12"></a>[3.13.0-preview](https://www.nuget.org/packages/Microsoft.Azure.Cosmos/3.13.0-preview) - 2020-08-12
+
+#### <a name="added"></a>已添加
+- [#1725](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/1725) ChangeFeed：添加 ChangeFeedStartFrom 以支持 StartTimes x FeedRanges。 警告：对于预览版 SDK 而言，这是一个中断性变更
+- [#1764](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/1764) 性能：添加编译器优化标志
+- [#1768](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/1768) SessionToken：通过删除存储过程、触发器和 UDF 上用于 CRUD 的会话令牌，添加优化以减小标头大小
+
+#### <a name="fixed"></a>固定
+
+- [#1757](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/1757) Batch API：修复大小限制以减少超时
+- [#1758](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/1758) 连接性：修复使用 EnableTcpConnectionEndpointRediscovery 时的地址解析调用
+
+<a name="3.12.0"></a>
+### <a name="3120---2020-08-06"></a>[3.12.0](https://www.nuget.org/packages/Microsoft.Azure.Cosmos/3.12.0) - 2020-08-06
+
+#### <a name="added"></a>已添加 
+
+- [#1548](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/1548) 传输：添加优化以统一所有网关类的 HttpClient 使用
+- [#1569](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/1569) Batch API：为“事务批处理”添加请求选项支持
+- [#1693](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/1693) 性能：减少 GlobalAddress 冲突解决程序上的锁争用
+- [#1712](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/1712) 性能：添加优化以减少 AuthorizationHelper 内存分配
+- [#1715](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/1715) 可用性：针对暂时性连接问题添加跨区域重试机制
+- [#1721](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/1721) LINQ：添加对不区分大小写的搜索的支持（通过 jeffpardy）
+- [#1733](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/1733) 更改源处理器：添加租用存储的后向兼容性
+
+#### <a name="fixed"></a>固定
+
+- [#1720](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/1720) 网关跟踪：修复将 ActivityId 设置为 Guid.Empty 的 bug
+- [#1728](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/1728) 诊断：通过将 ActivityScope 移动到操作级别来修复它
+- [#1740](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/1740) 连接限制：修复 .NET core 以遵循网关连接限制
+- [#1744](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/1744) 传输：修复 PortReuseMode 和其他直接配置设置的使用问题
 
 <a name="3.11.0"></a>
 ### <a name="3110---2020-07-07"></a>[3.11.0](https://www.nuget.org/packages/Microsoft.Azure.Cosmos/3.11.0) - 2020-07-07
@@ -238,7 +271,7 @@ ms.locfileid: "88222410"
 - [#1107](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/1107) 源链接支持。
 - [#1121](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/1121) `StandByFeedIterator` 广度优先读取策略。
 
-#### <a name="fixed"></a>固定
+#### <a name="fixed"></a>已修复
 
 - [#1105](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/1105) 自定义序列化程序不再调用 SDK 拥有的会导致序列化异常的类型。
 - [#1112](https://github.com/Azure/azure-cosmos-dotnet-v3/pull/1112) 修复了 `DatabaseProperties` 之类的 SDK 属性，使其具有相同的 JSON 特性。

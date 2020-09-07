@@ -4,17 +4,17 @@ titleSuffix: Azure Stack Hub
 description: 列出有关 Windows Server 的 Azure Stack Hub 市场常见问题解答。
 author: WenJason
 ms.topic: article
-origin.date: 03/19/2020
-ms.date: 05/18/2020
+origin.date: 07/23/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: avishwan
 ms.lastreviewed: 08/29/2019
-ms.openlocfilehash: 1cb566665308470cb8939ac2f6afc8adea67ca8e
-ms.sourcegitcommit: 9811bf312e0d037cb530eb16c8d85238fd276949
+ms.openlocfilehash: 4ac575b515bd6027c1d4d1f8fc2c84f86c260790
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84275402"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868097"
 ---
 # <a name="azure-stack-hub-marketplace-faq"></a>Azure Stack Hub 市场常见问题解答
 
@@ -28,7 +28,7 @@ ms.locfileid: "84275402"
 
 接下来，如果任何虚拟机规模集引用特定版本，则应考虑是否会在以后对其进行缩放，并决定是否保留旧版本。 如果上述两个条件都不适用，请先在 Azure Stack Hub 市场中删除旧映像，然后下载新映像。 如果原始映像是使用“市场管理”下载的，请使用“市场管理”将其删除。 然后下载新版本。
 
-### <a name="what-are-the-licensing-options-for-windows-server-marketplace-images-on-azure-stack-hub"></a>Azure Stack Hub 上的 Windows Server 市场映像有哪些许可选项？
+### <a name="what-are-the-licensing-options-for-windows-server-images-on-azure-stack-hub-marketplace"></a>Azure Stack Hub 市场上的 Windows Server 映像有哪些许可选项？
 
 Azure 通过 Azure Stack Hub 市场提供两种版本的 Windows Server 映像。 在 Azure Stack Hub 环境中只能使用此映像的一个版本。  
 
@@ -75,7 +75,7 @@ Update-AzureRmVM -ResourceGroupName "<your RG>" -VM $vm
 
 这些映像应用 licenseType 参数，因此它们采用预付费模式。 可以设置此参数（请参阅以前的常见问题解答）。 这只适用于 Windows Server 软件，而不适用于 SQL 等分层产品（需要自带许可证）。 “预付费”许可不适用于分层软件产品。
 
-如果版本为 XX.X.20190410 或更高版本，则只能更改 Azure Stack Hub 市场中 SQL Server 映像的 **licenseType** 属性。 如果正在运行来自 Azure Stack Hub 市场的 SQL Server 映像的旧版本，则不能更改 **licenseType** 属性，并且必须使用 Azure Stack Hub 市场中的最新 SQL Server 映像重新部署。
+如果版本为 XX.X.20190410 或更高版本，则只能更改 Azure Stack Hub 市场中 SQL Server 映像的 licenseType 属性 。 如果正在运行来自 Azure Stack Hub 市场的 SQL Server 映像的旧版本，则不能更改 **licenseType** 属性，并且必须使用 Azure Stack Hub 市场中的最新 SQL Server 映像重新部署。
 
 ### <a name="i-have-an-enterprise-agreement-ea-and-will-be-using-my-ea-windows-server-license-how-do-i-make-sure-images-are-billed-correctly"></a>我已签署企业协议 (EA) 且将使用 EA Windows Server 许可证，如何确保映像正确计费？
 
@@ -112,11 +112,11 @@ slmgr /ipk <AVMA key>
 
 建议在运行 `sysprep` 命令之前，结合相应的密钥执行 `slmgr /ipk` 命令行。 或者，将 AVMA 密钥包含在任何 Unattend.exe 安装文件中。
 
-### <a name="i-am-trying-to-use-my-windows-server-2016-image-created-on-azure-and-its-not-activating-or-using-kms-activation"></a>我正在尝试使用自己在 Azure 上创建的 Windows Server 2016 映像，但它无法激活或者正在使用 KMS 激活。
+### <a name="i-am-trying-to-use-my-windows-server-2016-image-created-on-azure-and-its-not-activating-or-using-kms-activation"></a>我正在尝试使用自己在 Azure 上创建的 Windows Server 2016 映像，但它无法激活或者正在使用 KMS 激活
 
 运行 `slmgr /ipk` 命令。 Azure 映像可能无法正确回退到 AVMA，但如果它们可以访问 Azure KMS 系统，则会激活。 请确保将这些 VM 设置为使用 AVMA。
 
-### <a name="i-have-performed-all-of-these-steps-but-my-vms-are-still-not-activating"></a>我已执行上述所有步骤，但 VM 仍无法激活。
+### <a name="i-have-performed-all-of-these-steps-but-my-vms-are-still-not-activating"></a>我已执行上述所有步骤，但 VM 仍无法激活
 
 请联系硬件供应商，以确认是否安装了正确的 BIOS 标记。
 

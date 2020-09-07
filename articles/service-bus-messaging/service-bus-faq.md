@@ -2,22 +2,22 @@
 title: Azure 服务总线常见问题 (FAQ) | Azure
 description: 本文提供了一些有关 Azure 服务总线的常见问题解答 (FAQ)。
 ms.topic: article
-origin.date: 06/23/2020
-ms.date: 07/27/2020
-ms.testscope: yes
-ms.testdate: 07/20/2020
-ms.author: v-yeche
+origin.date: 07/15/2020
 author: rockboyfor
-ms.openlocfilehash: 9155e60447f97b5cc1aea14d1ce174258b5b5af5
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/17/2020
+ms.author: v-yeche
+ms.openlocfilehash: 1ed8bafbf75d16a51c930174d32dd39ef72fbcd8
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162124"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946622"
 ---
 # <a name="azure-service-bus---frequently-asked-questions-faq"></a>Azure 服务总线 - 常见问题解答 (FAQ)
 
-本文讨论了一些关于世纪互联 Azure 服务总线的常见问题解答。 还可以访问 [Azure 支持常见问题解答](https://www.azure.cn/support/faq/)了解常规的 Azure 定价和支持信息。
+本文讨论了一些关于 Azure 服务总线的常见问题解答。 还可以访问 [Azure 支持常见问题解答](https://www.azure.cn/support/faq/)了解常规的 Azure 定价和支持信息。
 
 [!INCLUDE [updated-for-az](../../includes/updated-for-az.md)]
 
@@ -56,8 +56,8 @@ ms.locfileid: "87162124"
 | SBMP | 9350 到 9354 | 请参阅[连接模式](https://docs.azure.cn/dotnet/api/microsoft.servicebus.connectivitymode?view=azure-dotnet) |
 | HTTP、HTTPS | 80、443 | 
 
-### <a name="what-ip-addresses-do-i-need-to-whitelist"></a>我需要将哪些 IP 地址加入允许列表？
-若要找到适合加入连接的允许列表的 IP 地址，请执行以下步骤：
+### <a name="what-ip-addresses-do-i-need-to-add-to-allow-list"></a>需要将哪些 IP 地址添加到允许列表？
+若要查找要添加到允许列表以进行连接的正确 IP 地址，请执行以下步骤：
 
 1. 从命令提示符处运行以下命令： 
 
@@ -88,12 +88,17 @@ ms.locfileid: "87162124"
     ```
 3. 为每一个运行 nslookup，使用后缀 s1、s2 和 s3 获取所有三个在三个可用性区域中运行的实例的 IP 地址。 
 
+### <a name="where-can-i-find-the-ip-address-of-the-client-sendingreceiving-messages-tofrom-a-namespace"></a>我可以在哪里找到客户端向命名空间发送/从中接收消息的 IP 地址？ 
+我们不记录客户端向命名空间发送或从中接收消息的 IP 地址。 重新生成密钥，以便所有现有的客户端将无法进行身份验证并查看基于角色的访问控制 ([RBAC](authenticate-application.md#azure-built-in-roles-for-azure-service-bus)) 设置，以确保仅允许的用户或应用程序可以访问该命名空间。 
+
+如果使用的是高级命名空间，请使用 [IP 筛选](service-bus-ip-filtering.md)、[虚拟网络服务终结点](service-bus-service-endpoints.md)和[专用终结点](private-link-service.md)来限制对命名空间的访问。 
+
 ## <a name="best-practices"></a>最佳实践
 ### <a name="what-are-some-azure-service-bus-best-practices"></a>Azure 服务总线的最佳实践有哪些？
 请参阅[使用服务总线改进性能的最佳做法][Best practices for performance improvements using Service Bus] - 此文介绍了如何在交换消息时优化性能。
 
 ### <a name="what-should-i-know-before-creating-entities"></a>创建实体前的须知事项有哪些？
-队列和主题的以下属性是固定不变的。 预配实体时，请考虑此限制，因为必须创建新的替代实体才可修改这些属性。
+队列和主题的以下属性是固定不变的。 预配实体时，请考虑此限制，因为只有创建新的替代实体才可修改这些属性。
 
 * 分区
 * 会话
@@ -105,23 +110,23 @@ ms.locfileid: "87162124"
 
 [服务总线定价和计费](https://www.azure.cn/pricing/details/service-bus/)译文介绍了服务总线中的计费标准。 有关服务总线定价选项的具体信息，请参阅[服务总线定价详细信息](https://www.azure.cn/pricing/details/service-bus/)。
 
-还可以访问 [Azure 支持常见问题解答](https://support.azure.cn/support/contact/)了解常规的 Azure 定价信息。 
+还可以访问 [Azure 支持常见问题解答](https://www.azure.cn/support/faq/)了解常规的 Azure 定价信息。 
 
 ### <a name="how-do-you-charge-for-service-bus"></a>服务总线如何收取费用？
 有关服务总线定价的完整信息，请参阅[服务总线定价][Pricing overview]。 除标示的价格外，还需为在其中部署应用程序的数据中心之外的相关数据输出支付费用。
 
-### <a name="what-usage-of-service-bus-is-subject-to-data-transfer-what-is-not"></a>服务总线的哪些使用情况受数据传输限制？ 哪些不受其限制？
+### <a name="what-usage-of-service-bus-is-subject-to-data-transfer-what-isnt"></a>服务总线的哪些使用情况受数据传输限制？ 哪些不受限制？
 在给定 Azure 区域内的任何数据传输和入站数据传输均不收费。 区域外的数据传输需收取输出费用，详见[此处](https://www.azure.cn/pricing/details/data-transfer/)。
 
 ### <a name="does-service-bus-charge-for-storage"></a>服务总线是否对存储收费？
-否，服务总线不对存储收费。 但是，对每个队列/主题可以保留的数据最大量设有配额限制。 请参阅下一个常见问题。
+不能。 服务总线不对存储收费。 但是，对每个队列/主题可以保留的数据最大量设有配额限制。 请参阅下一个常见问题。
 
 ### <a name="i-have-a-service-bus-standard-namespace-why-do-i-see-charges-under-resource-group-system"></a>我有一个服务总线标准命名空间。 为什么我在资源组 '$system' 下看到收费信息？
-Azure 服务总线最近升级了计费组件。 因此，如果你有服务总线标准命名空间，则可能会在资源组 '$system' 下看到资源 '/subscriptions/<azure_subscription_id>/resourceGroups/$system/providers/Microsoft.ServiceBus/namespaces/$system' 的行项目。
+Azure 服务总线最近升级了计费组件。 由于此更改，如果你有服务总线标准命名空间，则可能会在资源组 '$system' 下看到资源 '/subscriptions/<azure_subscription_id>/resourceGroups/$system/providers/Microsoft.ServiceBus/namespaces/$system' 的行项目。
 
 这些费用表示已预配服务总线标准命名空间的每个 Azure 订阅的基本费用。 
 
-请务必注意，这些不是新的费用，即它们也存在于以前的计费模型中。 唯一的更改是它们现在列在 '$system' 下。 这是由于新的计费系统中的限制所致，新的计费系统将订阅级别的费用分组，而不是绑定到 '$system' 资源 ID 下的特定资源。
+请务必注意，这些费用不是新的，即它们也存在于以前的计费模型中。 唯一的更改是它们现在列在 '$system' 下。 这是由于新的计费系统中的限制所致，新的计费系统将订阅级别的费用分组，而不是绑定到 '$system' 资源 ID 下的特定资源。
 
 ## <a name="quotas"></a>配额
 
@@ -168,7 +173,9 @@ Move-AzResource -DestinationResourceGroupName 'targetRG' -DestinationSubscriptio
 若要了解有关服务总线的详细信息，请参阅以下文章：
 
 * [Azure 服务总线高级版简介（博客文章）](https://azure.microsoft.com/blog/introducing-azure-service-bus-premium-messaging/)
-* [Azure 服务总线高级版简介 (Channel9)](https://channel9.msdn.com/Blogs/Subscribe/Introducing-Azure-Service-Bus-Premium-Messaging)
+    
+    <!--Not Available on channel9.msdn.com/Blogs/Subscribe/Introducing-Azure-Service-Bus-Premium-Messaging-->
+    
 * [服务总线概述](service-bus-messaging-overview.md)
 * [服务总线队列入门](service-bus-dotnet-get-started-with-queues.md)
 

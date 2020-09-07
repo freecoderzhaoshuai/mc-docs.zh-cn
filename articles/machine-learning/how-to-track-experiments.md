@@ -11,12 +11,12 @@ ms.subservice: core
 ms.date: 07/30/2020
 ms.topic: conceptual
 ms.custom: how-to
-ms.openlocfilehash: dc1f357570f22fcefb97542062dcec955d1e2727
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 02a18a185a2f711833351578b07dfa4def4ff57a
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228448"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946745"
 ---
 # <a name="enable-logging-in-azure-ml-training-runs"></a>在 Azure 机器学习训练运行中启用日志记录功能
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -178,6 +178,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 Azure 机器学习还可以在训练期间记录其他来源的信息，例如自动化机器学习运行或运行作业的 Docker 容器。 这些日志未进行记录，但如果你遇到问题并联系了 Microsoft 支持部门，他们可以在排除故障时使用这些日志。
 
+有关 Azure 机器学习设计器（预览版）中的日志记录指标的信息，请参阅[如何在设计器（预览版）中记录指标](how-to-track-designer-experiments.md)
 
 ## <a name="example-notebooks"></a>示例笔记本
 下面的笔记本展示了本文中的概念：
@@ -191,5 +192,6 @@ Azure 机器学习还可以在训练期间记录其他来源的信息，例如�
 
 请参阅以下文章，详细了解如何使用 Azure 机器学习：
 
+* 了解如何[在 Azure 机器学习设计器（预览版）中记录指标](how-to-track-designer-experiments.md)。
 
 * 查看教程[使用 Azure 机器学习训练图像分类模型](tutorial-train-models-with-aml.md)中的示例，了解如何注册和部署最佳模型。

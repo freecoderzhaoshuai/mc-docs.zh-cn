@@ -2,25 +2,31 @@
 title: 使用 Azure CLI 和模板部署资源
 description: 使用 Azure 资源管理器和 Azure CLI 将资源部署到 Azure。 资源在 Resource Manager 模板中定义。
 ms.topic: conceptual
-origin.date: 06/04/2020
-ms.date: 06/22/2020
+origin.date: 07/21/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 79e7417343931abd72735d4957abf55d9bc18858
-ms.sourcegitcommit: 48b5ae0164f278f2fff626ee60db86802837b0b4
+ms.openlocfilehash: 27a71e147ee670a43f0c00c5540780c8a5d5fe20
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85098740"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807778"
 ---
 # <a name="deploy-resources-with-arm-templates-and-azure-cli"></a>通过 ARM 模板和 Azure CLI 来部署资源
 
-本文介绍了如何将 Azure CLI 与 Azure 资源管理器 (ARM) 模板配合使用，以便将资源部署到 Azure。 如果不熟悉部署和管理 Azure 解决方案的概念，请参阅[模版部署概述](overview.md)。
+本文介绍了如何将 Azure CLI 与 Azure 资源管理器模板（ARM 模板）配合使用，以便将资源部署到 Azure。 如果不熟悉部署和管理 Azure 解决方案的概念，请参阅[模版部署概述](overview.md)。
 
 部署命令在 Azure CLI 版本 2.2.0 中已更改。 本文中的示例需要 Azure CLI 2.2.0 或更高版本。
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
 
 <!-- Not Available on Cloud Shell -->
+
+[!INCLUDE [azure-cli-2-azurechinacloud-environment-parameter](../../../includes/azure-cli-2-azurechinacloud-environment-parameter.md)]
+
 
 ## <a name="deployment-scope"></a>部署范围
 
@@ -30,33 +36,33 @@ ms.locfileid: "85098740"
 
 * 若要部署到资源组****，请使用 [az deployment group create](https://docs.microsoft.com/cli/azure/deployment/group?view=azure-cli-latest#az-deployment-group-create)：
 
-  ```azurecli
-  az deployment group create --resource-group <resource-group-name> --template-file <path-to-template>
-  ```
+    ```azurecli
+    az deployment group create --resource-group <resource-group-name> --template-file <path-to-template>
+    ```
 
-* 若要部署到订阅****，请使用 [az deployment sub create](https://docs.azure.cn/cli/deployment/sub?view=azure-cli-latest#az-deployment-sub-create)：
+* 若要部署到订阅****，请使用 [az deployment sub create](https://docs.microsoft.com/cli/azure/deployment/sub?view=azure-cli-latest#az-deployment-sub-create)：
 
-  ```azurecli
-  az deployment sub create --location <location> --template-file <path-to-template>
-  ```
+    ```azurecli
+    az deployment sub create --location <location> --template-file <path-to-template>
+    ```
 
-有关订阅级部署的详细信息，请参阅[在订阅级别创建资源组和资源](deploy-to-subscription.md)。
+    有关订阅级部署的详细信息，请参阅[在订阅级别创建资源组和资源](deploy-to-subscription.md)。
 
 * 若要部署到管理组****，请使用 [az deployment mg create](https://docs.microsoft.com/cli/deployment/mg?view=azure-cli-latest#az-deployment-mg-create)：
 
-  ```azurecli
-  az deployment mg create --location <location> --template-file <path-to-template>
-  ```
+    ```azurecli
+    az deployment mg create --location <location> --template-file <path-to-template>
+    ```
 
-  有关管理组级部署的详细信息，请参阅[在管理组级别创建资源](deploy-to-management-group.md)。
+    有关管理组级部署的详细信息，请参阅[在管理组级别创建资源](deploy-to-management-group.md)。
 
 * 若要部署到租户****，请使用 [az deployment tenant create](https://docs.microsoft.com/cli/azure/deployment/tenant?view=azure-cli-latest#az-deployment-tenant-create)：
 
-  ```azurecli
-  az deployment tenant create --location <location> --template-file <path-to-template>
-  ```
+    ```azurecli
+    az deployment tenant create --location <location> --template-file <path-to-template>
+    ```
 
-  有关租户级别部署的详细信息，请参阅[在租户级别创建资源](deploy-to-tenant.md)。
+    有关租户级别部署的详细信息，请参阅[在租户级别创建资源](deploy-to-tenant.md)。
 
 本文中的示例使用资源组部署。
 
@@ -66,11 +72,9 @@ ms.locfileid: "85098740"
 
 1. 登录到 Azure 帐户
 2. 创建用作已部署资源的容器的资源组。 资源组名称只能包含字母数字字符、句点、下划线、连字符和括号。 它最多可以包含 90 个字符。 它不能以句点结尾。
-3. 将定义了要创建的资源的模板部署到资源组
+3. 将定义了要创建的资源的模板部署到资源组。
 
 模板可以包括可用于自定义部署的参数。 例如，可以提供为特定环境（如开发环境、测试环境和生产环境）定制的值。 示例模板定义了存储帐户 SKU 的参数。
-
-[!INCLUDE [azure-cli-2-azurechinacloud-environment-parameter](../../../includes/azure-cli-2-azurechinacloud-environment-parameter.md)]
 
 以下示例将创建一个资源组，并从本地计算机部署模板：
 
@@ -88,6 +92,32 @@ az deployment group create \
 ```output
 "provisioningState": "Succeeded",
 ```
+
+## <a name="deployment-name"></a>部署名称
+
+在前面的示例中，你已将部署命名为 `ExampleDeployment`。 如果没有为部署提供名称，将使用模板文件的名称。 例如，如果部署一个名为 `azuredeploy.json` 的模板，但未指定部署名称，则该部署将命名为 `azuredeploy`。
+
+每次运行部署时，一个包含部署名称的条目会添加到资源组的部署历史记录中。 如果运行另一个部署并为其指定了相同的名称，则会将先前的条目替换为当前部署。 如果要在部署历史记录中保持唯一条目，请为每个部署指定唯一名称。
+
+若要创建唯一名称，你可以分配一个随机数。
+
+```azurecli
+deploymentName='ExampleDeployment'$RANDOM
+```
+
+或者，添加日期值。
+
+```azurecli
+deploymentName='ExampleDeployment'$(date +"%d-%b-%Y")
+```
+
+如果使用相同的部署名称对同一资源组运行并发部署，则仅会完成最后一个部署。 尚未完成的具有相同名称的任何部署都将被最后一个部署所替换。 例如，如果你运行一个名为 `newStorage` 的部署，它部署了一个名为 `storage1` 的存储帐户；与此同时，你运行了另一个名为 `newStorage` 的部署，它部署了一个名为 `storage2` 的存储帐户，则你将仅部署一个存储帐户。 生成的存储帐户名为 `storage2`。
+
+但是，如果你运行一个名为 `newStorage` 的部署，它部署了一个名为 `storage1` 的存储帐户；在该部署完成时你又立即运行了另一个名为 `newStorage` 的部署，它部署了一个名为 `storage2` 的存储帐户，则你将有两个存储帐户。 一个名为 `storage1`，另一个名为 `storage2`。 但是，部署历史记录中只有一个条目。
+
+为每个部署指定唯一的名称时，可以并发运行它们而不会发生冲突。 如果你运行一个名为 `newStorage1` 的部署，它部署了一个名为 `storage1` 的存储帐户；与此同时，你又运行了另一个名为 `newStorage2` 的部署，它部署了一个名为 `storage2` 的存储帐户，则部署历史记录中将有两个存储帐户和两个条目。
+
+为避免与并发部署冲突并确保部署历史记录中的条目是唯一的，请为每个部署指定唯一的名称。
 
 ## <a name="deploy-remote-template"></a>部署远程模板
 
@@ -108,12 +138,14 @@ az deployment group create \
 
 ## <a name="preview-changes"></a>预览更改
 
-在部署模板之前，可以预览模板将对环境做出的更改。 使用[模拟操作](template-deploy-what-if.md)验证模板是否会进行你所期望的更改。 模拟操作还验证模板是否有错误。
+在部署模板之前，可以预览模板将对环境做出的更改。 使用[假设操作](template-deploy-what-if.md)验证模板是否进行了预期的更改。 模拟操作还验证模板是否有错误。
 
 
 <!--MOONCAKE: Not Available on Cloud Shell and corresponding code -->
 <!--Not Available on [!INCLUDE [resource-manager-cloud-shell-deploy.md](../../includes/resource-manager-cloud-shell-deploy.md)]-->
+
 在本地 Shell 中使用以下命令
+
 ```azurecli
 az group create --name examplegroup --location "China East"
 az deployment group create --resource-group examplegroup \
@@ -194,57 +226,6 @@ az deployment group create \
     "[resourceId('Microsoft.Storage/storageAccounts/', variables('storageAccountName'))]",
     "[resourceId('Microsoft.Network/networkInterfaces/', variables('nicName'))]"
   ],
-```
-
-## <a name="test-a-template-deployment"></a>测试模板部署
-
-若要测试模板和参数值而不实际部署任何资源，请使用 [az group deployment validate](https://docs.azure.cn/cli/group/deployment?view=azure-cli-latest#az-group-deployment-validate)。
-
-```azurecli
-az group deployment validate \
-  --resource-group ExampleGroup \
-  --template-file storage.json \
-  --parameters @storage.parameters.json
-```
-
-如果未检测到错误，则该命令将返回有关测试部署的信息。 需要特别注意的是，**error** 值为 null。
-
-```output
-{
-  "error": null,
-  "properties": {
-      ...
-```
-
-如果检测到错误，则该命令将返回一条错误消息。 例如，如果为存储帐户 SKU 传递不正确的值，将返回以下错误：
-
-```output
-{
-  "error": {
-    "code": "InvalidTemplate",
-    "details": null,
-    "message": "Deployment template validation failed: 'The provided value 'badSKU' for the template parameter
-      'storageAccountType' at line '13' and column '20' is not valid. The parameter value is not part of the allowed
-      value(s): 'Standard_LRS,Standard_ZRS,Standard_GRS,Standard_RAGRS,Premium_LRS'.'.",
-    "target": null
-  },
-  "properties": null
-}
-```
-
-如果模板有语法错误，该命令将返回一个错误，指示它无法分析该模板。 该消息会指出分析错误的行号和位置。
-
-```output
-{
-  "error": {
-    "code": "InvalidTemplate",
-    "details": null,
-    "message": "Deployment template parse failed: 'After parsing a value an unexpected character was encountered:
-      \". Path 'variables', line 31, position 3.'.",
-    "target": null
-  },
-  "properties": null
-}
 ```
 
 ## <a name="next-steps"></a>后续步骤

@@ -2,18 +2,19 @@
 title: 服务总线死信队列 | Azure
 description: 介绍 Azure 服务总线中的死信队列。 服务总线队列和主题订阅提供一个名为死信队列的辅助子队列。
 ms.topic: article
+author: rockboyfor
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-author: rockboyfor
-ms.openlocfilehash: d19f8cd04d177d5c10575c6648292db93376faee
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.custom: fasttrack-edit
+ms.openlocfilehash: 6c55d7c3dd5604c1d7e181cbc357d1d724403533
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162396"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946623"
 ---
 # <a name="overview-of-service-bus-dead-letter-queues"></a>服务总线死信队列概述
 
@@ -32,7 +33,7 @@ DLQ 不会自动执行清理操作。 消息将保留在 DLQ 中，直到显式�
 ## <a name="dlq-message-count"></a>DLQ 消息计数
 无法在主题级别获取死信队列中的消息计数。 这是因为消息不会驻留在主题级别，除非服务总线引发内部错误。 相反，当发送方将消息发送给主题时，消息会在毫秒内转发给主题的订阅，因此消息不再驻留于主题级别。 所以，你可以在与主题的订阅相关联的 DLQ 中查看消息。 在以下示例中，Service Bus Explorer 显示订阅“test1”的 DLQ 中目前有 62 条消息。 
 
-![DLQ 消息计数](./media/service-bus-dead-letter-queues/dead-letter-queue-message-count.png)
+:::image type="content" source="./media/service-bus-dead-letter-queues/dead-letter-queue-message-count.png" alt-text="DLQ 消息计数":::
 
 还可以通过使用 Azure CLI 命令：[`az servicebus topic subscription show`](https://docs.azure.cn/cli/servicebus/topic/subscription?view=azure-cli-latest#az-servicebus-topic-subscription-show) 来获取 DLQ 消息的计数。 
 
@@ -62,7 +63,7 @@ DLQ 不会自动执行清理操作。 消息将保留在 DLQ 中，直到显式�
 
 [QueueDescription.EnableDeadLetteringOnMessageExpiration](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.queuedescription?view=azure-dotnet) 或 [SubscriptionDescription.EnableDeadLetteringOnMessageExpiration](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.subscriptiondescription?view=azure-dotnet) 属性设置为 **true**（默认值是 **false**）时，所有到期的消息将移到 DLQ，并指定 `TTLExpiredException` 原因代码。
 
-只有在主队列或订阅中至少有一个活动的接收器正在拉取时，才会清除过期的消息，并将它们移动到 DLQ；此行为是设计使然。
+只有当至少有一个活动的接收器正在从主队列或订阅中拉取时，才会清除过期的消息和将其移动到 DLQ，并且[延迟消息](./message-deferral.md)在过期后也不会被清除和移动到死信队列。 这些行为是设计的结果。
 
 ## <a name="errors-while-processing-subscription-rules"></a>处理订阅规则时的错误
 

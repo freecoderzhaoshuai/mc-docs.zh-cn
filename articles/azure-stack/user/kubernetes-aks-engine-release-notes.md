@@ -4,19 +4,18 @@ description: 了解更新 Azure Stack Hub 上的 AKS 引擎需要采取的步骤
 author: WenJason
 ms.topic: article
 origin.date: 06/29/2020
-ms.date: 07/20/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: waltero
 ms.lastreviewed: 06/25/2020
-ms.openlocfilehash: 4528d267d615a20ed1c220d5e9b6c6ff4be0740c
-ms.sourcegitcommit: e9ffd50aa5eaab402a94bfabfc70de6967fe6278
+ms.openlocfilehash: bb8f68b4c34eec1057f26644299e3edba7e9997b
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2020
-ms.locfileid: "86307390"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867963"
 ---
 # <a name="release-notes-for-the-aks-engine-on-azure-stack-hub"></a>Azure Stack Hub 上的 AKS 引擎发行说明
-::: moniker range=">=azs-2002"
 适用于 ASK 引擎的版本 0.51.0。
 
 本文介绍了 Azure Stack Hub 上的 Azure Kubernetes 服务 (AKS) 引擎更新的内容。 此更新包括对面向 Azure Stack Hub 平台的最新版 AKS 引擎的改进和修复。 请注意，本文并不是为了记录 Azure 的 AKS 引擎的发布信息。
@@ -29,7 +28,7 @@ AKS 引擎升级命令完全自动执行群集的升级过程，它负责处理�
 
 -   你是否使用了正确的市场项（即 AKS 基础 Ubuntu 16.04-LTS 映像发行版）作为你的 AKS 引擎版本？ 可以在“下载新映像和 AKS 引擎”部分中找到版本。
 
--   是否为目标群集使用了正确的群集规范 (`apimodel.json`) 和资源组？ 最初部署群集时，已在输出目录中生成此文件。 请参阅[部署 Kubernetes 群集](/azure-stack/user/azure-stack-kubernetes-aks-engine-deploy-cluster#deploy-a-kubernetes-cluster)中的 `deploy` 命令参数。
+-   是否为目标群集使用了正确的群集规范 (`apimodel.json`) 和资源组？ 最初部署群集时，已在输出目录中生成此文件。 请参阅[部署 Kubernetes 群集](./azure-stack-kubernetes-aks-engine-deploy-cluster.md#deploy-a-kubernetes-cluster)中的 `deploy` 命令参数。
 
 -   是否使用了可靠的计算机来运行 AKS 引擎并从中执行升级操作？
 
@@ -45,7 +44,7 @@ AKS 引擎升级命令完全自动执行群集的升级过程，它负责处理�
 
 ### <a name="use-the-upgrade-command"></a>使用升级命令
 
-你需要使用 AKS 引擎的 `upgrade` 命令，如下面的文章[升级 Azure Stack Hub 上的 Kubernetes 群集](/azure-stack/user/azure-stack-kubernetes-aks-engine-upgrade)所述。
+你需要使用 AKS 引擎的 `upgrade` 命令，如下面的文章[升级 Azure Stack Hub 上的 Kubernetes 群集](./azure-stack-kubernetes-aks-engine-upgrade.md)所述。
 
 ### <a name="upgrade-interruptions"></a>升级中断
 
@@ -73,9 +72,9 @@ AKS 引擎升级命令完全自动执行群集的升级过程，它负责处理�
 
     -   版本：2020.05.13
 
-    -   按照[将 Azure Kubernetes 服务 (AKS) 引擎必备组件添加到 Azure Stack Hub 市场](/azure-stack/operator/azure-stack-aks-engine)一文中的说明进行操作
+    -   按照[将 Azure Kubernetes 服务 (AKS) 引擎必备组件添加到 Azure Stack Hub 市场](../operator/azure-stack-aks-engine.md)一文中的说明进行操作
 
--   Kubernetes 群集管理员将需要下载新的 aks-engine 版本 0.51.0。 请参阅下面的文章[在 Linux 上的 Azure Stack Hub 中安装 AKS 引擎](/azure-stack/user/azure-stack-kubernetes-aks-engine-deploy-linux)中的说明。 你可以遵循用于首次安装群集的过程。 此更新将覆盖以前的二进制文件。 例如，如果你使用了 get-akse.sh 脚本，请按照[在联网环境中安装](/azure-stack/user/azure-stack-kubernetes-aks-engine-deploy-linux#install-in-a-connected-environment)部分中所述的步骤进行操作。 如果你是在 Windows 系统上安装，则此过程同样适用，请参阅[在 Windows 上的 Azure Stack Hub 中安装 AKS 引擎](/azure-stack/user/azure-stack-kubernetes-aks-engine-deploy-windows)一文。
+-   Kubernetes 群集管理员将需要下载新的 aks-engine 版本 0.51.0。 请参阅下面的文章[在 Linux 上的 Azure Stack Hub 中安装 AKS 引擎](./azure-stack-kubernetes-aks-engine-deploy-linux.md)中的说明。 你可以遵循用于首次安装群集的过程。 此更新将覆盖以前的二进制文件。 例如，如果你使用了 get-akse.sh 脚本，请按照[在联网环境中安装](./azure-stack-kubernetes-aks-engine-deploy-linux.md#install-in-a-connected-environment)部分中所述的步骤进行操作。 如果你是在 Windows 系统上安装，则此过程同样适用，请参阅[在 Windows 上的 Azure Stack Hub 中安装 AKS 引擎](./azure-stack-kubernetes-aks-engine-deploy-windows.md)一文。
 
 ## <a name="aks-engine-and-azure-stack-version-mapping"></a>AKS 引擎和 Azure Stack 版本映射
 
@@ -116,7 +115,7 @@ AKS 引擎升级命令完全自动执行群集的升级过程，它负责处理�
 -   确保了 pod-security-policy 是加载的第一个加载项 ([#3313](https://github.com/Azure/aks-engine/issues/3313))
 -   已将 Azure CNI 版本更新为 v 1.1.0 ([#3075](https://github.com/Azure/aks-engine/issues/3075))（预览版）
 -   添加了功能和修补程序以支持 Azure Stack Hub（预览版）中的 Windows 容器：
-    -   对 Windows 版本收集进行了修复 ([#2954](https://github.com/Azure/aks-engine/issues/2954))
+    -   对 Windows 版本收集进行了修复 ([#2954](https://github.com/Azure/aks-engine/pull/2954))
     -   更新了 Azure Stack Windows 二进制组件名称 ([#3231](https://github.com/Azure/aks-engine/issues/3231))
     -   更新了 Azure Stack Hub 上的 Windows 映像验证 ([#3260](https://github.com/Azure/aks-engine/issues/3260))
     -   更新了 Windows VHD 以包括五月修补程序 ([#3263](https://github.com/Azure/aks-engine/issues/3263))
@@ -140,10 +139,7 @@ AKS 引擎升级命令完全自动执行群集的升级过程，它负责处理�
 
 -   https://github.com/Azure/aks-engine/releases/tag/v0.49.0
 -   https://github.com/Azure/aks-engine/releases/tag/v0.50.0
--   https://github.com/Azure/aks-engine/releases/tag/v0.51.0
-::: moniker-end
-::: moniker range="<=azs-1910"
-适用于 ASK 引擎的 0.48.0 版或更低版本。
+-   https://github.com/Azure/aks-engine/releases/tag/v0.51.0 适用于 ASK 引擎的 0.48.0 版或更低版本。
 
 本文介绍了 Azure Stack Hub 上的 Azure Kubernetes 服务 (AKS) 引擎更新的内容。 此更新包括对面向 Azure Stack Hub 平台的最新版 AKS 引擎的改进和修复。 请注意，本文的用途并非记录适用于全球 Azure 的 AKS 引擎的发布信息。
 
@@ -155,7 +151,7 @@ AKS 引擎升级命令完全自动执行群集的升级过程，它负责处理�
 
 -   你是否使用了正确的市场项（即 AKS 基础 Ubuntu 16.04-LTS 映像发行版）作为你的 AKS 引擎版本？ 可以在[下载新的 AKS 基础 Ubuntu 映像和 AKS 引擎版本](#download-new-image-and-aks-engine)部分中找到版本。
 
--   是否为目标群集使用了正确的群集规范 (apimodel.json) 和资源组？ 最初部署群集时，已在输出目录中生成此文件。 请参阅[部署 Kubernetes 群集](/azure-stack/user/azure-stack-kubernetes-aks-engine-deploy-cluster#deploy-a-kubernetes-cluster)中的“deploy”命令参数。
+-   是否为目标群集使用了正确的群集规范 (apimodel.json) 和资源组？ 最初部署群集时，已在输出目录中生成此文件。 请参阅[部署 Kubernetes 群集](./azure-stack-kubernetes-aks-engine-deploy-cluster.md#deploy-a-kubernetes-cluster)中的“deploy”命令参数。
 
 -   是否使用了可靠的计算机来运行 AKS 引擎并从中执行升级操作？
 
@@ -171,7 +167,7 @@ AKS 引擎升级命令完全自动执行群集的升级过程，它负责处理�
 
 ### <a name="use-the-upgrade-command"></a>使用升级命令
 
-你需要使用 AKS 引擎的“upgrade”命令，如[升级 Azure Stack Hub 上的 Kubernetes 群集](/azure-stack/user/azure-stack-kubernetes-aks-engine-upgrade)一文所述。
+你需要使用 AKS 引擎的“upgrade”命令，如[升级 Azure Stack Hub 上的 Kubernetes 群集](./azure-stack-kubernetes-aks-engine-upgrade.md)一文所述。
 
 ### <a name="upgrade-interruptions"></a>升级中断
 
@@ -195,9 +191,9 @@ AKS 引擎升级命令完全自动执行群集的升级过程，它负责处理�
 
     -   名称：`AKS Base Ubuntu 16.04-LTS Image Distro, March 2020`
     -   版本：`2020.03.19`
-    -   按照[将 Azure Kubernetes 服务 (AKS) 引擎必备组件添加到 Azure Stack Hub 市场](/azure-stack/operator/azure-stack-aks-engine)一文中的说明进行操作
+    -   按照[将 Azure Kubernetes 服务 (AKS) 引擎必备组件添加到 Azure Stack Hub 市场](../operator/azure-stack-aks-engine.md)一文中的说明进行操作
 
--   Kubernetes 群集管理员将需要下载新的 aks-engine 版本 0.48.0。 请参阅[在 Linux 上的 Azure Stack Hub 中安装 AKS 引擎](/azure-stack/user/azure-stack-kubernetes-aks-engine-deploy-linux)一文中的说明。 你可以遵循用于首次安装群集的过程。 此更新将覆盖以前的二进制文件。 例如，如果你使用了 `get-akse.sh` 脚本，请按照本文所述步骤[在连接的环境中进行安装](/azure-stack/user/azure-stack-kubernetes-aks-engine-deploy-linux#install-in-a-connected-environment)。 如果你是在 Windows 系统上安装，则此过程同样适用，请参阅[在 Windows 上的 Azure Stack Hub 中安装 AKS 引擎](/azure-stack/user/azure-stack-kubernetes-aks-engine-deploy-windows)一文。
+-   Kubernetes 群集管理员将需要下载新的 aks-engine 版本 0.48.0。 请参阅[在 Linux 上的 Azure Stack Hub 中安装 AKS 引擎](./azure-stack-kubernetes-aks-engine-deploy-linux.md)一文中的说明。 你可以遵循用于首次安装群集的过程。 此更新将覆盖以前的二进制文件。 例如，如果你使用了 `get-akse.sh` 脚本，请按照本文所述步骤[在连接的环境中进行安装](./azure-stack-kubernetes-aks-engine-deploy-linux.md#install-in-a-connected-environment)。 如果你是在 Windows 系统上安装，则此过程同样适用，请参阅[在 Windows 上的 Azure Stack Hub 中安装 AKS 引擎](./azure-stack-kubernetes-aks-engine-deploy-windows.md)一文。
 
 ## <a name="kubernetes-version-upgrade-path"></a>Kubernetes 版本升级路径
 
@@ -285,7 +281,6 @@ AKS 引擎升级命令完全自动执行群集的升级过程，它负责处理�
 -   https://github.com/Azure/aks-engine/releases/tag/v0.46.3
 -   https://github.com/Azure/aks-engine/releases/tag/v0.47.0
 -   https://github.com/Azure/aks-engine/releases/tag/v0.48.0
-::: moniker-end
 ## <a name="next-steps"></a>后续步骤
 
 - 了解 [Azure Stack Hub 上的 AKS 引擎](azure-stack-kubernetes-aks-engine-overview.md)

@@ -3,29 +3,29 @@ title: Azure Stack HCI 和 Windows Admin Center 入门
 description: 快速连接到现有 Azure Stack HCI 群集并使用 Windows Admin Center 来监视群集和存储性能。
 author: WenJason
 ms.author: v-jay
-ms.topic: article
-origin.date: 04/08/2020
-ms.date: 05/18/2020
-ms.openlocfilehash: 0db994c86352f2aeea9640659403c7b6b898eaba
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.topic: how-to
+ms.service: azure-stack
+ms.subservice: azure-stack-hci
+origin.date: 05/18/2020
+ms.date: 08/31/2020
+ms.openlocfilehash: fb0b53ab9be0b31367377e9bca5d41474ce4d45e
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422870"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867908"
 ---
 # <a name="get-started-with-azure-stack-hci-and-windows-admin-center"></a>Azure Stack HCI 和 Windows Admin Center 入门
 
-> 适用于：Windows Server 2019
+> 适用于：Azure Stack HCI 版本 20H2；Windows Server 2019
 
-本主题提供有关安装 Windows Admin Center、连接到 Azure Stack HCI 群集以及监视群集和存储性能的说明。
+本主题提供有关连接到 Azure Stack HCI 群集以及监视群集和存储性能的说明。 如果尚未设置群集，请参阅[部署概述](deploy/deployment-overview.md)了解相关说明。
 
 ## <a name="install-windows-admin-center"></a>安装 Windows Admin Center
 
-若要安装 Windows Admin Center，最简单的方法是使用本地 Windows 10 电脑，但你必须是本地管理员组的成员才能执行此操作。
+Windows Admin Center 是一个本地部署的、基于浏览器的应用，用于管理 Azure Stack HCI。 若要[安装 Windows Admin Center](https://docs.microsoft.com/windows-server/manage/windows-admin-center/deploy/install)，最简单的方法是在本地管理 PC 上安装（桌面模式），但也可以在服务器上安装它（服务模式）。
 
-1. 从 Microsoft 评估中心下载 [Windows Admin Center](https://www.microsoft.com/evalcenter/evaluate-windows-admin-center)。 尽管它会显示“开始评估”，但此版本是用于生产用途的正式发布版（包含为 Windows Server 许可证的一部分）。
-2. 运行 WindowsAdminCenter.msi 文件进行安装。
-3. 第一次启动 Windows Admin Center 时，桌面的通知区域中会显示一个图标。 右键单击此图标，然后选择“打开”可在默认浏览器中打开该工具。 在系统提示选择证书时，请确保选择 Windows Admin Center 客户端证书。
+如果在服务器上安装 Windows Admin Center，则需要 CredSSP（如群集创建以及安装更新和扩展）的任务所使用的帐户必须是 Windows Admin Center 服务器上“网关管理员”组的成员。 有关详细信息，请参阅[配置用户访问控制和权限](https://docs.microsoft.com/windows-server/manage/windows-admin-center/configure/user-access-control#gateway-access-role-definitions)的前两个部分。
 
 ## <a name="add-and-connect-to-an-azure-stack-hci-cluster"></a>添加并连接到 Azure Stack HCI 群集
 
@@ -36,7 +36,7 @@ ms.locfileid: "83422870"
     :::image type="content" source="media/get-started/addcluster.png" alt-text="[“添加群集”屏幕截图":::
 
 2. 选择添加 Windows Server 群集：
-    
+
     :::image type="content" source="media/get-started/chooseconnectiontype.png" alt-text="“选择连接类型”屏幕截图":::
 
 3. 键入要管理的群集的名称，然后单击“添加”。 群集将添加到“概述”页上的“连接”列表中。
@@ -113,7 +113,7 @@ Windows Admin Center 仪表板提供有关服务器、驱动器和卷的警报�
 
 ## <a name="use-azure-monitor-for-monitoring-and-alerts"></a>将 Azure Monitor 用于监视和警报
 
-还可以使用 [Azure Monitor](https://docs.microsoft.com/windows-server/manage/windows-admin-center/azure/azure-monitor)（需要 Azure 订阅）来收集用于分析和报告的事件与性能计数器，在检测到特定情况时采取措施，并通过电子邮件接收通知。 单击“工具”菜单中的“Azure Monitor”，以便从 Windows Admin Center 直接连接到 Azure。
+还可以使用 [Azure Monitor](manage/azure-monitor.md) 来收集用于分析和报告的事件与性能计数器，在检测到特定情况时采取措施，并通过电子邮件接收通知。 单击“工具”菜单中的“Azure Monitor”，以便从 Windows Admin Center 直接连接到 Azure。
 
 ## <a name="collect-diagnostics-information"></a>收集诊断信息
 
@@ -121,7 +121,7 @@ Windows Admin Center 仪表板提供有关服务器、驱动器和卷的警报�
 
 ## <a name="next-steps"></a>后续步骤
 
-若要深入了解性能监视，另请参阅：
+若要深入了解如何监视 Azure Stack HCI 群集，另请参阅：
 
 - [存储空间直通的性能历史记录](https://docs.microsoft.com/windows-server/storage/storage-spaces/performance-history)
 - [使用 Azure Monitor 监视 Azure Stack HCI](manage/azure-monitor.md)

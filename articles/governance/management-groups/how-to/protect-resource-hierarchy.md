@@ -1,20 +1,20 @@
 ---
 title: 如何保护资源层次结构 - Azure 治理
 description: 了解如何通过层次结构设置（包括设置默认管理组）来保护资源层次结构。
-origin.date: 05/21/2020
-ms.date: 08/06/2020
+origin.date: 08/10/2020
+ms.date: 08/27/2020
 ms.author: v-tawe
 ms.topic: conceptual
-ms.openlocfilehash: 1a15e656d780d82e213258af62344512eeb8ee97
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 8ad57c361e535c376a285aed21cd13f22b9fb6b5
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87919221"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951207"
 ---
 # <a name="how-to-protect-your-resource-hierarchy"></a>如何保护资源层次结构
 
-资源、资源组、订阅、管理组和租户共同构成了资源层次结构。 根管理组中的设置（如 Azure 自定义角色或 Azure Policy 策略分配）可能会影响资源层次结构中的每个资源。 保护资源层次结构以免发生可能会负面影响所有资源的更改，这一点很重要。
+资源、资源组、订阅、管理组和租户共同构成了资源层次结构。 根管理组（如 Azure 自定义角色或 Azure Policy 策略分配）的设置可能会影响资源层次结构中的每个资源。 保护资源层次结构以免发生可能会负面影响所有资源的更改，这一点很重要。
 
 管理组现在具有可使租户管理员控制这些行为的层次结构设置。 本文介绍每个可用的层次结构设置以及如何设置它们。
 

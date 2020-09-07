@@ -2,18 +2,18 @@
 title: ARM 模板常见问题解答
 description: 有关 Azure 资源管理器模板的常见问题解答 (FAQ)。
 ms.topic: conceptual
-origin.date: 05/30/2020
-ms.date: 07/13/2020
+origin.date: 07/27/2020
+ms.date: 08/24/2020
 ms.testscope: no
-ms.testdate: 07/13/2020Null
+ms.testdate: ''
 ms.author: v-yeche
 author: rockboyfor
-ms.openlocfilehash: 692493d1f9c92a8c3406407b884707c7ecb36d82
-ms.sourcegitcommit: 2bd0be625b21c1422c65f20658fe9f9277f4fd7c
+ms.openlocfilehash: 12f8ba18e711ae14f5ce9b11cb838bd33fe3d0d0
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440952"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807839"
 ---
 # <a name="frequently-asked-questions-about-arm-templates"></a>有关 ARM 模板的常见问题解答
 
@@ -53,7 +53,7 @@ ms.locfileid: "86440952"
 
   若要了解有关新模板语言的信息，请[注册通知](https://aka.ms/armLangUpdates)。
 
-  对于模板规格的预览，请[加入等待列表](https://aka.ms/templateSpecsWaitlist)。
+  若要了解有关模板规格的信息，请参阅 [Azure 资源管理器模板规格（预览版）](template-specs.md)。
 
 ## <a name="creating-and-testing-templates"></a>创建和测试模板
 
@@ -69,7 +69,7 @@ ms.locfileid: "86440952"
 
 * **是否可以在 ARM 模板中创建资源组并向其部署资源？**
 
-  是的，当你在 Azure 订阅级别部署模板时，可以在模板中创建资源组。 有关创建资源组和部署资源的示例，请参阅[资源组和资源](deploy-to-subscription.md#resource-group-and-resources)。
+  是的，当你在 Azure 订阅级别部署模板时，可以在模板中创建资源组。 有关创建资源组和部署资源的示例，请参阅[资源组和资源](deploy-to-subscription.md#resource-groups)。
 
 * **是否可以在 ARM 模板中创建订阅？**
 

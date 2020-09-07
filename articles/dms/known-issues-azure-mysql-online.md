@@ -13,14 +13,14 @@ ms.custom:
 - seo-lt-2019
 - seo-dt-2019
 ms.topic: article
-origin.date: 11/08/2019
-ms.date: 01/13/2020
-ms.openlocfilehash: 07273705facc678ab7d973f67c982deb9383e721
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+origin.date: 02/20/2020
+ms.date: 08/31/2020
+ms.openlocfilehash: 030f40b0d8eb90889f11ad04ceb53301565cc3f4
+ms.sourcegitcommit: f8ed85740f873c15c239ab6ba753e4b76e030ba7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75776626"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045803"
 ---
 # <a name="online-migration-issues--limitations-to-azure-db-for-mysql-with-azure-database-migration-service"></a>使用 Azure 数据库迁移服务联机迁移到 Azure DB for MySQL 的问题和限制
 
@@ -136,6 +136,8 @@ ms.locfileid: "75776626"
     ```
 
 - 在 Azure 数据库迁移服务中，可在单个迁移活动中迁移的数据库数目限制为 4 个。
+
+- Azure DMS 不支持 CASCADE 引用操作，这有助于当父表中删除或更新行时，自动删除或更新子表中的匹配行。 有关详细信息，请参见 MySQL 文档中的[外键约束](https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html)一文中的“引用操作”部分。 Azure DMS 要求在初始数据加载过程中在目标数据库服务器中删除外键约束，并且不能使用引用操作。 如果你的工作负载依赖于通过此引用操作更新相关子表，建议改为执行[转储并还原](/mysql/concepts-migrate-dump-restore)。 
 
 - **错误：** 行太大 (> 8126)。 将某些列更改为 TEXT 或 BLOB 可能会有帮助。 在当前的行格式中，0 字节的 BLOB 前缀以内联方式存储。
 

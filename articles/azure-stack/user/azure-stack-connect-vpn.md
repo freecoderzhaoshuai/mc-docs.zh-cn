@@ -3,17 +3,17 @@ title: 使用 VPN 将 Azure Stack Hub 连接到 Azure
 description: 如何使用 VPN 将 Azure Stack Hub 中的虚拟网络连接到 Azure 中的虚拟网络。
 author: WenJason
 ms.topic: conceptual
-origin.date: 04/07/2020
-ms.date: 07/20/2020
+origin.date: 07/23/2020
+ms.date: 08/31/2020
 ms.author: v-jay
-ms.reviewer: scottnap
+ms.reviewer: TBD
 ms.lastreviewed: 10/24/2019
-ms.openlocfilehash: a6639e0634f7400235e5bb74cfa29481b0dc774d
-ms.sourcegitcommit: e9ffd50aa5eaab402a94bfabfc70de6967fe6278
+ms.openlocfilehash: 4a5b401b75769574b94253a10e10110184832974
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2020
-ms.locfileid: "86307366"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867954"
 ---
 # <a name="connect-azure-stack-hub-to-azure-using-vpn"></a>使用 VPN 将 Azure Stack Hub 连接到 Azure
 
@@ -36,7 +36,7 @@ ms.locfileid: "86307366"
 
 网络配置示例表显示本文中用于示例的值。 可以使用这些值或参考这些值，以更好地了解本文中的示例：
 
-|   |Azure Stack Hub|Azure|
+| 值   |Azure Stack Hub|Azure|
 |---------|---------|---------|
 |虚拟网络名称     |Azs-VNet|AzureVNet |
 |虚拟网络地址空间 |10.1.0.0/16|10.100.0.0/16|
@@ -120,9 +120,9 @@ ms.locfileid: "86307366"
 1. 创建自定义策略：
 
    ```powershell
-     $IPSecPolicy = New-AzIpsecPolicy -IkeEncryption AES256 -IkeIntegrity SHA384 -DhGroup ECP384  `
-     -IpsecEncryption GCMAES256 -IpsecIntegrity GCMAES256 -PfsGroup ECP384 -SALifeTimeSeconds 27000 `
-     -SADataSizeKilobytes 102400000 
+   $IPSecPolicy = New-AzIpsecPolicy -IkeEncryption AES256 -IkeIntegrity SHA384 -DhGroup ECP384  `
+   -IpsecEncryption GCMAES256 -IpsecIntegrity GCMAES256 -PfsGroup ECP384 -SALifeTimeSeconds 27000 `
+   -SADataSizeKilobytes 102400000
    ```
 
 2. 将策略应用于连接：
@@ -203,7 +203,7 @@ ms.locfileid: "86307366"
 
 ### <a name="create-the-local-network-gateway"></a>创建本地网关
 
-在 Azure Stack Hub 中，“本地网关”的概念稍微不同于 Azure 部署。
+在 Azure Stack Hub 中，“本地网关”的概念与在 Azure 部署中不同。
 
 在 Azure 部署中，本地网关代表一个本地（位于用户位置）物理设备，可连接到 Azure 中的虚拟网关。 但在 Azure Stack Hub 中，连接的两端都是虚拟网关。
 
@@ -257,8 +257,8 @@ ms.locfileid: "86307366"
 * 登录到在 Azure Stack Hub 中创建的 VM，然后 ping Azure 中的 VM。
 * 登录到在 Azure 中创建的 VM，然后 ping Azure Stack Hub 中的 VM。
 
->[!NOTE]
->为了确保发送的流量通过站点到站点连接，必须 ping 远程子网上 VM 的直接 IP (DIP) 地址，而不是 VIP。
+> [!NOTE]
+> 为了确保发送的流量通过站点到站点连接，必须 ping 远程子网上 VM 的直接 IP (DIP) 地址，而不是 VIP。
 
 ### <a name="sign-in-to-the-user-vm-in-azure-stack-hub"></a>登录到 Azure Stack Hub 中的用户 VM
 
@@ -319,4 +319,4 @@ ms.locfileid: "86307366"
 
 ## <a name="next-steps"></a>后续步骤
 
-* [将应用部署到 Azure 和 Azure Stack Hub](azure-stack-solution-pipeline.md)
+* [将应用部署到 Azure 和 Azure Stack Hub](https://github.com/Azure-Samples/azure-intelligent-edge-patterns/tree/master/hybrid-devops)

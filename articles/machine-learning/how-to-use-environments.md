@@ -11,12 +11,12 @@ ms.subservice: core
 ms.topic: conceptual
 origin.date: 07/23/2020
 ms.date: 08/24/2020
-ms.openlocfilehash: 49af3b6ad904064131cdfdc87d3e20479378bd90
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: a8d1792364dd588ce5c4403002dd2af6097aba4b
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228401"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946945"
 ---
 # <a name="create--use-software-environments-in-azure-machine-learning"></a>在 Azure 机器学习中创建和使用软件环境
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -250,6 +250,9 @@ build.wait_for_completion(show_output=True)
 
 可以首先使用 [`build_local()`](https://docs.microsoft.com/python/api/azureml-core/azureml.core.environment.environment?view=azure-ml-py#build-local-workspace--platform-none----kwargs-) 方法在本地生成映像。 设置可选参数 `pushImageToWorkspaceAcr = True` 会将生成的映像推送到 Azure ML 工作区容器注册表中。 
 
+> [!WARNING]
+>  更改环境中的依赖项或通道的顺序将产生新的环境，并将需要新的映像生成。
+
 ## <a name="enable-docker"></a>启用 Docker
 
 Docker 容器提供了一种有效的方法来封装依赖项。 当你启用 Docker 时，Azure ML 会生成一个 Docker 映像，并根据你的规范在该容器中创建一个 Python 环境。 Docker 映像会被缓存并重复使用：在新环境中首次运行的时间通常比构建映像的时间更长。
@@ -320,6 +323,14 @@ myenv.python.interpreter_path = "/opt/miniconda/bin/python"
 
 > [!WARNING]
 > 如果在 Docker 映像中安装了某些 Python 依赖项，但忘记设置 user_managed_dependencies = True，则执行环境中不会存在这些包，因此会导致运行时失败。 默认情况下，Azure ML 会使用你指定的依赖项构建一个 Conda 环境，并会在该环境中执行运行，而不是使用你在基础映像上安装的任何 Python 库。
+
+### <a name="retrieve-image-details"></a>检索映像详细信息
+
+对于已注册的环境，可以使用以下代码检索映像详细信息，其中 `details` 是 [DockerImageDetails](https://docs.microsoft.com/python/api/azureml-core/azureml.core.environment.dockerimagedetails?view=azure-ml-py) 的实例 (AzureML Python SDK >= 1.11)，并提供有关环境映像的所有信息，例如 dockerfile、注册表和映像名称。
+
+```python
+details = environment.get_image_details()
+```
 
 ## <a name="use-environments-for-training"></a>使用环境进行训练
 

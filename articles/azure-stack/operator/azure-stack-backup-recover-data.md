@@ -4,16 +4,16 @@ description: 了解如何在发生灾难性数据丢失后恢复和还原 Azure 
 author: WenJason
 ms.topic: article
 origin.date: 02/12/2019
-ms.date: 05/18/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: hectorl
 ms.lastreviewed: 11/05/2019
-ms.openlocfilehash: a19a25598444a1e8759f0b0da2c2dc77c439695c
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: e09bfa419bc1e064de0da43c6954013d6c7c3e72
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422406"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867884"
 ---
 # <a name="recover-from-catastrophic-data-loss"></a>在发生灾难性数据丢失后进行恢复
 
@@ -53,10 +53,10 @@ Azure Stack Hub 在数据中心运行 Azure 服务，并且可以在如同安装
 Azure Stack Hub 支持称为云恢复模式的部署类型。 只有当灾难或产品 Bug 导致解决方案不可恢复后，你选择恢复 Azure Stack Hub 时才使用此模式。 此部署模式不会恢复解决方案中存储的任何用户数据。 此部署模式的作用域仅限于还原以下数据：
 
  - 部署输入
- - 内部标识服务数据（ADFS 部署）。
+ - 内部标识服务数据
  - 联合标识配置（ADFS 部署）。
  - 内部证书颁发机构使用的根证书。
- - Azure 资源管理器配置用户数据，如订阅、计划、套餐、存储配额、网络配额和计算资源。
+ - Azure 资源管理器配置用户数据，如订阅、计划、套餐、资源组、标记、存储配额、网络配额和计算资源。
  - Key Vault 机密和保管库。
  - RBAC 策略分配和角色分配。
 

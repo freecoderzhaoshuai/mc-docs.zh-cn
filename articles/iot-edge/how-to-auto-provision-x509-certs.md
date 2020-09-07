@@ -6,16 +6,16 @@ manager: philmea
 ms.author: v-tawe
 ms.reviewer: kevindaw
 origin.date: 04/09/2020
-ms.date: 06/01/2020
+ms.date: 08/27/2020
 ms.topic: conceptual
 ms.service: iot-edge
 services: iot-edge
-ms.openlocfilehash: b9d22c4bb537ff205907366d567d7acd70a32920
-ms.sourcegitcommit: 9811bf312e0d037cb530eb16c8d85238fd276949
+ms.openlocfilehash: 2bde85f1aaa4d61ad8b76b4f9bbd0f1fcfd16c71
+ms.sourcegitcommit: c8e590d907f20bbc9c4c05d9bfc93cf7cb1d776f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84275580"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88957791"
 ---
 # <a name="create-and-provision-an-iot-edge-device-using-x509-certificates"></a>使用 X.509 证书创建和预配 IoT Edge 设备
 
@@ -52,6 +52,9 @@ ms.locfileid: "84275580"
 * 完整链证书，其中应至少包含设备标识和中间证书。 完整链证书会传递到 IoT Edge 运行时。
 * 证书信任链中的中间或根 CA 证书。 如果创建组注册，则此证书会上传到 DPS。
 
+> [!NOTE]
+> 目前，存在一个 libiothsm 限制，会阻止使用在 2050 年 1 月 1 日或之后过期的证书。
+
 ### <a name="use-test-certificates"></a>使用测试证书
 
 如果你没有可用于创建新标识证书的证书颁发机构，但想要尝试此方案，可以使用 Azure IoT Edge Git 存储库中包含的脚本来生成测试证书。 这些证书仅用于开发测试，不得在生产环境中使用。
@@ -85,7 +88,7 @@ Windows:
 
 1. 在 [Azure 门户](https://portal.azure.cn)中，导航到 IoT 中心设备预配服务的实例。
 
-1. 在“设置”下，选择“管理注册”。  
+1. 在“设置”下，选择“管理注册”。 
 
 1. 选择“添加个人注册”，然后完成以下步骤以配置注册：   
 
@@ -114,7 +117,7 @@ Windows:
       }
       ```
 
-1. 选择“保存”  。
+1. 选择“保存” 。
 
 既然此设备已存在注册，IoT Edge 运行时在安装期间可以自动预配设备。 转到[安装 IoT Edge 运行时](#install-the-iot-edge-runtime)部分来设置 IoT Edge 设备。
 
@@ -199,7 +202,7 @@ Windows:
       }
       ```
 
-1. 选择“保存”  。
+1. 选择“保存” 。
 
 既然此设备已存在注册，IoT Edge 运行时在安装期间可以自动预配设备。 转到下一部分来设置 IoT Edge 设备。
 

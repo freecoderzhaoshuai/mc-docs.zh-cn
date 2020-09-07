@@ -1,5 +1,5 @@
 ---
-title: Azure HDInsight 中的 Apache Spark thrift 服务器发生 RpcTimeoutException
+title: Apache Spark thrift 的 RpcTimeoutException - Azure HDInsight
 description: 使用 Apache Spark thrift 服务器处理大型数据集时看到 502 错误
 ms.service: hdinsight
 ms.topic: troubleshooting
@@ -7,12 +7,12 @@ author: hrasheed-msft
 ms.author: v-yiso
 origin.date: 07/29/2019
 ms.date: 09/23/2019
-ms.openlocfilehash: c67d0c4c55f30057f785b2e47f6fab8297d0890e
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 6d919a8aeb3dc16a8db444ffa120a134c2cb2db3
+ms.sourcegitcommit: f9a819b7429a2cca868eba0d9241d4e6b3cf905a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "70921381"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88866202"
 ---
 # <a name="scenario-rpctimeoutexception-for-apache-spark-thrift-server-in-azure-hdinsight"></a>方案：Azure HDInsight 中的 Apache Spark thrift 服务器发生 RpcTimeoutException
 
@@ -36,7 +36,7 @@ java.lang.OutOfMemoryError: GC overhead limit exceeded
 
 ## <a name="cause"></a>原因
 
-这些错误的原因是数据处理期间内存资源不足。 如果启动 Java 垃圾回收进程，可能会导致 Spark 应用程序挂起。 查询将开始超时并停止处理。 `Futures timed out` 错误表示群集遭受严重的压力。
+这些错误的原因是数据处理期间内存资源不足。 如果启动 Java 垃圾回收进程，可能会导致 Spark 应用程序停止响应。 查询将开始超时并停止处理。 `Futures timed out` 错误表示群集遭受严重的压力。
 
 ## <a name="resolution"></a>解决方法
 

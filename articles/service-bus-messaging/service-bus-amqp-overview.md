@@ -3,20 +3,20 @@ title: Azure 服务总线中 AMQP 1.0 的概述
 description: 了解 Azure 服务总线如何支持高级消息队列协议（AMQP，一种开放标准协议）。
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 08/17/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-author: rockboyfor
-ms.openlocfilehash: 7a69a0a0fb5dedb7be1ad818334e886675f00767
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: b69aa057e0b419bfa6bac2a47a8800dbe3b99972
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162129"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947111"
 ---
 # <a name="amqp-10-support-in-service-bus"></a>服务总线的 AMQP 1.0 支持
-Azure 服务总线云服务和本地 [Windows Server 服务总线（服务总线 1.1）](https://msdn.microsoft.com/library/dn282144.aspx)均支持高级消息队列协议 (AMQP) 1.0。 AMQP 让你能够使用开放标准协议构建跨平台的混合应用程序。 可以借助使用不同语言和框架构建的且运行在不同操作系统上的组件来构建应用程序。 所有这些组件均可连接到服务总线，并且能够高效且完全无损地无缝交换结构化业务消息。
+Azure 服务总线云服务和本地 [Windows Server 服务总线（服务总线 1.1）](https://docs.microsoft.com/previous-versions/service-bus-archive/dn282144(v=azure.100))均支持高级消息队列协议 (AMQP) 1.0。 AMQP 让你能够使用开放标准协议构建跨平台的混合应用程序。 可以借助使用不同语言和框架构建的且运行在不同操作系统上的组件来构建应用程序。 所有这些组件均可连接到服务总线，并且能够高效且完全无损地无缝交换结构化业务消息。
 
 ## <a name="introduction-what-is-amqp-10-and-why-is-it-important"></a>简介：什么是 AMQP 1.0，为何它很重要？
 通常，面向消息的中间件产品始终使用专用协议来支持客户端应用程序和代理之间的通信。 这意味着，在选择特定供应商的消息传递代理后，必须使用该供应商的库将客户端应用程序连接到该代理。 这会导致在一定程度上依赖于该供应商，因为将应用程序传送到其他产品需要对所有已连接应用程序进行代码改写。 
@@ -59,7 +59,7 @@ Azure 服务总线中对 AMQP 1.0 的支持意味着现在可以通过一系列�
 
 下图显示了一个部署示例，其中 Java 客户端运行在 Linux 上，并使用标准 Java 消息服务 (JMS) API 写入数据；而 .NET 客户端运行在 Windows 上，并通过服务总线使用 AMQP 1.0 交换消息。
 
-![][0]
+![此图显示一个服务总线交换消息，其中包含两个 Linux 环境和两个 Windows 环境。][0]
 
 **图 1：演示使用服务总线和 AMQP 1.0 进行跨平台消息传送的部署方案示例**
 
@@ -89,8 +89,8 @@ Azure 服务总线中对 AMQP 1.0 的支持意味着现在可以通过一系列�
 
 [0]: ./media/service-bus-amqp-overview/service-bus-amqp-1.png
 [使用 AMQP 通过 .NET 使用服务总线]: service-bus-amqp-dotnet.md
-[使用 AMQP 通过 Java 使用服务总线]: service-bus-amqp-java.md
+[使用 AMQP 通过 Java 使用服务总线]: ./service-bus-java-how-to-use-jms-api-amqp.md
 [在 Azure Linux VM 上安装 Apache Qpid Proton-C]: service-bus-amqp-apache.md
-[适用于 Windows Server 的服务总线中的 AMQP]: https://msdn.microsoft.com/library/dn574799.aspx
+[适用于 Windows Server 的服务总线中的 AMQP]: https://docs.microsoft.com/previous-versions/service-bus-archive/dn574799(v=azure.100)
 
 <!-- Update_Description: update meta properties, wording update, update link -->

@@ -1,0 +1,163 @@
+---
+title: 将模板规格部署为链接模板
+description: 了解如何在链接的部署中部署现有模板规格。
+ms.topic: conceptual
+origin.date: 07/20/2020
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
+ms.author: v-yeche
+ms.openlocfilehash: 7f4a5e290ea3455adc525b439170afdb7041fe47
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807937"
+---
+<!--Waiting for approval via sending request on 08/25/2020-->
+# <a name="tutorial-deploy-a-template-spec-as-a-linked-template-preview"></a>教程：将模板规格部署为链接模板（预览版）
+
+了解如何使用[链接的部署](linked-templates.md#linked-template)部署现有[模板规格](template-specs.md)。 使用模板规格与组织中的其他用户共享 ARM 模板。 创建模板规格后，可以使用 Azure PowerShell 部署模板规格。 还可以使用链接的模板将模板规格作为解决方案的一部分进行部署。
+
+## <a name="prerequisites"></a>先决条件
+
+具有活动订阅的 Azure 帐户。 [免费创建帐户](https://www.azure.cn/pricing/1rmb-trial)。
+
+> [!NOTE]
+> 模板规格当前提供预览版。 若要使用它，必须[注册预览版](https://aka.ms/templateSpecOnboarding)。
+
+## <a name="create-a-template-spec"></a>创建模板规格
+
+按照[快速入门：创建和部署模板规格](quickstart-create-template-specs.md)，创建用于部署存储帐户的模板规格。 下一部分中需要模板规格的资源组名称、模板规格名称和模板规格版本。
+
+## <a name="create-the-main-template"></a>创建主模板
+
+若要在 ARM 模板中部署模板规格，请将部署资源添加到主模板。 在 `templateLink` 属性中，指定模板规格的资源 ID。使用以下名为 azuredeploy.json 的 JSON 创建模板。 本教程假设你已将模板保存到路径 c:\Templates\deployTS\azuredeploy.json，但你可以使用任何路径。
+
+<!--Not Available on [deployments resource](https://docs.microsoft.com/azure/templates/microsoft.resources/deployments)-->
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]"
+    },
+    "tsResourceGroup":{
+      "type": "string",
+      "metadata": {
+        "Description": "Specifies the resource group name of the template spec."
+      }
+    },
+    "tsName": {
+      "type": "string",
+      "metadata": {
+        "Description": "Specifies the name of the template spec."
+      }
+    },
+    "tsVersion": {
+      "type": "string",
+      "defaultValue": "1.0.0.0",
+      "metadata": {
+        "Description": "Specifies the version the template spec."
+      }
+    },
+    "storageAccountType": {
+      "type": "string",
+      "defaultValue": "Standard_LRS",
+      "metadata": {
+        "Description": "Specifies the storage account type required by the template spec."
+      }
+    }
+  },
+  "variables": {
+    "appServicePlanName": "[concat('plan', uniquestring(resourceGroup().id))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2016-09-01",
+      "name": "[variables('appServicePlanName')]",
+      "location": "[parameters('location')]",
+      "sku": {
+        "name": "B1",
+        "tier": "Basic",
+        "size": "B1",
+        "family": "B",
+        "capacity": 1
+      },
+      "kind": "linux",
+      "properties": {
+        "perSiteScaling": false,
+        "reserved": true,
+        "targetWorkerCount": 0,
+        "targetWorkerSizeId": 0
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2020-06-01",
+      "name": "createStorage",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "id": "[resourceId(parameters('tsResourceGroup'), 'Microsoft.Resources/templateSpecs/versions', parameters('tsName'), parameters('tsVersion'))]"
+        },
+        "parameters": {
+          "storageAccountType": {
+            "value": "[parameters('storageAccountType')]"
+          }
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "templateSpecId": {
+      "type": "string",
+      "value": "[resourceId(parameters('tsResourceGroup'), 'Microsoft.Resources/templateSpecs/versions', parameters('tsName'), parameters('tsVersion'))]"
+    }
+  }
+}
+```
+
+模板规格 ID 是使用 [`resourceID()`](template-functions-resource.md#resourceid) 函数生成的。 如果 templateSpec 位于当前部署的同一资源组中，则 resourceID() 函数中的资源组参数是可选的。  还可以直接将资源 ID 作为参数传入。 若要获取 ID，请使用：
+
+```powershell
+$id = (Get-AzTemplateSpec -ResourceGroupName $resourceGroupName -Name $templateSpecName -Version $templateSpecVersion).Version.Id
+```
+
+将参数传递给模板规格的语法为：
+
+```json
+"parameters": {
+  "storageAccountType": {
+    "value": "[parameters('storageAccountType')]"
+  }
+}
+```
+
+> [!NOTE]
+> `Microsoft.Resources/deployments` 的 apiVersion 必须是 2020-06-01 或更高版本。
+
+## <a name="deploy-the-template"></a>部署模板
+
+部署链接的模板时，它将同时部署 Web 应用程序和存储帐户。 其部署过程与部署其他 ARM 模板相同。
+
+```azurepowershell
+New-AzResourceGroup `
+  -Name webRG `
+  -Location chinanorth2
+
+New-AzResourceGroupDeployment `
+  -ResourceGroupName webRG `
+  -TemplateFile "c:\Templates\deployTS\azuredeploy.json"
+```
+
+## <a name="next-steps"></a>后续步骤
+
+若要了解有关创建包含关联模板的模板规格的信息，请参阅[创建关联模板的模板规格](template-specs-create-linked.md)。
+
+<!-- Update_Description: new article about template specs deploy linked template -->
+<!--NEW.date: 08/24/2020-->

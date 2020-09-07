@@ -1,17 +1,14 @@
 ---
-ms.openlocfilehash: 047802fb1173e6a347fb7089c6a223526a86d72e
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: fd6ca95624ce533cac0a3be431d8eaa69294cb2c
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715253"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807924"
 ---
-s--- 标题：Azure 订阅限制和配额说明：提供常见的 Azure 订阅和服务限制、配额和约束的列表。 本文包括有关如何增加限制以及最大值的信息。
-ms.topic: conceptual author: rockboyfor
-
-origin.date:06/04/2020 ms.date:08/10/2020 ms.testscope: no ms.testdate:08/24/2020 ms.author: v-yeche
+s--- 标题：Azure 订阅限制和配额说明：提供常见的 Azure 订阅和服务限制、配额和约束的列表。
+ms.topic: conceptual author: rockboyfor origin.date:06/04/2020 ms.date:08/10/2020 ms.testscope: no ms.testdate:08/03/2020 ms.author: v-yeche
 ---
-
 # <a name="azure-subscription-and-service-limits-quotas-and-constraints"></a>Azure 订阅和服务限制、配额和约束
 
 本文列出了一些最常见的 Azure 限制，有时也称为配额。
@@ -370,11 +367,11 @@ origin.date:06/04/2020 ms.date:08/10/2020 ms.testscope: no ms.testdate:08/24/202
 
 [!INCLUDE [azure-storage-limits-vm-disks](../../../includes/azure-storage-limits-vm-disks.md)]
 
-有关详细信息，请参阅[虚拟机大小](../../virtual-machines/linux/sizes.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)。
+有关详细信息，请参阅[虚拟机大小](../../virtual-machines/sizes.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)。
 
 #### <a name="disk-encryption-sets"></a>磁盘加密集
 
-每个区域、每个订阅有 50 个磁盘加密集的限制。 有关更多信息，请参阅 [Linux](/virtual-machines/linux/disk-encryption#restrictions) 或 [Windows](/virtual-machines/windows/disk-encryption#restrictions) 虚拟机的加密文档。 如果需要增加配额，请与 Azure 支持部门联系。
+每个区域、每个订阅有 50 个磁盘加密集的限制。 有关更多信息，请参阅 [Linux](../../virtual-machines/linux/disk-encryption.md#restrictions) 或 [Windows](../../virtual-machines/windows/disk-encryption.md#restrictions) 虚拟机的加密文档。 如果需要增加配额，请与 Azure 支持部门联系。
 
 ### <a name="managed-virtual-machine-disks"></a>托管虚拟机磁盘
 
@@ -420,7 +417,7 @@ origin.date:06/04/2020 ms.date:08/10/2020 ms.testscope: no ms.testdate:08/24/202
 ## <a name="see-also"></a>另请参阅
 
 * [了解 Azure 限制及如何提高限制](https://azure.microsoft.com/blog/2014/06/04/azure-limits-quotas-increase-requests/)
-* [Azure 的虚拟机和云服务大小](../../virtual-machines/linux/sizes.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)
+* [Azure 的虚拟机和云服务大小](../../virtual-machines/sizes.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)
 * [Azure 云服务的大小](../../cloud-services/cloud-services-sizes-specs.md)
 * [Azure 资源的命名规则和限制](resource-name-rules.md)
 

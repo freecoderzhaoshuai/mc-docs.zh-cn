@@ -6,18 +6,19 @@ author: rockboyfor
 ms.service: virtual-machines
 ms.topic: include
 origin.date: 06/15/2020
-ms.date: 08/10/2020
-ms.testscope: no
-ms.testdate: 05/20/2019
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.author: v-yeche
 ms.custom: include file
-ms.openlocfilehash: af735a185aaeebcc355a8bfd18a1d2dd60fda4fc
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 01e19a959997c5120e91ec6640e7a6c00b984c2c
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87919354"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946988"
 ---
+<!--Verified successfully from renamed/transferred articles-->
 如果在对共享映像库、映像定义和映像版本执行任何操作时遇到问题，请在调试模式下再次运行失败的命令。 若要激活调试模式，可以通过 CLI 来传递 `--debug` 开关，通过 PowerShell 来传递 `-Debug` 开关。 确定错误的位置以后，请按本文档的说明来排查错误。
 
 ## <a name="unable-to-create-a-shared-image-gallery"></a>无法创建共享的映像库
@@ -88,7 +89,7 @@ ms.locfileid: "87919354"
 
 ## <a name="unable-to-share-resources"></a>无法共享资源
 
-可以通过[基于角色的访问控制](/role-based-access-control/rbac-and-directory-admin-roles) (RBAC) 启用对共享映像库、映像定义和映像版本资源的跨订阅共享。 
+可以通过 [Azure 基于角色的访问控制 (Azure RBAC)](/role-based-access-control/rbac-and-directory-admin-roles) 启用对共享映像库、映像定义、映像版本资源的跨订阅共享。 
 
 ## <a name="replication-is-slow"></a>复制速度慢
 
@@ -98,4 +99,4 @@ ms.locfileid: "87919354"
 
 [Azure 限制和配额](/azure-resource-manager/management/azure-subscription-service-limits)适用于所有共享映像库、映像定义和映像版本资源。 请确保未超出订阅限制。
 
-<!-- Update_Description: update meta properties, wording update, update link -->
+<!-- Update_Description: update meta properties, wording update -->

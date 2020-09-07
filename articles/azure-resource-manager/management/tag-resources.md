@@ -3,16 +3,16 @@ title: 标记资源、资源组和订阅以便对其进行逻辑组织
 description: 演示如何应用标记来组织 Azure 资源进行计费和管理。
 ms.topic: conceptual
 origin.date: 07/01/2020
-ms.date: 08/17/2020
+ms.date: 08/24/2020
 ms.testscope: yes
 ms.testdate: 07/13/2020
 ms.author: v-yeche
-ms.openlocfilehash: d359d487bd303771ccb21ad6eec3ecab9f9df91f
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: 6e4798260df444f0c71687ff7d1ff413f252e8f8
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222581"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807882"
 ---
 # <a name="use-tags-to-organize-your-azure-resources-and-management-hierarchy"></a>使用标记对 Azure 资源和管理层次结构进行组织
 
@@ -442,7 +442,7 @@ IFS=$origIFS
 
 ### <a name="apply-tags-from-resource-group"></a>应用资源组中的标记
 
-若要将资源组中的标记应用于资源，请使用 [resourceGroup](../templates/template-functions-resource.md#resourcegroup) 函数。 获取标记值时，请使用 `tags[tag-name]` 语法而不是 `tags.tag-name` 语法，因为有些字符在点表示法中无法正确解析。
+若要将资源组中的标记应用于资源，请使用 [resourceGroup()](../templates/template-functions-resource.md#resourcegroup) 函数。 获取标记值时，请使用 `tags[tag-name]` 语法而不是 `tags.tag-name` 语法，因为有些字符在点表示法中无法正确解析。
 
 ```json
 {
@@ -604,6 +604,8 @@ az deployment sub create --name tagresourcegroup --location chinanorth2 --templa
     > 目前，Azure DNS 区域和流量管理器服务也不允许在标记中使用空格。
     >
     > Azure Front Door 不支持在标记名称中使用 `#`。
+    >
+    > Azure 自动化和 Azure CDN 仅支持资源上的 15 个标记。
 
 ## <a name="next-steps"></a>后续步骤
 

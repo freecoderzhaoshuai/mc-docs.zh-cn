@@ -3,42 +3,48 @@ title: Azure Stack Hub 中的诊断日志收集
 description: 了解 Azure Stack Hub 的“帮助 + 支持”中的诊断日志收集。
 author: WenJason
 ms.topic: article
-origin.date: 02/26/2020
-ms.date: 07/20/2020
+origin.date: 05/11/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: shisab
-ms.lastreviewed: 02/26/2020
-ms.openlocfilehash: 6de3307d086ef47acf480dbfc910abe319ca4613
-ms.sourcegitcommit: e9ffd50aa5eaab402a94bfabfc70de6967fe6278
+ms.lastreviewed: 05/11/2020
+ms.openlocfilehash: fca013b06dd239edeac79f9fdd236fbcce9e034c
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2020
-ms.locfileid: "86307752"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867846"
 ---
 # <a name="diagnostic-log-collection-in-azure-stack-hub"></a>Azure Stack Hub 中的诊断日志收集
 
-::: moniker range=">= azs-2002"
 
 Azure Stack Hub 是一个大型集合，包含可以彼此交互的 Windows 组件和本地 Azure 服务。 所有这些组件和服务都会生成自己的日志集。 为了让 Azure 支持能够有效地诊断问题，我们提供了用于收集诊断日志的无缝体验。
 
 使用“帮助 + 支持”中的诊断日志收集功能，操作员可以在简单的用户界面中快速收集诊断日志并与 Azure 支持共享该日志，而无需使用 PowerShell。 即使其他基础结构服务关闭，也可以收集日志。  
 
-建议使用此日志收集方法，仅当管理员门户或“帮助 + 支持”边栏选项卡不可用时才[使用特权终结点 (PEP)](azure-stack-get-azurestacklog.md)。
+使用“帮助和支持”中的诊断日志收集功能，操作员可以快速地通过 Microsoft 客户支持服务 (CSS) 收集和共享诊断日志，该服务是一个易用的用户界面，不需要 PowerShell。 即使其他基础结构服务关闭，也可以收集日志。  
+
+建议使用此日志收集方法，并且仅当管理员门户或“帮助和支持”边栏选项卡不可用时才[使用特权终结点 (PEP)](azure-stack-get-azurestacklog.md)。 
 
 >[!NOTE]
->若要使用诊断日志收集功能，Azure Stack Hub 必须已注册，并且具有 Internet 连接。 如果 Azure Stack Hub 未注册，请[使用特权终结点 (PEP)](azure-stack-get-azurestacklog.md) 来共享日志。
+>必须注册 Azure Stack Hub 才能使用诊断日志收集。 如果未注册 Azure Stack Hub，请使用 [Get-AzureStackLog](azure-stack-get-azurestacklog.md) 来共享日志。 
 
 ![Azure Stack Hub 中的诊断日志收集选项](media/azure-stack-help-and-support/banner-enable-automatic-log-collection.png)
 
 ## <a name="collection-options-and-data-handling"></a>收集选项和数据处理
 
-诊断日志收集功能提供两个用于发送日志的选项。 下表说明了每个选项以及如何在各种情况下处理数据。
+根据与 Azure 的连接情况，Azure Stack Hub 提供了将诊断日志收集、保存和发送到 CSS 的适当方式。 如果 Azure Stack Hub 可以连接到 Azure，推荐的方法是启用“主动日志收集”，这会在引发关键警报时自动将诊断日志上传到 Azure 中由 Microsoft 控制的存储 blob。 还可以通过使用“立即发送日志”来按需收集日志，或者，如果 Azure Stack Hub 与 Azure 断开连接，可以在本地保存日志。 
 
-### <a name="send-logs-proactively"></a>主动发送日志
+以下部分说明了每个选项以及如何在各种情况下处理数据。 
 
-[主动收集日志](azure-stack-configure-automatic-diagnostic-log-collection-tzl.md)可优化和简化诊断日志收集过程，让客户可以在建立支持案例之前将日志发送给 Azure。 可以从 Azure Stack Hub 主动上传要分析的诊断日志。 这些日志仅在发出了[系统运行状况警报](azure-stack-configure-automatic-diagnostic-log-collection-tzl.md#proactive-diagnostic-log-collection-alerts)的情况下收集，并且仅在建立了支持案例的情况下供 Azure 支持访问。
+诊断日志收集功能提供两个用于发送日志的选项。 以下部分说明了每个选项以及如何在各种情况下处理数据。 
 
-#### <a name="how-the-data-is-handled"></a>数据处理方式
+## <a name="send-logs-proactively"></a>主动发送日志
+
+[主动收集日志](./azure-stack-configure-automatic-diagnostic-log-collection.md?view=azs-2002)可优化和简化诊断日志收集过程，让客户可以在建立支持案例之前将日志发送给 Azure。 可以从 Azure Stack Hub 主动上传要分析的诊断日志。 这些日志仅在发出了[系统运行状况警报](./azure-stack-configure-automatic-diagnostic-log-collection.md?view=azs-2002#proactive-diagnostic-log-collection-alerts)的情况下收集，并且仅在建立了支持案例的情况下供 Azure 支持访问。
+
+
+### <a name="how-the-data-is-handled"></a>数据处理方式
 
 你同意 Azure 可以仅根据 Azure Stack Hub 系统运行状况警报定期自动收集日志。 你还确认并同意，这些日志可以上传并保留在由 Azure 管理和控制的 Azure 存储帐户中。
 
@@ -48,23 +54,25 @@ Azure Stack Hub 是一个大型集合，包含可以彼此交互的 Windows 组�
 
 通过“主动收集日志”方式收集的日志会上传到由 Azure 管理和控制的 Azure 存储帐户中。 在收到支持案例的情况下，或者是为了改善 Azure Stack Hub 的运行状况，Azure 可能会访问这些日志。
 
-### <a name="send-logs-now"></a>立即发送日志
+## <a name="send-logs-now"></a>立即发送日志
 
-[立即发送日志](azure-stack-configure-on-demand-diagnostic-log-collection-portal-tzl.md)是一个手动选项。如果选择该选项，那么仅当你以客户身份启动收集操作时（通常在提交支持案例之前），才会将诊断日志从 Azure Stack Hub 上传。
+[立即发送日志](./azure-stack-configure-on-demand-diagnostic-log-collection-portal.md?view=azs-2002)是一个手动选项。如果选择该选项，那么仅当你以客户身份启动收集操作时（通常在提交支持案例之前），才会将诊断日志从 Azure Stack Hub 上传。
 
-Azure Stack 操作员可以根据需要使用管理员门户或 PowerShell 将诊断日志发送到 Microsoft 客户支持服务 (CSS)。 如果 Azure Stack Hub 已连接到 Azure，建议使用[管理员门户中的“立即发送日志”选项](azure-stack-configure-on-demand-diagnostic-log-collection-portal-tzl.md)，因为这是直接将日志发送到 Azure 的最简单方法。 如果门户不可用，则操作员应改为[使用 PowerShell 立即发送日志](azure-stack-configure-on-demand-diagnostic-log-collection-powershell-tzl.md)。 
+Azure Stack 操作员可以使用管理员门户或 PowerShell 将诊断日志按需发送到 Azure 支持。 如果 Azure Stack Hub 已连接到 Azure，建议使用[管理员门户中的“立即发送日志”选项](./azure-stack-configure-on-demand-diagnostic-log-collection-portal.md?view=azs-2002)，因为这是直接将日志发送到 Azure 的最简单方法。 如果门户不可用，则操作员应改为[使用 PowerShell 立即发送日志](./azure-stack-configure-on-demand-diagnostic-log-collection-powershell.md?view=azs-2002)。 
 
-如果已断开与 Internet 的连接，或者只想在本地保存日志，请使用 [Get-AzureStackLog](azure-stack-get-azurestacklog.md) 方法发送日志。 以下流程图显示了各种情况下用于发送诊断日志的选项。
+如果已断开与 Internet 的连接，或者只想在本地保存日志，请使用 [Get-AzureStackLog](azure-stack-get-azurestacklog.md) 方法发送日志。 以下流程图显示了各种情况下用于发送诊断日志的选项。 
 
 ![流程图，显示如何将日志立即发送到 Microsoft](media/azure-stack-help-and-support/send-logs-now-flowchart.png)
 
-#### <a name="how-the-data-is-handled"></a>数据处理方式
+### <a name="how-the-data-is-handled"></a>数据处理方式
 
 启动从 Azure Stack Hub 收集诊断日志的操作即表明你确认并同意，这些日志可以上传并保留到 Azure 管理和控制的 Azure 存储帐户中。 Azure 支持人员可以通过支持案例立即访问这些日志，而不必与客户联系以收集日志。
 
-这些数据只用于排查系统运行状况警报问题，在未经你同意的情况下不会用于市场营销、广告或任何其他商业目的。 这些数据最多可保留 90 天，由 Azure 收集的任何数据都会按照我们的[标准隐私做法](https://www.trustcenter.cn/privacy/default.html)进行处理。 
+## <a name="save-logs-locally"></a>在本地保存日志
 
-使用“立即发送日志”选项收集的日志会上传到由 Azure 管理和控制的存储中。 在收到支持案例的情况下，或者是为了改善 Azure Stack Hub 的运行状况，Azure 会访问这些日志。
+当 Azure Stack Hub 与 Azure 断开连接时，可以将日志保存到本地 SMB 共享。 在“设置”边栏选项卡中，输入具有共享写入权限的路径、用户名和密码。 在“支持用例”期间，Microsoft CSS 将提供有关如何传输这些本地日志的详细步骤。
+
+![诊断日志收集选项的屏幕截图](media/azure-stack-help-and-support/save-logs-locally.png)
 
 ## <a name="bandwidth-considerations"></a>带宽注意事项
 
@@ -78,12 +86,9 @@ Azure Stack 操作员可以根据需要使用管理员门户或 PowerShell 将�
 | 共享连接 | 上传也可能影响共享网络连接的其他应用/用户。 |
 | 计量连接 | ISP 可能会针对你额外使用网络的情况收取额外费用。 |
 
-::: moniker-end
-::: moniker range="<= azs-1910"
-
 ## <a name="collecting-logs-from-multiple-azure-stack-hub-systems"></a>从多个 Azure Stack Hub 系统收集日志
 
-为每个需要从其收集日志的 Azure Stack Hub 缩放单元设置一个 Blob 容器。 若要详细了解如何配置 Blob 容器，请参阅[配置 Azure Stack Hub 诊断日志自动收集](azure-stack-configure-automatic-diagnostic-log-collection-tzl.md)。 最佳做法是仅将同一 Azure Stack Hub 缩放单元中的诊断日志保存到单个 Blob 容器中。
+为每个需要从其收集日志的 Azure Stack Hub 缩放单元设置一个 Blob 容器。 若要详细了解如何配置 Blob 容器，请参阅[配置 Azure Stack Hub 诊断日志自动收集](./azure-stack-configure-automatic-diagnostic-log-collection.md?view=azs-2002)。 最佳做法是仅将同一 Azure Stack Hub 缩放单元中的诊断日志保存到单个 Blob 容器中。
 
 ## <a name="retention-policy"></a>保留策略
 
@@ -115,12 +120,10 @@ Azure Stack 操作员可以根据需要使用管理员门户或 PowerShell 将�
 
 ## <a name="managing-costs"></a>管理成本
 
-Azure [Blob 存储费用](https://azure.cn/pricing/details/storage/blobs/)取决于每月保存的数据量以及其他因素，例如数据冗余。 如果没有现有的存储帐户，可以登录到 Azure 门户，选择“存储帐户”，然后按步骤[创建 Azure Blob 容器 SAS URL](azure-stack-configure-automatic-diagnostic-log-collection-tzl.md)。
+Azure [Blob 存储费用](https://azure.cn/pricing/details/storage/blobs/)取决于每月保存的数据量以及其他因素，例如数据冗余。 如果没有现有的存储帐户，可以登录到 Azure 门户，选择“存储帐户”，然后按步骤[创建 Azure Blob 容器 SAS URL](./azure-stack-configure-automatic-diagnostic-log-collection.md?view=azs-2002)。
 
-最佳做法是创建 Azure Blob 存储[生命周期管理策略](/storage/blobs/storage-lifecycle-management-concepts)，尽量降低持续产生的存储成本。 若要详细了解如何设置存储帐户，请参阅[配置 Azure Stack Hub 诊断日志自动收集](azure-stack-configure-automatic-diagnostic-log-collection-tzl.md)
-
-::: moniker-end
+最佳做法是创建 Azure Blob 存储[生命周期管理策略](/storage/blobs/storage-lifecycle-management-concepts)，尽量降低持续产生的存储成本。 若要详细了解如何设置存储帐户，请参阅[配置 Azure Stack Hub 诊断日志自动收集](./azure-stack-configure-automatic-diagnostic-log-collection.md?view=azs-2002)
 
 ## <a name="see-also"></a>另请参阅
 
-[Azure Stack Hub 日志和客户数据处理](/azure-stack/operator/azure-stack-data-collection)
+[Azure Stack Hub 日志和客户数据处理](./azure-stack-data-collection.md)

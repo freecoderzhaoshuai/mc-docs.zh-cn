@@ -3,14 +3,18 @@ title: 资源提供程序注册错误
 description: 说明在使用 Azure 资源管理器部署资源时如何解决 Azure 资源提供程序注册错误。
 ms.topic: troubleshooting
 origin.date: 02/15/2019
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.date: 01/06/2020
-ms.openlocfilehash: 1454166dfad6a7aa8f1db9c5d0c9c880968ed79a
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: ba681beb3c96c328bdc803125d8b3f0093e79c7e
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75631369"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807896"
 ---
 # <a name="resolve-errors-for-resource-provider-registration"></a>解决资源提供程序注册的错误
 
@@ -105,22 +109,22 @@ az provider show -n Microsoft.Web --query "resourceTypes[?resourceType=='sites']
 
 1. 在门户中，选择“所有服务”。 
 
-    ![选择所有服务](./media/error-register-resource-provider/select-all-services.png)
+    :::image type="content" source="./media/error-register-resource-provider/select-all-services.png" alt-text="选择“所有服务”":::
 
 1. 选择 **订阅**。
 
-    ![选择订阅](./media/error-register-resource-provider/select-subscriptions.png)
+    :::image type="content" source="./media/error-register-resource-provider/select-subscriptions.png" alt-text="选择订阅":::
 
 1. 从订阅列表中，选择要用于注册资源提供程序的订阅。
 
-    ![选择订阅以注册资源提供程序](./media/error-register-resource-provider/select-subscription-to-register.png)
+    :::image type="content" source="./media/error-register-resource-provider/select-subscription-to-register.png" alt-text="选择订阅以注册资源提供程序":::
 
 1. 对于订阅，选择“资源提供程序”  。
 
-    ![选择资源提供程序](./media/error-register-resource-provider/select-resource-provider.png)
+    :::image type="content" source="./media/error-register-resource-provider/select-resource-provider.png" alt-text="选择“资源提供程序”":::
 
 1. 查看资源提供程序列表，根据需要选择“注册”链接，注册尝试部署的类型的资源提供程序  。
 
-    ![列出资源提供程序](./media/error-register-resource-provider/list-resource-providers.png)
+    :::image type="content" source="./media/error-register-resource-provider/list-resource-providers.png" alt-text="列出资源提供程序":::
 
 <!-- Update_Description: update meta properties, wording update, update link -->

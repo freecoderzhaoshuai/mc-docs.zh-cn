@@ -11,12 +11,12 @@ ms.subservice: core
 ms.topic: how-to
 ms.date: 06/17/2020
 ms.custom: has-adal-ref
-ms.openlocfilehash: 57d17716746ab0f10db3d78a66b352425ba47a58
-ms.sourcegitcommit: 2bd0be625b21c1422c65f20658fe9f9277f4fd7c
+ms.openlocfilehash: 9ada8375d7df8fe551c2570379e845b478f30f94
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86441029"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946747"
 ---
 # <a name="set-up-authentication-for-azure-machine-learning-resources-and-workflows"></a>为 Azure 机器学习资源和工作流设置身份验证
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -36,6 +36,9 @@ ms.locfileid: "86441029"
 * [配置开发环境](how-to-configure-environment.md)以安装 Azure 机器学习 SDK，或使用已安装 SDK 的 [Azure 机器学习 Notebook VM](concept-azure-machine-learning-architecture.md#compute-instance)。
 
 ## <a name="interactive-authentication"></a>交互式身份验证
+
+> [!IMPORTANT]
+> 交互式身份验证使用浏览器并需要 Cookie（包括第三方 Cookie）。 如果已禁用 Cookie，则可能会收到“我们无法为你登录”之类的错误。 如果已启用 [Azure 多重身份验证](/active-directory/authentication/concept-mfa-howitworks)，则也可能出现此错误。
 
 文档和样本中的大多数示例都使用交互式身份验证。 例如，当使用 SDK 时，有两个函数调用会自动提示你使用基于 UI 的身份验证流：
 
@@ -81,11 +84,11 @@ ms.locfileid: "86441029"
 
 1. 对 Azure 订阅进行身份验证：
 
-    ```azurecli-interactive
+    ```azurecli
     az login
     ```
 
-    如果 CLI 可以打开默认的浏览器，则它会打开该浏览器并加载登录页。 否则，需要打开浏览器并按照命令行中的说明操作。 按说明操作时，需要浏览到 [https://aka.ms/devicelogin](https://aka.ms/devicelogin) 并输入授权代码。
+    如果 CLI 可以打开默认的浏览器，则它会打开该浏览器并加载登录页。 否则，需要打开浏览器并按照命令行中的说明操作。 按照说明操作时，需要浏览到 [https://aka.ms/devicelogin](https://aka.ms/devicelogin) 并输入授权代码。
 
     [!INCLUDE [select-subscription](../../includes/machine-learning-cli-subscription.md)] 
 
@@ -93,13 +96,13 @@ ms.locfileid: "86441029"
 
 1. 安装 Azure 机器学习扩展：
 
-    ```azurecli-interactive
+    ```azurecli
     az extension add -n azure-cli-ml
     ```
 
 1. 创建服务主体。 在以下示例中，将创建一个名为 **ml-auth** 的 SP：
 
-    ```azurecli-interactive
+    ```azurecli
     az ad sp create-for-rbac --sdk-auth --name ml-auth
     ```
 
@@ -122,7 +125,7 @@ ms.locfileid: "86441029"
 
 1. 使用上一步返回的 `clientId` 值检索服务主体的详细信息：
 
-    ```azurecli-interactive
+    ```azurecli
     az ad sp show --id your-client-id
     ```
 
@@ -146,7 +149,7 @@ ms.locfileid: "86441029"
     > [!IMPORTANT]
     > 所有者访问权限允许服务主体在工作区中执行几乎所有操作。 本文档中使用它来演示如何授予访问权限；在生产环境中，Microsoft 建议你仅向服务主体授予行使目标角色职能所需的最低访问权限。 有关详细信息，请参阅[管理对 Azure 机器学习工作区的访问权限](how-to-assign-roles.md)。
 
-    ```azurecli-interactive
+    ```azurecli
     az ml workspace share -w your-workspace-name -g your-resource-group-name --user your-sp-object-id --role owner
     ```
 

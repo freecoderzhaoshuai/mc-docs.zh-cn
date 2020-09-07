@@ -4,17 +4,17 @@ titleSuffix: Azure Stack Hub
 description: 了解 Azure Stack Hub 存储与 Azure 存储之间的差异，以及 Azure Stack Hub 部署注意事项。
 author: WenJason
 ms.topic: conceptual
-origin.date: 1/22/2020
-ms.date: 05/18/2020
+origin.date: 5/27/2020
+ms.date: 08/31/2020
 ms.author: v-jay
-ms.reviwer: xiaofmao
-ms.lastreviewed: 01/30/2020
-ms.openlocfilehash: 1f9c3d148ae9dc81ebb2c222ef3539f61d4b43ec
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.reviwer: jiahan
+ms.lastreviewed: 08/12/2020
+ms.openlocfilehash: 810f4aecfb25c0cc457d5ef1e10314227c9a60f9
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422371"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867748"
 ---
 # <a name="azure-stack-hub-storage-differences-and-considerations"></a>Azure Stack Hub 存储：差异和注意事项
 
@@ -58,8 +58,11 @@ Azure Stack Hub 存储是 Azure Stack Hub 中的一组存储云服务。 Azure S
 
 Azure 存储服务 API：
 
-1811 更新或更高版本：
+2005 更新或更高版本：
 
+- [2019-02-02](https://docs.microsoft.com/rest/api/storageservices/version-2019-02-02)
+- [2018-11-09](https://docs.microsoft.com/rest/api/storageservices/version-2018-11-09)
+- [2018-03-28](https://docs.microsoft.com/rest/api/storageservices/version-2018-03-28)
 - [2017-11-09](https://docs.microsoft.com/rest/api/storageservices/version-2017-11-09)
 - [2017-07-29](https://docs.microsoft.com/rest/api/storageservices/version-2017-07-29)
 - [2017-04-17](https://docs.microsoft.com/rest/api/storageservices/version-2017-04-17)
@@ -70,6 +73,8 @@ Azure 存储服务 API：
 
 以前的版本：
 
+- [2017-11-09](https://docs.microsoft.com/rest/api/storageservices/version-2017-11-09)
+- [2017-07-29](https://docs.microsoft.com/rest/api/storageservices/version-2017-07-29)
 - [2017-04-17](https://docs.microsoft.com/rest/api/storageservices/version-2017-04-17)
 - [2016-05-31](https://docs.microsoft.com/rest/api/storageservices/version-2016-05-31)
 - [2015-12-11](https://docs.microsoft.com/rest/api/storageservices/version-2015-12-11)
@@ -80,19 +85,19 @@ Azure 存储服务管理 API：
 
 1811 更新或更高版本：
 
-- [2017-10-01](https://docs.microsoft.com/rest/api/storagerp/?redirectedfrom=MSDN)
-- [2017-06-01](https://docs.microsoft.com/rest/api/storagerp/?redirectedfrom=MSDN)
-- [2016-12-01](https://docs.microsoft.com/rest/api/storagerp/?redirectedfrom=MSDN)
-- [2016-05-01](https://docs.microsoft.com/rest/api/storagerp/?redirectedfrom=MSDN)
-- [2016-01-01](https://docs.microsoft.com/rest/api/storagerp/?redirectedfrom=MSDN)
-- [2015-06-15](https://docs.microsoft.com/rest/api/storagerp/?redirectedfrom=MSDN)
-- [2015-05-01-preview](https://docs.microsoft.com/rest/api/storagerp/?redirectedfrom=MSDN)
+- [2017-10-01](https://docs.microsoft.com/rest/api/storagerp/)
+- [2017-06-01](https://docs.microsoft.com/rest/api/storagerp/)
+- [2016-12-01](https://docs.microsoft.com/rest/api/storagerp/)
+- [2016-05-01](https://docs.microsoft.com/rest/api/storagerp/)
+- [2016-01-01](https://docs.microsoft.com/rest/api/storagerp/)
+- [2015-06-15](https://docs.microsoft.com/rest/api/storagerp/)
+- [2015-05-01-preview](https://docs.microsoft.com/rest/api/storagerp/)
 
 以前的版本：
 
-- [2016-01-01](https://docs.microsoft.com/rest/api/storagerp/?redirectedfrom=MSDN)
-- [2015-06-15](https://docs.microsoft.com/rest/api/storagerp/?redirectedfrom=MSDN)
-- [2015-05-01-preview](https://docs.microsoft.com/rest/api/storagerp/?redirectedfrom=MSDN)
+- [2016-01-01](https://docs.microsoft.com/rest/api/storagerp/)
+- [2015-06-15](https://docs.microsoft.com/rest/api/storagerp/)
+- [2015-05-01-preview](https://docs.microsoft.com/rest/api/storagerp/)
 
 ## <a name="powershell-version"></a>PowerShell 版本
 

@@ -12,18 +12,18 @@ ms.topic: how-to
 ms.tgt_pltfrm: NA
 ms.workload: na
 origin.date: 03/23/2020
-ms.date: 06/22/2020
+ms.date: 08/27/2020
 ms.author: v-tawe
-ms.openlocfilehash: 2226cfeedc9f2d30d7d28a269ddf5641af10fae3
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+ms.openlocfilehash: 4527d4503c9f5c74ed1ce37da2707d7d8f703d5d
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85613354"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947036"
 ---
 # <a name="share-azure-dashboards-by-using-role-based-access-control"></a>通过使用基于角色的访问控制来共享 Azure 仪表板
 
-配置仪表板后，可将其发布，并与组织中的其他用户共享。 使用 Azure [基于角色的访问控制](../role-based-access-control/role-assignments-portal.md) (RBAC) 来允许其他人查看仪表板。 将某个用户或用户组分配到角色。 该角色定义这些用户是否可以查看或修改发布的仪表板。
+配置仪表板后，可将其发布，并与组织中的其他用户共享。 使用 [Azure 基于角色的访问控制 (Azure RBAC)](../role-based-access-control/role-assignments-portal.md) 来允许其他人查看仪表板。 将某个用户或用户组分配到角色。 该角色定义这些用户是否可以查看或修改发布的仪表板。
 
 所有已发布的仪表板作为 Azure 资源实现。 它们作为订阅中的可管理的项存在，并包含在资源组中。 从访问控制角度来看，仪表板与其他资源（例如虚拟机或存储帐户）没有什么不同。
 
@@ -88,6 +88,5 @@ ms.locfileid: "85613354"
 
 ## <a name="next-steps"></a>后续步骤
 
-* 有关角色列表，请参阅 [Azure 资源的内置角色](../role-based-access-control/built-in-roles.md)。
+* 有关角色列表，请参阅 [Azure 内置角色](../role-based-access-control/built-in-roles.md)。
 * 若要了解有关如何管理资源，请参阅[使用 Azure 门户管理 Azure 资源](resource-group-portal.md)。
-

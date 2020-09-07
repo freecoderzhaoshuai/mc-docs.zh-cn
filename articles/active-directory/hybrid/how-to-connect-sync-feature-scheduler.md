@@ -9,20 +9,19 @@ editor: ''
 ms.assetid: 6b1a598f-89c0-4244-9b20-f4aaad5233cf
 ms.service: active-directory
 ms.devlang: na
-ms.topic: conceptual
+ms.topic: how-to
 ms.tgt_pltfrm: na
 ms.workload: identity
-origin.date: 05/01/2019
-ms.date: 04/23/2019
+ms.date: 08/27/2020
 ms.subservice: hybrid
 ms.author: v-junlch
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: cf7c6f67037c17eac9362010fce7c1e81ce0c5e5
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.openlocfilehash: 34cdff904ee4bc0c4b7bbba2ed79d6c22fd6e8b4
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82126567"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946863"
 ---
 # <a name="azure-ad-connect-sync-scheduler"></a>Azure AD Connect 同步：计划程序
 本主题介绍 Azure AD Connect 同步（同步引擎）中的内置计划程序。
@@ -40,6 +39,14 @@ Azure AD Connect 同步会使用计划程序同步本地目录中发生的更改
 * **维护任务**。 续订用于密码重置和设备注册服务 (DRS) 的密钥和证书。 清除操作日志中的旧条目。
 
 计划程序本身始终运行，但可以将它配置为仅运行其中一个任务或一个任务都不运行。 例如，如果需要运行自己的同步周期过程，则可以在计划程序中禁用此任务，但仍运行维护任务。
+
+>[!IMPORTANT]
+>默认情况下，每 30 分钟运行一个同步周期。 如果修改了同步周期，则需要确保至少每 7 天运行一个同步周期。 
+>
+>* 需要自上次增量同步后 7 天内进行增量同步。
+>* 需要自上次完全同步完成后 7 天内进行增量同步（紧随完全同步）。
+>
+>如果未这样做，则可能会导致同步问题，而你需要运行完全同步才能解决该问题。 这也适用于处于暂存模式的服务器。
 
 ## <a name="scheduler-configuration"></a>计划程序配置
 若要查看当前配置设置，请转到 PowerShell 并运行 `Get-ADSyncScheduler`。 它显示的内容如此图所示：
@@ -90,7 +97,7 @@ d - 天，HH - 小时，mm - 分钟，ss - 秒
 
 在完成更改后，请不要忘记通过 `Set-ADSyncScheduler -SyncCycleEnabled $true`再次启用计划程序。
 
-## <a name="start-the-scheduler"></a>启动计划程序 <a name="start-the-scheduler"></a>
+## <a name="start-the-scheduler"></a>启动计划程序
 默认情况下，计划程序每 30 分钟运行一次。 在某些情况下，可能想要在已计划的周期之间运行同步周期，或者需要运行不同的类型。
 
 ### <a name="delta-sync-cycle"></a>增量同步周期

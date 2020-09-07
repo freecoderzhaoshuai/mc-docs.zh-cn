@@ -2,25 +2,32 @@
 title: 超出部署配额
 description: 介绍如何解决这样一个错误：在资源组历史记录中有 800 多个部署。
 ms.topic: troubleshooting
-origin.date: 06/25/2020
-ms.date: 07/13/2020
+origin.date: 08/07/2020
+ms.date: 08/24/2020
 ms.testscope: yes
 ms.testdate: 07/13/2020
 ms.author: v-yeche
-ms.openlocfilehash: 75e62964e5fab09d1f4969930bdc9aad48dc844e
-ms.sourcegitcommit: 2bd0be625b21c1422c65f20658fe9f9277f4fd7c
+ms.openlocfilehash: 68926cb06124c95a00545480379bc8a12451b1a6
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440979"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807723"
 ---
 <!--Verified successfully on 2020/07/13 by harris-->
 # <a name="resolve-error-when-deployment-count-exceeds-800"></a>解决部署计数超出 800 的错误
 
 每个资源组在其部署历史记录中最多只能有 800 个部署。 本文介绍在部署因超出允许的 800 个部署的限制而失败时可能会出现的错误。 若要解决此错误，请从资源组历史记录中删除部署。 从历史记录中删除部署不会影响已部署的任何资源。
 
-> [!NOTE]
-> 当你接近限制时，Azure 资源管理器会很快开始自动从历史记录中删除部署。 如果取消选择了自动删除，可能仍会看到此错误。 有关详细信息，请参阅[从部署历史记录中自动删除](deployment-history-deletions.md)。
+当你接近限制时，Azure 资源管理器会自动删除历史记录中的部署。 仍出现此错误可能是由于以下原因之一：
+
+1. 你在资源组上有一个防止从部署历史记录中删除的 CanNotDelete 锁定。
+1. 你已选择退出自动删除。
+1. 你有大量同时运行的部署，并且自动删除的处理速度不够快，无法减少总数量。
+
+有关删除锁定或选择加入自动删除的信息，请参阅[从部署历史记录自动删除](deployment-history-deletions.md)。
+
+本文介绍如何从历史记录手动删除部署。
 
 ## <a name="symptom"></a>症状
 

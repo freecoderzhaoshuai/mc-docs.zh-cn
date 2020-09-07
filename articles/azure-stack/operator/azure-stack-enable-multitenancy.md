@@ -4,16 +4,16 @@ description: 了解如何在 Azure Stack Hub 中启用和禁用多个 Azure Acti
 author: WenJason
 ms.topic: how-to
 oigin.date: 06/18/2020
-ms.date: 07/20/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: bryanr
 ms.lastreviewed: 06/10/2019
-ms.openlocfilehash: b96ef5ebf4c373f50d9e3f788f8984a0c7a800e8
-ms.sourcegitcommit: e9ffd50aa5eaab402a94bfabfc70de6967fe6278
+ms.openlocfilehash: d7f65f1dda678e19faf627f3b292f23a09180903
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2020
-ms.locfileid: "86307396"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867841"
 ---
 # <a name="configure-multi-tenancy-in-azure-stack-hub"></a>在 Azure Stack Hub 中配置多租户
 
@@ -95,7 +95,7 @@ Register-AzSWithMyDirectoryTenant `
 ```
 
 > [!IMPORTANT]
-> 如果 Azure Stack Hub 管理员将来要安装新服务或更新，则你可能需要再次运行此脚本。
+> 如果你的 Azure Stack Hub 管理员将来安装新服务或更新，则你可能需要再次运行此脚本。
 >
 > 随时可以再次运行此脚本来检查目录中的 Azure Stack Hub 应用的状态。
 >
@@ -126,7 +126,7 @@ Mary 将指导 Fabrikam 目录中的任何[外部主体](/role-based-access-cont
      -Verbose 
     ```
 
-2. 以 Azure Stack Hub 的服务管理员身份（在此场景中是你）运行 *Unregister-AzSGuestDirectoryTenant*。
+2. 以 Azure Stack Hub 的服务管理员身份（在此场景中是你）运行 Unregister-AzSGuestDirectoryTenant。
 
     ``` PowerShell
     ## The following Azure Resource Manager endpoint is for the ASDK. If you're in a multinode environment, contact your operator or service provider to get the endpoint.
@@ -149,6 +149,42 @@ Mary 将指导 Fabrikam 目录中的任何[外部主体](/role-based-access-cont
 
     > [!WARNING]
     > 禁用多租户步骤必须按顺序执行。 如果首先完成步骤 1，则步骤 2 将失败。
+
+## <a name="retrieve-azure-stack-hub-identity-health-report"></a>检索 Azure Stack Hub 标识运行状况报告 
+
+替换 `<region>`、`<domain>` 和 `<homeDirectoryTenant>` 占位符，然后以 Azure Stack Hub 管理员的身份执行以下 cmdlet。
+
+```powershell
+
+$AdminResourceManagerEndpoint = "https://adminmanagement.<region>.<domain>"
+$DirectoryName = "<homeDirectoryTenant>.partner.onmschina.cn"
+$healthReport = Get-AzsHealthReport -AdminResourceManagerEndpoint $AdminResourceManagerEndpoint -DirectoryTenantName $DirectoryName
+Write-Host "Healthy directories: "
+$healthReport.directoryTenants | Where status -EQ 'Healthy' | Select -Property tenantName,tenantId,status | ft
+
+
+Write-Host "Unhealthy directories: "
+$healthReport.directoryTenants | Where status -NE 'Healthy' | Select -Property tenantName,tenantId,status | ft
+```
+
+### <a name="update-azure-ad-tenant-permissions"></a>更新 Azure AD 租户权限
+
+此操作会清除 Azure Stack Hub 中的警报，表明目录需要更新。 从 Azurestack-tools-master/identity 文件夹中运行以下命令：
+
+```powershell
+Import-Module ..\Connect\AzureStack.Connect.psm1
+Import-Module ..\Identity\AzureStack.Identity.psm1
+
+$adminResourceManagerEndpoint = "https://adminmanagement.<region>.<domain>"
+
+# This is the primary tenant Azure Stack is registered to:
+$homeDirectoryTenantName = "<homeDirectoryTenant>.partner.onmschina.cn"
+
+Update-AzsHomeDirectoryTenant -AdminResourceManagerEndpoint $adminResourceManagerEndpoint `
+   -DirectoryTenantName $homeDirectoryTenantName -Verbose
+```
+
+该脚本会提示你提供 Azure AD 租户的管理凭据，并且需要几分钟才能运行。 运行 cmdlet 后，应该会清除警报。
 
 ## <a name="next-steps"></a>后续步骤
 

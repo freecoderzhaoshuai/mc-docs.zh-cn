@@ -3,17 +3,17 @@ title: 安装适用于 Azure Stack Hub 的 PowerShell AzureRM 模块
 description: 了解如何安装适用于 Azure Stack Hub 的 PowerShell。
 author: WenJason
 ms.topic: article
-origin.date: 04/14/2020
-ms.date: 07/20/2020
+origin.date: 08/04/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: sijuman
-ms.lastreviewed: 04/14/2020
-ms.openlocfilehash: 3115d3b3ed3b7a9ca9bb2393e9c0cc94ec0848f6
-ms.sourcegitcommit: e9ffd50aa5eaab402a94bfabfc70de6967fe6278
+ms.lastreviewed: 08/04/2020
+ms.openlocfilehash: f14a3039b64526d6d287722f90d417d3553462be
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2020
-ms.locfileid: "86307409"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868074"
 ---
 # <a name="install-powershell-azurerm-module-for-azure-stack-hub"></a>安装适用于 Azure Stack Hub 的 PowerShell AzureRM 模块
 
@@ -24,6 +24,8 @@ Azure PowerShell AzureRM 提供了一组使用 Azure 资源管理器模型管理
 API 配置文件提供一种管理 Azure 与 Azure Stack Hub 之间版本差异的方式。 API 版本配置文件是一组具有特定 API 版本的 Azure 资源管理器 PowerShell 模块。 每个云平台都有一组支持的 API 版本配置文件。 例如，Azure Stack Hub 支持特定的配置文件版本，例如 **2019-03-01-hybrid**。 安装配置文件时，会安装与指定的配置文件对应的 Azure 资源管理器 PowerShell 模块。
 
 可在已连接到 Internet、部分联网或离线场景中安装与 Azure Stack Hub 兼容的 PowerShell 模块。 本文将引导你完成适用于这些场景的详细说明。
+
+还可以在 Docker 容器中运行 Azure Stack Hub 的 AzureRM 模块。 有关说明，请参阅[使用 Docker 运行适用于 Azure Stack Hub 的 PowerShell](../user/azure-stack-powershell-user-docker.md)。
 
 ## <a name="1-verify-your-prerequisites"></a>1.验证先决条件
 
@@ -86,7 +88,6 @@ Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
 
 运行以下 PowerShell 脚本，在开发工作站上安装这些模块：
 
-::: moniker range=">=azs-2002"
 对于 Azure Stack Hub 2002 或更高版本：
 
 可以使用 AzureRm 模块或 Az 预览版模块。 使用 Az 模块需要 Azure Stack Hub 2002 和最新修补程序。
@@ -99,11 +100,9 @@ Install-Module -Name AzureRM.BootStrapper
 
 # Install and import the API Version Profile required by Azure Stack Hub into the current PowerShell session.
 Use-AzureRmProfile -Profile 2019-03-01-hybrid -Force
-Install-Module -Name AzureStack -RequiredVersion 1.8.1
+Install-Module -Name AzureStack -RequiredVersion 1.8.2
 ```
 
-::: moniker-end
-::: moniker range="azs-1910"
 对于 Azure Stack Hub 1910：
 
 ```powershell  
@@ -118,8 +117,6 @@ Install-Module -Name AzureStack -RequiredVersion 1.8.0
 > [!Note]  
 > - Azure Stack Hub 模块版本 1.8.0 是一个包含中断性变更的版本。 有关详细信息，请参阅[发行说明](release-notes.md)。
 
-::: moniker-end
-::: moniker range="<=azs-1908"
 对于 Azure Stack Hub 1908 或更低版本：
 
 ```powershell  
@@ -133,8 +130,6 @@ Install-Module -Name AzureStack -RequiredVersion 1.7.2
 
 > [!Note]  
 > Azure Stack Hub 模块版本 1.7.2 是一个包含中断性变更的版本。 若要从 Azure Stack Hub 1.6.0 迁移，请参阅[迁移指南](https://aka.ms/azspshmigration171)。
-
-::: moniker-end
 
 ### <a name="confirm-the-installation-of-powershell"></a>确认已安装 PowerShell
 
@@ -163,7 +158,6 @@ Get-Module -Name "Azs*" -ListAvailable
 
 ### <a name="install-azure-stack-hub-powershell"></a>安装 Azure Stack Hub PowerShell
 
-::: moniker range=">=azs-2002"
 Azure Stack Hub 2002 或更高版本。
 
 可以使用 AzureRM 或 Az 预览版模块。 有关 Az 模块，请参阅[安装 PowerShell Az 模块](powershell-install-az-module.md)中的说明。
@@ -175,11 +169,9 @@ Import-Module -Name PackageManagement -ErrorAction Stop
 
 $Path = "<Path that is used to save the packages>"
 Save-Package -ProviderName NuGet -Source https://www.powershellgallery.com/api/v2 -Name AzureRM -Path $Path -Force -RequiredVersion 2.5.0
-Save-Package -ProviderName NuGet -Source https://www.powershellgallery.com/api/v2 -Name AzureStack -Path $Path -Force -RequiredVersion 1.8.1
+Save-Package -ProviderName NuGet -Source https://www.powershellgallery.com/api/v2 -Name AzureStack -Path $Path -Force -RequiredVersion 1.8.2
 ```
-::: moniker-end
 
-::: moniker range="azs-1910"
 Azure Stack Hub 1910。
 
 ```powershell
@@ -194,8 +186,6 @@ Save-Package -ProviderName NuGet -Source https://www.powershellgallery.com/api/v
 > [!NOTE]  
 > Azure Stack Hub 模块版本 1.8.0 是一个包含中断性变更的版本。 有关详细信息，请参阅[发行说明](release-notes.md)。
 
-::: moniker-end
-::: moniker range="<=azs-1908"
 对于 Azure Stack Hub 1908 或更低版本：
 
 ```powershell
@@ -209,8 +199,6 @@ Save-Package -ProviderName NuGet -Source https://www.powershellgallery.com/api/v
 
 > [!NOTE]  
 > Azure Stack Hub 模块版本 1.7.1 是一项中断性变更。 若要从 Azure Stack Hub 1.6.0 迁移，请参阅[迁移指南](https://github.com/Azure/azure-powershell/tree/AzureRM/documentation/migration-guides/Stack)。
-
-::: moniker-end
 
 > [!NOTE]  
 > 在没有 Internet 连接的计算机上，建议执行以下 cmdlet 以禁用遥测数据收集功能。 在不禁用遥测数据收集功能的情况下，可能会遇到 cmdlet 性能降级的问题。 这仅适用于没有 Internet 连接的计算机。

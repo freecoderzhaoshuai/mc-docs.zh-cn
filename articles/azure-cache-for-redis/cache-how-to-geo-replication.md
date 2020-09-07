@@ -4,14 +4,14 @@ description: 了解如何跨地理区域复制 Azure Redis 缓存实例。
 author: yegu-ms
 ms.service: cache
 ms.topic: conceptual
-ms.date: 08/10/2020
+ms.date: 08/24/2020
 ms.author: v-junlch
-ms.openlocfilehash: 5d1e5212d34a6d0bd00a2dadf82559519d3b2950
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: 3030f6ce624d8a7fb2acc02bdb545fd8acdfff1b
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222615"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946676"
 ---
 # <a name="how-to-set-up-geo-replication-for-azure-cache-for-redis"></a>如何为 Azure Redis 缓存设置异地复制
 
@@ -24,7 +24,7 @@ ms.locfileid: "88222615"
 
 若要在两个缓存之间配置异地复制，必须满足以下先决条件：
 
-- 这两个缓存是[高级层](cache-premium-tier-intro.md)缓存。
+- 这两个缓存是[高级层](cache-overview.md#service-tiers)缓存。
 - 这两个缓存在同一 Azure 订阅中。
 - 辅助链接缓存的大小等于或大于主链接缓存的大小。
 - 这两个缓存都已创建且处于运行状态。
@@ -186,7 +186,7 @@ ms.locfileid: "88222615"
 若要启动客户发起的故障转移，请先取消链接缓存。 然后将 Redis 客户端更改为使用（以前链接的）辅助缓存的连接终结点。 取消链接两个缓存后，辅助缓存将再次成为常规的读取写入缓存，并直接从 Redis 客户端接受请求。
 
 ## <a name="next-steps"></a>后续步骤
+了解有关 Azure Cache for Redis 功能的详细信息。
 
-了解有关 [Azure Redis 缓存高级层](cache-premium-tier-intro.md)的详细信息。
+* [Azure Cache for Redis 服务层](cache-overview.md#service-tiers)
 
-<!-- Update_Description: wording update -->

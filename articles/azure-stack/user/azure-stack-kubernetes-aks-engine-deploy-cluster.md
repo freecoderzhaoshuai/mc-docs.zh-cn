@@ -3,17 +3,17 @@ title: 使用 AKS 引擎在 Azure Stack Hub 上部署 Kubernetes 群集
 description: 如何从运行 AKS 引擎的客户端 VM 中将 Kubernetes 群集部署到 Azure Stack Hub 上。
 author: WenJason
 ms.topic: article
-origin.date: 4/23/2020
-ms.date: 06/22/2020
+origin.date: 07/07/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: waltero
-ms.lastreviewed: 4/23/2020
-ms.openlocfilehash: 79e2aa50cee9abd48e7de387a3b4237d06a31305
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.lastreviewed: 07/07/2020
+ms.openlocfilehash: 38befb7dec83f7e6f7e48e456eda52424de78cec
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096796"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867778"
 ---
 # <a name="deploy-a-kubernetes-cluster-with-the-aks-engine-on-azure-stack-hub"></a>使用 AKS 引擎在 Azure Stack Hub 上部署 Kubernetes 群集
 
@@ -69,7 +69,7 @@ ms.locfileid: "85096796"
     | --- | --- |
     | dnsPrefix | 输入用于标识 VM 主机名的唯一字符串。 例如基于资源组名称的名称。 |
     | count |  输入要用于部署的主机数。 HA 部署的最小使用数为 3，非 HA 部署的最小使用数可为 1。 |
-    | vmSize |  输入 [Azure Stack Hub 支持的大小](/azure-stack/user/azure-stack-vm-sizes)，例如 `Standard_D2_v2`。 |
+    | vmSize |  输入 [Azure Stack Hub 支持的大小](./azure-stack-vm-sizes.md)，例如 `Standard_D2_v2`。 |
     | distro | 输入 `aks-ubuntu-16.04`。 |
 
 8.  在 `agentPoolProfiles` 更新中：
@@ -77,7 +77,7 @@ ms.locfileid: "85096796"
     | 字段 | 说明 |
     | --- | --- |
     | count | 输入要用于部署的代理数。 每个订阅使用的节点的最大数目为 50 个。 如果要为每个订阅部署多个群集，请确保代理总数不超过 50 个。 请确保使用[示例 API 模型 JSON 文件](https://github.com/Azure/aks-engine/blob/master/examples/azure-stack/kubernetes-azurestack.json)中指定的配置项目。  |
-    | vmSize | 输入 [Azure Stack Hub 支持的大小](/azure-stack/user/azure-stack-vm-sizes)，例如 `Standard_D2_v2`。 |
+    | vmSize | 输入 [Azure Stack Hub 支持的大小](./azure-stack-vm-sizes.md)，例如 `Standard_D2_v2`。 |
     | distro | 输入 `aks-ubuntu-16.04`。 |
 
 
@@ -91,6 +91,9 @@ ms.locfileid: "85096796"
     | ssh | 输入将用于 VM 的 SSH 身份验证的公钥。 依次使用 `ssh-rsa` 和密钥。 有关创建公钥的说明，请参阅[为 Linux 创建 SSH 密钥](create-ssh-key-on-windows.md)。 |
 
     如果要部署到自定义虚拟网络，可在[将 Kubernetes 群集部署到自定义虚拟网络](kubernetes-aks-engine-custom-vnet.md)中找到有关查找必需的密钥和值并将其添加到 API 模型中适当数组中的说明。
+
+    > [!Note]  
+    > Azure Stack Hub 的 AKS 引擎不允许你提供自己的证书来创建群集。
 
 ### <a name="more-information-about-the-api-model"></a>有关 API 模型的详细信息
 
@@ -121,7 +124,7 @@ ms.locfileid: "85096796"
     | output-directory | kube-rg | 输入要包含输出文件 `apimodel.json` 以及其他生成的文件的目录名称。 |
     | client-id | xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx | 输入服务主体 GUID。 Azure Stack Hub 管理员创建服务主体时标识为应用程序 ID 的客户端 ID。 |
     | client-secret | xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx | 输入服务主体密码。 在创建服务时设置的客户端密码。 |
-    | subscription-id | xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx | 输入订阅 ID。 有关详细信息，请参阅[订阅套餐](/azure-stack/user/azure-stack-subscribe-services#subscribe-to-an-offer) |
+    | subscription-id | xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx | 输入订阅 ID。 必须提供租户的订阅。 不支持部署到管理订阅。  有关详细信息，请参阅[订阅套餐](./azure-stack-subscribe-services.md#subscribe-to-an-offer) |
 
     以下是示例：
 

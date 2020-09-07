@@ -2,13 +2,13 @@
 title: 如何面向 Azure Functions 运行时版本
 description: Azure Functions 支持多个版本的运行时。 了解如何在 Azure 中指定函数应用的运行时版本。
 ms.topic: conceptual
-ms.date: 08/12/2020
-ms.openlocfilehash: 5e2be4c52c25201748e6d94d739e97511e75d04f
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.date: 08/24/2020
+ms.openlocfilehash: 5135e05c5d4aed397b73e298b97592c332725dce
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222711"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947133"
 ---
 # <a name="how-to-target-azure-functions-runtime-versions"></a>如何面向 Azure Functions 运行时版本
 
@@ -16,12 +16,12 @@ ms.locfileid: "88222711"
 
 ## <a name="automatic-and-manual-version-updates"></a>自动和手动版本更新
 
-Azure Functions 允许你通过使用函数应用中的 `FUNCTIONS_EXTENSION_VERSION` 应用程序设置来针对特定版本的运行时。 函数应用将一直保留在指定的主版本上，直到显式选择迁移到新版本。
+Azure Functions 允许你通过使用函数应用中的 `FUNCTIONS_EXTENSION_VERSION` 应用程序设置来针对特定版本的运行时。 函数应用将一直保留在指定的主版本上，直到显式选择迁移到新版本。 如果仅指定主版本，当运行时的新次要版本可用时，函数应用将自动更新到该版本。 新的次要版本不应引入中断性变更。 
 
-如果仅指定主版本，当运行时的新次要版本可用时，函数应用将自动更新到该版本。 新的次要版本不应引入中断性变更。 如果指定次要版本（例如，“2.0.12345”），则函数应用将被固定到该特定版本，直到显式更改它。
+如果指定次要版本（例如，“2.0.12345”），则函数应用将被固定到该特定版本，直到显式更改它。 会定期从生产环境中删除旧的次要版本。 发生这种情况后，函数应用将在最新版本上运行，而不是在 `FUNCTIONS_EXTENSION_VERSION` 中设置的版本上运行。 因此，应快速解决需要特定次要版本来解决的任何函数应用问题，以便可以专注使用主要版本。 [应用服务公告](https://github.com/Azure/app-service-announcements/issues)中会公布次要版本删除信息。
 
 > [!NOTE]
-> 如果你固定到 Azure Functions 的特定版本，然后尝试使用 Visual Studio 发布到 Azure，则会弹出一个对话框窗口，提示你更新到最新版本或取消发布。 若要避免出现此情况，请在 `.csproj` 文件中添加 `<DisableFunctionExtensionVersionUpdate>true</DisableFunctionExtensionVersionUpdate>` 属性。
+> 如果你固定到 Azure Functions 的特定主要版本，然后尝试使用 Visual Studio 发布到 Azure，则会弹出一个对话框窗口，提示你更新到最新版本或取消发布。 若要避免出现此情况，请在 `.csproj` 文件中添加 `<DisableFunctionExtensionVersionUpdate>true</DisableFunctionExtensionVersionUpdate>` 属性。
 
 有新版本公开可用时，门户中将显示提示，让你可以升级到该版本。 升级至新版本后，始终可使用 `FUNCTIONS_EXTENSION_VERSION` 应用程序设置移回到之前的版本。
 
@@ -56,7 +56,7 @@ Azure Functions 允许你通过使用函数应用中的 `FUNCTIONS_EXTENSION_VER
 >[!NOTE]
 >因为运行时版本可能会影响其他设置，因此，应当在门户中更改版本。 当你更改运行时版本时，门户会自动进行其他必需的更新，例如 Node.js 版本和运行时堆栈。  
 
-使用 Azure CLI 时，可以使用 [az functionapp config appsettings set](https://docs.microsoft.com/cli/azure/functionapp/config/appsettings) 命令查看当前的运行时版本。
+使用 Azure CLI 时，可以使用 [az functionapp config appsettings set](/cli/functionapp/config/appsettings) 命令查看当前的运行时版本。
 
 ```azurecli
 az functionapp config appsettings list --name <function_app> \
@@ -90,7 +90,7 @@ az functionapp config appsettings list --name <function_app> \
 ]
 ```
 
-可以使用 [az functionapp config appsettings set](https://docs.microsoft.com/cli/azure/functionapp/config/appsettings) 命令更新函数应用中的 `FUNCTIONS_EXTENSION_VERSION` 设置。
+可以使用 [az functionapp config appsettings set](/cli/functionapp/config/appsettings) 命令更新函数应用中的 `FUNCTIONS_EXTENSION_VERSION` 设置。
 
 ```azurecli
 az functionapp config appsettings set --name <function_app> \

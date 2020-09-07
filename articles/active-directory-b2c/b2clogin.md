@@ -3,20 +3,20 @@ title: 将应用程序和 API 迁移到 b2clogin.cn
 titleSuffix: Azure AD B2C
 description: 了解如何在 Azure Active Directory B2C 的重定向 URL 中使用 b2clogin.cn。
 services: active-directory-b2c
-author: mmacy
+author: msmimart
 manager: celestedg
 ms.service: active-directory
 ms.workload: identity
-ms.topic: conceptual
-ms.date: 12/30/2019
+ms.topic: how-to
+ms.date: 08/25/2020
 ms.author: v-junlch
 ms.subservice: B2C
-ms.openlocfilehash: b9a6626eca514cd15a7ddf97460f2a5d6ff53ea0
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: c95542a220fa123f2fe573ba8d82178f2d9e28dd
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75623608"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946585"
 ---
 # <a name="set-redirect-urls-to-b2clogincn-for-azure-active-directory-b2c"></a>将 Azure Active Directory B2C 的重定向 URL 设置为 b2clogin.cn
 
@@ -77,24 +77,42 @@ https://contosob2c.b2clogin.cn/00000000-0000-0000-0000-000000000000/B2C_1_signup
 
 ## <a name="microsoft-authentication-library-msal"></a>Microsoft 身份验证库 (MSAL)
 
-### <a name="validateauthority-property"></a>ValidateAuthority 属性
+### <a name="msalnet-validateauthority-property"></a>MSAL.NET ValidateAuthority 属性
 
-如果使用 [MSAL.NET][msal-dotnet] v2 或更低版本，请在客户端实例化中将 **ValidateAuthority** 属性设置为 `false`，以允许重定向到 *b2clogin.cn*。 在 MSAL.NET v3 和更高版本中不需要此设置。
+如果使用 [MSAL.NET][msal-dotnet] v2 或更低版本，请在客户端实例化中将 **ValidateAuthority** 属性设置为 `false`，以允许重定向到 *b2clogin.cn*。 在 MSAL.NET v3 和更高版本中不需要将此值设置为 `false`。
 
 ```csharp
 ConfidentialClientApplication client = new ConfidentialClientApplication(...); // Can also be PublicClientApplication
 client.ValidateAuthority = false; // MSAL.NET v2 and earlier **ONLY**
 ```
 
-如果使用 [MSAL for JavaScript][msal-js]：
+### <a name="msal-for-javascript-validateauthority-property"></a>MSAL for JavaScript validateAuthority 属性
+
+如果你使用的是 [MSAL for JavaScript][msal-js] v 1.2.2 或更早版本，请将“validateAuthority”属性设置为 `false`。
 
 ```JavaScript
+// MSAL.js v1.2.2 and earlier
 this.clientApplication = new UserAgentApplication(
   env.auth.clientId,
   env.auth.loginAuthority,
   this.authCallback.bind(this),
   {
-    validateAuthority: false
+    validateAuthority: false // Required in MSAL.js v1.2.2 and earlier **ONLY**
+  }
+);
+```
+
+如果在 MSAL.js 1.3.0+（默认值）中设置 `validateAuthority: true`，则还需要使用 `knownAuthorities` 指定有效的令牌颁发者：
+
+```JavaScript
+// MSAL.js v1.3.0+
+this.clientApplication = new UserAgentApplication(
+  env.auth.clientId,
+  env.auth.loginAuthority,
+  this.authCallback.bind(this),
+  {
+    validateAuthority: true, // Supported in MSAL.js v1.3.0+
+    knownAuthorities: ['tenant-name.b2clogin.cn'] // Required if validateAuthority: true
   }
 );
 ```
@@ -109,4 +127,3 @@ this.clientApplication = new UserAgentApplication(
 [msal-js]: https://github.com/AzureAD/microsoft-authentication-library-for-js
 [msal-js-b2c]: ../active-directory/develop/msal-b2c-overview.md
 
-<!-- Update_Description: wording update -->

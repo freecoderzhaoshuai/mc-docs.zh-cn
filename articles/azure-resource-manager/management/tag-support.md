@@ -2,18 +2,20 @@
 title: 资源的标记支持
 description: 显示支持标记的 Azure资源类型。 提供所有 Azure 服务的详细信息。
 ms.topic: conceptual
-origin.date: 06/15/2020
-ms.date: 07/13/2020
-ms.testscope: no
-ms.testdate: 07/13/2020Null
+origin.date: 07/28/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.author: v-yeche
-ms.openlocfilehash: 366eea4649608284fbb3353cf34295aeda4dd9a5
-ms.sourcegitcommit: 2bd0be625b21c1422c65f20658fe9f9277f4fd7c
+ms.openlocfilehash: 56cee5a5ee5528680e57be18bc4cf2a2883fb889
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440992"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807726"
 ---
+<!--Verify Successfully-->
 # <a name="tag-support-for-azure-resources"></a>Azure 资源的标记支持
 本文介绍某一资源类型是否支持[标记](tag-resources.md)。 标记为“支持标记”的列指示资源类型是否具有标记的属性。 
 
@@ -45,6 +47,7 @@ ms.locfileid: "86440992"
 > - [Microsoft.ContainerInstance](#microsoftcontainerinstance)
 > - [Microsoft.ContainerRegistry](#microsoftcontainerregistry)
 > - [Microsoft.ContainerService](#microsoftcontainerservice)
+> - [Microsoft.DataBox](#microsoftdatabox)
 > - [Microsoft.DataFactory](#microsoftdatafactory)
 > - [Microsoft.DataMigration](#microsoftdatamigration)
 > - [Microsoft.DBforMariaDB](#microsoftdbformariadb)
@@ -67,6 +70,7 @@ ms.locfileid: "86440992"
 > - [Microsoft.MachineLearningServices](#microsoftmachinelearningservices)
 > - [Microsoft.Maintenance](#microsoftmaintenance)
 > - [Microsoft.ManagedIdentity](#microsoftmanagedidentity)
+> - [Microsoft.ManagedServices](#microsoftmanagedservices)
 > - [Microsoft.Management](#microsoftmanagement)
 > - [Microsoft.Media](#microsoftmedia)
 > - [Microsoft.Network](#microsoftnetwork)
@@ -187,6 +191,10 @@ ms.locfileid: "86440992"
 > | automationAccounts / softwareUpdateConfigurations | 否 | 否 |
 > | automationAccounts / webhooks | 否 | 否 |
 
+>[!NOTE]
+>Azure 自动化仅支持为每个自动化资源创建最多 15 个标记名称/值对。
+> 
+
 <!--Not Avaialble on ## Microsoft.Azconfig-->
 <!--Not Avaialble on ## Microsoft.Azure.Geneva-->
 
@@ -206,12 +214,13 @@ ms.locfileid: "86440992"
 > | 资源类型 | 支持标记 | 在成本报表中标记 |
 > | ------------- | ----------- | ----------- |
 > | cloudManifestFiles | 否 | 否 |
+> | edgeSubscriptions | 是 | 是 |
 > | registrations | 是 | 是 |
 > | registrations / customerSubscriptions | 否 | 否 |
 > | registrations / products | 否 | 否 |
 
 <!--Not Avaialble on ## Microsoft.AzureStackHCI-->
-<!--Not Avaialble on ## Microsoft.AzureStackResourceMonitor-->
+
 ## <a name="microsoftbatch"></a>Microsoft.Batch
 
 > [!div class="mx-tableFixed"]
@@ -270,7 +279,6 @@ ms.locfileid: "86440992"
 > | validateProbe | 否 | 否 |
 
 <!--Not Available on ## Microsoft.CertificateRegistration-->
-
 <!--Not Avaialble on ## Microsoft.ChangeAnalysis-->
 
 ## <a name="microsoftclassiccompute"></a>Microsoft.ClassicCompute
@@ -382,7 +390,6 @@ ms.locfileid: "86440992"
 > | sharedVMImages / versions | 否 | 否 |
 > | snapshots | 是 | 是 |
 > | sshPublicKeys | 是 | 是 |
-> | swiftlets | 是 | 是 |
 > | virtualMachines | 是 | 是 |
 > | virtualMachines / extensions | 是 | 是 |
 > | virtualMachines / metricDefinitions | 否 | 否 |
@@ -396,6 +403,8 @@ ms.locfileid: "86440992"
 
 > [!NOTE]
 > 不能将标记添加到已标记为“通用化”的虚拟机。 使用 [Set-AzVm -Generalized](https://docs.microsoft.com/powershell/module/Az.Compute/Set-AzVM) 或 [az vm generalize](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-generalize) 将虚拟机标记为“通用化”。
+
+<!--Not Avaialble on ## Microsoft.ConnectedCache-->
 <!--Not Available on ## Microsoft.Consumption -->
 
 ## <a name="microsoftcontainerinstance"></a>Microsoft.ContainerInstance
@@ -458,7 +467,14 @@ ms.locfileid: "86440992"
 <!--Not Available on  ## Microsoft.CostManagement-->
 <!--Not Available on  ## Microsoft.CustomerLockbox-->
 <!--Not Available on  ## Microsoft.CustomProviders-->
-<!--Not Available on  ## Microsoft.DataBox-->
+
+## <a name="microsoftdatabox"></a>Microsoft.DataBox
+
+> [!div class="mx-tableFixed"]
+> | 资源类型 | 支持标记 | 在成本报表中标记 |
+> | ------------- | ----------- | ----------- |
+> | jobs | 是 | 是 |
+
 <!--Not Available on  ## Microsoft.DataBoxEdge-->
 <!--Not Available on  ## Microsoft.Databricks-->
 <!--Not Available on  ## Microsoft.DataCatalog-->
@@ -563,6 +579,7 @@ ms.locfileid: "86440992"
 <!--Not Available on ## Microsoft.DevOps-->
 <!--Not Available on ## Microsoft.DevSpaces-->
 <!--Not Available on ## Microsoft.DevTestLab-->
+<!--Not Available on ## Microsoft.DigitalTwins-->
 
 ## <a name="microsoftdocumentdb"></a>Microsoft.DocumentDB
 
@@ -623,7 +640,6 @@ ms.locfileid: "86440992"
 > | subscriptionFeatureRegistrations | 否 | 否 |
 
 <!--Not Available on ## Microsoft.Gallery-->
-
 <!--Not Available on ## Microsoft.Genomics-->
 
 ## <a name="microsoftguestconfiguration"></a>Microsoft.GuestConfiguration
@@ -714,6 +730,8 @@ ms.locfileid: "86440992"
 > | vaults / eventGridFilters | 否 | 否 |
 > | vaults / secrets | 否 | 否 |
 
+<!--Not Available on managedHSM-->
+
 ## <a name="microsoftkubernetes"></a>Microsoft.Kubernetes
 
 > [!div class="mx-tableFixed"]
@@ -749,7 +767,7 @@ ms.locfileid: "86440992"
 > | hostingEnvironments | 是 | 是 |
 > | integrationAccounts | 是 | 是 |
 > | integrationServiceEnvironments | 是 | 是 |
-> | integrationServiceEnvironments / managedApis | 是 | 是 |
+> | integrationServiceEnvironments / managedApis | 否 | 否 |
 > | isolatedEnvironments | 是 | 是 |
 > | workflows | 是 | 是 |
 
@@ -783,7 +801,15 @@ ms.locfileid: "86440992"
 > | userAssignedIdentities | 是 | 是 |
 
 <!--Not Available on ## Microsoft.ManagedNetwork-->
-<!--Not Available on ## Microsoft.ManagedServices-->
+
+## <a name="microsoftmanagedservices"></a>Microsoft.ManagedServices
+
+> [!div class="mx-tableFixed"]
+> | 资源类型 | 支持标记 | 在成本报表中标记 |
+> | ------------- | ----------- | ----------- |
+> | marketplaceRegistrationDefinitions | 否 | 否 |
+> | registrationAssignments | 否 | 否 |
+> | registrationDefinitions | 否 | 否 |
 
 ## <a name="microsoftmanagement"></a>Microsoft.Management
 
@@ -832,8 +858,7 @@ ms.locfileid: "86440992"
 <!--Not Available on  ## Microsoft.Migrate-->
 <!--Not Available on  ## Microsoft.MixedReality-->
 <!--Not Available on  ## Microsoft.NetApp-->
-
-<!--Bastion, DDos, Front Door, and Private link service are not available on Mooncake-->
+<!--DDos, Front Door, and Private link service are not available on Mooncake-->
 <!--MOONCAKE CUSTOMIZEIONT-->
 
 ## <a name="microsoftnetwork"></a>Microsoft.Network
@@ -846,6 +871,7 @@ ms.locfileid: "86440992"
 > | applicationSecurityGroups | 是 | 是 |
 > | azureFirewallFqdnTags | 否 | 否 |
 > | azureFirewalls | 是 | 否 |
+> | bastionHosts | 是 | 否 |
 > | bgpServiceCommunities | 否 | 否 |
 > | connections | 是 | 是 |
 > | dnsOperationStatuses | 否 | 否 |
@@ -915,9 +941,8 @@ ms.locfileid: "86440992"
 > | vpnSites | 是 | 是 |
 > | webApplicationFirewallPolicies | 是 | 是 |
 
-<!--Bastion, DDos, Front Door, and Private link service are not available on Mooncake-->
+<!--DDos, Front Door, and Private link service are not available on Mooncake-->
 <!--MOONCAKE CUSTOMIZEIONT-->
-
 <!--Not Available on Azure Front Door Service-->
 <!--Not Available on ## Microsoft.Notebooks-->
 
@@ -987,6 +1012,9 @@ ms.locfileid: "86440992"
 > [!div class="mx-tableFixed"]
 > | 资源类型 | 支持标记 | 在成本报表中标记 |
 > | ------------- | ----------- | ----------- |
+> | privateLinkServicesForPowerBI | 是 | 是 |
+> | tenants | 是 | 是 |
+> | tenants / workspaces | 否 | 否 |
 > | workspaceCollections | 是 | 是 |
 
 ## <a name="microsoftpowerbidedicated"></a>Microsoft.PowerBIDedicated
@@ -1006,6 +1034,7 @@ ms.locfileid: "86440992"
 > | ------------- | ----------- | ----------- |
 > | backupProtectedItems | 否 | 否 |
 > | vaults | 是 | 是 |
+
 <!--Not Available on ## Microsoft.RedHatOpenShift-->
 
 ## <a name="microsoftrelay"></a>Microsoft.Relay
@@ -1102,6 +1131,8 @@ ms.locfileid: "86440992"
 > | iotSecuritySolutions / analyticsModels | 否 | 否 |
 > | iotSecuritySolutions / analyticsModels / aggregatedAlerts | 否 | 否 |
 > | iotSecuritySolutions / analyticsModels / aggregatedRecommendations | 否 | 否 |
+> | iotSecuritySolutions / iotAlerts | 否 | 否 |
+> | iotSecuritySolutions / iotAlertTypes | 否 | 否 |
 > | jitNetworkAccessPolicies | 否 | 否 |
 > | 策略 | 否 | 否 |
 > | pricings | 否 | 否 |

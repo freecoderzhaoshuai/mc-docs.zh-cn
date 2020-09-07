@@ -5,23 +5,23 @@ description: 使用 Azure Application Insights 监视通过 Azure 机器学习�
 services: machine-learning
 ms.service: machine-learning
 ms.subservice: core
-ms.topic: how-to
 ms.reviewer: jmartens
 ms.author: larryfr
 author: blackmist
-ms.date: 06/09/2020
-ms.custom: tracking-python
-ms.openlocfilehash: 6fc555a9493919c3b2a6737e233c5341dbab7f85
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.date: 07/23/2020
+ms.topic: conceptual
+ms.custom: how-to, devx-track-python
+ms.openlocfilehash: df45a47952d9f7b3cc4284d8f94fa17ded42291c
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228285"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947144"
 ---
 # <a name="monitor-and-collect-data-from-ml-web-service-endpoints"></a>监视机器学习 Web 服务终结点以及从中收集数据
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
 
-本文介绍如何通过以下方式启用 Azure Application Insights，监视部署到 Azure Kubernetes 服务 (AKS) 或 Azure 容器实例 (ACI) 中 Web 服务终结点的模型以及从中收集数据： 
+本文介绍如何通过以下方式查询日志并启用 Azure Application Insights，监视部署到 Azure Kubernetes 服务 (AKS) 或 Azure 容器实例 (ACI) 中 Web 服务终结点的模型以及从中收集数据： 
 * [Azure 机器学习 Python SDK](#python)
 * [Azure 机器学习工作室](#studio) (https://ml.azure.com )
 
@@ -41,6 +41,18 @@ ms.locfileid: "88228285"
 * 已安装 Azure 机器学习工作区、一个包含脚本的本地目录以及用于 Python 的 Azure 机器学习 SDK。 若要了解如何满足这些先决条件，请参阅[如何配置开发环境](how-to-configure-environment.md)
 
 * 要部署到 Azure Kubernetes 服务 (AKS) 或 Azure 容器实例 (ACI) 的经过训练的机器学习模型。 如果没有模型，请参阅[训练图像分类模型](tutorial-train-models-with-aml.md)教程
+
+## <a name="query-logs-for-deployed-models"></a>查询部署的模型的日志
+
+若要从以前部署的 Web 服务检索日志，请加载该服务并使用 `get_logs()` 函数。 日志可以包含有关部署期间发生的任何错误的详细信息。
+
+```python
+from azureml.core.webservice import Webservice
+
+# load existing web service
+service = Webservice(name="service-name", workspace=ws)
+logs = service.get_logs()
+```
 
 ## <a name="web-service-metadata-and-response-data"></a>Web 服务元数据和响应数据
 
@@ -164,11 +176,11 @@ ms.locfileid: "88228285"
 1. 在 [Azure 门户](https://ms.portal.azure.cn/)中转到 Azure 机器学习工作区。
 1. 选择“终结点”。
 1. 选择已部署的服务。
-1. 向下滚动以查找 Application Insights url，并单击该链接。
+1. 向下滚动以查找 Application Insights url，并选择该链接。
 
     [![AppInsightsLoc](./media/how-to-enable-app-insights/AppInsightsLoc.png)](././media/how-to-enable-app-insights/AppInsightsLoc.png#lightbox)
 
-1. 从“概述”选项卡或左侧列表的“监视”部分中，选择“日志” 。
+1. 在 Application Insights 中，从“概述”选项卡或左侧列表的“监视”部分选择“日志” 。
 
     [![监视的“概述”选项卡](./media/how-to-enable-app-insights/overview.png)](./media/how-to-enable-app-insights/overview.png#lightbox)
 

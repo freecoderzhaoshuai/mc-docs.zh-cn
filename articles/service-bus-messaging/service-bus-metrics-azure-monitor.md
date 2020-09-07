@@ -2,24 +2,26 @@
 title: Azure Monitor 中的 Azure 服务总线指标 | Azure
 description: 本文介绍如何使用 Azure Monitor 监视服务总线实体（队列、主题和订阅）。
 ms.topic: article
-origin.date: 06/23/2020
-ms.date: 07/27/2020
-ms.testscope: yes
-ms.testdate: 07/20/2020
-ms.author: v-yeche
+origin.date: 07/15/2020
 author: rockboyfor
-ms.openlocfilehash: 342d11ad1b9f94af4e79df5fac1e60f5c0591127
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/17/2020
+ms.author: v-yeche
+ms.openlocfilehash: f1ba2047762ee2f7e2b1cfd8b9a6b004bfc267fe
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162423"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946999"
 ---
 # <a name="azure-service-bus-metrics-in-azure-monitor"></a>Azure Monitor 中的 Azure 服务总线指标
 
 服务总线指标提供 Azure 订阅中的资源状态。 通过一组丰富的指标数据，可在命名空间和实体级别评估服务总线资源的总体运行状况。 这些统计信息非常重要，因为它们能够帮助监视服务总线的状态。 另外，指标也可帮助解决由根本原因造成的问题，而无需联系 Azure 支持。
 
-Azure Monitor 提供了统一的用户界面，可用于监视各种 Azure 服务。 有关详细信息，请参阅 GitHub 上的[在世纪互联 Azure 中进行监视](../monitoring-and-diagnostics/monitoring-overview.md)和[通过 .NET 检索 Azure Monitor 指标](https://github.com/Azure-Samples/monitor-dotnet-metrics-api)示例。
+Azure Monitor 提供了统一的用户界面，可用于监视各种 Azure 服务。 有关详细信息，请参阅 GitHub 上的[在世纪互联 Azure 中进行监视](../azure-monitor/overview.md)和[通过 .NET 检索 Azure Monitor 指标](https://github.com/Azure-Samples/monitor-dotnet-metrics-api)示例。
+
+<!--Mooncake Customization on: 21Vianet Azure-->
 
 > [!IMPORTANT]
 > 如果在 2 小时内没有与实体进行任何交互，则指标将显示“0”作为值，直到实体不再空闲为止。
@@ -34,11 +36,11 @@ Azure Monitor 提供多种访问指标的方法。 可通过 [Azure 门户](http
 
 可在 [Azure 门户](https://portal.azure.cn)中监视一段时间内的指标。 以下示例演示了如何在帐户级别查看成功的请求和传入的请求：
 
-![][1]
+![Azure 门户中的“监视 - 指标（预览）”页的屏幕截图。][1]
 
 也可以直接通过命名空间来访问指标。 为此，请选择命名空间，然后单击“指标”。 若要显示筛选到实体范围的指标，请选择实体，然后单击“指标”。
 
-![][2]
+![筛选到实体范围的“监视 - 指标（预览）”页的屏幕截图。][2]
 
 对于支持维度的指标，必须使用所需的维度值进行筛选。
 
@@ -59,13 +61,13 @@ Azure Monitor 提供多种访问指标的方法。 可通过 [Azure 门户](http
 
 计算数据量和管理操作请求数。
 
-| 指标名称 | 说明 |
+| 标准名称 | 说明 |
 | ------------------- | ----------------- |
-| 传入请求数| 在指定的期间内向服务总线服务发出的请求数。 <br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：EntityName|
-|成功的请求数|在指定的期间内向服务总线服务发出的成功请求数。<br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：EntityName|
-|服务器错误数|由于服务总线服务发生错误，在指定期间内未处理的请求数。<br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：EntityName|
-|用户错误（请参阅以下小节）|由于存在用户错误，在指定期间内未处理的请求数。<br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：EntityName|
-|限制的请求数|由于使用量超标，而被限制的请求数。<br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：EntityName|
+|传入请求数| 在指定的期间内向服务总线服务发出的请求数。 <br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：实体名称|
+|成功的请求数|在指定的期间内向服务总线服务发出的成功请求数。<br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：实体名称|
+|服务器错误数|由于服务总线服务发生错误，在指定期间内未处理的请求数。<br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：实体名称|
+|用户错误（请参阅以下小节）|由于存在用户错误，在指定期间内未处理的请求数。<br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：实体名称|
+|限制的请求数|由于使用量超标，而被限制的请求数。<br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：实体名称|
 
 ### <a name="user-errors"></a>用户错误
 
@@ -78,12 +80,13 @@ Azure Monitor 提供多种访问指标的方法。 可通过 [Azure 门户](http
 
 | 标准名称 | 说明 |
 | ------------------- | ----------------- |
-|传入消息数|在指定的期间内发送到服务总线的事件或消息数。<br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：EntityName|
-|传出消息数|在指定的期间内从服务总线收到的事件或消息数。<br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：EntityName|
-| 消息| 队列/主题中的消息计数。 <br/><br/> 单元：计数 <br/> 聚合类型：平均值 <br/> 维度：EntityName |
-| ActiveMessages| 队列/主题中的活动消息的计数。 <br/><br/> 单元：计数 <br/> 聚合类型：平均值 <br/> 维度：EntityName |
-| 死信消息| 队列/主题中的死信消息计数。 <br/><br/> 单元：计数 <br/> 聚合类型：平均值 <br/>维度：EntityName |
-| 计划的消息| 队列/主题中的计划消息计数。 <br/><br/> 单元：计数 <br/> 聚合类型：平均值  <br/> 维度：EntityName |
+|传入消息数|在指定的期间内发送到服务总线的事件或消息数。<br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：实体名称|
+|传出消息数|在指定的期间内从服务总线收到的事件或消息数。<br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：实体名称|
+| 消息| 队列/主题中的消息计数。 <br/><br/> 单元：计数 <br/> 聚合类型：平均值 <br/> 维度：实体名称 |
+| 活动消息| 队列/主题中的活动消息的计数。 <br/><br/> 单元：计数 <br/> 聚合类型：平均值 <br/> 维度：实体名称 |
+| 死信消息| 队列/主题中的死信消息计数。 <br/><br/> 单元：计数 <br/> 聚合类型：平均值 <br/>维度：实体名称 |
+| 计划的消息| 队列/主题中的计划消息计数。 <br/><br/> 单元：计数 <br/> 聚合类型：平均值  <br/> 维度：实体名称 |
+| 大小 | 实体（队列或主题）的大小，以字节为单位。 <br/><br/>单位：计数 <br/>聚合类型：平均值 <br/>维度：实体名称 | 
 
 > [!NOTE]
 > 以下指标的值是时间点值。 在该时间点之后立即使用的传入消息可能不会反映在这些指标中。 
@@ -94,11 +97,11 @@ Azure Monitor 提供多种访问指标的方法。 可通过 [Azure 门户](http
 
 ## <a name="connection-metrics"></a>连接指标
 
-| 指标名称 | 说明 |
+| 标准名称 | 说明 |
 | ------------------- | ----------------- |
-|ActiveConnections|命名空间以及实体上的活动连接数。<br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：EntityName|
-|打开的连接数 |打开的连接数。<br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：EntityName|
-|关闭的连接数 |关闭的连接数。<br/><br/> 单元：计数 <br/> 聚合类型：总计 <br/> 维度：EntityName|
+|活动连接数|命名空间以及实体上的活动连接数。<br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：实体名称|
+|打开的连接数 |打开的连接数。<br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：实体名称|
+|关闭的连接数 |关闭的连接数。<br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：实体名称|
 
 ## <a name="resource-usage-metrics"></a>资源使用情况指标
 
@@ -109,10 +112,10 @@ Azure Monitor 提供多种访问指标的方法。 可通过 [Azure 门户](http
 > 
 > 你可以监视的另一个指标是：**限制的请求数**。 不过，只要命名空间保持在其内存、CPU 和中转连接限制内，就不会出现问题。 有关详细信息，请参阅 [Azure 服务总线高级层中的限制](service-bus-throttling.md#throttling-in-azure-service-bus-premium-tier)
 
-| 指标名称 | 说明 |
+| 标准名称 | 说明 |
 | ------------------- | ----------------- |
-|每个命名空间的 CPU 使用率|命名空间的 CPU 使用百分比。<br/><br/> 单位：百分比 <br/> 聚合类型：最大值 <br/> 维度：EntityName|
-|每个命名空间的内存使用量|命名空间的内存使用百分比。<br/><br/> 单位：百分比 <br/> 聚合类型：最大值 <br/> 维度：EntityName|
+|每个命名空间的 CPU 使用率|命名空间的 CPU 使用百分比。<br/><br/> 单位：百分比 <br/> 聚合类型：最大值 <br/> 维度：实体名称|
+|每个命名空间的内存使用量|命名空间的内存使用百分比。<br/><br/> 单位：百分比 <br/> 聚合类型：最大值 <br/> 维度：实体名称|
 
 ## <a name="metrics-dimensions"></a>指标维度
 
@@ -120,37 +123,37 @@ Azure 总线服务支持对 Azure Monitor 中的指标使用以下维度。 为�
 
 |维度名称|说明|
 | ------------------- | ----------------- |
-|EntityName| 总线服务支持命名空间下的消息实体。|
+|实体名称| 总线服务支持命名空间下的消息实体。|
 
 ## <a name="set-up-alerts-on-metrics"></a>针对指标设置警报
 
 1. 在“服务总线命名空间”页面的“指标”选项卡上，选择“配置警报”。 
 
-    ![“指标”页面 - 配置警报菜单](./media/service-bus-metrics-azure-monitor/metrics-page-configure-alerts-menu.png)
+    :::image type="content" source="./media/service-bus-metrics-azure-monitor/metrics-page-configure-alerts-menu.png" alt-text="“指标”页面 - 配置警报菜单":::
 2. 选择“选择目标”选项，并在“选择资源”页面上执行以下操作： 
     1. 对于“按资源类型筛选”字段，选择“服务总线命名空间”。 
     2. 对于“按订阅筛选”字段，选择你的订阅。
     3. 从列表中选择“服务总线命名空间”。 
     4. 选择“完成” 。 
 
-        ![选择命名空间](./media/service-bus-metrics-azure-monitor/select-namespace.png)
+        :::image type="content" source="./media/service-bus-metrics-azure-monitor/select-namespace.png" alt-text="选择命名空间":::
 1. 选择“添加条件”，并在“配置信号逻辑”页面上执行以下操作：
     1. 对于“信号类型”，选择“指标”。 
     2. 选择一个信号。 例如：**服务错误**。 
 
-        ![选择“服务器错误”](./media/service-bus-metrics-azure-monitor/select-server-errors.png)
+        :::image type="content" source="./media/service-bus-metrics-azure-monitor/select-server-errors.png" alt-text="选择“服务器错误”":::
     1. 对于“条件”，选择“大于”。
     2. 对于“时间聚合”，选择“总计”。 
     3. 对于“阈值”，输入 **5**。 
-    4. 选择“完成”。    
+    4. 选择“完成” 。    
 
-        ![指定条件](./media/service-bus-metrics-azure-monitor/specify-condition.png)    
+        :::image type="content" source="./media/service-bus-metrics-azure-monitor/specify-condition.png" alt-text="指定条件":::    
 1. 在“创建规则”页面上，展开“定义警报详细信息”，执行以下操作：
     1. 为警报输入**名称**。 
     2. 为警报输入**说明**。
     3. 选择警报的**严重性**。 
 
-        ![警报详细信息](./media/service-bus-metrics-azure-monitor/alert-details.png)
+        :::image type="content" source="./media/service-bus-metrics-azure-monitor/alert-details.png" alt-text="警报详细信息":::
 1. 在“创建规则”页面上，展开“定义操作组”，选择“新建操作组”，然后在“添加操作组”页面上执行以下操作。 
     1. 为操作组输入名称。
     2. 为操作组输入短名称。 
@@ -164,15 +167,15 @@ Azure 总线服务支持对 Azure Monitor 中的指标使用以下维度。 为�
         2. 键入**电子邮件地址**。 
         3. 选择“确定”。
 
-            ![警报详细信息](./media/service-bus-metrics-azure-monitor/add-action-group.png)
+            :::image type="content" source="./media/service-bus-metrics-azure-monitor/add-action-group.png" alt-text="警报详细信息":::
         4. 在“添加操作组”页面上，选择“确定”。 
 1. 在“创建规则”页面上，选择“创建警报规则”。 
 
-    ![“创建警报规则”按钮](./media/service-bus-metrics-azure-monitor/create-alert-rule.png)
+    :::image type="content" source="./media/service-bus-metrics-azure-monitor/create-alert-rule.png" alt-text="“创建警报规则”按钮":::
 
 ## <a name="next-steps"></a>后续步骤
 
-请参阅 [Azure Monitor 概述](../monitoring-and-diagnostics/monitoring-overview.md)。
+请参阅 [Azure Monitor 概述](../azure-monitor/overview.md)。
 
 [1]: ./media/service-bus-metrics-azure-monitor/service-bus-monitor1.png
 [2]: ./media/service-bus-metrics-azure-monitor/service-bus-monitor2.png

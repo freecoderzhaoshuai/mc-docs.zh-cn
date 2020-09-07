@@ -6,20 +6,20 @@ author: rockboyfor
 ms.topic: article
 ms.tgt_pltfrm: dotnet
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+ms.date: 08/24/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: e6f5df272354d7308e21795062de2522f2c2c0e6
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 3600c19ff1ec72217fb56050b38e302874ab44ec
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162347"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947104"
 ---
 # <a name="create-a-service-bus-namespace-by-using-an-azure-resource-manager-template"></a>使用 Azure 资源管理器模板创建服务总线命名空间
 
-了解如何部署 Azure 资源管理器模板以创建服务总线命名空间。 可将此模板用于自己的部署，或自定义此模板以满足要求。 有关创建模板的详细信息，请参阅 [Azure 资源管理器文档](/azure-resource-manager/)。
+了解如何部署 Azure 资源管理器模板以创建服务总线命名空间。 可将此模板用于自己的部署，或自定义此模板以满足要求。 有关创建模板的详细信息，请参阅 [Azure 资源管理器文档](../azure-resource-manager/index.yml)。
 
 还可使用以下模板创建服务总线命名空间：
 
@@ -96,11 +96,11 @@ ms.locfileid: "87162347"
 }
 ```
 
-若要查找更多模板示例，请参阅 [Azure 快速入门模板](https://github.com/Azure/azure-quickstart-templates/?resourceType=Microsoft.Servicebus&pageNumber=1&sort=Popular)。
+若要查找更多模板示例，请参阅 [Azure 快速入门模板](https://azure.microsoft.com/resources/templates/?resourceType=Microsoft.Servicebus&pageNumber=1&sort=Popular)。
 
 若要通过部署模板创建服务总线命名空间，请执行以下操作：
 
-1. 使用 PowerShell 登录到 Azure。
+1. 在本地计算机上使用 PowerShell 登录到 Azure 中国。
 
     ```powershell
     $serviceBusNamespaceName = Read-Host -Prompt "Enter a name for the service bus namespace to be created"

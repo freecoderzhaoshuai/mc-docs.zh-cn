@@ -3,21 +3,21 @@ title: 在 Azure Stack HCI 中删除卷
 description: 如何使用 Windows 管理中心和 PowerShell 删除 Azure Stack HCI 中的卷。
 author: WenJason
 ms.author: v-jay
-ms.topic: article
-origin.date: 03/17/2020
-ms.date: 05/18/2020
-ms.openlocfilehash: 2545d8604f69fedd6986e019d966952d88919749
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.topic: how-to
+origin.date: 07/21/2020
+ms.date: 08/31/2020
+ms.openlocfilehash: 6b80530f8b449c7fccb541f04633baf7095a7fb0
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422436"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868062"
 ---
 # <a name="deleting-volumes-in-azure-stack-hci"></a>在 Azure Stack HCI 中删除卷
 
-> 适用于：Windows Server 2019
+> 适用于：Azure Stack HCI 版本 20H2；Windows Server 2019
 
-本主题说明如何使用 Windows Admin Center 在[存储空间直通](https://docs.microsoft.com/windows-server/storage/storage-spaces/storage-spaces-direct-overview)群集上删除卷。
+本主题说明如何使用 Windows Admin Center 在 Azure Stack HCI 群集上删除卷。
 
 ## <a name="use-windows-admin-center-to-delete-a-volume"></a>使用 Windows Admin Center 删除卷
 
@@ -30,7 +30,7 @@ ms.locfileid: "83422436"
 
 使用 Remove-VirtualDisk cmdlet 删除存储空间直通中的卷。 此 cmdlet 用于删除 VirtualDisk 对象，并将其使用的空间返回给公开了 VirtualDisk 对象的存储池。
 
-首先，在管理电脑上启动 PowerShell，并运行带有 CimSession 参数（即存储空间直通群集或服务器节点的名称，例如 clustername.microsoft.com）的 Get-VirtualDisk cmdlet： 
+首先，在管理电脑上启动 PowerShell，并运行带有 CimSession 参数（即存储空间直通群集或服务器节点的名称，例如 clustername.microsoft.com）的 Get-VirtualDisk cmdlet：
 
 ```PowerShell
 Get-VirtualDisk -CimSession clustername.microsoft.com
@@ -55,6 +55,6 @@ Remove-VirtualDisk -FriendlyName "Volume1"
 
 如需其他重要的存储管理任务的分步说明，另请参阅：
 
-- [在存储空间直通中规划卷](../concepts/plan-volumes.md)
-- [在存储空间直通中创建卷](create-volumes.md)
-- [在存储空间直通中扩展卷](extend-volumes.md)
+- [规划卷](../concepts/plan-volumes.md)
+- [创建卷](create-volumes.md)
+- [扩展卷](extend-volumes.md)

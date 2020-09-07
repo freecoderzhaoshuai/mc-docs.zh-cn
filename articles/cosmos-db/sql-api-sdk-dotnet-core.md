@@ -6,17 +6,17 @@ ms.service: cosmos-db
 ms.subservice: cosmosdb-sql
 ms.devlang: dotnet
 ms.topic: reference
-origin.date: 05/11/2020
-ms.date: 08/17/2020
+origin.date: 08/05/2020
+ms.date: 08/24/2020
 ms.testscope: no
-ms.testdate: ''
+ms.testdate: 08/24/2020
 ms.author: v-yeche
-ms.openlocfilehash: 077d6f086a915360b9ca161efd5ebc0d5cbf3464
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: 1c77f20665ffd14fcdb5fddb2ede51d8aedd11ac
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222416"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807771"
 ---
 # <a name="azure-cosmos-db-net-core-sdk-v2-for-sql-api-release-notes-and-resources"></a>适用于 SQL API 的 Azure Cosmos DB .NET Core SDK v2：发行说明和资源
 > [!div class="op_single_selector"]
@@ -50,6 +50,17 @@ ms.locfileid: "88222416"
 > 如果使用的是 .NET Core，请参阅面向 .NET Standard 的 [.NET SDK](sql-api-sdk-dotnet-standard.md) 最新版本 3.x。
 
 以下 .NET SDK 子版本可在 2.x.x 版本下使用：
+
+<a name="2.11.6"></a>
+### <a name="2116"></a>2.11.6
+
+* 修复了问题：对存储过程、触发器和用户定义的函数执行 CRUD 操作时发生“请求标头太长”的错误
+
+<a name="2.11.5"></a>
+### <a name="2115"></a>2.11.5
+
+* 改进了对查询操作期间区域故障转移情况的检测。
+* 提高了暂时性 ReadSessionNotAvailable 情形时的复原能力。 
 
 <a name="2.11.4"></a>
 ### <a name="2114"></a>2.11.4
@@ -573,6 +584,8 @@ Azure 会在停用 SDK 时至少提前 12 个月发出通知，以便用户顺�
 
 | 版本 | 发布日期 | 停用日期 |
 | --- | --- | --- |
+| [2.11.6](#2.11.6) |2020 年 8 月 12 日 |--- |
+| [2.11.5](#2.11.5) |2020 年 8 月 4 日 |--- |
 | [2.11.4](#2.11.4) |2020 年 7 月 30 日 |--- |
 | [2.11.3](#2.11.3) |2020 年 7 月 29 日 |--- |
 | [2.11.2](#2.11.2) |2020 年 7 月 14 日 |--- |

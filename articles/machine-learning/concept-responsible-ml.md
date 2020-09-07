@@ -1,32 +1,35 @@
 ---
-title: 负责机器学习 (ML)
+title: 什么是负责机器学习（预览版）
 titleSuffix: Azure Machine Learning
-description: 了解什么是负责 ML，以及如何使用 Azure 机器学习将其付诸实践
+description: 了解什么是负责机器学习，以及如何使用 Azure 机器学习将其付诸实践
 services: machine-learning
 ms.service: machine-learning
 ms.subservice: core
 ms.topic: conceptual
 ms.author: luquinta
 author: luisquintanilla
-ms.date: 07/09/2020
-ms.openlocfilehash: 617d315565bd7d4f01b6d6a8791a38c7f40359e2
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.date: 08/05/2020
+ms.openlocfilehash: 2b4f7d6ea16a37495f9fae09fba89eeacd20f749
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88227860"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947054"
 ---
-# <a name="responsible-machine-learning-ml"></a>负责机器学习 (ML)
+# <a name="what-is-responsible-machine-learning-preview"></a>什么是负责机器学习？ （预览版）
 
-本文介绍了什么是负责 ML，以及如何使用 Azure 机器学习将其付诸实践。
+本文介绍了什么是负责机器学习 (ML)，以及如何使用 Azure 机器学习将其付诸实践。
 
-在 AI 系统的整个开发和使用过程中，信任必须是核心。 具体包括信任平台、过程和模型。 在 Microsoft，负责 ML 包含以下价值观和原则：
+## <a name="responsible-machine-learning-principles"></a>负责机器学习原则
+
+在 AI 系统的整个开发和使用过程中，信任必须是核心。 具体包括信任平台、过程和模型。 在 Microsoft，负责机器学习包含以下价值观和原则：
 
 - 了解机器学习模型
   - 解释和说明模型行为
   - 评估和缓解模型不公平性
 - 保护人员及其数据
-  - 通过差异隐私防止数据泄露  
+  - 通过差异隐私防止数据泄露
+  - 使用同态加密处理加密数据
 - 控制端到端机器学习过程
   - 用数据表记录机器学习生命周期
 
@@ -40,7 +43,7 @@ ms.locfileid: "88227860"
 
 若要生成可解释的 AI 系统，请使用 Microsoft 生成的开放源代码包 [InterpretML](https://github.com/interpretml/interpret)。 [可以在 Azure 机器学习中使用 InterpretML](how-to-machine-learning-interpretability.md)，以[解释和说明机器学习模型](how-to-machine-learning-interpretability-aml.md)，包括[自动化机器学习模型](how-to-machine-learning-interpretability-automl.md)。
 
-## <a name="assess-and-mitigate-model-unfairness"></a>评估和缓解模型不公平性
+## <a name="mitigate-fairness-in-machine-learning-models"></a>提高机器学习模型中的公平性
 
 随着 AI 系统越来越多地参与到社会的日常决策中，这些系统能够很好地为每个人提供公平的结果是极为重要的。
 
@@ -64,6 +67,16 @@ AI 系统中的不公平性可能会导致以下意外后果：
 > [!NOTE]
 > 请注意，我们正在重命名该工具包，并将在未来几周内引入新名称。 
 
+## <a name="work-on-encrypted-data-with-homomorphic-encryption"></a>使用同态加密处理加密数据
+
+在传统的云存储和计算解决方案中，云需要对客户数据具有未加密的访问权限，才能对其进行计算。 此访问权限会将数据公开给云操作员。 数据隐私依赖于客户信任的由云实现的访问控制策略。
+
+使用同态加密，无需访问机密（解密）密钥即可对加密数据进行计算。 计算的结果已加密，只能由密钥的所有者公开。 使用同态加密，云操作员对其存储和计算的数据不会具有未加密的访问权限。 系统会直接对加密数据进行计算。 数据隐私依赖于先进的加密技术，并且数据所有者控制所有信息的发布。 有关 Microsoft 的同态加密的详细信息，请参阅 [Microsoft Research](https://www.microsoft.com/research/project/homomorphic-encryption/)。
+
+若要开始在 Azure 机器学习中使用同态加密，请使用 [Microsoft SEAL](https://github.com/microsoft/SEAL) 的[加密推理](https://pypi.org/project/encrypted-inference/) Python 绑定。 Microsoft SEAL 是一种开放源代码同态加密库，允许对经过加密的整数或实数进行加法和乘法计算。 若要了解有关 Microsoft SEAL 的详细信息，请参阅 [Azure 体系结构中心](https://docs.microsoft.com/azure/architecture/solution-ideas/articles/homomorphic-encryption-seal)或 [Microsoft Research 项目页](https://www.microsoft.com/research/project/microsoft-seal/)。
+
+请参阅以下示例，了解[如何在 Azure 机器学习中部署加密推理 Web 服务](how-to-homomorphic-encryption-seal.md)。
+
 ## <a name="document-the-machine-learning-lifecycle-with-datasheets"></a>用数据表记录机器学习生命周期
 
 在机器学习过程中记录正确的信息是在每个阶段做出负责决策的关键所在。 使用数据表，可以记录在机器学习生命周期内使用和创建的机器学习资产。
@@ -83,5 +96,5 @@ AI 系统中的不公平性可能会导致以下意外后果：
 
 ## <a name="additional-resources"></a>其他资源
 
-- 使用同态加密[部署加密推理 Web 服务](how-to-homomorphic-encryption-seal.md)。
+- 有关详细信息，请参阅[负责任的创新工具包](https://docs.microsoft.com/azure/architecture/guide/responsible-innovation/)，了解最佳做法。
 - 详细了解有关机器学习系统记录的[关于 ML](https://www.partnershiponai.org/about-ml/) 指南集。

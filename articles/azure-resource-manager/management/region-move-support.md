@@ -1,21 +1,22 @@
 ---
 title: 跨区域移动 Azure 资源的支持
 description: 列出可跨 Azure 区域移动的 Azure 资源类型
-author: rockboyfor
 ms.service: azure-resource-manager
 ms.topic: reference
-origin.date: 05/31/2020
-ms.date: 07/13/2020
-ms.testscope: no
-ms.testdate: ''
+origin.date: 07/21/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.author: v-yeche
-ms.openlocfilehash: 67c875abdabc912382b5be7e215336ca44243b7e
-ms.sourcegitcommit: 662a98c98968e8c1b49c3705b80882c5c7f697f3
+ms.openlocfilehash: da8aa73c7973dedd6c389b0f98569a30413cdb3d
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426898"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807877"
 ---
+<!--Verify Successfully-->
 # <a name="support-for-moving-azure-resources-across-regions"></a>跨区域移动 Azure 资源的支持
 
 本文确认了是否支持将某种 Azure 资源类型移到另一个 Azure 区域。 
@@ -43,6 +44,7 @@ ms.locfileid: "87426898"
 > - [Microsoft.ContainerInstance](#microsoftcontainerinstance)
 > - [Microsoft.ContainerRegistry](#microsoftcontainerregistry)
 > - [Microsoft.ContainerService](#microsoftcontainerservice)
+> - [Microsoft.DataBox](#microsoftdatabox)
 > - [Microsoft.DataFactory](#microsoftdatafactory)
 > - [Microsoft.DataMigration](#microsoftdatamigration)
 > - [Microsoft.DBforMariaDB](#microsoftdbformariadb)
@@ -161,7 +163,7 @@ ms.locfileid: "87426898"
 > [!div class="mx-tableFixed"]
 > | 资源类型 | 区域移动 | 
 > | ------------- | ----------- |
-> | batchaccounts |  Batch 帐户不能直接从一个区域移到另一个区域，但你可以使用模板来导出模板，对其进行修改，然后将模板部署到新区域。 <br/><br/> 了解如何[跨区域移动 Batch 帐户](../../batch/best-practices.md#move-batch-account-across-regions) |
+> | batchaccounts |  Batch 帐户不能直接从一个区域移到另一个区域，但你可以使用模板来导出模板，对其进行修改，然后将模板部署到新区域。 <br/><br/> 了解如何[跨区域移动 Batch 帐户](../../batch/best-practices.md#moving-batch-accounts-across-regions) |
 <!--Not Available on ## Microsoft.BatchAI-->
 <!--Not Available on ## Microsoft.BingMaps-->
 <!--Not Available on ## Microsoft.BizTalkServices-->
@@ -284,7 +286,14 @@ ms.locfileid: "87426898"
 <!--Not Available on ## Microsoft.CostManagement-->
 <!--Not Available on ## Microsoft.CustomerInsights-->
 <!--Not Available on ## Microsoft.CustomProviders-->
-<!--Not Available on ## Microsoft.DataBox-->
+
+## <a name="microsoftdatabox"></a>Microsoft.DataBox
+
+> [!div class="mx-tableFixed"]
+> | 资源类型 | 区域移动 | 
+> | ------------- | ----------- |
+> | jobs | 否 | 
+
 <!--Not Available on ## Microsoft.DataBoxEdge-->
 <!--Not Available on ## Microsoft.Databricks-->
 <!--Not Available on ## Microsoft.DataCatalog-->
@@ -319,14 +328,14 @@ ms.locfileid: "87426898"
 > [!div class="mx-tableFixed"]
 > | 资源类型 | 区域移动 | 
 > | ------------- | ----------- |
-> | servers | 如果为服务预配了异地冗余备份存储，则可以使用异地还原在其他区域中进行还原。 [了解详细信息](../../mariadb/concepts-business-continuity.md#recover-from-an-azure-regional-data-center-outage)
+> | servers | 可以使用跨区域只读副本移动现有服务器。 [了解详细信息](../../postgresql/howto-move-regions-portal.md)。<br/><br/> 如果为服务预配了异地冗余备份存储，则可以使用异地还原在其他区域中进行还原。 [了解详细信息](../../mariadb/concepts-business-continuity.md#recover-from-an-azure-regional-data-center-outage)。
 
 ## <a name="microsoftdbformysql"></a>Microsoft.DBforMySQL
 
 > [!div class="mx-tableFixed"]
 > | 资源类型 | 区域移动 | 
 > | ------------- | ----------- |
-> | servers | 否 |  
+> | servers | 可以使用跨区域只读副本移动现有服务器。 [了解详细信息](../../mysql/howto-move-regions-portal.md)。
 
 ## <a name="microsoftdbforpostgresql"></a>Microsoft.DBforPostgreSQL
 
@@ -334,7 +343,7 @@ ms.locfileid: "87426898"
 > | 资源类型 | 区域移动 | 
 > | ------------- | ----------- |
 > | servergroups | 否 | 
-> | servers | 否 |  
+> | servers | 可以使用跨区域只读副本移动现有服务器。 [了解详细信息](../../postgresql/howto-move-regions-portal.md)。
 > | serversv2 | 否 | 
 
 <!--Not Available on ## Microsoft.DeploymentManager-->
@@ -494,6 +503,8 @@ ms.locfileid: "87426898"
 <!--Not Available on ## Microsoft.Microservices4Spring-->
 <!--Not Available on ## Microsoft.Migrate-->
 <!--Not Available on ## Microsoft.NetApp-->
+<!--DDos, Front Door, and Private link service are not available on Mooncake-->
+<!--MOONCAKE CUSTOMIZEIONT-->
 
 ## <a name="microsoftnetwork"></a>Microsoft.Network
 
@@ -506,15 +517,11 @@ ms.locfileid: "87426898"
 > | azurefirewalls |  否 |  
 > | bastionhosts | 否 | 
 > | connections |  否 | 
-> | ddoscustompolicies |  否 | 
-> | ddosprotectionplans | 否 | 
 > | dnszones |  否 | 
 > | expressroutecircuits | 否 | 
 > | expressroutecrossconnections | 否 | 
 > | expressroutegateways | 否 | 
 > | expressrouteports | 否 | 
-> | frontdoors | 否 | 
-> | frontdoorwebapplicationfirewallpolicies | 否 | 
 > | loadbalancers | 是 <br/><br/> 可以将现有配置导出为模板，然后在新区域中部署该模板。 了解如何移动[外部](../../load-balancer/move-across-regions-external-load-balancer-portal.md)或[内部](../../load-balancer/move-across-regions-internal-load-balancer-portal.md)负载均衡器。 |
 > | localnetworkgateways |  否 | 
 > | natgateways |  否 | 
@@ -530,7 +537,6 @@ ms.locfileid: "87426898"
 > | privatednszones |  否 |  
 > | privatednszones/virtualnetworklinks |  否 |  
 > | privateendpoints | 否 | 
-> | privatelinkservices | 否 | 
 > | publicipaddresses | 是<br/><br/> 可以将现有公共 IP 地址配置导出为模板，然后在新区域中部署该模板。 [详细了解](../../virtual-network/move-across-regions-publicip-portal.md)如何移动公共 IP 地址。 |
 > | publicipprefixes | 否 | 
 > | routefilters | 否 | 
@@ -545,6 +551,9 @@ ms.locfileid: "87426898"
 > | vpngateways（虚拟 WAN） | 否 | 
 > | vpnsites（虚拟 WAN） | 否 | 
 > | webapplicationfirewallpolicies |  否 | 
+
+<!--DDos, Front Door, and Private link service are not available on Mooncake-->
+<!--MOONCAKE CUSTOMIZEIONT-->
 
 ## <a name="microsoftnotificationhubs"></a>Microsoft.NotificationHubs
 
@@ -601,7 +610,9 @@ ms.locfileid: "87426898"
 > [!div class="mx-tableFixed"]
 > | 资源类型 | 区域移动 | 
 > | ------------- | ----------- |
-> | vaults | 否。<br/><br/> 不支持跨 Azure 区域移动 Azure 备份的恢复服务保管库。<br/><br/> 在 Azure Site Recovery 的恢复服务保管库中，可以在目标区域中[禁用并重新创建保管库](/site-recovery/move-vaults-across-regions)。 | 
+> | vaults | 否。<br/><br/> 不支持跨 Azure 区域移动 Azure 备份的恢复服务保管库。<br/><br/> | 
+
+<!--Not Available on [disable and recreate the vault](../../site-recovery/move-vaults-across-regions.md)-->
 
 ## <a name="microsoftrelay"></a>Microsoft.Relay
 

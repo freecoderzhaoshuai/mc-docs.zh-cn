@@ -4,14 +4,14 @@ description: 了解如何使用高级 Azure Redis 缓存实例在 blob 存储中
 author: yegu-ms
 ms.service: cache
 ms.topic: conceptual
-ms.date: 07/10/2020
+ms.date: 08/24/2020
 ms.author: v-junlch
-ms.openlocfilehash: 6b5e698a4c2cc1cda40c7f989c1387c08a1da3ef
-ms.sourcegitcommit: 65a7360bb14b0373e18ec8eaa288ed3ac7b24ef4
+ms.openlocfilehash: 92212413773bbfabac867537018242531a9ae2f8
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86219734"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946670"
 ---
 # <a name="import-and-export-data-in-azure-cache-for-redis"></a>在 Azure Redis 缓存中导入和导出数据
 导入/导出是一种 Azure Redis 缓存数据管理操作，可用于通过从高级缓存导入 Azure Redis 缓存数据库 (RDB) 快照以及将 Azure Redis 缓存数据库 (RDB) 快照导出到 Azure 存储帐户中的 blob 来相应地将数据导入到 Azure Redis 缓存以及从 Azure Redis 缓存导出数据。
@@ -24,7 +24,7 @@ ms.locfileid: "86219734"
 本文提供使用 Azure Redis 缓存导入和导出数据的指南，并提供常见问题的解答。
 
 > [!IMPORTANT]
-> 导入/导出仅适用于[高级层](cache-premium-tier-intro.md)缓存。
+> 导入/导出仅适用于[高级层](cache-overview.md#service-tiers)缓存。
 >
 >
 
@@ -152,8 +152,7 @@ The request to import data into cache 'contoso55' failed with status 'error' and
 导出仅适用于以页 blob 形式存储的 RDB 文件。 目前不支持其他 blob 类型，包括带有热层和冷层的 Blob 存储帐户。 有关详细信息，请参阅 [Azure 存储帐户概述](../storage/common/storage-account-overview.md)。
 
 ## <a name="next-steps"></a>后续步骤
-了解如何使用更多的高级版缓存功能。
+了解有关 Azure Cache for Redis 功能的详细信息。
 
-* [Azure Redis 缓存高级层简介](cache-premium-tier-intro.md)
+* [Azure Cache for Redis 服务层](cache-overview.md#service-tiers)
 
-<!-- Update_Description: wording update -->

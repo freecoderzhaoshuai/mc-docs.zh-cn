@@ -1,23 +1,23 @@
 ---
-title: 创建透明网关设备 - Azure IoT Edge
+title: 创建透明网关设备 - Azure IoT Edge | Microsoft Docs
 description: 将 Azure IoT Edge 用作可处理来自下游设备的消息的透明网关
 author: kgremban
 manager: philmea
 ms.author: v-tawe
-origin.date: 06/02/2020
-ms.date: 07/01/2020
+origin.date: 08/12/2020
+ms.date: 08/27/2020
 ms.topic: conceptual
 ms.service: iot-edge
 services: iot-edge
 ms.custom:
 - amqp
 - mqtt
-ms.openlocfilehash: fcc040c0b04c798613d27a56b5b7f891d00735c6
-ms.sourcegitcommit: 4f84bba7e509a321b6f68a2da475027c539b8fd3
+ms.openlocfilehash: 5aac921f7d90b262eb0d23deaf4e3b30f69faf4a
+ms.sourcegitcommit: c8e590d907f20bbc9c4c05d9bfc93cf7cb1d776f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85796161"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88957792"
 ---
 # <a name="configure-an-iot-edge-device-to-act-as-a-transparent-gateway"></a>将 IoT Edge 设备配置为充当透明网关
 
@@ -35,9 +35,9 @@ ms.locfileid: "85796161"
 2. 为下游设备创建设备标识，以便它可以通过 IoT 中心进行身份验证。 配置下游设备，使其通过网关设备发送消息。 有关详细信息，请参阅[在 Azure IoT 中心对下游设备进行身份验证](how-to-authenticate-downstream-device.md)。
 3. 将下游设备连接到网关设备并开始发送消息。 有关详细信息，请参阅[将下游设备连接到 Azure IoT Edge 网关](how-to-connect-downstream-device.md)。
 
-充当网关的设备必须能够安全地连接到下游设备。 Azure IoT Edge 允许使用公钥基础结构 (PKI) 在设备之间建立安全连接。 在这种情况下，我们可以将下游设备连接到充当透明网关的 IoT Edge 设备。 要维持合理的安全性，下游设备应确认网关设备的标识。 此标识检查可防止设备连接到潜在的恶意网关。
+充当网关的设备需要安全地连接到下游设备。 Azure IoT Edge 允许使用公钥基础结构 (PKI) 在设备之间建立安全连接。 在这种情况下，我们可以将下游设备连接到充当透明网关的 IoT Edge 设备。 要维持合理的安全性，下游设备应确认网关设备的标识。 此标识检查可防止设备连接到潜在的恶意网关。
 
-透明网关方案中的下游设备可以是包含通过 [Azure IoT 中心](https://docs.azure.cn/iot-hub)云服务创建的标识的任何应用程序或平台。 在许多情况下，这些应用程序使用 [Azure IoT 设备 SDK](../iot-hub/iot-hub-devguide-sdks.md)。 在各种实际用途中，下游设备甚至可以是 IoT Edge 网关设备本身上运行的应用程序。 但是，IoT Edge 设备不能位于 IoT Edge 网关的下游。 
+下游设备可以是包含通过 [Azure IoT 中心](https://docs.azure.cn/iot-hub)云服务创建的标识的任何应用程序或平台。 这些应用程序通常使用 [Azure IoT 设备 SDK](../iot-hub/iot-hub-devguide-sdks.md)。 下游设备甚至可以是 IoT Edge 网关设备本身上运行的应用程序。 但是，IoT Edge 设备不能位于 IoT Edge 网关的下游。 
 
 可以创建任何启用设备网关拓扑所需的信任的证书基础结构。 在本文中，我们假设使用相同的证书设置来启用 IoT 中心的 [X.509 CA 安全性](../iot-hub/iot-hub-x509ca-overview.md)，其中涉及与特定 IoT 中心（IoT 中心根 CA）关联的 X.509 CA 证书，以及通过此 CA 签名的一系列证书和 IoT Edge 设备的 CA。
 
@@ -94,29 +94,47 @@ ms.locfileid: "85796161"
    * Windows： `Restart-Service iotedge`
    * Linux：`sudo systemctl restart iotedge`
 
-## <a name="deploy-edgehub-to-the-gateway"></a>将 edgeHub 部署到网关
+## <a name="deploy-edgehub-and-route-messages"></a>部署 edgeHub 和路由消息
 
-首次在设备上安装 IoT Edge 时，只会自动启动一个系统模块，即 IoT Edge 代理。 创建第一个部署后，还会再启动一个设备，即第二个系统模块（IoT Edge 中心）。
+下游设备将遥测和消息发送到网关设备，其中 IoT Edge 中心模块负责将信息路由到其他模块或 IoT 中心。 若要为此功能准备网关设备，请确保：
 
-IoT Edge 中心负责接收来自下游设备的传入消息，并将它们路由到下一个目标。 如果 **edgeHub** 模块未在设备上运行，请为设备创建一个初始部署。 该部署看上去是空的，因为尚未添加任何模块，但它会确保运行这两个系统模块。
+* IoT Edge 中心模块已部署到设备。
 
-可通过以下方式检查设备上正在运行的模块：在 Azure 门户中检查设备详细信息，在 Visual Studio 或 Visual Studio Code 中查看设备状态，或在该设备上运行命令 `iotedge list`。
+  首次在设备上安装 IoT Edge 时，只会自动启动一个系统模块，即 IoT Edge 代理。 为设备创建第一个部署后，第二个系统模块（IoT Edge 中心）也将启动。 如果 edgeHub 模块未在设备上运行，请为设备创建一个部署。
 
-如果 **edgeAgent** 模块在没有 **edgeHub** 模块的情况下运行，请执行以下步骤：
+* IoT Edge 中心模块设置了路由，用于处理来自下游设备的传入消息。
+
+  网关设备必须有一个适当的路由来处理来自下游设备的消息，否则这些消息将不会被处理。 可以将消息发送到网关设备上的模块，也可以直接发送到 IoT 中心。
+
+若要部署 IoT Edge 中心模块并为其配置路由以处理来自下游设备的传入消息，请执行以下步骤：
 
 1. 在 Azure 门户中导航到 IoT 中心。
 
 2. 转到“IoT Edge”并选择要用作网关的 IoT Edge 设备。
 
-3. 选择“设置模块”。
+3. 选择“设置模块”  。
 
-4. 在完成时选择“下一步:路由”。
+4. 在“模块”页上，可以添加任何要部署到网关设备的模块。 就本文而言，我们侧重于配置和部署 edgeHub 模块，无需在此页面上显式设置。
 
-5. 在“路由”页面上，你应该有一个默认路由，该路由将所有消息（无论是来自模块还是来自下游设备）发送到 IoT 中心。 如果没有，请使用以下值添加新的路由，然后选择“查看 + 创建”：
-   * **名称**：`route`
-   * **值**：`FROM /messages/* INTO $upstream`
+5. 在完成时选择“下一步:路由”。
 
-6. 在“查看 + 创建”页面上，选择“创建”。 
+6. 在“路由”页上，请确保存在用于处理来自下游设备的消息的路由。 例如：
+
+   * 将所有消息（无论是来自模块还是来自下游设备）发送到 IoT 中心的路由：
+       * **名称**：`allMessagesToHub`
+       * **值**：`FROM /messages/* INTO $upstream`
+
+   * 将来自所有下游设备的全部消息发送到 IoT 中心的路由：
+      * **名称**：`allDownstreamToHub`
+      * **值**：`FROM /messages/* WHERE NOT IS_DEFINED ($connectionModuleId) INTO $upstream`
+
+      该路由之所以有效，是因为与来自 IoT Edge 模块的消息不同，来自下游设备的消息没有与之关联的模块 ID。 使用路由的 WHERE 子句，我们可以筛选出具有该系统属性的所有消息。
+
+      有关消息路由的详细信息，请参阅[部署模块和建立路由](./module-composition.md#declare-routes)。
+
+7. 创建一个或多个路由后，选择“查看 + 创建”。
+
+8. 在“查看 + 创建”页面上，选择“创建”。 
 
 ## <a name="open-ports-on-gateway-device"></a>在网关设备上打开端口
 
@@ -129,25 +147,6 @@ IoT Edge 中心负责接收来自下游设备的传入消息，并将它们路�
 | 8883 | MQTT |
 | 5671 | AMQP |
 | 443 | HTTPS <br> MQTT+WS <br> AMQP+WS |
-
-## <a name="route-messages-from-downstream-devices"></a>路由来自下游设备的消息
-
-IoT Edge 运行时可以像模块发送的消息一样路由从下游设备发送的消息。 使用此功能可将任何数据发送到云之前在网关上运行的模块中执行分析。
-
-目前，对由下游设备发送的消息进行路由的方式是将它们与由模块发送的消息区分开来。 由模块发送的消息全都包含名为“connectionModuleId”的系统属性，但由下游设备发送的消息则不包含此属性。 可以使用路由的 WHERE 子句以排除包含该系统属性的任何消息。
-
-以下示例路由可将消息从任何下游设备发送到名为 `ai_insights` 的模块，然后从 `ai_insights` 发送到 IoT 中心。
-
-```json
-{
-    "routes":{
-        "sensorToAIInsightsInput1":"FROM /messages/* WHERE NOT IS_DEFINED($connectionModuleId) INTO BrokeredEndpoint(\"/modules/ai_insights/inputs/input1\")",
-        "AIInsightsToIoTHub":"FROM /messages/modules/ai_insights/outputs/output1 INTO $upstream"
-    }
-}
-```
-
-有关消息路由的详细信息，请参阅[部署模块和建立路由](./module-composition.md#declare-routes)。
 
 ## <a name="enable-extended-offline-operation"></a>启用扩展脱机操作
 

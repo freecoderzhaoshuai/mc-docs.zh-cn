@@ -2,15 +2,15 @@
 title: 如何创建适用于 Linux 的来宾配置策略
 description: 了解如何创建适用于 Linux 的 Azure Policy 来宾配置策略。
 origin.date: 03/20/2020
-ms.date: 08/06/2020
+ms.date: 08/27/2020
 ms.author: v-tawe
 ms.topic: how-to
-ms.openlocfilehash: c17d1f94508f68e3392f6a58b44d577bd794c221
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 9e8b4a0ee02330e25c99bb90044f856808cc0028
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917090"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951230"
 ---
 # <a name="how-to-create-guest-configuration-policies-for-linux"></a>如何创建适用于 Linux 的来宾配置策略
 
@@ -52,6 +52,10 @@ ms.locfileid: "87917090"
 - Linux
 - macOS
 - Windows
+
+> [!NOTE]
+> 由于 cmdlet“Test-GuestConfigurationPackage”依赖于 OMI，因此它需要 OpenSSL 版本 1.0。
+> 这会导致使用 OpenSSL 1.1 或更高版本的任何环境出现错误。
 
 来宾配置资源模块需要以下软件：
 
@@ -262,6 +266,8 @@ $uri = publish `
 - **版本**：策略版本。
 - **路径**：在其中创建策略定义的目标路径。
 - Platform：来宾配置策略和内容包的目标平台 (Windows/Linux)。
+- Tag 向策略定义添加一个或多个标记筛选器
+- Category 在策略定义中设置类别元数据字段
 
 下面的示例在自定义策略包的指定路径中创建策略定义：
 
@@ -282,15 +288,7 @@ New-GuestConfigurationPolicy `
 - deployIfNotExists.json
 - Initiative.json
 
-cmdlet 输出返回一个对象，其中包含策略文件的计划显示名称和路径。
-
-> [!Note]
-> 最新的来宾配置模块包含新参数：
-> - Tag 向策略定义添加一个或多个标记筛选器
->   - 请参阅[使用标记筛选来宾配置策略](#filtering-guest-configuration-policies-using-tags)部分。
-> - Category 在策略定义中设置类别元数据字段
->   - 如果不包含此参数，类别默认为“来宾配置”。
-> 这些功能目前处于预览状态，需要来宾配置模块版本 1.20.1（可以使用 `Install-Module GuestConfiguration -AllowPrerelease` 来安装）。
+cmdlet 输出中会返回一个对象，其中包含策略文件的计划显示名称和路径。
 
 最后，使用 `Publish-GuestConfigurationPolicy` cmdlet 发布策略定义。
 cmdlet 只有 Path 参数，此参数指向 `New-GuestConfigurationPolicy` 创建的 JSON 文件的位置。
@@ -406,9 +404,6 @@ Configuration AuditFilePathExists
 
 
 ### <a name="filtering-guest-configuration-policies-using-tags"></a>使用标记筛选来宾配置策略
-
-> [!Note]
-> 此功能目前处于预览状态，需要来宾配置模块版本 1.20.1（可以使用 `Install-Module GuestConfiguration -AllowPrerelease` 来安装）。
 
 来宾配置模块中由 cmdlet 创建的策略可以视需要选择包括标记筛选器。 `New-GuestConfigurationPolicy` 的 -Tag 参数支持包含各个标记条目的哈希表数组。 标记会被添加到策略定义的 `If` 部分，并且不能通过策略分配进行修改。
 

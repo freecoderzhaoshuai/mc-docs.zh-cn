@@ -2,15 +2,17 @@
 title: 移动 Azure 应用服务资源
 description: 使用 Azure 资源管理器将应用服务资源移到新的资源组或订阅。
 ms.topic: conceptual
-origin.date: 12/13/2019
-ms.date: 04/30/2020
+origin.date: 08/10/2020
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 0null
 ms.author: v-yeche
-ms.openlocfilehash: 7d4946026b507e570f47977d53950d1057238a97
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: 4d59bc60e830222610117b57125f767761485eec
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596198"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807753"
 ---
 # <a name="move-guidance-for-app-service-resources"></a>针对应用服务资源的移动指南
 
@@ -25,7 +27,8 @@ ms.locfileid: "82596198"
     - 应用服务计划
     - 上传或导入的 TLS/SSL 证书
     - 应用服务环境
-- 资源组中的所有应用服务资源必须一起移动。 请注意，应用服务环境不能移到新资源组，也不能移到新订阅。
+- 资源组中的所有应用服务资源必须一起移动。
+- 应用服务环境不能移到新资源组，也不能移到新订阅。 但是，可以将某个 Web 应用和应用服务计划转移到新订阅，而无需移动应用服务环境。 移动后，Web 应用不再在应用服务环境中托管。
 - 只要将证书与资源组中的所有其他资源一起移动，就可以将绑定的证书移到 Web，而无需删除 TLS 绑定。
 - 只能从最初创建应用服务资源的资源组中移动它们。 如果应用服务资源不再位于其原始资源组中，请将其移回其原始资源组。 然后，在订阅之间移动资源。
 
@@ -38,10 +41,9 @@ ms.locfileid: "82596198"
 
 若要确定可以移动哪些应用服务资源，请查看以下项的移动支持状态：
 
-- [Microsoft.AppService](../move-support-resources.md#microsoftappservice)
-    
-    <!--Not Available on - [Microsoft.CertificateRegistration](../move-support-resources.md#microsoftcertificateregistration)-->
-    <!--Not Available on - [Microsoft.DomainRegistration](../move-support-resources.md#microsoftdomainregistration)-->
+<!--Not Available on - [Microsoft.AppService](../move-support-resources.md#microsoftappservice)-->
+<!--Not Available on - [Microsoft.CertificateRegistration](../move-support-resources.md#microsoftcertificateregistration)-->
+<!--Not Available on - [Microsoft.DomainRegistration](../move-support-resources.md#microsoftdomainregistration)-->
 
 - [Microsoft.Web](../move-support-resources.md#microsoftweb)
 

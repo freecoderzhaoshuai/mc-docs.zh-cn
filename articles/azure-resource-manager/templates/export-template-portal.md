@@ -2,15 +2,18 @@
 title: 在 Azure 门户中导出模板
 description: 使用 Azure 门户从订阅中的资源导出 Azure 资源管理器模板。
 ms.topic: conceptual
-origin.date: 12/12/2019
+origin.date: 07/29/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.date: 01/06/2020
-ms.openlocfilehash: 61daf06d2534647b6f4a80d763463057b22b7865
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: c9aaaa450c9a2019f20b45787f0fddc21b3817a8
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75631351"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807864"
 ---
 # <a name="single-and-multi-resource-export-to-a-template-in-azure-portal"></a>在 Azure 门户中将单资源和多资源导出到模板
 
@@ -55,24 +58,26 @@ ms.locfileid: "75631351"
 
 若要导出通过经典部署模型创建的资源，必须[将其迁移到资源管理器部署模型](https://docs.azure.cn/virtual-machines/windows/migration-classic-resource-manager-overview)。
 
+如果在导出模板时收到警告，指示未导出某个资源类型，则仍然可以发现该资源的属性。 若要了解用于查看资源属性的不同选项，请参阅[发现资源属性](view-resources.md)。 还可以查看该资源类型的 [Azure REST API](https://docs.microsoft.com/rest/api/azure/)。
+
 ## <a name="export-template-from-a-resource-group"></a>从资源组导出模板
 
 若要从资源组中导出一个或多个资源：
 
 1. 选择包含所要导出的资源的资源组。
 
-1. 通过选中相应的复选框选择一个或多个资源。  若要全选，请选中**名称**左侧的复选框。 “导出模板”  菜单项只有在你选择了至少一个资源之后才会启用。
+1. 通过选中相应的复选框选择一个或多个资源。  若要全选，请选中**名称**左侧的复选框。 “导出模板”**** 菜单项只有在你选择了至少一个资源之后才会启用。
 
-    ![导出所有资源](./media/export-template-portal/select-all-resources.png)
+    :::image type="content" source="./media/export-template-portal/select-all-resources.png" alt-text="导出所有资源":::
 
     在屏幕截图中，只选择了存储帐户。
-1. 选择“导出模板”。 
+1. 选择“导出模板”。
 
-1. 此时将显示导出的模板，并可供下载和部署。
+1. 此时将显示导出的模板，并且该模板可供下载和部署。
 
-    ![显示模板](./media/export-template-portal/show-template.png)
+    :::image type="content" source="./media/export-template-portal/show-template.png" alt-text="显示模板":::
 
-     “包括参数”默认情况下已选中。  如果选中，生成模板时将包括所有模板参数。 如果希望创作自己的参数，请将此复选框切换为不包括参数。
+    ****“包括参数”默认情况下已选中。  如果选中，生成模板时将包括所有模板参数。 如果希望创作自己的参数，请将此复选框切换为不包括参数。
 
 ## <a name="export-template-from-a-resource"></a>从资源导出模板
 
@@ -82,11 +87,11 @@ ms.locfileid: "75631351"
 
 1. 选择要导出的资源以打开资源。
 
-1. 在左窗格中选择该资源对应的“导出模板”。 
+1. 在左窗格中选择该资源对应的“导出模板”。****
 
-    ![导出资源](./media/export-template-portal/export-single-resource.png)
+    :::image type="content" source="./media/export-template-portal/export-single-resource.png" alt-text="导出资源":::
 
-1. 此时将显示导出的模板，并可供下载和部署。 模板只包含单个资源。  “包括参数”默认情况下已选中。  如果选中，生成模板时将包括所有模板参数。 如果希望创作自己的参数，请将此复选框切换为不包括参数。
+1. 此时将显示导出的模板，并且该模板可供下载和部署。 模板只包含单个资源。 ****“包括参数”默认情况下已选中。  如果选中，生成模板时将包括所有模板参数。 如果希望创作自己的参数，请将此复选框切换为不包括参数。
 
 ## <a name="export-template-before-deployment"></a>在部署之前导出模板
 
@@ -94,9 +99,9 @@ ms.locfileid: "75631351"
 
 1. 填写新服务的值。
 
-1. 在通过验证之后、开始部署之前，请选择“下载自动化模板”。 
+1. 在通过验证之后、开始部署之前，请选择“下载自动化模板”。****
 
-    ![下载模板](./media/export-template-portal/download-before-deployment.png)
+    :::image type="content" source="./media/export-template-portal/download-before-deployment.png" alt-text="下载模板":::
 
 1. 此时将显示该模板，并且该模板可供下载和部署。
 
@@ -106,23 +111,23 @@ ms.locfileid: "75631351"
 
 1. 选择要导出的资源组。
 
-1. 选择“部署”下面的链接。 
+1. 选择“部署”**** 下的链接。
 
-    ![选择部署历史记录](./media/export-template-portal/select-deployment-history.png)
+    :::image type="content" source="./media/export-template-portal/select-deployment-history.png" alt-text="选择部署历史记录":::
 
 1. 从部署历史记录中选择一个部署。
 
-    ![选择部署](./media/export-template-portal/select-details.png)
+    :::image type="content" source="./media/export-template-portal/select-details.png" alt-text="选择部署":::
 
-1. 选择“模板”。  随后，用于此部署的模板将会显示，并可供下载。
+1. 选择“模板”。 随后，用于此部署的模板将会显示，并可供下载。
 
-    ![选择模板](./media/export-template-portal/show-template-from-history.png)
+    :::image type="content" source="./media/export-template-portal/show-template-from-history.png" alt-text="选择模板":::
 
 ## <a name="next-steps"></a>后续步骤
 
 - 了解如何使用 [Azure CLI](../management/manage-resource-groups-cli.md#export-resource-groups-to-templates)、[Azure PowerShell](../management/manage-resource-groups-powershell.md#export-resource-groups-to-templates) 或 [REST API](https://docs.microsoft.com/rest/api/resources/resourcegroups/exporttemplate) 导出模板。
 - 若要了解资源管理器模板语法，请参阅[了解 Azure 资源管理器模板的结构和语法](template-syntax.md)。
-- 若要了解如何开发模板，请参阅[分步教程](/azure-resource-manager/)。
+- 若要了解如何开发模板，请参阅[分步教程](../index.yml)。
 
     <!--Not Available on [template reference](https://docs.microsoft.com/azure/templates/)-->
 

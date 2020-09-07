@@ -2,15 +2,19 @@
 title: 将资源移动到新的订阅或资源组
 description: 使用 Azure Resource Manager 将资源移到新的资源组或订阅。
 ms.topic: conceptual
-origin.date: 03/02/2020
-ms.date: 04/30/2020
+origin.date: 07/15/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.author: v-yeche
-ms.openlocfilehash: eee31686dfa3be2f5909b3b55b20cc857392a4fb
-ms.sourcegitcommit: 2d8950c6c255361eb6c66406988e25c69cf4e0f5
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 24fcda87808850d320a220086101fbe64b1fe4cd
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/14/2020
-ms.locfileid: "83392425"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807710"
 ---
 # <a name="move-resources-to-a-new-resource-group-or-subscription"></a>将资源移到新的资源组或订阅
 
@@ -19,6 +23,8 @@ ms.locfileid: "83392425"
 在移动操作过程中，源组和目标组都会锁定。 在完成移动之前，将阻止对资源组执行写入和删除操作。 此锁意味着将无法添加、更新或删除资源组中的资源。 这并不意味着资源已被冻结。 例如，如果将 SQL Server 及其数据库移到新的资源组中，使用数据库的应用程序体验不到停机， 仍可读取和写入到数据库。 锁定时间最长可达四小时，但大多数移动所需的完成时间要少得多。
 
 移动资源只会将其移到新的资源组或订阅。 它不会更改资源的位置。
+
+如果使用 Azure Stack Hub，则不能在组之间移动资源。
 
 ## <a name="checklist-before-moving-resources"></a>移动资源前需查看的清单
 
@@ -63,7 +69,7 @@ ms.locfileid: "83392425"
 
     * [将 Azure 订阅所有权转让给其他帐户](/billing/billing-subscription-transfer/)
         
-        <!--MOONCAKE: URL CORRECT ON /billing/billing-subscription-transfer/ -->
+        <!--MOONCAKE: URL CORRECT ON /billing/billing-subscription-transfer/-->
         
     * [如何将 Azure 订阅关联或添加到 Azure Active Directory](../../active-directory/fundamentals/active-directory-how-subscriptions-associated-directory.md)
 
@@ -112,13 +118,13 @@ ms.locfileid: "83392425"
 
 将资源从一个订阅移到另一个订阅分为三步：
 
-![跨订阅移动方案](./media/move-resource-group-and-subscription/cross-subscription-move-scenario.png)
+:::image type="content" source="./media/move-resource-group-and-subscription/cross-subscription-move-scenario.png" alt-text="跨订阅移动方案":::
 
 为了演示方便，我们只有一个依赖资源。
 
 * 步骤 1：如果依赖资源分布在不同的资源组中，请先将它们移到一个资源组。
 * 步骤 2：将资源和依赖资源一起从源订阅移到目标订阅。
-* 步骤 3：也可将依赖资源重新分布到目标订阅中的不同资源组。 
+* 步骤 3：也可将依赖资源重新分布到目标订阅中的不同资源组。
 
 ## <a name="validate-move"></a>验证移动
 
@@ -178,21 +184,21 @@ Authorization: Bearer <access-token>
 
 若要移动资源，请选择包含这些资源的资源组，然后选择“移动”  按钮。
 
-![移动资源](./media/move-resource-group-and-subscription/select-move.png)
+:::image type="content" source="./media/move-resource-group-and-subscription/select-move.png" alt-text="移动资源":::
 
 选择是要将资源移到新资源组还是新订阅。
 
 选择要移动的资源和目标资源组。 确认需要更新这些资源的脚本，选择“确定”  。 如果在上一步中已选择“编辑订阅”图标，则还必须选择目标订阅。
 
-![选择目标](./media/move-resource-group-and-subscription/select-destination.png)
+:::image type="content" source="./media/move-resource-group-and-subscription/select-destination.png" alt-text="选择目标":::
 
 在“通知”  中，可以看到移动操作正在运行。
 
-![显示移动状态](./media/move-resource-group-and-subscription/show-status.png)
+:::image type="content" source="./media/move-resource-group-and-subscription/show-status.png" alt-text="显示移动状态":::
 
 操作完成后，你会获得结果通知。
 
-![显示移动结果](./media/move-resource-group-and-subscription/show-result.png)
+:::image type="content" source="./media/move-resource-group-and-subscription/show-result.png" alt-text="显示移动结果":::
 
 如果出现错误，请参阅[排查将 Azure 资源移到新的资源组或订阅时遇到的问题](troubleshoot-move.md)。
 
@@ -265,7 +271,7 @@ POST https://management.chinacloudapi.cn/subscriptions/{source-subscription-id}/
 
 下图显示了当用户尝试删除正在移动的资源组时来自 Azure 门户的错误消息。
 
-![移动错误消息“正在尝试删除”](./media/move-resource-group-and-subscription/move-error-delete.png)
+:::image type="content" source="./media/move-resource-group-and-subscription/move-error-delete.png" alt-text="移动错误消息“正在尝试删除”":::
 
 **问：错误代码“MissingMoveDependentResources”的含义是什么？**
 
@@ -274,6 +280,7 @@ POST https://management.chinacloudapi.cn/subscriptions/{source-subscription-id}/
 例如，移动某个虚拟机可能需要移动具有三个不同资源提供程序的七个资源类型。 这些资源提供程序和类型为：
 
 * Microsoft.Compute
+
     * virtualMachines
     * disks
 * Microsoft.Network

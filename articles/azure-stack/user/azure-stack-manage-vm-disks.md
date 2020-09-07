@@ -3,17 +3,17 @@ title: 在 Azure Stack Hub 中创建 VM 磁盘存储
 description: 在 Azure Stack Hub 中为虚拟机创建磁盘。
 author: WenJason
 ms.topic: conceptual
-origin.date: 04/22/2020
-ms.date: 05/18/2020
+origin.date: 07/27/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: jiahan
 ms.lastreviewed: 01/18/2019
-ms.openlocfilehash: 1b34c3bd8e67457d3a638c87199a0568f7b0ac8f
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: 05e9a6042f6ab4707ba6131cc202362d2ca03650
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422645"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867808"
 ---
 # <a name="create-vm-disk-storage-in-azure-stack-hub"></a>在 Azure Stack Hub 中创建 VM 磁盘存储
 
@@ -55,7 +55,7 @@ ms.locfileid: "83422645"
 * 创建新的数据磁盘并将其附加到 VM。
 * 上传现有的数据磁盘并将其附加到 VM。
 
-添加的每个非托管磁盘都应当放置在单独的容器中。
+将添加的每个非托管磁盘放置到单独的容器中。
 
 > [!NOTE]  
 > 由 Azure 创建并管理的磁盘称为[托管磁盘](/virtual-machines/windows/managed-disks-overview)。
@@ -122,9 +122,9 @@ ms.locfileid: "83422645"
 1. [准备一个 .vhd 文件](/virtual-machines/windows/classic/createupload-vhd)，用作 VM 的数据磁盘。 将该 .vhd 文件上传到与要附加 .vhd 文件的 VM 一起使用的存储帐户。
 
     - 计划使用一个容器来保存 .vhd 文件，该容器不同于保存 OS 磁盘的容器。  
-    - 将任何 VHD 上传到 Azure 之前，应该遵循[准备要上传到 Azure 的 Windows VHD 或 VHDX](/virtual-machines/windows/prepare-for-upload-vhd-image?toc=%2fvirtual-machines%2fwindows%2ftoc.json)中的步骤操作。
+    - 将任何 VHD 上传到 Azure 之前，应该遵循[准备要上传到 Azure 的 Windows VHD 或 VHDX](/virtual-machines/windows/prepare-for-upload-vhd-image?toc=/virtual-machines/windows/toc.json)中的步骤操作。
     - 开始迁移到[托管磁盘](/virtual-machines/windows/managed-disks-overview)之前，请先查看[规划迁移到托管磁盘](/virtual-machines/windows/on-prem-to-azure#plan-for-the-migration-to-managed-disks)。
-    
+
     ![示例：上传 VHD 文件](media/azure-stack-manage-vm-disks/upload-vhd.png)
 
 2. 上传 .vhd 文件以后，即可将该 VHD 附加到 VM。 在左侧菜单中选择“虚拟机”。  

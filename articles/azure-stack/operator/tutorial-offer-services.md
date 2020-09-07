@@ -9,12 +9,12 @@ origin.date: 10/16/2019
 ms.date: 05/18/2020
 ms.reviewer: shriramnat
 ms.lastreviewed: 10/16/2019
-ms.openlocfilehash: 656146fe9c3a332427646c982b89a80b57d56ee3
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: ba4e179291319d8d06c0bf4f276499da62fdbc32
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422381"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867965"
 ---
 # <a name="create-a-service-offering-for-users-in-azure-stack-hub"></a>在 Azure Stack Hub 中为用户创建服务产品
 
@@ -68,8 +68,6 @@ Azure Stack Hub 中有两个常规资源提供程序类别：一个将资源部�
 | Microsoft.SqlAdapter | SQL Server 托管服务器、SQL Server 数据库 |
 | Microsoft.EventHub | 事件中心 |
 
-::: moniker range=">=azs-1902"
-
 ## <a name="create-an-offer"></a>创建产品
 
 在创建套餐的过程中，需同时创建套餐和计划。 计划用作套餐的基本计划。 在创建计划期间，需指定计划中提供的服务，及其相应的配额。
@@ -79,7 +77,7 @@ Azure Stack Hub 中有两个常规资源提供程序类别：一个将资源部�
     - 对于集成系统，URL 根据操作员所在区域和外部域名的不同而异。 URL 使用 `https://adminportal.<region>.<FQDN>` 格式。
     - 如果使用的是 Azure Stack 开发工具包，则 URL 为 `https://adminportal.local.azurestack.external`。
 
-    然后选择“+ 创建资源”>“套餐 + 计划”>“套餐”。   
+    然后选择“+ 创建资源” > “套餐 + 计划” > “套餐”  。
 
     ![在 Azure Stack Hub 管理门户中新建套餐](media/tutorial-offer-services/1-create-resource-offer.png)
 
@@ -123,9 +121,6 @@ Azure Stack Hub 中有两个常规资源提供程序类别：一个将资源部�
 
     ![Azure Stack Hub 管理门户中的发布状态](media/tutorial-offer-services/11-offer-change-state.png)
 
-::: moniker-end
-
-::: moniker range="<=azs-1901"
 
 ## <a name="create-an-offer-1901-and-earlier"></a>创建套餐（1901 和更低版本）
 
@@ -136,7 +131,7 @@ Azure Stack Hub 中有两个常规资源提供程序类别：一个将资源部�
     - 对于集成系统，URL 根据操作员所在区域和外部域名的不同而异，格式为 `https://adminportal.<region>.<FQDN>`。
     - 如果使用的是 Azure Stack 开发工具包，则 URL 为 <https://adminportal.local.azurestack.external>。
 
-    然后选择“+ 创建资源”>“套餐 + 计划”>“套餐”。   
+    然后选择“+ 创建资源” > “套餐 + 计划” > “套餐”  。
 
     ![在 Azure Stack Hub 管理门户中新建套餐](media/tutorial-offer-services/image01.png)
 
@@ -184,7 +179,6 @@ Azure Stack Hub 中有两个常规资源提供程序类别：一个将资源部�
 
     ![公共状态](media/tutorial-offer-services/image09.png)
 
-::: moniker-end
  
 ## <a name="next-steps"></a>后续步骤
 

@@ -2,15 +2,18 @@
 title: 部署模式
 description: 介绍如何使用 Azure 资源管理器指定是使用完整部署模式还是增量部署模式。
 ms.topic: conceptual
-origin.date: 01/17/2020
-ms.date: 03/23/2020
+origin.date: 07/22/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 3a7ac216bcf2ff538187487808a04590285b9479
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: f928b32c74a444ec6f09e4ccd2b102abeb193c22
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79543818"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807728"
 ---
 # <a name="azure-resource-manager-deployment-modes"></a>Azure 资源管理器部署模式
 
@@ -24,11 +27,14 @@ ms.locfileid: "79543818"
 
 在完整模式下，资源管理器删除资源组中已存在但尚未在模板中指定的资源  。
 
+> [!NOTE]
+> 在完全模式下部署模板之前，请始终使用 [what-if 操作](template-deploy-what-if.md)。 如果显示哪些资源将被创建、删除或修改。 使用 what-if 以避免意外删除资源。
+
 如果模板包含由于[条件](conditional-resource-deployment.md)的计算结果为 false 而未部署的资源，则结果取决于用于部署模板的 REST API 版本。 如果使用 2019-05-10 之前的版本，则**不会删除**该资源。 如果使用 2019-05-10 或更高版本，则**会删除**该资源。 最新版本的 Azure PowerShell 和 Azure CLI 会删除该资源。
 
 将完整模式与[复制循环](copy-resources.md)一起使用时要小心。 在解析复制循环后会删除模板中未指定的任何资源。
 
-如果部署到[模板中的多个资源组](cross-resource-group-deployment.md)，则可以删除部署操作中指定的资源组中的资源。 辅助资源组中的资源不会被删除。
+如果部署到[模板中的多个资源组](cross-scope-deployment.md)，则可以删除部署操作中指定的资源组中的资源。 辅助资源组中的资源不会被删除。
 
 资源类型处理完整模式删除的方式有所不同。 当父资源不在以完整模式部署的模板中时，将自动删除该资源。 而某些子资源不在模板中时，不会将其自动删除。 但是，如果删除父资源，则会删除这些子资源。
 
@@ -48,10 +54,12 @@ ms.locfileid: "79543818"
 
 ## <a name="incremental-mode"></a>增量模式
 
-在增量模式下，资源管理器保留资源组中已存在但尚未在模板中指定的未更改资源  。 模板中的资源添加到资源组。 
+在增量模式下，资源管理器保留资源组中已存在但尚未在模板中指定的未更改资源****。 模板中的资源添加到资源组。****
 
 > [!NOTE]
 > 在增量模式下重新部署现有资源时，所有属性都将重新应用。 **属性不会以增量方式添加**。 一个常见的误解是认为未在模板中指定的属性会保持不变。 如果未指定某些属性，资源管理器会将部署解释为覆盖这些值。 未包含在模板中的属性将重置为默认值。 指定资源的所有非默认值，而不仅仅是要更新的属性。 模板中的资源定义始终包含资源的最终状态。 它不能表示对现有资源的部分更新。
+>
+> 在极少数情况下，为资源指定的属性是作为子资源实现的。 例如，当为 Web 应用提供站点配置值时，会在子资源类型 `Microsoft.Web/sites/config` 中实现这些值。 如果重新部署 Web 应用并为站点配置值指定了空对象，则子资源不会更新。 但是，如果提供新的站点配置值，则子资源类型会更新。
 
 ## <a name="example-result"></a>示例结果
 
@@ -69,14 +77,14 @@ ms.locfileid: "79543818"
 * 资源 B
 * 资源 D
 
-在“增量”模式下部署时，资源组具有： 
+在“增量”模式下部署时，资源组具有：****
 
 * 资源 A
 * 资源 B
 * 资源 C
 * 资源 D
 
-在“完整”模式下部署时，会删除资源 C。  资源组具有：
+在“完整”模式下部署时，会删除资源 C。**** 资源组具有：
 
 * 资源 A
 * 资源 B
@@ -97,7 +105,7 @@ New-AzResourceGroupDeployment `
 在使用 Azure CLI 部署时若要设置部署模式，请使用 `mode` 参数。
 
 ```azurecli
-az group deployment create \
+az deployment group create \
   --name ExampleDeployment \
   --mode Complete \
   --resource-group ExampleGroup \
@@ -123,7 +131,7 @@ az group deployment create \
 
 ## <a name="next-steps"></a>后续步骤
 
-* 若要了解如何创建资源管理器模板，请参阅[创作 Azure 资源管理器模板](template-syntax.md)。
+* 若要了解如何创建 Resource Manager 模板，请参阅[创作 Azure Resource Manager 模板](template-syntax.md)。
 * 若要了解如何部署资源，请参阅[使用 Azure 资源管理器模板部署应用程序](deploy-powershell.md)。
 * 若要查看资源提供程序的操作，请参阅 [Azure REST API](https://docs.microsoft.com/rest/api/)。
 

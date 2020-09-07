@@ -8,16 +8,16 @@ ms.service: virtual-machines
 ms.subservice: sizes
 ms.topic: conceptual
 origin.date: 06/08/2020
-ms.date: 07/27/2020
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: ff06033b044afd89da5036256e7140ea5aeae456
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: 5b9a93311e2bb2bdc49a85010827e2c703788f4a
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87254864"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052406"
 ---
 <!--Pending GA on Q3 2020, only be suitable for China East 2 site-->
 <!--RELEASE BEFORE CONFIRME AND BE CAREFULLY-->
@@ -46,15 +46,15 @@ ACU：195-210
 
 内存保留更新：支持
 
-| 大小 | vCPU | 内存:GiB | 临时存储 (SSD) GiB | 最大数据磁盘数 | 最大 NIC 数/预期网络带宽 (MBps) |
-|---|---|---|---|---|---|
-| Standard_D2_v4 | 2 | 8 | 仅限远程存储 | 4 | 2/1000 |
-| Standard_D4_v4 | 4 | 16  | 仅限远程存储 | 8 | 2/2000 |
-| Standard_D8_v4 | 8 | 32 | 仅限远程存储 | 16 | 4/4000 |
-| Standard_D16_v4 | 16 | 64 | 仅限远程存储 | 32 | 8/8000 |
-| Standard_D32_v4 | 32 | 128 | 仅限远程存储 | 32 | 8/16000 |
-| Standard_D48_v4 | 48 | 192 | 仅限远程存储 | 32 | 8/24000 |
-| Standard_D64_v4 | 64 | 256 | 仅限远程存储 | 32 | 8/30000 |
+| 大小 | vCPU | 内存:GiB | 临时存储 (SSD) GiB | 最大数据磁盘数 | 最大 NIC 数 | 预期的网络带宽 (Mbps) |
+|---|---|---|---|---|---|---|
+| Standard_D2_v4 | 2 | 8 | 仅限远程存储 | 4 | 2|1000 |
+| Standard_D4_v4 | 4 | 16  | 仅限远程存储 | 8 | 2|2000 |
+| Standard_D8_v4 | 8 | 32 | 仅限远程存储 | 16 | 4|4000 |
+| Standard_D16_v4 | 16 | 64 | 仅限远程存储 | 32 | 8|8000 |
+| Standard_D32_v4 | 32 | 128 | 仅限远程存储 | 32 | 8|16000 |
+| Standard_D48_v4 | 48 | 192 | 仅限远程存储 | 32 | 8|24000 |
+| Standard_D64_v4 | 64 | 256 | 仅限远程存储 | 32 | 8|30000 |
 
 ## <a name="dsv4-series"></a>Dsv4 系列
 
@@ -73,15 +73,14 @@ ACU：195-210
 
 内存保留更新：支持
 
-| 大小 | vCPU | 内存:GiB | 临时存储 (SSD) GiB | 最大数据磁盘数 | 最大缓存吞吐量：IOPS/MBps（以 GiB 为单位的缓存大小） | 最大非缓存磁盘吞吐量：IOPS/MBps | 最大 NIC 数/预期网络带宽 (MBps) |
-|---|---|---|---|---|---|---|---|
-| Standard_D2s_v4 | 2 | 8  | 仅限远程存储 | 4 | 19000/120 (50) | 3000/48 | 2/1000 |
-| Standard_D4s_v4 | 4 | 16 | 仅限远程存储 | 8 | 38500/242 (100) | 6400/96 | 2/2000 |
-| Standard_D8s_v4 | 8 | 32 | 仅限远程存储 | 16 | 77000/485 (200) | 12800/192 | 4/4000 |
-| Standard_D16s_v4 | 16 | 64  | 仅限远程存储 | 32 | 154000/968 (400) | 25600/384 | 8/8000 |
-| Standard_D32s_v4 | 32 | 128 | 仅限远程存储 | 32 | 308000/1936 (800) | 51200/768 | 8/16000 |
-| Standard_D48s_v4 | 48 | 192 | 仅限远程存储 | 32 | 462000/2904 (1200) | 76800/1152 | 8/24000 |
-| Standard_D64s_v4 | 64 | 256 | 仅限远程存储 | 32 | 615000/3872 (1600) | 80000/1200 | 8/30000 |
+| 大小 | vCPU | 内存:GiB | 临时存储 (SSD) GiB | 最大数据磁盘数 | 最大缓存吞吐量：IOPS/MBps（以 GiB 为单位的缓存大小） | 最大非缓存磁盘吞吐量：IOPS/MBps | 最大 NIC 数 | 预期的网络带宽 (Mbps) |
+|---|---|---|---|---|---|---|---|---|
+| Standard_D2s_v4 | 2 | 8  | 仅限远程存储 | 4 | 19000/120 (50) | 3000/48 | 2|1000 |
+| Standard_D4s_v4 | 4 | 16 | 仅限远程存储 | 8 | 38500/242 (100) | 6400/96 | 2|2000 |
+| Standard_D8s_v4 | 8 | 32 | 仅限远程存储 | 16 | 77000/485 (200) | 12800/192 | 4|4000 |
+| Standard_D16s_v4 | 16 | 64  | 仅限远程存储 | 32 | 154000/968 (400) | 25600/384 | 8|8000 |
+| Standard_D32s_v4 | 32 | 128 | 仅限远程存储 | 32 | 308000/1936 (800) | 51200/768 | 8|16000 |
+| Standard_D48s_v4 | 48 | 192 | 仅限远程存储 | 32 | 462000/2904 (1200) | 76800/1152 | 8|24000 |
+| Standard_D64s_v4 | 64 | 256 | 仅限远程存储 | 32 | 615000/3872 (1600) | 80000/1200 | 8|30000 |
 
-<!-- Update_Description: new article about dv4 dsv4 series -->
-<!--NEW.date: 07/27/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

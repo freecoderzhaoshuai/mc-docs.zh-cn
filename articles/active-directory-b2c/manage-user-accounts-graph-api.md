@@ -8,15 +8,16 @@ manager: celestedg
 ms.service: active-directory
 ms.workload: identity
 ms.topic: how-to
-ms.date: 07/27/2020
+ms.date: 08/25/2020
+ms.custom: project-no-code
 ms.author: v-junlch
 ms.subservice: B2C
-ms.openlocfilehash: 6303b7f703b9354ef2888fd0c69355acbc018d70
-ms.sourcegitcommit: dd2bc914f6fc2309f122b1c7109e258ceaa7c868
+ms.openlocfilehash: d794a7574e256f842f1c17628d70afc7ed52dcea
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87297707"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946573"
 ---
 # <a name="manage-azure-ad-b2c-user-accounts-with-microsoft-graph"></a>使用 Microsoft Graph 管理 Azure AD B2C 用户帐户
 
@@ -111,13 +112,13 @@ Azure AD B2C 密码策略（对于本地帐户）基于 Azure Active Directory [
 
 每个面向客户的应用程序对要收集的信息都有独特的要求。 Azure AD B2C 租户附带了一组存储在属性中的内置信息：名字、姓氏、城市和邮政编码。 使用 Azure AD B2C 可以扩展存储在每个客户帐户中的属性集。 若要详细了解如何定义自定义属性，请参阅[自定义属性（用户流）](user-flow-custom-attributes.md)和“自定义属性（自定义策略）”。
 
-Microsoft Graph API 支持使用扩展特性创建和更新用户。 图形 API 中的扩展属性使用约定 `extension_ApplicationObjectID_attributename` 来命名。 例如：
+Microsoft Graph API 支持使用扩展特性创建和更新用户。 图形 API 中的扩展属性使用约定 `extension_ApplicationClientID_attributename` 命名，其中 `ApplicationClientID` 是 `b2c-extensions-app` 应用程序的应用程序（客户端）ID（可在 Azure 门户中的“应用注册” > “所有应用”中找到）  。 请注意，应用程序（客户端）ID 以扩展属性名称表示时不包含连字符。 例如：
 
 ```json
 "extension_831374b3bd5041bfaa54263ec9e050fc_loyaltyNumber": "212342"
 ```
 
-## <a name="code-sample"></a>代码示例
+## <a name="code-sample-how-to-programmatically-manage-user-accounts"></a>代码示例：如何以编程方式管理用户帐户
 
 此代码示例是一个 .NET Core 控制台应用程序，它使用 [Microsoft Graph SDK](https://docs.microsoft.com/graph/sdks/sdks-overview) 来与 Microsoft Graph API 交互。 其中的代码演示了如何调用 API 来以编程方式管理 Azure AD B2C 租户中的用户。
 可以[下载示例存档](https://github.com/Azure-Samples/ms-identity-dotnetcore-b2c-account-management/archive/master.zip) (*.zip)，在 GitHub 中[浏览存储库](https://github.com/Azure-Samples/ms-identity-dotnetcore-b2c-account-management)，或克隆存储库：

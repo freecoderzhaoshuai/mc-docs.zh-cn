@@ -4,16 +4,16 @@ description: 了解 Azure Stack Hub 存储数据传输工具。
 author: WenJason
 ms.topic: conceptual
 origin.date: 04/20/2020
-ms.date: 05/18/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: xiaofmao
 ms.lastreviewed: 11/06/2019
-ms.openlocfilehash: 910d3929c2131004c2c867bfd39bb08af62eed39
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: 5c5eacaec989996f0321d7488102a935afc4d23d
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422638"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867769"
 ---
 # <a name="use-data-transfer-tools-in-azure-stack-hub-storage"></a>在 Azure Stack Hub 存储中使用数据传输工具
 
@@ -33,7 +33,7 @@ Azure Stack Hub 提供一组存储服务，适用于磁盘、Blob、表、队列
 
     一种开源的跨平台工具，提供了一组适用于 Azure 和 Azure Stack Hub 平台的命令。
 
-* [Microsoft 存储资源管理器](#microsoft-azure-storage-explorer)
+* [Microsoft Azure 存储资源管理器](#microsoft-azure-storage-explorer)
 
     一个易于使用的独立应用，带有用户界面。
 
@@ -49,13 +49,9 @@ AzCopy 是一个命令行实用程序，专用于通过简单的可以优化性�
 
 ### <a name="download-and-install-azcopy"></a>下载并安装 AzCopy
 
-::: moniker range=">=azs-1811"
 * 对于 1811 更新或更高版本，请[下载 AzCopy V10+](/storage/common/storage-use-azcopy-v10#download-azcopy)。
-::: moniker-end
 
-::: moniker range="<azs-1811"
 * 对于以前的版本（1802 到 1809 更新），请[下载 AzCopy 7.1.0](https://aka.ms/azcopyforazurestack20170417)。
-::: moniker-end
 
 ### <a name="azcopy-101-configuration-and-limits"></a>AzCopy 10.1 配置和限制
 

@@ -10,12 +10,12 @@ ms.author: v-yiso
 author: trevorbye
 origin.date: 07/08/2020
 ms.date: 08/27/2020
-ms.openlocfilehash: 7886372bc614660830a8a26ed3bcbce0a5a1507f
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 0be68f7b0dc7e8b98e4c5ff543d6e4703c8a87dc
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228450"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947059"
 ---
 # <a name="what-are-azure-machine-learning-environments"></a>什么是 Azure 机器学习环境？
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -95,7 +95,7 @@ Azure 机器学习服务在 Docker 映像和 conda 环境中生成环境定义�
  * Conda 定义中的 Python 包列表
  * Spark 定义中的包列表 
 
-此哈希不依赖于环境名称或版本 - 如果只是重命名了环境，或者使用与现有环境完全相同的属性和包创建了新环境，则哈希值将保持不变。 但是，更改环境定义（例如添加或删除 Python 包，或更改包版本）会导致哈希值更改。 需要注意的是，对特选环境所做的任何更改都会导致哈希失效，并产生新的“非特选”环境。
+此哈希不依赖于环境名称或版本 - 如果只是重命名了环境，或者使用与现有环境完全相同的属性和包创建了新环境，则哈希值将保持不变。 但是，更改环境定义（例如添加或删除 Python 包，或更改包版本）会导致哈希值更改。 更改环境中的依赖项或通道的顺序将产生新的环境，因此需要新的映像版本。 需要注意的是，对特选环境所做的任何更改都会导致哈希失效，并产生新的“非特选”环境。
 
 计算所得的哈希值将与工作区中和全局 ACR（或本地运行的计算目标）中的哈希值进行比较。 如果存在匹配项，则会拉取缓存的映像，否则会触发映像生成。 拉取缓存的映像的持续时间包括下载时间，而拉取新生成的映像的持续时间包括生成时间和下载时间。 
 

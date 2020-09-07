@@ -3,20 +3,21 @@ title: 已知问题与故障排除
 titleSuffix: Azure Machine Learning
 description: 获取有关在 Azure 机器学习中查找和更正错误或失败的帮助。 了解已知问题、故障排除和解决方法。
 services: machine-learning
-author: j-martens
-ms.author: jmartens
+author: likebupt
+ms.author: v-yiso
 ms.reviewer: mldocs
 ms.service: machine-learning
 ms.subservice: core
-ms.topic: troubleshooting
-ms.custom: contperfq4
-ms.date: 03/31/2020
-ms.openlocfilehash: 53da70f875ceef71c73149a100f376b77b7fcaa2
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.topic: conceptual
+ms.custom: troubleshooting, contperfq4
+origin.date: 08/13/2020
+ms.date: 09/07/2020
+ms.openlocfilehash: 5366fa8d56960b345eafc625a529370a41b3890e
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228447"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946876"
 ---
 # <a name="known-issues-and-troubleshooting-in-azure-machine-learning"></a>Azure 机器学习中的已知问题和故障排除
 
@@ -55,7 +56,7 @@ ms.locfileid: "88228447"
    若要确保为包安装适当的版本，请使用多行安装，如以下代码中所示。 在这里，顺序不是问题，因为 pip 显式降级为下一行调用的一部分。 因此，会应用适当的版本依赖项。
     
      ```
-        pip install azure-ml-datadrift
+        pip install azureml-datadrift
         pip install azureml-train-automl 
      ```
      
@@ -234,6 +235,27 @@ import time
 time.sleep(600)
 ```
 
+* **实时终结点的日志：**
+
+实时终结点的日志是客户数据。 对于实时终结点故障排除，可以使用以下代码来启用日志。 
+
+有关监视 Web 服务终结点的更多详细信息，请参阅[本文](/machine-learning/how-to-enable-app-insights#query-logs-for-deployed-models)。
+
+```python
+from azureml.core import Workspace
+from azureml.core.webservice import Webservice
+
+ws = Workspace.from_config()
+service = Webservice(name="service-name", workspace=ws)
+logs = service.get_logs()
+```
+如果有多个租户，则可能需要在 `ws = Workspace.from_config()` 之前添加以下身份验证代码
+
+```python
+from azureml.core.authentication import InteractiveLoginAuthentication
+interactive_auth = InteractiveLoginAuthentication(tenant_id="the tenant_id in which your workspace resides")
+```
+
 ## <a name="train-models"></a>训练模型
 
 * **ModuleErrors（没有名为“xxx”的模块）** ：如果在 Azure ML 中提交试验时遇到 ModuleErrors，则表示训练脚本需要安装某个包，但并未添加该包。 你提供包名称后，Azure ML 在用于训练运行的环境中安装该包。 
@@ -286,6 +308,47 @@ time.sleep(600)
     ```
     displayHTML("<a href={} target='_blank'>Azure Portal: {}</a>".format(local_run.get_portal_url(), local_run.id))
     ```
+* **automl_setup 失败**： 
+    * 在 Windows 上，从 Anaconda 提示符运行 automl_setup。 若要安装 Miniconda，请单击[此处](https://docs.conda.io/en/latest/miniconda.html)。
+    * 通过运行 `conda info` 命令，确保已安装 conda 64 位而不是 32 位。 对于 Windows，`platform` 应为 `win-64`，对于 Mac，应为 `osx-64`。
+    * 确保已安装 conda 4.4.10 或更高版本。 可以使用命令 `conda -V` 检查该版本。 如果安装了以前的版本，可以使用以下命令对其进行更新：`conda update conda`。
+    * Linux - `gcc: error trying to exec 'cc1plus'`
+      *  如果遇到 `gcc: error trying to exec 'cc1plus': execvp: No such file or directory` 错误，请使用命令 `sudo apt-get install build-essential` 安装版本要素。
+      * 将新名称作为第一个参数传递给 automl_setup 以创建新的 conda 环境。 使用 `conda env list` 查看现有的 conda 环境，并使用 `conda env remove -n <environmentname>` 删除它们。
+      
+* **automl_setup_linux.sh 失败**：如果 automl_setup_linus.sh 在 Ubuntu Linux 上失败，并出现错误：`unable to execute 'gcc': No such file or directory`-
+  1. 确保已启用出站端口 53 和 80。 在 Azure VM 上，可以通过选择 VM 并单击“网络”，从 Azure 门户执行此操作。
+  2. 运行命令 `sudo apt-get update`
+  3. 运行命令 `sudo apt-get install build-essential --fix-missing`
+  4. 再次运行 `automl_setup_linux.sh`
+
+* **configuration.ipynb 失败**：
+  * 对于本地 conda，请首先确保 automl_setup 已成功运行。
+  * 确保 subscription_id 是正确的。 通过选择“所有服务”，然后选择“订阅”，在 Azure 门户中查找 subscription_id。 字符“<”和“>”不应包含在 subscription_id 值中。 例如，`subscription_id = "12345678-90ab-1234-5678-1234567890abcd"` 的格式有效。
+  * 确保参与者或所有者有权访问“订阅”。
+  * 检查该区域是否为受支持的区域之一：`eastus2`、`eastus`、`westcentralus`、`southeastasia`、`westeurope`、`australiaeast`、`westus2`、`southcentralus`。
+  * 确保使用 Azure 门户访问该区域。
+  
+* **导入 AutoMLConfig 失败**：自动化机器学习版本 1.0.76 中存在包更改，这要求先卸载以前的版本，再更新到新版本。 如果从 v1.0.76 之前的 SDK 版本升级到 v1.0.76 或更高版本后遇到 `ImportError: cannot import name AutoMLConfig`，请先运行 `pip uninstall azureml-train automl` 再运行 `pip install azureml-train-auotml` 来解决该错误。 automl_setup.cmd 脚本会自动执行此操作。 
+
+* **workspace.from_config 失败**：如果调用 ws = Workspace.from_config()' 失败 -
+  1. 确保 configuration.ipynb 笔记本已成功运行。
+  2. 如果正在从不在运行 `configuration.ipynb` 的文件夹下的文件夹中运行笔记本，则将文件夹 aml_config 及其包含的文件 config.json 复制到新文件夹中。 Workspace.from_config 读取笔记本文件夹或其父文件夹的 config.json。
+  3. 如果正在使用新的订阅、资源组、工作区或区域，请确保再次运行 `configuration.ipynb` 笔记本。 仅当指定订阅下的指定资源组中已存在工作区时，直接更改 config.json 才会生效。
+  4. 如果要更改区域，请更改工作区、资源组或订阅。 即使指定的区域不同，`Workspace.create` 也不会创建或更新工作区（如果已存在）。
+  
+* **示例笔记本失败**：如果示例笔记本失败，并出现属性、方法或库不存在的错误：
+  * 确保在 Jupyter 笔记本中选择了正确的内核。 内核显示在笔记本页面的右上方。 默认值为 azure_automl。 请注意，内核作为笔记本的一部分进行保存。 因此，如果切换到新的 conda 环境，则必须在笔记本中选择新内核。
+      * 对于 Azure Notebooks，它应为 Python 3.6。 
+      * 对于本地 conda 环境，它应为在 automl_setup 中指定的 conda 环境名称。
+  * 确保笔记本适用于正在使用的 SDK 版本。 可以通过在 Jupyter 笔记本单元格中执行 `azureml.core.VERSION` 来检查 SDK 版本。 通过单击 `Branch` 按钮，选择 `Tags` 选项卡，然后选择版本，可以从 GitHub 下载以前版本的示例笔记本。
+
+* **Windows 中的 Numpy 导入失败**：在某些 Windows 环境中，最新的 Python 3.6.8 版本加载 numpy 时会出现错误。 如果出现此问题，请尝试使用 Python 3.6.7 版本。
+
+* **Numpy 导入失败**：在自动化 ML conda 环境中检查 TensorFlow 版本。 支持的版本为 <1.13 的版本。 如果版本 >= 1.13，请从环境中卸载 TensorFlow。可以按如下所示检查 TensorFlow 的版本并进行卸载 -
+  1. 启动命令 shell，激活安装了自动化 ML 包的 conda 环境。
+  2. 输入 `pip freeze` 并查找 `tensorflow`，如果找到，则列出的版本应 <1.13
+  3. 如果列出的版本不是受支持的版本，请在命令 shell 中使用 `pip uninstall tensorflow` 并输入 y 进行确认。
 
 ## <a name="deploy--serve-models"></a>部署和提供模型
 
@@ -366,5 +429,5 @@ az aks get-credentials -g <rg> -n <aks cluster name>
 * [使用 Azure 机器学习解决 Docker 部署问题](how-to-troubleshoot-deployment.md)
 * [调试机器学习管道](how-to-debug-pipelines.md)
 * [从 Azure 机器学习 SDK 调试 ParallelRunStep 类](how-to-debug-parallel-run-step.md)
-* [使用 VS Code 的机器学习计算实例进行交互式调试](how-to-set-up-vs-code-remote.md)
+* [使用 VS Code 的机器学习计算实例进行交互式调试](how-to-debug-visual-studio-code.md)
 * [使用 Application Insights 调试机器学习管道](how-to-debug-pipelines-application-insights.md)

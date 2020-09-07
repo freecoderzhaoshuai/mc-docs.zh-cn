@@ -3,19 +3,19 @@ title: 为 Azure Stack HCI 选择驱动器
 description: 如何为 Azure Stack HCI 中的存储空间直通选择驱动器。
 author: WenJason
 ms.author: v-jay
-ms.topic: article
-origin.date: 03/06/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: 2ccbc4f4c0957d77aba340ae5994f853892f5344
-ms.sourcegitcommit: e9ffd50aa5eaab402a94bfabfc70de6967fe6278
+ms.topic: conceptual
+origin.date: 07/22/2020
+ms.date: 08/31/2020
+ms.openlocfilehash: 5b34f5d0da431b79545032a4a87e94aae48bbf3a
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2020
-ms.locfileid: "86307424"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867927"
 ---
 # <a name="choosing-drives-for-azure-stack-hci"></a>为 Azure Stack HCI 选择驱动器
 
->适用于：Azure Stack HCI 版本 20H2；Windows Server 2019
+> 适用于：Azure Stack HCI 版本 20H2；Windows Server 2019
 
 本主题提供有关如何根据 Azure Stack HCI 的性能和容量要求，为[存储空间直通](https://docs.microsoft.com/windows-server/storage/storage-spaces/storage-spaces-direct-overview)选择驱动器的指导。
 
@@ -23,7 +23,7 @@ ms.locfileid: "86307424"
 
 存储空间直通目前适用于四种类型的驱动器：
 
-|||
+| 驱动器类型 | 描述 |
 |----------------------|--------------------------|
 |![PMem](media/choose-drives/pmem-100px.png)|PMem 是指永久性内存，一种新的低延迟、高性能存储类型。|
 |![NVMe](media/choose-drives/NVMe-100-px.png)|**NVMe**（非易失性快速内存）是指直接位于 PCIe 总线上的固态硬盘。 常见外形规格为 2.5 英寸 U.2、PCIe 附加卡 (AIC) 和 M.2。 NVMe 提供较高的 IOPS 和 IO 吞吐量，延迟也比目前支持的除 PMem 外的任何其他驱动器类型低。|
@@ -87,7 +87,7 @@ ms.locfileid: "86307424"
 
 每台服务器必须至少有两个缓存驱动器（实现冗余的最低要求）。 容量驱动器的数目最好是缓存驱动器数目的倍数。 例如，如果你有 4 个缓存驱动器，则配置 8 个容量驱动器（1:2 比例）的性能比配置 7 个或 9 个容量驱动器更稳定。
 
-应该根据应用程序和工作负荷的工作集（即，在任何给定时间主动读取或写入的数据）来调整缓存的大小。 除此之外，没有其他缓存大小要求。 对于使用 HDD 的部署，合理的起点是容量的 10% – 例如，如果每台服务器有 4 x 4 TB HDD = 16 TB 容量，则每台服务器的缓存为 2 x 800 GB SSD = 1.6 TB。 对于全闪存部署，尤其是使用[持久性极高](https://blogs.technet.microsoft.com/filecab/2017/08/11/understanding-dwpd-tbw/)的 SSD 时，接近 5% 的容量可能是合理的起点 – 例如，如果每台服务器有 24 x 1.2 TB SSD = 28.8 TB 容量，则每台服务器的缓存为 2 x 750 GB NVMe = 1.5 TB。 以后随时可以通过添加或移除缓存驱动器进行调整。
+应该根据应用程序和工作负荷的工作集（即，在任何给定时间主动读取或写入的数据）来调整缓存的大小。 除此之外，没有其他缓存大小要求。 对于使用 HDD 的部署，合理的起点是容量的 10% – 例如，如果每台服务器有 4 x 4 TB HDD = 16 TB 容量，则每台服务器的缓存为 2 x 800 GB SSD = 1.6 TB。 对于全闪存部署，尤其是使用[持久性极高](https://techcommunity.microsoft.com/t5/storage-at-microsoft/understanding-ssd-endurance-drive-writes-per-day-dwpd-terabytes/ba-p/426024)的 SSD 时，接近 5% 的容量可能是合理的起点 – 例如，如果每台服务器有 24 x 1.2 TB SSD = 28.8 TB 容量，则每台服务器的缓存为 2 x 750 GB NVMe = 1.5 TB。 以后随时可以通过添加或移除缓存驱动器进行调整。
 
 ### <a name="general"></a>常规
 
@@ -97,7 +97,6 @@ ms.locfileid: "86307424"
 
 有关详细信息，请参阅：
 
-- [Azure Stack HCI 概述](../overview.md)
 - [了解 Azure Stack HCI 中的缓存](cache.md)
 - [存储空间直通硬件要求](https://docs.microsoft.com/windows-server/storage/storage-spaces/storage-spaces-direct-hardware-requirements)
 - [在 Azure Stack HCI 中规划卷](plan-volumes.md)

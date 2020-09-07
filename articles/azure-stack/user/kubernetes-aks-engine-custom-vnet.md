@@ -3,23 +3,29 @@ title: 将 Kubernetes 群集部署到 Azure Stack Hub 上的自定义虚拟网�
 description: 了解如何将 Kubernetes 群集部署到 Azure Stack Hub 上的自定义虚拟网络。
 author: WenJason
 ms.topic: article
-origin.date: 3/19/2020
-ms.date: 06/22/2020
+origin.date: 08/05/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: waltero
-ms.lastreviewed: 3/19/2020
-ms.openlocfilehash: 35dd2cf1b53ee1f99c72eed73100dcc340828710
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.lastreviewed: 08/05/2020
+ms.openlocfilehash: 9dbeb73c96ea7d08a0634c3de10f8d222b693723
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096986"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867968"
 ---
 # <a name="deploy-a-kubernetes-cluster-to-a-custom-virtual-network-on-azure-stack-hub"></a>将 Kubernetes 群集部署到 Azure Stack Hub 上的自定义虚拟网络 
 
 可使用 Azure Kubernetes 服务 (AKS) 引擎在自定义虚拟网络上部署 Kubernetes 群集。 本文介绍如何在虚拟网络中查找所需的信息。 你可以在本文中找到计算群集使用的 IP 地址、在 API 模型中设置值以及设置路由表和网络安全组的步骤。
 
 使用 AKS 引擎的 Azure Stack Hub 中的 Kubernetes 群集使用 kubenet 网络插件。 有关 Azure 中的 kubenet 网络插件联网的讨论，请参阅[在 Azure Kubernetes 服务 (AKS) 中结合自己的 IP 地址范围使用 kubenet 网络](/aks/configure-kubenet)。
+
+## <a name="constraints-when-creating-a-custom-virtual-network"></a>创建自定义虚拟网络时的约束
+
+-  自定义 VNET 必须与 Kubernetes 群集的所有其他组件位于同一订阅中。
+-  主节点池和代理节点池必须位于同一虚拟网络中。 你可以将节点部署到同一虚拟网络的不同子网中。
+-  Kubernetes 群集子网必须使用自定义虚拟网络 IP 范围空间内的 IP 范围，请参阅[获取 IP 地址块](#get-the-ip-address-block)。
 
 ## <a name="create-custom-virtual-network"></a>创建自定义虚拟网络
 
@@ -41,8 +47,6 @@ Azure Stack Hub 实例中必须有一个自定义虚拟网络。 有关详细信
     ![虚拟网络 CIDR 块](media/kubernetes-aks-engine-custom-vnet/virtual-network-cidr-block.png)
     
 6. 在“子网”边栏选项卡中，记下地址范围和虚拟网络 CIDR 块，例如：`10.1.0.0 - 10.1.0.255 (256 addresses)` 和 `10.1.0.0/24`。
-
-
 
 ## <a name="get-the-ip-address-block"></a>获取 IP 地址块
 
@@ -70,7 +74,6 @@ AKS 引擎支持部署到现有虚拟网络中。 部署到现有子网中时，
 
 对于较大的子网（例如超过 6 万个地址的 /16），可能会发现将静态 IP 地址设置为网络空间的末端值是不切实际的。 在设置群集静态 IP 地址范围时，应选择与 IP 空间中前 24 个地址距离较远的值，以便在声明地址时可以复原群集。
 
-
 ## <a name="update-the-api-model"></a>更新 API 模型
 
 更新用于将群集从 AKS 引擎部署到自定义虚拟网络的 API 模型。
@@ -88,6 +91,12 @@ AKS 引擎支持部署到现有虚拟网络中。 部署到现有子网中时，
 | --- | --- | --- |
 | vnetSubnetId | `/subscriptions/77e28b6a-582f-42b0-94d2-93b9eca60845/resourceGroups/MDBN-K8S/providers/Microsoft.Network/virtualNetworks/MDBN-K8S/subnets/default` | 指定子网的 Azure 资源管理器路径 ID。  |
 
+在“orchestratorProfile”中，找到“kubernetesConfig”并设置以下值 ：
+
+| 字段 | 示例 | 描述 |
+| --- | --- | --- |
+| clusterSubnet | `172.16.244.0/24` | 群集子网（POD 网络）的 IP 范围必须是你定义的自定义 VNET IP 范围空间内的 IP 范围。 |
+
 例如：
 
 ```json
@@ -104,6 +113,13 @@ AKS 引擎支持部署到现有虚拟网络中。 部署到现有子网中时，
     "vnetSubnetId": "/subscriptions/77e28b6a-582f-42b0-94d2-93b9eca60845/resourceGroups/MDBN-K8S/providers/Microsoft.Network/virtualNetworks/MDBN-K8S/subnets/default",
     ...
   },
+    ...
+"kubernetesConfig": [
+  {
+    ...
+    "clusterSubnet": "172.16.244.0/24",
+    ...
+  },
 
 ```
 
@@ -111,7 +127,7 @@ AKS 引擎支持部署到现有虚拟网络中。 部署到现有子网中时，
 
 将值添加到 API 模型后，可以通过使用 AKS 引擎的 `deploy` 命令从客户端计算机上部署群集。 有关说明，请参阅[部署 Kubernetes 群集](azure-stack-kubernetes-aks-engine-deploy-cluster.md#deploy-a-kubernetes-cluster)。
 
-## <a name="set-the-route-table-and-network-security-group"></a>设置路由表和网络安全组
+## <a name="set-the-route-table"></a>设置路由表
 
 部署群集后，返回 Azure Stack 用户门户中的虚拟网络。 在子网边栏选项卡中同时设置路由表和网络安全组 (NSG)。 如果不使用 Azure CNI，例如，`networkPlugin`：`kubernetesConfig` API 模型配置对象中的 `kubenet`。 成功将群集部署到自定义虚拟网络后，请从群集资源组中的网络边栏选项卡获取路由表资源的 ID。
 
@@ -123,7 +139,6 @@ AKS 引擎支持部署到现有虚拟网络中。 部署到现有子网中时，
     ![路由表和网络安全组](media/kubernetes-aks-engine-custom-vnet/virtual-network-rt-nsg.png)
     
 5. 选择“路由表”，然后为群集选择路由表。
-6. 选择“网络安全组”，然后为群集选择 NSG。
 
 > [!Note]  
 > 用于 Kubernetes Windows 群集的自定义虚拟网络存在一个[已知问题](https://github.com/Azure/aks-engine/issues/371)。

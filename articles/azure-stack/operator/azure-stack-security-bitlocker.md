@@ -5,16 +5,16 @@ description: 了解 Azure Stack Hub 如何使用静态加密来保护数据。
 author: WenJason
 ms.topic: how-to
 origin.date: 03/04/2020
-ms.date: 05/18/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: fiseraci
-ms.lastreviewed: 03/11/2019
-ms.openlocfilehash: f9dd40c176c28b484bfcc8b66d5682b4a92e318b
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.lastreviewed: 08/06/2020
+ms.openlocfilehash: d0bebe22a50e8db78e624cd9dd9f6810a20a3a93
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422519"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867834"
 ---
 # <a name="data-at-rest-encryption-in-azure-stack-hub"></a>Azure Stack Hub 中的静态数据加密
 
@@ -36,14 +36,14 @@ Azure Stack Hub 使用静态加密来保护存储子系统级别的用户数据�
 
 ```powershell
 ##This cmdlet retrieves the recovery keys for all the volumes that are encrypted with BitLocker.
-Get-AzsRecoveryKeys
+Get-AzsRecoveryKeys -raw
 ```
 
-*Get-AzsRecoveryKeys* cmdlet 的可选参数：
+Get-AzsRecoveryKeys cmdlet 的参数：
 
 | 参数 | 说明 | 类型 | 必选 |
 |---------|---------|---------|---------|
-|*raw* | 返回每个加密卷的恢复密钥、计算机名和密码 ID 之间映射的原始数据。  | 开关 | 否（专为支持方案设计）|
+|*raw* | 返回每个加密卷的恢复密钥、计算机名和密码 ID 之间映射的数据。  | 开关 | 否，但建议使用 |
 
 ## <a name="troubleshoot-issues"></a>排查问题
 

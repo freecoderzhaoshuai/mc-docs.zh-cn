@@ -11,18 +11,18 @@ ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-ms.date: 06/02/2020
+ms.topic: troubleshooting
+ms.date: 08/27/2020
 ms.subservice: hybrid
 ms.author: v-junlch
 ms.collection: M365-identity-device-management
 ms.custom: has-adal-ref
-ms.openlocfilehash: ee3a9311b9829622ebbc2b7d2064b14850e9e175
-ms.sourcegitcommit: 9811bf312e0d037cb530eb16c8d85238fd276949
+ms.openlocfilehash: 11cfd8ca97898609a8c122ebc2f1847173b71c83
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84275566"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946897"
 ---
 # <a name="troubleshoot-azure-ad-connectivity"></a>排查 Azure AD 连接问题
 本文说明 Azure AD Connect 与 Azure AD 之间的连接的工作方式，以及如何排查连接问题。 这些问题很有可能出现在包含代理服务器的环境中。
@@ -32,7 +32,7 @@ Azure AD Connect 使用现代身份验证（使用 ADAL 库）来进行身份验
 
 在本文中，我们说明了 Fabrikam 如何通过其代理连接到 Azure AD。 代理服务器名为 fabrikamproxy，并使用端口 8080。
 
-首先，我们需要确保正确配置 [machine.config](how-to-connect-install-prerequisites.md#connectivity)。
+首先我们需要确保正确配置 [machine.config](how-to-connect-install-prerequisites.md#connectivity) 且在 machine.config 文件更新后重启 Azure AD Sync 服务 。
 ![machineconfig](./media/tshoot-connect-connectivity/machineconfig.png)
 
 > [!NOTE]
@@ -42,7 +42,7 @@ Azure AD Connect 使用现代身份验证（使用 ADAL 库）来进行身份验
 
 还必须在代理服务器上打开所需的 URL。 [Office 365 URL 和 IP 地址范围](https://docs.microsoft.com/en-us/office365/enterprise/urls-and-ip-address-ranges-21vianet)中提供了正式列表。
 
-下表列出了连接到 Azure AD 时最起码需要的那部分 URL。 此列表未包括任何可选功能。 本文中描述这些功能是为了帮助排查初始配置问题。
+下表列出了连接到 Azure AD 时最起码需要的那部分 URL。 此列表未包含任何可选功能，例如密码写回。 本文中描述这些功能是为了帮助排查初始配置问题。
 
 | URL | 端口 | 说明 |
 | --- | --- | --- |

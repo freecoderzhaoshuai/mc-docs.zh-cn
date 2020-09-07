@@ -2,15 +2,18 @@
 title: 使用 REST API 和模板部署资源
 description: 使用 Azure 资源管理器和资源管理器 REST API 将资源部署到 Azure。 资源在 Resource Manager 模板中定义。
 ms.topic: conceptual
-origin.date: 06/04/2020
-ms.date: 06/22/2020
+origin.date: 07/21/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 0d1f6666953190d7e0495890e4f10ee947b928ab
-ms.sourcegitcommit: 48b5ae0164f278f2fff626ee60db86802837b0b4
+ms.openlocfilehash: f0267a833ae879e0d3fc09fa6f264e6e593493c2
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85098522"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807741"
 ---
 # <a name="deploy-resources-with-arm-templates-and-resource-manager-rest-api"></a>使用 ARM 模板和资源管理器 REST API 部署资源
 
@@ -24,33 +27,33 @@ ms.locfileid: "85098522"
 
 * 若要部署到资源组，请使用[部署 - 创建](https://docs.microsoft.com/rest/api/resources/deployments/createorupdate)。 请求将发送到：
 
-  ```HTTP
-  PUT https://management.chinacloudapi.cn/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}?api-version=2019-10-01
-  ```
+    ```HTTP
+    PUT https://management.chinacloudapi.cn/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}?api-version=2019-10-01
+    ```
 
 * 若要部署到订阅，请使用[部署 - 在订阅范围内创建](https://docs.microsoft.com/rest/api/resources/deployments/createorupdateatsubscriptionscope)。 请求发送到：
 
-  ```HTTP
-  PUT https://management.chinacloudapi.cn/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}?api-version=2019-10-01
-  ```
+    ```HTTP
+    PUT https://management.chinacloudapi.cn/subscriptions/{subscriptionId}/providers/Microsoft.Resources/deployments/{deploymentName}?api-version=2019-10-01
+    ```
 
-有关订阅级部署的详细信息，请参阅[在订阅级别创建资源组和资源](deploy-to-subscription.md)。
+    有关订阅级部署的详细信息，请参阅[在订阅级别创建资源组和资源](deploy-to-subscription.md)。
 
 * 若要部署到管理组，请使用[部署 - 在管理组范围内创建](https://docs.microsoft.com/rest/api/resources/deployments/createorupdateatmanagementgroupscope)。 请求发送到：
 
-  ```HTTP
-  PUT https://management.chinacloudapi.cn/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}?api-version=2019-10-01
-  ```
+    ```HTTP
+    PUT https://management.chinacloudapi.cn/providers/Microsoft.Management/managementGroups/{groupId}/providers/Microsoft.Resources/deployments/{deploymentName}?api-version=2019-10-01
+    ```
 
-有关管理组级别部署的详细信息，请参阅[在管理组级别创建资源](deploy-to-management-group.md)。
+    有关管理组级别部署的详细信息，请参阅[在管理组级别创建资源](deploy-to-management-group.md)。
 
 * 若要部署到租户，请使用[部署 - 在租户范围内创建或更新](https://docs.microsoft.com/rest/api/resources/deployments/createorupdateattenantscope)。 请求发送到：
 
-  ```HTTP
-  PUT https://management.chinacloudapi.cn/providers/Microsoft.Resources/deployments/{deploymentName}?api-version=2019-10-01
-  ```
+    ```HTTP
+    PUT https://management.chinacloudapi.cn/providers/Microsoft.Resources/deployments/{deploymentName}?api-version=2019-10-01
+    ```
 
-  有关租户级别部署的详细信息，请参阅[在租户级别创建资源](deploy-to-tenant.md)。
+    有关租户级别部署的详细信息，请参阅[在租户级别创建资源](deploy-to-tenant.md)。
 
 本文中的示例使用资源组部署。
 
@@ -60,9 +63,9 @@ ms.locfileid: "85098522"
 
 1. 如果目前没有资源组，请创建资源组。 提供订阅 ID、新资源组的名称，以及解决方案所需的位置。 有关详细信息，请参阅 [创建资源组](https://docs.microsoft.com/rest/api/resources/resourcegroups/createorupdate)。
 
-   ```HTTP
-   PUT https://management.chinacloudapi.cn/subscriptions/<YourSubscriptionId>/resourcegroups/<YourResourceGroupName>?api-version=2019-10-01
-   ```
+    ```HTTP
+    PUT https://management.chinacloudapi.cn/subscriptions/<YourSubscriptionId>/resourcegroups/<YourResourceGroupName>?api-version=2019-10-01
+    ```
 
     使用如下所示请求正文：
 
@@ -79,9 +82,9 @@ ms.locfileid: "85098522"
 
 1. 若要部署模板，请在请求 URI 中提供订阅 ID、资源组名称和部署名称。
 
-   ```HTTP
-   PUT https://management.chinacloudapi.cn/subscriptions/<YourSubscriptionId>/resourcegroups/<YourResourceGroupName>/providers/Microsoft.Resources/deployments/<YourDeploymentName>?api-version=2019-10-01
-   ```
+    ```HTTP
+    PUT https://management.chinacloudapi.cn/subscriptions/<YourSubscriptionId>/resourcegroups/<YourResourceGroupName>/providers/Microsoft.Resources/deployments/<YourDeploymentName>?api-version=2019-10-01
+    ```
 
     在请求正文中，提供指向模板和参数文件的链接。 有关参数文件的详细信息，请参阅[创建资源管理器参数文件](parameter-files.md)。
 
@@ -103,7 +106,7 @@ ms.locfileid: "85098522"
     }
     ```
 
-    如果想要记录响应内容或/和请求内容，请在请求中包括 **debugSetting**。
+    如果想要记录响应内容或/和请求内容，请在请求中包括 `debugSetting`。
 
     ```json
     {
@@ -194,9 +197,25 @@ ms.locfileid: "85098522"
 
 1. 要获取模板部署的状态，请使用[部署 - 获取](https://docs.microsoft.com/rest/api/resources/deployments/get)。
 
-   ```HTTP
-   GET https://management.chinacloudapi.cn/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}?api-version=2019-10-01
-   ```
+    ```HTTP
+    GET https://management.chinacloudapi.cn/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Resources/deployments/{deploymentName}?api-version=2019-10-01
+    ```
+
+## <a name="deployment-name"></a>部署名称
+
+可为部署提供一个名称，如 `ExampleDeployment`。
+
+每次运行部署时，一个包含部署名称的条目会添加到资源组的部署历史记录中。 如果运行另一个部署并为其指定了相同的名称，则会将先前的条目替换为当前部署。 如果要在部署历史记录中保持唯一条目，请为每个部署指定唯一名称。
+
+若要创建唯一名称，你可以分配一个随机数。 或者，添加日期值。
+
+如果使用相同的部署名称对同一资源组运行并发部署，则仅会完成最后一个部署。 尚未完成的具有相同名称的任何部署都将被最后一个部署所替换。 例如，如果你运行一个名为 `newStorage` 的部署，它部署了一个名为 `storage1` 的存储帐户；与此同时，你运行了另一个名为 `newStorage` 的部署，它部署了一个名为 `storage2` 的存储帐户，则你将仅部署一个存储帐户。 生成的存储帐户名为 `storage2`。
+
+但是，如果你运行一个名为 `newStorage` 的部署，它部署了一个名为 `storage1` 的存储帐户；在该部署完成时你又立即运行了另一个名为 `newStorage` 的部署，它部署了一个名为 `storage2` 的存储帐户，则你将有两个存储帐户。 一个名为 `storage1`，另一个名为 `storage2`。 但是，部署历史记录中只有一个条目。
+
+为每个部署指定唯一的名称时，可以并发运行它们而不会发生冲突。 如果你运行一个名为 `newStorage1` 的部署，它部署了一个名为 `storage1` 的存储帐户；与此同时，你又运行了另一个名为 `newStorage2` 的部署，它部署了一个名为 `storage2` 的存储帐户，则部署历史记录中将有两个存储帐户和两个条目。
+
+为避免与并发部署冲突并确保部署历史记录中的条目是唯一的，请为每个部署指定唯一的名称。
 
 ## <a name="next-steps"></a>后续步骤
 

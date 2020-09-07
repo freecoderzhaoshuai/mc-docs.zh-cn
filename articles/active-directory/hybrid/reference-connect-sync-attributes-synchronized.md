@@ -12,16 +12,16 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: reference
-ms.date: 06/02/2020
+ms.date: 08/27/2020
 ms.subservice: hybrid
 ms.author: v-junlch
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 9ac4558f05070dc90222d461e7d94961ea9e617b
-ms.sourcegitcommit: 9811bf312e0d037cb530eb16c8d85238fd276949
+ms.openlocfilehash: 873c4a4e947c64ad18105db86aaa1b2a678be9e9
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84275343"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947156"
 ---
 # <a name="azure-ad-connect-sync-attributes-synchronized-to-azure-active-directory"></a>Azure AD Connect 同步：与 Azure Active Directory 同步的属性
 本主题列出通过 Azure AD Connect 同步进行同步的属性。  
@@ -165,7 +165,7 @@ ms.locfileid: "84275343"
 | targetAddress |X |X | | |
 | telephoneAssistant |X |X | | |
 | telephoneNumber |X |X | | |
-| thumbnailphoto |X |X | | |
+| thumbnailphoto |X |X | |仅执行一次从 Azure AD 到 Exchange Online 的同步，在此之后，Exchange Online 成为该属性的授权来源，并且以后的任何更改都无法从本地同步。 请参阅 ([KB](https://support.microsoft.com/help/3062745/user-photos-aren-t-synced-from-the-on-premises-environment-to-exchange)) 了解详细信息。|
 | title |X |X | | |
 | unauthOrig |X |X |X | |
 | usageLocation |X | | |机械属性。 用户所在的国家/地区。 用于进行许可证分配。 |
@@ -247,12 +247,12 @@ ms.locfileid: "84275343"
 | targetAddress |X |X | | |
 | telephoneAssistant |X |X | | |
 | telephoneNumber |X |X | | |
-| thumbnailphoto |X |X | | |
+| thumbnailphoto |X |X | |仅执行一次从 Azure AD 到 Exchange Online 的同步，在此之后，Exchange Online 成为该属性的授权来源，并且以后的任何更改都无法从本地同步。 请参阅 ([KB](https://support.microsoft.com/help/3062745/user-photos-aren-t-synced-from-the-on-premises-environment-to-exchange)) 了解详细信息。|
 | title |X |X | | |
 | unauthOrig |X |X |X | |
 | url |X |X | | |
 | usageLocation |X | | |机械属性。 用户所在的国家/地区
-上获取。 用于进行许可证分配。 |
+. 用于进行许可证分配。 |
 | userPrincipalName |X | | |UPN 是用户的登录 ID。 大多数情况下与 [mail] 值相同。 |
 | wWWHomePage |X |X | | |
 
@@ -298,7 +298,7 @@ ms.locfileid: "84275343"
 | st |X |X | | |
 | streetAddress |X |X | | |
 | telephoneNumber |X |X | | |
-| thumbnailphoto |X |X | | |
+| thumbnailphoto |X |X | |仅执行一次从 Azure AD 到 Exchange Online 的同步，在此之后，Exchange Online 成为该属性的授权来源，并且以后的任何更改都无法从本地同步。 请参阅 ([KB](https://support.microsoft.com/help/3062745/user-photos-aren-t-synced-from-the-on-premises-environment-to-exchange)) 了解详细信息。|
 | title |X |X | | |
 | usageLocation |X | | |机械属性。 用户所在的国家/地区。 用于进行许可证分配。 |
 | userPrincipalName |X | | |UPN 是用户的登录 ID。 大多数情况下与 [mail] 值相同。 |

@@ -4,7 +4,7 @@ description: Azure 虚拟机代理概述
 services: virtual-machines-windows
 documentationcenter: virtual-machines
 author: rockboyfor
-manager: digimobile
+manager: gwallace
 tags: azure-resource-manager
 ms.assetid: 0a1f212e-053e-4a39-9910-8d622959f594
 ms.service: virtual-machines-windows
@@ -12,14 +12,16 @@ ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 origin.date: 07/20/2019
-ms.date: 07/06/2020
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: 08/24/2020
 ms.author: v-yeche
-ms.openlocfilehash: 329c944b1cc40c4f96f4a968f5a1dff59bc8864d
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 800d94f85d13d69d0dcefd74866e41ccc8faee4a
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945662"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807918"
 ---
 # <a name="azure-virtual-machine-agent-overview"></a>Azure 虚拟机代理概述
 Azure 虚拟机代理（VM 代理）是受保护的轻型进程，用于管理虚拟机 (VM) 与 Azure 结构控制器的交互。 VM 代理有一个主要角色，目的是启用和执行 Azure 虚拟机扩展。 VM 扩展可用于对 VM 进行部署后配置，例如安装和配置软件。 VM 扩展还可启用恢复功能，例如重置 VM 的管理密码。 没有 Azure VM 代理，VM 扩展将无法运行。
@@ -70,9 +72,12 @@ $vm | Update-AzVM
 ```
 
 ### <a name="prerequisites"></a>先决条件
+
 - Windows VM 代理至少需要 Windows Server 2008（64 位）才能与 .NET Framework 4.0 一起运行。 请参阅 [Azure 中的虚拟机代理的最低版本支持](https://support.microsoft.com/help/4049215/extensions-and-virtual-machine-agent-minimum-version-support)
 
-- 确保 VM 可以访问 IP 地址 168.63.129.16。 有关详细信息，请参阅[什么是 IP 地址 168.63.129.16](/virtual-network/what-is-ip-address-168-63-129-16)。
+- 确保 VM 可以访问 IP 地址 168.63.129.16。 有关详细信息，请参阅[什么是 IP 地址 168.63.129.16](../../virtual-network/what-is-ip-address-168-63-129-16.md)。
+
+- 确保在来宾 VM 内启用 DHCP。 必须这样做，才能从 DHCP 获取主机或构造地址，以便 IaaS VM 代理和扩展可以正常工作。 如果需要静态专用 IP，则应通过 Azure 门户或 PowerShell 进行配置，同时确保启用 VM 内的 DHCP 选项。 [详细了解](/virtual-network/virtual-networks-static-private-ip-arm-ps#change-the-allocation-method-for-a-private-ip-address-assigned-to-a-network-interface)如何通过 PowerShell 设置静态 IP 地址。
 
 ## <a name="detect-the-vm-agent"></a>检测 VM 代理
 
@@ -111,7 +116,7 @@ foreach ($vm in $vms) {
 登录到 Windows VM 后，可以使用任务管理器检查正在运行的进程。 要查看 Azure VM 代理，请打开任务管理器 > 单击“详细信息”选项卡，并查找名为 WindowsAzureGuestAgent.exe 的进程。 存在该进程表示 VM 代理已安装。
 
 ## <a name="upgrade-the-vm-agent"></a>升级 VM 代理
-适用于 Windows 的 Azure VM 代理会自动升级。 新 VM 部署到 Azure 后，会在 VM 预配时获得最新 VM 代理。 应手动更新自定义 VM 映像，以便在创建映像时添加新的 VM 代理。
+适用于 Windows 的 Azure VM 代理会在从 Azure 市场部署的映像上自动升级。 新 VM 部署到 Azure 后，会在 VM 预配时获得最新 VM 代理。 如果已手动安装了代理或正在部署自定义 VM 映像，则需要在创建映像时进行手动更新以包括新的 VM 代理。
 
 ## <a name="windows-guest-agent-automatic-logs-collection"></a>Windows 来宾代理自动日志收集
 Windows 来宾代理具有自动收集一些日志的功能。 此功能由 CollectGuestLogs.exe 进程控制。 它同时适用于 PaaS 云服务和 IaaS 虚拟机，其目标是快速自动地从 VM 收集一些诊断日志 - 以便将它们用于脱机分析。 收集的日志包括事件日志、OS 日志、Azure 日志和一些注册表项。 它将生成一个 ZIP 文件，该文件将传输到 VM 的主机。 然后，工程团队和支持专业人员可以查看此 ZIP 文件，以根据拥有 VM 的客户的请求调查问题。

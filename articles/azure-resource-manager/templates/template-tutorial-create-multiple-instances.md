@@ -1,23 +1,26 @@
 ---
 title: 创建多个资源实例
-description: 了解如何创建 Azure 资源管理器模板用于创建多个 Azure 资源实例。
-author: rockboyfor
+description: 了解如何创建 Azure 资源管理器模板，以用于创建多个 Azure 资源实例。
 origin.date: 04/23/2020
-ms.date: 06/22/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.topic: tutorial
 ms.author: v-yeche
-ms.openlocfilehash: 86227de3fa4f6f08389372657150b1d1eb73f971
-ms.sourcegitcommit: 48b5ae0164f278f2fff626ee60db86802837b0b4
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: bc90825f570f40aff7f04bcf88418d3cb2a1db6c
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85098635"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807788"
 ---
 # <a name="tutorial-create-multiple-resource-instances-with-arm-templates"></a>教程：使用 ARM 模板创建多个资源实例
 
 了解如何在 Azure 资源管理器 (ARM) 模板中进行迭代操作，以创建 Azure 资源的多个实例。 在本教程中，你将修改一个模板，以便创建三个存储帐户实例。
 
-![“Azure 资源管理器创建多个实例”示意图](./media/template-tutorial-create-multiple-instances/resource-manager-template-create-multiple-instances-diagram.png)
+:::image type="content" source="./media/template-tutorial-create-multiple-instances/resource-manager-template-create-multiple-instances-diagram.png" alt-text="“Azure 资源管理器创建多个实例”示意图":::
 
 本教程涵盖以下任务：
 
@@ -32,7 +35,7 @@ ms.locfileid: "85098635"
 
 若要完成本文，需要做好以下准备：
 
-* 包含资源管理器工具扩展的 Visual Studio Code。 请参阅[使用 Visual Studio Code 创建 ARM 模板](use-vs-code-to-create-template.md)。
+* 包含资源管理器工具扩展的 Visual Studio Code。 请参阅[快速入门：使用 Visual Studio Code 创建 Azure 资源管理器模板](quickstart-create-templates-use-visual-studio-code.md)。
 
 ## <a name="open-a-quickstart-template"></a>打开快速入门模板
 
@@ -55,16 +58,16 @@ ms.locfileid: "85098635"
 
 现有模板创建一个存储帐户。 请通过自定义模板来创建三个存储帐户。
 
-在 Visual Studio Code 中进行以下四项更改：
+从 Visual Studio Code 中，进行以下四个更改：
 
-![Azure 资源管理器创建多个实例](./media/template-tutorial-create-multiple-instances/resource-manager-template-create-multiple-instances.png)
+:::image type="content" source="./media/template-tutorial-create-multiple-instances/resource-manager-template-create-multiple-instances.png" alt-text="Azure 资源管理器创建多个实例":::
 
-1. 将 `copy` 元素添加到存储帐户资源定义。 在 copy 元素中，为此循环指定迭代次数和变量。 计数值必须是不超过 800 的正整数。
+1. 向存储帐户资源定义中添加一个 `copy` 元素。 在 copy 元素中，为此循环指定迭代次数和变量。 计数值必须是不超过 800 的正整数。
 2. `copyIndex()` 函数返回循环中的当前迭代。 使用索引作为名称前缀。 `copyIndex()` 从零开始。 若要偏移索引值，可以在 copyIndex() 函数中传递一个值。 例如 *copyIndex(1)* 。
-3. 删除 **variables** 元素，因为不再需要使用它。
+3. 删除 **variables** 元素，因为它不再使用。
 4. 删除 **outputs** 元素。 不再需要它。
 
-完成的模板如下所示：
+已完成的模板如下所示：
 
 ```json
 {
@@ -115,11 +118,37 @@ ms.locfileid: "85098635"
 
 ## <a name="deploy-the-template"></a>部署模板
 
-有关部署过程，请参阅 Visual Studio Code 快速入门中的[部署模板](quickstart-create-templates-use-visual-studio-code.md#deploy-the-template)部分。
+<!--Not Available on [Azure local Shell](https://shell.azure.com)-->
+<!--Not Available on Azure China Cloud-->
 
-[!INCLUDE [updated-for-az](../../../includes/updated-for-az.md)]
+1. 在本地 Shell 中运行以下命令。 选择用于显示 PowerShell 代码或 CLI 代码的选项卡。
 
-若要列出所有三个存储帐户，请省略 --name 参数：
+    # <a name="cli"></a>[CLI](#tab/CLI)
+
+    ```azurecli
+    echo "Enter a project name that is used to generate resource group name:" &&
+    read projectName &&
+    echo "Enter the location (i.e. chinaeast):" &&
+    read location &&
+    resourceGroupName="${projectName}rg" &&
+    az group create --name $resourceGroupName --location "$location" &&
+    az deployment group create --resource-group $resourceGroupName --template-file "$HOME/azuredeploy.json"
+    ```
+
+    # <a name="powershell"></a>[PowerShell](#tab/PowerShell)
+
+    ```azurepowershell
+    $projectName = Read-Host -Prompt "Enter a project name that is used to generate resource group name"
+    $location = Read-Host -Prompt "Enter the location (i.e. chinaeast)"
+    $resourceGroupName = "${projectName}rg"
+
+    New-AzResourceGroup -Name $resourceGroupName -Location "$location"
+    New-AzResourceGroupDeployment -ResourceGroupName $resourceGroupName -TemplateFile "$HOME/azuredeploy.json"
+    ```
+
+    ---
+
+若要列出全部三个存储帐户，请省略 --name 参数：
 
 # <a name="azure-cli"></a>[Azure CLI](#tab/azure-cli)
 
@@ -136,6 +165,7 @@ echo "Press [ENTER] to continue ..."
 ```azurepowershell
 $projectName = Read-Host -Prompt "Enter a project name that is used to generate resource group name"
 $resourceGroupName = "${projectName}rg"
+
 Get-AzStorageAccount -ResourceGroupName $resourceGroupName
 Write-Host "Press [ENTER] to continue ..."
 ```
@@ -155,9 +185,9 @@ Write-Host "Press [ENTER] to continue ..."
 
 ## <a name="next-steps"></a>后续步骤
 
-在本教程中，我们已了解如何创建多个存储帐户实例。  在下一篇教程中，我们将开发包含多个资源和多个资源类型的模板。 某些资源具有依赖的资源。
+在本教程中，你学习了如何创建多个存储帐户实例。  在下一教程中，我们将开发包含多个资源和多个资源类型的模板。 某些资源具有依赖的资源。
 
 > [!div class="nextstepaction"]
-> [创建依赖资源](./template-tutorial-create-templates-with-dependent-resources.md)
+> [创建所依赖的资源](./template-tutorial-create-templates-with-dependent-resources.md)
 
 <!-- Update_Description: update meta properties, wording update, update link -->

@@ -2,15 +2,15 @@
 title: 获取策略符合性数据
 description: Azure Policy 的评估和效果确定了符合性。 了解如何获取 Azure 资源的符合性详细信息。
 ms.author: v-tawe
-origin.date: 07/15/2020
-ms.date: 08/06/2020
+origin.date: 08/10/2020
+ms.date: 08/27/2020
 ms.topic: how-to
-ms.openlocfilehash: 82fbcf23f546cdc7a2141200ee46c7fc4b3595fb
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 6b91f4f9448657bf1f9e38232d5c234079173242
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917108"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951240"
 ---
 # <a name="get-compliance-data-of-azure-resources"></a>获取 Azure 资源的符合性数据
 
@@ -36,7 +36,7 @@ Azure Policy 的最大优势之一在于它针对订阅或订阅[管理组](../.
 
 - 更新了已分配到某个范围的策略或计划。 此场景的评估周期和计时与新的范围分配相同。
 
-- 资源将通过 Azure 资源管理器、REST、Azure CLI 或 Azure PowerShell 部署到包含分配的范围。 在此场景中，个体资源的效果事件（追加、审核、拒绝、部署）和符合性状态将在大约 15 分钟后出现在门户与 SDK 中。 此事件不会导致对其他资源进行评估。
+- 资源将通过 Azure 资源管理器、REST API 或受支持的 SDK 部署到包含分配的范围或在其中进行更新。 在此场景中，个体资源的效果事件（追加、审核、拒绝、部署）和符合性状态将在大约 15 分钟后出现在门户与 SDK 中。 此事件不会导致对其他资源进行评估。
 
 - 标准符合性评估周期。 分配每隔 24 小时自动重新评估一次。 涉及大量资源的大型策略或计划可能需要花费一段时间，因此，在评估周期何时完成方面，无法预先定义预期目标。 完成评估后，更新的符合性结果会在门户和 SDK 中提供。
 
@@ -104,19 +104,19 @@ Id     Name            PSJobTypeName   State         HasMoreData     Location   
 - 订阅
 
   ```http
-  POST https://management.chinacloudapi.cn/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/policyStates/latest/triggerEvaluation?api-version=2018-07-01-preview
+  POST https://management.chinacloudapi.cn/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/policyStates/latest/triggerEvaluation?api-version=2019-10-01
   ```
 
 - 资源组
 
   ```http
-  POST https://management.chinacloudapi.cn/subscriptions/{subscriptionId}/resourceGroups/{YourRG}/providers/Microsoft.PolicyInsights/policyStates/latest/triggerEvaluation?api-version=2018-07-01-preview
+  POST https://management.chinacloudapi.cn/subscriptions/{subscriptionId}/resourceGroups/{YourRG}/providers/Microsoft.PolicyInsights/policyStates/latest/triggerEvaluation?api-version=2019-10-01
   ```
 
 该调用返回“202 Accepted”状态。 响应标头中包含 Location 属性，格式如下：
 
 ```http
-https://management.chinacloudapi.cn/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/asyncOperationResults/{ResourceContainerGUID}?api-version=2018-07-01-preview
+https://management.chinacloudapi.cn/subscriptions/{subscriptionId}/providers/Microsoft.PolicyInsights/asyncOperationResults/{ResourceContainerGUID}?api-version=2019-10-01
 ```
 
 以静态方式为请求的范围生成了 `{ResourceContainerGUID}`。 如果某个范围已在运行按需扫描，则不会启动新扫描。 而是为新请求的状态提供相同的 `{ResourceContainerGUID}` 位置 URL。 在评估过程中，位置 URI 的 REST API GET 命令返回“202 Accepted”状态  。 评估扫描完成后，返回“200 OK”状态。 已完成的扫描的正文为 JSON 响应，其状态为：
@@ -197,8 +197,6 @@ Azure 门户展示了一个图形体验用于可视化和了解环境中的符�
 :::image type="content" source="../media/getting-compliance-data/compliance-activitylog.png" alt-text="Azure Policy 符合性活动日志示例" border="false":::
 
 ### <a name="understand-non-compliance"></a>了解不符合性
-
-<!-- <a name="change-history-preview"></a> -->
 
 如果资源不符合，可能有很多原因。 若要确定资源不符合的原因或查找更改负责人，请参阅[确定不符合性](./determine-non-compliance.md)。
 
@@ -462,7 +460,7 @@ az policy state list --filter "ResourceType eq 'Microsoft.Network/virtualNetwork
     "policySetDefinitionVersion": "",
     "resourceGroup": "RG-Tags",
     "resourceId": "/subscriptions/{subscriptionId}/resourceGroups/RG-Tags/providers/Microsoft.Network/virtualNetworks/RG-Tags-vnet",
-    "resourceLocation": "chinaeast22",
+    "resourceLocation": "chinaeast2",
     "resourceTags": "tbd",
     "resourceType": "Microsoft.Network/virtualNetworks",
     "subscriptionId": "{subscriptionId}",
@@ -511,7 +509,7 @@ az policy state list --filter "ResourceType eq 'Microsoft.Network/virtualNetwork
     "policySetDefinitionVersion": "",
     "resourceGroup": "RG-Tags",
     "resourceId": "/subscriptions/{subscriptionId}/resourceGroups/RG-Tags/providers/Microsoft.Network/virtualNetworks/RG-Tags-vnet",
-    "resourceLocation": "chinaeast22",
+    "resourceLocation": "chinaeast2",
     "resourceTags": "tbd",
     "resourceType": "Microsoft.Network/virtualNetworks",
     "subscriptionId": "{subscriptionId}",

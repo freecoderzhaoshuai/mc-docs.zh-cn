@@ -4,16 +4,16 @@ description: 了解如何将 MySQL 资源提供程序适配器和 MySQL 数据�
 author: WenJason
 ms.topic: article
 origin.date: 1/22/2020
-ms.date: 03/23/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: xiaofmao
 ms.lastreviewed: 03/18/2019
-ms.openlocfilehash: 29569d63b41280f67ff0e93218c30162b53fd911
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 5695d7e38c9af65d0211aa6d581192715d5266d7
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79547041"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867863"
 ---
 # <a name="deploy-the-mysql-resource-provider-on-azure-stack-hub"></a>在 Azure Stack Hub 上部署 MySQL 资源提供程序
 
@@ -54,7 +54,7 @@ ms.locfileid: "79547041"
     |-----|-----|
     |正确设置了条件性 DNS 转发。|[Azure Stack Hub 数据中心集成 - DNS](azure-stack-integrate-dns.md)|
     |资源提供程序的入站端口处于打开状态。|[Azure Stack Hub 数据中心集成 - 发布终结点](azure-stack-integrate-endpoints.md#ports-and-protocols-inbound)|
-    |正确设置了 PKI 证书使用者和 SAN。|[Azure Stack Hub 部署必备 PKI 先决条件](azure-stack-pki-certs.md#mandatory-certificates)[Azure Stack Hub 部署 PaaS 证书先决条件](azure-stack-pki-certs.md#optional-paas-certificates)|
+    |正确设置了 PKI 证书使用者和 SAN。|[Azure Stack Hub 部署必备 PKI 先决条件](azure-stack-pki-certs.md)[Azure Stack Hub 部署 PaaS 证书先决条件](azure-stack-pki-certs.md)|
     |     |     |
 
 在离线场景中，请完成以下步骤下载所需的 PowerShell 模块，并手动注册存储库。
@@ -93,7 +93,7 @@ New-Item -Path $env:ProgramFiles -name "SqlMySqlPsh" -ItemType "Directory"
 
 ### <a name="certificates"></a>证书
 
-_仅适用于集成系统安装_。 必须提供 [Azure Stack Hub 部署 PKI 要求](./azure-stack-pki-certs.md#optional-paas-certificates)中的“可选 PaaS 证书”部分所述的 SQL PaaS PKI 证书。 将 .pfx 文件放在 **DependencyFilesLocalPath** 参数指定的位置。 对于 ASDK 系统，请不要提供证书。
+_仅适用于集成系统安装_。 必须提供 [Azure Stack Hub 部署 PKI 要求](./azure-stack-pki-certs.md)中的“可选 PaaS 证书”部分所述的 SQL PaaS PKI 证书。 将 .pfx 文件放在 **DependencyFilesLocalPath** 参数指定的位置。 对于 ASDK 系统，请不要提供证书。
 
 ## <a name="deploy-the-resource-provider"></a>部署资源提供程序
 
@@ -205,7 +205,7 @@ $env:PSModulePath = $env:PSModulePath + ";" + $rpModulePath
 
 1. 以服务管理员身份登录到管理员门户。
 2. 选择“资源组”  。
-3. 选择“system.\<位置\>.mysqladapter”资源组。
+3. 选择“system.\<location\>.mysqladapter”资源组。
 4. 在资源组概述摘要页上，应当没有失败的部署。
 5. 最后，在管理员门户中选择“虚拟机”  ，以验证 MySQL 资源提供程序 VM 是否已成功创建且正在运行。
 

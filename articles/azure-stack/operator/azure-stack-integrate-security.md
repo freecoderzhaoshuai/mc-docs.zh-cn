@@ -4,16 +4,16 @@ description: 了解如何通过 Syslog 转发将 Azure Stack Hub 与监视解决
 author: WenJason
 ms.topic: article
 origin.date: 01/10/2020
-ms.date: 05/18/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: fiseraci
-ms.lastreviewed: 01/10/2019
-ms.openlocfilehash: 1f94fa8b1296e24b94a1aa1533f083bb6a9d9a8c
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.lastreviewed: 06/15/2020
+ms.openlocfilehash: 3eacb884f3995b61df85f9cf45c7674bf630c6a6
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422609"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867740"
 ---
 # <a name="integrate-azure-stack-hub-with-monitoring-solutions-using-syslog-forwarding"></a>通过 Syslog 转发将 Azure Stack Hub 与监视解决方案集成
 
@@ -235,6 +235,8 @@ Prefix fields
 * Signature ID: Microsoft-AzureStack-PrivilegedEndpoint: <PEP Event ID>
 * Name: <PEP Task Name>
 * Severity: mapped from PEP Level (details see the PEP Severity table below)
+* Who: account used to connect to the PEP
+* WhichIP: IP address of the device used to connect to the PEP
 ```
 
 特权终结点的事件表：
@@ -272,6 +274,8 @@ Prefix fields
 * Signature ID: Microsoft-AzureStack-PrivilegedEndpoint: <REP Event ID>
 * Name: <REP Task Name>
 * Severity: mapped from REP Level (details see the REP Severity table below)
+* Who: account used to connect to the REP
+* WhichIP: IP address of the device used to connect to the REP
 ```
 
 恢复终结点的事件表：
@@ -355,17 +359,17 @@ Azure Stack Hub 中 Windows 事件的自定义扩展表：
 
 警报严重性表：
 
-| severity | Level |
+| 严重性 | Level |
 |----------|-------|
 |0|Undefined|
-|10 个|关键|
+|10|严重|
 |5|警告|
 
 Azure Stack Hub 中已创建警报的自定义扩展表：
 
 | 自定义扩展名称 | 示例 | 
 |-----------------------|---------|
-|MasEventDescription|说明：已为 \<TestDomain\> 创建用户帐户 \<TestUser\>。 它是潜在的安全风险。 \- 补救措施：请联系支持人员。 解决此问题需要客户协助。 不要试图在没有他们协助的情况下解决此问题。 在提交支持请求之前，请根据 https://aka.ms/azurestacklogfiles 中的指南启动日志文件收集过程。
+|MasEventDescription|说明：为 \<TestDomain\> 创建了一个用户帐户 \<TestUser\>。 它是潜在的安全风险。 -- 补救措施：联系支持部门。 解决此问题需要客户协助。 不要试图在没有他们协助的情况下解决此问题。 在提交支持请求之前，请根据 https://aka.ms/azurestacklogfiles 中的指南启动日志文件收集过程。
 
 ### <a name="cef-mapping-for-alerts-closed"></a>已关闭警报的 CEF 映射
 

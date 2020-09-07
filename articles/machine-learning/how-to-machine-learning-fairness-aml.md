@@ -11,12 +11,12 @@ ms.reviewer: luquinta
 ms.date: 07/09/2020
 ms.topic: conceptual
 ms.custom: how-to, tracking-python
-ms.openlocfilehash: 53a81317ec5f8ee2308bcef917d28bb7c556dd53
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 9ca18e19d3e42ae632a929a95c96301dc8882a7c
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88229002"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947142"
 ---
 # <a name="use-azure-machine-learning-with-the-fairlearn-open-source-package-to-assess-the-fairness-of-ml-models-preview"></a>将 Azure 机器学习与 Fairlearn 开源程序包配合使用来评估机器学习模型的公平性（预览版）
 
@@ -142,7 +142,7 @@ pip install fairlearn==0.4.6
         return registered_model.id
 
     # Call the register_model function 
-    lr_reg_id = register_model("fairness_linear_regression", unmitigated_predictor)
+    lr_reg_id = register_model("fairness_linear_regression", lr_predictor)
     ```
 
 3. 预先计算公平性指标。
@@ -152,7 +152,7 @@ pip install fairlearn==0.4.6
     ```python
     #  Create a dictionary of model(s) you want to assess for fairness 
     sf = { 'Race': A_test.Race, 'Sex': A_test.Sex}
-    ys_pred = unmitigated_predictor.predict(X_test)
+    ys_pred = { lr_reg_id:lr_predictor.predict(X_test) }
     from fairlearn.metrics._group_metric_set import _create_group_metric_set
 
     dash_dict = _create_group_metric_set(y_true=Y_test,
@@ -207,7 +207,7 @@ pip install fairlearn==0.4.6
 
     若要详细了解此可视化效果仪表板及其包含的内容，请查看 Fairlearn 的[用户指南](https://fairlearn.github.io/user_guide/assessment.html#fairlearn-dashboard)。
 
-s## 为多个模型上传公平性见解
+## <a name="upload-fairness-insights-for-multiple-models"></a>为多个模型上传公平性见解
 
 如果你希望比较多个模型并了解其公平性评估的不同之处，可以将多个模型传递到可视化结果仪表板，并浏览其性能-公平性权衡情况。
 

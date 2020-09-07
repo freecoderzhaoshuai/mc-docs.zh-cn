@@ -3,17 +3,17 @@ title: Azure 服务总线 - 暂停消息实体
 description: 本文介绍如何暂时暂停和重新激活 Azure 服务总线消息实体（队列、主题和订阅）。
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-author: rockboyfor
-ms.openlocfilehash: f76ac2b91e12db82ae029cacfb79e4c40a1abc51
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 42150791a5937b344305973a611e7a51ede92a5b
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162196"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946497"
 ---
 # <a name="suspend-and-reactivate-messaging-entities-disable"></a>暂停（禁用）和重新激活消息实体
 
@@ -23,9 +23,11 @@ ms.locfileid: "87162196"
 
 暂停或重新激活可以由用户或系统执行。 系统只会出于重大管理原因（如达到订阅支出限制），才会暂停实体。 系统禁用的实体不能被用户重新激活，但在暂停原因消除后就会还原。
 
-在门户中，相应实体的“属性”  部分允许更改状态；下面的屏幕截图显示了队列状态的切换开关：
+在门户中，可通过相应实体的概述部分更改状态；当前状态以超链接的形式显示在“状态”下 。
 
-![][1]
+以下屏幕截图显示了可通过选择超链接更改的实体可用状态： 
+
+![概述中用于更改实体状态选项的服务总线功能的屏幕截图。][1]
 
 门户只容许完全禁用队列。 也可以单独禁用发送和接收操作，方法是在 .NET Framework SDK 中使用服务总线 [NamespaceManager](https://docs.azure.cn/dotnet/api/microsoft.servicebus.namespacemanager?view=azure-dotnet) API，或通过 Azure CLI 或 Azure PowerShell 使用 Azure 资源管理器模板。
 
@@ -40,9 +42,9 @@ ms.locfileid: "87162196"
 - **SendDisabled**：队列部分处于暂停状态，允许执行接收操作。
 - **ReceiveDisabled**：队列部分处于暂停状态，允许执行发送操作。
 
-对于订阅和主题，只能设置“Active”  和“Disabled”  。
+对于订阅和主题，只能设置“Active”**** 和“Disabled”****。
 
-[EntityStatus](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.entitystatus?view=azure-dotnet) 枚举还定义了一组只能由系统设置的过渡状态。 下面的示例展示了用于禁用队列的 PowerShell 命令。 重新激活命令等同于以下示例，只需将 `Status` 设置为“Active”  即可。
+[EntityStatus](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.entitystatus?view=azure-dotnet) 枚举还定义了一组只能由系统设置的过渡状态。 下面的示例展示了用于禁用队列的 PowerShell 命令。 重新激活命令等同于以下示例，只需将 `Status` 设置为“Active”**** 即可。
 
 ```powershell
 $q = Get-AzServiceBusQueue -ResourceGroup mygrp -NamespaceName myns -QueueName myqueue
@@ -60,6 +62,6 @@ Set-AzServiceBusQueue -ResourceGroup mygrp -NamespaceName myns -QueueName myqueu
 * [服务总线队列入门](service-bus-dotnet-get-started-with-queues.md)
 * [如何使用服务总线主题和订阅](service-bus-dotnet-how-to-use-topics-subscriptions.md)
 
-[1]: ./media/entity-suspend/queue-disable.png
+[1]: ./media/entity-suspend/entity-state-change.png
 
 <!-- Update_Description: update meta properties, wording update, update link -->

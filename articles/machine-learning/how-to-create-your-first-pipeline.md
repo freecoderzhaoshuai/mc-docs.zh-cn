@@ -5,18 +5,18 @@ description: 使用适用于 Python 的 Azure 机器学习 SDK 创建和运行�
 services: machine-learning
 ms.service: machine-learning
 ms.subservice: core
-ms.topic: how-to
 ms.reviewer: sgilley
 ms.author: sanpil
 author: sanpil
-ms.date: 12/05/2019
-ms.custom: seodec18, tracking-python
-ms.openlocfilehash: efca282b3517c05d4f9a14d90afed0ffa6c91b05
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.date: 8/14/2020
+ms.topic: conceptual
+ms.custom: how-to, devx-track-python
+ms.openlocfilehash: 545e6c3855a9199c0de7618815b6c5506e134638
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228221"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946980"
 ---
 # <a name="create-and-run-machine-learning-pipelines-with-azure-machine-learning-sdk"></a>使用 Azure 机器学习 SDK 创建和运行机器学习管道
 
@@ -24,13 +24,13 @@ ms.locfileid: "88228221"
 
 本文介绍如何使用 [Azure 机器学习 SDK](https://docs.microsoft.com/python/api/overview/azure/ml/intro?view=azure-ml-py) 创建、发布、运行和跟踪[机器学习管道](concept-ml-pipelines.md)。  使用 **ML 管道**创建将各个 ML 阶段整合到一起的工作流，然后将该管道发布到 Azure 机器学习工作区供以后访问或者与其他人共享。  ML 管道非常适合用于批量评分方案，它们可以使用各种计算，重复使用步骤而不是重新运行步骤，以及与其他人共享 ML 工作流。
 
-尽管可以使用一种称作 [Azure 管道](https://docs.microsoft.com/azure/devops/pipelines/targets/azure-machine-learning?context=azure%2Fmachine-learning%2Fservice%2Fcontext%2Fml-context&view=azure-devops&tabs=yaml)的不同类型的管道来实现 ML 任务的 CI/CD 自动化，但这种类型的管道永远不会存储在工作区中。 [比较这些不同的管道](concept-ml-pipelines.md#which-azure-pipeline-technology-should-i-use)。
+尽管可以使用一种称作 [Azure 管道](https://docs.microsoft.com/azure/devops/pipelines/targets/azure-machine-learning?context=azure%2Fmachine-learning%2Fservice%2Fcontext%2Fml-context&view=azure-devops&tabs=yaml)的不同类型的管道来实现 ML 任务的 CI/CD 自动化，但这种类型的管道并不会存储在工作区中。 [比较这些不同的管道](concept-ml-pipelines.md#which-azure-pipeline-technology-should-i-use)。
 
 ML 管道的每个阶段（例如数据准备和模型训练）可以包含一个或多个步骤。
 
 Azure 机器学习[工作区](how-to-manage-workspace.md)的成员可以看到创建的 ML 管道。 
 
-ML 管道使用远程计算目标进行计算，以及存储与该管道关联的中间数据和最终数据。 这些管道可以在支持的 [Azure 存储](https://docs.microsoft.com/azure/storage/)位置读取和写入数据。
+ML 管道使用远程计算目标进行计算，并使用与该管道关联的临时数据。 这些管道可以在支持的 [Azure 存储](/storage/)位置读取和写入数据。
 
 如果没有 Azure 订阅，请在开始前创建一个试用帐户。 试用[免费版或付费版 Azure 机器学习](https://www.azure.cn/pricing/1rmb-trial)。
 
@@ -269,27 +269,93 @@ except ComputeTargetException:
 > [!TIP]
 > Azure 机器学习管道只能处理 Data Lake Analytics 帐户的默认数据存储中存储的数据。 如果需要处理的数据不在默认存储中，可以在训练之前使用 [`DataTransferStep`](https://docs.microsoft.com/python/api/azureml-pipeline-steps/azureml.pipeline.steps.data_transfer_step.datatransferstep?view=azure-ml-py) 复制数据。
 
+## <a name="configure-the-training-runs-environment"></a>配置训练运行的环境
+
+下一步是确保远程训练运行包含训练步骤所需的所有依赖项。 通过创建和配置 `RunConfiguration` 对象来设置依赖项和运行时上下文。 
+
+```python
+from azureml.core.runconfig import RunConfiguration
+from azureml.core.conda_dependencies import CondaDependencies
+from azureml.core import Environment 
+
+aml_run_config = RunConfiguration()
+# `compute_target` as defined in "Azure Machine Learning compute" section above
+aml_run_config.target = compute_target
+
+USE_CURATED_ENV = True
+if USE_CURATED_ENV :
+    curated_environment = Environment.get(workspace=ws, name="AzureML-Tutorial")
+    aml_run_config.environment = curated_environment
+else:
+    aml_run_config.environment.python.user_managed_dependencies = False
+    
+    # Add some packages relied on by data prep step
+    aml_run_config.environment.python.conda_dependencies = CondaDependencies.create(
+        conda_packages=['pandas','scikit-learn'], 
+        pip_packages=['azureml-sdk', 'azureml-dataprep[fuse,pandas]'], 
+        pin_sdk_version=False)
+```
+
+以上代码显示了处理依赖项的两个选项。 如前所述，当 `USE_CURATED_ENV = True`，配置基于特选环境。 特选环境中“预先准备”有常见的互依赖库，可以大大加快联机速度。 特选环境在 [Microsoft 容器注册表](https://hub.docker.com/publishers/microsoftowner)中具有预先生成的 Docker 映像。 将 `USE_CURATED_ENV` 更改为 `False` 所采用的路径显示了显式设置依赖项的模式。 在这种情况下，将在资源组内的 Azure 容器注册表中创建和注册新的自定义 Docker 映像（请参阅 [Azure 中的专用 Docker 容器注册表简介](https://docs.microsoft.com/azure/container-registry/container-registry-intro)）。 创建和注册此映像可能需要几分钟的时间。
+
 ## <a name="construct-your-pipeline-steps"></a><a id="steps"></a>构造管道步骤
 
-创建计算目标并将其附加到工作区后，就可以定义管道步骤了。 可以通过 Azure 机器学习 SDK 使用许多内置步骤。 这些步骤中最基本的步骤是 [PythonScriptStep](https://docs.microsoft.com/python/api/azureml-pipeline-steps/azureml.pipeline.steps.python_script_step.pythonscriptstep?view=azure-ml-py)，即在指定的计算目标中运行 Python 脚本：
+创建计算资源和环境后，即可定义管道的步骤。 Azure 机器学习 SDK 提供了许多内置步骤，如 [`azureml.pipeline.steps` 包的参考文档](https://docs.microsoft.com/python/api/azureml-pipeline-steps/azureml.pipeline.steps?view=azure-ml-py)中所示。 最灵活的类是运行 Python 脚本的 [PythonScriptStep](https://docs.microsoft.com/python/api/azureml-pipeline-steps/azureml.pipeline.steps.python_script_step.pythonscriptstep?view=azure-ml-py)。
 
 ```python
 from azureml.pipeline.steps import PythonScriptStep
 
+dataprep_source_dir = "./dataprep_src"
+entry_point = "prepare.py"
+
+# `my_dataset` as defined above
 ds_input = my_dataset.as_named_input('input1')
 
-trainStep = PythonScriptStep(
-    script_name="train.py",
+# `output_data1`, `compute_target`, `aml_run_config` as defined above
+data_prep_step = PythonScriptStep(
+    script_name=entry_point,
+    source_directory=dataprep_source_dir,
     arguments=["--input", ds_input.as_download(), "--output", output_data1],
     inputs=[ds_input],
     outputs=[output_data1],
     compute_target=compute_target,
-    source_directory=project_folder,
+    runconfig=aml_run_config,
     allow_reuse=True
 )
 ```
 
-在协作环境中使用管道时，重复使用以前的结果 (`allow_reuse`) 非常关键，因为消除不必要的重新运行可以提高敏捷性。 当步骤的 script_name、输入和参数保持不变时，“重复使用”是默认行为。 重复使用步骤的输出时，作业不会提交到计算，而是前一运行的结果立即可供下一步骤的运行使用。 如果 `allow_reuse` 设置为 false，则在管道执行过程中将始终为此步骤生成新的运行。 
+上述代码展示了典型的初始管道步骤。 数据准备代码位于子目录中（在此示例中，`"prepare.py"` 位于目录 `"./dataprep.src"` 中）。 在管道创建的过程中，此目录将被压缩并上传到 `compute_target`，该步骤会运行指定为 `script_name` 的值的脚本。
+
+`arguments`、`inputs` 和 `outputs` 值指定该步骤的输入和输出。 在上面的示例中，基线数据是 `my_dataset` 数据集。 相应数据会下载到计算资源，因为代码将其指定为 `as_download()`。 脚本 `prepare.py` 执行与手头任务相应的任何数据转换任务，并将数据输出到 `PipelineData` 类型的 `output_data1`。 有关详细信息，请参阅[将数据移入 ML 管道和在 ML 管道之间移动数据的步骤 (Python)](how-to-move-data-in-out-of-pipelines.md)。 
+
+该步骤将使用配置 `aml_run_config` 在由 `compute_target` 定义的计算机上运行。 
+
+在协作环境中使用管道时，重复使用以前的结果 (`allow_reuse`) 非常关键，因为消除不必要的重新运行可以提高敏捷性。 当步骤的 script_name、输入和参数保持不变时，“重复使用”是默认行为。 允许重复使用时，上一次运行的结果将立即发送到下一步骤。 如果 `allow_reuse` 设置为 `False`，则在管道执行过程中将始终为此步骤生成新的运行。
+
+虽然可以通过单个步骤创建管道，但你几乎始终会选择将整个过程拆分为几个步骤。 例如，你可能有用于数据准备、训练、模型比较和部署的步骤。 例如，可以想象，在上面指定 `data_prep_step` 之后，下一步可能是训练：
+
+```python
+train_source_dir = "./train_src"
+train_entry_point = "train.py"
+
+training_results = PipelineData(
+    "training_results",
+    datastore=def_blob_store,
+    output_name="training_results")
+
+train_step = PythonScriptStep(
+    script_name=train_entry_point,
+    source_directory=train_source_dir,
+    arguments=["--prepped_data", output_data1, "--training_results", training_results],
+    inputs=[output_data1],
+    outputs=[training_results],
+    compute_target=compute_target,
+    runconfig=aml_run_config,
+    allow_reuse=True
+)
+```
+
+上述代码与数据准备步骤的代码非常相似。 训练代码位于与数据准备代码不同的目录中。 数据准备步骤的 `PipelineData` 输出 `output_data1` 用作训练步骤的输入。 将创建一个新的 `PipelineData` 对象 `training_results`用于保存结果，以便进行后续比较或部署步骤。 
 
 定义步骤后，使用其中的部分或所有步骤生成管道。
 
@@ -297,13 +363,13 @@ trainStep = PythonScriptStep(
 > 定义步骤或生成管道时，不会将任何文件或数据上传到 Azure 机器学习。
 
 ```python
-# list of steps to run
-compareModels = [trainStep, extractStep, compareStep]
+# list of steps to run (`compare_step` definition not shown)
+compare_models = [data_prep_step, train_step, compare_step]
 
 from azureml.pipeline.core import Pipeline
 
 # Build the pipeline
-pipeline1 = Pipeline(workspace=ws, steps=[compareModels])
+pipeline1 = Pipeline(workspace=ws, steps=[compare_models])
 ```
 
 以下示例使用前面创建的 Azure Databricks 计算目标： 
@@ -471,7 +537,7 @@ response = requests.post(published_pipeline1.endpoint,
 ```python
 from azureml.pipeline.core import PipelineEndpoint
 
-published_pipeline = PublishedPipeline.get(workspace="ws", name="My_Published_Pipeline")
+published_pipeline = PipelineEndpoint.get(workspace=ws, name="My_Published_Pipeline")
 pipeline_endpoint = PipelineEndpoint.publish(workspace=ws, name="PipelineEndpointTest",
                                             pipeline=published_pipeline, description="Test description Notebook")
 ```

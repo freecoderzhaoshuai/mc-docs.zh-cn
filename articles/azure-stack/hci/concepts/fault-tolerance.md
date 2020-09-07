@@ -4,18 +4,18 @@ description: 介绍存储空间直通中的复原选项，包括镜像和奇偶�
 author: WenJason
 ms.author: v-jay
 ms.topic: article
-origin.date: 02/28/2020
-ms.date: 03/23/2020
-ms.openlocfilehash: 3a150f4f8cea9f066f6bfefbbe8e1a0b7a9d269f
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+origin.date: 07/21/2020
+ms.date: 08/31/2020
+ms.openlocfilehash: 350391882338a27f7ac847140f3893750105db39
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79547101"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867928"
 ---
 # <a name="fault-tolerance-and-storage-efficiency-in-azure-stack-hci"></a>Azure Stack HCI 中的容错和存储效率
 
->适用于：Windows Server 2019
+> 适用于：Azure Stack HCI 版本 20H2；Windows Server 2019
 
 本主题介绍存储空间直通中可用的复原选项，并概述其规模要求、存储效率，以及每个选项的一般优势和弊端。 本主题还提供了一些用法说明来帮助你入门，并参考了一些极佳的论文、博客和其他内容供你了解详情。
 
@@ -29,7 +29,7 @@ ms.locfileid: "79547101"
 
 ## <a name="mirroring"></a>镜像
 
-镜像功能通过保存所有数据的多个副本来提供容错。 它非常类似于 RAID-1。 这些数据的条带化和放置方式非常重要（请参阅[此博客](https://blogs.technet.microsoft.com/filecab/2016/11/21/deep-dive-pool-in-spaces-direct/)了解详细信息），但肯定的是，使用镜像功能存储的任何数据都会完整地写入多次。 每个副本将写入不同的物理硬件（位于不同服务器中的不同驱动器），假设每个硬盘各自都有可能发生故障。
+镜像功能通过保存所有数据的多个副本来提供容错。 它非常类似于 RAID-1。 这些数据的条带化和放置方式非常重要（请参阅[此博客](https://techcommunity.microsoft.com/t5/storage-at-microsoft/deep-dive-the-storage-pool-in-storage-spaces-direct/ba-p/425959)了解详细信息），但肯定的是，使用镜像功能存储的任何数据都会完整地写入多次。 每个副本将写入不同的物理硬件（位于不同服务器中的不同驱动器），假设每个硬盘各自都有可能发生故障。
 
 存储空间提供两种形式的镜像 –“双向”和“三向”。
 
@@ -85,11 +85,11 @@ ms.locfileid: "79547101"
 
 ![local-reconstruction-codes](media/fault-tolerance/local-reconstruction-codes-180px.png)
 
-建议参阅这篇既深入又易于理解的演练：[局部重建代码如何应对各种不同的故障场景，它为何如此引人关注](https://blogs.technet.microsoft.com/filecab/2016/09/06/volume-resiliency-and-efficiency-in-storage-spaces-direct/)。
+建议参阅这篇既深入又易于理解的演练：[局部重建代码如何应对各种不同的故障场景，它为何如此引人关注](https://techcommunity.microsoft.com/t5/storage-at-microsoft/bg-p/FileCAB)。
 
 ## <a name="mirror-accelerated-parity"></a>镜像加速奇偶校验
 
-存储空间直通卷可以是部分镜像和部分奇偶校验。 写入内容先进入镜像部分，然后逐渐移入奇偶校验部分。 实际上，这是[使用镜像来加速擦除编码](https://blogs.technet.microsoft.com/filecab/2016/09/06/volume-resiliency-and-efficiency-in-storage-spaces-direct/)。
+存储空间直通卷可以是部分镜像和部分奇偶校验。 写入内容先进入镜像部分，然后逐渐移入奇偶校验部分。 实际上，这是[使用镜像来加速擦除编码](https://techcommunity.microsoft.com/t5/storage-at-microsoft/bg-p/FileCAB)。
 
 若要混合使用三向镜像和双重奇偶校验，至少需要四个容错域，即四台服务器。
 
@@ -203,13 +203,13 @@ ms.locfileid: "79547101"
 
 ## <a name="usage"></a>使用情况
 
-请查看[在存储空间直通中创建卷](https://docs.microsoft.com/windows-server/storage/storage-spaces/create-volumes)。
+查看[创建卷](../manage/create-volumes.md)。
 
 ## <a name="next-steps"></a>后续步骤
 
 若要进一步阅读本文中所述的主题，请参阅以下文章：
 
 - [Azure 中由 Microsoft Research 开发的擦除编码](https://www.microsoft.com/research/publication/erasure-coding-in-windows-azure-storage/)
-- [局部重建代码和加速奇偶校验卷](https://blogs.technet.microsoft.com/filecab/2016/09/06/volume-resiliency-and-efficiency-in-storage-spaces-direct/)
-- [存储管理 API 中的卷](https://blogs.technet.microsoft.com/filecab/2016/08/29/deep-dive-volumes-in-spaces-direct/)
+- [局部重建代码和加速奇偶校验卷](https://techcommunity.microsoft.com/t5/storage-at-microsoft/bg-p/FileCAB)
+- [存储管理 API 中的卷](https://techcommunity.microsoft.com/t5/storage-at-microsoft/bg-p/FileCAB)
 - [存储空间直通的容量计算器预览版](https://aka.ms/s2dcalc)

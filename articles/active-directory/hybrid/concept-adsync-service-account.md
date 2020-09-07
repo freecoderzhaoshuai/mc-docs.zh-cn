@@ -10,18 +10,17 @@ ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: reference
-origin.date: 06/27/2019
-ms.date: 08/21/2019
+ms.topic: conceptual
+ms.date: 08/27/2020
 ms.subservice: hybrid
 ms.author: v-junlch
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 221b804f9728d8358b0fd93e0bb5f677f2eb06ca
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 52b4c6471f5b323062a827fa5e058f5737b34f3d
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "69993736"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946916"
 ---
 # <a name="adsync-service-account"></a>ADSync 服务帐户
 Azure AD Connect 会安装一个本地服务用于协调 Active Directory 与 Azure Active Directory 之间的同步。  Azure AD Sync 同步服务 (ADSync) 在本地环境中的服务器上运行。  默认会在“快速”安装中设置该服务的凭据，不过，用户也可以根据组织的安全要求自定义凭据。  这些凭据不会用于连接到本地林或 Azure Active Directory。
@@ -47,9 +46,9 @@ Microsoft 建议在虚拟服务帐户或者独立或组托管服务帐户的上�
 - 托管服务帐户 - 使用管理员预配的独立或组 MSA
 - 域帐户 - 使用管理员预配的域服务帐户
 
-![](./media/concept-adsync-service-account/adsync1.png)
+![“Azure AD Connect 快速设置”页的屏幕截图，其中显示了“自定义”或“使用快速设置”选项按钮。](./media/concept-adsync-service-account/adsync1.png)
 
-![](./media/concept-adsync-service-account/adsync2.png)
+![Azure AD Connect“安装所需组件”页的屏幕截图，其中选定了“使用现有托管服务帐户”选项。](./media/concept-adsync-service-account/adsync2.png)
 
 ## <a name="diagnosing-adsync-service-account-changes"></a>诊断 ADSync 服务帐户更改
 安装后更改 ADSync 服务的凭据会导致服务无法启动、无法访问同步数据库，以及无法在连接的目录（Azure 和 AD DS）中进行身份验证。  为数据库授予对新 ADSync 服务帐户的访问权限并不足以从此问题恢复。 在还原原始凭据之前无法进行同步。
@@ -62,11 +61,15 @@ Microsoft 建议在虚拟服务帐户或者独立或组托管服务帐户的上�
 
 排查此问题：如果更改了 AdSync 服务登录凭据，Azure AD Sync 加密密钥将不可访问。  如果更改了凭据，请使用“服务”应用程序将登录帐户改回到其原始配置值（例如 NT SERVICE\AdSync），并重启该服务。  这可以使 AdSync 服务立即恢复正常运行。
 
+有关详细信息，请参阅以下[文章](https://go.microsoft.com/fwlink/?linkid=2086764)。
+
 ### <a name="example-2"></a>示例 2
 
 由于无法与本地数据库 (localdb) 建立连接，该服务无法启动。
 
 排查此问题：如果更改了 AdSync 服务登录凭据，Azure AD Sync 服务将失去本地数据库提供程序的访问权限。  如果更改了凭据，请使用“服务”应用程序将登录帐户改回到其原始配置值（例如 NT SERVICE\AdSync），并重启该服务。  这可以使 AdSync 服务立即恢复正常运行。
+
+有关详细信息，请参阅以下[文章](https://go.microsoft.com/fwlink/?linkid=2086764)。
 
 其他详细信息：提供程序返回了以下错误信息：
  

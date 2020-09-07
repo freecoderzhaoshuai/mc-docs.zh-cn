@@ -3,25 +3,26 @@ title: Azure Stack Hub 中的主动诊断日志收集
 description: 了解如何在 Azure Stack Hub 的“帮助 + 支持”中配置主动诊断收集日志的功能。
 author: WenJason
 ms.topic: article
-origin.date: 04/17/2020
-ms.date: 06/22/2020
+origin.date: 06/16/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: shisab
-ms.lastreviewed: 04/17/2020
-ms.openlocfilehash: af7579bc63481c993769b275b418d87c8c484fb9
-ms.sourcegitcommit: e9ffd50aa5eaab402a94bfabfc70de6967fe6278
+ms.lastreviewed: 06/16/2020
+ms.openlocfilehash: 6c43d145be701d75ec97ab1eed080107de1c0510
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2020
-ms.locfileid: "86307748"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867877"
 ---
 # <a name="proactive-diagnostic-log-collection-in-azure-stack-hub"></a>Azure Stack Hub 中的主动诊断日志收集
-
-::: moniker range=">= azs-2002"
 
 在 Azure Stack Hub 上引发警报时主动收集诊断日志可以节省客户支持的时间。
 
 如果需要调查系统运行状况，则可在使用 Azure 支持建立支持案例之前自动上传日志进行分析。
+
+>[!NOTE]
+>如果已断开与 Internet 的连接，或者只想在本地保存日志，请使用 [Get-AzureStackLog](azure-stack-get-azurestacklog.md) 方法发送日志。 
 
 ## <a name="steps-to-configure-proactive-log-collection"></a>配置主动收集日志功能的步骤
 
@@ -37,9 +38,6 @@ ms.locfileid: "86307748"
 
    ![显示“帮助 + 支持”中用于启用收集日志的位置的屏幕截图](media/azure-stack-help-and-support/settings-enable-automatic-log-collection.png)
 
-::: moniker-end
-::: moniker range="<= azs-1910"
-
 我们建议配置诊断日志自动收集功能，以获得顺畅的日志收集和客户支持体验。
 
 如果需要调查系统运行状况，可以自动上传日志供 Azure 支持进行分析。
@@ -54,12 +52,12 @@ ms.locfileid: "86307748"
 
 可以使用新的或 Azure 中的现有 Blob 容器。 若要在 Azure 中创建 Blob 容器，至少需要拥有[存储 Blob 参与者角色](/role-based-access-control/built-in-roles#storage-blob-data-contributor)或[特定的权限](https://docs.microsoft.com/rest/api/storageservices/authenticate-with-azure-active-directory#permissions-for-calling-blob-and-queue-data-operations)。 全局管理员也拥有所需的权限。
 
-有关如何为自动日志收集存储帐户选择参数的最佳做法，请参阅[自动收集 Azure Stack Hub 日志的最佳做法](azure-stack-best-practices-automatic-diagnostic-log-collection.md)。 有关存储帐户类型的详细信息，请参阅 [Azure 存储帐户概述](/storage/common/storage-account-overview)。
+有关如何为自动日志收集存储帐户选择参数的最佳做法，请参阅[自动收集 Azure Stack Hub 日志的最佳做法](./azure-stack-overview.md?view=azs-2002)。 有关存储帐户类型的详细信息，请参阅 [Azure 存储帐户概述](/storage/common/storage-account-overview)。
 
 ### <a name="create-a-blob-storage-account"></a>创建 Blob 存储帐户
 
 1. 登录到 [Azure 门户](https://portal.azure.cn)。
-1. 选择“存储帐户”>“添加” 。
+1. 选择“存储帐户” > “添加” 。
 1. 使用以下设置创建 Blob 容器：
 
    - **订阅**：选择自己的 Azure 订阅。
@@ -83,7 +81,7 @@ ms.locfileid: "86307748"
 
 ## <a name="create-a-sas-url"></a>创建 SAS URL
 
-1. 打开 Microsoft Azure 存储资源管理器，右键单击容器，然后选择“获取共享访问签名”。 
+1. 右键单击容器，然后选择“获取共享访问签名”。
    
    ![如何获取 Blob 容器共享访问签名](media/azure-stack-automatic-log-collection/get-sas.png)
 
@@ -98,7 +96,7 @@ ms.locfileid: "86307748"
 
 1. 选择“创建” 。  
 
-复制 URL，并在[配置自动日志收集](azure-stack-configure-automatic-diagnostic-log-collection-tzl.md)时输入该 URL。 有关 SAS URL 的详细信息，请参阅[使用共享访问签名 (SAS)](/storage/common/storage-dotnet-shared-access-signature-part-1)。
+复制 URL，并在[配置自动日志收集](?view=azs-2002)时输入该 URL。 有关 SAS URL 的详细信息，请参阅[使用共享访问签名 (SAS)](/storage/common/storage-dotnet-shared-access-signature-part-1)。
 
 ## <a name="steps-to-configure-automatic-log-collection"></a>配置自动日志收集的步骤
 
@@ -118,7 +116,8 @@ ms.locfileid: "86307748"
 >[!NOTE]
 >随时可以禁用和重新启用自动日志收集。 SAS URL 配置不会更改。 如果重新启用自动日志收集，系统会对以前输入的 SAS URL 进行相同的验证检查，已过期的 SAS URL 将被拒绝。
 
-::: moniker-end
+>[!NOTE]
+>如果为本地文件共享配置了日志位置设置，请确保生命周期管理策略会阻止共享存储达到其容量配额。 Azure Stack Hub 不会监视本地文件共享或强制执行任何保留策略。
 
 ## <a name="view-log-collection"></a>查看日志集合
 

@@ -8,12 +8,12 @@ origin.date: 10/13/2019
 ms.date: 05/18/2020
 ms.reviewer: shriramnat
 ms.lastreviewed: 10/06/2019
-ms.openlocfilehash: 0f2290173c395f2ac4113a773d6e5131dd864bf1
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: 58092805237d446d689a12730577fcb0b7e0a4c2
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422374"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867959"
 ---
 # <a name="tutorial-test-a-service-offering"></a>教程：测试服务套餐
 
@@ -53,14 +53,13 @@ ms.locfileid: "83422374"
    >[!NOTE]
    >订阅套餐之后，可能需要刷新门户才能看到哪些服务包含在新订阅中。
 
-::: moniker range=">=azs-1902"
 ## <a name="deploy-a-storage-account-resource"></a>部署存储帐户资源
 
 在用户门户中，可以使用上一部分中创建的订阅来预配存储帐户。
 
 1. 使用用户帐户登录到用户门户。
 
-1. 选择“+创建资源”>“数据 + 存储”>“存储帐户 - Blob、文件、表、队列”。  
+1. 选择“+创建资源” > “数据 + 存储” > “存储帐户 - Blob、文件、表、队列”  。
 
 1. 在“创建存储帐户”中提供以下信息：
   
@@ -77,8 +76,8 @@ ms.locfileid: "83422374"
 
 1. 使用用户帐户登录到用户门户。
 
-1. 选择“+创建资源”>“计算”>“\<image-name\>”，其中“image-name”是在先决条件部分下载的虚拟机名称。  
-1. 在“创建虚拟机”/“基本信息”中提供以下信息： 
+1. 选择“+创建资源” > “计算” > “\<image-name\>”，其中“image-name”是在先决条件部分下载的虚拟机名称  。
+1. 在“创建虚拟机” / “基本信息”中提供以下信息： 
   
    - 输入 VM 的**名称**。
    - 输入一个**用户名**作为管理员帐户。
@@ -97,16 +96,13 @@ ms.locfileid: "83422374"
    > [!NOTE]
    > 完整部署和启动 VM 可能需要几分钟的时间。 VM 可供使用之后，[状态](/virtual-machines/windows/states-lifecycle)将更改为“正在运行”。
 
-::: moniker-end
-
-::: moniker range="<=azs-1901"
 ## <a name="deploy-a-virtual-machine-resource-1901-and-earlier"></a>部署虚拟机资源（1901 和更低版本）
 
 在用户门户中使用新订阅预配虚拟机。
 
 1. 使用用户帐户登录到用户门户。
 
-1. 在仪表板上，选择“+创建资源”>“计算”>“Windows Server 2016 Datacenter Eval”，然后选择“创建”。   
+1. 在仪表板上，选择“+创建资源” > “计算” > “Windows Server 2016 Datacenter Eval”，然后选择“创建”。   
 
 1. 在“基本信息”中提供以下信息：
   
@@ -129,7 +125,6 @@ ms.locfileid: "83422374"
 1. 在“摘要”中，选择“确定”创建虚拟机。   
 
 1. 若要查看新虚拟机，请选择“所有资源”。 搜索该虚拟机，然后从搜索结果中选择其名称。
-::: moniker-end
 
 ## <a name="next-steps"></a>后续步骤
 

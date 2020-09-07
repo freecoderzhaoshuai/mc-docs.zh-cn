@@ -1,17 +1,19 @@
 ---
 title: IdentitySelector UI 元素
 description: 介绍了 Azure 门户的 Microsoft.ManagedIdentity.IdentitySelector UI 元素。 用于将托管标识分配给资源。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 02/06/2020
-ms.date: 03/23/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 64d55bf969d01c678af3898415cbf0aaafb5237e
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 2b165e1d4b95f017ad28daedd0abf582e7b11507
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79543942"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807903"
 ---
 <!--Verified successfully-->
 # <a name="microsoftmanagedidentityidentityselector-ui-element"></a>Microsoft.ManagedIdentity.IdentitySelector UI 元素
@@ -22,15 +24,15 @@ ms.locfileid: "79543942"
 
 此控件由以下元素组成：
 
-![Microsoft.ManagedIdentity.IdentitySelector 第一步](./media/managed-application-elements/microsoft.managedidentity.identityselector1.png)
+:::image type="content" source="./media/managed-application-elements/microsoft-managedidentity-identityselector-1.png" alt-text="Microsoft.ManagedIdentity.IdentitySelector 第一步":::
 
 当用户选择“添加”  时，将打开以下窗体。 用户可以为资源选择一个或多个用户分配的标识。
 
-![Microsoft.ManagedIdentity.IdentitySelector 第二步](./media/managed-application-elements/microsoft.managedidentity.identityselector2.png)
+:::image type="content" source="./media/managed-application-elements/microsoft-managedidentity-identityselector-2.png" alt-text="Microsoft.ManagedIdentity.IdentitySelector 第二步":::
 
 所选的标识将显示在表中。 用户可以从此表中添加或删除项。
 
-![Microsoft.ManagedIdentity.IdentitySelector 第三步](./media/managed-application-elements/microsoft.managedidentity.identityselector3.png)
+:::image type="content" source="./media/managed-application-elements/microsoft-managedidentity-identityselector-3.png" alt-text="Microsoft.ManagedIdentity.IdentitySelector 第三步":::
 
 ## <a name="schema"></a>架构
 
@@ -85,5 +87,4 @@ ms.locfileid: "79543942"
 - 有关创建 UI 定义的简介，请参阅 [CreateUiDefinition 入门](create-uidefinition-overview.md)。
 - 有关 UI 元素中的公用属性的说明，请参阅 [CreateUiDefinition 元素](create-uidefinition-elements.md)。
 
-<!-- Update_Description: new article about microsoft managedidentity identityselector -->
-<!--NEW.date: 03/23/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

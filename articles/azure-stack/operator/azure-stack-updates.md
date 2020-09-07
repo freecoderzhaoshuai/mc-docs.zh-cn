@@ -3,24 +3,24 @@ title: 管理更新
 description: 了解如何在 Azure Stack Hub 中管理更新
 author: WenJason
 ms.topic: how-to
-origin.date: 06/09/2020
-ms.date: 06/22/2020
+origin.date: 07/16/2020
+ms.date: 08/31/2020
 ms.author: v-jay
-ms.lastreviewed: 09/10/2019
+ms.lastreviewed: 07/16/2020
 ms.reviewer: niy
-ms.openlocfilehash: 1c5129e1ae8e8711f93a64cc70142a8a740ca2a4
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 7fd6c0671147608691546e8e346ca28a288fad41
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096524"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867826"
 ---
 # <a name="manage-updates-in-azure-stack-hub"></a>在 Azure Stack Hub 中管理更新
 
 原始设备制造商 (OEM) 提供的完整和快速更新、修补程序以及驱动程序与固件更新都有助于让 Azure Stack Hub 保持最新状态。 本文介绍不同类型的更新、其预期发布时间，以及在何处可以找到有关当前版本的详细信息。
 
-> [!Note]  
-> 无法将 Azure Stack Hub 更新包应用于 Azure Stack 开发工具包 (ASDK)。 更新包专为集成系统所设计。 有关信息，请参阅[重新部署 ASDK](/azure-stack/asdk/asdk-redeploy)。
+> [!NOTE]  
+> 无法将 Azure Stack Hub 更新包应用于 Azure Stack 开发工具包 (ASDK)。 更新包专为集成系统所设计。 有关信息，请参阅[重新部署 ASDK](../asdk/asdk-redeploy.md)。
 
 ## <a name="update-package-types"></a>更新包类型
 
@@ -34,7 +34,9 @@ ms.locfileid: "85096524"
 
     **快速**更新包有范围限制，不更新基础的物理主机操作系统。
 
-- **Azure Stack Hub 修补程序**。 Azure 提供 Azure Stack Hub 的修补程序（通常是预防性或时效性的程序）来解决特定问题。 发布的每个修补程序都附带相应的 Microsoft 知识库文章，其中详细描述了问题、原因和解决方法。 可以像下载和安装普通的 Azure Stack Hub 完整更新包一样下载和安装修补程序。 修补程序是累积性的，在几分钟内即可完成安装。
+- **Azure Stack Hub 修补程序**。 Microsoft 提供 [Azure Stack Hub 的修补程序](azure-stack-servicing-policy.md#hotfixes)（通常是预防性或时效性的程序）来解决特定问题。 发布的每个修补程序都附带相应的 Microsoft 知识库文章，其中详细描述了问题、原因和解决方法。 可以像下载和安装普通的 Azure Stack Hub 完整更新包一样下载和安装修补程序。 修补程序是累积性的，在几分钟内即可完成安装。
+
+   从版本 2005 开始，更新到新的主版本（如 1.2002.x 到 1.2005.x）时，会自动安装新的主版本中的最新修补程序（如果有）。 在此之后，如果发布了适用于你的内部版本的修补程序，则应安装它。
 
 - **OEM 硬件供应商提供的更新**。 Azure Stack Hub 硬件合作伙伴负责硬件相关固件和驱动程序更新包的端到端服务生命周期（包括指导）。 此外，对于硬件生命周期主机上的所有软件和硬件，Azure Stack Hub 硬件合作伙伴拥有并维护指导。 OEM 硬件供应商在自己的下载站点上托管这些更新包。
 
@@ -44,11 +46,11 @@ ms.locfileid: "85096524"
 
 - **Azure Stack Hub 软件更新**。 Microsoft 通常每个月发布一次软件更新包。
 
-- **Azure Stack Hub 修补程序**。 修补程序是随时可发布的时效性版本。
+- **Azure Stack Hub 修补程序**。 修补程序是随时可发布的时效性版本。 如果要从某个主版本升级到另一个主版本（例如 1.2002.x 到 1.2005.x），新的主版本中最新的修补程序（如果有）会自动安装。
 
 - **OEM 硬件供应商提供的更新**。 OEM 硬件供应商会根据需要发布更新。
 
-若要继续获得支持，必须在 Azure Stack Hub 环境中保留支持的 Azure Stack Hub 软件版本。 有关详细信息，请参阅 [Azure Stack Hub 服务策略](azure-stack-update-servicing-policy.md)。
+若要继续获得支持，必须在 Azure Stack Hub 环境中保留支持的 Azure Stack Hub 软件版本。 有关详细信息，请参阅 [Azure Stack Hub 服务策略](azure-stack-servicing-policy.md)。
 
 ## <a name="how-to-know-an-update-is-available"></a>如何知道推出了更新
 
@@ -70,6 +72,8 @@ ms.locfileid: "85096524"
 
 例如，如果 Azure Stack Hub 环境为 1908.x，而最新的可用更新版本为 2002.x，需要从 1908 更新到 1910，然后再更新到 2002。
 
+从版本 2005 开始，更新到新的主版本（如 1.2002.x 到 1.2005.x）时，会自动安装新的主版本中的最新修补程序（如果有）。
+
 ### <a name="hotfixes-within-major-versions"></a>主版本中的修补程序
 
 在同一主版本号内，Azure Stack Hub 可能会发布多个修补程序。 修补程序是累积的，最新的修补程序包包括该版本过去的所有修补程序。 有关详细信息，请参阅[修补程序](azure-stack-servicing-policy.md#hotfixes)。
@@ -80,11 +84,11 @@ ms.locfileid: "85096524"
 
 ![Azure Stack Hub 更新过程](./media/azure-stack-updates/azure-stack-update-process.svg)
 
-1. **规划更新**。
+1. **规划更新**
 
-    准备好 Azure Stack Hub，使更新过程能够尽量顺畅地进行，并尽量减轻对用户造成的影响。 向用户通知任何可能的服务中断，然后遵循准备要更新的实例的步骤操作。 请务必遵循 [Azure Stack Hub 更新前查检表](release-notes-checklist.md)中的**所有**步骤，确保完成应用更新所需的先决步骤。 另外，请确保根据要应用的更新类型安排适当的维护时段。
+    准备好 Azure Stack Hub，使更新过程能够尽量顺畅地进行，并尽量减轻对用户造成的影响。 向用户通知任何可能的服务中断，然后遵循准备要更新的实例的步骤操作。 请务必遵循 [Azure Stack Hub 更新前查检表](release-notes-checklist.md)中的所有步骤，确保完成应用更新所需的先决条件。 另外，请确保根据要应用的更新类型安排适当的维护时段。
 
-2. **上传和准备更新包**。
+2. **上传和准备更新包**
 
     对于已连接到 Internet 的 Azure Stack Hub 环境，Azure Stack Hub 软件更新和修补程序会自动导入系统并做好更新准备。
 
@@ -92,9 +96,9 @@ ms.locfileid: "85096524"
 
     无论 Azure Stack Hub 系统是否建立了 Internet 连接，都需要手动将所有 OEM 更新包导入到环境中。 有关导入和准备更新包的详细步骤，请参阅[上传和准备 Azure Stack Hub 更新包](azure-stack-update-prepare-package.md)。
 
-3. **应用更新**。
+3. **应用更新**
 
-    使用 Azure Stack Hub 中的“更新”边栏选项卡应用更新。 在更新过程中，可以监视更新进度和进行故障排除。 有关详细信息，请参阅[应用 Azure Stack Hub 更新](azure-stack-apply-updates.md)。
+    使用 Azure Stack Hub 门户中的“更新”边栏选项卡应用更新。 在更新过程中，可以监视更新进度和进行故障排除。 有关详细信息，请参阅[应用 Azure Stack Hub 更新](azure-stack-apply-updates.md)。
 
 ## <a name="the-update-resource-provider"></a>更新资源提供程序
 

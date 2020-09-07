@@ -3,14 +3,14 @@ title: 使用 Azure Functions Core Tools
 description: 了解如何通过本地计算机上的命令提示符或终端编写和测试 Azure 函数，然后在 Azure Functions 中运行这些函数。
 ms.assetid: 242736be-ec66-4114-924b-31795fd18884
 ms.topic: conceptual
-ms.date: 08/12/2020
-ms.custom: 80e4ff38-5174-43
-ms.openlocfilehash: 4bebb13374c4f93789eb15ae44a711fd028397b2
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.date: 08/24/2020
+ms.custom: devx-track-csharp, 80e4ff38-5174-43
+ms.openlocfilehash: ea0a2a8ae8ea09db5789f3341d39ce95e7834372
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223159"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946893"
 ---
 # <a name="work-with-azure-functions-core-tools"></a>使用 Azure Functions Core Tools
 
@@ -204,7 +204,23 @@ Initialized empty Git repository in C:/myfunctions/myMyFunctionProj/.git/
 > [!IMPORTANT]
 > 默认情况下，Core Tools 2.x 及更高版本会为 .NET 运行时创建函数应用项目作为 [C# 类项目](functions-dotnet-class-library.md) (.csproj)。 这些 C# 项目可以与 Visual Studio 或 Visual Studio Code 结合使用，在测试期间以及发布到 Azure 时进行编译。 如果希望创建并使用在版本 1.x 和门户中创建的相同 C# 脚本 (.csx) 文件，则在创建和部署函数时必须包含 `--csx` 参数。
 
-[!INCLUDE [functions-core-tools-install-extension](../../includes/functions-core-tools-install-extension.md)]
+## <a name="register-extensions"></a>注册扩展
+
+除了 HTTP 和计时器触发器外，运行时 2.x 版及更高版本中的 Functions 绑定是以扩展包的形式实现的。 HTTP 绑定和计时器触发器不需要扩展。 
+
+为了降低不同扩展包之间的不兼容性，可以使用函数，让你可以引用 host.json 项目文件中的扩展捆绑包。 如果选择不使用扩展捆绑包，则还需要在本地安装 .NET Core 2.x SDK，并在 functions 项目中维护 extensions.csproj。  
+
+在 2.x 版及更高版本的 Azure Functions 运行时中，必须显式注册在函数中使用的绑定类型的扩展。 可以选择单独安装绑定扩展，也可以将扩展捆绑包引用添加到 host.json 项目文件。 扩展捆绑包可避免在使用多种绑定类型时出现包兼容性问题。 建议使用此方法来注册绑定扩展。 扩展捆绑包还无需安装 .NET Core 2.x SDK。 
+
+### <a name="use-extension-bundles"></a>使用扩展捆绑包
+
+[!INCLUDE [Register extensions](../../includes/functions-extension-bundles.md)]
+
+若要了解更多信息，请参阅[注册 Azure Functions 绑定扩展](functions-bindings-register.md#extension-bundles)。 在将绑定添加到 function.json 文件之前，应该先将扩展捆绑包添加到 host.json。
+
+### <a name="explicitly-install-extensions"></a>显式安装扩展
+
+[!INCLUDE [functions-extension-register-core-tools](../../includes/functions-extension-register-core-tools.md)]
 
 [!INCLUDE [functions-local-settings-file](../../includes/functions-local-settings-file.md)]
 
@@ -291,7 +307,7 @@ Writing C:\myfunctions\myMyFunctionProj\MyQueueTrigger\function.json
 | **`--csx`** | （2.x 及更高版本。）生成版本 1.x 和门户所用的相同 C# 脚本 (.csx) 模板。 |
 | **`--language`**, **`-l`**| C#、F# 或 JavaScript 等模板编程语言。 此选项在版本 1.x 中是必需的。 在 2.x 及更高版本中，请不要使用此选项或选择与辅助角色运行时匹配的语言。 |
 | **`--name`**, **`-n`** | 函数名称。 |
-| **`--template`** , **`-t`** | 使用 `func templates list` 命令查看每种受支持语言的可用模板的完整列表。   |
+| **`--template`**, **`-t`** | 使用 `func templates list` 命令查看每种受支持语言的可用模板的完整列表。   |
 
 
 例如，若要在单个命令中创建 JavaScript HTTP 触发器，请运行：
@@ -350,7 +366,7 @@ npm start
 | **`--port`**, **`-p`** | 要侦听的本地端口。 默认值：7071。 |
 | **`--pause-on-error`** | 退出进程前，暂停增加其他输入。 仅当从集成开发环境 (IDE) 启动 Core Tools 时才使用。|
 | **`--script-root`**, **`--prefix`** | 用于指定要运行或部署的函数应用的根目录路径。 此选项用于可在子文件夹中生成项目文件的已编译项目。 例如，生成 C# 类库项目时，将在某个根子文件夹中生成 host.json、local.settings.json 和 function.json 文件，其路径类似于 `MyProject/bin/Debug/netstandard2.0`。 在这种情况下，请将前缀设置为 `--script-root MyProject/bin/Debug/netstandard2.0`。 这是在 Azure 中运行的函数应用的根目录。 |
-| **`--timeout`** , **`-t`** | Functions 主机启动的超时时间（以秒为单位）。 默认值：20 秒。|
+| **`--timeout`**, **`-t`** | Functions 主机启动的超时时间（以秒为单位）。 默认值：20 秒。|
 | **`--useHttps`** | 绑定到 `https://localhost:{port}` ，而不是绑定到 `http://localhost:{port}` 。 默认情况下，此选项会在计算机上创建可信证书。|
 
 Functions 主机启动时，会输出 HTTP 触发的函数的 URL：
@@ -453,7 +469,7 @@ curl --request POST -H "Content-Type:application/json" --data "{'input':'sample 
 | **`--content`**, **`-c`** | 内联内容。 |
 | **`--debug`**, **`-d`** | 运行函数前，将调试程序附加到主机进程。|
 | **`--timeout`**, **`-t`** | 本地 Functions 主机准备就绪前的等待时间（以秒为单位）。|
-| **`--file`** , **`-f`** | 要用作内容的文件名。|
+| **`--file`**, **`-f`** | 要用作内容的文件名。|
 | **`--no-interactive`** | 不提示输入。 适用于自动化方案。|
 
 例如，若要调用 HTTP 触发的函数并传递内容正文，请运行以下命令：
@@ -500,7 +516,7 @@ func azure functionapp publish <FunctionAppName>
 |**`--list-ignored-files`** | 基于 .funcignore 文件显示发布期间忽略的文件列表。 |
 | **`--list-included-files`** | 基于 .funcignore 文件显示发布的文件列表。 |
 | **`--nozip`** | 关闭默认的 `Run-From-Package` 模式。 |
-| **`--build`** , **`-b`** | 部署到 Linux 函数应用时执行生成操作。 接受：`remote` 和 `local`。 |
+| **`--build`**, **`-b`** | 部署到 Linux 函数应用时执行生成操作。 接受：`remote` 和 `local`。 |
 | **`--additional-packages`** | 构建本机依赖项时要安装的包列表。 |
 | **`--force`** | 在某些情况下会忽略预发布验证。 |
 | **`--csx`** | 发布 C# 脚本 (.csx) 项目。 |

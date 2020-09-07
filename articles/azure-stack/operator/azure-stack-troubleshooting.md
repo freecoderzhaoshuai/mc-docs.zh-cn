@@ -4,17 +4,17 @@ titleSuffix: Azure Stack
 description: 了解如何排查 Azure Stack Hub 的问题，包括 VM、存储和应用服务的问题。
 author: WenJason
 ms.topic: article
-origin.date: 05/13/2019
-ms.date: 07/20/2020
+origin.date: 07/21/2019
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: prchint
-ms.lastreviewed: 15/13/2020
-ms.openlocfilehash: cd4d6ae9a3f0621ecd143aa52cc6f7149318598c
-ms.sourcegitcommit: e9ffd50aa5eaab402a94bfabfc70de6967fe6278
+ms.lastreviewed: 07/21/2020
+ms.openlocfilehash: 80b4b41611ca518bbf69b4a053577d85af5b944f
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2020
-ms.locfileid: "86307388"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867830"
 ---
 # <a name="troubleshoot-issues-in-azure-stack-hub"></a>排查 Azure Stack Hub 中的问题
 
@@ -22,7 +22,7 @@ ms.locfileid: "86307388"
 
 ## <a name="frequently-asked-questions"></a>常见问题
 
-这些部分包含指向涵盖发送到 Azure 客户支持服务 (CSS) 的常见问题的文档的链接。
+这些部分包含有关发送到 Azure 支持的常见问题的文档链接。
 
 ### <a name="purchase-considerations"></a>购买注意事项
 
@@ -30,7 +30,7 @@ ms.locfileid: "86307388"
 
 ### <a name="updates-and-diagnostics"></a>更新和诊断
 
-* [如何在 Azure Stack Hub 中使用诊断工具](azure-stack-diagnostics.md)
+* [如何在 Azure Stack Hub 中使用诊断工具](./azure-stack-configure-on-demand-diagnostic-log-collection-portal.md?view=azs-2002)
 * [如何验证 Azure Stack Hub 系统状态](azure-stack-diagnostic-test.md)
 * [更新包发布频率](azure-stack-servicing-policy.md#update-package-release-cadence)
 * [对节点状态进行验证和故障排除](azure-stack-node-actions.md)
@@ -92,6 +92,78 @@ Azure Stack Hub 中的用户可以是订阅、资源组或服务的每个实例�
 
 ## <a name="troubleshoot-virtual-machines-vms"></a>排查虚拟机 (VM) 的问题
 
+### <a name="reset-linux-vm-password"></a>重置 Linux VM 密码
+
+如果你忘记了 Linux VM 的密码，并且因为 VMAccess 扩展出现问题，“重置密码”选项不起作用，你可执行以下步骤进行重置：
+
+1. 选择要用作恢复 VM 的 Linux VM。
+
+1. 登录到用户门户：
+   1. 记下 VM 大小、NIC、公共 IP、NSG 和数据磁盘。
+   1. 停止受影响的 VM。
+   1. 删除受影响的 VM。
+   1. 将受影响的 VM 中的磁盘作为数据磁盘附加到恢复 VM 上（可能需要花费几分钟时间才能使用该磁盘）。
+
+1. 登录到恢复 VM，并运行以下命令：
+
+   ```
+   sudo su �
+   mkdir /tempmount
+   fdisk -l
+   mount /dev/sdc2 /tempmount /*adjust /dev/sdc2 as necessary*/
+   chroot /tempmount/
+   passwd root /*substitute root with the user whose password you want to reset*/
+   rm -f /.autorelabel /*Remove the .autorelabel file to prevent a time consuming SELinux relabel of the disk*/
+   exit /*to exit the chroot environment*/
+   umount /tempmount
+   ```
+
+1. 登录到用户门户：
+
+   1. 从恢复 VM 拆离该磁盘。
+   1. 从磁盘重新创建 VM。
+   1. 请务必从前一个 VM 传输公共 IP、附加数据磁盘等。
+
+
+还可以拍摄原始磁盘的快照并从中创建新磁盘，而不是直接在原始磁盘上执行更改。 有关详细信息，请参阅以下主题：
+
+- [重置密码](/virtual-machines/troubleshooting/reset-password)
+- [从快照创建磁盘](/virtual-machines/troubleshooting/troubleshoot-recovery-disks-portal-linux#create-a-disk-from-the-snapshot)
+- [更改和重置根密码](https://access.redhat.com/documentation/red_hat_enterprise_linux/7/html/system_administrators_guide/sec-terminal_menu_editing_during_boot#sec-Changing_and_Resetting_the_Root_Password)
+
+
+### <a name="license-activation-fails-for-windows-server-2012-r2-during-provisioning"></a>预配期间，Windows Server 2012 R2 的许可证激活失败
+
+在这种情况下，Windows 将无法激活，此时屏幕右下角将显示一个水印。 位于 C:\Windows\Panther 下的 WaSetup.xml 日志包含以下事件：
+
+```xml
+<Event time="2019-05-16T21:32:58.660Z" category="ERROR" source="Unattend">
+    <UnhandledError>
+        <Message>InstrumentProcedure: Failed to execute 'Call ConfigureLicensing()'. Will raise error to caller</Message>
+        <Number>-2147221500</Number>
+        <Description>Could not find the VOLUME_KMSCLIENT product</Description>
+        <Source>Licensing.wsf</Source>
+    </UnhandledError>
+</Event>
+```
+
+
+若要激活许可证，请复制要激活的 SKU 的自动虚拟机激活 (AVMA) 密钥。
+
+|版本|AVMA 密钥|
+|-|-|
+|数据中心|Y4TGP-NPTV9-HTC2H-7MGQ3-DV4TW|
+|Standard|DBGBW-NPF86-BJVTX-K3WKJ-MTB6V|
+|Essentials|K2XGM-NMBT3-2R6Q8-WF2FK-P36R2|
+
+在 VM 上运行以下命令：
+
+```powershell
+slmgr /ipk <AVMA_key>
+```
+
+若要获取完整的详细信息，请参阅 [VM 激活](https://docs.microsoft.com/windows-server/get-started-19/vm-activation-19)。
+
 ### <a name="default-image-and-gallery-item"></a>默认映像和库项
 
 在 Azure Stack Hub 中部署 VM 之前，必须先添加 Windows Server 映像和库项。
@@ -115,7 +187,7 @@ Azure Stack Hub 中的用户可以是订阅、资源组或服务的每个实例�
 
 ### <a name="azure-storage-explorer-not-working-with-azure-stack-hub"></a>Azure 存储资源管理器不兼容 Azure Stack Hub
 
-如果在离线场景中使用集成系统，建议使用企业证书颁发机构 (CA)。 以 Base-64 格式导出根证书，然后将其导入 Azure 存储资源管理器。 确保从资源管理器终结点中删除尾部斜杠 (`/`)。 有关详细信息，请参阅[准备连接到 Azure Stack Hub](/azure-stack/user/azure-stack-storage-connect-se)。
+如果在离线场景中使用集成系统，建议使用企业证书颁发机构 (CA)。 以 Base-64 格式导出根证书，然后将其导入 Azure 存储资源管理器。 确保从资源管理器终结点中删除尾部斜杠 (`/`)。 有关详细信息，请参阅[准备连接到 Azure Stack Hub](../user/azure-stack-storage-connect-se.md)。
 
 ## <a name="troubleshoot-app-service"></a>对应用服务进行故障排除
 
@@ -127,11 +199,11 @@ Azure Stack Hub 中的用户可以是订阅、资源组或服务的每个实例�
 
 Azure Stack Hub 修补程序和更新过程旨在让操作员以一致且简单的方式应用更新包。 虽然不常见，但在修补和更新过程中可能会出现问题。 如果在修补和更新过程中遇到问题，建议执行以下步骤：
 
-0. **先决条件**：请确保已遵循[更新活动清单](release-notes-checklist.md)，并[启用主动日志收集](azure-stack-configure-automatic-diagnostic-log-collection-tzl.md)。
+0. **先决条件**：请确保已遵循[更新活动清单](release-notes-checklist.md)，并[启用主动日志收集](./azure-stack-configure-automatic-diagnostic-log-collection.md?view=azs-2002)。
 
 1. 按照在更新失败时创建的失败警报中的补救步骤进行操作。
 
-2. 如果无法解决问题，请创建 [Azure Stack Hub 支持票证](azure-stack-help-and-support-overview-tzl.md)。 请确保已针对发生问题的时间跨度[收集日志](azure-stack-configure-on-demand-diagnostic-log-collection-portal-tzl.md)。
+2. 如果无法解决问题，请创建 [Azure Stack Hub 支持票证](./azure-stack-help-and-support-overview.md?view=azs-2002)。 请确保已针对发生问题的时间跨度[收集日志](./azure-stack-configure-on-demand-diagnostic-log-collection-portal.md?view=azs-2002)。
 
 ## <a name="common-azure-stack-hub-patch-and-update-issues"></a>常见 Azure Stack Hub 修补程序和更新问题
 

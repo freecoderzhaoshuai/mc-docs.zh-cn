@@ -4,18 +4,18 @@ description: 如何配合使用 GPU 与 Azure Stack HCI 上 Ubuntu Linux VM 中�
 author: WenJason
 ms.author: v-jay
 ms.topic: article
-origin.date: 03/24/2020
-ms.date: 05/18/2020
-ms.openlocfilehash: 5a16b681ec34e3b81c159f997488e4c038676571
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+origin.date: 07/01/2020
+ms.date: 08/31/2020
+ms.openlocfilehash: 322067e3962d32c9c7dfb0cdb310196e92a69d9f
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422930"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868075"
 ---
 # <a name="attaching-a-gpu-to-an-ubuntu-linux-vm-on-azure-stack-hci"></a>将 GPU 附加到 Azure Stack HCI 上的 Ubuntu Linux VM
 
-> 适用于：Windows Server 2019
+> 适用于：Azure Stack HCI 版本 20H2；Windows Server 2019
 
 本主题分步说明如何使用 Ubuntu 虚拟机 (VM) 的离散设备分配 (DDA) 技术在 Azure Stack HCI 中安装和配置 NVIDIA 图形处理单元 (GPU)。
 本文档假定已部署 Azure Stack HCI 群集且已安装 VM。
@@ -85,7 +85,7 @@ ms.locfileid: "83422930"
 
 8. 使用 ifconfig 命令查找 TCP/IP 地址以安装 Ubuntu，并复制 eth0 接口的 IP 地址 。
 
-9. 使用 [Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/) 等 SSH 客户端连接到 Ubuntu VM，以便进行进一步的配置。
+9. 使用 OpenSSH（默认情况下随 Windows 10 一起安装的 ssh.exe）等 SSH 客户端或 [Putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/) 连接到 Ubuntu VM，以便进行进一步的配置。
 
 10. 通过 SSH 客户端登录时，请发出 lspci 命令，并验证 NVIDIA GPU 是否以“3D 控制器”列出。
 
@@ -274,12 +274,12 @@ ms.locfileid: "83422930"
     # and any modifications thereto.  Any use, reproduction, disclosure or
     # distribution of this software and related documentation without an express
     # license agreement from NVIDIA Corporation is strictly prohibited.
-    
+
     [application]
     enable-perf-measurement=1
     perf-measurement-interval-sec=5
     #gie-kitti-output-dir=streamscl
-    
+
     [tiled-display]
     enable=1
     rows=2
@@ -293,7 +293,7 @@ ms.locfileid: "83422930"
     #(3): nvbuf-mem-cuda-unified - Allocate Unified cuda memory, applicable for Tesla
     #(4): nvbuf-mem-surface-array - Allocate Surface Array memory, applicable for Jetson
     nvbuf-memory-type=0
-    
+
     [source0]
     enable=1
     #Type - 1=CameraV4L2 2=URI 3=MultiURI
@@ -302,7 +302,7 @@ ms.locfileid: "83422930"
     num-sources=2
     gpu-id=0
     nvbuf-memory-type=0
-    
+
     [source1]
     enable=1
     #Type - 1=CameraV4L2 2=URI 3=MultiURI
@@ -311,10 +311,10 @@ ms.locfileid: "83422930"
     num-sources=2
     gpu-id=0
     nvbuf-memory-type=0
-    
+
     [sink0]
     enable=0
-    
+
     [sink3]
     enable=1
     #Type - 1=FakeSink 2=EglSink 3=File 4=RTSPStreaming
@@ -326,7 +326,7 @@ ms.locfileid: "83422930"
     # set below properties in case of RTSPStreaming
     rtsp-port=8554
     udp-port=5400
-    
+
     [sink1]
     enable=1
     #Type - 1=FakeSink 2=EglSink 3=File 4=UDPSink 5=nvoverlaysink 6=MsgConvBroker
@@ -341,7 +341,7 @@ ms.locfileid: "83422930"
     topic=mytopic
     #Optional:
     #msg-broker-config=../../../../libs/azure_protocol_adaptor/module_client/cfg_azure.txt
-    
+
     [sink2]
     enable=0
     type=3
@@ -354,7 +354,7 @@ ms.locfileid: "83422930"
     bitrate=2000000
     output-file=out.mp4
     source-id=0
-    
+
     [osd]
     enable=1
     gpu-id=0
@@ -369,7 +369,7 @@ ms.locfileid: "83422930"
     clock-text-size=12
     clock-color=1;0;0;0
     nvbuf-memory-type=0
-    
+
     [streammux]
     gpu-id=0
     ##Boolean property to inform muxer that sources are live
@@ -385,7 +385,7 @@ ms.locfileid: "83422930"
     ##along with width, height properties
     enable-padding=0
     nvbuf-memory-type=0
-    
+
     [primary-gie]
     enable=1
     gpu-id=0
@@ -402,7 +402,7 @@ ms.locfileid: "83422930"
     labelfile-path=../../../../../samples/models/Primary_Detector/labels.txt
     config-file=../../../../../samples/configs/deepstream-app/config_infer_primary.txt
     #infer-raw-output-dir=../../../../../samples/primary_detector_raw_output/
-    
+
     [tracker]
     enable=1
     tracker-width=600
@@ -414,7 +414,7 @@ ms.locfileid: "83422930"
     gpu-id=0
     #enable-batch-process applicable to DCF only
     enable-batch-process=0
-    
+
     [tests]
     file-loop=1
     ```

@@ -3,20 +3,21 @@ title: JavaScript 和页面布局版本
 titleSuffix: Azure AD B2C
 description: 了解如何在 Azure Active Directory B2C 中启用 JavaScript 和使用页面布局版本。
 services: active-directory-b2c
-author: mmacy
+author: msmimart
 manager: celestedg
 ms.service: active-directory
 ms.workload: identity
-ms.topic: conceptual
-ms.date: 02/21/2020
+ms.topic: how-to
+ms.date: 08/25/2020
+ms.custom: project-no-code, devx-track-javascript
 ms.author: v-junlch
 ms.subservice: B2C
-ms.openlocfilehash: fc90c4f853484a8ab5bb5bb28b5d8454066566b4
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: df2a20e7bc3bc6b0ba4fbb707043563c776f3e85
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77531324"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946540"
 ---
 # <a name="javascript-and-page-layout-versions-in-azure-active-directory-b2c"></a>Azure Active Directory B2C 中的 JavaScript 和页面布局版本
 
@@ -40,7 +41,7 @@ Azure AD B2C 提供一组打包的内容，其中包含的 HTML、CSS 和 JavaSc
 
 ## <a name="select-a-page-layout-version"></a>选择页面布局版本
 
-不管是否在用户流的属性中启用 JavaScript，都可以为用户流页面指定页面布局版本。 打开用户流，然后选择“页面布局”  。 在“布局名称”下选择一个用户流页面，然后选择“页面布局版本”。  
+不管是否在用户流的属性中启用 JavaScript，都可以为用户流页面指定页面布局版本。 打开用户流，然后选择“页面布局”  。 在“布局名称”下选择一个用户流页面，然后选择“页面布局版本(预览版)”。 
 
 若要了解不同的页面布局版本，请参阅[页面布局版本更改日志](page-layout.md)。
 
@@ -52,4 +53,3 @@ Azure AD B2C 提供一组打包的内容，其中包含的 HTML、CSS 和 JavaSc
 
 有关 JavaScript 使用的示例，可参阅[在 Azure Active Directory B2C 中使用的 JavaScript 示例](javascript-samples.md)。
 
-<!-- Update_Description: wording update -->

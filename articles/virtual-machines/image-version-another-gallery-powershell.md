@@ -1,5 +1,5 @@
 ---
-title: 复制另一个库中的映像
+title: 使用 PowerShell 复制另一个库中的映像
 description: 使用 Azure PowerShell 复制另一个库中的映像。
 author: rockboyfor
 ms.service: virtual-machines
@@ -7,18 +7,20 @@ ms.subservice: imaging
 ms.topic: how-to
 ms.workload: infrastructure
 origin.date: 05/04/2020
-ms.date: 07/06/2020
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.reviewer: akjosh
-ms.openlocfilehash: d2d5753064687db0ee3131ba7dad78527b04d0d8
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 06da65199a8e1faf707b311b76e1548965132204
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945997"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052390"
 ---
 <!--Verified successfully-->
-# <a name="copy-an-image-from-another-gallery"></a>复制另一个库中的映像
+# <a name="copy-an-image-from-another-gallery-using-powershell"></a>使用 PowerShell 复制另一个库中的映像
 
 如果你的组织有多个库，可以从其他库中存储的映像创建映像。 例如，你可能会使用一个开发和测试库用于创建和测试新映像。 准备好在生产环境中使用这些映像时，可以遵循本示例将它们复制到生产库中。 也可以使用 [Azure CLI](image-version-another-gallery-cli.md) 从另一个库中的映像创建映像。
 

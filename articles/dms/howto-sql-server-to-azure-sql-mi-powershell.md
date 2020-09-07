@@ -12,13 +12,13 @@ ms.workload: data-services
 ms.custom: seo-lt-2019,fasttrack-edit
 ms.topic: article
 origin.date: 02/20/2020
-ms.date: 06/22/2020
-ms.openlocfilehash: ac29083fae8666718b706229d3197ae1693b754e
-ms.sourcegitcommit: 48b5ae0164f278f2fff626ee60db86802837b0b4
+ms.date: 08/31/2020
+ms.openlocfilehash: 82bdaa75da2875bd20e081a9588feb48a43b1d9f
+ms.sourcegitcommit: f8ed85740f873c15c239ab6ba753e4b76e030ba7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85098723"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045806"
 ---
 # <a name="migrate-sql-server-to-sql-managed-instance-with-powershell--azure-database-migration-service"></a>使用 PowerShell 和 Azure 数据库迁移服务将 SQL Server 迁移到 SQL 托管实例
 
@@ -122,13 +122,11 @@ $sourceConnInfo = New-AzDmsConnInfo -ServerType SQL `
   -TrustServerCertificate:$true
 ```
 
-以下示例演示如何使用 SQL 身份验证，为名为“targetmanagedinstance.database.chinacloudapi.cn”的 Azure SQL 托管实例创建连接信息：
+以下示例演示如何为名为“targetmanagedinstance”的 Azure SQL 托管实例创建连接信息：
 
 ```powershell
-$targetConnInfo = New-AzDmsConnInfo -ServerType SQL `
-  -DataSource "targetmanagedinstance.database.chinacloudapi.cn" `
-  -AuthType SqlAuthentication `
-  -TrustServerCertificate:$false
+$targetResourceId = (Get-AzSqlInstance -Name "targetmanagedinstance").Id
+$targetConnInfo = New-AzDmsConnInfo -ServerType SQLMI -MiResourceId $targetResourceId
 ```
 
 ### <a name="provide-databases-for-the-migration-project"></a>为迁移项目提供数据库

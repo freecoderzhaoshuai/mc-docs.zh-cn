@@ -4,17 +4,17 @@ titleSuffix: Azure Stack Hub
 description: 了解 Azure Stack Hub 服务策略以及如何使集成系统保持受支持状态。
 author: WenJason
 ms.topic: article
-origin.date: 06/09/2020
-ms.date: 06/22/2020
+origin.date: 08/11/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: niy
 ms.lastreviewed: 03/18/2020
-ms.openlocfilehash: 78c473fd305b1f3bc0cc634855b67d7358dc6853
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: a88e3f8a09b1600bd7facd078c00ea0d6d112134
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096327"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867832"
 ---
 # <a name="azure-stack-hub-servicing-policy"></a>Azure Stack Hub 服务策略
 
@@ -22,9 +22,9 @@ ms.locfileid: "85096327"
 
 ## <a name="download-update-packages-for-integrated-systems"></a>下载集成系统的更新包
 
-Microsoft 会发布完整的每月更新包和修补程序包来解决特定问题。
+Microsoft 会发布完整的更新包和修补程序包来解决特定问题。
 
-每月更新包托管在安全的 Azure 终结点中。 可以使用 [Azure Stack Hub 更新下载程序工具](https://aka.ms/azurestackupdatedownload)手动下载它们。 如果缩放单元已连接，则更新会以“可用更新”的形式自动显示在管理员门户中。 完整的每月更新包在每次发布时都会详细地进行记录。 有关每次发布的详细信息，可以单击本文[更新包发布频率](#update-package-release-cadence)部分的任何发布。
+完整的更新包托管在安全的 Azure 终结点中。 可以使用 [Azure Stack Hub 更新下载程序工具](https://aka.ms/azurestackupdatedownload)手动下载它们。 如果缩放单元已连接，则更新会以“可用更新”的形式自动显示在管理员门户中。 有关每次发布的详细信息，可以单击本文[更新包发布频率](#update-package-release-cadence)部分的任何发布。
 
 修补程序更新包托管在同一个安全的 Azure 终结点中。 可以使用每篇相应的修补程序知识库文章（例如，[Azure Stack Hub 修补程序 1.1809.12.114](https://support.microsoft.com/help/4481548/azure-stack-hotfix-1-1809-12-114)）中的嵌入式链接下载它们。 Azure Stack Hub 操作员可以按照[在 Azure Stack Hub 中应用更新](azure-stack-apply-updates.md)中的过程下载 .xml、.bin 和 .exe 文件并将其导入，这与操作完整的每月更新包类似。 使用已连接缩放单元的 Azure Stack Hub 操作员会看到修补程序自动出现在管理员门户中，并会看到消息“有可用更新”。
 
@@ -46,32 +46,28 @@ Microsoft 预期每月发布软件更新包。 但是，可能一个月内发布
 
 有关特定更新（包括其下载方法）的信息，请参阅该更新的发行说明：
 
+- [Azure Stack Hub 2005 更新](/azure-stack/operator/release-notes?view=azs-2005)
 - [Azure Stack Hub 2002 更新](/azure-stack/operator/release-notes?view=azs-2002)
 - [Azure Stack Hub 1910 更新](/azure-stack/operator/release-notes?view=azs-1910)
-- [Azure Stack Hub 1908 更新](/azure-stack/operator/release-notes?view=azs-1908)
-- [Azure Stack Hub 1907 更新](/azure-stack/operator/release-notes?view=azs-1907)
 
 ## <a name="hotfixes"></a>修补程序
 
-有时，Microsoft 会为 Azure Stack Hub 提供修补程序（通常是预防性或时效性的程序）来解决特定问题。 发布的每个修补程序都附带相应的 Microsoft 知识库文章，其中详细说明了该修补程序中解决的问题。
+有时，Microsoft 会为 Azure Stack Hub 提供修补程序（通常是预防性或时效性的程序）来解决特定问题。 发布的每个修补程序都附带相应的 Microsoft 知识库 (KB) 文章，其中详细说明了该修补程序中解决的问题。
 
-可以像下载和安装普通的 Azure Stack Hub 完整更新包一样下载和安装修补程序。 但是，与完整更新不同，修补程序在几分钟内即可完成安装。 我们建议 Azure Stack Hub 操作员在安装修补程序时设置维护时段。 修补程序会更新 Azure Stack Hub 云的版本，使你可以轻松确定是否已应用该修补程序。 对于仍在支持期内的每个 Azure Stack Hub 版本，将单独提供修补程序。 特定迭代的每个修补程序是累积性的，包含该版本以前的修补程序。 可以在相应的知识库文章中详细了解特定修补程序的适用性。 请参阅上一部分中的发行说明链接。
+从版本 2005 开始，更新到新的主版本（如 1.2002.x 到 1.2005.x）时，会自动安装新的主版本中的最新修补程序（如果有）。 在此之后，如果发布了适用于你的内部版本的修补程序，则应安装它。
+
+可以像下载和安装普通的 Azure Stack Hub 完整更新包一样下载和安装修补程序。 但是，与完整更新不同，修补程序在几分钟内即可完成安装。 我们建议 Azure Stack Hub 操作员在安装修补程序时设置维护时段。 修补程序会更新 Azure Stack Hub 云的版本，使你可以轻松确定是否已应用该修补程序。 对于仍在支持期内的每个 Azure Stack Hub 版本，将单独提供修补程序。 特定迭代的每个修补程序是累积性的，包含该版本以前的修补程序。 可以在相应的 KB 文章中详细了解特定修补程序的适用性。 请参阅上一部分中的发行说明链接。
 
 有关当前可用的修补程序的信息，请参阅该更新的发行说明：
 
-- [Azure Stack Hub 2002 修补程序](/azure-stack/operator/release-notes?view=azs-2002#hotfixes)
-- [Azure Stack Hub 1910 修补程序](/azure-stack/operator/release-notes?view=azs-1910#hotfixes-1)
-- [Azure Stack Hub 1908 修补程序](/azure-stack/operator/release-notes?view=azs-1908#hotfixes-2)
-- [Azure Stack Hub 1907 修补程序](/azure-stack/operator/release-notes?view=azs-1907#hotfixes-3)
+- [Azure Stack Hub 2005 修补程序](/azure-stack/operator/release-notes?view=azs-2005#hotfixes)
+- [Azure Stack Hub 2002 修补程序](/azure-stack/operator/release-notes?view=azs-2002#hotfixes-1)
+- [Azure Stack Hub 1910 修补程序](/azure-stack/operator/release-notes?view=azs-1910#hotfixes-2)
 
 ## <a name="keep-your-system-under-support"></a>保持系统受支持
 
-::: moniker range="azs-2002"
-
 > [!IMPORTANT]  
-> 在 Azure Stack Hub 2002 更新中，我们暂时扩展了 Azure Stack Hub 支持策略声明。 我们正在与世界各地应对 COVID-19 的客户合作，这些客户可能正在就其 Azure Stack Hub 系统以及如何更新和管理这些系统做出决定，以确保其数据中心业务操作继续正常运行。 为支持客户，我们提供了临时支持策略更改扩展，以包括以前的三个更新版本。 因此，将支持新发布的 2002 更新以及以前的三个更新版本（例如 1910、1908 和 1907）。
-
-::: moniker-end
+> 随着 [2002 版](release-notes.md?view=azs-2002) Azure Stack Hub 的推出，为了支持世界各地应对新冠病毒肺炎的客户以及可能对其 Azure Stack Hub 系统做出重要决策的客户，Microsoft 暂时扩展支持策略以包含三个以前的更新版本 (N-3)。 在 2005 版本中，我们将此扩展继续延长 45 天（至 2020 年 9 月 25 日）。 因此，将支持新发布的 2005 更新以及以前的三个更新版本（2002、1910 和 1908 或 N-3）之一。 45 天后（2020 年 9 月 25 日后），我们将恢复标准支持策略，这意味着支持的版本将为 2005、2002 和 1910 或 N-2。
 
 为了使 Azure Stack Hub 实例保持受支持的状态，该实例必须运行最新发布的更新版本或运行之前的两个更新版本之一。
 

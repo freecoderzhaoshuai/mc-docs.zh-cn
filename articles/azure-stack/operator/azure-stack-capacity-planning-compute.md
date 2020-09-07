@@ -4,20 +4,20 @@ description: 了解适用于 Azure Stack Hub 部署的计算容量规划。
 author: WenJason
 ms.topic: article
 origin.date: 03/04/2020
-ms.date: 05/18/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: prchint
 ms.lastreviewed: 06/13/2019
-ms.openlocfilehash: 3301f607eb53be7a8cf9a40127b5079d30711bf9
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: e199eac7ad284bf3c8be6207c41b9a1fc5660e24
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422394"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867874"
 ---
 # <a name="azure-stack-hub-compute-capacity"></a>Azure Stack Hub 计算容量
 
-Azure Stack Hub 上支持的[虚拟机 (VM) 大小](/azure-stack/user/azure-stack-vm-sizes)是在 Azure 上支持的 VM 大小的子集。 Azure 在多方面施加资源限制，以避免资源（服务器本地和服务级别）的过度消耗。 如果未对租户使用资源施加一些限制，则当一些租户过度使用资源时，另一些租户的体验就会变差。 VM 的网络出口在 Azure Stack Hub 上有与 Azure 限制一致的带宽上限。 对于 Azure Stack Hub 上的存储资源，存储 IOPS 限制可避免租户为了访问存储而造成资源过度消耗。
+Azure Stack Hub 上支持的[虚拟机 (VM) 大小](../user/azure-stack-vm-sizes.md)是在 Azure 上支持的 VM 大小的子集。 Azure 在多方面施加资源限制，以避免资源（服务器本地和服务级别）的过度消耗。 如果未对租户使用资源施加一些限制，则当一些租户过度使用资源时，另一些租户的体验就会变差。 VM 的网络出口在 Azure Stack Hub 上有与 Azure 限制一致的带宽上限。 对于 Azure Stack Hub 上的存储资源，存储 IOPS 限制可避免租户为了访问存储而造成资源过度消耗。
 
 >[!IMPORTANT]
 >[Azure Stack Hub Capacity Planner](https://aka.ms/azstackcapacityplanner) 不考虑或保证 IOPS 性能。
@@ -42,9 +42,13 @@ Azure Stack Hub 不会过度提交内存。 但是，允许过度提交物理核
 
 如果达到了 VM 规模限制，将返回以下错误代码：`VMsPerScaleUnitLimitExceeded`、`VMsPerScaleUnitNodeLimitExceeded`。
 
+## <a name="consideration-for-batch-deployment-of-vms"></a>VM 的批量部署注意事项
+
+在 2002 版本以及之前的版本中，每批部署 2-5 个 VM，各批次之间间隔 5 分钟，就可以提供可靠的 VM 部署，以达到 700 个 VM 的规模。 使用 2005 版本的 Azure Stack Hub，我们能够通过每批部署 50 个 VM，各批量部署之间间隔 5 分钟，稳定地预配 VM。
+
 ## <a name="considerations-for-deallocation"></a>解除分配的注意事项
 
-当 VM 处于“解除分配”  状态时，不会使用内存资源。 这允许将其他 VM 放置在系统中。
+当 VM 处于“解除分配”__ 状态时，不会使用内存资源。 这允许将其他 VM 放置在系统中。
 
 如果随后再次启动已解除分配的 VM，则内存使用或分配将像放置在系统中的新 VM 一样处理，并占用可用内存。
 
@@ -88,7 +92,7 @@ VM 放置的可用内存 = 主机总内存 - 复原保留 - 运行租户 VM 所�
 
 值 V（缩放单元中的最大 VM）是动态变化的，具体取决于最大的租户 VM 内存大小。 例如，最大 VM 值可能是 7 GB 或 112 GB，或者是 Azure Stack Hub 解决方案中任何其他受支持的 VM 内存大小。 更改 Azure Stack Hub 结构上最大的 VM 会导致增大复原预留量，同时还会导致 VM 本身的内存增加。
 
-## <a name="frequently-asked-questions"></a>常见问题解答
+## <a name="frequently-asked-questions"></a>常见问题
 
 **问**：我的租户部署了新的 VM，管理员门户上的容量图表要多久才显示剩余容量？
 

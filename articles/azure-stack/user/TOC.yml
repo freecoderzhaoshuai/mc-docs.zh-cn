@@ -48,12 +48,12 @@
                 - name: Azure Stack Hub PowerShell 概述
                   href: azure-stack-powershell-overview.md
                 - name: 安装 Azure Stack Hub PowerShell
-                  href: /azure-stack/operator/azure-stack-powershell-install?toc=/azure-stack/user/toc.json&bc=/azure-stack/breadcrumb/toc.json
+                  href: ../operator/azure-stack-powershell-install.md?toc=/azure-stack/user/toc.json&bc=/azure-stack/breadcrumb/toc.json
                   maintainContext: true
                 - name: 使用 PowerShell 连接
                   href: azure-stack-powershell-configure-user.md
                 - name: 下载 Azure Stack Hub 工具
-                  href: /azure-stack/operator/azure-stack-powershell-download?toc=/azure-stack/user/toc.json&bc=/azure-stack/breadcrumb/toc.json
+                  href: ../operator/azure-stack-powershell-download.md?toc=/azure-stack/user/toc.json&bc=/azure-stack/breadcrumb/toc.json
                   maintainContext: true
                 - name: 使用 Docker 运行 PowerShell
                   href: azure-stack-powershell-user-docker.md
@@ -118,7 +118,7 @@
             - name: 使用基于角色的访问控制
               href: azure-stack-manage-permissions.md
             - name: 使用应用标识访问资源
-              href: /azure-stack/operator/azure-stack-create-service-principals?toc=/azure-stack/user/toc.json&bc=/azure-stack/breadcrumb/toc.json
+              href: ../operator/azure-stack-create-service-principals.md?toc=/azure-stack/user/toc.json&bc=/azure-stack/breadcrumb/toc.json
         - name: 使用服务
           items:
             - name: 计算
@@ -129,12 +129,18 @@
                   href: azure-stack-vm-considerations.md
                 - name: VM 大小
                   href: azure-stack-vm-sizes.md
+                - name: 支持的 GPU VM
+                  href: gpu-vms-about.md
                 - name: 管理 VM 磁盘
                   href: azure-stack-manage-vm-disks.md
                 - name: 托管磁盘注意事项
                   href: azure-stack-managed-disk-considerations.md
+                - name: 删除带依赖项的 VM
+                  href: delete-vm.md
                 - name: 保护 VM
                   href: azure-stack-manage-vm-protect.md
+                - name: VM 已知问题
+                  href: troubleshoot-vm-known-issues.md
                 - name: VM 更新和管理
                   href: vm-update-management.md
                 - name: SQL Server VM 注意事项
@@ -336,9 +342,11 @@
 - name: 相关内容
   items:
     - name: Azure Stack Hub 操作员文档
-      href: /azure-stack/operator/
+      href: ../operator/index.yml
     - name: ASDK 文档
-      href: /azure-stack/asdk/
+      href: ../asdk/index.yml
+    - name: Azure 混合云文档
+      href: 'https://docs.microsoft.com/hybrid'
 - name: 资源
   items:
     - name: Azure Stack Hub MSDN 论坛

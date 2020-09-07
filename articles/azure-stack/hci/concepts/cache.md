@@ -3,56 +3,35 @@ title: 了解 Azure Stack HCI 中的缓存
 description: 存储空间直通和 Azure Stack HCI 中读取和写入缓存的工作原理。
 author: WenJason
 ms.author: v-jay
-ms.topic: article
-origin.date: 02/28/2020
-ms.date: 06/22/2020
-ms.openlocfilehash: f773f16dde94c899c8dcacee00c421a624d7c12c
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.topic: conceptual
+origin.date: 08/11/2020
+ms.date: 08/31/2020
+ms.openlocfilehash: 387478bb1c9eb2e085151ede1ddd26453e774d8e
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096512"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867940"
 ---
 # <a name="understanding-the-cache-in-azure-stack-hci"></a>了解 Azure Stack HCI 中的缓存
 
->适用于：Windows Server 2019
+> 适用于：Azure Stack HCI 版本 20H2；Windows Server 2019
 
 [存储空间直通](https://docs.microsoft.com/windows-server/storage/storage-spaces/storage-spaces-direct-overview)提供一个内置的服务器端缓存用于实现最佳存储性能。 此缓存是一个大型的持久性实时读取和写入缓存。 启用存储空间直通时，系统会自动配置该缓存。 在大多数情况下，无需进行任何手动管理。
 缓存的工作原理取决于现有的驱动器类型。
 
-
 ## <a name="drive-types-and-deployment-options"></a>驱动器类型和部署选项
 
-存储空间直通目前适用于三种类型的存储设备：
+存储空间直通目前适用于四种类型的驱动器：
 
-<table>
-    <tr style="border: 0;">
-        <td style="padding: 10px; border: 0; width:70px">
-            <img src="media/cache/NVMe-100px.png">
-        </td>
-        <td style="padding: 10px; border: 0;" valign="middle">
-            NVMe（非易失性快速存储器）
-        </td>
-    </tr>
-    <tr style="border: 0;">
-        <td style="padding: 10px; border: 0; width:70px">
-            <img src="media/cache/SSD-100px.png">
-        </td>
-        <td style="padding: 10px; border: 0;" valign="middle">
-            SATA/SAS SSD（固态硬盘）
-        </td>
-    </tr>
-    <tr style="border: 0;">
-        <td style="padding: 10px; border: 0; width:70px">
-            <img src="media/cache/HDD-100px.png">
-        </td>
-        <td style="padding: 10px; border: 0;" valign="middle">
-            HDD（机械硬盘）
-        </td>
-    </tr>
-</table>
+| 驱动器类型 | 描述 |
+|----------------------|--------------------------|
+|![PMem](media/choose-drives/pmem-100px.png)|PMem 是指永久性内存，一种新的低延迟、高性能存储类型。|
+|![NVMe](media/choose-drives/NVMe-100-px.png)|**NVMe**（非易失性快速内存）是指直接位于 PCIe 总线上的固态硬盘。 常见外形规格为 2.5 英寸 U.2、PCIe 附加卡 (AIC) 和 M.2。 NVMe 提供较高的 IOPS 和 IO 吞吐量，延迟也比目前支持的除 PMem 外的任何其他驱动器类型低。|
+|![SSD](media/choose-drives/SSD-100-px.png)|**SSD** 是指通过传统 SATA 或 SAS 连接的固态硬盘。|
+|![HDD](media/choose-drives/HDD-100-px.png)|**HDD** 是指旋转式的磁性硬盘，可提供巨量存储容量。|
 
-这些类型可按六种方式进行组合，我们将其划分成两大类别：“全闪存”和“混合”。
+这些类型可按各种方式进行组合，我们将其划分成两大类别：“全闪存”和“混合”。
 
 ### <a name="all-flash-deployment-possibilities"></a>全闪存部署的可行性
 
@@ -168,7 +147,7 @@ Windows 软件定义的存储堆栈中有多个其他不相关的缓存。 例�
 
 ## <a name="manual-configuration"></a>手动配置
 
-大多数部署无需进行手动配置。 如果需要手动配置，请参阅以下部分。 
+大多数部署无需进行手动配置。 如果需要手动配置，请参阅以下部分。
 
 如果需要在设置后对缓存设备型号进行更改，请根据[运行状况服务概述](https://docs.microsoft.com/windows-server/failover-clustering/health-service-overview#supported-components-document)中所述，编辑运行状况服务的支持组件文档。
 

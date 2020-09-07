@@ -10,12 +10,12 @@ ms.author: jordane
 author: jpe316
 ms.reviewer: larryfr
 ms.date: 06/23/2020
-ms.openlocfilehash: ade8703b08889effcbd7fa59b8baf9b2c23119df
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: d5196b84c0981dfd1b4151d5a5ec05eaaa18d76b
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228209"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946971"
 ---
 # <a name="deploy-a-model-to-an-azure-kubernetes-service-cluster"></a>将模型部署到 Azure Kubernetes 服务群集
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -40,7 +40,7 @@ AKS 群集和 AML 工作区可以位于不同的资源组中。
 > 创建或附加过程是一次性任务。 将 AKS 群集连接到工作区后，便可将其用于部署。 如果不再需要 AKS 群集，可将其拆离或删除。 拆离或删除后，将无法再部署到该群集。
 
 > [!IMPORTANT]
-> 强烈建议在部署到 Web 服务之前先进行本地调试。有关详细信息，请参阅[本地调试](/machine-learning/how-to-troubleshoot-deployment#debug-locally)
+> 建议在部署到 Web 服务之前先进行本地调试。有关详细信息，请参阅[本地调试](/machine-learning/how-to-troubleshoot-deployment#debug-locally)
 >
 > 还可参阅 Azure 机器学习 - [部署到本地笔记本](https://github.com/Azure/MachineLearningNotebooks/tree/master/how-to-use-azureml/deployment/deploy-to-local)
 
@@ -105,6 +105,13 @@ from azureml.core.compute import AksCompute, ComputeTarget
 # For example, to create a dev/test cluster, use:
 # prov_config = AksCompute.provisioning_configuration(cluster_purpose = AksCompute.ClusterPurpose.DEV_TEST)
 prov_config = AksCompute.provisioning_configuration()
+# Example configuration to use an existing virtual network
+# prov_config.vnet_name = "mynetwork"
+# prov_config.vnet_resourcegroup_name = "mygroup"
+# prov_config.subnet_name = "default"
+# prov_config.service_cidr = "10.0.0.0/16"
+# prov_config.dns_service_ip = "10.0.0.10"
+# prov_config.docker_bridge_cidr = "172.17.0.1/16"
 
 aks_name = 'myaks'
 # Create the cluster
@@ -181,6 +188,9 @@ cluster_name = 'myexistingcluster'
 attach_config = AksCompute.attach_configuration(resource_group = resource_group,
                                          cluster_name = cluster_name)
 aks_target = ComputeTarget.attach(ws, 'myaks', attach_config)
+
+# Wait for the attach process to complete
+aks_target.wait_for_completion(show_output = True)
 ```
 
 有关此示例中使用的类、方法和参数的详细信息，请参阅以下参考文档：
@@ -260,7 +270,7 @@ az ml model deploy -ct myaks -m mymodel:1 -n myservice -ic inferenceconfig.json 
 
 ### <a name="understand-the-deployment-processes"></a>了解部署过程
 
-在 Kubernetes 和 Azure 机器学习中都会用到“部署”一词。 “部署”的含义在这两种上下文中有很大区别。 在 Kubernetes 中，`Deployment` 是使用声明性 YAML 文件指定的具体实体。 Kubernetes `Deployment` 具有明确的生命周期，并与其他 Kubernetes 实体（如 `Pods` 和 `ReplicaSets`）有具体的关系。 可以从[什么是 Kubernetes？](https://aka.ms/k8slearning)中的文档和视频了解 Kubernetes。
+在 Kubernetes 和 Azure 机器学习中都会用到“部署”一词。 “部署”在这两种上下文中有不同的含义。 在 Kubernetes 中，`Deployment` 是使用声明性 YAML 文件指定的具体实体。 Kubernetes `Deployment` 具有明确的生命周期，并与其他 Kubernetes 实体（如 `Pods` 和 `ReplicaSets`）有具体的关系。 可以从[什么是 Kubernetes？](https://aka.ms/k8slearning)中的文档和视频了解 Kubernetes。
 
 在 Azure 机器学习中，“部署”在更普遍的意义上用于提供和清理项目资源。 Azure 机器学习认为属于部署的步骤包括：
 
@@ -419,15 +429,12 @@ print(token)
 >
 > 若要检索令牌，必须使用 Azure 机器学习 SDK 或 [az ml service get-access-token](https://docs.microsoft.com/cli/azure/ext/azure-cli-ml/ml/service?view=azure-cli-latest#ext-azure-cli-ml-az-ml-service-get-access-token) 命令。
 
-## <a name="update-the-web-service"></a>更新 Web 服务
-
-[!INCLUDE [aml-update-web-service](../../includes/machine-learning-update-web-service.md)]
-
 ## <a name="next-steps"></a>后续步骤
 
 * [虚拟网络中的安全试验和推理](how-to-enable-virtual-network.md)
 * [如何使用自定义 Docker 映像部署模型](how-to-deploy-custom-docker-image.md)
 * [部署疑难解答](how-to-troubleshoot-deployment.md)
+* [更新 Web 服务](how-to-deploy-update-web-service.md)
 * [使用 TLS 通过 Azure 机器学习保护 Web 服务](how-to-secure-web-service.md)
 * [使用部署为 Web 服务的机器学习模型](how-to-consume-web-service.md)
 * [使用 Application Insights 监视 Azure 机器学习模型](how-to-enable-app-insights.md)

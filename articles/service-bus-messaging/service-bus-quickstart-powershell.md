@@ -1,41 +1,36 @@
 ---
 title: 使用 Azure PowerShell 创建服务总线队列
-description: 在本快速入门中，你将了解如何使用 Azure PowerShell 创建服务总线队列。 然后，你将使用示例应用程序向队列发送消息以及从中接收消息。
+description: 在本快速入门中，你将了解如何使用 Azure PowerShell 创建服务总线命名空间并在其中创建队列。
 author: rockboyfor
 ms.devlang: dotnet
 ms.topic: quickstart
-origin.date: 06/23/2020
-ms.date: 07/27/2020
-ms.testscope: yes
+origin.date: 08/12/2020
+ms.date: 08/24/2020
+ms.testscope: no
 ms.testdate: 07/20/2020
 ms.author: v-yeche
-ms.openlocfilehash: e1c85031c1098e3268a9623583ac8748efd6e61d
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 0a08b3be92475d99d24dd65b8cf1b515006da1d0
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162275"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946869"
 ---
-# <a name="quickstart-use-azure-powershell-to-create-a-service-bus-queue"></a>快速入门：使用 Azure PowerShell 创建服务总线队列
-本快速入门介绍如何使用 PowerShell 创建消息命名空间并在该命名空间中创建队列，以及如何获取该命名空间上的授权凭据，以便将消息发送到服务总线队列及从中接收消息。 然后该过程展示了如何使用 [.NET Standard 库](https://www.nuget.org/packages/Microsoft.Azure.ServiceBus)从此队列发送和接收消息。
-
-[!INCLUDE [updated-for-az](../../includes/updated-for-az.md)]
+# <a name="use-azure-powershell-to-create-a-service-bus-namespace-and-a-queue"></a>使用 Azure PowerShell 创建服务总线命名空间和队列
+本快速入门介绍如何使用 Azure PowerShell 创建服务总线命名空间和队列。 本快速入门还介绍了如何获取客户端应用程序向队列发送消息或从队列接收消息所使用的授权凭据。 
 
 [!INCLUDE [howto-service-bus-queues](../../includes/howto-service-bus-queues.md)]
 
 ## <a name="prerequisites"></a>先决条件
 
-若要完成本教程，请确保已安装：
-
-- Azure 订阅。 如果没有 Azure 订阅，可在开始前创建一个[试用帐户][]。 
-- [Visual Studio 2017 Update 3（版本 15.3 (26730.01)）](https://www.visualstudio.com/vs)或更高版本。 请使用 Visual Studio 生成一个向队列发送消息以及从队列接收消息的示例。 示例用于测试在门户中创建的队列。 
-- [NET Core SDK](https://www.microsoft.com/net/download/windows) 2.0 或更高版本。
-
-本快速入门要求运行最新版本的 Azure PowerShell。 如需进行安装或升级，请参阅[安装和配置 Azure PowerShell][]。
-
+若要完成本快速入门，请确保你有一个 Azure 订阅。 如果没有 Azure 订阅，可在开始前创建一个[试用帐户][]。 
 <!--Not Available on Cloud Shell-->
 
-## <a name="sign-in-to-azure"></a>登录 Azure
+可以在本地计算机上[安装](https://docs.microsoft.com/powershell/azure/install-Az-ps)和使用 Azure PowerShell。 
+
+## <a name="provision-resources"></a>预配资源
+
+<!--MOONCAKE CUSTOMIZE ON 08/27/2020-->
 
 1. 首先，如果尚未安装服务总线 PowerShell 模块，请安装：
 
@@ -55,217 +50,42 @@ ms.locfileid: "87162275"
     Select-AzSubscription -SubscriptionName "MyAzureSubName" 
     Get-AzContext
     ```
+    
+    <!--MOONCAKE CUSTOMIZE ON 08/27/2020-->
 
-## <a name="provision-resources"></a>预配资源
-
-在 PowerShell 提示符下，发出以下命令以预配服务总线资源。 请务必将所有占位符替换为适当的值：
-
-```powershell
-# Create a resource group 
-New-AzResourceGroup -Name my-resourcegroup -Location chinaeast
-
-# Create a Messaging namespace
-New-AzServiceBusNamespace -ResourceGroupName my-resourcegroup -NamespaceName namespace-name -Location chinaeast
-
-# Create a queue 
-New-AzServiceBusQueue -ResourceGroupName my-resourcegroup -NamespaceName namespace-name -Name queue-name -EnablePartitioning $False
-
-# Get primary connection string (required in next step)
-Get-AzServiceBusKey -ResourceGroupName my-resourcegroup -Namespace namespace-name -Name RootManageSharedAccessKey
-```
-
-`Get-AzServiceBusKey` cmdlet 运行后，将所选的连接字符串和队列名称复制并粘贴到记事本等临时位置。 在下一步中将要使用它。
-
-## <a name="send-and-receive-messages"></a>发送和接收消息
-
-创建命名空间和队列并且拥有所需的凭据后，便可以发送和接收消息。 可以在[此 GitHub 示例文件夹](https://github.com/Azure/azure-service-bus/tree/master/samples/DotNet/GettingStarted/BasicSendReceiveQuickStart)中检查代码。
-
-若要运行此代码，请执行以下操作：
-
-1. 通过发出以下命令克隆[服务总线 GitHub 存储库](https://github.com/Azure/azure-service-bus/)：
-
-    ```shell
-    git clone https://github.com/Azure/azure-service-bus.git
-    ```
-
-2. 导航到示例文件夹 `azure-service-bus\samples\DotNet\GettingStarted\BasicSendReceiveQuickStart\BasicSendReceiveQuickStart`。
-
-3. 如果尚未这样做，请使用以下 PowerShell cmdlet 获取连接字符串。 请务必将 `my-resourcegroup` 和 `namespace-name` 替换为具体值： 
+4. 运行以下命令来创建 Azure 资源组。 如有需要，请更新资源组名称和位置。 
 
     ```powershell
-    Get-AzServiceBusKey -ResourceGroupName my-resourcegroup -Namespace namespace-name -Name RootManageSharedAccessKey
+    New-AzResourceGroup -Name ContosoRG -Location chinaeast
+    ```
+5. 运行以下命令以创建服务总线消息命名空间。 在此示例中，`ContosoRG` 是在上一步中创建的资源组。 `ContosoSBusNS` 是在该资源组中创建的服务总线命名空间的名称。 
+
+    ```powershell
+    New-AzServiceBusNamespace -ResourceGroupName ContosoRG -Name ContosoSBusNS -Location chinaeast
+    ```
+6. 运行以下命令，在上一步中创建的命名空间中创建一个队列。 
+
+    ```powershell
+    New-AzServiceBusQueue -ResourceGroupName ContosoRG -NamespaceName ContosoSBusNS -Name ContosoOrdersQueue 
+    ```
+7. 获取命名空间的主连接字符串。 使用此连接字符串连接到队列并发送和接收消息。 
+
+    ```powershell    
+    Get-AzServiceBusKey -ResourceGroupName ContosoRG -Namespace ContosoSBusNS -Name RootManageSharedAccessKey
     ```
 
-4. 在 PowerShell 提示符下，键入以下命令：
-
-    ```shell
-    dotnet build
-    ```
-
-5. 导航到 `bin\Debug\netcoreapp2.0` 文件夹。
-
-6. 键入以下命令以运行程序。 请务必将 `myConnectionString` 替换为先前获取的值，将 `myQueueName` 替换为所创建队列的名称：
-
-    ```shell
-    dotnet BasicSendReceiveQuickStart.dll -ConnectionString "myConnectionString" -QueueName "myQueueName"
-    ``` 
-
-7. 观察发送到队列并随后从队列中接收的 10 条消息：
-
-    ![程序输出](./media/service-bus-quickstart-powershell/dotnet.png)
-
-## <a name="clean-up-resources"></a>清理资源
-
-运行以下命令来删除资源组、命名空间和所有相关资源：
-
-```powershell
-Remove-AzResourceGroup -Name my-resourcegroup
-```
-
-## <a name="understand-the-sample-code"></a>了解示例代码
-
-此部分包含有关示例代码功能的更多详细信息。 
-
-### <a name="get-connection-string-and-queue"></a>获取连接字符串和队列
-
-连接字符串和队列名称作为命令行参数传递给 `Main()` 方法。 `Main()` 声明了两个字符串变量来保存这些值：
-
-```csharp
-static void Main(string[] args)
-{
-    string ServiceBusConnectionString = "";
-    string QueueName = "";
-
-    for (int i = 0; i < args.Length; i++)
-    {
-        var p = new Program();
-        if (args[i] == "-ConnectionString")
-        {
-            Console.WriteLine($"ConnectionString: {args[i+1]}");
-            ServiceBusConnectionString = args[i + 1]; 
-        }
-        else if(args[i] == "-QueueName")
-        {
-            Console.WriteLine($"QueueName: {args[i+1]}");
-            QueueName = args[i + 1];
-        }                
-    }
-
-    if (ServiceBusConnectionString != "" && QueueName != "")
-        MainAsync(ServiceBusConnectionString, QueueName).GetAwaiter().GetResult();
-    else
-    {
-        Console.WriteLine("Specify -Connectionstring and -QueueName to execute the example.");
-        Console.ReadKey();
-    }                            
-}
-```
-
-然后，`Main()` 方法启动异步消息循环 `MainAsync()`。
-
-### <a name="message-loop"></a>消息循环
-
-MainAsync() 方法使用命令行参数创建队列客户端、调用名为 `RegisterOnMessageHandlerAndReceiveMessages()` 的接收消息处理程序，并发送消息集：
-
-```csharp
-static async Task MainAsync(string ServiceBusConnectionString, string QueueName)
-{
-    const int numberOfMessages = 10;
-    queueClient = new QueueClient(ServiceBusConnectionString, QueueName);
-
-    Console.WriteLine("======================================================");
-    Console.WriteLine("Press any key to exit after receiving all the messages.");
-    Console.WriteLine("======================================================");
-
-    // Register QueueClient's MessageHandler and receive messages in a loop
-    RegisterOnMessageHandlerAndReceiveMessages();
-
-    // Send Messages
-    await SendMessagesAsync(numberOfMessages);
-
-    Console.ReadKey();
-
-    await queueClient.CloseAsync();
-}
-```
-
-`RegisterOnMessageHandlerAndReceiveMessages()` 方法只是设置一些消息处理程序选项，然后调用队列客户端的 `RegisterMessageHandler()` 方法，该方法开始接收消息：
-
-```csharp
-static void RegisterOnMessageHandlerAndReceiveMessages()
-{
-    // Configure the MessageHandler Options in terms of exception handling, number of concurrent messages to deliver etc.
-    var messageHandlerOptions = new MessageHandlerOptions(ExceptionReceivedHandler)
-    {
-        // Maximum number of Concurrent calls to the callback `ProcessMessagesAsync`, set to 1 for simplicity.
-        // Set it according to how many messages the application wants to process in parallel.
-        MaxConcurrentCalls = 1,
-
-        // Indicates whether MessagePump should automatically complete the messages after returning from User Callback.
-        // False below indicates the Complete will be handled by the User Callback as in `ProcessMessagesAsync` below.
-        AutoComplete = false
-    };
-
-    // Register the function that will process messages
-    queueClient.RegisterMessageHandler(ProcessMessagesAsync, messageHandlerOptions);
-} 
-```
-
-### <a name="send-messages"></a>发送消息
-
-消息创建和发送操作发生在 `SendMessagesAsync()` 方法中：
-
-```csharp
-static async Task SendMessagesAsync(int numberOfMessagesToSend)
-{
-    try
-    {
-        for (var i = 0; i < numberOfMessagesToSend; i++)
-        {
-            // Create a new message to send to the queue
-            string messageBody = $"Message {i}";
-            var message = new Message(Encoding.UTF8.GetBytes(messageBody));
-
-            // Write the body of the message to the console
-            Console.WriteLine($"Sending message: {messageBody}");
-
-            // Send the message to the queue
-            await queueClient.SendAsync(message);
-        }
-    }
-    catch (Exception exception)
-    {
-        Console.WriteLine($"{DateTime.Now} :: Exception: {exception.Message}");
-    }
-}
-```
-
-### <a name="process-messages"></a>处理消息
-
-`ProcessMessagesAsync()` 方法确认、处理并完成消息的接收：
-
-```csharp
-static async Task ProcessMessagesAsync(Message message, CancellationToken token)
-{
-    // Process the message
-    Console.WriteLine($"Received message: SequenceNumber:{message.SystemProperties.SequenceNumber} Body:{Encoding.UTF8.GetString(message.Body)}");
-
-    // Complete the message so that it is not received again.
-    await queueClient.CompleteAsync(message.SystemProperties.LockToken);
-}
-```
-
-> [!NOTE]
-> 可以使用[服务总线资源管理器](https://github.com/paolosalvatori/ServiceBusExplorer/)管理服务总线资源。 服务总线资源管理器允许用户连接到服务总线命名空间并以一种简单的方式管理消息传送实体。 该工具提供高级功能，如导入/导出功能或用于对主题、队列、订阅、中继服务、通知中心和事件中心进行测试的功能。 
+    请记下该连接字符串和队列名称。 使用它们发送和接收消息。 
 
 ## <a name="next-steps"></a>后续步骤
+在本文中，你创建了服务总线命名空间并在其中创建了队列。 若要了解如何向队列发送消息或从队列接收消息，请参阅“发送和接收消息”部分中的以下某个快速入门。 
 
-本文介绍了如何创建一个服务总线命名空间并从队列发送和接收消息所需的其他资源。 若要详细了解如何编写收发消息的代码，请继续阅读教程的“发送和接收消息”部分。 
-
-> [!div class="nextstepaction"]
-> [发送和接收消息](service-bus-dotnet-get-started-with-queues.md)
+- [.NET](service-bus-dotnet-get-started-with-queues.md)
+- [Java](service-bus-java-how-to-use-queues.md)
+- [JavaScript](service-bus-nodejs-how-to-use-queues-new-package.md)
+- [Python](service-bus-python-how-to-use-queues.md)
+- [PHP](service-bus-php-how-to-use-queues.md)
+- [Ruby](service-bus-ruby-how-to-use-queues.md)
 
 [试用帐户]: https://www.azure.cn/pricing/1rmb-trial/
-[安装和配置 Azure PowerShell]: https://docs.microsoft.com/powershell/azure/install-Az-ps
 
 <!-- Update_Description: update meta properties, wording update, update link -->

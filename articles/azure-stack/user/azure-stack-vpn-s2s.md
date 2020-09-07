@@ -5,15 +5,15 @@ author: WenJason
 ms.custom: contperfq4
 ms.topic: article
 origin.date: 05/21/2020
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.lastreviewed: 05/07/2019
-ms.openlocfilehash: ebf9b413ba34109d114ec3de92daf4eae83e0568
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: dc17977c52cd5cba312b368cf94a782f419c7b05
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096435"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867976"
 ---
 # <a name="configure-ipsecike-policy-for-site-to-site-vpn-connections"></a>配置站点到站点 VPN 连接的 IPsec/IKE 策略
 
@@ -74,12 +74,14 @@ IPsec 和 IKE 协议标准支持采用各种组合的各种加密算法。 若�
 |------------------------------------------------------|--------------------------------------------------------------------------|
 | IKEv2 加密                                     | AES256、AES192、AES128、DES3、DES                                        |
 | IKEv2 完整性                                      | SHA384、SHA256、SHA1、MD5                                                |
-| DH 组                                             | ECP384、ECP256、DHGroup24、DHGroup14、DHGroup2、DHGroup1                 |
+| DH 组                                             | ECP384、DHGroup14、DHGroup2、DHGroup1、ECP256、DHGroup24             |
 | IPsec 加密                                     | GCMAES256、GCMAES192、GCMAES128、AES256、AES192、AES128、DES3、DES、无 |
-| IPsec 完整性                                      | GCMASE256、GCMAES192、GCMAES128                                          |
+| IPsec 完整性                                      | GCMAES256、GCMAES192、GCMAES128                                          |
 | PFS 组                                            | PFS24、ECP384、ECP256、PFS2048、PFS2、PFS1、PFSMM、无                  |
 | QM SA 生存期                                       | （可选：如果未指定，则使用默认值）<br />                         秒（整数；至少为 300 秒/默认为 27000 秒）<br />                         KB（整数；至少为 1024 KB/默认为 102400000 KB） |
 | 流量选择器                                     | Azure Stack Hub 不支持基于策略的流量选择器。         |
+
+\* 这些参数仅在版本 2002 及更高版本中可用。 
 
 - 本地 VPN 设备配置必须匹配，或者必须包含可在 Azure IPsec/IKE 策略中指定的以下算法和参数：
 
@@ -109,9 +111,11 @@ IPsec 和 IKE 协议标准支持采用各种组合的各种加密算法。 若�
 | 1                    | DHGroup1  | PFS1          | 768 位 MODP  |
 | 2                    | DHGroup2  | PFS2          | 1024 位 MODP |
 | 14                   | DHGroup14<br/>DHGroup2048 | PFS2048       | 2048 位 MODP |
-| 19                   | ECP256    | ECP256        | 256 位 ECP   |
-| 20 个                   | ECP384    | ECP384        | 384 位 ECP   |
-| 24                   | DHGroup24 | PFS24         | 2048 位 MODP |
+| 19                   | ECP256*    | ECP256        | 256 位 ECP   |
+| 20                   | ECP384    | ECP384        | 384 位 ECP   |
+| 24                   | DHGroup24* | PFS24         | 2048 位 MODP |
+
+\* 这些参数仅在版本 2002 及更高版本中可用。 
 
 有关详细信息，请参阅 [RFC3526](https://tools.ietf.org/html/rfc3526) 和 [RFC5114](https://tools.ietf.org/html/rfc5114)。
 

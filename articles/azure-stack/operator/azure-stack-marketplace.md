@@ -3,21 +3,21 @@ title: Azure Stack Hub 市场概述
 description: Azure Stack Hub 市场和市场项概述。
 author: WenJason
 ms.topic: article
-origin.date: 04/20/2020
-ms.date: 05/18/2020
+origin.date: 07/27/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: ihcherie
 ms.lastreviewed: 05/07/2019
-ms.openlocfilehash: 567539d30a34563aac99a0d81ca0b4db407956d6
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: 003fc1fd1afca56786ca901c550749579d3bc5c6
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422555"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867839"
 ---
 # <a name="azure-stack-hub-marketplace-overview"></a>Azure Stack Hub 市场概述
 
-Azure Stack Hub 市场是针对 Azure Stack Hub 自定义的服务、应用和资源的集合。 资源包括网络、虚拟机 (VM)、存储，等等。 可以使用 Azure Stack Hub 市场创建新资源和部署新应用，或者浏览并选择想要使用的项。 若要使用某个市场项，用户必须订阅一个可让他们访问该项的产品/服务。
+Azure Stack Hub 市场是针对 Azure Stack Hub 自定义的服务、应用和资源的集合。 资源包括网络、虚拟机 (VM)、存储，等等。 可以使用 Azure Stack Hub 市场创建新资源和部署新应用，或者浏览并选择想要使用的项。 若要使用某个市场项，用户必须订阅一个可让他们访问该项的套餐。
 
 作为 Azure Stack Hub 操作员，你可以确定要添加（发布）到 Azure Stack Hub 市场的项。 可以发布数据库、应用程序服务等项。 发布使项对所有用户可见。 可以发布创建的自定义项，或者发布不断扩充的 [Azure 市场项列表](azure-stack-marketplace-azure-items.md)中所列的项。 将某个项发布到 Azure Stack Hub 市场后，用户在五分钟内就能看到它。
 

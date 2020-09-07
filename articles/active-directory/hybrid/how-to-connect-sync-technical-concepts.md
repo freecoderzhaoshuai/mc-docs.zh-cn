@@ -4,41 +4,41 @@ description: 介绍 Azure AD Connect 同步的技术概念。
 services: active-directory
 documentationcenter: ''
 author: billmath
-manager: mtillman
+manager: daveba
 editor: ''
 ms.assetid: 731cfeb3-beaf-4d02-aef4-b02a8f99fd11
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: article
-origin.date: 01/15/2018
-ms.date: 11/12/2018
-ms.component: hybrid
+ms.topic: how-to
+ms.date: 08/27/2020
+ms.subservice: hybrid
 ms.author: v-junlch
-ms.openlocfilehash: a387a6d9466b13ab22f64ba96f0f9272f5bac1cc
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.collection: M365-identity-device-management
+ms.openlocfilehash: 85eab48e82fc3eaa53a359fdec5f33746ec7d88e
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "63824265"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946861"
 ---
 # <a name="azure-ad-connect-sync-technical-concepts"></a>Azure AD Connect 同步：技术概念
 本文是[了解体系结构](how-to-connect-sync-technical-concepts.md)主题的总结。
 
 Azure AD Connect 同步构建在稳固的元目录同步平台基础之上。
 以下部分介绍了元目录同步的概念。
-Azure Active Directory 同步服务基于 MIIS、ILM 和 FIM 进行构建，它提供了下一个平台，用于连接到数据源、同步数据源之间的数据以及设置标识和取消标识设置。
+Azure Active Directory 同步服务基于 MIIS (Microsoft Identity Integration Server)、ILM (Identity Lifecycle Manager) 和 FIM (Forefront Identity Manager) 进行构建，它提供了下一个平台，用于连接到数据源、同步数据源之间的数据以及设置标识和取消标识设置。
 
 ![技术概念](./media/how-to-connect-sync-technical-concepts/scenario.png)
 
 以下各部分提供有关 FIM 同步服务的以下方面的更多详细信息：
 
-- 连接器
-- 属性流
-- 连接器空间
-- Metaverse
-- 设置
+* 连接器
+* 属性流
+* 连接器空间
+* Metaverse
+* 设置
 
 ## <a name="connector"></a>连接器
 用于与连接的目录进行通信的代码模块称为连接器（以前称为管理代理 (MA)）。
@@ -87,9 +87,7 @@ metaverse 是相邻连接器空间中的所有已联接标识的合并视图。
 每当某条规则确定需要创建新的连接器空间对象时，它都称为设置。 但是，因为此操作只在连接器空间内发生，所以它不会延续到已连接数据源，直到执行导出。
 
 ## <a name="additional-resources"></a>其他资源
-- [Azure AD Connect 同步：自定义同步选项](how-to-connect-sync-whatis.md)
-- [将本地标识与 Azure Active Directory 集成](whatis-hybrid-identity.md)
+* [Azure AD Connect 同步：自定义同步选项](how-to-connect-sync-whatis.md)
+* [将本地标识与 Azure Active Directory 集成](whatis-hybrid-identity.md)
 
-<!--Image references-->
-[1]: ./media/active-directory-aadsync-technical-concepts/ic750598.png
 

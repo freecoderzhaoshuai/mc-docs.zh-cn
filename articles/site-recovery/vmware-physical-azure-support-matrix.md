@@ -2,17 +2,17 @@
 title: Azure Site Recovery 中的 VMware/物理灾难恢复支持列表
 description: 汇总了使用 Azure Site Recovery 将 VMware VM 和物理服务器灾难恢复到 Azure 的支持。
 ms.topic: conceptual
-origin.date: 06/10/2020
-ms.date: 08/03/2020
-ms.testscope: no
-ms.testdate: 06/08/2020
+origin.date: 07/14/2020
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.author: v-yeche
-ms.openlocfilehash: 57da0943bdd5f14d97ecae593f55f9a6e435c2bb
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 806b723b50a3664903f2fb99fb50c1b4eb4136eb
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426518"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807860"
 ---
 # <a name="support-matrix-for-disaster-recovery--of-vmware-vms-and-physical-servers-to-azure"></a>将 VMware VM 和物理服务器灾难恢复到 Azure 时的支持矩阵
 
@@ -20,6 +20,9 @@ ms.locfileid: "87426518"
 
 - [详细了解](vmware-azure-architecture.md) VMware VM/物理服务器灾难恢复体系结构。
 - 遵循我们的[教程](tutorial-prepare-azure.md)尝试进行灾难恢复。
+
+> [!NOTE]
+> Site Recovery 不会将客户数据移到或存储在目标区域之外，目标区域中已为源计算机设置了灾难恢复。 如果客户愿意，可以从其他地区选择恢复服务保管库。 恢复服务保管库包含元数据，但不包含实际的客户数据。
 
 ## <a name="deployment-scenarios"></a>部署方案
 
@@ -53,8 +56,8 @@ RAM | 16 GB
 操作系统区域设置 | 英语 (en-us)
 [PowerCLI](https://my.vmware.com/web/vmware/details?productId=491&downloadGroup=PCLI600R1) | 在配置服务器版本 [9.14](https://support.microsoft.com/help/4091311/update-rollup-23-for-azure-site-recovery) 或更高版本中不需要。
 Windows Server 角色 | 不要启用 Active Directory 域服务、Internet Information Services (IIS) 或 Hyper-V。
-组策略| - 阻止访问命令提示符。 <br/> - 阻止访问注册表编辑工具。 <br/> - 信任文件附件的逻辑。 <br/> - 打开脚本执行。 <br/> - [了解详细信息](https://technet.microsoft.com/library/gg176671(v=ws.10).aspx)|
-IIS | 确保：<br/><br/> - 无预先存在的默认网站 <br/> - 启用[匿名身份验证](https://technet.microsoft.com/library/cc731244(v=ws.10).aspx) <br/> - 启用 [FastCGI](https://technet.microsoft.com/library/cc753077(v=ws.10).aspx) 设置  <br/> - 端口 443 上没有预先存在的网站/应用侦听<br/>
+组策略| - 阻止访问命令提示符。 <br/> - 阻止访问注册表编辑工具。 <br/> - 信任文件附件的逻辑。 <br/> - 打开脚本执行。 <br/> - [了解详细信息](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-7/gg176671(v=ws.10))|
+IIS | 确保：<br/><br/> - 无预先存在的默认网站 <br/> - 启用[匿名身份验证](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc731244(v=ws.10)) <br/> - 启用 [FastCGI](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753077(v=ws.10)) 设置  <br/> - 端口 443 上没有预先存在的网站/应用侦听<br/>
 NIC 类型 | VMXNET3（部署为 VMware VM 时）
 IP 地址类型 | 静态
 端口 | 443，用于控制通道协调<br/>9443，用于数据传输
@@ -63,14 +66,11 @@ IP 地址类型 | 静态
 
 Site Recovery 支持复制在支持的计算机上运行的任何工作负荷。
 
-> [!Note]
-> 下表列出了对包含 BIOS 启动的计算机的支持。 有关对基于 UEFI 的计算机的支持，请参阅[存储](#storage)部分。
-
 **组件** | **详细信息**
 --- | ---
 计算机设置 | 复制到 Azure 的计算机必须满足 [Azure 要求](#azure-vm-requirements)。
 计算机工作负载 | Site Recovery 支持复制在支持的计算机上运行的任何工作负荷。 [了解详细信息](../site-recovery/site-recovery-workload.md)。
-计算机名称 | 确保计算机的显示名称不属于 [Azure 保留的资源名称](/azure-resource-manager/templates/error-reserved-resource-name)<br/><br/> 逻辑卷名称不区分大小写。 请确保设备上不存在两个卷具有相同名称的情况。 例如：无法通过 Azure Site Recovery 保护名称为“voLUME1”、“volume1”的卷。
+计算机名称 | 确保计算机的显示名称不属于 [Azure 保留的资源名称](../azure-resource-manager/templates/error-reserved-resource-name.md)<br/><br/> 逻辑卷名称不区分大小写。 请确保设备上不存在两个卷具有相同名称的情况。 例如：无法通过 Azure Site Recovery 保护名称为“voLUME1”、“volume1”的卷。
 
 ### <a name="for-windows"></a>对于 Windows
 
@@ -79,7 +79,7 @@ Site Recovery 支持复制在支持的计算机上运行的任何工作负荷。
 Windows Server 2019 | 从[更新汇总 34](https://support.microsoft.com/help/4490016) 开始受支持（移动服务版本 9.22 和更高版本）。
 Windows Server 2016 64 位 | 支持服务器核心、带桌面体验的服务器。
 Windows Server 2012 R2/Windows Server 2012 | 。
-Windows Server 2008 R2 SP1 及更高版本。 | 。<br/><br/> 在移动服务代理的 [9.30](https://support.microsoft.com/help/4531426/update-rollup-42-for-azure-site-recovery) 版本中，需要在运行 Windows 2008 R2 SP1 或更高版本的计算机上安装[服务堆栈更新 (SSU)](https://support.microsoft.com/help/4490628) 和 [SHA-2 更新](https://support.microsoft.com/help/4474419)。 从 2019 年 9 月开始不再支持 SHA-1。如果未启用 SHA-2 代码签名，则无法按预期方式安装/升级代理扩展。 详细了解 [SHA-2 升级和要求](https://aka.ms/SHA-2KB)。
+Windows Server 2008 R2 SP1 及更高版本。 | 。<br/><br/> 在移动服务代理的 [9.30](https://support.microsoft.com/help/4531426/update-rollup-42-for-azure-site-recovery) 版本中，需要在运行 Windows 2008 R2 SP1 或更高版本的计算机上安装[服务堆栈更新 (SSU)](https://support.microsoft.com/help/4490628) 和 [SHA-2 更新](https://support.microsoft.com/help/4474419)。 从 2019 年 9 月开始不再支持 SHA-1，如果未启用 SHA-2 代码签名，则无法按预期方式安装/升级代理扩展。 详细了解 [SHA-2 升级和要求](https://aka.ms/SHA-2KB)。
 Windows Server 2008 SP2 或更高版本（64 位/32 位） |  仅支持迁移。 [了解详细信息](migrate-tutorial-windows-server-2008.md)。<br/><br/> 在移动服务代理的 [9.30](https://support.microsoft.com/help/4531426/update-rollup-42-for-azure-site-recovery) 版本中，需要在 Windows 2008 SP2 计算机上安装[服务堆栈更新 (SSU)](https://support.microsoft.com/help/4493730) 和 [SHA-2 更新](https://support.microsoft.com/help/4474419)。 从 2019 年 9 月开始不再支持 SHA-1，如果未启用 SHA-2 代码签名，则无法按预期方式安装/升级代理扩展。 详细了解 [SHA-2 升级和要求](https://support.microsoft.com/help/4472027/2019-sha-2-code-signing-support-requirement-for-windows-and-wsus)。
 Windows 10 | 。
 包含 SP1 的 Windows 7 64 位 | 从[更新汇总 36](https://support.microsoft.com/help/4503156) 开始受支持（移动服务版本 9.22 和更高版本）。 <br /><br /> 在移动服务代理的 [9.30](https://support.microsoft.com/help/4531426/update-rollup-42-for-azure-site-recovery) 中，需要在 Windows 7 SP1 计算机上安装[服务堆栈更新 (SSU)](https://support.microsoft.com/help/4490628) 和 [SHA-2 更新](https://support.microsoft.com/help/4474419)。  从 2019 年 9 月开始不再支持 SHA-1，如果未启用 SHA-2 代码签名，则无法按预期方式安装/升级代理扩展。 详细了解 [SHA-2 升级和要求](https://support.microsoft.com/help/4472027/2019-sha-2-code-signing-support-requirement-for-windows-and-wsus)。
@@ -106,15 +106,16 @@ SUSE Linux | SUSE Linux Enterprise Server 12 SP1、SP2、SP3、SP4、[SP5](https
 
 **支持的版本** | **移动服务版本** | **内核版本** |
 --- | --- | --- |
-14.04 LTS | [9.32][9.32 UR]、[9.33](https://support.microsoft.com/help/4564347/)、[9.34](https://support.microsoft.com/help/4570609) | 3.13.0-24-generic 到 3.13.0-170-generic、<br/>3.16.0-25-generic 到 3.16.0-77-generic、<br/>3.19.0-18-generic 到 3.19.0-80-generic、<br/>4.2.0-18-generic 到 4.2.0-42-generic、<br/>4.4.0-21-generic 到 4.4.0-148-generic、<br/>4.15.0-1023-azure 到 4.15.0-1045-azure |
+14.04 LTS | [9.32][9.32 UR]、[9.33](https://support.microsoft.com/help/4564347/)、[9.34](https://support.microsoft.com/help/4570609)、[9.35](https://support.microsoft.com/help/4573888/) | 3.13.0-24-generic 到 3.13.0-170-generic、<br/>3.16.0-25-generic 到 3.16.0-77-generic、<br/>3.19.0-18-generic 到 3.19.0-80-generic、<br/>4.2.0-18-generic 到 4.2.0-42-generic、<br/>4.4.0-21-generic 到 4.4.0-148-generic、<br/>4.15.0-1023-azure 到 4.15.0-1045-azure |
 14.04 LTS | [9.31][9.31 UR] | 3.13.0-24-generic 到 3.13.0-170-generic、<br/>3.16.0-25-generic 到 3.16.0-77-generic、<br/>3.19.0-18-generic 到 3.19.0-80-generic、<br/>4.2.0-18-generic 到 4.2.0-42-generic、<br/>4.4.0-21-generic 到 4.4.0-148-generic、<br/>4.15.0-1023-azure 到 4.15.0-1045-azure |
-14.04 LTS | [9.30][9.30 UR] | 3.13.0-24-generic 到 3.13.0-170-generic、<br/>3.16.0-25-generic 到 3.16.0-77-generic、<br/>3.19.0-18-generic 到 3.19.0-80-generic、<br/>4.2.0-18-generic 到 4.2.0-42-generic、<br/>4.4.0-21-generic 到 4.4.0-148-generic、<br/>4.15.0-1023-azure 到 4.15.0-1045-azure |
 |||
+16.04 LTS | [9.35](https://support.microsoft.com/help/4573888/) | 4.4.0-21-generic 到 4.4.0-184-generic、<br/>4.8.0-34-generic 到 4.8.0-58-generic、<br/>4.10.0-14-generic 到 4.10.0-42-generic、<br/>4.11.0-13-generic 到 4.11.0-14-generic、<br/>4.13.0-16-generic 到 4.13.0-45-generic、<br/>4.15.0-13-generic 到 4.15.0-106-generic<br/>4.11.0-1009-azure 到 4.11.0-1016-azure、<br/>4.13.0-1005-azure 到 4.13.0-1018-azure <br/>4.15.0-1012-azure 到 4.15.0-1089-azure |
 16.04 LTS | [9.34](https://support.microsoft.com/help/4570609) | 4.4.0-21-generic 到 4.4.0-178-generic、<br/>4.8.0-34-generic 到 4.8.0-58-generic、<br/>4.10.0-14-generic 到 4.10.0-42-generic、<br/>4.11.0-13-generic 到 4.11.0-14-generic、<br/>4.13.0-16-generic 到 4.13.0-45-generic、<br/>4.15.0-13-generic 到 4.15.0-101-generic<br/>4.11.0-1009-azure 到 4.11.0-1016-azure、<br/>4.13.0-1005-azure 到 4.13.0-1018-azure <br/>4.15.0-1012-azure 到 4.15.0-1083-azure |
 16.04 LTS | [9.33](https://support.microsoft.com/help/4564347/) | 4.4.0-21-generic 到 4.4.0-178-generic、<br/>4.8.0-34-generic 到 4.8.0-58-generic、<br/>4.10.0-14-generic 到 4.10.0-42-generic、<br/>4.11.0-13-generic 到 4.11.0-14-generic、<br/>4.13.0-16-generic 到 4.13.0-45-generic、<br/>4.15.0-13-generic 到 4.15.0-99-generic<br/>4.11.0-1009-azure 到 4.11.0-1016-azure、<br/>4.13.0-1005-azure 到 4.13.0-1018-azure <br/>4.15.0-1012-azure 到 4.15.0-1082-azure|
 16.04 LTS | [9.32][9.32 UR] | 4.4.0-21-generic 到 4.4.0-171-generic、<br/>4.8.0-34-generic 到 4.8.0-58-generic、<br/>4.10.0-14-generic 到 4.10.0-42-generic、<br/>4.11.0-13-generic 到 4.11.0-14-generic、<br/>4.13.0-16-generic 到 4.13.0-45-generic、<br/>4.15.0-13-generic 到 4.15.0-74-generic<br/>4.11.0-1009-azure 到 4.11.0-1016-azure、<br/>4.13.0-1005-azure 到 4.13.0-1018-azure <br/>4.15.0-1012-azure 到 4.15.0-1066-azure|
 16.04 LTS | [9.31][9.31 UR] | 4.4.0-21-generic 到 4.4.0-170-generic、<br/>4.8.0-34-generic 到 4.8.0-58-generic、<br/>4.10.0-14-generic 到 4.10.0-42-generic、<br/>4.11.0-13-generic 到 4.11.0-14-generic、<br/>4.13.0-16-generic 到 4.13.0-45-generic、<br/>4.15.0-13-generic 到 4.15.0-72-generic<br/>4.11.0-1009-azure 到 4.11.0-1016-azure、<br/>4.13.0-1005-azure 到 4.13.0-1018-azure <br/>4.15.0-1012-azure 到 4.15.0-1063-azure|
 |||
+18.04 LTS | [9.35](https://support.microsoft.com/help/4573888/) | 4.15.0-20-generic 到 4.15.0-108-generic <br /> 4.18.0-13-generic 到 4.18.0-25-generic <br /> 5.0.0-15-generic 到 5.0.0-52-generic <br /> 5.3.0-19-generic 到 5.3.0-61-generic <br /> 4.15.0-1009-azure 到 4.15.0-1089-azure <br /> 4.18.0-1006-azure 到 4.18.0-1025-azure <br /> 5.0.0-1012-azure 到 5.0.0-1036-azure <br /> 5.3.0-1007-azure 到 5.3.0-1031-azure|
 18.04 LTS | [9.34](https://support.microsoft.com/help/4570609) | 4.15.0-20-generic 到 4.15.0-101-generic <br /> 4.18.0-13-generic 到 4.18.0-25-generic <br /> 5.0.0-15-generic 到 5.0.0-48-generic <br /> 5.3.0-19-generic 到 5.3.0-53-generic <br /> 4.15.0-1009-azure 到 4.15.0-1083-azure <br /> 4.18.0-1006-azure 到 4.18.0-1025-azure <br /> 5.0.0-1012-azure 到 5.0.0-1036-azure <br /> 5.3.0-1007-azure 到 5.3.0-1022-azure|
 18.04 LTS | [9.33](https://support.microsoft.com/help/4564347/) | 4.15.0-20-generic 到 4.15.0-99-generic <br /> 4.18.0-13-generic 到 4.18.0-25-generic <br /> 5.0.0-15-generic 到 5.0.0-47-generic <br /> 5.3.0-19-generic 到 5.3.0-51-generic <br /> 4.15.0-1009-azure 到 4.15.0-1082-azure <br /> 4.18.0-1006-azure 到 4.18.0-1025-azure <br /> 5.0.0-1012-azure 到 5.0.0-1036-azure <br /> 5.3.0-1007-azure 到 5.3.0-1020-azure|
 18.04 LTS | [9.32][9.32 UR]| 4.15.0-20-generic 到 4.15.0-74-generic <br /> 4.18.0-13-generic 到 4.18.0-25-generic <br /> 5.0.0-15-generic 到 5.0.0-37-generic <br /> 5.3.0-19-generic 到 5.3.0-24-generic <br /> 4.15.0-1009-azure 到 4.15.0-1037-azure <br /> 4.18.0-1006-azure 到 4.18.0-1025-azure <br /> 5.0.0-1012-azure 到 5.0.0-1028-azure <br /> 5.3.0-1007-azure 到 5.3.0-1009-azure|
@@ -124,22 +125,25 @@ SUSE Linux | SUSE Linux Enterprise Server 12 SP1、SP2、SP3、SP4、[SP5](https
 
 **支持的版本** | **移动服务版本** | **内核版本** |
 --- | --- | --- |
-Debian 7 | [9.31][9.31 UR]、[9.32][9.32 UR]、[9.33](https://support.microsoft.com/help/4564347/)、[9.34](https://support.microsoft.com/help/4570609)| 3.2.0-4-amd64 到 3.2.0-6-amd64、3.16.0-0.bpo.4-amd64 |
+Debian 7 | [9.31][9.31 UR][9.32][9.32 UR][9.33](https://support.microsoft.com/help/4564347/)[9.34](https://support.microsoft.com/help/4570609)[9.35](https://support.microsoft.com/help/4573888/)| 3.2.0-4-amd64 到 3.2.0-6-amd64、3.16.0-0.bpo.4-amd64 |
 |||
+Debian 8 | [9.35](https://support.microsoft.com/help/4573888/) | 3.16.0-4-amd64 到 3.16.0-11-amd64、4.9.0-0.bpo.4-amd64 到 4.9.0-0.bpo.11-amd64 |
 Debian 8 | [9.31][9.31 UR]、[9.32][9.32 UR]、[9.33](https://support.microsoft.com/help/4564347/)、[9.34](https://support.microsoft.com/help/4570609) | 3.16.0-4-amd64 到 3.16.0-10-amd64、4.9.0-0.bpo.4-amd64 到 4.9.0-0.bpo.11-amd64 |
 
 ### <a name="suse-linux-enterprise-server-12-supported-kernel-versions"></a>SUSE Linux Enterprise Server 12 支持的内核版本
 
 **版本** | **移动服务版本** | **内核版本** |
 --- | --- | --- |
-SUSE Linux Enterprise Server 12（SP1、SP2、SP3、SP4、SP5） | [9.34](https://support.microsoft.com/help/4570609) | 支持所有库存 SUSE 12 SP1、SP2、SP3、SP4 内核。<br /><br /> 4.4.138-4.7-azure 到 4.4.180-4.31-azure、<br />4.12.14-6.3-azure 到 4.12.14-6.43-azure <br /> 4.12.14-16.7-azure 到 4.12.14-16.13-azure  |
-SUSE Linux Enterprise Server 12（SP1、SP2、SP3、SP4） | 9.32、[9.33](https://support.microsoft.com/help/4564347/) | 支持所有库存 SUSE 12 SP1、SP2、SP3、SP4 内核。<br /><br /> 4.4.138-4.7-azure 到 4.4.180-4.31-azure、<br />4.12.14-6.3-azure 到 4.12.14-6.34-azure  |
-SUSE Linux Enterprise Server 12（SP1、SP2、SP3、SP4） | 9.31 | 支持所有库存 SUSE 12 SP1、SP2、SP3、SP4 内核。<br /><br /> 4.4.138-4.7-azure 到 4.4.180-4.31-azure、<br />4.12.14-6.3-azure 到 4.12.14-6.29-azure  |
+SUSE Linux Enterprise Server 12（SP1、SP2、SP3、SP4、SP5） | [9.35](https://support.microsoft.com/help/4573888/) | 支持所有[库存 SUSE 12 SP1、SP2、SP3、SP4 内核](https://www.suse.com/support/kb/doc/?id=000019587)。<br /><br /> 4.4.138-4.7-azure 到 4.4.180-4.31-azure、<br />4.12.14-6.3-azure 到 4.12.14-6.43-azure <br /> 4.12.14-16.7-azure 到 4.12.14-16.19-azure  |
+SUSE Linux Enterprise Server 12（SP1、SP2、SP3、SP4、SP5） | [9.34](https://support.microsoft.com/help/4570609) | 支持所有[库存 SUSE 12 SP1、SP2、SP3、SP4 内核](https://www.suse.com/support/kb/doc/?id=000019587)。<br /><br /> 4.4.138-4.7-azure 到 4.4.180-4.31-azure、<br />4.12.14-6.3-azure 到 4.12.14-6.43-azure <br /> 4.12.14-16.7-azure 到 4.12.14-16.13-azure  |
+SUSE Linux Enterprise Server 12（SP1、SP2、SP3、SP4） | 9.32、[9.33](https://support.microsoft.com/help/4564347/) | 支持所有[库存 SUSE 12 SP1、SP2、SP3、SP4 内核](https://www.suse.com/support/kb/doc/?id=000019587)。<br /><br /> 4.4.138-4.7-azure 到 4.4.180-4.31-azure、<br />4.12.14-6.3-azure 到 4.12.14-6.34-azure  |
+SUSE Linux Enterprise Server 12（SP1、SP2、SP3、SP4） | 9.31 | 支持所有[库存 SUSE 12 SP1、SP2、SP3、SP4 内核](https://www.suse.com/support/kb/doc/?id=000019587)。<br /><br /> 4.4.138-4.7-azure 到 4.4.180-4.31-azure、<br />4.12.14-6.3-azure 到 4.12.14-6.29-azure  |
 
 ### <a name="suse-linux-enterprise-server-15-supported-kernel-versions"></a>SUSE Linux Enterprise Server 15 支持的内核版本
 
 **版本** | **移动服务版本** | **内核版本** |
 --- | --- | --- |
+SUSE Linux Enterprise Server 15 和 15 SP1 | [9.35](https://support.microsoft.com/help/4573888/)  | 默认情况下，支持所有[库存 SUSE 15 和 15 SP1 内核](https://www.suse.com/support/kb/doc/?id=000019587)。<br /><br /> 4.12.14-5.5-azure 到 4.12.14-5.47-azure <br /><br /> 4.12.14-8.5-azure 到 4.12.14-8.33-azure 
 SUSE Linux Enterprise Server 15 和 15 SP1 | [9.34](https://support.microsoft.com/help/4570609)  | 默认情况下，支持所有[库存 SUSE 15 和 15 SP1 内核](https://www.suse.com/support/kb/doc/?id=000019587)。<br /><br /> 4.12.14-5.5-azure 到 4.12.14-5.47-azure <br /><br /> 4.12.14-8.5-azure 到 4.12.14-8.30-azure 
 SUSE Linux Enterprise Server 15 和 15 SP1 | [9.33](https://support.microsoft.com/help/4564347/) | 默认情况下，支持所有[库存 SUSE 15 和 15 SP1 内核](https://www.suse.com/support/kb/doc/?id=000019587)。<br /><br /> 4.12.14-5.5-azure 到 4.12.14-5.47-azure <br /><br /> 4.12.14-8.5-azure 到 4.12.14-8.30-azure |
 SUSE Linux Enterprise Server 15 和 15 SP1 | [9.32](https://support.microsoft.com/help/4550047/) | 默认情况下，支持所有[库存 SUSE 15 和 15 SP1 内核](https://www.suse.com/support/kb/doc/?id=000019587)。 <br /><br /> 4.12.14-5.5-azure 到 4.12.14-8.22-azure
@@ -168,6 +172,9 @@ BTRFS | 从[更新汇总 34](https://support.microsoft.com/help/4490016)（移�
 调整复制的 VM 上的磁盘大小 | 在故障转移之前，可直接在源 VM 上的 VM 属性中进行调整。 无需禁用/重新启用复制。<br/><br/> 如果在故障转移后更改源 VM，则这些更改不会被捕获。<br/><br/> 如果在故障转移之后更改 Azure VM 上的磁盘大小，则在进行故障回复时，Site Recovery 将创建一个包含更新的新 VM。
 在复制的 VM 上添加磁盘 | 不支持。<br/> 为 VM 禁用复制，添加磁盘，然后重新启用复制。
 
+> [!NOTE]
+> 不支持对磁盘标识进行任何更改。 例如，如果磁盘分区已从 GPT 更改为 MBR（或反过来），就会更改磁盘标识。 在这种情况下，复制将中断，并且需要全新的设置。 
+
 ## <a name="network"></a>网络
 
 **组件** | **支持**
@@ -182,6 +189,8 @@ BTRFS | 从[更新汇总 34](https://support.microsoft.com/help/4490016)（移�
 来宾/服务器网络静态 IP (Windows) | 是的。
 来宾/服务器网络静态 IP (Linux) | 是的。 <br/><br/>VM 配置为在故障回复时使用 DHCP。
 来宾/服务器网络多个 NIC | 是的。
+
+<!--Not Available on Private link access to Site Recovery service | Yes. [Learn more](hybrid-how-to-enable-replication-private-endpoints.md)-->
 
 ## <a name="azure-vm-network-after-failover"></a>Azure VM 网络（故障转移后）
 
@@ -227,7 +236,7 @@ Docker 磁盘配置 | 否
 来宾/服务器多路径 (MPIO) | 否
 来宾/服务器 GPT 分区 | 从[更新汇总 37](https://support.microsoft.com/help/4508614/)（移动服务版本 9.25）开始支持五个分区。 以前支持四个。
 ReFS | 出行服务版本 9.23 或更高版本支持可复原文件系统
-来宾/服务器 EFI/UEFI 启动 | - 支持的版本包括 Windows Server 2012 或更高版本、SLES 12 SP4 和 RHEL 8.0（包含移动代理 9.30 及更高版本）<br/> - 不支持安全 UEFI 启动类型。 [了解详细信息。](/virtual-machines/windows/generation-2#on-premises-vs-azure-generation-2-vms)
+来宾/服务器 EFI/UEFI 启动 | - Site Recovery 移动代理版本 9.30 及更高版本支持所有 [Azure 市场 UEFI OS](../virtual-machines/windows/generation-2.md#generation-2-vm-images-in-azure-marketplace)。 <br/> - 不支持安全 UEFI 启动类型。 [了解详细信息。](../virtual-machines/windows/generation-2.md#on-premises-vs-azure-generation-2-vms)
 
 ## <a name="replication-channels"></a>复制通道
 
@@ -249,7 +258,9 @@ ReFS | 出行服务版本 9.23 或更高版本支持可复原文件系统
 块 Blob | 否
 静态加密 (SSE)| 是
 静态加密 (CMK)| 是（通过 PowerShell Az 3.3.0 及更高版本模块）
+静态双重加密 | 是（通过 PowerShell Az 3.3.0 及更高版本模块）。 详细了解 [Windows](../virtual-machines/windows/disk-encryption.md) 和 [Linux](../virtual-machines/linux/disk-encryption.md) 支持的区域。
 高级存储 | 是
+安全传输选项 | 是
 导入/导出服务 | 否
 VNet 的 Azure 存储防火墙 | 是的。<br/> 在目标存储/缓存存储帐户上配置（用于存储复制的数据）。
 常规用途 v2 存储帐户（热层和冷层） | 是（与 V1 相比，V2 的事务成本高得多）
@@ -285,7 +296,7 @@ VM 名称 | 1 到 63 个字符。<br/><br/> 限制为字母、数字和连字符
 
 ## <a name="resource-group-limits"></a>资源组限制
 
-若要了解可以在单个资源组下保护的虚拟机数量，请参阅有关[订阅限制和配额](/azure-resource-manager/management/azure-subscription-service-limits#resource-group-limits)的文章。
+若要了解可以在单个资源组下保护的虚拟机数量，请参阅有关[订阅限制和配额](../azure-resource-manager/management/azure-subscription-service-limits.md#resource-group-limits)的文章。
 
 ## <a name="churn-limits"></a>变动率限制
 

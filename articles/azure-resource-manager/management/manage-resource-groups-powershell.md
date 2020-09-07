@@ -1,17 +1,19 @@
 ---
 title: 管理资源组 - Azure PowerShell
 description: 使用 Azure PowerShell 通过 Azure 资源管理器管理资源组。 说明如何创建、列出和删除资源组。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 02/11/2019
-ms.date: 01/06/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.author: v-yeche
-ms.openlocfilehash: 4ed26443b7f6b31a6f9f28c845fac7f5edbc9326
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 0e3e6d96ca3c1a4352a71e6c713d6286e9268f08
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79292398"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807758"
 ---
 # <a name="manage-azure-resource-manager-resource-groups-by-using-azure-powershell"></a>使用 Azure PowerShell 管理 Azure 资源管理器资源组
 
@@ -79,7 +81,7 @@ Remove-AzResourceGroup -Name $resourceGroupName
 
 ## <a name="deploy-a-resource-group-and-resources"></a>部署资源组和资源
 
-可以使用资源管理器模板创建一个资源组并将资源部署到该组。 有关详细信息，请参阅[创建资源组并部署资源](../templates/deploy-to-subscription.md#resource-group-and-resources)。
+可以使用资源管理器模板创建一个资源组并将资源部署到该组。 有关详细信息，请参阅[创建资源组并部署资源](../templates/deploy-to-subscription.md#resource-groups)。
 
 ## <a name="redeploy-when-deployment-fails"></a>部署失败时，重新部署
 
@@ -218,13 +220,13 @@ Export-AzResourceGroup `
 
 ## <a name="manage-access-to-resource-groups"></a>管理对资源组的访问
 
-可以在 Azure 中通过[基于角色的访问控制 (RBAC)](../../role-based-access-control/overview.md) 这种方式管理对资源的访问。 有关详细信息，请参阅[使用 RBAC 和 Azure PowerShell 管理访问权限](../../role-based-access-control/role-assignments-powershell.md)。
+可以通过 [Azure 基于角色的访问控制 (Azure RBAC)](../../role-based-access-control/overview.md) 管理对 Azure 中资源的访问权限。 有关详细信息，请参阅[使用 RBAC 和 Azure PowerShell 管理访问权限](../../role-based-access-control/role-assignments-powershell.md)。
 
 ## <a name="next-steps"></a>后续步骤
 
 - 若要了解 Azure 资源管理器，请参阅 [Azure 资源管理器概述](overview.md)。
 - 若要了解资源管理器模板语法，请参阅[了解 Azure 资源管理器模板的结构和语法](../templates/template-syntax.md)。
-- 若要了解如何开发模板，请参阅[分步教程](/azure-resource-manager/)。
+- 若要了解如何开发模板，请参阅[分步教程](../index.yml)。
 
 <!--Not Available on  [template reference](https://docs.microsoft.com/azure/templates/)-->
 <!-- Update_Description: update meta properties, wording update, update link -->

@@ -5,13 +5,14 @@ author: yegu-ms
 ms.author: v-junlch
 ms.service: cache
 ms.topic: conceptual
-ms.date: 07/10/2020
-ms.openlocfilehash: 3eb2b9198db6fe6792c57f447350d238d33b85b7
-ms.sourcegitcommit: 65a7360bb14b0373e18ec8eaa288ed3ac7b24ef4
+ms.custom: devx-track-csharp
+ms.date: 08/24/2020
+ms.openlocfilehash: 0202b34ea333a57a83f9e84bcb1818e33c5a1151
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86219745"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946960"
 ---
 # <a name="how-to-scale-azure-cache-for-redis"></a>如何缩放 Azure Redis 缓存
 Azure Redis 缓存具有不同的缓存产品/服务，使缓存大小和功能的选择更加灵活。 如果创建缓存后，应用程序的要求发生更改，可以更改缓存的大小和定价层。 本文演示如何使用 Azure 门户以及 Azure PowerShell 和 Azure CLI 等工具来缩放缓存。
@@ -26,7 +27,7 @@ Azure Redis 缓存具有不同的缓存产品/服务，使缓存大小和功能�
 * 网络带宽
 * CPU 使用率
 
-如果确定缓存不再满足应用程序的要求，可以更改到应用程序所需的更大或更小缓存定价层。 有关确定应使用哪个缓存定价层的详细信息，请参阅 [我应当使用哪些 Azure Redis 缓存套餐和大小](cache-faq.md#what-azure-cache-for-redis-offering-and-size-should-i-use)。
+如果确定缓存不再满足应用程序的要求，可以更改到应用程序所需的更大或更小缓存定价层。 有关确定应使用哪个缓存定价层的详细信息，请参阅[选择正确的层](cache-overview.md#choosing-the-right-tier)。
 
 ## <a name="scale-a-cache"></a>缩放缓存
 要缩放缓存，请在 [Azure 门户](https://portal.azure.cn)中[浏览到缓存](cache-configure.md#configure-azure-cache-for-redis-settings)，并从“资源菜单”单击“缩放”。
@@ -181,4 +182,3 @@ Azure Redis 缓存具有不同的缓存产品/服务，使缓存大小和功能�
 
 [redis-cache-scaling]: ./media/cache-how-to-scale/redis-cache-scaling.png
 
-<!-- Update_Description: wording update -->

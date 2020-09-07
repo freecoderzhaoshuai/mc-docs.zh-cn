@@ -2,17 +2,18 @@
 title: 模板最佳实践
 description: 介绍创作 Azure 资源管理器模板的建议方法。 提供相关建议，避免在使用模板时出现常见问题。
 ms.topic: conceptual
-origin.date: 06/09/2020
-ms.date: 07/13/2020
-ms.testscope: no
-ms.testdate: ''
+origin.date: 07/10/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.author: v-yeche
-ms.openlocfilehash: cd47ba2a8b17e957edd89f35f60b7e7dd70b6015
-ms.sourcegitcommit: 2bd0be625b21c1422c65f20658fe9f9277f4fd7c
+ms.openlocfilehash: 36e15f1575a2965bf9dff04ef2bfd537d94e3986
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86441013"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807763"
 ---
 # <a name="arm-template-best-practices"></a>ARM 模板最佳做法
 
@@ -166,7 +167,7 @@ ms.locfileid: "86441013"
 
 在决定要设置的[依赖项](define-resource-dependency.md)时，请遵循以下准则：
 
-* 使用 reference 函数并传入资源名称以在需要共享属性的资源之间设置隐式依赖项。 在已定义隐式依赖项的情况下，请勿添加显式 `dependsOn` 元素。 此方法降低了设置不必要依赖项的风险。
+* 使用 reference 函数并传入资源名称以在需要共享属性的资源之间设置隐式依赖项。 在已定义隐式依赖项的情况下，请勿添加显式 `dependsOn` 元素。 此方法降低了设置不必要依赖项的风险。 有关设置隐式依赖项的示例，请参阅[隐式依赖项](define-resource-dependency.md#reference-and-list-functions)。
 
 * 将子资源设置为依赖于其父资源。
 
@@ -232,12 +233,12 @@ ms.locfileid: "86441013"
 
     有关连接到虚拟机的详细信息，请参阅：
 
-    <!--Not Available on * [Run VMs for an N-tier architecture in Azure](../guidance/guidance-compute-n-tier-vm.md)-->
+    <!--Not Available on * [Run VMs for an N-tier architecture in Azure](https://docs.microsoft.com/azure/architecture/reference-architectures/n-tier/n-tier-sql-server)-->
     
     * [在 Azure Resource Manager 中设置对 VM 的 WinRM 访问](../../virtual-machines/windows/winrm.md)
     * [使用 Azure 门户实现对 VM 的外部访问](../../virtual-machines/windows/nsg-quickstart-portal.md)
     * [使用 PowerShell 实现对 VM 的外部访问](../../virtual-machines/windows/nsg-quickstart-powershell.md)
-    * [使用 Azure CLI 实现对 Linux VM 的外部访问](../../virtual-machines/virtual-machines-linux-nsg-quickstart.md)
+    * [使用 Azure CLI 实现对 Linux VM 的外部访问](../../virtual-machines/linux/nsg-quickstart.md)
 
 * 公共 IP 地址的 **domainNameLabel** 属性必须唯一。 **domainNameLabel** 值的长度必须为 3 到 63 个字符，并遵循正则表达式 `^[a-z][a-z0-9-]{1,61}[a-z0-9]$` 指定的规则。 由于 **uniqueString** 函数生成长度为 13 个字符的字符串，因此 **dnsPrefixString** 参数限制为不超过 50 个字符：
 

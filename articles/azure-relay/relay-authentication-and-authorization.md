@@ -1,19 +1,19 @@
 ---
-title: Azure 中继身份验证和授权
+title: Azure 中继身份验证和授权 | Azure
 description: 本文概述了如何使用 Azure 中继服务进行共享访问签名 (SAS) 身份验证。
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-author: rockboyfor
-ms.openlocfilehash: 01f708d83c1da751345d819d63bc21a2f44bfad4
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 5fe4d86d0dd4c73922be1e47d4d5d226cb41ad2f
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162160"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947127"
 ---
 # <a name="azure-relay-authentication-and-authorization"></a>Azure 中继身份验证和授权
 
@@ -25,7 +25,7 @@ ms.locfileid: "87162160"
 
 可以在中继命名空间上配置用于 SAS 的密钥。 与服务总线消息传送不同，[中继混合连接](relay-hybrid-connections-protocol.md)支持未经授权的发件人或匿名发件人。 可在创建实体时启用它的匿名访问权限，如门户中以下屏幕截图所示：
 
-![][0]
+![标题为“创建混合连接”的对话框具有一个“名称”文本框和一个标记为“需要客户端身份验证”的复选框，该复选框处于选中状态。][0]
 
 若要使用 SAS，可在由以下项构成的中继命名空间上配置 [SharedAccessAuthorizationRule](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.sharedaccessauthorizationrule?view=azure-dotnet) 对象：
 

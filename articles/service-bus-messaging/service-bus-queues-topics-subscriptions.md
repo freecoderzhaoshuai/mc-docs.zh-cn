@@ -3,17 +3,17 @@ title: Azure 服务总线消息传送队列、主题和订阅
 description: 本文概述了 Azure 服务总线消息实体（队列、主题和订阅）。
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
 author: rockboyfor
-ms.openlocfilehash: 7a98a3d7dcee7f4eb3b2b9b04732448c28fe427c
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 4ffd64b3c3e0458b342adfaf5b9ee5ea7758ee7d
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162272"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946934"
 ---
 # <a name="service-bus-queues-topics-and-subscriptions"></a>服务总线队列、主题和订阅
 
@@ -66,6 +66,19 @@ Azure 服务总线支持一组基于云的、面向消息的中间件技术，�
 有关完整的工作示例，请参阅GitHub上的 [TopicSubscriptionWithRuleOperationsSample 示例](https://github.com/Azure/azure-service-bus/tree/master/samples/DotNet/GettingStarted/Microsoft.Azure.ServiceBus/TopicSubscriptionWithRuleOperationsSample)。
 
 有关可能的筛选器值的详细信息，请参阅文档 [SqlFilter](https://docs.azure.cn/dotnet/api/microsoft.azure.servicebus.sqlfilter?view=azure-dotnet) 和 [SqlRuleAction](https://docs.azure.cn/dotnet/api/microsoft.azure.servicebus.sqlruleaction?view=azure-dotnet) 类。
+
+## <a name="java-message-service-jms-20-entities-preview"></a>Java 消息实体 (JMS) 2.0 实体（预览版）
+
+以下实体可通过 Java 消息服务 (JMS) 2.0 API 进行访问。
+
+  * 临时队列
+  * 临时主题
+  * 共享持久订阅
+  * 非共享持久订阅
+  * 共享非持久订阅
+  * 非共享非持久订阅
+
+详细了解 [JMS 2.0 实体](java-message-service-20-entities.md)和如何[利用它们](how-to-use-java-message-service-20.md)。
 
 ## <a name="next-steps"></a>后续步骤
 

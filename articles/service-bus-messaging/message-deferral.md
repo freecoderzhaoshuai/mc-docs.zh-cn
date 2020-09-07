@@ -3,17 +3,18 @@ title: Azure 服务总线 - 消息延迟
 description: 本文介绍如何延迟传送 Azure 服务总线消息。 该消息将保留在队列或订阅中，但会搁置处理。
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-author: rockboyfor
-ms.openlocfilehash: 75c8671791574bc4b897c8f29067e9b1ccaa9348
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.custom: fasttrack-edit
+ms.openlocfilehash: f400aad967f1b6bfcd0e68256c9f699b6e38f7d7
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162365"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946943"
 ---
 # <a name="message-deferral"></a>消息延迟
 
@@ -25,9 +26,12 @@ ms.locfileid: "87162365"
 
 最终，延迟有助于将消息的到达顺序重新排列为处理顺序，同时将需要延迟处理的消息安全保留在消息存储中。
 
+> [!NOTE]
+> [延迟消息过期后](./service-bus-dead-letter-queues.md#exceeding-timetolive)不会自动移动到死信队列。 此行为是设计使然。
+
 ## <a name="message-deferral-apis"></a>消息延迟 API
 
-.NET Framework 客户端中的 API 为 [BrokeredMessage.Defer](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.defer?view=azureservicebus-4.1.1#Microsoft_ServiceBus_Messaging_BrokeredMessage_Defer) 或 [BrokeredMessage.DeferAsync](/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.deferasync?view=azureservicebus-4.1.1#Microsoft_ServiceBus_Messaging_BrokeredMessage_DeferAsync)，.NET 标准客户端中的 API 为 [MessageReceiver.DeferAsync](/dotnet/api/microsoft.azure.servicebus.core.messagereceiver.deferasync)，Java 客户端中的 API 为 [IMessageReceiver.defer](/java/api/com.microsoft.azure.servicebus.imessagereceiver.defer?view=azure-java-stable) 或 [IMessageReceiver.deferAsync](/java/api/com.microsoft.azure.servicebus.imessagereceiver.deferasync?view=azure-java-stable)。 
+.NET Framework 客户端中的 API 为 [BrokeredMessage.Defer](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.defer?view=azureservicebus-4.1.1#Microsoft_ServiceBus_Messaging_BrokeredMessage_Defer) 或 [BrokeredMessage.DeferAsync](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.brokeredmessage.deferasync?view=azureservicebus-4.1.1#Microsoft_ServiceBus_Messaging_BrokeredMessage_DeferAsync)，.NET 标准客户端中的 API 为 [MessageReceiver.DeferAsync](https://docs.azure.cn/dotnet/api/microsoft.azure.servicebus.core.messagereceiver.deferasync?view=azure-dotnet)，Java 客户端中的 API 为 [IMessageReceiver.defer](https://docs.azure.cn/java/api/com.microsoft.azure.servicebus.imessagereceiver.defer?view=azure-java-stable) 或 [IMessageReceiver.deferAsync](https://docs.azure.cn/java/api/com.microsoft.azure.servicebus.imessagereceiver.deferasync?view=azure-java-stable)。 
 
 延迟的消息连同其他所有活动消息保留在主队列中（与保留在子队列中的死信消息不同），但不再可以使用正则 Receive/ReceiveAsync 函数接收。 如果应用程序不再能跟踪延迟的消息，可以通过[消息浏览](message-browsing.md)来发现这些消息。
 

@@ -7,15 +7,15 @@ ms.service: iot-dps
 services: iot-dps
 ms.topic: conceptual
 origin.date: 03/12/2020
-ms.date: 03/16/2020
-ms.openlocfilehash: a4584dbc2f73c1e54c8f8d72eaba3be0259ae561
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.date: 08/27/2020
+ms.openlocfilehash: 046905d23cb754712a304f53947daece62bfb4fb
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80243985"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951216"
 ---
-# <a name="use-ip-filters"></a>使用 IP 筛选器
+# <a name="use-azure-iot-dps-ip-connection-filters"></a>使用 Azure IoT DPS IP 连接筛选器
 
 安全性对于任何 IoT 解决方案来说都是一个重要方面。 作为安全配置的一部分，有时需要显式指定设备可从其连接的 IP 地址。 使用 Azure IoT 中心设备预配服务 (DPS) 的 IP 筛选器  功能，可以配置规则来拒绝或接受来自特定 IPv4 地址的流量。
 

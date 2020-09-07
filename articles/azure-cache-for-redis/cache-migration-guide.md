@@ -4,14 +4,14 @@ description: 了解如何将现有缓存迁移到 Azure Cache for Redis
 author: yegu-ms
 ms.service: cache
 ms.topic: conceptual
-ms.date: 08/10/2020
+ms.date: 08/24/2020
 ms.author: v-junlch
-ms.openlocfilehash: c2838ab65ec46b314d5f945c4e78127a6249ee79
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: 86b643f1fc872a4a36a10dc05cf37b377a5de488
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223528"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946894"
 ---
 # <a name="migrate-to-azure-cache-for-redis"></a>迁移到 Azure Cache for Redis
 本文介绍将在本地运行或在其他云服务中运行的现有 Redis 缓存迁移到 Azure Cache for Redis 的多种方法。
@@ -51,7 +51,7 @@ ms.locfileid: "88223528"
 
 ### <a name="export-data-to-an-rdb-file-and-import-it-into-azure-cache-for-redis"></a>将数据导出到 RDB 文件并将该文件导入 Azure Cache for Redis
 
-开源 Redis 定义了一种标准机制，用于获取缓存的内存中数据集的快照并将其保存到文件中。 此文件名为 RDB，可由另一个 Redis 缓存读取。 [Azure Cache for Redis 高级层](cache-premium-tier-intro.md)支持通过 RDB 文件将数据导入缓存实例。 可以使用 RDB 文件将数据从现有缓存传输到 Azure Cache for Redis。
+开源 Redis 定义了一种标准机制，用于获取缓存的内存中数据集的快照并将其保存到文件中。 此文件名为 RDB，可由另一个 Redis 缓存读取。 [Azure Cache for Redis 高级层](cache-overview.md#service-tiers)支持通过 RDB 文件将数据导入缓存实例。 可以使用 RDB 文件将数据从现有缓存传输到 Azure Cache for Redis。
 
 > [!IMPORTANT]
 > RDB 文件格式可以在 Redis 版本之间更改，并且可能无法保持向后兼容。 要从中导出的缓存的 Redis 版本应等于或低于 Azure Cache for Redis 提供的版本。
@@ -114,6 +114,6 @@ ms.locfileid: "88223528"
 ## <a name="next-steps"></a>后续步骤
 了解有关 Azure Cache for Redis 功能的详细信息。
 
-* [Azure Redis 缓存高级层简介](cache-premium-tier-intro.md)
+* [Azure Cache for Redis 服务层](cache-overview.md#service-tiers)
 * [导入数据](cache-how-to-import-export-data.md#import)
 
