@@ -8,12 +8,12 @@ origin.date: 04/28/2020
 ms.date: 08/13/2020
 ms.author: v-tawe
 ms.custom: mvc, devcenter, seo-javascript-september2019, seo-javascript-october2019, seodec18
-ms.openlocfilehash: 6be021ed37ad2c2fc01a088ce87e1cc9317e60cd
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 83be0104cea193dda4edbd182725a15baf52c3a1
+ms.sourcegitcommit: 5055d580fb7ef1722e32e09a334d1d3e28295dd6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88227961"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89503345"
 ---
 # <a name="tutorial-host-a-restful-api-with-cors-in-azure-app-service"></a>教程：在 Azure 应用服务中托管启用了 CORS 的 RESTful API
 
@@ -51,7 +51,7 @@ ms.locfileid: "88227961"
 git clone https://github.com/Azure-Samples/dotnet-core-api
 ```
 
-此存储库包含基于以下教程创建的应用：[使用 Swagger 的 ASP.NET Core Web API 帮助页](/aspnet/core/tutorials/web-api-help-pages-using-swagger?tabs=visual-studio)。 它使用 Swagger 生成器来提供 [Swagger UI](https://swagger.io/swagger-ui/) 和 Swagger JSON 终结点。
+此存储库包含基于以下教程创建的应用：[使用 Swagger 的 ASP.NET Core Web API 帮助页](https://docs.microsoft.com/aspnet/core/tutorials/web-api-help-pages-using-swagger?tabs=visual-studio)。 它使用 Swagger 生成器来提供 [Swagger UI](https://swagger.io/swagger-ui/) 和 Swagger JSON 终结点。
 
 ### <a name="run-the-application"></a>运行应用程序
 

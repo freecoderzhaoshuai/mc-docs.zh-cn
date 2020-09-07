@@ -8,14 +8,14 @@ ms.service: active-directory
 ms.subservice: domain-services
 ms.workload: identity
 ms.topic: troubleshooting
-ms.date: 08/07/2020
+ms.date: 09/01/2020
 ms.author: v-junlch
-ms.openlocfilehash: be4b32b5f4079a81d11e69da07f98423e19c9ee0
-ms.sourcegitcommit: a5eb9a47feefb053ddbaab4b15c395972c372339
+ms.openlocfilehash: f2e3c42667da3465b4bb4121b4b0c22f2c24796d
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88028629"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413291"
 ---
 # <a name="troubleshoot-account-sign-in-problems-with-an-azure-active-directory-domain-services-managed-domain"></a>排查 Azure Active Directory 域服务托管域的帐户登录问题
 
@@ -76,7 +76,7 @@ net start 'Microsoft Azure AD Sync'
 
 <!-- INTERNAL LINKS -->
 [troubleshoot-account-lockout]: troubleshoot-account-lockout.md
-[azure-ad-connect-phs]: tutorial-configure-password-hash-sync.md
+[azure-ad-connect-phs]: ./tutorial-configure-password-hash-sync.md
 [enable-user-accounts]:  tutorial-create-instance.md#enable-user-accounts-for-azure-ad-ds
 [phs-process]: ../active-directory/hybrid/how-to-connect-password-hash-synchronization.md#password-hash-sync-process-for-azure-ad-domain-services
 [azure-ad-support]: https://support.azure.cn/en-us/support/support-azure/

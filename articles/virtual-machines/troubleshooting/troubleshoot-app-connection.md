@@ -1,10 +1,9 @@
 ---
-title: 排查 Azure 中虚拟机上的应用程序连接问题 | Azure
+title: 排查 Azure 中 VM 应用程序访问问题 | Azure
 description: 使用以下详细故障排除步骤可以查明连接到 Azure 中虚拟机上运行的应用程序时遇到的问题。
 services: virtual-machines
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: top-support-issue,azure-service-management,azure-resource-manager
 keywords: 无法启动应用程序, 程序打不开, 侦听端口受阻, 无法启动程序, 侦听端口受阻
@@ -14,14 +13,17 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.topic: troubleshooting
 origin.date: 10/31/2018
-ms.date: 11/11/2019
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 2cff06701ef837938e2ec908e5eeadac73552951
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: fb450bbe46866b3a53f7a1d9865f9082d0d3918f
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74116894"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456824"
 ---
 # <a name="troubleshoot-application-connectivity-issues-on-virtual-machines-in-azure"></a>排查 Azure 中虚拟机上的应用程序连接问题
 
@@ -120,7 +122,7 @@ ms.locfileid: "74116894"
 
     * 确保 VM 的终结点配置允许传入流量，尤其是协议（TCP 或 UDP）及公用和专用端口号。
     * 确保终结点上的访问控制列表 (ACL) 不会阻止来自 Internet 的传入流量。
-    * 有关详细信息，请参阅[如何对虚拟机设置终结点](../windows/classic/setup-endpoints.md)。
+    * 有关详细信息，请参阅[如何对虚拟机设置终结点](https://docs.microsoft.com/previous-versions/azure/virtual-machines/windows/classic/setup-endpoints)。
 * 对于使用 Resource Manager 部署模型创建的 VM：
 
     * 确保 VM 的入站 NAT 规则配置允许传入流量，尤其是协议（TCP 或 UDP）及公用和专用端口号。
@@ -141,11 +143,11 @@ ms.locfileid: "74116894"
 
 ## <a name="step-4-if-you-cannot-access-the-application-use-ip-verify-to-check-the-settings"></a>步骤 4：如果无法访问应用程序，请使用“IP 验证”来检查设置。 
 
-有关详细信息，请参阅 [Azure network monitoring overview](/network-watcher/network-watcher-monitoring-overview)（Azure 网络监视概述）。 
+有关详细信息，请参阅 [Azure network monitoring overview](../../network-watcher/network-watcher-monitoring-overview.md)（Azure 网络监视概述）。 
 
 ## <a name="additional-resources"></a>其他资源
 [对与基于 Windows 的 Azure 虚拟机的远程桌面连接进行故障排除](troubleshoot-rdp-connection.md)
 
 [对于基于 Linux 的 Azure 虚拟机的 Secure Shell (SSH) 连接进行故障排除](troubleshoot-ssh-connection.md)
 
-<!-- Update_Description: wording update, update link -->
+<!-- Update_Description: update meta properties, wording update, update link -->

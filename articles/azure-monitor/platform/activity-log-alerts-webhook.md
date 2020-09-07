@@ -2,26 +2,27 @@
 title: 了解活动日志警报中使用的 Webhook 架构
 description: 了解有关活动日志警报激活时发布到 webhook URL 的 JSON 架构。
 ms.topic: conceptual
-author: lingliw
-ms.author: v-lingwu
+author: Johnnytechn
+ms.date: 08/20/2020
 origin.date: 03/31/2017
-ms.date: 6/4/2019
-ms.openlocfilehash: e3e92e96c35fa315b09894b967586d69f457af0d
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.subservice: alerts
+ms.openlocfilehash: 0c07defc7f7630705abd5311150300cf922fc712
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79452344"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457433"
 ---
 # <a name="webhooks-for-azure-activity-log-alerts"></a>Azure 活动日志警报的 Webhook
 作为操作组定义的一部分，可以配置 webhook 终结点以接收活动日志警报通知。 通过 webhook 可以将这些通知路由到其他系统，以便进行后续处理或自定义操作。 本文介绍针对 webhook 发出的 HTTP POST 的有效负载的大致形式。
 
 有关活动日志警报的详细信息，请参阅如何[创建 Azure 活动日志警报](activity-log-alerts.md)。
 
-有关操作组的信息，请参阅如何[创建操作组](../../azure-monitor/platform/action-groups.md)。
+有关操作组的信息，请参阅如何[创建操作组](./action-groups.md)。
 
 > [!NOTE]
 > 还可以使用[常见警报架构](/azure-monitor/platform/alerts-common-schema)，它的优点是可以跨 Azure Monitor 中的所有警报服务提供单个可扩展且统一的警报有效负载，用于 Webhook 集成。 [了解常见的警报架构定义。](/azure-monitor/platform/alerts-common-schema-definitions)
+<!--Correct in MC: /azure-monitor/platform/alerts-common-schema and /azure-monitor/platform/alerts-common-schema-definitions-->
 
 
 ## <a name="authenticate-the-webhook"></a>对 webhook 进行身份验证
@@ -31,6 +32,7 @@ Webhook 可以选择使用基于令牌的授权进行身份验证。 保存的 w
 根据有效负载的 data.context.activityLog.eventSource 字段，POST 操作中包含的 JSON 有效负载会有所不同。
 
 ### <a name="common"></a>通用
+
 ```json
 {
     "schemaId": "Microsoft.Insights/activityLogs",
@@ -173,40 +175,41 @@ Webhook 可以选择使用基于令牌的授权进行身份验证。 保存的 w
 ```
 
 ### <a name="servicehealth"></a>ServiceHealth
+
 ```json
 {
     "schemaId": "Microsoft.Insights/activityLogs",
     "data": {
-    "status": "Activated",
-    "context": {
-        "activityLog": {
-        "channels": "Admin",
-        "correlationId": "bbac944f-ddc0-4b4c-aa85-cc7dc5d5c1a6",
-        "description": "Active: Virtual Machines - China East",
-        "eventSource": "ServiceHealth",
-        "eventTimestamp": "2017-10-18T23:49:25.3736084+00:00",
-        "eventDataId": "6fa98c0f-334a-b066-1934-1a4b3d929856",
-        "level": "Informational",
-        "operationName": "Microsoft.ServiceHealth/incident/action",
-        "operationId": "bbac944f-ddc0-4b4c-aa85-cc7dc5d5c1a6",
-        "properties": {
-            "title": "Virtual Machines - China East",
-            "service": "Virtual Machines",
-            "region": "China East",
-            "communication": "Starting at 02:48 UTC on 18 Oct 2017 you have been identified as a customer using Virtual Machines in China East who may receive errors starting Dv2 Promo and DSv2 Promo Virtual Machines which are in a stopped &quot;deallocated&quot; or suspended state. Customers can still provision Dv1 and Dv2 series Virtual Machines or try deploying Virtual Machines in other regions, as a possible workaround. Engineers have identified a possible fix for the underlying cause, and are exploring implementation options. The next update will be provided as events warrant.",
-            "incidentType": "Incident",
-            "trackingId": "0NIH-U2O",
-            "impactStartTime": "2017-10-18T02:48:00.0000000Z",
-            "impactedServices": "[{\"ImpactedRegions\":[{\"RegionName\":\"China East\"}],\"ServiceName\":\"Virtual Machines\"}]",
-            "defaultLanguageTitle": "Virtual Machines - China East",
-            "defaultLanguageContent": "Starting at 02:48 UTC on 18 Oct 2017 you have been identified as a customer using Virtual Machines in China East who may receive errors starting Dv2 Promo and DSv2 Promo Virtual Machines which are in a stopped &quot;deallocated&quot; or suspended state. Customers can still provision Dv1 and Dv2 series Virtual Machines or try deploying Virtual Machines in other regions, as a possible workaround. Engineers have identified a possible fix for the underlying cause, and are exploring implementation options. The next update will be provided as events warrant.",
-            "stage": "Active",
-            "communicationId": "636439673646212912",
-            "version": "0.1.1"
-        },
-        "status": "Active",
-        "subscriptionId": "45529734-0ed9-4895-a0df-44b59a5a07f9",
-        "submissionTimestamp": "2017-10-18T23:49:28.7864349+00:00"
+        "status": "Activated",
+        "context": {
+            "activityLog": {
+            "channels": "Admin",
+            "correlationId": "bbac944f-ddc0-4b4c-aa85-cc7dc5d5c1a6",
+            "description": "Active: Virtual Machines - China East",
+            "eventSource": "ServiceHealth",
+            "eventTimestamp": "2017-10-18T23:49:25.3736084+00:00",
+            "eventDataId": "6fa98c0f-334a-b066-1934-1a4b3d929856",
+            "level": "Informational",
+            "operationName": "Microsoft.ServiceHealth/incident/action",
+            "operationId": "bbac944f-ddc0-4b4c-aa85-cc7dc5d5c1a6",
+            "properties": {
+                "title": "Virtual Machines - China East",
+                "service": "Virtual Machines",
+                "region": "China East",
+                "communication": "Starting at 02:48 UTC on 18 Oct 2017 you have been identified as a customer using Virtual Machines in Australia East who may receive errors starting Dv2 Promo and DSv2 Promo Virtual Machines which are in a stopped &quot;deallocated&quot; or suspended state. Customers can still provision Dv1 and Dv2 series Virtual Machines or try deploying Virtual Machines in other regions, as a possible workaround. Engineers have identified a possible fix for the underlying cause, and are exploring implementation options. The next update will be provided as events warrant.",
+                "incidentType": "Incident",
+                "trackingId": "0NIH-U2O",
+                "impactStartTime": "2017-10-18T02:48:00.0000000Z",
+                "impactedServices": "[{\"ImpactedRegions\":[{\"RegionName\":\"China East\"}],\"ServiceName\":\"Virtual Machines\"}]",
+                "defaultLanguageTitle": "Virtual Machines - China East",
+                "defaultLanguageContent": "Starting at 02:48 UTC on 18 Oct 2017 you have been identified as a customer using Virtual Machines in Australia East who may receive errors starting Dv2 Promo and DSv2 Promo Virtual Machines which are in a stopped &quot;deallocated&quot; or suspended state. Customers can still provision Dv1 and Dv2 series Virtual Machines or try deploying Virtual Machines in other regions, as a possible workaround. Engineers have identified a possible fix for the underlying cause, and are exploring implementation options. The next update will be provided as events warrant.",
+                "stage": "Active",
+                "communicationId": "636439673646212912",
+                "version": "0.1.1"
+            },
+            "status": "Active",
+            "subscriptionId": "45529734-0ed9-4895-a0df-44b59a5a07f9",
+            "submissionTimestamp": "2017-10-18T23:49:28.7864349+00:00"
         }
     },
     "properties": {}
@@ -214,7 +217,7 @@ Webhook 可以选择使用基于令牌的授权进行身份验证。 保存的 w
 }
 ```
 
-有关服务运行状况通知活动日志警报的特定架构详细信息，请参阅[服务运行状况通知](/service-health/service-notifications)。 此外，请了解如何[使用现有的问题管理解决方案配置服务运行状况 Webhook 通知](../../service-health/service-health-alert-webhook-guide.md)。
+有关服务运行状况通知活动日志警报的特定架构详细信息，请参阅[服务运行状况通知](../../service-health/service-notifications.md)。 此外，请了解如何[使用现有的问题管理解决方案配置服务运行状况 Webhook 通知](../../service-health/service-health-alert-webhook-guide.md)。
 
 ### <a name="resourcehealth"></a>ResourceHealth
 
@@ -284,11 +287,13 @@ Webhook 可以选择使用基于令牌的授权进行身份验证。 保存的 w
 | status |字符串。 操作的状态。 常见值包括“Started”、“In Progress”、“Succeeded”、“Failed”、“Active”和“Resolved”。 |
 | subStatus |通常包含对应 REST 调用的 HTTP 状态代码。 它还可能包含描述子状态的其他字符串。 常见子状态值包括 OK（HTTP 状态代码：200）、Created（HTTP 状态代码：201）、Accepted（HTTP 状态代码：202）、No Content（HTTP 状态代码：204）、Bad Request（HTTP 状态代码：400）、Not Found（HTTP 状态代码：404）、Conflict（HTTP 状态代码：409）、Internal Server Error（HTTP 状态代码：500）、Service Unavailable（HTTP 状态代码：503）和 Gateway Timeout（HTTP 状态代码：504）。 |
 
-有关所有其他活动日志警报的特定架构的详细信息，请参阅 [Azure 活动日志概述](../../azure-monitor/platform/platform-logs-overview.md)。
+有关所有其他活动日志警报的特定架构的详细信息，请参阅 [Azure 活动日志概述](./platform-logs-overview.md)。
 
 ## <a name="next-steps"></a>后续步骤
-* [了解有关活动日志的更多信息](../../azure-monitor/platform/platform-logs-overview.md)。
+* [了解有关活动日志的更多信息](./platform-logs-overview.md)。
 * [对 Azure 警报执行 Azure 自动化脚本 (Runbook)](https://go.microsoft.com/fwlink/?LinkId=627081)。
 * [使用逻辑应用通过 Twilio 从 Azure 警报发送短信](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-text-message-with-logic-app)。 本示例适用于度量值警报，但经过修改后可用于活动日志警报。
 * [使用逻辑应用从 Azure 警报发送 Slack 消息](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-slack-with-logic-app)。 本示例适用于度量值警报，但经过修改后可用于活动日志警报。
 * [使用逻辑应用从 Azure 警报将消息发送到 Azure 队列](https://github.com/Azure/azure-quickstart-templates/tree/master/201-alert-to-queue-with-logic-app)。 本示例适用于度量值警报，但经过修改后可用于活动日志警报。
+
+

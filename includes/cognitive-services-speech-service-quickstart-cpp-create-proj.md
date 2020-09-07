@@ -3,14 +3,14 @@ author: erhopf
 ms.service: cognitive-services
 ms.topic: include
 origin.date: 02/10/2020
-ms.date: 04/20/2020
+ms.date: 08/03/2020
 ms.author: v-tawe
-ms.openlocfilehash: fe05d8f1c37eafb7df26cccb100e621c9eb30025
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.openlocfilehash: dd36b593a1869827e81160278b3eb1ddd7a59421
+ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82126274"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "89317580"
 ---
 若要创建 Visual Studio 项目以用于 C++ 桌面开发，需要设置 Visual Studio 开发选项，创建项目，选择目标体系结构，然后安装语音 SDK。
 
@@ -30,7 +30,7 @@ ms.locfileid: "82126274"
 
 1. 在“工作负载”  选项卡的“Windows”  下，找到“使用 C++ 的桌面开发”工作负载  。 如果尚未选择该工作负载旁边的复选框，请选中。
 
-1. 在“单个组件”  选项卡中，找到“Nuget 包管理器”  复选框。 如果尚未选中此复选框，请选中。
+1. 在“单个组件”选项卡中，找到“NuGet 包管理器”复选框。 如果尚未选中此复选框，请选中。
 
 1. 选择角上的标签为“关闭”  或“修改”  的按钮。 （按钮名称会有所不同，具体取决于你是否选择了任何功能以进行安装。）如果选择“修改”  ，将开始安装，这可能需要一段时间。
 
@@ -60,7 +60,7 @@ ms.locfileid: "82126274"
 
 最后，安装[语音 SDK NuGet 包](https://aka.ms/csspeech/nuget)，并在项目中引用语音 SDK：
 
-1. 在“解决方案资源管理器”  中，右键单击你的解决方案，然后选择“管理解决方案的 NuGet 包”  以转到“Nuget - 解决方案”  窗口。
+1. 在“解决方案资源管理器”中，右键单击你的解决方案，然后选择“管理解决方案的 NuGet 包”以转到“NuGet - 解决方案”窗口。
 
 1. 选择“浏览”  。
 
@@ -78,4 +78,4 @@ ms.locfileid: "82126274"
 
 1. 在“预览更改”  对话框中，选择“确定”  。
 
-1. 在“接受许可证”  对话框中，查看许可证，然后选择“我接受”  。 包安装开始，安装完成后，“输出”  窗格将显示类似于以下文本的消息：`Successfully installed 'Microsoft.CognitiveServices.Speech 1.11.0' to helloworld`。
+1. 在“接受许可证”  对话框中，查看许可证，然后选择“我接受”  。 包安装开始，安装完成后，“输出”  窗格将显示类似于以下文本的消息：`Successfully installed 'Microsoft.CognitiveServices.Speech 1.13.0' to helloworld`。

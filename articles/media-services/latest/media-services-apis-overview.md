@@ -11,15 +11,15 @@ ms.service: media-services
 ms.workload: ''
 ms.topic: article
 origin.date: 10/21/2019
-ms.date: 07/27/2020
+ms.date: 09/07/2020
 ms.author: v-jay
 ms.custom: seodec18
-ms.openlocfilehash: 6af8df46b21219ca82b90d8c0d80d9b17225d16f
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 6228c806ce0f9a1122f68c1e40f6f4d0c56f6365
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162188"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413848"
 ---
 # <a name="develop-with-media-services-v3-apis"></a>使用媒体服务 v3 API 进行开发
 
@@ -55,7 +55,7 @@ ms.locfileid: "87162188"
    * REST 媒体服务的资源 URI。
    * Azure AD 应用值：客户端 ID 和客户端密码。
 
-   若要获取需要的所有值，请参阅[访问 Azure 媒体服务 API](access-api-cli-how-to.md)。
+   若要获取需要的所有值，请参阅[访问 Azure 媒体服务 API](./access-api-howto.md)。
 
 2. Azure AD 访问令牌发送到中间层。
 4. 中间层使用 Azure AD 令牌向 Azure 媒体 REST API 发送请求。
@@ -87,7 +87,7 @@ Azure 媒体服务 v3 资源名称（例如，资产、作业、转换）需遵�
 
 在 Azure 媒体服务的 [swagger 文件](https://github.com/Azure/azure-rest-api-specs/blob/master/specification/mediaservices/resource-manager/Microsoft.Media/stable/2018-07-01/streamingservice.json)中标记有 `x-ms-long-running-operation` 的操作为长期运行的操作。 
 
-如需了解如何跟踪异步 Azure 操作，请参阅[异步操作](/azure-resource-manager/resource-manager-async-operations#monitor-status-of-operation)。
+如需了解如何跟踪异步 Azure 操作，请参阅[异步操作](../../azure-resource-manager/management/async-operations.md)。
 
 媒体服务拥有以下长期运行的操作：
 
@@ -110,7 +110,7 @@ Azure 媒体服务 v3 资源名称（例如，资产、作业、转换）需遵�
 
 成功提交某个长期运行的操作后，你收到消息“202 已接受”，必须使用返回的操作 ID 轮询操作的完成情况。
 
-[跟踪异步 Azure 操作](/azure-resource-manager/resource-manager-async-operations)一文深入说明了如何通过响应中返回的值跟踪异步 Azure 操作的状态。
+[跟踪异步 Azure 操作](../../azure-resource-manager/management/async-operations.md)一文深入说明了如何通过响应中返回的值跟踪异步 Azure 操作的状态。
 
 对于给定的直播活动或任何与之相关的实时输出，仅支持一个长期运行的操作。 启动长期运行的操作后，必须先完成该操作，再为同一个直播活动或任何关联的实时输出启动下一个长期运行的操作。 对于拥有多个实时输出的直播活动，你必须等到对某个实时输出的长期运行的操作完成后，才能为另一个实时输出触发长期运行的操作。 
 
@@ -145,7 +145,7 @@ AMSE 是一个开源项目，由社区提供支持（可以将问题报告给 ht
 
 ## <a name="see-also"></a>另请参阅
 
-若要获取需要的所有值，请参阅[访问 Azure 媒体服务 API](access-api-cli-how-to.md)。
+若要获取需要的所有值，请参阅[访问 Azure 媒体服务 API](./access-api-howto.md)。
 
 ## <a name="next-steps"></a>后续步骤
 

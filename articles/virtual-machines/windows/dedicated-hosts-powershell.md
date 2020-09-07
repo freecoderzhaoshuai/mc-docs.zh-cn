@@ -1,20 +1,22 @@
 ---
 title: 使用 Azure PowerShell 部署 Azure 专用主机
 description: 使用 Azure PowerShell 将 VM 部署到专用主机。
-author: rockboyfor
 ms.service: virtual-machines-windows
-ms.topic: article
+ms.topic: how-to
 ms.workload: infrastructure
 origin.date: 08/01/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.reviewer: zivr
-ms.openlocfilehash: f88970c813a77fd878f4620aff2511b2ef731787
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 3fe8ebc3ba724342993964779d46ae68db246470
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946014"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463174"
 ---
 <!--Verified successfully-->
 # <a name="deploy-vms-to-dedicated-hosts-using-the-azure-powershell"></a>使用 Azure PowerShell 将 VM 部署到专用主机
@@ -183,7 +185,7 @@ Tags                   : {}
 
 - VM 大小必须属于专用主机所用的同一大小系列。 例如，如果专用主机是 DSv3，则 VM 大小可以是 Standard_D4s_v3，但不能是 Standard_A4_v2。 
 - VM 需要位于专用主机所在的同一区域。
-- VM 不能是邻近放置组的一部分。 在将 VM 移动到专用主机之前，请先从邻近放置组中删除该 VM。 有关详细信息，请参阅[将 VM 移出邻近放置组](/virtual-machines/windows/proximity-placement-groups#move-an-existing-vm-out-of-a-proximity-placement-group)
+- VM 不能是邻近放置组的一部分。 在将 VM 移动到专用主机之前，请先从邻近放置组中删除该 VM。 有关详细信息，请参阅[将 VM 移出邻近放置组](./proximity-placement-groups.md#move-an-existing-vm-out-of-a-proximity-placement-group)
 - VM 不能位于可用性集中。
 
 <!--Not Available on - If the VM is in an availability zone, it must be the same availability zone as the host group. The availability zone settings for the VM and the host group must match.-->

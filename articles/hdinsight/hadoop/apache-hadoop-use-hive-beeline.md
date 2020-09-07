@@ -10,12 +10,12 @@ ms.tgt_pltfrm: na
 ms.workload: big-data
 origin.date: 04/17/2020
 ms.date: 07/06/2020
-ms.openlocfilehash: cc50e9ace91725f1567ceff82d2fbf23535e6a26
-ms.sourcegitcommit: 3a8a7d65d0791cdb6695fe6c2222a1971a19f745
+ms.openlocfilehash: cb133f82b45bf432663946352427f9eb56acdf36
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2020
-ms.locfileid: "85516704"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463147"
 ---
 # <a name="use-the-apache-beeline-client-with-apache-hive"></a>将 Apache Beeline 客户端与 Apache Hive 配合使用
 
@@ -69,21 +69,23 @@ Beeline 是一个 Hive 客户端，包含在 HDInsight 群集的头节点上。 
 
     此命令返回以下信息：
 
-        +-----------------------+------------+----------+--+
-        |       col_name        | data_type  | comment  |
-        +-----------------------+------------+----------+--+
-        | clientid              | string     |          |
-        | querytime             | string     |          |
-        | market                | string     |          |
-        | deviceplatform        | string     |          |
-        | devicemake            | string     |          |
-        | devicemodel           | string     |          |
-        | state                 | string     |          |
-        | country               | string     |          |
-        | querydwelltime        | double     |          |
-        | sessionid             | bigint     |          |
-        | sessionpagevieworder  | bigint     |          |
-        +-----------------------+------------+----------+--+
+    ```output
+    +-----------------------+------------+----------+--+
+    |       col_name        | data_type  | comment  |
+    +-----------------------+------------+----------+--+
+    | clientid              | string     |          |
+    | querytime             | string     |          |
+    | market                | string     |          |
+    | deviceplatform        | string     |          |
+    | devicemake            | string     |          |
+    | devicemodel           | string     |          |
+    | state                 | string     |          |
+    | country               | string     |          |
+    | querydwelltime        | double     |          |
+    | sessionid             | bigint     |          |
+    | sessionpagevieworder  | bigint     |          |
+    +-----------------------+------------+----------+--+
+    ```
 
     此信息描述表中的列。
 
@@ -124,7 +126,7 @@ Beeline 是一个 Hive 客户端，包含在 HDInsight 群集的头节点上。 
 
     此命令的输出类似于以下文本：
 
-    ```
+    ```output
     INFO  : Tez session hasn't been created yet. Opening session
     INFO  :
 
@@ -202,14 +204,16 @@ Beeline 是一个 Hive 客户端，包含在 HDInsight 群集的头节点上。 
 
     应返回三行数据，所有行都包含 t4 列中的 **[ERROR]** ：
 
-        +---------------+---------------+---------------+---------------+---------------+---------------+---------------+--+
-        | errorlogs.t1  | errorlogs.t2  | errorlogs.t3  | errorlogs.t4  | errorlogs.t5  | errorlogs.t6  | errorlogs.t7  |
-        +---------------+---------------+---------------+---------------+---------------+---------------+---------------+--+
-        | 2012-02-03    | 18:35:34      | SampleClass0  | [ERROR]       | incorrect     | id            |               |
-        | 2012-02-03    | 18:55:54      | SampleClass1  | [ERROR]       | incorrect     | id            |               |
-        | 2012-02-03    | 19:25:27      | SampleClass4  | [ERROR]       | incorrect     | id            |               |
-        +---------------+---------------+---------------+---------------+---------------+---------------+---------------+--+
-        3 rows selected (0.813 seconds)
+    ```output
+    +---------------+---------------+---------------+---------------+---------------+---------------+---------------+--+
+    | errorlogs.t1  | errorlogs.t2  | errorlogs.t3  | errorlogs.t4  | errorlogs.t5  | errorlogs.t6  | errorlogs.t7  |
+    +---------------+---------------+---------------+---------------+---------------+---------------+---------------+--+
+    | 2012-02-03    | 18:35:34      | SampleClass0  | [ERROR]       | incorrect     | id            |               |
+    | 2012-02-03    | 18:55:54      | SampleClass1  | [ERROR]       | incorrect     | id            |               |
+    | 2012-02-03    | 19:25:27      | SampleClass4  | [ERROR]       | incorrect     | id            |               |
+    +---------------+---------------+---------------+---------------+---------------+---------------+---------------+--+
+    3 rows selected (0.813 seconds)
+    ```
 
 ## <a name="next-steps"></a>后续步骤
 

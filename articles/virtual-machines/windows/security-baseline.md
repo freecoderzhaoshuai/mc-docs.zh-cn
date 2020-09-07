@@ -1,21 +1,21 @@
 ---
 title: 适用于 Linux 虚拟机和 Windows 虚拟机的 Azure 安全基线
 description: Windows 虚拟机安全基线为实现 Azure 安全基准中指定的安全建议提供了过程指南和资源。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.topic: conceptual
 origin.date: 07/13/2020
-ms.date: 08/24/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: yes
-ms.testdate: 08/24/2020
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: security-benchmark
-ms.openlocfilehash: f78eac5b5dbe8e86160d6c8fd9fefe790f3c7664
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 413a2b5d9ffb378a15ecca94c9e3eb909378921d
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947490"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462923"
 ---
 <!--All Links Verified Successfully-->
 # <a name="azure-security-baseline-for-windows-virtual-machines"></a>适用于 Windows 虚拟机的 Azure 安全基线
@@ -294,7 +294,7 @@ ms.locfileid: "88947490"
 
 <!--Not Avaiilable on * [How to onboard Azure Sentinel](../../sentinel/quickstart-onboard.md)-->
 
-<!--Not Avaiilable on * [How to manage alerts in Azure Security Center](../../security-center/security-center-managing-and-responding-alerts.md)-->
+* [如何在 Azure 安全中心管理警报](../../security-center/security-center-managing-and-responding-alerts.md)
 
 * [如何针对 Log Analytics 日志数据发出警报](../../azure-monitor/learn/tutorial-response.md)
 
@@ -306,7 +306,7 @@ ms.locfileid: "88947490"
 
 **指导**：可以使用适用于 Azure 云服务和虚拟机的 Microsoft Antimalware，并将虚拟机配置为将事件记录到 Azure 存储帐户。 配置 Log Analytics 工作区以从存储帐户中引入事件，并视具体情况创建警报。 请遵循 Azure 安全中心中的建议：“计算和应用”。&amp;
 
-* [如何配置适用于云服务和虚拟机的 Azure Antimalware](../../security/fundamentals/antimalware.md)
+* [如何为云服务和虚拟机配置 Microsoft Antimalware](../../security/fundamentals/antimalware.md)
 
 <!--Not Avaiilable on * [How to Enable guest-level monitoring for Virtual Machines](../../cost-management-billing/cloudyn/azure-vm-extended-metrics.md)-->
 
@@ -823,7 +823,7 @@ Azure 使用传输层安全性 (TLS) 协议，在云服务和客户之间传输�
 
 * [Azure 防火墙概述](../../firewall/overview.md)
 
-<!--Not Available on * [Web Application Firewall overview](../../web-application-firewall/overview.md)-->
+    <!--Not Available on * [Web Application Firewall overview](../../web-application-firewall/overview.md)-->
 
 * [网络安全概述](../../virtual-network/security-overview.md)
 
@@ -1009,7 +1009,7 @@ Azure 使用传输层安全性 (TLS) 协议，在云服务和客户之间传输�
 
 **指导**：使用适用于 Azure Windows 虚拟机的 Microsoft Antimalware 来持续监视和保护资源。
 
-* [如何配置适用于云服务和虚拟机的 Azure Antimalware](../../security/fundamentals/antimalware.md)
+* [如何为云服务和虚拟机配置 Microsoft Antimalware](../../security/fundamentals/antimalware.md)
 
 **Azure 安全中心监视**：是
 
@@ -1093,7 +1093,7 @@ Azure 使用传输层安全性 (TLS) 协议，在云服务和客户之间传输�
 
 * [VM 的软删除](../../backup/soft-delete-virtual-machines.md)
 
-<!--Not Available on * [Azure Key Vault soft-delete overview](../../key-vault/general/soft-delete-overview.md)-->
+    <!--Not Avaialble on * [Azure Key Vault soft-delete overview](../../key-vault/general/soft-delete-overview.md)-->
 
 **Azure 安全中心监视**：是
 
@@ -1143,7 +1143,7 @@ Azure 使用传输层安全性 (TLS) 协议，在云服务和客户之间传输�
 
 ### <a name="104-provide-security-incident-contact-details-and-configure-alert-notifications-for-security-incidents"></a>10.4：提供安全事件联系人详细信息，并针对安全事件配置警报通知
 
-**指导**：如果 Azure 安全响应中心 (MSRC) 发现非法或未经授权的某方访问了你的数据，Azure 将使用安全事件联系人信息与你取得联系。 事后审查事件，确保问题得到解决。
+**指导**：如果 Microsoft 安全响应中心 (MSRC) 发现非法或未经授权的某方访问了你的数据，Azure 将使用安全事件联系人信息与你取得联系。 事后审查事件，确保问题得到解决。
 
 * [如何设置 Azure 安全中心安全联系人](../../security-center/security-center-provide-security-contact-details.md)
 
@@ -1194,5 +1194,4 @@ Azure 使用传输层安全性 (TLS) 协议，在云服务和客户之间传输�
 - 请参阅 [Azure 安全基准](../../security/benchmarks/overview.md)
 - 详细了解 [Azure 安全基线](../../security/benchmarks/security-baselines-overview.md)
 
-<!-- Update_Description: new article about security baseline -->
-<!--NEW.date: 08/24/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

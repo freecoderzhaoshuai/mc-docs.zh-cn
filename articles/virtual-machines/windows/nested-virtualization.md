@@ -1,21 +1,21 @@
 ---
-title: 如何在 Azure VM 中启用嵌套虚拟化
+title: 如何在 Azure 虚拟机中启用嵌套虚拟化
 description: 如何在 Azure 虚拟机中启用嵌套虚拟化
-author: rockboyfor
 origin.date: 10/09/2017
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: yes
-ms.testdate: 07/27/2020
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.topic: how-to
 ms.service: virtual-machines-windows
 ms.workload: infrastructure
-ms.openlocfilehash: 4f2186d0442ba2b5a3a2a1dd419a4340decb7915
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: fb78e30c7ef3dfeb104c40563f3bfbfb45e90b7c
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244463"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462988"
 ---
 <!--Verify Successfully -->
 # <a name="how-to-enable-nested-virtualization-in-an-azure-vm"></a>如何在 Azure VM 中启用嵌套虚拟化
@@ -26,7 +26,7 @@ ms.locfileid: "87244463"
 
 ## <a name="create-a-nesting-capable-azure-vm"></a>创建支持嵌套的 Azure VM
 
-创建新的 Windows Server 2016 Azure VM。 有关支持嵌套的虚拟机大小的完整列表，请查看 [Azure 计算单位](acu.md)一文。
+创建新的 Windows Server 2016 Azure VM。 有关支持嵌套的虚拟机大小的完整列表，请查看 [Azure 计算单位](../acu.md)一文。
 
 请记住选择足够大的 VM 大小来支持来宾虚拟机的需求。 在此示例中，我们将使用 D3_v3 大小的 Azure VM。 
 
@@ -36,7 +36,7 @@ ms.locfileid: "87244463"
 
 >[!NOTE]
 >
->有关创建新虚拟机的详细说明，请参阅[使用 Azure PowerShell 模块创建和管理 Windows VM](/virtual-machines/windows/tutorial-manage-vm)
+>有关创建新虚拟机的详细说明，请参阅[使用 Azure PowerShell 模块创建和管理 Windows VM](./tutorial-manage-vm.md)
 
 ## <a name="connect-to-your-azure-vm"></a>连接到 Azure VM
 
@@ -91,7 +91,7 @@ ms.locfileid: "87244463"
     Get-NetAdapter
     ```
 
-    ![NetAdapter](./media/virtual-machines-nested-virtualization/get-netadapter.png)
+    :::image type="content" source="./media/virtual-machines-nested-virtualization/get-netadapter.png" alt-text="NetAdapter":::
 
     >[!NOTE] 
     >
@@ -127,7 +127,7 @@ New-NetNat -Name "InternalNat" -InternalIPInterfaceAddressPrefix 192.168.0.0/24
 
 1. 打开 Hyper-V 管理器并创建新的虚拟机。 配置虚拟机以使用你创建的新内部网络。
 
-    ![NetworkConfig](./media/virtual-machines-nested-virtualization/configure-networking.png)
+    :::image type="content" source="./media/virtual-machines-nested-virtualization/configure-networking.png" alt-text="NetworkConfig":::
 
 2. 在来宾虚拟机上安装操作系统。
 
@@ -184,11 +184,8 @@ New-NetNat -Name "InternalNat" -InternalIPInterfaceAddressPrefix 192.168.0.0/24
 ## <a name="test-connectivity-in-guest-virtual-machine"></a>在来宾虚拟机中测试连接
 
 在来宾虚拟机中，打开浏览器并导航到网页。
+    :::image type="content" source="./media/virtual-machines-nested-virtualization/guest-virtual-machine.png" alt-text="GuestVM":::
 
-![GuestVM](./media/virtual-machines-nested-virtualization/guest-virtual-machine.png)
-
-## <a name="set-up-intranet-connectivity-for-the-guest-virtual-machine"></a>设置来宾虚拟机的 Intranet 连接
-
-有关如何在来宾 VM 和 Azure VM 之间启用透明连接的说明，请参阅[此文档](https://docs.microsoft.com/virtualization/hyper-v-on-windows/user-guide/nested-virtualization-azure-virtual-network)。
+有关如何在来宾 VM 和 Azure VM 之间启用透明连接的说明，请参阅[此文档](https://docs.microsoft.com/virtualization/hyper-v-on-windows/user-guide/nested-virtualization)。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

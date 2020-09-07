@@ -9,14 +9,14 @@ manager: dviso
 ms.reviewer: v-mamcge, jasonh, kfile
 ms.workload: big-data
 ms.topic: conceptual
-ms.date: 08/04/2020
+ms.date: 09/01/2020
 ms.custom: seodec18
-ms.openlocfilehash: ea5748c89e1fe60147d44e2f374dfc3deda55218
-ms.sourcegitcommit: 36e7f37481969f92138bfe70192b1f4a2414caf7
+ms.openlocfilehash: da678bfa09f24c0cc9bb73f0bcd74bb397e87335
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87801854"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413281"
 ---
 # <a name="grant-data-access-to-an-environment"></a>授予对环境的数据访问权限
 
@@ -106,7 +106,7 @@ ms.locfileid: "87801854"
 
 1. 管理员与其来宾[共享环境 URL](time-series-insights-parameterized-urls.md)。
 
-1. 当来宾用户登录到你用来邀请他们的电子邮件地址并接受邀请后，系统就会将其定向到 Azure 门户。 
+1. 当来宾用户登录到你用来邀请他们的电子邮件地址并接受邀请后，系统就会将其定向到 Azure 门户。
 
 1. 来宾现在可以使用管理员提供的环境 URL 访问共享环境。 来宾将该 URL 输入其 Web 浏览器即可立刻进行访问。
 
@@ -114,13 +114,13 @@ ms.locfileid: "87801854"
 
     [![在 insights.azure.com 上选择头像](./media/data-access/data-access-select-tenant-and-instance.png)](./media/data-access/data-access-select-tenant-and-instance.png#lightbox)
 
+    来宾用户在选择管理员的租户以后，即可选择共享的 Azure 时序见解环境。
 
-    来宾用户在选择管理员的租户以后，即可选择共享的 Azure 时序见解环境。 
-    
     现在，他们拥有了与你在**步骤 5** 中提供的角色相关联的所有功能。
 
     [![来宾用户从下拉列表中选择你的 Azure 租户](./media/data-access/data-access-all-capabilities.png)](./media/data-access/data-access-all-capabilities.png#lightbox)
 
 ## <a name="next-steps"></a>后续步骤
+
 * 阅读[身份验证和授权](time-series-insights-authentication-and-authorization.md)以获取 Azure Active Directory 应用注册步骤。
 

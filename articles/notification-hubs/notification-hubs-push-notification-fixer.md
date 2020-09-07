@@ -13,16 +13,17 @@ ms.tgt_pltfrm: NA
 ms.devlang: multiple
 ms.topic: article
 origin.date: 02/25/2020
-ms.date: 03/16/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.reviewer: jowargo
 ms.lastreviewed: 04/04/2019
-ms.openlocfilehash: 824d6dd91709df2a41c0df38549f30be0b89a80f
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 5581f50eccd6d31a4784d19fb0b0151faa874e01
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80342425"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317503"
 ---
 # <a name="diagnose-dropped-notifications-in-azure-notification-hubs"></a>诊断 Azure 通知中心内删除通知的问题
 
@@ -156,7 +157,7 @@ ms.locfileid: "80342425"
 ![Visual Studio：测试发送](./media/notification-hubs-push-notification-fixer/test-send-vs.png)
 
 > [!NOTE]
-> 用于编辑注册的 Visual Studio 功能只能在开发/测试有限的注册时使用。 如果需要批量编辑注册，请考虑使用以下教程中所述的导出和导入注册功能：[如何：批量导出和修改注册](https://msdn.microsoft.com/library/dn790624.aspx)。
+> 用于编辑注册的 Visual Studio 功能只能在开发/测试有限的注册时使用。 如果需要批量编辑注册，请考虑使用以下教程中所述的导出和导入注册功能：[如何：批量导出和修改注册](https://docs.microsoft.com/previous-versions/azure/azure-services/dn790624(v=azure.100))。
 
 #### <a name="service-bus-explorer"></a>服务总线资源管理器
 
@@ -283,12 +284,12 @@ The Token obtained from the Token Provider is wrong
 <!-- LINKS -->
 [通知中心概述]: notification-hubs-push-notification-overview.md
 [Azure 通知中心入门]: notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md
-[模板]: https://msdn.microsoft.com/library/dn530748.aspx
+[模板]: https://docs.microsoft.com/previous-versions/azure/azure-services/dn530748(v=azure.100)
 [APNs 概述]: https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/APNSOverview.html
-[Export and modify registrations in bulk]: https://msdn.microsoft.com/library/dn790624.aspx
+[Export and modify registrations in bulk]: https://docs.microsoft.com/previous-versions/azure/azure-services/dn790624(v=azure.100)
 [Service Bus Explorer code]: https://code.msdn.microsoft.com/windowsazure/Service-Bus-Explorer-f2abca5a
-[View device registrations for notification hubs]: https://msdn.microsoft.com/library/windows/apps/xaml/dn792122.aspx
+[View device registrations for notification hubs]: https://docs.microsoft.com/previous-versions/windows/apps/dn792122(v=win.10)
 [深入探讨：Visual Studio 2013 Update 2 RC 和 Azure SDK 2.3]: https://azure.microsoft.com/blog/2014/04/09/deep-dive-visual-studio-2013-update-2-rc-and-azure-sdk-2-3/#NotificationHubs
 [宣布推出 Visual Studio 2013 Update 3 和 Azure SDK 2.4]: https://azure.microsoft.com/blog/2014/08/04/announcing-release-of-visual-studio-2013-update-3-and-azure-sdk-2-4/
-[EnableTestSend]: https://docs.azure.cn/dotnet/api/microsoft.azure.notificationhubs.notificationhubclient.enabletestsend?view=azure-dotnet
-[Programmatic telemetry access]: https://msdn.microsoft.com/library/azure/dn458823.aspx
+[EnableTestSend]: /dotnet/api/microsoft.azure.notificationhubs.notificationhubclient.enabletestsend?view=azure-dotnet
+[Programmatic telemetry access]: https://docs.microsoft.com/previous-versions/azure/azure-services/dn458823(v=azure.100)

@@ -3,14 +3,14 @@ title: 持久业务流程 - Azure Functions
 description: Azure Durable Functions 的业务流程功能简介。
 author: cgillum
 ms.topic: overview
-ms.date: 08/12/2020
+ms.date: 09/03/2020
 ms.author: v-junlch
-ms.openlocfilehash: d51d1af073f3485204d192ccd15243f1d1b782ef
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: 000068103c2c0e3c469728c6c4c6c9d36783c760
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222673"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413967"
 ---
 # <a name="durable-orchestrations"></a>持久业务流程
 
@@ -51,7 +51,7 @@ Durable Functions 以透明方式使用事件溯源。 在幕后，业务流程�
 > 要使重播模式正常可靠工作，业务流程协调程序函数代码必须是确定性的。 有关业务流程协调程序函数的代码限制的详细信息，请参阅[业务流程协调程序函数代码约束](durable-functions-code-constraints.md)主题。
 
 > [!NOTE]
-> 如果业务流程协调程序函数发出日志消息，重播行为可能导致发出重复的日志消息。 请参阅[日志记录](durable-functions-diagnostics.md#logging)主题来详细了解此行为的发生原因及其解决方法。
+> 如果业务流程协调程序函数发出日志消息，重播行为可能导致发出重复的日志消息。 请参阅[日志记录](durable-functions-diagnostics.md#app-logging)主题，详细了解此行为发生的原因及其解决方法。
 
 ## <a name="orchestration-history"></a>业务流程历史记录
 

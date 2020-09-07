@@ -12,14 +12,15 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 07/08/2019
-ms.date: 04/06/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 1e63d516e1b8cbabddd4d2653d42f8d12e7b6b1a
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: b69245ec0d77b21cb16a3ef57fa439b3b4cb637f
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80625789"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413853"
 ---
 # <a name="monitor-media-services-diagnostic-logs"></a>监视媒体服务诊断日志
 
@@ -32,7 +33,7 @@ ms.locfileid: "80625789"
 
 ## <a name="prerequisites"></a>必备条件
 
-- [创建媒体服务帐户](create-account-cli-how-to.md)。
+- [创建媒体服务帐户](./create-account-howto.md)。
 - 参阅[监视媒体服务指标和诊断日志](media-services-metrics-diagnostic-logs.md)。
 
 ## <a name="route-data-to-the-storage-account-using-the-portal"></a>使用门户将数据路由到存储帐户

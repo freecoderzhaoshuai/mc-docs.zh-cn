@@ -1,36 +1,40 @@
 ---
 title: 适用于 Azure 虚拟网络的常见 PowerShell 命令
 description: 可用于为 VM 创建虚拟网络及其关联资源的常用 PowerShell 命令。
-author: rockboyfor
 ms.service: virtual-machines
 ms.workload: infrastructure-services
 ms.topic: how-to
 origin.date: 07/17/2017
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 828b947775a271361a5dba29270a9dec42fd363a
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 0e3b064d12e76628131ec1c520d50cacd4ea96b3
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945983"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463080"
 ---
 # <a name="common-powershell-commands-for-azure-virtual-networks"></a>适用于 Azure 虚拟网络的常见 PowerShell 命令
 
 如果想要创建虚拟机，需要创建[虚拟网络](../../virtual-network/virtual-networks-overview.md)或了解可在其中添加 VM 的现有虚拟网络。 通常情况下，创建 VM 时，还需考虑创建本文所述资源。
 
-有关安装最新版 Azure PowerShell、选择订阅和登录到帐户的信息，请参阅[如何安装和配置 Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview)。
+有关安装最新版 Azure PowerShell、选择订阅和登录到帐户的信息，请参阅[如何安装和配置 Azure PowerShell](https://docs.microsoft.com/powershell/azure/)。
 
 如果运行本文中的多个命令，以下一些变量可能将对你有用：
 
 - $location - 网络资源的位置。 可以使用 [Get-AzLocation](https://docs.microsoft.com/powershell/module/az.resources/get-azlocation) 查找适合你的[地理区域](https://status.azure.com/status/)。
 - $myResourceGroup - 网络资源所在的资源组名称。
 
+    <!--Correct on Remain to https://status.azure.com/status-->
+    
 ## <a name="create-network-resources"></a>创建网络资源
 
 | 任务 | 命令 |
 | ---- | ------- |
-| 创建子网配置 |$subnet1 = [New-AzVirtualNetworkSubnetConfig](https://docs.microsoft.com/powershell/module/az.network/new-azvirtualnetworksubnetconfig) -Name "mySubnet1" -AddressPrefix XX.X.X.X/XX<br />$subnet2 = New-AzVirtualNetworkSubnetConfig -Name "mySubnet2" -AddressPrefix XX.X.X.X/XX<br /><br />典型的网络可能包含用于[面向 Internet 的负载均衡器](../../load-balancer/load-balancer-internet-overview.md)的子网，以及用于[内部负载均衡器](../../load-balancer/load-balancer-internal-overview.md)的独立子网。 |
+| 创建子网配置 |$subnet1 = [New-AzVirtualNetworkSubnetConfig](https://docs.microsoft.com/powershell/module/az.network/new-azvirtualnetworksubnetconfig) -Name "mySubnet1" -AddressPrefix XX.X.X.X/XX<br />$subnet2 = New-AzVirtualNetworkSubnetConfig -Name "mySubnet2" -AddressPrefix XX.X.X.X/XX<br /><br />典型的网络可能包含用于[面向 Internet 的负载均衡器](../../load-balancer/load-balancer-overview.md)的子网，以及用于[内部负载均衡器](../../load-balancer/load-balancer-overview.md)的独立子网。 |
 | 创建虚拟网络 |$vnet = [New-AzVirtualNetwork](https://docs.microsoft.com/powershell/module/az.network/new-azvirtualnetwork) -Name "myVNet" -ResourceGroupName $myResourceGroup -Location $location -AddressPrefix XX.X.X.X/XX -Subnet $subnet1, $subnet2 |
 | 测试唯一域名 |[Test-AzDnsAvailability](https://docs.microsoft.com/powershell/module/az.network/test-azdnsavailability) -DomainNameLabel "myDNS" -Location $location<br /><br />可以为[公共 IP 资源](../../virtual-network/public-ip-addresses.md)指定一个 DNS 域名，以便在 Azure 托管的 DNS 服务器中创建 domainname.location.cloudapp.chinacloudapi.cn 到公共 IP 地址的映射。 字段只能包含字母、数字和连字符。 第一个和最后一个字符必须是字母或数字，域名在其 Azure 位置内必须是唯一的。 如果返回 **True** ，则建议的名称是全局唯一的。 |
 | 创建公共 IP 地址 |$pip = [New-AzPublicIpAddress](https://docs.microsoft.com/powershell/module/az.network/new-azpublicipaddress) -Name "myPublicIp" -ResourceGroupName $myResourceGroup -DomainNameLabel "myDNS" -Location $location -AllocationMethod Dynamic<br /><br />公共 IP 地址使用前面测试过的并由负载均衡器前端配置使用的域名。 |
@@ -67,6 +71,6 @@ ms.locfileid: "85945983"
 | 删除公共 IP 地址 |[Remove-AzPublicIpAddress](https://docs.microsoft.com/powershell/module/az.network/remove-azpublicipaddress)-Name "myIPAddress" -ResourceGroupName $myResourceGroup<br /><br />从资源组中删除指定的公共 IP 地址。 |
 
 ## <a name="next-steps"></a>后续步骤
-使用[创建 VM](../virtual-machines-windows-ps-create.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json) 时创建的网络接口。
+使用[创建 VM](./quick-create-powershell.md?toc=/virtual-machines/windows/toc.json) 时创建的网络接口。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

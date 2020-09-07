@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: conceptual
 origin.date: 08/05/2020
 ms.date: 08/18/2020
-ms.openlocfilehash: 789b8aa0f6643181c6e690344cfc71d2d93ff7fe
-ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
+ms.openlocfilehash: e74da3b8ea0201b4bd61f7515a0d3a420af4a40c
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/18/2020
-ms.locfileid: "88556508"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316387"
 ---
 # <a name="create-business-continuity-and-disaster-recovery-solutions-with-azure-data-explorer"></a>使用 Azure 数据资源管理器创建业务连续性和灾难恢复解决方案
 
@@ -57,7 +57,8 @@ Azure 数据资源管理器不支持针对整个 Azure 区域的中断进行自�
 |引入方法  |灾难恢复功能  |
 |---------|---------|
 |[IoT 中心](/iot-hub/iot-hub-ha-dr#cross-region-dr)  |[Microsoft 发起的故障转移和手动故障转移](/iot-hub/iot-hub-ha-dr#cross-region-dr) |
-|[事件中心](ingest-data-event-hub.md) | 使用[主要的和辅助的灾难恢复命名空间](/event-hubs/event-hubs-geo-dr)进行元数据灾难恢复     |
+
+<!-- |[Event Hub](ingest-data-event-hub.md) | Metadata disaster recovery using [primary and secondary disaster recovery namespaces](/event-hubs/event-hubs-geo-dr)     | -->
 
 <!-- |[Ingest from storage using Event Grid subscription](ingest-data-event-grid.md) |  Implement a [geo-disaster recovery](/event-hubs/event-hubs-geo-dr) for the blob-created messages that are sent to Event Hub and the [disaster recovery and account failover strategy](/storage/common/storage-disaster-recovery-guidance)       | -->
 
@@ -67,7 +68,7 @@ Azure 数据资源管理器不支持针对整个 Azure 区域的中断进行自�
 
 ### <a name="set-up-ingestion-using-event-hub"></a>使用事件中心设置引入
 
-以下示例通过事件中心使用引入。 已设置[故障转移流](/event-hubs/event-hubs-geo-dr#setup-and-failover-flow)，并且 Azure 数据资源管理器通过别名引入数据。 使用每个群集副本的唯一使用者组[从事件中心引入数据](ingest-data-event-hub.md)。 否则，最终将分发流量，而不是复制流量。
+以下示例通过事件中心使用引入。 已设置故障转移流，并且 Azure 数据资源管理器通过别名引入数据。 使用每个群集副本的唯一使用者组[从事件中心引入数据](ingest-data-event-hub.md)。 否则，最终将分发流量，而不是复制流量。
 
 > [!NOTE] 
 > 通过事件中心/IoT 中心/存储进行引入是可靠的。 如果某个群集在一段时间内不可用，则它稍后会追赶进度并插入任何挂起的消息或 blob。 此过程依赖于[检查点设置](/event-hubs/event-hubs-features#checkpointing)。

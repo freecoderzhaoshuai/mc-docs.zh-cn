@@ -9,13 +9,13 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: include
 origin.date: 10/28/2019
-ms.date: 06/19/2019
+ms.date: 08/03/2020
 ms.author: v-tawe
-ms.openlocfilehash: a4db63974fbca5eb7b04d9d195796d1858cbf6f6
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+ms.openlocfilehash: 2c83179d27830d0717ba0f33d4a8a639fde6c4df
+ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85613346"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "89317527"
 ---
-如果希望直入正题，请在 GitHub 上查看或下载所有<a href="https://github.com/Azure-Samples/cognitive-services-speech-sdk">语音 SDK JavaScript 示例</a>。 否则就开始吧！
+可以在 GitHub 上查看或下载所有<a href="https://aka.ms/speech/github-javascript">语音 SDK JavaScript 示例</a>。 

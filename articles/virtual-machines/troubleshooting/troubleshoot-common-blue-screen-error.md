@@ -1,24 +1,26 @@
 ---
-title: Windows 在启动 Azure VM 时显示蓝屏错误 | Azure
+title: 启动 Azure VM 时出现蓝屏错误 | Azure
 description: 了解如何排查启动时收到蓝屏错误的问题 | Azure
 services: virtual-machines-windows
 documentationCenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 ms.service: virtual-machines-windows
 ms.topic: troubleshooting
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 09/28/2018
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 049e2ff89c21690e3a3a90ccbc5d6e19994dae27
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: bdc584e6ff60a596ed79e25e380b1bb59396e7a4
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596035"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456812"
 ---
 # <a name="windows-shows-blue-screen-error-when-booting-an-azure-vm"></a>Windows 在启动 Azure VM 时显示蓝屏错误
 本文介绍在 Azure 中启动 Windows 虚拟机 (VM) 时可能遇到的蓝屏错误。 本文提供用于收集支持票证数据的步骤。 
@@ -47,7 +49,7 @@ Windows VM 不启动。 检查[启动诊断](./boot-diagnostics.md)中的启动�
 ### <a name="attach-the-os-disk-to-a-recovery-vm"></a>将 OS 磁盘附加到恢复 VM
 
 1. 拍摄受影响的 VM 的 OS 磁盘的快照作为备份。 有关详细信息，请参阅[拍摄磁盘快照](../windows/snapshot-copy-managed-disk.md)。
-2. [将 OS 磁盘附加到恢复 VM](../windows/troubleshoot-recovery-disks-portal.md)。 
+2. [将 OS 磁盘附加到恢复 VM](./troubleshoot-recovery-disks-portal-windows.md)。 
 3. 通过远程桌面连接到恢复 VM。
 
 ### <a name="locate-dump-file-and-submit-a-support-ticket"></a>找到转储文件并提交支持票证
@@ -92,16 +94,18 @@ Windows VM 不启动。 检查[启动诊断](./boot-diagnostics.md)中的启动�
     2. 如果没有足够的空间，或者这是大型 VM（E 系列），则可随后更改创建此文件时所在的位置，将该位置指向任何其他附加到 VM 的数据磁盘。 为此，需更改以下密钥：
         
         <!--Not Available on G, GS series-->
-            
-            reg load HKLM\BROKENSYSTEM F:\windows\system32\config\SYSTEM.hiv
+    
+    ```config-reg
+    reg load HKLM\BROKENSYSTEM F:\windows\system32\config\SYSTEM.hiv
 
-            REG ADD "HKLM\BROKENSYSTEM\ControlSet001\Control\CrashControl" /v DumpFile /t REG_EXPAND_SZ /d "<DRIVE LETTER OF YOUR DATA DISK>:\MEMORY.DMP" /f
-            REG ADD "HKLM\BROKENSYSTEM\ControlSet002\Control\CrashControl" /v DumpFile /t REG_EXPAND_SZ /d "<DRIVE LETTER OF YOUR DATA DISK>:\MEMORY.DMP" /f
+    REG ADD "HKLM\BROKENSYSTEM\ControlSet001\Control\CrashControl" /v DumpFile /t REG_EXPAND_SZ /d "<DRIVE LETTER OF YOUR DATA DISK>:\MEMORY.DMP" /f
+    REG ADD "HKLM\BROKENSYSTEM\ControlSet002\Control\CrashControl" /v DumpFile /t REG_EXPAND_SZ /d "<DRIVE LETTER OF YOUR DATA DISK>:\MEMORY.DMP" /f
 
-            reg unload HKLM\BROKENSYSTEM
+    reg unload HKLM\BROKENSYSTEM
+    ```
 
-3. [分离 OS 磁盘，然后将 OS 磁盘重新附加到受影响的 VM](../windows/troubleshoot-recovery-disks-portal.md)。
+3. [分离 OS 磁盘，然后将 OS 磁盘重新附加到受影响的 VM](./troubleshoot-recovery-disks-portal-windows.md)。
 4. 启动 VM 以重现问题，然后就会生成转储文件。
 5. 将 OS 磁盘附加到恢复 VM，收集转储文件，然后使用该转储文件[提交支持票证](https://support.azure.cn/support/support-azure/)。
 
-<!-- Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

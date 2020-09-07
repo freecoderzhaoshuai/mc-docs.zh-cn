@@ -1,19 +1,21 @@
 ---
-title: 使用 PowerShell 从专用磁盘创建 Windows VM
+title: 在 Azure 专用 VHD 中创建 Windows VM
 description: 使用资源管理器部署模型，通过将专用托管磁盘附加为 OS 磁盘来创建新的 Windows VM。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
-ms.topic: article
+ms.topic: how-to
 origin.date: 10/10/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: d14522cb68aa55f1717beaacf4e8eb7e36bce7de
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 6d1eeee3543c11eb15942dcc19ad77e2bf43c63e
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946020"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462895"
 ---
 # <a name="create-a-windows-vm-from-a-specialized-disk-by-using-powershell"></a>使用 PowerShell 从专用磁盘创建 Windows VM
 
@@ -267,4 +269,4 @@ $vmList.Name
 ## <a name="next-steps"></a>后续步骤
 登录新虚拟机。 有关详细信息，请参阅 [How to connect and log on to an Azure virtual machine running Windows](connect-logon.md)（如何连接并登录到运行 Windows 的 Azure 虚拟机）。
 
-<!--Update_Description: update meta properties, wording update, update cmdlet -->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -1,10 +1,9 @@
 ---
-title: 将 Windows 虚拟机重新部署到新的 Azure 节点 | Azure
+title: 在 Azure 中重新部署 Windows 虚拟机 | Azure
 description: 如何在 Azure 中重新部署 Windows 虚拟机以缓解 RDP 连接问题。
 services: virtual-machines-windows
 documentationcenter: virtual-machines
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 tags: azure-resource-manager,top-support-issue
 ms.assetid: 0ee456ee-4595-4a14-8916-72c9110fc8bd
 ms.service: virtual-machines-windows
@@ -12,14 +11,17 @@ ms.topic: troubleshooting
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 10/31/2018
-ms.date: 11/11/2019
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 31ec502ee48c0631713ecf05902510549dc6acfe
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 80a30365832e2112c8720892cb3bde24f6dafe84
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74116902"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456844"
 ---
 # <a name="redeploy-windows-virtual-machine-to-new-azure-node"></a>将 Windows 虚拟机重新部署到新的 Azure 节点
 如果在对远程桌面 (RDP) 连接或应用程序对基于 Windows 的 Azure 虚拟机 (VM) 的访问进行故障排除时遇到困难，重新部署 VM 可能会有帮助。 重新部署 VM 时，Azure 会关闭该 VM，并将其移到 Azure 基础结构中的新节点，然后重新打开它，同时保留所有配置选项和关联的资源。 本文介绍了如何使用 Azure PowerShell 或 Azure 门户重新部署 VM。
@@ -28,7 +30,7 @@ ms.locfileid: "74116902"
 > 重新部署 VM 后，临时磁盘将丢失，并将更新与虚拟网络接口关联的动态 IP 地址。 
 
 ## <a name="using-azure-powershell"></a>使用 Azure PowerShell
-请确保已在计算机上安装最新的 Azure PowerShell 1.x。 有关详细信息，请参阅[如何安装和配置 Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview)。
+请确保已在计算机上安装最新的 Azure PowerShell 1.x。 有关详细信息，请参阅[如何安装和配置 Azure PowerShell](https://docs.microsoft.com/powershell/azure/)。
 
 以下示例部署 `myResourceGroup` 资源组中名为 `myVM` 的 VM：
 
@@ -39,6 +41,6 @@ Set-AzVM -Redeploy -ResourceGroupName "myResourceGroup" -Name "myVM"
 [!INCLUDE [virtual-machines-common-redeploy-to-new-node](../../../includes/virtual-machines-common-redeploy-to-new-node.md)]
 
 ## <a name="next-steps"></a>后续步骤
-如果在连接 VM 时遇到问题，可以在 [troubleshooting RDP connections](troubleshoot-rdp-connection.md)（RDP 连接故障排除）或 [detailed RDP troubleshooting steps](detailed-troubleshoot-rdp.md)（详细的 RDP 故障排除步骤）中找到具体的帮助信息。 如果无法访问在 VM 上运行的应用程序，还可以阅读 [application troubleshooting issues](../windows/troubleshoot-app-connection.md)（应用程序故障排除问题）。
+如果在连接 VM 时遇到问题，可以在 [troubleshooting RDP connections](troubleshoot-rdp-connection.md)（RDP 连接故障排除）或 [detailed RDP troubleshooting steps](detailed-troubleshoot-rdp.md)（详细的 RDP 故障排除步骤）中找到具体的帮助信息。 如果无法访问在 VM 上运行的应用程序，还可以阅读 [application troubleshooting issues](./troubleshoot-app-connection.md)（应用程序故障排除问题）。
 
-<!-- Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

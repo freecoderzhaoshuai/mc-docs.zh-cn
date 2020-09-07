@@ -1,11 +1,9 @@
 ---
-title: 使用 PowerShell 在相同或不同订阅的存储帐户中从 VHD 文件创建托管磁盘
+title: 在存储帐户中基于 VHD 文件创建托管磁盘 - PowerShell 示例
 description: Azure PowerShell 脚本示例 - 在相同或不同订阅的存储帐户中从 VHD 文件创建托管磁盘
 services: virtual-machines-linux
 documentationcenter: storage
-author: rockboyfor
-manager: digimobile
-editor: tysonn
+manager: kavithag
 tags: azure-service-management
 ms.assetid: ''
 ms.service: virtual-machines-linux
@@ -13,14 +11,17 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 origin.date: 06/05/2017
-ms.date: 02/10/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 6c58ad3751654bebd813c4e4fec945085bbf343f
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: 4761eafbdcb2403b65a33f8ee1ffb02601eef844
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596407"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414041"
 ---
 # <a name="create-a-managed-disk-from-a-vhd-file-in-a-storage-account-in-same-or-different-subscription-with-powershell"></a>使用 PowerShell 在相同或不同订阅的存储帐户中从 VHD 文件创建托管磁盘
 
@@ -84,13 +85,13 @@ New-AzDisk -Disk $diskConfig -ResourceGroupName $resourceGroupName -DiskName $di
 
 | 命令 | 注释 |
 |---|---|
-| [New-AzDiskConfig](https://docs.microsoft.com/powershell/module/az.compute/New-AzDiskConfig) | 创建用于磁盘创建的磁盘配置。 包括存储类型、位置、存储父 VHD 的存储帐户的资源 ID 以及父 VHD 的 VHD URI。 |
-| [New-AzDisk](https://docs.microsoft.com/powershell/module/az.compute/New-AzDisk) | 使用磁盘配置、磁盘名称和作为参数传递的资源组名称创建磁盘。 |
+| [New-AzDiskConfig](https://docs.microsoft.com/powershell/module/az.compute/new-azdiskconfig) | 创建用于磁盘创建的磁盘配置。 包括存储类型、位置、存储父 VHD 的存储帐户的资源 ID 以及父 VHD 的 VHD URI。 |
+| [New-AzDisk](https://docs.microsoft.com/powershell/module/az.compute/new-azdisk) | 使用磁盘配置、磁盘名称和作为参数传递的资源组名称创建磁盘。 |
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 可以在 [Azure Linux VM 文档](../linux/powershell-samples.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)中找到其他虚拟机 PowerShell 脚本示例。
 
-<!-- Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

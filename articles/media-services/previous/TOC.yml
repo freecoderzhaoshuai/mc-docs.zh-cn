@@ -47,7 +47,7 @@
           href: media-services-portal-live-passthrough-get-started.md
         - name: .NET
           href: media-services-dotnet-live-encode-with-onpremises-encoders.md
-- name: 如何
+- name: 操作方式
   items:
     - name: 旧组件
       displayName: 'deprecated, deprecation, retired, retirement, legacy'
@@ -412,7 +412,7 @@
           href: media-services-dotnet-check-job-progress-with-queues.md
         - name: 使用 Webhook 监视作业通知
           href: media-services-dotnet-check-job-progress-with-webhooks.md
-    - name: 故障排除
+    - name: 疑难解答
       items:
         - name: 常见问题
           href: media-services-frequently-asked-questions.md
@@ -427,7 +427,7 @@
     - name: Azure PowerShell（资源管理器）
       href: 'https://docs.microsoft.com/powershell/module/az.media'
     - name: Azure PowerShell
-      href: 'https://docs.microsoft.com/powershell/module/servicemanagement/azure/?view=azuresmps-3.7.0'
+      href: 'https://docs.microsoft.com/powershell/module/servicemanagement/azure.service/?view=azuresmps-3.7.0'
     - name: .NET
       href: /dotnet/api/microsoft.windowsazure.mediaservices.client
     - name: REST

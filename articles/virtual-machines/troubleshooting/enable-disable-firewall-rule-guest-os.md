@@ -1,10 +1,9 @@
 ---
-title: 在 Azure VM 来宾 OS 中启用或禁用防火墙规则 | Azure
+title: 在 Azure VM 上的来宾 OS 中启用或禁用防火墙规则 | Azure
 description: 了解如何使用联机或脱机远程工具或注册表设置在远程 Azure VM 上启用或禁用来宾 OS 防火墙规则。
 services: virtual-machines-windows
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: ''
 ms.service: virtual-machines
@@ -13,14 +12,17 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: azurecli
 origin.date: 11/22/2018
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: bac2faa560f9b575862ccc62f9a085a4df110fdc
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: 4d15797e72d91871e72dc0305e9eb5cb094d990b
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596363"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456878"
 ---
 <!-- Verify part successfully-->
 # <a name="enable-or-disable-a-firewall-rule-on-an-azure-vm-guest-os"></a>在 Azure VM 来宾 OS 中启用或禁用防火墙规则
@@ -89,7 +91,7 @@ ms.locfileid: "82596363"
 
         然后，将字符串中的 **Active=FALSE** 更改为 **Active=TRUE**：
 
-        **v2.22|Action=Allow|Active=TRUE|Dir=In|Protocol=6|Profile=Domain|Profile=Private|Profile=Public|LPort=3389|App=%SystemRoot%\system32\svchost.exe|Svc=termservice|Name=\@FirewallAPI.dll,-28775|Desc=\@FirewallAPI.dll,-28756|EmbedCtxt=\@FirewallAPI.dll,-28752|**
+        `v2.22|Action=Allow|Active=TRUE|Dir=In|Protocol=6|Profile=Domain|Profile=Private|Profile=Public|LPort=3389|App=%SystemRoot%\system32\svchost.exe|Svc=termservice|Name=\@FirewallAPI.dll,-28775|Desc=\@FirewallAPI.dll,-28756|EmbedCtxt=\@FirewallAPI.dll,-28752|`
 
     * 若要禁用规则，请打开以下注册表值：
 
@@ -97,7 +99,7 @@ ms.locfileid: "82596363"
 
         然后，将 **Active=TRUE** 更改为 **Active=FALSE**：
 
-        **v2.22|Action=Allow|Active=FALSE|Dir=In|Protocol=6|Profile=Domain|Profile=Private|Profile=Public|LPort=3389|App=%SystemRoot%\system32\svchost.exe|Svc=termservice|Name=\@FirewallAPI.dll,-28775|Desc=\@FirewallAPI.dll,-28756|EmbedCtxt=\@FirewallAPI.dll,-28752|**
+        `v2.22|Action=Allow|Active=FALSE|Dir=In|Protocol=6|Profile=Domain|Profile=Private|Profile=Public|LPort=3389|App=%SystemRoot%\system32\svchost.exe|Svc=termservice|Name=\@FirewallAPI.dll,-28775|Desc=\@FirewallAPI.dll,-28756|EmbedCtxt=\@FirewallAPI.dll,-28752|`
 
 3. 重启 VM 以应用更改。
 
@@ -119,7 +121,7 @@ ms.locfileid: "82596363"
 
 6. 突出显示 **HKEY_LOCAL_MACHINE** 项，然后从菜单中选择“文件” > “加载配置单元”。  
 
-    ![Regedit](./media/enable-or-disable-firewall-rule-guest-os/load-registry-hive.png)
+    :::image type="content" source="./media/enable-or-disable-firewall-rule-guest-os/load-registry-hive.png" alt-text="Regedit":::
 
 7. 找到并打开 \windows\system32\config\SYSTEM 文件。 
 
@@ -136,7 +138,7 @@ ms.locfileid: "82596363"
 
         然后，将 **Active=FALSE** 更改为 **Active=True**。
 
-        **v2.22|Action=Allow|Active=TRUE|Dir=In|Protocol=6|Profile=Domain|Profile=Private|Profile=Public|LPort=3389|App=%SystemRoot%\system32\svchost.exe|Svc=termservice|Name=\@FirewallAPI.dll,-28775|Desc=\@FirewallAPI.dll,-28756|EmbedCtxt=\@FirewallAPI.dll,-28752|**
+        `v2.22|Action=Allow|Active=TRUE|Dir=In|Protocol=6|Profile=Domain|Profile=Private|Profile=Public|LPort=3389|App=%SystemRoot%\system32\svchost.exe|Svc=termservice|Name=\@FirewallAPI.dll,-28775|Desc=\@FirewallAPI.dll,-28756|EmbedCtxt=\@FirewallAPI.dll,-28752|`
 
     3. 若要禁用规则，请打开以下注册表项：
 
@@ -144,7 +146,7 @@ ms.locfileid: "82596363"
 
         然后，将 **Active=True** 更改为 **Active=FALSE**。
 
-        **v2.22|Action=Allow|Active=FALSE|Dir=In|Protocol=6|Profile=Domain|Profile=Private|Profile=Public|LPort=3389|App=%SystemRoot%\system32\svchost.exe|Svc=termservice|Name=\@FirewallAPI.dll,-28775|Desc=\@FirewallAPI.dll,-28756|EmbedCtxt=\@FirewallAPI.dll,-28752|**
+        `v2.22|Action=Allow|Active=FALSE|Dir=In|Protocol=6|Profile=Domain|Profile=Private|Profile=Public|LPort=3389|App=%SystemRoot%\system32\svchost.exe|Svc=termservice|Name=\@FirewallAPI.dll,-28775|Desc=\@FirewallAPI.dll,-28756|EmbedCtxt=\@FirewallAPI.dll,-28752|`
 
 9. 突出显示 BROKENSYSTEM，然后选择菜单中的“文件” > “卸载配置单元”    。
 

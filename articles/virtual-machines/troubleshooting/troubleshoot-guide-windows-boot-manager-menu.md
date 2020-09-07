@@ -3,8 +3,7 @@ title: Windows 虚拟机因 Windows 启动管理器而无法启动
 description: 本文提供了当 Windows 启动管理器阻止 Azure 虚拟机启动时用于解决问题的步骤。
 services: virtual-machines-windows
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: azure-resource-manager
 ms.assetid: a97393c3-351d-4324-867d-9329e31b3598
@@ -13,14 +12,17 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.topic: troubleshooting
 origin.date: 03/26/2020
-ms.date: 05/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 9157ab0e5431776918be1740f62e086fae1768d5
-ms.sourcegitcommit: 81241aa44adbcac0764e2b5eb865b96ae56da6b7
+ms.openlocfilehash: 49853368c9e724d2b1886dda13932e45055470bc
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/09/2020
-ms.locfileid: "83002088"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456788"
 ---
 <!--Verified successfully-->
 # <a name="windows-vm-cannot-boot-due-to-windows-boot-manager"></a>Windows VM 因 Windows 启动管理器而无法启动
@@ -31,7 +33,7 @@ ms.locfileid: "83002088"
 
 VM 一直在等待用户提示。除非用户手动进行指示，否则 VM 不会启动。
 
-使用[启动诊断](/virtual-machines/troubleshooting/boot-diagnostics)查看 VM 的屏幕截图时，会看到屏幕截图显示 Windows 启动管理器，其中包含消息“请选择要启动的操作系统，或按 TAB 键选择一项工具:”  。
+使用[启动诊断](./boot-diagnostics.md)查看 VM 的屏幕截图时，会看到屏幕截图显示 Windows 启动管理器，其中包含消息“请选择要启动的操作系统，或按 TAB 键选择一项工具:”  。
 
 图 1
 
@@ -56,7 +58,7 @@ VM 一直在等待用户提示。除非用户手动进行指示，否则 VM 不�
 
 ### <a name="create-and-access-a-repair-vm"></a>创建并访问一个修复 VM
 
-1. 使用 [VM 修复命令的步骤 1-3](/virtual-machines/troubleshooting/repair-windows-vm-using-azure-virtual-machine-repair-commands) 来准备一个修复 VM。
+1. 使用 [VM 修复命令的步骤 1-3](./repair-windows-vm-using-azure-virtual-machine-repair-commands.md) 来准备一个修复 VM。
 2. 使用远程桌面连接来连接到修复 VM。
 
 ### <a name="configure-for-faster-boot-time-on-a-repair-vm"></a>在修复 VM 上进行配置以缩短启动时间。
@@ -133,7 +135,6 @@ VM 一直在等待用户提示。除非用户手动进行指示，否则 VM 不�
 
 ### <a name="rebuild-the-original-vm"></a>重建原始 VM
 
-使用 [VM 修复命令的步骤 5](/virtual-machines/troubleshooting/repair-windows-vm-using-azure-virtual-machine-repair-commands#repair-process-example) 重新装配 VM。
+使用 [VM 修复命令的步骤 5](./repair-windows-vm-using-azure-virtual-machine-repair-commands.md#repair-process-example) 重新装配 VM。
 
-<!-- Update_Description: new article about troubleshoot guide windows boot manager menu -->
-<!--NEW.date: 04/30/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

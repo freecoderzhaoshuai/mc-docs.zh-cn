@@ -1,19 +1,22 @@
 ---
 title: 使用 Azure CLI 创建和加密 Windows VM
 description: 本快速入门介绍如何使用 Azure CLI 创建和加密 Windows 虚拟机
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.subservice: security
 ms.topic: quickstart
 origin.date: 05/17/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: b5e563e5b5780036ad0f83ed74db5674857218b6
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 720db0515d733288e2cbd027975eab9af383890f
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946012"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462966"
 ---
 # <a name="quickstart-create-and-encrypt-a-windows-vm-with-the-azure-cli"></a>快速入门：使用 Azure CLI 创建和加密 Windows VM
 
@@ -48,7 +51,7 @@ az vm create \
 
 创建 VM 和支持资源需要几分钟时间。 以下示例输出表明 VM 创建操作已成功。
 
-```azurecli
+```
 {
   "fqdns": "",
   "id": "/subscriptions/<guid>/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM",
@@ -87,7 +90,7 @@ az vm show --name MyVM -g MyResourceGroup
 
 将在返回的输出中看到以下内容：
 
-```azurecli
+```
 "EncryptionOperation": "EnableEncryption"
 ```
 

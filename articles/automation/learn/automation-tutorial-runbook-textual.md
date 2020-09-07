@@ -6,12 +6,12 @@ ms.subservice: process-automation
 origin.date: 04/19/2020
 ms.date: 08/10/2020
 ms.topic: tutorial
-ms.openlocfilehash: ce94a14f98286896d1f7625ff400a5d31052a021
-ms.sourcegitcommit: e6b216b180734783219378410e13192e314a4497
+ms.openlocfilehash: 1740ee0f214a32b19e6a1d04b651d087689d5ee6
+ms.sourcegitcommit: f837837326a4856b06d1924d17521a0a7e892850
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87788350"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89449798"
 ---
 # <a name="tutorial-create-a-powershell-workflow-runbook"></a>教程：创建 PowerShell 工作流 Runbook
 
@@ -164,7 +164,7 @@ ms.locfileid: "87788350"
 
 ## <a name="step-6---add-code-to-start-a-virtual-machine"></a>步骤 6 – 添加用于启动虚拟机的代码
 
-现在，你的 Runbook 向 Azure 订阅进行身份验证，你可以管理资源。 让我们添加一项命令，用于启动虚拟机。 你可以选取你的 Azure 订阅中的任何 VM，但现在，你将在 Runbook 中将该名称硬编码。 如果要跨多个订阅管理资源，需要将 `AzContext` 参数和 [Get-AzContext](/powershell/module/az.accounts/get-azcontext) cmdlet 配合使用。
+现在，你的 Runbook 向 Azure 订阅进行身份验证，你可以管理资源。 让我们添加一项命令，用于启动虚拟机。 你可以选取你的 Azure 订阅中的任何 VM，但现在，你将在 Runbook 中将该名称硬编码。 如果要跨多个订阅管理资源，需要将 `AzContext` 参数和 [Get-AzContext](https://docs.microsoft.com/powershell/module/az.accounts/get-azcontext) cmdlet 配合使用。
 
 1. 提供要启动的 VM 的名称和其资源组名称，方法是输入对 [Start-AzVM](https://docs.microsoft.com/powershell/module/Az.Compute/Start-AzVM?view=azps-3.5.0) cmdlet 的调用，如下所示。 
 

@@ -7,18 +7,18 @@ manager: carmonm
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
-ms.date: 05/20/2020
+ms.date: 08/20/2020
 ms.author: v-johya
-ms.openlocfilehash: 59b8cfdd541b48e4abacb037ea9c280023481c6c
-ms.sourcegitcommit: a04b0b1009b0c62f2deb7c7acee75a1304d98f87
+ms.openlocfilehash: 5f00e7536db7867741189f39e7bc0b6fff537a22
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/22/2020
-ms.locfileid: "83797065"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457394"
 ---
 # <a name="how-to-use-jsonpath-to-transform-json-data-in-workbooks"></a>如何在工作簿中使用 JSONPath 转换 JSON 数据
 
-工作簿可以从多个源查询数据。 某些终结点（例如 [Azure 资源管理器](/azure-resource-manager/management/overview)或自定义终结点）可以返回 JSON 格式的结果。 如果查询的终结点返回的 JSON 数据未采用所需的格式进行配置，可以使用 JSONPath 来转换结果。
+工作簿可以从多个源查询数据。 某些终结点（例如 [Azure 资源管理器](../../azure-resource-manager/management/overview.md)或自定义终结点）可以返回 JSON 格式的结果。 如果查询的终结点返回的 JSON 数据未采用所需的格式进行配置，可以使用 JSONPath 来转换结果。
 
 JSONPath 是适用于 JSON 的一种查询语言，类似于 XML 的 XPath。 与 XPath 类似，JSONPath 允许从 JSON 结构中提取和筛选数据。
 

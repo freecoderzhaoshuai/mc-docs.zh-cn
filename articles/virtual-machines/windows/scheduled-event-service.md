@@ -1,19 +1,21 @@
 ---
-title: 监视计划事件
+title: 在 Azure 中监视 Windows VM 的计划事件
 description: 了解如何监视 Azure 虚拟机的计划事件。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.subservice: monitoring
 origin.date: 08/20/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.topic: how-to
-ms.openlocfilehash: ec6dea054afbf64d41fb59c64d77b99590d3d734
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 3872a8007aa90339bb71b2f02b13045a2f88962f
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946068"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462841"
 ---
 <!--Verify full content successfully-->
 # <a name="monitoring-scheduled-events"></a>监视计划事件
@@ -26,9 +28,9 @@ ms.locfileid: "85946068"
 
 计划事件作为 [Azure 实例元数据服务](instance-metadata-service.md)的一部分提供，该服务已在每个 Azure 虚拟机上提供。 客户可以编写自动化代码来查询其虚拟机的终结点，以查找计划性维护通知并执行缓解措施，例如，保存状态，并从轮换列表中删除其虚拟机。 我们建议生成自动化代码来记录计划事件，以便可以获取 Azure 维护事件的审核日志。 
 
-本文逐步介绍如何将维护计划事件捕获到 Log Analytics。 然后，将触发一些基本的通知操作，例如，将电子邮件发送给团队，并获取对虚拟机造成了影响的所有事件的历史视图。 对于事件聚合与自动化，我们将使用 [Log Analytics](/azure-monitor/learn/quick-create-workspace)，但你可以使用任何监视解决方案来收集这些日志并触发自动化。
+本文逐步介绍如何将维护计划事件捕获到 Log Analytics。 然后，将触发一些基本的通知操作，例如，将电子邮件发送给团队，并获取对虚拟机造成了影响的所有事件的历史视图。 对于事件聚合与自动化，我们将使用 [Log Analytics](../../azure-monitor/learn/quick-create-workspace.md)，但你可以使用任何监视解决方案来收集这些日志并触发自动化。
 
-![显示事件生命周期的示意图](./media/notifications/events.png)
+:::image type="content" source="./media/notifications/events.png" alt-text="显示事件生命周期的示意图":::
 
 ## <a name="prerequisites"></a>先决条件
 
@@ -36,7 +38,7 @@ ms.locfileid: "85946068"
 
 在本教程结束时，请不要删除组资源组。
 
-还需要[创建一个 Log Analytics 工作区](/azure-monitor/learn/quick-create-workspace)，用于从可用性集中的 VM 聚合信息。
+还需要[创建一个 Log Analytics 工作区](../../azure-monitor/learn/quick-create-workspace.md)，用于从可用性集中的 VM 聚合信息。
 
 ## <a name="set-up-the-environment"></a>设置环境
 
@@ -86,7 +88,7 @@ New-AzVm `
 
 设置并启动服务后，它会将事件记录到 Windows 应用程序日志中。   若要验证是否可正常执行此操作，请重启可用性集中的某个虚拟机，然后，应会在事件查看器的“Windows 日志”>“应用程序日志”中看到记录了一个事件，其中显示 VM 已重启。 
 
-![事件查看器的屏幕截图。](./media/notifications/event-viewer.png)
+:::image type="content" source="./media/notifications/event-viewer.png" alt-text="事件查看器的屏幕截图。":::
 
 当计划事件服务捕获到事件时，该事件将记录到应用程序事件日志中，并显示“事件状态”、“事件类型”、“资源”（VM 名称）和“不早于”（最小通知期限）属性。 可以在应用程序事件日志中找到 ID 为 1234 的事件。
 
@@ -106,12 +108,12 @@ New-AzVm `
 1. 打开所创建的工作区的页面。
 1. 在“连接到数据源”下，选择“Azure 虚拟机(VM)”。 
 
-    ![连接到用作数据源的 VM](./media/notifications/connect-to-data-source.png)
+    :::image type="content" source="./media/notifications/connect-to-data-source.png" alt-text="连接到用作数据源的 VM":::
 
 1. 搜索并选择“myCollectorVM”。 
 1. 在“myCollectorVM”的新页面上，选择“连接”。 
 
-这会在虚拟机中安装 [Microsoft 监视代理](/virtual-machines/extensions/oms-windows)。 将 VM 连接到工作区并安装扩展的过程需要几分钟时间。 
+这会在虚拟机中安装 [Microsoft 监视代理](../extensions/oms-windows.md)。 将 VM 连接到工作区并安装扩展的过程需要几分钟时间。 
 
 ## <a name="configure-the-workspace"></a>配置工作区
 
@@ -119,7 +121,7 @@ New-AzVm `
 1. 在左侧菜单中选择“数据”，然后选择“Windows 事件日志”。 
 1. 在“从以下事件日志收集”中键入“应用程序”，然后从列表中选择“应用程序”。
 
-    ![选择“高级设置”](./media/notifications/advanced.png)
+    :::image type="content" source="./media/notifications/advanced.png" alt-text="选择“高级设置”":::
 
 1. 保留“错误”、“警告”和“信息”，然后选择“保存”以保存设置。   
 
@@ -128,7 +130,7 @@ New-AzVm `
 
 ## <a name="creating-an-alert-rule-with-azure-monitor"></a>使用 Azure Monitor 创建警报规则 
 
-将事件推送到 Log Analytics 后，可运行以下[查询](/azure-monitor/log-query/get-started-portal)来查找计划事件。
+将事件推送到 Log Analytics 后，可运行以下[查询](../../azure-monitor/log-query/get-started-portal.md)来查找计划事件。
 
 1. 在页面顶部选择“日志”，将以下内容粘贴到文本框中：
 
@@ -148,7 +150,7 @@ New-AzVm `
 
 1. 选择“保存”，键入 *logQuery* 作为名称，保留“查询”作为类型，键入 *VMLogs* 作为**类别**，然后选择“保存”。   
 
-    ![保存查询](./media/notifications/save-query.png)
+    :::image type="content" source="./media/notifications/save-query.png" alt-text="保存查询":::
 
 1. 选择“新建警报规则”。 
 1. 在“创建规则”页中，保留 `collectorworkspace` 作为**资源**。

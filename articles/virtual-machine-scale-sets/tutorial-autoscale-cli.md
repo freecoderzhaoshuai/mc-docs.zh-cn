@@ -6,15 +6,15 @@ ms.author: v-junlch
 ms.topic: tutorial
 ms.service: virtual-machine-scale-sets
 ms.subservice: autoscale
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.reviewer: avverma
-ms.custom: avverma
-ms.openlocfilehash: f015ba50eb8a5479097eb6cb434a256f4ef1e597
-ms.sourcegitcommit: 43db4001be01262959400663abf8219e27e5cb8b
+ms.custom: avverma, devx-track-azurecli
+ms.openlocfilehash: eaa3e25c17cd96515e07a13d6c5e976fd00304f8
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/23/2020
-ms.locfileid: "85241565"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414025"
 ---
 # <a name="tutorial-automatically-scale-a-virtual-machine-scale-set-with-the-azure-cli"></a>教程：使用 Azure CLI 自动缩放虚拟机规模集
 
@@ -26,7 +26,7 @@ ms.locfileid: "85241565"
 > * 对 VM 实例进行压力测试并触发自动缩放规则
 > * 在需求下降时自动横向缩减
 
-如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial/)。
+如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
 
 如果选择在本地安装并使用 CLI，本教程要求运行 Azure CLI 2.0.32 或更高版本。 运行 `az --version` 即可查找版本。 如果需要进行安装或升级，请参阅[安装 Azure CLI](/cli/install-azure-cli)。
 
@@ -35,19 +35,19 @@ ms.locfileid: "85241565"
 使用 [az group create](/cli/group) 创建资源组，如下所示：
 
 ```azurecli
-az group create --name myResourceGroup --location chinanorth
+az group create --name myResourceGroup --location chinanorth2
 ```
 
 现在，使用 [az vmss create](/cli/vmss) 创建虚拟机规模集。 以下示例创建实例计数为 *2* 的规模集，并生成 SSH 密钥（如果不存在）：
 
 ```azurecli
-az vmss create `
-  --resource-group myResourceGroup `
-  --name myScaleSet `
-  --image UbuntuLTS `
-  --upgrade-policy-mode automatic `
-  --instance-count 2 `
-  --admin-username azureuser `
+az vmss create \
+  --resource-group myResourceGroup \
+  --name myScaleSet \
+  --image UbuntuLTS \
+  --upgrade-policy-mode automatic \
+  --instance-count 2 \
+  --admin-username azureuser \
   --generate-ssh-keys
 ```
 
@@ -56,13 +56,13 @@ az vmss create `
 若要在规模集上启用自动缩放，首先要定义自动缩放配置文件。 此配置文件定义默认、最小和最大规模集容量。 这些限制可让你通过不继续创建 VM 实例来控制成本，并可使用缩小事件中保留的最小数量的实例均衡可接受的性能。 使用 [az monitor autoscale create](/cli/monitor/autoscale#az-monitor-autoscale-create) 创建自动缩放配置文件。 以下示例设置了默认值，以及最小容量 2 个 VM 实例、最大容量 10 个 VM ：
 
 ```azurecli
-az monitor autoscale create `
-  --resource-group myResourceGroup `
-  --resource myScaleSet `
-  --resource-type Microsoft.Compute/virtualMachineScaleSets `
-  --name autoscale `
-  --min-count 2 `
-  --max-count 10 `
+az monitor autoscale create \
+  --resource-group myResourceGroup \
+  --resource myScaleSet \
+  --resource-type Microsoft.Compute/virtualMachineScaleSets \
+  --name autoscale \
+  --min-count 2 \
+  --max-count 10 \
   --count 2
 ```
 
@@ -73,10 +73,10 @@ az monitor autoscale create `
 让我们使用 [az monitor autoscale rule create](/cli/monitor/autoscale/rule#az-monitor-autoscale-rule-create) 创建一个规则，当平均 CPU 负载在 5 分钟内超过 70% 时，该规则会增加规模集中的 VM 实例数。 触发规则时，VM 实例数增加 3。
 
 ```azurecli
-az monitor autoscale rule create `
-  --resource-group myResourceGroup `
-  --autoscale-name autoscale `
-  --condition "Percentage CPU > 70 avg 5m" `
+az monitor autoscale rule create \
+  --resource-group myResourceGroup \
+  --autoscale-name autoscale \
+  --condition "Percentage CPU > 70 avg 5m" \
   --scale out 3
 ```
 
@@ -87,10 +87,10 @@ az monitor autoscale rule create `
 让我们使用 [az monitor autoscale rule create](/cli/monitor/autoscale/rule#az-monitor-autoscale-rule-create) 创建另一个规则，当平均 CPU 负载随后在 5 分钟内低于 30% 时，该规则会减少规模集中的 VM 实例数。 以下示例定义将 VM 实例数横向缩减 1 的规则：
 
 ```azurecli
-az monitor autoscale rule create `
-  --resource-group myResourceGroup `
-  --autoscale-name autoscale `
-  --condition "Percentage CPU < 30 avg 5m" `
+az monitor autoscale rule create \
+  --resource-group myResourceGroup \
+  --autoscale-name autoscale \
+  --condition "Percentage CPU < 30 avg 5m" \
   --scale in 1
 ```
 
@@ -101,8 +101,8 @@ az monitor autoscale rule create `
 首先，请使用 [az vmss list-instance-connection-info](/cli/vmss) 列出用于连接到规模集中的 VM 实例的地址和端口：
 
 ```azurecli
-az vmss list-instance-connection-info `
-  --resource-group myResourceGroup `
+az vmss list-instance-connection-info \
+  --resource-group myResourceGroup \
   --name myScaleSet
 ```
 
@@ -124,6 +124,7 @@ ssh azureuser@13.92.224.66 -p 50001
 登录后，安装 **stress** 实用工具。 启动 10 个生成 CPU 负载的 **stress** 辅助角色。 这些辅助角色运行 *420* 秒，此时间足以让自动缩放规则实施所需的操作。
 
 ```console
+sudo apt-get update
 sudo apt-get -y install stress
 sudo stress --cpu 10 --timeout 420 &
 ```
@@ -169,9 +170,9 @@ exit
 若要监视规模集中的 VM 实例数，请使用 **watch**。 自动缩放规则需要 5 分钟的时间才能开始横向扩展过程，以便响应由每个 VM 实例上的 **stress** 生成的 CPU 负载：
 
 ```azurecli
-watch az vmss list-instances `
-  --resource-group myResourceGroup `
-  --name myScaleSet `
+watch az vmss list-instances \
+  --resource-group myResourceGroup \
+  --name myScaleSet \
   --output table
 ```
 
@@ -182,17 +183,17 @@ Every 2.0s: az vmss list-instances --resource-group myResourceGroup --name mySca
 
   InstanceId  LatestModelApplied    Location    Name          ProvisioningState    ResourceGroup    VmId
 ------------  --------------------  ----------  ------------  -------------------  ---------------  ------------------------------------
-           1  True                  chinanorth      myScaleSet_1  Succeeded            myResourceGroup  4f92f350-2b68-464f-8a01-e5e590557955
-           2  True                  chinanorth      myScaleSet_2  Succeeded            myResourceGroup  d734cd3d-fb38-4302-817c-cfe35655d48e
-           4  True                  chinanorth      myScaleSet_4  Creating             myResourceGroup  061b4c90-0d73-49fc-a066-19eab0b3d95c
-           5  True                  chinanorth      myScaleSet_5  Creating             myResourceGroup  4beff8b9-4e65-40cb-9652-43899309da27
-           6  True                  chinanorth      myScaleSet_6  Creating             myResourceGroup  9e4133dd-2c57-490e-ae45-90513ce3b336
+           1  True                  chinanorth2      myScaleSet_1  Succeeded            myResourceGroup  4f92f350-2b68-464f-8a01-e5e590557955
+           2  True                  chinanorth2      myScaleSet_2  Succeeded            myResourceGroup  d734cd3d-fb38-4302-817c-cfe35655d48e
+           4  True                  chinanorth2      myScaleSet_4  Creating             myResourceGroup  061b4c90-0d73-49fc-a066-19eab0b3d95c
+           5  True                  chinanorth2      myScaleSet_5  Creating             myResourceGroup  4beff8b9-4e65-40cb-9652-43899309da27
+           6  True                  chinanorth2      myScaleSet_6  Creating             myResourceGroup  9e4133dd-2c57-490e-ae45-90513ce3b336
 ```
 
 当 **stress** 在初始 VM 实例上停止后，平均 CPU 负载会回到正常。 另一个 5 分钟后，自动缩放规则会横向缩减 VM 实例数。 横向缩减操作会首先删除 ID 值最高的 VM 实例。 如果规模集使用可用性集，则缩减操作将均匀分布到这些 VM 实例上。 以下示例输出显示，在规模集进行自动横向缩减时删除了一个 VM 实例：
 
 ```output
-           6  True                  chinanorth      myScaleSet_6  Deleting             myResourceGroup  9e4133dd-2c57-490e-ae45-90513ce3b336
+           6  True                  chinanorth2      myScaleSet_6  Deleting             myResourceGroup  9e4133dd-2c57-490e-ae45-90513ce3b336
 ```
 
 使用 `Ctrl-c` 退出 *watch*。 规模集继续每 5 分钟横向缩减一次，每次删除一个 VM 实例，直至达到最小实例计数 2。

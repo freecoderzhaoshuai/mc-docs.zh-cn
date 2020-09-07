@@ -1,5 +1,5 @@
 ---
-title: 向特定设备（通用 Windows 平台）发送通知 | Azure
+title: 向特定设备（通用 Windows 平台）发送通知 | Microsoft Docs
 description: 将 Azure 通知中心与注册中的标记配合使用，将突发新闻发送到通用 Windows 平台应用。
 services: notification-hubs
 documentationcenter: windows
@@ -12,18 +12,18 @@ ms.workload: mobile
 ms.tgt_pltfrm: mobile-windows
 ms.devlang: dotnet
 ms.topic: tutorial
-ms.custom: mvc
+ms.custom: mvc, devx-track-csharp
 origin.date: 09/30/2019
-ms.date: 12/09/2019
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.reviewer: jowargo
 ms.lastreviewed: 03/22/2019
-ms.openlocfilehash: 32c8e5d0590d74abe2af8d302f32c695a795dd70
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: e9bffb6bd32382a2ca32bfd9739eeee9f437340a
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74884966"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317488"
 ---
 # <a name="tutorial-send-notifications-to-specific-devices-running-universal-windows-platform-applications"></a>教程：向运行通用 Windows 平台应用程序的特定设备发送通知
 
@@ -50,7 +50,7 @@ ms.locfileid: "74884966"
 
 ## <a name="prerequisites"></a>先决条件
 
-在开始学习本教程之前完成[教程：使用 Azure 通知中心向通用 Windows 平台应用发送通知][get-started]。  
+在开始本教程之前完成[教程：使用 Azure 通知中心向通用 Windows 平台应用发送通知][get-started]。  
 
 ## <a name="add-category-selection-to-the-app"></a>向应用程序中添加类别选择
 
@@ -262,13 +262,13 @@ ms.locfileid: "74884966"
 [Next Steps]: #next-steps
 
 <!-- URLs.-->
-<!-- [get-started]: notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md
+[get-started]: notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md
 [Use Notification Hubs to broadcast localized breaking news]: notification-hubs-windows-store-dotnet-xplat-localized-wns-push-notification.md
 [Notify users with Notification Hubs]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
 [Mobile Service]: /develop/mobile/tutorials/get-started/
-[Notification Hubs Guidance]: https://msdn.microsoft.com/library/jj927170.aspx
-[Notification Hubs How-To for Windows Store]: https://msdn.microsoft.com/library/jj927172.aspx
+[Notification Hubs Guidance]: https://docs.microsoft.com/previous-versions/azure/azure-services/jj927170(v=azure.100)
+[Notification Hubs How-To for Windows Store]: https://docs.microsoft.com/previous-versions/azure/azure-services/jj927170(v=azure.100)
 [Submit an app page]: https://go.microsoft.com/fwlink/p/?LinkID=266582
 [My Applications]: https://go.microsoft.com/fwlink/p/?LinkId=262039
 [Live SDK for Windows]: https://go.microsoft.com/fwlink/p/?LinkId=262253
-[wns object]: https://go.microsoft.com/fwlink/p/?LinkId=260591 -->
+[wns object]: https://go.microsoft.com/fwlink/p/?LinkId=260591

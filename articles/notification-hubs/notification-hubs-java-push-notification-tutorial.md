@@ -13,16 +13,17 @@ ms.tgt_pltfrm: java
 ms.devlang: java
 ms.topic: article
 origin.date: 01/04/2019
-ms.date: 03/02/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.reviewer: jowargo
 ms.lastreviewed: 01/04/2019
-ms.openlocfilehash: e16fdfdd3e60acbafcd3a63b1beb82524cfceb5b
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-java
+ms.openlocfilehash: 7d6de5f34288a5a3983087bc748ee25d24950cd9
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77501347"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316463"
 ---
 # <a name="how-to-use-notification-hubs-from-java"></a>如何通过 Java 使用通知中心
 
@@ -31,7 +32,7 @@ ms.locfileid: "77501347"
 本主题介绍完全受支持的全新官方 Azure 通知中心 Java SDK 的关键功能。
 此项目为开源项目，可在 [Java SDK] 查看完整的 SDK 代码。
 
-通常情况下，如 MSDN 主题[通知中心 REST API](https://msdn.microsoft.com/library/dn223264.aspx) 中所述，可以使用通知中心 REST 接口从 Java/PHP/Python/Ruby 后端访问所有通知中心功能。 此 Java SDK 在以 Java 形式表示的 REST 接口上提供瘦包装器。
+通常情况下，如 MSDN 主题[通知中心 REST API](https://docs.microsoft.com/previous-versions/azure/reference/dn223264(v=azure.100)) 中所述，可以使用通知中心 REST 接口从 Java/PHP/Python/Ruby 后端访问所有通知中心功能。 此 Java SDK 在以 Java 形式表示的 REST 接口上提供瘦包装器。
 
 SDK 目前支持以下内容：
 
@@ -52,7 +53,9 @@ SDK 目前支持以下内容：
 
 生成：
 
-    mvn package
+```cmd
+mvn package
+```
 
 ## <a name="code"></a>代码
 
@@ -60,126 +63,126 @@ SDK 目前支持以下内容：
 
 **NamespaceManager：**
 
-    ```java
-    NamespaceManager namespaceManager = new NamespaceManager("connection string")
-    ```
+```java
+NamespaceManager namespaceManager = new NamespaceManager("connection string")
+```
 
 **创建通知中心：**
 
-    ```java
-    NotificationHubDescription hub = new NotificationHubDescription("hubname");
-    hub.setWindowsCredential(new WindowsCredential("sid","key"));
-    hub = namespaceManager.createNotificationHub(hub);
-    ```
+```java
+NotificationHubDescription hub = new NotificationHubDescription("hubname");
+hub.setWindowsCredential(new WindowsCredential("sid","key"));
+hub = namespaceManager.createNotificationHub(hub);
+```
 
  或
 
-    ```java
-    hub = new NotificationHub("connection string", "hubname");
-    ```
+```java
+hub = new NotificationHub("connection string", "hubname");
+```
 
 **获取通知中心：**
 
-    ```java
-    hub = namespaceManager.getNotificationHub("hubname");
-    ```
+```java
+hub = namespaceManager.getNotificationHub("hubname");
+```
 
 **更新通知中心：**
 
-    ```java
-    hub.setMpnsCredential(new MpnsCredential("mpnscert", "mpnskey"));
-    hub = namespaceManager.updateNotificationHub(hub);
-    ```
+```java
+hub.setMpnsCredential(new MpnsCredential("mpnscert", "mpnskey"));
+hub = namespaceManager.updateNotificationHub(hub);
+```
 
 **删除通知中心：**
 
-    ```java
-    namespaceManager.deleteNotificationHub("hubname");
-    ```
+```java
+namespaceManager.deleteNotificationHub("hubname");
+```
 
 ### <a name="registration-cruds"></a>注册 CRUD
 
 **创建通知中心客户端：**
 
-    ```java
-    hub = new NotificationHub("connection string", "hubname");
-    ```
+```java
+hub = new NotificationHub("connection string", "hubname");
+```
 
 **创建 Windows 注册：**
 
-    ```java
-    WindowsRegistration reg = new WindowsRegistration(new URI(CHANNELURI));
-    reg.getTags().add("myTag");
-    reg.getTags().add("myOtherTag");
-    hub.createRegistration(reg);
-    ```
+```java
+WindowsRegistration reg = new WindowsRegistration(new URI(CHANNELURI));
+reg.getTags().add("myTag");
+reg.getTags().add("myOtherTag");
+hub.createRegistration(reg);
+```
 
 **创建 iOS 注册：**
 
-    ```java
-    AppleRegistration reg = new AppleRegistration(DEVICETOKEN);
-    reg.getTags().add("myTag");
-    reg.getTags().add("myOtherTag");
-    hub.createRegistration(reg);
-    ```
+```java
+AppleRegistration reg = new AppleRegistration(DEVICETOKEN);
+reg.getTags().add("myTag");
+reg.getTags().add("myOtherTag");
+hub.createRegistration(reg);
+```
 
 同样，可以为 Windows Phone (MPNS)、Android (Baidu) 和 Kindle Fire (ADM) 创建注册。
 
 **创建模板注册：**
 
-    ```java
-    WindowsTemplateRegistration reg = new WindowsTemplateRegistration(new URI(CHANNELURI), WNSBODYTEMPLATE);
-    reg.getHeaders().put("X-WNS-Type", "wns/toast");
-    hub.createRegistration(reg);
-    ```
+```java
+WindowsTemplateRegistration reg = new WindowsTemplateRegistration(new URI(CHANNELURI), WNSBODYTEMPLATE);
+reg.getHeaders().put("X-WNS-Type", "wns/toast");
+hub.createRegistration(reg);
+```
 
 **采用“创建注册 ID + upsert”模式创建注册：**
 
 如果在设备上存储注册 ID，请删除重复项以防出现任何响应丢失：
 
-    ```java
-    String id = hub.createRegistrationId();
-    WindowsRegistration reg = new WindowsRegistration(id, new URI(CHANNELURI));
-    hub.upsertRegistration(reg);
-    ```
+```java
+String id = hub.createRegistrationId();
+WindowsRegistration reg = new WindowsRegistration(id, new URI(CHANNELURI));
+hub.upsertRegistration(reg);
+```
 
 **更新注册：**
 
-    ```java
-    hub.updateRegistration(reg);
-    ```
+```java
+hub.updateRegistration(reg);
+```
 
 **删除注册：**
 
-    ```java
-    hub.deleteRegistration(regid);
-    ```
+```java
+hub.deleteRegistration(regid);
+```
 
 **查询注册：**
 
 * **获取单个注册：**
 
-    ```java
-    hub.getRegistration(regid);
-    ```
+```java
+hub.getRegistration(regid);
+```
 
 * **获取中心的所有注册：**
 
-    ```java
-    hub.getRegistrations();
-    ```
+```java
+hub.getRegistrations();
+```
 
 * **获取具有标记的注册：**
 
-    ```java
-    hub.getRegistrationsByTag("myTag");
-    ```
+```java
+hub.getRegistrationsByTag("myTag");
+```
 
 * **按渠道获取注册：**
 
-    ```java
-    hub.getRegistrationsByChannel("devicetoken");
-    ```
+```java
+hub.getRegistrationsByChannel("devicetoken");
+```
 
 所有集合查询都支持 $top 和继续标记。
 
@@ -193,52 +196,52 @@ SDK 目前支持以下内容：
 
 针对 Amazon Kindle Fire 的示例如下：
 
-    ```java
-    Installation installation = new Installation("installation-id", NotificationPlatform.Adm, "adm-push-channel");
-    hub.createOrUpdateInstallation(installation);
-    ```
+```java
+Installation installation = new Installation("installation-id", NotificationPlatform.Adm, "adm-push-channel");
+hub.createOrUpdateInstallation(installation);
+```
 
 如果希望进行更新：
 
-    ```java
-    installation.addTag("foo");
-    installation.addTemplate("template1", new InstallationTemplate("{\"data\":{\"key1\":\"$(value1)\"}}","tag-for-template1"));
-    installation.addTemplate("template2", new InstallationTemplate("{\"data\":{\"key2\":\"$(value2)\"}}","tag-for-template2"));
-    hub.createOrUpdateInstallation(installation);
-    ```
+```java
+installation.addTag("foo");
+installation.addTemplate("template1", new InstallationTemplate("{\"data\":{\"key1\":\"$(value1)\"}}","tag-for-template1"));
+installation.addTemplate("template2", new InstallationTemplate("{\"data\":{\"key2\":\"$(value2)\"}}","tag-for-template2"));
+hub.createOrUpdateInstallation(installation);
+```
 
 对于高级方案，使用部分更新功能，允许仅修改安装对象的特定属性。 部分更新是可针对安装对象运行的 JSON Patch 操作的子集。
 
-    ```java
-    PartialUpdateOperation addChannel = new PartialUpdateOperation(UpdateOperationType.Add, "/pushChannel", "adm-push-channel2");
-    PartialUpdateOperation addTag = new PartialUpdateOperation(UpdateOperationType.Add, "/tags", "bar");
-    PartialUpdateOperation replaceTemplate = new PartialUpdateOperation(UpdateOperationType.Replace, "/templates/template1", new InstallationTemplate("{\"data\":{\"key3\":\"$(value3)\"}}","tag-for-template1")).toJson());
-    hub.patchInstallation("installation-id", addChannel, addTag, replaceTemplate);
-    ```
+```java
+PartialUpdateOperation addChannel = new PartialUpdateOperation(UpdateOperationType.Add, "/pushChannel", "adm-push-channel2");
+PartialUpdateOperation addTag = new PartialUpdateOperation(UpdateOperationType.Add, "/tags", "bar");
+PartialUpdateOperation replaceTemplate = new PartialUpdateOperation(UpdateOperationType.Replace, "/templates/template1", new InstallationTemplate("{\"data\":{\"key3\":\"$(value3)\"}}","tag-for-template1")).toJson());
+hub.patchInstallation("installation-id", addChannel, addTag, replaceTemplate);
+```
 
 删除安装：
 
-    ```java
-    hub.deleteInstallation(installation.getInstallationId());
-    ```
+```java
+hub.deleteInstallation(installation.getInstallationId());
+```
 
 `CreateOrUpdate`、`Patch` 和 `Delete` 最终与 `Get` 保持一致。 请求的操作会在调用期间进入系统队列并在后台执行。 Get 并不适用于主运行时方案，只适用于调试和故障排除，其会受到服务的严密限制。
 
 安装的发送流与注册的一样。 将通知定向至特定安装 - 仅使用了标记“InstallationId:{desired-id}”。 在此事例中，代码为：
 
-    ```java
-    Notification n = Notification.createWindowsNotification("WNS body");
-    hub.sendNotification(n, "InstallationId:{installation-id}");
-    ```
+```java
+Notification n = Notification.createWindowsNotification("WNS body");
+hub.sendNotification(n, "InstallationId:{installation-id}");
+```
 
 为多个模板之一：
 
-    ```java
-    Map<String, String> prop =  new HashMap<String, String>();
-    prop.put("value3", "some value");
-    Notification n = Notification.createTemplateNotification(prop);
-    hub.sendNotification(n, "InstallationId:{installation-id} && tag-for-template1");
-    ```
+```java
+Map<String, String> prop =  new HashMap<String, String>();
+prop.put("value3", "some value");
+Notification n = Notification.createTemplateNotification(prop);
+hub.sendNotification(n, "InstallationId:{installation-id} && tag-for-template1");
+```
 
 ### <a name="schedule-notifications-available-for-standard-tier"></a>计划通知（适用于标准层）
 
@@ -246,12 +249,12 @@ SDK 目前支持以下内容：
 
 **计划 Windows 本机通知：**
 
-    ```java
-    Calendar c = Calendar.getInstance();
-    c.add(Calendar.DATE, 1);
-    Notification n = Notification.createWindowsNotification("WNS body");
-    hub.scheduleNotification(n, c.getTime());
-    ```
+```java
+Calendar c = Calendar.getInstance();
+c.add(Calendar.DATE, 1);
+Notification n = Notification.createWindowsNotification("WNS body");
+hub.scheduleNotification(n, c.getTime());
+```
 
 ### <a name="importexport-available-for-standard-tier"></a>导入/导出（可用于标准层）
 
@@ -259,39 +262,39 @@ SDK 目前支持以下内容：
 
 **提交导出作业：**
 
-    ```java
-    NotificationHubJob job = new NotificationHubJob();
-    job.setJobType(NotificationHubJobType.ExportRegistrations);
-    job.setOutputContainerUri("container uri with SAS signature");
-    job = hub.submitNotificationHubJob(job);
-    ```
+```java
+NotificationHubJob job = new NotificationHubJob();
+job.setJobType(NotificationHubJobType.ExportRegistrations);
+job.setOutputContainerUri("container uri with SAS signature");
+job = hub.submitNotificationHubJob(job);
+```
 
 **提交导入作业：**
 
-    ```java
-    NotificationHubJob job = new NotificationHubJob();
-    job.setJobType(NotificationHubJobType.ImportCreateRegistrations);
-    job.setImportFileUri("input file uri with SAS signature");
-    job.setOutputContainerUri("container uri with SAS signature");
-    job = hub.submitNotificationHubJob(job);
-    ```
+```java
+NotificationHubJob job = new NotificationHubJob();
+job.setJobType(NotificationHubJobType.ImportCreateRegistrations);
+job.setImportFileUri("input file uri with SAS signature");
+job.setOutputContainerUri("container uri with SAS signature");
+job = hub.submitNotificationHubJob(job);
+```
 
 **等到作业完成：**
 
-    ```java
-    while(true){
-        Thread.sleep(1000);
-        job = hub.getNotificationHubJob(job.getJobId());
-        if(job.getJobStatus() == NotificationHubJobStatus.Completed)
-            break;
-    }
-    ```
+```java
+while(true){
+    Thread.sleep(1000);
+    job = hub.getNotificationHubJob(job.getJobId());
+    if(job.getJobStatus() == NotificationHubJobStatus.Completed)
+        break;
+}
+```
 
 **获取所有作业：**
 
-    ```java
-    List<NotificationHubJob> jobs = hub.getAllNotificationHubJobs();
-    ```
+```java
+List<NotificationHubJob> jobs = hub.getAllNotificationHubJobs();
+```
 
 **使用 SAS 签名的 URI：**
 
@@ -303,73 +306,73 @@ SDK 目前支持以下内容：
 
 * **Windows 应用商店和 Windows Phone 8.1（非 Silverlight）**
 
-    ```java
-    String toast = "<toast><visual><binding template=\"ToastText01\"><text id=\"1\">Hello from Java!</text></binding></visual></toast>";
-    Notification n = Notification.createWindowsNotification(toast);
-    hub.sendNotification(n);
-    ```
+```java
+String toast = "<toast><visual><binding template=\"ToastText01\"><text id=\"1\">Hello from Java!</text></binding></visual></toast>";
+Notification n = Notification.createWindowsNotification(toast);
+hub.sendNotification(n);
+```
 
 * **iOS**
 
-    ```java
-    String alert = "{\"aps\":{\"alert\":\"Hello from Java!\"}}";
-    Notification n = Notification.createAppleNotification(alert);
-    hub.sendNotification(n);
-    ```
+```java
+String alert = "{\"aps\":{\"alert\":\"Hello from Java!\"}}";
+Notification n = Notification.createAppleNotification(alert);
+hub.sendNotification(n);
+```
 
 * **Android**
 
-    ```java
-    String message = "{\"data\":{\"msg\":\"Hello from Java!\"}}";
-    Notification n = Notification.createBaiduNotification(message);
-    hub.sendNotification(n);
-    ```
+```java
+String message = "{\"data\":{\"msg\":\"Hello from Java!\"}}";
+Notification n = Notification.createBaiduNotification(message);
+hub.sendNotification(n);
+```
 
 * **Windows Phone 8.0 和 8.1 Silverlight**
 
-    ```java
-    String toast = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
-                "<wp:Notification xmlns:wp=\"WPNotification\">" +
-                    "<wp:Toast>" +
-                        "<wp:Text1>Hello from Java!</wp:Text1>" +
-                    "</wp:Toast> " +
-                "</wp:Notification>";
-    Notification n = Notification.createMpnsNotification(toast);
-    hub.sendNotification(n);
-    ```
+```java
+String toast = "<?xml version=\"1.0\" encoding=\"utf-8\"?>" +
+            "<wp:Notification xmlns:wp=\"WPNotification\">" +
+                "<wp:Toast>" +
+                    "<wp:Text1>Hello from Java!</wp:Text1>" +
+                "</wp:Toast> " +
+            "</wp:Notification>";
+Notification n = Notification.createMpnsNotification(toast);
+hub.sendNotification(n);
+```
 
 * **Kindle Fire**
 
-    ```java
-    String message = "{\"data\":{\"msg\":\"Hello from Java!\"}}";
-    Notification n = Notification.createAdmNotification(message);
-    hub.sendNotification(n);
-    ```
+```java
+String message = "{\"data\":{\"msg\":\"Hello from Java!\"}}";
+Notification n = Notification.createAdmNotification(message);
+hub.sendNotification(n);
+```
 
 * **发送到标记**
   
-    ```java
-    Set<String> tags = new HashSet<String>();
-    tags.add("boo");
-    tags.add("foo");
-    hub.sendNotification(n, tags);
-    ```
+```java
+Set<String> tags = new HashSet<String>();
+tags.add("boo");
+tags.add("foo");
+hub.sendNotification(n, tags);
+```
 
 * **发送到标记表达式**
 
-    ```java
-    hub.sendNotification(n, "foo && ! bar");
-    ```
+```java
+hub.sendNotification(n, "foo && ! bar");
+```
 
 * **发送模板通知**
 
-    ```java
-    Map<String, String> prop =  new HashMap<String, String>();
-    prop.put("prop1", "v1");
-    prop.put("prop2", "v2");
-    Notification n = Notification.createTemplateNotification(prop);
-    hub.sendNotification(n);
-    ```
+```java
+Map<String, String> prop =  new HashMap<String, String>();
+prop.put("prop1", "v1");
+prop.put("prop2", "v2");
+Notification n = Notification.createTemplateNotification(prop);
+hub.sendNotification(n);
+```
 
 运行 Java 代码，现在应该生成显示在目标设备上的通知。
 
@@ -386,7 +389,7 @@ SDK 目前支持以下内容：
   * [将跨平台通知发送到经身份验证的用户]
 
 [Java SDK]: https://github.com/Azure/azure-notificationhubs-java-backend
-[Get started tutorial]: notification-hubs-ios-apple-push-notification-apns-get-started.md
+[Get started tutorial]: ./notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md
 [通知中心入门]: notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md
 [发送突发新闻]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md
 [发送本地化的突发新闻]: notification-hubs-windows-store-dotnet-xplat-localized-wns-push-notification.md

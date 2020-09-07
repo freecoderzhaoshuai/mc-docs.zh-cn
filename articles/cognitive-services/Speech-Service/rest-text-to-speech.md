@@ -9,14 +9,14 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: conceptual
 origin.date: 03/23/2020
-ms.date: 08/03/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: c01b17ffbad7c31f3b2165ebb791ed3fb6c85710
-ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
+ms.openlocfilehash: d2ab0f5418ad5d7020b63167817291f59916f882
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87516116"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317535"
 ---
 # <a name="text-to-speech-rest-api"></a>文本转语音 REST API
 

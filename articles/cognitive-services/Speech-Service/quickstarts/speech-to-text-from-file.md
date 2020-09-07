@@ -9,16 +9,16 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: quickstart
 origin.date: 06/25/2020
-ms.date: 08/03/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.custom: devx-track-javascript
+ms.custom: devx-track-javascript, devx-track-csharp
 zone_pivot_groups: programming-languages-set-two-with-js-spx
-ms.openlocfilehash: 2cca1c924d947d3a6c1f200210e2bcbadc5b90ec
-ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
+ms.openlocfilehash: 8b9e43e0948dac628cadd9c13b90c569cde9d1a1
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87516120"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317518"
 ---
 # <a name="quickstart-recognize-speech-from-an-audio-file"></a>快速入门：识别音频文件中的语音
 

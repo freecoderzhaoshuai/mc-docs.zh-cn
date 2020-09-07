@@ -1,5 +1,5 @@
 ---
-title: Azure PowerShell 脚本示例 - 筛选 VM 网络流量 | Azure
+title: Azure PowerShell 脚本示例 - 筛选 VM 网络流量 | Microsoft Docs
 description: Azure PowerShell 脚本示例 - 筛选入站和出站 VM 网络流量。
 services: virtual-network
 documentationcenter: virtual-network
@@ -11,20 +11,20 @@ ms.topic: article
 ms.tgt_pltfrm: ''
 ms.workload: infrastructure
 origin.date: 05/16/2017
-ms.date: 12/09/2019
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: daf4015a25f87cb8c57af8acd3b8d0d73797b71b
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 487b89df4d86cc8a8c649924fbe03b7573d5d7ba
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74884062"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316398"
 ---
 # <a name="filter-inbound-and-outbound-vm-network-traffic"></a>筛选入站和出站 VM 网络流量
 
 该脚本示例创建了包含前端和后端子网的虚拟网络。 前端子网的入站网络流量仅限于 HTTP 和 HTTPS，而从后端子网到 Internet 的出站流量则不受限制。 运行该脚本后，将具有一个包含两个 NIC 的虚拟机。 每个 NIC 连接到不同的子网。
 
-必要时，请使用 [Azure PowerShell 指南](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/)中的说明安装 Azure PowerShell，并运行 `Connect-AzAccount` 创建与 Azure 的连接。
+必要时，请使用 [Azure PowerShell 指南](https://docs.microsoft.com/powershell/azure/)中的说明安装 Azure PowerShell，并运行 `Connect-AzAccount` 创建与 Azure 的连接。
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
@@ -142,6 +142,6 @@ Remove-AzResourceGroup -Name myResourceGroup
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 可在 [Azure 网络概述文档](../powershell-samples.md?toc=%2fnetworking%2ftoc.json)中找到其他网络 PowerShell 脚本示例。

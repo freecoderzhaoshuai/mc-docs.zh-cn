@@ -1,23 +1,24 @@
 ---
 title: 在 Azure 中管理 Windows VM 的可用性
 description: 了解如何使用多个虚拟机确保 Azure 中 Windows 应用程序的高可用性
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.topic: how-to
 origin.date: 11/27/2019
-ms.date: 08/10/2020
-ms.testscope: no
-ms.testdate: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 13a17d88c2ce4acf3da5ac305e94a930f663e830
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: ca94df09873aeb41f0c05b496ef3a2f13185a4a3
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917083"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463055"
 ---
+<!--Include file updated-->
 # <a name="manage-the-availability-of-windows-virtual-machines-in-azure"></a>在 Azure 中管理 Windows 虚拟机的可用性 
 
 了解如何设置和管理多个虚拟机，以确保 Azure 中 Windows 应用程序的高可用性。 也可以[管理 Linux 虚拟机的可用性](../linux/manage-availability.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)。
@@ -29,4 +30,4 @@ ms.locfileid: "87917083"
 
 <!--Not Available on * [Windows N-tier application on Azure with SQL Server](https://docs.microsoft.com/azure/architecture/reference-architectures/n-tier/n-tier-sql-server)-->
 <!--Not Available on * [Run an N-tier application in multiple Azure regions for high availability](https://docs.microsoft.com/azure/architecture/reference-architectures/n-tier/multi-region-sql-server)-->
-<!-- Update_Description: update meta properties  -->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -12,19 +12,19 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/29/2018
-ms.date: 04/06/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 7ba7571ed333e5cadf4a4ef01bbc6ec0c41a937b
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 276a4b3f847001364b66173e6ba8515edb314640
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80625688"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413999"
 ---
 # <a name="get-started-with-azure-ad-authentication-by-using-the-azure-portal"></a>通过 Azure 门户开始使用 Azure AD 身份验证
 
 > [!NOTE]
-> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](/media-services/latest/)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
+> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](../latest/index.yml)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
 
 了解如何使用 Azure 门户访问 Azure Active Directory (Azure AD) 身份验证设置，以便使用 Azure 媒体服务 API。
 
@@ -54,7 +54,7 @@ ms.locfileid: "80625688"
 
 在“管理 AAD 应用和机密”部分，可以选择或新建 Azure AD 应用并生成机密。  出于安全方面的原因，关闭边栏选项卡后，无法显示机密。 应用程序使用应用程序 ID 和机密进行身份验证，以获取媒体服务的有效令牌。
 
-务必拥有足够的权限，以便向 Azure AD 租户注册应用程序，并将应用程序分配给 Azure 订阅中的角色。 有关详细信息，请参阅[所需权限](/active-directory/develop/howto-create-service-principal-portal#required-permissions)。
+务必拥有足够的权限，以便向 Azure AD 租户注册应用程序，并将应用程序分配给 Azure 订阅中的角色。 有关详细信息，请参阅[所需权限](../../active-directory/develop/howto-create-service-principal-portal.md#permissions-required-for-registering-an-app)。
 
 ### <a name="connect-to-media-services-api"></a>连接到媒体服务 API
 

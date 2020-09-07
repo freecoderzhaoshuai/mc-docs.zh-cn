@@ -5,22 +5,22 @@ author: Johnnytechn
 ms.author: v-johya
 ms.topic: how-to
 ms.custom: subject-moving-resources
-ms.date: 07/15/2020
+ms.date: 08/20/2020
 ms.subservice: alerts
-ms.openlocfilehash: 5fb2feec412e3ce34758fe003b8a483485f9408a
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.openlocfilehash: 7b3fca5e5202bcc10791210949d8f9407ffa141a
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440609"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457381"
 ---
 # <a name="how-to-update-alert-rules-or-action-rules-when-their-target-resource-moves-to-a-different-azure-region"></a>如何在警报规则或操作规则的目标资源移动到其他 Azure 区域时对这些规则进行更新
 
-本文介绍了当你在区域之间移动其他 Azure 资源时，为何现有的[警报规则](/azure-monitor/platform/alerts-overview)和[操作规则](/azure-monitor/platform/alerts-action-rules)会受影响，以及如何识别和解决这些问题。 请查看主要的[资源移动文档](/azure-resource-manager/management/move-region)，详细了解何时需要在区域之间移动资源，以及用于设计移动过程的清单。
+本文介绍了当你在区域之间移动其他 Azure 资源时，为何现有的[警报规则](./alerts-overview.md)和[操作规则](./alerts-action-rules.md)会受影响，以及如何识别和解决这些问题。 请查看主要的[资源移动文档](../../azure-resource-manager/management/move-region.md)，详细了解何时需要在区域之间移动资源，以及用于设计移动过程的清单。
 
 ## <a name="why-the-problem-exists"></a>存在此问题的原因
 
-警报规则和操作规则引用其他 Azure 资源。 示例包括 [Azure VM](/site-recovery/azure-to-azure-tutorial-migrate)、[Azure SQL](/sql-database/sql-database-move-resources-across-regions) 和 [Azure 存储](/storage/common/storage-account-move)。 当你移动这些规则所引用的资源时，这些规则可能会因为找不到其引用的资源而停止正常工作。
+警报规则和操作规则引用其他 Azure 资源。 示例包括 [Azure VM](../../site-recovery/azure-to-azure-tutorial-migrate.md)、[Azure SQL](../../azure-sql/database/move-resources-across-regions.md) 和 [Azure 存储](../../storage/common/storage-account-move.md)。 当你移动这些规则所引用的资源时，这些规则可能会因为找不到其引用的资源而停止正常工作。
 
 规则可能会在移动目标资源后停止工作的两个主要原因如下所述：
 
@@ -100,7 +100,7 @@ Azure 资源发出的指标是区域性的。 每次将资源移到新区域时�
 
 ### <a name="change-scope-of-a-rule-using-powershell"></a>使用 PowerShell 更改规则的范围
 
-1. 获取现有规则（[指标警报](https://docs.microsoft.com/powershell/module/az.monitor/get-azmetricalertrulev2)、[活动日志警报](https://docs.microsoft.com/powershell/module/az.monitor/get-azactivitylogalert)、[操作规则](https://docs.microsoft.com/powershell/module/az.alertsmanagement/Get-AzActionRule)）。
+1. 获取现有规则（[指标警报](https://docs.microsoft.com/powershell/module/az.monitor/get-azmetricalertrulev2)、[活动日志警报](https://docs.microsoft.com/powershell/module/az.monitor/get-azactivitylogalert)、[操作规则](https://docs.microsoft.com/powershell/module/az.alertsmanagement/get-azactionrule)）。
 2. 修改范围。 如果需要，请将其拆分为两个规则（这适用于指标警报的某些案例，如上文所述）。
 3. 重新部署规则（[指标警报](https://docs.microsoft.com/powershell/module/az.monitor/add-azmetricalertrulev2)、[活动日志警报](https://docs.microsoft.com/powershell/module/az.monitor/enable-azactivitylogalert)、[操作规则](https://docs.microsoft.com/powershell/module/az.alertsmanagement/set-azactionrule)）。
 

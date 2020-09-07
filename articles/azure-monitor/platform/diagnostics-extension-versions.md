@@ -3,16 +3,16 @@ title: Windows Azure 诊断扩展 (WAD) 配置架构版本历史记录
 description: 有关收集 Azure 虚拟机、VM 规模集、Service Fabric 和云服务中的性能计数器的信息。
 ms.subservice: diagnostic-extension
 ms.topic: reference
-author: lingliw
+author: Johnnytechn
+ms.author: v-johya
+ms.date: 08/20/2020
 origin.date: 01/29/2020
-ms.date: 3/2/2020
-ms.author: v-lingwu
-ms.openlocfilehash: 18629805e1bfd6ae00041accd4b71421ab7c1a8c
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 04d1b3b5035b8b4e6d7fad302cee23e5f34cbbfb
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79453256"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457398"
 ---
 # <a name="windows-azure-diagnostics-extension-wad-configuration-schema-versions-and-history"></a>Windows Azure 诊断扩展 (WAD) 配置架构版本和历史记录
 本文提供了作为 Microsoft Azure SDK 的一部分提供的 [Windows Azure 诊断扩展 (WAD)](diagnostics-extension-overview.md) 架构版本的历史记录。  
@@ -48,7 +48,7 @@ ms.locfileid: "79453256"
 ### <a name="diagnostics-extension-111"></a>诊断扩展 1.11
 添加了对 Azure Monitor 接收器的支持。 此接收器仅适用于性能计数器。 允许将在 VM、VMSS 或云服务上收集的性能计数器作为自定义指标发送到 Azure Monitor。 Azure Monitor 接收器支持：
 * 通过 [Azure Monitor 指标 API](https://docs.microsoft.com/rest/api/monitor/metrics/list) 检索发送到 Azure Monitor 的所有性能计数器。
-* 通过 Azure Monitor 中新的[统一警报体验](../../azure-monitor/platform/alerts-overview.md)根据发送到 Azure Monitor 的所有性能计数器发出警报
+* 通过 Azure Monitor 中新的[统一警报体验](./alerts-overview.md)根据发送到 Azure Monitor 的所有性能计数器发出警报
 * 将性能计数器中的通配符运算符视为指标上的“实例”维度。 例如，如果你收集了“LogicalDisk(\*)/DiskWrites/sec”计数器，则可以根据“实例”维度进行筛选和拆分，以基于每个逻辑磁盘（C：、D：等）的磁盘写入次数/秒进行绘图或发出警报
 
 将 Azure Monitor 定义为诊断扩展配置中的新接收器
@@ -106,13 +106,13 @@ ms.locfileid: "79453256"
 ```json
 {
     "storageAccountName": "diagstorageaccount",
-    "storageAccountEndPoint": "https://core.windows.net",
+    "storageAccountEndPoint": "https://core.chinacloudapi.cn",
     "storageAccountSasToken": "{sas token}",
     "SecondaryStorageAccounts": {
         "StorageAccount": [
             {
                 "name": "secondarydiagstorageaccount",
-                "endpoint": "https://core.windows.net",
+                "endpoint": "https://core.chinacloudapi.cn",
                 "sasToken": "{sas token}"
             }
         ]
@@ -156,7 +156,7 @@ ms.locfileid: "79453256"
 添加了路由到 EventHub 的功能。
 
 ### <a name="diagnostics-extension-15"></a>诊断扩展 1.5
-添加了 sinks 元素和将诊断数据发送到 [Application Insights](../../azure-monitor/app/cloudservices.md) 的功能，因此可以更轻松地在应用程序以及系统和基础结构级别诊断问题。
+添加了 sinks 元素和将诊断数据发送到 [Application Insights](../app/cloudservices.md) 的功能，因此可以更轻松地在应用程序以及系统和基础结构级别诊断问题。
 
 ### <a name="azure-sdk-26-and-diagnostics-extension-13"></a>Azure SDK 2.6 和诊断扩展 1.3
 对 Visual Studio 中的云服务项目进行了以下更改。 （这些更改同样适用于更高版本的 Azure SDK。）
@@ -180,7 +180,7 @@ ms.locfileid: "79453256"
 * .cscfg 文件中的诊断连接字符串优先于 .wadcfgx 文件中的存储帐户。 如果在 .cscfg 文件中指定了诊断连接字符串，则 Visual Studio 使用该字符串，而忽略 .wadcfgx 中的存储帐户。
 
 #### <a name="what-does-the-update-development-storage-connection-strings-checkbox-do"></a>“更新开发存储连接字符串...”复选框的作用
-“在发布到 Microsoft Azure 时使用 Microsoft Azure 存储帐户凭据更新诊断和缓存的开发存储连接字符串”复选框提供了使用发布过程中指定的 Azure 存储帐户更新任何开发存储帐户连接字符串的简便方法。 
+“在发布到 Azure 时使用 Azure 存储帐户凭据更新诊断和缓存的开发存储连接字符串”复选框提供了使用发布过程中指定的 Azure 存储帐户更新任何开发存储帐户连接字符串的简便方法****。
 
 例如，假设你选中此复选框，并且诊断连接字符串指定 `UseDevelopmentStorage=true`。 将项目发布到 Azure 时，Visual Studio 将自动使用发布向导中指定的存储帐户更新诊断连接字符串。 但是，如果已将实际的存储帐户指定为诊断连接字符串，则将改用该帐户。
 
@@ -189,6 +189,7 @@ ms.locfileid: "79453256"
 
 * **配置 API 已弃用** – 诊断的编程配置在 Azure SDK 2.4 或更早版本中可用，但在 Azure SDK 2.5 及更高版本中已弃用。 如果目前在代码中定义了诊断配置，则需在已迁移的项目中从头开始重新配置这些设置，这样才能让诊断正常工作。 Azure SDK 2.4 的诊断配置文件是 diagnostics.wadcfg，而 Azure SDK 2.5 及更高版本的诊断配置文件是 diagnostics.wadcfgx。
 * **云服务应用程序的诊断只能在角色级别配置，而不是在实例级别配置。**
-* **每次部署应用程序时，都会更新诊断配置** – 如果从服务器资源管理器更改诊断配置并重新部署应用，这可能会导致奇偶校验问题。
+* **每次部署应用时，都会更新诊断配置** – 如果从服务器资源管理器更改诊断配置并重新部署应用，这可能会导致奇偶校验问题。
 * **在 Azure SDK 2.5 及更高版本中，故障转储是在诊断配置文件而非代码中配置的** – 如果在代码中配置了故障转储，则必须手动将配置从代码传输至配置文件，因为故障转储并未在迁移至 Azure SDK 2.6 的过程中传输。
+
 

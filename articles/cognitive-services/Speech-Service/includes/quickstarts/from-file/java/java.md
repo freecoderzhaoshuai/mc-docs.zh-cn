@@ -8,14 +8,15 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: include
 origin.date: 12/17/2019
-ms.date: 03/16/2020
+ms.date: 08/03/2020
+ms.custom: devx-track-java
 ms.author: v-tawe
-ms.openlocfilehash: 20cea91625d32caaf7be7d11e77b193bbee300fb
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 2b498206e684fa91d2b414433eaa7bc79f005f93
+ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80151604"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "89317515"
 ---
 [!INCLUDE [jre](./jre.md)]
 

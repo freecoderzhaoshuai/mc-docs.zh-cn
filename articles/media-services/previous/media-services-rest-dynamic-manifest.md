@@ -13,15 +13,15 @@ ms.tgt_pltfrm: na
 ms.devlang: ne
 ms.topic: article
 origin.date: 03/20/2019
-ms.date: 02/24/2020
+ms.date: 09/07/2020
 ms.author: v-jay
 ms.reviewr: cenkdin
-ms.openlocfilehash: 57826254fbc616e07f4539accbe1aa04946e102a
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 392540d78cbaea8e620ccc15faa16e74d3c27656
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78850628"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413762"
 ---
 # <a name="creating-filters-with-azure-media-services-rest-api"></a>使用 Azure 媒体服务 REST API 创建筛选器 
 > [!div class="op_single_selector"]
@@ -59,52 +59,58 @@ ms.locfileid: "78850628"
 #### <a name="http-request"></a>HTTP 请求
 请求标头
 
-    POST https://media.chinacloudapi.cn/API/Filters HTTP/1.1 
-    DataServiceVersion:3.0 
-    MaxDataServiceVersion: 3.0 
-    Content-Type: application/json 
-    Accept: application/json 
-    Accept-Charset: UTF-8 
-    Authorization: Bearer <ENCODED JWT TOKEN> 
-    x-ms-version: 2.19 
-    x-ms-client-request-id: 00000000-0000-0000-0000-000000000000 
-    Host:media.chinacloudapi.cn
+```console
+POST https://media.chinacloudapi.cn/API/Filters HTTP/1.1 
+DataServiceVersion:3.0 
+MaxDataServiceVersion: 3.0 
+Content-Type: application/json 
+Accept: application/json 
+Accept-Charset: UTF-8 
+Authorization: Bearer <ENCODED JWT TOKEN> 
+x-ms-version: 2.19 
+x-ms-client-request-id: 00000000-0000-0000-0000-000000000000 
+Host:media.chinacloudapi.cn
+```
 
 请求正文 
 
-    {  
-       "Name":"GlobalFilter",
-       "PresentationTimeRange":{  
-          "StartTimestamp":"0",
-          "EndTimestamp":"9223372036854775807",
-          "PresentationWindowDuration":"12000000000",
-          "LiveBackoffDuration":"0",
-          "Timescale":"10000000"
-       },
-       "Tracks":[  
-          {  
-             "PropertyConditions":
-                  [  
-                {  
-                   "Property":"Type",
-                   "Value":"audio",
-                   "Operator":"Equal"
-                },
-                {  
-                   "Property":"Bitrate",
-                   "Value":"0-2147483647",
-                   "Operator":"Equal"
-                }
-             ]
-          }
-       ]
-    }
-
+```console
+{  
+   "Name":"GlobalFilter",
+   "PresentationTimeRange":{  
+      "StartTimestamp":"0",
+      "EndTimestamp":"9223372036854775807",
+      "PresentationWindowDuration":"12000000000",
+      "LiveBackoffDuration":"0",
+      "Timescale":"10000000"
+   },
+   "Tracks":[  
+      {  
+         "PropertyConditions":
+              [  
+            {  
+               "Property":"Type",
+               "Value":"audio",
+               "Operator":"Equal"
+            },
+            {  
+               "Property":"Bitrate",
+               "Value":"0-2147483647",
+               "Operator":"Equal"
+            }
+         ]
+      }
+   ]
+}
+```
 
 
 
 #### <a name="http-response"></a>HTTP 响应
-    HTTP/1.1 201 Created 
+
+```console
+HTTP/1.1 201 Created 
+```
 
 ### <a name="create-local-assetfilters"></a>创建本地 AssetFilter
 若要创建本地 AssetFilter，请使用以下 HTTP 请求：  
@@ -112,92 +118,107 @@ ms.locfileid: "78850628"
 #### <a name="http-request"></a>HTTP 请求
 请求标头
 
-    POST https://media.chinacloudapi.cn/API/AssetFilters HTTP/1.1 
-    DataServiceVersion: 3.0 
-    MaxDataServiceVersion: 3.0 
-    Content-Type: application/json 
-    Accept: application/json 
-    Accept-Charset: UTF-8 
-    Authorization: Bearer <ENCODED JWT TOKEN> 
-    x-ms-version: 2.19 
-    x-ms-client-request-id: 00000000-0000-0000-0000-000000000000 
-    Host: media.chinacloudapi.cn
+```console
+POST https://media.chinacloudapi.cn/API/AssetFilters HTTP/1.1 
+DataServiceVersion: 3.0 
+MaxDataServiceVersion: 3.0 
+Content-Type: application/json 
+Accept: application/json 
+Accept-Charset: UTF-8 
+Authorization: Bearer <ENCODED JWT TOKEN> 
+x-ms-version: 2.19 
+x-ms-client-request-id: 00000000-0000-0000-0000-000000000000 
+Host: media.chinacloudapi.cn 
+```
 
 请求正文 
 
-    {   
-       "Name":"AssetFilter", 
-       "ParentAssetId":"nb:cid:UUID:536e555d-1500-80c3-92dc-f1e4fdc6c592", 
-       "PresentationTimeRange":{   
-          "StartTimestamp":"0", 
-          "EndTimestamp":"9223372036854775807", 
-          "PresentationWindowDuration":"12000000000", 
-          "LiveBackoffDuration":"0", 
-          "Timescale":"10000000" 
-       }, 
-       "Tracks":[   
-          {   
-             "PropertyConditions": 
-                  [   
-                {   
-                   "Property":"Type", 
-                   "Value":"audio", 
-                   "Operator":"Equal" 
-                }, 
-                {   
-                   "Property":"Bitrate", 
-                   "Value":"0-2147483647", 
-                   "Operator":"Equal" 
-                } 
-             ] 
-          } 
-       ] 
-    } 
+```console
+{   
+   "Name":"AssetFilter", 
+   "ParentAssetId":"nb:cid:UUID:536e555d-1500-80c3-92dc-f1e4fdc6c592", 
+   "PresentationTimeRange":{   
+      "StartTimestamp":"0", 
+      "EndTimestamp":"9223372036854775807", 
+      "PresentationWindowDuration":"12000000000", 
+      "LiveBackoffDuration":"0", 
+      "Timescale":"10000000" 
+   }, 
+   "Tracks":[   
+      {   
+         "PropertyConditions": 
+              [   
+            {   
+               "Property":"Type", 
+               "Value":"audio", 
+               "Operator":"Equal" 
+            }, 
+            {   
+               "Property":"Bitrate", 
+               "Value":"0-2147483647", 
+               "Operator":"Equal" 
+            } 
+         ] 
+      } 
+   ] 
+} 
+```
 
 #### <a name="http-response"></a>HTTP 响应
-    HTTP/1.1 201 Created 
-    . . . 
+
+```console
+HTTP/1.1 201 Created 
+. . . 
+```
 
 ## <a name="list-filters"></a>列出筛选器
 ### <a name="get-all-global-filters-in-the-ams-account"></a>获取 AMS 帐户中的所有全局**筛选器**
 若要列出筛选器，请使用以下 HTTP 请求： 
 
 #### <a name="http-request"></a>HTTP 请求
-    GET https://media.chinacloudapi.cn/API/Filters HTTP/1.1 
-    DataServiceVersion:3.0 
-    MaxDataServiceVersion: 3.0 
-    Accept: application/json 
-    Accept-Charset: UTF-8 
-    Authorization: Bearer <ENCODED JWT TOKEN> 
-    x-ms-version: 2.19 
-    Host: media.chinacloudapi.cn
+
+```console
+GET https://media.chinacloudapi.cn/API/Filters HTTP/1.1 
+DataServiceVersion:3.0 
+MaxDataServiceVersion: 3.0 
+Accept: application/json 
+Accept-Charset: UTF-8 
+Authorization: Bearer <ENCODED JWT TOKEN> 
+x-ms-version: 2.19 
+Host: media.chinacloudapi.cn
+```
 
 ### <a name="get-assetfilters-associated-with-an-asset"></a>获取与资产关联的 **AssetFilter**
 #### <a name="http-request"></a>HTTP 请求
-    GET https://media.chinacloudapi.cn/API/Assets('nb%3Acid%3AUUID%3A536e555d-1500-80c3-92dc-f1e4fdc6c592')/AssetFilters HTTP/1.1 
-    DataServiceVersion: 3.0 
-    MaxDataServiceVersion: 3.0 
-    Accept: application/json 
-    Accept-Charset: UTF-8 
-    Authorization: Bearer <ENCODED JWT TOKEN> 
-    x-ms-version: 2.19 
-    x-ms-client-request-id: 00000000-0000-0000-0000-000000000000 
-    Host: media.chinacloudapi.cn
+
+```console
+GET https://media.chinacloudapi.cn/API/Assets('nb%3Acid%3AUUID%3A536e555d-1500-80c3-92dc-f1e4fdc6c592')/AssetFilters HTTP/1.1 
+DataServiceVersion: 3.0 
+MaxDataServiceVersion: 3.0 
+Accept: application/json 
+Accept-Charset: UTF-8 
+Authorization: Bearer <ENCODED JWT TOKEN> 
+x-ms-version: 2.19 
+x-ms-client-request-id: 00000000-0000-0000-0000-000000000000 
+Host: media.chinacloudapi.cn
+```
 
 ### <a name="get-an-assetfilter-based-on-its-id"></a>基于 ID 获取 **AssetFilter**
 #### <a name="http-request"></a>HTTP 请求
-    GET https://media.chinacloudapi.cn/API/AssetFilters('nb%3Acid%3AUUID%3A536e555d-1500-80c3-92dc-f1e4fdc6c592__%23%23%23__TestFilter') HTTP/1.1 
-    DataServiceVersion: 3.0 
-    MaxDataServiceVersion: 3.0 
-    Accept: application/json 
-    Accept-Charset: UTF-8 
-    Authorization: Bearer <ENCODED JWT TOKEN> 
-    x-ms-version: 2.19 
-    x-ms-client-request-id: 00000000
 
+```console
+GET https://media.chinacloudapi.cn/API/AssetFilters('nb%3Acid%3AUUID%3A536e555d-1500-80c3-92dc-f1e4fdc6c592__%23%23%23__TestFilter') HTTP/1.1 
+DataServiceVersion: 3.0 
+MaxDataServiceVersion: 3.0 
+Accept: application/json 
+Accept-Charset: UTF-8 
+Authorization: Bearer <ENCODED JWT TOKEN> 
+x-ms-version: 2.19 
+x-ms-client-request-id: 00000000
+```
 
 ## <a name="update-filters"></a>更新筛选器
-使用 PATCH、PUT 或 MERGE 并结合新的属性值来更新筛选器。  有关这些操作的详细信息，请参阅 [PATCH、PUT、MERGE](https://msdn.microsoft.com/library/dd541276.aspx)。
+使用 PATCH、PUT 或 MERGE 并结合新的属性值来更新筛选器。  有关这些操作的详细信息，请参阅 [PATCH、PUT、MERGE](https://docs.microsoft.com/openspecs/windows_protocols/ms-odata/59d5abd3-7b12-490a-a0e2-9d9324b91893)。
 
 如果更新筛选器，则流式处理终结点需要两分钟的时间来刷新规则。 如果内容是通过使用此筛选器提供的（并在代理中缓存），则更新此筛选器会导致播放器失败。 请在更新筛选器之后清除缓存。 如果此选项不可用，请考虑使用其他筛选器。  
 
@@ -207,39 +228,43 @@ ms.locfileid: "78850628"
 #### <a name="http-request"></a>HTTP 请求
 请求标头： 
 
-    MERGE https://media.chinacloudapi.cn/API/Filters('filterName') HTTP/1.1 
-    DataServiceVersion:3.0 
-    MaxDataServiceVersion: 3.0 
-    Content-Type: application/json 
-    Accept: application/json 
-    Accept-Charset: UTF-8 
-    Authorization: Bearer <ENCODED JWT TOKEN> 
-    x-ms-version: 2.19 
-    x-ms-client-request-id: 00000000-0000-0000-0000-000000000000 
-    Host: media.chinacloudapi.cn
-    Content-Length: 384
+```console
+MERGE https://media.chinacloudapi.cn/API/Filters('filterName') HTTP/1.1 
+DataServiceVersion:3.0 
+MaxDataServiceVersion: 3.0 
+Content-Type: application/json 
+Accept: application/json 
+Accept-Charset: UTF-8 
+Authorization: Bearer <ENCODED JWT TOKEN> 
+x-ms-version: 2.19 
+x-ms-client-request-id: 00000000-0000-0000-0000-000000000000 
+Host: media.chinacloudapi.cn
+Content-Length: 384
+```
 
 请求正文： 
 
-    { 
-       "Tracks":[   
-          {   
-             "PropertyConditions": 
-             [   
-                {   
-                   "Property":"Type", 
-                   "Value":"audio", 
-                   "Operator":"Equal" 
-                }, 
-                {   
-                   "Property":"Bitrate", 
-                   "Value":"0-2147483647", 
-                   "Operator":"Equal" 
-                } 
-             ] 
-          } 
-       ] 
-    } 
+```console
+{ 
+   "Tracks":[   
+      {   
+         "PropertyConditions": 
+         [   
+            {   
+               "Property":"Type", 
+               "Value":"audio", 
+               "Operator":"Equal" 
+            }, 
+            {   
+               "Property":"Bitrate", 
+               "Value":"0-2147483647", 
+               "Operator":"Equal" 
+            } 
+         ] 
+      } 
+   ] 
+} 
+```
 
 ### <a name="update-local-assetfilters"></a>更新本地 AssetFilter
 若要更新本地筛选器，请使用以下 HTTP 请求： 
@@ -247,67 +272,75 @@ ms.locfileid: "78850628"
 #### <a name="http-request"></a>HTTP 请求
 请求标头： 
 
-    MERGE https://media.chinacloudapi.cn/API/AssetFilters('nb%3Acid%3AUUID%3A536e555d-1500-80c3-92dc-f1e4fdc6c592__%23%23%23__TestFilter')  HTTP/1.1 
-    DataServiceVersion: 3.0 
-    MaxDataServiceVersion: 3.0 
-    Content-Type: application/json 
-    Accept: application/json 
-    Accept-Charset: UTF-8 
-    Authorization: Bearer <ENCODED JWT TOKEN> 
-    x-ms-version: 2.19 
-    x-ms-client-request-id: 00000000-0000-0000-0000-000000000000 
-    Host: media.chinacloudapi.cn
+```console
+MERGE https://media.chinacloudapi.cn/API/AssetFilters('nb%3Acid%3AUUID%3A536e555d-1500-80c3-92dc-f1e4fdc6c592__%23%23%23__TestFilter')  HTTP/1.1 
+DataServiceVersion: 3.0 
+MaxDataServiceVersion: 3.0 
+Content-Type: application/json 
+Accept: application/json 
+Accept-Charset: UTF-8 
+Authorization: Bearer <ENCODED JWT TOKEN> 
+x-ms-version: 2.19 
+x-ms-client-request-id: 00000000-0000-0000-0000-000000000000 
+Host: media.chinacloudapi.cn
+```
 
 请求正文： 
 
-    { 
-       "Tracks":[   
-          {   
-             "PropertyConditions": 
-             [   
-                {   
-                   "Property":"Type", 
-                   "Value":"audio", 
-                   "Operator":"Equal" 
-                }, 
-                {   
-                   "Property":"Bitrate", 
-                   "Value":"0-2147483647", 
-                   "Operator":"Equal" 
-                } 
-             ] 
-          } 
-       ] 
-    } 
-
+```console
+{ 
+   "Tracks":[   
+      {   
+         "PropertyConditions": 
+         [   
+            {   
+               "Property":"Type", 
+               "Value":"audio", 
+               "Operator":"Equal" 
+            }, 
+            {   
+               "Property":"Bitrate", 
+               "Value":"0-2147483647", 
+               "Operator":"Equal" 
+            } 
+         ] 
+      } 
+   ] 
+} 
+```
 
 ## <a name="delete-filters"></a>删除筛选器
 ### <a name="delete-global-filters"></a>删除全局筛选器
 若要删除全局筛选器，请使用以下 HTTP 请求：
 
 #### <a name="http-request"></a>HTTP 请求
-    DELETE https://media.chinacloudapi.cn/api/Filters('GlobalFilter') HTTP/1.1 
-    DataServiceVersion:3.0 
-    MaxDataServiceVersion: 3.0 
-    Accept: application/json 
-    Accept-Charset: UTF-8 
-    Authorization: Bearer <ENCODED JWT TOKEN>  
-    x-ms-version: 2.19 
-    Host: media.chinacloudapi.cn
 
+```console
+DELETE https://media.chinacloudapi.cn/api/Filters('GlobalFilter') HTTP/1.1 
+DataServiceVersion:3.0 
+MaxDataServiceVersion: 3.0 
+Accept: application/json 
+Accept-Charset: UTF-8 
+Authorization: Bearer <ENCODED JWT TOKEN>  
+x-ms-version: 2.19 
+Host: media.chinacloudapi.cn
+```
 
 ### <a name="delete-local-assetfilters"></a>删除本地 AssetFilter
 若要删除本地 AssetFilter，请使用以下 HTTP 请求：
 
 #### <a name="http-request"></a>HTTP 请求
-    DELETE https://media.chinacloudapi.cn/API/AssetFilters('nb%3Acid%3AUUID%3A536e555d-1500-80c3-92dc-f1e4fdc6c592__%23%23%23__LocalFilter') HTTP/1.1 
-    DataServiceVersion: 3.0 
-    MaxDataServiceVersion: 3.0 
-    Accept: application/json 
-    Accept-Charset: UTF-8 
-    Authorization: Bearer <ENCODED JWT TOKEN> 
-    x-ms-version: 2.19 
-    Host: media.chinacloudapi.cn 
+
+```console
+DELETE https://media.chinacloudapi.cn/API/AssetFilters('nb%3Acid%3AUUID%3A536e555d-1500-80c3-92dc-f1e4fdc6c592__%23%23%23__LocalFilter') HTTP/1.1 
+DataServiceVersion: 3.0 
+MaxDataServiceVersion: 3.0 
+Accept: application/json 
+Accept-Charset: UTF-8 
+Authorization: Bearer <ENCODED JWT TOKEN> 
+x-ms-version: 2.19 
+Host: media.chinacloudapi.cn
+```
 
 ## <a name="build-streaming-urls-that-use-filters"></a>生成使用筛选器的流 URL
 有关如何发布和传送资产的信息，请参阅[将内容传送到客户概述](media-services-deliver-content-overview.md)。
@@ -316,19 +349,19 @@ ms.locfileid: "78850628"
 
 **MPEG DASH** 
 
-    http://testendpoint-testaccount.streaming.mediaservices.chinacloudapi.cn/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest(format=mpd-time-csf, filter=MyFilter)
+`http://testendpoint-testaccount.streaming.mediaservices.chinacloudapi.cn/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest(format=mpd-time-csf, filter=MyFilter)`
 
 **Apple HTTP Live Streaming (HLS) V4**
 
-    http://testendpoint-testaccount.streaming.mediaservices.chinacloudapi.cn/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest(format=m3u8-aapl, filter=MyFilter)
+`http://testendpoint-testaccount.streaming.mediaservices.chinacloudapi.cn/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest(format=m3u8-aapl, filter=MyFilter)`
 
 **Apple HTTP Live Streaming (HLS) V3**
 
-    http://testendpoint-testaccount.streaming.mediaservices.chinacloudapi.cn/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest(format=m3u8-aapl-v3, filter=MyFilter)
+`http://testendpoint-testaccount.streaming.mediaservices.chinacloudapi.cn/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest(format=m3u8-aapl-v3, filter=MyFilter)`
 
 **平滑流式处理**
 
-    http://testendpoint-testaccount.streaming.mediaservices.chinacloudapi.cn/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest(filter=MyFilter)
+`http:\//testendpoint-testaccount.streaming.mediaservices.chinacloudapi.cn/fecebb23-46f6-490d-8b70-203e86b0df58/BigBuckBunny.ism/Manifest(filter=MyFilter)`
 
     
 ## <a name="media-services-learning-paths"></a>媒体服务学习路径
@@ -336,4 +369,3 @@ ms.locfileid: "78850628"
 
 ## <a name="see-also"></a>另请参阅
 [动态清单概述](media-services-dynamic-manifest-overview.md)
-

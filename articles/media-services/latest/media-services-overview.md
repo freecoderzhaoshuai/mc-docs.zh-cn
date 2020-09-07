@@ -15,15 +15,15 @@ ms.topic: overview
 ms.tgt_pltfrm: multiple
 ms.workload: media
 origin.date: 03/09/2020
-ms.date: 07/27/2020
+ms.date: 09/07/2020
 ms.author: v-jay
 ms.custom: mvc
-ms.openlocfilehash: f0a75ac9c3bafed3d077d32a1294783e0581ad9f
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 1a68a4961bcfca2fe5833bf24d3289a64ab671e8
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162182"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414057"
 ---
 # <a name="azure-media-services-v3-overview"></a>Azure 媒体服务 v3 概述
 
@@ -32,7 +32,7 @@ Azure 媒体服务是一个基于云的平台，用于生成解决方案，以�
 媒体服务 v3 SDK 基于[媒体服务 v3 OpenAPI 规范 (Swagger)](https://aka.ms/ams-v3-rest-sdk)。
 
 > [!NOTE]
-> 目前，可以使用 [Azure 门户](https://portal.azure.cn/)执行以下操作：管理媒体服务 v3 [直播活动](live-events-outputs-concept.md)、查看（而不是管理）v3 [资产](assets-concept.md)、[获取有关访问 API 的信息](access-api-portal.md)。 对于其他所有管理任务（例如，[转换和作业](transforms-jobs-concept.md)和[内容保护](content-protection-overview.md)），请使用 [REST API](https://docs.microsoft.com/rest/api/media/)、[CLI](https://aka.ms/ams-v3-cli-ref) 或某个受支持的 [SDK](media-services-apis-overview.md#sdks)。
+> 目前，可以使用 [Azure 门户](https://portal.azure.cn/)执行以下操作：管理媒体服务 v3 [直播活动](live-events-outputs-concept.md)、查看（而不是管理）v3 [资产](assets-concept.md)、[获取有关访问 API 的信息](./access-api-howto.md)。 对于其他所有管理任务（例如，[转换和作业](transforms-jobs-concept.md)和[内容保护](content-protection-overview.md)），请使用 [REST API](https://docs.microsoft.com/rest/api/media/)、[CLI](https://aka.ms/ams-v3-cli-ref) 或某个受支持的 [SDK](media-services-apis-overview.md#sdks)。
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
@@ -53,8 +53,8 @@ Azure 媒体服务是一个基于云的平台，用于生成解决方案，以�
 * 广播公共会议和活动，例如市政厅、市议会和立法机构。
 * 当客户（例如电影工作室）需要限制对版权所有作品的访问和使用时，创建订阅视频服务并流式传输受 DRM 保护的内容。
 * 提供脱机内容，以便在飞机、火车和汽车上播放。 如果客户希望断开网络连接，可能需要将内容下载到手机或平板电脑上播放。
-* 使用 Azure 媒体服务和 [Azure 认知服务 API](https://docs.azure.cn/?pivot=products&panel=ai) 实现教育在线学习视频平台，提供语音转文本字幕、多种语言翻译等功能。
-* 将 Azure 媒体服务与 [Azure 认知服务 API](https://docs.azure.cn/?pivot=products&panel=ai) 配合使用来为视频添加字幕和描述文字，满足更多受众的需求（例如，听力障碍人士或想用不同语言阅读的人）。
+* 使用 Azure 媒体服务和 [Azure 认知服务 API](https://docs.azure.cn/?pivot=products&panel=ai&product=featured) 实现教育在线学习视频平台，提供语音转文本字幕、多种语言翻译等功能。
+* 将 Azure 媒体服务与 [Azure 认知服务 API](https://docs.azure.cn/?pivot=products&panel=ai&product=featured) 配合使用来为视频添加字幕和描述文字，满足更多受众的需求（例如，听力障碍人士或想用不同语言阅读的人）。
 
 ## <a name="how-can-i-get-started-with-v3"></a>如何开始使用 v3？ 
 
@@ -92,8 +92,8 @@ Azure 媒体服务是一个基于云的平台，用于生成解决方案，以�
 
 操作指南包含演示如何完成某项任务的代码示例。 在本部分中，你将看到许多示例。 下面是其中几个示例：
 
-* [创建帐户 - CLI](create-account-cli-how-to.md)
-* [访问 API - CLI](access-api-cli-how-to.md)
+* [创建帐户 - CLI](./create-account-howto.md)
+* [访问 API - CLI](./access-api-howto.md)
 * [在将 HTTPS 作为作业输入的情况下进行编码 - .NET](job-input-from-http-how-to.md)  
 * [监视事件 - 门户](monitor-events-portal-how-to.md)
 * [通过多重 DRM 进行动态加密 - .NET](protect-with-drm.md) 

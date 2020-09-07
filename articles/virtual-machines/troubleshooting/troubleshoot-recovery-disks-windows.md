@@ -1,32 +1,32 @@
 ---
-title: 通过使用 Azure PowerShell 将 OS 磁盘附加到恢复 VM 来对 Windows VM 进行故障排除
+title: 将 Windows 故障排除 VM 与 Azure PowerShell 联合使用 | Azure
 description: 了解如何使用 Azure PowerShell 将 OS 磁盘连接到恢复 VM，以便排查 Azure 中的 Windows VM 问题。
 services: virtual-machines-windows
 documentationCenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 ms.service: virtual-machines-windows
 ms.topic: troubleshooting
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 08/09/2018
-ms.date: 02/10/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: fe920cb5f9517a0bac217a029f87b7fa499eeff3
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: ac34b3b5954d3ad43c6f332355407758c2941a72
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77428843"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456771"
 ---
 # <a name="troubleshoot-a-windows-vm-by-attaching-the-os-disk-to-a-recovery-vm-using-azure-powershell"></a>通过使用 Azure PowerShell 将 OS 磁盘附加到恢复 VM 来对 Windows VM 进行故障排除
 如果 Windows 虚拟机 (VM) 在 Azure 中遇到启动或磁盘错误，可能需要对磁盘本身执行故障排除步骤。 一个常见示例是应用程序更新失败，使 VM 无法成功启动。 本文详细介绍如何使用 Azure PowerShell 将磁盘连接到另一个 Windows VM 来修复所有错误，然后修复原始 VM。 
 
 > [!Important]
-> 本文中的脚本仅适用于使用[托管磁盘](../windows/managed-disks-overview.md)的 VM。 
-
-[!INCLUDE [updated-for-az.md](../../../includes/updated-for-az.md)]
+> 本文中的脚本仅适用于使用[托管磁盘](../managed-disks-overview.md)的 VM。 
 
 ## <a name="recovery-process-overview"></a>恢复过程概述
 现在，可以使用 Azure PowerShell 来更改 VM 的 OS 磁盘， 而不再需要删除并重新创建 VM。
@@ -43,7 +43,7 @@ ms.locfileid: "77428843"
 
 可以使用 VM 修复命令自动执行步骤 1、2、3、4、6 和 7。 有关更多文档和说明，请参阅[使用 Azure 虚拟机修复命令修复 Windows VM](repair-windows-vm-using-azure-virtual-machine-repair-commands.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-确保已安装[最新 Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview) 并登录到订阅：
+确保已安装[最新 Azure PowerShell](https://docs.microsoft.com/powershell/azure/) 并登录到订阅：
 
 ```powershell
 Connect-AzAccount -Environment AzureChinaCloud
@@ -236,7 +236,7 @@ Stop-AzVM -ResourceGroupName myResourceGroup -Name $vm.Name -Force
 $disk = Get-AzDisk -ResourceGroupName myResourceGroup -Name newDisk
 
 # Set the VM configuration to point to the new disk  
-Set-AzVMOSDisk -VM $vm -ManagedDiskId $disk.Id -Name $disk.Name 
+Set-AzVMOSDisk -VM $vm -ManagedDiskId $disk.Id -Name $disk.Name  -sto
 
 # Update the VM with the new OS disk. Possible values of StorageAccountType include: 'Standard_LRS' and 'Premium_LRS'
 Update-AzVM -ResourceGroupName myResourceGroup -VM $vm -StorageAccountType <Type of the storage account >

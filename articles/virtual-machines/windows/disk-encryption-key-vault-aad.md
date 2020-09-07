@@ -1,28 +1,28 @@
 ---
 title: 使用 Azure AD 创建和配置用于 Azure 磁盘加密的密钥保管库（以前版本）
 description: 本文提供了对 IaaS VM 使用 Azure 磁盘加密所要满足的先决条件。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.subservice: security
-ms.topic: article
+ms.topic: how-to
 origin.date: 03/15/2019
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: yes
-ms.testdate: 07/27/2020
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: seodec18
-ms.openlocfilehash: 267d5aec0eea64e85ddf38ac879809358f18f495
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: ae1c55562b66775e8119822e78535f67054115bf
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244853"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463002"
 ---
 # <a name="creating-and-configuring-a-key-vault-for-azure-disk-encryption-with-azure-ad-previous-release"></a>使用 Azure AD 创建和配置用于 Azure 磁盘加密的密钥保管库（以前版本）
 
 **新版本的 Azure 磁盘加密无需提供 Azure AD 应用程序参数即可启用 VM 磁盘加密。使用新版本，在执行启用加密步骤时，不再需要提供 Azure AD 凭据。所有新 VM 都必须使用新版本在没有 Azure AD 应用程序参数的情况下进行加密。若要查看使用新版本启用 VM 磁盘加密的说明，请参阅 [Azure 磁盘加密](disk-encryption-overview.md)。已使用 Azure AD 应用程序参数加密的 VM 仍受支持，应继续使用 AAD 语法进行维护。**
 
-Azure 磁盘加密使用 Azure 密钥保管库来控制和管理磁盘加密密钥和机密。  有关 Key Vault 的详细信息，请参阅 [Azure Key Vault 入门](../../key-vault/key-vault-get-started.md)和[保护 Key Vault](../../key-vault/general/secure-your-key-vault.md)。 
+Azure 磁盘加密使用 Azure 密钥保管库来控制和管理磁盘加密密钥和机密。  有关 Key Vault 的详细信息，请参阅 [Azure Key Vault 入门](../../key-vault/general/overview.md)和[保护 Key Vault](../../key-vault/general/secure-your-key-vault.md)。 
 
 使用 Azure AD 创建和配置用于 Azure 磁盘加密的密钥保管库（以前版本）需要三个步骤：
 
@@ -39,7 +39,7 @@ Azure 磁盘加密使用 Azure 密钥保管库来控制和管理磁盘加密密�
 > 本文中的步骤在 [Azure 磁盘加密先决条件 CLI 脚本](https://github.com/ejarvi/ade-cli-getting-started)和 [Azure 磁盘加密先决条件 PowerShell 脚本](https://github.com/Azure/azure-powershell/tree/master/src/Compute/Compute/Extension/AzureDiskEncryption/Scripts)中自动执行。
 
 ## <a name="create-a-key-vault"></a>创建密钥保管库 
-Azure 磁盘加密与 [Azure Key Vault](/key-vault/) 集成，帮助你控制和管理 Key Vault 订阅中的磁盘加密密钥与机密。 可为 Azure 磁盘加密创建 Key Vault，或使用现有的 Key Vault。 有关 Key Vault 的详细信息，请参阅 [Azure Key Vault 入门](../../key-vault/key-vault-get-started.md)和[保护 Key Vault](../../key-vault/general/secure-your-key-vault.md)。 可以使用资源管理器模板、Azure PowerShell 或 Azure CLI 创建 Key Vault。 
+Azure 磁盘加密与 [Azure Key Vault](/key-vault/) 集成，帮助你控制和管理 Key Vault 订阅中的磁盘加密密钥与机密。 可为 Azure 磁盘加密创建 Key Vault，或使用现有的 Key Vault。 有关 Key Vault 的详细信息，请参阅 [Azure Key Vault 入门](../../key-vault/general/overview.md)和[保护 Key Vault](../../key-vault/general/secure-your-key-vault.md)。 可以使用资源管理器模板、Azure PowerShell 或 Azure CLI 创建 Key Vault。 
 
 >[!WARNING]
 >为确保加密机密不会跨过区域边界，Azure 磁盘加密需要将密钥保管库和 VM 共置在同一区域。 在要加密的 VM 所在的同一区域中创建并使用 Key Vault。 
@@ -135,7 +135,7 @@ Azure 磁盘加密与 [Azure Key Vault](/key-vault/) 集成，帮助你控制和
 > Azure 磁盘加密要求为 Azure AD 客户端应用程序配置以下访问策略：_WrapKey_ 和 _Set_ 权限。
 
 ### <a name="set-the-key-vault-access-policy-for-the-azure-ad-app-with-azure-powershell"></a>使用 Azure PowerShell 为 Azure AD 应用设置密钥保管库访问策略
-Azure AD 应用程序需有访问保管库中密钥或机密的权限。 使用 [Set-AzKeyVaultAccessPolicy](https://docs.microsoft.com/powershell/module/az.keyvault/set-azkeyvaultaccesspolicy) cmdlet，并将客户端 ID（注册应用程序时所生成）用作 _-ServicePrincipalName_ 参数值，以向应用程序授予权限。 若要了解详细信息，请参阅博客文章 [Azure Key Vault - Step by Step](https://blogs.technet.com/b/kv/archive/2015/06/02/azure-key-vault-step-by-step.aspx)（Azure Key Vault - 分步指南）。 
+Azure AD 应用程序需有访问保管库中密钥或机密的权限。 使用 [Set-AzKeyVaultAccessPolicy](https://docs.microsoft.com/powershell/module/az.keyvault/set-azkeyvaultaccesspolicy) cmdlet，并将客户端 ID（注册应用程序时所生成）用作 _-ServicePrincipalName_ 参数值，以向应用程序授予权限。 若要了解详细信息，请参阅博客文章 [Azure Key Vault - Step by Step](https://docs.microsoft.com/archive/blogs/kv/azure-key-vault-step-by-step)（Azure Key Vault - 分步指南）。 
 
 1. 使用 PowerShell 为 AD 应用程序设置 Key Vault 访问策略。
 
@@ -164,9 +164,9 @@ az keyvault set-policy --name "MySecureVault" --spn "<spn created with CLI/the A
 5. 对于“机密权限”，请选中“机密管理操作”下的“设置”。   
 6. 单击“确定”保存访问策略。  
 
-    ![Azure Key Vault 加密操作 - 包装密钥](../media/disk-encryption/keyvault-portal-fig3.png)
+:::image type="content" source="../media/disk-encryption/keyvault-portal-fig3.png" alt-text="Azure Key Vault 加密操作 - 包装密钥":::
 
-    ![Azure Key Vault 机密权限 - 设置](../media/disk-encryption/keyvault-portal-fig3b.png)
+:::image type="content" source="../media/disk-encryption/keyvault-portal-fig3b.png" alt-text="Azure Key Vault 机密权限 - 设置":::
 
 ## <a name="set-key-vault-advanced-access-policies"></a>设置密钥保管库高级访问策略
 Azure 平台需要访问 Key Vault 中的加密密钥或机密，才能使这些密钥和机密可供 VM 用来启动和解密卷。 对 Key Vault 启用磁盘加密，否则部署将会失败。  
@@ -218,7 +218,7 @@ Azure 平台需要访问 Key Vault 中的加密密钥或机密，才能使这些
 3. 根据需要选择“启用对 Azure 虚拟机的访问以进行部署”和/或“启用对 Azure 资源管理器的访问以进行模板部署”。   
 4. 单击“保存”  。
 
-    ![Azure Key Vault 高级访问策略](../media/disk-encryption/keyvault-portal-fig4.png)
+:::image type="content" source="../media/disk-encryption/keyvault-portal-fig4.png" alt-text="Azure Key Vault 高级访问策略":::
 
 ## <a name="set-up-a-key-encryption-key-optional"></a>设置密钥加密密钥（可选）
 若要使用密钥加密密钥 (KEK) 来为加密密钥提供附加的安全层，请将 KEK 添加到 Key Vault。 使用 [Add-AzKeyVaultKey](https://docs.microsoft.com/powershell/module/az.keyvault/add-azkeyvaultkey) cmdlet 在 Key Vault 中创建密钥加密密钥。 指定密钥加密密钥后，Azure 磁盘加密会使用该密钥包装加密机密，然后将机密写入 Key Vault。 

@@ -1,10 +1,9 @@
 ---
-title: Azure PowerShell 脚本示例 - 使用 Azure PowerShell 加密 Windows 虚拟机
+title: Azure PowerShell 脚本示例 - 加密 Windows VM
 description: Azure PowerShell 脚本示例 - 加密 Windows VM
 services: virtual-machines-windows
 documentationcenter: virtual-machines
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 tags: azure-resource-manager
 ms.assetid: ''
 ms.service: virtual-machines-windows
@@ -12,14 +11,18 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 12/12/2017
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 17d5f77cd2a3273086ac1fb966c6f0173873fea4
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: devx-track-azurepowershell
+ms.openlocfilehash: 49b4e6ee8cbd19c4e99ad3be5dd7f1fcf1cd9160
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596336"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413359"
 ---
 # <a name="encrypt-a-windows-virtual-machine-with-azure-powershell"></a>使用 Azure PowerShell 加密 Windows 虚拟机
 
@@ -157,7 +160,7 @@ Remove-AzResourceGroup -Name myResourceGroup
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 可以在 [Azure Windows VM 文档](../windows/powershell-samples.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)中找到其他虚拟机 PowerShell 脚本示例。
 

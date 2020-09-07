@@ -1,27 +1,28 @@
 ---
-title: Azure CLI 脚本示例 - 保护虚拟机之间的网络流量
+title: Azure CLI 脚本示例 - 使用内部和外部 NSG 创建两个 VM
 description: Azure CLI 脚本示例 - 使用内部和外部 NSG 创建两个 VM
 services: virtual-machines-windows
 documentationcenter: virtual-machines
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 tags: ''
-ms.assetid: ''
-ms.service: virtual-machines-windows
+ms.assetid - ms.service: virtual-machines-windows
 ms.devlang: azurecli
 ms.topic: sample
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 02/23/2017
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.custom: mvc
-ms.openlocfilehash: fd6f4ea7c6c5b202f2c1bded503ec9103f67868a
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: mvc, devx-track-azurecli
+ms.openlocfilehash: c4ef01a3124d8a040330534957d6c67762497ef3
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596403"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414046"
 ---
 # <a name="secure-network-traffic-between-virtual-machines"></a>保护虚拟机之间的网络流量
 

@@ -12,20 +12,20 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/20/2019
-ms.date: 02/24/2020
+ms.date: 09/07/2020
 ms.author: vjay
 ms.reviewer: willzhan; johndeu
-ms.openlocfilehash: fcb087b5e1eedc4fd19ac6ff90fef1e5bae73165
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: c61be7770e0546370af54cfd8b1b4754b35cdae1
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77494253"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414030"
 ---
 # <a name="use-azure-ad-authentication-to-access-the-media-services-api-with-rest"></a>通过 Azure AD 身份验证使用 REST 访问媒体服务 API
 
 > [!NOTE]
-> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](/media-services/latest/)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
+> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](../latest/index.yml)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
 
 通过 Azure 媒体服务使用 Azure AD 身份验证时，可以通过以下两种方式之一进行身份验证：
 
@@ -131,7 +131,7 @@ ms.locfileid: "77494253"
 2. 选择“POST”  。
 3. 使用以下格式输入包含租户名称的 URL：租户名称应以 **.partner.onmschina.cn** 结尾，URL 应以 **oauth2/token** 结尾： 
 
-    https://login.partner.microsoftonline.cn/{your-aad-tenant-name.partner.onmschina.cn}/oauth2/token
+    `https://login.partner.microsoftonline.cn/{your-aad-tenant-name.partner.onmschina.cn}/oauth2/token`
 
 4. 选择“标头”选项卡  。
 5. 使用“密钥/值”数据网格输入“标头”信息  。 
@@ -140,8 +140,10 @@ ms.locfileid: "77494253"
 
     或者，单击 Postman 窗口右侧的“批量编辑”链接，然后粘贴以下代码  。
 
-        Content-Type:application/x-www-form-urlencoded
-        Keep-Alive:true
+    ```javascript
+    Content-Type:application/x-www-form-urlencoded
+    Keep-Alive:true
+    ```
 
 6. 按“正文”选项卡  。
 7. 使用“密钥/值”数据网格输入正文信息（替换客户端 ID 和密钥值）。 
@@ -150,10 +152,12 @@ ms.locfileid: "77494253"
 
     或者，单击 Postman 窗口右侧的“批量编辑”，然后粘贴以下正文（替换客户端 ID 和密钥值）  ：
 
-        grant_type:client_credentials
-        client_id:{Your Client ID that you got from your Azure AD Application}
-        client_secret:{Your client secret that you got from your Azure AD Application's Keys}
-        resource:https://rest.media.chinacloudapi.cn
+    ```javascript
+    grant_type:client_credentials
+    client_id:{Your Client ID that you got from your Azure AD Application}
+    client_secret:{Your client secret that you got from your Azure AD Application's Keys}
+    resource:https://rest.media.chinacloudapi.cn
+    ```
 
 8. 按“发送”。 
 
@@ -183,11 +187,13 @@ ms.locfileid: "77494253"
 5. 单击 Postman 窗口右侧的“批量编辑”链接  。
 6. 粘贴以下标头：
 
-        x-ms-version:2.19
-        Accept:application/json
-        Content-Type:application/json
-        DataServiceVersion:3.0
-        MaxDataServiceVersion:3.0
+    ```javascript
+    x-ms-version:2.19
+    Accept:application/json
+    Content-Type:application/json
+    DataServiceVersion:3.0
+    MaxDataServiceVersion:3.0
+    ```
 
 7. 按“发送”。 
 

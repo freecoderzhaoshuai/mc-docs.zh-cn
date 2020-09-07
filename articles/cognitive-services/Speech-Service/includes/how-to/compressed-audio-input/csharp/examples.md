@@ -3,14 +3,15 @@ author: trevorbye
 ms.service: cognitive-services
 ms.topic: include
 origin.date: 03/09/2020
-ms.date: 04/20/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: bf92a5685cbbe26ef42b96f3334a3bfe965d7d65
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.custom: devx-track-csharp
+ms.openlocfilehash: d7454eb8a2a6b6d76b56f83919d95a82da418e45
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82127017"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317429"
 ---
 若要以压缩音频格式流式传输到语音服务，请创建 `PullAudioInputStream` 或 `PushAudioInputStream`。 然后，从流类的实例创建 `AudioConfig`，并指定流的压缩格式。
 

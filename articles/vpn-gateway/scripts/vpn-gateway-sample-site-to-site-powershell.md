@@ -1,6 +1,6 @@
 ---
 title: Azure PowerShell 脚本示例 - 配置站点到站点 VPN | Microsoft Docs
-description: 配置站点到站点 VPN。
+description: 使用 PowerShell 创建基于路由的 VPN 网关，并配置 VPN 设备以添加站点到站点连接。
 services: vpn-gateway
 documentationcenter: vpn-gateway
 author: WenJason
@@ -8,14 +8,14 @@ ms.service: vpn-gateway
 ms.devlang: powershell
 ms.topic: sample
 origin.date: 04/30/2018
-ms.date: 03/04/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: a88479e51cd57b8253bb286c08c111becfa63207
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: a7c435cea3085a4211f87a8254af7fa7f9e48661
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "63822418"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462938"
 ---
 # <a name="create-a-vpn-gateway-and-add-a-site-to-site-connection-using-powershell"></a>使用 PowerShell 创建 VPN 网关并添加站点到站点连接
 
@@ -106,8 +106,8 @@ Remove-AzResourceGroup -Name TestRG1
 | [New-AzVirtualNetwork](https://docs.microsoft.com/powershell/module/az.network/new-azvirtualnetwork) | 创建虚拟网络。 |
 | [New-AzPublicIpAddress](https://docs.microsoft.com/powershell/module/az.network/new-azpublicipaddress) | 创建公共 IP 地址。 |
 | [New-AzVirtualNetworkGatewayIpConfig](https://docs.microsoft.com/powershell/module/az.network/new-azvirtualnetworkgatewayipconfig) | 新建网关 IP 配置。 |
-| [New-AzVirtualNetworkGateway](https://docs.microsoft.com/powershell/module/az.network/new-azvirtualnetworkgateway?view=azurermps-6.8.1) | 创建 VPN 网关。 |
-| [New-AzLocalNetworkGateway](https://docs.microsoft.com/powershell/module/az.network/new-azlocalnetworkgateway?view=azurermps-6.8.1) | 创建本地网络网关。 |
+| [New-AzVirtualNetworkGateway](https://docs.microsoft.com/powershell/module/az.network/new-azvirtualnetworkgateway) | 创建 VPN 网关。 |
+| [New-AzLocalNetworkGateway](https://docs.microsoft.com/powershell/module/az.network/new-azlocalnetworkgateway) | 创建本地网络网关。 |
 | [New-AzVirtualNetworkGatewayConnection](https://docs.microsoft.com/powershell/module/az.network/new-azvirtualnetworkgatewayconnection) | 创建站点到站点连接。 |
 | [Remove-AzResourceGroup](https://docs.microsoft.com/powershell/module/az.resources/remove-azresourcegroup) | 删除资源组及其中包含的所有资源。 |
 | [Set-AzVirtualNetwork](https://docs.microsoft.com/powershell/module/az.network/set-azvirtualnetwork) | 设置虚拟网络的子网配置。 |
@@ -115,4 +115,4 @@ Remove-AzResourceGroup -Name TestRG1
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。

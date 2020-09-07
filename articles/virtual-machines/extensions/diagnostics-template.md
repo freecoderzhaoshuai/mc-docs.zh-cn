@@ -1,10 +1,9 @@
 ---
-title: 将监视和诊断与 Windows VM 和 Azure 资源管理器模板配合使用 | Azure
+title: 将监视和诊断添加到 Azure 虚拟机
 description: 使用 Azure 资源管理器模板新建具有 Azure 诊断扩展的 Windows 虚拟机。
 services: virtual-machines-windows
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 editor: ''
 tags: azure-resource-manager
 ms.assetid: 8cde8fe7-977b-43d2-be74-ad46dc946058
@@ -13,18 +12,21 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.topic: article
 origin.date: 05/31/2017
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 02e18a3a6f3fe004f8945b581cb6a8a38f7ebe37
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: bd6e41fbb9c252f51a2026add6735e924658416f
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596372"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413733"
 ---
-# <a name="use-monitoring-and-diagnostics-with-a-windows-vm-and-azure-resource-manager-templates"></a>将监视和诊断与 Windows VM 和 Azure Resource Manager 模板配合使用
-Azure 诊断扩展可在基于 Windows 的 Azure 虚拟机上提供监视和诊断功能。 通过将该扩展纳入为 Azure 资源管理器模板的一部分，可以在虚拟机上启用这些功能。 有关将任何扩展纳入为虚拟机模板一部分的详细信息，请参阅[使用 VM 扩展创作 Azure Resource Manager 模板](../windows/template-description.md#extensions)。 本文介绍了如何将 Azure 诊断扩展添加到 Windows 虚拟机模板中。  
+# <a name="use-monitoring-and-diagnostics-with-a-windows-vm-and-azure-resource-manager-templates"></a>将监视和诊断与 Windows VM 和 Azure 资源管理器模板配合使用
+Azure 诊断扩展可在基于 Windows 的 Azure 虚拟机上提供监视和诊断功能。 通过将该扩展纳入为 Azure 资源管理器模板的一部分，可以在虚拟机上启用这些功能。 有关将任何扩展纳入为虚拟机模板一部分的详细信息，请参阅[使用 VM 扩展创作 Azure 资源管理器模板](../windows/template-description.md#extensions)。 本文介绍如何将 Azure 诊断扩展添加到 Windows 虚拟机模板中。  
 
 ## <a name="add-the-azure-diagnostics-extension-to-the-vm-resource-definition"></a>将 Azure 诊断扩展添加到 VM 资源定义中
 要在 Windows 虚拟机上启用诊断扩展，需要将该扩展添加为资源管理器模板中的 VM 资源。
@@ -54,6 +56,7 @@ Azure 诊断扩展可在基于 Windows 的 Azure 虚拟机上提供监视和诊�
                 "storageAccount": "[parameters('existingdiagnosticsStorageAccountName')]"
             },
             "protectedSettings": {
+                "storageAccountEndPoint": "https://core.chinacloudapi.cn/",
                 "storageAccountName": "[parameters('existingdiagnosticsStorageAccountName')]",
                 "storageAccountKey": "[listkeys(variables('accountid'), '2015-05-01-preview').key1]",
                 "storageAccountEndPoint": "https://core.chinacloudapi.cn"
@@ -70,9 +73,9 @@ Azure 诊断扩展可在基于 Windows 的 Azure 虚拟机上提供监视和诊�
 "type": "Microsoft.Compute/virtualMachines/extensions",
 ```
 
-扩展始终与虚拟机关联，你可以直接在虚拟机的资源节点下定义扩展，也可以在基础级别定义扩展并使用分层命名约定将其与虚拟机关联。
+扩展始终与虚拟机关联，可以直接在虚拟机的资源节点下定义扩展，也可以在基础级别定义扩展并使用分层命名约定将其与虚拟机关联。
 
-对于虚拟机规模集，扩展配置是在 *VirtualMachineProfile* 的 *extensionProfile* 属性中指定的。
+对于虚拟机规模集，扩展配置在 *VirtualMachineProfile* 的 *extensionProfile* 属性中指定。
 
 值为 **Microsoft.Azure.Diagnostics** 的 *publisher* 属性和值为 **IaaSDiagnostics** 的 *type* 属性可唯一标识 Azure 诊断扩展。
 
@@ -80,7 +83,7 @@ Azure 诊断扩展可在基于 Windows 的 Azure 虚拟机上提供监视和诊�
 
 *typeHandlerVersion* 指定要使用的扩展的版本。 将 autoUpgradeMinorVersion 次要版本设置为 true 可确保获得可用的最新扩展次要版本。 强烈建议始终将 *autoUpgradeMinorVersion* 设置为 **true**，这样就可以随时获得并使用具有所有新功能和缺陷修复的最新的可用诊断扩展。 
 
-*settings* 元素包含扩展的配置属性（有时称为公共配置），这些属性可以从扩展设置和读回。 xmlcfg 属性包含由诊断代理收集的诊断日志、性能计数器等内容的基于 xml 的配置。 有关 xml 架构本身的详细信息，请参阅[诊断配置架构](https://msdn.microsoft.com/library/azure/dn782207.aspx)。 常见的做法是将实际的 xml 配置存储为 Azure Resource Manager 模板中的变量，然后再进行连接和 base64 编码，以设置 *xmlcfg* 的值。 请参阅[诊断配置变量](#diagnostics-configuration-variables)部分，深入了解如何在变量中存储 xml。 storageAccount 属性指定向其传输诊断数据的存储帐户的名称。 
+*settings* 元素包含扩展的配置属性（有时称为公共配置），这些属性可以从扩展设置和读回。 xmlcfg 属性包含由诊断代理收集的诊断日志、性能计数器等内容的基于 xml 的配置。 有关 xml 架构本身的详细信息，请参阅[诊断配置架构](../../azure-monitor/platform/diagnostics-extension-schema-windows.md)。 常见的做法是将实际的 xml 配置存储为 Azure 资源管理器模板中的变量，再进行连接和 base64 编码，以设置 *xmlcfg* 的值。 请参阅[诊断配置变量](#diagnostics-configuration-variables)部分，深入了解如何在变量中存储 xml。 storageAccount 属性指定向其传输诊断数据的存储帐户的名称。 
 
 *protectedSettings* 中的属性（有时称为专用配置）可设置，但在设置之后无法读回。 protectedSettings 的只写性质使其非常适合存储类似存储帐户密钥（写入诊断数据的位置）的密码。    
 
@@ -102,7 +105,7 @@ Azure 诊断扩展可在基于 Windows 的 Azure 虚拟机上提供监视和诊�
 }
 ```
 
-最佳做法是在不同于虚拟机资源组的其他资源组中指定诊断存储帐户。 资源组可以视为具有自己的生存期的部署单位，可以部署虚拟机以及在新配置更新时重新部署，但是你可能想要跨这些虚拟机部署继续在相同的存储帐户中存储诊断数据。 在不同的资源中拥有存储帐户可让存储帐户接受来自各种虚拟机部署的数据，方便解决各种版本之间的问题。
+最佳做法是在不同于虚拟机资源组的其他资源组中指定诊断存储帐户。 资源组可以被视为具有自己的生存期的部署单位，可以部署虚拟机以及在新配置更新时重新部署，但是你可能想要跨这些虚拟机部署继续在相同的存储帐户中存储诊断数据。 在不同的资源中拥有存储帐户可让存储帐户接受来自各种虚拟机部署的数据，方便解决各种版本之间的问题。
 
 > [!NOTE]
 > 如果从 Visual Studio 创建 Windows 虚拟机模板，默认存储帐户可能会设置为使用将虚拟机 VHD 上传到的存储帐户。 这是为了简化 VM 的初始设置。 重构模板以使用可以当作参数传入的不同存储帐户。 
@@ -118,7 +121,7 @@ Azure 诊断扩展可在基于 Windows 的 Azure 虚拟机上提供监视和诊�
 
 诊断扩展的 *xmlcfg* 属性使用连接在一起的多个变量定义。 这些变量值的格式为 xml，因此必须在设置 json 变量时正确转义。
 
-下面的示例介绍了诊断配置 xml，它会收集标准系统级别性能计数器，以及一些 Windows 事件日志和诊断基础结构日志。 该配置 xml 已正确转义和格式化，因此可以直接将配置粘贴到模板的 variables 节。 有关该配置 xml 的更易理解的示例，请参阅[诊断配置架构](https://msdn.microsoft.com/library/azure/dn782207.aspx)。
+下面的示例介绍了诊断配置 xml，它会收集标准系统级别性能计数器，以及一些 Windows 事件日志和诊断基础结构日志。 该配置 xml 已正确转义和格式化，因此可以直接将配置粘贴到模板的 variables 节。 有关该配置 xml 的更易理解的示例，请参阅[诊断配置架构](../../azure-monitor/platform/diagnostics-extension-schema-windows.md)。
 
 ```json
 "wadlogs": "<WadCfg> <DiagnosticMonitorConfiguration overallQuotaInMB=\"4096\" xmlns=\"http://schemas.microsoft.com/ServiceHosting/2010/10/DiagnosticsConfiguration\"> <DiagnosticInfrastructureLogs scheduledTransferLogLevelFilter=\"Error\"/> <WindowsEventLog scheduledTransferPeriod=\"PT1M\" > <DataSource name=\"Application!*[System[(Level = 1 or Level = 2)]]\" /> <DataSource name=\"Security!*[System[(Level = 1 or Level = 2)]]\" /> <DataSource name=\"System!*[System[(Level = 1 or Level = 2)]]\" /></WindowsEventLog>",
@@ -180,6 +183,6 @@ MetricAggregation 值 *PT1M* 和 *PT1H* 分别表示一分钟的聚合和一小�
 ## <a name="next-steps"></a>后续步骤
 * 有关具有诊断扩展的 Windows 虚拟机的完整示例模板，请参阅 [201-vm-monitoring-diagnostics-extension](https://github.com/Azure/azure-quickstart-templates/tree/master/201-vm-monitoring-diagnostics-extension)   
 * 使用 [Azure PowerShell](../windows/ps-template.md) 或 [Azure 命令行](../linux/create-ssh-secured-vm-from-template.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)部署资源管理器模板
-* 了解有关[创作 Azure Resource Manager 模板](../../resource-group-authoring-templates.md)的详细信息
+* 了解有关[创作 Azure 资源管理器模板](../../azure-resource-manager/templates/template-syntax.md)的详细信息
 
-<!-- Update_Description: Update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

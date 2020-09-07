@@ -11,14 +11,14 @@ ms.workload: ''
 ms.topic: tutorial
 ms.custom: mvc
 origin.date: 03/16/2020
-ms.date: 04/06/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 134bd8f2d8c86bfaac1e5707ed6a6612bf64d35c
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 772bfec5dfc08fa6efa15ad008525a98f4f62788
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162150"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413544"
 ---
 # <a name="tutorial-encode-a-remote-file-based-on-url-and-stream-the-video---rest"></a>教程：基于 URL 对远程文件进行编码并流式传输视频 - REST
 
@@ -43,7 +43,7 @@ ms.locfileid: "87162150"
 
 ## <a name="prerequisites"></a>先决条件
 
-- [创建媒体服务帐户](create-account-cli-how-to.md)。
+- [创建媒体服务帐户](./create-account-howto.md)。
 
     请务必记住用于资源组名称和媒体服务帐户名称的值
 
@@ -126,7 +126,7 @@ ms.locfileid: "87162150"
 
 ### <a name="start-a-streaming-endpoint"></a>启动流式处理终结点
 
-若要启用流式处理，必须首先启动要从中流式处理视频的[流式处理终结点](/media-services/latest/streaming-endpoint-concept)。
+若要启用流式处理，必须首先启动要从中流式处理视频的[流式处理终结点](./streaming-endpoint-concept.md)。
 
 > [!NOTE]
 > 仅当流式处理终结点处于运行状态时才进行计费。
@@ -148,7 +148,7 @@ ms.locfileid: "87162150"
         
         `https://management.chinacloudapi.cn/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/<resourceGroupName>/providers/Microsoft.Media/mediaservices/<accountName>/streamingendpointoperations/1be71957-4edc-4f3c-a29d-5c2777136a2e?api-version=2018-07-01`
 
-        [跟踪异步 Azure 操作](/azure-resource-manager/resource-manager-async-operations)一文深入说明了如何通过响应中返回的值跟踪异步 Azure 操作的状态。
+        [跟踪异步 Azure 操作](../../azure-resource-manager/management/async-operations.md)一文深入说明了如何通过响应中返回的值跟踪异步 Azure 操作的状态。
 
 ### <a name="create-an-output-asset"></a>创建输出资产
 
@@ -176,7 +176,7 @@ ms.locfileid: "87162150"
 
 ### <a name="create-a-transform"></a>创建转换
 
-对媒体服务中的内容进行编码或处理时，一种常见的模式是将编码设置设为脚本。 然后，需提交**作业**，将该脚本应用于视频。 为每个新视频提交新作业后，可将该脚本应用到库中的所有视频。 媒体服务中的脚本称为**转换**。 有关详细信息，请参阅[转换和作业](transform-concept.md)。 本教程中的示例定义有关将视频进行编码以将其流式传输到各种 iOS 和 Android 设备的脚本。 
+对媒体服务中的内容进行编码或处理时，一种常见的模式是将编码设置设为脚本。 然后，需提交**作业**，将该脚本应用于视频。 为每个新视频提交新作业后，可将该脚本应用到库中的所有视频。 媒体服务中的脚本称为**转换**。 有关详细信息，请参阅[转换和作业](./transforms-jobs-concept.md)。 本教程中的示例定义有关将视频进行编码以将其流式传输到各种 iOS 和 Android 设备的脚本。 
 
 创建新实例时，需要指定希望生成的输出内容[转换](https://docs.microsoft.com/rest/api/media/transforms)。 所需参数是 TransformOutput 对象。 每个 TransformOutput 包含一个预设 。 预设介绍了视频和/或音频处理操作的分步说明，这些操作将用于生成所需的 TransformOutput 。 本文中的示例使用名为 AdaptiveStreaming 的内置预设。 此预设将输入的视频编码为基于输入的分辨率和比特率自动生成的比特率阶梯（比特率 - 分辨率对），并通过与每个比特率 - 分辨率对相对应的 H.264 视频和 AAC 音频生成 ISO MP4 文件。 有关此预设的信息，请参阅[自动生成比特率阶梯](autogen-bitrate-ladder.md)。
 

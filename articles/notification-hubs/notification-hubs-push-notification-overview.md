@@ -14,16 +14,16 @@ ms.devlang: multiple
 ms.topic: overview
 ms.custom: mvc
 origin.date: 03/23/2020
-ms.date: 04/20/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.reviewer: thsomasu
 ms.lastreviewed: 04/30/2019
-ms.openlocfilehash: 63f6151c8065bd6875f27e5b4b0040efa9d53d6d
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.openlocfilehash: a273dc34fa125be53968bea5b38bae21415579e1
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588659"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317480"
 ---
 # <a name="what-is-azure-notification-hubs"></a>什么是 Azure 通知中心？
 
@@ -49,7 +49,7 @@ Azure 通知中心提供易于使用且横向扩展的推送引擎，可用于�
 
 - [Android](https://developer.android.com/guide/topics/ui/notifiers/notifications.html)
 - [iOS](https://developer.apple.com/notifications/)
-- [Windows](https://msdn.microsoft.com/library/windows/apps/hh779725.aspx)
+- [Windows](https://docs.microsoft.com/previous-versions/windows/apps/hh779725(v=win.10))
 
 ## <a name="how-do-push-notifications-work"></a>推送通知的工作原理是什么？
 
@@ -94,20 +94,20 @@ PNSes 非常强大。 但应用开发人员仍然需要完成大量工作才能�
   - 云或本地。
   - .NET、Node.js、Java、Python 等。
 - **丰富的传送模式集**
-  - 广播到一个或多个平台：只需调用 API 一次，即可立即广播到数百万台跨平台设备。
+  - 广播到一个或多个平台：只需调用 API 一次，便可立即广播到数百万台跨平台设备。
   - 推送到设备：可将通知定位到单个设备。
   - 推送到用户：可以借助标记和模板将通知传入用户的所有跨平台设备。
   - 使用动态标记推送到目标段：可以借助标记功能根据需要将设备分段并向其推送通知，不管是要发送到一个段还是段的表达式（例如，active AND lives in Seattle NOT new user）。 可以不受发布-订阅的限制，随时随地更新设备标记。
   - 本地化推送：可以借助模板功能实现本地化，而不会影响到后端代码。
   - 静默推送：可以通过向设备发送静默通知并触发设备完成特定的拉取或操作，来实现推送-拉取模式。
-  - 计划的推送：可以按计划随时发送通知。
+  - 计划推送：可以按计划随时发送通知。
   - 直接推送：可以跳过将设备注册到通知中心服务的步骤，直接批量推送到设备句柄列表。
   - 个性化推送：可以借助设备推送变量，使用自定义的键值对发送设备特定的个性化推送通知。
 - **丰富的遥测**
   - 可通过 Azure 门户和编程方式使用常规的推送、设备、错误和操作遥测。
   - 单消息遥测会跟踪从发出初始请求调用到通知中心服务成功发送推送的每个推送过程。
   - 平台通知系统反馈会传达来自 PNS 的所有反馈以帮助调试。
-- **可伸缩性**
+- **伸缩性**
   - 无需重建体系结构或者将设备分片，即可快速地向数百万台设备发送消息。
 - **安全性**
   - 共享访问机密 (SAS) 或联合身份验证。
@@ -123,15 +123,15 @@ PNSes 非常强大。 但应用开发人员仍然需要完成大量工作才能�
 
 [How customers are using Notification Hubs]: https://azure.microsoft.com/services/notification-hubs
 [Notification Hubs tutorials and guides]: https://docs.azure.cn/notification-hubs
-[iOS]: https://docs.azure.cn/notification-hubs/notification-hubs-ios-apple-push-notification-apns-get-started
-[Android]: https://docs.azure.cn/notification-hubs/notification-hubs-baidu-china-android-notifications-get-started
-[Windows Universal]:./notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md
-[Windows Phone]:./notification-hubs-windows-mobile-push-notifications-mpns.md
+[iOS]: ./notification-hubs-push-notification-fixer.md
+[Android]: ./notification-hubs-android-push-notification-google-gcm-get-started.md
+[Windows Universal]: ./notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md
+[Windows Phone]: ./notification-hubs-windows-mobile-push-notifications-mpns.md
 [Kindle]:./notification-hubs-kindle-amazon-adm-push-notification.md
-[Xamarin.iOS]:./xamarin-notification-hubs-ios-push-notification-apns-get-started.md
-[Microsoft.WindowsAzure.Messaging.NotificationHub]: https://msdn.microsoft.com/library/microsoft.windowsazure.messaging.notificationhub.aspx
-[Microsoft.ServiceBus.Notifications]: https://msdn.microsoft.com/library/microsoft.servicebus.notifications.aspx
-[App Service Mobile Apps]: ../app-service-mobile/app-service-mobile-value-prop.md
+[Xamarin.iOS]: ./xamarin-notification-hubs-ios-push-notification-apns-get-started.md
+[Microsoft.WindowsAzure.Messaging.NotificationHub]: https://docs.microsoft.com/previous-versions/azure/reference/dn339221(v=azure.100)
+[Microsoft.ServiceBus.Notifications]: https://docs.microsoft.com/previous-versions/azure/
+[App Service Mobile Apps]: https://docs.microsoft.com/previous-versions/azure/app-service-mobile/app-service-mobile-value-prop
 [templates]: notification-hubs-templates-cross-platform-push-messages.md
 [Azure portal]: https://portal.azure.cn
 [tags]: https://msdn.microsoft.com/library/azure/dn530749.aspx

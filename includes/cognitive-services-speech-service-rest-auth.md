@@ -3,14 +3,14 @@ author: erhopf
 ms.service: cognitive-services
 ms.topic: include
 origin.date: 03/29/2019
-ms.date: 03/16/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: 54fd4c7b7fcd0fbffff8b6dde31f59f8f3f0f6e4
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 8b072379a37d17ca5a60dfe6d5a602bb2bef0812
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80151535"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317536"
 ---
 ## <a name="authentication"></a>Authentication
 

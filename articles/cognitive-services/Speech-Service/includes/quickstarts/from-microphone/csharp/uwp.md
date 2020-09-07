@@ -8,14 +8,15 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: include
 origin.date: 04/02/2020
-ms.date: 04/20/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: e00a239b7864843939b1b8e66f0fdabf0a9cdc46
-ms.sourcegitcommit: 304d3ef3c9e65c3e85977b3afb9985fbc0f908d6
+ms.custom: devx-track-csharp
+ms.openlocfilehash: d8b4cd26553a2c1670f19fd593f19155e80491e8
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85095908"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317470"
 ---
 ## <a name="prerequisites"></a>先决条件
 
@@ -37,7 +38,7 @@ ms.locfileid: "85095908"
 
 添加一些代码作为项目的框架。
 
-1. 在“解决方案资源管理器”中打开 `MainPage.xaml`。
+1. 在“解决方案资源管理器”  中打开 `MainPage.xaml`。
 
 2. 在设计器的 XAML 视图中，将以下 XAML 代码片段插入到“Grid”标记中（位于 `<Grid>` 和 `</Grid>` 之间）：
 
@@ -175,7 +176,7 @@ ms.locfileid: "85095908"
 
 ## <a name="create-a-speech-configuration"></a>创建语音配置
 
-在初始化 `SpeechRecognizer` 对象之前，需要创建一个使用订阅密钥和订阅区域的配置。 将此代码插入 `RecognizeSpeechAsync()` 方法。
+在初始化 `SpeechRecognizer` 对象之前，需要创建一个使用订阅密钥和订阅区域的配置。 将此代码插入 `SpeechRecognitionFromMicrophone_ButtonClicked()` 方法。
 
 > [!NOTE]
 > 此示例使用 `FromSubscription()` 方法来生成 `SpeechConfig`。 有关可用方法的完整列表，请参阅 [SpeechConfig 类](https://docs.microsoft.com/dotnet/api/)
@@ -188,7 +189,7 @@ var config = SpeechConfig.FromSubscription("YourSubscriptionKey", "YourServiceRe
 
 ## <a name="initialize-a-speechrecognizer"></a>初始化 SpeechRecognizer
 
-现在，让我们创建 `SpeechRecognizer`。 此对象是在 using 语句中创建的，以确保正确释放非托管资源。 将此代码插入语音配置下的 `RecognizeSpeechAsync()` 方法。
+现在，让我们创建 `SpeechRecognizer`。 此对象是在 using 语句中创建的，以确保正确释放非托管资源。 将此代码插入语音配置下的 `SpeechRecognitionFromMicrophone_ButtonClicked()` 方法。
 
 ```csharp
 using (var recognizer = new SpeechRecognizer(config))
@@ -198,7 +199,7 @@ using (var recognizer = new SpeechRecognizer(config))
 
 ## <a name="recognize-a-phrase"></a>识别短语
 
-在 `SpeechRecognizer` 对象中，我们将调用 `RecognizeOnceAsync()` 方法。 此方法是告知语音服务你要发送单个需识别的短语，在确定该短语后会停止识别语音。
+在 `SpeechRecognizer` 对象中，调用 `RecognizeOnceAsync()` 方法。 此方法是告知语音服务你要发送单个需识别的短语，在确定该短语后会停止识别语音。
 
 在 using 语句中，添加以下代码。
 

@@ -8,12 +8,12 @@ origin.date: 03/25/2020
 ms.date: 08/21/2020
 ms.author: v-tawe
 ms.custom: security-benchmark
-ms.openlocfilehash: cd2a7773ef6b352c9f51678adf5e576840c0579a
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 55750f53e6100668beb63e39ab8c1851b8bcac68
+ms.sourcegitcommit: 5055d580fb7ef1722e32e09a334d1d3e28295dd6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715645"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89503346"
 ---
 # <a name="azure-security-baseline-for-event-hubs"></a>事件中心的 Azure 安全基线
 
@@ -73,7 +73,7 @@ ms.locfileid: "88715645"
 
 **指导**：为了防范分布式拒绝服务 (DDoS) 攻击，请在与事件中心关联的虚拟网络上启用 DDoS 保护标准。 根据 Azure 安全中心集成的威胁情报进行判断，拒绝与已知恶意的或未使用过的 Internet IP 地址通信。
 
-如何配置 DDoS 防护：[https://docs.azure.cn/virtual-network/manage-ddos-protection](../virtual-network/manage-ddos-protection.md)
+<!-- How to configure DDoS protection: [https://docs.azure.cn/virtual-network/manage-ddos-protection](../virtual-network/manage-ddos-protection.md) -->
 
 详细了解 Azure 安全中心集成的威胁情报： https://docs.azure.cn/security-center/security-center-alerts-service-layer
 
@@ -817,17 +817,17 @@ How to configure customer-managed keys for encrypting Azure Event Hubs: https://
 
 **责任**：不适用
 
-### <a name="75-securely-store-configuration-of-azure-resources"></a>7.5：安全存储 Azure 资源的配置
+<!-- ### 7.5: Securely store configuration of Azure resources
 
-**指导**：如果对事件中心或相关资源使用自定义 Azure Policy 定义，请使用 Azure Repos 安全地存储和管理代码。
+**Guidance**: If using custom Azure Policy definitions for your Event Hubs or related resources, use Azure Repos to securely store and manage your code.
 
-如何在 Azure DevOps 中存储代码： https://docs.azure.cn/devops/repos/git/gitworkflow?view=azure-devops
+How to store code in Azure DevOps: https://docs.microsoft.com/azure/devops/repos/git/gitworkflow?view=azure-devops
 
-Azure Repos 文档： https://docs.azure.cn/devops/repos/index?view=azure-devops
+Azure Repos Documentation: https://docs.microsoft.com/azure/devops/repos/index?view=azure-devops
 
-**Azure 安全中心监视**：不适用
+**Azure Security Center monitoring**: Not applicable
 
-**责任**：不适用
+**Responsibility**: Not applicable -->
 
 ### <a name="76-securely-store-custom-operating-system-images"></a>7.6：安全存储自定义操作系统映像
 

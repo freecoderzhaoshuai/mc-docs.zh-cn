@@ -13,14 +13,15 @@ ms.topic: sample
 ms.tgt_pltfrm: multiple
 ms.workload: na
 origin.date: 05/01/2019
-ms.date: 11/04/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 736e4863a1874d03099dff1939f61a9ef6f9f30f
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 48369be6b23758f2e5f485b5f940cdee5bf4eb34
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "73416258"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413948"
 ---
 # <a name="cli-example-create-and-submit-a-job"></a>CLI 示例：创建并提交作业
 
@@ -28,7 +29,7 @@ ms.locfileid: "73416258"
 
 ## <a name="prerequisites"></a>必备条件 
 
-[创建媒体服务帐户](create-account-cli-how-to.md)。
+[创建媒体服务帐户](./create-account-howto.md)。
 
 [!INCLUDE [media-services-cli-instructions.md](../../../includes/media-services-cli-instructions.md)]
 

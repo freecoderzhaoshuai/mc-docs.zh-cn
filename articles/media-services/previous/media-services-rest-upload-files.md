@@ -12,14 +12,14 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/20/2019
-ms.date: 12/09/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: b0d715099ab8324debeaa704c629cc26ee74e851
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 5b12e883f116194f160627655ba4686a1030f65d
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74807637"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413867"
 ---
 # <a name="upload-files-into-a-media-services-account-using-rest"></a>使用 REST 将文件上传到媒体服务帐户  
 > [!div class="op_single_selector"]
@@ -46,7 +46,7 @@ ms.locfileid: "74807637"
 - 如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
 - [使用 Azure 门户创建 Azure 媒体服务帐户](media-services-portal-create-account.md)。
 - 查看[通过 ADD 身份验证访问 Azure 媒体服务 API 概述](media-services-use-aad-auth-to-access-ams-api.md)一文。
-- 另外，有关详细信息，请参阅[通过 Azure AD 身份验证使用 REST 访问媒体服务 API](/media-services/previous/media-services-rest-connect-with-aad) 一文。
+- 另外，有关详细信息，请参阅[通过 Azure AD 身份验证使用 REST 访问媒体服务 API](./media-services-rest-connect-with-aad.md) 一文。
 - 根据[为媒体服务 REST API 调用配置 Postman](media-rest-apis-with-postman.md) 中所述配置 **Postman**。
 
 ## <a name="considerations"></a>注意事项
@@ -145,13 +145,13 @@ ms.locfileid: "74807637"
 
 设置 AccessPolicy 和定位符后，即可使用 Azure 存储 REST API 将实际文件上传到 Azure BLOB 存储容器。 必须将文件作为块 blob 上传。 页 blob 不受 Azure 媒体服务支持。  
 
-有关使用 Azure 存储 blob 的详细信息，请参阅 [Blob 服务 REST API](https://docs.microsoft.com/rest/api/storageservices/Blob-Service-REST-API)。
+有关使用 Azure 存储 blob 的详细信息，请参阅 [Blob 服务 REST API](https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api)。
 
 若要检索实际上传 URL，请创建一个 SAS 定位符（参阅下文）。 定位符为希望访问资产中文件的客户端定义连接终结点的开始时间和类型。 可以为给定 AccessPolicy 和资产对创建多个定位符实体，以处理不同的客户端请求和需求。 这其中的任一定位符都可使用 AccessPolicy 的 StartTime 值和 DurationInMinutes 值来确定可以使用某 URL 的时间长度。 有关详细信息，请参阅 [定位符](https://docs.microsoft.com/rest/api/media/operations/locator)。
 
 SAS URL 采用以下格式：
 
-    {https://myaccount.blob.core.chinacloudapi.cn}/{asset name}/{video file name}?{SAS signature}
+`{https://myaccount.blob.core.chinacloudapi.cn}/{asset name}/{video file name}?{SAS signature}`
 
 ### <a name="considerations"></a>注意事项
 
@@ -176,7 +176,7 @@ SAS URL 采用以下格式：
 
 创建上传 URL 后，需要直接使用 Azure Blob API 编写一些代码，用于将文件上传到 SAS 容器。 有关详细信息，请参阅以下文章：
 
-- [使用 Azure 存储 REST API](/storage/common/storage-rest-api-auth?toc=%2fstorage%2fblobs%2ftoc.json)
+- [使用 Azure 存储 REST API](../../storage/common/storage-rest-api-auth.md?toc=%2fstorage%2fblobs%2ftoc.json)
 - [PUT Blob](https://docs.microsoft.com/rest/api/storageservices/put-blob)
 - [将 Blob 上传到 Blob 存储](https://docs.microsoft.com/previous-versions/azure/storage/storage-use-azcopy#upload-blobs-to-blob-storage)
 
@@ -214,18 +214,19 @@ SAS URL 采用以下格式：
 
 例如，以下 **GET** 操作将获取资产文件（在本例中为 BigBuckBunny.mp4 文件）的文件数据。 该查询使用前面设置的[环境变量](postman-environment.md)。
 
-    {{RESTAPIEndpoint}}/Assets('{{LastAssetId}}')/Files
+`{{RESTAPIEndpoint}}/Assets('{{LastAssetId}}')/Files`
 
 响应中将会包含大小、名称和其他信息。
 
-    "Id": "nb:cid:UUID:69e72ede-2886-4f2a-8d36-80a59da09913",
-    "Name": "BigBuckBunny.mp4",
-    "ContentFileSize": "3186542",
-    "ParentAssetId": "nb:cid:UUID:0b8f3b04-72fb-4f38-8e7b-d7dd78888938",
-            
+```console
+"Id": "nb:cid:UUID:69e72ede-2886-4f2a-8d36-80a59da09913",
+"Name": "BigBuckBunny.mp4",
+"ContentFileSize": "3186542",
+"ParentAssetId": "nb:cid:UUID:0b8f3b04-72fb-4f38-8e7b-d7dd78888938",
+```
+  
 ## <a name="next-steps"></a>后续步骤
 
 现即可编码已上传的资产。 有关详细信息，请参阅[对资产进行编码](media-services-portal-encode.md)。
 
 也可使用 Azure Functions 根据到达已配置容器的文件触发编码作业。 有关详细信息，请参阅[此示例](https://azure.microsoft.com/resources/samples/media-services-dotnet-functions-integration/ )。
-

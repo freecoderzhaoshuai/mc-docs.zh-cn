@@ -1,19 +1,18 @@
 ---
 title: 设计 Azure Monitor 日志部署 | Microsoft Docs
 description: 本文介绍有关客户在 Azure Monitor 中准备部署工作区时的注意事项和建议。
-author: lingliw
-manager: digimobile
 ms.subservice: ''
 ms.topic: conceptual
+author: Johnnytechn
+ms.author: v-johya
+ms.date: 08/20/2020
 origin.date: 09/20/2019
-ms.date: 11/04/2019
-ms.author: v-lingwu
-ms.openlocfilehash: 50071fb32e58e9ee54f4891ee40790fabbd8e523
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: dbbccfa3661f2edf24b83245d74f4c0c016c94c3
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440594"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457424"
 ---
 # <a name="designing-your-azure-monitor-logs-deployment"></a>设计 Azure Monitor 日志部署
 
@@ -27,7 +26,7 @@ Log Analytics 工作区可提供：
 
 * 数据存储的地理位置。
 * 遵循建议的设计策略之一授予不同的用户访问权限，以实现数据隔离。
-* 设置配置的范围，例如[定价层级](/azure-monitor/platform/manage-cost-storage#changing-pricing-tier)、[保留期](/azure-monitor/platform/manage-cost-storage#change-the-data-retention-period)和[数据上限](/azure-monitor/platform/manage-cost-storage#manage-your-maximum-daily-data-volume)。
+* 设置配置的范围，例如[定价层级](./manage-cost-storage.md#changing-pricing-tier)、[保留期](./manage-cost-storage.md#change-the-data-retention-period)和[数据上限](./manage-cost-storage.md#manage-your-maximum-daily-data-volume)。
 
 本文提供设计和迁移注意事项的详细概述、访问控制概述，我们为 IT 组织推荐的设计实施方案的介绍。
 
@@ -49,7 +48,7 @@ Log Analytics 工作区可提供：
 
 使用 Log Analytics 代理收集数据时，需要了解以下各项以规划代理部署：
 
-* 若要从 Windows 代理收集数据，可[将每个代理配置为向一个或多个工作区报告](../../azure-monitor/platform/agent-windows.md)。 Windows 代理最多可向四个工作区报告。
+* 若要从 Windows 代理收集数据，可[将每个代理配置为向一个或多个工作区报告](./agent-windows.md)。 Windows 代理最多可向四个工作区报告。
 * Linux 代理不支持多宿主，只能向一个工作区报告。
 
 <!-- Not available in MC: System Center Operations Manager -->
@@ -94,7 +93,7 @@ Azure Monitor 根据执行日志搜索时所在的上下文自动确定正确的
 
 下表汇总了访问模式：
 
-| | 工作区上下文 | 资源上下文 |
+| 问题 | 工作区上下文 | 资源上下文 |
 |:---|:---|:---|
 | 每种模式适合哪类用户？ | 集中管理。 需要配置数据收集的管理员，以及需要访问各种资源的用户。 此外，需要访问 Azure 外部资源的日志的用户目前也需要使用此模式。 | 应用程序团队。 受监视 Azure 资源的管理员。 |
 | 用户需要哪些权限才能查看日志？ | 对工作区的权限。 请参阅[使用工作区权限管理访问权限](manage-access.md#manage-access-using-workspace-permissions)中的**工作区权限**。 | 对资源的读取访问权限。 请参阅[使用 Azure 权限管理访问权限](manage-access.md#manage-access-using-azure-permissions)中的**资源权限**。 权限可以继承（例如，从包含资源组继承），也可以直接分配给资源。 系统会自动分配对资源日志的权限。 |
@@ -124,17 +123,25 @@ Azure Monitor 根据执行日志搜索时所在的上下文自动确定正确的
 
 ## <a name="ingestion-volume-rate-limit"></a>引入量速率限制
 
-Azure Monitor 是一种大规模数据服务，每月为成千上万的客户发送数 TB 的数据，并且此数据仍在不断增长。 每个工作区的默认引入速率阈值设置为 **6 GB/分钟**。 这是一个近似值，因为实际大小在数据类型之间可能会有所不同，具体取决于日志长度及其压缩率。 此限制不适用于从代理或[数据收集器 API](data-collector-api.md) 发送的数据。
+Azure Monitor 是一种大规模数据服务，每月为成千上万的客户发送数 TB 的数据，并且此数据仍在不断增长。 引入量速率限制旨在保护 Azure Monitor 客户免受多租户环境中突然出现的引入高峰的影响。 默认的引入量速率阈值为 500 M（压缩量），适用于工作区，大约等于未压缩时的每分钟 6 GB 的速率 - 根据日志长度及其压缩率，不同数据类型的实际大小可能不同。 此阈值适用于所有引入的数据，无论是使用[诊断设置](diagnostic-settings.md)、[数据收集器 API](data-collector-api.md) 还是代理从 Azure 发送都适用。
 
-如果以更高速率将数据发送到单个工作区，则某些数据将丢弃，并且在继续超过阈值的情况下，每 6 小时将向工作区中的“操作”表发送一个事件。 如果引入量继续超过速率限制，或者希望很快达到该限制，则可以通过向 LAIngestionRate@microsoft.com 发送电子邮件或提交支持请求来请求增加工作区。
- 
-若要在工作区中收到此类事件的通知，请根据大于零的结果数，使用以下具有警报逻辑的查询创建[日志警报规则](alerts-log.md)。
+如果将数据发送至工作区时采用的引入量速率高于工作区中配置的阈值的 80%，则当继续超过阈值时，会每 6 小时向你工作区中的“操作”表发送一个事件。 如果引入量速率超过阈值，则当继续超过阈值时，某些数据会被放弃，并且每 6 小时向你工作区中的“操作”表发送一个事件。 如果引入量速率继续超过阈值，或者预计很快会达到阈值，你可打开支持请求，请求在工作区中调高阈值。 
 
-``` Kusto
+若要就工作区中的此类事件收到通知，请使用警报逻辑通过以下查询创建一条[日志警报规则](alerts-log.md)，其中该逻辑依据的是结果数大于 0、评估时段为 5 分钟且频率为 5 分钟。
+
+引入量速率达到阈值的 80%：
+```Kusto
 Operation
 |where OperationCategory == "Ingestion"
-|where Detail startswith "The rate of data crossed the threshold"
-``` 
+|where Detail startswith "The data ingestion volume rate crossed 80% of the threshold"
+```
+
+引入量速率达到阈值：
+```Kusto
+Operation
+|where OperationCategory == "Ingestion"
+|where Detail startswith "The data ingestion volume rate crossed the threshold"
+```
 
 
 ## <a name="recommendations"></a>建议
@@ -163,4 +170,5 @@ Operation
 ## <a name="next-steps"></a>后续步骤
 
 若要实施本指南中建议的安全权限和控制措施，请查看[管理对日志的访问权限](manage-access.md)。
+
 

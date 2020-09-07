@@ -3,12 +3,12 @@ title: 快速入门：使用 REST API 进行新策略分配
 description: 本快速入门介绍如何使用 REST API 创建 Azure Policy 分配以识别不合规资源。
 ms.date: 08/10/2020
 ms.topic: quickstart
-ms.openlocfilehash: 870d75b918869f41fd0aa55533022c80ad4d0421
-ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
+ms.openlocfilehash: 465245a982673a3a939bc029eec310be806aedde
+ms.sourcegitcommit: 5055d580fb7ef1722e32e09a334d1d3e28295dd6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88951937"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89503336"
 ---
 # <a name="quickstart-create-a-policy-assignment-to-identify-non-compliant-resources-with-rest-api"></a>快速入门：使用 REST API 创建策略分配以识别不合规资源
 
@@ -23,7 +23,7 @@ REST API 用于创建和管理 Azure 资源。 本指南使用 REST API 创建�
 
 - 如果没有 Azure 订阅，请在开始前创建一个[试用帐户](https://wd.azure.cn/pricing/1rmb-trial/)。
 
-- 安装 [ARMClient](https://github.com/projectkudu/ARMClient)（如果尚未安装）。 该工具可将 HTTP 请求发送到基于 Azure 资源管理器的 REST API。 你也可以使用 REST 文档中的“试用”功能，或者使用 PowerShell 的 [Invoke-RestMethod](/powershell/module/microsoft.powershell.utility/invoke-restmethod) 或 [Postman](https://www.postman.com) 等工具。
+- 安装 [ARMClient](https://github.com/projectkudu/ARMClient)（如果尚未安装）。 该工具可将 HTTP 请求发送到基于 Azure 资源管理器的 REST API。 你也可以使用 REST 文档中的“试用”功能，或者使用 PowerShell 的 [Invoke-RestMethod](https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/invoke-restmethod) 或 [Postman](https://www.postman.com) 等工具。
 
 [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
 

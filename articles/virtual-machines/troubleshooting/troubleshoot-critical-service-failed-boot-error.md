@@ -1,24 +1,26 @@
 ---
-title: 启动 Azure VM 时 Windows 在蓝色屏幕上显示“关键服务失败”
+title: 启动 Azure VM 时关键服务失败 | Azure
 description: 了解如何解决在启动时出现的“0x0000005A-关键服务失败”错误 | Azure
 services: virtual-machines-windows
 documentationCenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 ms.service: virtual-machines-windows
 ms.topic: troubleshooting
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 10/08/2018
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 5729b8ab7d6d1c4583c7a39a6bc5207d957f2ed6
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: b5ea41366c12215d1f8575b313a8c4d74577ba42
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596332"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456808"
 ---
 # <a name="windows-shows-critical-service-failed-on-blue-screen-when-booting-an-azure-vm"></a>启动 Azure VM 时 Windows 在蓝色屏幕上显示“关键服务失败”
 本文介绍在 Azure 中启动 Windows 虚拟机 (VM) 时可能会遇到的“关键服务失败”错误， 并提供用于解决问题的故障排除步骤。 
@@ -90,11 +92,15 @@ Windows VM 不启动。 在[启动诊断](./boot-diagnostics.md)中检查启动�
 
 1. 在恢复 VM 上，在提升的命令提示符下运行以下命令。 此命令将受影响的 OS 磁盘设置为在下次启动时以安全模式启动：
 
-        bcdedit /store <OS DISK you attached>:\boot\bcd /set {default} safeboot minimal
+    ```console
+    bcdedit /store <OS DISK you attached>:\boot\bcd /set {default} safeboot minimal
+    ```
 
     例如，如果附加的 OS 磁盘是驱动器 F，则运行以下命令：
 
-        bcdedit /store F: boot\bcd /set {default} safeboot minimal
+    ```console
+    bcdedit /store F: boot\bcd /set {default} safeboot minimal
+    ```
 
 2. [分离 OS 磁盘，然后将 OS 磁盘重新附加到受影响的 VM](troubleshoot-recovery-disks-portal-windows.md)。 VM 会以安全模式启动。 如果仍然遇到错误，请转到可选步骤。
 3. 打开“运行”  框，运行 **verifier** 来启动驱动程序验证程序管理器工具。
@@ -104,7 +110,10 @@ Windows VM 不启动。 在[启动诊断](./boot-diagnostics.md)中检查启动�
 
 7. 删除安全启动设置：
 
-        bcdedit /store <OS DISK LETTER>:\boot\bcd /deletevalue {default} safeboot
+    ```console
+    bcdedit /store <OS DISK LETTER>:\boot\bcd /deletevalue {default} safeboot
+    ```
+
 8. 重启 VM。 
 
 ### <a name="optional-analyze-the-dump-logs-in-dump-crash-mode"></a>可选：在故障转储模式下分析转储日志

@@ -17,12 +17,12 @@ ms.topic: article
 origin.date: 12/06/2019
 ms.date: 01/13/2020
 ms.author: v-yiso
-ms.openlocfilehash: d13a54d6cdf5f8176df011ade3616da2152cbae5
-ms.sourcegitcommit: 3a8a7d65d0791cdb6695fe6c2222a1971a19f745
+ms.openlocfilehash: e9156a219e6c53564f070f6f599a2a6fd1f90a9a
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2020
-ms.locfileid: "85516447"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462827"
 ---
 # <a name="use-c-user-defined-functions-with-apache-hive-and-apache-pig-on-apache-hadoop-in-hdinsight"></a>在 HDInsight 中的 Apache Hadoop 上将 C# 用户定义函数与 Apache Hive 和 Apache Pig 配合使用
 
@@ -215,7 +215,7 @@ Hive 和 Pig 都可以将数据传递到外部应用程序以进行处理。 此
 
     ```hiveql
     -- Uncomment the following if you are using Azure Storage
-    -- add file wasb:///HiveCSharp.exe;
+    -- add file wasbs:///HiveCSharp.exe;
     -- Uncomment the following if you are using Azure Data Lake Storage Gen2
     -- add file abfs:///HiveCSharp.exe;
 

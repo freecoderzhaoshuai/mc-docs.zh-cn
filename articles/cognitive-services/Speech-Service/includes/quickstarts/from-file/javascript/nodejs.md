@@ -3,14 +3,15 @@ author: IEvangelist
 ms.service: cognitive-services
 ms.topic: include
 origin.date: 04/03/2020
-ms.date: 06/19/2019
+ms.date: 08/03/2020
 ms.author: v-tawe
-ms.openlocfilehash: b4c5e870af092cece171f8a9f615874c0c6fc8e9
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+ms.custom: devx-track-javascript
+ms.openlocfilehash: e495675246aa39cef884b8d02dd3dff690e11441
+ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85613360"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "89317511"
 ---
 ## <a name="prerequisites"></a>先决条件
 
@@ -19,7 +20,7 @@ ms.locfileid: "85613360"
 > [!div class="checklist"]
 > * <a href="https://portal.azure.cn/#create/Microsoft.CognitiveServicesSpeechServices" target="_blank">创建 Azure 语音资源<span class="docon docon-navigate-external x-hidden-focus"></span></a>
 > * [设置开发环境并创建空项目](../../../../quickstarts/setup-platform.md)
-> * 需要语音 SDK 版本 1.11.0 或更高版本。
+> * 需要语音 SDK 1.11.0 或更高版本。
 
 ## <a name="start-with-some-boilerplate-code"></a>从一些样本代码入手
 

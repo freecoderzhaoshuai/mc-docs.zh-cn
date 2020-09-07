@@ -1,25 +1,27 @@
 ---
-title: 针对通过 SSH 连接到 Azure Linux VM 时发生的失败、出错或被拒绝问题进行故障排除 | Azure
+title: 排查到 Azure VM 的 SSH 连接问题 | Azure
 description: 如何排查运行 Linux 的 Azure VM 上发生的“SSH 连接失败”或“SSH 连接被拒绝”等问题。
 keywords: ssh 连接被拒绝, ssh 错误, azure ssh, SSH 连接失败
 services: virtual-machines-linux
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 tags: top-support-issue,azure-service-management,azure-resource-manager
 ms.service: virtual-machines-linux
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.topic: troubleshooting
 origin.date: 05/30/2017
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 230113871e7aba5609d0863e7647618181784c24
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: e9a1ed83f87623f8bfab01275fd943496feb0647
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596358"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456764"
 ---
 # <a name="troubleshoot-ssh-connections-to-an-azure-linux-vm-that-fails-errors-out-or-is-refused"></a>针对通过 SSH 连接到 Azure Linux VM 时发生的失败、错误或被拒绝问题进行故障排除
 尝试连接到 Linux 虚拟机 (VM) 时，可能会由于安全外壳 (SSH) 错误、SSH 连接失败或 SSH 被拒绝而发生问题，本文可帮助你查找并更正这些问题。 可以使用 Azure 门户、Azure CLI 或适用于 Linux 的 VM 访问扩展来排查和解决连接问题。
@@ -35,9 +37,7 @@ ms.locfileid: "82596358"
     * 确保有一条[网络安全组规则](#security-rules)允许 SSH 流量（默认为 TCP 端口 22）。
     * 在不使用 Azure 负载均衡器的情况下无法使用端口重定向/映射。
 4. 查看 [VM 资源运行状况](../../service-health/resource-health-overview.md)。 
-    
-    <!-- Redirect is Correct /resource-health/XXXX.md TO /service-health/XXXX.md -->
-    
+        
     * 确保 VM 报告为正常。
     * 如果[已启用启动诊断](boot-diagnostics.md)，请验证 VM 是否在日志中报告了启动错误。
 5. [重启 VM](#restart-vm)。
@@ -62,7 +62,7 @@ ms.locfileid: "82596358"
 
 若要开始，请在 Azure 门户中选择你的 VM。 向下滚动到“支持 + 故障排除”部分并选择“重置密码”，如以下示例中所示   ：
 
-![在 Azure 门户中重置 SSH 配置或凭据](./media/troubleshoot-ssh-connection/reset-credentials-using-portal.png)
+:::image type="content" source="./media/troubleshoot-ssh-connection/reset-credentials-using-portal.png" alt-text="在 Azure 门户中重置 SSH 配置或凭据":::
 
 <a name="reset-config"></a>
 ### <a name="reset-the-ssh-configuration"></a>重置 SSH 配置
@@ -123,7 +123,7 @@ az vm user update --resource-group myResourceGroup --name myVM \
 
 ```json
 {
-    "reset_ssh":"True"
+    "reset_ssh":True
 }
 ```
 
@@ -159,7 +159,7 @@ az vm extension set --resource-group philmea --vm-name Ubuntu \
 ```
 
 ## <a name="use-the-azure-classic-cli"></a>使用 Azure 经典 CLI
-[安装 Azure 经典 CLI 并连接到 Azure 订阅](../../cli-install-nodejs.md)（如果尚未这样做）。 确保按如下所示使用 Resource Manager 模式：
+[安装 Azure 经典 CLI 并连接到 Azure 订阅](https://docs.azure.cn/cli/install-classic-cli?view=azure-cli-latest)（如果尚未这样做）。 确保按如下所示使用 Resource Manager 模式：
 
 ```azurecli
 azure config mode arm
@@ -199,7 +199,7 @@ azure vm reset-access --resource-group myResourceGroup --name myVM \
 ### <a name="azure-portal"></a>Azure 门户
 若要使用 Azure 门户重启 VM，请选择你的 VM，然后单击“重启”  ，如以下示例中所示：
 
-![在 Azure 门户中重新启动 VM](./media/troubleshoot-ssh-connection/restart-vm-using-portal.png)
+:::image type="content" source="./media/troubleshoot-ssh-connection/restart-vm-using-portal.png" alt-text="在 Azure 门户中重新启动 VM":::
 
 ### <a name="azure-cli"></a>Azure CLI
 以下示例使用 [az vm restart](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-restart) 重新启动名为 `myResourceGroup` 的资源组中名为 `myVM` 的 VM。 请如下所示使用自己的值：
@@ -220,7 +220,7 @@ azure vm restart --resource-group myResourceGroup --name myVM
 
 <a name="redeploy-vm"></a>
 ## <a name="redeploy-a-vm"></a>重新部署 VM
-可以将 VM 重新部署到 Azure 中的另一个节点，这可能可以更正任何潜在的网络问题。 有关重新部署 VM 的信息，请参阅[将虚拟机重新部署到新的 Azure 节点](../windows/redeploy-to-new-node.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。
+可以将 VM 重新部署到 Azure 中的另一个节点，这可能可以更正任何潜在的网络问题。 有关重新部署 VM 的信息，请参阅[将虚拟机重新部署到新的 Azure 节点](./redeploy-to-new-node-windows.md?toc=/virtual-machines/windows/toc.json)。
 
 > [!NOTE]
 > 完成此操作后，临时磁盘数据将丢失，系统将更新与虚拟机关联的动态 IP 地址。
@@ -230,7 +230,7 @@ azure vm restart --resource-group myResourceGroup --name myVM
 ### <a name="azure-portal"></a>Azure 门户
 若要使用 Azure 门户重新部署 VM，请选择 VM，然后向下滚动到“支持 + 故障排除”部分  。 选择“重新部署”  ，如以下示例中所示：
 
-![在 Azure 门户中重新部署 VM](./media/troubleshoot-ssh-connection/redeploy-vm-using-portal.png)
+:::image type="content" source="./media/troubleshoot-ssh-connection/redeploy-vm-using-portal.png" alt-text="在 Azure 门户中重新部署 VM":::
 
 ### <a name="azure-cli"></a>Azure CLI
 以下示例使用 [az vm redeploy](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-redeploy) 重新部署名为 `myResourceGroup` 的资源组中名为 `myVM` 的 VM。 请如下所示使用自己的值：
@@ -256,10 +256,10 @@ azure vm redeploy --resource-group myResourceGroup --name myVM
 * 从 [Azure 门户](https://portal.azure.cn)重置远程访问。 在 Azure 门户中，选择你的 VM，然后选择“重置远程...”  。
 * 重启 VM。 在 [Azure 门户](https://portal.azure.cn)中，选择你的 VM，然后选择“重启”  。
 
-* 将 VM 重新部署到新的 Azure 节点。 有关如何重新部署 VM 的信息，请参阅[将虚拟机重新部署到新的 Azure 节点](../windows/redeploy-to-new-node.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。
+* 将 VM 重新部署到新的 Azure 节点。 有关如何重新部署 VM 的信息，请参阅[将虚拟机重新部署到新的 Azure 节点](./redeploy-to-new-node-windows.md?toc=/virtual-machines/windows/toc.json)。
 
     完成此操作后，临时磁盘数据会丢失，并且系统会更新与虚拟机关联的动态 IP 地址。
-* 按照[如何为基于 Linux 的虚拟机重置密码或 SSH](../linux/classic/reset-access-classic.md) 中的说明执行以下操作：
+* 按照[如何为基于 Linux 的虚拟机重置密码或 SSH](https://docs.microsoft.com/previous-versions/azure/virtual-machines/linux/classic/reset-access-classic) 中的说明执行以下操作：
 
     * 重置密码或 SSH 密钥。
     * 创建 *sudo* 用户帐户。
@@ -269,7 +269,7 @@ azure vm redeploy --resource-group myResourceGroup --name myVM
 
 ## <a name="additional-resources"></a>其他资源
 * 如果在执行后续步骤之后仍然无法通过 SSH 连接到 VM，请参阅[更详细的故障排除步骤](detailed-troubleshoot-ssh-connection.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)，查看其他可以解决问题的步骤。
-* 有关对应用程序访问进行故障排除的详细信息，请参阅[对在 Azure 虚拟机上运行的应用程序的访问进行故障排除](../windows/troubleshoot-app-connection.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)
-* 有关对使用经典部署模型创建的虚拟机进行故障排除的详细信息，请参阅[如何为基于 Linux 的虚拟机重置密码或 SSH](../linux/classic/reset-access-classic.md)。
+* 有关对应用程序访问进行故障排除的详细信息，请参阅[对在 Azure 虚拟机上运行的应用程序的访问进行故障排除](./troubleshoot-app-connection.md?toc=/virtual-machines/linux/toc.json)
+* 有关对使用经典部署模型创建的虚拟机进行故障排除的详细信息，请参阅[如何为基于 Linux 的虚拟机重置密码或 SSH](https://docs.microsoft.com/previous-versions/azure/virtual-machines/linux/classic/reset-access-classic)。
 
-<!--Update_Description: update meta properties, wording update, update link -->
+<!-- Update_Description: update meta properties, wording update, update link -->

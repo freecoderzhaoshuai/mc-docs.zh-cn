@@ -1,22 +1,22 @@
 ---
 title: 快速入门 - 在 Azure 门户中创建 Windows VM
 description: 本快速入门介绍了如何使用 Azure 门户创建 Windows 虚拟机
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.topic: quickstart
 ms.workload: infrastructure
 origin.date: 11/05/2019
-ms.date: 08/10/2020
-ms.testscope: yes|no
-ms.testdate: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: 55fcf520de520bc2143fdf51ca2454d67a48427a
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 7c5687598c885bc517e6692bd9718e6f4c59a5d6
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917233"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462847"
 ---
 # <a name="quickstart-create-a-windows-virtual-machine-in-the-azure-portal"></a>快速入门：在 Azure 门户中创建 Windows 虚拟机
 
@@ -30,8 +30,8 @@ ms.locfileid: "87917233"
 
 ## <a name="create-virtual-machine"></a>创建虚拟机
 
-<!--MOONCAKE CUSTOMIZATION TILL ON 08/10/2020-->
-<!--NOTICE: THERE ARE NO `Windows Server 2019 Datacenter` OPTION WHEN FOLLOWING GLOBAL ROUTINE-->
+<!--MOONCAKE CUSTOMIZATION TILL ON 08/31/2020-->
+<!--NOTICE: THERE ARE NO `Windows Server 2019 Datacenter` IMAGE OPTION WHEN FOLLOWING GLOBAL ROUTINE-->
 
 1. 在 Azure 门户的左上角选择“创建资源”。
 
@@ -41,14 +41,14 @@ ms.locfileid: "87917233"
 
 1. 在“基本信息”标签页中的“项目详细信息”下，确保选择了正确的订阅，然后选择“新建资源组”。 对于名称，请键入 *myResourceGroup*。 
 
-   [!INCLUDE [virtual-machines-common-allow-english-character](../../../includes/virtual-machines-common-allow-english-character-chenye.md)]
+    [!INCLUDE [virtual-machines-common-allow-english-character](../../../includes/virtual-machines-common-allow-english-character-chenye.md)]
 
     :::image type="content" source="./media/quick-create-portal/project-details.png" alt-text="“项目详细信息”部分的屏幕截图，显示为虚拟机选择 Azure 订阅和资源组的位置":::
 
 1. 在“实例详细信息”下，对于“虚拟机名称”键入“myVM”，对于“区域”选择“中国东部”。 保留其他默认值。
 
     <!--Not Available on and then choose *Windows Server 2019 Datacenter* for the **Image**-->
-    <!--MOONCAKE CUSTOMIZATION TILL ON 06/30/2020-->
+    <!--MOONCAKE CUSTOMIZATION TILL ON 08/31/2020-->
     <!--NOTICE: THERE ARE NO `Windows Server 2019 Datacenter` OPTION WHEN FOLLOWING GLOBAL ROUTINE-->
     
     :::image type="content" source="./media/quick-create-portal/instance-details.png" alt-text="“实例详细信息”部分的屏幕截图，可在其中提供虚拟机的名称并选择其区域、映像和大小":::

@@ -1,30 +1,33 @@
 ---
 title: 使用 Azure CLI 从专用化映像版本创建 VM
 description: 使用 Azure CLI 从共享映像库中的专用化映像版本创建 VM。
-author: rockboyfor
 ms.service: virtual-machines
 ms.subservice: imaging
 ms.workload: infrastructure-services
 ms.topic: how-to
 origin.date: 04/23/2020
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.reviewer: akjosh
-ms.openlocfilehash: e67f27fb4a1a5eeb69b200fe1672c76ffbfb4047
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 8ca06e606b0220fdc59dacf89cceebc9f75d702d
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945792"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462828"
 ---
 <!--Verified successfully-->
 # <a name="create-a-vm-using-a-specialized-image-version-with-the-azure-cli"></a>使用 Azure CLI 通过专用化映像版本创建 VM
 
-从共享映像库中存储的[专用化映像版本](/virtual-machines/linux/shared-image-galleries#generalized-and-specialized-images)创建 VM。 若要使用通用化映像版本创建 VM，请参阅[从通用化映像版本创建 VM](vm-generalized-image-version-cli.md)。
+从共享映像库中存储的[专用化映像版本](./linux/shared-image-galleries.md#generalized-and-specialized-images)创建 VM。 若要使用通用化映像版本创建 VM，请参阅[从通用化映像版本创建 VM](vm-generalized-image-version-cli.md)。
 
 在此示例中，请根据需要替换资源名称。 
 
-使用 [az sig image-definition list](https://docs.microsoft.com/cli/azure/sig/image-definition?view=azure-cli-latest#az-sig-image-definition-list) 列出库中的映像定义，以查看定义的名称和 ID。
+使用 [az sig image-definition list](https://docs.microsoft.com/cli/azure/sig?view=azure-cli-latest#az-sig-image-definition-list) 列出库中的映像定义，以查看定义的名称和 ID。
 
 ```azurecli 
 resourceGroup=myGalleryRG

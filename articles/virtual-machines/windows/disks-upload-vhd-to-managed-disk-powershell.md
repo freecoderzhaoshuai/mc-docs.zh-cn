@@ -1,22 +1,22 @@
 ---
 title: 将 VHD 上传到 Azure 或跨区域复制磁盘 - Azure PowerShell
 description: 了解如何通过直接上传将 VHD 上传到 Azure 托管磁盘，以及如何使用 Azure PowerShell 跨区域复制托管磁盘。
-author: rockboyfor
 origin.date: 06/15/2020
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: yes
-ms.testdate: 07/27/2020
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.topic: how-to
 ms.service: virtual-machines
 ms.tgt_pltfrm: linux
 ms.subservice: disks
-ms.openlocfilehash: 853c31038b484aa26433fe7df7cf19bee016467e
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: 8bd0f76bbafae24f595bf1524ba7edc26a877db2
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244637"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463135"
 ---
 <!--Pending for test(Hyper V needed)-->
 # <a name="upload-a-vhd-to-azure-or-copy-a-managed-disk-to-another-region---azure-powershell"></a>将 VHD 上传到 Azure，或将托管磁盘复制到其他区域 - Azure PowerShell
@@ -32,13 +32,13 @@ ms.locfileid: "87244637"
 
 ## <a name="getting-started"></a>入门
 
-如果希望通过 GUI 上传磁盘，可以使用 Azure 存储资源管理器。 有关详细信息，请参阅：[使用 Azure 存储资源管理器管理 Azure 托管磁盘](disks-use-storage-explorer-managed-disks.md)
+如果希望通过 GUI 上传磁盘，可以使用 Azure 存储资源管理器。 有关详细信息，请参阅：[使用 Azure 存储资源管理器管理 Azure 托管磁盘](../disks-use-storage-explorer-managed-disks.md)
 
 若要将 VHD 上传到 Azure，需要创建一个针对此上传过程配置的空托管磁盘。 在创建托管磁盘之前，应了解有关这些磁盘的一些附加信息。
 
 这种托管磁盘有两种独特的状态：
 
-- ReadToUpload，表示磁盘已做好上传准备，但尚未生成[安全访问签名](/storage/common/storage-dotnet-shared-access-signature-part-1) (SAS)。
+- ReadToUpload，表示磁盘已做好上传准备，但尚未生成[安全访问签名](../../storage/common/storage-sas-overview.md) (SAS)。
 - ActiveUpload，表示磁盘已做好上传准备，并且已生成 SAS。
 
 > [!NOTE]
@@ -65,7 +65,7 @@ New-AzDisk -ResourceGroupName '<yourresourcegroupname' -DiskName '<yourdiskname>
 
 若要上传高级 SSD 或标准 SSD，请将 **Standard_LRS** 替换为 **Premium_LRS** 或 **StandardSSD_LRS**。
 
-<!--Correct on Not Available on  Ultra disks are not yet supported.-->
+<!--Not Available on FEATURE Ultra disks-->
 
 现在，你已创建了一个针对上传过程配置的空托管磁盘，可以将 VHD 上传到其中了。 若要将 VHD 上传到磁盘，需要一个可写的 SAS，以便将此磁盘作为上传目标引用。
 

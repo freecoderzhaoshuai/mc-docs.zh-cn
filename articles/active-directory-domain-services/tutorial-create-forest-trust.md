@@ -8,14 +8,14 @@ ms.service: active-directory
 ms.subservice: domain-services
 ms.workload: identity
 ms.topic: tutorial
-ms.date: 08/07/2020
+ms.date: 09/01/2020
 ms.author: v-junlch
-ms.openlocfilehash: c5963e777dc0f873df918f878109802b35229d57
-ms.sourcegitcommit: a5eb9a47feefb053ddbaab4b15c395972c372339
+ms.openlocfilehash: 3595746d07e087e9fc386596892cf9ffde59102c
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88028624"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413286"
 ---
 # <a name="tutorial-create-an-outbound-forest-trust-to-an-on-premises-domain-in-azure-active-directory-domain-services"></a>教程：在 Azure Active Directory 域服务中创建到本地域的出站林信任
 
@@ -128,7 +128,7 @@ ms.locfileid: "88028624"
 
 应事先将 Windows Server 虚拟机加入托管域。 使用此虚拟机来测试本地用户是否可在虚拟机上进行身份验证。 如果需要，请[创建 Windows VM，并将其加入托管域][join-windows-vm]。
 
-1. 使用 [Azure Bastion](/bastion/bastion-overview) 和 Azure AD DS 管理员凭据连接到已加入 Azure AD DS 资源林的 Windows Server VM。
+1. 使用 [Azure Bastion](../bastion/bastion-overview.md) 和 Azure AD DS 管理员凭据连接到已加入 Azure AD DS 资源林的 Windows Server VM。
 1. 打开命令提示符，使用 `whoami` 命令显示当前已通过身份验证的用户的可分辨名称：
 
     ```console
@@ -150,7 +150,7 @@ ms.locfileid: "88028624"
 
 #### <a name="enable-file-and-printer-sharing"></a>启用文件和打印机共享
 
-1. 使用 [Azure Bastion](/bastion/bastion-overview) 和 Azure AD DS 管理员凭据连接到已加入 Azure AD DS 资源林的 Windows Server VM。
+1. 使用 [Azure Bastion](../bastion/bastion-overview.md) 和 Azure AD DS 管理员凭据连接到已加入 Azure AD DS 资源林的 Windows Server VM。
 
 1. 打开“Windows 设置”，然后搜索并选择“网络和共享中心”。 
 1. 选择“更改高级共享设置”的选项。

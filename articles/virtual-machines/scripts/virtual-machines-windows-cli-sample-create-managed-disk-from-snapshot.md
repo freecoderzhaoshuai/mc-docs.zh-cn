@@ -1,11 +1,9 @@
 ---
-title: 使用 CLI 基于快照创建托管磁盘
+title: 从快照创建托管磁盘 (Windows) - CLI 示例
 description: Azure CLI 脚本示例 - 基于快照创建托管磁盘
 services: virtual-machines-windows
 documentationcenter: storage
-author: rockboyfor
-manager: digimobile
-editor: tysonn
+manager: kavithag
 tags: azure-service-management
 ms.assetid: ''
 ms.service: virtual-machines-windows
@@ -14,17 +12,20 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 05/19/2017
-ms.date: 02/10/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: f715ef2db954c81bc827f51991d7ed704485da50
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 32ca9252f8cfc458187a9d15d784ff3838f8681e
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77428153"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414050"
 ---
-# <a name="create-a-managed-disk-from-a-snapshot-with-cli"></a>使用 CLI 基于快照创建托管磁盘
+# <a name="create-a-managed-disk-from-a-snapshot-with-cli-windows"></a>使用 CLI 基于快照创建托管磁盘 (Windows)
 
 此脚本基于快照创建托管磁盘。 可以使用它基于 OS 和数据磁盘的快照还原虚拟机。 基于相应的快照创建 OS 和数据托管磁盘，然后通过附加托管磁盘创建新的虚拟机。 还可以通过附加基于快照创建的数据磁盘来还原现有 VM 的数据磁盘。
 

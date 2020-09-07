@@ -8,14 +8,14 @@ ms.service: vpn-gateway
 ms.devlang: powershell
 ms.topic: sample
 origin.date: 05/30/2018
-ms.date: 04/01/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 5a303ea014760b64f950e4e64748fae8708fa372
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 26339635096e6220e844e6cd37839841cc6ec81b
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "63784710"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462951"
 ---
 # <a name="create-a-vpn-gateway-and-add-point-to-site-configuration-using-powershell"></a>使用 PowerShell 创建 VPN 网关并添加点到站点配置
 
@@ -103,13 +103,13 @@ Remove-AzResourceGroup -Name TestRG1
 | [New-AzVirtualNetwork](https://docs.microsoft.com/powershell/module/az.network/new-azvirtualnetwork) | 创建虚拟网络。 |
 | [New-AzPublicIpAddress](https://docs.microsoft.com/powershell/module/az.network/new-azpublicipaddress) | 创建公共 IP 地址。 |
 | [New-AzVirtualNetworkGatewayIpConfig](https://docs.microsoft.com/powershell/module/az.network/new-azvirtualnetworkgatewayipconfig) | 新建网关 IP 配置。 |
-| [New-AzVirtualNetworkGateway](https://docs.microsoft.com/powershell/module/az.network/new-azvirtualnetworkgateway?view=azurermps-6.8.1) | 创建 VPN 网关。 |
+| [New-AzVirtualNetworkGateway](https://docs.microsoft.com/powershell/module/az.network/new-azvirtualnetworkgateway) | 创建 VPN 网关。 |
 | [Remove-AzResourceGroup](https://docs.microsoft.com/powershell/module/az.resources/remove-azresourcegroup) | 删除资源组及其中包含的所有资源。 |
 | [Set-AzVirtualNetwork](https://docs.microsoft.com/powershell/module/az.network/set-azvirtualnetwork) | 设置虚拟网络的子网配置。 |
 | [Set-AzVirtualNetworkGateway](https://docs.microsoft.com/powershell/module/az.network/set-azvirtualnetworkgateway) | 设置 VPN 网关的配置。 |
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 <!-- Update_Description: code update -->

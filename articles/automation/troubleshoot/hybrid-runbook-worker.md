@@ -10,12 +10,12 @@ origin.date: 11/25/2019
 ms.date: 08/10/2020
 ms.topic: conceptual
 manager: digimobile
-ms.openlocfilehash: 5d36fca1f31207823d3e6223318c5eab54c751da
-ms.sourcegitcommit: e6b216b180734783219378410e13192e314a4497
+ms.openlocfilehash: 3a77144fd85c5d2f3001078d320243f3ed062cae
+ms.sourcegitcommit: f837837326a4856b06d1924d17521a0a7e892850
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87788298"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89449790"
 ---
 # <a name="troubleshoot-hybrid-runbook-worker-issues"></a>排查混合 Runbook 辅助角色问题
 
@@ -219,23 +219,6 @@ Windows 混合 Runbook 辅助角色依靠[适用于 Windows 的 Log Analytics �
 
 在 PowerShell 中输入以下命令，验证代理是否正在运行：`Get-Service healthservice`。 如果该服务已停止，请在 PowerShell 中输入以下命令启动该服务：`Start-Service healthservice`。
 
-### <a name="scenario-event-4502-in-the-operations-manager-log"></a><a name="event-4502"></a>场景：Operations Manager 日志中出现事件 4502
-
-#### <a name="issue"></a>问题
-
-在 **Application and Service Logs\Operations Manager** 事件日志中看到事件 4502，以及包含 `Microsoft.EnterpriseManagement.HealthService.AzureAutomation.HybridAgent` 并附带以下说明的事件消息：<br>`The certificate presented by the service \<wsid\>.oms.opinsights.azure.cn was not issued by a certificate authority used for Azure services. Please contact your network administrator to see if they are running a proxy that intercepts TLS/SSL communication.`
-
-#### <a name="cause"></a>原因
-
-此问题可能是由于代理或网络防火墙阻止与 Azure 的通信造成的。 确保计算机在端口 443 上对 * **.azure-automation.cn** 有出站访问权限。
-
-#### <a name="resolution"></a>解决方法
-
-日志存储在每个混合辅助角色本地的 C:\ProgramData\Microsoft\System Center\Orchestrator\7.2\SMA\Sandboxes 中。 可以在 **Application and Services Logs\Microsoft-SMA\Operations** 和 **Application and Services Logs\Operations Manager** 事件日志中验证是否出现了任何警告或错误事件。 这些日志会指出发生影响了在 Azure 自动化中启用角色的连接问题或其他类型的问题，或者在正常操作时遇到的问题。 在排查 Log Analytics 代理问题时如需更多帮助，请参阅[排查 Log Analytics Windows 代理的问题](../../azure-monitor/platform/agent-windows-troubleshoot.md)。
-
-混合辅助角色将 [Runbook 输出和消息](../automation-runbook-output-and-messages.md)发送到 Azure 自动化，其发送方式与云中运行的 Runbook 作业发送输出和消息的方式相同。 可以像使用 Runbook 时一样启用“详细”流和“进度”流。
-
-### <a name="scenario-orchestratorsandboxexe-cant-connect-to-office-365-through-proxy"></a><a name="no-orchestrator-sandbox-connect-O365"></a>场景：Orchestrator.Sandbox.exe 无法通过代理连接到 Office 365
 
 ### <a name="scenario-hybrid-runbook-worker-not-reporting"></a><a name="corrupt-cache"></a>场景：混合 Runbook 辅助角色未提供报告
 

@@ -1,10 +1,9 @@
 ---
-title: 在 Azure VM 中禁用来宾 OS 防火墙
+title: 在 Azure VM 中禁用来宾 OS 防火墙 | Azure
 description: 了解用于对以下情况进行故障排除时的解决方法，即来宾操作系统防火墙正在筛选发往 VM 的部分或全部流量。
 services: virtual-machines-windows
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: ''
 ms.service: virtual-machines
@@ -13,14 +12,17 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: azurecli
 origin.date: 11/22/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 3364b50225c266ac0a70a9cda106f5da3c7afe59
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 074492273d60d4cce922b237313aec22443e7969
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945790"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456880"
 ---
 <!-- Verify part successfully-->
 # <a name="disable-the-guest-os-firewall-in-azure-vm"></a>在 Azure VM 中禁用来宾 OS 防火墙

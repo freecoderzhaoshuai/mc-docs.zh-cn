@@ -12,14 +12,14 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 02/27/2020
-ms.date: 04/06/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 7c1211ea63295f6f6edcaafa7b293cba181badce
-ms.sourcegitcommit: 1f890a4085e184cc678485d05f08dd6de8dc973f
+ms.openlocfilehash: 8f99e0ad031da09cbfccf6acaf21a84c76d214dd
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84438955"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413680"
 ---
 # <a name="azure-media-services-legacy-components"></a>Azure 媒体服务旧组件
 

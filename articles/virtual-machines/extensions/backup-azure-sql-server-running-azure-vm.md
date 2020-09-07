@@ -2,19 +2,21 @@
 title: 在 Azure VM 中运行的 SQL Server 的 Azure 备份
 description: 本文介绍如何将 Azure 备份注册到在 Azure 虚拟机中运行的 SQL Server。
 services: backup
-author: rockboyfor
-manager: digimobile
+manager: carmonm
 ms.service: backup
 ms.topic: conceptual
 origin.date: 07/05/2019
-ms.date: 12/16/2019
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 6ed5fade4686e7283626440514eb1e9b144bf641
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: e880a62321fcb272bb005de99ba33286b74b6383
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75348545"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413666"
 ---
 <!--Verify successfully-->
 # <a name="azure-backup-for-sql-server-running-in-azure-vm"></a>在 Azure VM 中运行的 SQL Server 的 Azure 备份
@@ -24,11 +26,11 @@ ms.locfileid: "75348545"
 
 ## <a name="prerequisites"></a>必备条件
 
-有关支持的方案的列表，请参阅 Azure 备份支持的[可支持性矩阵](/backup/backup-azure-sql-database#scenario-support)。
+有关支持的方案的列表，请参阅 Azure 备份支持的[可支持性矩阵](../../backup/sql-support-matrix.md#scenario-support)。
 
 ## <a name="network-connectivity"></a>网络连接
 
-Azure 备份支持 NSG 标记，可以部署代理服务器或列出的 IP 范围；有关每种方法的详细信息，请参阅此[文章](/backup/backup-sql-server-database-azure-vms#establish-network-connectivity)。
+Azure 备份支持 NSG 标记，可以部署代理服务器或列出的 IP 范围；有关每种方法的详细信息，请参阅此[文章](../../backup/backup-sql-server-database-azure-vms.md#establish-network-connectivity)。
 
 ## <a name="extension-schema"></a>扩展架构
 
@@ -69,7 +71,9 @@ Azure 备份支持 NSG 标记，可以部署代理服务器或列出的 IP 范�
     "settings": {
       "locale":"<location>",
       "taskId":"<TaskId used by Azure Backup service to communicate with extension>",
+
       "objectStr": "<The configuration passed by Azure Backup service to extension>",
+
       "commandStartTimeUTCTicks": "<Scheduled start time of registration or upgrade task>",
       "vmType": "<Type of VM where registration got triggered Eg. Compute or ClassicCompute>"
     },
@@ -101,7 +105,7 @@ statusBlobUri | <https://seapod01coord1exsapk732.blob.core.chinacloudapi.cn/bcdr
 
 ## <a name="powershell-deployment"></a>PowerShell 部署
 
-需要将包含 SQL 应用程序的 Azure VM“注册”到恢复服务保管库。 在注册期间，AzureBackupWindowsWorkload 扩展会安装到 VM 上。 请使用  [Register-AzRecoveryServicesBackupContainerPS](https://docs.microsoft.com/powershell/module/az.recoveryservices/Register-AzRecoveryServicesBackupContainer?view=azps-1.5.0) cmdlet 注册 VM。
+需要将包含 SQL 应用程序的 Azure VM“注册”到恢复服务保管库。 在注册期间，AzureBackupWindowsWorkload 扩展会安装到 VM 上。 请使用  [Register-AzRecoveryServicesBackupContainerPS](https://docs.microsoft.com/powershell/module/az.recoveryservices/register-azrecoveryservicesbackupcontainer?view=azps-1.5.0) cmdlet 注册 VM。
 
 ```powershell
 $myVM = Get-AzVM -ResourceGroupName <VMRG Name> -Name <VMName>
@@ -112,8 +116,7 @@ Register-AzRecoveryServicesBackupContainer -ResourceId $myVM.ID -BackupManagemen
 
 ## <a name="next-steps"></a>后续步骤
 
-- [详细了解](/backup/backup-sql-server-azure-troubleshoot) Azure SQL Server 备份故障排除准则。
-- 有关如何备份在 Azure 虚拟机 (VM) 上运行并使用 Azure 备份服务的 SQL Server 数据库的[常见问题](/backup/faq-backup-sql-server)。
+- [详细了解](../../backup/backup-sql-server-azure-troubleshoot.md) Azure SQL Server 备份故障排除准则。
+- 有关如何备份在 Azure 虚拟机 (VM) 上运行并使用 Azure 备份服务的 SQL Server 数据库的[常见问题](../../backup/faq-backup-sql-server.md)。
 
-<!-- Update_Description: new article about backup azure sql server running azure vm -->
-<!--NEW.date: 12/16/2019-->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -63,7 +63,7 @@
           href: ./hdinsight-high-availability-linux.md
         - name: 了解托管标识
           href: ./hdinsight-managed-identities.md
-    - name: 如何
+    - name: 操作指南
       items:
         - name: 创建群集
           items:
@@ -314,7 +314,7 @@
               href: ./spark/optimize-cluster-configuration.md
         - name: 迁移到 Spark 2.3 或 2.4
           href: ./spark/migrate-versions.md
-    - name: 如何
+    - name: 操作指南
       items:
         - name: 使用工具
           items:
@@ -326,6 +326,8 @@
               href: ./set-up-pyspark-interactive-environment.md
         - name: 开发
           items:
+            - name: 使用 SparkCruise 优化查询
+              href: ./spark/spark-cruise.md
             - name: 使用交互式 Apache Spark Shell
               href: ./spark/apache-spark-shell.md
             - name: 使用 Apache Livy 提交远程作业

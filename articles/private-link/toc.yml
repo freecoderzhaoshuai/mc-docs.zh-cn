@@ -12,12 +12,18 @@
       href: create-private-endpoint-powershell.md
     - name: 创建专用终结点 - Azure CLI
       href: create-private-endpoint-cli.md
+    - name: 创建专用终结点 - ARM 模板
+      displayName: Resource Manager
+      href: create-private-endpoint-template.md
     - name: 创建专用链接服务 - 门户
       href: create-private-link-service-portal.md
     - name: 创建专用链接服务 - PowerShell
       href: create-private-link-service-powershell.md
     - name: 创建专用链接服务 - Azure CLI
       href: create-private-link-service-cli.md
+    - name: 创建专用链接服务 - ARM 模板
+      displayName: Resource Manager
+      href: create-private-link-service-template.md
 - name: 概念
   items:
     - name: 专用终结点
@@ -28,19 +34,15 @@
       href: private-endpoint-dns.md
 - name: 如何
   items:
-    - name: 专门连接到存储帐户
-      href: create-private-endpoint-storage-portal.md
     - name: 专门连接到 Cosmos DB 帐户
       href: create-private-endpoint-cosmosdb-portal.md
-    - name: 专门连接到 Web 应用
-      href: create-private-endpoint-webapp-portal.md
     - name: 对专用终结点禁用网络策略
       href: disable-private-endpoint-network-policy.md
     - name: 对专用链接服务禁用网络策略
       href: disable-private-link-service-network-policy.md
     - name: 管理专用终结点
       href: manage-private-endpoint.md
-    - name: 故障排除
+    - name: 疑难解答
       items:
         - name: 排查专用终结点连接问题
           href: troubleshoot-private-endpoint-connectivity.md
@@ -53,7 +55,7 @@
     - name: Azure PowerShell
       href: 'https://docs.microsoft.com/powershell/module/az.network'
     - name: .NET
-      href: 'https://docs.microsoft.com/api/overview/azure/virtual-network'
+      href: 'https://docs.azure.cn/dotnet/api/overview/virtual-network'
     - name: Java
       href: 'https://docs.azure.cn/java/api/'
     - name: Node.js
@@ -66,6 +68,10 @@
       href: 'https://azure.microsoft.com/resources/samples/?service=virtual-network'
 - name: 资源
   items:
+    - name: 网络博客
+      href: 'https://azure.microsoft.com/blog/topics/networking'
+    - name: 有关网络的 Azure 问答页
+      href: 'https://docs.microsoft.com/answers/topics/azure-virtual-network.html'
     - name: 网络反馈
       href: 'https://support.azure.cn/support/contact/'
     - name: 定价

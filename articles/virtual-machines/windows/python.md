@@ -1,24 +1,26 @@
 ---
 title: 在 Azure 中使用 Python 创建和管理 Windows VM
 description: 了解如何使用 Python 在 Azure 中创建和管理 Windows VM。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.workload: infrastructure
-ms.topic: article
+ms.topic: how-to
 origin.date: 06/22/2017
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.custom: tracking-python
-ms.openlocfilehash: f3b1d17ad45ef32b31abcb93e9acb4f8770ff944
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.custom: devx-track-python
+ms.openlocfilehash: 6c18103f49c1ba8d1e5831235019f5078c39a6a4
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946070"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462875"
 ---
 # <a name="create-and-manage-windows-vms-in-azure-using-python"></a>在 Azure 中使用 Python 创建和管理 Windows VM
 
-[Azure 虚拟机](overview.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json) (VM) 需要多个支持性 Azure 资源。 本文介绍如何使用 Python 创建、管理和删除 VM 资源。 你将学习如何执行以下操作：
+[Azure 虚拟机](overview.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json) (VM) 需要多个支持性 Azure 资源。 本文介绍如何使用 Python 创建、管理和删除 VM 资源。 学习如何：
 
 > [!div class="checklist"]
 > * 创建 Visual Studio 项目
@@ -470,7 +472,7 @@ compute_client = ComputeManagementClient(
 
 ### <a name="resize-the-vm"></a>重设 VM 大小
 
-决定虚拟机大小时应考虑部署的诸多方面。 有关详细信息，请参见 [VM 大小](sizes.md)。
+决定虚拟机大小时应考虑部署的诸多方面。 有关详细信息，请参见 [VM 大小](../sizes.md)。
 
 1. 若要更改虚拟机大小，请在 .py 文件中将此函数添加在变量之后：
 
@@ -571,7 +573,7 @@ compute_client = ComputeManagementClient(
 
 ## <a name="next-steps"></a>后续步骤
 
-- 如果部署出现问题，请查看[使用 Azure 门户对资源组部署进行故障排除](../../resource-manager-troubleshoot-deployments-portal.md)
+- 如果部署出现问题，请查看[使用 Azure 门户对资源组部署进行故障排除](../../azure-resource-manager/templates/deployment-history.md)
 - 了解有关 [Azure Python 库](https://docs.microsoft.com/python/api/overview/azure/?view=azure-python)的详细信息
 
 <!-- Update_Description: update meta properties, wording update, update link -->

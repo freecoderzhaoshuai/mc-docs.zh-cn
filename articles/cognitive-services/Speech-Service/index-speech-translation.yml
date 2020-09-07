@@ -10,14 +10,14 @@ metadata:
   ms.service: speech-service
   ms.topic: landing-page
   origin.date: 04/13/2020
-  ms.date: 06/19/2020
+  ms.date: 09/02/2020
   ms.author: v-tawe
-  ms.openlocfilehash: bf0fc6a2c38d9a293f85b8350a06567c942b6c55
-  ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+  ms.openlocfilehash: d54b86abced588000d9564262048941577d7042d
+  ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 07/01/2020
-  ms.locfileid: "85613327"
+  ms.lasthandoff: 09/02/2020
+  ms.locfileid: "89317485"
 landingContent:
 - title: 关于语音翻译
   linkLists:
@@ -31,12 +31,8 @@ landingContent:
       url: spx-overview.md
   - linkListType: quickstart
     links:
-    - text: 将语音翻译为文本
-      url: quickstarts/translate-speech-to-text.md
-    - text: 将语音翻译为多种目标语言
-      url: quickstarts/translate-speech-to-text-multiple-languages.md
-    - text: 将语音翻译为语音
-      url: quickstarts/translate-speech-to-speech.md
+    - text: 语音翻译入门
+      url: get-started-speech-translation.md
 - title: 使用语音翻译进行开发
   linkLists:
   - linkListType: tutorial

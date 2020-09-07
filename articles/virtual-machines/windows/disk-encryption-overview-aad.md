@@ -1,20 +1,22 @@
 ---
 title: 使用 Azure AD 进行 Azure 磁盘加密（以前版本）
 description: 本文提供了对 IaaS VM 使用 Azure 磁盘加密所要满足的先决条件。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.subservice: security
-ms.topic: article
+ms.topic: conceptual
 origin.date: 03/15/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
 ms.custom: seodec18
-ms.openlocfilehash: 79e030386ea4d394ad06708092095a42f12155d2
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 7c7ab493f93cf3a370e455ec630a707d7a0e39a9
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946006"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463041"
 ---
 # <a name="azure-disk-encryption-with-azure-ad-previous-release"></a>使用 Azure AD 进行 Azure 磁盘加密（以前版本）
 
@@ -28,7 +30,7 @@ ms.locfileid: "85946006"
 - 若要获取用于连接密钥保管库的令牌，IaaS VM 必须能够连接到 Azure Active Directory 终结点 \[login.chinacloudapi.cn\]。
 - IaaS VM 必须能够连接到 Key Vault 终结点，以将加密密钥写入 Key Vault。
 - IaaS VM 必须能够连接到托管 Azure 扩展存储库的 Azure 存储终结点和托管 VHD 文件的 Azure 存储帐户。
-- 如果安全策略限制从 Azure VM 到 Internet 的访问，可以解析上述 URI，并配置特定的规则以允许与这些 IP 建立出站连接。 有关详细信息，请参阅[防火墙后的 Azure Key Vault](../../key-vault/key-vault-access-behind-firewall.md)。
+- 如果安全策略限制从 Azure VM 到 Internet 的访问，可以解析上述 URI，并配置特定的规则以允许与这些 IP 建立出站连接。 有关详细信息，请参阅[防火墙后的 Azure Key Vault](../../key-vault/general/access-behind-firewall.md)。
 - 要加密的 VM 必须配置为使用 TLS 1.2 作为默认协议。 如果显式禁用了 TLS 1.0 且 .NET 版本尚未更新到 4.6 或更高版本，以下注册表更改将允许 ADE 选择更新的 TLS 版本：
 
 ```console

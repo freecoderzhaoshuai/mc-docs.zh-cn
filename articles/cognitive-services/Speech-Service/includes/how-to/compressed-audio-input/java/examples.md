@@ -3,14 +3,14 @@ author: trevorbye
 ms.service: cognitive-services
 ms.topic: include
 origin.date: 03/09/2020
-ms.date: 04/20/2020
+ms.date: 08/03/2020
 ms.author: v-tawe
-ms.openlocfilehash: f02448aca0b60c3ea0b6a4bedbcf43917a200447
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.openlocfilehash: 5c59a314dba34b380678bd68c2f9b50d80d5675e
+ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82127010"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "89317427"
 ---
 若要以压缩音频格式流式传输到语音服务，请创建 `PullAudioInputStream` 或 `PushAudioInputStream`。 然后，从流类的实例创建 `AudioConfig`，并指定流的压缩格式。
 
@@ -41,7 +41,7 @@ AudioConfig audioConfig =
         audioFormat);
 
 SpeechRecognizer recognizer = new SpeechRecognizer(speechConfig, audioConfig);
-SpeechRecognitionResult result = recognizer.recognizeOnceAsync().get()
+SpeechRecognitionResult result = recognizer.recognizeOnceAsync().get();
 
 String text = result.getText();
 ```

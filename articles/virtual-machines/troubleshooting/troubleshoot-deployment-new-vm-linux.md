@@ -1,10 +1,9 @@
 ---
-title: 排查在 Azure 中新建 Linux 虚拟机时遇到的 Resource Manager 部署问题
+title: 排查 Linux VM 部署问题 | Azure
 description: 排查在 Azure 中创建新 Linux 虚拟机时遇到的 Resource Manager 部署问题
 services: virtual-machines-linux, azure-resource-manager
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 editor: ''
 tags: top-support-issue, azure-resource-manager
 ms.assetid: 906a9c89-6866-496b-b4a4-f07fb39f990c
@@ -13,14 +12,17 @@ ms.workload: na
 ms.tgt_pltfrm: vm-linux
 ms.topic: troubleshooting
 origin.date: 09/09/2016
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: f9aa8276ad8d1916014d25a00454f74470935c5e
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: fe386051e0a9ef2dbe57fbcdc5f746aaf550ad6c
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946059"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456803"
 ---
 # <a name="troubleshoot-resource-manager-deployment-issues-with-creating-a-new-linux-virtual-machine-in-azure"></a>排查在 Azure 中新建 Linux 虚拟机时遇到的 Resource Manager 部署问题
 [!INCLUDE [virtual-machines-troubleshoot-deployment-new-vm-opening](../../../includes/virtual-machines-troubleshoot-deployment-new-vm-opening-include.md)]
@@ -37,7 +39,7 @@ ms.locfileid: "85946059"
 
 [查看部署操作](../../azure-resource-manager/templates/deployment-history.md)
 
-[通过查看活动日志管理 Azure 资源](../../resource-group-audit.md)
+[通过查看活动日志管理 Azure 资源](../../azure-resource-manager/management/view-activity-logs.md)
 
 [!INCLUDE [virtual-machines-troubleshoot-deployment-new-vm-issue1](../../../includes/virtual-machines-troubleshoot-deployment-new-vm-issue1-include.md)]
 
@@ -89,6 +91,6 @@ ms.locfileid: "85946059"
     * 将新 VM 添加到同一虚拟网络。
 
 ## <a name="next-steps"></a>后续步骤
-如果在 Azure 中启动已停止的 Linux VM 或调整现有 Linux VM 的大小时遇到问题，请参阅[排查在 Azure 中重新启动现有 Linux 虚拟机或调整其大小时遇到的 Resource Manager 部署问题](../linux/restart-resize-error-troubleshooting.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)。
+如果在 Azure 中启动已停止的 Linux VM 或调整现有 Linux VM 的大小时遇到问题，请参阅[排查在 Azure 中重新启动现有 Linux 虚拟机或调整其大小时遇到的 Resource Manager 部署问题](./troubleshoot-deploy-vm-linux.md?toc=/virtual-machines/linux/toc.json)。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

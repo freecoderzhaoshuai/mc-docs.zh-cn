@@ -1,19 +1,21 @@
 ---
-title: 从托管映像创建 VM
+title: 在 Azure 中从托管映像创建 VM
 description: 使用 Azure PowerShell 或门户从通用托管映像创建 Windows 虚拟机。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
-ms.topic: article
+ms.topic: how-to
 origin.date: 09/17/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 15e38a401de2c5bc840a0694b3501b56baaedf1a
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: ed8e8efbf21c1bf1eb18ba547183d837f1e76203
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946022"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462901"
 ---
 # <a name="create-a-vm-from-a-managed-image"></a>从托管映像创建 VM
 
@@ -57,4 +59,4 @@ New-AzVm `
 ## <a name="next-steps"></a>后续步骤
 [使用 Azure PowerShell 模块创建和管理 Windows VM](tutorial-manage-vm.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -5,14 +5,14 @@ ms.subservice: logs
 ms.topic: conceptual
 author: Johnnytechn
 ms.author: v-johya
-ms.date: 07/17/2020
+ms.date: 08/20/2020
 origin.date: 05/18/2018
-ms.openlocfilehash: 103063b4d28139cd81465db2dadd5ad01ff6c8b0
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.openlocfilehash: e6b2a991409cd917afb2020c11f230874d582a85
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508481"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457266"
 ---
 # <a name="guidance-for-personal-data-stored-in-log-analytics-and-application-insights"></a>存储在 Log Analytics 和 Application Insights 中的个人数据指南
 
@@ -49,7 +49,7 @@ Log Analytics 是十分灵活的存储，可在规定数据架构的同时允许
     ```
   请记住，不仅要查找用户可读的用户名，还要查找可直接追溯到特定用户的 GUID！
 * *设备 ID*：与用户 ID 一样，设备 ID 有时被视为“私人数据”。 可使用上面针对用户 ID 列出的方法来识别可能存在此问题的表。 
-* *自定义数据*：Log Analytics 允许使用各种方法进行收集：自定义日志和自定义字段、[HTTP 数据收集器 API](../../azure-monitor/platform/data-collector-api.md) 以及作为系统事件日志一部分收集的自定义数据。 所有这些数据都很有可能包含私人数据，应该进行检查以验证是否存在任何此类数据。
+* *自定义数据*：Log Analytics 允许使用各种方法进行收集：自定义日志和自定义字段、[HTTP 数据收集器 API](./data-collector-api.md) 以及作为系统事件日志一部分收集的自定义数据。 所有这些数据都很有可能包含私人数据，应该进行检查以验证是否存在任何此类数据。
 * *解决方案捕获的数据*：由于解决方案机制是开放式的，因此建议查看解决方案生成的所有表以确保符合性。
 
 ### <a name="application-data"></a>应用程序数据
@@ -68,8 +68,8 @@ Log Analytics 是十分灵活的存储，可在规定数据架构的同时允许
     | where timestamp > ago(1d)
     | project $table, timestamp, name, customDimensions 
     ```
-* *内存中和传输中数据*：Application Insights 会跟踪异常、请求、依赖项调用和跟踪。 私人数据通常可以在代码和 HTTP 调用级别收集。 查看异常、请求、依赖项和跟踪表中是否存在任何此类数据。 尽可能使用[遥测初始值设定项](/azure-monitor/app/api-filtering-sampling)来混淆该数据。
-* *Snapshot Debugger 捕获*：使用 Application Insights 中的 [Snapshot Debugger](/azure-monitor/app/snapshot-debugger) 功能时，只要在应用程序的生产实例上捕获某个异常，就可以收集调试快照。 快照会公开导致异常的完整堆栈跟踪，以及堆栈中每一步的本地变量的值。 遗憾的是，此功能不允许选择性地删除吸附点，也不允许以编程方式访问快照中的数据。 因此，如果默认的快照保留率不满足符合性要求，建议关闭此功能。
+* *内存中和传输中数据*：Application Insights 会跟踪异常、请求、依赖项调用和跟踪。 私人数据通常可以在代码和 HTTP 调用级别收集。 查看异常、请求、依赖项和跟踪表中是否存在任何此类数据。 尽可能使用[遥测初始值设定项](../app/api-filtering-sampling.md)来混淆该数据。
+* *Snapshot Debugger 捕获*：使用 Application Insights 中的 [Snapshot Debugger](../app/snapshot-debugger.md) 功能时，只要在应用程序的生产实例上捕获某个异常，就可以收集调试快照。 快照会公开导致异常的完整堆栈跟踪，以及堆栈中每一步的本地变量的值。 遗憾的是，此功能不允许选择性地删除吸附点，也不允许以编程方式访问快照中的数据。 因此，如果默认的快照保留率不满足符合性要求，建议关闭此功能。
 
 ## <a name="how-to-export-and-delete-private-data"></a>如何导出和删除私人数据
 
@@ -125,6 +125,7 @@ Log Analytics 是十分灵活的存储，可在规定数据架构的同时允许
 >  虽然绝大多数清除操作完成起来会比 SLA 快得多，但由于其对 Application Insights 使用的数据平台造成的严重影响，因此**将完成清除操作所需的正式 SLA 设置为 30 天**。
 
 ## <a name="next-steps"></a>后续步骤
-- 若要详细了解如何收集、处理和保护 Log Analytics 数据，请参阅 [Log Analytics 数据安全性](../../azure-monitor/platform/data-security.md)。
-- 若要详细了解如何收集、处理和保护 Application Insights 数据，请参阅 [Application Insights 数据安全性](../../azure-monitor/app/data-retention-privacy.md)。
+- 若要详细了解如何收集、处理和保护 Log Analytics 数据，请参阅 [Log Analytics 数据安全性](./data-security.md)。
+- 若要详细了解如何收集、处理和保护 Application Insights 数据，请参阅 [Application Insights 数据安全性](../app/data-retention-privacy.md)。
+
 

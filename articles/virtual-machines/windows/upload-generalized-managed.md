@@ -1,19 +1,21 @@
 ---
-title: 上传通用化 VHD 并使用它在 Azure 中创建新 VM
+title: 从上传的通用化 VHD 创建 VM
 description: 将通用化 VHD 上传到 Azure，然后在 Resource Manager 部署模型中使用它来创建新的 VM。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
-ms.topic: article
+ms.topic: how-to
 origin.date: 12/12/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: d64ccd53396db49ad91a1223f0f40e3cd60baae7
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: badc4656a8430fce5fd305029f0fd957435e7cec
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945842"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463168"
 ---
 # <a name="upload-a-generalized-vhd-and-use-it-to-create-new-vms-in-azure"></a>上传通用化 VHD 并使用它在 Azure 中创建新 VM
 
@@ -30,7 +32,7 @@ ms.locfileid: "85945842"
 
 需要先对 VM 运行 Sysprep（如果尚未这样做），然后再将 VHD 上传到 Azure。 Sysprep 将删除所有个人帐户信息及其他某些数据，并准备好要用作映像的计算机。 有关 Sysprep 的详细信息，请参阅 [Sysprep 概述](https://docs.microsoft.com/windows-hardware/manufacture/desktop/sysprep--system-preparation--overview)。
 
-确保 Sysprep 支持计算机上运行的服务器角色。 有关详细信息，请参阅 [Sysprep Support for Server Roles](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)（Sysprep 对服务器角色的支持）。
+确保 Sysprep 支持计算机上运行的服务器角色。 有关详细信息，请参阅 [Sysprep Support for Server Roles](https://docs.microsoft.com/windows-hardware/manufacture/desktop/sysprep-support-for-server-roles)（Sysprep 对服务器角色的支持）。
 
 > [!IMPORTANT]
 > 如果计划在首次将 VHD 上传到 Azure 之前运行 Sysprep，请确保先[准备好 VM](prepare-for-upload-vhd-image.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。 
@@ -43,7 +45,7 @@ ms.locfileid: "85945842"
 4. 在“关机选项”中选择“关机”。
 5. 选择“确定” 。
 
-    ![启动 Sysprep](./media/upload-generalized-managed/sysprepgeneral.png)
+    :::image type="content" source="./media/upload-generalized-managed/sysprepgeneral.png" alt-text="启动 Sysprep":::
 6. 在 Sysprep 完成时，它会关闭虚拟机。 不要重新启动 VM。
 
 ## <a name="upload-the-vhd"></a>上传 VHD 

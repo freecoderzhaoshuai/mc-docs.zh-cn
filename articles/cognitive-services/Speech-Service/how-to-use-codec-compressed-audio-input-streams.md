@@ -9,15 +9,15 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: conceptual
 origin.date: 03/30/2019
-ms.date: 08/03/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 zone_pivot_groups: programming-languages-set-twenty-two
-ms.openlocfilehash: 9d6b1953243ed6879730c1783ac4351e04529624
-ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
+ms.openlocfilehash: bd8385653ea410ede52b14440828fd9e1c140cdc
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87516101"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317430"
 ---
 # <a name="use-codec-compressed-audio-input-with-the-speech-sdk"></a>在语音 SDK 中使用编解码器压缩的音频输入
 

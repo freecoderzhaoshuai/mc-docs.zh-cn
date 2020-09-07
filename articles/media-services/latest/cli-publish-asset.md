@@ -13,14 +13,15 @@ ms.topic: sample
 ms.tgt_pltfrm: multiple
 ms.workload: na
 origin.date: 01/25/2019
-ms.date: 07/27/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 2e39d288ab8de199bd3921cb31e22014552cb6a9
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 487d8e55a1024e62563ea437a1c59ab8ce15ffe7
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162257"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413934"
 ---
 # <a name="cli-example-publish-an-asset"></a>CLI 示例：发布资产
 
@@ -28,7 +29,7 @@ ms.locfileid: "87162257"
 
 ## <a name="prerequisites"></a>必备条件 
 
-[创建媒体服务帐户](create-account-cli-how-to.md)。
+[创建媒体服务帐户](./create-account-howto.md)。
 
 [!INCLUDE [media-services-cli-instructions.md](../../../includes/media-services-cli-instructions.md)]
 

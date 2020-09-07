@@ -1,26 +1,28 @@
 ---
-title: Azure CLI 脚本示例 - 使用 Azure CLI 创建虚拟机
+title: Azure CLI 脚本示例 - 创建 Windows Server VM
 description: Azure CLI 脚本示例 - 创建 Windows Server VM
 services: virtual-machines-Windows
 documentationcenter: virtual-machines
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 tags: ''
-ms.assetid: ''
-ms.service: virtual-machines-windows
+ms.assetid - ms.service: virtual-machines-windows
 ms.devlang: azurecli
 ms.topic: sample
 ms.tgt_pltfrm: vm-Windows
 ms.workload: infrastructure
 origin.date: 02/23/2017
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 5add86807e6c14e4f78dd0a80978047452d53d26
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: ac38b141126bd90b93450387cf0f81b189da3ae5
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596399"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413443"
 ---
 # <a name="create-a-virtual-machine-with-the-azure-cli"></a>使用 Azure CLI 创建虚拟机
 

@@ -7,12 +7,12 @@ origin.date: 03/12/2019
 author: Johnnytechn
 ms.author: v-johya
 ms.date: 08/20/2020
-ms.openlocfilehash: ab76ffacd7b4d7eaef101c3fa2811c0be08c43b2
-ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
+ms.openlocfilehash: a24258a7d27916d3937029da3af23c2d9532f5e6
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/30/2020
-ms.locfileid: "89148682"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457221"
 ---
 # <a name="create-a-log-analytics-workspace-in-the-azure-portal"></a>在 Azure 门户中创建 Log Analytics 工作区
 使用“Log Analytics 工作区”菜单通过 Azure 门户创建 Log Analytics 工作区。 Log Analytics 工作区是适用于 Azure Monitor 日志数据的唯一环境。 每个工作区都有其自己的数据存储库和配置，并且数据源和解决方案均配置为将其数据存储在特定工作区中。 如果打算从以下源收集数据，则需要 Log Analytics 工作区：
@@ -56,7 +56,7 @@ ms.locfileid: "89148682"
 1. 如果你提供的工作区名称、资源组、订阅和区域与已删除的工作区中的相同，则将恢复你的工作区，包括其数据、配置和连接的代理。
 2. 如果你使用相同的工作区名称，但提供不同的资源组、订阅或区域，则将收到错误“此工作区名称已被使用。请尝试输入其他名称。” 若要替换软删除，同时永久删除你的工作区并创建新的同名工作区，请按照以下步骤，先恢复工作区再执行永久删除：
    - [恢复](../platform/delete-workspace.md#recover-workspace)工作区
-   - [永久删除](../platform/delete-workspace.md#permanent-workspace-delete)工作区
+   - [永久删除](../platform/delete-workspace.md)工作区
    - 使用相同的工作区名称创建新的工作区
 
 ## <a name="next-steps"></a>后续步骤

@@ -7,12 +7,12 @@ origin.date: 04/27/2020
 ms.date: 08/13/2020
 ms.author: v-tawe
 ms.custom: mvc, cli-validate
-ms.openlocfilehash: ae79a4471f0fcf4e7454f7323c6aa013e34c6216
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 59bf3322ffc8b3f875e64e42a217476ec8d30beb
+ms.sourcegitcommit: 5055d580fb7ef1722e32e09a334d1d3e28295dd6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88227972"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89503342"
 ---
 # <a name="tutorial-secure-azure-sql-database-connection-from-app-service-using-a-managed-identity"></a>教程：使用托管标识确保从应用服务进行的 Azure SQL 数据库连接安全
 
@@ -177,7 +177,7 @@ conn.AccessToken = (new Microsoft.Azure.Services.AppAuthentication.AzureServiceT
 
 ### <a name="enable-managed-identity-on-app"></a>在应用上启用托管标识
 
-若要为 Azure 应用启用托管标识，请在 CLI 中使用 [az webapp identity assign](/cli/webapp/identity?view=azure-cli-latest#az-webapp-identity-assign) 命令。 在以下命令中，替换 \<app name>。
+若要为 Azure 应用启用托管标识，请在 CLI 中使用 [az webapp identity assign](https://docs.microsoft.com/cli/azure/webapp/identity?view=azure-cli-latest#az-webapp-identity-assign) 命令。 在以下命令中，替换 \<app name>。
 
 ```azurecli
 az webapp identity assign --resource-group myResourceGroup --name <app-name>

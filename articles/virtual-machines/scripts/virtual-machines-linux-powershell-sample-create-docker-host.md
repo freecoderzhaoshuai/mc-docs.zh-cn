@@ -1,10 +1,9 @@
 ---
-title: 使用 PowerShell 创建 Docker 主机
+title: Azure PowerShell 脚本示例 - Docker
 description: Azure PowerShell 脚本示例 - Docker
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 tags: azure-service-management
 ms.assetid: ''
 ms.service: virtual-machines-linux
@@ -12,15 +11,18 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 origin.date: 03/02/2017
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.author: v-yeche
-ms.custom: mvc
-ms.openlocfilehash: 960361762f207dbc317f99b124219d3b7c95248d
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: mvc, devx-track-azurepowershell
+ms.openlocfilehash: 0f795860c1c9d16e4619695d35691cf85e2675db
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596367"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414042"
 ---
 # <a name="create-a-docker-host-with-powershell"></a>使用 PowerShell 创建 Docker 主机
 
@@ -93,7 +95,7 @@ New-AzVM -ResourceGroupName $resourceGroup -Location $location -VM $vmConfig
 # Install Docker and run container
 $PublicSettings = '{"docker": {"port": "2375"},"compose": {"web": {"image": "nginx","ports": ["80:80"]}}}'
 
-Set-AzVMExtension -ExtensionName "Docker" -ResourceGroupName $resourceGroup -VMName $vmName `
+Set-AzVMExtension -Name "Docker" -ResourceGroupName $resourceGroup -VMName $vmName `
   -Publisher "Microsoft.Azure.Extensions" -ExtensionType "DockerExtension" -TypeHandlerVersion 1.0 `
   -SettingString $PublicSettings -Location $location
 
@@ -124,11 +126,11 @@ Remove-AzResourceGroup -Name myResourceGroup
 | [New-AzVMConfig](https://docs.microsoft.com/powershell/module/az.compute/new-azvmconfig) | 创建 VM 配置。 此配置包括 VM 名称、操作系统和管理凭据等信息。 在创建 VM 期间使用此配置。 |
 | [New-AzVM](https://docs.microsoft.com/powershell/module/az.compute/new-azvm) | 创建虚拟机。 |
 | [Set-AzVMExtension](https://docs.microsoft.com/powershell/module/az.compute/set-azvmextension) | 将 VM 扩展添加到虚拟机。 在此示例中，使用 Docker 扩展配置 Docker 和运行 NGINX Docker 容器。 |
-|[Remove-AzResourceGroup](https://docs.microsoft.com/powershell/module/az.resources/remove-azresourcegroup) | 删除资源组及其中包含的所有资源。 |
+| [Remove-AzResourceGroup](https://docs.microsoft.com/powershell/module/az.resources/remove-azresourcegroup) | 删除资源组及其中包含的所有资源。 |
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 可以在 [Azure Linux VM 文档](../linux/powershell-samples.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)中找到其他虚拟机 PowerShell 脚本示例。
 

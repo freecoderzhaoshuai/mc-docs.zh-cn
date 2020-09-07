@@ -2,18 +2,20 @@
 title: Azure 专用链接常见问题解答 (FAQ)
 description: 了解 Azure 专用链接。
 services: private-link
-author: rockboyfor
 ms.service: private-link
 ms.topic: conceptual
 origin.date: 09/16/2019
-ms.date: 06/15/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: 06/15/2020
 ms.author: v-yeche
-ms.openlocfilehash: d82904d14fc834ed5306ea2516da610116e5d63e
-ms.sourcegitcommit: 3de7d92ac955272fd140ec47b3a0a7b1e287ca14
+ms.openlocfilehash: d467e653e0d4591169d4ec8a0f6476be4f7c465a
+ms.sourcegitcommit: 6e88e0e41b35d160a09f7a906ca3b7e837f51803
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84723746"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89412100"
 ---
 # <a name="azure-private-link-frequently-asked-questions-faq"></a>Azure 专用链接常见问题解答 (FAQ)
 
@@ -82,5 +84,4 @@ ms.locfileid: "84723746"
 
 - 了解 [Azure 专用链接](private-link-overview.md)。
 
-<!-- Update_Description: new article about private link faq -->
-<!--NEW.date: 01/06/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

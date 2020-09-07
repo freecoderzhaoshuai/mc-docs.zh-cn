@@ -1,10 +1,9 @@
 ---
-title: 使用 PowerShell 创建 IIS VM
+title: Azure PowerShell 脚本示例 - IIS
 description: Azure PowerShell 脚本示例 - IIS
 services: virtual-machines-windows
 documentationcenter: virtual-machines
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 tags: azure-service-management
 ms.assetid: ''
 ms.service: virtual-machines-windows
@@ -12,15 +11,18 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 12/12/2017
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.custom: mvc
-ms.openlocfilehash: f70e2744acc5a617500fd50fa80fd983858dc00c
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: mvc, devx-track-azurepowershell
+ms.openlocfilehash: 98ed88259738410e43ed1e1365581d93f6a9691d
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596338"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413493"
 ---
 # <a name="create-an-iis-vm-with-powershell"></a>使用 PowerShell 创建 IIS VM
 
@@ -88,8 +90,8 @@ Remove-AzResourceGroup -Name myResourceGroup
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 可以在 [Azure Windows VM 文档](../windows/powershell-samples.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)中找到其他虚拟机 PowerShell 脚本示例。
 
-<!-- Update_Description: update meta properties, update cmdlet -->
+<!-- Update_Description: update meta properties, wording update, update link -->

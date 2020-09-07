@@ -6,15 +6,15 @@ author: WenJason
 ms.service: vpn-gateway
 ms.topic: include
 origin.date: 10/17/2018
-ms.date: 12/24/2018
+ms.date: 09/07/2020
 ms.author: cherylmc
 ms.custom: include file
-ms.openlocfilehash: 9e4e3d92ad096bcc1cae6c5a89ea695b358ffb96
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 5629f402337b2998d431273be5f05d208ee501a1
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "63844700"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462806"
 ---
 可使用“Get-AzureVNetConnection”cmdlet 来验证连接是否已成功。
 
@@ -25,12 +25,14 @@ ms.locfileid: "63844700"
    ```
 2. cmdlet 运行完毕后，查看该值。 在以下示例中，“连接状态”显示为“已连接”，且可以看到入口和出口字节数。
 
-        ConnectivityState         : Connected
-        EgressBytesTransferred    : 181664
-        IngressBytesTransferred   : 182080
-        LastConnectionEstablished : 1/7/2016 12:40:54 AM
-        LastEventID               : 24401
-        LastEventMessage          : The connectivity state for the local network site 'RMVNetLocal' changed from Connecting to
-                                    Connected.
-        LastEventTimeStamp        : 1/7/2016 12:40:54 AM
-        LocalNetworkSiteName      : RMVNetLocal
+```output
+ConnectivityState         : Connected
+EgressBytesTransferred    : 181664
+IngressBytesTransferred   : 182080
+LastConnectionEstablished : 1/7/2016 12:40:54 AM
+LastEventID               : 24401
+LastEventMessage          : The connectivity state for the local network site 'RMVNetLocal' changed from Connecting to
+                            Connected.
+LastEventTimeStamp        : 1/7/2016 12:40:54 AM
+LocalNetworkSiteName      : RMVNetLocal
+```

@@ -4,14 +4,14 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: include
 origin.date: 02/20/2020
-ms.date: 06/19/2019
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: 405ed6a98b82d669ede5d653aeb42661dc812d0f
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+ms.openlocfilehash: 7be683a970ba1783c098d57716888e160b488db1
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85805362"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317604"
 ---
 本快速入门介绍如何使用适用于 Android 的语音设备 SDK 来生成支持语音的产品。
 
@@ -36,10 +36,10 @@ ms.locfileid: "85805362"
 
 <!-- - If you plan to use the Conversation Transcription you must use a [circular microphone device](../get-speech-devices-sdk.md) and this feature is currently only available for "en-US" and "zh-CN" in regions, "chinaeast2". You must have a speech key in one of those regions to use Conversation Transcription. -->
 
-<!-- - If you plan to use the Speech service to identify intents (or actions) from user utterances, you'll need a [Language Understanding Service (LUIS)](https://docs.azure.cn/cognitive-services/luis/azureibizasubscription) subscription. To learn more about LUIS and intent recognition, see [Recognize speech intents with LUIS, C#](https://docs.azure.cn/cognitive-services/speech-service/how-to-recognize-intents-from-speech-csharp). -->
+- 如果计划使用语音服务来确定用户话语中的意向（或行动），则需[语言理解服务 (LUIS)](https://docs.azure.cn/cognitive-services/luis/azureibizasubscription) 订阅。 若要了解有关 LUIS 和意向识别的详细信息，请参阅[使用 LUIS、C# 识别语音意向](https://docs.azure.cn/cognitive-services/speech-service/how-to-recognize-intents-from-speech-csharp)。
 
-  <!-- You can [create a simple LUIS model](https://docs.azure.cn/cognitive-services/luis/) or use the sample LUIS model, LUIS-example.json. The sample LUIS model is available from the [Speech Devices SDK download site](https://aka.ms/sdsdk-luis). To upload your model's JSON file to the [LUIS portal](https://www.luis.ai/home), select **Import new app**, and then select the JSON file. -->
-""
+  可[创建一个简单的 LUIS 模型](https://docs.azure.cn/cognitive-services/luis/)，或使用示例 LUIS 模型 LUIS-example.json。 可从[语音设备 SDK 下载站点](https://aka.ms/sdsdk-luis)获取示例 LUIS 模型。 选择“导入新应用”并选择 JSON 文件，将模型的 JSON 文件上传到 [LUIS 门户](https://luis.azure.cn/home)。
+
 ## <a name="set-up-the-device"></a>设置设备
 
 1. 在计算机上启动 Vysor。
@@ -59,7 +59,7 @@ ms.locfileid: "85805362"
    >
    > ![Vysor 文件夹](../media/speech-devices-sdk/qsg-10.png)
    >
-   > Select <bpt id="p1">**</bpt>Settings<ept id="p1">**</ept>. 搜索“mac 地址”，然后选择“Mac 地址” > “高级 WLAN”。  记下对话框底部附近显示的 MAC 地址。
+   > 选择“设置”。 搜索“mac 地址”，然后选择“Mac 地址” > “高级 WLAN”。  记下对话框底部附近显示的 MAC 地址。
    >
    > ![Vysor MAC 地址](../media/speech-devices-sdk/qsg-11.png)
    >
@@ -95,12 +95,12 @@ ms.locfileid: "85805362"
     ```
 
     通过将以下行添加到 dependencies 节来更新 **build.gradle(Module:app)** 。 
-
+    
     ```xml
-    implementation'com.microsoft.cognitiveservices.speech:client-sdk:1.12.1'
+    implementation'com.microsoft.cognitiveservices.speech:client-sdk:1.13.0'
     ```
-
-1. 将语音订阅密钥添加到源代码。
+    
+1. 将语音订阅密钥添加到源代码。 如果想要尝试意向识别，还需要添加[语言理解服务](https://azure.microsoft.com/services/cognitive-services/language-understanding-intelligent-service/)订阅密钥和应用程序 ID。
 
    对于语音和 LUIS，你的信息会进入 MainActivity.java：
 
@@ -108,7 +108,19 @@ ms.locfileid: "85805362"
     // Subscription
     private static String SpeechSubscriptionKey = "<enter your subscription info here>";
     private static String SpeechRegion = "chinaeast2"; // You can change this if your speech region is different.
+    private static String LuisSubscriptionKey = "<enter your subscription info here>";
+    private static String LuisRegion = "chinaeast2"; // you can change this, if you want to test the intent, and your LUIS region is different.
+    private static String LuisAppId = "<enter your LUIS AppId>";
    ```
+
+<!--
+   If you are using conversation transcription, your speech key and region information are also needed in conversation.java:
+
+   ```java
+    private static final String CTSKey = "<Conversation Transcription Service Key>";
+    private static final String CTSRegion="<Conversation Transcription Service Region>";// Region may be "centralus" or "eastasia"
+   ```
+-->
 
 1. 默认关键字为“Computer”。 还可以尝试所提供的其他关键字之一，例如“Machine”或“Assistant”。 这些备用关键字的资源文件位于语音设备 SDK 的 keyword 文件夹中。 例如，C:\SDSDK\Android-Sample-Release\keyword\Computer 包含用于关键字“Computer”的文件。
 

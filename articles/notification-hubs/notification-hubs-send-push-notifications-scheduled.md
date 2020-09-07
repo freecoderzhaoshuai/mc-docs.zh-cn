@@ -14,16 +14,17 @@ ms.tgt_pltfrm: mobile-android
 ms.devlang: dotnet
 ms.topic: article
 origin.date: 01/04/2019
-ms.date: 12/09/2019
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.reviewer: jowargo
 ms.lastreviewed: 01/04/2019
-ms.openlocfilehash: f96185d0c889b3f42660f2c12d454ad2485fee66
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 08edd2cf4ccb734bbae4e94a3379bad8019e2a54
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74884971"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316452"
 ---
 # <a name="how-to-send-scheduled-notifications"></a>如何：发送预定通知
 
@@ -31,7 +32,7 @@ ms.locfileid: "74884971"
 
 
 ## <a name="schedule-your-notifications"></a>计划通知
-发送通知时，只需如以下示例中所示，使用通知中心 SDK 中的 [`ScheduledNotification` 类](https://msdn.microsoft.com/library/microsoft.azure.notificationhubs.schedulednotification.aspx)：
+发送通知时，只需如以下示例中所示，使用通知中心 SDK 中的 [`ScheduledNotification` 类](/dotnet/api/microsoft.azure.notificationhubs.schedulednotification?view=azure-dotnet#microsoft_azure_notificationhubs_schedulednotification)：
 
 ```csharp
 Notification notification = new AppleNotification("{\"aps\":{\"alert\":\"Happy birthday!\"}}");

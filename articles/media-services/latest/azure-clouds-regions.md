@@ -9,15 +9,16 @@ editor: ''
 ms.service: media-services
 ms.workload: ''
 ms.topic: article
-origin.date: 01/21/2020
-ms.date: 06/08/2020
+origin.date: 5/28/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: e2023e2a2269cad9dbc1725420b32773eeeb7248
-ms.sourcegitcommit: 1f890a4085e184cc678485d05f08dd6de8dc973f
+ms.custom: references_regions
+ms.openlocfilehash: 69695381fbf0d477237b15cc2a32c94b2e1d5286
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84438961"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413950"
 ---
 # <a name="clouds-and-regions-in-which-azure-media-services-v3-exists"></a>存在 Azure 媒体服务 v3 的云和区域
 
@@ -67,8 +68,8 @@ az account list-locations
 
 ### <a name="azure-china-21vianet"></a>Azure 中国世纪互联
 
-|终结点||
-| --- | --- |
+| 服务 | 端点 |
+| ------- | -------- |
 | Azure Resource Manager | `https://management.chinacloudapi.cn/` |
 | 身份验证 | `https://login.chinacloudapi.cn/` |
 | 令牌受众 |  `https://management.core.chinacloudapi.cn/` |

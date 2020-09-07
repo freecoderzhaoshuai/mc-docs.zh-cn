@@ -1,22 +1,24 @@
 ---
 title: Windows Server 的 Azure 混合权益
 description: 了解如何充分利用 Windows 软件保障权益将本地许可证引入到 Azure 中
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.topic: how-to
 ms.workload: infrastructure-services
 origin.date: 04/22/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: cd69ea981c2e9b5f3c124baa9a4d662f32e111ef
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 37394b803bb8472b1931e529549f9da7142d4a45
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945620"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463209"
 ---
 # <a name="azure-hybrid-benefit-for-windows-server"></a>Windows Server 的 Azure 混合权益
-对于有软件保障的客户，Windows Server 的 Azure 混合权益可让你使用本地 Windows Server 许可证，并以较低成本在 Azure 中运行 Windows 虚拟机。 可以使用 Windows Server 的 Azure 混合权益部署 Windows OS 的新虚拟机。 本文介绍如何使用 Windows Server 的 Azure 混合权益部署新的 VM 的步骤，以及如何更新现有正在运行的 VM 的步骤。 有关 Windows Server 的 Azure 混合权益许可和成本节约方面的更多信息，请参阅[“Windows Server 的 Azure 混合权益许可”页](https://www.azure.cn/pricing/hybrid-benefit/)。
+对于有软件保障的客户，Windows Server 的 Azure 混合权益可让你使用本地 Windows Server 许可证，并以较低成本在 Azure 中运行 Windows 虚拟机。 可以使用 Windows Server 的 Azure 混合权益部署 Windows OS 的新虚拟机。 本文介绍如何使用 Windows Server 的 Azure 混合权益部署新的 VM 的步骤，以及如何更新现有正在运行的 VM 的步骤。 有关 Windows Server 的 Azure 混合权益许可和成本节约方面的更多信息，请参阅[“Windows Server 的 Azure 混合权益许可”页](https://www.azure.cn/pricing/hybrid-benefit//)。
 
 每个双处理器许可证或每组 16 核心许可证均可授权用于多达 8 核心的两个实例，或用于多达 16 核心的一个实例。 Standard Edition 许可证的 Azure 混合权益仅可在本地或 Azure 中使用一次。 Datacenter Edition 权益允许同时在本地和 Azure 中使用。
 
@@ -66,7 +68,7 @@ az vm create \
 <!-- Add --image Win2016Datacenter -->
 
 ### <a name="template"></a>模板
-在资源管理器模板中，必须指定附加参数 `licenseType`。 可以阅读有关[创作 Azure 资源管理器模板](../../resource-group-authoring-templates.md)的详细信息
+在资源管理器模板中，必须指定附加参数 `licenseType`。 可以阅读有关[创作 Azure 资源管理器模板](../../azure-resource-manager/templates/template-syntax.md)的详细信息
 ```json
 "properties": {
     "licenseType": "Windows_Server",
@@ -207,15 +209,13 @@ az vm list --query "[?licenseType=='Windows_Server']" -o table
 还可以详细了解如何[修改虚拟机规模集](../../virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-scale-set.md)，了解更多更新规模集的方法。
 
 ## <a name="next-steps"></a>后续步骤
-- 详细了解[如何使用 Azure 混合权益节省资金](https://www.azure.cn/pricing/hybrid-benefit/)
+- 详细了解[如何使用 Azure 混合权益节省资金](https://www.azure.cn/pricing/hybrid-benefit//)
     
     <!--Not Available on [Frequently asked questions for Azure Hybrid Benefit](https://www.azure.cn/pricing/hybrid-benefit/faq/)-->
     
 - 详细了解 [Windows Server 的 Azure 混合权益许可详细指南](https://docs.microsoft.com/windows-server/get-started/azure-hybrid-benefit)。
 - 详细了解 [Windows Server 的 Azure 混合权益和 Azure Site Recovery 让应用迁移到 Azure 更具成本效益](https://azure.microsoft.com/blog/hybrid-use-benefit-migration-with-asr/)
-    
-    <!-- Not Available on [Windows 10 on Azure with Multitenant Hosting Right](/virtual-machines/windows/windows-desktop-multitenant-hosting-deployment) -->
-    
+- 详细了解[如何使用多租户托管权限在 Azure 上部署 Windows 10](./windows-desktop-multitenant-hosting-deployment.md)
 - 详细了解如何[使用资源管理器模板](../../azure-resource-manager/management/overview.md)
 
 <!-- Update_Description: update meta properties, wording update, update link -->

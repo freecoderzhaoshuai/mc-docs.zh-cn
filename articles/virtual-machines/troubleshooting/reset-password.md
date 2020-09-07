@@ -3,8 +3,7 @@ title: 如何在 Azure VM 上重置本地 Linux 密码 | Azure
 description: 在 Azure VM 上重置本地 Linux 密码的步骤简介
 services: virtual-machines-linux
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: ''
 ms.service: virtual-machines-linux
@@ -12,14 +11,17 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.topic: troubleshooting
 origin.date: 08/20/2019
-ms.date: 11/11/2019
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 00e454148d83f123595989e67fac7ef3d10596a7
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: dee623db57daf9cad4a3c7a9595ca33ec61a5358
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74116895"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456859"
 ---
 # <a name="how-to-reset-local-linux-password-on-azure-vms"></a>如何在 Azure VM 上重置本地 Linux 密码
 
@@ -110,6 +112,6 @@ ms.locfileid: "74116895"
 
 * [Troubleshoot Azure VM by attaching OS disk to another Azure VM](https://social.technet.microsoft.com/wiki/contents/articles/18710.troubleshoot-azure-vm-by-attaching-os-disk-to-another-azure-vm.aspx)（通过将 OS 磁盘附加到另一个 Azure VM 对 Azure VM 进行故障排除）
 
-* [Azure CLI: How to delete and re-deploy a VM from VHD](https://blogs.msdn.microsoft.com/linuxonazure/2016/07/21/azure-cli-how-to-delete-and-re-deploy-a-vm-from-vhd/)（Azure CLI：如何从 VHD 删除和重新部署 VM）
+* [Azure CLI: How to delete and re-deploy a VM from VHD](https://docs.microsoft.com/archive/blogs/linuxonazure/azure-cli-how-to-delete-and-re-deploy-a-vm-from-vhd)（Azure CLI：如何从 VHD 删除和重新部署 VM）
 
-<!-- Update_Description: wording update, update link -->
+<!-- Update_Description: update meta properties, wording update, update link -->

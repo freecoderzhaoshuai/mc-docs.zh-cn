@@ -5,15 +5,15 @@ author: Johnnytechn
 services: azure-monitor
 ms.topic: reference
 origin.date: 12/04/2019
-ms.date: 07/17/2020
+ms.date: 08/20/2020
 ms.author: v-johya
 ms.subservice: logs
-ms.openlocfilehash: 1d1ee36e9b8926223e8a1b2b1859e59d4c32ed83
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: c94ced719cc71518e2b7c5d771112dafd7c19e12
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244573"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457460"
 ---
 # <a name="azure-activity-log-event-schema"></a>Azure 活动日志事件架构
 [Azure 活动日志](platform-logs-overview.md)可以方便用户深入了解 Azure 中发生的任何订阅级别事件。 本文介绍活动日志类别以及每个类别的架构。 
@@ -26,7 +26,7 @@ ms.locfileid: "87244573"
 
 
 ## <a name="categories"></a>Categories
-活动日志中的每个事件都有特定的类别，该类别在下表中进行了描述。 请参阅以下各部分，了解从门户、PowerShell、CLI 和 REST API 访问活动日志时，每个类别及其架构的详细信息。 [将活动日志流式传输到存储或事件中心](resource-logs-stream-event-hubs.md)时，架构是不同的。 本文最后一个部分提供了这些属性到[资源日志架构](diagnostic-logs-schema.md)的映射。
+活动日志中的每个事件都有特定的类别，该类别在下表中进行了描述。 请参阅以下各部分，了解从门户、PowerShell、CLI 和 REST API 访问活动日志时，每个类别及其架构的详细信息。 [将活动日志流式传输到存储或事件中心](./resource-logs.md#send-to-azure-event-hubs)时，架构是不同的。 本文最后一个部分提供了这些属性到[资源日志架构](./resource-logs-schema.md)的映射。
 
 | 类别 | 说明 |
 |:---|:---|
@@ -215,7 +215,7 @@ ms.locfileid: "87244573"
   }
 }
 ```
-请参阅[服务运行状况通知](./../../azure-monitor/platform/service-notifications.md)一文，获取有关属性的值的说明。
+请参阅[服务运行状况通知](../../service-health/service-notifications.md)一文，获取有关属性的值的说明。
 
 ## <a name="resource-health-category"></a>资源运行状况类别
 此类别包含 Azure 资源发生的任何资源运行状况事件的记录。 你将在此类别中看到的事件类型的示例是“虚拟机运行状况已更改为不可用”。 资源运行状况事件可以表示四种运行状况之一：Available、Unavailable、Degraded 和 Unknown。 此外，资源运行状况事件可以分为“平台启动”或“用户启动”。
@@ -794,10 +794,7 @@ ms.locfileid: "87244573"
 
 
 ## <a name="schema-from-storage-account-and-event-hubs"></a>来自存储帐户和事件中心的架构
-将 Azure 活动日志流式传输到存储帐户或事件中心时，数据遵循[资源日志架构](diagnostic-logs-schema.md)。 下表提供从上述架构到资源日志架构的属性映射。
-
-> [!IMPORTANT]
-> 写入到存储帐户的活动日志数据的格式已在 2018 年 11 月 1 日更改为 JSON Lines。 若要详细了解此格式更改，请参阅[为存档到存储帐户的 Azure Monitor 资源日志的格式更改做准备](diagnostic-logs-append-blobs.md)。
+将 Azure 活动日志流式传输到存储帐户或事件中心时，数据遵循[资源日志架构](./resource-logs-schema.md)。 下表提供从上述架构到资源日志架构的属性映射。
 
 
 | 资源日志架构属性 | 活动日志 REST API 架构属性 | 注释 |
@@ -869,7 +866,7 @@ ms.locfileid: "87244573"
                 }
             },
             "level": "Information",
-            "location": "chinaeast2",
+            "location": "global",
             "properties": {
                 "statusCode": "Created",
                 "serviceRequestId": "50d5cddb-8ca0-47ad-9b80-6cde2207f97c"
@@ -886,5 +883,4 @@ ms.locfileid: "87244573"
 ## <a name="next-steps"></a>后续步骤
 * [了解有关活动日志的更多信息](platform-logs-overview.md)
 * [创建诊断设置，以便将活动日志发送到 Log Analytics 工作区、Azure 存储或事件中心](diagnostic-settings.md)
-
 

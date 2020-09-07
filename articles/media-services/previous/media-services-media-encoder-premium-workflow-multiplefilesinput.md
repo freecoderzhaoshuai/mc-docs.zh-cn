@@ -13,15 +13,16 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/18/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
 ms.reviewer: anilmur;juliako
-ms.openlocfilehash: 42dbd154dd2dd51f8211a0ed831eaee746a5d432
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 6934f2a60193192b0529129c5b57fc64e3c6a53a
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79292409"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414015"
 ---
 # <a name="using-multiple-input-files-and-component-properties-with-premium-encoder"></a>在高级编码器中使用多个输入文件和组件属性
 ## <a name="overview"></a>概述
@@ -367,7 +368,7 @@ MP4 多路复用器和文件输出
 
 需要设置输出文件的名称。 单击“文件输出”  组件，并编辑文件的表达式：
 
-    ${ROOT_outputWriteDirectory}\${ROOT_sourceFileBaseName}_withoverlay.mp4
+`${ROOT_outputWriteDirectory}\${ROOT_sourceFileBaseName}_withoverlay.mp4`
 
 ![文件输出名称](./media/media-services-media-encoder-premium-workflow-multiplefilesinput/capture17_filenameoutput.png)
 

@@ -5,12 +5,12 @@ ms.author: v-tawe
 origin.date: 06/23/2020
 ms.date: 08/21/2020
 ms.topic: article
-ms.openlocfilehash: 86f4e2e9d2eedd88daa0b65fddfab9bfa92943e7
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 25d00977876a14b2f6db871e33ca4f543eeb225b
+ms.sourcegitcommit: 5055d580fb7ef1722e32e09a334d1d3e28295dd6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715199"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89503334"
 ---
 # <a name="apache-kafka-developer-guide-for-azure-event-hubs"></a>针对 Azure 事件中心的 Apache Kafka 开发人员指南
 本文提供相关文章的链接，这些文章介绍了如何将 Apache Kafka 应用程序与 Azure 事件中心集成。 
@@ -72,7 +72,7 @@ ms.locfileid: "88715199"
 | [将 Apache Flink 连接到事件中心](event-hubs-kafka-flink-tutorial.md) | 演示如何在不更改你的协议客户端或运行你自己的群集的情况下，将 Apache Flink 连接到事件中心。 |
 | [将 Apache Kafka Connect 与事件中心（预览版）集成](event-hubs-kafka-connect-tutorial.md) | 详细介绍如何将 Kafka Connect 与事件中心集成，以及如何部署基本的 FileStreamSource 和 FileStreamSink 连接器。 |
 | [将 Akka Streams 连接到事件中心](event-hubs-kafka-akka-streams-tutorial.md) | 演示如何在不更改你的协议客户端或运行你自己的群集的情况下，将 Akka Streams 连接到事件中心。 |
-| [将适用于 Apache Kafka 的 Spring Boot Starter 与 Azure 事件中心配合使用](/azure/developer/java/spring-framework/configure-spring-cloud-stream-binder-java-app-kafka-azure-event-hub) | 介绍如何配置基于 Java 的 Spring Cloud Stream Binder，它是使用 Spring Boot Initializer 创建的，目的是将 Apache Kafka 与 Azure 事件中心配合使用。 |
+| [将适用于 Apache Kafka 的 Spring Boot Starter 与 Azure 事件中心配合使用](https://docs.microsoft.com/azure/developer/java/spring-framework/configure-spring-cloud-stream-binder-java-app-kafka-azure-event-hub) | 介绍如何配置基于 Java 的 Spring Cloud Stream Binder，它是使用 Spring Boot Initializer 创建的，目的是将 Apache Kafka 与 Azure 事件中心配合使用。 |
 
 ## <a name="next-steps"></a>后续步骤
 请查看 GitHub 存储库 [azure-event-hubs-for-kafka](https://github.com/Azure/azure-event-hubs-for-kafka) 中 quickstart 和 tutorials 文件夹下的示例。

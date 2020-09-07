@@ -15,12 +15,12 @@ ms.topic: conceptual
 origin.date: 05/14/2018
 ms.date: 02/24/2020
 ms.author: v-yiso
-ms.openlocfilehash: c8c3c2e3fda12f2e45bc89556e3bc1d46e81b60a
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: dce0bd0db8997deab71f82afbc04d27bb3e35b74
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291228"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462863"
 ---
 # <a name="manage-apache-hadoop-clusters-in-hdinsight-by-using-net-sdk"></a>使用 .NET SDK 管理 HDInsight 中的 Apache Hadoop 群集
 [!INCLUDE [selector](../../includes/hdinsight-portal-management-selector.md)]
@@ -179,7 +179,8 @@ _hdiManagementClient.Clusters.DeleteAsync("<Resource Group Name>", "<Cluster Nam
     
     以下是有关如何使用 CLI 命令重新平衡 Storm 拓扑的示例：
     
-    ```cli
+
+    ```console
     ## Reconfigure the topology "mytopology" to use 5 worker processes,
     ## the spout "blue-spout" to use 3 executors, and
     ## the bolt "yellow-bolt" to use 10 executors

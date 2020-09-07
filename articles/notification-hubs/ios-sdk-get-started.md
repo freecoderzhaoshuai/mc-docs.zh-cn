@@ -3,18 +3,18 @@ title: 使用 Azure 通知中心和 iOS SDK 向 iOS 发送推送通知
 description: 在本教程，你将学习如何使用 Azure 通知中心和 Apple Push Notification 服务向 iOS 设备发送推送通知。
 author: sethmanheim
 ms.author: v-tawe
-origin.date: 06/19/2020
-ms.date: 07/21/2020
+origin.date: 08/10/2020
+ms.date: 09/02/2020
 ms.topic: tutorial
 ms.service: notification-hubs
 ms.reviewer: thsomasu
 ms.lastreviewed: 06/01/2020
-ms.openlocfilehash: 54fbe911e511b4bf15149712dc24f32752465e62
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 3aaf792628c47344bce1c67f01371ddfbe497bda
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88946773"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316365"
 ---
 # <a name="tutorial-send-push-notifications-to-ios-apps-using-azure-notification-hubs"></a>教程：使用 Azure 通知中心向 iOS 应用发送推送通知
 
@@ -104,6 +104,9 @@ Apple Push Notification 服务 (APNS) 使用证书对推送通知进行身份验
 
 ## <a name="create-a-certificate-for-notification-hubs"></a>为通知中心创建证书
 
+> [!NOTE]
+> 在发布 iOS 13 后，只能使用基于令牌的身份验证接收无声通知。 如果将基于证书的身份验证用于 APNS 凭据，则必须改用基于令牌的身份验证。
+
 需要提供证书才能使通知中心与 APNS 一起使用。 **** 可通过以下两种方式之一实现此目的：
 
 - 创建可直接上传到通知中心的 .p12 文件。 ****
@@ -186,7 +189,7 @@ Apple Push Notification 服务 (APNS) 使用证书对推送通知进行身份验
 
    该令牌值稍后将用于配置通知中心。
 
-完成这些步骤后，你应具有稍后要在 [使用 APNS 信息配置通知中心](notification-hubs-ios-push-notifications-swift-apps-get-started.md#configure-your-notification-hub-with-apns-information)中用到的下列信息：
+完成这些步骤后，你应具有稍后要在 [使用 APNS 信息配置通知中心](#configure-the-notification-hub-with-apns-information)中用到的下列信息：
 
 - 团队 ID（请参阅步骤 1） 
 - 捆绑包 ID（请参阅步骤 1） 
@@ -265,7 +268,7 @@ Apple Push Notification 服务 (APNS) 使用证书对推送通知进行身份验
 
 ## <a name="configure-the-notification-hub-with-apns-information"></a>使用 APNS 信息配置通知中心
 
-在“通知服务”下，选择“Apple (APNS)”，然后根据之前在 [为通知中心创建证书](notification-hubs-ios-push-notifications-swift-apps-get-started.md#creating-a-certificate-for-notification-hubs)部分中选择的方法，执行相应的步骤。 ****  ****  
+在“通知服务”下，选择“Apple (APNS)”，然后根据之前在 [为通知中心创建证书](#create-a-certificate-for-notification-hubs)部分中选择的方法，执行相应的步骤。 ****  ****  
 
 > [!NOTE]
 > 仅当希望将推送通知发送给从应用商店购买应用的用户时，才对“应用程序模式”使用“生产”。 

@@ -12,14 +12,14 @@ ms.workload: media
 ms.topic: tutorial
 ms.custom: mvc
 origin.date: 08/19/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: c907d63c3d56e25ba3ae4321a95fb78ec9955ef6
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 1baa2588b288fbbdecb51bafe4aed7212457d3b2
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77494507"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413361"
 ---
 # <a name="tutorial-encode-a-remote-file-based-on-url-and-stream-the-video---net"></a>教程：基于 URL 对远程文件进行编码并流式传输视频 - .NET
 
@@ -35,8 +35,8 @@ ms.locfileid: "77494507"
 ## <a name="prerequisites"></a>先决条件
 
 - 如果没有安装 Visual Studio，可下载 [Visual Studio Community 2017](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=Community&rel=15)。
-- [创建媒体服务帐户](create-account-cli-how-to.md)。<br/>请务必记住用于资源组名称和媒体服务帐户名称的值。
-- 遵循[使用 Azure CLI 访问 Azure 媒体服务 API](access-api-cli-how-to.md) 中的步骤并保存凭据。 需要使用这些凭据来访问 API。
+- [创建媒体服务帐户](./create-account-howto.md)。<br/>请务必记住用于资源组名称和媒体服务帐户名称的值。
+- 遵循[使用 Azure CLI 访问 Azure 媒体服务 API](./access-api-howto.md) 中的步骤并保存凭据。 需要使用这些凭据来访问 API。
 
 ## <a name="download-and-configure-the-sample"></a>下载并配置示例
 
@@ -48,7 +48,7 @@ ms.locfileid: "77494507"
 
 该示例位于 [EncodeAndStreamFiles](https://github.com/Azure-Samples/media-services-v3-dotnet-quickstarts/tree/master/AMSV3Quickstarts/EncodeAndStreamFiles) 文件夹。
 
-打开下载的项目中的 [appsettings.json](https://github.com/Azure-Samples/media-services-v3-dotnet-quickstarts/blob/master/AMSV3Quickstarts/EncodeAndStreamFiles/appsettings.json)。 将值替换为在[访问 API](access-api-cli-how-to.md) 中获取的凭据。
+打开下载的项目中的 [appsettings.json](https://github.com/Azure-Samples/media-services-v3-dotnet-quickstarts/blob/master/AMSV3Quickstarts/EncodeAndStreamFiles/appsettings.json)。 将值替换为在[访问 API](./access-api-howto.md) 中获取的凭据。
 
 该示例执行以下操作：
 

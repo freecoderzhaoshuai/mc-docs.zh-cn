@@ -13,15 +13,15 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/20/2019
-ms.date: 02/24/2020
+ms.date: 09/07/2020
 ms.author: v-jay
 ms.reviewer: milanga;cenkdin
-ms.openlocfilehash: b8ed6359e41014fbb7bbd1ae6cb1e0ced36e9372
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: f1cbaa4b0cb89692d00656bcdc5a843dcf361a9d
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77494209"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413855"
 ---
 # <a name="update-media-services-after-rolling-storage-access-keys"></a>轮转存储访问密钥后更新媒体服务 
 
@@ -50,7 +50,7 @@ ms.locfileid: "77494209"
  
     以下示例演示如何将密钥同步到存储帐户。
   
-         Sync-AzMediaServiceStorageKeys -ResourceGroupName $resourceGroupName -AccountName $mediaAccountName -StorageAccountId $storageAccountId
+    `Sync-AzMediaServiceStorageKeys -ResourceGroupName $resourceGroupName -AccountName $mediaAccountName -StorageAccountId $storageAccountId`
   
  3. 等待大约一小时。 验证流式处理方案是否正常工作。
  4. 通过 PowerShell cmdlet 或 Azure 门户更改存储帐户辅助密钥。
@@ -61,18 +61,19 @@ ms.locfileid: "77494209"
 
 以下示例演示如何获取存储帐户并将它与 AMS 帐户同步。
 
-    $regionName = "China East"
-    $resourceGroupName = "SkyMedia-ChinaEast-App"
-    $mediaAccountName = "sky"
-    $storageAccountName = "skystorage"
-    $storageAccountId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageAccountName"
+```console
+$regionName = "China East"
+$resourceGroupName = "SkyMedia-ChinaEast-App"
+$mediaAccountName = "sky"
+$storageAccountName = "skystorage"
+$storageAccountId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageAccountName"
 
-    Sync-AzMediaServiceStorageKeys -ResourceGroupName $resourceGroupName -AccountName $mediaAccountName -StorageAccountId $storageAccountId
-
+Sync-AzMediaServiceStorageKeys -ResourceGroupName $resourceGroupName -AccountName $mediaAccountName -StorageAccountId $storageAccountId
+```
  
 ## <a name="steps-to-add-storage-accounts-to-your-ams-account"></a>将存储帐户添加到 AMS 帐户的步骤
 
-下文介绍了如何将存储帐户添加到 AMS 帐户：[将多个存储帐户附加到媒体服务帐户](meda-services-managing-multiple-storage-accounts.md)。
+下文介绍了如何将存储帐户添加到 AMS 帐户：[将多个存储帐户附加到媒体服务帐户](./media-services-managing-multiple-storage-accounts.md)。
 
 ## <a name="media-services-learning-paths"></a>媒体服务学习路径
 [!INCLUDE [media-services-learning-paths-include](../../../includes/media-services-learning-paths-include.md)]

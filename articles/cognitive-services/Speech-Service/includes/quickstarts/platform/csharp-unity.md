@@ -9,14 +9,15 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: include
 origin.date: 10/10/2019
-ms.date: 01/13/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: bfc37bd08dbef3473688fe300c03cf262325a2ee
-ms.sourcegitcommit: 304d3ef3c9e65c3e85977b3afb9985fbc0f908d6
+ms.custom: devx-track-csharp
+ms.openlocfilehash: a1ed66a8dea8ae7937632633c3646e7de50a3e06
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85095930"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317585"
 ---
 本指南介绍如何安装用于 [Unity](https://unity3d.com/) 的[语音 SDK](~/articles/cognitive-services/speech-service/speech-sdk.md)。
 

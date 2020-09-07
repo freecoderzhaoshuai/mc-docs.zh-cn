@@ -1,19 +1,18 @@
 ---
 title: 创建 Azure 应用程序网关自定义错误页
-description: 本文展示了如何创建 Azure 应用程序网关自定义错误页。
+description: 本文展示了如何创建 Azure 应用程序网关自定义错误页。 你可以在自定义错误页上使用自己的品牌和布局。
 services: application-gateway
 author: vhorne
 ms.service: application-gateway
-ms.topic: article
-origin.date: 02/14/2019
-ms.date: 02/26/2019
+ms.topic: how-to
+ms.date: 09/01/2020
 ms.author: v-junlch
-ms.openlocfilehash: 3673bf5f71d1cddec214bce4160b9a67abd7b5e5
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 436ba8d95ce46085d637b715cbb29582046985fb
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "63855450"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413633"
 ---
 # <a name="create-application-gateway-custom-error-pages"></a>创建应用程序网关自定义错误页
 
@@ -35,6 +34,7 @@ ms.locfileid: "63855450"
 - **两者** - 在侦听器级别定义的自定义错误页会覆盖在全局级别设置的自定义错误页。
 
 若要创建自定义错误页，你必须具有：
+
 - HTTP 响应状态代码。
 - 错误页的相应位置。 
 - 该位置的可公开访问的 Azure 存储 blob。
@@ -49,7 +49,7 @@ ms.locfileid: "63855450"
 1. 在门户中导航到“应用程序网关”，并选择一个应用程序网关。
 
     ![ag-overview](./media/custom-error/ag-overview.png)
-2. 单击“侦听器”  并导航到你要在其中指定错误页的特定侦听器。
+2. 单击“侦听器”**** 并导航到你要在其中指定错误页的特定侦听器。
 
     ![应用程序网关侦听器](./media/custom-error/ag-listener.png)
 3. 在侦听器级别为 403 WAF 错误或 502 维护页配置一个自定义错误页。
@@ -57,7 +57,7 @@ ms.locfileid: "63855450"
     > [!NOTE]
     > 目前不支持从 Azure 门户中创建全局级别的自定义错误页。
 
-4. 为给定的错误状态代码指定一个可公开访问的 blob URL，然后单击“保存”。  现在，应用程序网关已经配置了自定义错误页。
+4. 为给定的错误状态代码指定一个可公开访问的 blob URL，然后单击“保存”。**** 现在，应用程序网关已经配置了自定义错误页。
 
    ![应用程序网关错误代码](./media/custom-error/ag-error-codes.png)
 
@@ -65,11 +65,21 @@ ms.locfileid: "63855450"
 
 可使用 Azure PowerShell 来配置自定义缩放页。 例如，全局自定义错误页：
 
-`$updatedgateway = Add-AzApplicationGatewayCustomError -ApplicationGateway $appgw -StatusCode HttpStatus502 -CustomErrorPageUrl $customError502Url`
+```powershell
+$appgw   = Get-AzApplicationGateway -Name <app-gateway-name> -ResourceGroupName <resource-group-name>
+
+$updatedgateway = Add-AzApplicationGatewayCustomError -ApplicationGateway $appgw -StatusCode HttpStatus502 -CustomErrorPageUrl "http://<website-url>"
+```
 
 或侦听器级别错误页：
 
-`$updatedlistener = Add-AzApplicationGatewayHttpListenerCustomError -HttpListener $listener01 -StatusCode HttpStatus502 -CustomErrorPageUrl $customError502Url`
+```powershell
+$appgw   = Get-AzApplicationGateway -Name <app-gateway-name> -ResourceGroupName <resource-group-name>
+
+$listener01 = Get-AzApplicationGatewayHttpListener -Name <listener-name> -ApplicationGateway $appgw
+
+$updatedlistener = Add-AzApplicationGatewayHttpListenerCustomError -HttpListener $listener01 -StatusCode HttpStatus502 -CustomErrorPageUrl "http://<website-url>"
+```
 
 有关详细信息，请参阅 [Add-AzApplicationGatewayCustomError](https://docs.microsoft.com/powershell/module/az.network/add-azapplicationgatewaycustomerror?view=azps-1.2.0) 和 [Add-AzApplicationGatewayHttpListenerCustomError](https://docs.microsoft.com/powershell/module/az.network/add-azapplicationgatewayhttplistenercustomerror?view=azps-1.3.0)。
 
@@ -77,4 +87,3 @@ ms.locfileid: "63855450"
 
 有关应用程序网关诊断的信息，请参阅[应用程序网关的后端运行状况、诊断日志和指标](application-gateway-diagnostics.md)。
 
-<!-- Update_Description: wording update -->

@@ -1,19 +1,18 @@
 ---
 title: Azure Monitor 中视图设计器部件的参考指南 | Azure Docs
 description: 可以通过 Azure Monitor 中的视图设计器创建自定义视图，此类视图在 Azure 门户中显示，包含 Log Analytics 工作区中的多种基于数据的可视化效果。 本文针对自定义视图中可用的可视化部件，提供设置方面的参考指南。
-author: lingliw
-manager: digimobile
 ms.subservice: logs
 ms.topic: conceptual
+author: Johnnytechn
+ms.author: v-johya
+ms.date: 08/20/2020
 origin.date: 03/12/2018
-ms.date: 6/4/2019
-ms.author: v-lingwu
-ms.openlocfilehash: 1f8985a2a16250b04b007443428110be957c7b9e
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: ccbbee7b0939c8c1418689adbebaef09d539fa33
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79452547"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457256"
 ---
 # <a name="reference-guide-to-view-designer-visualization-parts-in-azure-monitor"></a>Azure Monitor 中视图设计器可视化部件的参考指南
 在 Azure Monitor 中使用视图设计器即可在 Azure 门户中创建各种自定义视图，使 Log Analytics 工作区中的数据可视化。 本文针对自定义视图中可用的可视化部件，提供设置方面的参考指南。
@@ -46,7 +45,7 @@ ms.locfileid: "79452547"
 ## <a name="list-of-queries-part"></a>查询列表部分
 查询列表部件显示日志查询的列表。 可以选择每个查询以显示其结果。 默认情况下，视图将包括单个查询，可以选择“+ 查询”添加其他查询  。
 
-![查询列表视图](media/view-designer-parts/view-list-queries.png)
+![查询列表视图](./media/view-designer-parts/view-list-queries.png)
 
 | 设置 | 说明 |
 |:--- |:--- |
@@ -62,7 +61,7 @@ ms.locfileid: "79452547"
 ## <a name="number-and-list-part"></a>数字和列表部件
 标头具有单个数字，用于表示来自日志查询中的记录数。 列表显示查询的前十个结果，其中的图形指示数值列的相关值或其随时间的变化。
 
-![查询列表视图](media/view-designer-parts/view-number-list.png)
+![查询列表视图](./media/view-designer-parts/view-number-list.png)
 
 | 设置 | 说明 |
 |:--- |:--- |
@@ -91,7 +90,7 @@ ms.locfileid: "79452547"
 ## <a name="two-numbers-and-list-part"></a>两个数字和列表部件
 标头具有两个数字，用于表示来自单独日志查询中的记录数。 列表显示查询的前十个结果，其中的图形指示数值列的相关值或其随时间的变化。
 
-![两个数字和列表视图](media/view-designer-parts/view-two-numbers-list.png)
+![两个数字和列表视图](./media/view-designer-parts/view-two-numbers-list.png)
 
 | 设置 | 说明 |
 |:--- |:--- |
@@ -122,7 +121,7 @@ ms.locfileid: "79452547"
 ## <a name="donut-and-list-part"></a>圆环图和列表部件
 标头显示从日志查询中的值列汇总的单个数字。 此圆环图以图形方式显示了前三个记录的结果。
 
-![圆环图和列表视图](media/view-designer-parts/view-donut-list.png)
+![圆环图和列表视图](./media/view-designer-parts/view-donut-list.png)
 
 | 设置 | 说明 |
 |:--- |:--- |
@@ -163,7 +162,7 @@ ms.locfileid: "79452547"
 ## <a name="two-timelines-and-list-part"></a>两条时间线和列表部件
 标头将一段时间内两个日志查询的结果显示为带有标注的柱形图，以显示从日志查询中的值列汇总的单个数字。 列表显示查询的前十个结果，其中的图形指示数值列的相关值或其随时间的变化。
 
-![两条时间线和列表视图](media/view-designer-parts/view-two-timelines-list.png)
+![两条时间线和列表视图](./media/view-designer-parts/view-two-timelines-list.png)
 
 | 设置 | 说明 |
 |:--- |:--- |
@@ -195,7 +194,7 @@ ms.locfileid: "79452547"
 ## <a name="information-part"></a>信息部分
 标头显示静态文本和可选的链接。 列表显示带有静态文本和标题的一个或多个项。
 
-![信息视图](media/view-designer-parts/view-information.png)
+![信息视图](./media/view-designer-parts/view-information.png)
 
 | 设置 | 说明 |
 |:--- |:--- |
@@ -216,7 +215,7 @@ ms.locfileid: "79452547"
 ## <a name="line-chart-callout-and-list-part"></a>折线图、标注和列表部件
 标头显示一段时间内来自一个日志查询中的具有多个系列的折线图和具有汇总值的标注。 列表显示查询的前十个结果，其中的图形指示数值列的相关值或其随时间的变化。
 
-![折线图、标注和列表视图](media/view-designer-parts/view-line-chart-callout-list.png)
+![折线图、标注和列表视图](./media/view-designer-parts/view-line-chart-callout-list.png)
 
 | 设置 | 说明 |
 |:--- |:--- |
@@ -256,7 +255,7 @@ ms.locfileid: "79452547"
 ## <a name="line-chart-and-list-part"></a>折线图和列表部件
 标头显示一段时间内来自一个日志查询中的具有多个系列的折线图。 列表显示查询的前十个结果，其中的图形指示数值列的相关值或其随时间的变化。
 
-![折线图和列表视图](media/view-designer-parts/view-line-chart-callout-list.png)
+![折线图和列表视图](./media/view-designer-parts/view-line-chart-callout-list.png)
 
 | 设置 | 说明 |
 |:--- |:--- |
@@ -292,7 +291,7 @@ ms.locfileid: "79452547"
 ## <a name="stack-of-line-charts-part"></a>折线图的堆栈部分
 折线图的堆栈显示一段时间内来自一个日志查询中的具有多个系列的三个独立折线图，如下所示：
 
-![折线图的堆栈](media/view-designer-parts/view-stack-line-charts.png)
+![折线图的堆栈](./media/view-designer-parts/view-stack-line-charts.png)
 
 | 设置 | 说明 |
 |:--- |:--- |
@@ -364,7 +363,4 @@ ms.locfileid: "79452547"
 
 ## <a name="next-steps"></a>后续步骤
 * 了解支持在可视化部件中进行查询的[日志查询](../log-query/log-query-overview.md)。
-
-
-
 

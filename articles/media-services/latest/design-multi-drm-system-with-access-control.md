@@ -12,15 +12,15 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 12/21/2018
-ms.date: 07/27/2020
+ms.date: 09/07/2020
 ms.author: v-jay
 ms.custom: seodec18
-ms.openlocfilehash: d47aa96fc614712f4cad9598cebbd4c52c46a3c0
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 1238a477e607131798bd77fb676e265955646913
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162120"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413885"
 ---
 # <a name="design-of-a-multi-drm-content-protection-system-with-access-control"></a>设计带访问控制的多 DRM 内容保护系统 
 
@@ -214,7 +214,7 @@ DRM 子系统可能包含以下组件：
 有关 Azure AD 的信息：
 
 * 可以在 [Azure Active Directory 开发人员指南](../../active-directory/develop/v2-overview.md)中找到面向开发人员的信息。
-* 可以在[管理 Azure AD 租户目录](../../active-directory/fundamentals/active-directory-administer.md)中找到面向管理员的信息。
+* 可以在[管理 Azure AD 租户目录](../../active-directory/fundamentals/active-directory-whatis.md)中找到面向管理员的信息。
 
 ### <a name="some-issues-in-implementation"></a>实现中的一些问题
 

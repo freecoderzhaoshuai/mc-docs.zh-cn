@@ -1,19 +1,19 @@
 ---
 title: 操作组中的短信警报行为
 description: 短信格式，以及回复短信以取消订阅、重新订阅或请求帮助。
-author: dkamstra
+author: Johnnytechn
+ms.author: v-johya
 services: monitoring
 ms.topic: conceptual
-origin.date: 02/16/2018
-ms.date: 02/26/2018
-ms.author: dukek
+ms.date: 08/20/2020
 ms.subservice: alerts
-ms.openlocfilehash: d2711f12991f4a6304c16591d118a4816bf890c5
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+origin.date: 02/16/2018
+ms.openlocfilehash: ffcd4f58ef61c56bc63a7366d7c5e7b1a4bf3bd7
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79452367"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457374"
 ---
 # <a name="sms-alert-behavior-in-action-groups"></a>操作组中的短信通知行为
 
@@ -45,4 +45,6 @@ ms.locfileid: "79452367"
 ## <a name="next-steps"></a>后续步骤
 获取[活动日志警报概述](alerts-overview.md)，了解如何接收警报  
 了解有关[短信速率限制](alerts-rate-limiting.md)的详细信息  
-详细了解[操作组](../../azure-monitor/platform/action-groups.md)
+详细了解[操作组](./action-groups.md)
+
+

@@ -4,16 +4,16 @@ description: 本文提供如何在生产环境中配置和部署 IoT Edge 上的
 ms.topic: conceptual
 origin.date: 04/27/2020
 ms.date: 07/27/2020
-ms.openlocfilehash: 09b6b1bc3dfa299a045d3eb4d60b4ca54b5793b4
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 67ca40b673b82c72647300abf4244704ac433d26
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162770"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413585"
 ---
 # <a name="production-readiness-and-best-practices"></a>生产就绪情况和最佳做法
 
-本文提供如何在生产环境中配置和部署 IoT Edge 上的实时视频分析模块的指南。 在准备 IoT Edge 解决方案时，你还应该参阅[准备在生产环境中部署 IoT Edge 解决方案](/iot-edge/production-checklist)一文。 
+本文提供如何在生产环境中配置和部署 IoT Edge 上的实时视频分析模块的指南。 在准备 IoT Edge 解决方案时，你还应该参阅[准备在生产环境中部署 IoT Edge 解决方案](../../iot-edge/production-checklist.md)一文。 
 
 > [!NOTE]
 > 就安全性方面的相关问题，你应该咨询组织的 IT 部门。

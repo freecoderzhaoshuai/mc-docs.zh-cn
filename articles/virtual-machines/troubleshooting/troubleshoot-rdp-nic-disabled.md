@@ -1,24 +1,26 @@
 ---
-title: 无法通过远程桌面连接到 VM，因为网络接口被禁用
+title: 由于 NIC 被禁用而无法远程连接到 Azure 虚拟机 | Azure
 description: 了解因为 NIC 在 Azure VM 中被禁用而导致 RDP 失败时如何进行故障排除 | Azure
 services: virtual-machines-windows
 documentationCenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 ms.service: virtual-machines-windows
 ms.topic: troubleshooting
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 11/12/2018
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: edb5c42e7ccf0fcadecca0c2f0be9f7439b875e3
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: be5be304c991dbd3e81f568dc9a4d1d93fe0c871
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82595962"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456770"
 ---
 # <a name="cannot-remote-desktop-to-a-vm-because-the-network-interface-is-disabled"></a>无法通过远程桌面连接到 VM，因为网络接口被禁用
 
@@ -37,7 +39,7 @@ ms.locfileid: "82595962"
 <!-- Not Available on use Serial control or -->
 <!-- Not Available on ### Use Serial control-->
 
-### <a name="reset-network-interface"></a>重置网络接口
+## <a name="reset-network-interface"></a>重置网络接口
 
 要重置网络接口，请将 IP 地址更改为子网中可用的其他 IP 地址。 若要执行此操作，请使用 Azure 门户或 Azure PowerShell。 有关详细信息，请参阅[重置网络接口](reset-network-interface.md)。
 

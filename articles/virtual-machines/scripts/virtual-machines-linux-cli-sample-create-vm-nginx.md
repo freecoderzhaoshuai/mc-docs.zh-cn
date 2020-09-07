@@ -1,10 +1,9 @@
 ---
-title: Azure CLI 脚本示例 - 使用 NGINX 创建 VM
+title: Azure CLI 脚本示例 - 使用 NGINX 创建 Linux VM
 description: Azure CLI 脚本示例 - 使用 NGINX 创建 Linux VM
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 tags: azure-resource-manager
 ms.assetid: ''
 ms.service: virtual-machines-linux
@@ -13,15 +12,18 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 origin.date: 02/27/2017
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.custom: mvc
-ms.openlocfilehash: e90766f16aeb6d854dc90e6c48683d9d0e373ae0
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: mvc, devx-track-azurecli
+ms.openlocfilehash: 6d1904e5e6aa64771ded6327d38c164ad8d985ed
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596326"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413356"
 ---
 # <a name="create-a-vm-with-nginx"></a>使用 NGINX 创建 VM
 

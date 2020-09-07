@@ -8,12 +8,12 @@ origin.date: 08/13/2019
 ms.date: 08/13/2020
 ms.author: v-tawe
 ms.custom: seodec18
-ms.openlocfilehash: a5833fc9a8033c5b648b6f908142ce48596ce5e5
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 5023ea4045465f4a19371895d93b312ec2ca7c56
+ms.sourcegitcommit: 5055d580fb7ef1722e32e09a334d1d3e28295dd6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88227957"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89503362"
 ---
 # <a name="configure-an-app-service-app-in-the-azure-portal"></a>在 Azure 门户中配置应用服务应用
 
@@ -180,7 +180,7 @@ ms.locfileid: "88227957"
     > [!NOTE]
     > 大多数新型浏览器仅支持通过 TLS 的 HTTP/2 协议，而非加密流量继续使用 HTTP/1.1。 若要确保客户端浏览器使用 HTTP/2 连接到应用，请保护自定义 DNS 名称。 有关详细信息，请参阅[在 Azure 应用服务中使用 TLS/SSL 绑定保护自定义 DNS 名称](configure-ssl-bindings.md)。
     - **ARR 相关性**：在多实例部署中，请确保在会话的整个生存期内，将客户端路由到同一实例。 对于无状态应用程序，请将此选项设置为“关闭”。 
-- **调试**：为 [ASP.NET](troubleshoot-dotnet-visual-studio.md#remotedebug)、[ASP.NET Core](/visualstudio/debugger/remote-debugging-azure) 或 [Node.js](configure-language-nodejs.md#debug-remotely) 应用启用远程调试。 此选项在 48 小时后会自动关闭。
+- **调试**：为 [ASP.NET](troubleshoot-dotnet-visual-studio.md#remotedebug)、[ASP.NET Core](https://docs.microsoft.com/visualstudio/debugger/remote-debugging-azure) 或 [Node.js](configure-language-nodejs.md#debug-remotely) 应用启用远程调试。 此选项在 48 小时后会自动关闭。
 - **传入的客户端证书**：要求在[相互身份验证](app-service-web-configure-tls-mutual-auth.md)中使用客户端证书。
 
 ## <a name="configure-default-documents"></a>配置默认文档

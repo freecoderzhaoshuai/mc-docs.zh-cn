@@ -11,12 +11,12 @@ ms.topic: conceptual
 origin.date: 09/04/2019
 ms.date: 04/20/2020
 ms.author: v-tawe
-ms.openlocfilehash: df2e9882292690141a1c80814145faf102edda20
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.openlocfilehash: cfa2abd337c3f9955d9f33eee4f3f399aba059b6
+ms.sourcegitcommit: 5055d580fb7ef1722e32e09a334d1d3e28295dd6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588907"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89503360"
 ---
 # <a name="provide-key-vault-authentication-with-a-managed-identity"></a>使用托管标识提供 Key Vault 身份验证
 
@@ -29,7 +29,7 @@ ms.locfileid: "82588907"
 
 ## <a name="prerequisites"></a>先决条件 
 
-若要完成本指南，必须备好以下资源。 
+要完成本指南，必须备好以下资源。 
 
 - 一个 Key Vault。 可以使用现有的 Key Vault，或者遵循以下快速入门之一中的步骤创建一个新的 Key Vault：
    - [使用 Azure CLI 创建 Key Vault](../secrets/quick-create-cli.md)
@@ -68,7 +68,7 @@ az login
 
 若要详细了解 Azure CLI 的登录选项，请参阅[使用 Azure CLI 登录](/cli/authenticate-azure-cli?view=azure-cli-latest)。 
 
-若要为此应用程序创建标识，请使用 Azure CLI 的 [az webapp identity assign](/cli/webapp/identity?view=azure-cli-latest#az-webapp-identity-assign) 命令或 [az functionapp identity assign](/cli/functionapp/identity?view=azure-cli-latest#az-functionapp-identity-assign) 命令：
+若要为此应用程序创建标识，请使用 Azure CLI 的 [az webapp identity assign](https://docs.microsoft.com/cli/azure/webapp/identity?view=azure-cli-latest#az-webapp-identity-assign) 命令或 [az functionapp identity assign](/cli/functionapp/identity?view=azure-cli-latest#az-functionapp-identity-assign) 命令：
 
 
 ```azurecli

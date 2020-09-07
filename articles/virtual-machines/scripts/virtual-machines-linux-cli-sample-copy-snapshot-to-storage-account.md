@@ -1,5 +1,5 @@
 ---
-title: Azure CLI 脚本示例 - 使用 CLI 将快照导出/复制到不同区域中的存储帐户
+title: 将快照复制到另一个区域中的存储帐户 - Linux CLI 示例
 description: Azure CLI 脚本示例 - 将快照作为 VHD 导出/复制到相同或不同区域中的存储帐户。
 services: virtual-machines-linux
 documentationcenter: storage
@@ -13,15 +13,17 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 origin.date: 05/19/2017
-ms.date: 04/27/2020
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: mvc,seodec18
-ms.openlocfilehash: 5181c4b04f603e0bfcaa663169b9e60522769908
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: 48f6bf88a50d3bc2c9625cb2fcebca909abf47a1
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596341"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413760"
 ---
 # <a name="exportcopy-a-snapshot-to-a-storage-account-in-different-region-with-cli"></a>使用 CLI 将快照导出/复制到不同区域中的存储帐户
 
@@ -35,7 +37,7 @@ ms.locfileid: "82596341"
 
 ```azurecli
 #Provide the subscription Id where snapshot is created
-subscriptionId=<mySubscriptionId>
+subscriptionId=mySubscriptionId
 
 #Provide the name of your resource group where snapshot is created
 resourceGroupName=myResourceGroupName
@@ -86,4 +88,4 @@ az storage blob copy start --destination-blob $destinationVHDFileName --destinat
 
 可以在 [Azure Linux VM 文档](../linux/cli-samples.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)中找到其他虚拟机和托管磁盘 CLI 脚本示例。
 
-<!--Update_Description: update meta properties, update links -->
+<!-- Update_Description: update meta properties, wording update -->

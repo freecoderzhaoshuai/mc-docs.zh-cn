@@ -86,7 +86,7 @@
           href: functions-bindings-return-value.md
         - name: 处理绑定错误
           href: functions-bindings-errors.md
-    - name: 语言
+    - name: Languages
       items:
         - name: 支持的语言
           href: supported-languages.md
@@ -143,6 +143,7 @@
               href: functions-develop-vs.md
             - name: Core Tools 开发
               href: functions-run-local.md
+              displayName: 'local, runtime'
         - name: 创建函数
           items:
             - name: HTTP 触发器
@@ -266,7 +267,7 @@
           href: functions-create-serverless-api.md
         - name: 管理本地资源
           href: functions-hybrid-powershell.md
-    - name: 故障排除
+    - name: 疑难解答
       items:
         - name: 排查存储问题
           href: functions-recover-storage-account.md

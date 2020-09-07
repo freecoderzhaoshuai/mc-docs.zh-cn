@@ -11,15 +11,15 @@ ms.service: media-services
 ms.workload: ''
 ms.topic: article
 origin.date: 02/18/2020
-ms.date: 07/27/2020
+ms.date: 09/07/2020
 ms.author: v-jay
 ms.custom: seodec18
-ms.openlocfilehash: cd692a355add9f78a042e40a17e4d720481d1630
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 8e59dfba2606c242367d3c6854aaf7412547c3e8
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162362"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413375"
 ---
 # <a name="media-services-terminology-and-concepts"></a>媒体服务的术语和概念
 
@@ -31,7 +31,7 @@ ms.locfileid: "87162362"
 在开始开发之前，应该复习这些主题中所述的基本概念。
 
 > [!NOTE]
-> 目前，可以使用 [Azure 门户](https://portal.azure.cn/)执行以下操作：管理媒体服务 v3 [直播活动](live-events-outputs-concept.md)、查看（而不是管理）v3 [资产](assets-concept.md)、[获取有关访问 API 的信息](access-api-portal.md)。
+> 目前，可以使用 [Azure 门户](https://portal.azure.cn/)执行以下操作：管理媒体服务 v3 [直播活动](live-events-outputs-concept.md)、查看（而不是管理）v3 [资产](assets-concept.md)、[获取有关访问 API 的信息](./access-api-howto.md)。
 > 对于其他所有管理任务（例如，[转换和作业](transforms-jobs-concept.md)和[内容保护](content-protection-overview.md)），请使用 [REST API](https://aka.ms/ams-v3-rest-ref)、[CLI](https://aka.ms/ams-v3-cli-ref) 或某个受支持的 [SDK](media-services-apis-overview.md#sdks)。
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]

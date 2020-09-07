@@ -1,22 +1,24 @@
 ---
 title: 教程 - 监视 Azure 中的 Windows 虚拟机
 description: 本教程介绍如何监视 Windows 虚拟机上运行的性能和发现的应用程序组件。
-author: rockboyfor
-manager: digimobile
+manager: carmonm
 ms.service: virtual-machines-windows
 ms.subservice: monitoring
 ms.topic: tutorial
 ms.workload: infrastructure
 origin.date: 09/27/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: ff50900ceaa3c636056b2b859620cc36597cf0ff
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 6cf88f5397801176cf57f4460388209bb1242468
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945846"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463171"
 ---
 # <a name="tutorial-monitor-a-windows-virtual-machine-in-azure"></a>教程：监视 Azure 中的 Windows 虚拟机
 
@@ -33,13 +35,15 @@ Azure 监视使用代理从 Azure VM 收集启动和性能数据，将此数据�
 <!--Not Available on > * Enable Azure Monitor for VMs-->
 <!--Not Available on > * View VM performance metrics-->
 
-## <a name="launch-azure-local-powershell"></a>启动 Azure 本地 PowerShell
+## <a name="launch-azure-local-shell"></a>启动 Azure 本地 Shell
 
 打开 Azure Powershell 控制台，以管理员权限运行下面列出的脚本。
 
+<!--Not Available on Azure Cloud Shell-->
+
 ## <a name="create-virtual-machine"></a>创建虚拟机
 
-若要在本教程中配置 Azure 监视和更新管理，需要 Azure 中的 Windows VM。 首先，使用 [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential) 设置 VM 的管理员用户名和密码：
+若要在本教程中配置 Azure 监视和更新管理，需要 Azure 中的 Windows VM。 首先，使用 [Get-Credential](https://docs.microsoft.com/powershell/module/microsoft.powershell.security/get-credential?view=powershell-5.1) 设置 VM 的管理员用户名和密码：
 
 ```powershell
 $cred = Get-Credential
@@ -71,13 +75,13 @@ Get-AzVMBootDiagnosticsData -ResourceGroupName "myResourceGroupMonitor" -Name "m
 
 Windows VM 在 Azure 中有一个与它交互的专用主机 VM。 系统会自动收集该主机的指标，可以在 Azure 门户中查看这些指标。
 
-1. 在 Azure 门户中单击“资源组”，选择“myResourceGroupMonitor”，并在资源列表中选择“myVM”。  
-2. 要查看主机 VM 的性能情况，请在 VM 边栏选项卡上单击“指标”，并选择“可用指标”下的任一主机指标。 
+1. 在 Azure 门户中单击“资源组”，选择“myResourceGroupMonitor”，并在资源列表中选择“myVM”。
+2. 要查看主机 VM 的性能情况，请在 VM 边栏选项卡上单击“指标”，并选择“可用指标”下的任一主机指标。
 
-    ![查看主机指标](./media/tutorial-monitoring/tutorial-monitor-host-metrics.png)
+    :::image type="content" source="./media/tutorial-monitoring/tutorial-monitor-host-metrics.png" alt-text="查看主机指标":::
 
 <!--Not Available on ## Enable advanced monitoring-->
-<!--Not Available on  **Insights (preview)**-->
+<!--Not Available on  **Insights (preview)** till 08/24/2020-->
 
 <!--Not Available on ## View VM performance metrics-->
 
@@ -89,9 +93,9 @@ Windows VM 在 Azure 中有一个与它交互的专用主机 VM。 系统会自�
 
 以下示例针对平均 CPU 使用率创建警报。
 
-1. 在 Azure 门户中单击“资源组”，选择“myResourceGroupMonitor”，并在资源列表中选择“myVM”。  
+1. 在 Azure 门户中单击“资源组”，选择“myResourceGroupMonitor”，并在资源列表中选择“myVM”。
 
-2. 在 VM 边栏选项卡上单击“警报规则”，然后单击警报边栏选项卡顶部的“添加指标警报”。 
+2. 在 VM 边栏选项卡上单击“警报规则”，然后单击警报边栏选项卡顶部的“添加指标警报”。
 
 3. 为警报提供**名称**，例如 *myAlertRule*
 

@@ -1,21 +1,23 @@
 ---
-title: 将通用化 VHD 上传到 Azure 以创建新 VM
+title: 上传通用化 VHD 以在 Azure 中创建多个 VM
 description: 将通用化 VHD 上传到 Azure 存储帐户，创建一个 Windows VM，将其用于 Resource Manager 部署模型。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.topic: how-to
 origin.date: 05/18/2017
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ROBOTS: NOINDEX
 ms.custom: storage-accounts
-ms.openlocfilehash: 4aaeef8e7bdc75d01738745df82e28db69839b07
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: bfc075f1290d4b1ff9cf8e0629006296317a477f
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945785"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463153"
 ---
 # <a name="upload-a-generalized-vhd-to-azure-to-create-a-new-vm"></a>将通用化 VHD 上传到 Azure，创建新 VM
 
@@ -33,9 +35,9 @@ ms.locfileid: "85945785"
   * 使用 Sysprep 将虚拟机通用化
 
 ### <a name="generalize-a-windows-virtual-machine-using-sysprep"></a>使用 Sysprep 通用化 Windows 虚拟机
-本部分说明如何通用化可用作映像的 Windows 虚拟机。 Sysprep 将删除所有个人帐户信息及其他某些数据，并准备好要用作映像的计算机。 有关 Sysprep 的详细信息，请参阅[如何使用 Sysprep：简介](https://technet.microsoft.com/library/bb457073.aspx)。
+本部分说明如何通用化可用作映像的 Windows 虚拟机。 Sysprep 将删除所有个人帐户信息及其他某些数据，并准备好要用作映像的计算机。 有关 Sysprep 的详细信息，请参阅[如何使用 Sysprep：简介](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-xp/bb457073(v=technet.10))。
 
-确保 Sysprep 支持计算机上运行的服务器角色。 有关详细信息，请参阅 [Sysprep 对服务器角色的支持](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)
+确保 Sysprep 支持计算机上运行的服务器角色。 有关详细信息，请参阅 [Sysprep 对服务器角色的支持](https://docs.microsoft.com/windows-hardware/manufacture/desktop/sysprep-support-for-server-roles)
 
 > [!IMPORTANT]
 > 如果在首次将 VHD 上传到 Azure 之前运行 Sysprep，请确保先[准备好 VM](prepare-for-upload-vhd-image.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)，然后再运行 Sysprep。 
@@ -48,7 +50,7 @@ ms.locfileid: "85945785"
 4. 在“关机选项”中选择“关机”。
 5. 单击“确定”。
 
-    ![启动 Sysprep](./media/upload-generalized-managed/sysprepgeneral.png)
+    :::image type="content" source="./media/upload-generalized-managed/sysprepgeneral.png" alt-text="启动 Sysprep":::
 6. Sysprep 在完成运行后会关闭虚拟机。 
 
     > [!IMPORTANT]
@@ -62,7 +64,7 @@ ms.locfileid: "85945785"
 将 VHD 上传到 Azure 存储帐户。
 
 ### <a name="log-in-to-azure"></a>登录 Azure
-如果尚未安装 Azure PowerShell 1.4 或更高版本，请阅读 [How to install and configure Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview)（如何安装和配置 Azure PowerShell）。
+如果尚未安装 Azure PowerShell 1.4 或更高版本，请阅读 [How to install and configure Azure PowerShell](https://docs.microsoft.com/powershell/azure/)（如何安装和配置 Azure PowerShell）。
 
 1. 打开 Azure PowerShell 并登录到 Azure 帐户。 此时会打开一个弹出窗口让输入 Azure 帐户凭据。
 
@@ -240,7 +242,7 @@ $computerName = "myComputer"
 $osDiskName = "myOsDisk"
 
 # Assign a SKU name. This example sets the SKU name as "Standard_LRS"
-# Valid values for -SkuName are: Standard_LRS - locally redundant storage, Standard_ZRS - zone redundant
+# Valid values for -SkuName are: Standard_LRS - locally redundant storage
 # storage, Standard_GRS - geo redundant storage, Standard_RAGRS - read access geo redundant storage,
 # Premium_LRS - premium locally redundant storage. 
 $skuName = "Standard_LRS"
@@ -279,4 +281,4 @@ New-AzVM -ResourceGroupName $rgName -Location $location -VM $vm
 ## <a name="next-steps"></a>后续步骤
 若要使用 Azure PowerShell 管理新虚拟机，请参阅[使用 Azure 资源管理器与 PowerShell 来管理虚拟机](tutorial-manage-vm.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

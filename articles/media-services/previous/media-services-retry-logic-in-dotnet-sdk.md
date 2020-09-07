@@ -13,14 +13,14 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/20/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 0746fa2615750e0e7e205847a8faba329fc3886d
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 2d913fe16019c294f06ba9fbf7bb4389cb308c6d
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71124672"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413859"
 ---
 # <a name="retry-logic-in-the-media-services-sdk-for-net"></a>适用于 .NET 的媒体服务 SDK 中的重试逻辑  
 
@@ -51,7 +51,7 @@ ms.locfileid: "71124672"
 | IOException |否 |是 |否 |否 |
 
 ### <a name="webexception-status-codes"></a><a name="WebExceptionStatus"></a> WebException 状态代码
-下表显示了对其执行重试逻辑的 WebException 错误代码。 [WebExceptionStatus](https://msdn.microsoft.com/library/system.net.webexceptionstatus.aspx) 枚举定义状态代码。  
+下表显示了对其执行重试逻辑的 WebException 错误代码。 [WebExceptionStatus](https://docs.microsoft.com/dotnet/api/system.net.webexceptionstatus?view=netcore-3.1) 枚举定义状态代码。  
 
 | 状态 | Web 请求 | 存储 | 查询 | SaveChanges |
 | --- | --- | --- | --- | --- |

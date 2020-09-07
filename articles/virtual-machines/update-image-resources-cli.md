@@ -1,21 +1,24 @@
 ---
 title: 使用 Azure CLI 列出、更新和删除映像资源
 description: 使用 Azure CLI 列出、更新和删除共享映像库中的映像资源。
-author: rockboyfor
 ms.service: virtual-machines
 ms.subservice: imaging
 ms.workload: infrastructure-services
 ms.topic: how-to
 origin.date: 05/04/2020
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.reviewer: akjosh
-ms.openlocfilehash: 31af54d4f1fd84f7b6fc778d5c97407cb37663ad
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 9b0b6c6b0ea9e209fd2531a927b4a85bfd2e754e
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945614"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463042"
 ---
 <!--Verified Successfully-->
 # <a name="list-update-and-delete-image-resources"></a>列出、更新和删除映像资源 

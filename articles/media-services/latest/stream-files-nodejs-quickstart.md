@@ -12,14 +12,14 @@ ms.workload: media
 ms.topic: tutorial
 ms.custom: mvc
 origin.date: 08/19/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 07974bb943f71cf3bd0be5f9ef46d4647574f2db
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: e7e080f5b0124fa5e5f480a2e88e0faa090586be
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71125546"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414020"
 ---
 # <a name="tutorial-encode-a-remote-file-based-on-url-and-stream-the-video---nodejs"></a>教程：基于 URL 对远程文件进行编码并流式传输视频 - Node.js
 
@@ -36,8 +36,8 @@ ms.locfileid: "71125546"
 ## <a name="prerequisites"></a>先决条件
 
 - 安装 [Node.js](https://nodejs.org/en/download/)
-- [创建媒体服务帐户](create-account-cli-how-to.md)。<br/>请务必记住用于资源组名称和媒体服务帐户名称的值。
-- 遵循[使用 Azure CLI 访问 Azure 媒体服务 API](access-api-cli-how-to.md) 中的步骤并保存凭据。 需要使用这些凭据来访问 API。
+- [创建媒体服务帐户](./create-account-howto.md)。<br/>请务必记住用于资源组名称和媒体服务帐户名称的值。
+- 遵循[使用 Azure CLI 访问 Azure 媒体服务 API](./access-api-howto.md) 中的步骤并保存凭据。 需要使用这些凭据来访问 API。
 
 ## <a name="download-and-configure-the-sample"></a>下载并配置示例
 
@@ -49,7 +49,7 @@ ms.locfileid: "71125546"
 
 该示例位于 [StreamFilesSample](https://github.com/Azure-Samples/media-services-v3-node-tutorials/tree/master/AMSv3Samples/StreamFilesSample) 文件夹。
 
-在下载的项目中打开 [index.js](https://github.com/Azure-Samples/media-services-v3-node-tutorials/blob/master/AMSv3Samples/StreamFilesSample/index.js#L25)。 将 `endpoint config` 值替换为从[访问 API](access-api-cli-how-to.md) 获得的凭据。
+在下载的项目中打开 [index.js](https://github.com/Azure-Samples/media-services-v3-node-tutorials/blob/master/AMSv3Samples/StreamFilesSample/index.js#L25)。 将 `endpoint config` 值替换为从[访问 API](./access-api-howto.md) 获得的凭据。
 
 该示例执行以下操作：
 

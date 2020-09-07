@@ -1,20 +1,22 @@
 ---
-title: 教程 - 使用 Azure PowerShell 在 Windows 虚拟机中安装 SQL、IIS、.NET 堆栈
+title: 教程 - 在 Azure 中创建运行 SQL、IIS、.NET 堆栈的 VM
 description: 本教程介绍如何在 Azure 中的 Windows 虚拟机上安装 Azure SQL、IIS、.NET 堆栈。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.topic: tutorial
 ms.workload: infrastructure
 origin.date: 12/05/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: 61c586bef99b847492a66a06a92e2fe8636de477
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 374e897942b2f2885be89351fd6de21f2c4b8a09
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945858"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462864"
 ---
 # <a name="tutorial-install-the-sql-iis-net-stack-in-a-windows-vm-with-azure-powershell"></a>教程：使用 Azure PowerShell 在 Windows VM 中安装 SQL、IIS、.NET 堆栈
 
@@ -26,7 +28,7 @@ ms.locfileid: "85945858"
 > * 创建运行 SQL Server 的 VM
 > * 安装 SQL Server 扩展
 
-## <a name="launch-azure-local-powershell"></a>启动 Azure 本地 PowerShell
+## <a name="launch-azure-local-shell"></a>启动 Azure 本地 Shell
 
 打开 Azure Powershell 控制台，并以管理员权限运行以下脚本。
 
@@ -71,6 +73,8 @@ Set-AzVMExtension `
 
 ## <a name="create-another-subnet"></a>创建另一子网
 
+<!--Correct on [Get-AzVirtualNetwork](https://docs.microsoft.com/powershell/module/az.network/get-azvirtualnetwork).-->
+
 为 SQL VM 创建第二个子网。 使用 [Get-AzVirtualNetwork](https://docs.microsoft.com/powershell/module/az.network/get-azvirtualnetwork) 获取 vNet。
 
 ```powershell
@@ -112,7 +116,7 @@ New-AzVm `
     -OpenPorts 3389,1401 
 ```
 
-使用 [Set-AzVMSqlServerExtension](https://docs.microsoft.com/powershell/module/az.compute/set-azvmsqlserverextension) 将 [SQL Server 扩展](/virtual-machines/windows/sql/virtual-machines-windows-sql-server-agent-extension)添加到 SQL VM。
+使用 [Set-AzVMSqlServerExtension](https://docs.microsoft.com/powershell/module/az.compute/set-azvmsqlserverextension) 将 [SQL Server 扩展](../../azure-sql/virtual-machines/windows/sql-server-iaas-agent-extension-automate-management.md)添加到 SQL VM。
 
 ```powershell
 Set-AzVMSqlServerExtension `

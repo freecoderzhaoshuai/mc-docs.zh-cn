@@ -1,21 +1,23 @@
 ---
-title: 如何从 Azure VM 创建非托管 VM 映像
+title: 在 Azure 中创建通用化 VM 的非托管映像
 description: 创建通用化 Windows VM 的非托管映像，从而在 Azure 中创建多个 VM 的副本。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
-ms.topic: article
+ms.topic: how-to
 origin.date: 05/23/2017
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ROBOTS: NOINDEX
 ms.custom: storage-accounts
-ms.openlocfilehash: 3a754368a50e45aaef5afcf1331ebe1d748d8ad0
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: d2049f4ad90ba08c0fb90d8f6a26064660eb7191
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946069"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463061"
 ---
 # <a name="how-to-create-an-unmanaged-vm-image-from-an-azure-vm"></a>如何从 Azure VM 创建非托管 VM 映像
 
@@ -24,9 +26,9 @@ ms.locfileid: "85946069"
 本文介绍如何通过 Azure PowerShell 使用存储帐户创建通用化 Azure VM 的映像。 然后可以使用该映像创建另一个 VM。 该映像包含 OS 磁盘和附加到虚拟机的数据磁盘。 该映像不包含虚拟网络资源，因此，创建新 VM 时需要设置这些资源。 
 
 ## <a name="generalize-the-vm"></a>一般化 VM 
-本部分说明如何通用化可用作映像的 Windows 虚拟机。 通用化 VM 将删除所有个人帐户信息及其他某些数据，并准备好要用作映像的计算机。 有关 Sysprep 的详细信息，请参阅[如何使用 Sysprep：简介](https://technet.microsoft.com/library/bb457073.aspx)。
+本部分说明如何通用化可用作映像的 Windows 虚拟机。 通用化 VM 将删除所有个人帐户信息及其他某些数据，并准备好要用作映像的计算机。 有关 Sysprep 的详细信息，请参阅[如何使用 Sysprep：简介](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-xp/bb457073(v=technet.10))。
 
-确保 Sysprep 支持计算机上运行的服务器角色。 有关详细信息，请参阅 [Sysprep 对服务器角色的支持](https://msdn.microsoft.com/windows/hardware/commercialize/manufacture/desktop/sysprep-support-for-server-roles)
+确保 Sysprep 支持计算机上运行的服务器角色。 有关详细信息，请参阅 [Sysprep 对服务器角色的支持](https://docs.microsoft.com/windows-hardware/manufacture/desktop/sysprep-support-for-server-roles)
 
 > [!IMPORTANT]
 > 如果是首次将 VHD 上传到 Azure，请确保先[准备好 VM](prepare-for-upload-vhd-image.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)，然后再运行 Sysprep。 
@@ -41,7 +43,7 @@ ms.locfileid: "85946069"
 4. 在“关机选项”中选择“关机”。
 5. 单击“确定”。
 
-    ![启动 Sysprep](./media/upload-generalized-managed/sysprepgeneral.png)
+    :::image type="content" source="./media/upload-generalized-managed/sysprepgeneral.png" alt-text="启动 Sysprep":::
 6. Sysprep 在完成运行后会关闭虚拟机。 
 
     > [!IMPORTANT]
@@ -210,7 +212,7 @@ $vnet = Get-AzVirtualNetwork -ResourceGroupName $rgName -Name $vnetName
     $osDiskName = "myOsDisk"
 
     # Assign a SKU name. This example sets the SKU name as "Standard_LRS"
-    # Valid values for -SkuName are: Standard_LRS - locally redundant storage, Standard_ZRS - zone redundant
+    # Valid values for -SkuName are: Standard_LRS - locally redundant storage
     # storage, Standard_GRS - geo redundant storage, Standard_RAGRS - read access geo redundant storage,
     # Premium_LRS - premium locally redundant storage. 
     $skuName = "Standard_LRS"

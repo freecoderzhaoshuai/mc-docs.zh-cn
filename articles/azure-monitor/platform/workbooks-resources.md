@@ -7,14 +7,14 @@ manager: carmonm
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
-ms.date: 05/20/2020
+ms.date: 08/20/2020
 ms.author: v-johya
-ms.openlocfilehash: 348f4d29d71b8aed8da9c556f456c0b2608b4930
-ms.sourcegitcommit: a04b0b1009b0c62f2deb7c7acee75a1304d98f87
+ms.openlocfilehash: a960ba43adc4aa796a9b85773c5c87782d84a504
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/22/2020
-ms.locfileid: "83797014"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457387"
 ---
 # <a name="workbook-resource-parameters"></a>工作簿资源参数
 
@@ -61,7 +61,7 @@ ms.locfileid: "83797014"
 > [!NOTE]
 > Azure Resource Graph 尚未在所有云中推出。 如果选择此方法，请确保你的目标云支持 Azure Resource Graph。
 
-[Azure Resource Graph 文档](/governance/resource-graph/overview)
+[Azure Resource Graph 文档](../../governance/resource-graph/overview.md)
 
 ## <a name="creating-a-resource-parameter--json-list"></a>创建资源参数（JSON 列表）
 1. 从编辑模式下的空工作簿开始操作。

@@ -1,45 +1,49 @@
 ---
-title: 教程 - 使用自定义脚本扩展将应用程序部署到 Azure 中的 Windows 虚拟机
+title: 教程 - 在 Azure 中的 Windows VM 上安装应用程序
 description: 本教程介绍如何使用自定义脚本扩展运行脚本并将应用程序部署到 Azure 中的 Windows 虚拟机
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.topic: tutorial
 ms.workload: infrastructure
 origin.date: 11/29/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: 857b21850fa58b41517a33ddeac65df6e986b892
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: b8e30821c9f99c2f310675a0b7655c2a4d031c02
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945892"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463160"
 ---
 # <a name="tutorial---deploy-applications-to-a-windows-virtual-machine-in-azure-with-the-custom-script-extension"></a>教程 - 使用自定义脚本扩展将应用程序部署到 Azure 中的 Windows 虚拟机
 
-若要以快速一致的方式配置虚拟机 (VM)，可以使用[适用于 Windows 的自定义脚本扩展](extensions-customscript.md)。 本教程介绍如何执行下列操作：
+若要以快速一致的方式配置虚拟机 (VM)，可以使用[适用于 Windows 的自定义脚本扩展](../extensions/custom-script-windows.md)。 本教程介绍如何执行下列操作：
 
 > [!div class="checklist"]
 > * 使用自定义脚本扩展安装 IIS
 > * 创建使用自定义脚本扩展的 VM
 > * 在应用扩展后查看正在运行的 IIS 站点
 
-## <a name="launch-azure-local-powershell"></a>启动 Azure 本地 PowerShell
+## <a name="launch-azure-local-shell"></a>启动 Azure 本地 Shell
 
 打开 Azure Powershell 控制台，并以管理员权限运行以下脚本。
 
 <!--Not Available on Azure Cloud Shell-->
 
 ## <a name="custom-script-extension-overview"></a>自定义脚本扩展概述
-自定义脚本扩展在 Azure VM 上下载和执行脚本。 此扩展适用于部署后配置、软件安装或其他任何配置/管理任务。 可以从 Azure 存储或 GitHub 下载脚本，或者在扩展运行时将脚本提供给 Azure 门户。
+自定义脚本扩展在 Azure VM 上下载和执行脚本。 此扩展适用于部署后配置、软件安装或其他任何配置/管理任务。 可以从 Azure 存储或 GitHub 下载脚本，或者在扩展运行时会脚本提供给 Azure 门户。
 
 自定义脚本扩展与 Azure Resource Manager 模板集成，也可以使用 Azure CLI、PowerShell、Azure 门户或 Azure 虚拟机 REST API 来运行它。
 
 自定义脚本扩展适用于 Windows 和 Linux VM。
 
 ## <a name="create-virtual-machine"></a>创建虚拟机
-使用 [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential) 设置 VM 的管理员用户名和密码：
+使用 [Get-Credential](https://docs.microsoft.com/powershell/module/microsoft.powershell.security/get-credential?view=powershell-5.1) 设置 VM 的管理员用户名和密码：
+
+<!--Correct on China East 2-->
 
 ```powershell
 Connect-AzAccount -Environment AzureChinaCloud
@@ -52,7 +56,7 @@ $cred = Get-Credential
 New-AzVm `
     -ResourceGroupName "myResourceGroupAutomate" `
     -Name "myVM" `
-    -Location "China East" `
+    -Location "China East 2" `
     -VirtualNetworkName "myVnet" `
     -SubnetName "mySubnet" `
     -SecurityGroupName "myNetworkSecurityGroup" `
@@ -70,7 +74,7 @@ New-AzVm `
 Set-AzVMExtension -ResourceGroupName "myResourceGroupAutomate" `
     -ExtensionName "IIS" `
     -VMName "myVM" `
-    -Location "ChinaEast" `
+    -Location "ChinaEast2" `
     -Publisher Microsoft.Compute `
     -ExtensionType CustomScriptExtension `
     -TypeHandlerVersion 1.8 `
@@ -88,11 +92,11 @@ Get-AzPublicIPAddress `
 
 然后，可将公共 IP 地址输入 Web 浏览器中。 网站随即显示，其中包括负载均衡器将流量分发到的 VM 的主机名，如下例所示：
 
-![运行 IIS 网站](./media/tutorial-automate-vm-deployment/running-iis-website.png)
+:::image type="content" source="./media/tutorial-automate-vm-deployment/running-iis-website.png" alt-text="运行 IIS 网站":::
 
 ## <a name="next-steps"></a>后续步骤
 
-在本教程中，你在 VM 上自动执行了 IIS 安装。 你已了解如何：
+在本教程中，你在 VM 上自动执行了 IIS 安装。 你已了解如何执行以下操作：
 
 > [!div class="checklist"]
 > * 使用自定义脚本扩展安装 IIS
@@ -104,4 +108,4 @@ Get-AzPublicIPAddress `
 > [!div class="nextstepaction"]
 > [创建自定义 VM 映像](./tutorial-custom-images.md)
 
-<!--Update_Description: update meta properties, wording update-->
+<!-- Update_Description: update meta properties, wording update, update link -->

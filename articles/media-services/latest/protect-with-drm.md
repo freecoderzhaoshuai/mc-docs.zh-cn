@@ -12,16 +12,16 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: conceptual
-origin.date: 05/25/2019
-ms.date: 04/06/2020
+origin.date: 07/09/2020
+ms.date: 09/07/2020
 ms.author: v-jay
 ms.custom: seodec18
-ms.openlocfilehash: 78c8406f6ae414a051eeefe3e1d50f2b871b73d9
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 329d56ddde6d5cc60aab3383b25301ac2a65f3c0
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80625784"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413219"
 ---
 # <a name="tutorial-use-drm-dynamic-encryption-and-license-delivery-service"></a>教程：使用 DRM 动态加密和许可证传送服务
 
@@ -59,8 +59,8 @@ ms.locfileid: "80625784"
 * 查看[内容保护概述](content-protection-overview.md)一文。
 * 查看[设计带访问控制的多 DRM 内容保护系统](design-multi-drm-system-with-access-control.md)。
 * 安装 Visual Studio Code 或 Visual Studio。
-* 按照[本快速入门](create-account-cli-quickstart.md)所述，创建新的 Azure 媒体服务帐户。
-* 根据[访问 API](access-api-cli-how-to.md) 中所述，获取使用媒体服务 API 时所需的凭据
+* 按照[本快速入门](./create-account-howto.md)所述，创建新的 Azure 媒体服务帐户。
+* 根据[访问 API](./access-api-howto.md) 中所述，获取使用媒体服务 API 时所需的凭据
 * 在应用配置文件 (appsettings.json) 中设置相应的值。
 
 ## <a name="download-code"></a>下载代码
@@ -374,7 +374,7 @@ private static async Task<StreamingLocator> CreateStreamingLocatorAsync(
 
 ## <a name="get-a-test-token"></a>获取测试令牌
 
-本教程在内容密钥策略中指定使用令牌限制。 令牌限制策略必须附带由安全令牌服务 (STS) 颁发的令牌。 媒体服务支持采用 [JWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3) 格式的令牌，我们在示例中配置了此格式。
+本教程在内容密钥策略中指定使用令牌限制。 令牌限制策略必须附带由安全令牌服务 (STS) 颁发的令牌。 媒体服务支持采用 [JWT](https://docs.microsoft.com/previous-versions/azure/azure-services/gg185950(v=azure.100)#BKMK_3) 格式的令牌，我们在示例中配置了此格式。
 
 ContentKeyPolicy 中使用了 ContentKeyIdentifierClaim，这意味着，提供给密钥传送服务的令牌必须包含 ContentKey 的标识符。 本示例未指定内容密钥，在创建流定位器时，系统会创建一个随机内容密钥。 若要生成测试令牌，必须获取要放入 ContentKeyIdentifierClaim 声明中的 ContentKeyId。
 
@@ -468,7 +468,7 @@ private static async Task<string> GetDASHStreamingUrlAsync(
 
 ## <a name="clean-up-resources-in-your-media-services-account"></a>清理媒体服务帐户中的资源
 
-一般来说，除了打算重用的对象之外，应该清除所有对象（通常，将重用转换、StreamingLocators 等）。 如果希望帐户在试验后保持干净状态，则删除不打算重复使用的资源。 例如，以下代码可删除作业：
+一般来说，除了打算重用的对象之外，应该清除所有对象（通常，将重用转换、StreamingLocators 等）。 如果希望帐户在试验后保持干净状态，则删除不打算重复使用的资源。 例如，以下代码可删除作业、已创建的资产和内容密钥策略：
 
 ```c#
 private static async Task CleanUpAsync(

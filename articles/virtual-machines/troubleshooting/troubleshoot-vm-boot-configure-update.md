@@ -3,8 +3,7 @@ title: VM 启动时停滞，并在 Azure 中显示“正在准备 Windows。 请
 description: 介绍了解决以下问题的步骤：VM 启动时停滞并显示“正在准备 Windows。 请不要关闭计算机。”
 services: virtual-machines-windows
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: azure-resource-manager
 ms.service: virtual-machines-windows
@@ -12,28 +11,29 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.topic: article
 origin.date: 09/18/2018
-ms.date: 11/11/2019
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: eddbb05c638f2ca52a4816d1d1dd866c714ee8f7
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 198b32a5eda723380d8e423ca2cfcbdac456ab08
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74116926"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456740"
 ---
 # <a name="vm-startup-is-stuck-on-getting-windows-ready-dont-turn-off-your-computer-in-azure"></a>VM 启动时停滞，并在 Azure 中显示“正在准备 Windows。 请不要关闭计算机”
 
 本文介绍了在 Azure 中启动 Windows 虚拟机 (VM) 时可能会遇到的“准备就绪”和“准备 Windows 就绪”屏幕。 本文提供用于收集支持票证数据的步骤。
 
-[!INCLUDE [updated-for-az.md](../../../includes/updated-for-az.md)]
-
 ## <a name="symptoms"></a>症状
 
 Windows VM 无法启动。 使用**启动诊断**来获取 VM 的屏幕截图时，可能会看到 VM 显示消息“准备就绪”或“准备 Windows 就绪”。
 
-![Windows Server 2012 R2 的消息示例](./media/troubleshoot-vm-configure-update-boot/message1.png)
+:::image type="content" source="./media/troubleshoot-vm-configure-update-boot/message1.png" alt-text="Windows Server 2012 R2 的消息示例":::
 
-![消息示例](./media/troubleshoot-vm-configure-update-boot/message2.png)
+:::image type="content" source="./media/troubleshoot-vm-configure-update-boot/message2.png" alt-text="消息示例":::
 
 ## <a name="cause"></a>原因
 
@@ -46,7 +46,7 @@ Windows VM 无法启动。 使用**启动诊断**来获取 VM 的屏幕截图时
 ### <a name="attach-the-os-disk-to-a-recovery-vm"></a>将 OS 磁盘附加到恢复 VM
 
 1. 拍摄受影响的 VM 的 OS 磁盘的快照作为备份。 有关详细信息，请参阅[拍摄磁盘快照](../windows/snapshot-copy-managed-disk.md)。
-2. [将 OS 磁盘附加到恢复 VM](../windows/troubleshoot-recovery-disks-portal.md)。
+2. [将 OS 磁盘附加到恢复 VM](./troubleshoot-recovery-disks-portal-windows.md)。
 3. 通过远程桌面连接到恢复 VM。 
 4. 如果 OS 磁盘已加密，则必须先关闭加密，然后才能进入下一步。 有关详细信息，请参阅[在无法启动的 VM 中解密加密的 OS 磁盘](troubleshoot-bitlocker-boot-error.md#solution)。
 
@@ -93,19 +93,19 @@ Windows VM 无法启动。 使用**启动诊断**来获取 VM 的屏幕截图时
     1. 请确保磁盘上有足够的空间来分配与 RAM 一样多的内存，具体取决于为此 VM 选择的大小。
     2. 如果没有足够的空间，或者这是大型 VM（G、GS 或 E 系列），则可随后更改创建此文件时所在的位置，将该位置指向任何其他附加到 VM 的数据磁盘。 为此，需更改以下密钥：
 
-            reg load HKLM\BROKENSYSTEM F:\windows\system32\config\SYSTEM.hiv
+        ```console
+        reg load HKLM\BROKENSYSTEM F:\windows\system32\config\SYSTEM.hiv
 
-            REG ADD "HKLM\BROKENSYSTEM\ControlSet001\Control\CrashControl" /v DumpFile /t REG_EXPAND_SZ /d "<DRIVE LETTER OF YOUR DATA DISK>:\MEMORY.DMP" /f
-            REG ADD "HKLM\BROKENSYSTEM\ControlSet002\Control\CrashControl" /v DumpFile /t REG_EXPAND_SZ /d "<DRIVE LETTER OF YOUR DATA DISK>:\MEMORY.DMP" /f
+        REG ADD "HKLM\BROKENSYSTEM\ControlSet001\Control\CrashControl" /v DumpFile /t REG_EXPAND_SZ /d "<DRIVE LETTER OF YOUR DATA DISK>:\MEMORY.DMP" /f
+        REG ADD "HKLM\BROKENSYSTEM\ControlSet002\Control\CrashControl" /v DumpFile /t REG_EXPAND_SZ /d "<DRIVE LETTER OF YOUR DATA DISK>:\MEMORY.DMP" /f
 
-            reg unload HKLM\BROKENSYSTEM
+        reg unload HKLM\BROKENSYSTEM
+        ```
 
-3. [分离 OS 磁盘，然后将 OS 磁盘重新附加到受影响的 VM](../windows/troubleshoot-recovery-disks-portal.md)。
+3. [分离 OS 磁盘，然后将 OS 磁盘重新附加到受影响的 VM](./troubleshoot-recovery-disks-portal-windows.md)。
 4. 启动 VM 并访问串行控制台。
 5. 选择“发送不可屏蔽中断(NMI)”  以触发内存转储。
-    
-    ![有关发送不可屏蔽中断的位置的插图](./media/troubleshoot-vm-configure-update-boot/run-nmi.png)
-    
+    :::image type="content" source="./media/troubleshoot-vm-configure-update-boot/run-nmi.png" alt-text="有关发送不可屏蔽中断的位置的插图":::
 6. 再次将 OS 磁盘附加到恢复 VM，收集转储文件。
 
 ## <a name="contact-azure-support"></a>联系 Azure 支持部门

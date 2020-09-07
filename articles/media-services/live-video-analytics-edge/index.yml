@@ -12,13 +12,13 @@ metadata:
   author: 
   ms.author: 
   origin.date: 10/12/2019
-  ms.date: 07/27/2020
-  ms.openlocfilehash: 95691c474454da3aeeb10f4d22e1fc660df53b38
-  ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+  ms.date: 09/07/2020
+  ms.openlocfilehash: 503535df1b52ff5a0a79d8fe2e53063db4eee44e
+  ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 07/24/2020
-  ms.locfileid: "87162820"
+  ms.lasthandoff: 09/03/2020
+  ms.locfileid: "89413248"
 landingContent:
 - title: 关于 IoT Edge 上的实时视频分析（预览版）
   linkLists:

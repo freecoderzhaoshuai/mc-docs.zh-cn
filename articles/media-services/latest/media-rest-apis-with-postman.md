@@ -12,14 +12,14 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 12/05/2019
-ms.date: 01/20/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: a82b09dc214904552ffbf381cabc3ba88bbfc100
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 2353d771b5cc66cd19086a663bf0caff14d138f5
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75939774"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413469"
 ---
 # <a name="configure-postman-for-media-services-v3-rest-api-calls"></a>配置 Postman 以进行媒体服务 v3 REST API 调用
 
@@ -29,11 +29,11 @@ ms.locfileid: "75939774"
 
 ## <a name="prerequisites"></a>先决条件
 
-- [创建媒体服务帐户](create-account-cli-how-to.md)。 请务必记住资源组名称和媒体服务帐户名称。 
-- 获取[访问 API](access-api-cli-how-to.md) 所需的信息
+- [创建媒体服务帐户](./create-account-howto.md)。 请务必记住资源组名称和媒体服务帐户名称。 
+- 获取[访问 API](./access-api-howto.md) 所需的信息
 - 安装 [Postman](https://www.getpostman.com/) REST 客户端，以便执行一些 AMS REST 教程中所示的 REST API。 
 
-    我们使用的是 **Postman**，但任何 REST 工具都适用。 其他替代工具包括：带有 REST 插件的 **Visual Studio Code** 或 **Telerik Fiddler**。 
+    我们使用的是 **Postman**，但任何 REST 工具都适用。 其他适用的工具有：具有 REST 插件的 Visual Studio Code 或 Telerik Fiddler   。 
 
 > [!IMPORTANT]
 > 查看[命名约定](media-services-apis-overview.md#naming-conventions)。
@@ -51,19 +51,19 @@ ms.locfileid: "75939774"
 ### <a name="configure-the-environment"></a>配置环境 
 
 1. 打开 **Postman** 应用。
-2. 在屏幕的右侧，选择“管理环境”  选项。
+2. 在屏幕的右侧，选择“管理环境”选项。
 
     ![管理环境](./media/develop-with-postman/postman-import-env.png)
-4. 从“管理环境”  对话框中，单击“导入”  。
+4. 从“管理环境”对话框中，单击“导入”。
 2. 浏览到克隆 `https://github.com/Azure-Samples/media-services-v3-rest-postman.git` 时下载的 `Azure Media Service v3 Environment.postman_environment.json` 文件。
 6. **Azure Media Service v3 Environment** 环境已添加。
 
     > [!Note]
-    > 使用从上面的“访问媒体服务 API”  部分获得的值更新访问权限变量。
+    > 使用从上面的“访问媒体服务 API”部分获得的值更新访问权限变量。
 
 7. 双击所选的文件，并输入通过执行访问 API 步骤获得的值。
 8. 关闭对话框。
-9. 从下拉列表中选择“Azure Media Service v3 Environment”环境。 
+9. 从下拉列表中选择“Azure Media Service v3 Environment”环境。
 
     ![选择环境](./media/develop-with-postman/choose-env.png)
    
@@ -81,7 +81,7 @@ ms.locfileid: "75939774"
 
 1. 在 Postman 应用的左窗口中，选择“步骤 1: 获取 AAD 身份验证令牌”。
 2. 然后，选择“获取适用于服务主体身份验证的 Azure AD 令牌”。
-3. 按“发送”。 
+3. 按“发送”。
 
     将会发送以下 **POST** 操作。
 
@@ -100,7 +100,6 @@ ms.locfileid: "75939774"
 
 ## <a name="see-also"></a>另请参阅
 
-- [将文件上传到媒体服务帐户 - REST](upload-files-rest-how-to.md)
 - [使用媒体服务创建筛选器 - REST](filters-dynamic-manifest-rest-howto.md)
 - [基于 Azure 资源管理器的 REST API](https://github.com/Azure-Samples/media-services-v3-arm-templates)
 

@@ -1,24 +1,24 @@
 ---
-title: 适用于 Windows 的自定义脚本扩展
+title: 适用于 Windows 的 Azure 自定义脚本扩展
 description: 使用自定义脚本扩展自动执行 Windows VM 配置任务
 services: virtual-machines-windows
-manager: digimobile
-author: rockboyfor
+manager: carmonm
 ms.service: virtual-machines-windows
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 origin.date: 05/02/2019
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: yes
-ms.testdate: 07/27/2020
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 585ffad11d9f2bb9dcd3e4c676270679ce60b0a4
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: 52b2ce6267e352f24ca07a7b30d309e343bff7cb
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244781"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413928"
 ---
 # <a name="custom-script-extension-for-windows"></a>适用于 Windows 的自定义脚本扩展
 
@@ -148,7 +148,7 @@ ms.locfileid: "87244781"
 * `timestamp`（可选，32 位整数）仅当需要更改此字段的值来触发脚本的重新运行时，才使用此字段。  任何整数值都是可以接受的，前提是必须不同于以前的值。
 * `storageAccountName`：（可选，字符串）存储帐户的名称。 如果指定存储凭据，所有 `fileUris` 都必须是 Azure Blob 的 URL。
 * `storageAccountKey`：（可选，字符串）存储帐户的访问密钥
-* `managedIdentity`：（可选，json 对象）用于下载文件的[托管标识](/active-directory/managed-identities-azure-resources/overview)
+* `managedIdentity`：（可选，json 对象）用于下载文件的[托管标识](../../active-directory/managed-identities-azure-resources/overview.md)
     * `clientId`：（可选，字符串）托管标识的客户端 ID
     * `objectId`：（可选，字符串）托管标识的对象 ID
 
@@ -164,9 +164,9 @@ ms.locfileid: "87244781"
 > [!NOTE]
 > 此属性只能在受保护的设置中指定。
 
-CustomScript（版本 1.10 及更高版本）支持用于通过“fileUris”设置中提供的 URL 下载文件的[托管标识](/active-directory/managed-identities-azure-resources/overview)。 它允许 CustomScript 访问 Azure 存储专用 Blob 或容器，而无需用户传递 SAS 令牌或存储帐户密钥等机密。
+CustomScript（版本 1.10 及更高版本）支持用于通过“fileUris”设置中提供的 URL 下载文件的[托管标识](../../active-directory/managed-identities-azure-resources/overview.md)。 它允许 CustomScript 访问 Azure 存储专用 Blob 或容器，而无需用户传递 SAS 令牌或存储帐户密钥等机密。
 
-若要使用此功能，用户必须将[系统分配的](/app-service/overview-managed-identity?tabs=dotnet#add-a-system-assigned-identity)或[用户分配的](/app-service/overview-managed-identity?tabs=dotnet#add-a-user-assigned-identity)标识添加到需要运行 CustomScript 的 VM 或 VMSS，并[授予托管标识访问 Azure 存储容器或 Blob 的权限](/active-directory/managed-identities-azure-resources/tutorial-vm-windows-access-storage#grant-access)。
+若要使用此功能，用户必须将[系统分配的](../../app-service/overview-managed-identity.md?tabs=dotnet#add-a-system-assigned-identity)或[用户分配的](../../app-service/overview-managed-identity.md?tabs=dotnet#add-a-user-assigned-identity)标识添加到需要运行 CustomScript 的 VM 或 VMSS，并[授予托管标识访问 Azure 存储容器或 Blob 的权限](../../active-directory/managed-identities-azure-resources/tutorial-vm-windows-access-storage.md#grant-access)。
 
 若要在目标 VM/VMSS 上使用系统分配的标识，请将“managedidentity”字段设置为空的 json 对象。 
 
@@ -305,7 +305,7 @@ The response content cannot be parsed because the Internet Explorer engine is no
 
 ### <a name="powershell"></a>PowerShell
 
-可使用 [Set-AzureVMCustomScriptExtension](https://docs.microsoft.com/powershell/module/servicemanagement/azure/set-azurevmcustomscriptextension) cmdlet 将自定义脚本扩展添加到现有虚拟机。
+可使用 [Set-AzureVMCustomScriptExtension](https://docs.microsoft.com/powershell/module/servicemanagement/azure.service/set-azurevmcustomscriptextension) cmdlet 将自定义脚本扩展添加到现有虚拟机。
 
 ```powershell
 # define your file URI

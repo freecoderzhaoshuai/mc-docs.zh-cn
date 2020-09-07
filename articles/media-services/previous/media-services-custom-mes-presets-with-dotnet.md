@@ -13,14 +13,15 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/26/2019
-ms.date: 07/27/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: a1877aac71fcf095fd8d1b451c3d0161e388b4f7
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 2520862f9d80f70b14e81f2bf6a1dde8e1b8eaed
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162173"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413529"
 ---
 # <a name="customizing-media-encoder-standard-presets"></a>自定义 Media Encoder Standard 预设  
 
@@ -31,7 +32,7 @@ ms.locfileid: "87162173"
 本文介绍如何使用 [H264 多比特率 720p](media-services-mes-preset-H264-Multiple-Bitrate-720p.md) 预设并减少层数，从而自定义预设。 [自定义 Media Encoder Standard 预设](media-services-advanced-encoding-with-mes.md)这篇文章演示了可用于执行高级编码任务的自定义预设。
 
 > [!NOTE]
-> 本文中所述的自定义预设不能用于[媒体服务 V3](/media-services/latest/) 转换或 CLI 命令。 有关更多详细信息，请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)。
+> 本文中所述的自定义预设不能用于[媒体服务 V3](../latest/index.yml) 转换或 CLI 命令。 有关更多详细信息，请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)。
 
 ## <a name="customizing-a-mes-preset"></a><a id="customizing_presets"></a>自定义 MES 预设
 

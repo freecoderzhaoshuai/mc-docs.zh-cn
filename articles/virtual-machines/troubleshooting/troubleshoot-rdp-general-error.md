@@ -1,26 +1,26 @@
 ---
-title: 排查 Azure VM 的常规 RDP 错误 | Azure
+title: 排查通过 RDP 连接到 Azure 中的 Windows VM 时发生的常规错误 | Azure
 description: 了解如何排查通过 RDP 连接到 Azure 中的 Windows VM 时发生的常规错误 | Azure
 services: virtual-machines-windows
 documentationCenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 ms.service: virtual-machines-windows
 ms.topic: troubleshooting
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 10/31/2018
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: yes
-ms.testdate: 07/27/2020
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: bedb59bd4b843d90eac4c0900e24b3bea82c62cf
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: 0931e68cb64df680b7528dbc742f52a77fd83b8d
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244465"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456772"
 ---
 # <a name="troubleshoot-an-rdp-general-error-in-azure-vm"></a>排查 Azure VM 的常规 RDP 错误
 
@@ -72,7 +72,7 @@ RDP 侦听器配置不当。
 
 #### <a name="step-1-turn-on-remote-desktop"></a>步骤 1：启用远程桌面
 
-1. [将 OS 磁盘附加到恢复 VM](../windows/troubleshoot-recovery-disks-portal.md)。
+1. [将 OS 磁盘附加到恢复 VM](./troubleshoot-recovery-disks-portal-windows.md)。
 2. 开始与恢复 VM 建立远程桌面连接。
 3. 确保磁盘在磁盘管理控制台中标记为“联机”。 请注意分配给附加的 OS 磁盘的驱动器号。
 4. 开始与恢复 VM 建立远程桌面连接。
@@ -124,8 +124,8 @@ RDP 侦听器配置不当。
 
     策略定义\Windows 组件\远程桌面服务\远程桌面会话主机\连接\允许用户使用远程桌面服务进行远程连接
 
-7. 从救援 VM 拆离磁盘。
-8. [从磁盘创建新的 VM](../windows/create-vm-specialized.md)。
+1. 从救援 VM 拆离磁盘。
+1. [从磁盘创建新的 VM](../windows/create-vm-specialized.md)。
 
 如果仍发生此问题，请转到步骤 2。
 

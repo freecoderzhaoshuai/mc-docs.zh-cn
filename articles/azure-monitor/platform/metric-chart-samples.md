@@ -1,23 +1,23 @@
 ---
 title: Azure Monitor 指标图表示例
 description: 了解如何可视化 Azure Monitor 数据。
-author: lingliw
+author: Johnnytechn
 services: azure-monitor
-ms.topic: conceptual
 origin.date: 01/29/2019
-ms.date: 08/29/2019
-ms.author: v-lingwu
-ms.subservice: ''
-ms.openlocfilehash: c07562a0265b81cd5a8d9334ad5ec7989fa153b1
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.topic: conceptual
+ms.date: 08/20/2020
+ms.author: v-johya
+ms.subservice: metrics
+ms.openlocfilehash: 348f09207cfa046db59362ff8ce051cde2ff24ab
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508460"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457415"
 ---
 # <a name="metric-chart-examples"></a>指标图表示例 
 
-Azure 平台提供了[一千多个指标](/azure-monitor/platform/metrics-supported)，其中许多指标具有维度。 通过使用[维度筛选器](/azure-monitor/platform/metrics-charts)、应用[拆分](/azure-monitor/platform/metrics-charts)、控制图表类型和调整图表设置，可以创建功能强大的诊断视图和仪表板，以深入了解基础结构和应用程序的运行状况。 本文介绍了一些可以使用[指标资源管理器](/azure-monitor/platform/metrics-charts)生成的图表示例，并说明了配置每个图表的必要步骤。
+Azure 平台提供了[一千多个指标](./metrics-supported.md)，其中许多指标具有维度。 通过使用[维度筛选器](./metrics-charts.md)、应用[拆分](./metrics-charts.md)、控制图表类型和调整图表设置，可以创建功能强大的诊断视图和仪表板，以深入了解基础结构和应用程序的运行状况。 本文介绍了一些可以使用[指标资源管理器](./metrics-charts.md)生成的图表示例，并说明了配置每个图表的必要步骤。
 
 想和全世界分享你出色的图表示例吗？ 在 GitHub 上参与撰写此页面，并在此处分享你自己的图表示例！
 
@@ -33,13 +33,13 @@ Azure 平台提供了[一千多个指标](/azure-monitor/platform/metrics-suppor
 
 ## <a name="application-availability-by-region"></a>各个区域的应用程序可用性
 
-查看各个区域的应用程序可用性，以确定哪些地理位置遇到问题。 此图表显示 Application Insights 可用性指标。 可以看到，受监视的应用程序没有遇到来自中国东部数据中心的可用性问题，但它正在经历来自中国东部的部分可用性问题。
+查看各个区域的应用程序可用性，以确定哪些地理位置遇到问题。 此图表显示 Application Insights 可用性指标。 可以看到，受监视的应用程序没有遇到来自美国东部数据中心的可用性问题，但它正在经历来自美国西部和东亚的部分可用性问题。
 
 ![各个位置的平均可用性图表](./media/metric-chart-samples/availability-run-location.png)
 
 ### <a name="how-to-configure-this-chart"></a>如何配置此图表？
 
-首先需要启用网站的 [Application Insights 可用性](/azure-monitor/app/monitor-web-app-availability)监视。 在此之后，选择 Application Insights 资源并选择可用性指标。 在“运行位置”  维度上应用拆分。
+首先需要启用网站的 [Application Insights 可用性](../app/monitor-web-app-availability.md)监视。 在此之后，选择 Application Insights 资源并选择可用性指标。 在“运行位置”  维度上应用拆分。
 
 ## <a name="volume-of-storage-account-transactions-by-api-name"></a>按 API 名称划分的存储帐户事务量
 
@@ -53,6 +53,7 @@ Azure 平台提供了[一千多个指标](/azure-monitor/platform/metrics-suppor
 
 ## <a name="next-steps"></a>后续步骤
 
-* 了解有关 Azure Monitor [工作簿](../../azure-monitor/platform/workbooks-overview.md)的信息
+* 了解有关 Azure Monitor [工作簿](./workbooks-overview.md)的信息
 * 详细了解[指标资源管理器](metrics-charts.md)
+
 

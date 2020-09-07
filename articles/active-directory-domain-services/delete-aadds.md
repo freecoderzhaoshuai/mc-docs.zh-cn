@@ -9,14 +9,14 @@ ms.service: active-directory
 ms.subservice: domain-services
 ms.workload: identity
 ms.topic: how-to
-ms.date: 08/07/2020
+ms.date: 09/01/2020
 ms.author: v-junlch
-ms.openlocfilehash: 5ef4352dd04f619de71d36ceaa38533dd56bf4b1
-ms.sourcegitcommit: a5eb9a47feefb053ddbaab4b15c395972c372339
+ms.openlocfilehash: ce9fdd246e7c5b2d96f10d827add557ed4b5ca68
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88028565"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413306"
 ---
 # <a name="delete-an-azure-active-directory-domain-services-managed-domain-using-the-azure-portal"></a>使用 Azure 门户删除 Azure Active Directory 域服务托管域
 
@@ -50,6 +50,6 @@ ms.locfileid: "88028565"
 如果要再次开始使用 Azure AD DS，请参阅[创建和配置 Azure Active Directory 域服务托管域][create-instance]。
 
 <!-- INTERNAL LINKS -->
-[feedback]: https://feedback.azure.com/forums/169401-azure-active-directory?category_id=160593
+[feedback]: https://feedback.azure.com/forums/169401-azure-active-directory?category_id=160593%3fcategory_id%3d160593
 [create-instance]: tutorial-create-instance.md
 

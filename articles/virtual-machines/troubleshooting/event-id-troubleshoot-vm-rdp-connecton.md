@@ -3,8 +3,7 @@ title: 按事件 ID 排查 Azure VM RDP 连接问题 | Azure
 description: 使用事件 ID 排查阻止远程桌面协议 (RDP) 连接到 Azure 虚拟机 (VM) 的各种问题。
 services: virtual-machines-windows
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: ''
 ms.service: virtual-machines
@@ -13,16 +12,17 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: azurecli
 origin.date: 11/01/2018
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: yes
-ms.testdate: 07/27/2020
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 5c28a8d41afb93a0fe6122edf5cdafd4d17d8192
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: 7e4017d97850bf4046c79c1d58726934c7385a89
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244760"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456861"
 ---
 <!--Verify part successfully-->
 # <a name="troubleshoot-azure-vm-rdp-connection-issues-by-event-id"></a>按事件 ID 排查 Azure VM RDP 连接问题 
@@ -174,7 +174,7 @@ Start-Service -Name "SessionEnv"
 
 6. 选择“完成”，然后选择“确认”   。
 
-    ![选择计算机](./media/event-id-troubleshoot-vm-rdp-connecton/select-computer.png)
+    :::image type="content" source="./media/event-id-troubleshoot-vm-rdp-connecton/select-computer.png" alt-text="选择计算机":::
 
 7. 展开证书，转到“远程桌面\证书”文件夹，右键单击证书，然后选择“删除”  。
 
@@ -241,6 +241,8 @@ RDP 默认使用 TLS 1.0 协议。 但是，该协议可能会更改为 TLS 1.1�
 
 若要解决此问题，请参阅[使用 RDP 连接到 Azure VM 时排查身份验证错误](troubleshoot-authentication-error-rdp-vm.md#tls-version)。
 
+<!--Correct on Azure VM-->
+
 ## <a name="scenario-3"></a>方案 3
 
 如果已在 VM 上安装了“远程桌面连接代理”角色，请检查过去 24 小时内是否存在事件 2056 或事件 1296  。 在 CMD 实例中，运行以下命令： 
@@ -294,14 +296,14 @@ Null <br />
 
 ## <a name="next-steps"></a>后续步骤
 
-[Schannel Events](https://technet.microsoft.com/library/dn786445(v=ws.11).aspx)（Schannel 事件）
+[Schannel Events](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/dn786445(v=ws.11))（Schannel 事件）
 
-[Schannel SSP 技术概述](https://technet.microsoft.com/library/dn786429(v=ws.11).aspx)
+[Schannel SSP 技术概述](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/dn786429(v=ws.11))
 
-[RDP Fails with Event ID 1058 & Event 36870 with Remote Desktop Session Host Certificate & SSL Communication](https://blogs.technet.microsoft.com/askperf/2014/10/22/rdp-fails-with-event-id-1058-event-36870-with-remote-desktop-session-host-certificate-ssl-communication/)（使用远程桌面会话托管证书和 SSL 通信导致 RDP 失败，出现事件 ID 1058 和事件 36870）
+[RDP Fails with Event ID 1058 & Event 36870 with Remote Desktop Session Host Certificate & SSL Communication](https://techcommunity.microsoft.com/t5/ask-the-performance-team/bg-p/AskPerf)（使用远程桌面会话托管证书和 SSL 通信导致 RDP 失败，出现事件 ID 1058 和事件 36870）
 
-[Schannel 36872 or Schannel 36870 on a Domain Controller](https://blogs.technet.microsoft.com/instan/2009/01/05/schannel-36872-or-schannel-36870-on-a-domain-controller/)（域控制器上的 Schannel 36872 或 Schannel 36870）
+[Schannel 36872 or Schannel 36870 on a Domain Controller](https://docs.microsoft.com/archive/blogs/instan/schannel-36872-or-schannel-36870-on-a-domain-controller)（域控制器上的 Schannel 36872 或 Schannel 36870）
 
-[Event ID 1058 — Remote Desktop Services Authentication and Encryption](https://technet.microsoft.com/library/ee890862(v=ws.10).aspx)（事件 ID 1058 - 远程桌面服务身份验证和加密）
+[Event ID 1058 — Remote Desktop Services Authentication and Encryption](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/ee890862(v=ws.10))（事件 ID 1058 - 远程桌面服务身份验证和加密）
 
 <!-- Update_Description: update meta properties, wording update, update link -->

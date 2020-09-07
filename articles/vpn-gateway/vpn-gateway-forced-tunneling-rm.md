@@ -5,16 +5,16 @@ services: vpn-gateway
 titleSuffix: Azure VPN Gateway
 author: WenJason
 ms.service: vpn-gateway
-ms.topic: article
+ms.topic: how-to
 origin.date: 02/01/2018
-ms.date: 04/06/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 52004de7a6bb9af4479b40249065f5348379a277
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: b764913b53f7355cebdfe0ec08b6dfbce703915b
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80634411"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463138"
 ---
 # <a name="configure-forced-tunneling-using-the-azure-resource-manager-deployment-model"></a>使用 Azure 资源管理器部署模型配置强制隧道
 
@@ -63,7 +63,7 @@ ms.locfileid: "80634411"
 
 ## <a name="before-you-begin"></a><a name="before"></a>准备工作
 
-安装最新版本的 Azure 资源管理器 PowerShell cmdlet。 有关安装 PowerShell cmdlet 的详细信息，请参阅 [如何安装和配置 Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview) 。
+安装最新版本的 Azure 资源管理器 PowerShell cmdlet。 有关安装 PowerShell cmdlet 的详细信息，请参阅 [如何安装和配置 Azure PowerShell](https://docs.microsoft.com/powershell/azure/) 。
 
 > [!IMPORTANT]
 > 需要安装 PowerShell cmdlet 的最新版本。 否则，运行某些 cmdlet 时可能会收到验证错误。

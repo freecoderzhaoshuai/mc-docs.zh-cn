@@ -1,33 +1,25 @@
 ---
-title: 适用于 VPN 网关的 Azure PowerShell 示例 | Microsoft Docs
-description: 适用于 VPN 网关的 Azure PowerShell 示例。
+title: 适用于 VPN 网关的 Azure PowerShell 示例
+description: 使用这些 Azure PowerShell 脚本创建 VPN 网关、创建站点到站点和 Vnet 到 Vnet 连接，以及下载 VPN 设备模板。
 services: vpn-gateway
-documentationcenter: ''
 author: WenJason
-manager: digimobile
-editor: ''
-tags: ''
-ms.assetid: ''
 ms.service: vpn-gateway
-ms.devlang: na
 ms.topic: sample
-ms.tgt_pltfrm: ''
-ms.workload: infrastructure
-origin.date: 04/25/2018
-ms.date: 12/10/2018
+origin.date: 01/10/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 043ea0d1796f2157b2f3f45fbc0be6ff952a1f4d
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 992bcff8d4e0a8a7eb322d809530b826e803131d
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "63849238"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462949"
 ---
 # <a name="azure-powershell-samples-for-vpn-gateway"></a>适用于 VPN 网关的 Azure PowerShell 示例
 
 下表包含 Azure PowerShell 脚本的链接：
 
-| | |
+| Script | 说明 |
 |----|----|
 | [创建 VPN 网关](./scripts/vpn-gateway-sample-create-vpn-gateway-powershell.md) | 创建基于路由的 VPN 网关。 |
 | [创建 VPN 网关和 P2S 配置 - RADIUS](./scripts/vpn-gateway-sample-point-to-site-radius-authentication-powershell.md) | 创建基于路由的 VPN 网关和使用 RADIUS 用户名/密码身份验证的 P2S 配置。 |

@@ -4,20 +4,20 @@ description: 了解 Azure 资源日志支持的服务和事件架构。
 ms.subservice: logs
 author: Johnnytechn
 ms.topic: reference
-ms.date: 07/15/2020
-ms.openlocfilehash: 42815e52deda821568bd8974f75fbffcb49a5eeb
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.date: 08/20/2020
+ms.openlocfilehash: 20351697b15eee0cb75b0ed3c5d54cab19f25131
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440585"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457262"
 ---
 # <a name="common-and-service-specific-schema-for-azure-resource-logs"></a>Azure 资源日志的通用架构和特定于服务的架构
 
 > [!NOTE]
 > 资源日志以前称为诊断日志。 此名称在 2019 年 10 月发生了更改，因为 Azure Monitor 收集的日志类型已转变，不仅仅包括 Azure 资源。 此外，你可以收集的资源日志类别列表过去曾在本文中列出。 它们已移到[资源日志类别](resource-logs-categories.md)。 
 
-[Azure Monitor 资源日志](../../azure-monitor/platform/platform-logs-overview.md)是 Azure 服务发出的日志，用于描述这些服务或资源的操作。 通过 Azure Monitor 提供的所有资源日志共享公共顶级架构，且每个服务都能灵活地为其事件发出唯一属性。
+[Azure Monitor 资源日志](./platform-logs-overview.md)是 Azure 服务发出的日志，用于描述这些服务或资源的操作。 通过 Azure Monitor 提供的所有资源日志共享公共顶级架构，且每个服务都能灵活地为其事件发出唯一属性。
 
 资源类型（为 `resourceId` 属性时可用）和 `category` 的组合唯一标识架构。 本文介绍了资源日志的顶级架构以及每个服务的架构链接。
 
@@ -61,7 +61,7 @@ ms.locfileid: "86440585"
 | Azure 数据资源管理器 | [Azure 数据资源管理器日志](/data-explorer/using-diagnostic-logs) |
 | 认知服务 | [Azure 认知服务的日志记录](../../cognitive-services/diagnostic-logging.md) |
 | 容器注册表 | [Azure 容器注册表的日志记录](../../container-registry/container-registry-diagnostics-audit-logs.md) |
-| CosmosDB | [Azure Cosmos DB 日志记录](../../cosmos-db/logging.md) |
+| CosmosDB | [Azure Cosmos DB 日志记录](../../cosmos-db/monitor-cosmos-db.md) |
 | Data Factory | [使用 Azure Monitor 监视数据工厂](../../data-factory/monitor-using-azure-monitor.md) |
 | 事件中心 |[Azure 事件中心日志](../../event-hubs/event-hubs-diagnostic-logs.md) |
 | Express Route | 架构不可用。 |
@@ -84,8 +84,9 @@ ms.locfileid: "86440585"
 ## <a name="next-steps"></a>后续步骤
 
 * [查看可以收集的资源日志类别](resource-logs-categories.md)
-* [详细了解资源日志](../../azure-monitor/platform/platform-logs-overview.md)
-* [将资源日志流式传输到**事件中心**](../../azure-monitor/platform/resource-logs-stream-event-hubs.md)
+* [详细了解资源日志](./platform-logs-overview.md)
+* [将资源日志流式传输到**事件中心**](./resource-logs.md#send-to-azure-event-hubs)
 * [使用 Azure Monitor REST API 更改资源日志诊断设置](https://docs.microsoft.com/rest/api/monitor/diagnosticsettings)
-* [使用 Log Analytics 分析 Azure 存储中的日志](../../azure-monitor/platform/collect-azure-metrics-logs.md)
+* [使用 Log Analytics 分析 Azure 存储中的日志](./resource-logs.md#send-to-log-analytics-workspace)
+
 

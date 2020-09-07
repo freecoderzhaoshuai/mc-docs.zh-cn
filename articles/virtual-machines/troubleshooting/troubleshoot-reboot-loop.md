@@ -1,24 +1,26 @@
 ---
-title: Azure VM 上的 Windows 重启循环
+title: Azure VM 上的 Windows 重启循环 | Azure
 description: 了解如何对 Windows 重启循环进行故障排除 | Azure
 services: virtual-machines-windows
 documentationCenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 ms.service: virtual-machines-windows
 ms.topic: troubleshooting
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 10/15/2018
-ms.date: 02/10/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 1c621857f0e3593905b46a30f8e659839fd580d2
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: b651308fa051843942c5ff3fa3679cfcdd0aa9a5
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77428847"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456874"
 ---
 # <a name="windows-reboot-loop-on-an-azure-vm"></a>Azure VM 上的 Windows 重启循环
 本文介绍在 Azure 中的 Windows 虚拟机 (VM) 上可能遇到的重启循环。
@@ -27,7 +29,7 @@ ms.locfileid: "77428847"
 
 使用[启动诊断](./boot-diagnostics.md)获取 VM 的屏幕截图时，你发现虚拟机正在启动，但启动进程被中断并且即将重新开始。
 
-![开始屏幕 1](./media/troubleshoot-reboot-loop/start-screen-1.png)
+:::image type="content" source="./media/troubleshoot-reboot-loop/start-screen-1.png" alt-text="开始屏幕 1":::
 
 ## <a name="cause"></a>原因
 
@@ -51,7 +53,7 @@ ms.locfileid: "77428847"
 
 ## <a name="solution"></a>解决方案
 
-要解决此问题，请[备份 OS 磁盘](../windows/snapshot-copy-managed-disk.md)，并[将 OS 磁盘附加到安全的 VM](../windows/troubleshoot-recovery-disks-portal.md)，然后按照相应地解决方案选项执行操作或逐个尝试解决方案。
+要解决此问题，请[备份 OS 磁盘](../windows/snapshot-copy-managed-disk.md)，并[将 OS 磁盘附加到安全的 VM](./troubleshoot-recovery-disks-portal-windows.md)，然后按照相应地解决方案选项执行操作或逐个尝试解决方案。
 
 ### <a name="solution-for-cause-1"></a>原因 1 的解决方案
 
@@ -95,7 +97,7 @@ ms.locfileid: "77428847"
 
 16. [从 OS 磁盘创建新的 VM](../windows/create-vm-specialized.md)。
 
-17. 如果问题得到解决，则可能需要重新安装 [RDAgent](https://blogs.msdn.microsoft.com/mast/2014/04/07/install-the-vm-agent-on-an-existing-azure-vm/) (WaAppAgent.exe)。
+17. 如果问题得到解决，则可能需要重新安装 [RDAgent](https://docs.microsoft.com/archive/blogs/mast/install-the-vm-agent-on-an-existing-azure-vm) (WaAppAgent.exe)。
 
 ### <a name="solution-for-cause-2"></a>原因 2 的解决方案
 

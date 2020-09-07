@@ -1,27 +1,20 @@
 ---
-title: 验证 VPN 网关连接 | Microsoft 文档
+title: Azure VPN 网关：验证网关连接
 description: 本文介绍如何验证虚拟网络 VPN 网关连接。
 services: vpn-gateway
-documentationcenter: na
 author: WenJason
-manager: digimobile
-editor: ''
-tags: azure-service-management,azure-resource-manager
-ms.assetid: 7e3d1043-caa9-4472-96d3-832f4e2c91ee
 ms.service: vpn-gateway
-ms.devlang: na
-ms.topic: article
-ms.tgt_pltfrm: na
-ms.workload: infrastructure-services
+ms.topic: how-to
 origin.date: 05/16/2017
-ms.date: 10/01/2018
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 1c46cb0354007d560d0ab25a90a3c7820184aab8
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: a278150c17afe5b8b4a2b766380382cc47a83c12
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "63844699"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463026"
 ---
 # <a name="verify-a-vpn-gateway-connection"></a>验证 VPN 网关连接
 
@@ -33,7 +26,7 @@ ms.locfileid: "63844699"
 
 ## <a name="powershell"></a>PowerShell
 
-若要使用 PowerShell 验证资源管理器部署模型的 VPN 网关连接，请安装最新版本的 [Azure 资源管理器 PowerShell cmdlet](https://docs.microsoft.com/powershell/azure/overview)。
+若要使用 PowerShell 验证资源管理器部署模型的 VPN 网关连接，请安装最新版本的 [Azure 资源管理器 PowerShell cmdlet](https://docs.microsoft.com/powershell/azure/)。
 
 [!INCLUDE [PowerShell](../../includes/vpn-gateway-verify-connection-ps-rm-include.md)]
 
@@ -56,4 +49,4 @@ ms.locfileid: "63844699"
 
 ## <a name="next-steps"></a>后续步骤
 
-* 可以将虚拟机添加到虚拟网络。 请参阅 [创建虚拟机](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json) 以获取相关步骤。
+* 可以将虚拟机添加到虚拟网络。 请参阅 [创建虚拟机](../virtual-machines/windows/quick-create-portal.md) 以获取相关步骤。

@@ -1,5 +1,5 @@
 ---
-title: 使用 Azure 通知中心向通用 Windows 平台应用发送通知 | Azure
+title: 使用 Azure 通知中心向通用 Windows 平台应用发送通知 | Microsoft Docs
 description: 了解如何使用 Azure 通知中心将通知推送到 Windows 通用平台应用程序。
 services: notification-hubs
 documentationcenter: windows
@@ -10,18 +10,18 @@ ms.workload: mobile
 ms.tgt_pltfrm: mobile-windows
 ms.devlang: dotnet
 ms.topic: tutorial
-ms.custom: mvc
+ms.custom: 'mvc, ms.custom: devx-track-csharp'
 origin.date: 12/05/2019
-ms.date: 07/21/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.reviewer: jowargo
 ms.lastreviewed: 12/04/2019
-ms.openlocfilehash: 1f0988f65e3c02719b592bcf0faa365c112f0627
-ms.sourcegitcommit: 5656c18d7d2faa09329b1a15e352d1622e252d5f
+ms.openlocfilehash: e8dfe7f84b819bbcaab4bf035afcb8d94f58409d
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86862825"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317563"
 ---
 # <a name="tutorial-send-notifications-to-universal-windows-platform-apps-using-azure-notification-hubs"></a>教程：使用 Azure 通知中心向通用 Windows 平台应用发送通知
 
@@ -192,6 +192,6 @@ notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md)
 <!-- URLs. -->
 [Use Notification Hubs to push notifications to users]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
 [Use Notification Hubs to send breaking news]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md
-[toast catalog]: https://msdn.microsoft.com/library/windows/apps/hh761494.aspx
-[tile catalog]: https://msdn.microsoft.com/library/windows/apps/hh761491.aspx
-[badge overview]: https://msdn.microsoft.com/library/windows/apps/hh779719.aspx
+[toast catalog]: https://docs.microsoft.com/previous-versions/windows/apps/hh761494(v=win.10)
+[tile catalog]: https://docs.microsoft.com/previous-versions/windows/apps/hh761491(v=win.10)
+[badge overview]: https://docs.microsoft.com/previous-versions/windows/apps/hh779719(v=win.10)

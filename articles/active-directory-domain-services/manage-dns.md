@@ -8,14 +8,14 @@ ms.service: active-directory
 ms.subservice: domain-services
 ms.workload: identity
 ms.topic: how-to
-ms.date: 08/07/2020
+ms.date: 09/01/2020
 ms.author: v-junlch
-ms.openlocfilehash: c82900c93a01e69e1f3987b2c65882e06f100c6a
-ms.sourcegitcommit: a5eb9a47feefb053ddbaab4b15c395972c372339
+ms.openlocfilehash: 95b7d72b37282e0360a815f42846b25fbd70665f
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88028554"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413298"
 ---
 # <a name="administer-dns-and-create-conditional-forwarders-in-an-azure-active-directory-domain-services-managed-domain"></a>管理 DNS 并在 Azure Active Directory 域服务托管域中创建条件转发器
 
@@ -107,7 +107,7 @@ Azure AD DS DNS 区域应该只包含托管域本身的区域和记录。 请勿
 
 ## <a name="next-steps"></a>后续步骤
 
-有关管理 DNS 的详细信息，请参阅 [Technet 上的“DNS 工具”一文](https://technet.microsoft.com/library/cc753579.aspx)。
+有关管理 DNS 的详细信息，请参阅 [Technet 上的“DNS 工具”一文](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753579(v=ws.11))。
 
 <!-- INTERNAL LINKS -->
 [create-azure-ad-tenant]: ../active-directory/fundamentals/sign-up-organization.md

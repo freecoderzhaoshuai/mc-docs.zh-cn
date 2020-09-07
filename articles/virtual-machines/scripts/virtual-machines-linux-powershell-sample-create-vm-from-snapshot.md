@@ -1,10 +1,9 @@
 ---
-title: 使用 PowerShell 从快照创建虚拟机
+title: 从快照创建 VM (Linux) - PowerShell 示例
 description: Azure PowerShell 脚本示例 - 从快照创建 VM
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: rockboyfor
-manager: digimobile
+manager: kavithag
 editor: ramankum
 tags: azure-service-management
 ms.assetid: ''
@@ -13,23 +12,24 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 origin.date: 05/10/2017
-ms.date: 02/10/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.custom: mvc
-ms.openlocfilehash: 9094bae92e4e768cb6a5e09dc916ee38c60c32b5
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: mvc, devx-track-azurepowershell
+ms.openlocfilehash: 7fd76d28510deba3a2d9109d7dfc5731188fdc2c
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77428171"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414037"
 ---
-# <a name="create-a-virtual-machine-from-a-snapshot-with-powershell"></a>使用 PowerShell 从快照创建虚拟机
+# <a name="create-a-virtual-machine-from-a-snapshot-with-powershell-linux"></a>使用 PowerShell 从快照创建虚拟机 (Linux)
 
 此脚本从 OS 磁盘的快照创建虚拟机。
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
-
-[!INCLUDE [updated-for-az.md](../../../includes/updated-for-az.md)]
 
 ## <a name="sample-script"></a>示例脚本
 
@@ -118,7 +118,7 @@ Remove-AzResourceGroup -Name myResourceGroup
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 可以在 [Azure Linux VM 文档](../linux/powershell-samples.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)中找到其他虚拟机 PowerShell 脚本示例。
 

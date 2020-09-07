@@ -1,10 +1,9 @@
 ---
-title: 在强制隧道方案中，Windows 激活失败 | Azure
+title: 使用 Azure 自定义路由通过强制隧道启用 KMS 激活 | Azure
 description: 介绍如何在 Azure 中使用强制隧道时，使用 Azure 自定义路由启用 KMS 激活。
 services: virtual-machines-windows, azure-resource-manager
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: top-support-issue, azure-resource-manager
 ms.service: virtual-machines-windows
@@ -12,14 +11,17 @@ ms.workload: na
 ms.tgt_pltfrm: vm-windows
 ms.topic: troubleshooting
 origin.date: 12/20/2018
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 3896c64d2cb6c1667c3aa2a46476ec16dfc896d5
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: 2d3f9317c08acf38ea59f4b199269405650169a6
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596392"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456871"
 ---
 # <a name="windows-activation-fails-in-forced-tunneling-scenario"></a>在强制隧道方案中，Windows 激活失败
 
@@ -59,7 +61,7 @@ Azure 中国云的 KMS 服务器的 IP 地址为 42.159.7.249。 其 DNS 名称�
 ### <a name="for-resource-manager-vms"></a>对于资源管理器 VM
 
 > [!NOTE] 
-> 激活使用公共 IP 地址，并将受标准 SKU 负载均衡器配置的影响。 请仔细查看 [Azure 中的出站连接](/load-balancer/load-balancer-outbound-connections)以了解要求。
+> 激活使用公共 IP 地址，并将受标准 SKU 负载均衡器配置的影响。 请仔细查看 [Azure 中的出站连接](../../load-balancer/load-balancer-outbound-connections.md)以了解要求。
 
 1. 打开 Azure PowerShell，然后[登录到 Azure 订阅](https://docs.microsoft.com/powershell/azure/authenticate-azureps)。
 
@@ -90,7 +92,9 @@ Azure 中国云的 KMS 服务器的 IP 地址为 42.159.7.249。 其 DNS 名称�
     ```
 3. 请转到存在激活问题的 VM。 使用 [PsPing](https://docs.microsoft.com/sysinternals/downloads/psping) 测试其是否能够访问 KMS 服务器：
 
-        psping kms.core.chinacloudapi.cn:1688
+    ```console
+    psping kms.core.chinacloudapi.cn:1688
+    ```
 
 4. 尝试激活 Windows 并查看问题是否得以解决。
 
@@ -118,7 +122,9 @@ Azure 中国云的 KMS 服务器的 IP 地址为 42.159.7.249。 其 DNS 名称�
 
 3. 请转到存在激活问题的 VM。 使用 [PsPing](https://docs.microsoft.com/sysinternals/downloads/psping) 测试其是否能够访问 KMS 服务器：
 
-        psping kms.core.chinacloudapi.cn:1688
+    ```console
+    psping kms.core.chinacloudapi.cn:1688
+    ```
 
 4. 尝试激活 Windows 并查看问题是否得以解决。
 

@@ -80,11 +80,11 @@
         - name: 日志数据引入时间
           displayname: latency
           href: platform/data-ingestion-time.md
-    - name: 洞察力
+    - name: 见解
       href: insights/insights-overview.md
     - name: 监视解决方案
       href: insights/solutions-inventory.md
-    - name: 数据安全
+    - name: 数据安全性
       items:
         - name: 日志数据
           href: platform/data-security.md
@@ -183,7 +183,7 @@
                 - name: Spring Boot 应用
                   displayname: java
                   href: /java/azure/spring-framework/configure-spring-boot-java-applicationinsights
-                - name: 故障排除
+                - name: 疑难解答
                   href: app/java-troubleshoot.md
             - name: Node.js
               href: app/nodejs.md
@@ -406,7 +406,7 @@
               displayname: 'correlation, dependency, dependencies, track dependency, OWIN, queue, service bus, background tasks, long running background tasks, outgoing dependency tracking, parallel operations, System.Diagnostics.Activity, System.Diagnostics.DiagnosticSource, StartOperation, StopOperation'
             - name: 自定义电子邮件报告
               href: app/automate-custom-reports.md
-            - name: 例外
+            - name: 异常
               href: app/asp-net-exceptions.md
             - name: 日志跟踪
               href: app/asp-net-trace-logs.md
@@ -498,9 +498,6 @@
             - name: 使用资源管理器创建
               displayName: 'diagnostic setting, Platform logs, Resource logs, Activity log'
               href: platform/diagnostic-settings-template.md
-            - name: 更改为 Blob 存储格式
-              displayname: Diagnostic settings
-              href: platform/resource-logs-blob-format.md
         - name: 将数据流式传输到事件中心
           href: platform/stream-monitoring-data-event-hubs.md
         - name: 监视 Key Vault
@@ -530,10 +527,6 @@
                           href: ../virtual-machines/extensions/diagnostics-windows.md?toc=/azure/azure-monitor/toc.json
                         - name: 资源管理器模板
                           href: ../virtual-machines/extensions/diagnostics-template.md?toc=/azure/azure-monitor/toc.json
-                    - name: 发送到 Azure Monitor 指标存储
-                      items:
-                        - name: VM 规模集
-                          href: platform/collect-custom-metrics-guestos-resource-manager-vmss.md
                     - name: 发送到事件中心
                       href: platform/diagnostics-extension-stream-event-hubs.md
                     - name: 发送到日志
@@ -790,7 +783,7 @@
               items:
                 - name: 访问控制
                   href: platform/workbooks-access-control.md
-                - name: 参数
+                - name: parameters
                   items:
                     - name: 参数摘要
                       href: platform/workbooks-parameters.md
@@ -890,16 +883,12 @@
               href: platform/alerts-common-schema.md
             - name: 常见警报架构定义
               href: platform/alerts-common-schema-definitions.md
-            - name: 将常见警报架构与逻辑应用集成
-              href: platform/alerts-common-schema-integrations.md
             - name: 短信警报行为
               href: platform/alerts-sms-behavior.md
             - name: 通知速率限制
               href: platform/alerts-rate-limiting.md
             - name: 使用资源管理器创建操作组
               href: platform/action-groups-create-resource-manager-template.md
-        - name: 警报管理解决方案
-          href: platform/alert-management-solution.md
         - name: 警报用户界面
           items:
             - name: 管理警报实例
@@ -908,8 +897,6 @@
               href: platform/alerts-managing-smart-groups.md
             - name: 管理警报和智能组状态
               href: platform/alerts-managing-alert-states.md
-            - name: 管理来自其他监视服务的警报
-              href: platform/alerts-managing-nagios-zabbix-scom.md
         - name: 迁移经典警报规则
           items:
             - name: 关于经典警报
@@ -932,7 +919,7 @@
               href: platform/autoscale-get-started.md
             - name: 配置设置
               href: platform/autoscale-understanding-settings.md
-            - name: 最佳做法
+            - name: 最佳实践
               href: platform/autoscale-best-practices.md
             - name: 常见指标
               href: platform/autoscale-common-metrics.md
@@ -980,7 +967,7 @@
               href: insights/solutions-resources-searches-alerts.md
             - name: 视图
               href: insights/solutions-resources-views.md
-            - name: 最佳做法
+            - name: 最佳实践
               href: insights/solutions-best-practices.md
 - name: 参考
   items:

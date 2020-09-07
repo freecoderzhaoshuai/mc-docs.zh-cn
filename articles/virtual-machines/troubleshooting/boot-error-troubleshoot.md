@@ -3,24 +3,24 @@ title: 对 Azure 虚拟机启动错误进行故障排除 | Azure
 description: 本文提供的链接指向关于对 Azure 虚拟机启动错误进行故障排除的文章。
 services: virtual-machines-windows
 documentationCenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 ms.service: virtual-machines-windows
 ms.topic: troubleshooting
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 12/12/2018
-ms.date: 07/27/2020
-ms.testscope: no
-ms.testdate: ''
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 394f551b093f4fc11a5273a645c168bf97b2ddae
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: a2b4fb13465f00aa7a068ec38483fc0d6989168f
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244260"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456870"
 ---
 # <a name="troubleshoot-azure-virtual-machines-boot-errors"></a>对 Azure 虚拟机启动错误进行故障排除
 
@@ -42,6 +42,6 @@ ms.locfileid: "87244260"
   
     <!-- Not Available on - [VM Serial Console](../windows/serial-console.md)-->
   
-- [通过将 OS 磁盘附加到恢复 VM 对 Windows VM 进行故障排除](../windows/troubleshoot-recovery-disks.md)
+- [通过将 OS 磁盘附加到恢复 VM 对 Windows VM 进行故障排除](./troubleshoot-recovery-disks-windows.md)
 
 <!-- Update_Description: update meta properties, wording update, update link -->

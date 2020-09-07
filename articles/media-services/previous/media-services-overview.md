@@ -12,14 +12,14 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: conceptual
 origin.date: 04/19/2019
-ms.date: 04/06/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 339fd9730045d4f8b706a45c05a8a824c61c96bf
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 7a69177b9935c7f00b4f9fa62ad0dda8ee7d5152
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80625698"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413272"
 ---
 # <a name="azure-media-services-overview"></a>Azure 媒体服务概述 
 
@@ -28,9 +28,9 @@ ms.locfileid: "80625698"
 > * [第 2 版](media-services-overview.md)
 
 > [!NOTE]
-> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](/media-services/latest/)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
+> 媒体服务 v2 中未添加新功能。 <br/>查看最新版本：[媒体服务 v3](../latest/index.yml)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
 
-Azure 媒体服务 (AMS) 是一个可扩展的基于云的平台，可供开发人员用来生成可缩放的媒体管理与传送应用程序。 媒体服务基于 REST API，你可以使用这些 API 安全地上传、存储、编码和打包视频或音频内容，以供点播以及以实时流形式传送到各种客户端（例如，电视、电脑和移动设备）。
+Azure 媒体服务 (AMS) 是一个可扩展的基于云的平台，可供开发人员用来生成可缩放的媒体管理与传送应用程序。 媒体服务基于 REST API，使用这些 API 可以安全地上传、存储、编码和打包视频或音频内容，以供点播以及以实时传送视频流的形式传送到各种客户端（例如，电视、电脑和移动设备）。
 
 可以完全使用媒体服务构建端到端工作流。 也可以选择使用第三方组件来构建工作流的某些组成部分。 例如，使用第三方编码器进行编码。 然后，使用媒体服务进行上传、保护、打包和传送。 可以选择实时流式播放你的内容，或者根据点播情况交付内容。 
 
@@ -43,11 +43,11 @@ Azure 媒体服务 (AMS) 是一个可扩展的基于云的平台，可供开发�
 
 若要了解媒体服务中的合规性、隐私和安全性，请访问 Azure [信任中心](https://www.trustcenter.cn/)。 若要了解世纪互联的隐私义务、数据处理和保留惯例，包括如何删除数据，请查看世纪互联的[隐私声明](https://www.azure.cn/support/legal/privacy-statement/)、[联机服务条款](https://www.21vbluecloud.com/ostpt/) ("OST") 和[数据处理附录](https://www.microsoftvolumelicensing.com/DocumentSearch.aspx?Mode=3&DocumentTypeId=67) ("DPA")。 使用媒体服务即表示你同意遵守 OST、DPA 和隐私声明。
  
-## <a name="prerequisites"></a>必备条件
+## <a name="prerequisites"></a>先决条件
 
-要开始使用 Azure 媒体服务，应该具备以下条件：
+若要开始使用 Azure 媒体服务，应该具备以下条件：
 
-* 一个 Azure 帐户。 如果没有帐户，可以在几分钟内创建一个试用帐户。 有关详细信息，请参阅 [1 元试用](https://www.azure.cn/pricing/1rmb-trial/)。
+* 一个 Azure 帐户。 如果没有帐户，可以创建一个试用帐户，只需几分钟即可完成。 有关详细信息，请参阅 [Azure 1 元试用](https://www.azure.cn/pricing/1rmb-trial/)。
 * Azure 媒体服务帐户。 有关详细信息，请参阅[创建帐户](media-services-portal-create-account.md)。
 * （可选）设置开发环境。 为开发环境选择“.NET”或“REST API”。 有关详细信息，请参阅 [设置环境](media-services-dotnet-how-to-use.md)。
 
@@ -72,12 +72,12 @@ Azure 媒体服务 (AMS) 是一个可扩展的基于云的平台，可供开发�
     * [Azure-Media-Services-Explorer](https://github.com/Azure/Azure-Media-Services-Explorer) （Azure 媒体服务资源管理器 (AMSE) 是适用于 Windows 的 Winforms/C# 应用程序）
 
 > [!NOTE]
-> 若要获取最新版本的 Java SDK 并开始使用 Java 进行开发，请参阅[媒体服务的 Java 客户端 SDK 入门](/media-services/media-services-java-how-to-use)。 <br/>
+> 若要获取最新版本的 Java SDK 并开始使用 Java 进行开发，请参阅[媒体服务的 Java 客户端 SDK 入门](./media-services-java-how-to-use.md)。 <br/>
 > 若要下载最新的媒体服务 PHP SDK，请在 [Packagist 存储库](https://packagist.org/packages/microsoft/windowsazure#v0.5.7)中查找 0.5.7 版 Microsoft/WindowAzure 包。  
 
 ## <a name="code-samples"></a>代码示例
 
-在  “Azure 代码示例”库中查找多个代码示例：[Azure 媒体服务代码示例](https://azure.microsoft.com/resources/samples/?service=media-services&sort=0)。
+在****“Azure 代码示例”库中查找多个代码示例：[Azure 媒体服务代码示例](https://azure.microsoft.com/resources/samples/?service=media-services&sort=0)。
 
 ## <a name="concepts"></a>概念
 

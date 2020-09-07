@@ -14,12 +14,12 @@ ms.topic: article
 origin.date: 03/19/2019
 ms.date: 03/04/2020
 ms.author: v-jay
-ms.openlocfilehash: 778b2009e45c76eeea6febf345ed210d321c59a6
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: ee3896d4cf46917b8a5951e89cd0857b3ca703b3
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78412583"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413774"
 ---
 # <a name="protect-your-hls-content-with-apple-fairplay-or-microsoft-playready"></a>使用 Apple FairPlay 或 Microsoft PlayReady 保护 HLS 内容
 
@@ -124,7 +124,7 @@ ms.locfileid: "78412583"
 ## <a name="use-fairplay-key-delivery-by-player-apps"></a>使用播放器应用执行的 FairPlay 密钥传送
 可以通过使用 iOS SDK 开发播放器应用。 若要能够播放 FairPlay 内容，必须实现许可证交换协议。 此协议不由 Apple 指定。 而是取决于每个应用发送密钥传送请求的方式。 媒体服务 FairPlay 密钥传送服务需要 SPC 为采用以下形式的 www-form-url 编码后消息：
 
-    spc=<Base64 encoded SPC>
+`spc=<Base64 encoded SPC>`
 
 > [!NOTE]
 > Azure Media Player 支持 FairPlay 播放。

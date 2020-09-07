@@ -12,14 +12,14 @@ ms.tgt_pltfrm: na
 ms.devlang: ne
 ms.topic: article
 origin.date: 06/09/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 28389981f8eee2de386dde51355abf57bc30459f
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: f9d63052ef60fb9dd9eee10663545b6a12813f00
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71125519"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413984"
 ---
 # <a name="subclip-a-video-when-encoding-with-media-services---net"></a>使用媒体服务编码时对视频进行子剪辑 - .NET
 
@@ -31,7 +31,7 @@ ms.locfileid: "71125519"
 
 若要完成本主题中所述的步骤，必须：
 
-- [创建 Azure 媒体服务帐户](create-account-cli-how-to.md)
+- [创建 Azure 媒体服务帐户](./create-account-howto.md)
 - 创建转换以及输入和输出资产。 可以在[使用 .NET 对视频进行上传、编码和流式处理](stream-files-tutorial-with-api.md)中了解如何创建转换以及输入和输出资产。
 - 查看[编码概念](encoding-concept.md)主题。
 

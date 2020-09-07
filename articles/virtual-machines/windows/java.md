@@ -2,23 +2,26 @@
 title: 使用 Java 创建和管理 Azure 虚拟机
 description: 使用 Java 和 Azure 资源管理器部署虚拟机及其所有支持资源。
 services: virtual-machines-windows
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.workload: infrastructure
 ms.topic: how-to
 origin.date: 07/17/2017
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: ''
+ms.custom: devx-track-java
 ms.author: v-yeche
-ms.openlocfilehash: 728652a311d5c9a37f44030b0229bafa6a4003df
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 09c297579047abdb6ffed323b84854b0a9af9220
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945765"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463084"
 ---
 # <a name="create-and-manage-windows-vms-in-azure-using-java"></a>使用 Java 创建和管理 Azure 中的 Windows VM
 
-[Azure 虚拟机](overview.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json) (VM) 需要多个支持性 Azure 资源。 本文介绍如何使用 Java 创建、管理和删除 VM 资源。 你将学习如何执行以下操作：
+[Azure 虚拟机](overview.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json) (VM) 需要多个支持性 Azure 资源。 本文介绍如何使用 Java 创建、管理和删除 VM 资源。 学习如何：
 
 > [!div class="checklist"]
 > * 创建 Maven 项目
@@ -413,7 +416,7 @@ input.nextLine();
 
 ### <a name="resize-the-vm"></a>重设 VM 大小
 
-决定虚拟机大小时应考虑部署的诸多方面。 有关详细信息，请参见 [VM 大小](sizes.md)。  
+决定虚拟机大小时应考虑部署的诸多方面。 有关详细信息，请参见 [VM 大小](../sizes.md)。  
 
 若要更改虚拟机大小，请将此代码添加到 main 方法的 try 块：
 
@@ -467,4 +470,4 @@ input.nextLine();
 ## <a name="next-steps"></a>后续步骤
 * 详细了解如何使用[用于 Java 的 Azure 库](https://docs.azure.cn/java/java-sdk-azure-overview)。
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

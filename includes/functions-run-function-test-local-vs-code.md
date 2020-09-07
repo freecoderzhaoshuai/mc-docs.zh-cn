@@ -2,14 +2,14 @@
 author: ggailey777
 ms.service: azure-functions
 ms.topic: include
-ms.date: 02/13/2020
+ms.date: 09/03/2020
 ms.author: v-junlch
-ms.openlocfilehash: 84d3ef302da70001910afaec061b9100983792a4
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 49629caf1cade8b46ebe736d0f8ca302f21ffbfd
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77428532"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413635"
 ---
 ## <a name="run-the-function-locally"></a>在本地运行函数
 
@@ -23,7 +23,7 @@ Visual Studio Code 与 [Azure Functions Core Tools](../articles/azure-functions/
 
 1. 在 Core Tools 运行时，导航至以下 URL 以执行 GET 请求（其中包括 `?name=Functions` 查询字符串）。
 
-    <http://localhost:7071/api/HttpExample?name=Functions>
+    `http://localhost:7071/api/HttpExample?name=Functions`
 
 1. 系统会返回响应，在浏览器中如下所示：
 

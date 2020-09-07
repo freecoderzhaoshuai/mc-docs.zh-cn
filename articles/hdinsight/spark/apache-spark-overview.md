@@ -8,15 +8,15 @@ ms.service: hdinsight
 ms.custom: hdinsightactive,mvc
 ms.devlang: na
 ms.topic: overview
-origin.date: 04/17/2020
-ms.date: 08/31/2020
+origin.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: v-yiso
-ms.openlocfilehash: e9f12f15eeaf3fda2b624269b90309d2df876869
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 0c295a0834beb70853fc373543eaf909681f45de
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715179"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463157"
 ---
 # <a name="what-is-apache-spark-in-azure-hdinsight"></a>Azure HDInsight 中的 Apache Spark 是什么
 
@@ -101,4 +101,5 @@ Apache Spark 附带了 [MLlib](https://spark.apache.org/mllib/)。 MLlib 是在 
 
 在此概述中，可了解 Azure HDInsight 中 Apache Spark 的一些基础知识。 了解如何创建 HDInsight Spark 群集并运行一些 Spark SQL 查询：
 
-- [在 HDInsight 中创建 Apache Spark 群集](./apache-spark-jupyter-spark-sql-use-portal.md)
+* [在 HDInsight 中创建 Apache Spark 群集](./apache-spark-jupyter-spark-sql-use-portal.md)
+* [优化 Spark 作业的性能](apache-spark-perf.md)

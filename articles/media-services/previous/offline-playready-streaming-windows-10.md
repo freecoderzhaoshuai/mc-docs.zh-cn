@@ -13,14 +13,15 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 04/16/2019
-ms.date: 03/04/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 9737d2ff17f8938193270fdb1cf5a8e6555dfe74
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 59c33a225e3a68351f982e6fd283df4f5e9e8110
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78412376"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414007"
 ---
 # <a name="offline-playready-streaming-for-windows-10"></a>适用于 Windows 10 的 PlayReady 脱机流式处理  
 
@@ -32,7 +33,7 @@ ms.locfileid: "78412376"
 > Google Widevine 内容保护服务目前在 Azure 中国区域不可用。
 
 > [!NOTE]
-> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](/media-services/latest/)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
+> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](../latest/index.yml)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
 
 Azure 媒体服务支持带 DRM 保护的脱机下载/播放。 本文涵盖用于 Windows 10/PlayReady 客户端的对 Azure 媒体服务的脱机支持。 可以通过以下文章了解对 iOS/FairPlay 设备的脱机模式支持：
 

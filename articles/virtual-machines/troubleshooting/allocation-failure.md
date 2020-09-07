@@ -1,24 +1,26 @@
 ---
-title: 在 Azure 中创建、重启 VM 或重设其大小时排查分配失败
+title: 排查 Azure VM 分配故障 | Azure
 description: 在 Azure 中创建、重启 VM 或重设其大小时排查分配失败
 services: virtual-machines
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: felixwu
 editor: ''
 tags: top-support-issue,azure-resource-manager,azure-service-management
 ms.assetid: 1ef41144-6dd6-4a56-b180-9d8b3d05eae7
 ms.service: virtual-machines
 ms.topic: troubleshooting
 origin.date: 04/13/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 4237775d2d2cc234fff064ec17896c9077c5655d
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 868b8f9f1199247f13e418d6649b71e88b7869cf
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945978"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456863"
 ---
 # <a name="troubleshoot-allocation-failures-when-you-create-restart-or-resize-vms-in-azure"></a>在 Azure 中创建、重启 VM 或重设其大小时排查分配失败
 
@@ -82,7 +84,7 @@ ms.locfileid: "85945978"
 
 如果分配请求较大（超过 500 个内核），请参阅下节中的指南，将请求分解为较小的部署。
 
-尝试[重新部署 VM](/virtual-machines/troubleshooting/redeploy-to-new-node-windows)。 重新部署 VM 会将 VM 分配到该区域中的新群集。
+尝试[重新部署 VM](./redeploy-to-new-node-windows.md)。 重新部署 VM 会将 VM 分配到该区域中的新群集。
 
 ## <a name="allocation-failures-for-older-vm-sizes-av1-dv1-dsv1-d15v2-ds15v2-etc"></a>针对较旧 VM 大小（Av1、Dv1、DSv1、D15v2、DS15v2 等）的分配失败
 
@@ -97,16 +99,16 @@ ms.locfileid: "85945978"
 
 ## <a name="allocation-failures-for-large-deployments-more-than-500-cores"></a>大型部署（超过 500 个内核）的分配失败
 
-减少请求的 VM 大小的实例数，然后重试部署操作。 此外，对于大型部署，建议评估 [Azure 虚拟机规模集](/virtual-machine-scale-sets/)。 VM 实例数可自动增加或减少以响应需求或定义的计划，并且分配成功的可能性更大，因为部署可以分布在多个群集中。 
+减少请求的 VM 大小的实例数，然后重试部署操作。 此外，对于大型部署，建议评估 [Azure 虚拟机规模集](../../virtual-machine-scale-sets/index.yml)。 VM 实例数可自动增加或减少以响应需求或定义的计划，并且分配成功的可能性更大，因为部署可以分布在多个群集中。 
 
 ## <a name="background-information"></a>背景信息
 ### <a name="how-allocation-works"></a>分配的工作原理
 Azure 数据中心的服务器分区成群集。 通常会尝试向多个群集发出分配请求，但分配请求可能带有某些约束，从而强制 Azure 平台只尝试向一个群集发出请求。 在本文中，这种情况称为“固定到群集”。 下图 1 演示了在多个群集中尝试进行一般分配的情况。 图 2 演示了固定到群集 2（因为现有的云服务 CS_1 或可用性集托管于此处）的分配情况。
-![分配图](./media/virtual-machines-common-allocation-failure/Allocation1.png)
+:::image type="content" source="./media/virtual-machines-common-allocation-failure/Allocation1.png" alt-text="分配图":::
 
 ### <a name="why-allocation-failures-happen"></a>发生分配失败的原因
 当分配请求固定到某个群集时，由于可用的资源池较小，很可能找不到可用的资源。 此外，如果分配请求固定到某个群集，但该群集不支持你所请求的资源类型，那么，即使该群集有可用的资源，请求仍会失败。 下图 3 说明由于唯一候选群集没有可用的资源，导致已固定的分配失败的情况。 图 4 说明由于唯一候选群集不支持所请求的 VM 大小（虽然群集有可用的资源），导致已固定的分配失败的情况。
 
-![固定分配故障](./media/virtual-machines-common-allocation-failure/Allocation2.png)
+:::image type="content" source="./media/virtual-machines-common-allocation-failure/Allocation2.png" alt-text="固定分配故障":::
 
 <!-- Update_Description: update meta properties, wording update, update link -->

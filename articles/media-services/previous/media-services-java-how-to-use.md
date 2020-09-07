@@ -13,19 +13,20 @@ ms.tgt_pltfrm: na
 ms.devlang: java
 ms.topic: conceptual
 origin.date: 03/18/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 65230af38d7d03a674332b71da6076c28ab90809
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-java
+ms.openlocfilehash: 221860ef88ec4f1d79f951bf32ae1bc4af546e8e
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71124462"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413743"
 ---
 # <a name="get-started-with-the-java-client-sdk-for-azure-media-services"></a>用于 Azure 媒体服务的 Java 客户端 SDK 入门  
 
 > [!NOTE]
-> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](/media-services/latest/)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
+> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](../latest/index.yml)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
 
 本教程介绍了通过 Java 客户端 SDK 在 Azure 媒体服务中实施基本的视频内容传送服务的步骤。
 
@@ -43,7 +44,7 @@ ms.locfileid: "71124462"
 
 例如，如果生成工具为 `gradle`，请向 `build.gradle` 文件添加以下依赖项：
 
-    compile group: 'com.microsoft.azure', name: 'azure-media', version: '0.9.8'
+`compile group: 'com.microsoft.azure', name: 'azure-media', version: '0.9.8'`
 
 >[!IMPORTANT]
 >自 `azure-media` 包的版本 `0.9.8` 开始，SDK 添加了对 Azure Active Directory (AAD) 身份验证的支持，删除了对 Azure 访问控制服务 (ACS) 身份验证的支持。 建议尽快迁移到 Azure AD 身份验证模型。 有关迁移的详细信息，请阅读[通过 Azure AD 身份验证访问 Azure 媒体服务 API](media-services-use-aad-auth-to-access-ams-api.md) 一文。
@@ -66,7 +67,7 @@ ms.locfileid: "71124462"
 * `clientKey`：Azure AD 应用程序的客户端密钥
 * `restApiEndpoint`：Azure 媒体服务帐户的 REST API 终结点
 
-可以创建一个 Azure AD 应用程序，然后从 Azure 门户获取前面的配置值。 有关详细信息，请参阅[使用 Azure 门户进行 Azure AD 身份验证入门](/media-services/media-services-portal-get-started-with-aad)的“服务主体身份验证”部分。
+可以创建一个 Azure AD 应用程序，然后从 Azure 门户获取前面的配置值。 有关详细信息，请参阅[使用 Azure 门户进行 Azure AD 身份验证入门](./media-services-portal-get-started-with-aad.md)的“服务主体身份验证”部分。
 
 该代码还依赖于本地存储的视频文件。 必须编辑代码，提供自己的要上传的本地文件。
 
@@ -317,6 +318,5 @@ ms.locfileid: "71124462"
 <!-- URLs. -->
 
 [Azure Media Services SDK Maven Package]: https://mvnrepository.com/artifact/com.microsoft.azure/azure-media/latest
-  [Azure Java Developer Center]: /develop/java/
+[Azure Java Developer Center]: /develop/java/
 [Azure for Java developers]: https://docs.microsoft.com/java/azure/
-  [Media Services Client Development]: ./media-services-develop-video-players.md

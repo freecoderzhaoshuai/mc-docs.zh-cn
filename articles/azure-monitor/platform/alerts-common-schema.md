@@ -1,18 +1,17 @@
 ---
 title: Azure Monitor 警报的通用警报架构
 description: 了解通用警报架构、应该使用它的原因以及启用它的方法
-author: lingliw
 ms.topic: conceptual
 ms.subservice: alerts
+ms.date: 08/20/2020
 origin.date: 03/14/2019
-ms.date: 04/14/2019
-ms.author: v-lingwu
-ms.openlocfilehash: 5a117e6838c80e706dd3daa1c106d4d82e7fd492
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+author: Johnnytechn
+ms.openlocfilehash: 9656fd2184f44a852c2873e34cc74ef2004bc0fa
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79452576"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457416"
 ---
 # <a name="common-alert-schema"></a>常见警报架构
 
@@ -54,12 +53,10 @@ ms.locfileid: "79452576"
 > [!NOTE]
 > 1. 以下警报类型默认支持通用架构（不需选择加入）：
 >     * 智能检测警报
-> 1. 以下警报类型目前不支持通用架构：
->     * 由 [Azure 成本管理](https://docs.microsoft.com/azure/billing/billing-cost-management-budget-scenario)生成的警报
 
 ### <a name="through-the-azure-portal"></a>通过 Azure 门户
 
-![选择加入通用警报架构](media/alerts-common-schema/portal-opt-in.png)
+![选择加入通用警报架构](./media/alerts-common-schema/portal-opt-in.png)
 
 1. 在操作组中打开现有的或新的操作。 
 1. 选择“是”，通过切换启用通用警报架构，如图所示。
@@ -123,7 +120,4 @@ ms.locfileid: "79452576"
 ## <a name="next-steps"></a>后续步骤
 
 - [Webhook/逻辑应用/Azure Functions/自动化 Runbook 的通用警报架构定义。](https://aka.ms/commonAlertSchemaDefinitions)
-- [了解如何创建一个逻辑应用，利用通用警报架构来处理所有警报。](/azure-monitor/platform/alerts-common-schema-integrations) 
-
-
 

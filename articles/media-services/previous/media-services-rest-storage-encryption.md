@@ -13,22 +13,21 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/20/2019
-ms.date: 02/24/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 6eb5cb84c11d7adc4c4959b9dcf6a29daa2249c9
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 028746320de0c56ee549061c3d21dee2d0c6ff91
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77494213"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413558"
 ---
 # <a name="encrypting-your-content-with-storage-encryption"></a>通过存储加密来加密内容 
 
 > [!NOTE]
-> 要完成本教程，需要一个 Azure 帐户。 有关详细信息，请参阅 [1 元试用](https://www.azure.cn/zh-cn/pricing/1rmb-trial-full/?form-type=identityauth)。 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](/media-services/latest/)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
->   
-
-强烈建议通过 AES-256 位加密在本地加密内容，然后将其上传到 Azure 存储中以加密形式静态存储相关内容。
+> 要完成本教程，需要一个 Azure 帐户。 有关详细信息，请参阅 [1 元试用](https://www.azure.cn/zh-cn/pricing/1rmb-trial-full/?form-type=identityauth)。 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](../latest/index.yml)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
+>
 
 本文概述了 AMS 存储空间加密并演示了如何上传存储空间加密的内容：
 
@@ -50,8 +49,8 @@ ms.locfileid: "77494213"
 |加密选项|说明|媒体服务 v2|媒体服务 v3|
 |---|---|---|---|
 |媒体服务存储加密|AES-256 加密，媒体服务管理的密钥|支持<sup>(1)</sup>|不支持<sup>(2)</sup>|
-|[静态数据的存储服务加密](/storage/common/storage-service-encryption)|由 Azure 存储提供的服务器端加密，由 Azure 或客户管理的密钥|支持|支持|
-|[存储客户端加密](/storage/common/storage-client-side-encryption)|由 Azure 存储提供的客户端加密，由 Key Vault 中的客户管理的密钥|不支持|不支持|
+|[静态数据的存储服务加密](../../storage/common/storage-service-encryption.md)|由 Azure 存储提供的服务器端加密，由 Azure 或客户管理的密钥|支持|支持|
+|[存储客户端加密](../../storage/common/storage-client-side-encryption.md)|由 Azure 存储提供的客户端加密，由 Key Vault 中的客户管理的密钥|不支持|不支持|
 
 <sup>1</sup> 虽然媒体服务确实支持处理明文形式（未经过任何形式的加密）的内容，但不建议这样做。
 
@@ -76,38 +75,38 @@ AMS 存储加密将 **AES-CTR** 模式加密应用于整个文件。  AES-CTR �
 1. 对于存储空间加密，随机生成一个 32 字节的 AES 密钥。 
    
     这个 32 字节的 AES 密钥是资产的内容密钥，这意味着该资产的所有关联文件在解密过程中需要使用同一内容密钥。 
-2. 调用 [GetProtectionKeyId](https://docs.microsoft.com/rest/api/media/operations/rest-api-functions#getprotectionkeyid) 和 [GetProtectionKey](https://msdn.microsoft.com/library/azure/jj683097.aspx#getprotectionkey) 方法来获取正确的 X.509 证书，必须使用该证书加密内容密钥。
+2. 调用 [GetProtectionKeyId](https://docs.microsoft.com/rest/api/media/operations/rest-api-functions#getprotectionkeyid) 和 [GetProtectionKey](https://docs.microsoft.com/rest/api/media/operations/rest-api-functions#getprotectionkey) 方法来获取正确的 X.509 证书，必须使用该证书加密内容密钥。
 3. 使用 X.509 证书的公钥来加密内容密钥。 
    
    媒体服务 .NET SDK 在加密时使用 RSA 和 OAEP。  可以参阅 [EncryptSymmetricKeyData 函数](https://github.com/Azure/azure-sdk-for-media-services/blob/dev/src/net/Client/Common/Common.FileEncryption/EncryptionUtils.cs)中的 .NET 示例。
 4. 创建使用密钥标识符和内容密钥计算的校验和值。 下面的 .NET 示例将使用密钥标识符和明文内容密钥的 GUID 部分计算校验和。
 
     ```csharp
-            public static string CalculateChecksum(byte[] contentKey, Guid keyId)
-            {
-                const int ChecksumLength = 8;
-                const int KeyIdLength = 16;
+    public static string CalculateChecksum(byte[] contentKey, Guid keyId)
+    {
+        const int ChecksumLength = 8;
+        const int KeyIdLength = 16;
 
-                byte[] encryptedKeyId = null;
+        byte[] encryptedKeyId = null;
 
-                // Checksum is computed by AES-ECB encrypting the KID
-                // with the content key.
-                using (AesCryptoServiceProvider rijndael = new AesCryptoServiceProvider())
-                {
-                    rijndael.Mode = CipherMode.ECB;
-                    rijndael.Key = contentKey;
-                    rijndael.Padding = PaddingMode.None;
+        // Checksum is computed by AES-ECB encrypting the KID
+        // with the content key.
+        using (AesCryptoServiceProvider rijndael = new AesCryptoServiceProvider())
+        {
+            rijndael.Mode = CipherMode.ECB;
+            rijndael.Key = contentKey;
+            rijndael.Padding = PaddingMode.None;
 
-                    ICryptoTransform encryptor = rijndael.CreateEncryptor();
-                    encryptedKeyId = new byte[KeyIdLength];
-                    encryptor.TransformBlock(keyId.ToByteArray(), 0, KeyIdLength, encryptedKeyId, 0);
-                }
+            ICryptoTransform encryptor = rijndael.CreateEncryptor();
+            encryptedKeyId = new byte[KeyIdLength];
+            encryptor.TransformBlock(keyId.ToByteArray(), 0, KeyIdLength, encryptedKeyId, 0);
+        }
 
-                byte[] retVal = new byte[ChecksumLength];
-                Array.Copy(encryptedKeyId, retVal, ChecksumLength);
+        byte[] retVal = new byte[ChecksumLength];
+        Array.Copy(encryptedKeyId, retVal, ChecksumLength);
 
-                return Convert.ToBase64String(retVal);
-            }
+        return Convert.ToBase64String(retVal);
+    }
     ```
 
 5. 使用前面步骤中收到的 **EncryptedContentKey**（转换为 base64 编码的字符串）、**ProtectionKeyId**、**ProtectionKeyType**、**ContentKeyType** 和 **Checksum** 值创建内容密钥。
@@ -129,65 +128,73 @@ AMS 存储加密将 **AES-CTR** 模式加密应用于整个文件。  AES-CTR �
 
 请求：
 
-    GET https://media.chinacloudapi.cn/api/GetProtectionKeyId?contentKeyType=0 HTTP/1.1
-    MaxDataServiceVersion: 3.0;NetFx
-    Accept: application/json
-    Accept-Charset: UTF-8
-    User-Agent: Microsoft ADO.NET Data Services
-    Authorization: Bearer <ENCODED JWT TOKEN>
-    x-ms-version: 2.19
-    Host: media.chinacloudapi.cn
+```console
+GET https://media.chinacloudapi.cn/api/GetProtectionKeyId?contentKeyType=0 HTTP/1.1
+MaxDataServiceVersion: 3.0;NetFx
+Accept: application/json
+Accept-Charset: UTF-8
+User-Agent: Microsoft ADO.NET Data Services
+Authorization: Bearer <ENCODED JWT TOKEN>
+x-ms-version: 2.19
+Host: media.chinacloudapi.cn
+```
 
 响应：
 
-    HTTP/1.1 200 OK
-    Cache-Control: no-cache
-    Content-Length: 139
-    Content-Type: application/json;odata=minimalmetadata;streaming=true;charset=utf-8
-    Server: Microsoft-IIS/8.5
-    request-id: 2b6aa7a4-3a09-4b08-b581-26b55667f817
-    x-ms-request-id: 2b6aa7a4-3a09-4b08-b581-26b55667f817
-    X-Content-Type-Options: nosniff
-    DataServiceVersion: 3.0;
-    X-Powered-By: ASP.NET
-    Strict-Transport-Security: max-age=31536000; includeSubDomains
-    Date: Wed, 04 Feb 2015 02:42:52 GMT
+```console
+HTTP/1.1 200 OK
+Cache-Control: no-cache
+Content-Length: 139
+Content-Type: application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+Server: Microsoft-IIS/8.5
+request-id: 2b6aa7a4-3a09-4b08-b581-26b55667f817
+x-ms-request-id: 2b6aa7a4-3a09-4b08-b581-26b55667f817
+X-Content-Type-Options: nosniff
+DataServiceVersion: 3.0;
+X-Powered-By: ASP.NET
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Date: Wed, 04 Feb 2015 02:42:52 GMT
 
-    {"odata.metadata":"https://wamsbayclus001rest-hs.chinacloudapp.cn/api/$metadata#Edm.String","value":"7D9BB04D9D0A4A24800CADBFEF232689E048F69C"}
+{"odata.metadata":"https://wamsbayclus001rest-hs.chinacloudapp.cn/api/$metadata#Edm.String","value":"7D9BB04D9D0A4A24800CADBFEF232689E048F69C"}
+```
 
 ### <a name="retrieve-the-protectionkey-for-the-protectionkeyid"></a>检索 ProtectionKeyId 的 ProtectionKey
 以下示例演示如何使用在上一步中收到的 ProtectionKeyId 来检索 X.509 证书。
 
 请求：
 
-    GET https://media.chinacloudapi.cn/api/GetProtectionKey?ProtectionKeyId='7D9BB04D9D0A4A24800CADBFEF232689E048F69C' HTTP/1.1
-    MaxDataServiceVersion: 3.0;NetFx
-    Accept: application/json
-    Accept-Charset: UTF-8
-    User-Agent: Microsoft ADO.NET Data Services
-    Authorization: Bearer <ENCODED JWT TOKEN> 
-    x-ms-version: 2.19
-    x-ms-client-request-id: 78d1247a-58d7-40e5-96cc-70ff0dfa7382
-    Host: media.chinacloudapi.cn
+```console
+GET https://media.chinacloudapi.cn/api/GetProtectionKey?ProtectionKeyId='7D9BB04D9D0A4A24800CADBFEF232689E048F69C' HTTP/1.1
+MaxDataServiceVersion: 3.0;NetFx
+Accept: application/json
+Accept-Charset: UTF-8
+User-Agent: Microsoft ADO.NET Data Services
+Authorization: Bearer <ENCODED JWT TOKEN> 
+x-ms-version: 2.19
+x-ms-client-request-id: 78d1247a-58d7-40e5-96cc-70ff0dfa7382
+Host: media.chinacloudapi.cn
+```
 
 响应：
 
-    HTTP/1.1 200 OK
-    Cache-Control: no-cache
-    Content-Length: 1227
-    Content-Type: application/json;odata=minimalmetadata;streaming=true;charset=utf-8
-    Server: Microsoft-IIS/8.5
-    x-ms-client-request-id: 78d1247a-58d7-40e5-96cc-70ff0dfa7382
-    request-id: 1523e8f3-8ed2-40fe-8a9a-5d81eb572cc8
-    x-ms-request-id: 1523e8f3-8ed2-40fe-8a9a-5d81eb572cc8
-    X-Content-Type-Options: nosniff
-    DataServiceVersion: 3.0;
-    X-Powered-By: ASP.NET
-    Strict-Transport-Security: max-age=31536000; includeSubDomains
-    Date: Thu, 05 Feb 2015 07:52:30 GMT
+```console
+HTTP/1.1 200 OK
+Cache-Control: no-cache
+Content-Length: 1227
+Content-Type: application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+Server: Microsoft-IIS/8.5
+x-ms-client-request-id: 78d1247a-58d7-40e5-96cc-70ff0dfa7382
+request-id: 1523e8f3-8ed2-40fe-8a9a-5d81eb572cc8
+x-ms-request-id: 1523e8f3-8ed2-40fe-8a9a-5d81eb572cc8
+X-Content-Type-Options: nosniff
+DataServiceVersion: 3.0;
+X-Powered-By: ASP.NET
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Date: Thu, 05 Feb 2015 07:52:30 GMT
 
-    {"odata.metadata":"https://wamsbayclus001rest-hs.chinacloudapp.cn/api/$metadata#Edm.String",
-    "value":"MIIDSTCCAjGgAwIBAgIQqf92wku/HLJGCbMAU8GEnDANBgkqhkiG9w0BAQQFADAuMSwwKgYDVQQDEyN3YW1zYmx1cmVnMDAxZW5jcnlwdGFsbHNlY3JldHMtY2VydDAeFw0xMjA1MjkwNzAwMDBaFw0zMjA1MjkwNzAwMDBaMC4xLDAqBgNVBAMTI3dhbXNibHVyZWcwMDFlbmNyeXB0YWxsc2VjcmV0cy1jZXJ0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzR0SEbXefvUjb9wCUfkEiKtGQ5Gc328qFPrhMjSo+YHe0AVviZ9YaxPPb0m1AaaRV4dqWpST2+JtDhLOmGpWmmA60tbATJDdmRzKi2eYAyhhE76MgJgL3myCQLP42jDusWXWSMabui3/tMDQs+zfi1sJ4Ch/lm5EvksYsu6o8sCv29VRwxfDLJPBy2NlbV4GbWz5Qxp2tAmHoROnfaRhwp6WIbquk69tEtu2U50CpPN2goLAqx2PpXAqA+prxCZYGTHqfmFJEKtZHhizVBTFPGS3ncfnQC9QIEwFbPw6E5PO5yNaB68radWsp5uvDg33G1i8IT39GstMW6zaaG7cNQIDAQABo2MwYTBfBgNVHQEEWDBWgBCOGT2hPhsvQioZimw8M+jOoTAwLjEsMCoGA1UEAxMjd2Ftc2JsdXJlZzAwMWVuY3J5cHRhbGxzZWNyZXRzLWNlcnSCEKn/dsJLvxyyRgmzAFPBhJwwDQYJKoZIhvcNAQEEBQADggEBABcrQPma2ekNS3Wc5wGXL/aHyQaQRwFGymnUJ+VR8jVUZaC/U/f6lR98eTlwycjVwRL7D15BfClGEHw66QdHejaViJCjbEIJJ3p2c9fzBKhjLhzB3VVNiLIaH6RSI1bMPd2eddSCqhDIn3VBN605GcYXMzhYp+YA6g9+YMNeS1b+LxX3fqixMQIxSHOLFZ1G/H2xfNawv0VikH3djNui3EKT1w/8aRkUv/AAV0b3rYkP/jA1I0CPn0XFk7STYoiJ3gJoKq9EMXhit+Iwfz0sMkfhWG12/XO+TAWqsK1ZxEjuC9OzrY7pFnNxs4Mu4S8iinehduSpY+9mDd3dHynNwT4="}
+{"odata.metadata":"https://wamsbayclus001rest-hs.chinacloudapp.cn/api/$metadata#Edm.String",
+"value":"MIIDSTCCAjGgAwIBAgIQqf92wku/HLJGCbMAU8GEnDANBgkqhkiG9w0BAQQFADAuMSwwKgYDVQQDEyN3YW1zYmx1cmVnMDAxZW5jcnlwdGFsbHNlY3JldHMtY2VydDAeFw0xMjA1MjkwNzAwMDBaFw0zMjA1MjkwNzAwMDBaMC4xLDAqBgNVBAMTI3dhbXNibHVyZWcwMDFlbmNyeXB0YWxsc2VjcmV0cy1jZXJ0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzR0SEbXefvUjb9wCUfkEiKtGQ5Gc328qFPrhMjSo+YHe0AVviZ9YaxPPb0m1AaaRV4dqWpST2+JtDhLOmGpWmmA60tbATJDdmRzKi2eYAyhhE76MgJgL3myCQLP42jDusWXWSMabui3/tMDQs+zfi1sJ4Ch/lm5EvksYsu6o8sCv29VRwxfDLJPBy2NlbV4GbWz5Qxp2tAmHoROnfaRhwp6WIbquk69tEtu2U50CpPN2goLAqx2PpXAqA+prxCZYGTHqfmFJEKtZHhizVBTFPGS3ncfnQC9QIEwFbPw6E5PO5yNaB68radWsp5uvDg33G1i8IT39GstMW6zaaG7cNQIDAQABo2MwYTBfBgNVHQEEWDBWgBCOGT2hPhsvQioZimw8M+jOoTAwLjEsMCoGA1UEAxMjd2Ftc2JsdXJlZzAwMWVuY3J5cHRhbGxzZWNyZXRzLWNlcnSCEKn/dsJLvxyyRgmzAFPBhJwwDQYJKoZIhvcNAQEEBQADggEBABcrQPma2ekNS3Wc5wGXL/aHyQaQRwFGymnUJ+VR8jVUZaC/U/f6lR98eTlwycjVwRL7D15BfClGEHw66QdHejaViJCjbEIJJ3p2c9fzBKhjLhzB3VVNiLIaH6RSI1bMPd2eddSCqhDIn3VBN605GcYXMzhYp+YA6g9+YMNeS1b+LxX3fqixMQIxSHOLFZ1G/H2xfNawv0VikH3djNui3EKT1w/8aRkUv/AAV0b3rYkP/jA1I0CPn0XFk7STYoiJ3gJoKq9EMXhit+Iwfz0sMkfhWG12/XO+TAWqsK1ZxEjuC9OzrY7pFnNxs4Mu4S8iinehduSpY+9mDd3dHynNwT4="}
+```
 
 ### <a name="create-the-content-key"></a>创建内容密钥
 检索到 X.509 证书并使用其公钥加密内容密钥后，可创建 **ContentKey** 实体并设置相应属性值。
@@ -198,182 +205,198 @@ AMS 存储加密将 **AES-CTR** 模式加密应用于整个文件。  AES-CTR �
 
 请求
 
-    POST https://media.chinacloudapi.cn/api/ContentKeys HTTP/1.1
-    Content-Type: application/json
-    DataServiceVersion: 1.0;NetFx
-    MaxDataServiceVersion: 3.0;NetFx
-    Accept: application/json
-    Accept-Charset: UTF-8
-    User-Agent: Microsoft ADO.NET Data Services
-    Authorization: Bearer <ENCODED JWT TOKEN>
-    x-ms-version: 2.19
-    Host: media.chinacloudapi.cn
-    {
-    "Name":"ContentKey",
-    "ProtectionKeyId":"7D9BB04D9D0A4A24800CADBFEF232689E048F69C", 
-    "ContentKeyType":"1", 
-    "ProtectionKeyType":"0",
-    "EncryptedContentKey":"your encrypted content key",
-    "Checksum":"calculated checksum"
-    }
+```console
+POST https://media.chinacloudapi.cn/api/ContentKeys HTTP/1.1
+Content-Type: application/json
+DataServiceVersion: 1.0;NetFx
+MaxDataServiceVersion: 3.0;NetFx
+Accept: application/json
+Accept-Charset: UTF-8
+User-Agent: Microsoft ADO.NET Data Services
+Authorization: Bearer <ENCODED JWT TOKEN>
+x-ms-version: 2.19
+Host: media.chinacloudapi.cn
+{
+"Name":"ContentKey",
+"ProtectionKeyId":"7D9BB04D9D0A4A24800CADBFEF232689E048F69C", 
+"ContentKeyType":"1", 
+"ProtectionKeyType":"0",
+"EncryptedContentKey":"your encrypted content key",
+"Checksum":"calculated checksum"
+}
+```
 
 响应：
 
-    HTTP/1.1 201 Created
-    Cache-Control: no-cache
-    Content-Length: 777
-    Content-Type: application/json;odata=minimalmetadata;streaming=true;charset=utf-8
-    Location: https://media.chinacloudapi.cn/api/ContentKeys('nb%3Akid%3AUUID%3A9c8ea9c6-52bd-4232-8a43-8e43d8564a99')
-    Server: Microsoft-IIS/8.5
-    request-id: 76e85e0f-5cf1-44cb-b689-b3455888682c
-    x-ms-request-id: 76e85e0f-5cf1-44cb-b689-b3455888682c
-    X-Content-Type-Options: nosniff
-    DataServiceVersion: 3.0;
-    X-Powered-By: ASP.NET
-    Strict-Transport-Security: max-age=31536000; includeSubDomains
-    Date: Wed, 04 Feb 2015 02:37:46 GMT
+```console
+HTTP/1.1 201 Created
+Cache-Control: no-cache
+Content-Length: 777
+Content-Type: application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+Location: https://media.chinacloudapi.cn/api/ContentKeys('nb%3Akid%3AUUID%3A9c8ea9c6-52bd-4232-8a43-8e43d8564a99')
+Server: Microsoft-IIS/8.5
+request-id: 76e85e0f-5cf1-44cb-b689-b3455888682c
+x-ms-request-id: 76e85e0f-5cf1-44cb-b689-b3455888682c
+X-Content-Type-Options: nosniff
+DataServiceVersion: 3.0;
+X-Powered-By: ASP.NET
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Date: Wed, 04 Feb 2015 02:37:46 GMT
 
-    {"odata.metadata":"https://wamsbayclus001rest-hs.chinacloudapp.cn/api/$metadata#ContentKeys/@Element",
-    "Id":"nb:kid:UUID:9c8ea9c6-52bd-4232-8a43-8e43d8564a99","Created":"2015-02-04T02:37:46.9684379Z",
-    "LastModified":"2015-02-04T02:37:46.9684379Z",
-    "ContentKeyType":1,
-    "EncryptedContentKey":"your encrypted content key",
-    "Name":"ContentKey",
-    "ProtectionKeyId":"7D9BB04D9D0A4A24800CADBFEF232689E048F69C",
-    "ProtectionKeyType":0,
-    "Checksum":"calculated checksum"}
+{"odata.metadata":"https://wamsbayclus001rest-hs.chinacloudapp.cn/api/$metadata#ContentKeys/@Element",
+"Id":"nb:kid:UUID:9c8ea9c6-52bd-4232-8a43-8e43d8564a99","Created":"2015-02-04T02:37:46.9684379Z",
+"LastModified":"2015-02-04T02:37:46.9684379Z",
+"ContentKeyType":1,
+"EncryptedContentKey":"your encrypted content key",
+"Name":"ContentKey",
+"ProtectionKeyId":"7D9BB04D9D0A4A24800CADBFEF232689E048F69C",
+"ProtectionKeyType":0,
+"Checksum":"calculated checksum"}
+```
 
 ## <a name="create-an-asset"></a>创建资产
 以下示例说明了如何创建资产。
 
 **HTTP 请求**
 
-    POST https://media.chinacloudapi.cn/api/Assets HTTP/1.1
-    Content-Type: application/json
-    DataServiceVersion: 1.0;NetFx
-    MaxDataServiceVersion: 3.0;NetFx
-    Accept: application/json
-    Accept-Charset: UTF-8
-    Authorization: Bearer <ENCODED JWT TOKEN>
-    x-ms-version: 2.19
-    Host: media.chinacloudapi.cn
+```console
+POST https://media.chinacloudapi.cn/api/Assets HTTP/1.1
+Content-Type: application/json
+DataServiceVersion: 1.0;NetFx
+MaxDataServiceVersion: 3.0;NetFx
+Accept: application/json
+Accept-Charset: UTF-8
+Authorization: Bearer <ENCODED JWT TOKEN>
+x-ms-version: 2.19
+Host: media.chinacloudapi.cn
 
-    {"Name":"BigBuckBunny" "Options":1}
+{"Name":"BigBuckBunny" "Options":1}
+```
 
 **HTTP 响应**
 
 如果成功，将返回以下响应：
 
-    HTP/1.1 201 Created
-    Cache-Control: no-cache
-    Content-Length: 452
-    Content-Type: application/json;odata=minimalmetadata;streaming=true;charset=utf-8
-    Location: https://wamsbayclus001rest-hs.chinacloudapp.cn/api/Assets('nb%3Acid%3AUUID%3A9bc8ff20-24fb-4fdb-9d7c-b04c7ee573a1')
-    Server: Microsoft-IIS/8.5
-    x-ms-client-request-id: c59de965-bc89-4295-9a57-75d897e5221e
-    request-id: e98be122-ae09-473a-8072-0ccd234a0657
-    x-ms-request-id: e98be122-ae09-473a-8072-0ccd234a0657
-    X-Content-Type-Options: nosniff
-    DataServiceVersion: 3.0;
-    Strict-Transport-Security: max-age=31536000; includeSubDomains
-    Date: Sun, 18 Jan 2015 22:06:40 GMT
-    {  
-       "odata.metadata":"https://wamsbayclus001rest-hs.chinacloudapp.cn/api/$metadata#Assets/@Element",
-       "Id":"nb:cid:UUID:9bc8ff20-24fb-4fdb-9d7c-b04c7ee573a1",
-       "State":0,
-       "Created":"2015-01-18T22:06:40.6010903Z",
-       "LastModified":"2015-01-18T22:06:40.6010903Z",
-       "AlternateId":null,
-       "Name":"BigBuckBunny.mp4",
-       "Options":1,
-       "Uri":"https://storagetestaccount001.blob.core.chinacloudapi.cn/asset-9bc8ff20-24fb-4fdb-9d7c-b04c7ee573a1",
-       "StorageAccountName":"storagetestaccount001"
-    }
+```console
+HTP/1.1 201 Created
+Cache-Control: no-cache
+Content-Length: 452
+Content-Type: application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+Location: https://wamsbayclus001rest-hs.chinacloudapp.cn/api/Assets('nb%3Acid%3AUUID%3A9bc8ff20-24fb-4fdb-9d7c-b04c7ee573a1')
+Server: Microsoft-IIS/8.5
+x-ms-client-request-id: c59de965-bc89-4295-9a57-75d897e5221e
+request-id: e98be122-ae09-473a-8072-0ccd234a0657
+x-ms-request-id: e98be122-ae09-473a-8072-0ccd234a0657
+X-Content-Type-Options: nosniff
+DataServiceVersion: 3.0;
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Date: Sun, 18 Jan 2015 22:06:40 GMT
+{  
+   "odata.metadata":"https://wamsbayclus001rest-hs.chinacloudapp.cn/api/$metadata#Assets/@Element",
+   "Id":"nb:cid:UUID:9bc8ff20-24fb-4fdb-9d7c-b04c7ee573a1",
+   "State":0,
+   "Created":"2015-01-18T22:06:40.6010903Z",
+   "LastModified":"2015-01-18T22:06:40.6010903Z",
+   "AlternateId":null,
+   "Name":"BigBuckBunny.mp4",
+   "Options":1,
+   "Uri":"https://storagetestaccount001.blob.core.chinacloudapi.cn/asset-9bc8ff20-24fb-4fdb-9d7c-b04c7ee573a1",
+   "StorageAccountName":"storagetestaccount001"
+}
+```
 
 ## <a name="associate-the-contentkey-with-an-asset"></a>将 ContentKey 与资产关联
 创建 ContentKey 后，使用 $links 操作将其与资产关联，如以下示例所示：
 
 请求：
 
-    POST https://media.chinacloudapi.cn/api/Assets('nb%3Acid%3AUUID%3Afbd7ce05-1087-401b-aaae-29f16383c801')/$links/ContentKeys HTTP/1.1
-    DataServiceVersion: 1.0;NetFx
-    MaxDataServiceVersion: 3.0;NetFx
-    Accept: application/json
-    Accept-Charset: UTF-8
-    Content-Type: application/json
-    Authorization: Bearer <ENCODED JWT TOKEN>
-    x-ms-version: 2.19
-    Host: media.chinacloudapi.cn
+```console
+POST https://media.chinacloudapi.cn/api/Assets('nb%3Acid%3AUUID%3Afbd7ce05-1087-401b-aaae-29f16383c801')/$links/ContentKeys HTTP/1.1
+DataServiceVersion: 1.0;NetFx
+MaxDataServiceVersion: 3.0;NetFx
+Accept: application/json
+Accept-Charset: UTF-8
+Content-Type: application/json
+Authorization: Bearer <ENCODED JWT TOKEN>
+x-ms-version: 2.19
+Host: media.chinacloudapi.cn
 
-    {"uri":"https://wamsbayclus001rest-hs.chinacloudapp.cn/api/ContentKeys('nb%3Akid%3AUUID%3A01e6ea36-2285-4562-91f1-82c45736047c')"}
+{"uri":"https://wamsbayclus001rest-hs.chinacloudapp.cn/api/ContentKeys('nb%3Akid%3AUUID%3A01e6ea36-2285-4562-91f1-82c45736047c')"}
+```
 
 响应：
 
-    HTTP/1.1 204 No Content 
+```console
+HTTP/1.1 204 No Content 
+```
 
 ## <a name="create-an-assetfile"></a>创建 AssetFile
-[AssetFile](https://docs.microsoft.com/rest/api/media/operations/assetfile) 实体表示 blob 容器中存储的视频或音频文件。 一个资产文件始终与一个资产关联，而一个资产则可能包含一个或多个资产文件。 如果资产文件对象未与 BLOB 容器中的数字文件关联，则媒体服务 Encoder 任务会失败。
+[AssetFile](https://docs.microsoft.com/rest/api/media/operations/assetfile) 实体表示 blob 容器中存储的视频或音频文件。 一个资产文件始终与一个资产关联，而一个资产则可能包含一个或多个资产文件。 如果资产文件对象未与 blob 容器中的数字文件关联，则媒体服务编码器任务将失败。
 
 **AssetFile** 实例和实际媒体文件是两个不同的对象。 AssetFile 实例包含有关媒体文件的元数据，而媒体文件包含实际媒体内容。
 
-将数字媒体文件上传到 blob 容器后，需要使用 MERGE HTTP 请求来更新 AssetFile 中有关媒体文件的信息（本文中未展示）  。 
+将数字媒体文件上传到 blob 容器后，需要使用 MERGE HTTP 请求来更新 AssetFile 中有关媒体文件的信息（本文中未展示）****。 
 
 **HTTP 请求**
 
-    POST https://media.chinacloudapi.cn/api/Files HTTP/1.1
-    Content-Type: application/json
-    DataServiceVersion: 1.0;NetFx
-    MaxDataServiceVersion: 3.0;NetFx
-    Accept: application/json
-    Accept-Charset: UTF-8
-    Authorization: Bearer <ENCODED JWT TOKEN>
-    x-ms-version: 2.19
-    Host: media.chinacloudapi.cn
-    Content-Length: 164
+```console
+POST https://media.chinacloudapi.cn/api/Files HTTP/1.1
+Content-Type: application/json
+DataServiceVersion: 1.0;NetFx
+MaxDataServiceVersion: 3.0;NetFx
+Accept: application/json
+Accept-Charset: UTF-8
+Authorization: Bearer <ENCODED JWT TOKEN>
+x-ms-version: 2.19
+Host: media.chinacloudapi.cn
+Content-Length: 164
 
-    {  
-       "IsEncrypted":"true",
-       "EncryptionScheme" : "StorageEncryption", 
-       "EncryptionVersion" : "1.0",       
-       "EncryptionKeyId" : "nb:kid:UUID:32e6efaf-5fba-4538-b115-9d1cefe43510",
-       "InitializationVector" : "397304628502661816</d:InitializationVector",
-       "Options":0,
-       "IsPrimary":"false",
-       "MimeType":"video/mp4",
-       "Name":"BigBuckBunny.mp4",
-       "ParentAssetId":"nb:cid:UUID:9bc8ff20-24fb-4fdb-9d7c-b04c7ee573a1"
-    }
+{  
+   "IsEncrypted":"true",
+   "EncryptionScheme" : "StorageEncryption", 
+   "EncryptionVersion" : "1.0",       
+   "EncryptionKeyId" : "nb:kid:UUID:32e6efaf-5fba-4538-b115-9d1cefe43510",
+   "InitializationVector" : "397304628502661816</d:InitializationVector",
+   "Options":0,
+   "IsPrimary":"false",
+   "MimeType":"video/mp4",
+   "Name":"BigBuckBunny.mp4",
+   "ParentAssetId":"nb:cid:UUID:9bc8ff20-24fb-4fdb-9d7c-b04c7ee573a1"
+}
+```
 
 **HTTP 响应**
 
-    HTTP/1.1 201 Created
-    Cache-Control: no-cache
-    Content-Length: 535
-    Content-Type: application/json;odata=minimalmetadata;streaming=true;charset=utf-8
-    Location: https://wamsbayclus001rest-hs.chinacloudapp.cn/api/Files('nb%3Acid%3AUUID%3Af13a0137-0a62-9d4c-b3b9-ca944b5142c5')
-    Server: Microsoft-IIS/8.5
-    request-id: 98a30e2d-f379-4495-988e-0b79edc9b80e
-    x-ms-request-id: 98a30e2d-f379-4495-988e-0b79edc9b80e
-    X-Content-Type-Options: nosniff
-    DataServiceVersion: 3.0;
-    X-Powered-By: ASP.NET
-    Strict-Transport-Security: max-age=31536000; includeSubDomains
-    Date: Mon, 19 Jan 2015 00:34:07 GMT
+```console
+HTTP/1.1 201 Created
+Cache-Control: no-cache
+Content-Length: 535
+Content-Type: application/json;odata=minimalmetadata;streaming=true;charset=utf-8
+Location: https://wamsbayclus001rest-hs.chinacloudapp.cn/api/Files('nb%3Acid%3AUUID%3Af13a0137-0a62-9d4c-b3b9-ca944b5142c5')
+Server: Microsoft-IIS/8.5
+request-id: 98a30e2d-f379-4495-988e-0b79edc9b80e
+x-ms-request-id: 98a30e2d-f379-4495-988e-0b79edc9b80e
+X-Content-Type-Options: nosniff
+DataServiceVersion: 3.0;
+X-Powered-By: ASP.NET
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Date: Mon, 19 Jan 2015 00:34:07 GMT
 
-    {  
-       "odata.metadata":"https://wamsbayclus001rest-hs.chinacloudapp.cn/api/$metadata#Files/@Element",
-       "Id":"nb:cid:UUID:f13a0137-0a62-9d4c-b3b9-ca944b5142c5",
-       "Name":"BigBuckBunny.mp4",
-       "ContentFileSize":"0",
-       "ParentAssetId":"nb:cid:UUID:9bc8ff20-24fb-4fdb-9d7c-b04c7ee573a1",
-       "EncryptionVersion": "1.0",
-       "EncryptionScheme": "StorageEncryption",
-       "IsEncrypted":true,
-       "EncryptionKeyId":"nb:kid:UUID:32e6efaf-5fba-4538-b115-9d1cefe43510",
-       "InitializationVector":"397304628502661816</d:InitializationVector",
-       "IsPrimary":false,
-       "LastModified":"2015-01-19T00:34:08.1934137Z",
-       "Created":"2015-01-19T00:34:08.1934137Z",
-       "MimeType":"video/mp4",
-       "ContentChecksum":null
-    }
+{  
+   "odata.metadata":"https://wamsbayclus001rest-hs.chinacloudapp.cn/api/$metadata#Files/@Element",
+   "Id":"nb:cid:UUID:f13a0137-0a62-9d4c-b3b9-ca944b5142c5",
+   "Name":"BigBuckBunny.mp4",
+   "ContentFileSize":"0",
+   "ParentAssetId":"nb:cid:UUID:9bc8ff20-24fb-4fdb-9d7c-b04c7ee573a1",
+   "EncryptionVersion": "1.0",
+   "EncryptionScheme": "StorageEncryption",
+   "IsEncrypted":true,
+   "EncryptionKeyId":"nb:kid:UUID:32e6efaf-5fba-4538-b115-9d1cefe43510",
+   "InitializationVector":"397304628502661816</d:InitializationVector",
+   "IsPrimary":false,
+   "LastModified":"2015-01-19T00:34:08.1934137Z",
+   "Created":"2015-01-19T00:34:08.1934137Z",
+   "MimeType":"video/mp4",
+   "ContentChecksum":null
+}
+```

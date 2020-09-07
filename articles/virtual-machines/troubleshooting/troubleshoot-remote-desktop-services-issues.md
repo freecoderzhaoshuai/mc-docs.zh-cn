@@ -3,22 +3,24 @@ title: 远程桌面服务在 Azure VM 上不启动 | Azure
 description: 了解如何排查使用远程桌面服务连接到虚拟机时出现的问题 | Azure
 services: virtual-machines-windows
 documentationCenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 ms.service: virtual-machines-windows
 ms.topic: troubleshooting
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 10/23/2018
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 389c632015e02ea71961a7cb777c7316d034301e
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: 610e02fdb1493c952028fe2dea6970f32a5c3829
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596186"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456774"
 ---
 # <a name="remote-desktop-services-isnt-starting-on-an-azure-vm"></a>远程桌面服务在 Azure VM 上不启动
 
@@ -30,7 +32,7 @@ ms.locfileid: "82596186"
 
 - VM 屏幕截图显示操作系统已满载，并正在等待凭据。
 
-    ![VM 状态的屏幕截图](./media/troubleshoot-remote-desktop-services-issues/login-page.png)
+    :::image type="content" source="./media/troubleshoot-remote-desktop-services-issues/login-page.png" alt-text="VM 状态的屏幕截图":::
 
 - 在使用事件查看器远程查看 VM 中的事件日志时， 你发现远程桌面服务 (TermService) 未启动或无法启动。 下面是日志示例：
 
@@ -67,7 +69,7 @@ ms.locfileid: "82596186"
 
 #### <a name="attach-the-os-disk-to-a-recovery-vm"></a>将 OS 磁盘附加到恢复 VM
 
-1. [将 OS 磁盘附加到恢复 VM](../windows/troubleshoot-recovery-disks-portal.md)。
+1. [将 OS 磁盘附加到恢复 VM](./troubleshoot-recovery-disks-portal-windows.md)。
 2. 开始与恢复 VM 建立远程桌面连接。 确保附加的磁盘在磁盘管理控制台中标记为“联机”。  请注意分配给附加的 OS 磁盘的驱动器号。
 3. 打开权限提升的命令提示符实例（“以管理员身份运行”）。  然后运行以下脚本。 假设分配给附加的 OS 磁盘的驱动器号为 **F**。请将它替换为 VM 中的相应值。 
 
@@ -83,7 +85,7 @@ ms.locfileid: "82596186"
     reg add "HKLM\BROKENSYSTEM\ControlSet002\services\TermService" /v type /t REG_DWORD /d 16 /f
     ```
 
-4. [分离 OS 磁盘并重新创建 VM](../windows/troubleshoot-recovery-disks-portal.md)。 然后检查是否解决了问题。
+4. [分离 OS 磁盘并重新创建 VM](./troubleshoot-recovery-disks-portal-windows.md)。 然后检查是否解决了问题。
 
 ## <a name="need-help-contact-support"></a>需要帮助？ 联系支持人员
 

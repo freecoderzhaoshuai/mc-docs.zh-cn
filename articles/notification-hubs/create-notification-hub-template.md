@@ -1,42 +1,42 @@
 ---
 title: 使用 Azure 资源管理器模板创建 Azure 通知中心
-description: 了解如何使用 Azure 资源管理器模板创建 Azure 通知中心。
+description: 了解如何使用 Azure 资源管理器模板（ARM 模板）创建 Azure 通知中心。
 services: notification-hubs
 author: sethmanheim
 ms.service: notification-hubs
 ms.topic: quickstart
 ms.custom: subject-armqs
 ms.author: v-tawe
-origin.date: 05/15/2020
-ms.date: 07/01/2020
+origin.date: 08/04/2020
+ms.date: 09/02/2020
 ms.reviewer: thsomasu
 ms.lastreviewed: 05/15/2020
-ms.openlocfilehash: 56a14381c99d0e7bd666d92ddb304534c1b4d0af
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: b10325a8534a958c6dd74c43bf0cd2cce7ba65cf
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917323"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316339"
 ---
-# <a name="quickstart-create-a-notification-hub-using-an-azure-resource-manager-template"></a>快速入门：使用 Azure 资源管理器模板创建通知中心
+# <a name="quickstart-create-a-notification-hub-using-an-arm-template"></a>快速入门：使用 ARM 模板创建通知中心
 
 Azure 通知中心提供易于使用且横向扩展的推送引擎，允许你从任何后端（云或本地）向任何平台（iOS、Android、Windows、Kindle 等）发送通知。 有关此服务的详细信息，请参阅[什么是 Azure 通知中心](notification-hubs-push-notification-overview.md)。
 
 [!INCLUDE [About Azure Resource Manager](../../includes/resource-manager-quickstart-introduction.md)]
 
-本快速入门使用 Azure 资源管理器模板来创建 Azure 通知中心命名空间，并在命名空间中创建名为“MyHub”的通知中心。
+本快速入门使用 Azure 资源管理器模板（ARM 模板）来创建 Azure 通知中心命名空间，并在命名空间中创建名为“MyHub”的通知中心。
 
-如果没有 Azure 订阅，请在开始前创建一个[试用帐户](https://wd.azure.cn/pricing/1rmb-trial/)。
+如果你的环境满足先决条件，并且你熟悉如何使用 ARM 模板，请选择“部署到 Azure”按钮。 Azure 门户中会打开模板。
+
+[![部署到 Azure](../media/template-deployments/deploy-to-azure.svg)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-notification-hub%2Fazuredeploy.json)
 
 ## <a name="prerequisites"></a>先决条件
 
-无。
+如果没有 Azure 订阅，请在开始前创建一个[试用帐户](https://wd.azure.cn/pricing/1rmb-trial/)。
 
-## <a name="create-a-notification-hubs-namespace-and-hub"></a>创建通知中心命名空间和中心
+## <a name="review-the-template"></a>查看模板
 
-### <a name="review-the-template"></a>查看模板
-
-本快速入门中使用的模板来自 [Azure 快速入门模板](https://azure.microsoft.com/resources/templates/101-notification-hub/)。
+本快速入门中使用的模板来自 [Azure 快速启动模板](https://azure.microsoft.com/resources/templates/101-notification-hub/)。
 
 ```json
 {
@@ -86,8 +86,8 @@ Azure 通知中心提供易于使用且横向扩展的推送引擎，允许你�
 }
 ```
 
-* [Microsoft.NotificationHubs/namespaces](https://docs.microsoft.com/azure/templates/microsoft.notificationhubs/2017-04-01/namespaces)
-* [Microsoft.NotificationHubs/namespaces/notificationHubs](https://docs.microsoft.com/azure/templates/microsoft.notificationhubs/2017-04-01/namespaces/notificationhubs)
+* [Microsoft.NotificationHubs/namespaces](https://docs.microsoft.com/azure/templates/microsoft.notificationhubs/namespaces)
+* [Microsoft.NotificationHubs/namespaces/notificationHubs](https://docs.microsoft.com/azure/templates/microsoft.notificationhubs/namespaces/notificationhubs)
 
 ## <a name="deploy-the-template"></a>部署模板
 
@@ -115,7 +115,7 @@ az notification-hub namespace show --resource-group ContosoNotificationsGroup --
 
 ---
 The output looks similar to: null
-:::image type="content" source="media/create-notification-hub-template/verify-deploy.png" alt-text="Verify deployment":::
+':::image type="content" source="media/create-notification-hub-template/verify-deploy.png" alt-text="Verify deployment"::': null
 ---
 
 ## <a name="clean-up-resources"></a>清理资源
@@ -133,4 +133,4 @@ Write-Host "Press [ENTER] to continue..."
 有关引导你完成模板创建过程的分步教程，请参阅：
 
 > [!div class="nextstepaction"]
-> [教程：创建和部署你的第一个 Azure 资源管理器模板](https://docs.microsoft.com/azure/azure-resource-manager/templates/template-tutorial-create-first-template)
+> [教程：创建和部署你的第一个 ARM 模板](../azure-resource-manager/templates/template-tutorial-create-first-template.md)

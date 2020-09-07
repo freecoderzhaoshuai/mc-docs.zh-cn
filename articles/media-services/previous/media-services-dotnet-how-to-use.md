@@ -13,19 +13,20 @@ ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
 origin.date: 03/18/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 934847868698c48cb4a42d163dcfa569a8b82cb7
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 948d1b923ee0ea53e4dfc044bdee407967ae67c0
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71124518"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413210"
 ---
 # <a name="media-services-development-with-net"></a>使用 .NET 进行媒体服务开发 
 
 > [!NOTE]
-> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](/media-services/latest/)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
+> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](../latest/index.yml)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
 
 本文讨论如何使用 .NET 开始开发媒体服务应用程序。
 
@@ -68,29 +69,29 @@ ms.locfileid: "71124518"
 
     使用“服务主体”身份验证方法设置需要连接的值  。
 
-        ```csharp
-                <configuration>
-                ...
-                    <appSettings>
-                        <add key="AMSAADTenantDomain" value="tenant"/>
-                        <add key="AMSRESTAPIEndpoint" value="endpoint"/>
-                        <add key="AMSClientId" value="id"/>
-                        <add key="AMSClientSecret" value="secret"/>
-                    </appSettings>
-                </configuration>
-        ```
+    ```xml
+    <configuration>
+    ...
+        <appSettings>
+            <add key="AMSAADTenantDomain" value="tenant"/>
+            <add key="AMSRESTAPIEndpoint" value="endpoint"/>
+            <add key="AMSClientId" value="id"/>
+            <add key="AMSClientSecret" value="secret"/>
+        </appSettings>
+    </configuration>
+    ```
 
 7. 将“System.Configuration”引用添加到项目中  。
 8. 使用以下代码覆盖位于 Program.cs 文件开头的现有“using”语句  ：
 
     ```csharp      
-            using System;
-            using System.Configuration;
-            using System.IO;
-            using Microsoft.WindowsAzure.MediaServices.Client;
-            using System.Threading;
-            using System.Collections.Generic;
-            using System.Linq;
+    using System;
+    using System.Configuration;
+    using System.IO;
+    using Microsoft.WindowsAzure.MediaServices.Client;
+    using System.Threading;
+    using System.Collections.Generic;
+    using System.Linq;
     ```
 
     现在，可以开始开发媒体服务应用程序了。    
@@ -100,38 +101,38 @@ ms.locfileid: "71124518"
 下面是一个小型示例，连接到 AMS API 并列出所有可用的媒体处理器。
 
 ```csharp
-        class Program
-        {
-            // Read values from the App.config file.
+class Program
+{
+    // Read values from the App.config file.
 
-            private static readonly string _AADTenantDomain =
-                ConfigurationManager.AppSettings["AMSAADTenantDomain"];
-            private static readonly string _RESTAPIEndpoint =
-                ConfigurationManager.AppSettings["AMSRESTAPIEndpoint"];
-            private static readonly string _AMSClientId =
-                ConfigurationManager.AppSettings["AMSClientId"];
-            private static readonly string _AMSClientSecret =
-                ConfigurationManager.AppSettings["AMSClientSecret"];
+    private static readonly string _AADTenantDomain =
+        ConfigurationManager.AppSettings["AMSAADTenantDomain"];
+    private static readonly string _RESTAPIEndpoint =
+        ConfigurationManager.AppSettings["AMSRESTAPIEndpoint"];
+    private static readonly string _AMSClientId =
+        ConfigurationManager.AppSettings["AMSClientId"];
+    private static readonly string _AMSClientSecret =
+        ConfigurationManager.AppSettings["AMSClientSecret"];
         
-            private static CloudMediaContext _context = null;
-            static void Main(string[] args)
-            {
-                AzureAdTokenCredentials tokenCredentials = 
-                    new AzureAdTokenCredentials(_AADTenantDomain,
-                        new AzureAdClientSymmetricKey(_AMSClientId, _AMSClientSecret),
+    private static CloudMediaContext _context = null;
+    static void Main(string[] args)
+    {
+        AzureAdTokenCredentials tokenCredentials = 
+            new AzureAdTokenCredentials(_AADTenantDomain,
+                new AzureAdClientSymmetricKey(_AMSClientId, _AMSClientSecret),
                         AzureEnvironments.AzureChinaCloudEnvironment);
 
-                var tokenProvider = new AzureAdTokenProvider(tokenCredentials);
+        var tokenProvider = new AzureAdTokenProvider(tokenCredentials);
 
-                _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
+        _context = new CloudMediaContext(new Uri(_RESTAPIEndpoint), tokenProvider);
         
-                // List all available Media Processors
-                foreach (var mp in _context.MediaProcessors)
-                {
-                    Console.WriteLine(mp.Name);
-                }
+        // List all available Media Processors
+        foreach (var mp in _context.MediaProcessors)
+        {
+            Console.WriteLine(mp.Name);
+        }
         
-            }
+    }
  ```
 
 ## <a name="next-steps"></a>后续步骤

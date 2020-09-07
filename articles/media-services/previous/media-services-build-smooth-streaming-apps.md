@@ -13,14 +13,14 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/14/2019
-ms.date: 07/27/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 77dc20612fe882b62df4cc308fdfdf3beefff7a1
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: ed349d763dc80f450c1312a452a856a41609ebec
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162176"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413688"
 ---
 # <a name="how-to-build-a-smooth-streaming-windows-store-application"></a>如何生成平滑流式处理 Windows 应用商店应用程序  
 
@@ -54,7 +54,7 @@ ms.locfileid: "87162176"
 
 ![平滑流式处理 Windows 应用商店应用程序示例][PlayerApplication]
 
-有关开发 Windows 应用商店应用程序的详细信息，请参阅 [开发适用于 Windows 8 的极佳应用](https://msdn.microsoft.com/windows/apps/br229512.aspx)。 本课包含以下过程：
+有关开发 Windows 应用商店应用程序的详细信息，请参阅 [开发适用于 Windows 8 的极佳应用](https://developer.microsoft.com/en-us/windows/)。 本课包含以下过程：
 
 1. 创建 Windows 应用商店项目
 2. 设计用户界面 (XAML)

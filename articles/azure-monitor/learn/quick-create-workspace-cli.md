@@ -7,12 +7,12 @@ author: Johnnytechn
 ms.author: v-johya
 ms.date: 08/20/2020
 origin.date: 03/12/2019
-ms.openlocfilehash: 5184fc53829ff5336fa522e5b1381dda4bd27beb
-ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
+ms.openlocfilehash: b2af097d372245695d6fe25d3d37f8d16dd97553
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/30/2020
-ms.locfileid: "89148684"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457223"
 ---
 # <a name="create-a-log-analytics-workspace-with-azure-cli-20"></a>使用 Azure CLI 2.0 创建 Log Analytics 工作区
 
@@ -123,7 +123,7 @@ Azure CLI 2.0 用于从命令行或脚本创建和管理 Azure 资源。 本快�
 1. 如果你提供的工作区名称、资源组、订阅和区域与已删除的工作区中的相同，则将恢复你的工作区，包括其数据、配置和连接的代理。
 2. 如果你使用相同的工作区名称，但提供不同的资源组、订阅或区域，则将收到“工作区名称 workspace-name 不是唯一的或存在冲突”错误 。 若要替换软删除，同时永久删除你的工作区并创建新的同名工作区，请按照以下步骤，先恢复工作区再执行永久删除：
    * [恢复](../platform/delete-workspace.md#recover-workspace)工作区
-   * [永久删除](../platform/delete-workspace.md#permanent-workspace-delete)工作区
+   * [永久删除](../platform/delete-workspace.md)工作区
    * 使用相同的工作区名称创建新的工作区
 
 ## <a name="next-steps"></a>后续步骤

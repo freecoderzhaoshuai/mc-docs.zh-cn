@@ -1,10 +1,9 @@
 ---
-title: 通过将现有托管 OS 磁盘与 PowerShell 配合使用来创建虚拟机
+title: 通过将托管磁盘附加为 OS 磁盘来创建 VM (Linux) - PowerShell
 description: Azure PowerShell 脚本示例 - 通过将托管磁盘附加为 OS 磁盘来创建 VM
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: rockboyfor
-manager: digimobile
+manager: kavithag
 editor: ramankum
 tags: azure-service-management
 ms.assetid: ''
@@ -13,17 +12,20 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 origin.date: 05/10/2017
-ms.date: 02/10/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.custom: mvc
-ms.openlocfilehash: 6c0be3b6deca2a1ae7bf03b245882744f33f9c8b
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: mvc, devx-track-azurepowershell
+ms.openlocfilehash: a2a724d15506b723277c383b53daefee61ff63a7
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77428177"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414038"
 ---
-# <a name="create-a-virtual-machine-using-an-existing-managed-os-disk-with-powershell"></a>通过将现有托管 OS 磁盘与 PowerShell 配合使用来创建虚拟机
+# <a name="create-a-virtual-machine-using-an-existing-managed-os-disk-with-powershell-linux"></a>通过将现有托管 OS 磁盘与 PowerShell 配合使用来创建虚拟机 (Linux)
 
 此脚本通过将现有托管磁盘附加为 OS 磁盘来创建虚拟机。 在前面的方案中使用此脚本：
 * 基于从不同订阅中的托管磁盘复制的现有托管 OS 磁盘创建 VM
@@ -31,8 +33,6 @@ ms.locfileid: "77428177"
 * 基于从快照创建的现有托管 OS 磁盘创建 VM 
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
-
-[!INCLUDE [updated-for-az.md](../../../includes/updated-for-az.md)]
 
 ## <a name="sample-script"></a>示例脚本
 
@@ -109,13 +109,13 @@ Remove-AzResourceGroup -Name myResourceGroup
 
 | Command | 说明 |
 |---|---|
-| [Get-AzDisk](https://docs.microsoft.com/powershell/module/az.compute/Get-AzDisk) | 基于磁盘的名称和资源组获取磁盘对象。 返回的磁盘对象的 ID 属性用于将磁盘附加到新 VM |
+| [Get-AzDisk](https://docs.microsoft.com/powershell/module/az.compute/get-azdisk) | 基于磁盘的名称和资源组获取磁盘对象。 返回的磁盘对象的 ID 属性用于将磁盘附加到新 VM |
 | [New-AzVMConfig](https://docs.microsoft.com/powershell/module/az.compute/new-azvmconfig) | 创建 VM 配置。 此配置包括 VM 名称、操作系统和管理凭据等信息。 在创建 VM 期间将使用此配置。 |
 | [Set-AzVMOSDisk](https://docs.microsoft.com/powershell/module/az.compute/set-azvmosdisk) | 使用磁盘的 ID 属性将托管磁盘作为 OS 磁盘附加到新虚拟机 |
 | [New-AzPublicIpAddress](https://docs.microsoft.com/powershell/module/az.network/new-azpublicipaddress) | 创建公共 IP 地址。 |
 | [New-AzNetworkInterface](https://docs.microsoft.com/powershell/module/az.network/new-aznetworkinterface) | 创建网络接口。 |
 | [New-AzVM](https://docs.microsoft.com/powershell/module/az.compute/new-azvm) | 创建虚拟机。 |
-|[Remove-AzResourceGroup](https://docs.microsoft.com/powershell/module/az.resources/remove-azresourcegroup) | 删除资源组及其中包含的所有资源。 |
+| [Remove-AzResourceGroup](https://docs.microsoft.com/powershell/module/az.resources/remove-azresourcegroup) | 删除资源组及其中包含的所有资源。 |
 
 对于市场映像，使用 [Set-AzVMPlan](https://docs.microsoft.com/powershell/module/az.compute/set-azvmplan) 设置计划信息。
 
@@ -125,8 +125,8 @@ Set-AzVMPlan -VM $VirtualMachine -Publisher $Publisher -Product $Product -Name $
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 可以在 [Azure Linux VM 文档](../linux/powershell-samples.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)中找到其他虚拟机 PowerShell 脚本示例。
 
-<!-- Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

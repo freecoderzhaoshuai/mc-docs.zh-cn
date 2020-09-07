@@ -3,14 +3,14 @@ author: glecaros
 ms.service: cognitive-services
 ms.topic: include
 origin.date: 03/30/2020
-ms.date: 06/19/2019
+ms.date: 08/03/2020
 ms.author: v-tawe
-ms.openlocfilehash: 4f8030bd05a46de3f4adc8e599c0d5a164e86ead
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+ms.openlocfilehash: 1dbd3743c73eaa1d034160c59ce7da3ce1b6a8a7
+ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85613443"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "89317572"
 ---
 本指南介绍如何安装用于 Linux 的[语音 SDK](~/articles/cognitive-services/speech-service/speech-sdk.md)
 
@@ -25,7 +25,7 @@ Linux（Ubuntu 16.04、Ubuntu 18.04、Debian 9、RHEL 8、CentOS 8）
 若要完成本快速入门，你需要：
 
 * gcc
-* go（1.13 或更高版本）
+* [Go 二进制文件（1.13 或更高版本）](https://golang.org/dl/)
 
 * 支持的 Linux 平台会要求安装某些库（要求安装 `libssl` 以获取安全套接字层支持；要求安装 `libasound2` 以获取声音支持）。 请参阅下面的发行版，了解安装这些库的正确版本所需的命令。
 

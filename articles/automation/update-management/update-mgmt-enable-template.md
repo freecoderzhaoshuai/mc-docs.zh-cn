@@ -7,13 +7,13 @@ ms.topic: conceptual
 author: WenJason
 ms.author: v-jay
 origin.date: 06/10/2020
-ms.date: 08/10/2020
-ms.openlocfilehash: 759f94f73c792602db85e9c4d89c2d67a2a6f3e4
-ms.sourcegitcommit: e6b216b180734783219378410e13192e314a4497
+ms.date: 09/07/2020
+ms.openlocfilehash: 9a8d02d5c8637ec9e969a9aee52b91063f326ee9
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87790529"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462958"
 ---
 # <a name="enable-update-management-using-azure-resource-manager-template"></a>使用 Azure 资源管理器模板启用“更新管理”
 
@@ -69,7 +69,9 @@ JSON 模板为其他参数指定默认值，这些参数将会用作环境中的
 
 * 查看[更多详细信息](../../azure-monitor/platform/template-workspace-configuration.md#create-a-log-analytics-workspace)以充分了解工作区配置选项，如访问控制模式、定价层、保留期和容量预留级别。
 
-* 如果你不熟悉 Azure Monitor 日志且尚未部署工作区，应查看[工作区设计](../../azure-monitor/platform/design-logs-deployment.md)指南，以了解访问控制，并了解我们建议在组织中使用的设计实施策略。
+* 由于只有某些区域支持链接订阅中的 Log Analytics 工作区和自动化帐户，因此请查看[工作区映射](../how-to/region-mappings.md)以指定内联或参数文件中支持的区域。
+
+* 如果你不熟悉 Azure Monitor 日志，并且尚未部署工作区，则应查看[工作区设计](../../azure-monitor/platform/design-logs-deployment.md)指南以了解访问控制，并了解我们为组织所推荐的设计实现策略。
 
 ## <a name="deploy-template"></a>部署模板
 
@@ -149,7 +151,7 @@ JSON 模板为其他参数指定默认值，这些参数将会用作环境中的
             "location": "[parameters('location')]",
             "properties": {
                 "sku": {
-                    "name": "[parameters('sku')]",
+                    "name": "[parameters('sku')]"
                 },
                 "retentionInDays": "[parameters('dataRetention')]",
                 "features": {
@@ -191,7 +193,7 @@ JSON 模板为其他参数指定默认值，这些参数将会用作环境中的
                 "sku": {
                     "name": "Basic"
                 }
-            },
+            }
         },
         {
             "apiVersion": "2020-03-01-preview",

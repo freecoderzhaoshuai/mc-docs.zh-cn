@@ -1,23 +1,23 @@
 ---
-title: 如何扩展虚拟机的 OS 驱动器 | Azure
+title: 在 Azure 中扩展 Windows VM 的 OS 驱动器
 description: 在 Resource Manager 部署模型中，使用 Azure Powershell 增加虚拟机的 OS 驱动器大小。
-author: rockboyfor
-manager: digimobile
+manager: vashan
 ms.service: virtual-machines-windows
 ms.topic: how-to
 ms.workload: infrastructure-services
 origin.date: 07/05/2018
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: yes
-ms.testdate: 07/27/2020
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.subservice: disks
-ms.openlocfilehash: bfdf5579d186a67ab041b1d7f2e1da7a81df85d5
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: f599330842ee192f08c792b5fcb7b0dad9378e58
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244638"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463117"
 ---
 <!--Verified successfully -->
 # <a name="how-to-expand-the-os-drive-of-a-virtual-machine"></a>如何扩展虚拟机的 OS 驱动器
@@ -204,4 +204,4 @@ $vm.StorageProfile.DataDisks[0].DiskSizeGB = 1023
 
 还可以使用 [Azure 门户](attach-managed-disk-portal.md)来附加磁盘。
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

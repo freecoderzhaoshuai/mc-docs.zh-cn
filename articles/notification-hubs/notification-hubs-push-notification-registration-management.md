@@ -12,17 +12,18 @@ ms.workload: mobile
 ms.tgt_pltfrm: mobile-multiple
 ms.devlang: dotnet
 ms.topic: article
-origin.date: 03/17/2020
-ms.date: 04/20/2020
+origin.date: 07/07/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.reviewer: jowargo
+ms.reviewer: thsomasu
 ms.lastreviewed: 04/08/2019
-ms.openlocfilehash: 76f9c6ffb2ae9a6b9484148d72a0b7c9f2f0184f
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.custom: devx-track-csharp
+ms.openlocfilehash: c2b732df9a0da712b159212da51cc06333eb187b
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588655"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316456"
 ---
 # <a name="registration-management"></a>注册管理
 
@@ -49,7 +50,7 @@ ms.locfileid: "82588655"
 - 此安装模型支持特殊的标记格式 (`$InstallationId:{INSTALLATION_ID}`)，该格式允许将通知直接发送到特定的设备。 例如，如果应用的代码为此特定设备设置了安装 ID `joe93developer`，则开发人员在向 `$InstallationId:{joe93developer}` 标记发送通知时，可以将此设备作为目标。 这样，无需编写任何额外的代码，就能将特定设备作为目标。
 - 使用安装还能执行部分注册更新。 可以使用 [JSON-Patch standard](https://tools.ietf.org/html/rfc6902)以 PATCH 方法来请求部分安装更新。 想要更新注册中的标记时，此方法很有用。 用户不需要删除整个注册，并重新发送前面的所有标记。
 
-安装可包含以下属性。 有关完整的安装属性列表，请参阅[使用 REST API 创建或覆盖安装](https://docs.microsoft.com/rest/api/notificationhubs/create-overwrite-installation)或[安装属性](/dotnet/api/microsoft.azure.notificationhubs.installation?view=azure-dotnet)。
+安装可包含以下属性。 有关完整的安装属性列表，请参阅[使用 REST API 创建或覆盖安装](https://docs.microsoft.com/rest/api/notificationhubs/create-overwrite-installation)或[安装属性](/dotnet/api/microsoft.azure.notificationhubs.installation)。
 
 ```json
 // Example installation format to show some supported properties
@@ -135,73 +136,73 @@ class DeviceInstallation
     public string platform { get; set; }
     public string pushChannel { get; set; }
     public string[] tags { get; set; }
-}
 
-private async Task<HttpStatusCode> CreateOrUpdateInstallationAsync(DeviceInstallation deviceInstallation,
+    private async Task<HttpStatusCode> CreateOrUpdateInstallationAsync(DeviceInstallation deviceInstallation,
         string hubName, string listenConnectionString)
-{
-    if (deviceInstallation.installationId == null)
-        return HttpStatusCode.BadRequest;
-
-    // Parse connection string (https://msdn.microsoft.com/library/azure/dn495627.aspx)
-    ConnectionStringUtility connectionSaSUtil = new ConnectionStringUtility(listenConnectionString);
-    string hubResource = "installations/" + deviceInstallation.installationId + "?";
-    string apiVersion = "api-version=2015-04";
-
-    // Determine the targetUri that we will sign
-    string uri = connectionSaSUtil.Endpoint + hubName + "/" + hubResource + apiVersion;
-
-    //=== Generate SaS Security Token for Authorization header ===
-    // See, https://msdn.microsoft.com/library/azure/dn495627.aspx
-    string SasToken = connectionSaSUtil.getSaSToken(uri, 60);
-
-    using (var httpClient = new HttpClient())
     {
-        string json = JsonConvert.SerializeObject(deviceInstallation);
+        if (deviceInstallation.installationId == null)
+            return HttpStatusCode.BadRequest;
 
-        httpClient.DefaultRequestHeaders.Add("Authorization", SasToken);
+        // Parse connection string (https://msdn.microsoft.com/library/azure/dn495627.aspx)
+        ConnectionStringUtility connectionSaSUtil = new ConnectionStringUtility(listenConnectionString);
+        string hubResource = "installations/" + deviceInstallation.installationId + "?";
+        string apiVersion = "api-version=2015-04";
 
-        var response = await httpClient.PutAsync(uri, new StringContent(json, System.Text.Encoding.UTF8, "application/json"));
-        return response.StatusCode;
+        // Determine the targetUri that we will sign
+        string uri = connectionSaSUtil.Endpoint + hubName + "/" + hubResource + apiVersion;
+
+        //=== Generate SaS Security Token for Authorization header ===
+        // See https://msdn.microsoft.com/library/azure/dn495627.aspx
+        string SasToken = connectionSaSUtil.getSaSToken(uri, 60);
+
+        using (var httpClient = new HttpClient())
+        {
+            string json = JsonConvert.SerializeObject(deviceInstallation);
+
+            httpClient.DefaultRequestHeaders.Add("Authorization", SasToken);
+
+            var response = await httpClient.PutAsync(uri, new StringContent(json, System.Text.Encoding.UTF8, "application/json"));
+            return response.StatusCode;
+        }
     }
-}
 
-var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
+    var channel = await PushNotificationChannelManager.CreatePushNotificationChannelForApplicationAsync();
 
-string installationId = null;
-var settings = ApplicationData.Current.LocalSettings.Values;
+    string installationId = null;
+    var settings = ApplicationData.Current.LocalSettings.Values;
 
-// If we have not stored an installation ID in application data, create and store as application data.
-if (!settings.ContainsKey("__NHInstallationId"))
-{
-    installationId = Guid.NewGuid().ToString();
-    settings.Add("__NHInstallationId", installationId);
-}
+    // If we have not stored an installation ID in application data, create and store as application data.
+    if (!settings.ContainsKey("__NHInstallationId"))
+    {
+        installationId = Guid.NewGuid().ToString();
+        settings.Add("__NHInstallationId", installationId);
+    }
 
-installationId = (string)settings["__NHInstallationId"];
+    installationId = (string)settings["__NHInstallationId"];
 
-var deviceInstallation = new DeviceInstallation
-{
-    installationId = installationId,
-    platform = "wns",
-    pushChannel = channel.Uri,
-    //tags = tags.ToArray<string>()
-};
+    var deviceInstallation = new DeviceInstallation
+    {
+        installationId = installationId,
+        platform = "wns",
+        pushChannel = channel.Uri,
+        //tags = tags.ToArray<string>()
+    };
 
-var statusCode = await CreateOrUpdateInstallationAsync(deviceInstallation, 
+    var statusCode = await CreateOrUpdateInstallationAsync(deviceInstallation, 
                     "<HUBNAME>", "<SHARED LISTEN CONNECTION STRING>");
 
-if (statusCode != HttpStatusCode.Accepted)
-{
-    var dialog = new MessageDialog(statusCode.ToString(), "Registration failed. Installation Id : " + installationId);
-    dialog.Commands.Add(new UICommand("OK"));
-    await dialog.ShowAsync();
-}
-else
-{
-    var dialog = new MessageDialog("Registration successful using installation Id : " + installationId);
-    dialog.Commands.Add(new UICommand("OK"));
-    await dialog.ShowAsync();
+    if (statusCode != HttpStatusCode.Accepted)
+    {
+        var dialog = new MessageDialog(statusCode.ToString(), "Registration failed. Installation Id : " + installationId);
+        dialog.Commands.Add(new UICommand("OK"));
+        await dialog.ShowAsync();
+    }
+    else
+    {
+        var dialog = new MessageDialog("Registration successful using installation Id : " + installationId);
+        dialog.Commands.Add(new UICommand("OK"));
+        await dialog.ShowAsync();
+    }
 }
 ```
 

@@ -3,8 +3,7 @@ title: Azure 虚拟机在应用策略时无响应
 description: 本文提供了一些步骤，用于解决在 Azure VM 中启动过程中应用策略时加载屏幕不响应的问题。
 services: virtual-machines-windows
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: azure-resource-manager
 ms.assetid: a97393c3-351d-4324-867d-9329e31b5628
@@ -13,14 +12,17 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.topic: troubleshooting
 origin.date: 05/07/2020
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: b48b1e1a0ce01bc3fcdf72ece43c81abf8114cc8
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 177ccb7d73bce4d106681b3ebc516f134a76f210
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946221"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456756"
 ---
 <!--Verified successfully-->
 <!--Renamed/Redirect Verified file-->
@@ -30,7 +32,7 @@ ms.locfileid: "85946221"
 
 ## <a name="symptoms"></a>症状
 
-使用[启动诊断](/virtual-machines/troubleshooting/boot-diagnostics)查看 VM 的屏幕截图时，屏幕在加载时会卡住并显示以下消息：“正在应用‘组策略本地用户和组’策略。”
+使用[启动诊断](./boot-diagnostics.md)查看 VM 的屏幕截图时，屏幕在加载时会卡住并显示以下消息：“正在应用‘组策略本地用户和组’策略。”
 
 :::image type="content" source="media//unresponsive-vm-apply-group-policy/applying-group-policy-1.png" alt-text="显示正在应用和加载组策略本地用户的屏幕截图 (Windows Server 2012 R2)。":::
 
@@ -61,7 +63,7 @@ ms.locfileid: "85946221"
 
 ### <a name="step-1-create-and-access-a-repair-vm"></a>步骤 1：创建和访问修复 VM
 
-1. 使用 [VM 修复命令的步骤 1-3](/virtual-machines/troubleshooting/repair-windows-vm-using-azure-virtual-machine-repair-commands#repair-process-example) 来准备一个修复 VM。
+1. 使用 [VM 修复命令的步骤 1-3](./repair-windows-vm-using-azure-virtual-machine-repair-commands.md#repair-process-example) 来准备一个修复 VM。
 2. 使用远程桌面连接来连接到修复 VM。
 
 ### <a name="step-2-disable-the-policy"></a>步骤 2：禁用策略
@@ -143,7 +145,7 @@ ms.locfileid: "85946221"
 
 ### <a name="step-4-rebuild-the-vm"></a>步骤 4：重建 VM
 
-使用 [VM 修复命令的步骤 5](/virtual-machines/troubleshooting/repair-windows-vm-using-azure-virtual-machine-repair-commands#repair-process-example) 重新装配 VM。
+使用 [VM 修复命令的步骤 5](./repair-windows-vm-using-azure-virtual-machine-repair-commands.md#repair-process-example) 重新装配 VM。
 
 如果问题得到解决，说明已在本地禁用策略。 对于永久性解决方案，请勿在 VM 上使用 CleanupProfiles 策略。 使用其他方法执行配置文件清理。
 
@@ -153,7 +155,6 @@ ms.locfileid: "85946221"
 
 ## <a name="next-steps"></a>后续步骤
 
-如果在应用 Windows 更新时遇到问题，请参阅 [VM 在应用 Windows 更新时无响应并收到“C01A001D”错误](/virtual-machines/troubleshooting/unresponsive-vm-apply-windows-update)。
+如果在应用 Windows 更新时遇到问题，请参阅 [VM 在应用 Windows 更新时无响应并收到“C01A001D”错误](./unresponsive-vm-apply-windows-update.md)。
 
-<!-- Update_Description: new article about unresponsive vm apply group policy -->
-<!--NEW.date: 07/06/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

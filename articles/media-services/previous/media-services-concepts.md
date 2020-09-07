@@ -12,14 +12,14 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/14/2019
-ms.date: 07/06/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: ed42a86c11efa0c39512b9292de276243e2ce7a9
-ms.sourcegitcommit: 7ea2d04481512e185a60fa3b0f7b0761e3ed7b59
+ms.openlocfilehash: 0a3f1e6f9427b90f968df68c25be239182a6b65b
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85845750"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413773"
 ---
 # <a name="azure-media-services-concepts"></a>Azure 媒体服务概念 
 
@@ -27,11 +27,11 @@ ms.locfileid: "85845750"
 > Google Widevine 内容保护服务目前在 Azure 中国区域不可用。
 
 > [!NOTE]
-> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](/media-services/latest/)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
+> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](../latest/index.yml)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
 
 本部分概述最重要的媒体服务概念。
 
-## <a name="assets-and-storage"></a><a id="assets"></a>资产和存储
+## <a name="assets-and-storage"></a><a name="assets"></a>资产和存储
 ### <a name="assets"></a>资产
 [资产](https://docs.microsoft.com/rest/api/media/operations/asset)包含数字文件（包括视频、音频、图像、缩略图集合、文本轨道和隐藏式字幕文件）以及这些文件的相关元数据。 数字文件在上传到资产中后，即可用于媒体服务编码和流式处理工作流。
 
@@ -79,7 +79,7 @@ ms.locfileid: "85845750"
 > 
 > 
 
-### <a name="locators"></a><a id="locators"></a>定位符
+### <a name="locators"></a><a name="locators"></a>定位符
 [定位符](https://docs.microsoft.com/rest/api/media/operations/locator)提供访问资产中包含的文件的入口点。 访问策略用于定义客户端对给定资产具有的访问权限和持续时间。 定位符与访问策略的关系可以为多对一的关系，因此，不同定位符可以向不同客户端提供不同的开始时间和连接类型，而全部使用相同的权限和持续时间设置；但是，由于 Azure 存储服务设置的共享访问策略限制，一项给定的资产一次最多只能与五个唯一的定位符相关联。 
 
 媒体服务支持两种类型的定位符：OnDemandOrigin 定位符，用于对媒体进行流式处理（例如，MPEG DASH、HLS 或平滑流式处理）；渐进式下载媒体和 SAS URL 定位符，用于与 Azure 存储相互上传或下载媒体文件。 
@@ -88,7 +88,7 @@ ms.locfileid: "85845750"
 >创建 OnDemandOrigin 定位符时，不应使用列表权限 (AccessPermissions.List)。 
 
 ### <a name="storage-account"></a>存储帐户
-对 Azure 存储进行的所有访问都要通过存储帐户完成。 一个媒体服务帐户可与一个或多个存储帐户相关联。 一个帐户可以包含无限个容器，只要每个存储帐户的容器总大小不超过 500TB 即可。  媒体服务提供 SDK 级工具，可用于管理多个存储帐户，并在上传到这些帐户时基于指标或随机分发使资产分发达到负载均衡。 有关详细信息，请参阅[使用 Azure 存储](https://msdn.microsoft.com/library/azure/dn767951.aspx)。 
+对 Azure 存储进行的所有访问都要通过存储帐户完成。 一个媒体服务帐户可与一个或多个存储帐户相关联。 一个帐户可以包含无限个容器，只要每个存储帐户的容器总大小不超过 500TB 即可。  媒体服务提供 SDK 级工具，可用于管理多个存储帐户，并在上传到这些帐户时基于指标或随机分发使资产分发达到负载均衡。 有关详细信息，请参阅[使用 Azure 存储](https://docs.microsoft.com/previous-versions/azure/dn767951(v=azure.100))。 
 
 ## <a name="jobs-and-tasks"></a>作业和任务
 [作业](https://docs.microsoft.com/rest/api/media/operations/job)通常用于处理（例如，索引或编码）音频/视频演示。 如果要处理多个视频，应为要编码的每个视频创建一个作业。
@@ -164,7 +164,7 @@ ArchiveWindowLength 还决定了客户端能够从当前实时位置按时间向
 - [使用 PlayReady 进行保护](media-services-protect-with-playready-widevine.md)
 
 ## <a name="delivering"></a>传送
-### <a name="dynamic-packaging"></a><a id="dynamic_packaging"></a>动态打包
+### <a name="dynamic-packaging"></a><a name="dynamic_packaging"></a>动态打包
 使用媒体服务时，建议始终将夹层文件编码为自适应比特率 MP4 集，并使用[动态打包](media-services-dynamic-packaging-overview.md)将该集转换为所需格式。
 
 ### <a name="streaming-endpoint"></a>流式处理终结点

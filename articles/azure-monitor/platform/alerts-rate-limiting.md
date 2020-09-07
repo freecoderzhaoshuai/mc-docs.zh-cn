@@ -5,14 +5,14 @@ author: Johnnytechn
 ms.author: v-johya
 ms.topic: conceptual
 origin.date: 3/12/2018
-ms.date: 05/28/2020
+ms.date: 08/20/2020
 ms.subservice: alerts
-ms.openlocfilehash: 2265d100d1a69ed170dd11b0dbeb1d313740fe51
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: beb697808f1c72666f82423099eba5913f2eb814
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440708"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457313"
 ---
 # <a name="rate-limiting-for-voice-sms-emails-azure-app-push-notifications-and-webhook-posts"></a>语音、短信、电子邮件、Azure 应用推送通知和 webhook 帖子的速率限制
 速率限制是在发送给特定电话号码、电子邮件地址或设备的通知太多时发生的通知挂起。 通过速率限制，确保警报处于管理且可操作状态。
@@ -33,6 +33,5 @@ ms.locfileid: "84440708"
 ## <a name="next-steps"></a>后续步骤 ##
 * 详细了解[短信警报行为](alerts-sms-behavior.md)。
 * 获取[活动日志警报概述](alerts-overview.md)，了解如何接收警报。  
-* 了解如何[配置每次发布服务运行状况通知时的警报](../../azure-monitor/platform/alerts-activity-log-service-notifications.md)。
-
+* 了解如何[配置每次发布服务运行状况通知时的警报](../../service-health/alerts-activity-log-service-notifications-portal.md)。
 

@@ -1,10 +1,9 @@
 ---
-title: 使用 CLI 从快照创建虚拟机
+title: 从快照创建 VM - CLI 示例
 description: Azure CLI 脚本示例 - 从快照创建 VM
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: rockboyfor
-manager: digimobile
+manager: kavithag
 editor: ramankum
 tags: azure-service-management
 ms.assetid: ''
@@ -14,15 +13,18 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 origin.date: 05/10/2017
-ms.date: 02/10/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: 099d42231b8c0731e6ce94520055cc1d9ed238f2
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: bb9fd24aa4e0995a97e05fc5de6064e83959a27d
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77428721"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413757"
 ---
 # <a name="create-a-virtual-machine-from-a-snapshot-with-cli"></a>使用 CLI 从快照创建虚拟机
 

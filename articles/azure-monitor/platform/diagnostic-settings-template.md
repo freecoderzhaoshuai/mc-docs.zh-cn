@@ -1,19 +1,19 @@
 ---
 title: 使用资源管理器模板在 Azure 中创建诊断设置
 description: 使用资源管理器模板创建诊断设置，以便将 Azure 平台日志转发到 Azure Monitor 日志、Azure 存储或 Azure 事件中心。
-author: lingliw
+author: Johnnytechn
 services: azure-monitor
-ms.topic: conceptual
 origin.date: 12/13/2019
-ms.date: 12/31/2019
-ms.author: v-lingwu
+ms.topic: conceptual
+ms.date: 08/20/2020
+ms.author: v-johya
 ms.subservice: ''
-ms.openlocfilehash: 479bc64a796125fd954d4be7585ee7d22c3aeba4
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 8b7d26048eeec0d96f147c8ffdf2ffb78de9cbfe
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79452302"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457299"
 ---
 # <a name="create-diagnostic-setting-in-azure-using-a-resource-manager-template"></a>使用资源管理器模板在 Azure 中创建诊断设置
 Azure Monitor 中的[诊断设置](diagnostic-settings.md)指定 Azure 资源及其依赖的 Azure 平台所收集的[平台日志](platform-logs-overview.md)的发送位置。 本文详细地举例说明了如何使用 [Azure 资源管理器模板](../../azure-resource-manager/templates/template-syntax.md)将诊断设置创建并配置为将平台日志收集到不同的目标。
@@ -145,7 +145,7 @@ Azure Monitor 中的[诊断设置](diagnostic-settings.md)指定 Azure 资源及
 ```
 
 ## <a name="activity-log"></a>活动日志
-对于 Azure 活动日志，请添加一个 `Microsoft.Insights/diagnosticSettings` 类型的资源。 可用类别在[活动日志中的类别](activity-log-view.md#categories-in-the-activity-log)中列出。 下面是一个模板，可将所有活动日志类别收集到 Log Analytics 工作区、存储帐户和事件中心。
+对于 Azure 活动日志，请添加一个 `Microsoft.Insights/diagnosticSettings` 类型的资源。 可用类别在[活动日志中的类别](./activity-log.md#view-the-activity-log)中列出。 下面是一个模板，可将所有活动日志类别收集到 Log Analytics 工作区、存储帐户和事件中心。
 
 
 ```json
@@ -240,3 +240,4 @@ Azure Monitor 中的[诊断设置](diagnostic-settings.md)指定 Azure 资源及
 ## <a name="next-steps"></a>后续步骤
 * 阅读有关 [Azure 中的平台日志](platform-logs-overview.md)的详细信息。
 * 了解[诊断设置](diagnostic-settings.md)。
+

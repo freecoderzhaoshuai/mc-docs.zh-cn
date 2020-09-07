@@ -2,21 +2,21 @@
 title: Azure 虚拟机扩展和功能
 description: 详细了解 Azure VM 扩展
 services: virtual-machines
-author: rockboyfor
 ms.service: virtual-machines
 ms.topic: article
 ms.workload: infrastructure-services
 origin.date: 08/03/2020
-ms.date: 08/31/2020
-ms.testscope: no
-ms.testdate: 11/11/2019
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 623e358d724e71a5c830acda8a4758cc8005483b
-ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
+ms.openlocfilehash: f0e1f0c7c9e921b76e32992b18f25434bcc3167c
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88951282"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413656"
 ---
 # <a name="azure-virtual-machine-extensions-and-features"></a>Azure 虚拟机扩展和功能
 扩展是小型应用程序，用于在 Azure VM 上提供部署后配置和自动化。 Azure 平台可承载许多扩展，涵盖 VM 配置、监视、安全性和实用工具应用程序。 发布服务器采用某个应用程序，将其包装到扩展中，对安装进行简化。 你只需提供必需的参数。 
@@ -49,15 +49,15 @@ ms.locfileid: "88951282"
 | microsoft.azure.security.iaasantimalware | [适用于 Windows 的反恶意软件扩展](iaas-antimalware-windows.md#troubleshoot-and-support) |
 | microsoft.enterprisecloud.monitoring.omsagentforlinux | [用于 Linux 的 Azure Monitor](oms-linux.md#troubleshoot-and-support)
 | microsoft.enterprisecloud.monitoring.microsoftmonitoringagent | [用于 Windows 的 Azure Monitor](oms-windows.md#troubleshoot-and-support) |
-| microsoft.ostcextensions.vmaccessforlinux | [重置 Linux 密码](vmaccess.md#troubleshoot-and-support) |
+| vmaccessforlinux.microsoft.ostcextensions | [重置 Linux 密码](vmaccess.md#troubleshoot-and-support) |
 | microsoft.recoveryservices.vmsnapshot | [适用于 Linux 的快照](vmsnapshot-linux.md#troubleshoot-and-support) |
 | microsoft.recoveryservices.vmsnapshot | [适用于 Windows 的快照](vmsnapshot-windows.md#troubleshoot-and-support) |
 
-<!--Not Available on Line 55 + 1 | microsoft.azure.monitoring.dependencyagent.dependencyagentlinux | [Azure Monitor Dependency for Linux](agent-dependency-linux.md#troubleshoot-and-support)-->
-<!--Not Available on Line 55 + 2 | microsoft.azure.monitoring.dependencyagent.dependencyagentwindows | [Azure Monitor Dependency for Windows](agent-dependency-windows.md#troubleshoot-and-support)-->
-<!--Not Available on Line 60 + 1 | microsoft.hpccompute.nvidiagpudriverlinux | [NVIDIA GPU Driver Extension for Linux](hpccompute-gpu-linux.md#troubleshoot-and-support)-->
-<!--Not Available on Line 60 + 2 | microsoft.hpccompute.nvidiagpudriverwindows | [NVIDIA GPU Driver Extension for Windows](hpccompute-gpu-windows.md#troubleshoot-and-support)-->
-<!--Not Available on Line 63 + 1 | stackify.linuxagent.extension.stackifylinuxagentextension | [Stackify Retrace for Linux](stackify-retrace-linux.md#troubleshoot-and-support)-->
+<!--Not Available on Line 38 + 1 | microsoft.azure.monitoring.dependencyagent.dependencyagentlinux | [Azure Monitor Dependency for Linux](agent-dependency-linux.md#troubleshoot-and-support) |-->
+<!--Not Available on Line 38 + 2 | microsoft.azure.monitoring.dependencyagent.dependencyagentwindows | [Azure Monitor Dependency for Windows](agent-dependency-windows.md#troubleshoot-and-support) |-->
+<!--Not Available on line 43 + 1 | microsoft.hpccompute.nvidiagpudriverlinux | [NVIDIA GPU Driver Extension for Linux](hpccompute-gpu-linux.md#troubleshoot-and-support) |-->
+<!--Not Available on line 43 + 2 | microsoft.hpccompute.nvidiagpudriverwindows | [NVIDIA GPU Driver Extension for Windows](hpccompute-gpu-windows.md#troubleshoot-and-support) |-->
+<!--Not Available on Line 46 + 1 | stackify.linuxagent.extension.stackifylinuxagentextension | [Stackify Retrace for Linux](stackify-retrace-linux.md#troubleshoot-and-support) |-->
 
 ## <a name="next-steps"></a>后续步骤
 * 有关 Linux 代理和扩展工作原理的详细信息，请参阅[适用于 Linux 的 Azure VM 扩展和功能](features-linux.md)。

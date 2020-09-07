@@ -1,10 +1,9 @@
 ---
-title: 使用 PowerShell 创建 WordPress VM
+title: Azure PowerShell 脚本示例 - WordPress
 description: Azure PowerShell 脚本示例 - WordPress
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 tags: azure-service-management
 ms.assetid: ''
 ms.service: virtual-machines-linux
@@ -12,15 +11,18 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 origin.date: 03/01/2017
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.custom: mvc
-ms.openlocfilehash: 0761b0f7cc8cca97927365917a4195166e70c9b3
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: mvc, devx-track-azurepowershell
+ms.openlocfilehash: b4d65fbf1ca950bb622d55c96959ca616d2d8ebe
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596041"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414034"
 ---
 # <a name="create-a-wordpress-vm-with-powershell"></a>使用 PowerShell 创建 WordPress VM
 
@@ -93,11 +95,10 @@ New-AzVM -ResourceGroupName $resourceGroup -Location $location -VM $vmConfig
 # Start a CustomScript extension to use a simple bash script to update, download and install WordPress and MySQL 
 $PublicSettings = '{"fileUris":["https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/wordpress-single-vm-ubuntu/install_wordpress.sh"],"commandToExecute":"sh install_wordpress.sh"}'
 
-Set-AzVMExtension -ExtensionName "WordPress" -ResourceGroupName $resourceGroup -VMName $vmName `
+Set-AzVMExtension -Name "WordPress" -ResourceGroupName $resourceGroup -VMName $vmName `
   -Publisher "Microsoft.Azure.Extensions" -ExtensionType "CustomScript" -TypeHandlerVersion 2.0 `
   -SettingString $PublicSettings `
   -Location $location
-
 ```
 
 ## <a name="clean-up-deployment"></a>清理部署
@@ -125,11 +126,11 @@ Remove-AzResourceGroup -Name myResourceGroup
 | [New-AzVMConfig](https://docs.microsoft.com/powershell/module/az.compute/new-azvmconfig) | 创建 VM 配置。 此配置包括 VM 名称、操作系统和管理凭据等信息。 在创建 VM 期间使用此配置。 |
 | [New-AzVM](https://docs.microsoft.com/powershell/module/az.compute/new-azvm) | 创建虚拟机。 |
 | [Set-AzVMExtension](https://docs.microsoft.com/powershell/module/az.compute/set-azvmextension) | 将自定义脚本扩展添加到虚拟机，此扩展将调用脚本来安装 WordPress。 |
-|[Remove-AzResourceGroup](https://docs.microsoft.com/powershell/module/az.resources/remove-azresourcegroup) | 删除资源组及其中包含的所有资源。 |
+| [Remove-AzResourceGroup](https://docs.microsoft.com/powershell/module/az.resources/remove-azresourcegroup) | 删除资源组及其中包含的所有资源。 |
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 可以在 [Azure Linux VM 文档](../linux/powershell-samples.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)中找到其他虚拟机 PowerShell 脚本示例。
 

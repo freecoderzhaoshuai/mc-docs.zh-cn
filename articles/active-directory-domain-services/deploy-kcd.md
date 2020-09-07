@@ -9,14 +9,14 @@ ms.service: active-directory
 ms.subservice: domain-services
 ms.workload: identity
 ms.topic: how-to
-ms.date: 08/07/2020
+ms.date: 09/01/2020
 ms.author: v-junlch
-ms.openlocfilehash: 55b45825e4166e1112302a5ae1006049ce22380f
-ms.sourcegitcommit: a5eb9a47feefb053ddbaab4b15c395972c372339
+ms.openlocfilehash: ec17e7c2ec32f105f3ab110c2c2204753d944a74
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88028564"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413300"
 ---
 # <a name="configure-kerberos-constrained-delegation-kcd-in-azure-active-directory-domain-services"></a>配置 Azure Active Directory 域服务中的 Kerberos 约束委派 (KCD)
 
@@ -113,5 +113,5 @@ Kerberos 约束委派 (KCD) 限制指定的服务器或应用程序在模拟其�
 [Set-ADUser]: https://docs.microsoft.com/powershell/module/addsadministration/set-aduser
 
 <!-- EXTERNAL LINKS -->
-[kcd-technet]: https://technet.microsoft.com/library/jj553400.aspx
+[kcd-technet]: https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/jj553400(v=ws.11)
 

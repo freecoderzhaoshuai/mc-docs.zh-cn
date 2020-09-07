@@ -1,24 +1,26 @@
 ---
-title: 因 DHCP 客户端服务已禁用而无法通过 RDP 连接到 Azure 虚拟机
+title: 由于 DHCP 被禁用而无法远程连接到 Azure 虚拟机 | Azure
 description: 了解如何排查由于 DHCP 客户端服务在 Azure 中被禁用而导致的 RDP 问题。| Azure
 services: virtual-machines-windows
 documentationCenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 ms.service: virtual-machines-windows
 ms.topic: troubleshooting
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 11/13/2018
-ms.date: 02/10/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 456bb2466268a7e42d935b5b2f5b22e18a4343ea
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 09093471e8e23251497d89a712ad54a95864555b
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77428725"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456779"
 ---
 # <a name="cannot-rdp-to-azure-virtual-machines-because-the-dhcp-client-service-is-disabled"></a>因 DHCP 客户端服务已禁用而无法通过 RDP 连接到 Azure 虚拟机
 
@@ -40,7 +42,9 @@ ms.locfileid: "77428725"
 
 对于资源管理器 VM，可使用串行访问控制台功能，通过以下命令查询事件日志 7022：
 
-    wevtutil qe system /c:1 /f:text /q:"Event[System[Provider[@Name='Service Control Manager'] and EventID=7022 and TimeCreated[timediff(@SystemTime) <= 86400000]]]" | more
+```console
+wevtutil qe system /c:1 /f:text /q:"Event[System[Provider[@Name='Service Control Manager'] and EventID=7022 and TimeCreated[timediff(@SystemTime) <= 86400000]]]" | more
+```
 
 对于经典 VM，你需要在“脱机”模式下工作，并手动收集日志。
 
@@ -64,7 +68,7 @@ DHCP 客户端服务未在 VM 上运行。
 
 #### <a name="attach-the-os-disk-to-a-recovery-vm"></a>将 OS 磁盘附加到恢复 VM
 
-1. [将 OS 磁盘附加到恢复 VM](../windows/troubleshoot-recovery-disks-portal.md)。
+1. [将 OS 磁盘附加到恢复 VM](./troubleshoot-recovery-disks-portal-windows.md)。
 2. 开始与恢复 VM 建立远程桌面连接。 确保附加的磁盘在磁盘管理控制台中标记为“联机”。  请注意分配给附加的 OS 磁盘的驱动器号。
 3. 打开权限提升的命令提示符实例（“以管理员身份运行”）。  然后运行以下脚本。 此脚本假设分配给附加的 OS 磁盘的驱动器号为 **F**。使用 VM 中的值适当地替换该字母。
 
@@ -82,7 +86,7 @@ DHCP 客户端服务未在 VM 上运行。
     reg unload HKLM\BROKENSYSTEM
     ```
 
-4. [分离 OS 磁盘并重新创建 VM](../windows/troubleshoot-recovery-disks-portal.md)。 然后检查是否解决了问题。
+4. [分离 OS 磁盘并重新创建 VM](./troubleshoot-recovery-disks-portal-windows.md)。 然后检查是否解决了问题。
 
 ## <a name="next-steps"></a>后续步骤
 

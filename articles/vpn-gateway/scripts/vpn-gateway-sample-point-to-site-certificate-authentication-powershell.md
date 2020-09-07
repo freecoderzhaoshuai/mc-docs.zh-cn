@@ -7,17 +7,17 @@ author: WenJason
 ms.service: vpn-gateway
 ms.devlang: powershell
 ms.topic: sample
-origin.date: 04/17/2018
-ms.date: 05/27/2019
+origin.date: 01/10/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 1ac51cdea9eebbe60f629970e7720dbaf9963cd0
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 14aac9f4c8cac1204e160a683e865001626c61e3
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "66194916"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462950"
 ---
-# <a name="create-a-vpn-gateway-and-add-point-to-site-configuration-using-powershell"></a>使用 PowerShell 创建 VPN 网关并添加点到站点配置
+# <a name="configure-a-point-to-site-vpn-using-native-azure-certificate-authentication"></a>使用本机 Azure 证书身份验证配置点到站点 VPN
 
 此脚本创建基于路由的 VPN 网关，并使用本机 Azure 证书身份验证添加点到站点配置
 
@@ -88,6 +88,7 @@ $p2srootcert = New-AzVpnClientRootCertificate -Name $P2SRootCertName -PublicCert
 Add-AzVpnClientRootCertificate -VpnClientRootCertificateName $P2SRootCertName `
  -VirtualNetworkGatewayname "VNet1GW" `
  -ResourceGroupName "TestRG1" -PublicCertData $CertBase64
+
 ```
 
 ## <a name="clean-up-resources"></a>清理资源

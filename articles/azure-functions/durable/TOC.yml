@@ -17,6 +17,9 @@
     - name: 创建持久函数 - JavaScript
       displayName: 'get started, chaining'
       href: quickstart-js-vscode.md
+    - name: 创建持久函数 - PowerShell
+      displayName: 'get started, chaining'
+      href: quickstart-powershell-vscode.md
 - name: 教程
   items:
     - name: 函数链

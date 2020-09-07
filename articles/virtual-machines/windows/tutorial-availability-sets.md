@@ -1,27 +1,29 @@
 ---
-title: 教程 - 使用 Azure PowerShell 创建和部署高度可用的虚拟机
+title: 教程 - Azure 中 Windows VM 的高可用性
 description: 本教程介绍如何使用 Azure PowerShell 在可用性集中部署高度可用的虚拟机
 services: virtual-machines-windows
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.topic: tutorial
 origin.date: 11/30/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 07/06/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: 9d0f2a4807df168d451d3350a75eef43ef719a65
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: fe8d533da0e46dcaab104aeee36810a4fbe6dc47
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945889"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462973"
 ---
 # <a name="tutorial-create-and-deploy-highly-available-virtual-machines-with-azure-powershell"></a>教程：使用 Azure PowerShell 创建和部署高度可用的虚拟机
 
 本教程介绍如何使用可用性集提高虚拟机 (VM) 的可用性和可靠性。 可用性集确保在 Azure 上部署的 VM 能够跨群集中多个隔离的硬件节点分布。 
 
-本教程介绍如何执行下列操作：
+在本教程中，你将了解如何执行以下操作：
 
 > [!div class="checklist"]
 > * 创建可用性集
@@ -37,7 +39,7 @@ ms.locfileid: "85945889"
 
 在 Azure 中部署基于 VM 的可靠解决方案时，使用可用性集。
 
-## <a name="launch-azure-local-powershell"></a>启动 Azure 本地 PowerShell
+## <a name="launch-azure-local-shell"></a>启动 Azure 本地 Shell
 
 打开 Azure Powershell 控制台，并以管理员权限运行以下脚本。
 
@@ -75,7 +77,7 @@ New-AzAvailabilitySet `
 
 通过 [New-AzVM](https://docs.microsoft.com/powershell/module/az.compute/new-azvm) 创建 VM 时，请使用 `-AvailabilitySetName` 参数指定可用性集的名称。
 
-首先，使用 [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential) 设置 VM 的管理员用户名和密码：
+首先，使用 [Get-Credential](https://docs.microsoft.com/powershell/module/microsoft.powershell.security/get-credential?view=powershell-5.1) 设置 VM 的管理员用户名和密码：
 
 ```powershell
 $cred = Get-Credential
@@ -101,9 +103,9 @@ for ($i=1; $i -le 2; $i++)
 
 创建和配置这两个 VM 需要几分钟的时间。 完成后，你将拥有两个跨基础硬件分布的虚拟机。 
 
-如果转到“资源组” > “myResourceGroupAvailability” > “myAvailabilitySet”在门户中查看可用性集，应会看到 VM 在两个容错域和更新域之间的分布方式。  
+如果转到“资源组” > “myResourceGroupAvailability” > “myAvailabilitySet”在门户中查看可用性集，应会看到 VM 在两个容错域和更新域之间的分布方式。
 
-![门户中的可用性集](./media/tutorial-availability-sets/fd-ud.png)
+:::image type="content" source="./media/tutorial-availability-sets/fd-ud.png" alt-text="门户中的可用性集":::
 
 ## <a name="check-for-available-vm-sizes"></a>检查可用的 VM 大小 
 
@@ -123,7 +125,7 @@ Get-AzVMSize `
 
 ## <a name="next-steps"></a>后续步骤
 
-在本教程中，你已学习了如何执行以下操作：
+在本教程中，你了解了如何执行以下操作：
 
 > [!div class="checklist"]
 > * 创建可用性集
@@ -136,4 +138,4 @@ Get-AzVMSize `
 > [!div class="nextstepaction"]
 > [创建 VM 规模集](tutorial-create-vmss.md)
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

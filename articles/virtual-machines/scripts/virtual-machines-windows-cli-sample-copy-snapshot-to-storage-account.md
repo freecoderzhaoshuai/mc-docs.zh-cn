@@ -1,5 +1,5 @@
 ---
-title: 使用 CLI 将快照导出/复制到不同区域中的存储帐户
+title: 将快照复制到其他区域中的存储帐户 - Windows CLI 示例
 description: Azure CLI 脚本示例 - 将快照作为 VHD 导出/复制到相同或不同区域中的存储帐户。
 services: virtual-machines-windows
 documentationcenter: storage
@@ -13,15 +13,17 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 05/19/2017
-ms.date: 04/27/2020
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: mvc,seodec18
-ms.openlocfilehash: f34ec07e455584dc1e4d6188a461b6095b0bca17
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: c99adaf94463809ba99863af51d9bfe4808835cf
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596368"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413627"
 ---
 # <a name="exportcopy-a-snapshot-to-a-storage-account-in-different-region-with-cli"></a>使用 CLI 将快照导出/复制到不同区域中的存储帐户
 
@@ -35,7 +37,7 @@ ms.locfileid: "82596368"
 
 ```azurecli
 #Provide the subscription Id where snapshot is created
-subscriptionId=<mySubscriptionId>
+subscriptionId=mySubscriptionId
 
 #Provide the name of your resource group where snapshot is created
 resourceGroupName=myResourceGroupName

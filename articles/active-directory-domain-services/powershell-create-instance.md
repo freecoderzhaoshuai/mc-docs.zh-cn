@@ -9,14 +9,15 @@ ms.service: active-directory
 ms.subservice: domain-services
 ms.workload: identity
 ms.topic: sample
-ms.date: 08/07/2020
+ms.date: 09/01/2020
 ms.author: v-junlch
-ms.openlocfilehash: bf711815995f0908600948c27b67b31c7363dbdf
-ms.sourcegitcommit: a5eb9a47feefb053ddbaab4b15c395972c372339
+ms.custom: devx-track-azurepowershell
+ms.openlocfilehash: f61957e89faf32725d6dda477fcd2abdf9246596
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88028607"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413342"
 ---
 # <a name="enable-azure-active-directory-domain-services-using-powershell"></a>使用 PowerShell 启用 Azure Active Directory 域服务
 

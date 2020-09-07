@@ -2,18 +2,20 @@
 title: 使用 Azure CLI 创建 Azure 专用链接服务
 description: 了解如何使用 Azure CLI 创建 Azure 专用链接服务
 services: private-link
-author: rockboyfor
 ms.service: private-link
-ms.topic: article
+ms.topic: how-to
 origin.date: 09/16/2019
-ms.date: 06/15/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: 06/15/2020
 ms.author: v-yeche
-ms.openlocfilehash: 3c121d2ed4d27b2d98cf8705efca9ce1d6fbf81d
-ms.sourcegitcommit: 3de7d92ac955272fd140ec47b3a0a7b1e287ca14
+ms.openlocfilehash: d34ea9a716da57cc874615584bcfbe71deacbdc4
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84723705"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413873"
 ---
 # <a name="create-a-private-link-service-using-azure-cli"></a>使用 Azure CLI 创建专用链接服务
 本文介绍了如何使用 Azure CLI 在 Azure 中创建专用链接服务。
@@ -90,7 +92,7 @@ az network vnet subnet update --resource-group myResourceGroup --vnet-name myVir
 
 ## <a name="create-a-private-link-service"></a>创建专用链接服务  
 
-通过 [az network private-link-service create](https://docs.azure.cn/cli/network/private-link-service?view=azure-cli-latest#az-network-private-link-service-create) 使用标准负载均衡器前端 IP 配置创建专用链接服务。 此示例使用 *myResourceGroup* 资源组中的标准负载均衡器 *myLoadBalancer* 创建名为 *myPLS* 的专用链接服务。 
+通过 [az network private-link-service create](https://docs.microsoft.com/cli/azure/network/private-link-service?view=azure-cli-latest#az-network-private-link-service-create) 使用标准负载均衡器前端 IP 配置创建专用链接服务。 此示例使用 *myResourceGroup* 资源组中的标准负载均衡器 *myLoadBalancer* 创建名为 *myPLS* 的专用链接服务。 
 
 ```azurecli
 az network private-link-service create \
@@ -156,7 +158,7 @@ az network private-endpoint create \
 
 ## <a name="show-private-link-service-connections"></a>显示专用链接服务连接 
 
-使用 [az network private-link-service show](https://docs.azure.cn/cli/network/private-link-service?view=azure-cli-latest#az-network-private-link-service-show) 查看专用链接服务上的连接请求。    
+使用 [az network private-link-service show](https://docs.microsoft.com/cli/azure/network/private-link-service?view=azure-cli-latest#az-network-private-link-service-show) 查看专用链接服务上的连接请求。    
 ```azurecli 
 az network private-link-service show --resource-group myResourceGroup --name myPLS 
 ```

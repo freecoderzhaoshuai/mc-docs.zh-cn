@@ -1,19 +1,21 @@
 ---
 title: 在 Azure 中移动 Windows VM 资源
 description: 在 Resource Manager 部署模型中将 Windows VM 移到其他 Azure 订阅或资源组。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.topic: how-to
 origin.date: 07/03/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.author: v-yeche
-ms.openlocfilehash: 81a096ac7622b2e131c340fb12bccf7a9bcbf1d2
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: a84b381f0aa847da799377b19a994d2d182b3e28
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946060"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463021"
 ---
 # <a name="move-a-windows-vm-to-another-azure-subscription-or-resource-group"></a>将 Windows VM 移到其他 Azure 订阅或资源组
 本文逐步说明如何在资源组或订阅之间移动 Windows 虚拟机 (VM)。 如果最初在个人订阅中创建了 VM，现在想要将其移到公司的订阅以继续工作，则在订阅之间移动 VM 可能很方便。 无需停止 VM 来进行移动，并且该 VM 应在移动过程中继续运行。

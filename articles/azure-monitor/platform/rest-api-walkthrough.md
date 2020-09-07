@@ -6,14 +6,14 @@ ms.author: v-johya
 ms.subservice: metrics
 ms.topic: conceptual
 origin.date: 03/19/2018
-ms.date: 07/17/2020
+ms.date: 08/20/2020
 ms.custom: has-adal-ref
-ms.openlocfilehash: 576c5b29a82a86be9dffba295748bff3a27fd520
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: 4d75cd5b30172990b78061c9587f0940ad558554
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244975"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457260"
 ---
 # <a name="azure-monitoring-rest-api-walkthrough"></a>Azure 监视 REST API 演练
 
@@ -390,7 +390,7 @@ Invoke-RestMethod -Uri $request `
 
 ## <a name="retrieve-metric-definitions"></a>检索指标定义
 
-使用 [Azure Monitor 指标定义 REST API](https://msdn.microsoft.com/library/mt743621.aspx) 可以访问服务可用的指标列表。
+使用 [Azure Monitor 指标定义 REST API](https://docs.microsoft.com/rest/api/monitor/metricdefinitions) 可以访问服务可用的指标列表。
 
 **方法**：GET
 
@@ -454,7 +454,7 @@ Invoke-RestMethod -Uri $request `
 }
 ```
 
-有关详细信息，请参阅 [List the metric definitions for a resource in Azure Monitor REST API](https://msdn.microsoft.com/library/azure/mt743621.aspx)（在 Azure Monitor REST API 中列出资源的指标定义）文档。
+有关详细信息，请参阅 [List the metric definitions for a resource in Azure Monitor REST API](https://docs.microsoft.com/rest/api/monitor/metricdefinitions)（在 Azure Monitor REST API 中列出资源的指标定义）文档。
 
 ## <a name="retrieve-metric-values"></a>检索指标值
 
@@ -597,7 +597,7 @@ armclient GET /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups
 
 ## <a name="retrieve-the-resource-id"></a>检索资源 ID
 
-使用 REST API 确实有助于了解可用的指标定义、粒度和相关值。 使用 [Azure 管理库](https://msdn.microsoft.com/library/azure/mt417623.aspx)时，这些信息很有用。
+使用 REST API 确实有助于了解可用的指标定义、粒度和相关值。 使用 [Azure 管理库](https://docs.microsoft.com/previous-versions/azure/reference/mt417623(v=azure.100))时，这些信息很有用。
 
 对于上述代码，要使用的资源 ID 是所需 Azure 资源的完整路径。 例如，要针对某个 Azure Web 应用执行查询，资源 ID 将是：
 
@@ -709,7 +709,7 @@ az storage account show -g azmon-rest-api-walkthrough -n contosotweets2017
 
 ## <a name="retrieve-activity-log-data"></a>检索活动日志数据
 
-除了指标定义和相关值以外，还可以使用 Azure Monitor REST API 检索有关 Azure 资源的其他需关注的深入信息。 例如，可查询[活动日志](https://msdn.microsoft.com/library/azure/dn931934.aspx)数据。 以下示例请求使用 Azure Monitor REST API 查询活动日志。
+除了指标定义和相关值以外，还可以使用 Azure Monitor REST API 检索有关 Azure 资源的其他需关注的深入信息。 例如，可查询[活动日志](https://docs.microsoft.com/rest/api/monitor/activitylogs)数据。 以下示例请求使用 Azure Monitor REST API 查询活动日志。
 
 在有过滤器的情况下获取活动日志：
 
@@ -737,8 +737,9 @@ GET https://management.chinacloudapi.cn/subscriptions/089bd33f-d4ec-47fe-8ba5-07
 
 ## <a name="next-steps"></a>后续步骤
 
-* 查看 [监视概述](../../azure-monitor/overview.md)。
+* 查看 [监视概述](../overview.md)。
 * 查看 [Azure 监视器支持的指标](metrics-supported.md)。
-* 请参阅 [Azure Monitor REST API 参考](https://msdn.microsoft.com/library/azure/dn931943.aspx)。
-* 查看 [Azure 管理库](https://msdn.microsoft.com/library/azure/mt417623.aspx)。
+* 请参阅 [Azure Monitor REST API 参考](https://docs.microsoft.com/rest/api/monitor/)。
+* 查看 [Azure 管理库](https://docs.microsoft.com/previous-versions/azure/reference/mt417623(v=azure.100))。
+
 

@@ -1,26 +1,28 @@
 ---
 title: Azure CLI 示例 Windows
 description: Azure CLI 示例 Windows
-author: rockboyfor
 ms.service: virtual-machines-windows
-ms.topic: article
+ms.topic: how-to
 ms.workload: infrastructure
 origin.date: 03/01/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.custom: mvc
-ms.openlocfilehash: 632743838c1ef37642a2819b409752ff832a356e
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.custom: mvc, devx-track-azurecli
+ms.openlocfilehash: de199bc0bc93cb9e85e9d22dee42d215ca5ec18f
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945701"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462850"
 ---
 # <a name="azure-cli-samples-for-windows-virtual-machines"></a>适用于 Windows 虚拟机的 Azure CLI 示例
 
 下表包含指向使用部署 Windows 虚拟机的 Azure CLI 生成的 bash 脚本的链接。
 
-| | |
+| Script | 说明 |
 |---|---|
 |**创建虚拟机**||
 | [创建虚拟机](./../scripts/virtual-machines-windows-cli-sample-create-vm-quick-create.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json) | 使用最小配置创建 Windows 虚拟机。 |
@@ -43,4 +45,4 @@ ms.locfileid: "85945701"
 | [使用 Azure Monitor 监视 VM](./../scripts/virtual-machines-windows-cli-sample-create-vm-oms.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json) | 创建一个虚拟机，安装 Log Analytics 代理，并在 Log Analytics 工作区中注册该 VM。  |
 | | |
 
-<!-- Update_Description: wording update, update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

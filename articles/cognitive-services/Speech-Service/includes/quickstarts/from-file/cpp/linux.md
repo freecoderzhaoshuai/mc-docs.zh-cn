@@ -3,14 +3,14 @@ author: trevorbye
 ms.service: cognitive-services
 ms.topic: include
 origin.date: 04/04/2020
-ms.date: 04/20/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: ad0c6f72f4206107cf07d2a013b3046fbd11ae20
-ms.sourcegitcommit: 304d3ef3c9e65c3e85977b3afb9985fbc0f908d6
+ms.openlocfilehash: 9118e408b0f421803ba3b73fc513479e99cdb80f
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85095919"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317521"
 ---
 ## <a name="prerequisites"></a>先决条件
 
@@ -19,7 +19,7 @@ ms.locfileid: "85095919"
 > [!div class="checklist"]
 > * [创建 Azure 语音资源](../../../../get-started.md)
 > * [设置开发环境并创建空项目](../../../../quickstarts/setup-platform.md?tabs=linux&pivots=programming-language-cpp)
-> * 需要语音 SDK 版本 1.11.0 或更高版本。
+> * 需要语音 SDK 1.11.0 或更高版本。
 
 [!INCLUDE [Audio input format](~/articles/cognitive-services/speech-service/includes/audio-input-format-chart.md)]
 
@@ -73,7 +73,7 @@ ms.locfileid: "85095919"
 
 1. 在此新文件中，将字符串 `YourSubscriptionKey` 替换为你的语音服务订阅密钥。
 
-1. 将字符串 `YourServiceRegion` 替换为与订阅关联的[区域](~/articles/cognitive-services/Speech-Service/regions.md)的“区域标识符”（例如，对于试用版订阅，为 `chinaeast2`）。
+1. 将字符串 `YourServiceRegion` 替换为与订阅关联的[区域](https://docs.azure.cn/cognitive-services/speech-service/regions)中的“区域标识符”。
 
 1. 将 `whatstheweatherlike.wav` 字符串替换为你自己的文件名。
 
@@ -103,7 +103,7 @@ ms.locfileid: "85095919"
   g++ helloworld.cpp -o helloworld -I "$SPEECHSDK_ROOT/include/cxx_api" -I "$SPEECHSDK_ROOT/include/c_api" --std=c++14 -lpthread -lMicrosoft.CognitiveServices.Speech.core -L "$SPEECHSDK_ROOT/lib/arm64" -l:libasound.so.2
   ```
 
-## <a name="run-the-app"></a>运行应用程序
+## <a name="run-the-app"></a>运行应用
 
 1. 将加载程序的库路径配置为指向语音 SDK 库。
 

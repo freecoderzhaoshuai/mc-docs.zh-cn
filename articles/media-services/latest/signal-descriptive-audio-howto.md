@@ -11,14 +11,14 @@ ms.workload: ''
 ms.topic: article
 ms.custom: ''
 origin.date: 09/25/2019
-ms.date: 07/27/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: da81ab3a5e465876e3c2caa3a55ee09c2963c3f5
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 1a86beed1dcc8d4685696a00efa159ddfb6d2878
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162222"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413510"
 ---
 # <a name="signal-descriptive-audio-tracks"></a>指示描述性音频轨道
 
@@ -28,8 +28,8 @@ ms.locfileid: "87162222"
 
 ## <a name="prerequisites"></a>先决条件
 
-- [创建媒体服务帐户](create-account-cli-how-to.md)。
-- 遵循[使用 Azure CLI 访问 Azure 媒体服务 API](access-api-cli-how-to.md) 中的步骤并保存凭据。 需要使用这些凭据来访问 API。
+- [创建媒体服务帐户](./create-account-howto.md)。
+- 遵循[使用 Azure CLI 访问 Azure 媒体服务 API](./access-api-howto.md) 中的步骤并保存凭据。 需要使用这些凭据来访问 API。
 - 参阅[动态打包](dynamic-packaging-overview.md)。
 - 参阅[上传、编码和流式传输视频](stream-files-tutorial-with-api.md)教程。
 
@@ -44,7 +44,7 @@ CreateInputAsset 函数创建新的输入[资产](https://docs.microsoft.com/res
 以下函数执行以下操作：
 
 * 创建**资产** 
-* 获取资产的[存储中容器](/storage/blobs/storage-quickstart-blobs-dotnet#upload-blobs-to-a-container)的可写 [SAS URL](/storage/common/storage-dotnet-shared-access-signature-part-1)
+* 获取资产的[存储中容器](../../storage/blobs/storage-quickstart-blobs-dotnet.md#upload-blobs-to-a-container)的可写 [SAS URL](../../storage/common/storage-sas-overview.md)
 * 使用 SAS URL 将文件上传到存储中的容器中
 
 ```csharp
@@ -127,7 +127,7 @@ private static async Task<Asset> CreateOutputAssetAsync(IAzureMediaServicesClien
 
 ## <a name="create-a-transform-and-a-job-that-encodes-the-uploaded-file"></a>创建转换和一个对上传的文件进行编码的作业
 
-对媒体服务中的内容进行编码或处理时，一种常见的模式是将编码设置设为脚本。 然后，需提交**作业**，将该脚本应用于视频。 为每个新视频提交新作业后，可将该脚本应用到库中的所有视频。 媒体服务中的脚本称为**转换**。 有关详细信息，请参阅[转换和作业](transform-concept.md)。 本教程中的示例定义有关将视频进行编码以将其流式传输到各种 iOS 和 Android 设备的脚本。 
+对媒体服务中的内容进行编码或处理时，一种常见的模式是将编码设置设为脚本。 然后，需提交**作业**，将该脚本应用于视频。 为每个新视频提交新作业后，可将该脚本应用到库中的所有视频。 媒体服务中的脚本称为**转换**。 有关详细信息，请参阅[转换和作业](./transforms-jobs-concept.md)。 本教程中的示例定义有关将视频进行编码以将其流式传输到各种 iOS 和 Android 设备的脚本。 
 
 以下示例创建一个转换（如果不存在）。
 

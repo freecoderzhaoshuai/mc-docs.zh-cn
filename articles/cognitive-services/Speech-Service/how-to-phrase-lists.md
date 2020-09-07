@@ -9,16 +9,16 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: conceptual
 origin.date: 02/04/2020
-ms.date: 08/03/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 zone_pivot_groups: programming-languages-speech-services-one-nomore-no-go
-ms.custom: devx-track-javascript
-ms.openlocfilehash: 01fb366d3c276f84de48bcfce2898443b6baa5f2
-ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
+ms.custom: devx-track-javascript, devx-track-csharp
+ms.openlocfilehash: 47e5b9e5b6792374b942e0b24a6c8ba57d38b604
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87516104"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317418"
 ---
 # <a name="phrase-lists-for-speech-to-text"></a>语音转文本的短语列表
 

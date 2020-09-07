@@ -13,13 +13,13 @@ metadata:
   author: WenJason
   ms.author: v-jay
   origin.date: 07//2020
-  ms.date: 07/27/2020
-  ms.openlocfilehash: bdb36cbd0c8286c2dcd4305d100d34703bd33840
-  ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+  ms.date: 09/07/2020
+  ms.openlocfilehash: 691b2acb5f7e2cd348f8a01dbb6eff1bd743de68
+  ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 07/24/2020
-  ms.locfileid: "87162198"
+  ms.lasthandoff: 09/03/2020
+  ms.locfileid: "89413251"
 highlightedContent:
   items:
   - title: 关于 Azure 媒体服务 v3
@@ -107,7 +107,7 @@ additionalContent:
   - items:
     - title: Azure 存储
       summary: 了解块 Blob 和容器
-      url: /storage/
+      url: ../storage/index.yml
     - title: 事件网格
       summary: 了解如何使用 Azure 事件网格响应相关事件
-      url: /event-grid/
+      url: ../event-grid/index.yml

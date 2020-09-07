@@ -1,10 +1,9 @@
 ---
-title: Azure CLI 脚本示例 - 使用 Azure CLI 将托管磁盘导出/复制到存储帐户
+title: 将托管磁盘复制到存储帐户 - Linux CLI 示例
 description: Azure CLI 示例 - 将托管磁盘导出或复制到存储帐户。
 services: virtual-machines-linux
 documentationcenter: storage
-author: rockboyfor
-manager: digimobile
+manager: kavithag
 tags: azure-service-management
 ms.assetid: ''
 ms.service: virtual-machines-linux
@@ -13,15 +12,18 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 origin.date: 05/09/2019
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.custom: mvc,seodec18
-ms.openlocfilehash: c4553fb125e420845aa0692033fdcbd55345dfc9
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: mvc,seodec18, devx-track-azurecli
+ms.openlocfilehash: aeb1543d26b2fb34f72190126043e9a8c83716a4
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596107"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413920"
 ---
 # <a name="exportcopy-a-managed-disk-to-a-storage-account-using-the-azure-cli"></a>使用 Azure CLI 将托管磁盘导出/复制到存储帐户
 

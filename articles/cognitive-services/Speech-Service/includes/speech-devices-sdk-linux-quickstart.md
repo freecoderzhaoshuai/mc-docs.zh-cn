@@ -4,20 +4,20 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: include
 origin.date: 02/20/2020
-ms.date: 06/19/2019
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: e41af45fd93d3a232079f3f465eeb8b0b9317c99
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+ms.openlocfilehash: 0e6c489682fb5717b787264f6d6b22b75004fec5
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85806080"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317606"
 ---
 本快速入门介绍如何使用适用于 Linux 的语音设备 SDK 来生成支持语音的产品。
 
 该应用程序是使用语音 SDK 程序包和 Eclipse Java IDE (v4) 在 64 位 Linux（Ubuntu 16.04、Ubuntu 18.04、Debian 9、RHEL 7/8、CentOS 7/8）上构建的。 它在 64 位 Java 8 运行时环境 (JRE) 中运行。
 
-本指南需要一个包含语音服务资源的 [Azure 认知服务](../get-started.md)帐户。 如果没有帐户，可以使用[试用帐户](https://wd.azure.cn/pricing/1rmb-trial/)获取订阅密钥。
+本指南需要一个包含语音服务资源的 [Azure 认知服务](../get-started.md)帐户。 
 
 [示例应用程序](https://aka.ms/sdsdk-download-JRE)的源代码随附在语音设备 SDK 中， 也可在 [GitHub 上获取](https://github.com/Azure-Samples/Cognitive-Services-Speech-Devices-SDK)。
 
@@ -59,11 +59,11 @@ ms.locfileid: "85806080"
 
   > [!NOTE]
   > - 在 RHEL/CentOS 7 上，按照[如何为语音 SDK 配置 RHEL/CentOS 7](~/articles/cognitive-services/speech-service/how-to-configure-rhel-centos-7.md) 上的说明进行操作。
-  > - 在 RHEL/CentOS 8 上，按照[如何配置 OpenSSL for Linux](~/articles/cognitive-services/speech-service/how-to-configure-openssl-linux.md) 上的说明进行操作。
+> - 在 RHEL/CentOS 8 上，按照[如何配置 OpenSSL for Linux](~/articles/cognitive-services/speech-service/how-to-configure-openssl-linux.md) 上的说明进行操作。
 
 <!-- Conversation Transcription is currently only available for "en-US" and "zh-CN", in the "chinaeast2" regions. You must have a speech key in one of those regions to use Conversation Transcription. -->
 
-<!-- If you plan to use the intents you'll need a [Language Understanding Service (LUIS)](https://docs.azure.cn/cognitive-services/luis/azureibizasubscription) subscription. To learn more about LUIS and intent recognition, see [Recognize speech intents with LUIS, C#](https://docs.azure.cn/cognitive-services/speech-service/how-to-recognize-intents-from-speech-csharp). A [sample LUIS model](https://aka.ms/sdsdk-luis) is available for this app. -->
+如果计划使用意向，则将需要[语音理解服务 (LUIS)](https://docs.azure.cn/cognitive-services/luis/azureibizasubscription) 订阅。 若要了解有关 LUIS 和意向识别的详细信息，请参阅[使用 LUIS、C# 识别语音意向](https://docs.azure.cn/cognitive-services/speech-service/how-to-recognize-intents-from-speech-csharp)。 [示例 LUIS 模型](https://aka.ms/sdsdk-luis)适用于此应用。
 
 ## <a name="create-and-configure-the-project"></a>创建和配置项目
 
@@ -81,7 +81,7 @@ ms.locfileid: "85806080"
 
    ![“新建 Java 项目”向导的屏幕截图](../media/speech-devices-sdk/eclipse-new-java-project-linux.png)
 
-1. 在“包资源管理器”中，右键单击你的项目。 从上下文菜单中选择“配置” > “转换为 Maven 项目”。  选择“完成”。
+1. 在“包资源管理器”中，右键单击你的项目。 从上下文菜单中选择“配置” > “转换为 Maven 项目”。 选择“完成”。
 
    ![包资源管理器的屏幕截图](../media/speech-devices-sdk/eclipse-convert-to-maven.png)
 
@@ -101,7 +101,7 @@ ms.locfileid: "85806080"
         <dependency>
              <groupId>com.microsoft.cognitiveservices.speech</groupId>
              <artifactId>client-sdk</artifactId>
-             <version>1.12.1</version>
+             <version>1.13.0</version>
         </dependency>
     </dependencies>
    ```
@@ -129,6 +129,9 @@ ms.locfileid: "85806080"
     // Subscription
     private static String SpeechSubscriptionKey = "<enter your subscription info here>";
     private static String SpeechRegion = "chinaeast2"; // You can change this if your speech region is different.
+    private static String LuisSubscriptionKey = "<enter your subscription info here>";
+    private static String LuisRegion = "chinaeast2"; // you can change this, if you want to test the intent, and your LUIS region is different.
+    private static String LuisAppId = "<enter your LUIS AppId>";
    ```
 
     <!-- If you are using conversation transcription, your speech key and region information are also needed in `Cts.java`:

@@ -3,14 +3,14 @@ author: trevorbye
 ms.service: cognitive-services
 ms.topic: include
 origin.date: 04/04/2020
-ms.date: 06/19/2020
+ms.date: 07/29/2020
 ms.author: v-tawe
-ms.openlocfilehash: 1f27781981001617783f2d757ab2e64e688de86e
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+ms.openlocfilehash: 5b4dff6a21577cbd8c4b4998c9d9f6d0245cb1be
+ms.sourcegitcommit: 5d167ad5411b018522a0fac9f5435a48f4ceb3a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85613442"
+ms.lasthandoff: 07/29/2020
+ms.locfileid: "89317571"
 ---
 本指南介绍如何安装用于 Python 的[语音 SDK](~/articles/cognitive-services/speech-service/speech-sdk.md)。 如果只是需要包名称以便自行开始，请运行 `pip install azure-cognitiveservices-speech`。
 
@@ -31,24 +31,24 @@ ms.locfileid: "85613442"
 
   - 在 Ubuntu 上，请运行以下命令来安装所需的包：
 
-        ```sh
-        sudo apt-get update
-        sudo apt-get install build-essential libssl1.0.0 libasound2
-        ```
+    ```sh
+    sudo apt-get update
+    sudo apt-get install build-essential libssl1.0.0 libasound2
+    ```
 
   - 在 Debian 9 上，请运行以下命令来安装所需的包：
 
-        ```sh
-        sudo apt-get update
-        sudo apt-get install build-essential libssl1.0.2 libasound2
-        ```
+    ```sh
+    sudo apt-get update
+    sudo apt-get install build-essential libssl1.0.2 libasound2
+    ```
 
   - 在 RHEL/CentOS 上，请运行以下命令来安装所需的包：
 
-        ```sh
-        sudo yum update
-        sudo yum install alsa-lib openssl python3
-        ```
+    ```sh
+    sudo yum update
+    sudo yum install alsa-lib openssl python3
+    ```
 
 > [!NOTE]
 > - 在 RHEL/CentOS 7 上，按照[如何为语音 SDK 配置 RHEL/CentOS 7](~/articles/cognitive-services/speech-service/how-to-configure-rhel-centos-7.md) 上的说明进行操作。

@@ -8,14 +8,14 @@ ms.service: active-directory
 ms.subservice: domain-services
 ms.workload: identity
 ms.topic: conceptual
-ms.date: 08/21/2020
+ms.date: 09/01/2020
 ms.author: v-junlch
-ms.openlocfilehash: 9d68eb9fd18976fdeb2ef9b91918ebcef1c76e25
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 2d246bcc365bacdc6f4fecb8c01e83f78af7c8d9
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715263"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413353"
 ---
 # <a name="virtual-network-design-considerations-and-configuration-options-for-azure-active-directory-domain-services"></a>Azure Active Directory 域服务的虚拟网络设计注意事项和配置选项
 
@@ -94,7 +94,7 @@ Azure Active Directory 域服务 (Azure AD DS) 为其他应用程序和工作负
 | Azure 资源                          | 说明 |
 |:----------------------------------------|:---|
 | 网络接口卡                  | Azure AD DS 将托管域托管在 Windows Server 中作为 Azure VM 运行的两个域控制器 (DC) 上。 每个 VM 都有一个连接到虚拟网络子网的虚拟网络接口。 |
-| 动态标准公共 IP 地址      | Azure AD DS 使用标准 SKU 公共 IP 地址与同步和管理服务进行通信。 有关公共 IP 地址的详细信息，请参阅 [Azure 中的 IP 地址类型和分配方法](../virtual-network/virtual-network-ip-addresses-overview-arm.md)。 |
+| 动态标准公共 IP 地址      | Azure AD DS 使用标准 SKU 公共 IP 地址与同步和管理服务进行通信。 有关公共 IP 地址的详细信息，请参阅 [Azure 中的 IP 地址类型和分配方法](../virtual-network/public-ip-addresses.md)。 |
 | Azure 标准负载均衡器            | Azure AD DS 使用标准 SKU 负载均衡器进行网络地址转换 (NAT) 和负载均衡（与安全 LDAP 一起使用时）。 有关 Azure 负载均衡器的详细信息，请参阅[什么是 Azure 负载均衡器？](../load-balancer/load-balancer-overview.md) |
 | 网络地址转换 (NAT) 规则 | Azure AD DS 在负载均衡器上创建并使用三项 NAT 规则 - 一项面向安全 HTTP 流量，另外两项面向安全 PowerShell 远程处理。 |
 | 负载均衡器规则                     | 在 TCP 端口 636 上为安全 LDAP 配置托管域时，将在负载均衡器上创建并使用三项规则来分配流量。 |
@@ -104,7 +104,7 @@ Azure Active Directory 域服务 (Azure AD DS) 为其他应用程序和工作负
 
 ## <a name="network-security-groups-and-required-ports"></a>网络安全组和必需端口
 
-[网络安全组 (NSG)](../virtual-network/virtual-networks-nsg.md) 包含一系列规则，这些规则可以允许或拒绝网络流量在 Azure 虚拟网络中流动。 部署托管域时会创建网络安全组，其中包含一系列规则，服务按照些规则提供身份验证和管理功能。 此默认网络安全组与托管域部署到的虚拟网络子网相关联。
+[网络安全组 (NSG)](../virtual-network/security-overview.md) 包含一系列规则，这些规则可以允许或拒绝网络流量在 Azure 虚拟网络中流动。 部署托管域时会创建网络安全组，其中包含一系列规则，服务按照些规则提供身份验证和管理功能。 此默认网络安全组与托管域部署到的虚拟网络子网相关联。
 
 需要以下网络安全组规则，托管域才能提供身份验证服务和管理服务。 请勿编辑或删除托管域所部署到的虚拟网络子网中的这些网络安全组规则。
 

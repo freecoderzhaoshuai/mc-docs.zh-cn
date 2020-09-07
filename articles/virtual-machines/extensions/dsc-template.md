@@ -2,8 +2,7 @@
 title: Desired State Configuration 扩展与 Azure 资源管理器模板
 description: 了解 Azure 中 Desired State Configuration (DSC) 扩展的资源管理器模板定义。
 services: virtual-machines-windows
-author: rockboyfor
-manager: digimobile
+manager: carmonm
 tags: azure-resource-manager
 keywords: dsc
 ms.assetid: b5402e5a-1768-4075-8c19-b7f7402687af
@@ -12,18 +11,23 @@ ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: na
 origin.date: 10/05/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 16d8cda0e834eb598f909ac301a35373cd0622ca
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 4336d7a1140c36930cd7c1624b8b7ecaaf8c1538
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945680"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413722"
 ---
 # <a name="desired-state-configuration-extension-with-azure-resource-manager-templates"></a>Desired State Configuration 扩展与 Azure 资源管理器模板
 
-本文介绍 [Desired State Configuration (DSC) 扩展处理程序](dsc-overview.md)的 Azure 资源管理器模板。 许多示例将 **RegistrationURL**（以字符串形式提供）和 **RegistrationKey**（作为 [PSCredential](https://docs.microsoft.com/dotnet/api/system.management.automation.pscredential) 提供）与 Azure 自动化一起使用。 有关获取这些值的详细信息，请参阅[登记由 Azure 自动化状态配置管理的计算机 - 安全注册](/automation/automation-dsc-onboarding#onboarding-securely-using-registration)。
+<!--Correct on https://docs.microsoft.com/dotnet/api/system.management.automation.pscredential-->
+
+本文介绍 [Desired State Configuration (DSC) 扩展处理程序](dsc-overview.md)的 Azure 资源管理器模板。 许多示例使用 **RegistrationURL**（以字符串形式提供）和 **RegistrationKey**（以 [PSCredential](https://docs.microsoft.com/dotnet/api/system.management.automation.pscredential) 形式提供）来通过 Azure 自动化进行加入。 有关获取这些值的详细信息，请参阅[登记由 Azure 自动化状态配置管理的计算机 - 安全注册](../../automation/automation-dsc-onboarding.md#enable-machines-securely-using-registration)。
 
 > [!NOTE]
 > 你可能会遇到略有不同的架构示例。 2016 年 10 月发行版中发生了架构更改。 有关详细信息，请参阅[从以前的格式更新](#update-from-a-previous-format)。
@@ -434,4 +438,4 @@ DSC 扩展继承默认扩展属性。
 - 获取 [Azure DSC 扩展处理程序简介](dsc-overview.md)。
 - 有关 PowerShell DSC 的详细信息，请转到 [PowerShell 文档中心](https://docs.microsoft.com/powershell/scripting/dsc/overview/overview)。
 
-<!-- Update_Description: update meta propertes, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

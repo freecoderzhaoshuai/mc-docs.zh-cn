@@ -1,27 +1,28 @@
 ---
-title: Azure CLI 示例 - 创建运行 Azure Monitor 的 Azure VM | Azure
+title: Azure CLI 示例 - 创建运行 Azure Monitor 的 Azure VM
 description: Azure CLI 示例 - 创建运行 Windows Server 2016 Datacenter 和 Azure Monitor 的 Azure VM。
 services: virtual-machines-Windows
 documentationcenter: virtual-machines
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 tags: ''
-ms.assetid: ''
-ms.service: virtual-machines-windows
+ms.assetid - ms.service: virtual-machines-windows
 ms.devlang: azurecli
 ms.topic: sample
 ms.tgt_pltfrm: vm-Windows
 ms.workload: infrastructure
 origin.date: 02/23/2017
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.custom: mvc,seodec18
-ms.openlocfilehash: ebe6fff70636e947b0648a5653b2d034a0c9b76d
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: mvc,seodec18, devx-track-azurecli
+ms.openlocfilehash: eaa0f55804a43fa788f09727244c99afc0c851af
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596404"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413555"
 ---
 # <a name="monitor-a-vm-with-azure-monitor-logs"></a>使用 Azure Monitor 日志监视 VM
 
@@ -86,12 +87,13 @@ az group delete --name myResourceGroup --yes
 | [az vm extension set](https://docs.azure.cn/cli/vm/extension?view=azure-cli-latest#az-vm-extension-set) | 针对虚拟机运行 VM 扩展。 |
 | [az group delete](https://docs.azure.cn/cli/group/extension?view=azure-cli-latest#az-group-delete) | 删除资源组，包括所有嵌套的资源。 |
 
-<!--CORRECT ON [az group delete](https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-delete-->
 <!--CORRECT ON [az vm extension set](https://docs.azure.cn/cli/vm/extension?view=azure-cli-latest#az-vm-extension-set)-->
-
+<!--CORRECT ON [az group delete](https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-delete-->
 
 ## <a name="next-steps"></a>后续步骤
 
 有关 Azure CLI 的详细信息，请参阅 [Azure CLI 文档](https://docs.azure.cn/cli/index?view=azure-cli-latest)。
 
 可以在 [Azure Windows VM 文档](../windows/cli-samples.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)中找到其他虚拟机 CLI 脚本示例。
+
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -3,16 +3,16 @@ title: 将 Azure 诊断数据发送到 Application Insights
 description: 更新 Azure 诊断公共配置，以将数据发送到 Application Insights。
 ms.subservice: diagnostic-extension
 ms.topic: conceptual
-author: lingliw
+author: Johnnytechn
+ms.author: v-johya
+ms.date: 08/20/2020
 origin.date: 03/19/2016
-ms.date: 6/4/2019
-ms.author: v-lingwu
-ms.openlocfilehash: 60556305d12a86137648d2335df3e91db0e08642
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 1db91471e47eff92574ac21a94145e62a4a33f6c
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79452461"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457242"
 ---
 # <a name="send-cloud-service-virtual-machine-or-service-fabric-diagnostic-data-to-application-insights"></a>将云服务、虚拟机或 Service Fabric 诊断数据发送到 Application Insights
 云服务、虚拟机、虚拟机规模集和 Service Fabric 都使用 Azure 诊断扩展来收集数据。  Azure 诊断将数据发送到 Azure 存储表。  但是，也可以 Azure 诊断扩展 1.5 或更高版本，通过管道将所有或一部分数据发送到其他位置。
@@ -60,8 +60,8 @@ Application Insights 接收器的示例配置：
 - **接收器**的 name  属性是用于唯一标识该接收器的字符串值。
 
 - **ApplicationInsights** 元素指定要将 Azure 诊断数据发送到的 Application Insights 资源的检测键。
-    - 如果没有 Application Insights 资源，请参阅[创建新的 Application Insights 资源](../../azure-monitor/app/create-new-resource.md )，了解有关创建资源和获取检测键的详细信息。
-    - 如果使用 Azure SDK 2.8 和更高版本开发云服务，系统会自动填充此检测键。 该值基于打包云服务项目时指定的 **APPINSIGHTS_INSTRUMENTATIONKEY** 服务配置设置。 请参阅[将 Application Insights 与云服务配合使用](../../azure-monitor/app/cloudservices.md)。
+    - 如果没有 Application Insights 资源，请参阅[创建新的 Application Insights 资源](../app/create-new-resource.md)，了解有关创建资源和获取检测键的详细信息。
+    - 如果使用 Azure SDK 2.8 和更高版本开发云服务，系统会自动填充此检测键。 该值基于打包云服务项目时指定的 **APPINSIGHTS_INSTRUMENTATIONKEY** 服务配置设置。 请参阅[将 Application Insights 与云服务配合使用](../app/cloudservices.md)。
 
 - **Channels** 元素包含一个或多个 **Channels** 元素。
     - *name* 属性唯一引用该通道。
@@ -76,11 +76,11 @@ Application Insights 接收器的示例配置：
 
 下图显示了这种关系。
 
-![诊断公共配置](media/diagnostics-extension-to-application-insights/AzDiag_Channels_App_Insights.png)
+![诊断公共配置](./media/diagnostics-extension-to-application-insights/AzDiag_Channels_App_Insights.png)
 
 下图汇总了配置值及其工作原理。 还可以在层次结构中不同级别下的配置中包含多个接收器。 位于顶层的接收器用作全局设置，在单个元素中指定的接收器类似于该全局设置的重写。
 
-![使用 Application Insights 配置诊断接收器](media/diagnostics-extension-to-application-insights/Azure_Diagnostics_Sinks.png)
+![使用 Application Insights 配置诊断接收器](./media/diagnostics-extension-to-application-insights/Azure_Diagnostics_Sinks.png)
 
 ## <a name="complete-sink-configuration-example"></a>完整的接收器配置示例
 下面是公共配置文件的完整示例。该文件
@@ -214,11 +214,8 @@ Application Insights 接收器的示例配置：
 - **无法将 Azure 诊断扩展收集的 Blob 数据发送到 Application Insights。** 例如，*Directories* 节点下指定的任何数据。 对于故障转储，实际故障转储将发送到 Blob 存储，并只会将生成了故障转储的通知发送到 Application Insights。
 
 ## <a name="next-steps"></a>后续步骤
-* 了解如何在 Application Insights 中[查看 Azure 诊断信息](/azure-monitor/app/cloudservices)。
+* 了解如何在 Application Insights 中[查看 Azure 诊断信息](../app/cloudservices.md)。
 * 使用 [PowerShell](../../cloud-services/cloud-services-diagnostics-powershell.md) 为应用程序启用 Azure 诊断扩展。
-* 使用 [Visual Studio](/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines) 为应用程序启用 Azure 诊断扩展。
-
-
-
+* 使用 [Visual Studio](https://docs.microsoft.com/visualstudio/azure/vs-azure-tools-diagnostics-for-cloud-services-and-virtual-machines) 为应用程序启用 Azure 诊断扩展。
 
 

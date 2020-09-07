@@ -1,5 +1,5 @@
 ---
-title: PowerShell 示例 - 使用 PowerShell 将托管快照作为 VHD 导出/复制到不同区域中的存储帐户
+title: PowerShell 示例 - 将快照作为 VHD 导出/复制到不同区域中的存储帐户
 description: Azure PowerShell 脚本示例 - 将快照作为 VHD 导出/复制到不同区域中的存储帐户
 services: virtual-machines-windows
 documentationcenter: storage
@@ -12,14 +12,16 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 06/05/2017
-ms.date: 04/27/2020
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 69e1e6300594ea0aaf4cc47cecd04e142ba62f67
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: 960726155f7fe7c8931661ec28247bf1c30cdef1
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596022"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414043"
 ---
 # <a name="exportcopy-managed-snapshots-as-vhd-to-a-storage-account-in-different-region-with-powershell"></a>使用 PowerShell 将托管快照作为 VHD 导出/复制到不同区域中的存储帐户
 
@@ -64,7 +66,7 @@ $destinationVHDFileName = "yourvhdfilename"
 Select-AzSubscription -SubscriptionId $SubscriptionId
 
 #Generate the SAS for the snapshot 
-$sas = Grant-AzSnapshotAccess -ResourceGroupName $ResourceGroupName -SnapshotName $SnapshotName -DurationInSecond $sasExpiryDuration -Access Read
+$sas = Grant-AzSnapshotAccess -ResourceGroupName $ResourceGroupName -SnapshotName $SnapshotName  -DurationInSecond $sasExpiryDuration -Access Read
 #Create the context for the storage account which will be used to copy snapshot to the storage account 
 $destinationContext = New-AzStorageContext -StorageAccountName $storageAccountName -StorageAccountKey $storageAccountKey
 
@@ -81,9 +83,9 @@ Start-AzStorageBlobCopy -AbsoluteUri $sas.AccessSAS -DestContainer $storageConta
 
 | 命令 | 注释 |
 |---|---|
-| [Grant-AzSnapshotAccess](https://docs.microsoft.com/powershell/module/az.compute/New-AzDisk) | 生成快照的 SAS URI，用于将快照复制到存储帐户。 |
-| [New-AzureStorageContext](https://docs.microsoft.com/powershell/module/azure.storage/New-AzureStorageContext) | 使用帐户名和密钥创建存储帐户上下文。 此上下文可用于对存储帐户执行读/写操作。 |
-| [Start-AzureStorageBlobCopy](https://docs.microsoft.com/powershell/module/azure.storage/Start-AzureStorageBlobCopy) | 将快照的基础 VHD 复制到存储帐户 |
+| [Grant-AzSnapshotAccess](https://docs.microsoft.com/powershell/module/az.compute/new-azdisk) | 生成快照的 SAS URI，用于将快照复制到存储帐户。 |
+| [New-AzureStorageContext -Environment AzureChinaCloud](https://docs.microsoft.com/powershell/module/azure.storage/new-azurestoragecontext) | 使用帐户名和密钥创建存储帐户上下文。 此上下文可用于对存储帐户执行读/写操作。 |
+| [Start-AzureStorageBlobCopy](https://docs.microsoft.com/powershell/module/azure.storage/start-azurestorageblobcopy) | 将快照的基础 VHD 复制到存储帐户 |
 
 ## <a name="next-steps"></a>后续步骤
 
@@ -91,7 +93,7 @@ Start-AzStorageBlobCopy -AbsoluteUri $sas.AccessSAS -DestContainer $storageConta
 
 [从托管磁盘创建虚拟机](./virtual-machines-linux-powershell-sample-create-vm-from-managed-os-disks.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)
 
-有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 可以在 [Azure Linux VM 文档](../linux/powershell-samples.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)中找到其他虚拟机 PowerShell 脚本示例。
 

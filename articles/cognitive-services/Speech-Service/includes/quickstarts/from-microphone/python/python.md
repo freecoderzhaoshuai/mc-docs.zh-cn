@@ -3,14 +3,14 @@ author: trevorbye
 ms.service: cognitive-services
 ms.topic: include
 origin.date: 04/03/2020
-ms.date: 04/20/2020
+ms.date: 07/29/2020
 ms.author: v-tawe
-ms.openlocfilehash: c9f0c1d3ace2a07726bb19bdb0a9139bd17cdfab
-ms.sourcegitcommit: 304d3ef3c9e65c3e85977b3afb9985fbc0f908d6
+ms.openlocfilehash: 6580145593ff78b956bd0f5a33a4664dabd524d1
+ms.sourcegitcommit: 5d167ad5411b018522a0fac9f5435a48f4ceb3a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85095910"
+ms.lasthandoff: 07/29/2020
+ms.locfileid: "89317456"
 ---
 ## <a name="prerequisites"></a>先决条件
 
@@ -68,7 +68,9 @@ elif result.reason == speechsdk.ResultReason.Canceled:
 
 ## <a name="build-and-run-app"></a>生成并运行应用
 
-现在，可以使用语音服务来测试应用并验证语音识别功能了。
+现在，可以使用语音服务测试语音识别。 
+
+如果在 macOS 上运行此程序，并且它是使用麦克风构建的第一个 Python 应用，则可能需要为该麦克风指定终端访问权限。 打开“系统设置”并选择“安全与隐私” 。 接下来，选择“隐私”并在列表中找到“麦克风” 。 最后，选择“终端”并保存。 
 
 1. **启动应用** - 在命令行中键入：
     ```bash
@@ -79,4 +81,3 @@ elif result.reason == speechsdk.ResultReason.Canceled:
 ## <a name="next-steps"></a>后续步骤
 
 [!INCLUDE [Speech recognition basics](../../speech-to-text-next-steps.md)]
-

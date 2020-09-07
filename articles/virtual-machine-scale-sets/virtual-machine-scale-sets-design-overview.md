@@ -7,15 +7,15 @@ ms.author: v-junlch
 ms.topic: conceptual
 ms.service: virtual-machine-scale-sets
 ms.subservice: management
-ms.date: 08/06/2020
+ms.date: 08/31/2020
 ms.reviewer: jushiman
 ms.custom: mimckitt
-ms.openlocfilehash: e8ea0d071895fef2054b395abb8b05956cd3ef4e
-ms.sourcegitcommit: 66563f2b68cce57b5816f59295b97f1647d7a3d6
+ms.openlocfilehash: 04389144f4c93479236f104ac4cf7dabf2fd4540
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87914380"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413919"
 ---
 # <a name="design-considerations-for-scale-sets"></a>规模集的设计注意事项
 本文讨论虚拟机规模集的设计注意事项。 有关什么是虚拟机规模集的信息，请参阅[虚拟机规模集概述](./overview.md)。
@@ -45,6 +45,7 @@ ms.locfileid: "87914380"
 可以使用 [Azure 托管磁盘](../virtual-machines/windows/managed-disks-overview.md)而不是传统的 Azure 存储帐户创建规模集。 托管磁盘可以提供以下优点：
 - 无需为规模集 VM 预先创建一组 Azure 存储帐户。
 - 可以为规模集中的 VM 定义[附加的数据磁盘](virtual-machine-scale-sets-attached-disks.md)。
+- 可以将规模集配置为[在一个规模集中最多支持 1,000 个 VM](virtual-machine-scale-sets-placement-groups.md)。 
 
 如果存在现有的模板，则还可以[将该模板更新为使用托管磁盘](virtual-machine-scale-sets-convert-template-to-md.md)。
 
@@ -60,7 +61,7 @@ ms.locfileid: "87914380"
 如果规模集使用用户管理的存储，并且关闭了过度预配，则可为每个存储帐户预配超过 20 个 VM，但是出于 IO 性能考虑，建议不要超过 40 个 VM。 
 
 ## <a name="limits"></a>限制
-在市场映像（也称为平台映像）上构建并配置为使用 Azure 托管磁盘的规模集最多支持 1,000 个 VM 的容量。 如果将规模集配置为支持超过 100 个 VM，则并非所有方案的运行方式都相同（例如负载均衡）。
+在市场映像（也称为平台映像）上构建并配置为使用 Azure 托管磁盘的规模集最多支持 1,000 个 VM 的容量。 如果将规模集配置为支持超过 100 个 VM，则并非所有方案的运行方式都相同（例如负载均衡）。 有关详细信息，请参阅[使用大型虚拟机规模集](virtual-machine-scale-sets-placement-groups.md)。 
 
 使用用户管理的存储帐户配置的规模集目前限制为 100 个 VM（建议为此规模使用 5 个存储帐户）。
 
@@ -68,4 +69,3 @@ ms.locfileid: "87914380"
 
 对于高出这些限制所允许的 VM，需要部署多个规模集，如[此模板](https://github.com/Azure/azure-quickstart-templates/tree/master/301-custom-images-at-scale)所示。
 
-<!-- Update_Description: wording update -->

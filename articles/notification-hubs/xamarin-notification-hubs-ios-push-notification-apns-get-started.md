@@ -11,18 +11,18 @@ ms.workload: mobile
 ms.tgt_pltfrm: mobile-xamarin-ios
 ms.devlang: dotnet
 ms.topic: tutorial
-ms.custom: mvc
-origin.date: 12/05/2019
-ms.date: 07/21/2020
+ms.custom: mvc, devx-track-csharp
+origin.date: 07/07/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.reviewer: jowargo
+ms.reviewer: thsomasu
 ms.lastreviewed: 05/23/2019
-ms.openlocfilehash: 954a630fcd5c040951b67c8b5e8d7176a8d7fd6c
-ms.sourcegitcommit: 5656c18d7d2faa09329b1a15e352d1622e252d5f
+ms.openlocfilehash: 23b4518013025963b99074fbcc11e61bf1743211
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86862816"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316444"
 ---
 # <a name="tutorial-send-push-notifications-to-xamarinios-apps-using-azure-notification-hubs"></a>教程：使用 Azure 通知中心向 Xamarin.iOS 应用发送推送通知
 
@@ -107,21 +107,21 @@ ms.locfileid: "86862816"
         if (UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
         {
             UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound,
-                                                                    (granted, error) =>
-            {
-                if (granted)
-                    InvokeOnMainThread(UIApplication.SharedApplication.RegisterForRemoteNotifications);
-            });
-        } else if (UIDevice.CurrentDevice.CheckSystemVersion (8, 0)) {
-            var pushSettings = UIUserNotificationSettings.GetSettingsForTypes (
+                                                                    (granted, error) => InvokeOnMainThread(UIApplication.SharedApplication.RegisterForRemoteNotifications));
+        }
+        else if (UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
+        {
+            var pushSettings = UIUserNotificationSettings.GetSettingsForTypes(
                     UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound,
-                    new NSSet ());
+                    new NSSet());
 
-            UIApplication.SharedApplication.RegisterUserNotificationSettings (pushSettings);
-            UIApplication.SharedApplication.RegisterForRemoteNotifications ();
-        } else {
+            UIApplication.SharedApplication.RegisterUserNotificationSettings(pushSettings);
+            UIApplication.SharedApplication.RegisterForRemoteNotifications();
+        }
+        else
+        {
             UIRemoteNotificationType notificationTypes = UIRemoteNotificationType.Alert | UIRemoteNotificationType.Badge | UIRemoteNotificationType.Sound;
-            UIApplication.SharedApplication.RegisterForRemoteNotificationTypes (notificationTypes);
+            UIApplication.SharedApplication.RegisterForRemoteNotificationTypes(notificationTypes);
         }
 
         return true;
@@ -190,8 +190,9 @@ ms.locfileid: "86862816"
                 //Manually show an alert
                 if (!string.IsNullOrEmpty(alert))
                 {
-                    UIAlertView avAlert = new UIAlertView("Notification", alert, null, "OK", null);
-                    avAlert.Show();
+                    var myAlert = UIAlertController.Create("Notification", alert, UIAlertControllerStyle.Alert);
+                    myAlert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+                    UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(myAlert, true, null);
                 }
             }
         }

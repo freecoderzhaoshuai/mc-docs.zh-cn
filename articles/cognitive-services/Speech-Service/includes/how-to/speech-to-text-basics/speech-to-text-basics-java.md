@@ -3,14 +3,14 @@ author: trevorbye
 ms.service: cognitive-services
 ms.topic: include
 origin.date: 03/11/2020
-ms.date: 06/19/2020
+ms.date: 08/03/2020
 ms.author: v-tawe
-ms.openlocfilehash: 537c82fb6526f0cb2bc1e2fecf4aff166729fabf
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+ms.openlocfilehash: 824bc5b26c2bb681dc2993d2809a9a420422c618
+ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85613390"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "89317591"
 ---
 ## <a name="prerequisites"></a>先决条件
 
@@ -186,7 +186,7 @@ recognizer.sessionStopped.addEventListener((s, e) -> {
 });
 ```
 
-完成所有设置后，可以调用 [`stopContinuousRecognitionAsync`](https://docs.microsoft.com/java/api/com.microsoft.cognitiveservices.speech.speechrecognizer.stopcontinuousrecognitionasync)。
+完成所有设置后，可以调用 [`startContinuousRecognitionAsync`](https://docs.microsoft.com/java/api/com.microsoft.cognitiveservices.speech.speechrecognizer.startcontinuousrecognitionasync)。
 
 ```java
 // Starts continuous recognition. Uses StopContinuousRecognitionAsync() to stop recognition.

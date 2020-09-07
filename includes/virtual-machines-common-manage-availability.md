@@ -2,23 +2,22 @@
 title: include 文件
 description: include 文件
 services: virtual-machines
-author: rockboyfor
 ms.service: virtual-machines
 ms.topic: include
 origin.date: 03/27/2018
-ms.date: 08/24/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: yes
 ms.testdate: 08/24/2020
 ms.author: v-yeche
 ms.custom: include file
-ms.openlocfilehash: 9f6a8e256dc039f536e17fdde53b4c005c2ea7ed
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 95b07adf384217badcb310e2fd0e452b2e37a945
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88946923"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463056"
 ---
-<!--Verified successfully due to renamed/released articles-->
 ## <a name="understand-vm-reboots---maintenance-vs-downtime"></a>了解 VM 重启 - 维护和停机
 有三种情况可能会导致 Azure 中的虚拟机受影响：计划外硬件维护、意外停机、计划内维护。
 
@@ -41,7 +40,9 @@ ms.locfileid: "88946923"
 * [将负载均衡器与可用性集组合在一起]
     
 <!-- Not Available on * [Use availability zones to protect from datacenter level failures]-->
-<!--Not Avaialble on ## Use availability zones to protect from datacenter level failures-->
+<!-- Not Available on Availability Zone -->
+
+<!-- Not Avaialble on ## Use availability zones to protect from datacenter level failures-->
     
 ## <a name="configure-multiple-virtual-machines-in-an-availability-set-for-redundancy"></a>在可用性集中配置多个虚拟机以确保冗余
 可用性集是另一种数据中心配置，用于提供 VM 冗余和可用性。 数据中心内的这种配置可以确保在发生计划内或计划外维护事件时，至少有一个虚拟机可用，并满足 99.95% 的 Azure SLA 要求。 有关详细信息，请参阅[虚拟机的 SLA](https://www.azure.cn/support/sla/virtual-machines/)。
@@ -61,10 +62,11 @@ ms.locfileid: "88946923"
 
 :::image type="content" source="./media/virtual-machines-common-manage-availability/ud-fd-configuration.png" alt-text="更新域和容错域配置的概念图":::
 
-## <a name="use-managed-disks-for-vms-in-an-availability-set"></a><a name="use-managed-disks-for-vms-in-an-availability-set"></a>为可用性集中的 VM 使用托管磁盘
+<a name="use-managed-disks-for-vms-in-an-availability-set"></a>
+## <a name="use-managed-disks-for-vms-in-an-availability-set"></a>为可用性集中的 VM 使用托管磁盘
 如果当前使用的 VM 没有托管磁盘，则强烈建议[在可用性集中转换 VM，以便使用托管磁盘](../articles/virtual-machines/windows/convert-unmanaged-to-managed-disks.md)。
 
-通过确保可用性集中的 VM 的磁盘彼此之间完全隔离以避免单点故障，[托管磁盘](../articles/virtual-machines/windows/managed-disks-overview.md)为可用性集提供了更佳的可靠性。 为此，会自动将磁盘放置在不同的存储容错域（存储群集）中，并使它们与 VM 容错域一致。 如果某个存储容错域因硬件或软件故障而失败，则只有其磁盘在该存储容错域上的 VM 实例会失败。
+通过确保可用性集中的 VM 的磁盘彼此之间完全隔离以避免单点故障，[托管磁盘](../articles/virtual-machines/managed-disks-overview.md)为可用性集提供了更佳的可靠性。 为此，会自动将磁盘放置在不同的存储容错域（存储群集）中，并使它们与 VM 容错域一致。 如果某个存储容错域因硬件或软件故障而失败，则只有其磁盘在该存储容错域上的 VM 实例会失败。
 :::image type="content" source="./media/virtual-machines-common-manage-availability/md-fd-updated.png" alt-text="托管磁盘 FD":::
 
 <!--MOONCAKE CUSTOMIZTION:  CORRECT ON keep fixed by region currently in China-->
@@ -120,6 +122,4 @@ az vm list-skus --resource-type availabilitySets --query '[?name==`Aligned`].{Lo
 [在可用性集中对 VM 使用托管磁盘]: #use-managed-disks-for-vms-in-an-availability-set
 
 <!-- Not Available on [Use availability zones to protect from datacenter level failures]: #use-availability-zones-to-protect-from-datacenter-level-failures-->
-
-<!-- Update_Description: new article about virtual machines common manage availability -->
-<!--NEW.date: 08/24/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -13,16 +13,17 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/18/2019
-ms.date: 04/06/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 868571d735b75f04679656298e59769b9df1553a
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 523e3fc68ef81f20cd9a6be3a526bb1109d555a6
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80625741"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413220"
 ---
-# <a name="configure-a-content-key-authorization-policy"></a>配置内容密钥授权策略
+# <a name="configure-a-content-key-authorization-policy-by-using-the-media-services-net-sdk"></a>使用媒体服务 .NET SDK 配置内容密钥授权策略
 
 > [!NOTE]
 > Google Widevine 内容保护服务目前在 Azure 中国区域不可用。
@@ -38,7 +39,7 @@ ms.locfileid: "80625741"
 
 当播放器请求流时，媒体服务将使用指定的密钥通过 AES 或 DRM 加密来动态加密内容。 为解密流，播放器从密钥传送服务请求密钥。 为了确定用户是否被授权获取密钥，服务将评估你为密钥指定的授权策略。
 
-媒体服务支持通过多种方式对发出密钥请求的用户进行身份验证。 内容密钥授权策略可以有一个或多个授权限制。 选项为“开放”或“令牌限制”。 令牌限制策略必须附带由安全令牌服务 (STS) 颁发的令牌。 媒体服务支持采用简单 Web 令牌 ([SWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2)) 格式和 JSON Web 令牌 ([JWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3)) 格式的令牌。
+媒体服务支持通过多种方式对发出密钥请求的用户进行身份验证。 内容密钥授权策略可以有一个或多个授权限制。 选项为“开放”或“令牌限制”。 令牌限制策略必须附带由安全令牌服务 (STS) 颁发的令牌。 媒体服务支持采用简单 Web 令牌 ([SWT](https://docs.microsoft.com/previous-versions/azure/azure-services/gg185950(v=azure.100)#BKMK_2)) 格式和 JSON Web 令牌 ([JWT](https://docs.microsoft.com/previous-versions/azure/azure-services/gg185950(v=azure.100)#BKMK_3)) 格式的令牌。
 
 媒体服务不提供 STS。 可以创建自定义 STS 或使用 Azure 访问控制服务来颁发令牌。 必须将 STS 配置为创建令牌，该令牌使用指定密钥以及在令牌限制配置中指定的颁发声明进行签名（如本文所述）。 如果令牌有效，并且令牌中的声明与为内容密钥配置的声明相匹配，则媒体服务密钥传送服务会将加密密钥返回到客户端。
 

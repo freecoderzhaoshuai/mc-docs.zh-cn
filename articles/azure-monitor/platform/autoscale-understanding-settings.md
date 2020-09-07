@@ -1,18 +1,17 @@
 ---
 title: 了解 Azure Monitor 中的自动缩放设置
 description: 自动缩放设置的详细步骤及其工作原理。 适用于虚拟机、云服务、Web 应用
-author: anirudhcavale
 ms.topic: conceptual
-origin.date: 12/18/2017
-ms.date: 12/18/2018
-ms.author: ancav
+author: Johnnytechn
+ms.date: 08/20/2020
 ms.subservice: autoscale
-ms.openlocfilehash: 1590249e2f4c8795fd28fa52a7371153184def4d
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+origin.date: 12/18/2017
+ms.openlocfilehash: 65821cbd47ebfaae93438ce28551a986442d0115
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75599901"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457340"
 ---
 # <a name="understand-autoscale-settings"></a>了解自动缩放设置
 使用自动缩放设置有助于确保运行适当数量的资源来处理应用程序负载的波动。 可将自动缩放设置配置为基于指标（指示负载或性能）触发，或者在计划好的日期和时间触发。 本文将会深度剖析自动缩放设置。 本文首先介绍设置的架构和属性，然后逐步讲解可配置的不同配置文件类型。 最后讨论 Azure 中的自动缩放功能如何评估要在任意给定时间执行哪个配置文件。
@@ -304,8 +303,10 @@ ms.locfileid: "75599901"
 ## <a name="next-steps"></a>后续步骤
 若要详细了解自动缩放，请参阅以下文章：
 
-* [自动缩放概述](../../azure-monitor/platform/autoscale-overview.md)
-* [Azure 监视器自动缩放常用指标](../../azure-monitor/platform/autoscale-common-metrics.md)
-* [Azure 监视器自动缩放的最佳做法](../../azure-monitor/platform/autoscale-best-practices.md)
-* [使用自动缩放操作发送电子邮件和 webhook 警报通知](../../azure-monitor/platform/autoscale-webhook-email.md)
-* [自动缩放 REST API](https://msdn.microsoft.com/library/dn931953.aspx)
+* [自动缩放概述](./autoscale-overview.md)
+* [Azure 监视器自动缩放常用指标](./autoscale-common-metrics.md)
+* [Azure 监视器自动缩放的最佳做法](./autoscale-best-practices.md)
+* [使用自动缩放操作发送电子邮件和 webhook 警报通知](./autoscale-webhook-email.md)
+* [自动缩放 REST API](https://docs.microsoft.com/rest/api/monitor/autoscalesettings)
+
+

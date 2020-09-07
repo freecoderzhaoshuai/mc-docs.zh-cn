@@ -1,28 +1,32 @@
 ---
-title: 教程 - 了解如何使用 Azure PowerShell 管理 Windows 虚拟机
+title: 教程 - 使用 PowerShell 管理虚拟机
 description: 本教程介绍如何通过使用 Azure PowerShell 应用 RBAC、策略、锁和标记管理 Azure 虚拟机
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.workload: infrastructure
 ms.topic: tutorial
 origin.date: 12/05/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: 08b060e77c1f7862aa99ca02f8b5e74cec0567ef
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: f3ebbb91f00db75c607df8fa2020fb46647da20c
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945863"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462869"
 ---
 # <a name="tutorial-learn-about-windows-virtual-machine-management-with-azure-powershell"></a>教程：了解如何使用 Azure PowerShell 管理 Windows 虚拟机
 
 [!INCLUDE [Resource Manager governance introduction](../../../includes/resource-manager-governance-intro.md)]
 
-## <a name="launch-azure-local-powershell"></a>启动 Azure 本地 PowerShell
+## <a name="launch-azure-local-shell"></a>启动 Azure 本地 Shell
 
 打开 Azure Powershell 控制台，以管理员权限运行下面列出的脚本。
+
+<!--Not Available on Azure Cloud Shell-->
 
 ## <a name="understand-scope"></a>了解范围
 
@@ -41,7 +45,7 @@ New-AzResourceGroup -Name myResourceGroup -Location ChinaEast
 
 ## <a name="role-based-access-control"></a>基于角色的访问控制
 
-你希望确保你的组织中的用户对这些资源具有合适级别的访问权限。 你不希望向用户授予不受限的访问权限，但还需要确保他们可以执行其工作。 使用[基于角色的访问控制](../../role-based-access-control/overview.md)，你可以管理哪些用户有权在某个范围内完成特定操作。
+你希望确保你的组织中的用户对这些资源具有合适级别的访问权限。 你不希望向用户授予不受限的访问权限，但还需要确保他们可以执行其工作。 使用 [Azure 基于角色的访问控制 (Azure RBAC)](../../role-based-access-control/overview.md)，你可以管理哪些用户有权在某个范围内完成特定操作。
 
 若要创建和删除角色分配，用户必须具有 `Microsoft.Authorization/roleAssignments/*` 访问权限。 此访问权限是通过“所有者”或“用户访问”管理员角色授权的。
 
@@ -69,7 +73,7 @@ New-AzRoleAssignment -ObjectId $adgroup.id `
 
 ## <a name="azure-policy"></a>Azure Policy
 
-[Azure Policy](../../governance/policy/overview.md) 可帮助确保订阅中的所有资源符合企业标准。 订阅已经有多个策略定义。 若要查看可用的策略定义，请使用 [Get-AzPolicyDefinition](https://docs.microsoft.com/powershell/module/az.resources/Get-AzPolicyDefinition) 命令：
+[Azure Policy](../../governance/policy/overview.md) 可帮助确保订阅中的所有资源符合企业标准。 订阅已经有多个策略定义。 若要查看可用的策略定义，请使用 [Get-AzPolicyDefinition](https://docs.microsoft.com/powershell/module/az.resources/get-azpolicydefinition) 命令：
 
 ```powershell
 (Get-AzPolicyDefinition).Properties | Format-Table displayName, policyType
@@ -93,7 +97,7 @@ $rg = Get-AzResourceGroup -Name myResourceGroup
 
 # Get policy definitions for allowed locations, allowed SKUs, and auditing VMs that don't use managed disks
 $locationDefinition = Get-AzPolicyDefinition | where-object {$_.properties.displayname -eq "Allowed locations"}
-$skuDefinition = Get-AzPolicyDefinition | where-object {$_.properties.displayname -eq "Allowed virtual machine SKUs"}
+$skuDefinition = Get-AzPolicyDefinition | where-object {$_.properties.displayname -eq "Allowed virtual machine size SKUs"}
 $auditDefinition = Get-AzPolicyDefinition | where-object {$_.properties.displayname -eq "Audit VMs that do not use managed disks"}
 
 # Assign policy for allowed locations
@@ -116,7 +120,7 @@ New-AzPolicyAssignment -Name "Audit unmanaged disks" `
 
 ## <a name="deploy-the-virtual-machine"></a>部署虚拟机
 
-分配角色和策略以后，即可部署解决方案。 默认大小为 Standard_DS1_v2，这是允许的 SKU 之一。 运行此步骤时，会提示输入凭据。 你输入的值将配置为用于虚拟机的用户名和密码。
+分配角色和策略以后，即可部署解决方案。 默认大小为 Standard_DS1_v2，这是允许的 SKU 之一。 运行此步骤时，会提示输入凭据。 输入的值将配置为用于虚拟机的用户名和密码。
 
 ```powershell
 New-AzVm -ResourceGroupName "myResourceGroup" `
@@ -217,9 +221,12 @@ Remove-AzResourceLock -LockName LockNSG `
 Remove-AzResourceGroup -Name myResourceGroup
 ```
 
+<!--Not Available on ## Manage costs-->
+<!--Not Available on [!INCLUDE [cost-management-horizontal](../../../includes/cost-management-horizontal.md)]-->
+
 ## <a name="next-steps"></a>后续步骤
 
-在本教程中，你已创建了一个自定义 VM 映像。 你已了解如何：
+在本教程中，已创建自定义 VM 映像。 你已了解如何执行以下操作：
 
 > [!div class="checklist"]
 > * 为用户分配角色
@@ -227,6 +234,9 @@ Remove-AzResourceGroup -Name myResourceGroup
 > * 使用锁保护重要资源
 > * 标记用于计费和管理的资源
 
-<!--Not Available on [Manage virtual machines](tutorial-config-management.md)-->
+转到下一教程，了解如何在 Linux 虚拟机上识别更改和管理包更新。
+
+> [!div class="nextstepaction"]
+> [管理虚拟机](tutorial-config-management.md)
 
 <!-- Update_Description: update meta properties, update link, wording update  -->

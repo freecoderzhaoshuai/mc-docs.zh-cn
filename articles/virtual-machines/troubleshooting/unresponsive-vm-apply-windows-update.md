@@ -13,14 +13,16 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.topic: troubleshooting
 origin.date: 03/31/2020
-ms.date: 05/06/2020
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 722006e67ddadee71f5d558d2229f3b1b1f70528
-ms.sourcegitcommit: 81241aa44adbcac0764e2b5eb865b96ae56da6b7
+ms.openlocfilehash: 2c40dc35e82d90c1a03b1ff4d440acc3c066900d
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/09/2020
-ms.locfileid: "83001980"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456745"
 ---
 <!--Verified successfully-->
 # <a name="vm-is-unresponsive-with-c01a001d-error-when-applying-windows-update"></a>应用 Windows 更新时 VM 无响应并出现“C01A001D”错误
@@ -29,9 +31,9 @@ ms.locfileid: "83001980"
 
 ## <a name="symptoms"></a>症状
 
-使用[启动诊断](/virtual-machines/troubleshooting/boot-diagnostics)查看 VM 的屏幕截图时，其中显示 Windows 更新 (KB) 正在进行，但更新失败并出现错误代码：“C01A001D”。
+使用[启动诊断](./boot-diagnostics.md)查看 VM 的屏幕截图时，其中显示 Windows 更新 (KB) 正在进行，但更新失败并出现错误代码：“C01A001D”。
 
-![Windows 更新无响应](./media/unresponsive-vm-apply-windows-update/unresponsive-windows-update.png)
+:::image type="content" source="./media/unresponsive-vm-apply-windows-update/unresponsive-windows-update.png" alt-text="Windows 更新无响应":::
 
 ## <a name="cause"></a>原因
 
@@ -51,17 +53,17 @@ ms.locfileid: "83001980"
 
 ### <a name="create-and-access-a-repair-vm"></a>创建并访问修复 VM
 
-1. 按照 [VM 修复命令的步骤 1-3](/virtual-machines/troubleshooting/repair-windows-vm-using-azure-virtual-machine-repair-commands) 来准备一个修复 VM。
+1. 按照 [VM 修复命令的步骤 1-3](./repair-windows-vm-using-azure-virtual-machine-repair-commands.md) 来准备一个修复 VM。
 2. 使用远程桌面连接来连接到修复 VM。
 
 ### <a name="free-up-space-on-the-hard-disk"></a>释放硬盘上的空间
 
 如果磁盘空间尚不足 1 TB，必须调整其大小。 磁盘空间达到 1 TB 后，执行磁盘清理和驱动器碎片整理。
 
-1. 检查磁盘是否已满。 如果磁盘空间低于 1 TB，请[使用 PowerShell 将其扩展到最大 1 TB](/virtual-machines/windows/expand-os-disk?toc=%2Fazure%2Fvirtual-machines%2Fwindows%2Ftoc.json)。
+1. 检查磁盘是否已满。 如果磁盘空间低于 1 TB，请[使用 PowerShell 将其扩展到最大 1 TB](../windows/expand-os-disk.md?toc=%2Fvirtual-machines%2Fwindows%2Ftoc.json)。
 2. 磁盘空间达到 1 TB 后，执行磁盘清理。
-    - [从损坏的 VM 中分离数据磁盘](/virtual-machines/windows/detach-disk)。
-    - [将数据磁盘附加到正常运行的 VM](/virtual-machines/windows/attach-disk-ps#attach-an-existing-data-disk-to-a-vm)。
+    - [从损坏的 VM 中分离数据磁盘](../windows/detach-disk.md)。
+    - [将数据磁盘附加到正常运行的 VM](../windows/attach-disk-ps.md#attach-an-existing-data-disk-to-a-vm)。
     - 使用[磁盘清理工具](https://support.microsoft.com/help/4026616/windows-10-disk-cleanup)来释放空间。
 3. 调整大小并清理后，对驱动器进行碎片整理：
 
@@ -117,7 +119,6 @@ ms.locfileid: "83001980"
 
 ### <a name="rebuild-the-vm"></a>重建 VM
 
-使用 [VM 修复命令的步骤 5](/virtual-machines/troubleshooting/repair-windows-vm-using-azure-virtual-machine-repair-commands#repair-process-example) 重新装配 VM。
+使用 [VM 修复命令的步骤 5](./repair-windows-vm-using-azure-virtual-machine-repair-commands.md#repair-process-example) 重新装配 VM。
 
-<!-- Update_Description: new article about unresponsive vm apply windows update -->
-<!--NEW.date: 04/27/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

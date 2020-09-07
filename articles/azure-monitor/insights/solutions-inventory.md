@@ -7,12 +7,12 @@ ms.topic: conceptual
 origin.date: 06/26/2018
 ms.author: v-johya
 ms.date: 08/28/2020
-ms.openlocfilehash: d7fbffc585919980dd34be197231cf91c8e73b07
-ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
+ms.openlocfilehash: bfc7b62ea3e3525e0b317e7c1151cf6f262fd121
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/30/2020
-ms.locfileid: "89148547"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457425"
 ---
 # <a name="inventory-and-data-collection-details-for-monitoring-solutions-in-azure"></a>Azure 中的监视解决方案的清单和数据收集详细信息
 [监视解决方案](solutions.md)使用 Azure 中的服务来了解特定应用程序或服务的操作。 监视解决方案通常收集日志数据并提供查询和视图，用于分析收集的数据。 可以在 Azure Monitor 中针对你使用的任何应用程序和服务添加监视解决方案。 这些解决方案通常是免费提供的，但收集的数据可能会产生使用费用。
@@ -35,9 +35,6 @@ ms.locfileid: "89148547"
 | **监视解决方案** | **平台** | **Microsoft Monitoring Agent** | **Operations Manager 代理** | **Azure 存储** | **是否需要 Operations Manager？** | **通过管理组发送 Operations Manager 代理数据** | **收集频率** |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | [活动日志分析](../platform/activity-log-collect.md) | Azure | | | | | | 通知时 |
-| [警报管理](../platform/alert-management-solution.md) (Nagios) |Linux |&#8226; | | | | |到达时 |
-| [警报管理](../platform/alert-management-solution.md) (Zabbix) |Linux |&#8226; | | | | |1 分钟 |
-| [警报管理](../platform/alert-management-solution.md) (Operations Manager) |Windows | |&#8226; | |&#8226; |&#8226; |3 分钟 |
 | [Azure Site Recovery](../../site-recovery/site-recovery-overview.md) | Azure | | | | | | 不适用 |
 | [Application Insights 连接器（已弃用）](../platform/app-insights-connector.md) | Azure | | | |  |  | 通知时 |
 | [自动化混合辅助角色](../../automation/automation-hybrid-runbook-worker.md) | Windows | &#8226; | &#8226; |  |  |  | 不适用 |

@@ -9,14 +9,15 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: include
 origin.date: 10/11/2019
-ms.date: 06/19/2019
+ms.date: 08/03/2020
 ms.author: v-tawe
-ms.openlocfilehash: 7106e4064efdf6b506ad220e03727e8f842d4a1e
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+ms.custom: devx-track-javascript
+ms.openlocfilehash: 3e89a4fab075677338bd048053f22803aadc3b4e
+ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85613438"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "89317578"
 ---
 本指南介绍如何安装可以在网页中使用的 JavaScript 版[语音 SDK](~/articles/cognitive-services/speech-service/speech-sdk.md)。
 
@@ -28,11 +29,12 @@ ms.locfileid: "85613438"
 
 ## <a name="unpack-the-speech-sdk-for-javascript-into-that-folder"></a>将 JavaScript 的语音 SDK 解压缩到文件夹
 
-将语音 SDK 作为 [.zip 包](https://aka.ms/csspeech/jsbrowserpackage)下载，并将其解压缩到新建文件夹。 这会导致以下四个文件被解压缩：
+将语音 SDK 作为 [.zip 包](https://aka.ms/csspeech/jsbrowserpackage)下载，并将其解压缩到新建文件夹。 这会导致以下五个文件被解压缩：
 * `microsoft.cognitiveservices.speech.sdk.bundle.js` 人工可读的语音 SDK 版本。
 * `microsoft.cognitiveservices.speech.sdk.bundle.js.map` 用于调试 SDK 代码的映射文件。
 * `microsoft.cognitiveservices.speech.sdk.bundle.d.ts` 用于 TypeScript 的对象定义
 * `microsoft.cognitiveservices.speech.sdk.bundle-min.js` 语音 SDK 的简化版。
+* `speech-processor.js` 用于提高某些浏览器性能的代码。
 
 ## <a name="create-an-indexhtml-page"></a>创建 index.html 页面
 

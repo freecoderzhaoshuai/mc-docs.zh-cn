@@ -14,12 +14,12 @@ ms.topic: article
 origin.date: 04/22/2019
 ms.date: 04/06/2020
 ms.author: v-jay
-ms.openlocfilehash: d980734c2ef277b0547bdbe2e466a00c23eb54a2
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 00f3ac4e8eab05b62594c7c7de46f666eaeff0e7
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80625664"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413996"
 ---
 # <a name="live-event-low-latency-settings"></a>直播活动低延迟设置
 
@@ -63,15 +63,15 @@ LiveEvent liveEvent = new LiveEvent(
 
 ||启用 2 秒 GOP 低延迟|启用 1 秒 GOP 低延迟|
 |---|---|---|
-|AMP 中的 DASH|10 秒|8 秒|
-|本机 iOS 播放器上的 HLS|14 秒|10 秒|
+|**AMP 中的 DASH**|10 秒|8 秒|
+|**本机 iOS 播放器上的 HLS**|14 秒|10 秒|
 
 ### <a name="live-encoding"></a>实时编码
 
 ||启用 2 秒 GOP 低延迟|启用 1 秒 GOP 低延迟|
 |---|---|---|
-|AMP 中的 DASH|14 秒|10 秒|
-|本机 iOS 播放器上的 HLS|18 秒|13 秒|
+|**AMP 中的 DASH**|14 秒|10 秒|
+|**本机 iOS 播放器上的 HLS**|18 秒|13 秒|
 
 > [!NOTE]
 > 根据本地网络状况，端到端延迟可能有所不同。 应当测试你的确切配置。

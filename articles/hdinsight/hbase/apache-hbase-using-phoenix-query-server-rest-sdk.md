@@ -16,12 +16,12 @@ ms.workload: big-data
 origin.date: 01/01/2020
 ms.date: 03/02/2020
 ms.author: v-yiso
-ms.openlocfilehash: 436ca47d15a80e2671e00b604dc3811eb4a1f32e
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: a74257a8c4ebae23cce06b2607e53c639b8ad82a
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77563492"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462815"
 ---
 # <a name="apache-phoenix-query-server-rest-sdk"></a>Apache Phoenix 查询服务器 REST SDK
 
@@ -35,7 +35,9 @@ ms.locfileid: "77563492"
 
 适用于 Apache Phoenix 查询服务器的 Microsoft .NET 驱动程序以 NuGet 包的形式提供，可以使用以下命令通过 Visual Studio **NuGet 包管理器控制台**进行安装：
 
-    Install-Package Microsoft.Phoenix.Client
+```console
+Install-Package Microsoft.Phoenix.Client
+```
 
 ## <a name="instantiate-new-phoenixclient-object"></a>实例化新的 PhoenixClient 对象
 
@@ -502,7 +504,7 @@ finally
 
 `select` 语句的输出应该是以下结果：
 
-```
+```output
 id0 first0
 id1 first1
 id10 first10

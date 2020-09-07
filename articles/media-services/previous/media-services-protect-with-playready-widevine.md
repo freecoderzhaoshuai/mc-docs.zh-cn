@@ -13,14 +13,15 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: conceptual
 origin.date: 03/20/2019
-ms.date: 03/04/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 89f203df045b09212c6672e1706740b2b496488d
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 3e80edbfbd81817c7986c6cebaf8b8931d406a3c
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80625801"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413763"
 ---
 # <a name="use-playready-dynamic-common-encryption"></a>使用 PlayReady 动态通用加密
 
@@ -36,7 +37,7 @@ ms.locfileid: "80625801"
 
 媒体服务提供了用于传送 PlayReady DRM 许可证的服务。 媒体服务还提供可用于配置权限和限制的 API，这样当用户播放受保护的内容时，便可通过 PlayReady DRM 运行时强制实施这些权限和限制。 当用户请求受 DRM 保护的内容时，播放器应用程序会从媒体服务许可证服务请求许可证。 如果播放器应用程序获得授权，媒体服务许可证服务会向该播放器颁发许可证。 PlayReady 许可证包含客户端播放器用来对内容进行解密和流式传输的解密密钥。
 
-媒体服务支持通过多种方式对发出密钥请求的用户进行授权。 内容密钥授权策略可能有一种或多种授权限制：开放或令牌限制。 令牌限制策略必须附带由安全令牌服务 (STS) 颁发的令牌。 媒体服务支持采用[简单 Web 令牌](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2) (SWT) 格式和 [JSON Web 令牌](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3) (JWT) 格式的令牌。 
+媒体服务支持通过多种方式对发出密钥请求的用户进行授权。 内容密钥授权策略可能有一种或多种授权限制：开放或令牌限制。 令牌限制策略必须附带由安全令牌服务 (STS) 颁发的令牌。 媒体服务支持采用[简单 Web 令牌](https://docs.microsoft.com/previous-versions/azure/azure-services/gg185950(v=azure.100)#BKMK_2) (SWT) 格式和 [JSON Web 令牌](https://docs.microsoft.com/previous-versions/azure/azure-services/gg185950(v=azure.100)#BKMK_3) (JWT) 格式的令牌。 
 
 有关详细信息，请参阅[配置内容密钥授权策略](media-services-protect-with-aes128.md#configure_key_auth_policy)。
 
@@ -549,6 +550,6 @@ namespace DynamicEncryptionWithDRM
 ## <a name="see-also"></a>另请参阅
 
 * [使用带 Multi-DRM 的 CENC 和访问控制](media-services-cenc-with-multidrm-access-control.md)
-* [用于 Azure 媒体服务的 Java 客户端 SDK 入门](/media-services/previous/media-services-java-how-to-use)
+* [用于 Azure 媒体服务的 Java 客户端 SDK 入门](./media-services-java-how-to-use.md)
 * 若要下载最新的用于媒体服务的 PHP SDK，请在 [Packagist 存储库](https://packagist.org/packages/microsoft/windowsazure#v0.5.7)中查找 0.5.7 版 Microsoft/WindowsAzure 包。 
 

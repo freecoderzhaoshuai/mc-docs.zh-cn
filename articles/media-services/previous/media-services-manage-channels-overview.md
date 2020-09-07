@@ -13,19 +13,19 @@ ms.tgt_pltfrm: na
 ms.devlang: ne
 ms.topic: article
 origin.date: 03/18/2019
-ms.date: 06/08/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 39a7e85920ea119ec308f81a1d7af1a6240c0bc1
-ms.sourcegitcommit: 79c99a9ea013b3c74706a1038a505f4eea2aaac4
+ms.openlocfilehash: 09097e7c5dc7d539816fcb538eb371c7495d29a4
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84439536"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413745"
 ---
 # <a name="overview-of-live-streaming-using-media-services"></a>使用媒体服务实时传送视频流概述
 
 > [!NOTE]
-> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](/media-services/latest/)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
+> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](../latest/index.yml)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
 
 ## <a name="overview"></a>概述
 

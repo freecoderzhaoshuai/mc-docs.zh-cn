@@ -12,14 +12,14 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 08/26/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 196fdc80f632e2e042ed7fb97e0c2a22fe0c5ba3
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: dc79ba76ca2af6b9d69b2b2c122ebee4dc2a611a
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71124667"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413964"
 ---
 # <a name="scaling-media-processing-overview"></a>调整媒体处理的规模概述 
 此页概述了如何以及为何调整媒体处理的规模。 
@@ -66,7 +66,7 @@ ms.locfileid: "71124667"
 > 
 
 > [!NOTE]
-> 若要获取最新版本的 Java SDK 并开始使用 Java 进行开发，请参阅[媒体服务的 Java 客户端 SDK 入门](/media-services/media-services-java-how-to-use)。 <br/>
+> 若要获取最新版本的 Java SDK 并开始使用 Java 进行开发，请参阅[媒体服务的 Java 客户端 SDK 入门](./media-services-java-how-to-use.md)。 <br/>
 > 若要下载最新的媒体服务 PHP SDK，请在 [Packagist 存储库](https://packagist.org/packages/microsoft/windowsazure#v0.5.7)中查找 0.5.7 版 Microsoft/WindowAzure 包。  
 
 ## <a name="media-services-learning-paths"></a>媒体服务学习路径

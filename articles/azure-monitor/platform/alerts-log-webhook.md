@@ -6,14 +6,14 @@ ms.author: v-johya
 services: monitoring
 ms.topic: conceptual
 origin.date: 05/30/2019
-ms.date: 07/17/2020
+ms.date: 08/20/2020
 ms.subservice: alerts
-ms.openlocfilehash: 13fef7d93e3571a9b9cfaeadaf6bfd074839bae3
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.openlocfilehash: 7752740531af353c11b8d229860e0b2672d69b9f
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508459"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457427"
 ---
 # <a name="webhook-actions-for-log-alert-rules"></a>用于日志警报规则的 Webhook 操作
 [在 Azure 中创建日志警报](alerts-log.md)时，可以选择[使用操作组配置](action-groups.md)以执行一个或多个操作。 本文介绍可用的不同 Webhook 操作，以及如何配置基于 JSON 的自定义 Webhook。
@@ -263,7 +263,6 @@ Webhooks 包括 URL 和 JSON 格式的有效负载（即发送到外部服务的
 - 了解 [Azure 警报中的日志警报](alerts-unified-log.md)。
 - 了解如何[管理 Azure 中的日志警报](alerts-log.md)。
 - 创建和管理 [Azure 中的操作组](action-groups.md)。
-- 详细了解 [Application Insights](../../azure-monitor/log-query/log-query-overview.md)。
+- 详细了解 [Application Insights](../log-query/log-query-overview.md)。
 - 了解有关[日志查询](../log-query/log-query-overview.md)的详细信息。 
-
 

@@ -1,10 +1,9 @@
 ---
-title: 使用 PowerShell 创建 Azure Monitor VM
+title: Azure PowerShell Linux 脚本示例 - Azure Monitor 日志
 description: Azure PowerShell 脚本示例 - Azure Monitor 日志
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 tags: azure-service-management
 ms.assetid: ''
 ms.service: virtual-machines-linux
@@ -12,15 +11,18 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 origin.date: 03/01/2017
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.custom: mvc
-ms.openlocfilehash: 8d9214a00dddcdcfccec25ef227574bc58f8c3b7
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: mvc, devx-track-azurepowershell
+ms.openlocfilehash: f5404ed733497be43888b12bb0383e29a716f8e3
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596334"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414035"
 ---
 <!--Verify successfully-->
 # <a name="create-an-azure-monitor-vm-with-powershell"></a>使用 PowerShell 创建 Azure Monitor VM
@@ -130,7 +132,7 @@ Remove-AzResourceGroup -Name myResourceGroup
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 可以在 [Azure Linux VM 文档](../linux/powershell-samples.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)中找到其他虚拟机 PowerShell 脚本示例。
 

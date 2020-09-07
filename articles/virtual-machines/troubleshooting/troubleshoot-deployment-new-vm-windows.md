@@ -1,10 +1,9 @@
 ---
-title: 排查在 Azure 中新建 Windows VM 时遇到的部署问题
+title: 在 Azure 中排查 Windows VM 部署问题 | Azure
 description: 排查在 Azure 中创建新 Windows 虚拟机时遇到的 Resource Manager 部署问题
 services: virtual-machines-windows, azure-resource-manager
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 editor: ''
 tags: top-support-issue, azure-resource-manager
 ms.assetid: afc6c1a4-2769-41f6-bbf9-76f9f23bcdf4
@@ -13,15 +12,18 @@ ms.workload: na
 ms.tgt_pltfrm: vm-windows
 ms.topic: troubleshooting
 origin.date: 06/15/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: f22283fa940adfda363666ea0d6ba991d6703357
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 8bd79c5ec3d33541de74c0cd11623cf5638aa5fa
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945923"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456800"
 ---
 # <a name="troubleshoot-deployment-issues-when-creating-a-new-windows-vm-in-azure"></a>排查在 Azure 中新建 Windows VM 时遇到的部署问题
 [!INCLUDE [virtual-machines-troubleshoot-deployment-new-vm-opening](../../../includes/virtual-machines-troubleshoot-deployment-new-vm-opening-include.md)]
@@ -38,7 +40,7 @@ ms.locfileid: "85945923"
 
 [查看部署操作](../../azure-resource-manager/templates/deployment-history.md)
 
-[通过查看活动日志管理 Azure 资源](../../resource-group-audit.md)
+[通过查看活动日志管理 Azure 资源](../../azure-resource-manager/management/view-activity-logs.md)
 
 [!INCLUDE [virtual-machines-troubleshoot-deployment-new-vm-issue1](../../../includes/virtual-machines-troubleshoot-deployment-new-vm-issue1-include.md)]
 

@@ -1,6 +1,6 @@
 ---
 title: Azure CLI 脚本示例 - 创建转换 | Microsoft Docs
-description: 使用 Azure CLI 脚本创建转换。
+description: 转换描述了处理视频或音频文件的任务的简单工作流（通常称为“工作程序”）。 本文中的 Azure CLI 脚本演示如何创建转换。
 services: media-services
 documentationcenter: ''
 author: WenJason
@@ -13,14 +13,15 @@ ms.topic: sample
 ms.tgt_pltfrm: multiple
 ms.workload: na
 origin.date: 05/01/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 38663d0bc6a7f115917ee42ea0d8967cfbda0c2c
-ms.sourcegitcommit: 1f890a4085e184cc678485d05f08dd6de8dc973f
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 640546e5524543f8d97333e41397b67595f9344c
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84438960"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413947"
 ---
 # <a name="cli-example-create-a-transform"></a>CLI 示例：创建转换
 
@@ -28,7 +29,7 @@ ms.locfileid: "84438960"
 
 ## <a name="prerequisites"></a>先决条件 
 
-[创建媒体服务帐户](create-account-cli-how-to.md)。
+[创建媒体服务帐户](./create-account-howto.md)。
 
 [!INCLUDE [media-services-cli-instructions.md](../../../includes/media-services-cli-instructions.md)]
 

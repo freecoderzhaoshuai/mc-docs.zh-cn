@@ -1,22 +1,24 @@
 ---
-title: 从 Amazon Web Services (AWS) 和其他平台迁移到 Azure 中的托管磁盘
+title: 从 AWS 和其他平台迁移到 Azure 中的托管磁盘
 description: 在 Azure 中使用从其他云（如 AWS 或其他虚拟化平台）上传的 VHD 并利用 Azure 托管磁盘创建 VM。
-author: rockboyfor
-manager: digimobile
+manager: twooley
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.topic: conceptual
 origin.date: 10/07/2017
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 9b1d9845f56a9bf2dbdd34cc237d8011b059ad34
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 9655419f4ff638b1fad0e479781843032ad1638c
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945811"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463202"
 ---
 # <a name="migrate-from-amazon-web-services-aws-and-other-platforms-to-managed-disks-in-azure"></a>从 Amazon Web Services (AWS) 和其他平台迁移到 Azure 中的托管磁盘
 
@@ -42,7 +44,7 @@ ms.locfileid: "85945811"
 Azure 托管磁盘无需管理存储帐户，从而简化了 VM 管理。 托管磁盘还受益于可用性集中 VM 的更佳可靠性。 这可确保将可用性集中不同 VM 的磁盘最大限度地彼此独立，以避免单点故障。 它会自动将可用性集中不同 VM 的磁盘置于不同的存储缩放单元（戳），限制由于硬件和软件故障引起的单个存储缩放单元故障影响。
 根据需求，可以从三种类型的存储选项中进行选择。 若要了解可用的磁盘类型，请参阅[选择磁盘类型](disks-types.md)一文。
 
-<!--Not Available on Ulter SSD till 06/30/2020-->
+<!--Not Available on Ulter SSD till 08/31/2020-->
 
 ## <a name="plan-for-the-migration-to-managed-disks"></a>计划迁移到托管磁盘
 
@@ -52,11 +54,11 @@ Azure 托管磁盘无需管理存储帐户，从而简化了 VM 管理。 托管
 
 ### <a name="location"></a>位置
 
-选取 Azure 托管磁盘可用位置。 如果要迁移到高级托管磁盘，还应确保高级存储在计划迁移到的区域中可用。 有关可用位置的最新信息，请参阅 [Azure 服务（按区域）](https://status.azure.com/status/) 。
+选取 Azure 托管磁盘可用位置。 如果要迁移到高级托管磁盘，还应确保高级存储在计划迁移到的区域中可用。 有关可用位置的最新信息，请参阅 [Azure 服务（按区域）](https://azure.microsoft.com/regions/#services) 。
 
 ### <a name="vm-sizes"></a>VM 大小
 
-如果要迁移到高级托管磁盘，需要将 VM 的大小更新为该 VM 所在区域中支持高级存储的可用大小。 查看支持高级存储的 VM 大小。 [虚拟机大小](sizes.md)中列出了 Azure VM 大小规范。
+如果要迁移到高级托管磁盘，需要将 VM 的大小更新为该 VM 所在区域中支持高级存储的可用大小。 查看支持高级存储的 VM 大小。 [虚拟机大小](../sizes.md)中列出了 Azure VM 大小规范。
 查看适用于高级存储的虚拟机的性能特征并选择最适合工作负荷的 VM 大小。 确保 VM 上有足够的带宽来驱动磁盘通信。
 
 ### <a name="disk-sizes"></a>磁盘大小

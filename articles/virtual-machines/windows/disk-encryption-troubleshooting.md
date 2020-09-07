@@ -1,22 +1,24 @@
 ---
 title: Azure 磁盘加密故障排除指南
 description: 本文提供适用于 Windows VM 的 Azure 磁盘加密的故障排除提示。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.subservice: security
-ms.topic: article
+ms.topic: troubleshooting
 origin.date: 08/06/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
 ms.custom: seodec18
-ms.openlocfilehash: 5afd2b70cc24e259531bf7459f5abb84d1276594
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: cc904aeed49396bd6c4960fc7f7438bad200a078
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946004"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462892"
 ---
-<!--Mooncake: Unique H1 title with docset-->
+<!--Mooncake: Unique H1 title TO MEET REPO REQUIRMENT-->
 # <a name="azure-disk-encryption-troubleshooting-guide-for-windows"></a>适用于 Windows 的 Azure 磁盘加密故障排除指南
 
 本指南面向使用 Azure 磁盘加密的组织中的 IT 专业人员、信息安全分析人员和云管理员。 本文旨在帮助排查与磁盘加密相关的问题。
@@ -88,8 +90,7 @@ VM 必须能够访问这样的 [Azure 实例元数据服务](../windows/instance
 
 本文档已详细描述有关 Azure 磁盘加密的一些常见问题和解决这些问题的方法。 有关此服务及其功能的详细信息，请参阅以下文章：
 
-<!--Not Available on - [Apply disk encryption in Azure Security Center](../../security-center/security-center-apply-disk-encryption.md)-->
-
+- [在 Azure 安全中心应用磁盘加密](../../security-center/security-center-virtual-machine-protection.md)
 - [Azure 静态数据加密](../../security/fundamentals/encryption-atrest.md)
 
 <!-- Update_Description: update meta properties, wording update, update link -->

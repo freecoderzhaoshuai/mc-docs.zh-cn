@@ -4,14 +4,14 @@ description: Azure Monitor 警报的常见问题和可能的解决方法。
 author: Johnnytechn
 ms.author: v-johya
 ms.topic: reference
-ms.date: 07/17/2020
+ms.date: 08/20/2020
 ms.subservice: alerts
-ms.openlocfilehash: ebcc38cac529c25cd6d9998279e8cb5fab717861
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.openlocfilehash: d1ae9fe2cd3ffaacdca27f477bad96d41992c4ce
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508476"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457375"
 ---
 # <a name="troubleshooting-problems-in-azure-monitor-alerts"></a>排查 Azure Monitor 警报的问题
 
@@ -238,14 +238,14 @@ ms.locfileid: "87508476"
 
 1. **是否遇到了权限错误？**  
 
-    你应该拥有 [监视参与者内置角色](/role-based-access-control/built-in-roles#monitoring-contributor)，或者与操作规则和警报相关的特定权限。
+    你应该拥有 [监视参与者内置角色](../../role-based-access-control/built-in-roles.md#monitoring-contributor)，或者与操作规则和警报相关的特定权限。
 
 1. **是否已验证操作规则参数？**  
 
-    查看[操作规则文档](alerts-action-rules.md)或[操作规则 PowerShell Set-AzActionRule](https://docs.microsoft.com/powershell/module/az.alertsmanagement/Set-AzActionRule?view=azps-3.5.0) 命令。 
+    查看[操作规则文档](alerts-action-rules.md)或[操作规则 PowerShell Set-AzActionRule](https://docs.microsoft.com/powershell/module/az.alertsmanagement/set-azactionrule?view=azps-3.5.0) 命令。 
 
 
 ## <a name="next-steps"></a>后续步骤
-- 如果使用的是日志警报，另请参阅[排查日志警报问题](alert-log-troubleshoot.md)。
+- 如果使用的是日志警报，另请参阅[排查日志警报问题](./alerts-troubleshoot-log.md)。
 - 返回 [Azure 门户](https://portal.azure.cn)，检查是否已遵循上述指导解决了问题 
 

@@ -8,14 +8,14 @@ ms.reviewer: jasonh
 ms.custom: hdinsightactive
 ms.service: hdinsight
 ms.topic: conceptual
-origin.date: 08/09/2020
-ms.date: 08/31/2020
-ms.openlocfilehash: b39a1e49225571ff88c7531b95c68c12098105e8
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+origin.date: 08/25/2020
+ms.date: 09/14/2020
+ms.openlocfilehash: 665e4b96091997f1a4650518eb31ddb581ce386e
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715165"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463143"
 ---
 # <a name="release-notes"></a>发行说明
 
@@ -74,3 +74,7 @@ HDInsight 会持续改善群集的可靠性和性能。
 
 ## <a name="component-version-change"></a>组件版本更改
 此发行版未发生组件版本更改。 可以在[此文档](https://docs.microsoft.com/azure/hdinsight/hdinsight-component-versioning#apache-hadoop-components-available-with-different-hdinsight-versions)中查找 HDInsight 4.0 和 HDInsight 3.6 的当前组件版本。
+
+## <a name="known-issues"></a>已知问题
+
+Azure 门户中已修复了一个问题，即用户在使用 SSH 身份验证类型的公钥创建 Azure HDInsight 群集时会遇到错误。 当用户单击“查看 + 创建”时，他们将收到错误“不得包含 SSH 用户名中的任意三个连续字符。” 此问题已修复，但可能要求你通过按 CTRL + F5 加载更正的视图来刷新浏览器缓存。 解决此问题的方法是使用 ARM 模板创建群集。 

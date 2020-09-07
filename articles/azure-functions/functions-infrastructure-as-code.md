@@ -3,14 +3,14 @@ title: 自动将函数应用资源部署到 Azure
 description: 了解如何生成用于部署函数应用的 Azure 资源管理器模板。
 ms.assetid: d20743e3-aab6-442c-a836-9bcea09bfd32
 ms.topic: conceptual
-ms.date: 08/12/2020
+ms.date: 09/03/2020
 ms.custom: fasttrack-edit
-ms.openlocfilehash: 70091ffa01563200258a1277b46a0ec6fe1b501f
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: ecb3c2e45ec6af426b5758c5af21626d4cb25a25
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222713"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413672"
 ---
 # <a name="automate-resource-deployment-for-your-function-app-in-azure-functions"></a>为 Azure Functions 中的函数应用自动执行资源部署
 
@@ -66,11 +66,11 @@ Azure Functions 运行时使用 `AzureWebJobsStorage` 连接字符串创建内�
 "appSettings": [
     {
         "name": "AzureWebJobsStorage",
-        "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';EndpointSuffix=core.chinacloudapi.cn;AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
+        "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';EndpointSuffix=core.chinacloudapi.cn;AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').keys[0].value)]"
     },
     {
         "name": "AzureWebJobsDashboard",
-        "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';EndpointSuffix=core.chinacloudapi.cn;AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
+        "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';EndpointSuffix=core.chinacloudapi.cn;AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').keys[0].value)]"
     }
 ]
 ```
@@ -151,7 +151,7 @@ Azure Functions 运行时使用 `AzureWebJobsStorage` 连接字符串创建内�
         "appSettings": [
             {
                 "name": "AzureWebJobsStorage",
-                "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';EndpointSuffix=core.chinacloudapi.cn;AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
+                "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';EndpointSuffix=core.chinacloudapi.cn;AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').keys[0].value)]"
             },
             {
                 "name": "FUNCTIONS_WORKER_RUNTIME",
@@ -230,11 +230,11 @@ Azure Functions 运行时使用 `AzureWebJobsStorage` 连接字符串创建内�
             "appSettings": [
                 {
                     "name": "AzureWebJobsStorage",
-                    "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';EndpointSuffix=core.chinacloudapi.cn;AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
+                    "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';EndpointSuffix=core.chinacloudapi.cn;AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').keys[0].value)]"
                 },
                 {
                     "name": "WEBSITE_CONTENTAZUREFILECONNECTIONSTRING",
-                    "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';EndpointSuffix=core.chinacloudapi.cn;AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
+                    "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';EndpointSuffix=core.chinacloudapi.cn;AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').keys[0].value)]"
                 },
                 {
                     "name": "WEBSITE_CONTENTSHARE",
@@ -308,7 +308,7 @@ Azure Functions 运行时使用 `AzureWebJobsStorage` 连接字符串创建内�
             "appSettings": [
                 {
                     "name": "AzureWebJobsStorage",
-                    "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';EndpointSuffix=core.chinacloudapi.cn;AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]"
+                    "value": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';EndpointSuffix=core.chinacloudapi.cn;AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').keys[0].value)]"
                 },
                 {
                     "name": "FUNCTIONS_WORKER_RUNTIME",
@@ -373,8 +373,8 @@ Azure Functions 运行时使用 `AzureWebJobsStorage` 连接字符串创建内�
           "[resourceId('Microsoft.Storage/storageAccounts', variables('storageAccountName'))]"
         ],
         "properties": {
-          "AzureWebJobsStorage": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]",
-          "AzureWebJobsDashboard": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').key1)]",
+          "AzureWebJobsStorage": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';EndpointSuffix=core.chinacloudapi.cn;AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').keys[0].value)]",
+          "AzureWebJobsDashboard": "[concat('DefaultEndpointsProtocol=https;AccountName=', variables('storageAccountName'), ';EndpointSuffix=core.chinacloudapi.cn;AccountKey=', listKeys(variables('storageAccountid'),'2015-05-01-preview').keys[0].value)]",
           "FUNCTIONS_EXTENSION_VERSION": "~2",
           "FUNCTIONS_WORKER_RUNTIME": "dotnet",
           "Project": "src"

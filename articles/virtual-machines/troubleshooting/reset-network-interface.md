@@ -3,22 +3,24 @@ title: 如何为 Azure Windows VM 重置网络接口 | Azure
 description: 介绍如何为 Azure Windows VM 重置网络接口
 services: virtual-machines-windows, azure-resource-manager
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: top-support-issue, azure-resource-manager
 ms.service: virtual-machines-windows
 ms.tgt_pltfrm: vm-windows
 ms.topic: troubleshooting
 origin.date: 11/16/2018
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: eeaee0adf4fcc59cfb92a846bdf6b8479ccc1301
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: f04987831a625404814258d0b0abf810505a455e
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82595967"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456860"
 ---
 # <a name="how-to-reset-network-interface-for-azure-windows-vm"></a>如何为 Azure Windows VM 重置网络接口 
 
@@ -37,7 +39,7 @@ ms.locfileid: "82595967"
 2. 选择受影响的虚拟机。
 3. 选择“网络”  ，然后选择 VM 的网络接口。
 
-    ![网络接口位置](./media/reset-network-interface/select-network-interface-vm.png)
+    :::image type="content" source="./media/reset-network-interface/select-network-interface-vm.png" alt-text="网络接口位置":::
 
 4. 选择“IP 配置”  。
 5. 选择 IP。 
@@ -48,7 +50,7 @@ ms.locfileid: "82595967"
 
 #### <a name="use-azure-powershell"></a>使用 Azure PowerShell
 
-1. 确保[已安装最新的 Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview)
+1. 确保[已安装最新的 Azure PowerShell](https://docs.microsoft.com/powershell/azure/)
 2. 打开提升的 Azure PowerShell 会话（以管理员身份运行）。 运行以下命令：
 
     ```powershell
@@ -91,7 +93,7 @@ ms.locfileid: "82595967"
 
 #### <a name="use-azure-powershell"></a>使用 Azure PowerShell
 
-1. 确保[已安装最新的 Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview)。
+1. 确保[已安装最新的 Azure PowerShell](https://docs.microsoft.com/powershell/azure/)。
 2. 打开提升的 Azure PowerShell 会话（以管理员身份运行）。 运行以下命令：
 
     ```powershell
@@ -123,7 +125,7 @@ ms.locfileid: "82595967"
 4. 找到名为“Microsoft Hyper-V 网络适配器”的适配器。
 5. 此时可能会看到灰显的不可用适配器。右键单击该适配器，然后选择“卸载”。
 
-    ![NIC 图像](media/reset-network-interface/nicpage.png)
+    :::image type="content" source="media/reset-network-interface/nicpage.png" alt-text="NIC 图像":::
 
     > [!NOTE]
     > 仅卸载名称为“Microsoft Hyper-V 网络适配器”的不可用适配器。 如果卸载任何其他隐藏的适配器，可能会导致其他问题。

@@ -3,14 +3,15 @@ author: IEvangelist
 ms.service: cognitive-services
 ms.topic: include
 origin.date: 03/12/2020
-ms.date: 06/19/2019
+ms.date: 08/03/2020
 ms.author: v-tawe
-ms.openlocfilehash: e0b5cdb37e1ceee32650e4c192026d41536e7e86
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+ms.custom: devx-track-javascript
+ms.openlocfilehash: f58afc43c74a08d52a07f5d950ec1bd625b164b1
+ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85613349"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "89317526"
 ---
 ## <a name="prerequisites"></a>先决条件
 

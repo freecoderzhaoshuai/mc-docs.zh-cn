@@ -3,13 +3,13 @@ title: 连续视频录制 - Azure
 description: 连续视频录制 (CVR) 是指从视频源连续录制视频的过程。 本主题将讨论什么是 CVR。
 ms.topic: conceptual
 origin.date: 04/27/2020
-ms.date: 07/27/2020
-ms.openlocfilehash: 0d2c74fde2a85ec4a3041494d28f9bbe0200b43a
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.date: 09/07/2020
+ms.openlocfilehash: 1168cb23d00bbb61effbc798bcb60427be343fea
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162830"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413171"
 ---
 # <a name="continuous-video-recording"></a>连续视频录制  
 
@@ -35,7 +35,7 @@ IoT Edge 上的实时视频分析支持在不太理想的网络情况下操作�
     "localMediaCacheMaximumSizeMiB": "2048",
     "localMediaCachePath": "/var/lib/azuremediaservices/tmp/",
 ```
-后两个属性与可复原的录制相关（两者也都是资产接收器节点的必需属性）。 localMediaCachePath 属性告知资产接收器在上传到资产之前，使用该文件夹路径来缓存媒体数据。 可以在[此](/iot-edge/how-to-access-host-storage-from-module)文章中了解边缘模块如何利用设备的本地存储。 localMediaCacheMaximumSizeMiB 属性定义资产接收器可用作缓存的磁盘空间（1 MiB = 1024 * 1024 个字节）。 
+后两个属性与可复原的录制相关（两者也都是资产接收器节点的必需属性）。 localMediaCachePath 属性告知资产接收器在上传到资产之前，使用该文件夹路径来缓存媒体数据。 可以在[此](../../iot-edge/how-to-access-host-storage-from-module.md)文章中了解边缘模块如何利用设备的本地存储。 localMediaCacheMaximumSizeMiB 属性定义资产接收器可用作缓存的磁盘空间（1 MiB = 1024 * 1024 个字节）。 
 
 如果边缘模块长时间断开连接，并且缓存文件夹中存储的内容达到 localMediaCacheMaximumSizeMiB 值，则资产接收器将开始从缓存中丢弃数据，从最早的数据开始。 例如，如果设备在上午 10 点断开连接，而缓存在下午 6 点达到最大限制，则资产接收器将开始删除在上午 10 点录制的数据。 
 

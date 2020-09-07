@@ -2,14 +2,14 @@
 author: ggailey777
 ms.service: azure-functions
 ms.topic: include
-ms.date: 07/17/2020
+ms.date: 09/03/2020
 ms.author: v-junlch
-ms.openlocfilehash: 91f759bc84f55f07e5cccd1fcecd6b301594c8c9
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.openlocfilehash: b34892150fbc6236570f18eefc948cb3cc768ace
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86441256"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413921"
 ---
 ## <a name="configure-your-local-environment"></a>配置本地环境
 
@@ -17,7 +17,7 @@ ms.locfileid: "86441256"
 
 + 具有活动订阅的 Azure 帐户。 [创建帐户](https://www.azure.cn/pricing/1rmb-trial/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio)。
 
-::: zone pivot="programming-language-csharp,programming-language-javascript,programming-language-typescript,programming-language-powershell"  
+::: zone pivot="programming-language-csharp,programming-language-javascript,programming-language-typescript,programming-language-powershell,programming-language-java"  
 + [Azure Functions Core Tools](../articles/azure-functions/functions-run-local.md#v2) 2.7.1846 或更高的 2.x 版本。
 ::: zone-end  
 
@@ -27,16 +27,16 @@ ms.locfileid: "86441256"
 ::: zone-end
 
 ::: zone pivot="programming-language-powershell"
-+ [PowerShell Core](https://docs.microsoft.com/powershell/scripting/install/installing-powershell-core-on-windows)
-
-+ [.NET Core SDK 2.2+](https://www.microsoft.com/net/download)
++ [.NET Core SDK 3.1](https://www.microsoft.com/net/download)
 ::: zone-end
 ::: zone pivot="programming-language-java"  
-+ [Java 开发人员工具包](https://aka.ms/azure-jdks)版本 8。
++ [Java 开发人员工具包](https://aka.ms/azure-jdks)版本 8。 
+
+    > [!IMPORTANT]
+    > + Java 11 的函数支持目前处于预览状态，Maven 原型默认创建 Java 8 部署。 如果要改为在 Java 11 上运行函数应用，则必须使用 Java 11 值手动更新 pom.xml 文件。 若要了解详细信息，请参阅 [Java 版本](../articles/azure-functions/functions-reference-java.md#java-versions)。 
+    > + `JAVA_HOME` 环境变量必须设置为正确版本的 JDK 的安装位置，以完成本快速入门。
 
 + [Apache Maven](https://maven.apache.org) 3.0 或更高版本。
 
-> [!IMPORTANT]
-> JAVA_HOME 环境变量必须设置为 JDK 的安装位置，以完成本快速入门。
 ::: zone-end
 

@@ -4,20 +4,20 @@ description: 了解如何在 Azure 中缩放资源：Web 应用、云服务、�
 author: Johnnytechn
 ms.topic: conceptual
 origin.date: 07/07/2017
-ms.date: 05/28/2020
+ms.date: 08/20/2020
 ms.author: v-johya
 ms.subservice: autoscale
-ms.openlocfilehash: 649dbce17e4622b71eb41f75a03971fc6072f2c9
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: d896d3b28637c2788700c15bc5c787bdfd67faaf
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440493"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457358"
 ---
 # <a name="get-started-with-autoscale-in-azure"></a>Azure 中的自动缩放入门
 本文介绍如何在 Azure 门户中为资源指定自动缩放设置。
 
-Azure Monitor 自动缩放仅适用于[虚拟机规模集](https://www.azure.cn/home/features/virtual-machine-scale-sets/)、[云服务](https://www.azure.cn/home/features/cloud-services/)、[应用服务 - Web 应用](https://www.azure.cn/home/features/app-service/web/)和 [API 管理服务](/api-management/api-management-key-concepts)。
+Azure Monitor 自动缩放仅适用于[虚拟机规模集](https://www.azure.cn/home/features/virtual-machine-scale-sets/)、[云服务](https://www.azure.cn/home/features/cloud-services/)、[应用服务 - Web 应用](https://www.azure.cn/home/features/app-service/web/)和 [API 管理服务](../../api-management/api-management-key-concepts.md)。
 
 ## <a name="discover-the-autoscale-settings-in-your-subscription"></a>了解订阅中的自动缩放设置
 可在 Azure Monitor 中查找自动缩放功能适用的所有资源。 按下列步骤进行分步演练：
@@ -132,5 +132,4 @@ Azure Monitor 自动缩放仅适用于[虚拟机规模集](https://www.azure.cn/
 [12]: ./media/autoscale-get-started/scale-definition-json.png
 [13]: ./media/autoscale-get-started/disable-autoscale.png
 [14]: ./media/autoscale-get-started/set-manualscale.png
-
 

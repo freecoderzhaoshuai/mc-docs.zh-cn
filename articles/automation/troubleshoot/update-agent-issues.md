@@ -10,12 +10,12 @@ ms.topic: conceptual
 ms.service: automation
 ms.subservice: update-management
 manager: digimobile
-ms.openlocfilehash: c5d720b50309a1494bd09058bb6e04f46c0f65e3
-ms.sourcegitcommit: e6b216b180734783219378410e13192e314a4497
+ms.openlocfilehash: 17363f4421c72cbc37248f58de2b4635e18dcccf
+ms.sourcegitcommit: f837837326a4856b06d1924d17521a0a7e892850
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87788300"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89449797"
 ---
 # <a name="troubleshoot-windows-update-agent-issues"></a>排查 Windows 更新代理问题
 
@@ -93,12 +93,6 @@ WMF 检查用于验证系统是否具有所需的 Windows Management Framework (
 此检查将确定适用于 Windows 的 Log Analytics 代理 (`healthservice`) 是否正在计算机上运行。 若要详细了解如何对服务进行故障排查，请参阅[适用于 Windows 的 Log Analytics 代理未运行](hybrid-runbook-worker.md#mma-not-running)。
 
 若要重新安装适用于 Windows 的 Log Analytics 代理，请参阅[安装适用于 Windows 的代理](../../azure-monitor/learn/quick-collect-windows-computer.md#install-the-agent-for-windows)。
-
-### <a name="monitoring-agent-service-events"></a>监视代理服务事件
-
-此检查将确定过去 24 小时内计算机上的 Operations Manager 日志中是否出现过任何 4502 事件。
-
-若要了解有关此事件的详细信息，请参阅 [Operations Manager 日志中的事件 4502](hybrid-runbook-worker.md#event-4502) 来了解此事件。
 
 ## <a name="access-permissions-checks"></a>访问权限检查
 
@@ -182,9 +176,9 @@ RuleName                    : Monitoring Agent service events
 RuleGroupName               : VM Service Health Checks
 RuleDescription             : Event Log must not have event 4502 logged in the past 24 hours
 CheckResult                 : Failed
-CheckResultMessage          : Log Analytics agent for Windows service Event Log (Operations Manager) does not exist on the machine
+CheckResultMessage          : Log Analytics agent for Windows service Event Log does not exist on the machine
 CheckResultMessageId        : MonitoringAgentServiceEventsCheck.Failed.NoLog
-CheckResultMessageArguments : {Log Analytics agent for Windows, Operations Manager, 4502}
+CheckResultMessageArguments : {Log Analytics agent for Windows}
 
 RuleId                      : CryptoRsaMachineKeysFolderAccessCheck
 RuleGroupId                 : permissions

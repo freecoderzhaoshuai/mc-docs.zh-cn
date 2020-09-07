@@ -9,16 +9,16 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: quickstart
 origin.date: 06/25/2020
-ms.date: 08/03/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.custom: tracking-python, devx-track-javascript
+ms.custom: devx-track-python, devx-track-javascript, devx-track-csharp
 zone_pivot_groups: programming-languages-set-two-with-js-go-spx
-ms.openlocfilehash: 4bea0586f268bf3c77447388c1ebe8f6c40c4d4c
-ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
+ms.openlocfilehash: 99ca7f2d49aa917224b453c2c6076be9f794c30d
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87516130"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317468"
 ---
 # <a name="quickstart-recognize-speech-from-a-microphone"></a>快速入门：识别来自麦克风的语音
 
@@ -28,6 +28,8 @@ ms.locfileid: "87516130"
 ::: zone pivot="programming-language-csharp"
 
 [!INCLUDE [Header](../includes/quickstarts/from-microphone/header.md)]
+
+<!-- > [!VIDEO https://channel9.msdn.com/Blogs/One-Dev-Minute/How-to-use-the-Azure-Cognitive-Services-NET-Speech-SDK-for-recognition/player?format=ny] -->
 
 [!INCLUDE [C# Header](../includes/quickstarts/from-microphone/csharp/header.md)]
 

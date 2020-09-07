@@ -1,27 +1,29 @@
 ---
-title: Azure CLI 脚本示例 - 对高度可用的虚拟机之间的流量进行负载均衡
+title: Azure CLI 脚本示例 - 使用 NLB 创建 Windows Server 2016 Datacenter
 description: Azure CLI 脚本示例 - 使用 NLB 创建 Windows Server 2016 Datacenter
 services: virtual-machines-windows
 documentationcenter: virtual-machines
-author: rockboyfor
-manager: digimobile
-ms.assetid: ''
+manager: gwallace
 ms.service: virtual-machines-windows
 ms.devlang: azurecli
 ms.topic: sample
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 02/23/2017
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 884523373bf4b7e9c4c0359432b9e9d561dcc845
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: b29a5b908251f4cac121638280fa4d6675e21754
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596345"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413230"
 ---
-# <a name="load-balance-traffic-between-highly-available-virtual-machines"></a>对高度可用的虚拟机之间的流量进行负载均衡
+# <a name="use-an-azure-cli-sample-script-to-load-balance-traffic-between-highly-available-virtual-machines"></a>使用 Azure CLI 示例脚本对高度可用的虚拟机之间的流量进行负载均衡
 
 此脚本示例创建运行多个 Ubuntu 虚拟机（使用高度可用且负载均衡的配置进行配置）所需的所有项。 运行脚本后，即可拥有已加入到 Azure 可用性集并可通过 Azure 负载均衡器访问的 3 个虚拟机。
 

@@ -12,7 +12,7 @@
   expanded: true
   items:
     - name: 使用自定义脚本扩展
-      href: /virtual-machines/windows/tutorial-automate-vm-deployment
+      href: ../windows/tutorial-automate-vm-deployment.md
       maintainContext: true
 - name: 概念
   items:
@@ -103,7 +103,7 @@
       href: update-linux-agent.md
     - name: 导出扩展
       href: export-templates.md
-    - name: 故障排除
+    - name: 疑难解答
       href: troubleshoot.md
     - name: 启用了 Python 3 的 Linux 系统的问题
       href: issues-using-vm-extensions-python-3.md

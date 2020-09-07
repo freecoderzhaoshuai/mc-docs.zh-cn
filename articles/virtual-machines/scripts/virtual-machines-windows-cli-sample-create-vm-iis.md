@@ -1,28 +1,30 @@
 ---
-title: Azure CLI 脚本示例 - 使用 Azure CLI 快速创建虚拟机
+title: Azure CLI 脚本示例 - 安装 IIS
 description: Azure CLI 脚本示例 - 安装 IIS
 services: virtual-machines-Windows
 documentationcenter: virtual-machines
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 tags: ''
-ms.assetid: ''
-ms.service: virtual-machines-windows
+ms.assetid - ms.service: virtual-machines-windows
 ms.devlang: azurecli
 ms.topic: sample
 ms.tgt_pltfrm: vm-Windows
 ms.workload: infrastructure
 origin.date: 02/28/2017
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: d9266557aa08c1cf0873c8eae9058c272e546675
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: fee1da197f115486ff109c889dd89c1e32e5eef5
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596402"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414047"
 ---
-# <a name="quick-create-a-virtual-machine-with-the-azure-cli"></a>使用 Azure CLI 快速创建虚拟机
+# <a name="create-a-virtual-machine-with-the-azure-cli-with-a-custom-script-to-install-iis"></a>使用包含自定义脚本的 Azure CLI 创建虚拟机，以便安装 IIS
 
 此脚本创建一个运行 Windows Server 2016 的 Azure 虚拟机，并使用 Azure 虚拟机自定义脚本扩展安装 IIS。 运行此脚本后，可通过虚拟机的公共 IP 地址访问默认 IIS 网站。
 

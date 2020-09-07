@@ -1,26 +1,26 @@
 ---
 title: Azure 磁盘加密示例脚本
 description: 本文是适用于 Windows VM 的 Azure 磁盘加密的附录。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.subservice: security
-ms.topic: article
+ms.topic: how-to
 origin.date: 08/06/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: seodec18
-ms.openlocfilehash: 7e292833b0f841371c4350de23d16207d6cb6eea
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 64dbf5d3cdc59238a43b420792ee1d6b2b9ce2ea
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946008"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463137"
 ---
 # <a name="azure-disk-encryption-sample-scripts"></a>Azure 磁盘加密示例脚本 
 
 本文提供了用于准备预加密 VHD 和其他任务的示例脚本。
-
-[!INCLUDE [updated-for-az](../../../includes/updated-for-az.md)]
 
 ## <a name="list-vms-and-secrets"></a>列出 VM 和机密
 
@@ -72,34 +72,34 @@ Get-AzKeyVaultSecret -VaultName $KeyVaultName | where {$_.Tags.ContainsKey('Disk
 ### <a name="update-group-policy-to-allow-non-tpm-for-os-protection"></a>更新组策略以允许使用非 TPM 保护 OS
 在“本地计算机策略” > “计算机设置” > “管理模板” > “Windows 组件”下配置名为“BitLocker 驱动器加密”的 BitLocker 组策略设置。 如下图所示，将此设置更改为“操作系统驱动器”   > “启动时需要附加身份验证”   > “没有兼容的 TPM 时允许 BitLocker”  ：
 
-![Azure 中的 Microsoft Antimalware](../media/disk-encryption/disk-encryption-fig8.png)
+:::image type="content" source="../media/disk-encryption/disk-encryption-fig8.png" alt-text="Azure 中的 Microsoft Antimalware":::
 
 ### <a name="install-bitlocker-feature-components"></a>安装 BitLocker 功能组件
 对于 Windows Server 2012 或更高版本，请使用以下命令：
 
-```
-    dism /online /Enable-Feature /all /FeatureName:BitLocker /quiet /norestart
+```console
+dism /online /Enable-Feature /all /FeatureName:BitLocker /quiet /norestart
 ```
 
 对于 Windows Server 2008 R2，请使用以下命令：
 
-```
-    ServerManagerCmd -install BitLockers
+```console
+ServerManagerCmd -install BitLockers
 ```
 
 ### <a name="prepare-the-os-volume-for-bitlocker-by-using-bdehdcfg"></a>使用 `bdehdcfg` 为 BitLocker 准备 OS 卷
 若要压缩 OS 分区并为 BitLocker 准备计算机，请根据需要执行 [bdehdcfg](https://docs.microsoft.com/windows/security/information-protection/bitlocker/bitlocker-basic-deployment)：
 
-```
-    bdehdcfg -target c: shrink -quiet 
+```console
+bdehdcfg -target c: shrink -quiet 
 ```
 
 ### <a name="protect-the-os-volume-by-using-bitlocker"></a>使用 BitLocker 保护 OS 卷
-使用 [`manage-bde`](https://technet.microsoft.com/library/ff829849.aspx) 命令在使用外部密钥保护程序的引导卷上启用加密。 此外将外部密钥（.bek 文件）放在外部驱动器或卷上。 下次重启后，会在系统/引导卷上启用加密。
+使用 [`manage-bde`](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/ff829849(v=ws.11)) 命令在使用外部密钥保护程序的引导卷上启用加密。 此外将外部密钥（.bek 文件）放在外部驱动器或卷上。 下次重启后，会在系统/引导卷上启用加密。
 
-```
-    manage-bde -on %systemdrive% -sk [ExternalDriveOrVolume]
-    reboot
+```console
+manage-bde -on %systemdrive% -sk [ExternalDriveOrVolume]
+reboot
 ```
 
 > [!NOTE]
@@ -150,7 +150,7 @@ Set-AzKeyVaultAccessPolicy -VaultName $kvname -UserPrincipalName $acctid -Permis
 在下一步中使用 `$secretUrl` 以便[在不使用 KEK 的情况下附加 OS 磁盘](#without-using-a-kek)。
 
 ### <a name="disk-encryption-secret-encrypted-with-a-kek"></a>使用 KEK 加密的磁盘加密机密
-将机密上传到 Key Vault 之前，可根据需要使用密钥加密密钥对其进行加密。 先使用包装 [API](https://msdn.microsoft.com/library/azure/dn878066.aspx) 加密使用密钥加密密钥的机密。 此包装操作的输出是 base64 URL 编码的字符串，可以使用 [`Set-AzKeyVaultSecret`](https://docs.microsoft.com/powershell/module/az.keyvault/set-azkeyvaultsecret) cmdlet 将其作为机密上传。
+将机密上传到 Key Vault 之前，可根据需要使用密钥加密密钥对其进行加密。 先使用包装 [API](https://docs.microsoft.com/rest/api/keyvault/wrapkey) 加密使用密钥加密密钥的机密。 此包装操作的输出是 base64 URL 编码的字符串，可以使用 [`Set-AzKeyVaultSecret`](https://docs.microsoft.com/powershell/module/az.keyvault/set-azkeyvaultsecret) cmdlet 将其作为机密上传。
 
 ```powershell
     # This is the passphrase that was provided for encryption during the distribution installation

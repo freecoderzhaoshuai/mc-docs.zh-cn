@@ -2,19 +2,21 @@
 title: 什么是 Azure 专用链接？
 description: Azure 专用链接功能、体系结构和实施方案的概述。 了解 Azure 专用终结点和 Azure 专用链接服务的工作原理及其用法。
 services: private-link
-author: rockboyfor
 ms.service: private-link
 ms.topic: overview
-origin.date: 02/27/2020
-ms.date: 06/15/2020
+origin.date: 06/18/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: 06/15/2020
 ms.author: v-yeche
 ms.custom: fasttrack-edit
-ms.openlocfilehash: 3be7f199db2a42740101ba9b2ded260070a84056
-ms.sourcegitcommit: 3de7d92ac955272fd140ec47b3a0a7b1e287ca14
+ms.openlocfilehash: 1af08a9d045e920f15756e018e48508e0d96aea7
+ms.sourcegitcommit: 6e88e0e41b35d160a09f7a906ca3b7e837f51803
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84723745"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89412097"
 ---
 # <a name="what-is-azure-private-link"></a>什么是 Azure 专用链接？ 
 使用 Azure 专用链接，可以通过虚拟网络中的[专用终结点](private-endpoint-overview.md)访问 Azure PaaS 服务（例如，Azure 存储和 SQL 数据库）和 Azure 托管的客户拥有的服务/合作伙伴服务。
@@ -24,7 +26,7 @@ ms.locfileid: "84723745"
 > [!IMPORTANT]
 > Azure 专用链接现已推出正式版。 专用终结点和专用链接服务（标准负载均衡器后面的服务）都已推出正式版。 不同的 Azure PaaS 会按不同计划加入 Azure 专用链接。 请查看下面的[可用性](/private-link/private-link-overview#availability)部分，了解专用链接上 Azure PaaS 的准确状态。 有关已知的限制，请参阅[专用终结点](private-endpoint-overview.md#limitations)和[专用链接服务](private-link-service-overview.md#limitations)。 
 
-![专用终结点概述](media/private-link-overview/private-endpoint.png)
+:::image type="content" source="media/private-link-overview/private-endpoint.png" alt-text="专用终结点概述":::
 
 ## <a name="key-benefits"></a>主要优点
 Azure 专用链接提供以下优势：  
@@ -41,31 +43,22 @@ Azure 专用链接提供以下优势：
 ## <a name="availability"></a>可用性 
  下表列出了专用链接服务及其适用的区域。 
 
-|支持的服务  |可用区域 | 状态  |
-|:-------------------|:-----------------|:--------|
-|标准 Azure 负载均衡器后面的专用链接服务 | 中国东部 2  |  GA <br/> [了解详细信息](/private-link/private-link-service-overview) |
-| Azure 存储        |  中国东部 2       | GA <br/> [了解详细信息](/storage/common/storage-private-endpoints)  |
-| Azure Data Lake Storage Gen2        |  中国东部 2      | GA <br/> [了解详细信息](/storage/common/storage-private-endpoints)  |
-|  Azure SQL 数据库         | 中国东部 2     |   GA <br/> [了解详细信息](/sql-database/sql-database-private-endpoint-overview)      |
-|Azure Synapse Analytics（SQL 数据仓库）| 中国东部 2 |GA <br/> [了解详细信息](/sql-database/sql-database-private-endpoint-overview)|
-|Azure Cosmos DB| 中国东部 2 |GA <br/> [了解详细信息](/cosmos-db/how-to-configure-private-endpoints)|
-|  Azure Database for PostgreSQL - 单一服务器         |  中国东部 2      |   GA <br/> [了解详细信息](/postgresql/concepts-data-access-and-security-private-link)      |
-|  Azure Database for MySQL         | 中国东部 2      |    GA <br/> [了解详细信息](/mysql/concepts-data-access-security-private-link)     |
-|  Azure Database for MariaDB       | 中国东部 2      |  GA <br/> [了解详细信息](/mariadb/concepts-data-access-security-private-link)      |
-|  Azure Key Vault         | 中国东部 2      |   GA   <br/> [了解详细信息](/key-vault/private-link-service)   |
-|Azure Kubernetes 服务 - Kubernetes API | 中国东部 2      |   GA   <br/> [了解详细信息](/aks/private-clusters)   |
-|Azure 搜索 | 中国东部 2 |   GA   <br/> [了解详细信息](/search/search-security-overview#endpoint-access)    |
-|Azure 容器注册表 | 中国东部 2      |   GA   <br/> [了解详细信息](/container-registry/container-registry-private-link)   |
-|Azure 应用配置 | 中国东部 2      |   预览   |
-|Azure 备份 | 中国东部 2     |   GA   <br/> [了解详细信息](/backup/private-endpoints)   |
-|Azure 事件中心 | 中国东部 2      |    GA   <br/> [了解详细信息](/event-hubs/private-link-service)  |
-|Azure 服务总线 | 中国东部 2     |  GA   <br/> [了解详细信息](/service-bus-messaging/private-link-service)    |
-|Azure 中继 | 中国东部 2      |   预览 <br/> [了解详细信息](/service-bus-relay/private-link-service)  |
-|Azure 事件网格| 中国东部 2       |   GA   <br/> [了解详细信息](/event-grid/network-security) |
-|Azure Web 应用 | 中国东部 2      |   预览   <br/> [了解详细信息](/app-service/networking/private-endpoint)   |
-|Azure 机器学习 | 中国东部 2      |   预览   <br/> [了解详细信息](/machine-learning/how-to-configure-private-link)   |
-| IoT 中心 | 中国东部 2    |   预览   <br/> [了解详细信息](/iot-hub/virtual-network-support ) |
-| Azure SignalR | 中国东部 2      |   预览   <br/> [了解详细信息](https://aka.ms/asrs/privatelink)   |
+|支持的服务  |可用区域 | 其他注意事项 | 状态  |
+|:-------------------|:-----------------|:----------------|:--------|
+|标准 Azure 负载均衡器后面的专用链接服务 | 中国东部 2<br/>中国北部 2  | 在标准负载均衡器上受支持 | GA <br/> [了解详细信息](/private-link/private-link-service-overview) |
+|  Azure SQL 数据库         | 中国东部 2<br/>中国北部 2      |  支持代理[连接策略](/azure-sql/database/connectivity-architecture#connection-policyhttps://docs.azure.cn/azure-sql/database/connectivity-architecture#connection-policy) | GA <br/> [了解详细信息](/sql-database/sql-database-private-endpoint-overview)      |
+|Azure Synapse Analytics（SQL 数据仓库）| 中国东部 2<br/>中国北部 2 |  支持代理[连接策略](/azure-sql/database/connectivity-architecture#connection-policyhttps://docs.azure.cn/azure-sql/database/connectivity-architecture#connection-policy) |GA <br/> [了解详细信息](/sql-database/sql-database-private-endpoint-overview)|
+|Azure Cosmos DB|  中国东部 2<br/>中国北部 2 | |GA <br/> [了解详细信息](/cosmos-db/how-to-configure-private-endpoints)|
+|  Azure Database for PostgreSQL - 单一服务器         | 中国东部 2<br/>中国北部 2     | 在常规用途和内存优化定价层中受支持 | GA <br/> [了解详细信息](/postgresql/concepts-data-access-and-security-private-link)      |
+|  Azure Database for MySQL         | 中国东部 2<br/>中国北部 2      |  | GA <br/> [了解详细信息](/mysql/concepts-data-access-security-private-link)     |
+|  Azure Database for MariaDB         | 中国东部 2<br/>中国北部 2     |  | GA <br/> [了解详细信息](/mariadb/concepts-data-access-security-private-link)      |
+|  Azure Key Vault         | 中国东部 2<br/>中国北部 2      |  | GA   <br/> [了解详细信息](/key-vault/private-link-service)   |
+|Azure 搜索 | 中国东部 2<br/>中国北部 2 | 在隐私模式下的服务中受支持 | GA   <br/> [了解详细信息](/search/search-security-overview#endpoint-access)    |
+|Azure 容器注册表 | 中国东部 2<br/>中国北部 2    | 在容器注册表的高级层中受支持。 [单击以获取层](/container-registry/container-registry-skus)| GA   <br/> [了解详细信息](/container-registry/container-registry-private-link)   |
+|Azure 备份 | 中国东部 2<br/>中国北部 2  |  | GA   <br/> [了解详细信息](/backup/private-endpoints)   |
+|Azure 事件中心 | 中国东部 2<br/>中国北部 2      |   | GA   <br/> [了解详细信息](/event-hubs/private-link-service)  |
+|Azure 服务总线 | 中国东部 2<br/>中国北部 2  | 在 Azure 服务总线的高级层受支持。 [单击以获取层](/service-bus-messaging/service-bus-premium-messaging) | GA   <br/> [了解详细信息](/service-bus-messaging/private-link-service)    |
+|Azure 事件网格| 中国东部 2<br/>中国北部 2       |  | GA   <br/> [了解详细信息](/event-grid/network-security) |
 
 有关最新通知，请查看 [Azure 虚拟网络更新页](https://www.azure.cn/what-is-new/)。
 
@@ -88,7 +81,7 @@ Azure 专用链接可与 Azure Monitor 集成。 通过这种组合可以：
 ## <a name="pricing"></a>定价   
 有关定价详细信息，请参阅 [Azure 专用链接定价](https://www.azure.cn/pricing/details/private-link/)。
 
-## <a name="faqs"></a>常见问题  
+## <a name="faqs"></a>常见问题解答  
 有关常见问题解答，请参阅 [Azure 专用链接常见问题解答](private-link-faq.md)。
 
 ## <a name="limits"></a>限制  
@@ -102,5 +95,4 @@ Azure 专用链接可与 Azure Monitor 集成。 通过这种组合可以：
 - [快速入门：使用 Azure 门户创建专用终结点](create-private-endpoint-portal.md)
 - [快速入门：使用 Azure 门户创建专用链接服务](create-private-link-service-portal.md)
 
-<!-- Update_Description: new article about private link overview -->
-<!--NEW.date: 01/06/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

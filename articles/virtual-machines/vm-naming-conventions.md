@@ -3,20 +3,20 @@ title: Azure VM 大小命名约定
 description: 说明用于 Azure VM 大小的命名约定
 ms.service: virtual-machines
 subservice: sizes
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 07/22/2020
-ms.date: 08/24/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: yes
-ms.testdate: 08/24/2020
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: sttsinar
-ms.openlocfilehash: a7937c3a8b0043faeaf5de3b01d582c36d9f561e
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 8c6eea404ac1110d381006b4c1edcf30a868bcdd
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947611"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463129"
 ---
 <!--Verify Successfully-->
 # <a name="azure-virtual-machine-sizes-naming-conventions"></a>Azure 虚拟机大小命名约定
@@ -36,7 +36,7 @@ ms.locfileid: "88947611"
 | *加速器类型 | 表示专用/GPU SKU 中的硬件加速器的类型。 只有自 2020 年第 3 季度起推出的新的专用/GPU SKU 才能在名称中包含硬件加速器。 |
 | 版本 | 表示 VM 系列的版本 |
 
-<!--Not Available on including possible use of [Ultra SSD](./windows/disks-types.md#ultra-disk)-->
+<!--Not Available on FEATURE ultra-disk-->
 
 ## <a name="example-breakdown"></a>细分示例
 
@@ -50,5 +50,4 @@ ms.locfileid: "88947611"
 
 详细了解 Azure 中的可用 [VM 大小](./sizes.md)。
 
-<!-- Update_Description: new article about vm naming conventions -->
-<!--NEW.date: 08/24/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

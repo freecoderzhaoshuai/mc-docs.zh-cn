@@ -3,14 +3,14 @@ author: IEvangelist
 ms.service: cognitive-services
 ms.topic: include
 origin.date: 04/03/2020
-ms.date: 06/19/2019
+ms.date: 08/03/2020
 ms.author: v-tawe
-ms.openlocfilehash: 6a322802a0123f7ec384ec5687c7a681dfc44a00
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+ms.openlocfilehash: 95ce48f8aaff2b14801ecfcb6be16057912de242
+ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85611930"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "89317464"
 ---
 ## <a name="prerequisites"></a>先决条件
 
@@ -20,7 +20,7 @@ ms.locfileid: "85611930"
 > * <a href="https://portal.azure.cn/#create/Microsoft.CognitiveServicesSpeechServices" target="_blank">创建 Azure 语音资源<span class="docon docon-navigate-external x-hidden-focus"></span></a>
 > * [设置开发环境并创建空项目](../../../../quickstarts/setup-platform.md)
 > * 请确保你有权访问麦克风，以便进行音频捕获
-> * 需要语音 SDK 版本 1.11.0 或更高版本。
+> * 需要语音 SDK 1.11.0 或更高版本。
 
 ## <a name="create-a-new-website-folder"></a>新建网站文件夹
 
@@ -189,7 +189,7 @@ ms.locfileid: "85611930"
 如果要在 web 服务器上承载网页，可以为演示应用程序提供令牌源。
 这样一来，订阅密钥永远不会离开服务器，并且用户可以在不输入任何授权代码的情况下使用语音功能。
 
-创建名为 `token.php` 的新文件。 此示例假设 web 服务器支持 PHP 脚本语言。 输入以下代码：
+创建名为 `token.php` 的新文件。 此示例假设 Web 服务器在启用 cURL 的情况下支持 PHP 脚本语言。 输入以下代码：
 
 ```php
 <?php

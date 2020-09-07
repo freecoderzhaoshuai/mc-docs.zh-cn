@@ -5,14 +5,14 @@ author: Johnnytechn
 ms.topic: conceptual
 ms.subservice: alerts
 origin.date: 03/14/2019
-ms.date: 07/17/2020
+ms.date: 08/20/2020
 ms.author: v-johya
-ms.openlocfilehash: 8f79058e20363250128ffaf27e1c436aa575b160
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: 897e6497bec8f849219bde1ec6256d5216b18889
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244860"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457376"
 ---
 # <a name="common-alert-schema-definitions"></a>常见警报架构定义
 
@@ -222,7 +222,7 @@ ms.locfileid: "87244860"
                     "Heartbeat"
                 ]
             }
-        ]
+        ],
     "IncludeSearchResults": "True",
     "AlertType": "Metric measurement"
     }
@@ -502,6 +502,4 @@ ms.locfileid: "87244860"
 ## <a name="next-steps"></a>后续步骤
 
 - 详细了解[常见警报架构](https://aka.ms/commonAlertSchemaDocs)。
-- 了解[如何创建使用常见警报架构处理所有警报的逻辑应用](/azure-monitor/platform/alerts-common-schema-integrations)。 
-
 

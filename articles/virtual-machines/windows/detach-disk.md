@@ -1,20 +1,22 @@
 ---
-title: 如何从 Windows 虚拟机分离数据磁盘
+title: 从 Windows VM 中分离数据磁盘
 description: 在 Azure 中从使用资源管理器部署模型的虚拟机分离磁盘。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.subservice: disks
 ms.workload: infrastructure-services
 ms.topic: how-to
 origin.date: 01/08/2020
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 3305e91139049d74e05a40bc40f0fe9a12cd1dd9
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: b13beb48f5b9ee9d1c56888b24910c34f35f114a
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946013"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463008"
 ---
 # <a name="how-to-detach-a-data-disk-from-a-windows-virtual-machine"></a>如何从 Windows 虚拟机分离数据磁盘
 

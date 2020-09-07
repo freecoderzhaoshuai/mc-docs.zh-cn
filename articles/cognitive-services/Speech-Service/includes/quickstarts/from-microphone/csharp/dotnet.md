@@ -3,14 +3,15 @@ author: trevorbye
 ms.service: cognitive-services
 ms.topic: include
 origin.date: 04/03/2020
-ms.date: 04/20/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: 65865effdff95a24cc47d7a9b4e76679c966d846
-ms.sourcegitcommit: 304d3ef3c9e65c3e85977b3afb9985fbc0f908d6
+ms.custom: devx-track-csharp
+ms.openlocfilehash: fc3a57f366b95641c98e81bec2a883a994c8a628
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85095901"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317472"
 ---
 ## <a name="prerequisites"></a>先决条件
 

@@ -6,15 +6,15 @@ ms.author: v-junlch
 ms.topic: quickstart
 ms.service: virtual-machine-scale-sets
 ms.subservice: linux
-ms.date: 08/06/2020
+ms.date: 08/31/2020
 ms.reviewer: mimckitt
 ms.custom: mimckitt, subject-armqs
-ms.openlocfilehash: 4776b0f84c5521d5ee79a92faa59d53bfc2097ac
-ms.sourcegitcommit: 66563f2b68cce57b5816f59295b97f1647d7a3d6
+ms.openlocfilehash: a76ce47d643c59a602f701c5a2915eca188f9e33
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87914278"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413320"
 ---
 # <a name="quickstart-create-a-linux-virtual-machine-scale-set-with-an-arm-template"></a>快速入门：使用 ARM 模板创建 Linux 虚拟机规模集
 
@@ -41,6 +41,13 @@ ARM 模板允许部署相关资源的组。 在单个模板中，可以创建虚
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
+    "location": {
+      "type": "string",
+      "metadata": {
+        "description": "Location for all resources"
+      },
+      "defaultValue": "[resourceGroup().location]"
+    },
     "vmSku": {
       "type": "string",
       "defaultValue": "Standard_D1_v2",
@@ -52,14 +59,15 @@ ARM 模板允许部署相关资源的组。 在单个模板中，可以创建虚
       "type": "string",
       "metadata": {
         "description": "String used as a base for naming resources (9 characters or less). A hash is prepended to this string for some resources, and resource-specific information is appended."
-      },
-      "maxLength": 9
+      }
     },
     "instanceCount": {
       "type": "int",
       "metadata": {
         "description": "Number of VM instances (100 or less)."
       },
+      "defaultValue": 1,
+      "minValue": 1,
       "maxValue": 100
     },
     "adminUsername": {
@@ -84,10 +92,23 @@ ARM 模板允许部署相关资源的组。 在单个模板中，可以创建虚
       "metadata": {
         "description": "SSH Key or password for the Virtual Machine. SSH key is recommended."
       }
-    }
+    },
+    "_artifactsLocation": {
+         "type": "string",
+         "defaultValue": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-vmss-bottle-autoscale/",
+         "metadata": {
+            "description": "The base URI where artifacts required by this template are located"
+         }
+      },
+      "_artifactsLocationSasToken": {
+         "type": "securestring",
+         "defaultValue": "",
+         "metadata": {
+            "description": "The sasToken required to access _artifactsLocation.  When the template is deployed using the accompanying scripts, a sasToken will be automatically generated"
+         }
+      }
   },
   "variables": {
-    "location": "[resourceGroup().location]",
     "addressPrefix": "10.0.0.0/16",
     "subnetPrefix": "10.0.0.0/24",
     "virtualNetworkName": "[concat(parameters('vmssName'), 'vnet')]",
@@ -111,9 +132,6 @@ ARM 模板允许部署相关资源的组。 在单个模板中，可以创建虚
       "version": "latest"
     },
     "imageReference": "[variables('osType')]",
-    "computeApiVersion": "2017-03-30",
-    "networkApiVersion": "2017-04-01",
-    "insightsApiVersion": "2015-04-01",
     "linuxConfiguration": {
       "disablePasswordAuthentication": true,
       "ssh": {
@@ -130,8 +148,8 @@ ARM 模板允许部署相关资源的组。 在单个模板中，可以创建虚
     {
       "type": "Microsoft.Network/virtualNetworks",
       "name": "[variables('virtualNetworkName')]",
-      "location": "[variables('location')]",
-      "apiVersion": "2017-04-01",
+      "location": "[parameters('location')]",
+      "apiVersion": "2020-05-01",
       "properties": {
         "addressSpace": {
           "addressPrefixes": [
@@ -151,8 +169,8 @@ ARM 模板允许部署相关资源的组。 在单个模板中，可以创建虚
     {
       "type": "Microsoft.Network/publicIPAddresses",
       "name": "[variables('publicIPAddressName')]",
-      "location": "[variables('location')]",
-      "apiVersion": "2017-04-01",
+      "location": "[parameters('location')]",
+      "apiVersion": "2020-05-01",
       "properties": {
         "publicIPAllocationMethod": "Dynamic",
         "dnsSettings": {
@@ -163,10 +181,10 @@ ARM 模板允许部署相关资源的组。 在单个模板中，可以创建虚
     {
       "type": "Microsoft.Network/loadBalancers",
       "name": "[variables('loadBalancerName')]",
-      "location": "[variables('location')]",
-      "apiVersion": "2017-04-01",
+      "location": "[parameters('location')]",
+      "apiVersion": "2020-05-01",
       "dependsOn": [
-        "[concat('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'))]"
+        "[resourceId('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'))]"
       ],
       "properties": {
         "frontendIPConfigurations": [
@@ -204,9 +222,9 @@ ARM 模板允许部署相关资源的组。 在单个模板中，可以创建虚
                 "id": "[variables('frontEndIPConfigID')]"
               },
               "protocol": "Tcp",
-              "frontendPortRangeStart": "9000",
-              "frontendPortRangeEnd": "9120",
-              "backendPort": "9000"
+              "frontendPortRangeStart": 9000,
+              "frontendPortRangeEnd": 9120,
+              "backendPort": 9000
             }
           }
         ]
@@ -215,11 +233,11 @@ ARM 模板允许部署相关资源的组。 在单个模板中，可以创建虚
     {
       "type": "Microsoft.Compute/virtualMachineScaleSets",
       "name": "[parameters('vmssName')]",
-      "location": "[variables('location')]",
-      "apiVersion": "2017-03-30",
+      "location": "[parameters('location')]",
+      "apiVersion": "2019-12-01",
       "dependsOn": [
-        "[concat('Microsoft.Network/loadBalancers/', variables('loadBalancerName'))]",
-        "[concat('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
+        "[resourceId('Microsoft.Network/loadBalancers/', variables('loadBalancerName'))]",
+        "[resourceId('Microsoft.Network/virtualNetworks/', variables('virtualNetworkName'))]"
       ],
       "sku": {
         "name": "[parameters('vmSku')]",
@@ -289,8 +307,8 @@ ARM 模板允许部署相关资源的组。 在单个模板中，可以创建虚
                   "autoUpgradeMinorVersion": true,
                   "settings": {
                     "fileUris": [
-                      "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-vmss-bottle-autoscale/installserver.sh",
-                      "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/201-vmss-bottle-autoscale/workserver.py"
+                      "[uri(parameters('_artifactsLocation'), concat('installserver.sh', parameters('_artifactsLocationSasToken')))]",
+                      "[uri(parameters('_artifactsLocation'), concat('workserver.py', parameters('_artifactsLocationSasToken')))]"
                     ],
                     "commandToExecute": "bash installserver.sh"
                   }
@@ -305,9 +323,9 @@ ARM 模板允许部署相关资源的组。 在单个模板中，可以创建虚
       "type": "Microsoft.Insights/autoscaleSettings",
       "apiVersion": "2015-04-01",
       "name": "autoscalehost",
-      "location": "[variables('location')]",
+      "location": "[parameters('location')]",
       "dependsOn": [
-        "[concat('Microsoft.Compute/virtualMachineScaleSets/', parameters('vmSSName'))]"
+        "[resourceId('Microsoft.Compute/virtualMachineScaleSets/', parameters('vmSSName'))]"
       ],
       "properties": {
         "name": "autoscalehost",
@@ -379,13 +397,13 @@ ARM 模板允许部署相关资源的组。 在单个模板中，可以创建虚
 
 ### <a name="define-a-scale-set"></a>定义规模集
 
-突出显示的部分是规模集资源定义。 若要使用模板创建规模集，请定义相应的资源。 虚拟机规模集资源类型的核心部件包括：
+若要使用模板创建规模集，请定义相应的资源。 虚拟机规模集资源类型的核心部件包括：
 
-| properties                     | 属性说明                                  | 示例模板值                    |
+| 属性                     | 属性说明                                  | 示例模板值                    |
 |------------------------------|----------------------------------------------------------|-------------------------------------------|
 | type                         | 要创建的 Azure 资源类型                            | Microsoft.Compute/virtualMachineScaleSets |
 | name                         | 规模集名称                                       | myScaleSet                                |
-| location                     | 要创建规模集的位置                     | 中国北部                                   |
+| location                     | 要创建规模集的位置                     | 中国北部 2                                  |
 | sku.name                     | 每个规模集实例的 VM 大小                  | Standard_A1                               |
 | sku.capacity                 | 一开始需要创建的 VM 实例数           | 2                                         |
 | upgradePolicy.mode           | 更改发生时的 VM 实例升级模式              | 自动                                 |
@@ -420,7 +438,7 @@ ARM 模板允许部署相关资源的组。 在单个模板中，可以创建虚
 
 ```azurecli
 # Create a resource group
-az group create --name myResourceGroup --location ChinaNorth
+az group create --name myResourceGroup --location ChinaNorth2
 
 # Deploy template into resource group
 az group deployment create \

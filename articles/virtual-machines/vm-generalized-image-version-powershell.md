@@ -1,21 +1,23 @@
 ---
 title: 从通用化映像创建 VM
 description: 使用共享映像库中的通用化映像创建 VM。
-author: rockboyfor
 ms.service: virtual-machines
 ms.subservice: imaging
 ms.workload: infrastructure-services
 ms.topic: how-to
 origin.date: 05/04/2020
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.reviewer: akjosh
-ms.openlocfilehash: d1b9e99efd1d4056f929c43afa10c06ef0b124fa
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: c3a32db835f51a6d8c5ca7f4b51993a575bf89b0
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945549"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463148"
 ---
 <!--Verified Successfully-->
 # <a name="create-a-vm-using-a-generalized-image"></a>使用通用化映像创建 VM 

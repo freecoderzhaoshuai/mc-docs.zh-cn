@@ -1,10 +1,9 @@
 ---
-title: 使用 PowerShell 将托管磁盘的 VHD 导出/复制到不同区域中的存储帐户 - PowerShell 示例
+title: 托管磁盘 VHD 到另一个区域的帐户 (Linux) - PowerShell
 description: Azure PowerShell 脚本示例 - 将托管磁盘的 VHD 导出/复制到相同或不同区域中的存储帐户
 services: virtual-machines-linux
 documentationcenter: storage
-author: rockboyfor
-manager: digimobile
+manager: kavithag
 tags: azure-service-management
 ms.assetid: ''
 ms.service: virtual-machines-linux
@@ -12,16 +11,19 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 origin.date: 09/17/2018
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 50a22cab54b74635a7749eee369dc10835b87287
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: d925dcdd6c76c82bf760506e2f69838eec0993f7
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596347"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414045"
 ---
-# <a name="exportcopy-the-vhd-of-a-managed-disk-to-a-storage-account-in-different-region-with-powershell"></a>使用 PowerShell 将托管磁盘的 VHD 导出/复制到不同区域中的存储帐户
+# <a name="exportcopy-the-vhd-of-a-managed-disk-to-a-storage-account-in-different-region-with-powershell-linux"></a>使用 PowerShell 将托管磁盘的 VHD 导出/复制到不同区域中的存储帐户 (Linux)
 
 此脚本将托管磁盘的 VHD 导出到不同区域中的存储帐户。 它首先生成托管磁盘的 SAS URI，然后使用该 SAS URI 将基础 VHD 复制到不同区域中的存储帐户。 使用此脚本将托管磁盘复制到另一区域以进行区域扩展。  
 
@@ -79,8 +81,6 @@ $destinationContext = New-AzStorageContext -StorageAccountName $storageAccountNa
 if($useAzCopy -eq 1)
 {
     $containerSASURI = New-AzStorageContainerSASToken -Context $destinationContext -ExpiryTime(get-date).AddSeconds($sasExpiryDuration) -FullUri -Name $storageContainerName -Permission rw
-    $containername,$sastokenkey = $containerSASURI -split "\?"
-    $containerSASURI = "$containername/$destinationVHDFileName`?$sastokenkey"
     azcopy copy $sas.AccessSAS $containerSASURI
 
 }else{
@@ -97,8 +97,8 @@ if($useAzCopy -eq 1)
 | 命令 | 注释 |
 |---|---|
 | [Grant-AzDiskAccess](https://docs.microsoft.com/powershell/module/az.compute/grant-azdiskaccess) | 为托管磁盘生成 SAS URI，该 SAS URI 用于将基础 VHD 复制到存储帐户。 |
-| [New-AzureStorageContext](https://docs.microsoft.com/powershell/module/azure.storage/New-AzureStorageContext) | 使用帐户名和密钥创建存储帐户上下文。 此上下文可用于对存储帐户执行读/写操作。 |
-| [Start-AzureStorageBlobCopy](https://docs.microsoft.com/powershell/module/azure.storage/Start-AzureStorageBlobCopy) | 将快照的基础 VHD 复制到存储帐户 |
+| [New-AzureStorageContext -Environment AzureChinaCloud](https://docs.microsoft.com/powershell/module/azure.storage/new-azurestoragecontext) | 使用帐户名和密钥创建存储帐户上下文。 此上下文可用于对存储帐户执行读/写操作。 |
+| [Start-AzureStorageBlobCopy](https://docs.microsoft.com/powershell/module/azure.storage/start-azurestorageblobcopy) | 将快照的基础 VHD 复制到存储帐户 |
 
 ## <a name="next-steps"></a>后续步骤
 
@@ -106,7 +106,7 @@ if($useAzCopy -eq 1)
 
 [从托管磁盘创建虚拟机](./virtual-machines-linux-powershell-sample-create-vm-from-managed-os-disks.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)
 
-有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 可以在 [Azure Linux VM 文档](../linux/powershell-samples.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)中找到其他虚拟机 PowerShell 脚本示例。
 

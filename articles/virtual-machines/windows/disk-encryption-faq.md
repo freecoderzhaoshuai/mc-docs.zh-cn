@@ -1,20 +1,22 @@
 ---
-title: 适用于 Windows 虚拟机的 Azure 磁盘加密常见问题解答
+title: FAQ - 适用于 Windows VM 的 Azure 磁盘加密
 description: 本文提供有关适用于 Windows IaaS VM 的 Azure 磁盘加密的常见问题解答。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.subservice: security
-ms.topic: article
+ms.topic: conceptual
 origin.date: 11/01/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
 ms.custom: seodec18
-ms.openlocfilehash: 85854043fa7ae18b4eee136e2ef55a51c6c065a0
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 65e93f2036b610a1ab41154bb5b3f6fc078fe037
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946009"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463095"
 ---
 # <a name="azure-disk-encryption-for-windows-virtual-machines-faq"></a>适用于 Windows 虚拟机的 Azure 磁盘加密常见问题解答
 
@@ -56,9 +58,16 @@ Azure 磁盘加密正式版支持 Azure 资源管理器模板、Azure PowerShell
 
 存储服务器端加密会在 Azure 存储中加密 Azure 托管磁盘。 默认情况下，托管磁盘使用平台托管密钥通过服务器端加密进行加密（从 2017 年 6 月 10 日开始）。 指定一个由客户托管的密钥，即可实现对使用自己的密钥加密托管磁盘的管理。 有关详细信息，请参阅 [Azure 托管磁盘的服务器端加密](disk-encryption.md)。
 
-<!--Not Avaialble on ## How is Azure Disk Encryption different from Storage server-side encryption with customer-managed key and when should I use each solution?-->
+## <a name="how-is-azure-disk-encryption-different-from-storage-server-side-encryption-with-customer-managed-key-and-when-should-i-use-each-solution"></a>Azure 磁盘加密与使用客户托管的密钥的存储服务器端加密有何不同，分别应于何时使用这两种解决方案？
 
-## <a name="how-do-i-rotate-secrets-or-encryption-keys"></a>如何轮换机密或加密密钥？
+Azure 磁盘加密使用客户托管的密钥提供对 OS 磁盘、数据磁盘和临时磁盘的端对端加密。
+
+- 如果你的要求包括对上述各项加密和端到端加密，请使用 Azure 磁盘加密。 
+- 如果你的要求是使用客户托管的密钥仅对静态数据加密，请采用[使用客户托管密钥的服务器端加密](disk-encryption.md)。 不能即使用 Azure 磁盘加密又使用采用了客户托管密钥的存储服务器端加密来加密磁盘。
+- 如果使用的是在 [Windows 不支持的方案](disk-encryption-windows.md#unsupported-scenarios)中调出的方案，请考虑[使用客户托管密钥的服务器端加密](disk-encryption.md)。 
+- 如果组织的策略允许你使用 Azure 托管密钥加密静态内容，则无需执行任何操作，因为系统默认加密这些内容。 对于托管磁盘而言，默认在服务器端加密中使用平台托管密钥来加密存储内的内容。 该密钥是由 Azure 存储服务托管的。 
+
+## <a name="how-do-i-rotate-secrets-or-encryption-keys"></a>我如何轮换机密或加密密钥？
 
 若要轮换机密，只需调用你一开始在启用磁盘加密时使用的命令并指定另一 Key Vault 即可。 若要轮换密钥加密密钥，只需调用你一开始在启用磁盘加密时使用的命令并指定新的密钥加密方法即可。 
 
@@ -77,9 +86,9 @@ Azure 磁盘加密正式版支持 Azure 资源管理器模板、Azure PowerShell
 
 是的，可以使用 Azure Key Vault 来生成密钥加密密钥供 Azure 磁盘加密使用。 这些密钥在 Azure Key Vault（Azure 磁盘加密的密钥存储）中受保护。 有关密钥加密密钥的详细信息，请参阅[创建和配置用于 Azure 磁盘加密的 Key Vault](disk-encryption-key-vault.md)。
 
-## <a name="can-i-use-an-on-premises-key-management-service-or-hsm-to-safeguard-the-encryption-keys"></a>是否可以使用本地密钥管理服务或 HSM 来保护加密密钥？
+<!--Not Available on ## Can I use an on-premises key management service or HSM to safeguard the encryption keys?-->
 
-无法使用本地密钥管理服务或 HSM 来配合 Azure 磁盘加密保护加密密钥。 只能使用 Azure Key Vault 服务来保护加密密钥。 有关密钥加密密钥支持方案的详细信息，请参阅[创建和配置用于 Azure 磁盘加密的 Key Vault](disk-encryption-key-vault.md)。
+<!--Not Available on You can't use the on-premises key management service or HSM to safeguard the encryption keys with Azure Disk Encryption. You can only use the Azure Key Vault service to safeguard the encryption keys. For more information on the key encryption key support scenarios, see [Creating and configuring a key vault for Azure Disk Encryption](disk-encryption-key-vault.md).-->
 
 ## <a name="what-are-the-prerequisites-to-configure-azure-disk-encryption"></a>配置 Azure 磁盘加密的先决条件是什么？
 
@@ -132,7 +141,7 @@ Azure 备份提供一个机制，可以用来备份和还原同一订阅与区�
 本文档详细描述了有关 Azure 磁盘加密的最常见问题。 有关此服务的详细信息，请参阅以下文章：
 
 - [Azure 磁盘加密概述](disk-encryption-overview.md)
-- [在 Azure 安全中心应用磁盘加密](/security-center/security-center-apply-disk-encryption)
+- [在 Azure 安全中心应用磁盘加密](../../security-center/security-center-virtual-machine-protection.md)
 - [Azure 静态数据加密](../../security/fundamentals/encryption-atrest.md)
 
 <!-- Update_Description: update meta properties, wording update, update link -->

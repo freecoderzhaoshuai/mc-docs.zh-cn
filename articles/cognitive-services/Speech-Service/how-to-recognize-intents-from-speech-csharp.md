@@ -9,14 +9,15 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: conceptual
 origin.date: 02/10/2020
-ms.date: 07/29/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: 6635a5f80714b8a6ccc1cf2df4f7f58d73e446e4
-ms.sourcegitcommit: 5d167ad5411b018522a0fac9f5435a48f4ceb3a6
+ms.custom: devx-track-csharp
+ms.openlocfilehash: bc63a233f10d75faec290b26eba6924ccd03b233
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/29/2020
-ms.locfileid: "87379883"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317433"
 ---
 # <a name="how-to-recognize-intents-from-speech-using-the-speech-sdk-for-c"></a>如何使用适用于 C# 的语音 SDK 从语音中识别意向
 

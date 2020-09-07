@@ -13,16 +13,17 @@ ms.tgt_pltfrm: mobile-multiple
 ms.devlang: dotnet
 ms.topic: article
 origin.date: 12/09/2019
-ms.date: 04/20/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.reviewer: jowargo
 ms.lastreviewed: 12/04/2019
-ms.openlocfilehash: 827945be80d98cb63ffd86852df07597344dadaa
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.custom: devx-track-csharp
+ms.openlocfilehash: d688fc52d2616233b792772aa0c2f9e8bf51bcd2
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588656"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316451"
 ---
 # <a name="routing-and-tag-expressions"></a>路由和标记表达式
 

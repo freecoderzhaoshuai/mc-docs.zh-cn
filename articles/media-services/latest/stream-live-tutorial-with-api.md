@@ -16,12 +16,12 @@ ms.custom: mvc
 origin.date: 06/13/2019
 ms.date: 04/13/2020
 ms.author: v-jay
-ms.openlocfilehash: 7348481ef71ef56622b2a4beae1e2fccef0ecf15
-ms.sourcegitcommit: 95efd248f5ee3701f671dbd5cfe0aec9c9959a24
+ms.openlocfilehash: 21217881a48072750bcd2a6694218b8377059794
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82507617"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414014"
 ---
 # <a name="tutorial-stream-live-with-media-services"></a>教程：使用媒体服务进行实时流式传输
 
@@ -45,8 +45,8 @@ ms.locfileid: "82507617"
 以下项目是完成本教程所需具备的条件：
 
 - 安装 Visual Studio Code 或 Visual Studio。
-- [创建媒体服务帐户](create-account-cli-how-to.md)。<br/>请务必记住用于资源组名称和媒体服务帐户名称的值。
-- 遵循[使用 Azure CLI 访问 Azure 媒体服务 API](access-api-cli-how-to.md) 中的步骤并保存凭据。 你将需要使用这些凭据来访问 API。
+- [创建媒体服务帐户](./create-account-howto.md)。<br/>请务必记住用于资源组名称和媒体服务帐户名称的值。
+- 遵循[使用 Azure CLI 访问 Azure 媒体服务 API](./access-api-howto.md) 中的步骤并保存凭据。 你将需要使用这些凭据来访问 API。
 - 一个用于广播事件的相机或设备（例如便携式计算机）。
 - 一个本地实时编码器，用于将来自相机的信号转换为发送到媒体服务实时传送视频流服务的流，请参阅[建议的本地实时编码器](recommended-on-premises-live-encoders.md)。 流必须为 **RTMP** 或“平滑流式处理”  格式。
 
@@ -63,7 +63,7 @@ ms.locfileid: "82507617"
 
 实时传送视频流示例位于 [Live](https://github.com/Azure-Samples/media-services-v3-dotnet-core-tutorials/tree/master/NETCore/Live/MediaV3LiveApp) 文件夹中。
 
-打开下载的项目中的 [appsettings.json](https://github.com/Azure-Samples/media-services-v3-dotnet-core-tutorials/blob/master/NETCore/Live/MediaV3LiveApp/appsettings.json)。 将值替换为从[访问 API](access-api-cli-how-to.md) 获得的凭据。
+打开下载的项目中的 [appsettings.json](https://github.com/Azure-Samples/media-services-v3-dotnet-core-tutorials/blob/master/NETCore/Live/MediaV3LiveApp/appsettings.json)。 将值替换为从[访问 API](./access-api-howto.md) 获得的凭据。
 
 > [!IMPORTANT]
 > 此示例为每个资源使用唯一的后缀。 如果取消调试操作或者中途终止应用，则帐户中会有多个直播活动。 <br/>请务必停止正在运行的直播活动， 否则，将会对你“收费”  ！
@@ -102,7 +102,7 @@ private static async Task<IAzureMediaServicesClient> CreateMediaServicesClientAs
 
 * 媒体服务位置。
 * 直播活动的流式处理协议（目前支持 RTMP 和平滑流式处理协议）。<br/>运行直播活动或其关联的实时输出时，无法更改协议选项。 如果需要其他协议，请为每个流式处理协议创建单独的直播活动。  
-* 对引入和预览的 IP 限制。 可定义允许向该直播活动引入视频的 IP 地址。 允许的 IP 地址可以指定为单个 IP 地址（例如“10.0.0.1”）、使用一个 IP 地址和 CIDR 子网掩码的 IP 范围（例如“10.0.0.1/22”）或使用一个 IP 地址和点分十进制子网掩码的 IP 范围（例如“10.0.0.1(255.255.252.0)”）。<br/>如果未指定 IP 地址并且没有规则定义，则不会允许任何 IP 地址。 若要允许任何 IP 地址，请创建规则并设置 0.0.0.0/0。<br/>IP 地址必须采用以下格式之一：具有四个数字或 CIDR 地址范围的 IpV4 地址。
+* 对引入和预览的 IP 限制。 可定义允许向该直播活动引入视频的 IP 地址。 允许的 IP 地址可以指定为单个 IP 地址（例如“10.0.0.1”）、使用一个 IP 地址和 CIDR 子网掩码的 IP 范围（例如“10.0.0.1/22”）或使用一个 IP 地址和点分十进制子网掩码的 IP 范围（例如“10.0.0.1(255.255.252.0)”）。<br/>如果未指定 IP 地址并且没有规则定义，则不会允许任何 IP 地址。 若要允许任何 IP 地址，请创建一个规则并设置 0.0.0.0/0。<br/>IP 地址必须采用以下格式之一：具有四个数字或 CIDR 地址范围的 IpV4 地址。
 * 创建事件时，可以将其启动方式指定为自动启动。 <br/>如果将 autostart 设置为 true，则直播活动会在创建后启动。 这意味着，只要直播活动开始运行，就会开始计费。 必须显式对直播活动资源调用停止操作才能停止进一步计费。 有关详细信息，请参阅[直播活动状态和计费](live-event-states-billing.md)。
 * 要使引入 URL 具有预测性，请设置“vanity”模式。 有关详细信息，请参阅[实时事件引入 URL](live-events-outputs-concept.md#live-event-ingest-urls)。
 
@@ -185,7 +185,7 @@ liveEvent = await client.LiveEvents.CreateAsync(config.ResourceGroup, config.Acc
 
 ### <a name="get-ingest-urls"></a>获取引入 URL
 
-创建直播活动后，可以获得要提供给实时编码器的引入 URL。 编码器使用这些 URL 来输入实时流。
+创建直播活动后，可以获得要提供给实时编码器的引入 URL。 编码器将使用这些 URL 来输入实时流。
 
 ```c#
 string ingestUrl = liveEvent.Input.Endpoints.First().Url;
@@ -285,7 +285,7 @@ foreach (StreamingPath path in paths.StreamingPaths)
 如果已完成流式处理事件，并想要清理先前设置的资源，请遵循以下过程：
 
 * 停止从编码器推送流。
-* 停止直播活动。 直播活动在停止后，不会产生任何费用。 需要重新启动它时，它会采用相同的引入 URL，因此无需重新配置编码器。
+* 停止直播活动。 直播活动在停止后，不会产生任何费用。 当需要重新启动它时，它会采用相同的引入 URL，因此，无需重新配置编码器。
 * 除非想要继续以点播流形式提供直播活动的存档，否则可以停止流式处理终结点。 如果直播活动处于停止状态，则不会产生任何费用。
 
 ```c#

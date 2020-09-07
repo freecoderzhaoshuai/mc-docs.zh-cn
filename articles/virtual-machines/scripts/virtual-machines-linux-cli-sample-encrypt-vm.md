@@ -1,10 +1,9 @@
 ---
-title: Azure CLI 脚本示例 - 加密 Azure 中的 Linux 虚拟机
+title: Azure CLI Script 示例 - 加密 Linux VM
 description: Azure CLI 脚本示例 - 加密 Linux VM
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 tags: azure-resource-manager
 ms.assetid: ''
 ms.service: virtual-machines-linux
@@ -13,15 +12,18 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 origin.date: 12/15/2017
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.custom: mvc
-ms.openlocfilehash: 4ca34a4b8c888a8156559de4bb9307375217b49f
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: mvc, devx-track-azurecli
+ms.openlocfilehash: 7bec71e87644d7efb8cf29759ec39b335df04be0
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82595992"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413970"
 ---
 # <a name="encrypt-a-linux-virtual-machine-in-azure"></a>在 Azure 中加密 Linux 虚拟机
 

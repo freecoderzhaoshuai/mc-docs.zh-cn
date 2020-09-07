@@ -11,15 +11,15 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-origin.date: 02/08/2019
-ms.date: 03/04/2019
+origin.date: 03/20/2019
+ms.date: 09/07/2019
 ms.author: v-jay
-ms.openlocfilehash: 0dc0310fbfec3025207501ad2aaf723b8ad744b0
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 5e55b4cead484db177cd5c4a7dacd7da27ba4b6e
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "63829530"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413505"
 ---
 # <a name="import-a-postman-collection-with-live-streaming-operations"></a>使用实时传送视频流操作导入一个 Postman 集合 
 
@@ -524,7 +524,7 @@ ms.locfileid: "63829530"
                                 "Assets"
                             ]
                         },
-                        "description": "Create Assets\nThe Asset entity contains digital files (including video, audio, images, thumbnail collections, text tracks and closed caption files) and the metadata about these files. After the digital files are uploaded into an asset, they could be used in the Media Services encoding and streaming workflows.\n\n[Asset Entity REST API](https://msdn.microsoft.com/library/azure/hh974277.aspx)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Create Assets\nThe Asset entity contains digital files (including video, audio, images, thumbnail collections, text tracks and closed caption files) and the metadata about these files. After the digital files are uploaded into an asset, they could be used in the Media Services encoding and streaming workflows.\n\n[Asset Entity REST API](https://docs.microsoft.com/rest/api/media/operations/asset)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -611,7 +611,7 @@ ms.locfileid: "63829530"
                                 "Programs"
                             ]
                         },
-                        "description": "Create Program\n\n[Create Programs documentation](https://docs.microsoft.com/rest/api/media/operations/program#create_programs)\n\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Create Program\n\n[Create Programs documentation](https://docs.microsoft.com/rest/api/media/operations/program#create_programs)\n\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -755,7 +755,7 @@ ms.locfileid: "63829530"
                                 "Start"
                             ]
                         },
-                        "description": "Start Programs\n\n[Start a Program documentation](https://docs.microsoft.com/rest/api/media/operations/program#start_programs)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Start Programs\n\n[Start a Program documentation](https://docs.microsoft.com/rest/api/media/operations/program#start_programs)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -881,7 +881,7 @@ ms.locfileid: "63829530"
                                 "Stop"
                             ]
                         },
-                        "description": "Strop Programs\n\n[Stop a Program documentation](https://docs.microsoft.com/rest/api/media/operations/program#stop_programs)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Strop Programs\n\n[Stop a Program documentation](https://docs.microsoft.com/rest/api/media/operations/program#stop_programs)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 }

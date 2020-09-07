@@ -1,10 +1,9 @@
 ---
-title: Azure CLI 脚本示例 - 重新启动 VM | Azure
+title: Azure CLI 脚本示例 — 重启 VM
 description: Azure CLI 脚本示例 — 按标记和 ID 重新启动 VM
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 tags: azure-service-management
 ms.assetid: ''
 ms.service: virtual-machines-linux
@@ -13,15 +12,18 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 origin.date: 03/01/2017
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.custom: mvc
-ms.openlocfilehash: 545da4527d473350d099d9da7b9cb3f11267ee02
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: mvc, devx-track-azurecli
+ms.openlocfilehash: f4dd1b4b6a3c565842fd4ae4e2f969c556f125af
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596408"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413642"
 ---
 # <a name="restart-vms"></a>重新启动 VM
 

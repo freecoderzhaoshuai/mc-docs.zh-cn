@@ -5,16 +5,16 @@ description: 使用 Azure 资源管理器和 PowerShell 通过 Azure VPN 网关�
 services: vpn-gateway
 author: WenJason
 ms.service: vpn-gateway
-ms.topic: article
+ms.topic: how-to
 origin.date: 02/14/2018
-ms.date: 04/06/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 72fc8760e3edd26424ec629536f19d8bafe117f3
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 9b94429dd646cfb08b68fe76cc5e24ccdf519331
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80634563"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463024"
 ---
 # <a name="configure-ipsecike-policy-for-s2s-vpn-or-vnet-to-vnet-connections"></a>为 S2S VPN 或 VNet 到 VNet 的连接配置 IPsec/IKE 策略
 
@@ -119,7 +119,7 @@ IPsec 和 IKE 协议标准支持采用各种组合的各种加密算法。 请�
 ### <a name="before-you-begin"></a><a name="before"></a>准备工作
 
 * 确保拥有 Azure 订阅。 如果还没有 Azure 订阅，可以注册一个[试用版帐户](https://www.azure.cn/pricing/1rmb-trial/)。
-* 安装 Azure 资源管理器 PowerShell cmdlet。 有关安装 PowerShell cmdlet 的详细信息，请参阅 [Azure PowerShell 概述](https://docs.microsoft.com/powershell/azure/overview)。
+* 安装 Azure 资源管理器 PowerShell cmdlet。 有关安装 PowerShell cmdlet 的详细信息，请参阅 [Azure PowerShell 概述](https://docs.microsoft.com/powershell/azure/)。
 
 ### <a name="step-1---create-the-virtual-network-vpn-gateway-and-local-network-gateway"></a><a name="createvnet1"></a>步骤 1 - 创建虚拟网络、VPN 网关和本地网关
 
@@ -405,6 +405,4 @@ Set-AzVirtualNetworkGatewayConnection -VirtualNetworkGatewayConnection $connecti
 
 如需基于策略的流量选择器的更多详细信息，请参阅[连接多个基于策略的本地 VPN 设备](vpn-gateway-connect-multiple-policybased-rm-ps.md)。
 
-连接完成后，即可将虚拟机添加到虚拟网络。 请参阅 [创建虚拟机](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json) 以获取相关步骤。
-
-<!--Update_Description: code update -->
+连接完成后，即可将虚拟机添加到虚拟网络。 请参阅 [创建虚拟机](../virtual-machines/windows/quick-create-portal.md) 以获取相关步骤。

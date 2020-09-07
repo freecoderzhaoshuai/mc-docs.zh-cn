@@ -1,24 +1,26 @@
 ---
-title: Windows 在启动 Azure VM 时显示“正在检查文件系统”
+title: 启动 Azure VM 时检查文件系统 | Azure
 description: 了解如何解决 VM 在启动时显示“正在检查文件系统”的问题 | Azure
 services: virtual-machines-windows
 documentationCenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 ms.service: virtual-machines-windows
 ms.topic: troubleshooting
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 08/31/2018
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 3922ffb93f6d964c314484c62efd81dadf84441d
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: 895c2286dce5487c17317ed1e94ceb6be23cf149
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596036"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456809"
 ---
 # <a name="windows-shows-checking-file-system-when-booting-an-azure-vm"></a>Windows 在启动 Azure VM 时显示“正在检查文件系统”
 
@@ -42,7 +44,10 @@ Windows VM 不启动。 检查[启动诊断](boot-diagnostics.md)中的启动屏
 2. [将 OS 磁盘附加到恢复 VM](troubleshoot-recovery-disks-portal-windows.md)。  
 3. 在恢复 VM 上，在附加的 OS 磁盘上运行“磁盘检查”。 在以下示例中，附加的 OS 磁盘的驱动器号为 E: 
 
-        chkdsk E: /f
+    ```console
+    chkdsk E: /f
+    ```
+
 4. “磁盘检查”完成后，从恢复 VM 分离该磁盘，然后将磁盘作为 OS 磁盘重新附加到受影响的 VM。 有关详细信息，请参阅[通过将 OS 磁盘附加到恢复 VM 来排查 Windows VM 相关问题](troubleshoot-recovery-disks-portal-windows.md)。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

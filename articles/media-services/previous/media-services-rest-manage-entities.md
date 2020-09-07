@@ -13,14 +13,14 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/20/2019
-ms.date: 02/24/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: a3e37656d49e3badc95df46c621ae157a259b76c
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 8309e6f8be696cc860c3300487f42fce6656b6d6
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79293398"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413561"
 ---
 # <a name="managing-media-services-entities-with-rest"></a>使用 REST 管理媒体服务实体  
 
@@ -50,73 +50,83 @@ Azure 媒体服务是一项以 OData v3 为基础的基于 REST 的服务。 你
 
 以下示例说明了如何创建 AccessPolicy。
 
-    POST https://media.chinacloudapi.cn/API/AccessPolicies HTTP/1.1
-    Content-Type: application/json;odata=verbose
-    Accept: application/json;odata=verbose
-    DataServiceVersion: 3.0
-    MaxDataServiceVersion: 3.0
-    x-ms-version: 2.19
-    Authorization: Bearer <ENCODED JWT TOKEN> 
-    Host: media.chinacloudapi.cn
-    Content-Length: 74
-    Expect: 100-continue
+```console
+POST https://media.chinacloudapi.cn/API/AccessPolicies HTTP/1.1
+Content-Type: application/json;odata=verbose
+Accept: application/json;odata=verbose
+DataServiceVersion: 3.0
+MaxDataServiceVersion: 3.0
+x-ms-version: 2.19
+Authorization: Bearer <ENCODED JWT TOKEN> 
+Host: media.chinacloudapi.cn
+Content-Length: 74
+Expect: 100-continue
 
-    {"Name": "DownloadPolicy", "DurationInMinutes" : "300", "Permissions" : 1}
+{"Name": "DownloadPolicy", "DurationInMinutes" : "300", "Permissions" : 1}
+```
 
 ## <a name="querying-entities"></a>查询实体
 查询和列出实体非常简单，仅涉及 GET HTTP 请求和可选的 OData 操作。
 下面的示例会检索一个包含所有 MediaProcessor 实体的列表。
 
-    GET https://media.chinacloudapi.cn/API/MediaProcessors HTTP/1.1
-    Content-Type: application/json;odata=verbose
-    Accept: application/json;odata=verbose
-    DataServiceVersion: 3.0
-    MaxDataServiceVersion: 3.0
-    x-ms-version: 2.19
-    Authorization: Bearer <ENCODED JWT TOKEN> 
-    Host: media.chinacloudapi.cn
+```console
+GET https://media.chinacloudapi.cn/API/MediaProcessors HTTP/1.1
+Content-Type: application/json;odata=verbose
+Accept: application/json;odata=verbose
+DataServiceVersion: 3.0
+MaxDataServiceVersion: 3.0
+x-ms-version: 2.19
+Authorization: Bearer <ENCODED JWT TOKEN> 
+Host: media.chinacloudapi.cn
+```
 
 也可以检索特定实体或与特定实体关联的所有实体集，如下列示例所示：
 
-    GET https://media.chinacloudapi.cn/API/JobTemplates('nb:jtid:UUID:e81192f5-576f-b247-b781-70a790c20e7c') HTTP/1.1
-    Content-Type: application/json;odata=verbose
-    Accept: application/json;odata=verbose
-    DataServiceVersion: 3.0
-    MaxDataServiceVersion: 3.0
-    x-ms-version: 2.19
-    Authorization: Bearer <ENCODED JWT TOKEN> 
-    Host: media.chinacloudapi.cn
+```console
+GET https://media.chinacloudapi.cn/API/JobTemplates('nb:jtid:UUID:e81192f5-576f-b247-b781-70a790c20e7c') HTTP/1.1
+Content-Type: application/json;odata=verbose
+Accept: application/json;odata=verbose
+DataServiceVersion: 3.0
+MaxDataServiceVersion: 3.0
+x-ms-version: 2.19
+Authorization: Bearer <ENCODED JWT TOKEN> 
+Host: media.chinacloudapi.cn
 
-    GET https://media.chinacloudapi.cn/API/JobTemplates('nb:jtid:UUID:e81192f5-576f-b247-b781-70a790c20e7c')/TaskTemplates HTTP/1.1
-    Content-Type: application/json;odata=verbose
-    Accept: application/json;odata=verbose
-    DataServiceVersion: 3.0
-    MaxDataServiceVersion: 3.0
-    x-ms-version: 2.19
-    Authorization: Bearer <ENCODED JWT TOKEN> 
-    Host: media.chinacloudapi.cn
+GET https://media.chinacloudapi.cn/API/JobTemplates('nb:jtid:UUID:e81192f5-576f-b247-b781-70a790c20e7c')/TaskTemplates HTTP/1.1
+Content-Type: application/json;odata=verbose
+Accept: application/json;odata=verbose
+DataServiceVersion: 3.0
+MaxDataServiceVersion: 3.0
+x-ms-version: 2.19
+Authorization: Bearer <ENCODED JWT TOKEN> 
+Host: media.chinacloudapi.cn
+```
 
 下面的示例仅返回所有作业的 State 属性。
 
-    GET https://media.chinacloudapi.cn/API/Jobs?$select=State HTTP/1.1
-    Content-Type: application/json;odata=verbose
-    Accept: application/json;odata=verbose
-    DataServiceVersion: 3.0
-    MaxDataServiceVersion: 3.0
-    x-ms-version: 2.19
-    Authorization: Bearer <ENCODED JWT TOKEN> 
-    Host: media.chinacloudapi.cn
+```console
+GET https://media.chinacloudapi.cn/API/Jobs?$select=State HTTP/1.1
+Content-Type: application/json;odata=verbose
+Accept: application/json;odata=verbose
+DataServiceVersion: 3.0
+MaxDataServiceVersion: 3.0
+x-ms-version: 2.19
+Authorization: Bearer <ENCODED JWT TOKEN> 
+Host: media.chinacloudapi.cn
+```
 
 以下示例返回名为“SampleTemplate”的所有 JobTemplate。
 
-    GET https://media.chinacloudapi.cn/API/JobTemplates?$filter=startswith(Name,%20'SampleTemplate') HTTP/1.1
-    Content-Type: application/json;odata=verbose
-    Accept: application/json;odata=verbose
-    DataServiceVersion: 3.0
-    MaxDataServiceVersion: 3.0
-    x-ms-version: 2.19
-    Authorization: Bearer <ENCODED JWT TOKEN> 
-    Host: media.chinacloudapi.cn
+```console
+GET https://media.chinacloudapi.cn/API/JobTemplates?$filter=startswith(Name,%20'SampleTemplate') HTTP/1.1
+Content-Type: application/json;odata=verbose
+Accept: application/json;odata=verbose
+DataServiceVersion: 3.0
+MaxDataServiceVersion: 3.0
+x-ms-version: 2.19
+Authorization: Bearer <ENCODED JWT TOKEN> 
+Host: media.chinacloudapi.cn
+```
 
 > [!NOTE]
 > 媒体服务不支持 $expand 操作以及“LINQ 注意事项（WCF 数据服务）”中所述的不受支持的 LINQ 方法。
@@ -128,47 +138,53 @@ Azure 媒体服务是一项以 OData v3 为基础的基于 REST 的服务。 你
 
 以下示例说明如何使用 **skip** 和 **top** 来跳过前 2000 个作业并获取后 1000 个作业。  
 
-    GET https://media.chinacloudapi.cn/api/Jobs()?$skip=2000&$top=1000 HTTP/1.1
-    Content-Type: application/json;odata=verbose
-    Accept: application/json;odata=verbose
-    DataServiceVersion: 3.0
-    MaxDataServiceVersion: 3.0
-    x-ms-version: 2.19
-    Authorization: Bearer <ENCODED JWT TOKEN>
-    Host: media.chinacloudapi.cn
+```console
+GET https://media.chinacloudapi.cn/api/Jobs()?$skip=2000&$top=1000 HTTP/1.1
+Content-Type: application/json;odata=verbose
+Accept: application/json;odata=verbose
+DataServiceVersion: 3.0
+MaxDataServiceVersion: 3.0
+x-ms-version: 2.19
+Authorization: Bearer <ENCODED JWT TOKEN>
+Host: media.chinacloudapi.cn
+```
 
 ## <a name="updating-entities"></a>更新实体
-根据实体类型及其所处的状态，可以通过 PATCH、PUT 或 MERGE HTTP 请求更新该实体上的属性。 有关这些操作的详细信息，请参阅 [PATCH/PUT/MERGE](https://msdn.microsoft.com/library/dd541276.aspx)。
+根据实体类型及其所处的状态，可以通过 PATCH、PUT 或 MERGE HTTP 请求更新该实体上的属性。 有关这些操作的详细信息，请参阅 [PATCH/PUT/MERGE](https://docs.microsoft.com/openspecs/windows_protocols/ms-odata/59d5abd3-7b12-490a-a0e2-9d9324b91893)。
 
 下面的代码示例演示如何更新资产实体上的 Name 属性。
 
-    MERGE https://media.chinacloudapi.cn/API/Assets('nb:cid:UUID:80782407-3f87-4e60-a43e-5e4454232f60') HTTP/1.1
-    Content-Type: application/json;odata=verbose
-    Accept: application/json;odata=verbose
-    DataServiceVersion: 3.0
-    MaxDataServiceVersion: 3.0
-    x-ms-version: 2.19
-    Authorization: Bearer <ENCODED JWT TOKEN>
-    Host: media.chinacloudapi.cn
-    Content-Length: 21
-    Expect: 100-continue
+```console
+MERGE https://media.chinacloudapi.cn/API/Assets('nb:cid:UUID:80782407-3f87-4e60-a43e-5e4454232f60') HTTP/1.1
+Content-Type: application/json;odata=verbose
+Accept: application/json;odata=verbose
+DataServiceVersion: 3.0
+MaxDataServiceVersion: 3.0
+x-ms-version: 2.19
+Authorization: Bearer <ENCODED JWT TOKEN>
+Host: media.chinacloudapi.cn
+Content-Length: 21
+Expect: 100-continue
 
-    {"Name" : "NewName" }
+{"Name" : "NewName" }
+```
 
 ## <a name="deleting-entities"></a>删除实体
 可以使用 DELETE HTTP 请求在媒体服务中删除实体。 删除实体的顺序可能很重要，具体视实体而定。 例如，资产等实体要求先撤消（或删除）引用该特定资产的所有定位符，再删除资产。
 
 下面的示例演示如何删除用于将文件上传到 blob 存储的定位符。
 
-    DELETE https://media.chinacloudapi.cn/API/Locators('nb:lid:UUID:76dcc8e8-4230-463d-97b0-ce25c41b5c8d') HTTP/1.1
-    Content-Type: application/json;odata=verbose
-    Accept: application/json;odata=verbose
-    DataServiceVersion: 3.0
-    MaxDataServiceVersion: 3.0
-    x-ms-version: 2.19
-    Authorization: Bearer <ENCODED JWT TOKEN>
-    Host: media.chinacloudapi.cn
-    Content-Length: 0
+```console
+DELETE https://media.chinacloudapi.cn/API/Locators('nb:lid:UUID:76dcc8e8-4230-463d-97b0-ce25c41b5c8d') HTTP/1.1
+Content-Type: application/json;odata=verbose
+Accept: application/json;odata=verbose
+DataServiceVersion: 3.0
+MaxDataServiceVersion: 3.0
+x-ms-version: 2.19
+Authorization: Bearer <ENCODED JWT TOKEN>
+Host: media.chinacloudapi.cn
+Content-Length: 0
+```
 
 ## <a name="media-services-learning-paths"></a>媒体服务学习路径
 [!INCLUDE [media-services-learning-paths-include](../../../includes/media-services-learning-paths-include.md)]

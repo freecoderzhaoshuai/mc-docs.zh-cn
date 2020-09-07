@@ -1,10 +1,9 @@
 ---
-title: Azure CLI 脚本示例 - 对 VM 操作系统磁盘进行故障排除
+title: Azure CLI 脚本示例 - 装载操作系统磁盘
 description: Azure CLI 脚本示例 - 装载操作系统磁盘
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 tags: azure-service-management
 ms.assetid: ''
 ms.service: virtual-machines-linux
@@ -13,15 +12,18 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 origin.date: 02/27/2017
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.custom: mvc
-ms.openlocfilehash: c77e7ca9e0984e20d3597d26f1c04aff3e794d45
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: mvc, devx-track-azurecli
+ms.openlocfilehash: d9f4fcbb5e964d3dc6aa1303582623aa41a9ce25
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596103"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413511"
 ---
 # <a name="troubleshoot-a-vms-operating-system-disk"></a>对 VM 操作系统磁盘进行故障排除
 

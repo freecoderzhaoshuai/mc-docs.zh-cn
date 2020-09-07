@@ -3,16 +3,16 @@ title: 排查 Azure 自动化 Runbook 问题
 description: 本文介绍如何排查和解决 Azure 自动化 Runbook 的问题。
 services: automation
 origin.date: 07/28/2020
-ms.date: 08/10/2020
+ms.date: 09/07/2020
 ms.topic: conceptual
 ms.service: automation
 ms.custom: has-adal-ref
-ms.openlocfilehash: 1012285dce19a8458056276c41dabe989bccdbf2
-ms.sourcegitcommit: e6b216b180734783219378410e13192e314a4497
+ms.openlocfilehash: 25742126a65b18d027f2a812e868ccfa91042cbd
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87788328"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463108"
 ---
 # <a name="troubleshoot-runbook-issues"></a>排查 Runbook 问题
 
@@ -391,13 +391,13 @@ $job = Start-AzAutomationRunbook -AutomationAccountName $automationAccountName -
 $pollingSeconds = 5
 $maxTimeout = 10800
 $waitTime = 0
-while((IsJobTerminalState $job.Status) -eq $false -and $waitTime -lt $maxTimeout) {
+while($false -eq (IsJobTerminalState $job.Status) -and $waitTime -lt $maxTimeout) {
    Start-Sleep -Seconds $pollingSeconds
    $waitTime += $pollingSeconds
-   $jobResults = $job | Get-AzAutomationJob
+   $job = $job | Get-AzAutomationJob
 }
 
-$jobResults | Get-AzAutomationJobOutput | Get-AzAutomationJobOutputRecord | Select-Object -ExpandProperty Value
+$job | Get-AzAutomationJobOutput | Get-AzAutomationJobOutputRecord | Select-Object -ExpandProperty Value
 ```
 
 ## <a name="scenario-runbook-fails-because-of-deserialized-object"></a><a name="fails-deserialized-object"></a>场景：Runbook 因反序列化的对象而失败

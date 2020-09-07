@@ -3,8 +3,7 @@ title: OS 启动 - 计算机意外重启或遇到意外错误
 description: 本文提供的步骤可用于解决 VM 在安装 Windows 时遇到意外重启或错误的问题。
 services: virtual-machines-windows, azure-resource-manager
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: azure-resource-manager
 ms.assetid: 1d249a4e-71ba-475d-8461-31ff13e57811
@@ -13,16 +12,17 @@ ms.workload: na
 ms.tgt_pltfrm: vm-windows
 ms.topic: troubleshooting
 origin.date: 06/22/2020
-ms.date: 07/27/2020
-ms.testscope: no
-ms.testdate: ''
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 989e5ab239d27a338d9598674ba0ead6aadb7371
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: b15046f71012910c9bb00a633974f12cca32015e
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87254860"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456750"
 ---
 # <a name="os-start-up---computer-restarted-unexpectedly-or-encountered-an-unexpected-error"></a>OS 启动 - 计算机意外重启或遇到意外错误
 
@@ -30,7 +30,7 @@ ms.locfileid: "87254860"
 
 ## <a name="symptom"></a>症状
 
-使用[启动诊断](/virtual-machines/troubleshooting/boot-diagnostics)查看 VM 的屏幕截图时，可看到屏幕截图显示 Windows 安装失败，出现以下错误：
+使用[启动诊断](./boot-diagnostics.md)查看 VM 的屏幕截图时，可看到屏幕截图显示 Windows 安装失败，出现以下错误：
 
 **计算机意外重启或遇到意外错误。Windows 安装无法继续。要安装 Windows，请单击“确定”重启计算机，然后重新开始安装。**
 
@@ -60,7 +60,7 @@ Azure 中不支持自定义应答文件。 如果使用 `sysprep /unattend:<your
 
 - 在前面的命令中，将 `<NameOfYourAnswerFile.XML>` 替换为你的文件名称。
 
-要修复此问题，请按照[有关准备/捕获映像的 Azure 指南](/virtual-machines/windows/upload-generalized-managed)操作，并准备新的通用映像。 在 sysprep 期间，请勿使用 `/unattend:<answerfile>` 标志。 请改为仅使用下面的标志：
+要修复此问题，请按照[有关准备/捕获映像的 Azure 指南](../windows/upload-generalized-managed.md)操作，并准备新的通用映像。 在 sysprep 期间，请勿使用 `/unattend:<answerfile>` 标志。 请改为仅使用下面的标志：
 
 `sysprep /oobe /generalize /shutdown`
 
@@ -72,7 +72,6 @@ Azure 中不支持自定义应答文件。 如果使用 `sysprep /unattend:<your
 - 通用化
 - Shutdown
 
-![“系统准备工具”窗口，其中选中了“OOBE”、“通用化”和“关闭”选项。](./media/unexpected-restart-error-during-vm-boot/3.png)
+:::image type="content" source="./media/unexpected-restart-error-during-vm-boot/3.png" alt-text="“系统准备工具”窗口，其中选中了“OOBE”、“通用化”和“关闭”选项。":::
 
-<!-- Update_Description: new article about troubleshoot unexpected restart error during vm boot -->
-<!--NEW.date: 07/27/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

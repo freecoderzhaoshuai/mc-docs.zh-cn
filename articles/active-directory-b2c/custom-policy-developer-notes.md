@@ -7,16 +7,17 @@ author: msmimart
 manager: celestedg
 ms.service: active-directory
 ms.workload: identity
-ms.topic: conceptual
-ms.date: 06/28/2020
+ms.topic: reference
+ms.date: 09/02/2020
+ms.custom: project-no-code
 ms.author: v-junlch
 ms.subservice: B2C
-ms.openlocfilehash: 8f78a02ead1f37f07892928de77573d4c2507847
-ms.sourcegitcommit: 3a8a7d65d0791cdb6695fe6c2222a1971a19f745
+ms.openlocfilehash: f690a239394579d9d2154fab41c372784f99a182
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2020
-ms.locfileid: "85516515"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413221"
 ---
 # <a name="developer-notes-for-custom-policies-in-azure-active-directory-b2c"></a>有关 Azure Active Directory B2C 中的自定义策略的开发人员说明
 
@@ -89,7 +90,7 @@ Azure Active Directory B2C 中的自定义策略配置现已正式发布。 此�
 | 功能 | 开发 | 预览 | GA | 注释 |
 |-------- | :-----------: | :-------: | :--: | ----- |
 | 使用基本身份验证的 REST API |  |  | X |  |
-| 使用客户端证书身份验证的 REST API  |  |  | X |  |
+| 使用客户端证书身份验证的 REST API |  |  | X |  |
 | 使用 OAuth2 持有者身份验证的 REST API |  | X |  |  |
 
 ### <a name="component-support"></a>组件支持
@@ -111,10 +112,10 @@ Azure Active Directory B2C 中的自定义策略配置现已正式发布。 此�
 
 | 功能 | 开发 | 预览 | GA | 注释 |
 | ------- | :-----------: | :-------: | :--: | ----- |
-| [2.0.0](page-layout.md#200) |  | X |  |  |
-| [1.2.0](page-layout.md#120) |  | X |  |  |
-| [1.1.0](page-layout.md#110) |  |  | X |  |
-| [1.0.0](page-layout.md#100) |  |  | X |  |
+| [2.0.0](page-layout.md) |  | X |  |  |
+| [1.2.0](page-layout.md) |  | X |  |  |
+| [1.1.0](page-layout.md) |  |  | X |  |
+| [1.0.0](page-layout.md) |  |  | X |  |
 | [JavaScript 支持](javascript-samples.md) |  | X |  |  |
 
 ### <a name="app-ief-integration"></a>App-IEF 集成

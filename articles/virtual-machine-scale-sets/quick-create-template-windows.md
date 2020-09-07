@@ -6,15 +6,15 @@ ms.author: v-junlch
 ms.topic: quickstart
 ms.service: virtual-machine-scale-sets
 ms.subservice: windows
-ms.date: 08/06/2020
+ms.date: 08/31/2020
 ms.reviewer: mimckitt
 ms.custom: mimckitt, subject-armqs
-ms.openlocfilehash: e0dfcdb891eca3815f2f1b47e268dc6c9d177b9e
-ms.sourcegitcommit: 66563f2b68cce57b5816f59295b97f1647d7a3d6
+ms.openlocfilehash: 0a25eba6e44044e688b0feab97920c7c6e9c3ac2
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87914395"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413997"
 ---
 # <a name="quickstart-create-a-windows-virtual-machine-scale-set-with-an-arm-template"></a>快速入门：使用 ARM 模板创建 Windows 虚拟机规模集
 
@@ -446,13 +446,13 @@ ARM 模板允许部署相关资源的组。 在单个模板中，可以创建虚
 
 ### <a name="define-a-scale-set"></a>定义规模集
 
-突出显示的部分是规模集资源定义。 若要使用模板创建规模集，请定义相应的资源。 虚拟机规模集资源类型的核心部件包括：
+若要使用模板创建规模集，请定义相应的资源。 虚拟机规模集资源类型的核心部件包括：
 
-| properties                     | 属性说明                                  | 示例模板值                    |
+| 属性                     | 属性说明                                  | 示例模板值                    |
 |------------------------------|----------------------------------------------------------|-------------------------------------------|
 | type                         | 要创建的 Azure 资源类型                            | Microsoft.Compute/virtualMachineScaleSets |
 | name                         | 规模集名称                                       | myScaleSet                                |
-| location                     | 要创建规模集的位置                     | 中国北部                                   |
+| location                     | 要创建规模集的位置                     | 中国北部 2                                  |
 | sku.name                     | 每个规模集实例的 VM 大小                  | Standard_A1                               |
 | sku.capacity                 | 一开始需要创建的 VM 实例数           | 2                                         |
 | upgradePolicy.mode           | 更改发生时的 VM 实例升级模式              | 自动                                 |
@@ -487,7 +487,7 @@ ARM 模板允许部署相关资源的组。 在单个模板中，可以创建虚
 
 ```azurepowershell
 # Create a resource group
-New-AzResourceGroup -Name myResourceGroup -Location ChinaNorth
+New-AzResourceGroup -Name myResourceGroup -Location ChinaNorth2
 
 # Deploy template into resource group
 New-AzResourceGroupDeployment `

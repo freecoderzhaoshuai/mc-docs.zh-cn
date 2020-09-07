@@ -8,12 +8,12 @@ origin.date: 06/06/2019
 ms.date: 08/13/2020
 ms.author: v-tawe
 ms.custom: seodec18
-ms.openlocfilehash: bfd21f79a1255cf0c05032bb4ab16b8463170c25
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: a59e0aa189ff4217980ef9dcc1eb1e1486956885
+ms.sourcegitcommit: 5055d580fb7ef1722e32e09a334d1d3e28295dd6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88227978"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89503363"
 ---
 # <a name="azure-app-service-access-restrictions"></a>Azure 应用服务访问限制
 
@@ -91,7 +91,7 @@ When you edit a rule, you cannot change the type between an IP address rule and 
 
 ## <a name="programmatic-manipulation-of-access-restriction-rules"></a>访问限制规则的编程操作 ##
 
-[Azure CLI](https://docs.azure.cn/cli/webapp/config/access-restriction?view=azure-cli-latest) 和 [Azure PowerShell](https://docs.microsoft.com/powershell/module/Az.Websites/Add-AzWebAppAccessRestrictionRule?view=azps-3.1.0) 允许编辑访问限制。 使用 Azure CLI 添加访问限制的示例：
+[Azure CLI](https://docs.microsoft.com/cli/azure/webapp/config/access-restriction?view=azure-cli-latest) 和 [Azure PowerShell](https://docs.microsoft.com/powershell/module/Az.Websites/Add-AzWebAppAccessRestrictionRule?view=azps-3.1.0) 允许编辑访问限制。 使用 Azure CLI 添加访问限制的示例：
 
 ```azurecli
 az webapp config access-restriction add --resource-group ResourceGroup --name AppName \

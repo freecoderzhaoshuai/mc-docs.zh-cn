@@ -1,24 +1,26 @@
 ---
-title: Azure VM 启动在更新 Windows 时停滞
+title: Azure VM 启动在更新 Windows 时停滞 | Azure
 description: 了解如何解决 Azure VM 启动在更新 Windows 时停滞的问题。
 services: virtual-machines-windows
 documentationCenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: v-jesits
 ms.service: virtual-machines-windows
 ms.topic: troubleshooting
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 10/09/2018
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 697c56602a58d98c45debaa3030083cec53e22f4
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: 326e465891e9ab4d39f6d13e836a71e146a9fa23
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596355"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456742"
 ---
 # <a name="azure-vm-startup-is-stuck-at-windows-update"></a>Azure VM 启动在更新 Windows 时停滞
 
@@ -47,11 +49,16 @@ ms.locfileid: "82596355"
 
 4. 打开权限提升的命令提示符实例（“以管理员身份运行”）。 运行以下命令获取附加 OS 磁盘上的更新包列表：
 
-        dism /image:<Attached OS disk>:\ /get-packages > c:\temp\Patch_level.txt
+    ```console
+    dism /image:<Attached OS disk>:\ /get-packages > c:\temp\Patch_level.txt
+    ```
 
     例如，如果附加 OS 磁盘是驱动器 F，则运行以下命令：
 
-        dism /image:F:\ /get-packages > c:\temp\Patch_level.txt
+    ```console
+    dism /image:F:\ /get-packages > c:\temp\Patch_level.txt
+    ```
+
 5. 打开 C:\temp\Patch_level.txt 文件，然后从下往上浏览。 查找处于“安装挂起”或“卸载挂起”状态的更新   。  以下是更新状态的示例：
 
     ```

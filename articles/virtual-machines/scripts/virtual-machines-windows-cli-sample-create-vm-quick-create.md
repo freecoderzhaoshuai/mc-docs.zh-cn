@@ -1,27 +1,28 @@
 ---
-title: 使用 Azure CLI 快速创建虚拟机
+title: Azure CLI 脚本示例 - 快速创建 Windows Server 2016 Datacenter
 description: Azure CLI 脚本示例 - 快速创建 Windows Server 2016 Datacenter
 services: virtual-machines-Windows
 documentationcenter: virtual-machines
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 tags: ''
-ms.assetid: ''
-ms.service: virtual-machines-windows
+ms.assetid - ms.service: virtual-machines-windows
 ms.devlang: azurecli
 ms.topic: sample
 ms.tgt_pltfrm: vm-Windows
 ms.workload: infrastructure
 origin.date: 02/23/2017
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.custom: mvc
-ms.openlocfilehash: 8b02bcb12c300ec7addff8ab418ec72a68ff5678
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: mvc, devx-track-azurecli
+ms.openlocfilehash: e6c3893979bf2e0993b18f13b48c13bd23579c64
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596400"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413836"
 ---
 # <a name="quick-create-a-virtual-machine-with-the-azure-cli"></a>使用 Azure CLI 快速创建虚拟机
 

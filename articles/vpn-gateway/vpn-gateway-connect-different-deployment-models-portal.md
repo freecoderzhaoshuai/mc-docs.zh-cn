@@ -4,16 +4,16 @@ description: 使用 VPN 网关和门户将经典 VNet 连接到资源管理器 V
 services: vpn-gateway
 author: WenJason
 ms.service: vpn-gateway
-ms.topic: conceptual
+ms.topic: how-to
 origin.date: 09/24/2019
-ms.date: 04/06/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: ae350ee24d52ee5049fd953793e896736798c38f
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: c8f8ff83086181cd827b2d27610c383c9a1fcbc9
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80634537"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462820"
 ---
 # <a name="connect-virtual-networks-from-different-deployment-models-using-the-portal"></a>使用门户从不同的部署模型连接虚拟网络
 
@@ -35,7 +35,7 @@ ms.locfileid: "80634537"
 
 * 这些步骤假定已创建了两个 VNet。 如果使用本文进行练习并且还没有 VNet，相关步骤中的链接可以帮助你创建它们。
 * 请确认两个 VNet 的地址范围不相互重叠，也不与网关可能连接到的其他连接的任何范围重叠。
-* 为 Resource Manager 和服务管理（经典）安装最新的 PowerShell cmdlet。 本文中同时使用 Azure 门户和 PowerShell。 若要创建从经典 VNet 到 Resource Manager VNet 的连接，必须使用 PowerShell。 有关详细信息，请参阅[如何安装和配置 Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview)。 
+* 为 Resource Manager 和服务管理（经典）安装最新的 PowerShell cmdlet。 本文中同时使用 Azure 门户和 PowerShell。 若要创建从经典 VNet 到 Resource Manager VNet 的连接，必须使用 PowerShell。 有关详细信息，请参阅[如何安装和配置 Azure PowerShell](https://docs.microsoft.com/powershell/azure/)。 
 
 ### <a name="example-settings"></a><a name="values"></a>示例设置
 

@@ -1,19 +1,21 @@
 ---
 title: 将 Windows 虚拟机从非托管磁盘转换为托管磁盘
 description: 如何在资源管理器部署模型中使用 PowerShell 将 Windows VM 从非托管磁盘转换为托管磁盘
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.subservice: disks
 ms.topic: how-to
 origin.date: 07/12/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: d8171e5bd7d1aa32386ad6ec98c2987a544ef188
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: a27578520acbcae93fc62f0bb3819a8d98da121c
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946023"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462906"
 ---
 # <a name="convert-a-windows-virtual-machine-from-unmanaged-disks-to-managed-disks"></a>将 Windows 虚拟机从非托管磁盘转换为托管磁盘
 
@@ -23,7 +25,7 @@ ms.locfileid: "85946023"
 
 * 请查看[计划迁移到托管磁盘](on-prem-to-azure.md#plan-for-the-migration-to-managed-disks)。
 
-* 请查看[有关迁移到托管磁盘的常见问题](faq-for-disks.md#migrate-to-managed-disks)。
+* 请查看[有关迁移到托管磁盘的常见问题](../faq-for-disks.md#migrate-to-managed-disks)。
 
 [!INCLUDE [virtual-machines-common-convert-disks-considerations](../../../includes/virtual-machines-common-convert-disks-considerations.md)]
 
@@ -103,4 +105,4 @@ VM 将会停止并在完成迁移后重新启动。
 
 使用[快照](snapshot-copy-managed-disk.md)获取 VM 的只读副本。
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

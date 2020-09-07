@@ -4,12 +4,12 @@ description: 本快速入门介绍如何使用 Python 创建 Azure Policy 分配
 ms.date: 08/10/2020
 ms.topic: quickstart
 ms.custom: devx-track-python
-ms.openlocfilehash: 4e8a148de940b0be9d6cf12d5dffb9c8cd9e0bb9
-ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
+ms.openlocfilehash: 48dc4503e04e8b8fcbe9cfc1574927e35fd8932a
+ms.sourcegitcommit: 5055d580fb7ef1722e32e09a334d1d3e28295dd6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88951938"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89503339"
 ---
 # <a name="quickstart-create-a-policy-assignment-to-identify-non-compliant-resources-using-python"></a>快速入门：使用 Python 创建策略分配以识别不合规的资源
 
@@ -29,10 +29,10 @@ Python 库用于从命令行或脚本管理 Azure 资源。 本指南介绍如�
 
 1. 请确保安装最新的 Python（至少为 3.8）。 如果尚未安装，请在 [Python.org](https://www.python.org/downloads/) 下载。
 
-1. 请确保安装最新的 Azure CLI（至少为 2.5.1）。 如果尚未安装，请参阅[安装 Azure CLI](/cli/azure/install-azure-cli)。
+1. 请确保安装最新的 Azure CLI（至少为 2.5.1）。 如果尚未安装，请参阅[安装 Azure CLI](/cli/install-azure-cli)。
 
    > [!NOTE]
-   > 在下面的示例中需要使用 Azure CLI，这样 Python 才能使用基于 CLI 的身份验证。 有关其他选项的信息，请参阅[使用适用于 Python 的 Azure 管理库进行身份验证](/azure/developer/python/azure-sdk-authenticate)。
+   > 在下面的示例中需要使用 Azure CLI，这样 Python 才能使用基于 CLI 的身份验证。 有关其他选项的信息，请参阅[使用适用于 Python 的 Azure 管理库进行身份验证](https://docs.microsoft.com/azure/developer/python/azure-sdk-authenticate)。
 
 1. 通过 Azure CLI 进行身份验证。
 

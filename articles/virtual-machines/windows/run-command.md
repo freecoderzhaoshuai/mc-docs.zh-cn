@@ -1,27 +1,28 @@
 ---
-title: 使用“运行命令”在 Windows VM 中运行 PowerShell 脚本
+title: 在 Azure 中的 Windows VM 中运行 PowerShell 脚本
 description: 本主题介绍了如何使用“运行命令”功能在 Azure Windows 虚拟机中运行 PowerShell 脚本
 services: automation
 ms.service: virtual-machines
-author: rockboyfor
 origin.date: 04/26/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.topic: how-to
-manager: digimobile
-ms.openlocfilehash: 4f1ca8a59cf57e90799317d6d19edf958e8d881b
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.custom: devx-track-azurecli
+manager: carmonm
+ms.openlocfilehash: 42ed3f65095d6138f11a8b2ffa2a9551fd931948
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945749"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463164"
 ---
 <!--Verfiy succesfully-->
 # <a name="run-powershell-scripts-in-your-windows-vm-by-using-run-command"></a>使用“运行命令”在 Windows VM 中运行 PowerShell 脚本
 
 “运行命令”功能使用虚拟机 (VM) 代理在 Azure Windows VM 中运行 PowerShell 脚本。 可以使用这些脚本进行常规计算机或应用程序管理。 它们可以帮助你快速诊断和修正 VM 访问与网络问题，使 VM 恢复正常状态。
-
-[!INCLUDE [updated-for-az.md](../../../includes/updated-for-az.md)]
 
 ## <a name="benefits"></a>优点
 
@@ -44,6 +45,8 @@ ms.locfileid: "85945749"
 
 > [!NOTE]
 > 若要正常工作，“运行命令”需要连接（通过端口 443）到 Azure 公共 IP 地址。 如果扩展无法访问这些终结点，则脚本可能会成功运行，但不会返回结果。 如果要阻止虚拟机上的流量，可以使用[服务标记](../../virtual-network/security-overview.md#service-tags)以通过 `AzureChinaCloud` 标记允许流量发往 Azure 公共 IP 地址。
+
+<!--MOONCAKE CUSTOMIZATION ON using the `AzureChinaCloud` tag.-->
 
 ## <a name="available-commands"></a>可用的命令
 
@@ -79,7 +82,7 @@ az vm run-command invoke  --command-id RunPowerShellScript --name win-vm -g my-r
     --scripts @script.ps1 --parameters "arg1=somefoo" "arg2=somebar"
 ```
 
-<!--Not Available on ## Azure portal-->
+<!--Not Available on ## Azure portal on 09/04/2020-->
 ## <a name="powershell"></a>PowerShell
 
 以下示例使用 [Invoke-AzVMRunCommand](https://docs.microsoft.com/powershell/module/az.compute/invoke-azvmruncommand) cmdlet 在 Azure VM 上运行 PowerShell 脚本。 该 cmdlet 需要 `-ScriptPath` 参数中引用的脚本位于运行该 cmdlet 的位置本地。

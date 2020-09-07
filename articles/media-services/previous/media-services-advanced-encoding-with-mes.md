@@ -13,14 +13,15 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/14/2019
-ms.date: 07/27/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 1d9cccde8c76a83242de9d4b8dcb42ff86441810
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 6ec71e5cc5f7574f9afb01da239dd491d2e26510
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162390"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413684"
 ---
 # <a name="perform-advanced-encoding-by-customizing-mes-presets"></a>通过自定义 MES 预设执行高级编码 
 
@@ -31,7 +32,7 @@ ms.locfileid: "87162390"
 如果使用的是 XML 预设，请务必保留元素顺序，如下面的 XML 示例所示（例如，KeyFrameInterval 应在 SceneChangeDetection 前面）。
 
 > [!NOTE] 
-> Media Encoder Standard 的许多高级媒体服务 v2 功能目前在 v3 中不可用。 有关详细信息，请参阅[功能差距](/media-services/latest/media-services-v2-vs-v3#feature-gaps-with-respect-to-v2-apis)。
+> Media Encoder Standard 的许多高级媒体服务 v2 功能目前在 v3 中不可用。 有关详细信息，请参阅[功能差距](../latest/media-services-v2-vs-v3.md#feature-gaps-with-respect-to-v2-apis)。
 
 ## <a name="support-for-relative-sizes"></a>支持相对大小
 

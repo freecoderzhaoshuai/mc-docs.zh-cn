@@ -4,17 +4,17 @@ description: 本教程介绍如何使用 Azure 通知中心和 Apple 推送通�
 author: sethmanheim
 ms.author: v-tawe
 origin.date: 06/19/2020
-ms.date: 07/21/2020
+ms.date: 09/02/2020
 ms.topic: tutorial
 ms.service: notification-hubs
 ms.reviewer: thsomasu
 ms.lastreviewed: 06/01/2020
-ms.openlocfilehash: 2251dfdfd4a2e1d6653b652c400c9e4e48423382
-ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
+ms.openlocfilehash: 295a6bbe4f6eb582ca81e8f966ca9a671fd664de
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/18/2020
-ms.locfileid: "88516013"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316361"
 ---
 # <a name="tutorial-send-push-notifications-to-ios-apps-using-azure-notification-hubs-version-204"></a>教程：使用 Azure 通知中心（版本 2.0.4）向 iOS 应用发送推送通知
 
@@ -492,6 +492,6 @@ ms.locfileid: "88516013"
 - [注册管理](notification-hubs-push-notification-registration-management.md)
 - [使用标记](notification-hubs-tags-segment-push-message.md)
 - [使用自定义模板](notification-hubs-templates-cross-platform-push-messages.md)
-- [使用共享访问签名进行服务总线访问控制](/service-bus-messaging/service-bus-sas)
+- [使用共享访问签名进行服务总线访问控制](../service-bus-messaging/service-bus-sas.md)
 - [以编程方式生成 SAS 令牌](https://docs.microsoft.com/rest/api/eventhub/generate-sas-token)
 - [Apple 安全性：常见加密](https://developer.apple.com/security/)

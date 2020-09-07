@@ -9,14 +9,14 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: conceptual
 origin.date: 06/12/2020
-ms.date: 08/03/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: 21fbf0e09ad8140aeb6bed26b3a78de056812650
-ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
+ms.openlocfilehash: fe3b83d34a443b384de882464e07ce95af08f138
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87516099"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317449"
 ---
 # <a name="speech-service-whats-new-in-docs"></a>语音服务：Docs 中的新增内容
 
@@ -49,8 +49,5 @@ ms.locfileid: "87516099"
 * [快速入门：安装开发环境](quickstarts/setup-platform.md) - 向文档添加了 JavaScript 说明。
 * [快速入门：将语音合成到音频文件](quickstarts/text-to-speech-audio-file.md) - 向文档添加了 JavaScript 说明。
 * [快速入门：将语音合成到扬声器](quickstarts/text-to-speech.md) - 向文档添加了 JavaScript 说明。
-* [快速入门：将语音翻译为语音](quickstarts/translate-speech-to-speech.md) - 向文档添加了 JavaScript 说明。
-* [快速入门：将语音翻译成多种语言](quickstarts/translate-speech-to-text-multiple-languages.md) - 向文档添加了 JavaScript 说明。
-* [快速入门：将语音翻译为文本](quickstarts/translate-speech-to-text.md) - 向文档添加了 JavaScript 说明。
 * [指定语音转文本的源语言](how-to-specify-source-language.md) - 向文档添加了 JavaScript 和 Objective-C 说明。
 <!-- * [What is a keyword?](custom-keyword-overview.md) - Updated get started content and links. -->

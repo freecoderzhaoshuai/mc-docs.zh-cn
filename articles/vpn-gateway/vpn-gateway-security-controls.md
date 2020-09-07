@@ -7,14 +7,14 @@ manager: digimobile
 ms.service: vpn-gateway
 ms.topic: conceptual
 origin.date: 09/06/2019
-ms.date: 06/08/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: e2bf9d814e732dbda11d00a23f05f80da512a27a
-ms.sourcegitcommit: 9811bf312e0d037cb530eb16c8d85238fd276949
+ms.openlocfilehash: 72de477e206b89810f9adf3421bfe6c51ed2d328
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84275598"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463140"
 ---
 # <a name="security-controls-for-azure-vpn-gateway"></a>Azure VPN 网关的安全控制
 
@@ -61,3 +61,7 @@ ms.locfileid: "84275598"
 | 安全控制 | Yes/No | 注释|
 |---|---|--|
 | 配置管理支持（配置的版本控制等）| 是 | 进行管理操作时，可以将 Azure VPN 网关配置的状态导出为 Azure 资源管理器模板，并在一段时间内进行版本控制。 |
+
+## <a name="next-steps"></a>后续步骤
+
+- 详细了解[跨 Azure 服务的内置安全控制](../security/fundamentals/security-controls.md)。

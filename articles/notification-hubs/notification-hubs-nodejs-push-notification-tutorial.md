@@ -14,16 +14,17 @@ ms.tgt_pltfrm: na
 ms.devlang: javascript
 ms.topic: article
 origin.date: 04/29/2020
-ms.date: 06/03/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.reviewer: jowargo
 ms.lastreviewed: 01/04/2019
-ms.openlocfilehash: b978a58d7ab212b99bf6f43c8508b802aa6db1b6
-ms.sourcegitcommit: 40d1ff17251ab1d2d607845523470f11ce087039
+ms.custom: devx-track-javascript
+ms.openlocfilehash: f7e720c7f066d87c91e7dafc90ad4f908f0c7fc2
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/03/2020
-ms.locfileid: "84320485"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317451"
 ---
 # <a name="sending-push-notifications-with-azure-notification-hubs-and-nodejs"></a>使用 Azure 通知中心和 Node.js 发送推送通知
 
@@ -45,7 +46,7 @@ ms.locfileid: "84320485"
 
 ## <a name="notification-hubs"></a>通知中心
 
-Azure 通知中心提供用于向移动设备发送推送通知的易于使用、多平台且可缩放的基础结构。 有关服务基础结构的详细信息，请参阅 [Azure 通知中心](https://msdn.microsoft.com/library/windowsazure/jj927170.aspx) 页。
+Azure 通知中心提供用于向移动设备发送推送通知的易于使用、多平台且可缩放的基础结构。 有关服务基础结构的详细信息，请参阅 [Azure 通知中心](https://docs.microsoft.com/previous-versions/azure/azure-services/jj927170(v=azure.100)) 页。
 
 ## <a name="create-a-nodejs-application"></a>创建 Node.js 应用程序
 
@@ -90,7 +91,7 @@ var notificationHubService = azure.createNotificationHubService('hubname','conne
 ![Azure 门户 — 通知中心](./media/notification-hubs-nodejs-how-to-use-notification-hubs/notification-hubs-portal.png)
 
 > [!NOTE]
-> 还可以使用 [Azure PowerShell](https://docs.microsoft.com/powershell/azureps-cmdlets-docs) 提供的 Get-AzureSbNamespace cmdlet 或者在 [Azure 命令行接口 (Azure CLI)](/cli-install-nodejs) 中使用 azure sb namespace show 命令检索连接字符串 。
+> 还可以使用 [Azure PowerShell](https://docs.microsoft.com/powershell) 提供的 Get-AzureSbNamespace cmdlet 或者在 [Azure 命令行接口 (Azure CLI)](/cli/install-classic-cli) 中使用 azure sb namespace show 命令检索连接字符串 。
 
 ## <a name="general-architecture"></a>一般体系结构
 
@@ -99,6 +100,7 @@ var notificationHubService = azure.createNotificationHubService('hubname','conne
 - **iOS** - 使用可在 `notificationHubService.apns` 访问的 `ApnsService` 对象
 - **Windows Phone** - 使用可在 `notificationHubService.mpns` 获得的 `MpnsService` 对象
 - **通用 Windows 平台** - 使用可在 `notificationHubService.wns` 获得的 `WnsService` 对象
+<!-- gcm not support -->
 
 ### <a name="how-to-send-push-notifications-to-ios-applications"></a>如何：向 iOS 应用程序发送推送通知
 
@@ -130,11 +132,11 @@ notificationHubService.apns.send(null, payload, function(error){
 - **Tags** - 标记标识符。 如果没有提供任何标记，通知会发送给所有客户端。
 - **Payload** - 消息的 XML 有效负载。
 - TargetName - `toast` 用于 toast 通知。 `token` 表示磁贴通知。
-- **NotificationClass** - 通知的优先级。 有关该参数的有效值，请参阅 [Push notifications from a server](https://msdn.microsoft.com/library/hh221551.aspx)（从服务器推送通知）文档中的 HTTP Header Elements（HTTP 标头元素）部分。
+- **NotificationClass** - 通知的优先级。 有关该参数的有效值，请参阅 [Push notifications from a server](https://docs.microsoft.com/previous-versions/windows/xna/bb200104(v=xnagamestudio.41))（从服务器推送通知）文档中的 HTTP Header Elements（HTTP 标头元素）部分。
 - **Options** - 可选的请求标头。
 - **Callback** - 回调函数。
 
-有关有效的 `TargetName`、`NotificationClass` 和标头选项的列表，请查看[从服务器推送通知](https://msdn.microsoft.com/library/hh221551.aspx)页面。
+有关有效的 `TargetName`、`NotificationClass` 和标头选项的列表，请查看[从服务器推送通知](https://docs.microsoft.com/previous-versions/windows/xna/bb200104(v=xnagamestudio.41))页面。
 
 以下示例代码使用由 `NotificationHubService` 公开的 `MpnsService` 实例发送 toast 推送通知：
 
@@ -157,7 +159,7 @@ notificationHubService.mpns.send(null, payload, 'toast', 22, function(error){
 - **Options** - 可选的请求标头。
 - **Callback** - 回调函数。
 
-若要了解有效的类型和请求标头的列表，请参阅 [推送通知服务请求和响应头](https://msdn.microsoft.com/library/windows/apps/hh465435.aspx)。
+若要了解有效的类型和请求标头的列表，请参阅 [推送通知服务请求和响应头](https://docs.microsoft.com/previous-versions/windows/apps/hh465435(v=win.10))。
 
 以下示例代码使用由 `NotificationHubService` 公开的 `WnsService` 实例将 toast 推送通知发送给 UWP 应用：
 
@@ -174,7 +176,7 @@ notificationHubService.wns.send(null, payload , 'wns/toast', function(error){
 
 使用上述示例代码段，可以轻松地构建服务基础结构，将推送通知传递到各种设备。 了解使用通知中心和 node.js 的基础知识之后，请参考下列链接以了解有关如何进一步扩展这些功能的详细信息。
 
-- 请参阅 [Azure 通知中心](https://msdn.microsoft.com/library/azure/jj927170.aspx)的 MSDN 参考。
+- 请参阅 [Azure 通知中心](https://docs.microsoft.com/previous-versions/azure/azure-services/jj927170(v=azure.100))的 MSDN 参考。
 - 请访问 GitHub 上的 [用于 Node 的 Azure SDK] 存储库以获取更多示例和实施详细信息。
 
 [用于 Node 的 Azure SDK]: https://github.com/WindowsAzure/azure-sdk-for-node
@@ -197,11 +199,14 @@ notificationHubService.wns.send(null, payload , 'wns/toast', function(error){
 [3]: .media/notification-hubs-nodejs-how-to-use-notification-hubs/sb-queues-05.png
 [4]: .media/notification-hubs-nodejs-how-to-use-notification-hubs/sb-queues-06.png
 [5]: .media/notification-hubs-nodejs-how-to-use-notification-hubs/sb-queues-07.png
-[SqlFilter.SqlExpression]: https://msdn.microsoft.com/library/windowsazure/microsoft.servicebus.messaging.sqlfilter.sqlexpression.aspx
-[Azure Service Bus Notification Hubs]: https://msdn.microsoft.com/library/windowsazure/jj927170.aspx
-[SqlFilter]: https://msdn.microsoft.com/library/windowsazure/microsoft.servicebus.messaging.sqlfilter.aspx
+[SqlFilter.SqlExpression]: /dotnet/api/microsoft.servicebus.messaging.sqlfilter?view=azure-dotnet#microsoft_servicebus_messaging_sqlfilter_sqlexpression
+[Azure Service Bus Notification Hubs]: https://docs.microsoft.com/previous-versions/azure/azure-services/jj927170(v=azure.100)
+[SqlFilter]: /dotnet/api/microsoft.servicebus.messaging.sqlfilter?view=azure-dotnet#microsoft_servicebus_messaging_sqlfilter
+[Web Site with WebMatrix]: https://docs.microsoft.com/develop/nodejs/tutorials/web-site-with-webmatrix/
 [Node.js Cloud Service]: ../cloud-services/cloud-services-nodejs-develop-deploy-app.md
 [Previous Management Portal]: .media/notification-hubs-nodejs-how-to-use-notification-hubs/previous-portal.png
-[nodejswebsite]: /app-service/app-service-web-get-started-nodejs
+[nodejswebsite]: ../app-service/quickstart-nodejs.md
 [webmatrix]: https://docs.microsoft.com/aspnet/web-pages/videos/introduction/create-a-website-using-webmatrix
+[Node.js Cloud Service with Storage]: https://docs.microsoft.com/develop/nodejs/tutorials/web-app-with-storage/
+[Node.js Web Application with Storage]: https://docs.microsoft.com/develop/nodejs/tutorials/web-site-with-storage/
 [Azure 门户]: https://portal.azure.cn

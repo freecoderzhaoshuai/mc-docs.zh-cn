@@ -9,14 +9,14 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: include
 origin.date: 11/05/2019
-ms.date: 04/20/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: 45973d0bd4f70110f81db1ff8eb2ea5e00d8f41e
-ms.sourcegitcommit: 304d3ef3c9e65c3e85977b3afb9985fbc0f908d6
+ms.openlocfilehash: 65245851f985474a48256d04d82db28bcaa80ef2
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85095904"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317474"
 ---
 ## <a name="prerequisites"></a>先决条件
 
@@ -156,7 +156,7 @@ ms.locfileid: "85095904"
 
 1. 在同一文件中，将字符串 `YourSubscriptionKey` 替换为你的订阅密钥。
 
-1. 此外，将字符串 `YourServiceRegion` 替换为与订阅关联的[区域](~/articles/cognitive-services/Speech-Service/regions.md)的“区域标识符”。 例如，将 `chinaeast2` 用于试用订阅。
+1. 此外，将字符串 `YourServiceRegion` 替换为与订阅关联的[区域](https://docs.azure.cn/cognitive-services/speech-service/regions)的“区域标识符”。
 
 ## <a name="build-and-run-the-app"></a>生成并运行应用
 

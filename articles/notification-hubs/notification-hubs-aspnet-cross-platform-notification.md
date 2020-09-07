@@ -13,16 +13,17 @@ ms.tgt_pltfrm: mobile-windows
 ms.devlang: multiple
 ms.topic: article
 origin.date: 09/30/2019
-ms.date: 04/20/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.reviewer: jowargo
 ms.lastreviewed: 10/02/2019
-ms.openlocfilehash: 5a9c3c687f11309667f012398175e1483920be35
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 916131d5d400f2fcd0e5dcc206c5dff40eb7cafb
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588726"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316471"
 ---
 # <a name="send-cross-platform-notifications-with-azure-notification-hubs"></a>使用 Azure 通知中心发送跨平台通知
 

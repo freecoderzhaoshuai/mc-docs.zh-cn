@@ -1,5 +1,5 @@
 ---
-title: PowerShell 示例 - 使用 PowerShell 将托管磁盘复制到同一或不同订阅中
+title: 将托管磁盘复制到订阅 (Linux) - PowerShell 示例
 description: Azure PowerShell 脚本示例 - 将托管磁盘复制（或移动）到同一或不同订阅
 services: virtual-machines-linux
 documentationcenter: storage
@@ -12,14 +12,16 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 origin.date: 06/06/2017
-ms.date: 08/03/2020
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 9127eb63e3cf4c4e0433b0550b799c23c79eb981
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 0beb656b77b4dded9c76d8a81817b3edcf0e7c5f
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426357"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413963"
 ---
 # <a name="copy-managed-disks-in-the-same-subscription-or-different-subscription-with-powershell"></a>在相同或不同订阅中通过 PowerShell 复制托管磁盘
 
@@ -79,7 +81,7 @@ New-AzDisk -Disk $diskConfig -DiskName $managedDiskName -ResourceGroupName $targ
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 可以在 [Azure Linux VM 文档](../linux/powershell-samples.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)中找到其他虚拟机 PowerShell 脚本示例。
 

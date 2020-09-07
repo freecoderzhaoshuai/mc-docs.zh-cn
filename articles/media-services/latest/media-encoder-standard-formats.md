@@ -15,12 +15,12 @@ origin.date: 02/10/2019
 ms.date: 09/23/2019
 ms.author: v-jay
 ms.reviewer: anilmur
-ms.openlocfilehash: 54e0f8bb71fa2fdb7a4bb3d35f2e46fc32992803
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: e5b64789f9581625f9b92a6156f471d079eeee00
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71125568"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413475"
 ---
 # <a name="standard-encoder-formats-and-codecs"></a>标准编码器格式和编解码器
 
@@ -37,7 +37,7 @@ ms.locfileid: "71125568"
 | Windows Media 视频 (WMV)/ASF（.wmv、.asf） |是 |
 | AVI（8 位/10 位未压缩）(.avi) |是 |
 | MP4（.mp4、.m4a、.m4v）/ISMV（.isma、.ismv） |是 |
-| [Microsoft Digital Video Recording(DVR-MS)](https://msdn.microsoft.com/library/windows/desktop/dd692984) (.dvr-ms) |是 |
+| [Microsoft Digital Video Recording(DVR-MS)](https://docs.microsoft.com/previous-versions/windows/desktop/mstv/about-the-dvr-ms-file-format) (.dvr-ms) |是 |
 | Matroska/WebM (.mkv) |是 |
 | WAVE/WAV (.wav) |是 |
 | QuickTime (.mov) |是 |

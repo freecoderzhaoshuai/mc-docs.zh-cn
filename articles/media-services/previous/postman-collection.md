@@ -12,14 +12,14 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/20/2019
-ms.date: 04/01/2019
+ms.date: 09/07/2019
 ms.author: v-jay
-ms.openlocfilehash: a3f17ee52c176e31c6db3c79ca7946a0cd08f09d
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 6dec5c14313d88d5bf7de526fff659e142f1a480
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78850538"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413540"
 ---
 # <a name="import-a-postman-collection-with-on-demand-streaming-operations"></a>使用按需流式处理操作导入一个 Postman 集合 
 
@@ -845,7 +845,7 @@ ms.locfileid: "78850538"
                                 "Assets"
                             ]
                         },
-                        "description": "Create Assets\nThe Asset entity contains digital files (including video, audio, images, thumbnail collections, text tracks and closed caption files) and the metadata about these files. After the digital files are uploaded into an asset, they could be used in the Media Services encoding and streaming workflows.\n\n[Asset Entity REST API](https://msdn.microsoft.com/library/azure/hh974277.aspx)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Create Assets\nThe Asset entity contains digital files (including video, audio, images, thumbnail collections, text tracks and closed caption files) and the metadata about these files. After the digital files are uploaded into an asset, they could be used in the Media Services encoding and streaming workflows.\n\n[Asset Entity REST API](https://docs.microsoft.com/rest/api/media/operations/asset)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -2404,7 +2404,7 @@ ms.locfileid: "78850538"
                                 "Filters"
                             ]
                         },
-                        "description": "List Filters\n\n[List Filters documentation](https://docs.microsoft.com/rest/api/media/operations/filter#list_filters)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "List Filters\n\n[List Filters documentation](https://docs.microsoft.com/rest/api/media/operations/filter#list_filters)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -2474,7 +2474,7 @@ ms.locfileid: "78850538"
                                 "Filters('{{filterId}}')"
                             ]
                         },
-                        "description": "Delete Filters\n\n[Delete Filters documentation](https://docs.microsoft.com/rest/api/media/operations/filter#delete_a_filter)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Delete Filters\n\n[Delete Filters documentation](https://docs.microsoft.com/rest/api/media/operations/filter#delete_a_filter)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -2547,7 +2547,7 @@ ms.locfileid: "78850538"
                                 "Filters"
                             ]
                         },
-                        "description": "Create Filter\n\n[Create Filter documentation](https://docs.microsoft.com/rest/api/media/operations/filter#create_a_filter)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Create Filter\n\n[Create Filter documentation](https://docs.microsoft.com/rest/api/media/operations/filter#create_a_filter)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -2620,7 +2620,7 @@ ms.locfileid: "78850538"
                                 "Filters"
                             ]
                         },
-                        "description": "Create Filter\n\n[Create Filter documentation](https://docs.microsoft.com/rest/api/media/operations/filter#create_a_filter)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Create Filter\n\n[Create Filter documentation](https://docs.microsoft.com/rest/api/media/operations/filter#create_a_filter)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 }
@@ -2696,7 +2696,7 @@ ms.locfileid: "78850538"
                                 "Filters"
                             ]
                         },
-                        "description": "List Filters\n\n[List Filters documentation](https://docs.microsoft.com/rest/api/media/operations/filter#list_filters)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "List Filters\n\n[List Filters documentation](https://docs.microsoft.com/rest/api/media/operations/filter#list_filters)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -2766,7 +2766,7 @@ ms.locfileid: "78850538"
                                 "Filters('{{filterId}}')"
                             ]
                         },
-                        "description": "Delete AssetFilter\n\n[Delete AssetFilter documentation](https://docs.microsoft.com/rest/api/media/operations/assetfilter#delete_a_filter)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Delete AssetFilter\n\n[Delete AssetFilter documentation](https://docs.microsoft.com/rest/api/media/operations/assetfilter#delete_a_filter)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -2839,7 +2839,7 @@ ms.locfileid: "78850538"
                                 "Filters"
                             ]
                         },
-                        "description": "Create AssetFilter\n\n[Create AssetFilter documentation](https://docs.microsoft.com/rest/api/media/operations/assetfilter#create_a_filter)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Create AssetFilter\n\n[Create AssetFilter documentation](https://docs.microsoft.com/rest/api/media/operations/assetfilter#create_a_filter)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -2912,7 +2912,7 @@ ms.locfileid: "78850538"
                                 "Filters"
                             ]
                         },
-                        "description": "Update AssetFilter\n\n[Update AssetFilter documentation](https://docs.microsoft.com/rest/api/media/operations/assetfilter#update_a_filter)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Update AssetFilter\n\n[Update AssetFilter documentation](https://docs.microsoft.com/rest/api/media/operations/assetfilter#update_a_filter)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 }
@@ -3541,7 +3541,7 @@ ms.locfileid: "78850538"
                                 "Jobs"
                             ]
                         },
-                        "description": "Create Indexer Job\n\nThis job submits a Speech Analytics job with custom configuration settings. \nNote that it uses the Media Processor ID for Indexer: \n\t\"MediaProcessorId\": \"nb:mpid:UUID:1927f26d-0aa5-4ca1-95a3-1a3f95b0f706\"\n\nAnd it uses a custom configuration JSON:\n\t \"Configuration\": \"{'Version':'1.0','Features':[{'Options':{'Formats':['WebVtt','TTML'],'Language':'EnUs','Type':'RecoOptions'},'Type':'SpReco'}]}\",\n\t \n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Create Indexer Job\n\nThis job submits a Speech Analytics job with custom configuration settings. \nNote that it uses the Media Processor ID for Indexer: \n\t\"MediaProcessorId\": \"nb:mpid:UUID:1927f26d-0aa5-4ca1-95a3-1a3f95b0f706\"\n\nAnd it uses a custom configuration JSON:\n\t \"Configuration\": \"{'Version':'1.0','Features':[{'Options':{'Formats':['WebVtt','TTML'],'Language':'EnUs','Type':'RecoOptions'},'Type':'SpReco'}]}\",\n\t \n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -3610,7 +3610,7 @@ ms.locfileid: "78850538"
                                 "Jobs"
                             ]
                         },
-                        "description": "This example submits a redaction job.\nFor details on configuration settings, refer to the [Redact faces with Azure Media Analytics](https://docs.azure.cn/media-services/media-services-face-redaction) article. \n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "This example submits a redaction job.\nFor details on configuration settings, refer to the [Redact faces with Azure Media Analytics](./media-services-face-redaction.md) article. \n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -4715,7 +4715,7 @@ ms.locfileid: "78850538"
                                 "Programs"
                             ]
                         },
-                        "description": "List Programs\n\n[List Programs documentation](https://docs.microsoft.com/rest/api/media/operations/program#list_programs)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "List Programs\n\n[List Programs documentation](https://docs.microsoft.com/rest/api/media/operations/program#list_programs)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -4786,7 +4786,7 @@ ms.locfileid: "78850538"
                                 "Start"
                             ]
                         },
-                        "description": "Start Programs\n\n[Start a Program documentation](https://docs.microsoft.com/rest/api/media/operations/program#start_programs)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Start Programs\n\n[Start a Program documentation](https://docs.microsoft.com/rest/api/media/operations/program#start_programs)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -4856,7 +4856,7 @@ ms.locfileid: "78850538"
                                 "Programs('{{programId}}')"
                             ]
                         },
-                        "description": "Delete Programs\n\n[Delete a Program documentation](https://docs.microsoft.com/rest/api/media/operations/program#delete_programs)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Delete Programs\n\n[Delete a Program documentation](https://docs.microsoft.com/rest/api/media/operations/program#delete_programs)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -4929,7 +4929,7 @@ ms.locfileid: "78850538"
                                 "Programs('{{programId}}')"
                             ]
                         },
-                        "description": "Update Programs\n\n[Update a Program documentation](https://docs.microsoft.com/rest/api/media/operations/program#update_programs)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Update Programs\n\n[Update a Program documentation](https://docs.microsoft.com/rest/api/media/operations/program#update_programs)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -5000,7 +5000,7 @@ ms.locfileid: "78850538"
                                 "Stop"
                             ]
                         },
-                        "description": "Strop Programs\n\n[Stop a Program documentation](https://docs.microsoft.com/rest/api/media/operations/program#stop_programs)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Strop Programs\n\n[Stop a Program documentation](https://docs.microsoft.com/rest/api/media/operations/program#stop_programs)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -5073,7 +5073,7 @@ ms.locfileid: "78850538"
                                 "Programs"
                             ]
                         },
-                        "description": "Create Program\n\n[Create Programs documentation](https://docs.microsoft.com/rest/api/media/operations/program#create_programs)\n\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Create Program\n\n[Create Programs documentation](https://docs.microsoft.com/rest/api/media/operations/program#create_programs)\n\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 }
@@ -5149,7 +5149,7 @@ ms.locfileid: "78850538"
                                 "StreamingEndpoints"
                             ]
                         },
-                        "description": "List StreamingEndpoints\n\n[List StreamingEndpoints documentation](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint#list_create_streaming_endpoints)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "List StreamingEndpoints\n\n[List StreamingEndpoints documentation](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint#list_create_streaming_endpoints)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -5219,7 +5219,7 @@ ms.locfileid: "78850538"
                                 "StreamingEndpoints('{{streamingEndpointId}}')"
                             ]
                         },
-                        "description": "List StreamingEndpoints\n\n[List StreamingEndpoints documentation](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint#list_create_streaming_endpoints)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "List StreamingEndpoints\n\n[List StreamingEndpoints documentation](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint#list_create_streaming_endpoints)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -5290,7 +5290,7 @@ ms.locfileid: "78850538"
                                 "Start"
                             ]
                         },
-                        "description": "Start StreamingEndpoints\n\n[Start StreamingEndpoint documentation](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint#start_create_streaming_endpoints)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Start StreamingEndpoints\n\n[Start StreamingEndpoint documentation](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint#start_create_streaming_endpoints)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -5361,7 +5361,7 @@ ms.locfileid: "78850538"
                                 "Start"
                             ]
                         },
-                        "description": "Start StreamingEndpoints\n\n[Stop StreamingEndpoint documentation](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint#stop_create_streaming_endpoints)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Start StreamingEndpoints\n\n[Stop StreamingEndpoint documentation](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint#stop_create_streaming_endpoints)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -5435,7 +5435,7 @@ ms.locfileid: "78850538"
                                 "Scale"
                             ]
                         },
-                        "description": "Scale StreamingEndpoints\n\n[Scale StreamingEndpoint documentation](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint#scale_create_streaming_endpoints)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Scale StreamingEndpoints\n\n[Scale StreamingEndpoint documentation](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint#scale_create_streaming_endpoints)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -5508,7 +5508,7 @@ ms.locfileid: "78850538"
                                 "StreamingEndpoints"
                             ]
                         },
-                        "description": "Create StreamingEndpoints\n\n[Create StreamingEndpoints documentation](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint#create_streaming_endpoints)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Create StreamingEndpoints\n\n[Create StreamingEndpoints documentation](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint#create_streaming_endpoints)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 },
@@ -5581,7 +5581,7 @@ ms.locfileid: "78850538"
                                 "StreamingEndpoints"
                             ]
                         },
-                        "description": "Update StreamingEndpoints\n\n[Update StreamingEndpoints documentation](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint#update_streaming_endpoints)\n\n[Full REST API documentation](https://msdn.microsoft.com/library/azure/hh973617.aspx)"
+                        "description": "Update StreamingEndpoints\n\n[Update StreamingEndpoints documentation](https://docs.microsoft.com/rest/api/media/operations/streamingendpoint#update_streaming_endpoints)\n\n[Full REST API documentation](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference)"
                     },
                     "response": []
                 }

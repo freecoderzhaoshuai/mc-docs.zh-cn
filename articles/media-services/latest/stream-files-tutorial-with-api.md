@@ -11,15 +11,15 @@ ms.service: media-services
 ms.workload: ''
 ms.topic: tutorial
 ms.custom: mvc
-origin.date: 03/22/2019
-ms.date: 07/27/2020
+origin.date: 07/09/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: a917067bca8e05c2e6eed581ecb4c15266b953e5
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 8edf516288467532c68abd2561e53a7d7c5d575a
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162152"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413545"
 ---
 # <a name="tutorial-upload-encode-and-stream-videos-with-media-services-v3"></a>教程：使用媒体服务 v3 对视频进行上载、编码和流式传输
 
@@ -43,9 +43,9 @@ ms.locfileid: "87162152"
 
 ## <a name="prerequisites"></a>先决条件
 
-- 如果没有安装 Visual Studio，可下载 [Visual Studio Community 2017](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=Community&rel=15)。
-- [创建媒体服务帐户](create-account-cli-how-to.md)。<br/>请务必记住用于资源组名称和媒体服务帐户名称的值。
-- 遵循[使用 Azure CLI 访问 Azure 媒体服务 API](access-api-cli-how-to.md) 中的步骤并保存凭据。 你将需要使用这些凭据来访问 API。
+- 如果没有安装 Visual Studio，可下载 [Visual Studio Community 2019](https://www.visualstudio.com/thank-you-downloading-visual-studio/?sku=Community&rel=15)。
+- [创建媒体服务帐户](./create-account-howto.md)。<br/>请务必记住用于资源组名称和媒体服务帐户名称的值。
+- 遵循[使用 Azure CLI 访问 Azure 媒体服务 API](./access-api-howto.md) 中的步骤并保存凭据。 你将需要使用这些凭据来访问 API。
 
 ## <a name="download-and-set-up-the-sample"></a>下载和设置示例
 
@@ -57,7 +57,7 @@ ms.locfileid: "87162152"
 
 该示例位于 [UploadEncodeAndStreamFiles](https://github.com/Azure-Samples/media-services-v3-dotnet-tutorials/tree/master/AMSV3Tutorials/UploadEncodeAndStreamFiles) 文件夹。
 
-打开下载的项目中的 [appsettings.json](https://github.com/Azure-Samples/media-services-v3-dotnet-tutorials/blob/master/AMSV3Tutorials/UploadEncodeAndStreamFiles/appsettings.json)。 将值替换为在[访问 API](access-api-cli-how-to.md) 中获取的凭据。
+打开下载的项目中的 [appsettings.json](https://github.com/Azure-Samples/media-services-v3-dotnet-tutorials/blob/master/AMSV3Tutorials/UploadEncodeAndStreamFiles/appsettings.json)。 将值替换为在[访问 API](./access-api-howto.md) 中获取的凭据。
 
 ## <a name="examine-the-code-that-uploads-encodes-and-streams"></a>检查用于上传、编码和流式传输的代码
 
@@ -73,7 +73,7 @@ ms.locfileid: "87162152"
 6. 创建**流定位符**。
 7. 生成流式处理 URL。
 
-### <a name="start-using-media-services-apis-with-net-sdk"></a><a id="start_using_dotnet"></a>开始结合使用媒体服务 API 与 .NET SDK
+### <a name="start-using-media-services-apis-with-net-sdk"></a>开始结合使用媒体服务 API 与 .NET SDK
 
 若要开始将媒体服务 API 与 .NET 结合使用，需要创建 AzureMediaServicesClient 对象。 若要创建对象，必须提供客户端所需凭据以使用 Azure AD 连接到 Azure。 在本文开头克隆的代码中，**GetCredentialsAsync** 函数根据本地配置文件中提供的凭据创建 ServiceClientCredentials 对象。
 
@@ -98,7 +98,7 @@ CreateInputAsset 函数创建新的输入[资产](https://docs.microsoft.com/res
 以下函数执行以下操作：
 
 * 创建资产。
-* 获取资产的[存储中容器](/storage/blobs/storage-quickstart-blobs-dotnet#upload-blobs-to-a-container)的可写 [SAS URL](/storage/common/storage-dotnet-shared-access-signature-part-1)。
+* 获取资产的[存储中容器](../../storage/blobs/storage-quickstart-blobs-dotnet.md#upload-blobs-to-a-container)的可写 [SAS URL](../../storage/common/storage-sas-overview.md)。
 
     如果使用资产的 [ListContainerSas](https://docs.microsoft.com/rest/api/media/assets/listcontainersas) 函数获取 SAS URL，请注意，该函数将返回多个 SAS URL，因为每个存储帐户有两个存储帐户密钥。 存储帐户有两个密钥，因为它支持存储帐户密钥无缝轮换（例如，使用一个密钥时更改另一个，然后开始使用新密钥并轮换其他密钥）。 第一个 SAS URL 表示存储 key1，第二个表示存储 key2。
 * 使用 SAS URL 将文件上传到存储中的容器中。
@@ -177,7 +177,7 @@ private static async Task<Asset> CreateOutputAssetAsync(IAzureMediaServicesClien
 
 ### <a name="create-a-transform-and-a-job-that-encodes-the-uploaded-file"></a>创建转换和一个对上传的文件进行编码的作业
 
-对媒体服务中的内容进行编码或处理时，一种常见的模式是将编码设置设为脚本。 然后，需提交**作业**，将该脚本应用于视频。 为每个新视频提交新作业后，可将该脚本应用到库中的所有视频。 媒体服务中的脚本称为“转换”。 有关详细信息，请参阅[转换和作业](transform-concept.md)。 本教程中的示例定义有关将视频进行编码以将其流式传输到各种 iOS 和 Android 设备的脚本。
+对媒体服务中的内容进行编码或处理时，一种常见的模式是将编码设置设为脚本。 然后，需提交**作业**，将该脚本应用于视频。 为每个新视频提交新作业后，可将该脚本应用到库中的所有视频。 媒体服务中的脚本称为“转换”。 有关详细信息，请参阅[转换和作业](./transforms-jobs-concept.md)。 本教程中的示例定义有关将视频进行编码以将其流式传输到各种 iOS 和 Android 设备的脚本。
 
 #### <a name="transform"></a>转换
 
@@ -400,7 +400,7 @@ private static async Task<IList<string>> GetStreamingUrlsAsync(
 
 ### <a name="clean-up-resources-in-your-media-services-account"></a>清理媒体服务帐户中的资源
 
-通常情况下，除了打算重复使用的对象，用户应清理所有内容（通常将重复使用转换并保留 StreamingLocators 等）。 如果希望帐户在试验后保持干净状态，则删除不打算重复使用的资源。 例如，以下代码可删除作业：
+通常情况下，除了打算重复使用的对象，用户应清理所有内容（通常将重复使用转换并保留 StreamingLocators 等）。 如果希望帐户在试验后保持干净状态，则删除不打算重复使用的资源。 例如，以下代码可删除作业、已创建的资产和内容密钥策略：
 
 ```c#
 private static async Task CleanUpAsync(

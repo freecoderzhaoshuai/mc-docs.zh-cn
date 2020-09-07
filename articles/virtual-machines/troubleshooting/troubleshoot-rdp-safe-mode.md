@@ -1,24 +1,26 @@
 ---
-title: 因 VM 启动到安全模式而无法通过 RDP 连接到该 VM
+title: 因 VM 启动到安全模式而无法远程连接 Azure 虚拟机 | Azure
 description: 了解如何排查因 VM 启动到安全模式而无法通过 RDP 连接到该 VM 的问题 | Azure
 services: virtual-machines-windows
 documentationCenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 ms.service: virtual-machines-windows
 ms.topic: troubleshooting
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 11/13/2018
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 4804d5592d6a29e3a4a0a4bbd957ac0725479026
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: eaa95493d88999decf7296d2610632d72bce4b57
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596357"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456877"
 ---
 # <a name="cannot-rdp-to-a-vm-because-the-vm-boots-into-safe-mode"></a>因 VM 启动到安全模式而无法通过 RDP 连接到该 VM
 
@@ -28,7 +30,7 @@ ms.locfileid: "82596357"
 
 不能与 Azure 中的 VM 建立 RDP 连接或其他连接（如 HTTP），因为已将该 VM 配置为启动到安全模式。 在 Azure 门户的[启动诊断](../troubleshooting/boot-diagnostics.md)中检查屏幕截图时，可能会看到 VM 启动正常，但网络接口不可用：
 
-![安全模式下网络接口的图像](./media/troubleshoot-rdp-safe-mode/network-safe-mode.png)
+:::image type="content" source="./media/troubleshoot-rdp-safe-mode/network-safe-mode.png" alt-text="安全模式下网络接口的图像":::
 
 ## <a name="cause"></a>原因
 
@@ -47,7 +49,7 @@ RDP 服务在安全模式下不可用。 VM 启动到安全模式时，只会加
 
 #### <a name="attach-the-os-disk-to-a-recovery-vm"></a>将 OS 磁盘附加到恢复 VM
 
-1. [将 OS 磁盘附加到恢复 VM](../windows/troubleshoot-recovery-disks-portal.md)。
+1. [将 OS 磁盘附加到恢复 VM](./troubleshoot-recovery-disks-portal-windows.md)。
 2. 开始与恢复 VM 建立远程桌面连接。
 3. 确保磁盘在磁盘管理控制台中标记为“联机”。  请注意分配给附加的 OS 磁盘的驱动器号。
 
@@ -89,22 +91,28 @@ RDP 服务在安全模式下不可用。 VM 启动到安全模式时，只会加
 1. 打开权限提升的命令提示符会话（“以管理员身份运行”）。 
 2. 检查启动配置数据。 在以下命令中，我们假设分配给附加 OS 磁盘的驱动器号为 F。请将此驱动器号替换为 VM 的相应值。
 
-        bcdedit /store F:\boot\bcd /enum
-    
+    ```console
+    bcdedit /store F:\boot\bcd /enum
+    ```
+
     记下具有 **\windows** 文件夹的分区的标识符名称。 默认情况下，该标识符名称为“Default”。
 
     如果 VM 配置为启动到安全模式，则可在“Windows 启动加载程序”部分下看到一个名为 **safeboot** 的额外标志  。 如果未看到“安全启动”  标志，则本文不适用于你的方案。
 
-    ![有关启动标识符的图像](./media/troubleshoot-rdp-safe-mode/boot-id.png)
+    :::image type="content" source="./media/troubleshoot-rdp-safe-mode/boot-id.png" alt-text="有关启动标识符的图像":::
 
 3. 删除“安全启动”标志，使 VM 启动到正常模式  ：
 
-        bcdedit /store F:\boot\bcd /deletevalue {Default} safeboot
-        
+    ```console
+    bcdedit /store F:\boot\bcd /deletevalue {Default} safeboot
+    ```
+
 4. 检查启动配置数据，确保删除“安全启动”标志  ：
 
-        bcdedit /store F:\boot\bcd /enum
-        
-5. [分离 OS 磁盘并重新创建 VM](../windows/troubleshoot-recovery-disks-portal.md)。 然后检查是否解决了问题。
+    ```console
+    bcdedit /store F:\boot\bcd /enum
+    ```
 
-<!-- Update_Description: wording update -->
+5. [分离 OS 磁盘并重新创建 VM](./troubleshoot-recovery-disks-portal-windows.md)。 然后检查是否解决了问题。
+
+<!-- Update_Description: update meta properties, wording update, update link -->

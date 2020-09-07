@@ -4,16 +4,16 @@ description: 本文将介绍如何使用 Azure 资源管理器和 CLI 通过 Azu
 services: vpn-gateway
 author: WenJason
 ms.service: vpn-gateway
-ms.topic: article
+ms.topic: how-to
 origin.date: 09/25/2018
-ms.date: 04/06/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: a88674f9f2a6245a3e94377b46b5a228af257cfd
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 190422c77aa8deab4285519b5dc2f50a8dced264
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80634342"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463146"
 ---
 # <a name="how-to-configure-bgp-on-an-azure-vpn-gateway-by-using-cli"></a>如何使用 CLI 在 Azure VPN 网关上配置 BGP
 
@@ -302,4 +302,4 @@ az network vpn-connection create -n VNet2ToVNet1 -g TestBGPRG2 --vnet-gateway1 /
 
 ## <a name="next-steps"></a>后续步骤
 
-连接完成后，即可将虚拟机添加到虚拟网络。 相关步骤，请参阅[创建虚拟机](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)。
+连接完成后，即可将虚拟机添加到虚拟网络。 相关步骤，请参阅[创建虚拟机](../virtual-machines/windows/quick-create-portal.md)。

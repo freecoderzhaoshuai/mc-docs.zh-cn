@@ -12,15 +12,15 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-origin.date: 04/21/2019
-ms.date: 03/04/2020
+origin.date: 07/09/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 1e43978747b69771e7149eacc69a9e6425060502
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: c1ea87a32c072e2df3611abbdc7c993c6f362358
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78412511"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413218"
 ---
 # <a name="tutorial-encrypt-video-with-aes-128-and-use-the-key-delivery-service"></a>教程：使用 AES-128 来加密视频以及使用密钥传送服务
 
@@ -61,8 +61,8 @@ ms.locfileid: "78412511"
 
 * 查看[内容保护概述](content-protection-overview.md)一文。
 * 安装 Visual Studio Code 或 Visual Studio。
-* [创建媒体服务帐户](create-account-cli-quickstart.md)。
-* 根据[访问 API](access-api-cli-how-to.md) 中所述，获取使用媒体服务 API 时所需的凭据。
+* [创建媒体服务帐户](./create-account-howto.md)。
+* 根据[访问 API](./access-api-howto.md) 中所述，获取使用媒体服务 API 时所需的凭据。
 
 ## <a name="download-code"></a>下载代码
 
@@ -209,9 +209,9 @@ private static async Task<Job> SubmitJobAsync(IAzureMediaServicesClient client,
 
 ## <a name="wait-for-the-job-to-complete"></a>等待作业完成
 
-该作业需要一些时间才能完成操作。 在该过程中，你应能够接收通知。 以下代码示例显示如何轮询服务以获取[作业](https://docs.microsoft.com/rest/api/media/jobs)状态。
+该作业需要一些时间才能完成操作。 在该过程中，你应能够接收通知。 以下代码示例显示如何轮询服务以获取[作业](https://docs.microsoft.com/rest/api/media/jobs)状态。 对于生产应用程序，由于可能出现延迟，并不建议将轮询作为最佳做法。 如果在帐户上过度使用轮询，轮询会受到限制。 开发者应改用事件网格。 有关详细信息，请参阅[将事件路由到自定义 Web 终结点](job-state-events-cli-how-to.md)。
 
-**作业**通常会经历以下状态：**已计划**、**已排队**、**正在处理**、**已完成**（最终状态）。 如果作业出错，则显示“错误”状态  。 如果作业正处于取消过程中，则显示“正在取消”，完成时则显示“已取消”   。
+**作业**通常会经历以下状态：**已计划**、**已排队**、**正在处理**、**已完成**（最终状态）。 如果作业出错，则显示“错误”状态。 如果作业正处于取消过程中，则显示“正在取消”，完成时则显示“已取消” 。
 
 ```c#
 private static async Task<Job> WaitForJobToFinishAsync(IAzureMediaServicesClient client,
@@ -303,7 +303,7 @@ private static async Task<ContentKeyPolicy> GetOrCreateContentKeyPolicyAsync(
 1. 创建[流式处理定位符](https://docs.microsoft.com/rest/api/media/streaminglocators)。
 2. 生成客户端可以使用的流式处理 URL。
 
-创建**流定位器**的过程称为发布。 默认情况下，除非配置可选的开始和结束时间，否则调用 API 后，流式处理定位符  立即生效， 并持续到被删除为止。
+创建**流定位器**的过程称为发布。 默认情况下，除非配置可选的开始和结束时间，否则调用 API 后，流式处理定位符**** 立即生效， 并持续到被删除为止。
 
 创建[流式处理定位符](https://docs.microsoft.com/rest/api/media/streaminglocators)时，需要指定所需的 **StreamingPolicyName**。 本教程使用某个 PredefinedStreamingPolicies 来告知 Azure 媒体服务如何发布流式处理的内容。 此示例中应用了 AES 信封加密（此加密也称为 ClearKey 加密，因为密钥是通过 HTTPS 而不是 DRM 许可证传送到播放客户端的）。
 
@@ -336,7 +336,7 @@ private static async Task<StreamingLocator> CreateStreamingLocatorAsync(
 
 ## <a name="get-a-test-token"></a>获取测试令牌
 
-本教程在内容密钥策略中指定使用令牌限制。 令牌限制策略必须附带由安全令牌服务 (STS) 颁发的令牌。 媒体服务支持采用 [JWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_3) 格式的令牌，我们在示例中配置了此格式。
+本教程在内容密钥策略中指定使用令牌限制。 令牌限制策略必须附带由安全令牌服务 (STS) 颁发的令牌。 媒体服务支持采用 [JWT](https://docs.microsoft.com/previous-versions/azure/azure-services/gg185950(v=azure.100)#BKMK_3) 格式的令牌，我们在示例中配置了此格式。
 
 **内容密钥策略**中使用了 ContentKeyIdentifierClaim，这意味着，提供给密钥传送服务的令牌必须包含内容密钥的标识符。 本示例未指定内容密钥，在创建流定位器时，系统创建了一个随机内容密钥。 若要生成测试令牌，必须获取要放入 ContentKeyIdentifierClaim 声明中的 ContentKeyId。
 
@@ -372,7 +372,7 @@ private static string GetTokenAsync(string issuer, string audience, string keyId
 
 ## <a name="build-a-dash-streaming-url"></a>生成 DASH 流 URL
 
-创建[流定位器](https://docs.microsoft.com/rest/api/media/streaminglocators)后，即可获取流式处理 URL。 若要生成 URL，需要连接 [StreamingEndpoint](https://docs.microsoft.com/rest/api/media/streamingendpoints) 主机名称和流定位器路径  。 此示例使用默认的**流式处理终结点**  。 首次创建媒体服务帐户时，此默认的**流式处理终结点**将处于停止状态，因此需要调用 **Start**  。
+创建[流定位器](https://docs.microsoft.com/rest/api/media/streaminglocators)后，即可获取流式处理 URL。 若要生成 URL，需要连接 [StreamingEndpoint](https://docs.microsoft.com/rest/api/media/streamingendpoints) 主机名称和流定位器路径****。 此示例使用默认的**流式处理终结点**。 首次创建媒体服务帐户时，此默认的**流式处理终结点**处于停止状态，因此需要调用 **Start**。
 
 ```c#
 private static async Task<string> GetDASHStreamingUrlAsync(
@@ -420,7 +420,7 @@ private static async Task<string> GetDASHStreamingUrlAsync(
 
 ## <a name="clean-up-resources-in-your-media-services-account"></a>清理媒体服务帐户中的资源
 
-一般来说，除了打算重用的对象之外，应该清除所有对象（通常，将重用转换、流式处理定位符等）。 如果希望帐户在试验后保持干净状态，则删除不打算重复使用的资源。 例如，以下代码可删除作业：
+一般来说，除了打算重用的对象之外，应该清除所有对象（通常，将重用转换、流式处理定位符等）。 如果希望帐户在试验后保持干净状态，则删除不打算重复使用的资源。 例如，以下代码可删除作业、已创建的资产和内容密钥策略：
 
 ```c#
 private static async Task CleanUpAsync(

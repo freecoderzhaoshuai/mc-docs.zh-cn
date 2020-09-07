@@ -1,19 +1,18 @@
 ---
 title: Azure Monitor 日志查询中的计算机组 | Azure Docs
 description: 使用 Azure Monitor 中的计算机组可为一组特定的计算机设定日志查询的范围。  本文介绍用于创建计算机组的不同方法以及如何在日志查询中使用这些方法。
-author: lingliw
-manager: digimobile
 ms.subservice: logs
 ms.topic: conceptual
+author: Johnnytechn
+ms.author: v-johya
+ms.date: 08/20/2020
 origin.date: 02/05/2019
-ms.date: 11/04/2019
-ms.author: v-lingwu
-ms.openlocfilehash: e2ef06296e3daf783518de36a74bfcbd109762b9
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 46ae37b76969dd67d9c41f9dad4aafe5b069a6b8
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79452523"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457228"
 ---
 # <a name="computer-groups-in-azure-monitor-log-queries"></a>Azure Monitor 日志查询中的计算机组
 使用 Azure Monitor 中的计算机组可为一组特定的计算机设定[日志查询](../log-query/log-query-overview.md)的范围。  每个组使用定义的查询或通过从不同源导入组填充计算机。  当日志查询中包括组时，结果仅限于与组中的计算机匹配的记录。
@@ -36,7 +35,9 @@ ms.locfileid: "79452523"
 
 可以将任何查询用于计算机组，但它必须通过使用 `distinct Computer` 返回一组不同的计算机。  下面是可以用于计算机组的一个典型示例查询。
 
-    Heartbeat | where Computer contains "srv" | distinct Computer
+```kusto
+Heartbeat | where Computer contains "srv" | distinct Computer
+```
 
 在 Azure 门户中，可以使用以下过程从日志搜索创建计算机组。
 
@@ -63,7 +64,7 @@ ms.locfileid: "79452523"
 
 通过 Azure 门户上 Log Analytics 工作区的“高级设置”配置 Azure Monitor，以导入 Active Directory 安全组。   依次选择“计算机组”、“Active Directory”和“从计算机导入 Active Directory 组成员身份”。     无需进一步的配置。
 
-![Active Directory 中的计算机组](media/computer-groups/configure-activedirectory.png)
+![Active Directory 中的计算机组](./media/computer-groups/configure-activedirectory.png)
 
 导入组后时，菜单将列出检测到组成员身份的计算机数以及导入的组数。  可以单击任一链接以返回包含此信息的 **ComputerGroup** 记录。
 
@@ -72,7 +73,7 @@ ms.locfileid: "79452523"
 
 通过 Azure 门户上 Log Analytics 工作区的“高级设置”配置 Azure Monitor，以导入 WSUS 组。   依次选择“计算机组”、“WSUS”和“导入 WSUS 组成员身份”。     无需进一步的配置。
 
-![WSUS 中的计算机组](media/computer-groups/configure-wsus.png)
+![WSUS 中的计算机组](./media/computer-groups/configure-wsus.png)
 
 导入组后时，菜单将列出检测到组成员身份的计算机数以及导入的组数。  可以单击任一链接以返回包含此信息的 **ComputerGroup** 记录。
 
@@ -81,7 +82,7 @@ ms.locfileid: "79452523"
 
 必须[将 Configuration Manager 连接到 Azure Monitor](collect-sccm.md) 才能导入 Configuration Manager 集合。  
 
-![SCCM 中的计算机组](media/computer-groups/configure-sccm.png)
+![SCCM 中的计算机组](./media/computer-groups/configure-sccm.png)
 
 导入集合后，菜单将列出具有检测到的组成员身份的计算机数以及导入的组数。  可以单击任一链接以返回包含此信息的 **ComputerGroup** 记录。
 
@@ -90,32 +91,34 @@ ms.locfileid: "79452523"
 
 单击“删除”列中的“x”可删除计算机组。  单击组的“查看成员”  图标可运行返回其成员的组的日志搜索。  无法修改计算机组，而是必须删除该组，然后使用修改的设置重新创建它。
 
-![已保存的计算机组](media/computer-groups/configure-saved.png)
+![已保存的计算机组](./media/computer-groups/configure-saved.png)
 
 
 ## <a name="using-a-computer-group-in-a-log-query"></a>在日志查询中使用计算机组
 通过将计算机组的别名视为函数，可在查询中使用从日志查询创建的计算机组，通常使用以下语法：
 
-  `Table | where Computer in (ComputerGroup)`
+```kusto
+Table | where Computer in (ComputerGroup)`
+```
 
 例如，可以使用以下语法仅返回名为 mycomputergroup 的计算机组中的计算机的 UpdateSummary 记录。
- 
-  `UpdateSummary | where Computer in (mycomputergroup)`
 
+```kusto
+UpdateSummary | where Computer in (mycomputergroup)`
+```
 
 导入的计算机组及其包含的计算机存储在 ComputerGroup 表中  。  例如，以下查询会从 Active Directory 返回域计算机组中的计算机列表。 
 
-  `ComputerGroup | where GroupSource == "ActiveDirectory" and Group == "Domain Computers" | distinct Computer`
+```kusto
+ComputerGroup | where GroupSource == "ActiveDirectory" and Group == "Domain Computers" | distinct Computer
+```
 
 以下查询将仅针对域计算机中的计算机返回 UpdateSummary 记录。
 
-  ```
-  let ADComputers = ComputerGroup | where GroupSource == "ActiveDirectory" and Group == "Domain Computers" | distinct Computer;
+```kusto
+let ADComputers = ComputerGroup | where GroupSource == "ActiveDirectory" and Group == "Domain Computers" | distinct Computer;
   UpdateSummary | where Computer in (ADComputers)
-  ```
-
-
-
+```
 
 ## <a name="computer-group-records"></a>计算机组记录
 会在通过 Active Directory 或 WSUS 创建的每个计算机组成员身份的 Log Analytics 工作区中创建记录。  这些记录的类型为 **ComputerGroup**，并且具有下表中的属性。  不会基于日志查询为计算机组创建记录。
@@ -129,13 +132,10 @@ ms.locfileid: "79452523"
 | `GroupFullName` |包括源和源名称的组的完整路径。 |
 | `GroupSource` |从中收集组的源。 <br><br>ActiveDirectory<br>WSUS<br>WSUSClientTargeting |
 | `GroupSourceName` |从中收集组的源名称。  对于 Active Directory，这是域名。 |
-| `ManagementGroupName` |SCOM 代理的管理组名称。  对于其他代理，这是 AOI-\<工作区 ID\> |
+| `ManagementGroupName` |SCOM 代理的管理组名称。  对于其他代理，这是 AOI-\<workspace ID\> |
 | `TimeGenerated` |创建或更新计算机组的日期和时间。 |
 
 ## <a name="next-steps"></a>后续步骤
 * 了解[日志查询](../log-query/log-query-overview.md)以便分析从数据源和解决方案中收集的数据。  
-
-
-
 
 

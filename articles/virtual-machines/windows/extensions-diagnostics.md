@@ -1,20 +1,23 @@
 ---
 title: 适用于 Windows 的 Azure 诊断扩展
 description: 使用 Azure 诊断扩展监视 Azure Windows VM
-author: rockboyfor
-manager: digimobile
+manager: ashwink
 ms.service: virtual-machines-windows
 ms.topic: how-to
 ms.workload: infrastructure-services
 origin.date: 04/06/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 6f7d12daf5c36280412609566a2cdc53c1b7678e
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.custom: devx-track-azurecli, devx-track-azurepowershell
+ms.openlocfilehash: 4c953d804e792889992f8b2b3defa19d7705ee1d
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945635"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463118"
 ---
 # <a name="azure-diagnostics-extension-for-windows-vms"></a>适用于 Windows VM 的 Azure 诊断扩展
 
@@ -38,7 +41,7 @@ Azure 诊断扩展要求目标虚拟机已连接到 Internet。
 
 ## <a name="template-deployment"></a>模板部署
 
-可使用 Azure Resource Manager 模板部署 Azure VM 扩展。 可在 Azure 资源管理器模板中使用上一部分中详细说明的 JSON 架构，以在 Azure 资源管理器模板部署期间运行 Azure 诊断扩展。 请参阅[将监视和诊断与 Windows VM 和 Azure 资源管理器模板配合使用](extensions-diagnostics-template.md)。
+可使用 Azure Resource Manager 模板部署 Azure VM 扩展。 可在 Azure 资源管理器模板中使用上一部分中详细说明的 JSON 架构，以在 Azure 资源管理器模板部署期间运行 Azure 诊断扩展。 请参阅[将监视和诊断与 Windows VM 和 Azure 资源管理器模板配合使用](../extensions/diagnostics-template.md)。
 
 ## <a name="azure-cli-deployment"></a>Azure CLI 部署
 
@@ -56,7 +59,7 @@ az vm extension set \
 
 ## <a name="powershell-deployment"></a>PowerShell 部署
 
-可以使用 `Set-AzVMDiagnosticsExtension` 命令将 Azure 诊断扩展添加到现有的虚拟机。 另请参阅[使用 PowerShell 在运行 Windows 的虚拟机中启用 Azure 诊断](ps-extensions-diagnostics.md)。
+可以使用 `Set-AzVMDiagnosticsExtension` 命令将 Azure 诊断扩展添加到现有的虚拟机。 另请参阅[使用 PowerShell 在运行 Windows 的虚拟机中启用 Azure 诊断](../extensions/diagnostics-windows.md)。
 
 ```powershell
 $vm_resourcegroup = "myvmresourcegroup"

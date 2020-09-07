@@ -3,8 +3,7 @@ title: 了解 Azure VM 的系统重启 | Azure
 description: 列出可能会导致 VM 重启的事件
 services: virtual-machines
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: ''
 ms.service: virtual-machines
@@ -12,14 +11,17 @@ ms.topic: troubleshooting
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 origin.date: 10/31/2018
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 359abfdc52ca8cf621dd00ca0e65358c847d1e0b
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: 366134668f037e21bac6fe6f4486164912c4617a
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596353"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456833"
 ---
 # <a name="understand-a-system-reboot-for-azure-vm"></a>了解 Azure VM 的系统重启
 
@@ -35,7 +37,7 @@ Azure 虚拟机 (VM) 有时可能会在没有明显原因（没有证据表明�
 
 ## <a name="resource-health-information"></a>资源运行状况信息
 
-Azure 资源运行状况是一项服务，用于公开各个 Azure 资源的运行状况，并为排查问题提供可行的指南。 在不可直接访问服务器或基础结构元素的云环境中，资源运行状况的目标是减少你排除故障花费的时间。 具体说来，目的是减少确定问题根源在于应用程序还是在于 Azure 平台内事件所花的时间。 有关详细信息，请参阅[了解和使用资源运行状况](../../resource-health/resource-health-overview.md)。
+Azure 资源运行状况是一项服务，用于公开各个 Azure 资源的运行状况，并为排查问题提供可行的指南。 在不可直接访问服务器或基础结构元素的云环境中，资源运行状况的目标是减少你排除故障花费的时间。 具体说来，目的是减少确定问题根源在于应用程序还是在于 Azure 平台内事件所花的时间。 有关详细信息，请参阅[了解和使用资源运行状况](../../service-health/resource-health-overview.md)。
 
 ## <a name="actions-and-events-that-can-cause-the-vm-to-reboot"></a>可能导致 VM 重启的操作和事件
 
@@ -49,8 +51,8 @@ Azure 在中国范围内定期执行更新，以提高 VM 所基于主机基础�
 
 若要了解什么是 Azure 计划内维护，及其如何影响 Linux VM 的可用性，请参阅下面列出的文章。 这些文章介绍了 Azure 计划内维护过程的背景，以及如何安排计划内维护以进一步减少影响。
 
-- [Azure VM 的计划内维护](../windows/planned-maintenance.md)
-- [如何在 Azure VM 上安排计划内维护](../windows/classic/planned-maintenance-schedule.md)
+- [Azure VM 的计划内维护](../maintenance-and-updates.md?bc=/virtual-machines/windows/breadcrumb/toc.json&toc=/virtual-machines/windows/toc.json)
+- [如何在 Azure VM 上安排计划内维护](../maintenance-and-updates.md?bc=/virtual-machines/windows/breadcrumb/toc.json&toc=/virtual-machines/windows/toc.json)
 
 ### <a name="memory-preserving-updates"></a>内存保留更新
 
@@ -76,8 +78,6 @@ Azure 在中国范围内定期执行更新，以提高 VM 所基于主机基础�
 ### <a name="azure-security-center-and-windows-update"></a>Azure 安全中心和 Windows 更新
 
 Azure 安全中心每天对 Windows 和 Linux VM 进行监控，以找出缺少的操作系统更新。 安全中心从 Windows Update 或 Windows Server Update Services (WSUS) 检索可用的安全更新和关键更新的列表，具体取决于 Windows VM 上配置的服务。 安全中心还可检查 Linux 系统的最新更新。 如果 VM 缺少系统更新，安全中心会建议你应用系统更新。 通过 Azure 门户中的安全中心控制这些系统更新的应用情况。 应用某些更新后，可能需要重启 VM。 有关详细信息，请参阅[在 Azure 安全中心应用系统更新](../../security-center/security-center-virtual-machine-protection.md)。
-
-<!--CORRECT ON ../security-center/security-center-virtual-machine-protection.md-->
 
 与本地服务器一样，Azure 不会向 Windows VM 推送 Windows 更新提供的更新，因为这些虚拟机应由用户进行管理。 但是，我们依然建议启用 Windows 自动更新设置。 自动安装 Windows 更新提供的更新也会导致应用更新后发生重启。 有关详细信息，请参阅 [Windows 更新常见问题解答](https://support.microsoft.com/help/12373/windows-update-faq)。
 
@@ -120,7 +120,7 @@ VM 可能因自身问题重启。 在 VM 上运行的工作负荷或角色可能
 
 超过 IO 限制 
 
-如果 I/O 请求因每秒输入/输出操作数 (IOPS) 超出磁盘 I/O 限制而持续受到限制，则可能暂时关闭 VM。 （标准磁盘存储的限制为 500 IOPS。）为缓解此问题，请在来宾 VM 中使用磁盘剥离或配置存储空间，具体情况取决于工作负荷。 有关详细信息，请参阅[配置 Azure VM 以获得最佳存储性能](https://blogs.msdn.com/b/mast/archive/2014/10/14/configuring-azure-virtual-machines-for-optimal-storage-performance.aspx)。
+如果 I/O 请求因每秒输入/输出操作数 (IOPS) 超出磁盘 I/O 限制而持续受到限制，则可能暂时关闭 VM。 （标准磁盘存储的限制为 500 IOPS。）为缓解此问题，请在来宾 VM 中使用磁盘剥离或配置存储空间，具体情况取决于工作负荷。 
 
 ### <a name="other-incidents"></a>其他事件
 

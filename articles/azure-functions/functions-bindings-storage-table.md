@@ -3,14 +3,15 @@ title: Azure Functions 的 Azure 表存储绑定
 description: 了解如何在 Azure Functions 中使用 Azure 表存储绑定。
 author: craigshoemaker
 ms.topic: reference
-ms.date: 08/11/2020
+ms.date: 09/02/2020
 ms.author: v-junlch
-ms.openlocfilehash: 5f2c6802d7333af29fca282496b078f92f36a0c5
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 91e255179d85190b99f9861171a2f4089b1ef300
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222602"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413965"
 ---
 # <a name="azure-table-storage-bindings-for-azure-functions"></a>Azure Functions 的 Azure 表存储绑定
 
@@ -99,7 +100,7 @@ public class TableStorage
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
-using Microsoft.WindowsAzure.Storage.Table;
+using Microsoft.Azure.Cosmos.Table;
 using System;
 using System.Threading.Tasks;
 
@@ -227,8 +228,8 @@ function.json 文件如下所示：
 C# 脚本代码添加对 Azure 存储 SDK 的引用，以便实体类型可以从 `TableEntity` 派生。
 
 ```csharp
-#r "Microsoft.WindowsAzure.Storage"
-using Microsoft.WindowsAzure.Storage.Table;
+#r "Microsoft.Azure.Cosmos"
+using Microsoft.Azure.Cosmos.Table;
 using Microsoft.Extensions.Logging;
 
 public static void Run(string myQueueItem, IQueryable<Person> tableBinding, ILogger log)
@@ -272,8 +273,8 @@ public class Person : TableEntity
 ```
 
 ```csharp
-#r "Microsoft.WindowsAzure.Storage"
-using Microsoft.WindowsAzure.Storage.Table;
+#r "Microsoft.Azure.Cosmos"
+using Microsoft.Azure.Cosmos.Table;
 using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;

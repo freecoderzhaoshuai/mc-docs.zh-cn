@@ -9,14 +9,14 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: include
 origin.date: 10/10/2019
-ms.date: 03/16/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: edaf172a83406450d451e4bd736ada55fea40934
-ms.sourcegitcommit: 304d3ef3c9e65c3e85977b3afb9985fbc0f908d6
+ms.openlocfilehash: e34e551534fb20f6b40e7e977feef6abeb725654
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85095933"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317582"
 ---
 本指南介绍如何安装用于 C# .NET Core 的[语音 SDK](~/articles/cognitive-services/speech-service/speech-sdk.md)。 如果只是需要包名称以便自行开始，请在 NuGet 控制台中运行 `Install-Package Microsoft.CognitiveServices.Speech`。
 

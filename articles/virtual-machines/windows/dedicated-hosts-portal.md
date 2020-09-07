@@ -1,21 +1,24 @@
 ---
 title: 使用门户部署 Azure 专用主机
 description: 使用门户将 VM 部署到专用主机。
-author: rockboyfor
 ms.service: virtual-machines-windows
-ms.topic: article
+ms.topic: how-to
 ms.workload: infrastructure
 origin.date: 03/10/2020
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.reviewer: zivr
-ms.openlocfilehash: 31f1db628f8d8e47c7f4163cce0da08d48aa36c1
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 3e8a576f92f6ca1ebf900420f19c175b5df968c2
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946017"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463177"
 ---
+<!--Verified successfully-->
 <!--Verified the Portal UI and confirmed with Peter Gu-->
 <!--CAN NOT VERIFIED DUE TO LIMITED CPU VCORE-->
 # <a name="deploy-vms-to-dedicated-hosts-using-the-portal"></a>使用门户将 VM 部署到专用主机
@@ -37,7 +40,7 @@ ms.locfileid: "85946017"
 1. 在“管理员帐户”下，提供用户名（例如 *azureuser*）和密码。 密码必须至少 12 个字符长，且符合[定义的复杂性要求](faq.md#what-are-the-password-requirements-when-creating-a-vm)。
 1. 在“入站端口规则”下，选择“允许所选端口”，然后从下拉列表中选择“RDP (3389)”。  
 1. 在页面顶部，选择“高级”选项卡，然后在“主机”部分，对于“主机组”，选择 myHostGroup，对于“主机”，选择 myHost 。 
-    ![选择主机组和主机](./media/dedicated-hosts-portal/advanced.png)
+    :::image type="content" source="./media/dedicated-hosts-portal/advanced.png" alt-text="选择主机组和主机":::
 1. 保留剩余的默认值，然后选择页面底部的“查看 + 创建”按钮。
 1. 显示验证通过的消息时，选择“创建”。
 
@@ -47,7 +50,7 @@ ms.locfileid: "85946017"
 
 - VM 大小必须属于专用主机所用的同一大小系列。 例如，如果专用主机是 DSv3，则 VM 大小可以是 Standard_D4s_v3，但不能是 Standard_A4_v2。 
 - VM 需要位于专用主机所在的同一区域。
-- VM 不能是邻近放置组的一部分。 在将 VM 移动到专用主机之前，请先从邻近放置组中删除该 VM。 有关详细信息，请参阅[将 VM 移出邻近放置组](/virtual-machines/windows/proximity-placement-groups#move-an-existing-vm-out-of-a-proximity-placement-group)
+- VM 不能是邻近放置组的一部分。 在将 VM 移动到专用主机之前，请先从邻近放置组中删除该 VM。 有关详细信息，请参阅[将 VM 移出邻近放置组](./proximity-placement-groups.md#move-an-existing-vm-out-of-a-proximity-placement-group)
 - VM 不能位于可用性集中。
 
     <!--Not Available on  availability zone-->

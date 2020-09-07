@@ -7,12 +7,12 @@ origin.date: 06/18/2020
 ms.date: 08/13/2020
 ms.author: v-tawe
 ms.custom: mvc, cli-validate, seodec18
-ms.openlocfilehash: c8fe37204c2583388df10bd383d356522342f1f0
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 39eb8694391dfb9f726a3f2492b97e00953ad29c
+ms.sourcegitcommit: 5055d580fb7ef1722e32e09a334d1d3e28295dd6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88229006"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89503359"
 ---
 # <a name="build-a-ruby-and-postgres-app-in-azure-app-service-on-linux"></a>在基于 Linux 上的 Azure 应用服务中生成 Ruby 和 Postgres 应用
 
@@ -106,7 +106,7 @@ rails server
 
 若要停止 Rails 服务器，请在终端中键入 `Ctrl + C`。
 
-[!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)]
+<!-- [!INCLUDE [cloud-shell-try-it.md](../../includes/cloud-shell-try-it.md)] -->
 
 ## <a name="create-postgres-in-azure"></a>在 Azure 中创建 Postgres
 

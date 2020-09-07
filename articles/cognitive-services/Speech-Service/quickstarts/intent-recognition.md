@@ -9,16 +9,16 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: quickstart
 origin.date: 06/25/2020
-ms.date: 08/03/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.custom: devx-track-javascript
+ms.custom: devx-track-javascript, devx-track-csharp
 zone_pivot_groups: programming-languages-set-two-with-js
-ms.openlocfilehash: 2460c1ac5ca18ee8d178ed9026aa527cde271d7a
-ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
+ms.openlocfilehash: bede77f1e67a28def5f4522a6fcdc129945ac744
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87516051"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317561"
 ---
 # <a name="quickstart-recognize-speech-intents-and-entities-with-language-understanding-luis"></a>快速入门：使用语言理解 (LUIS) 识别语音、意向和实体
 

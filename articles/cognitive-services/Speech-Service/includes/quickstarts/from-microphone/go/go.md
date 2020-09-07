@@ -3,14 +3,14 @@ author: trrwilson
 ms.service: cognitive-services
 ms.topic: include
 origin.date: 05/25/2020
-ms.date: 06/19/2019
+ms.date: 08/03/2020
 ms.author: v-tawe
-ms.openlocfilehash: f598589f63d8f163a253baae874ca1628ae85334
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+ms.openlocfilehash: dee4a31bfde75cb41d44038233face1fa08a4fc3
+ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85611924"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "89317463"
 ---
 ## <a name="prerequisites"></a>先决条件
 
@@ -27,7 +27,7 @@ ms.locfileid: "85611924"
 通过添加以下行，使用最新的 SDK 版本更新 go.mod 文件
 ```sh
 require (
-    github.com/Microsoft/cognitive-services-speech-sdk-go v1.12.1
+    github.com/Microsoft/cognitive-services-speech-sdk-go v1.13.0
 )
 ```
 
@@ -116,8 +116,10 @@ func main() {
 1. 生成项目，例如“开始生成”
 2. 运行模块并对着设备的麦克风讲出一个短语或句子。 你的语音将传输到语音服务并转录为文本，该文本将显示在输出中。
 
+
 > [!NOTE]
 > 语音 SDK 将默认使用 en-us 作为语言进行识别。若要了解如何选择源语言，请参阅[指定语音转文本的源语言](../../../../how-to-specify-source-language.md)。
+
 
 ## <a name="next-steps"></a>后续步骤
 

@@ -1,5 +1,5 @@
 ---
-title: 使用 Azure 通知中心向 Windows 应用发送本地化通知 | Azure
+title: 使用 Azure 通知中心向 Windows 应用发送本地化通知 | Microsoft Docs
 description: 了解如何使用 Azure 通知中心发送本地化的突发新闻通知。
 services: notification-hubs
 documentationcenter: windows
@@ -12,18 +12,18 @@ ms.workload: mobile
 ms.tgt_pltfrm: mobile-windows
 ms.devlang: dotnet
 ms.topic: tutorial
-ms.custom: mvc
+ms.custom: mvc, devx-track-csharp
 origin.date: 03/22/2019
-ms.date: 12/09/2019
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.reviewer: jowargo
 ms.lastreviewed: 03/22/2019
-ms.openlocfilehash: 35004d0ba89dbe825e11403933aac2e6834ed9dd
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 3d054b06b49444903c7d2ff61eff344d4eaf2abd
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74884963"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317509"
 ---
 # <a name="tutorial-send-localized-push-notifications-to-windows-apps-using-azure-notification-hubs"></a>教程：使用 Azure 通知中心向 Windows 应用发送本地化推送通知
 
@@ -40,7 +40,7 @@ ms.locfileid: "74884963"
 
 完成本教程后，即可通过移动应用程序注册感兴趣的类别，并指定接收通知的语言。 后端应用程序可发送按语言和设备本地化的通知。
 
-本教程介绍如何执行下列操作：
+在本教程中，你将了解如何执行以下操作：
 
 > [!div class="checklist"]
 > * 更新 Windows 应用，使之支持区域设置信息
@@ -273,19 +273,18 @@ private static async void SendTemplateNotificationAsync()
 >[向特定用户推送通知](notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md)
 
 <!-- Anchors. -->
-<!-- [Template concepts]: #concepts
+[Template concepts]: #concepts
 [The app user interface]: #ui
 [Building the Windows Store client app]: #building-client
 [Send notifications from your back-end]: #send
-[Next Steps]:#next-steps -->
+[Next Steps]:#next-steps
 
 <!-- Images. -->
 
 <!-- URLs. -->
-<!-- [Mobile Service]: /develop/mobile/tutorials/android
 [Notify users with Notification Hubs: ASP.NET]: notification-hubs-aspnet-backend-ios-apple-apns-notification.md
 [Notify users with Notification Hubs: Mobile Services]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
-[Use Notification Hubs to send breaking news]: notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md
+[Use Notification Hubs to send breaking news]: notification-hubs/notification-hubs-windows-notification-dotnet-push-xplat-segmented-wns.md
 [Submit an app page]: https://go.microsoft.com/fwlink/p/?LinkID=266582
 [My Applications]: https://go.microsoft.com/fwlink/p/?LinkId=262039
 [Live SDK for Windows]: https://go.microsoft.com/fwlink/p/?LinkId=262253
@@ -297,6 +296,6 @@ private static async void SendTemplateNotificationAsync()
 [Authorize users with scripts]: /develop/mobile/tutorials/authorize-users-in-scripts-dotnet
 [JavaScript and HTML]: /develop/mobile/tutorials/get-started-with-push-js
 [wns object]: https://go.microsoft.com/fwlink/p/?LinkId=260591
-[Notification Hubs Guidance]: https://msdn.microsoft.com/library/jj927170.aspx
-[Notification Hubs How-To for iOS]: https://msdn.microsoft.com/library/jj927168.aspx
-[Notification Hubs How-To for Windows Store]: https://msdn.microsoft.com/library/jj927172.aspx -->
+[Notification Hubs Guidance]: https://docs.microsoft.com/previous-versions/azure/azure-services/jj927170(v=azure.100)
+[Notification Hubs How-To for iOS]: https://docs.microsoft.com/previous-versions/azure/azure-services/jj927170(v=azure.100)
+[Notification Hubs How-To for Windows Store]: https://docs.microsoft.com/previous-versions/azure/azure-services/jj927170(v=azure.100)

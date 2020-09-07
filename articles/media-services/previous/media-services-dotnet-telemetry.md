@@ -13,14 +13,15 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/18/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 98553afa8d41f3109c6719ff79604723255d0025
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: dac088db068a15a743335b986795cd341ad4ec88
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71124502"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413201"
 ---
 # <a name="configuring-azure-media-services-telemetry-with-net"></a>使用 .NET 配置 Azure 媒体服务遥测 
 
@@ -31,7 +32,7 @@ ms.locfileid: "71124502"
 
 可通过以下方式之一使用遥测数据：
 
-- 直接从 Azure 表存储中读取数据（例如使用存储 SDK）。 有关遥测存储表的说明，请参阅[这篇文章](https://msdn.microsoft.com/library/mt742089.aspx)中的“使用遥测信息”。
+- 直接从 Azure 表存储中读取数据（例如使用存储 SDK）。 有关遥测存储表的说明，请参阅[这篇文章](https://docs.microsoft.com/previous-versions/azure/mt742089(v=azure.100))中的“使用遥测信息”。
 
 或
 

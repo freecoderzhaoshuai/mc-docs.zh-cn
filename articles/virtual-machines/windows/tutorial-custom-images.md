@@ -1,23 +1,23 @@
 ---
-title: 教程 - 使用 Azure PowerShell 创建 Windows VM 映像
+title: 教程 - 使用 Azure PowerShell 创建自定义 VM 映像
 description: 本教程介绍如何使用 Azure PowerShell 创建一个存储在 Azure 共享映像库中的 Windows 自定义虚拟机映像。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.subservice: imaging
 ms.topic: tutorial
 ms.workload: infrastructure
 origin.date: 05/01/2020
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: yes
-ms.testdate: 07/27/2020
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: a762f25a4b598ac660b65d8e9c7d643e25490707
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: 1beab7c48e0dd7d9d0225ef36c19eb0edabcc0ae
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244724"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463116"
 ---
 <!--Verified Successfully-->
 # <a name="tutorial-create-windows-vm-images-with-azure-powershell"></a>教程：使用 Azure PowerShell 创建 Windows VM 映像
@@ -47,7 +47,7 @@ ms.locfileid: "87244724"
 
 [!INCLUDE [virtual-machines-shared-image-gallery-resources](../../../includes/virtual-machines-shared-image-gallery-resources.md)]
 
-## <a name="launch-azure-local-powershell"></a>启动 Azure 本地 PowerShell
+## <a name="launch-azure-local-shell"></a>启动 Azure 本地 Shell
 
 <!--Not Available on Azure Cloud Cloud--> 
 
@@ -91,7 +91,7 @@ $gallery = New-AzGallery `
 
 ## <a name="create-an-image-definition"></a>创建映像定义 
 
-映像定义为映像创建逻辑分组。 映像定义用于管理在其中创建的映像版本的相关信息。 映像定义名称可以由大写或小写字母、数字、点、短划线和句点构成。 有关可为映像定义指定的值的详细信息，请参阅[映像定义](/virtual-machines/windows/shared-image-galleries#image-definitions)。
+映像定义为映像创建一个逻辑分组。 映像定义用于管理在其中创建的映像版本的相关信息。 映像定义名称可能包含大写或小写字母、数字、点、短划线和句点。 若要详细了解可以为映像定义指定的值，请参阅[映像定义](./shared-image-galleries.md#image-definitions)。
 
 使用 [New-AzGalleryImageDefinition](https://docs.microsoft.com/powershell/module/az.compute/new-azgalleryimageversion) 创建映像定义。 在此示例中，库映像名为 myGalleryImage，它是为专用化映像创建的。 
 
@@ -226,4 +226,4 @@ Remove-AzResourceGroup -Name myResoureceGroup
 > [!div class="nextstepaction"]
 > [创建高度可用的 VM](tutorial-availability-sets.md)
 
-<!--Update_Description: update meta properties, wording update, update link -->
+<!-- Update_Description: update meta properties, wording update, update link -->

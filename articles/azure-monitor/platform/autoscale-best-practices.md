@@ -1,39 +1,42 @@
 ---
 title: 自动缩放的最佳做法
 description: Azure 中适用于 Web 应用、虚拟机规模集和云服务的自动缩放模式
-author: lingliw
 ms.topic: conceptual
-origin.date: 07/18/2017
-ms.date: 07/07/2018
-ms.author: v-lingwu
+author: Johnnytechn
+ms.date: 08/20/2020
 ms.subservice: autoscale
-ms.openlocfilehash: cf87f08d1997ec2864d347e178a1b299d4a18096
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+origin.date: 07/18/2017
+ms.openlocfilehash: eca5d04b515a2e04605781286600723f68cc85c1
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291668"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457357"
 ---
 # <a name="best-practices-for-autoscale"></a>自动缩放最佳实践
 Azure Monitor 自动缩放仅适用于[虚拟机规模集](/virtual-machine-scale-sets/)、[云服务](/cloud-services/)、[应用服务 - Web 应用](/app-service/)和 [API 管理服务](/api-management/api-management-key-concepts)。
 
 ## <a name="autoscale-concepts"></a>自动缩放概念
+
 * 一个资源只能具有*一个*自动缩放设置
 * 自动缩放设置可以具有一个或多个配置文件，每个配置文件可以具有一个或多个自动缩放规则。
 * 自动缩放设置可水平缩放实例，它在增加实例时是*扩大*，在减少实例数时是*缩小*。
   自动缩放设置具有最大、最小和默认实例值。
 * 自动缩放作业始终读取要作为缩放依据的关联指标，检查它是否超过针对扩大或缩小配置的阈值。 可以在 [Azure 监视器自动缩放常用指标](autoscale-common-metrics.md)查看可以作为自动缩放依据的指标列表。
 * 所有阈值都在实例级别进行计算。 例如，“如果实例计数为 2，则在平均 CPU > 80% 时横向扩展增加 1 个实例”表示在所有实例间的平均 CPU 大于 80% 时进行扩大。
-* 所有自动缩放失败都会记录到活动日志中。 然后可以配置[活动日志警报](../../azure-monitor/platform/activity-log-alerts.md)，以便在自动缩放失败时通过电子邮件、短信或 Webhook 获得通知。
+* 所有自动缩放失败都会记录到活动日志中。 然后可以配置[活动日志警报](./activity-log-alerts.md)，以便在自动缩放失败时通过电子邮件、短信或 Webhook 获得通知。
 * 同样，所有成功的缩放操作也会发布到活动日志中。 然后可以配置活动日志警报，以便在自动缩放操作成功时通过电子邮件、短信或 Webhook 获得通知。 还可以配置电子邮件或 Webhook 通知，以通过自动缩放设置上的通知选项卡获取有关成功缩放操作的通知。
 
 ## <a name="autoscale-best-practices"></a>自动缩放最佳做法
+
 使用自动缩放时，可使用以下最佳做法。
 
 ### <a name="ensure-the-maximum-and-minimum-values-are-different-and-have-an-adequate-margin-between-them"></a>确保最大和最小值不同，并且它们之间具有足够的余量
+
 如果设置的最小值为 2，最大值为 2，并且当前实例计数为 2，则不可能进行缩放操作。 在最大和最小实例计数之间保留足够的余量（包括端值）。 自动缩放始终在这些限制之间进行。
 
 ### <a name="manual-scaling-is-reset-by-autoscale-min-and-max"></a>手动缩放通过自动缩放最小和最大值来重置
+
 如果手动将实例计数更新为高于或低于最大值的值，则自动缩放引擎会自动缩放回最小值（如果低于）或最大值（如果高于）。 例如，将范围设置在 3 和 6 之间。 如果有一个正在运行的实例，则自动缩放引擎会在下次运行时缩放为三个实例。 同样，如果将缩放规模手动设置为八个实例，则自动缩放会在下次运行时收缩回六个实例。  手动缩放效果只是暂时的，除非也重置了自动缩放规则。
 
 ### <a name="always-use-a-scale-out-and-scale-in-rule-combination-that-performs-an-increase-and-decrease"></a>始终使用执行增加和减少的扩大和缩小规则组合
@@ -150,3 +153,5 @@ Azure Monitor 自动缩放仅适用于[虚拟机规模集](/virtual-machine-scal
 ## <a name="next-steps"></a>后续步骤
 - [创建活动日志警报以监视订阅上的所有自动缩放引擎操作。](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-alert)
 - [创建活动日志警报以监视订阅上所有失败的自动横向缩减/横向扩展操作](https://github.com/Azure/azure-quickstart-templates/tree/master/monitor-autoscale-failed-alert)
+
+

@@ -12,15 +12,15 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/09/2020
-ms.date: 05/11/2020
+ms.date: 09/07/2020
 ms.author: v-jay
 ms.custom: seodec18
-ms.openlocfilehash: 42e89c7983b81d7533130fffce080426e8f63c7d
-ms.sourcegitcommit: 1f890a4085e184cc678485d05f08dd6de8dc973f
+ms.openlocfilehash: 7829d902bb1499e785fb590f65084da502fe2288
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84438938"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413474"
 ---
 # <a name="scaling-media-processing"></a>缩放媒体处理能力
 
@@ -46,7 +46,7 @@ ms.locfileid: "84438938"
 
 ## <a name="prerequisites"></a>先决条件 
 
-[创建媒体服务帐户](create-account-cli-how-to.md)。
+[创建媒体服务帐户](./create-account-howto.md)。
 
 [!INCLUDE [media-services-cli-instructions](../../../includes/media-services-cli-instructions.md)]
 

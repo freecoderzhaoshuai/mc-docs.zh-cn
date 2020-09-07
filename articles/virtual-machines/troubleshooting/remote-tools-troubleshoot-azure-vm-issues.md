@@ -3,8 +3,7 @@ title: 使用远程工具排查 Azure VM 问题 | Azure
 description: 了解 PsExec、PowerShell 脚本和其他可用来在不使用 RDP 的情况下排查远程 Azure VM 问题的远程工具。
 services: virtual-machines-windows
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: ''
 ms.service: virtual-machines
@@ -13,14 +12,17 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: azurecli
 origin.date: 01/11/2018
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 9e956c9f7f4f13743dcbda5e4f0c38fd9fee4d07
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: 6cc39009f7ed2a4e32f14b964b930b019a626b3c
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596100"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456841"
 ---
 # <a name="use-remote-tools-to-troubleshoot-azure-vm-issues"></a>使用远程工具排查 Azure VM 问题
 
@@ -106,7 +108,6 @@ $vmResourceGroup = "<<RESOURCE GROUP>>"
 $vmLocation = "<<DATACENTER>>" 
 
 #Set up the Azure PowerShell module, and ensure the access to the subscription.
-Import-Module Az
 Connect-AzAccount -Environment AzureChinaCloud #Ensure login with the account associated with the subscription ID.
 Get-AzSubscription -SubscriptionId $subscriptionID | Select-AzSubscription
 
@@ -120,6 +121,8 @@ Set-AzStorageBlobContent -File $localScript -Container $container -Blob $blobNam
 #Push the script into the VM.
 Set-AzVMCustomScriptExtension -Name "CustomScriptExtension" -ResourceGroupName $vmResourceGroup -VMName $vmName -Location $vmLocation -StorageAccountName $storageAccount -StorageAccountKey $storagekey -ContainerName $container -FileName $blobName -Run $blobName
 ```
+
+<!--Not Available on AzureStorage: The term 'New-AzureStorageContainer' is not recognized as the name of a cmdlet-->
 
 <!--Not Available on ## Remote PowerShell-->
 ## <a name="remote-registry"></a>远程注册表
@@ -135,11 +138,11 @@ Set-AzVMCustomScriptExtension -Name "CustomScriptExtension" -ResourceGroupName $
 
 2. 选择“文件” > “连接网络注册表”。  
 
-    ![注册表编辑器](./media/remote-tools-troubleshoot-azure-vm-issues/remote-registry.png) 
+    :::image type="content" source="./media/remote-tools-troubleshoot-azure-vm-issues/remote-registry.png" alt-text="注册表编辑器"::: 
 
 3. 在“输入要选择的对象名称”框中输入目标 VM 的主机名或动态 IP（首选），以找到该 VM。   
 
-    ![“输入要选择的对象名称”框](./media/remote-tools-troubleshoot-azure-vm-issues/input-computer-name.png) 
+    :::image type="content" source="./media/remote-tools-troubleshoot-azure-vm-issues/input-computer-name.png" alt-text="“输入要选择的对象名称”框"::: 
 
 4. 输入目标 VM 的凭据。
 
@@ -160,18 +163,18 @@ Set-AzVMCustomScriptExtension -Name "CustomScriptExtension" -ResourceGroupName $
 
 3. 选择“连接到另一台计算机”。 
 
-    ![远程服务](./media/remote-tools-troubleshoot-azure-vm-issues/remote-services.png)
+    :::image type="content" source="./media/remote-tools-troubleshoot-azure-vm-issues/remote-services.png" alt-text="远程服务":::
 
 4. 输入目标 VM 的动态 IP。
 
-    ![输入动态 IP](./media/remote-tools-troubleshoot-azure-vm-issues/input-ip-address.png)
+    :::image type="content" source="./media/remote-tools-troubleshoot-azure-vm-issues/input-ip-address.png" alt-text="输入动态 IP":::
 
 5. 对服务进行任何必要的更改。
 
 ## <a name="next-steps"></a>后续步骤
 
-- 有关 Enter-PSSession cmdlet 的详细信息，请参阅 [Enter-PSSession](https://technet.microsoft.com/library/hh849707.aspx)。
-- 若要详细了解使用经典部署模型完成的适用于 Windows 的自定义脚本扩展，请参阅[适用于 Windows 的自定义脚本扩展](../extensions/custom-script-classic.md)。
+- 有关 Enter-PSSession cmdlet 的详细信息，请参阅 [Enter-PSSession](https://docs.microsoft.com/powershell/module/microsoft.powershell.core/enter-pssession?view=powershell-5.1)。
+- 若要详细了解使用经典部署模型完成的适用于 Windows 的自定义脚本扩展，请参阅[适用于 Windows 的自定义脚本扩展](../extensions/custom-script-windows.md)。
 - PsExec 包含在 [PSTools Suite](https://download.sysinternals.com/files/PSTools.zip) 中。
 - 有关 PSTools Suite 的详细信息，请参阅 [PSTools](https://docs.microsoft.com/sysinternals/downloads/pstools)。
 

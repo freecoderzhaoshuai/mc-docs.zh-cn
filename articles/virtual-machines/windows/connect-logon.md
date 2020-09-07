@@ -1,19 +1,22 @@
 ---
-title: 如何连接并登录到运行 Windows 的 Azure 虚拟机
+title: 连接到 Windows Server VM
 description: 了解如何使用 Azure 门户和 Resource Manager 部署模型连接并登录到 Windows VM。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
-ms.topic: article
+ms.topic: how-to
 origin.date: 11/26/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 6593b856f07d36e9a49d6a84fba0061edd283639
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.custom: devx-track-azurepowershell
+ms.openlocfilehash: 4e6e0804645e681265be1c97536e424c0afea3eb
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946027"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462913"
 ---
 # <a name="how-to-connect-and-sign-on-to-an-azure-virtual-machine-running-windows"></a>如何连接并登录到运行 Windows 的 Azure 虚拟机
 可以从 Windows 桌面使用 Azure 门户中的“连接”按钮来启动远程桌面 (RDP) 会话。 首先连接到虚拟机，然后登录。
@@ -27,7 +30,7 @@ ms.locfileid: "85946027"
 4. 在“连接到虚拟机”页上，选择 **RDP**，然后选择相应的 **IP 地址**和**端口号**。 在大多数情况下，应使用默认的 IP 地址和端口。 选择“下载 RDP 文件”。 如果 VM 具有实时策略集，则首先需要选择“请求访问”按钮来请求访问，然后才能下载 RDP 文件。 有关实时策略的详细信息，请参阅[使用实时策略管理虚拟机访问](../../security-center/security-center-just-in-time.md)。
 5. 打开下载的 RDP 文件，然后在出现提示时选择“连接”。 将收到 `.rdp` 文件来自未知发布服务器的警告。 这是正常情况。 在“远程桌面连接”窗口中，选择“连接”以继续。
 
-    ![有关未知发布者的警告的屏幕截图。](./media/connect-logon/rdp-warn.png)
+    :::image type="content" source="./media/connect-logon/rdp-warn.png" alt-text="有关未知发布者的警告的屏幕截图。":::
 3. 在“Windows 安全性”窗口中，依次选择“更多选择”、“使用其他帐户”。 在虚拟机上输入帐户的凭据，然后选择“确定”。
 
     **本地帐户**：通常，这是创建虚拟机时指定的本地帐户用户名和密码。 在本示例中，域是虚拟机的名称，输入格式为 *vmname*&#92;*username*。  
@@ -37,7 +40,7 @@ ms.locfileid: "85946027"
     **域控制器**：如果 VM 是域控制器，请输入该域的域管理员帐户的用户名和密码。
 4. 选择“是”验证虚拟机的标识并完成登录。
 
-    ![显示有关验证 VM 标识的消息的屏幕截图。](./media/connect-logon/cert-warning.png)
+    :::image type="content" source="./media/connect-logon/cert-warning.png" alt-text="显示有关验证 VM 标识的消息的屏幕截图。":::
 
     > [!TIP]
     > 如果门户中的“连接”按钮灰显，并且你未通过 [Express Route](../../expressroute/expressroute-introduction.md) 或[站点到站点 VPN](../../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md) 连接来连接到 Azure，则必须先为 VM 创建并分配一个公共 IP 地址，然后才能使用 RDP。 有关详细信息，请参阅 [Azure 中的公共 IP 地址](../../virtual-network/public-ip-addresses.md)。
@@ -61,6 +64,6 @@ Get-AzRemoteDesktopFile -ResourceGroupName "RgName" -Name "VmName" -LocalPath "C
 ```
 
 ## <a name="next-steps"></a>后续步骤
-如果连接有困难，请参阅[远程桌面连接故障排除](troubleshoot-rdp-connection.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。
+如果连接有困难，请参阅[远程桌面连接故障排除](../troubleshooting/troubleshoot-rdp-connection.md?toc=/virtual-machines/windows/toc.json)。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

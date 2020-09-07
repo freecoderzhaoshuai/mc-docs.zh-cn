@@ -5,14 +5,14 @@ ms.subservice: diagnostic-extension
 ms.topic: conceptual
 author: Johnnytechn
 ms.author: v-johya
-ms.date: 07/17/2020
+ms.date: 08/20/2020
 origin.date: 02/13/2019
-ms.openlocfilehash: ad1c279306fbafbbe1b69ddf5bb01d9803f92c74
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.openlocfilehash: 2f4fdfd8d4bcc1413684a20af68af24324cfa21d
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508372"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457428"
 ---
 # <a name="azure-diagnostics-extension-overview"></a>Azure 诊断扩展概述
 Azure 诊断扩展是 [Azure Monitor 中的代理](agents-overview.md)，可从 Azure 计算资源（包括虚拟机）的来宾操作系统中收集监视数据。 本文概述了 Azure 诊断扩展，其中包括它支持的具体功能以及用于安装和配置的选项。 
@@ -35,7 +35,7 @@ Azure Monitor 中的 Log Analytics 代理还可以用来从虚拟机的来宾操
 
 - Azure 诊断扩展只能与 Azure 虚拟机配合使用。 Log Analytics 代理可以与 Azure 中的、其他云中的和本地的虚拟机配合使用。
 - Azure 诊断扩展将数据发送到 Azure 存储、[Azure Monitor 指标](data-platform-metrics.md)（仅限 Windows）和事件中心。 Log Analytics 代理将数据收集到 [Azure Monitor 日志](data-platform-logs.md)中。
-- [解决方案](../monitor-reference.md#insights-and-core-solutions)和其他服务（如 [Azure 安全中心](/security-center/)）需要 Log Analytics 代理。
+- [解决方案](../monitor-reference.md#insights-and-core-solutions)和其他服务（如 [Azure 安全中心](/security-center/index.yml)）需要 Log Analytics 代理。
 
 ## <a name="costs"></a>成本
 Azure 诊断扩展不会产生费用，但可能会产生数据引入费用。 检查与要将数据收集到其中的目标相对应的 [Azure Monitor 定价](https://www.azure.cn/pricing/details/monitor/)。
@@ -51,7 +51,7 @@ Azure 诊断扩展不会产生费用，但可能会产生数据引入费用。 �
 | 性能计数器 | 数值，用于度量操作系统和工作负载的不同方面的性能。 |
 | IIS 日志             | 在来宾操作系统上运行的 IIS 网站的使用情况信息。 |
 | 应用程序日志     | 应用程序写入的跟踪消息。 |
-| .NET EventSource 日志 |使用 .NET [EventSource](https://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource.aspx) 类的代码编写事件 |
+| .NET EventSource 日志 |使用 .NET [EventSource](https://msdn.microsoft.com/dotnet/api/system.diagnostics.tracing.eventsource?view=netcore-3.1) 类的代码编写事件 |
 | [基于清单的 ETW 日志](https://docs.microsoft.com/windows/desktop/etw/about-event-tracing) |由任何进程生成的 Windows 事件的事件跟踪。 |
 | 故障转储（日志）   | 有关应用程序崩溃时的进程状态的信息。 |
 | 基于文件的日志    | 应用程序或服务创建的日志。 |
@@ -116,5 +116,4 @@ LAD 将数据写入 Azure 存储中的表。 它支持下表中的接收器。
 
 * 了解如何[在 Azure 诊断中使用性能计数器](../../cloud-services/diagnostics-performance-counters.md)。
 * 如果在开始诊断时或者在 Azure 存储表中查找数据时遇到问题，请参阅 [Azure 诊断故障排除](diagnostics-extension-troubleshooting.md)
-
 

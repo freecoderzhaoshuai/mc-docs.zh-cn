@@ -3,8 +3,7 @@ title: 重置远程桌面服务或其在 Windows VM 中的管理员密码 | Azur
 description: 了解如何使用 Azure 门户或 Azure PowerShell 在 Windows VM 上重置帐户密码或远程桌面服务。
 services: virtual-machines-windows
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: azure-resource-manager
 ms.assetid: 45c69812-d3e4-48de-a98d-39a0f5675777
@@ -13,18 +12,21 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.topic: troubleshooting
 origin.date: 03/25/2019
-ms.date: 11/11/2019
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 2faeaf0ad7ca56b93aa5016d728dbf00162d0339
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: cfa32d5f3d21ccc2f9effdd719df2383dbfd4845
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74116942"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456856"
 ---
 # <a name="reset-remote-desktop-services-or-its-administrator-password-in-a-windows-vm"></a>重置远程桌面服务或其在 Windows VM 中的管理员密码
 如果无法连接到 Windows 虚拟机 (VM)，可以重置本地管理员密码或远程桌面服务配置（Windows 域控制器不支持此操作）。 若要重置密码，可以使用 Azure 门户或 Azure PowerShell 中的 VM 访问扩展。 登录到 VM 后，重置该本地管理员的密码。  
-如果使用 PowerShell，请务必[安装和配置最新的 PowerShell 模块](https://docs.microsoft.com/powershell/azure/overview)，并登录到 Azure 订阅。 也可以[对使用经典部署模型创建的 VM 执行这些步骤](/virtual-machines/windows/classic/reset-rdp)。
+如果使用 PowerShell，请务必[安装和配置最新的 PowerShell 模块](https://docs.microsoft.com/powershell/azure/)，并登录到 Azure 订阅。 也可以[对使用经典部署模型创建的 VM 执行这些步骤](https://docs.microsoft.com/previous-versions/azure/virtual-machines/windows/classic/reset-rdp)。
 
 可按以下方式重置远程桌面服务和凭据：
 
@@ -56,7 +58,7 @@ ms.locfileid: "74116942"
 
 ## <a name="reset-by-using-the-vmaccess-extension-and-powershell"></a>使用 VMAccess 扩展和 PowerShell 重置
 
-首先，请确保已[安装并配置最新的 PowerShell 模块](https://docs.microsoft.com/powershell/azure/overview)，然后使用 [Connect-AzAccount -Environment AzureChinaCloud](https://docs.microsoft.com/powershell/module/az.accounts/connect-azaccount) cmdlet 登录到 Azure 订阅。
+首先，请确保已[安装并配置最新的 PowerShell 模块](https://docs.microsoft.com/powershell/azure/)，然后使用 [Connect-AzAccount -Environment AzureChinaCloud](https://docs.microsoft.com/powershell/module/az.accounts/connect-azaccount) cmdlet 登录到 Azure 订阅。
 
 ### <a name="reset-the-local-administrator-account-password"></a>**重置本地管理员帐户密码**
 
@@ -95,8 +97,8 @@ ms.locfileid: "74116942"
 
 - [了解 Azure VM 扩展和功能](../extensions/features-windows.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-- [使用 RDP 或 SSH 连接到 Azure 虚拟机](/virtual-machines/linux/overview)。
+- [使用 RDP 或 SSH 连接到 Azure 虚拟机](https://docs.microsoft.com/previous-versions/azure/dn535788(v=azure.100))。
 
 - [对与基于 Windows 的 Azure 虚拟机的远程桌面连接进行故障排除](troubleshoot-rdp-connection.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-<!--Update_Description: wording update-->
+<!-- Update_Description: update meta properties, wording update, update link -->

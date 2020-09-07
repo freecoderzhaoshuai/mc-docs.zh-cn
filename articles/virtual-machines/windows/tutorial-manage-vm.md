@@ -1,20 +1,22 @@
 ---
 title: 教程 - 使用 Azure PowerShell 创建和管理 Windows VM
 description: 本教程介绍如何使用 Azure PowerShell 在 Azure 中创建和管理 Windows VM
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.topic: tutorial
 ms.workload: infrastructure
 origin.date: 06/06/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.custom: mvc
-ms.openlocfilehash: f24c171bf959059b6b434764478a47764bf69895
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.custom: mvc, devx-track-azurepowershell
+ms.openlocfilehash: e8a8ddcda34d1631a7219feea8e395e7803c93d5
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945848"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463172"
 ---
 # <a name="tutorial-create-and-manage-windows-vms-with-azure-powershell"></a>教程：使用 Azure PowerShell 创建和管理 Windows VM
 
@@ -30,6 +32,8 @@ Azure 虚拟机提供完全可配置的灵活计算环境。 本教程介绍 Azu
 ## <a name="launch-azure-local-powershell"></a>启动 Azure 本地 PowerShell
 
 打开 Azure Powershell 控制台，并以管理员权限运行以下脚本。
+
+<!--Not Available on Azure Cloud Shell-->
 
 ## <a name="create-resource-group"></a>创建资源组
 
@@ -177,10 +181,10 @@ VM 大小决定 VM 可用计算资源（如 CPU、GPU 和内存）的数量。 �
 
 | 类型                     | 常见大小           |    说明       |
 |--------------------------|-------------------|------------------------------------------------------------------------------------------------------------------------------------|
-| [常规用途](sizes-general.md)         |B、Dsv3、Dv3、DSv2、Dv2、Av2 | CPU 与内存之比均衡。 适用于开发/测试、小到中型应用程序和数据解决方案。  |
-| [计算优化](sizes-compute.md)   | Fsv2          | 高 CPU 与内存之比。 适用于中等流量的应用程序、网络设备和批处理。        |
-| [内存优化](sizes-memory.md)    | Esv3、Ev3、M、DSv2、Dv2  | 较高的内存核心比。 适用于关系数据库、中到大型缓存和内存中分析。                 |
-| [GPU](sizes-gpu.md)          |  NCv3        | 专门针对大量图形绘制和视频编辑的 VM。       |
+| [常规用途](../sizes-general.md)         |B、Dsv3、Dv3、DSv2、Dv2、Av2 | CPU 与内存之比均衡。 适用于开发/测试、小到中型应用程序和数据解决方案。  |
+| [计算优化](../sizes-compute.md)   | Fsv2          | 高 CPU 与内存之比。 适用于中等流量的应用程序、网络设备和批处理。        |
+| [内存优化](../sizes-memory.md)    | Esv3、Ev3、M、DSv2、Dv2  | 较高的内存核心比。 适用于关系数据库、中到大型缓存和内存中分析。                 |
+| [GPU](../sizes-gpu.md)          |  NCv3        | 专门针对大量图形绘制和视频编辑的 VM。       |
 
 <!-- Not Available on DC Series -->
 <!-- Not Available on [Storage optimized](sizes-storage.md)      | Lsv2, Ls   -->
@@ -242,7 +246,7 @@ Azure VM 可能会处于多种电源状态之一。
 | 电源状态 | 说明
 |----|----|
 | 正在启动 | 正在启动虚拟机。 |
-| 正在运行 | 虚拟机正在运行。 |
+| 运行 | 虚拟机正在运行。 |
 | 正在停止 | 正在停止虚拟机。 |
 | 已停止 | VM 已停止。 虚拟机处于停止状态时仍会产生计算费用。  |
 | 正在解除分配 | VM 正解除分配。 |
@@ -265,6 +269,8 @@ Status
 ------
 PowerState/running
 ```
+
+若要检索订阅中所有 VM 的电源状态，请使用[虚拟机 - 列出所有 API](https://docs.microsoft.com/rest/api/compute/virtualmachines/listall)，并将参数 statusOnly 设置为 true。
 
 ## <a name="management-tasks"></a>管理任务
 

@@ -8,14 +8,14 @@ manager: carmonm
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
-ms.date: 07/17/2020
+ms.date: 08/20/2020
 ms.author: v-johya
-ms.openlocfilehash: 4150856af4b107decb93f7a9d1c5bf7749c3e04e
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.openlocfilehash: bf3d2d5ab82c7f119a61c78addf9504b47f8c3a7
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508353"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457439"
 ---
 # <a name="azure-monitor-workbooks-data-sources"></a>Azure Monitor 工作簿数据源
 
@@ -90,7 +90,7 @@ Azure Monitor 提供主动监视 Windows 或 Linux 来宾操作系统可用性�
 > [!NOTE]
 > 建议使用 [Azure Resource Graph](#azure-resource-graph) 数据源通过查询 `AlertsManagementResources` 表来查询 Azure 警报信息。
 >
-> 有关示例，请参阅 [Azure Resource Graph 表格引用](/governance/resource-graph/reference/supported-tables-resources)或[警报模板](https://github.com/microsoft/Application-Insights-Workbooks/blob/master/Workbooks/Azure%20Resources/Alerts/Alerts.workbook)。
+> 有关示例，请参阅 [Azure Resource Graph 表格引用](../../governance/resource-graph/reference/supported-tables-resources.md)或[警报模板](https://github.com/microsoft/Application-Insights-Workbooks/blob/master/Workbooks/Azure%20Resources/Alerts/Alerts.workbook)。
 >
 > 作者转换为使用 ARG 时，警报数据源将在一段时间内保持可用。 不建议在模板中使用此数据源。 
 
@@ -113,6 +113,6 @@ Azure Monitor 提供主动监视 Windows 或 Linux 来宾操作系统可用性�
 
 * [开始](workbooks-visualizations.md)详细了解工作簿丰富的可视化效果选项。
 * [控制](workbooks-access-control.md)并共享对工作簿资源的访问权限。
-* [Log Analytics 查询优化提示](/azure-monitor/log-query/query-optimization)
+* [Log Analytics 查询优化提示](../log-query/query-optimization.md)
 * 
 

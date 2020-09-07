@@ -11,16 +11,16 @@ ms.tgt_pltfrm: mobile-multiple
 ms.devlang: multiple
 ms.topic: article
 origin.date: 04/07/2020
-ms.date: 06/03/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.reviewer: jowargo
+ms.reviewer: thsomasu
 ms.lastreviewed: 01/28/2020
-ms.openlocfilehash: 0dc829c280d2ca7720a520f9a1454838b67c956e
-ms.sourcegitcommit: 40d1ff17251ab1d2d607845523470f11ce087039
+ms.openlocfilehash: e7bf1964a2e26e2745fdf0dabb26191d34d8d0ac
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/03/2020
-ms.locfileid: "84320483"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316441"
 ---
 # <a name="transport-layer-security-tls"></a>传输层安全 (TLS) (Transport Layer Security) (TLS)
 

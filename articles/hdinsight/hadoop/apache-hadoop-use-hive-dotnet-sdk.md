@@ -15,12 +15,12 @@ ms.topic: conceptual
 origin.date: 12/24/2019
 ms.date: 03/02/2020
 ms.author: v-yiso
-ms.openlocfilehash: 9f356b07f5143c68677b709bfd7ac4996bf065eb
-ms.sourcegitcommit: 3a8a7d65d0791cdb6695fe6c2222a1971a19f745
+ms.openlocfilehash: 4cae0f3847de2e07ad2ad36ebb7d068dd1133370
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2020
-ms.locfileid: "85516748"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463149"
 ---
 # <a name="run-apache-hive-queries-using-hdinsight-net-sdk"></a>使用 HDInsight .NET SDK 运行 Apache Hive 查询
 [!INCLUDE [hive-selector](../../../includes/hdinsight-selector-use-hive.md)]
@@ -48,7 +48,9 @@ HDInsight .NET SDK 提供 .NET 客户端库，可简化从 .NET 中使用 HDInsi
 1. 在 Visual Studio 中创建 C# 控制台应用程序。
 2. 在 Nuget 包管理器控制台运行以下命令：
 
-        Install-Package Microsoft.Azure.Management.HDInsight.Job
+    ```console
+    Install-Package Microsoft.Azure.Management.HDInsight.Job
+    ```
 
 1. 编辑下面的代码以初始化以下变量的值：`ExistingClusterName, ExistingClusterUsername, ExistingClusterPassword,DefaultStorageAccountName,DefaultStorageAccountKey,DefaultStorageContainerName`。 然后，在 Visual Studio 中使用修改后的代码作为 **Program.cs** 的全部内容。
 

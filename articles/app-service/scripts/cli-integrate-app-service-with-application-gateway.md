@@ -17,12 +17,12 @@ origin.date: 12/09/2019
 ms.date: 08/13/2020
 ms.author: v-tawe
 ms.custom: seodec18, devx-track-azurecli
-ms.openlocfilehash: 7054d3a45d922c23b056df907c24fa5de0f65de3
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 7257af835d8b8da1da1d1c5644c997d1414d63da
+ms.sourcegitcommit: 5055d580fb7ef1722e32e09a334d1d3e28295dd6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228334"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89503340"
 ---
 # <a name="integrate-app-service-with-application-gateway-using-cli"></a>使用 CLI 将应用服务与应用程序网关集成
 
@@ -122,7 +122,7 @@ az network public-ip show \
 | [`az appservice plan create`](https://docs.azure.cn/cli/appservice/plan?view=azure-cli-latest#az-appservice-plan-create) | 创建应用服务计划。 |
 | [`az webapp create`](https://docs.azure.cn/cli/webapp?view=azure-cli-latest#az-webapp-create) | 创建应用服务 Web 应用。 |
 | [`az webapp show`](https://docs.azure.cn/cli/webapp?view=azure-cli-latest#az-webapp-show) | 显示应用服务 Web 应用的详细信息。 |
-| [`az webapp config access-restriction add`](https://docs.azure.cn/cli/webapp/config/access-restriction?view=azure-cli-latest#az-webapp-config-access-restriction-add) | 将访问限制添加到应用服务 Web 应用。 |
+| [`az webapp config access-restriction add`](https://docs.microsoft.com/cli/azure/webapp/config/access-restriction?view=azure-cli-latest#az-webapp-config-access-restriction-add) | 将访问限制添加到应用服务 Web 应用。 |
 | [`az network application-gateway create`](https://docs.azure.cn/cli/network/application-gateway?view=azure-cli-latest#az-network-application-gateway-create) | 创建应用程序网关。 |
 | [`az network application-gateway http-settings update`](https://docs.azure.cn/cli/network/application-gateway/http-settings?view=azure-cli-latest#az-network-application-gateway-http-settings-update) | 更新应用程序网关 HTTP 设置。 |
 

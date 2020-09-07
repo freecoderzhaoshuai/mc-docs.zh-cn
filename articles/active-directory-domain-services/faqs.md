@@ -9,14 +9,14 @@ ms.service: active-directory
 ms.subservice: domain-services
 ms.workload: identity
 ms.topic: how-to
-ms.date: 08/21/2020
+ms.date: 09/01/2020
 ms.author: v-junlch
-ms.openlocfilehash: 478d43da863d3217d4f503a227e4017b78bf0b3e
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: d6ca73b1b1ad9befb708c9f572f71e6f9353036d
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715180"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413292"
 ---
 # <a name="frequently-asked-questions-faqs-about-azure-active-directory-ad-domain-services"></a>有关 Azure Active Directory (AD) 域服务的常见问题 (FAQ)
 
@@ -61,7 +61,7 @@ ms.locfileid: "88715180"
 但是，如果使用 Azure AD Connect 进行密码哈希同步，则可以使用 Azure AD 域服务，因为密码哈希值存储在 Azure AD 中。
 
 ### <a name="can-i-make-azure-ad-domain-services-available-in-multiple-virtual-networks-within-my-subscription"></a>是否可以在订阅中的多个虚拟网络内使用 Azure AD 域服务？
-域服务本身无法直接支持这种方案。 托管域每次只能在一个虚拟网络中使用。 但是，可以在多个虚拟网络之间配置连接，将 Azure AD 域服务公开到其他虚拟网络。 有关详细信息，请参阅[如何使用 VPN 网关](../vpn-gateway/virtual-networks-configure-vnet-to-vnet-connection.md)或[虚拟网络对等互连](../virtual-network/virtual-network-peering-overview.md)连接 Azure 中的虚拟网络。
+域服务本身无法直接支持这种方案。 托管域每次只能在一个虚拟网络中使用。 但是，可以在多个虚拟网络之间配置连接，将 Azure AD 域服务公开到其他虚拟网络。 有关详细信息，请参阅[如何使用 VPN 网关](../vpn-gateway/vpn-gateway-howto-vnet-vnet-portal-classic.md)或[虚拟网络对等互连](../virtual-network/virtual-network-peering-overview.md)连接 Azure 中的虚拟网络。
 
 ### <a name="can-i-enable-azure-ad-domain-services-using-powershell"></a>是否可以使用 PowerShell 来启用 Azure AD 域服务？
 是的。 有关详细信息，请参阅[如何使用 PowerShell 启用 Azure AD 域服务](powershell-create-instance.md)。
@@ -73,14 +73,14 @@ ms.locfileid: "88715180"
 否。 Azure AD 域服务提供的域是托管域。 你不需要预配、配置或以其他方式管理此域的域控制器。 这些管理活动由 Microsoft 以服务形式提供。 因此，你无法为托管域添加其他域控制器（读写或只读）。
 
 ### <a name="can-guest-users-invited-to-my-directory-use-azure-ad-domain-services"></a>邀请到我的目录中的来宾用户能否使用 Azure AD 域服务？
-否。 使用 [Azure AD B2B](/active-directory/b2b/what-is-b2b) 邀请进程邀请到 Azure AD 目录的来宾用户会同步到 Azure Active Directory 域服务托管域。 但这些用户的密码不会存储在 Azure AD 目录中。 因此，Azure AD 域服务无法将这些用户的 NTLM 和 Kerberos 哈希同步到托管域。 这类用户可以登录到或者将计算机加入到托管域。
+否。 使用 [Azure AD B2B](../active-directory/external-identities/what-is-b2b.md) 邀请进程邀请到 Azure AD 目录的来宾用户会同步到 Azure Active Directory 域服务托管域。 但这些用户的密码不会存储在 Azure AD 目录中。 因此，Azure AD 域服务无法将这些用户的 NTLM 和 Kerberos 哈希同步到托管域。 这类用户可以登录到或者将计算机加入到托管域。
 
 ### <a name="can-i-move-an-existing-azure-ad-domain-services-managed-domain-to-a-different-subscription-resource-group-region-or-virtual-network"></a>是否可将现有 Azure AD 域服务托管域移动到不同的订阅、资源组、区域或虚拟网络？
 否。 创建 Azure AD 域服务托管域后，无法将托管域移到其他资源组、虚拟网络、订阅等位置。部署托管域时，请注意选择最合适的订阅、资源组、区域和虚拟网络。
 
 ### <a name="does-azure-ad-domain-services-include-high-availability-options"></a>Azure AD 域服务是否包含高可用性选项？
 
-是的。 每个 Azure AD 域服务托管域都包括两个域控制器。 你不需要管理或连接到这些域控制器，它们是托管服务的一部分。 如果将 Azure AD 域服务部署到支持可用性局部区域的区域中，则域控制器将分布到各个局部区域中。 在不支持可用性局部区域的区域中，域控制器将分布在多个可用性集中。 对于此分布，你无法通过选项进行配置，也无法进行管理控制。 有关详细信息，请参阅 [Azure 中虚拟机的可用性选项](../virtual-machines/windows/availability.md)。
+是的。 每个 Azure AD 域服务托管域都包括两个域控制器。 你不需要管理或连接到这些域控制器，它们是托管服务的一部分。 如果将 Azure AD 域服务部署到支持可用性局部区域的区域中，则域控制器将分布到各个局部区域中。 在不支持可用性局部区域的区域中，域控制器将分布在多个可用性集中。 对于此分布，你无法通过选项进行配置，也无法进行管理控制。 有关详细信息，请参阅 [Azure 中虚拟机的可用性选项](../virtual-machines/availability.md)。
 
 ## <a name="administration-and-operations"></a>管理和操作
 

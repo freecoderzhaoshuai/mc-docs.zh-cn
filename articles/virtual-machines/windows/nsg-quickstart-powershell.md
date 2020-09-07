@@ -1,25 +1,28 @@
 ---
-title: 如何在 Azure 中使用 PowerShell 打开 VM 的端口和终结点
+title: 使用 Azure PowerShell 打开指向 VM 的端口
 description: 了解如何使用 Azure Resource Manager 部署模型和 Azure PowerShell 在 Windows VM 上打开端口/创建终结点
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.topic: how-to
 ms.workload: infrastructure-services
 origin.date: 12/13/2017
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: cd5c0f6c423113cb1236ba17b3727d425c0c725f
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.custom: devx-track-azurepowershell
+ms.openlocfilehash: 924a9ef3576790b4186626194a2c928e6cd8d578
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945815"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463203"
 ---
 # <a name="how-to-open-ports-and-endpoints-to-a-vm-in-azure-using-powershell"></a>如何在 Azure 中使用 PowerShell 打开 VM 的端口和终结点
 [!INCLUDE [virtual-machines-common-nsg-quickstart](../../../includes/virtual-machines-common-nsg-quickstart.md)]
 
 ## <a name="quick-commands"></a>快速命令
-若要创建网络安全组和 ACL 规则，需要[安装最新版本的 Azure PowerShell](https://docs.microsoft.com/powershell/azureps-cmdlets-docs)。 也可以[使用 Azure 门户执行这些步骤](nsg-quickstart-portal.md)。
+若要创建网络安全组和 ACL 规则，需要[安装最新版本的 Azure PowerShell](https://docs.microsoft.com/powershell/azure/)。 也可以[使用 Azure 门户执行这些步骤](nsg-quickstart-portal.md)。
 
 登录 Azure 帐户：
 
@@ -93,4 +96,4 @@ Set-AzVirtualNetwork -VirtualNetwork $vnet
 * [什么是网络安全组？](../../virtual-network/security-overview.md)
 * [Azure 负载均衡器概述](../../load-balancer/load-balancer-overview.md)
 
-<!--Update_Description: update link , update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -54,7 +54,7 @@
     - name: VM 启动时出现停滞
       href: troubleshoot-vm-boot-configure-update.md
     - name: VM 生命周期和状态
-      href: ../windows/states-lifecycle.md
+      href: ../states-lifecycle.md
 - name: VM 无法启动
   items:
     - name: Linux
@@ -97,10 +97,14 @@
           href: troubleshoot-guide-windows-boot-manager-menu.md
         - name: 由于进行更新，VM 无响应
           href: unresponsive-vm-apply-windows-update.md
+        - name: 在应用审核配置策略时，VM 无响应
+          href: vm-unresponsive-applying-audit-configuration-policy.md
         - name: 应用组策略时，VM 无响应
           href: unresponsive-vm-apply-group-policy.md
         - name: 应用安全策略时，VM 无响应
           href: unresponsive-vm-apply-security-policy.md
+        - name: Windows 停止错误 - 错误系统配置信息
+          href: windows-stop-error-bad-system-config-info.md
         - name: Windows 停止错误 - 状态无内存
           href: troubleshoot-windows-stop-error.md
 - name: 无法连接到 VM
@@ -191,9 +195,9 @@
 - name: 虚拟磁盘管理问题
   items:
     - name: 概述
-      href: ../windows/managed-disks-overview.md
-    - name: 常见问题解答
-      href: ../windows/faq-for-disks.md
+      href: ../managed-disks-overview.md
+    - name: 常见问题
+      href: ../faq-for-disks.md
     - name: 删除存储资源时出错
       href: storage-resource-deletion-errors.md
     - name: 删除经典存储资源时出错
@@ -210,6 +214,8 @@
       href: ../extensions/troubleshoot.md
     - name: 脱机安装 Windows VM 代理
       href: install-vm-agent-offline.md
+    - name: 排查 Windows VM 代理问题
+      href: windows-azure-guest-agent.md
 - name: 备份和还原
   items:
     - name: 排查 Azure VM 上的备份失败问题
@@ -234,15 +240,15 @@
       items:
         - name: 概述
           href: ../windows/disk-encryption-overview.md
-        - name: 故障排除
+        - name: 疑难解答
           href: ../windows/disk-encryption-troubleshooting.md
-        - name: 常见问题解答
+        - name: 常见问题
           href: ../windows/disk-encryption-faq.md
     - name: Linux
       items:
         - name: 概述
           href: ../linux/disk-encryption-overview.md
-        - name: 故障排除
+        - name: 疑难解答
           href: ../linux/disk-encryption-troubleshooting.md
         - name: 常见问题
           href: ../linux/disk-encryption-faq.md

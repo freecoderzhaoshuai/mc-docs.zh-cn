@@ -1,5 +1,5 @@
 ---
-title: 使用 Azure 通知中心向特定 Windows Phone 推送通知 | Azure
+title: 使用 Azure 通知中心将推送通知发送到特定 Windows Phone | Microsoft Docs
 description: 本教程介绍如何使用 Azure 通知中心将通知推送到注册到应用程序后端的特定（并非所有）Windows Phone 8 或 Windows Phone 8.1 设备。
 services: notification-hubs
 documentationcenter: windows
@@ -12,18 +12,18 @@ ms.workload: mobile
 ms.tgt_pltfrm: mobile-windows-phone
 ms.devlang: dotnet
 ms.topic: tutorial
-ms.custom: mvc
+ms.custom: mvc, devx-track-csharp
 origin.date: 01/04/2019
-ms.date: 04/20/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.reviewer: jowargo
 ms.lastreviewed: 01/04/2019
-ms.openlocfilehash: 78e2b68521391be18716b9af83ab99ed167b873b
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.openlocfilehash: b38bc886a66e72c96face6f7f1550641a8ad830a
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588653"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317475"
 ---
 # <a name="tutorial-send-push-notifications-to-specific-windows-phones-using-azure-notification-hubs"></a>教程：使用 Azure 通知中心将推送通知发送到特定 Windows Phone
 
@@ -36,7 +36,7 @@ ms.locfileid: "82588653"
 > [!NOTE]
 > 通知中心 Windows Phone SDK 不支持将 Windows 推送通知服务 (WNS) 与 Windows Phone 8.1 Silverlight 应用配合使用。 若要将 WNS（而不是 MPNS）与 Windows Phone 8.1 Silverlight 应用配合使用，请遵循使用 REST API 的[通知中心 - Windows Phone Silverlight 教程]。
 
-本教程介绍如何执行下列操作：
+在本教程中，你将了解如何执行以下操作：
 
 > [!div class="checklist"]
 > * 向移动应用添加类别选择
@@ -208,7 +208,7 @@ ms.locfileid: "82588653"
     ```
 
     此类使用隔离存储区存储此设备要接收的新闻类别。 它还包含用于通过[模板](notification-hubs-templates-cross-platform-push-messages.md)通知注册来注册这些类别的方法。
-4. 在 `App.xaml.cs` 项目文件中，将以下属性添加到 `App` 类。 将 `<hub name>` 和 `<connection string with listen access>` 占位符替换为通知中心名称和前面获取的 DefaultListenSharedAccessSignature 的连接字符串  。
+4. 在 `App.xaml.cs` 项目文件中，将以下属性添加到 `App` 类。 将 `<hub name>` 和 `<connection string with listen access>` 占位符替换为通知中心名称和前面获取的 *DefaultListenSharedAccessSignature* 的连接字符串。
 
     ```csharp
     public Notifications notifications = new Notifications("<hub name>", "<connection string with listen access>");
@@ -251,7 +251,7 @@ ms.locfileid: "82588653"
 这些步骤用于在启动时会在本地存储区中存储的类别注册到通知中心。
 
 > [!NOTE]
-> 由于 Microsoft 推送通知服务 (MPNS) 分配的通道 URI 随时可能更改，因此你应该经常注册通知以避免通知失败。 此示例在每次应用程序启动时注册通知。 对于经常运行（一天一次以上）的应用程序，如果每次注册间隔时间不到一天，可以跳过注册来节省带宽。
+> 由于 Microsoft 推送通知服务 (MPNS) 分配的通道 URI 随时可能更改，因此，应该经常注册通知以避免通知失败。 此示例在每次应用程序启动时注册通知。 对于经常运行（一天一次以上）的应用程序，如果每次注册间隔时间不到一天，可以跳过注册来节省带宽。
 
 1. 打开 App.xaml.cs 文件，将 `async` 修饰符添加到 `Application_Launching` 方法，并将在[通知中心入门]中添加的通知中心注册代码替换为以下代码：
 
@@ -300,12 +300,12 @@ ms.locfileid: "82588653"
     ![包含类别的移动应用][1]
 
     应用 UI 提供了一组开关，可以使用它们选择要订阅的类别。
-2. 启用一个或多个类别开关，然后单击“订阅”  。
+2. 启用一个或多个类别开关，并单击“**订阅**”。
 
     应用程序将所选类别转换为标签并针对所选标签从通知中心请求注册新设备。 返回注册的类别并显示在对话框中。
 
     ![订阅的消息][2]
-3. 在接收类别已完成订阅的确认后，运行控制台应用以发送每个类别的通知。 确认你只会收到订阅的类别的通知。
+3. 在接收类别已完成订阅的确认后，运行控制台应用以发送每个类别的通知。 验证是否仅接收已订阅类别的通知。
 
     ![通知消息][3]
 
@@ -317,11 +317,11 @@ ms.locfileid: "82588653"
 >[向特定用户推送通知](notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md)
 
 <!-- Anchors. -->
-<!-- [Add category selection to the app]: #adding-categories
+[Add category selection to the app]: #adding-categories
 [Register for notifications]: #register
 [Send notifications from your back-end]: #send
 [Run the app and generate notifications]: #test-app
-[Next Steps]: #next-steps -->
+[Next Steps]: #next-steps
 
 <!-- Images. -->
 [1]: ./media/notification-hubs-windows-phone-send-breaking-news/notification-hub-breakingnews.png
@@ -330,10 +330,7 @@ ms.locfileid: "82588653"
 
 <!-- URLs.-->
 [通知中心入门]: notification-hubs-windows-mobile-push-notifications-mpns.md
-
-<!-- [Use Notification Hubs to broadcast localized breaking news]: notification-hubs-windows-store-dotnet-xplat-localized-wns-push-notification.md
+[Use Notification Hubs to broadcast localized breaking news]: notification-hubs-windows-store-dotnet-xplat-localized-wns-push-notification.md
 [Notify users with Notification Hubs]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
-[Mobile Service]: /develop/mobile/android
-[Notification Hubs Guidance]: https://msdn.microsoft.com/library/jj927170.aspx
-[Notification Hubs How-To for Windows Phone]: /develop/mobile/windows -->
-<!-- Update_Description: wording update -->
+[Notification Hubs Guidance]: https://docs.microsoft.com/previous-versions/azure/azure-services/jj927170(v=azure.100)
+[Notification Hubs How-To for Windows Phone]: /develop/mobile/windows

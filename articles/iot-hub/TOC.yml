@@ -25,8 +25,6 @@
           href: quickstart-send-telemetry-android.md
         - name: iOS
           href: quickstart-send-telemetry-ios.md
-        - name: Xamarin.Forms
-          href: quickstart-send-telemetry-xamarinforms.md
     - name: 控制设备
       items:
         - name: Node.js
@@ -65,6 +63,11 @@
       href: tutorial-firmware-update.md
     - name: 测试设备连接性
       href: tutorial-connectivity.md
+- name: 示例
+  items:
+    - name: Azure Policy 内置策略定义
+      displayName: 'samples, policies, definitions'
+      href: ./policy-samples.md
 - name: 概念
   items:
     - name: 设备管理概述
@@ -118,7 +121,7 @@
           href: iot-hub-devguide-file-upload.md
         - name: 管理设备标识
           href: iot-hub-devguide-identity-registry.md
-        - name: 控制 IoT 中心的访问权限
+        - name: 控制对 IoT 中心的访问
           href: iot-hub-devguide-security.md
         - name: 了解设备孪生
           href: iot-hub-devguide-device-twins.md
@@ -328,6 +331,8 @@
       items:
         - name: 设备断开连接
           href: iot-hub-troubleshoot-connectivity.md
+        - name: 消息路由疑难解答
+          href: troubleshoot-message-routing.md
         - name: 问题解决方法
           items:
             - name: 400027 ConnectionForcefullyClosedOnNewConnection
@@ -370,6 +375,8 @@
       href: 'https://docs.microsoft.com/dotnet/api/microsoft.azure.devices.client'
     - name: .NET（服务）
       href: 'https://docs.microsoft.com/dotnet/api/microsoft.azure.devices'
+    - name: .NET（管理）
+      href: 'https://docs.microsoft.com/dotnet/api/overview/azure/iot/management'
     - name: Java（设备）
       href: 'https://docs.microsoft.com/java/api/com.microsoft.azure.sdk.iot.device'
     - name: Java（服务）
@@ -378,6 +385,14 @@
       href: 'https://docs.microsoft.com/javascript/api/azure-iot-device/'
     - name: Node.js（服务）
       href: 'https://docs.microsoft.com/javascript/api/azure-iothub/'
+    - name: Node.js（管理）
+      href: 'https://docs.microsoft.com/javascript/api/overview/azure/iothub/management'
+    - name: Python（设备）
+      href: 'https://docs.microsoft.com/python/api/azure-iot-device'
+    - name: Python（服务）
+      href: 'https://docs.microsoft.com/python/api/azure-iot-hub'
+    - name: Python（管理）
+      href: 'https://docs.microsoft.com/python/api/azure-mgmt-iothub'
     - name: C 设备 SDK
       href: 'https://docs.microsoft.com/azure/iot-hub/iot-c-sdk-ref/'
     - name: REST（设备）
@@ -388,7 +403,7 @@
       href: 'https://docs.microsoft.com/rest/api/iothub/iothubresource'
     - name: REST（证书）
       href: 'https://docs.microsoft.com/rest/api/iothub/certificates'
-    - name: Resource Manager 模板
+    - name: 资源管理器模板
       href: 'https://docs.microsoft.com/azure/templates/microsoft.devices/iothub-allversions'
     - name: 功能和 API 停用
       items:
@@ -438,8 +453,6 @@
       href: 'https://github.com/Azure/azure-iot-explorer'
     - name: iothub-diagnostics 工具
       href: 'https://github.com/Azure/iothub-diagnostics'
-    - name: MSDN 论坛
-      href: 'https://social.msdn.microsoft.com/Forums/azure/en-US/home?forum=azureiothub'
     - name: 定价
       href: 'https://www.azure.cn/pricing/details/iot-hub/'
     - name: 定价计算器

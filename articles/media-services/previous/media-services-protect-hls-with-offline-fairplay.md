@@ -13,15 +13,16 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 05/07/2020
-ms.date: 06/08/2020
+ms.date: 09/07/2020
 ms.author: v-jay
 ms.reviewer: dwgeo
-ms.openlocfilehash: 4ceb31cdd192cc031e12e85cdc46830cd7709f3f
-ms.sourcegitcommit: 79c99a9ea013b3c74706a1038a505f4eea2aaac4
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 089e1d2094b81b3484f692b50e22ea149c3158be
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84439481"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413768"
 ---
 # <a name="offline-fairplay-streaming-for-ios"></a>适用于 iOS 的脱机 FairPlay Streaming 
 
@@ -33,7 +34,7 @@ ms.locfileid: "84439481"
 > Google Widevine 内容保护服务目前在 Azure 中国区域不可用。
 
 > [!NOTE]
-> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](/media-services/latest/)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
+> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](../latest/index.yml)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
 
 Azure 媒体服务提供一套设计良好的[内容保护服务](https://docs.azure.cn/media-services/media-services-content-protection-overview)，包括：
 
@@ -57,7 +58,7 @@ Azure 媒体服务提供一套设计良好的[内容保护服务](https://docs.a
 * 熟悉 FairPlay 的联机内容保护。 有关详细信息，请参阅以下文章和示例：
 
     - [Azure 媒体服务的 Apple FairPlay Streaming 正式发布](https://azure.microsoft.com/blog/apple-FairPlay-streaming-for-azure-media-services-generally-available/)
-* [使用 Apple FairPlay 或 Microsoft PlayReady 保护 HLS 内容](media-services-protect-hls-with-fairplay.md)
+    - [使用 Apple FairPlay 或 Microsoft PlayReady 保护 HLS 内容](./media-services-protect-hls-with-fairplay.md)
     - [联机 FPS 流式处理的示例](https://azure.microsoft.com/resources/samples/media-services-dotnet-dynamic-encryption-with-FairPlay/)
 
 * 从 Apple Developer Network 获取 FPS SDK。 FPS SDK 包含两个组件：

@@ -1,18 +1,22 @@
 ---
-ms.openlocfilehash: e864fe9b6a146427e7284aecdf9202aa0a900bf7
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+title: 单用户/单密码轮换教程
+description: 通过本教程了解如何自动轮换使用单用户/单密码身份验证的资源的机密。
+services: key-vault
+author: msmbaldwin
+manager: rkarlin
+tags: rotation
+ms.service: key-vault
+ms.subservice: general
+ms.topic: tutorial
+origin.date: 01/26/2020
+ms.date: 06/02/2020
+ms.author: v-tawe
+ms.openlocfilehash: dda396708f3bee01b7452b1a794b792bf6f178a3
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88227873"
----
-<a name="title-single-usersingle-password-rotation-tutorial"></a>title:单用户/单密码轮换教程
----
-description:通过本教程了解如何自动轮换使用单用户/单密码身份验证的资源的机密。
-services: key-vault author: msmbaldwin manager: rkarlin tags: 'rotation'
-
-ms.service: key-vault ms.subservice: general ms.topic: tutorial origin.date:01/26/2020 ms.date:06/02/2020 ms.author: v-tawe
-
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316426"
 ---
 # <a name="automate-the-rotation-of-a-secret-for-resources-that-use-single-usersingle-password-authentication"></a>自动轮换使用单用户/单密码身份验证的资源的机密
 

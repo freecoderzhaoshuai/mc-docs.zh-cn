@@ -1,26 +1,29 @@
 ---
-title: 使用 C# 和 Resource Manager 模板部署 Azure 虚拟机
+title: 使用 C# 和资源管理器模板部署 VM
 description: 了解如何使用 C# 和 Resource Manager 模板部署 Azure VM。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.workload: na
 ms.tgt_pltfrm: vm-windows
-ms.topic: article
+ms.topic: how-to
 origin.date: 07/14/2017
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 2941361d93ded16832dbde19516b15cb7e52e901
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 7a7d17407018a72ae2555d5d3512fbb75cf0fb08
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946018"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462894"
 ---
 # <a name="deploy-an-azure-virtual-machine-using-c-and-a-resource-manager-template"></a>使用 C# 和 Resource Manager 模板部署 Azure 虚拟机
 
 本文介绍如何使用 C# 部署 Azure 资源管理器模板。 创建的模板会在包含单个子网的新虚拟网络中部署运行 Windows Server 的单个虚拟机。
 
-有关虚拟机资源的详细说明，请参阅 [Azure 资源管理器模板中的虚拟机](template-description.md)。 有关模板中所有资源的详细信息，请参阅 [Azure 资源管理器模板演练](../../azure-resource-manager/resource-manager-template-walkthrough.md)。
+有关虚拟机资源的详细说明，请参阅 [Azure 资源管理器模板中的虚拟机](template-description.md)。 有关模板中所有资源的详细信息，请参阅 [Azure 资源管理器模板演练](../../azure-resource-manager/templates/quickstart-create-templates-use-the-portal.md)。
 
 完成这些步骤大约需要 10 分钟。
 
@@ -324,7 +327,7 @@ azure.ResourceGroups.DeleteByName(groupName);
 
 ## <a name="next-steps"></a>后续步骤
 
-* 如果部署出现问题，后续措施是参阅[排查使用 Azure 资源管理器时的常见 Azure 部署错误](../../resource-manager-common-deployment-errors.md)。
-* 若要了解如何部署虚拟机及其支持的资源，请查看[使用 C# 部署 Azure 虚拟机](csharp.md)。
+* 如果部署出现问题，后续措施是参阅[排查使用 Azure 资源管理器时的常见 Azure 部署错误](../../azure-resource-manager/templates/common-deployment-errors.md)。
+* 若要了解如何部署虚拟机及其支持的资源，请查看[使用 C# 部署 Azure 虚拟机](../../azure-resource-manager/templates/deploy-rest.md)。
 
-<!--Update_Description: wording update, update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

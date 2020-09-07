@@ -1,25 +1,27 @@
 ---
-title: Azure CLI 脚本示例 - 在负载均衡虚拟机规模集中部署 LAMP 堆栈 | Azure
+title: Azure CLI 脚本示例 - 在负载均衡虚拟机规模集中部署 LAMP 堆栈
 description: 使用自定义脚本扩展在 Azure 上的负载均衡虚拟机规模集中部署 LAMP 堆栈。
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: rockboyfor
-ms.author: v-yeche
 tags: azure-service-management
 ms.service: virtual-machines-linux
 ms.devlang: azurecli
 ms.topic: sample
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.custom: mvc
+ms.custom: mvc, devx-track-azurecli
 origin.date: 04/05/2017
-ms.date: 09/16/2019
-ms.openlocfilehash: 24911574c2835d41a669fcc6aa3176eea6e563ca
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
+ms.author: v-yeche
+ms.openlocfilehash: ff4e314bb2b5ec5544a1e92171b9d7b1420ecad4
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "70921082"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413751"
 ---
 # <a name="deploy-the-lamp-stack-in-a-load-balanced-virtual-machine-scale-set"></a>在负载均衡虚拟机规模集中部署 LAMP 堆栈
 

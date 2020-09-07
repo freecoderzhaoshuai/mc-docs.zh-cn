@@ -10,12 +10,12 @@ ms.topic: tutorial
 origin.date: 05/06/2020
 ms.date: 06/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: a13b10e8a3c0cb1a6de651c3f9f08186847ecca1
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 77a1566840ce18b71f86718ea2ff0eebb4c8c64f
+ms.sourcegitcommit: 5055d580fb7ef1722e32e09a334d1d3e28295dd6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228078"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89503331"
 ---
 # <a name="tutorial-use-a-managed-identity-to-connect-key-vault-to-an-azure-web-app-with-net"></a>教程：使用托管标识将 Key Vault 连接到 .NET Azure Web 应用
 
@@ -237,7 +237,7 @@ http://<your-webapp-name>.chinacloudsites.cn
 
 ## <a name="create-and-assign-a-managed-identity"></a>创建并分配托管标识
 
-在 Azure CLI 中，若要为此应用程序创建标识，请运行 [az webapp-identity assign](/cli/webapp/identity?view=azure-cli-latest#az-webapp-identity-assign) 命令：
+在 Azure CLI 中，若要为此应用程序创建标识，请运行 [az webapp-identity assign](https://docs.microsoft.com/cli/azure/webapp/identity?view=azure-cli-latest#az-webapp-identity-assign) 命令：
 
 ```azurecli
 az webapp identity assign --name "<your-webapp-name>" --resource-group "myResourceGroup"

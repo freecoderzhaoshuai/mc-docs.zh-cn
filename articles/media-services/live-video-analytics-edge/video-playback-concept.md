@@ -3,13 +3,13 @@ title: 视频播放 - Azure
 description: 占位符
 ms.topic: conceptual
 origin.date: 04/27/2020
-ms.date: 07/27/2020
-ms.openlocfilehash: b48a87551bfa8ddf3c0ea56605787e317eb21f70
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.date: 09/07/2020
+ms.openlocfilehash: b587337c4383a8220697681aa5c06ff7b0e5f020
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162738"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414049"
 ---
 # <a name="video-playback"></a>视频播放 
 
@@ -47,7 +47,7 @@ Azure 媒体服务为你提供了多种方法来保护视频流，如[使用媒�
 
 ## <a name="next-steps"></a>后续步骤
 
-[Azure IoT Edge](/iot-edge/)
+[Azure IoT Edge](../../iot-edge/index.yml)
 <!--
 ## Next steps
 

@@ -14,15 +14,15 @@ ms.workload: big-data
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
-origin.date: 12/13/2017
+origin.date: 12/02/2019
 ms.date: 10/28/2019
 ms.author: ashishth
-ms.openlocfilehash: 8740dfb2528bd38d7a298a14c6c2815a81ec6a4f
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 4a2eafc6a8a5e000193bf7f65c0052fbf1708a94
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "72583883"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463100"
 ---
 # <a name="use-the-net-sdk-for-apache-hbase"></a>使用用于 Apache HBase 的 .Net SDK
 
@@ -34,7 +34,9 @@ ms.locfileid: "72583883"
 
 HBase .NET SDK 以 NuGet 包的形式提供，可以使用以下命令通过 Visual Studio **NuGet 包管理器控制台**进行安装：
 
-    Install-Package Microsoft.HBase.Client
+```console
+Install-Package Microsoft.HBase.Client
+```
 
 ## <a name="instantiate-a-new-hbaseclient-object"></a>实例化新的 HBaseClient 对象
 

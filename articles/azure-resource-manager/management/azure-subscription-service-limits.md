@@ -1,13 +1,19 @@
 ---
-ms.openlocfilehash: fd6ca95624ce533cac0a3be431d8eaa69294cb2c
-ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
+title: Azure 订阅限制和配额
+description: 提供常见的 Azure 订阅和服务限制、配额和约束的列表。
+ms.topic: conceptual
+author: rockboyfor
+origin.date: 06/04/2020
+ms.date: 08/10/2020
+ms.testscope: no
+ms.testdate: 08/03/2020
+ms.author: v-yeche
+ms.openlocfilehash: 094059cf18852e5ff575c301a3925c4456215085
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/25/2020
-ms.locfileid: "88807924"
----
-s--- 标题：Azure 订阅限制和配额说明：提供常见的 Azure 订阅和服务限制、配额和约束的列表。
-ms.topic: conceptual author: rockboyfor origin.date:06/04/2020 ms.date:08/10/2020 ms.testscope: no ms.testdate:08/03/2020 ms.author: v-yeche
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316461"
 ---
 # <a name="azure-subscription-and-service-limits-quotas-and-constraints"></a>Azure 订阅和服务限制、配额和约束
 

@@ -3,22 +3,24 @@ title: 连接到 Azure VM 时，远程桌面许可证服务器不可用 | Azure
 description: 了解如何排查在可用远程桌面许可证服务器不可用的情况下 RDP 失败的问题 | Azure
 services: virtual-machines-windows
 documentationCenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 ms.service: virtual-machines-windows
 ms.topic: troubleshooting
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 10/23/2018
-ms.date: 11/11/2019
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 99db001a06f0be63047e8c702b8b00a7ebfc4c5c
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: e3c51dd858a092c38849f7c9b3a2fae71a429c74
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74594046"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456782"
 ---
 # <a name="remote-desktop-license-server-isnt-available-when-you-connect-to-an-azure-vm"></a>连接到 Azure VM 时，远程桌面许可证服务器不可用
 
@@ -76,8 +78,7 @@ mstsc /v:<Server>[:<Port>] /admin
     2. 使用以下命令检查策略，并根据需要重新进行配置：
 
         ```
-        reg query "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\RCM\Licensing Core" /v LicensingMode 
-        reg query "HKLM\SYSTEM\CurrentControlSet\Services\TermService\Parameters" /v SpecifiedLicenseServers
+        reg query "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\RCM\Licensing Core" /v LicensingMode reg query "HKLM\SYSTEM\CurrentControlSet\Services\TermService\Parameters" /v SpecifiedLicenseServers
         ```
 
         如果 **LicensingMode** 值设置为除 4 以外的其他任何值（按用户），请将它设置为 4：

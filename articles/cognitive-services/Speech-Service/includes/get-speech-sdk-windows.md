@@ -3,14 +3,15 @@ author: trevorbye
 ms.service: cognitive-services
 ms.topic: include
 origin.date: 03/27/2020
-ms.date: 04/20/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: 03930c493fdf573e164c28945b0013d4808f05aa
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 0d7245c25e16705f6c4925efa09fba2b5e48ae88
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82126959"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317602"
 ---
 :::row:::
     :::column span="3":::

@@ -1,25 +1,23 @@
 ---
 title: 在 Azure Monitor 中配置代理数据源 | Azure Docs
 description: 数据源定义 Azure Monitor 从代理和其他已连接的源收集的日志数据。  本文介绍有关 Azure Monitor 如何使用数据源的概念，详细解释如何配置数据源，并对不同的可用数据源进行概要介绍。
-author: lingliw
-manager: digimobile
 ms.subservice: logs
 ms.topic: conceptual
-ms.tgt_pltfrm: na
+author: Johnnytechn
+ms.author: v-johya
+ms.date: 08/20/2020
 origin.date: 11/28/2018
-ms.date: 04/12/2019
-ms.author: v-lingwu
-ms.openlocfilehash: 56e5b4621b8f574aa0438a50323b734c2b02173a
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 331ade62f9c3792cd1ac63fa1098d977ca6414da
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79452583"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457462"
 ---
 # <a name="agent-data-sources-in-azure-monitor"></a>Azure Monitor 中的代理数据源
 Azure Monitor 从代理收集的数据是由你配置的数据源定义的。  来自代理的数据存储为包含记录集的[日志数据](data-platform-logs.md)。  每个数据源将创建具有某种特殊类型的记录，而每个类型都具有自己的一组属性。
 
-![日志数据收集](media/agent-data-sources/overview.png)
+![日志数据收集](./media/agent-data-sources/overview.png)
 
 ## <a name="summary-of-data-sources"></a>数据源概要介绍
 下表列出了 Azure Monitor 中当前可用的代理数据源。  每个数据源都链接到一篇单独的文章，提供该数据源的详细信息。   它还提供了有关收集方法和收集频率的信息。 
@@ -39,7 +37,7 @@ Azure Monitor 从代理收集的数据是由你配置的数据源定义的。  �
 ## <a name="configuring-data-sources"></a>配置数据源
 可以从工作区“高级设置”中的“数据”菜单配置数据源。  任何配置都将传送到工作区中所有已连接的数据源。  当前不能从此配置中排除任何代理。
 
-![配置 Windows 事件](media/agent-data-sources/configure-events.png)
+![配置 Windows 事件](./media/agent-data-sources/configure-events.png)
 
 1. 在 Azure 门户中，选择“Log Analytics 工作区”> 你的工作区 >“高级设置”   。
 2. 选择“**数据**”。
@@ -50,7 +48,7 @@ Azure Monitor 从代理收集的数据是由你配置的数据源定义的。  �
 ## <a name="data-collection"></a>数据收集
 数据源配置会在几分钟内传送到与 Azure Monitor 直接连接的各个代理。  指定的数据从代理收集，并按特定于每个数据源的时间间隔直接传送到 Azure Monitor。  请参阅每个数据源的文档以了解详情。
 
-对于已连接管理组中的 System Center Operations Manager 代理，数据源配置默认以每 5 分钟的间隔转换成管理包并传送到管理组。  代理会下载任何其他的管理包，并收集指定的数据。 根据数据源的不同，数据或者被发送到管理服务器，再由管理服务器转发到 Azure Monitor；或者不通过管理服务器，由代理将数据发送到 Azure Monitor。 有关详细信息，请参阅 [Azure 中的监视解决方案的数据收集详细信息](../insights/solutions-inventory.md)。
+对于已连接管理组中的 System Center Operations Manager 代理，数据源配置默认以每 5 分钟的间隔转换成管理包并传送到管理组。  代理会下载任何其他的管理包，并收集指定的数据。 根据数据源的不同，数据或者被发送到管理服务器，再由管理服务器转发到 Azure Monitor；或者不通过管理服务器，由代理将数据发送到 Azure Monitor。 有关详细信息，请参阅 [Azure 中的监视解决方案的数据收集详细信息](../monitor-reference.md)。
 
 如果代理无法连接到 Azure Monitor 或 Operations Manager，将继续收集在建立连接时传送的数据。  如果数据量达到客户端的最大缓存大小，或者如果代理无法在 24 小时内建立连接，则可能会丢失数据。
 
@@ -61,6 +59,4 @@ Azure Monitor 收集的所有日志数据都作为记录存储在工作区中。
 * 了解[监视解决方案](../insights/solutions.md)如何将功能添加到 Azure Monitor，以及如何将数据收集到工作区中。
 * 了解[日志查询](../log-query/log-query-overview.md)以便分析从数据源和监视解决方案中收集的数据。  
 * 配置[警报](alerts-overview.md)以便主动向你通知从数据源和监视解决方案中收集的关键数据。
-
-
 

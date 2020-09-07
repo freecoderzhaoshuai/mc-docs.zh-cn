@@ -13,12 +13,12 @@ ms.workload: ns
 origin.date: 06/21/2019
 ms.date: 04/06/2020
 ms.author: v-yiso
-ms.openlocfilehash: b032f21819db64bd462de97c941c11f166fa940f
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: 7ba5a99ade2a0b586608724b0b6e7ff282defeb3
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186615"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463192"
 ---
 # <a name="quickstart-send-telemetry-from-a-device-to-an-iot-hub-and-read-it-with-a-back-end-application-nodejs"></a>快速入门：将遥测数据从设备发送到 IoT 中心并使用后端应用程序读取该数据 (Node.js)
 
@@ -74,7 +74,7 @@ az extension add --name azure-iot
 
    **YourIoTHubName**：将下面的占位符替换为你为 IoT 中心选择的名称。
     ```azurecli
-    az iot hub device-identity show-connection-string --hub-name {YourIoTHubName} --device-id MyNodeDevice --output table
+    az iot hub device-identity connection-string show --hub-name {YourIoTHubName} --device-id MyNodeDevice --output table
     ```
     
     记下如下所示的设备连接字符串：

@@ -5,14 +5,14 @@ ms.subservice: autoscale
 ms.topic: conceptual
 author: Johnnytechn
 origin.date: 09/24/2018
-ms.date: 07/17/2020
+ms.date: 08/20/2020
 ms.author: v-johya
-ms.openlocfilehash: 3e1717dfa2ea93ab9db0a9c33bfa56813476fbaa
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.openlocfilehash: 8c4cb70a5949d3dd50f414f3efbdf2cb8c752f85
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508454"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457348"
 ---
 # <a name="overview-of-autoscale-in-azure"></a>Azure 中的自动缩放概述
 本文介绍了 Azure 自动缩放是什么、其对用户的好处，以及如何开始使用它。  
@@ -77,12 +77,12 @@ Azure Monitor 自动缩放仅适用于[虚拟机规模集](https://www.azure.cn/
 
 ![Azure 自动缩放设置、配置文件和规则结构](./media/autoscale-overview/AzureResourceManagerRuleStructure3.png)
 
-[自动缩放 REST API](https://msdn.microsoft.com/library/dn931928.aspx) 中提供了可配置字段和说明的完整列表。
+[自动缩放 REST API](https://docs.microsoft.com/rest/api/monitor/autoscalesettings) 中提供了可配置字段和说明的完整列表。
 
 有关代码示例，请参阅
 
 * [通过用于 VM 规模集的 Resource Manager 模板进行的高级自动缩放配置](autoscale-virtual-machine-scale-sets.md)  
-* [自动缩放 REST API](https://msdn.microsoft.com/library/dn931953.aspx)
+* [自动缩放 REST API](https://docs.microsoft.com/rest/api/monitor/autoscalesettings)
 
 ## <a name="horizontal-vs-vertical-scaling"></a>水平缩放和垂直缩放
 自动缩放仅以横向方式调整资源的规模，即只增加（“放”）或减少（“缩”）VM 实例的数目。  横向缩放在使用云服务的情况下更为灵活，因为这样可以运行数千个处理负载的 VM。
@@ -93,22 +93,22 @@ Azure Monitor 自动缩放仅适用于[虚拟机规模集](https://www.azure.cn/
 可以通过以下方式设置自动缩放：
 
 * [Azure 门户](autoscale-get-started.md)
-* [PowerShell](powershell-quickstart-samples.md#create-and-manage-autoscale-settings)
+* [PowerShell](../samples/powershell-samples.md#create-and-manage-autoscale-settings)
 * [跨平台的命令行接口 (CLI)](../samples/cli-samples.md#autoscale)
-* [Azure 监视器 REST API](https://msdn.microsoft.com/library/azure/dn931953.aspx)
+* [Azure 监视器 REST API](https://docs.microsoft.com/rest/api/monitor/autoscalesettings)
 
 ## <a name="supported-services-for-autoscale"></a>支持进行自动缩放的服务
 | 服务 | 架构和文档 |
 | --- | --- |
 | Web 应用 |[缩放 Web 应用](autoscale-get-started.md) |
 | 云服务 |[自动缩放云服务](../../cloud-services/cloud-services-how-to-scale-portal.md) |
-| 虚拟机：经典 |[缩放经典虚拟机可用性集](https://blogs.msdn.microsoft.com/kaevans/2015/02/20/autoscaling-azurevirtual-machines/) |
+| 虚拟机：经典 |[缩放经典虚拟机可用性集](https://docs.microsoft.com/archive/blogs/kaevans/autoscaling-azurevirtual-machines) |
 | 虚拟机：Windows 规模集 |[缩放 Windows 中的虚拟机规模集](../../virtual-machine-scale-sets/tutorial-autoscale-powershell.md) |
 | 虚拟机：Linux 规模集 |[缩放 Linux 中的虚拟机规模集](../../virtual-machine-scale-sets/tutorial-autoscale-cli.md) |
 | 虚拟机：Windows 示例 |[通过用于 VM 规模集的 Resource Manager 模板进行的高级自动缩放配置](autoscale-virtual-machine-scale-sets.md) |
-| API 管理服务|[自动缩放 Azure API 管理实例](/api-management/api-management-howto-autoscale)
+| API 管理服务|[自动缩放 Azure API 管理实例](../../api-management/api-management-howto-autoscale.md)
 | Azure 数据资源管理器群集|[管理 Azure 数据资源管理器群集缩放以适应不断变化的需求](https://docs.microsoft.com/azure/data-explorer/manage-cluster-horizontal-scaling)|
-| Azure 应用服务 |[在 Azure 应用服务中纵向扩展应用](/app-service/manage-scale-up)|
+| Azure 应用服务 |[在 Azure 应用服务中纵向扩展应用](../../app-service/manage-scale-up.md)|
 <!--Not available in MC: /logic-apps/ise-manage-integration-service-environment-->
 ## <a name="next-steps"></a>后续步骤
 若要详细了解自动缩放，请使用前面列出的自动缩放演练，或参阅以下资源：
@@ -116,7 +116,6 @@ Azure Monitor 自动缩放仅适用于[虚拟机规模集](https://www.azure.cn/
 * [Azure 监视器自动缩放常用指标](autoscale-common-metrics.md)
 * [Azure 监视器自动缩放的最佳做法](autoscale-best-practices.md)
 * [使用自动缩放操作发送电子邮件和 webhook 警报通知](autoscale-webhook-email.md)
-* [自动缩放 REST API](https://msdn.microsoft.com/library/dn931953.aspx)
+* [自动缩放 REST API](https://docs.microsoft.com/rest/api/monitor/autoscalesettings)
 * [虚拟机规模集自动缩放疑难解答](../../virtual-machine-scale-sets/virtual-machine-scale-sets-troubleshoot.md)
-
 

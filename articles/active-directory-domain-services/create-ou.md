@@ -9,14 +9,14 @@ ms.service: active-directory
 ms.subservice: domain-services
 ms.workload: identity
 ms.topic: how-to
-ms.date: 08/07/2020
+ms.date: 09/01/2020
 ms.author: v-junlch
-ms.openlocfilehash: 0334fc481f5251eb3712324ade7e038d89d3a4b4
-ms.sourcegitcommit: a5eb9a47feefb053ddbaab4b15c395972c372339
+ms.openlocfilehash: 24d88aa2313daa5ff21a5f4b14156937fb4497a4
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88028578"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413314"
 ---
 # <a name="create-an-organizational-unit-ou-in-an-azure-active-directory-domain-services-managed-domain"></a>在 Azure Active Directory 域服务托管域中创建组织单位 (OU)
 
@@ -89,8 +89,8 @@ Azure AD DS 托管域包括以下两个内置 OU：
 
 有关如何使用管理工具或创建和使用服务帐户的详细信息，请参阅以下文章：
 
-* [Active Directory 管理中心：入门](https://technet.microsoft.com/library/dd560651.aspx)
-* [服务帐户分步指南](https://technet.microsoft.com/library/dd548356.aspx)
+* [Active Directory 管理中心：入门](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd560651(v=ws.10))
+* [服务帐户分步指南](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd548356(v=ws.10))
 
 <!-- INTERNAL LINKS -->
 [create-azure-ad-tenant]: ../active-directory/fundamentals/sign-up-organization.md

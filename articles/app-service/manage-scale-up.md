@@ -7,12 +7,12 @@ origin.date: 08/19/2019
 ms.date: 06/22/2020
 ms.author: v-tawe
 ms.custom: seodec18
-ms.openlocfilehash: 814566063435ba07f0abc44ff8bbe59e8578e86b
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+ms.openlocfilehash: ef097bc30e7913cb904e9b7a93e01fa40570effb
+ms.sourcegitcommit: 5055d580fb7ef1722e32e09a334d1d3e28295dd6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85613302"
+ms.lasthandoff: 09/07/2020
+ms.locfileid: "89503335"
 ---
 # <a name="scale-up-an-app-in-azure-app-service"></a>在 Azure 应用服务中纵向扩展应用
 
@@ -76,7 +76,7 @@ ms.locfileid: "85613302"
 
 ## <a name="more-resources"></a>更多资源
 
-<!-- [Scale instance count manually or automatically](../monitoring-and-diagnostics/insights-how-to-scale.md) -->
+[手动或自动缩放实例计数](../monitoring-and-diagnostics/insights-how-to-scale.md)
 <!-- [SQLaccountsbilling]:https://go.microsoft.com/fwlink/?LinkId=234930 -->
 
 [为应用服务配置 PremiumV2 层](app-service-configure-premium-tier.md)

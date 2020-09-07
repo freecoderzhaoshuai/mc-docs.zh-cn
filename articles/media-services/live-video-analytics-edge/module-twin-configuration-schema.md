@@ -3,17 +3,17 @@ title: 模块孪生 JSON 架构 - Azure
 description: 本主题介绍 IoT Edge 上的实时视频分析的模块孪生 JSON 架构。
 ms.topic: conceptual
 origin.date: 04/27/2020
-ms.date: 07/27/2020
-ms.openlocfilehash: d9a5bf2ccf00a8b2eff586be5571e43072f181ac
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.date: 09/07/2020
+ms.openlocfilehash: a5c3e47bc596550151d7b2e6c3846a458fb69af2
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162776"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414031"
 ---
 # <a name="module-twin-json-schema"></a>模块孪生 JSON 架构
 
-设备孪生是存储设备状态信息（包括元数据、配置和条件）的 JSON 文档。 Azure IoT 中心为连接到 IoT 中心的每台设备保留一个设备孪生。 有关详细说明，请参阅[了解并在 IoT 中心内使用模块孪生](/iot-hub/iot-hub-devguide-module-twins)。
+设备孪生是存储设备状态信息（包括元数据、配置和条件）的 JSON 文档。 Azure IoT 中心为连接到 IoT 中心的每台设备保留一个设备孪生。 有关详细说明，请参阅[了解并在 IoT 中心内使用模块孪生](../../iot-hub/iot-hub-devguide-module-twins.md)。
 
 本主题介绍 IoT Edge 上的实时视频分析的模块孪生 JSON 架构。
 
@@ -44,7 +44,7 @@ IoT Edge 上的实时视频分析公开以下模块孪生属性。
 
 <sup>*</sup>必须提供服务主体证书或密码。 
 
-无需重启模块即可更新动态属性。 可按照[访问媒体服务 API](../latest/access-api-cli-how-to.md) 一文中的说明，获取其中几个属性的值。 
+无需重启模块即可更新动态属性。 可按照[访问媒体服务 API](../latest/access-api-howto.md) 一文中的说明，获取其中几个属性的值。 
 
 有关可选诊断设置的角色的详细信息，请参阅[监视和日志记录](monitoring-logging.md)。
 

@@ -11,14 +11,14 @@ ms.workload: ''
 ms.topic: article
 ms.custom: ''
 origin.date: 05/14/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 37ed6eaff918295a4303dd74d7211a3b4b7a888d
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 568153c746db65fa674b19b79f8b2f7c7a152f8c
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71125621"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413362"
 ---
 # <a name="how-to-encode-with-a-custom-transform---rest"></a>如何对自定义转换进行编码 - REST
 
@@ -33,7 +33,7 @@ ms.locfileid: "71125621"
 
 ## <a name="prerequisites"></a>先决条件 
 
-- [创建媒体服务帐户](create-account-cli-how-to.md)。 <br/>请务必记住资源组名称和媒体服务帐户名称。 
+- [创建媒体服务帐户](./create-account-howto.md)。 <br/>请务必记住资源组名称和媒体服务帐户名称。 
 - [配置 Postman 以便进行 Azure 媒体服务 REST API 调用](media-rest-apis-with-postman.md)。<br/>确保遵循[获取 Azure AD 令牌](media-rest-apis-with-postman.md#get-azure-ad-token)主题中的最后一步。 
 
 ## <a name="define-a-custom-preset"></a>定义自定义预设

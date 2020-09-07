@@ -1,10 +1,9 @@
 ---
-title: 使用 PowerShell 在运行 Windows 的虚拟机中启用 Azure 诊断
+title: 在 Windows VM 上使用 Azure PowerShell 启用诊断
 services: virtual-machines-windows
 documentationcenter: ''
 description: 了解如何使用 PowerShell 在运行 Windows 的虚拟机中启用 Azure 诊断
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 editor: ''
 ms.assetid: 2e6d88f2-1980-4a24-827e-a81616a0d247
 ms.service: virtual-machines-windows
@@ -12,14 +11,17 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.topic: article
 origin.date: 12/15/2015
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: e97109cb7e1a63f4ab174f9809f3df6750c51571
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: 458d9959580cb9d6dc2510a85184eeb5250b9684
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596369"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413732"
 ---
 # <a name="use-powershell-to-enable-azure-diagnostics-in-a-virtual-machine-running-windows"></a>使用 PowerShell 在运行 Windows 的虚拟机中启用 Azure 诊断
 
@@ -30,11 +32,13 @@ Azure 诊断是 Azure 中可对部署的应用程序启用诊断数据收集的�
 
 要在通过资源管理器部署模型创建的现有 VM 上启用诊断扩展，可按如下所示使用 [Set-AzVMDiagnosticsExtension](https://docs.microsoft.com/powershell/module/az.compute/set-azvmdiagnosticsextension) PowerShell cmdlet。
 
-    $vm_resourcegroup = "myvmresourcegroup"
-    $vm_name = "myvm"
-    $diagnosticsconfig_path = "DiagnosticsPubConfig.xml"
+```azurepowershell
+$vm_resourcegroup = "myvmresourcegroup"
+$vm_name = "myvm"
+$diagnosticsconfig_path = "DiagnosticsPubConfig.xml"
 
-    Set-AzVMDiagnosticsExtension -ResourceGroupName $vm_resourcegroup -VMName $vm_name -DiagnosticsConfigurationPath $diagnosticsconfig_path
+Set-AzVMDiagnosticsExtension -ResourceGroupName $vm_resourcegroup -VMName $vm_name -DiagnosticsConfigurationPath $diagnosticsconfig_path
+```
 
 *$diagnosticsconfig_path* 是指向包含 XML 格式诊断配置的文件的路径，如以下[示例](#sample-diagnostics-configuration)中所述。  
 
@@ -44,18 +48,24 @@ Azure 诊断是 Azure 中可对部署的应用程序启用诊断数据收集的�
 
 如果诊断存储帐户与 VM 属于不同的订阅，则必须将 *StorageAccountName* 和 *StorageAccountKey* 参数显式传递给 cmdlet。 当诊断存储帐户在同一订阅中时，不需要 *StorageAccountKey* 参数，因为 cmdlet 可以在启用诊断扩展时自动查询和设置密钥值。 但是，如果诊断存储帐户在不同的订阅中，则 cmdlet 可能无法自动获取密钥，需要通过 *StorageAccountKey* 参数显式指定该密钥。  
 
-    Set-AzVMDiagnosticsExtension -ResourceGroupName $vm_resourcegroup -VMName $vm_name -DiagnosticsConfigurationPath $diagnosticsconfig_path -StorageAccountName $diagnosticsstorage_name -StorageAccountKey $diagnosticsstorage_key
+```azurepowershell
+Set-AzVMDiagnosticsExtension -ResourceGroupName $vm_resourcegroup -VMName $vm_name -DiagnosticsConfigurationPath $diagnosticsconfig_path -StorageAccountName $diagnosticsstorage_name -StorageAccountKey $diagnosticsstorage_key
+```
 
 在 VM 上启用诊断扩展后，可以使用 [Get-AzVmDiagnosticsExtension](https://docs.microsoft.com/powershell/module/az.compute/get-azvmdiagnosticsextension) cmdlet 获取当前设置。
 
-    Get-AzVMDiagnosticsExtension -ResourceGroupName $vm_resourcegroup -VMName $vm_name
+```azurepowershell
+Get-AzVMDiagnosticsExtension -ResourceGroupName $vm_resourcegroup -VMName $vm_name
+```
 
 该 cmdlet 返回 *PublicSettings*，其中包含诊断配置。 支持两种类型的配置：WadCfg 和 xmlCfg。 WadCfg 是 JSON 配置，而 xmlCfg 是 Base64 编码格式的 XML 配置。 若要读取该 XML，需将其解码。
 
-    $publicsettings = (Get-AzVMDiagnosticsExtension -ResourceGroupName $vm_resourcegroup -VMName $vm_name).PublicSettings
-    $encodedconfig = (ConvertFrom-Json -InputObject $publicsettings).xmlCfg
-    $xmlconfig = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($encodedconfig))
-    Write-Host $xmlconfig
+```azurepowershell
+$publicsettings = (Get-AzVMDiagnosticsExtension -ResourceGroupName $vm_resourcegroup -VMName $vm_name).PublicSettings
+$encodedconfig = (ConvertFrom-Json -InputObject $publicsettings).xmlCfg
+$xmlconfig = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($encodedconfig))
+Write-Host $xmlconfig
+```
 
 可以使用 [Remove-AzVmDiagnosticsExtension](https://docs.microsoft.com/powershell/module/az.compute/remove-azvmdiagnosticsextension) cmdlet 从 VM 中删除该诊断扩展。  
 
@@ -63,18 +73,22 @@ Azure 诊断是 Azure 中可对部署的应用程序启用诊断数据收集的�
 
 [!INCLUDE [classic-vm-deprecation](../../../includes/classic-vm-deprecation.md)]
 
-在通过经典部署模型创建的 VM 上，可以使用 [Set-AzureVMDiagnosticsExtension](https://docs.microsoft.com/powershell/module/servicemanagement/azure/set-azurevmdiagnosticsextension) cmdlet 启用诊断扩展。 以下示例演示了如何通过经典部署模型创建启用了诊断扩展的新 VM。
+在通过经典部署模型创建的 VM 上，可以使用 [Set-AzureVMDiagnosticsExtension](https://docs.microsoft.com/powershell/module/servicemanagement/azure.service/set-azurevmdiagnosticsextension) cmdlet 启用诊断扩展。 以下示例演示了如何通过经典部署模型创建启用了诊断扩展的新 VM。
 
-    $VM = New-AzureVMConfig -Name $VM -InstanceSize Small -ImageName $VMImage
-    $VM = Add-AzureProvisioningConfig -VM $VM -AdminUsername $Username -Password $Password -Windows
-    $VM = Set-AzureVMDiagnosticsExtension -DiagnosticsConfigurationPath $Config_Path -VM $VM -StorageContext $Storage_Context
-    New-AzVM -Location $Location -ServiceName $Service_Name -VM $VM
+```azurepowershell
+$VM = New-AzureVMConfig -Name $VM -InstanceSize Small -ImageName $VMImage
+$VM = Add-AzureProvisioningConfig -VM $VM -AdminUsername $Username -Password $Password -Windows
+$VM = Set-AzureVMDiagnosticsExtension -DiagnosticsConfigurationPath $Config_Path -VM $VM -StorageContext $Storage_Context
+New-AzVM -Location $Location -ServiceName $Service_Name -VM $VM
+```
 
-若要在通过典型部署模型创建的现有 VM 上启用诊断扩展，请先使用 [Get-AzureVM](https://docs.microsoft.com/powershell/module/servicemanagement/azure/get-azurevm) cmdlet 获取 VM 配置。 然后，使用 [Set-AzureVMDiagnosticsExtension](https://docs.microsoft.com/powershell/module/servicemanagement/azure/set-azurevmdiagnosticsextension) cmdlet 更新 VM 配置，使其包含诊断扩展。 最后，使用 [Update-AzureVM](https://docs.microsoft.com/powershell/module/servicemanagement/azure/update-azurevm) 将更新的配置应用到 VM。
+若要在通过典型部署模型创建的现有 VM 上启用诊断扩展，请先使用 [Get-AzureVM](https://docs.microsoft.com/powershell/module/servicemanagement/azure.service/get-azurevm) cmdlet 获取 VM 配置。 然后，使用 [Set-AzureVMDiagnosticsExtension](https://docs.microsoft.com/powershell/module/servicemanagement/azure.service/set-azurevmdiagnosticsextension) cmdlet 更新 VM 配置，使其包含诊断扩展。 最后，使用 [Update-AzureVM](https://docs.microsoft.com/powershell/module/servicemanagement/azure.service/update-azurevm) 将更新的配置应用到 VM。
 
-    $VM = Get-AzureVM -ServiceName $Service_Name -Name $VM_Name
-    $VM_Update = Set-AzureVMDiagnosticsExtension  -DiagnosticsConfigurationPath $Config_Path -VM $VM -StorageContext $Storage_Context
-    Update-AzureVM -ServiceName $Service_Name -Name $VM_Name -VM $VM_Update.VM
+```azurepowershell
+$VM = Get-AzureVM -ServiceName $Service_Name -Name $VM_Name
+$VM_Update = Set-AzureVMDiagnosticsExtension  -DiagnosticsConfigurationPath $Config_Path -VM $VM -StorageContext $Storage_Context
+Update-AzureVM -ServiceName $Service_Name -Name $VM_Name -VM $VM_Update.VM
+```
 
 ## <a name="sample-diagnostics-configuration"></a>诊断配置示例
 以下 XML 可用于上述脚本的诊断公共配置。 此示例配置会将各种性能计数器传输给诊断存储帐户，同时还会传输 Windows 事件日志的应用程序、安全和系统通道中的错误，以及诊断基础结构日志中的任何错误。
@@ -198,6 +212,6 @@ Azure 诊断是 Azure 中可对部署的应用程序启用诊断数据收集的�
 
 ## <a name="next-steps"></a>后续步骤
 * 有关使用 Azure 诊断功能和其他方法排查问题的详细说明，请参阅 [Enabling Diagnostics in Azure Cloud Services and Virtual Machines](../../cloud-services/cloud-services-dotnet-diagnostics.md)（在 Azure 云服务和虚拟机中启用诊断）。
-* [Diagnostics configurations schema](https://docs.azure.cn/azure-monitor/platform/diagnostics-extension-schema/)（诊断配置架构）解释了诊断扩展的各种 XML 配置选项。
+* [Diagnostics configurations schema](../../azure-monitor/platform/diagnostics-extension-versions.md)（诊断配置架构）解释了诊断扩展的各种 XML 配置选项。
 
-<!-- Update_Description: update meta properties, wording update  -->
+<!-- Update_Description: update meta properties, wording update, update link -->

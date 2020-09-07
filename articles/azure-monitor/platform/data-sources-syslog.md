@@ -1,20 +1,18 @@
 ---
 title: 在 Azure Monitor 中收集和分析 Syslog 消息 | Azure Docs
 description: Syslog 是普遍适用于 Linux 的事件日志记录协议。 本文介绍了如何在 Log Analytics 中配置 Syslog 消息集合以及它们创建的记录的详细信息。
-author: lingliw
-manager: digimobile
 ms.subservice: logs
 ms.topic: conceptual
-ms.tgt_pltfrm: na
+author: bwren
+ms.author: v-johya
+ms.date: 08/20/2020
 origin.date: 03/22/2019
-ms.date: 04/22/2019
-ms.author: v-lingwu
-ms.openlocfilehash: e79b2bd11293881c298d7c9ae0041d800160c12e
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 802d9da44a000ba3275b0019c77cd92120809495
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79452292"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457338"
 ---
 # <a name="syslog-data-sources-in-azure-monitor"></a>Azure Monitor 中的 Syslog 数据源
 Syslog 是普遍适用于 Linux 的事件日志记录协议。 应用程序将发送可能存储在本地计算机或传递到 Syslog 收集器的消息。 安装适用于 Linux 的 Log Analytics 代理后，它将配置本地 Syslog 后台程序，以将消息转发到此代理。 然后，此代理将消息发送到 Azure Monitor，将在后者中创建相应的记录。  
@@ -24,7 +22,7 @@ Syslog 是普遍适用于 Linux 的事件日志记录协议。 应用程序将�
 >
 >
 
-![Syslog 收集](media/data-sources-syslog/overview.png)
+![Syslog 收集](./media/data-sources-syslog/overview.png)
 
 Syslog 收集器支持以下功能：
 
@@ -52,12 +50,12 @@ Syslog 收集器支持以下功能：
 
 可以通过以下方法添加新设施：首先选择选项“将下列配置应用到我的计算机”，然后输入其名称并单击“+”。 对于每个设施，将仅收集具有所选严重级别的消息。  检查要收集的特定设施的严重级别。 不能向筛选消息提供任何其他条件。
 
-![配置 Syslog](media/data-sources-syslog/configure.png)
+![配置 Syslog](./media/data-sources-syslog/configure.png)
 
 默认情况下，所有配置更改均会自动推送到所有代理。 如果想在每个 Linux 代理上手动配置 Syslog，则取消选中“将下面的配置应用到我的计算机”  框。
 
 ### <a name="configure-syslog-on-linux-agent"></a>在 Linux 代理上配置 Syslog
-[Log Analytics 代理安装在 Linux 客户端上](../../azure-monitor/learn/quick-collect-linux-computer.md)后，它将安装可定义收集的消息的设施和严重级别的默认 syslog 配置文件。 可以修改此文件以更改配置。 此配置文件视客户端已安装的 Syslog 守护程序而异。
+[Log Analytics 代理安装在 Linux 客户端上](../learn/quick-collect-linux-computer.md)后，它将安装可定义收集的消息的设施和严重级别的默认 syslog 配置文件。 可以修改此文件以更改配置。 此配置文件视客户端已安装的 Syslog 守护程序而异。
 
 > [!NOTE]
 > 如果编辑 syslog 配置，必须重新启动 syslog 守护程序才能使更改生效。
@@ -67,87 +65,93 @@ Syslog 收集器支持以下功能：
 #### <a name="rsyslog"></a>rsyslog
 rsyslog 的配置文件位于 **/etc/rsyslog.d/95-omsagent.conf**。 其默认内容如下所示。 这会收集针对警告或更高级别的全部设施从本地代理发送的 syslog 消息。
 
-    kern.warning       @127.0.0.1:25224
-    user.warning       @127.0.0.1:25224
-    daemon.warning     @127.0.0.1:25224
-    auth.warning       @127.0.0.1:25224
-    syslog.warning     @127.0.0.1:25224
-    uucp.warning       @127.0.0.1:25224
-    authpriv.warning   @127.0.0.1:25224
-    ftp.warning        @127.0.0.1:25224
-    cron.warning       @127.0.0.1:25224
-    local0.warning     @127.0.0.1:25224
-    local1.warning     @127.0.0.1:25224
-    local2.warning     @127.0.0.1:25224
-    local3.warning     @127.0.0.1:25224
-    local4.warning     @127.0.0.1:25224
-    local5.warning     @127.0.0.1:25224
-    local6.warning     @127.0.0.1:25224
-    local7.warning     @127.0.0.1:25224
+```config
+kern.warning       @127.0.0.1:25224
+user.warning       @127.0.0.1:25224
+daemon.warning     @127.0.0.1:25224
+auth.warning       @127.0.0.1:25224
+syslog.warning     @127.0.0.1:25224
+uucp.warning       @127.0.0.1:25224
+authpriv.warning   @127.0.0.1:25224
+ftp.warning        @127.0.0.1:25224
+cron.warning       @127.0.0.1:25224
+local0.warning     @127.0.0.1:25224
+local1.warning     @127.0.0.1:25224
+local2.warning     @127.0.0.1:25224
+local3.warning     @127.0.0.1:25224
+local4.warning     @127.0.0.1:25224
+local5.warning     @127.0.0.1:25224
+local6.warning     @127.0.0.1:25224
+local7.warning     @127.0.0.1:25224
+```
 
 通过删除设施的配置文件部分可删除某个设施。 通过修改设施条目，可以针对某个特定设施限制收集的严重级别。 例如，要将用户设施限制为错误或更高严重级别的消息，则需要将配置文件的相应行修改为如下所示：
 
-    user.error    @127.0.0.1:25224
-
+```config
+user.error    @127.0.0.1:25224
+```
 
 #### <a name="syslog-ng"></a>syslog-ng
 syslog-ng 的配置文件位于 **/etc/syslog-ng/syslog-ng.conf**。  其默认内容如下所示。 这会收集针对全部设施和所有严重级别的从本地代理发送的 syslog 消息。   
 
-    #
-    # Warnings (except iptables) in one file:
-    #
-    destination warn { file("/var/log/warn" fsync(yes)); };
-    log { source(src); filter(f_warn); destination(warn); };
+```config
+#
+# Warnings (except iptables) in one file:
+#
+destination warn { file("/var/log/warn" fsync(yes)); };
+log { source(src); filter(f_warn); destination(warn); };
 
-    #OMS_Destination
-    destination d_oms { udp("127.0.0.1" port(25224)); };
+#OMS_Destination
+destination d_oms { udp("127.0.0.1" port(25224)); };
 
-    #OMS_facility = auth
-    filter f_auth_oms { level(alert,crit,debug,emerg,err,info,notice,warning) and facility(auth); };
-    log { source(src); filter(f_auth_oms); destination(d_oms); };
+#OMS_facility = auth
+filter f_auth_oms { level(alert,crit,debug,emerg,err,info,notice,warning) and facility(auth); };
+log { source(src); filter(f_auth_oms); destination(d_oms); };
 
-    #OMS_facility = authpriv
-    filter f_authpriv_oms { level(alert,crit,debug,emerg,err,info,notice,warning) and facility(authpriv); };
-    log { source(src); filter(f_authpriv_oms); destination(d_oms); };
+#OMS_facility = authpriv
+filter f_authpriv_oms { level(alert,crit,debug,emerg,err,info,notice,warning) and facility(authpriv); };
+log { source(src); filter(f_authpriv_oms); destination(d_oms); };
 
-    #OMS_facility = cron
-    filter f_cron_oms { level(alert,crit,debug,emerg,err,info,notice,warning) and facility(cron); };
-    log { source(src); filter(f_cron_oms); destination(d_oms); };
+#OMS_facility = cron
+filter f_cron_oms { level(alert,crit,debug,emerg,err,info,notice,warning) and facility(cron); };
+log { source(src); filter(f_cron_oms); destination(d_oms); };
 
-    #OMS_facility = daemon
-    filter f_daemon_oms { level(alert,crit,debug,emerg,err,info,notice,warning) and facility(daemon); };
-    log { source(src); filter(f_daemon_oms); destination(d_oms); };
+#OMS_facility = daemon
+filter f_daemon_oms { level(alert,crit,debug,emerg,err,info,notice,warning) and facility(daemon); };
+log { source(src); filter(f_daemon_oms); destination(d_oms); };
 
-    #OMS_facility = kern
-    filter f_kern_oms { level(alert,crit,debug,emerg,err,info,notice,warning) and facility(kern); };
-    log { source(src); filter(f_kern_oms); destination(d_oms); };
+#OMS_facility = kern
+filter f_kern_oms { level(alert,crit,debug,emerg,err,info,notice,warning) and facility(kern); };
+log { source(src); filter(f_kern_oms); destination(d_oms); };
 
-    #OMS_facility = local0
-    filter f_local0_oms { level(alert,crit,debug,emerg,err,info,notice,warning) and facility(local0); };
-    log { source(src); filter(f_local0_oms); destination(d_oms); };
+#OMS_facility = local0
+filter f_local0_oms { level(alert,crit,debug,emerg,err,info,notice,warning) and facility(local0); };
+log { source(src); filter(f_local0_oms); destination(d_oms); };
 
-    #OMS_facility = local1
-    filter f_local1_oms { level(alert,crit,debug,emerg,err,info,notice,warning) and facility(local1); };
-    log { source(src); filter(f_local1_oms); destination(d_oms); };
+#OMS_facility = local1
+filter f_local1_oms { level(alert,crit,debug,emerg,err,info,notice,warning) and facility(local1); };
+log { source(src); filter(f_local1_oms); destination(d_oms); };
 
-    #OMS_facility = mail
-    filter f_mail_oms { level(alert,crit,debug,emerg,err,info,notice,warning) and facility(mail); };
-    log { source(src); filter(f_mail_oms); destination(d_oms); };
+#OMS_facility = mail
+filter f_mail_oms { level(alert,crit,debug,emerg,err,info,notice,warning) and facility(mail); };
+log { source(src); filter(f_mail_oms); destination(d_oms); };
 
-    #OMS_facility = syslog
-    filter f_syslog_oms { level(alert,crit,debug,emerg,err,info,notice,warning) and facility(syslog); };
-    log { source(src); filter(f_syslog_oms); destination(d_oms); };
+#OMS_facility = syslog
+filter f_syslog_oms { level(alert,crit,debug,emerg,err,info,notice,warning) and facility(syslog); };
+log { source(src); filter(f_syslog_oms); destination(d_oms); };
 
-    #OMS_facility = user
-    filter f_user_oms { level(alert,crit,debug,emerg,err,info,notice,warning) and facility(user); };
-    log { source(src); filter(f_user_oms); destination(d_oms); };
+#OMS_facility = user
+filter f_user_oms { level(alert,crit,debug,emerg,err,info,notice,warning) and facility(user); };
+log { source(src); filter(f_user_oms); destination(d_oms); };
+```
 
 通过删除设施的配置文件部分可删除某个设施。 通过将严重级别从其列表中删除，可以针对某个特定设施限制收集的严重级别。  例如，要将用户设施限制为仅警告和关键消息，则需要将配置文件的相应部分修改为如下所示：
 
-    #OMS_facility = user
-    filter f_user_oms { level(alert,crit) and facility(user); };
-    log { source(src); filter(f_user_oms); destination(d_oms); };
-
+```config
+#OMS_facility = user
+filter f_user_oms { level(alert,crit) and facility(user); };
+log { source(src); filter(f_user_oms); destination(d_oms); };
+```
 
 ### <a name="collecting-data-from-additional-syslog-ports"></a>从其他 Syslog 端口收集数据
 Log Analytics 代理在端口 25224 侦听本地客户端上的 Syslog 消息。  安装代理时，会应用默认的 syslog 配置，此配置位于以下位置：
@@ -159,16 +163,17 @@ Log Analytics 代理在端口 25224 侦听本地客户端上的 Syslog 消息。
 
 * FluentD 配置文件应为新文件（位于 `/etc/opt/microsoft/omsagent/conf/omsagent.d`），同时用自定义端口号替换“端口”条目中的值  。
 
-        <source>
-          type syslog
-          port %SYSLOG_PORT%
-          bind 127.0.0.1
-          protocol_type udp
-          tag oms.syslog
-        </source>
-        <filter oms.syslog.**>
-          type filter_syslog
-        </filter>
+    ```xml
+    <source>
+        type syslog
+        port %SYSLOG_PORT%
+        bind 127.0.0.1
+        protocol_type udp
+        tag oms.syslog
+    </source>
+    <filter oms.syslog.**>
+        type filter_syslog
+    ```
 
 * 对于 rsyslog，应创建新的配置文件（位于 `/etc/rsyslog.d/`），同时用自定义端口号替换值 %SYSLOG_PORT%。  
 
@@ -176,11 +181,13 @@ Log Analytics 代理在端口 25224 侦听本地客户端上的 Syslog 消息。
     > 如果修改了配置文件 `95-omsagent.conf` 中的此值，代理应用默认配置时将覆盖此值。
     >
 
-        # OMS Syslog collection for workspace %WORKSPACE_ID%
-        kern.warning              @127.0.0.1:%SYSLOG_PORT%
-        user.warning              @127.0.0.1:%SYSLOG_PORT%
-        daemon.warning            @127.0.0.1:%SYSLOG_PORT%
-        auth.warning              @127.0.0.1:%SYSLOG_PORT%
+    ```config
+    # OMS Syslog collection for workspace %WORKSPACE_ID%
+    kern.warning              @127.0.0.1:%SYSLOG_PORT%
+    user.warning              @127.0.0.1:%SYSLOG_PORT%
+    daemon.warning            @127.0.0.1:%SYSLOG_PORT%
+    auth.warning              @127.0.0.1:%SYSLOG_PORT%
+    ```
 
 * 若要修改 syslog-ng 配置，应复制下面显示的示例配置，然后将自定义修改设置添加到 syslog-ng.conf 配置文件（位于 `/etc/syslog-ng/`）的末尾。 不要使用默认标签 %WORKSPACE_ID%_oms 或 %WORKSPACE_ID_OMS，请定义自定义标签，以帮助区分你的更改。     
 
@@ -188,9 +195,11 @@ Log Analytics 代理在端口 25224 侦听本地客户端上的 Syslog 消息。
     > 如果修改了配置文件中的默认值，代理应用默认配置时将覆盖这些值。
     >
 
-        filter f_custom_filter { level(warning) and facility(auth; };
-        destination d_custom_dest { udp("127.0.0.1" port(%SYSLOG_PORT%)); };
-        log { source(s_src); filter(f_custom_filter); destination(d_custom_dest); };
+    ```config
+    filter f_custom_filter { level(warning) and facility(auth; };
+    destination d_custom_dest { udp("127.0.0.1" port(%SYSLOG_PORT%)); };
+    log { source(s_src); filter(f_custom_filter); destination(d_custom_dest); };
+    ```
 
 完成更改后，需重启 Syslog 和 Log Analytics 代理服务，确保配置更改生效。   
 
@@ -219,6 +228,8 @@ record 记录的类型为 **Syslog**，并且具有下表中的属性。
 | Syslog &#124; summarize AggregatedValue = count() by Facility |按设施计算的 Syslog 记录数目。 |
 
 ## <a name="next-steps"></a>后续步骤
-* 了解[日志查询](../../azure-monitor/log-query/log-query-overview.md)以便分析从数据源和解决方案中收集的数据。
-* 使用[自定义字段](../../azure-monitor/platform/custom-fields.md)将来自 syslog 记录的数据解析为单个字段。
-* [配置 Linux 代理](../../azure-monitor/learn/quick-collect-linux-computer.md)以收集其他类型的数据。
+* 了解[日志查询](../log-query/log-query-overview.md)以便分析从数据源和解决方案中收集的数据。
+* 使用[自定义字段](./custom-fields.md)将来自 syslog 记录的数据解析为单个字段。
+* [配置 Linux 代理](../learn/quick-collect-linux-computer.md)以收集其他类型的数据。
+
+

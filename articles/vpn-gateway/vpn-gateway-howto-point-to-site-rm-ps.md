@@ -5,16 +5,16 @@ titleSuffix: Azure VPN Gateway
 services: vpn-gateway
 author: WenJason
 ms.service: vpn-gateway
-ms.topic: conceptual
+ms.topic: how-to
 origin.date: 01/15/2020
-ms.date: 02/17/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 652ffa571bed0e338bcda77f16a7ec21a7708888
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 9857544311ead8bfef880d95ff57b0a686a2a4aa
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77156803"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463193"
 ---
 # <a name="configure-a-point-to-site-vpn-connection-to-a-vnet-using-native-azure-certificate-authentication-powershell"></a>使用本机 Azure 证书身份验证配置与 VNet 的点到站点 VPN 连接：PowerShell
 

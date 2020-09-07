@@ -1,19 +1,18 @@
 ---
 title: 在 Azure Monitor 中收集自定义 JSON 数据 | Azure Docs
 description: 可以使用适用于 Linux 的 Log Analytics 代理将自定义 JSON 数据源收集到 Azure Monitor 中。  这些自定义数据源可以是返回 JSON 的简单脚本，例如 curl 或 FluentD 的 300 多个插件之一。 本文介绍此数据收集所需的配置。
-author: lingliw
-manager: digimobile
 ms.subservice: logs
 ms.topic: conceptual
+author: Johnnytechn
+ms.author: v-johya
+ms.date: 08/20/2020
 origin.date: 11/28/2018
-ms.date: 04/12/2019
-ms.author: v-lingwu
-ms.openlocfilehash: b9215e51bd15bd0a6c56d37d20712d4974e47ebe
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: d5d6cad89f435d1dbf1e2a7d72dff12a6ee16d16
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79452532"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457436"
 ---
 # <a name="collecting-custom-json-data-sources-with-the-log-analytics-agent-for-linux-in-azure-monitor"></a>在 Azure Monitor 中使用适用于 Linux 的 Log Analytics 代理收集自定义 JSON 数据源
 [!INCLUDE [log-analytics-agent-note](../../../includes/log-analytics-agent-note.md)]
@@ -32,7 +31,7 @@ ms.locfileid: "79452532"
 
 例如，下面是 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/` 中一个单独的配置文件 `exec-json.conf`。  此配置文件使用 FluentD 插件 `exec` 每隔 30 秒运行一个 curl 命令。  此命令的输出由 JSON 输出插件收集。
 
-```
+```xml
 <source>
   type exec
   command 'curl localhost/json.output'
@@ -54,6 +53,7 @@ ms.locfileid: "79452532"
   retry_wait 30s
 </match>
 ```
+
 在 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/` 下添加的配置文件需要使用以下命令更改其所有权。
 
 `sudo chown omsagent:omiusers /etc/opt/microsoft/omsagent/conf/omsagent.d/exec-json.conf`
@@ -61,7 +61,7 @@ ms.locfileid: "79452532"
 ### <a name="configure-output-plugin"></a>配置输出插件 
 将下面的输出插件配置添加到 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf` 中的主配置，或者作为单独的配置文件放置在 `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/` 中
 
-```
+```xml
 <match oms.api.**>
   type out_oms_api
   log_level info
@@ -79,18 +79,22 @@ ms.locfileid: "79452532"
 ### <a name="restart-log-analytics-agent-for-linux"></a>重新启动 Log Analytics Linux 代理
 使用以下命令重启 Log Analytics Linux 代理服务。
 
-    sudo /opt/microsoft/omsagent/bin/service_control restart 
+```console
+sudo /opt/microsoft/omsagent/bin/service_control restart 
+```
 
 ## <a name="output"></a>输出
 数据将以记录类型 `<FLUENTD_TAG>_CL` 收集到 Azure Monitor 中。
 
 例如，Azure Monitor 中具有 `tomcat_CL` 记录类型的自定义标记 `tag oms.api.tomcat`。  可以使用以下日志查询检索此类型的所有记录。
 
-    Type=tomcat_CL
+```console
+Type=tomcat_CL
+```
 
 支持嵌套 JSON 数据源，但基于父字段编制索引。 例如，下面的 JSON 数据是以 `tag_s : "[{ "a":"1", "b":"2" }]` 的形式从日志查询返回的。
 
-```
+```json
 {
     "tag": [{
         "a":"1",
@@ -102,3 +106,4 @@ ms.locfileid: "79452532"
 
 ## <a name="next-steps"></a>后续步骤
 * 了解[日志查询](../log-query/log-query-overview.md)以便分析从数据源和解决方案中收集的数据。 
+

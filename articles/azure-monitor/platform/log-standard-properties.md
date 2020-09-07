@@ -6,13 +6,13 @@ ms.topic: conceptual
 author: Johnnytechn
 ms.author: v-johya
 origin.date: 07/18/2019
-ms.date: 05/28/2020
-ms.openlocfilehash: adeff0206c8f53f4eb0ade85b447c5b0f4c63f56
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.date: 08/20/2020
+ms.openlocfilehash: 0662b77aaa386337b6799e7698ddc19f916ca216
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440694"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457417"
 ---
 # <a name="standard-properties-in-azure-monitor-logs"></a>Azure Monitor 日志中的标准属性
 Azure Monitor 日志中的数据[以一组记录的形式存储在 Log Analytics 工作区或 Application Insights 应用程序](../log-query/logs-structure.md)中，每个记录都有一个特定的数据类型，每个数据类型都有一组唯一的属性。 许多数据类型都具有在多种类型中通用的标准属性。 本文介绍这些属性，并提供如何在查询中使用它们的示例。
@@ -212,6 +212,7 @@ union withsource = tt *
 ## <a name="next-steps"></a>后续步骤
 
 - 详细了解如何[存储 Azure Monitor 日志数据](../log-query/log-query-overview.md)。
-- 获取有关[编写日志查询](../../azure-monitor/log-query/get-started-queries.md)的课程。
-- 获取有关[在日志查询中联接表](../../azure-monitor/log-query/joins.md)的课程。
+- 获取有关[编写日志查询](../log-query/get-started-queries.md)的课程。
+- 获取有关[在日志查询中联接表](../log-query/joins.md)的课程。
+
 

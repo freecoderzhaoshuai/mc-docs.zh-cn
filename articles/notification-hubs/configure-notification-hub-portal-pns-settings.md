@@ -1,5 +1,5 @@
 ---
-title: 在 Azure 通知中心设置推送通知 | Azure
+title: 在 Azure 通知中心设置推送通知 | Microsoft Docs
 description: 了解如何通过平台通知系统 (PNS) 设置在 Azure 门户中设置 Azure 通知中心。
 services: notification-hubs
 author: sethmanheim
@@ -8,16 +8,17 @@ ms.service: notification-hubs
 ms.workload: mobile
 ms.topic: quickstart
 origin.date: 06/22/2020
-ms.date: 07/21/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.reviewer: thsomasu
 ms.lastreviewed: 02/14/2019
-ms.openlocfilehash: 5cc89804e041d8446d22ac1f78f6b814cf9cc9a4
-ms.sourcegitcommit: 5656c18d7d2faa09329b1a15e352d1622e252d5f
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: da9f8c8de8b8a08b8010c0f878faaee496ba115f
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86862838"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316377"
 ---
 # <a name="quickstart-set-up-push-notifications-in-a-notification-hub"></a>快速入门：在通知中心设置推送通知
 
@@ -25,7 +26,7 @@ Azure 通知中心提供了一种易于使用且可扩展的推送引擎。使�
 
 在该快速入门中，你将在通知中心使用平台通知系统 (PNS) 设置在多个平台上设置推送通知。 该快速入门介绍了要在 Azure 门户中执行的步骤。
 
-如果尚未创建通知中心，请立即创建。 有关详细信息，请参阅[在 Azure 门户中创建 Azure 通知中心](create-notification-hub-portal.md)或[使用 Azure CLI 创建 Azure 通知中心](create-notification-hub-azure-cli.md)
+如果尚未创建通知中心，请立即创建。 有关详细信息，请参阅[在 Azure 门户中创建 Azure 通知中心](create-notification-hub-portal.md)或[使用 Azure CLI 创建 Azure 通知中心](create-notification-hub-azure-cli.md)。
 
 ## <a name="apple-push-notification-service"></a>Apple Push Notification 服务
 

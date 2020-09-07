@@ -6,12 +6,12 @@ origin.date: 07/28/2020
 ms.date: 08/10/2020
 ms.topic: conceptual
 ms.custom: mvc
-ms.openlocfilehash: a01d7367f205fa943e299c573494b2a89bb29ba7
-ms.sourcegitcommit: e6b216b180734783219378410e13192e314a4497
+ms.openlocfilehash: c8de1d7546f87e28b95c7b3f05bcae97650fd322
+ms.sourcegitcommit: f837837326a4856b06d1924d17521a0a7e892850
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87790528"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89449796"
 ---
 # <a name="enable-update-management-from-an-automation-account"></a>从自动化帐户启用更新管理
 
@@ -54,7 +54,7 @@ ms.locfileid: "87790528"
 
 1. 从自动化帐户中，选择“更新管理”下的“更新管理”。
 
-2. 选择“添加非 Azure 计算机”。 此操作将打开一个新的浏览器窗口，其中包含[有关安装和配置适用于 Windows 的 Log Analytics 代理的说明](../../azure-monitor/platform/log-analytics-agent.md)，使计算机可以开始向更新管理报告。 如果你启用当前由 Operations Manager 管理的计算机，则不需要新代理。 工作区信息将添加到代理配置中。
+2. 选择“添加非 Azure 计算机”。 此操作将打开一个新的浏览器窗口，其中包含[有关安装和配置适用于 Windows 的 Log Analytics 代理的说明](../../azure-monitor/platform/log-analytics-agent.md)，使计算机可以开始向更新管理报告。 
 
 ## <a name="enable-machines-in-the-workspace"></a>在工作区中启用计算机
 

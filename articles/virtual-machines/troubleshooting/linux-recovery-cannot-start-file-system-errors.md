@@ -3,8 +3,7 @@ title: 排查文件系统错误导致的 Linux VM 启动问题 | Azure
 description: 解释 Linux VM 为何无法启动，以及如何解决此问题。
 services: virtual-machines-linux
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: ''
 ms.service: virtual-machines-linux
@@ -13,14 +12,17 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: azurecli
 origin.date: 10/09/2019
-ms.date: 02/10/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: ed307eb31a8ee7425ccde83e331ee7e654821489
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 755b21a0556a8c373de4805794c9925d076a549e
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77427944"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456866"
 ---
 # <a name="troubleshoot-linux-vm-starting-issues-due-to-file-system-errors"></a>排查文件系统错误导致的 Linux VM 启动问题
 
@@ -84,7 +86,7 @@ Linux 提供了多个文件系统检查程序。 Azure 中最常见的发行版�
 
 ## <a name="repair-the-vm-offline"></a>修复 VM 脱机
 
-1. 将 VM 的系统磁盘作为数据磁盘附加到恢复 VM（任何正常工作的 Linux VM）。 为此，可以使用 [CLI 命令](/virtual-machines/troubleshooting/troubleshoot-recovery-disks-linux)，或者使用 [VM 修复命令](repair-linux-vm-using-azure-virtual-machine-repair-commands.md)自动设置恢复 VM。
+1. 将 VM 的系统磁盘作为数据磁盘附加到恢复 VM（任何正常工作的 Linux VM）。 为此，可以使用 [CLI 命令](./troubleshoot-recovery-disks-linux.md)，或者使用 [VM 修复命令](repair-linux-vm-using-azure-virtual-machine-repair-commands.md)自动设置恢复 VM。
 
 2. 找到附加的系统磁盘的驱动器标签。 在此示例中，我们假定附加的系统磁盘的驱动器标签为 /dev/sdc1。 请将它替换为 VM 的相应值。
 
@@ -128,7 +130,7 @@ Linux 提供了多个文件系统检查程序。 Azure 中最常见的发行版�
 
 ## <a name="next-steps"></a>后续步骤
 
-* [通过使用 Azure CLI 2.0 将 OS 磁盘附加到恢复 VM 来对 Linux VM 进行故障排除](/virtual-machines/virtual-machines-linux-troubleshoot-recovery-disks)
-* [使用门户将数据磁盘附加到 Linux VM](/virtual-machines/linux/attach-disk-portal)
+* [通过使用 Azure CLI 2.0 将 OS 磁盘附加到恢复 VM 来对 Linux VM 进行故障排除](./troubleshoot-recovery-disks-linux.md)
+* [使用门户将数据磁盘附加到 Linux VM](../linux/attach-disk-portal.md)
 
 <!-- Update_Description: update meta properties, wording update, update link -->

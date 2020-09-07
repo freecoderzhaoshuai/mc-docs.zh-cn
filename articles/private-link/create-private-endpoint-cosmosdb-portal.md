@@ -1,18 +1,20 @@
 ---
 title: 使用 Azure 专用链接连接到 Azure Cosmos 帐户
 description: 了解如何通过创建专用终结点来安全地从 VM 访问 Azure Cosmos 帐户。
-author: rockboyfor
 ms.service: cosmos-db
-ms.topic: conceptual
+ms.topic: how-to
 origin.date: 11/04/2019
-ms.date: 06/15/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: 06/15/2020
 ms.author: v-yeche
-ms.openlocfilehash: 91be4fac5ae1ff884cf58a354edc418ed67d3cb5
-ms.sourcegitcommit: 3de7d92ac955272fd140ec47b3a0a7b1e287ca14
+ms.openlocfilehash: 819ed964be030b26cbcd4bef8998dfcbdf1646e5
+ms.sourcegitcommit: 6e88e0e41b35d160a09f7a906ca3b7e837f51803
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84723749"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89412127"
 ---
 # <a name="connect-privately-to-an-azure-cosmos-account-using-azure-private-link"></a>使用 Azure 专用链接以私密方式连接到 Azure Cosmos 帐户
 
@@ -102,9 +104,7 @@ Azure 专用终结点是 Azure 中专用链接的构建基块。 它使 Azure �
 
 ## <a name="create-a-private-endpoint-for-your-azure-cosmos-account"></a>为 Azure Cosmos 帐户创建专用终结点
 
-如链接文章的“使用 Azure 门户创建专用链接”部分中所述，为 Azure Cosmos 帐户创建专用链接。
-
-<!--Not Available on [Create a Private Link using the Azure portal](../cosmos-db/how-to-configure-private-endpoints.md#create-a-private-endpoint-by-using-the-azure-portal)-->
+如链接文章的[使用 Azure 门户创建专用链接](../cosmos-db/how-to-configure-private-endpoints.md#create-a-private-endpoint-by-using-the-azure-portal)部分中所述，为 Azure Cosmos 帐户创建专用链接。
 
 ## <a name="connect-to-a-vm-from-the-internet"></a>从 Internet 连接到 VM
 
@@ -145,7 +145,7 @@ Azure 专用终结点是 Azure 中专用链接的构建基块。 它使 Azure �
 
     10.1.255.14 mycosmosaccount-chinaeast2.documents.azure.cn
 
-1. 在 myVM 的远程桌面中，安装 [Azure 存储资源管理器](/vs-azure-tools-storage-manage-with-storage-explorer?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&tabs=windows)。
+1. 在 myVM 的远程桌面中，安装 [Azure 存储资源管理器](/vs-azure-tools-storage-manage-with-storage-explorer?toc=%2Fstorage%2Fblobs%2Ftoc.json&tabs=windows)。
 
 1. 通过右键单击选择“Cosmos DB 帐户（预览版）”。
 
@@ -181,7 +181,6 @@ Azure 专用终结点是 Azure 中专用链接的构建基块。 它使 Azure �
 
 * 若要详细了解专用终结点，请参阅[什么是 Azure 专用终结点？](private-endpoint-overview.md)。
 
-    <!--Not Available on [Azure Private Link with Azure Cosmos DB](../cosmos-db/how-to-configure-private-endpoints.md)-->
+* 若要详细了解与 Azure Cosmos DB 一起使用时专用终结点的限制，请参阅[与 Azure Cosmos DB 之间的 Azure 专用链接](../cosmos-db/how-to-configure-private-endpoints.md)一文。
 
-<!-- Update_Description: new article about create private endpoint cosmosdb portal -->
-<!--NEW.date: 01/06/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

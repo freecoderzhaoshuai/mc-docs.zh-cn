@@ -2,18 +2,20 @@
 title: 在 Azure 中对专用终结点禁用网络策略
 description: 了解如何对专用终结点禁用网络策略。
 services: private-link
-author: rockboyfor
 ms.service: private-link
-ms.topic: article
+ms.topic: how-to
 origin.date: 09/16/2019
-ms.date: 06/15/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: 06/15/2020
 ms.author: v-yeche
-ms.openlocfilehash: 3cce5ab8c05d4a73c30bcaea67e53589becec66b
-ms.sourcegitcommit: 3de7d92ac955272fd140ec47b3a0a7b1e287ca14
+ms.openlocfilehash: d2fa9b7eac846b3627296e51508f39fdcf46b89b
+ms.sourcegitcommit: 6e88e0e41b35d160a09f7a906ca3b7e837f51803
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84723327"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89412114"
 ---
 # <a name="disable-network-policies-for-private-endpoints"></a>对专用终结点禁用网络策略
 

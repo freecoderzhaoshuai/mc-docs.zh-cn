@@ -1,10 +1,9 @@
 ---
-title: 使用 PowerShell 从 VHD 创建快照，在短时间内创建多个相同的托管磁盘
+title: 用于创建多个相同托管磁盘的 VHD 快照 (Windows) - PowerShell
 description: Azure PowerShell 脚本示例 - 从 VHD 创建快照以在短时间内创建多个相同的托管磁盘
 services: virtual-machines-windows
 documentationcenter: storage
-author: rockboyfor
-manager: digimobile
+manager: kavithag
 tags: azure-service-management
 ms.assetid: ''
 ms.service: virtual-machines-windows
@@ -12,16 +11,19 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 06/05/2017
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 2647b89f78d807fd682edf051b552301ab79710d
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: 2b47715eefa3f15bb7c0829c6b99f92c391445f7
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596297"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413471"
 ---
-# <a name="create-a-snapshot-from-a-vhd-to-create-multiple-identical-managed-disks-in-small-amount-of-time-with-powershell"></a>使用 PowerShell 从 VHD 创建快照，在短时间内创建多个相同的托管磁盘
+# <a name="create-a-snapshot-from-a-vhd-to-create-multiple-identical-managed-disks-in-small-amount-of-time-with-powershell-windows"></a>使用 PowerShell 基于 VHD 创建快照以在短时间内创建多个相同的托管磁盘 (Windows)
 
 此脚本在相同或不同订阅的存储帐户中从 VHD 文件创建快照。 使用此脚本将专用 VHD（未通用化/未进行 sysprep）导入到某快照，然后使用该快照在短时间内创建多个相同的托管磁盘。 同时使用它将数据 VHD 导入到某快照，然后使用该快照在短时间内创建多个托管磁盘。 
 
@@ -76,8 +78,8 @@ New-AzSnapshot -Snapshot $snapshotConfig -ResourceGroupName $resourceGroupName -
 
 [通过将托管磁盘附加为 OS 磁盘来创建虚拟机](./virtual-machines-windows-powershell-sample-create-vm-from-managed-os-disks.md)
 
-有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 模块的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 可以在 [Azure Windows VM 文档](../windows/powershell-samples.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)中找到其他虚拟机 PowerShell 脚本示例。
 
-<!--Update_Description: update meta properties, update cmdlet -->
+<!-- Update_Description: update meta properties, wording update, update link -->

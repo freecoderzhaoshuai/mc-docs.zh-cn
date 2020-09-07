@@ -7,14 +7,14 @@ metadata:
   ms.service: notification-hubs
   ms.topic: landing-page
   origin.date: 03/11/2020
-  ms.date: 07/01/2020
+  ms.date: 09/02/2020
   ms.author: v-tawe
-  ms.openlocfilehash: 89b8d6bca42dffacd174e3a87bb694da059ffea3
-  ms.sourcegitcommit: 4f84bba7e509a321b6f68a2da475027c539b8fd3
+  ms.openlocfilehash: d201a2bf82f9090fb8bb4dd6f79277ae386836f5
+  ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 07/01/2020
-  ms.locfileid: "85796318"
+  ms.lasthandoff: 09/02/2020
+  ms.locfileid: "89316341"
 landingContent:
 - title: 关于 Azure 通知中心
   linkLists:
@@ -43,7 +43,7 @@ landingContent:
   - linkListType: tutorial
     links:
     - text: 向 Swift iOS 应用发送推送通知
-      url: notification-hubs-ios-push-notifications-swift-apps-get-started.md
+      url: ./ios-sdk-get-started.md
   - linkListType: how-to-guide
     links:
     - text: 发送跨平台通知

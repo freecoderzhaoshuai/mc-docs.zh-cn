@@ -14,24 +14,24 @@ ms.topic: tutorial
 origin.date: 02/28/2020
 ms.date: 03/23/2020
 ms.author: v-yiso
-ms.openlocfilehash: c0e3ecc13fc67d06de52c870a9bf5d6b539c3a7c
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: c67be246ca8634766796c45b66938eb65742d548
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186456"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463212"
 ---
 # <a name="tutorial-create-a-scala-maven-application-for-apache-spark-in-hdinsight-using-intellij"></a>教程：使用 IntelliJ 在 HDInsight 中创建适用于 Apache Spark 的 Scala Maven 应用程序
 
 本教程介绍如何结合使用 Apache Maven 和 IntelliJ IDEA 创建用 Scala 编写的 Apache Spark 应用程序。 本文使用 Apache Maven 作为生成系统， 并从 IntelliJ IDEA 提供的适用于 Scala 的现有 Maven 原型开始。  在 IntelliJ IDEA 中创建 Scala 应用程序需要以下步骤：
 
 * 将 Maven 用作生成系统。
-* 更新项目对象模型 (POM) 文件以解析 Spark 模块依赖项。
-* 在 Scala 中编写应用程序。
-* 生成可提交到 HDInsight Spark 群集的 jar 文件。
+* 更新项目对象模型 (POM) 文件，以解析 Spark 模块依赖项。
+* 使用 Scala 编写应用程序。
+* 生成可以提交到 HDInsight Spark 群集的 jar 文件。
 * 使用 Livy 在 Spark 群集上运行应用程序。
 
-本教程介绍如何执行下列操作：
+在本教程中，你将了解如何执行以下操作：
 > [!div class="checklist"]
 > * 安装适用于 IntelliJ IDEA 的 Scala 插件
 > * 使用 IntelliJ 开发 Scala Maven 应用程序
@@ -98,7 +98,7 @@ ms.locfileid: "84186456"
 
 2. 在左窗格中选择“Maven”。
 
-3. 指定“项目 SDK” 。 如果此字段是空白的，请选择“新建...”并导航到 Java 安装目录。
+3. 指定“项目 SDK”。 如果此字段是空白的，请选择“新建...”并导航到 Java 安装目录。
 
 4. 选中“从原型创建”复选框。  
 
@@ -140,46 +140,53 @@ ms.locfileid: "84186456"
 
 18. 将当前示例代码替换为以下代码，然后保存所做的更改。 此代码从 HVAC.csv（所有 HDInsight Spark 群集均有该文件）中读取数据，检索第六列中只有一个数字的行，并将输出写入群集的默认存储容器下的 **/HVACOut**。
 
-        package com.microsoft.spark.example
+    ```scala
+    package com.microsoft.spark.example
 
-        import org.apache.spark.SparkConf
-        import org.apache.spark.SparkContext
+    import org.apache.spark.SparkConf
+    import org.apache.spark.SparkContext
 
-        /**
-          * Test IO to wasb
-          */
-        object WasbIOTest {
-          def main (arg: Array[String]): Unit = {
+    /**
+      * Test IO to wasb
+      */
+    object WasbIOTest {
+        def main (arg: Array[String]): Unit = {
             val conf = new SparkConf().setAppName("WASBIOTest")
             val sc = new SparkContext(conf)
-
+    
             val rdd = sc.textFile("wasb:///HdiSamples/HdiSamples/SensorSampleData/hvac/HVAC.csv")
-
+    
             //find the rows which have only one digit in the 7th column in the CSV
             val rdd1 = rdd.filter(s => s.split(",")(6).length() == 1)
-
+    
             rdd1.saveAsTextFile("wasb:///HVACout")
-          }
         }
+    }
+    ```
+
 19. 在左侧窗格中，双击“pom.xml”。  
-   
+
 20. 在 `<project>\<properties>` 中添加以下段：
-      
-          <scala.version>2.11.8</scala.version>
-          <scala.compat.version>2.11.8</scala.compat.version>
-          <scala.binary.version>2.11</scala.binary.version>
+
+    ```xml
+    <scala.version>2.11.8</scala.version>
+    <scala.compat.version>2.11.8</scala.compat.version>
+    <scala.binary.version>2.11</scala.binary.version>
+    ```
 
 21. 在 `<project>\<dependencies>` 中添加以下段：
-      
-           <dependency>
-             <groupId>org.apache.spark</groupId>
-             <artifactId>spark-core_${scala.binary.version}</artifactId>
-             <version>2.3.0</version>
-           </dependency>
-      
+
+    ```xml
+    <dependency>
+        <groupId>org.apache.spark</groupId>
+        <artifactId>spark-core_${scala.binary.version}</artifactId>
+        <version>2.3.0</version>
+    </dependency>
+    ```
+
     将更改保存到 pom.xml。
 
-22. 创建 .jar 文件。 IntelliJ IDEA 允许创建 JAR，作为项目的一个项目 (artifact)。 执行以下步骤。
+22. 创建 .jar 文件。 IntelliJ IDEA 允许创建 JAR，将其作为项目的一项。 执行以下步骤。
 
     1. 在“文件”菜单中，选择“项目结构...”。 
 
@@ -211,15 +218,15 @@ ms.locfileid: "84186456"
 若要在群集上运行应用程序，可以使用以下方法：
 
 * **将应用程序 jar 复制到群集关联的 Azure 存储 blob**。 可以使用命令行实用工具 [**AzCopy**](../../storage/common/storage-use-azcopy.md) 来执行此操作。 也可以使用许多其他客户端来上传数据。 有关详细信息，请参阅[在 HDInsight 中上传 Apache Hadoop 作业的数据](../hdinsight-upload-data.md)。
-* **使用 Apache Livy 将应用程序作业远程提交**到 Spark 群集。 HDInsight 上的 Spark 群集包括 Livy，可公开 REST 终结点以远程提交 Spark 作业。 有关详细信息，请参阅[将 Apache Livy 与 HDInsight 上的 Apache Spark 群集配合使用以远程提交 Spark 作业](apache-spark-livy-rest-interface.md)。
+* **使用 Apache Livy 将应用程序作业远程提交**到 Spark 群集。 HDInsight 上的 Spark 群集包括公开 REST 终结点的 Livy，可远程提交 Spark 作业。 有关详细信息，请参阅[将 Apache Livy 与 HDInsight 上的 Apache Spark 群集配合使用以远程提交 Spark 作业](apache-spark-livy-rest-interface.md)。
 
 ## <a name="clean-up-resources"></a>清理资源
 
 如果不打算继续使用此应用程序，请使用以下步骤删除创建的群集：
 
-1. 登录到 [Azure 门户](https://portal.azure.cn/)。
+1. 登录 [Azure 门户](https://portal.azure.cn/)。
 
-1. 在顶部的“搜索”框中，键入 **HDInsight**。
+1. 在顶部的“搜索”框中，键入 **HDInsight**。 
 
 1. 选择“服务”下的“HDInsight 群集” 。
 

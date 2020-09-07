@@ -3,15 +3,15 @@ title: 在 Azure 自动化中部署 Windows 混合 Runbook 辅助角色
 description: 本文介绍如何部署混合 Runbook 辅助角色，你可使用该角色在本地数据中心或云环境的基于 Windows 的计算机上运行 Runbook。
 services: automation
 ms.subservice: process-automation
-origin.date: 06/24/2020
-ms.date: 08/10/2020
+origin.date: 08/20/2020
+ms.date: 09/07/2020
 ms.topic: conceptual
-ms.openlocfilehash: 8b431ba6205e6e708c4b83facdff2ef49f3e8755
-ms.sourcegitcommit: e6b216b180734783219378410e13192e314a4497
+ms.openlocfilehash: d33fa15c4323376ff40054b46ed2ab745ee2543c
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87790056"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463199"
 ---
 # <a name="deploy-a-windows-hybrid-runbook-worker"></a>部署 Windows 混合 Runbook 辅助角色
 
@@ -130,9 +130,15 @@ Windows 混合 Runbook 辅助角色的最低要求如下：
 运行脚本后，系统会提示在 Azure 上进行身份验证。 必须以订阅管理员角色成员和订阅共同管理员的帐户登录。
 
 ```powershell
-.\New-OnPremiseHybridWorker.ps1 -AutomationAccountName <nameOfAutomationAccount> -AAResourceGroupName <nameOfResourceGroup>`
--OMSResourceGroupName <nameOfOResourceGroup> -HybridGroupName <nameOfHRWGroup> `
--SubscriptionID <subscriptionId> -WorkspaceName <nameOfLogAnalyticsWorkspace>
+$NewOnPremiseHybridWorkerParameters = @{
+  AutomationAccountName = <nameOfAutomationAccount>
+  AAResourceGroupName   = <nameOfResourceGroup>
+  OMSResourceGroupName  = <nameOfResourceGroup>
+  HybridGroupName       = <nameOfHRWGroup>
+  SubscriptionID        = <subscriptionId>
+  WorkspaceName         = <nameOfLogAnalyticsWorkspace>
+}
+.\New-OnPremiseHybridWorker.ps1 @NewOnPremiseHybridWorkerParameters
 ```
 
 ### <a name="step-4---install-nuget"></a>步骤 4 - 安装 NuGet

@@ -1,5 +1,5 @@
 ---
-title: 使用 Azure 通知中心向 Windows Phone 应用推送通知 | Microsoft Docs
+title: 使用 Azure 通知中心向 Windows Phone 应用发送推送通知 | Microsoft Docs
 description: 在本教程中，将了解如何使用 Azure 通知中心将通知推送到 Windows Phone 8 或 Windows Phone 8.1 Silverlight 应用程序。
 services: notification-hubs
 documentationcenter: windows
@@ -13,18 +13,18 @@ ms.workload: mobile
 ms.tgt_pltfrm: mobile-windows-phone
 ms.devlang: dotnet
 ms.topic: tutorial
-ms.custom: mvc
+ms.custom: mvc, devx-track-csharp
 origin.date: 01/04/2019
-ms.date: 06/03/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.reviewer: jowargo
 ms.lastreviewed: 01/04/2019
-ms.openlocfilehash: e4ddb5b4d4e1925428ce44beade80842f3dfd36d
-ms.sourcegitcommit: 40d1ff17251ab1d2d607845523470f11ce087039
+ms.openlocfilehash: c2edc46a8a83c02c2cda1c62d3f89dcabc234f3d
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/03/2020
-ms.locfileid: "84320486"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317492"
 ---
 # <a name="tutorial-send-push-notifications-to-windows-phone-apps-using-notification-hubs"></a>教程：使用通知中心向 Windows Phone 应用发送推送通知
 
@@ -66,7 +66,7 @@ ms.locfileid: "84320486"
     中心现已创建，并已配置为向 Windows Phone 发送未经身份验证的通知。
 
     > [!NOTE]
-    > 本教程使用未经身份验证模式下的 MPNS。 MPNS 未经身份验证的模式对可以发送到每个通道的通知有一些限制。 通知中心支持 [MPNS 身份验证模式](https://msdn.microsoft.com/library/windowsphone/develop/ff941099.aspx)，它允许上传证书。
+    > 本教程使用未经身份验证模式下的 MPNS。 MPNS 未经身份验证的模式对可以发送到每个通道的通知有一些限制。 通知中心支持 [MPNS 身份验证模式](https://docs.microsoft.com/previous-versions/windows/apps/ff941099(v=vs.105))，它允许上传证书。
 
 ## <a name="create-a-windows-phone-application"></a>创建 Windows Phone 应用程序
 
@@ -85,8 +85,11 @@ ms.locfileid: "84320486"
     ![Visual Studio - NuGet 包管理器][20]
 4. 打开文件 App.xaml.cs 并添加以下 `using` 语句：
 
-        using Microsoft.Phone.Notification;
-        using Microsoft.WindowsAzure.Messaging;
+    ```csharp
+    using Microsoft.Phone.Notification;
+    using Microsoft.WindowsAzure.Messaging;
+    ```
+
 5. 在 `App.xaml.cs` 中的 `Application_Launching` 方法顶部添加以下代码：
 
     ```csharp
@@ -115,7 +118,7 @@ ms.locfileid: "84320486"
     ```
 
    > [!NOTE]
-   > 值 `MyPushChannel` 是用于查找 [HttpNotificationChannel](https://msdn.microsoft.com/library/windows/apps/microsoft.phone.notification.httpnotificationchannel.aspx) 集合中现有通道的索引。 如果不存在，则使用该名称创建新条目。
+   > 值 `MyPushChannel` 是用于查找 [HttpNotificationChannel](https://docs.microsoft.com/previous-versions/ff402781(v=vs.110)) 集合中现有通道的索引。 如果不存在，则使用该名称创建新条目。
 
     插入中心名称以及在前一部分记下的名为 `DefaultListenSharedAccessSignature` 的连接字符串。
     此代码从 MPNS 检索应用的通道 URI，然后将该通道 URI 注册到通知中心。 它还保证每次启动应用程序时都在通知中心注册通道 URI。
@@ -158,12 +161,11 @@ ms.locfileid: "84320486"
 >[向特定设备推送通知](notification-hubs-windows-phone-push-xplat-segmented-mpns-notification.md)
 
 <!-- Images. -->
-<!-- [6]: ./media/notification-hubs-windows-phone-get-started/notification-hub-create-console-app.png
+[6]: ./media/notification-hubs-windows-phone-get-started/notification-hub-create-console-app.png
 [7]: ./media/notification-hubs-windows-phone-get-started/notification-hub-create-from-portal.png
 [8]: ./media/notification-hubs-windows-phone-get-started/notification-hub-create-from-portal2.png
 [9]: ./media/notification-hubs-windows-phone-get-started/notification-hub-select-from-portal.png
-[10]: ./media/notification-hubs-windows-phone-get-started/notification-hub-select-from-portal2.png -->
-
+[10]: ./media/notification-hubs-windows-phone-get-started/notification-hub-select-from-portal2.png
 [11]: ./media/notification-hubs-windows-phone-get-started/notification-hub-create-wp-silverlight-app.png
 [12]: ./media/notification-hubs-windows-phone-get-started/notification-hub-connection-strings.png
 [13]: ./media/notification-hubs-windows-phone-get-started/notification-hub-create-wp-app.png
@@ -173,11 +175,10 @@ ms.locfileid: "84320486"
 [213]: ./media/notification-hubs-windows-phone-get-started/notification-hub-create-console-app.png
 
 <!-- URLs. -->
-<!-- [Notification Hubs Guidance]: https://msdn.microsoft.com/library/jj927170.aspx
+[Notification Hubs Guidance]: https://docs.microsoft.com/previous-versions/azure/azure-services/jj927170(v=azure.100)
+[MPNS authenticated mode]: https://docs.microsoft.com/previous-versions/windows/apps/ff941099(v=vs.105)
 [Use Notification Hubs to push notifications to users]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
 [Use Notification Hubs to send breaking news]: notification-hubs-windows-phone-push-xplat-segmented-mpns-notification.md
-[toast catalog]: https://msdn.microsoft.com/library/windowsphone/develop/jj662938(v=vs.105).aspx
-[tile catalog]: https://msdn.microsoft.com/library/windowsphone/develop/hh202948(v=vs.105).aspx -->
-
-[MPNS authenticated mode]: https://msdn.microsoft.com/library/windowsphone/develop/ff941099(v=vs.105).aspx
+[toast catalog]: https://docs.microsoft.com/previous-versions/windows/apps/jj662938(v=vs.105)
+[tile catalog]: https://docs.microsoft.com/previous-versions/windows/apps/hh202948(v=vs.105)
 [通知中心 - Windows Phone Silverlight 教程]: https://github.com/Azure/azure-notificationhubs-samples/tree/master/PushToSafari

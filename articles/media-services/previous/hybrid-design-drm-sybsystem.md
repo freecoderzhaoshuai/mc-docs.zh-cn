@@ -13,15 +13,15 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/14/2019
-ms.date: 03/04/2020
+ms.date: 09/07/2020
 ms.author: v-jay
 ms.reviewer: juliako
-ms.openlocfilehash: dbbbf499f4d4a26ad4e99620e58f8083f8a43960
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: b2906593365ecb46ed8a537c566af2c80403a872
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78412457"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413695"
 ---
 # <a name="hybrid-design-of-drm-subsystems"></a>DRM 子系统的混合设计 
 
@@ -38,6 +38,8 @@ Azure 媒体服务针对以下两个 DRM 系统提供支持：
 * FairPlay
 
 DRM 支持包括 DRM 加密（动态加密）和许可证传送，其中的 Azure Media Player 支持使用所有 2 个 DRM 作为浏览器播放器 SDK。
+
+有关 DRM/CENC 子系统设计和实现的详细处理方法，请参阅标题为[使用多重 DRM 的 CENC 和访问控制](media-services-cenc-with-multidrm-access-control.md)的文档。
 
 尽管我们针对两个 DRM 系统提供完整支持，但客户有时除了使用 Azure 媒体服务以外，还需要使用其自己的基础结构/子系统的各个部件来构建混合 DRM 子系统。
 
@@ -104,30 +106,30 @@ DRM 支持包括 DRM 加密（动态加密）和许可证传送，其中的 Azur
 |AMS|第三方|外部|否|否|示例 4|
 |第三方|第三方|AMS|是|否|    
 
-在示例中，PlayReady 保护适用于 DASH 和平滑流式处理。 以下视频 URL 是平滑流式处理 URL。 若要获取相应的 DASH URL，只需追加“(format=mpd-time-csf)”。 可以使用 [azure media test player](https://aka.ms/amtest) 在浏览器中进行测试。 这样就可以配置要在哪种技术下使用哪个流式处理协议。 Windows 10 上的 IE11 和 Microsoft Edge 支持通过 EME 使用 PlayReady。 有关详细信息，请参阅[有关测试工具的详细信息](https://blogs.msdn.microsoft.com/playready4/2016/02/28/azure-media-test-tool/)。
+在示例中，PlayReady 保护适用于 DASH 和平滑流式处理。 以下视频 URL 是平滑流式处理 URL。 若要获取相应的 DASH URL，只需追加“(format=mpd-time-csf)”。 可以使用 [azure media test player](https://aka.ms/amtest) 在浏览器中进行测试。 这样就可以配置要在哪种技术下使用哪个流式处理协议。 Windows 10 上的 IE11 和 Microsoft Edge 支持通过 EME 使用 PlayReady。 有关详细信息，请参阅[有关测试工具的详细信息](./offline-playready-streaming-windows-10.md)。
 
 ### <a name="sample-1"></a>示例 1
 
-* 源（基）URL： https://willzhanmswest.streaming.mediaservices.windows.net/1efbd6bb-1e66-4e53-88c3-f7e5657a9bbd/RussianWaltz.ism/manifest 
-* PlayReady LA_URL（DASH 和平滑流式处理）： https://willzhanmswest.keydelivery.mediaservices.windows.net/PlayReady/ 
-* FairPlay LA_URL (HLS)： https://willzhanmswest.keydelivery.mediaservices.windows.net/FairPlay/?kid=ba7e8fb0-ee22-4291-9654-6222ac611bd8 
+* 源（基）URL：`https://willzhanmswest.streaming.mediaservices.windows.net/1efbd6bb-1e66-4e53-88c3-f7e5657a9bbd/RussianWaltz.ism/manifest` 
+* PlayReady LA_URL（DASH 和平滑流式处理）：`https://willzhanmswest.keydelivery.mediaservices.windows.net/PlayReady/` 
+* FairPlay LA_URL (HLS)：`https://willzhanmswest.keydelivery.mediaservices.windows.net/FairPlay/?kid=ba7e8fb0-ee22-4291-9654-6222ac611bd8` 
 
 ### <a name="sample-2"></a>示例 2
 
-* 源（基）URL： https://willzhanmswest.streaming.mediaservices.windows.net/1a670626-4515-49ee-9e7f-cd50853e41d8/Microsoft_HoloLens_TransformYourWorld_816p23.ism/Manifest 
-* PlayReady LA_URL（DASH 和平滑流式处理）： http://willzhan12.cloudapp.net/PlayReady/RightsManager.asmx 
+* 源（基）URL：https://willzhanmswest.streaming.mediaservices.windows.net/1a670626-4515-49ee-9e7f-cd50853e41d8/Microsoft_HoloLens_TransformYourWorld_816p23.ism/Manifest 
+* PlayReady LA_URL（DASH 和平滑流式处理）：`http://willzhan12.cloudapp.net/PlayReady/RightsManager.asmx` 
 
 ### <a name="sample-3"></a>示例 3
 
-* 源 URL： https://willzhanmswest.streaming.mediaservices.windows.net/8d078cf8-d621-406c-84ca-88e6b9454acc/20150807-bridges-2500.ism/manifest 
-* PlayReady LA_URL（DASH 和平滑流式处理）： https://willzhanmswest.keydelivery.mediaservices.windows.net/PlayReady/ 
+* 源 URL：https://willzhanmswest.streaming.mediaservices.windows.net/8d078cf8-d621-406c-84ca-88e6b9454acc/20150807-bridges-2500.ism/manifest 
+* PlayReady LA_URL（DASH 和平滑流式处理）：`https://willzhanmswest.keydelivery.mediaservices.windows.net/PlayReady/` 
 
 ### <a name="sample-4"></a>示例 4
 
-* 源 URL： https://willzhanmswest.streaming.mediaservices.windows.net/7c085a59-ae9a-411e-842c-ef10f96c3f89/20150807-bridges-2500.ism/manifest 
-* PlayReady LA_URL（DASH 和平滑流式处理）： https://willzhan12.cloudapp.net/playready/rightsmanager.asmx 
+* 源 URL：https://willzhanmswest.streaming.mediaservices.windows.net/7c085a59-ae9a-411e-842c-ef10f96c3f89/20150807-bridges-2500.ism/manifest 
+* PlayReady LA_URL（DASH 和平滑流式处理）：`https://willzhan12.cloudapp.net/playready/rightsmanager.asmx` 
 
-## <a name="summary"></a>总结
+## <a name="summary"></a>“摘要”
 
 总而言之，Azure 媒体服务 DRM 组件非常灵活，只需根据本主题中所述适当配置内容密钥和资产传送策略，即可在混合方案中使用这些组件。
 

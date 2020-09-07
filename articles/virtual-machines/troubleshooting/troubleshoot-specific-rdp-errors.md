@@ -1,11 +1,10 @@
 ---
-title: 排查发送到 Azure 中 Windows VM 的特定 RDP 错误消息 | Azure
+title: Azure VM 的特定 RDP 错误消息 | Azure
 description: 了解在尝试使用远程桌面与 Azure 中 Windows 虚拟机的连接时收到的特定错误消息
 keywords: 远程桌面错误,远程桌面连接错误,无法连接到 VM,远程桌面故障排除
 services: virtual-machines-windows
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: top-support-issue,azure-service-management,azure-resource-manager
 ms.assetid: 5feb1d64-ee6f-4907-949a-a7cffcbc6153
@@ -14,14 +13,17 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.topic: troubleshooting
 origin.date: 10/31/2018
-ms.date: 11/11/2019
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 81f7c719ba05cecad4dc015614d9d3a89baeb1ce
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: fda0d06cef299b869e1e6432e6902d473563f3d1
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79293264"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456746"
 ---
 # <a name="troubleshooting-specific-rdp-error-messages-to-a-windows-vm-in-azure"></a>Azure 中 Windows VM 特定 RDP 错误消息故障排除
 在使用远程桌面与 Azure 中 Windows 虚拟机 (VM) 的连接时，可能会收到特定错误消息。 本文详细介绍了一些遇到的更常见错误消息以及解决错误的故障排除步骤。 如果在使用 RDP 连接到 VM 时出现问题，但没有收到特定错误消息，请参阅[远程桌面故障排除指南](troubleshoot-rdp-connection.md)。
@@ -41,11 +43,13 @@ ms.locfileid: "79293264"
 
 解决方法是，从门户保存 RDP 文件的本地副本，并在 PowerShell 命令提示符下运行此命令以进行连接。 此步骤仅禁用该连接的许可：
 
-        mstsc <File name>.RDP /admin
+```powershell
+mstsc <File name>.RDP /admin
+```
 
 如果实际上不需要两个以上同时与 VM 的远程桌面连接，可以使用服务器管理器删除远程桌面服务器角色。
 
-有关详细信息，请参阅博客文章 [Azure VM 失败并出现“没有可用的远程桌面许可证服务器”](https://blogs.msdn.microsoft.com/mast/2014/01/21/rdp-to-azure-vm-fails-with-no-remote-desktop-license-servers-available/)。
+有关详细信息，请参阅博客文章 [Azure VM 失败并出现“没有可用的远程桌面许可证服务器”](https://docs.microsoft.com/archive/blogs/mast/rdp-to-azure-vm-fails-with-no-remote-desktop-license-servers-available)。
 
 <a name="rdpname"></a>
 
@@ -57,10 +61,10 @@ ms.locfileid: "79293264"
 * 如果使用组织的 Intranet，请确保计算机可以访问代理服务器，并可以向其发送 HTTPS 流量。
 * 如果使用本地存储的 RDP 文件，请尝试使用门户生成的 RDP 文件。 此步骤确保使用虚拟机或云服务的正确 DNS 名称和 VM 的终结点端口。 以下是门户生成的 RDP 文件示例：
 
-        full address:s:tailspin-azdatatier.chinacloudapp.cn:55919
-        prompt for credentials:i:1
-
-    <!-- DNS cloudapp.net SHOULD BE chinacloudapp.cn -->
+    ```output
+    full address:s:tailspin-azdatatier.chinacloudapp.cn:55919
+    prompt for credentials:i:1
+    ```
 
 此 RDP 文件的地址部分包含：
 
@@ -113,7 +117,7 @@ ms.locfileid: "79293264"
 ## <a name="next-steps"></a>后续步骤
 如果没有发生这些错误，但在使用 RDP 连接时出现未知问题，请参阅[远程桌面故障排除指南](troubleshoot-rdp-connection.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-* 有关用于访问 VM 上运行的应用程序的故障排除步骤，请参阅[对在 Azure VM 上运行的应用程序的访问进行故障排除](../linux/troubleshoot-app-connection.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)。
-* 如果在 Azure 中使用 Secure Shell (SSH) 连接到 Linux VM 时遇到问题，请参阅[对 Azure 中到 Linux VM 的 SSH 连接进行故障排除](../linux/troubleshoot-ssh-connection.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)。
+* 有关用于访问 VM 上运行的应用程序的故障排除步骤，请参阅[对在 Azure VM 上运行的应用程序的访问进行故障排除](./troubleshoot-app-connection.md?toc=/virtual-machines/linux/toc.json)。
+* 如果在 Azure 中使用 Secure Shell (SSH) 连接到 Linux VM 时遇到问题，请参阅[对 Azure 中到 Linux VM 的 SSH 连接进行故障排除](./troubleshoot-ssh-connection.md?toc=/virtual-machines/linux/toc.json)。
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

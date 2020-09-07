@@ -4,15 +4,15 @@ description: 了解如何存档 Azure 资源日志，将其长期保留在存储
 author: Johnnytechn
 services: azure-monitor
 ms.topic: conceptual
-ms.date: 12/15/2019
+ms.date: 09/03/2020
 ms.author: v-johya
 ms.subservice: logs
-ms.openlocfilehash: 964a8b32595b3f5de132d3101f494f7e77391147
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: 843c362be49c7a0e46374b3a0e9289cfa5604610
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097016"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457263"
 ---
 # <a name="archive-azure-resource-logs-to-storage-account"></a>将 Azure 资源日志存档到存储帐户
 Azure 中的[平台日志](platform-logs-overview.md)（包括 Azure 活动日志和资源日志）提供 Azure 资源及其所依赖的 Azure 平台的详细诊断和审核信息。  本文介绍如何将平台日志收集到到 Azure 存储帐户，以便保留要存档的数据。
@@ -58,9 +58,6 @@ insights-logs-networksecuritygrouprulecounter/resourceId=/SUBSCRIPTIONS/xxxxxxxx
 ``` JSON
 {"time": "2016-07-01T00:00:37.2040000Z","systemId": "46cdbb41-cb9c-4f3d-a5b4-1d458d827ff1","category": "NetworkSecurityGroupRuleCounter","resourceId": "/SUBSCRIPTIONS/s1id1234-5679-0123-4567-890123456789/RESOURCEGROUPS/TESTRESOURCEGROUP/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/TESTNSG","operationName": "NetworkSecurityGroupCounters","properties": {"vnetResourceGuid": "{12345678-9012-3456-7890-123456789012}","subnetPrefix": "10.3.0.0/24","macAddress": "000123456789","ruleName": "/subscriptions/ s1id1234-5679-0123-4567-890123456789/resourceGroups/testresourcegroup/providers/Microsoft.Network/networkSecurityGroups/testnsg/securityRules/default-allow-rdp","direction": "In","type": "allow","matchedConnections": 1988}}
 ```
-
-> [!NOTE]
-> 平台日志使用 [JSON 行](http://jsonlines.org/)写入到 blob 存储，其中每个事件都是一行，换行符表示新事件。 此格式已在 2018 年 11 月实现。 在此日期之前，日志以记录的 json 数组形式写入到 blob 存储，详见[为存档到存储帐户的 Azure Monitor 平台日志的格式更改做准备](resource-logs-blob-format.md)。
 
 ## <a name="next-steps"></a>后续步骤
 

@@ -1,21 +1,23 @@
 ---
-title: 从存储帐户中的专用 VHD 创建 VM
+title: 在 Azure 中从专用磁盘创建 VM
 description: 通过在 Resource Manager 部署模型中附加专用非托管磁盘创建新 VM。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.topic: how-to
 origin.date: 05/23/2017
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ROBOTS: NOINDEX
 ms.custom: storage-accounts
-ms.openlocfilehash: 9c39dbf21b3a4a841e08c1af238747a417ef75db
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: ad4a08f4ae5fe4799117c631c6bfcca30a324e2c
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945796"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463073"
 ---
 # <a name="create-a-vm-from-a-specialized-vhd-in-a-storage-account"></a>从存储帐户中的专用 VHD 创建 VM
 
@@ -25,10 +27,7 @@ ms.locfileid: "85945796"
 * [上传 VHD](sa-create-vm-specialized.md#option-1-upload-a-specialized-vhd)
 * [复制现有 Azure VM 的 VHD](sa-create-vm-specialized.md#option-2-copy-the-vhd-from-an-existing-azure-vm)
 
-[!INCLUDE [updated-for-az.md](../../../includes/updated-for-az.md)]
-
-<a name="option-1-upload-a-specialized-vhd"></a>
-## <a name="option-1-upload-a-specialized-vhd"></a>选项 1：上传专用 VHD
+## <a name="option-1-upload-a-specialized-vhd"></a><a name="option-1-upload-a-specialized-vhd"></a>选项 1：上传专用 VHD
 
 可从使用本地虚拟化工具（如 Hyper-V）创建的专用 VM 或从另一个云导出的 VM 上传 VHD。
 
@@ -98,8 +97,7 @@ C:\Users\Public\Doc...  https://mystorageaccount.blob.core.chinacloudapi.cn/myco
 
 完成执行此命令可能需要一段时间，具体取决于网络连接速度和 VHD 文件的大小。
 
-<a name="option-2-copy-the-vhd-from-an-existing-azure-vm"></a>
-## <a name="option-2-copy-the-vhd-from-an-existing-azure-vm"></a>选项 2：从现有 Azure VM 复制 VHD
+## <a name="option-2-copy-the-vhd-from-an-existing-azure-vm"></a><a name="option-2-copy-the-vhd-from-an-existing-azure-vm"></a>选项 2：从现有 Azure VM 复制 VHD
 
 可将 VHD 复制到另一个存储帐户，以便在创建新的重复 VM 时使用。
 
@@ -107,7 +105,7 @@ C:\Users\Public\Doc...  https://mystorageaccount.blob.core.chinacloudapi.cn/myco
 请确保：
 
 * 获取有关**源和目标存储帐户**的信息。 对于源 VM，需要具有存储帐户和容器名称。 通常，容器名称为 **vhds**。 还需要获取目标存储帐户。 如果尚未拥有存储帐户，可以使用门户（“所有服务”>“存储帐户”>“添加”）或使用 [New-AzStorageAccount](https://docs.microsoft.com/powershell/module/az.storage/new-azstorageaccount) cmdlet 创建一个存储帐户。 
-* 已下载并安装 [AzCopy 工具](../../storage/common/storage-use-azcopy.md)。 
+* 已下载并安装 [AzCopy 工具](../../storage/common/storage-use-azcopy-v10.md)。 
 
 ### <a name="deallocate-the-vm"></a>解除分配 VM
 解除分配 VM，释放要复制的 VHD。 
@@ -134,7 +132,7 @@ Azure 门户中该 VM 的“状态”将从“已停止”更改为“已停止(
     ``` 
 
 ## <a name="get-the-storage-access-keys"></a>获取存储访问密钥
-查找源和目标存储帐户的访问密钥。 有关访问密钥的详细信息，请参阅[关于 Azure 存储帐户](../../storage/common/storage-create-storage-account.md)。
+查找源和目标存储帐户的访问密钥。 有关访问密钥的详细信息，请参阅[关于 Azure 存储帐户](../../storage/common/storage-account-create.md)。
 
 * **门户**：单击“所有服务” > “存储帐户” > “存储帐户” > “访问密钥” 。 复制标记为 **key1** 的密钥。
 * **Powershell**：使用 [Get-AzStorageAccountKey](https://docs.microsoft.com/powershell/module/az.storage/get-azstorageaccountkey) 可获取资源组 **myResourceGroup** 中存储帐户 **mystorageaccount** 的存储密钥。 复制标记为 key1 的密钥。
@@ -293,6 +291,7 @@ New-AzVM -ResourceGroupName $rgName -Location $location -VM $vm
 RequestId IsSuccessStatusCode StatusCode ReasonPhrase
 --------- ------------------- ---------- ------------
                          True         OK OK   
+
 ```
 
 ### <a name="verify-that-the-vm-was-created"></a>验证是否已创建 VM
@@ -306,4 +305,4 @@ $vmList.Name
 ## <a name="next-steps"></a>后续步骤
 登录新虚拟机。 有关详细信息，请参阅 [How to connect and log on to an Azure virtual machine running Windows](connect-logon.md)（如何连接并登录到运行 Windows 的 Azure 虚拟机）。
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

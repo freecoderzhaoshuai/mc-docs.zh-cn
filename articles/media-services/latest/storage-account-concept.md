@@ -11,14 +11,14 @@ ms.service: media-services
 ms.workload: ''
 ms.topic: article
 origin.date: 07/01/2019
-ms.date: 07/27/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: d92acf9e9e46479bb50ba2b927a8e1e73eed1e7b
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: d038b0cfab71ebb30d7603e70d33029ae02616ba
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162221"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413993"
 ---
 # <a name="azure-storage-accounts"></a>Azure 存储帐户
 
@@ -49,8 +49,8 @@ ms.locfileid: "87162221"
 |加密选项|说明|媒体服务 v3|
 |---|---|---|
 |媒体服务存储加密| AES-256 加密，媒体服务管理的密钥。 |不支持。<sup>(1)</sup>|
-|[静态数据的存储服务加密](/storage/common/storage-service-encryption)|由 Azure 存储提供的服务器端加密，由 Azure 或客户托管的密钥。|。|
-|[存储客户端加密](/storage/common/storage-client-side-encryption)|由 Azure 存储提供的客户端加密，由 Key Vault 中的客户托管密钥。|不支持。|
+|[静态数据的存储服务加密](../../storage/common/storage-service-encryption.md)|由 Azure 存储提供的服务器端加密，由 Azure 或客户托管的密钥。|。|
+|[存储客户端加密](../../storage/common/storage-client-side-encryption.md)|由 Azure 存储提供的客户端加密，由 Key Vault 中的客户托管密钥。|不支持。|
 
 <sup>1</sup> 在媒体服务 v3 中，仅当资产是使用媒体服务 v2 创建的时才支持存储加密（AES-256 加密）以实现向后兼容性，这意味着 v3 适用于现有存储加密的资产，但不允许创建新资产。
 
@@ -71,4 +71,4 @@ Azure 媒体服务不支持启用了 Azure 存储防火墙的存储帐户。
 
 ## <a name="next-steps"></a>后续步骤
 
-若要了解如何将存储帐户附加到媒体服务帐户，请参阅[创建帐户](create-account-cli-quickstart.md)。
+若要了解如何将存储帐户附加到媒体服务帐户，请参阅[创建帐户](./create-account-howto.md)。

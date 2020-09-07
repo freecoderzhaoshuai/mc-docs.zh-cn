@@ -7,14 +7,14 @@ manager: carmonm
 ms.workload: tbd
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
-ms.date: 05/20/2020
+ms.date: 08/20/2020
 ms.author: v-johya
-ms.openlocfilehash: dcb632bfbfb3e3c9d5bd75303cd48fe285e8538a
-ms.sourcegitcommit: a04b0b1009b0c62f2deb7c7acee75a1304d98f87
+ms.openlocfilehash: de1d830be7b2a5273481ccdde4d54806648ef14f
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/22/2020
-ms.locfileid: "83797001"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457432"
 ---
 # <a name="azure-monitor-workbook-visualizations"></a>Azure Monitor 工作簿可视化效果
 

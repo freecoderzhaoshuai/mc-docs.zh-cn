@@ -2,8 +2,9 @@
 title: 操作系统启动疑难解答 - Windows 更新安装容量
 description: 解决 Windows 更新 (KB) 在 Azure VM 中收到错误且无响应的问题的步骤。
 services: virtual-machines-windows, azure-resource-manager
-author: rockboyfor
-manager: digimobile
+documentationcenter: ''
+manager: dcscontentpm
+editor: ''
 tags: azure-resource-manager
 ms.assetid: 6359e486-7b02-4c1e-995c-ef6d505f85f4
 ms.service: virtual-machines-windows
@@ -11,14 +12,17 @@ ms.workload: na
 ms.tgt_pltfrm: vm-windows
 ms.topic: troubleshooting
 origin.date: 05/11/2020
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: e700c9ce5d8eca0cacf9cd26d188da974502d7c3
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 39eeff597438a3f9582b0ea5a7fa60a044dddfa8
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946089"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456843"
 ---
 <!--Verified successfully-->
 
@@ -50,7 +54,7 @@ ms.locfileid: "85946089"
 
 ### <a name="create-and-access-a-repair-vm"></a>创建和访问修复 VM
 
-1. 使用 [VM 修复命令](/virtual-machines/troubleshooting/repair-windows-vm-using-azure-virtual-machine-repair-commands) 的步骤 1-3 准备一个修复 VM。
+1. 使用 [VM 修复命令](./repair-windows-vm-using-azure-virtual-machine-repair-commands.md) 的步骤 1-3 准备一个修复 VM。
 1. 使用远程桌面连接来连接到修复 VM。
 
 ### <a name="free-up-space-on-the-disk"></a>释放磁盘上的空间
@@ -61,10 +65,10 @@ ms.locfileid: "85946089"
 - 执行磁盘清理。
 - 对驱动器进行碎片整理。
 
-1. 检查磁盘是否已满。 如果磁盘大小小于 1 TB，请[使用 PowerShell](/virtual-machines/windows/expand-os-disk) 将其扩展到最大 1 TB。
+1. 检查磁盘是否已满。 如果磁盘大小小于 1 TB，请[使用 PowerShell](../windows/expand-os-disk.md) 将其扩展到最大 1 TB。
 1. 如果磁盘已是 1 TB，则需要执行磁盘清理。
-    1. [从已损坏的 VM 中](/virtual-machines/windows/detach-disk)分离数据磁盘。
-    1. 将数据磁盘附加[到正常运行的 VM](/virtual-machines/windows/attach-disk-ps#attach-an-existing-data-disk-to-a-vm)。
+    1. [从已损坏的 VM 中](../windows/detach-disk.md)分离数据磁盘。
+    1. 将数据磁盘附加[到正常运行的 VM](../windows/attach-disk-ps.md#attach-an-existing-data-disk-to-a-vm)。
     1. 使用[磁盘清理工具](https://support.microsoft.com/help/4026616/windows-10-disk-cleanup)来释放空间。
 1. 完成大小调整和清理后，使用以下命令对驱动器进行碎片整理：
 
@@ -124,7 +128,6 @@ ms.locfileid: "85946089"
 
 ### <a name="rebuild-the-vm"></a>重新生成 VM
 
-使用 [VM 修复命令的步骤 5](/virtual-machines/troubleshooting/repair-windows-vm-using-azure-virtual-machine-repair-commands#repair-process-example) 重新生成 VM。
+使用 [VM 修复命令的步骤 5](./repair-windows-vm-using-azure-virtual-machine-repair-commands.md#repair-process-example) 重新生成 VM。
 
-<!-- Update_Description: new article about windows update installation capacity -->
-<!--NEW.date: 07/06/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

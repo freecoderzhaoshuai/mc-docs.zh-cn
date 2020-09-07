@@ -13,19 +13,19 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: conceptual
 origin.date: 03/19/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 41f8bb9b9bf49ac4b701bcfaaae63a979e280797
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 487c4a64a496d29857c5bf6cd26ec29b065f52fd
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71124610"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413708"
 ---
 # <a name="get-started-with-delivering-content-on-demand-by-using-the-azure-portal"></a>使用 Azure 门户按需传送内容入门
 
 > [!NOTE]
-> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](/media-services/latest/)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
+> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](../latest/index.yml)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
 
 本教程介绍了在 Azure 门户中使用 Azure 媒体服务应用程序实施基本的视频点播内容传送服务的步骤。
 
@@ -119,7 +119,7 @@ ms.locfileid: "71124610"
 
 共享访问签名 URL 格式如下：
 
-    {blob container name}/{asset name}/{file name}/{shared access signature}
+`{blob container name}/{asset name}/{file name}/{shared access signature}`
 
 > [!NOTE]
 > 2015 年 3 月之前在 Azure 门户中创建的定位符的过期日期为两年后。  

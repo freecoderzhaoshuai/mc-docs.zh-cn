@@ -1,10 +1,9 @@
 ---
-title: Azure CLI 脚本示例 - 使用 WordPress 创建 VM
+title: Azure CLI 脚本示例 - 使用 WordPress 创建 Linux VM
 description: Azure CLI 脚本示例 - 使用 WordPress 创建 Linux VM
 services: virtual-machines-linux
 documentationcenter: virtual-machines
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 tags: azure-service-management
 ms.assetid: ''
 ms.service: virtual-machines-linux
@@ -13,15 +12,18 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 origin.date: 02/27/2017
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.custom: mvc
-ms.openlocfilehash: 734f84c74674c0773b9be4568b6bba58a7f18f77
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.custom: mvc, devx-track-azurecli
+ms.openlocfilehash: 590b12bbe7d3575b4d599ea27f8b02ef29a191d7
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82595995"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413590"
 ---
 # <a name="create-a-vm-with-wordpress"></a>使用 WordPress 创建 VM
 

@@ -1,21 +1,23 @@
 ---
 title: 从 Azure 下载 Windows VHD
 description: 使用 Azure 门户下载 Windows VHD。
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 ms.service: virtual-machines-windows
 ms.subservice: disks
 ms.workload: infrastructure-services
-ms.topic: article
+ms.topic: how-to
 origin.date: 01/13/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 27f5d76a9120dcc75a8a18973c070582a33e547b
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 42366460780ddced7dcaf34480c8b8f1ba8f7360
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946071"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463010"
 ---
 # <a name="download-a-windows-vhd-from-azure"></a>从 Azure 下载 Windows VHD
 
@@ -44,7 +46,7 @@ ms.locfileid: "85946071"
 
 ## <a name="generate-download-url"></a>生成下载 URL
 
-若要下载 VHD 文件，需要生成[共享访问签名 (SAS)](../../storage/common/storage-dotnet-shared-access-signature-part-1.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json) URL。 生成 URL 时，将为 URL 分配到期时间。
+若要下载 VHD 文件，需要生成[共享访问签名 (SAS)](../../storage/common/storage-sas-overview.md?toc=/virtual-machines/windows/toc.json) URL。 生成 URL 时，将为 URL 分配到期时间。
 
 1. 在 VM 的页面上，单击左侧菜单中的“磁盘”  。
 1. 选择 VM 的操作系统磁盘。
@@ -68,4 +70,4 @@ ms.locfileid: "85946071"
 - [从存储帐户中的非托管磁盘创建托管磁盘](attach-disk-ps.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。
 - [使用 PowerShell 管理 Azure 磁盘](tutorial-manage-data-disk.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-<!-- Update_Description: update meta properties， wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

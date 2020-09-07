@@ -1,22 +1,24 @@
 ---
-title: 教程 - 使用 Azure PowerShell 为 Windows 虚拟机创建和管理 Azure 虚拟网络
+title: 教程 - 为 Windows VM 创建和管理 Azure 虚拟网络
 description: 本教程介绍如何使用 Azure PowerShell 为 Windows 虚拟机创建和管理 Azure 虚拟网络
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.subservice: networking
 ms.topic: tutorial
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
-origin.date: 12/04/2018
-ms.date: 07/06/2020
+origin.date: 08/04/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: 1f19dafe9ecf824bdf32508c3846ab26e983c2e9
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 765ff2db2ebc64708d94d93be167e9a4ef5953b2
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945844"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463169"
 ---
 # <a name="tutorial-create-and-manage-azure-virtual-networks-for-windows-virtual-machines-with-azure-powershell"></a>教程：使用 Azure PowerShell 为 Windows 虚拟机创建和管理 Azure 虚拟网络
 
@@ -35,7 +37,7 @@ Azure 虚拟网络在虚拟机、Internet 与其他 Azure 服务（例如 Azure 
 
 完成本教程时，可以看到创建了以下资源：
 
-![包含两个子网的虚拟网络](./media/tutorial-virtual-network/networktutorial.png)
+:::image type="content" source="./media/tutorial-virtual-network/networktutorial.png" alt-text="包含两个子网的虚拟网络":::
 
 - *myVNet* - VM 彼此进行通信以及与 Internet 进行通信时使用的虚拟网络。
 - *myFrontendSubnet* - *myVNet* 中供前端资源使用的子网。
@@ -47,9 +49,11 @@ Azure 虚拟网络在虚拟机、Internet 与其他 Azure 服务（例如 Azure 
 - *myBackendNic* - *myBackendVM* 用于与 *myFrontendVM* 进行通信的网络接口。
 - *myBackendVM* - 使用端口 1433 与 *myFrontendVM* 通信的 VM。
 
-## <a name="launch-azure-local-powershell"></a>启动 Azure 本地 PowerShell
+## <a name="launch-azure-local-shell"></a>启动 Azure 本地 Shell
 
 打开 Azure Powershell 控制台，以管理员权限运行下面列出的脚本。
+
+<!--Not Available on Azure Cloud Shell-->
 
 ## <a name="create-subnet"></a>创建子网 
 
@@ -124,7 +128,7 @@ $frontendNic = New-AzNetworkInterface `
   -PublicIpAddressId $pip.Id
 ```
 
-使用 [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential) 设置 VM 上管理员帐户所需的用户名和密码。 若要使用这些凭据连接到 VM，请执行其他步骤：
+使用 [Get-Credential](https://docs.microsoft.com/powershell/module/microsoft.powershell.security/get-credential?view=powershell-5.1) 设置 VM 上管理员帐户所需的用户名和密码。 若要使用这些凭据连接到 VM，请执行其他步骤：
 
 ```powershell
 $cred = Get-Credential
@@ -282,4 +286,4 @@ New-AzVM `
 > [!div class="nextstepaction"]
 > [在 Azure 中备份 Windows 虚拟机](./tutorial-backup-vms.md)
 
-<!--Update_Description: update meta properties, wording update-->
+<!-- Update_Description: update meta properties, wording update, update link -->

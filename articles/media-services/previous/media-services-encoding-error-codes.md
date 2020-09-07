@@ -13,18 +13,18 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/18/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 02f8162509a79d5fdaac53aedcce3f458072bc8b
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 208e780d733b94a40430c829978641975fb069d5
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162243"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413186"
 ---
 # <a name="encoding-error-codes"></a>编码错误代码
 
-下表列出了在执行编码任务期间发生错误的情况下可能返回的错误代码。  若要获取 .NET 代码中的错误详细信息，请使用 [ErrorDetails](https://msdn.microsoft.com/library/microsoft.windowsazure.mediaservices.client.errordetail.aspx) 类。 若要获取 REST 代码中的错误详细信息，请使用 [ErrorDetail](https://msdn.microsoft.com/library/jj853026.aspx) REST API。
+下表列出了在执行编码任务期间发生错误的情况下可能返回的错误代码。  若要获取 .NET 代码中的错误详细信息，请使用 [ErrorDetails](https://docs.microsoft.com/previous-versions/azure/jj126075(v=azure.100)) 类。 若要获取 REST 代码中的错误详细信息，请使用 [ErrorDetail](https://docs.microsoft.com/rest/api/media/operations/errordetail) REST API。
 
 | ErrorDetail.Code | 出错的可能原因 |
 | --- | --- |

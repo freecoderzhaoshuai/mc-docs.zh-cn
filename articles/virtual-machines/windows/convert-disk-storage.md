@@ -1,19 +1,21 @@
 ---
-title: 更新托管磁盘的存储类型
+title: 在标准和高级 SSD 之间转换托管磁盘存储
 description: 如何使用 Azure PowerShell 将 Azure 托管磁盘从标准类型转换为高级类型，或者从高级类型转换为标准类型。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.topic: how-to
 origin.date: 02/22/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.subservice: disks
-ms.openlocfilehash: 42e9a9797dd9c3f39c097dafeb30c5d2a977221f
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: d9aea6cf7cef14ff7ed94da8e7439e39af780775
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946024"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462908"
 ---
 # <a name="update-the-storage-type-of-a-managed-disk"></a>更新托管磁盘的存储类型
 
@@ -25,8 +27,6 @@ Azure 托管磁盘有三种磁盘类型：高级 SSD、标准 SSD 和标准 HDD�
 <!--Not Available on Azure ultra SSDs (preview)-->
 <!--Not Available on You are not yet able to switch from or to an ultra SSD, you must deploy a new one.-->
 
-[!INCLUDE [updated-for-az.md](../../../includes/updated-for-az.md)]
-
 ## <a name="prerequisites"></a>先决条件
 
 * 由于转换需要重启虚拟机 (VM)，因此请在预先存在的维护时段内计划磁盘存储迁移。
@@ -34,7 +34,7 @@ Azure 托管磁盘有三种磁盘类型：高级 SSD、标准 SSD 和标准 HDD�
 
 ## <a name="switch-all-managed-disks-of-a-vm-between-premium-and-standard"></a>将 VM 的所有托管磁盘在高级类型与标准类型之间切换
 
-此示例演示如何将 VM 的所有磁盘从标准存储转换为高级存储，或者从高级存储转换为标准存储。 若要使用高级托管磁盘，VM 必须使用支持高级存储的 [VM 大小](sizes.md)。 此示例还切换到了支持高级存储的大小：
+此示例演示如何将 VM 的所有磁盘从标准存储转换为高级存储，或者从高级存储转换为标准存储。 若要使用高级托管磁盘，VM 必须使用支持高级存储的 [VM 大小](../sizes.md)。 此示例还切换到了支持高级存储的大小：
 
 ```powershell
 # Sign in the Azure China Cloud
@@ -81,7 +81,7 @@ Start-AzVM -ResourceGroupName $rgName -Name $vmName
 
 ## <a name="switch-individual-managed-disks-between-standard-and-premium"></a>在标准类型与高级类型之间切换单个托管磁盘
 
-对于开发/测试工作负荷，可以混合使用标准磁盘和高级磁盘来降低成本。 可以选择仅升级需要更高性能的磁盘。 此示例演示如何将单个 VM 磁盘从标准存储转换为高级存储，或者从高级存储转换为标准存储。 若要使用高级托管磁盘，VM 必须使用支持高级存储的 [VM 大小](sizes.md)。 此示例还展示了如何切换到支持高级存储的大小：
+对于开发/测试工作负荷，可以混合使用标准磁盘和高级磁盘来降低成本。 可以选择仅升级需要更高性能的磁盘。 此示例演示如何将单个 VM 磁盘从标准存储转换为高级存储，或者从高级存储转换为标准存储。 若要使用高级托管磁盘，VM 必须使用支持高级存储的 [VM 大小](../sizes.md)。 此示例还展示了如何切换到支持高级存储的大小：
 
 ```powershell
 # Sign in the Azure China Cloud

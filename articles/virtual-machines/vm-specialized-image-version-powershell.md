@@ -1,23 +1,23 @@
 ---
 title: 从专用化映像创建 VM
 description: 使用共享映像库中的专用化映像创建 VM。
-author: rockboyfor
 ms.service: virtual-machines
 ms.subservice: imaging
 ms.workload: infrastructure-services
 ms.topic: how-to
 origin.date: 05/04/2020
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: yes
-ms.testdate: 07/27/2020
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.reviewer: akjosh
-ms.openlocfilehash: aa849f3b3279b3c900b0fdbf9fa3eb66f00bf9fe
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: 38e4ede07b503682389b140e5cad799ab9a49a75
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244733"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462843"
 ---
 <!--Verified successfully-->
 # <a name="create-a-vm-using-a-specialized-image"></a>使用专用化映像创建 VM 

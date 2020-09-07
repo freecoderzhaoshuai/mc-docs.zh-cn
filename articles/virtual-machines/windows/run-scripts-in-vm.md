@@ -3,18 +3,20 @@ title: 在 Azure Windows VM 中运行脚本
 description: 本主题介绍如何在 Windows 虚拟机中运行脚本
 services: automation
 ms.service: virtual-machines
-author: rockboyfor
 origin.date: 05/02/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.topic: how-to
-manager: digimobile
-ms.openlocfilehash: 9354878b6f134aac271907c3c7b5173eb02d49c0
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+manager: carmonm
+ms.openlocfilehash: dd9507e7d5aacd596adf212c6b8c2cdc2127ebc6
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945600"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462888"
 ---
 # <a name="run-scripts-in-your-windows-vm"></a>在 Windows VM 中运行脚本
 

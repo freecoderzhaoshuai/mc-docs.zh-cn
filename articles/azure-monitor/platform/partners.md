@@ -5,14 +5,14 @@ author: Johnnytechn
 ms.subservice: ''
 ms.topic: conceptual
 origin.date: 03/14/2019
-ms.date: 07/17/2020
+ms.date: 08/20/2020
 ms.author: v-johya
-ms.openlocfilehash: f4dd1559a6375579804fabf78b8639d5596731ef
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.openlocfilehash: 82d629f46179544b199e219f8cf157b03559d7b6
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508348"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457270"
 ---
 # <a name="azure-monitor-partner-integrations"></a>Azure 监视器合作伙伴集成
 
@@ -263,9 +263,10 @@ Turbonomic 为混合云提供工作负荷自动化解决方案，同时实时优
 
 ## <a name="next-steps"></a>后续步骤
 
-- [了解有关 Azure Monitor 的详细信息](../../azure-monitor/overview.md)
+- [了解有关 Azure Monitor 的详细信息](../overview.md)
 - [使用 REST API 访问指标](rest-api-walkthrough.md)
-- [将资源日志流式传输到非 Microsoft 服务](../../azure-monitor/platform/resource-logs-stream-event-hubs.md)
+- [将活动日志流式传输给非 Microsoft 服务](./activity-log.md#legacy-collection-methods)
+- [将资源日志流式传输到非 Microsoft 服务](./resource-logs.md#send-to-azure-event-hubs)
 
 
 
@@ -275,6 +276,7 @@ Turbonomic 为混合云提供工作负荷自动化解决方案，同时实时优
 [atlassian-doc]: https://azure.microsoft.com/blog/automated-notifications-from-azure-monitor-for-atlassian-jira/
 [botmetric-doc]: https://www.botmetric.com/blog/announcing-botmetric-cost-governance-beta-microsoft-azure/ "Botmetric 简介。"
 [circonus-doc]: https://docs.circonus.com/circonus/agents/cloud-agent/azure/ 
+[cloudhealth-doc]: https://www.cloudhealthtech.com/products/azure-management
 [cloudmonix-doc]: https://cloudmonix.com/features/azure-management/ "CloudMonix 简介。"
 [datadog-doc]: https://docs.datadoghq.com/integrations/azure/ "Datadog 文档。"
 [dynatrace-doc]: https://help.dynatrace.com/infrastructure-monitoring/paas/how-do-i-monitor-microsoft-azure-web-apps/ "Dynatrace 文档。"

@@ -1,19 +1,21 @@
 ---
-title: 使用 Azure Site Recovery 迁移到高级存储
+title: 使用 Azure Site Recovery 将 Windows VM 迁移到 Azure 高级存储
 description: 使用 Site Recovery 将现有虚拟机迁移到 Azure 高级存储。 高级存储为 Azure 虚拟机上运行的 I/O 密集型工作负载提供高性能、低延迟的磁盘支持。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.topic: how-to
 origin.date: 08/15/2017
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.subservice: disks
-ms.openlocfilehash: 1c49c25d47ad62caa5d66108f6ae3e4fab055c8e
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 96030b1d19b7ed3dbdd79be42f9bbe5b8e2e6cb2
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946083"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463159"
 ---
 # <a name="migrate-to-premium-storage-by-using-azure-site-recovery"></a>使用 Azure Site Recovery 迁移到高级存储
 
@@ -25,7 +27,9 @@ Site Recovery 提供测试故障转移，既能支持灾难恢复练习，又不
 
 之所以建议使用 Site Recovery 迁移到高级存储，是因为此选项造成的停机时间最短。 它还可以避免手动复制磁盘和创建新 VM。 在故障转移过程中，Site Recovery 系统性地复制磁盘并创建新的 VM。 
 
-Site Recovery 支持多种类型的、停机时间极短或不造成停机的故障转移。 若要规划停机时间和评估数据丢失情况，请参阅 [Site Recovery 中的故障转移类型](../../site-recovery/site-recovery-failover.md)。 如果[已准备好在故障转移后连接到 Azure VM](../../site-recovery/vmware-walkthrough-overview.md)，应该能够在故障转移后使用 RDP 连接到 Azure VM。
+Site Recovery 支持多种类型的、停机时间极短或不造成停机的故障转移。 若要规划停机时间和评估数据丢失情况，请参阅 [Site Recovery 中的故障转移类型](../../site-recovery/site-recovery-failover.md)。 如果[已准备好在故障转移后连接到 Azure VM](../../site-recovery/vmware-azure-tutorial.md)，应该能够在故障转移后使用 RDP 连接到 Azure VM。
+
+<!--MOONVAKE CORRECT ON:prepare to connect to Azure VMs after failover-->
 
 ![灾难恢复关系图][1]
 
@@ -33,7 +37,7 @@ Site Recovery 支持多种类型的、停机时间极短或不造成停机的故
 
 这些是与此迁移方案相关的 Site Recovery 组件。
 
-* **配置服务器**是用于协调通信以及管理数据复制和恢复过程的 Azure VM。 在此 VM 上运行单个安装程序文件来安装配置服务器，以及一个称作进程服务器、用作复制网关的附加组件。 请阅读[配置服务器必备组件](../../site-recovery/vmware-walkthrough-overview.md)。 配置服务器只需设置一次，在迁移到同一区域的所有过程中都可以使用它。
+* **配置服务器**是用于协调通信以及管理数据复制和恢复过程的 Azure VM。 在此 VM 上运行单个安装程序文件来安装配置服务器，以及一个称作进程服务器、用作复制网关的附加组件。 请阅读[配置服务器必备组件](../../site-recovery/vmware-azure-tutorial.md)。 配置服务器只需设置一次，在迁移到同一区域的所有过程中都可以使用它。
 
 * 进程服务器是一种复制网关，其职能包括： 
 
@@ -43,7 +47,7 @@ Site Recovery 支持多种类型的、停机时间极短或不造成停机的故
 
     它还处理从移动服务到源 VM 的推送安装，执行源 VM 的自动发现。 默认的进程服务器安装在配置服务器上。 可以部署更多的独立进程服务器以扩展部署。 请阅读[进程服务器部署的最佳做法](https://azure.microsoft.com/blog/best-practices-for-process-server-deployment-when-protecting-vmware-and-physical-workloads-with-azure-site-recovery/)和[部署其他进程服务器](../../site-recovery/site-recovery-plan-capacity-vmware.md#deploy-additional-process-servers)。 进程服务器只需配置一次，在迁移到同一区域的所有过程中都可以使用它。
 
-* 移动服务是在想要复制的每个标准 VM 上部署的组件。 它可以捕获标准 VM 上的数据写入，并将其转发到进程服务器。 阅读[复制的计算机先决条件](../../site-recovery/vmware-walkthrough-overview.md)。
+* 移动服务是在想要复制的每个标准 VM 上部署的组件。 它可以捕获标准 VM 上的数据写入，并将其转发到进程服务器。 阅读[复制的计算机先决条件](../../site-recovery/vmware-azure-tutorial.md)。
 
 此图显示了这些组件的交互方式：
 
@@ -52,7 +56,7 @@ Site Recovery 支持多种类型的、停机时间极短或不造成停机的故
 > [!NOTE]
 > Site Recovery 不支持迁移存储空间磁盘。
 
-有关其他方案的其他组件，请参阅[方案体系结构](../../site-recovery/vmware-walkthrough-overview.md)。
+有关其他方案的其他组件，请参阅[方案体系结构](../../site-recovery/vmware-azure-tutorial.md)。
 
 ## <a name="azure-essentials"></a>Azure 概要
 
@@ -70,14 +74,14 @@ Site Recovery 支持多种类型的、停机时间极短或不造成停机的故
 
 ## <a name="setup-and-migration-steps"></a>设置和迁移步骤
 
-可以使用 Site Recovery 在区域之间或者在同一区域内部迁移 Azure IaaS VM。 以下说明是在[将 VMware VM 或物理服务器复制到 Azure](../../site-recovery/vmware-walkthrough-overview.md) 一文的基础上，专门针对此迁移方案编写的。 除了本文中所述的说明以外，请单击相关的链接了解详细步骤。
+可以使用 Site Recovery 在区域之间或者在同一区域内部迁移 Azure IaaS VM。 以下说明是在[将 VMware VM 或物理服务器复制到 Azure](../../site-recovery/vmware-azure-tutorial.md) 一文的基础上，专门针对此迁移方案编写的。 除了本文中所述的说明以外，请单击相关的链接了解详细步骤。
 
 ### <a name="step-1-create-a-recovery-services-vault"></a>步骤 1：创建恢复服务保管库
 
 1. 打开 [Azure 门户](https://portal.azure.cn)。
 2. 选择“创建资源” > “管理” > “备份和 Site Recovery (OMS)”  。 或者，可以选择“浏览” > “恢复服务保管库” > “添加”  。
     >[!NOTE]
-    >备份和 Site Recovery 以前是 [OMS 套件](/azure-monitor/terminology#april-2018---retirement-of-operations-management-suite-brand)的一部分。
+    >备份和 Site Recovery 以前是 [OMS 套件](../../azure-monitor/terminology.md#april-2018---retirement-of-operations-management-suite-brand)的一部分。
 
 3. 指定将 VM 复制到的区域。 若要在同一区域中迁移，请选择源 VM 和源存储帐户所在的区域。 
 
@@ -104,7 +108,7 @@ Site Recovery 支持多种类型的、停机时间极短或不造成停机的故
 
     ![选定“配置服务器”的“添加服务器”窗格][5]
 
-3. 在用作配置服务器的 VM 上，运行统一安装程序以安装配置服务器和进程服务器。 可以[参考提供的屏幕截图逐步完成安装](../../site-recovery/vmware-walkthrough-overview.md)。 可以参考以下屏幕截图了解针对此迁移方案指定的步骤。
+3. 在用作配置服务器的 VM 上，运行统一安装程序以安装配置服务器和进程服务器。 可以[参考提供的屏幕截图逐步完成安装](../../site-recovery/vmware-azure-tutorial.md)。 可以参考以下屏幕截图了解针对此迁移方案指定的步骤。
 
     1. 在“开始之前”中，选择“安装配置服务器和进程服务器” 。
 
@@ -138,7 +142,7 @@ Site Recovery 检查是否有一个或多个兼容的 Azure 存储帐户和网�
 
 ### <a name="step-5-set-up-replication-settings"></a>步骤 5：设置复制设置
 
-要验证配置服务器是否已成功与创建的复制策略相关联，请遵循[设置复制设置](../../site-recovery/vmware-walkthrough-overview.md)。
+要验证配置服务器是否已成功与创建的复制策略相关联，请遵循[设置复制设置](../../site-recovery/vmware-azure-tutorial.md)。
 
 ### <a name="step-6-plan-capacity"></a>步骤 6：规划容量
 
@@ -149,11 +153,11 @@ Site Recovery 检查是否有一个或多个兼容的 Azure 存储帐户和网�
 
 ### <a name="step-7-install-the-mobility-service-and-enable-replication"></a>步骤 7：安装移动服务并启用复制
 
-1. 可以选择向源 VM 执行[推送安装](../../site-recovery/vmware-walkthrough-overview.md)，或者在源 VM 上[手动安装移动服务](../../site-recovery/site-recovery-vmware-to-azure-install-mob-svc.md)。 可在提供的链接中找到推送安装的要求以及手动安装程序的路径。 如果执行手动安装，可能需要使用内部 IP 地址来查找配置服务器。
+1. 可以选择向源 VM 执行[推送安装](../../site-recovery/vmware-azure-tutorial.md)，或者在源 VM 上[手动安装移动服务](../../site-recovery/vmware-azure-install-mobility-service.md)。 可在提供的链接中找到推送安装的要求以及手动安装程序的路径。 如果执行手动安装，可能需要使用内部 IP 地址来查找配置服务器。
 
     ![“配置服务器详细信息”页][12]
 
-    故障转移 VM 包含两个临时磁盘：一个磁盘来自主 VM，另一个磁盘是在恢复区域中预配 VM 期间创建的。 若要在复制之前排除临时磁盘，请在启用复制之前安装移动服务。 若要详细了解如何排除临时磁盘，请参阅[从复制中排除磁盘](../../site-recovery/vmware-walkthrough-overview.md)。
+    故障转移 VM 包含两个临时磁盘：一个磁盘来自主 VM，另一个磁盘是在恢复区域中预配 VM 期间创建的。 若要在复制之前排除临时磁盘，请在启用复制之前安装移动服务。 若要详细了解如何排除临时磁盘，请参阅[从复制中排除磁盘](../../site-recovery/vmware-azure-tutorial.md)。
 
 2. 请按如下所述启用复制：
     1. 选择“复制应用程序” > “源” 。 首次启用复制后，请在保管库中选择“+复制”，对其他计算机启用复制。
@@ -179,7 +183,7 @@ Site Recovery 检查是否有一个或多个兼容的 Azure 存储帐户和网�
 
 要检查复制是否完成，请选择“Site Recovery”实例，并单击“设置” > “已复制的项” 。 此时显示复制过程的状态和完成百分比。 
 
-初始复制完成后，请运行测试故障转移来验证复制策略。 有关测试故障转移的详细步骤，请参阅 [在 Site Recovery 中运行测试故障转移](../../site-recovery/vmware-walkthrough-overview.md)。 
+初始复制完成后，请运行测试故障转移来验证复制策略。 有关测试故障转移的详细步骤，请参阅 [在 Site Recovery 中运行测试故障转移](../../site-recovery/vmware-azure-tutorial.md)。 
 
 > [!NOTE]
 > 运行故障转移之前，请确保 VM 和复制策略满足要求。 有关运行测试故障转移的详细信息，请阅读[在 Site Recovery 中执行到 Azure 的测试故障转移](../../site-recovery/site-recovery-test-failover-to-azure.md)。
@@ -197,16 +201,16 @@ Site Recovery 会创建类型与支持高级存储的 VM 相同或类似的 VM �
 ## <a name="post-migration-steps"></a>迁移后的步骤
 
 1. **将复制的 VM 配置到可用性集（如果适用）** 。 Site Recovery 不支持连同可用性集一起迁移 VM。 根据复制的 VM 的部署，执行以下操作之一：
-    * 对于通过经典部署模型创建的 VM：将 VM 添加到 Azure 门户中的可用性集。 有关详细步骤，请参阅[将现有虚拟机添加到可用性集](../linux/classic/configure-availability-classic.md)。
+    * 对于通过经典部署模型创建的 VM：将 VM 添加到 Azure 门户中的可用性集。 有关详细步骤，请参阅[将现有虚拟机添加到可用性集](https://docs.microsoft.com/previous-versions/azure/virtual-machines/linux/classic/configure-availability-classic)。
     * 对于通过资源管理器部署模型创建的 VM：保存 VM 的配置，并在可用性集中删除并再重新创建 VM。 为此，请使用 [Set Azure Resource Manager VM Availability Set](https://gallery.technet.microsoft.com/Set-Azure-Resource-Manager-f7509ec4)（设置 Azure Resource Manager VM 可用性集）中所述的脚本。 运行此脚本之前，请检查其自身的限制并规划停机时间。
 
-2. **删除旧 VM 和磁盘**。 请确保高级磁盘与源磁盘一致，并且新 VM 执行的功能与源 VM 相同。 通过 Azure 门户删除源存储帐户中的 VM 和磁盘。 如果出现了即使删除 VM 也无法删除磁盘的问题，请参阅[排查存储资源删除错误](storage-resource-deletion-errors.md)。
+2. **删除旧 VM 和磁盘**。 请确保高级磁盘与源磁盘一致，并且新 VM 执行的功能与源 VM 相同。 通过 Azure 门户删除源存储帐户中的 VM 和磁盘。 如果出现了即使删除 VM 也无法删除磁盘的问题，请参阅[排查存储资源删除错误](../troubleshooting/storage-resource-deletion-errors.md)。
 
 3. **清理 Azure Site Recovery 基础结构**。 如果不再需要 Site Recovery，可清理其基础结构。 删除复制的项、配置服务器和恢复策略，然后删除 Azure Site Recovery 保管库。
 
 ## <a name="troubleshooting"></a>故障排除
 
-* [监视虚拟机和物理服务器的保护及其故障排除](../../site-recovery/site-recovery-monitoring-and-troubleshooting.md)
+* [监视虚拟机和物理服务器的保护及其故障排除](../../site-recovery/site-recovery-monitor-and-troubleshoot.md)
 * [有关 Azure Site Recovery 的 Microsoft 问答页](https://docs.microsoft.com/answers/topics/azure-site-recovery.html)
 
 ## <a name="next-steps"></a>后续步骤
@@ -215,7 +219,8 @@ Site Recovery 会创建类型与支持高级存储的 VM 相同或类似的 VM �
 
 * [Migrate Azure Virtual Machines between Storage Accounts（在存储帐户之间迁移 Azure 虚拟机）](https://azure.microsoft.com/blog/2014/10/22/migrate-azure-virtual-machines-between-storage-accounts/)
 * [创建 Windows Server VHD 并将其上传到 Azure](upload-generalized-managed.md)
-* [将虚拟机从 Amazon AWS 迁移到 Azure](https://channel9.msdn.com/Series/Migrating-Virtual-Machines-from-Amazon-AWS-to-Microsoft-Azure)
+    
+    <!--Not Available on* [Migrating Virtual Machines from Amazon AWS to Azure](https://channel9.msdn.com/Series/Migrating-Virtual-Machines-from-Amazon-AWS-to-Microsoft-Azure)-->
 
 另请参阅以下资源，深入了解 Azure 存储和 Azure 虚拟机：
 
@@ -237,6 +242,7 @@ Site Recovery 会创建类型与支持高级存储的 VM 相同或类似的 VM �
 [13]:./media/migrate-to-premium-storage-using-azure-site-recovery/migrate-to-premium-storage-using-azure-site-recovery-13.png
 
 <!-- Not Available on [14]:../site-recovery/media/site-recovery-vmware-to-azure/v2a-architecture-henry.png -->
-[15]\:./media/migrate-to-premium-storage-using-azure-site-recovery/migrate-to-premium-storage-using-azure-site-recovery-14.png
 
-<!-- Update_Description: update meta properties -->
+[15]:./media/migrate-to-premium-storage-using-azure-site-recovery/migrate-to-premium-storage-using-azure-site-recovery-14.png
+
+<!-- Update_Description: update meta properties, wording update, update link -->

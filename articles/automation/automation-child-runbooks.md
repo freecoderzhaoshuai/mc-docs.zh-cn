@@ -6,12 +6,12 @@ ms.subservice: process-automation
 origin.date: 01/17/2019
 ms.date: 08/10/2020
 ms.topic: conceptual
-ms.openlocfilehash: 7c4c44c3eefd556f7e2745839918aaed4bbaca7b
-ms.sourcegitcommit: e6b216b180734783219378410e13192e314a4497
+ms.openlocfilehash: 7287f2e1cc9af5b13e5c63bf1d5b2e5b840c98e8
+ms.sourcegitcommit: f837837326a4856b06d1924d17521a0a7e892850
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87790086"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89449792"
 ---
 # <a name="create-modular-runbooks"></a>创建模块化 Runbook
 
@@ -36,7 +36,7 @@ ms.locfileid: "87790086"
 
 发布某个 Runbook 时，必须事先发布它所调用的任何子 Runbook。 原因是在编译 Runbook 时，Azure 自动化会生成与任何子 Runbook 的关联。 如果尚未发布子 Runbook，则父 Runbook 看似会正确发布，但在启动时将生成异常。 如果发生这种情况，可以重新发布父 Runbook，以正确引用子 Runbook。 如果由于已创建关联而更改了任何子 Runbook，则不需重新发布父 Runbook。
 
-内联调用的子 Runbook 的参数可以是任意数据类型，包括复杂对象。 不会进行 [JSON 序列化](start-runbooks.md#work-with-runbook-parameters)，因为使用 Azure 门户或 [Start-AzAutomationRunbook](/powershell/module/Az.Automation/Start-AzAutomationRunbook) cmdlet 启动 Runbook 时会进行这种序列化。
+内联调用的子 Runbook 的参数可以是任意数据类型，包括复杂对象。 不会进行 [JSON 序列化](start-runbooks.md#work-with-runbook-parameters)，因为使用 Azure 门户或 [Start-AzAutomationRunbook](https://docs.microsoft.com/powershell/module/Az.Automation/Start-AzAutomationRunbook) cmdlet 启动 Runbook 时会进行这种序列化。
 
 ### <a name="runbook-types"></a>Runbook 类型
 
