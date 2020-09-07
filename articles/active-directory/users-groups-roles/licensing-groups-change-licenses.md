@@ -1,28 +1,27 @@
 ---
-title: 如何更改用户和组的许可证分配 - Azure Active Directory | Microsoft Docs
-description: 介绍使用组许可将组中的用户迁移到不同服务许可证（Office 365 企业版 E1 和 E3）的建议过程
+title: 更改用户和组的许可计划 - Azure AD | Microsoft Docs
+description: 如何使用 Azure Active Directory 中的组许可将组内的用户迁移到不同的服务计划
 services: active-directory
 keywords: Azure AD 许可
 documentationcenter: ''
 author: curtand
-manager: mtillman
+manager: daveba
 editor: ''
 ms.service: active-directory
-ms.topic: article
+ms.topic: how-to
 ms.workload: identity
 ms.subservice: users-groups-roles
-origin.date: 09/27/2019
-ms.date: 11/14/2019
+ms.date: 08/26/2020
 ms.author: v-junlch
 ms.reviewer: sumitp
 ms.custom: it-pro;seo-update-azuread-jan
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: a15f8a1a09efc51cdcd842c81ecb0288dcc529f1
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: e36a96eb871bac5af20c9313357db377111bb98d
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74084789"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946712"
 ---
 # <a name="change-license-assignments-for-a-user-or-group-in-azure-active-directory"></a>在 Azure Active Directory 中更改用户或组的许可证分配
 
@@ -48,7 +47,7 @@ ms.locfileid: "74084789"
 1. 选择“Azure Active Directory” > “用户”，然后打开该用户对应的“配置文件”页。
 1. 选择“许可证”。 
 1. 选择“分配”以编辑用户或组的许可证分配。  可以在“分配”页中解决许可证分配冲突。 
-1. 选中 Office 366 E3 对应的复选框，并确保至少选择了分配给用户的所有 E1 服务。
+1. 选中 Office 365 E3 对应的复选框，并确保至少选择了分配给用户的所有 E1 服务。
 1. 清除 Office 365 E1 对应的复选框。
 
     ![用户的许可证分配页，其中显示已清除 Office 365 E1，并已选中 Office 365 E3](./media/licensing-groups-change-licenses/update-user-license-assignments.png)
@@ -63,7 +62,7 @@ Azure AD 将应用新许可证，同时删除旧许可证以提供服务连续�
 1. 选择“Azure Active Directory” > “组”，然后打开组的“概述”页。
 1. 选择“许可证”。 
 1. 选择“分配”命令以编辑用户或组的许可证分配。 
-1. 选中 Office 366 E3 对应的复选框。 为了保持服务连续性，请确保选择已分配给用户的所有 E1 服务。
+1. 选中 Office 365 E3 对应的复选框。 为了保持服务连续性，请确保选择已分配给用户的所有 E1 服务。
 1. 清除 Office 365 E1 对应的复选框。
 
     ![在用户或组的“许可证”页上选择“分配”命令](./media/licensing-groups-change-licenses/update-group-license-assignments.png)

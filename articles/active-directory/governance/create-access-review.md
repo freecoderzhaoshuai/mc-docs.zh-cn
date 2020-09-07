@@ -2,29 +2,29 @@
 title: 创建对组和应用程序的访问评审 - Azure AD
 description: 了解如何在 Azure Active Directory 访问评审中创建对组成员或应用程序访问的访问评审。
 services: active-directory
-author: msaburnley
+author: barclayn
 manager: daveba
 editor: markwahl-msft
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: conceptual
+ms.topic: how-to
 ms.subservice: compliance
-ms.date: 02/25/2020
+ms.date: 08/25/2020
 ms.author: v-junlch
 ms.reviewer: mwahl
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 5edaaa777f5b15efc85d19896ef5eabe43f81daf
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 08023954a9822496edc3f9724094309140215976
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77653088"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946918"
 ---
 # <a name="create-an-access-review-of-groups-and-applications-in-azure-ad-access-reviews"></a>在 Azure AD 访问评审中创建对组和应用程序的访问评审
 
-员工和来宾对组和应用程序的访问权限会不断变化。 为了降低与过期访问权限分配相关的风险，管理员可以使用 Azure Active Directory (Azure AD) 针对组成员或应用程序访问权限创建访问评审。 如果需要定期评审访问权限，则还可以创建定期访问评审。 有关这些方案的详细信息，请参阅[管理用户访问权限](manage-user-access-with-access-reviews.md)。
+员工和来宾对组和应用程序的访问权限会不断变化。 为了降低与过期访问权限分配相关的风险，管理员可以使用 Azure Active Directory (Azure AD) 针对组成员或应用程序访问权限创建访问评审。 如果需要定期评审访问权限，则还可以创建定期访问评审。 有关这些方案的详细信息，请参阅[管理用户访问权限](manage-user-access-with-access-reviews.md)和[管理来宾访问权限](manage-guest-access-with-access-reviews.md)。
 
 本文介绍如何针对组成员或应用程序访问权限创建一个或多个访问评审。
 
@@ -53,7 +53,7 @@ ms.locfileid: "77653088"
 
     ![创建访问评审 - 开始和结束日期](./media/create-access-review/start-end-dates.png)
 
-1. 若要让访问评审定期进行，请将“频率”设置从“一次”更改为“每周”、“每月”、“每季”或“每年”。       请使用“持续时间”滑块或文本框来定义定期进行的一系列评审每次的运行天数（可供审阅者输入）。  例如，每月评审的最长持续时间可以设置为 27 天，以免评审时间重叠。
+1. 若要让访问评审定期进行，请将“频率”设置从“一次”更改为“每周”、“每月”、“每季”、“半年”或“每年”。       请使用“持续时间”滑块或文本框来定义定期进行的一系列评审每次的运行天数（可供审阅者输入）。  例如，每月评审的最长持续时间可以设置为 27 天，以免评审时间重叠。
 
 1. 使用“结束”设置指定如何结束定期访问评审系列。  系列的结束方式有三种：持续运行，无限期地开始评审；运行至指定日期；运行至已完成定义的评审数目。 你、其他用户管理员或其他全局管理员可以在创建后停止此系列，只需在“设置”中更改日期，然后此系列就会在该日期结束。 
 
@@ -93,7 +93,7 @@ ms.locfileid: "77653088"
 
     ![创建访问评审 -“完成后操作”设置](./media/create-access-review/upon-completion-settings.png)
 
-1. 若要自动删除被拒绝用户的访问权限，请将“将结果自动应用到资源”设置为“启用”。   若要在评审完成后手动应用结果，请将开关设置为“禁用”。 
+1. 若要自动删除被拒绝用户的访问权限，请将“将结果自动应用到资源”设置为“启用”。  若要在评审完成后手动应用结果，请将开关设置为“禁用”。 
 
 1. 使用“如果审阅者未答复”列表指定对于审阅者在评审期限内未评审的用户要执行的操作。  此设置不影响审阅者已手动评审的用户。 如果最终的审阅者决策是“拒绝”，则会删除用户的访问权限。
 
@@ -106,7 +106,7 @@ ms.locfileid: "77653088"
 
 1. 若要指定其他设置，请展开“高级设置”部分。 
 
-    ![创建访问评审 - 高级设置](./media/create-access-review/advanced-settings.png)
+    ![创建访问评审 - 高级设置](./media/create-access-review/advanced-settings-preview.png)
 
 1. 将“显示建议”设置为“启用”，以基于用户的访问权限信息向评审者显示系统建议。  
 
@@ -114,13 +114,18 @@ ms.locfileid: "77653088"
 
 1. 将“邮件通知”设置为“启用”，以便在访问评审开始时让 Azure AD 向评审者发送电子邮件通知，并在评审完成时向管理员发送电子邮件通知。  
 
-1. 将“提醒”设置为“启用”，让 Azure AD 向尚未完成其审阅的审阅者发送访问评审正在进行的提醒。  
+1. 将“提醒”设置为“启用”，让 Azure AD 向尚未完成其审阅的审阅者发送访问评审正在进行的提醒。   
 
-    默认情况下，Azure AD 自动在中途向还未作出回复的审阅者发送结束日期提醒。
+    >[!NOTE]
+    > 默认情况下，Azure AD 自动在中途向还未作出回复的审阅者发送结束日期提醒
+
+1. （预览）发送给审阅者的电子邮件的内容是根据审阅详细信息（如审阅名称、资源名称、截止日期等）自动生成的。如果你需要一种方式来传达其他信息（例如其他说明或联系人信息），则可在审阅者电子邮件的“其他内容”中指定这些详细信息，这些信息将包含在发送给分配的审阅者的邀请和提醒电子邮件中。 下面突出显示的部分是将要显示此信息的位置。
+
+    ![查看用户对组的访问权限](./media/create-access-review/review-users-access-group.png)
 
 ## <a name="start-the-access-review"></a>启动访问评审
 
-指定访问评审的设置后，单击“启动”。  访问评审将显示在列表中，并带有其状态指示器。
+指定访问评审的设置后，单击“启动”。**** 访问评审将显示在列表中，并带有其状态指示器。
 
 ![访问评审及其状态的列表](./media/create-access-review/access-reviews-list.png)
 
@@ -138,7 +143,7 @@ ms.locfileid: "77653088"
 |正在进行 | 已开始评审。 如果启用电子邮件通知，则电子邮件已发送给评审者。 评审者可以在截止日期之前提交决定。 |
 |正在完成 | 评审正在完成，电子邮件将发送到评审所有者。 |
 |正在自动评审 | 评审处于系统评审阶段。 系统正在为未根据建议或预先配置的决定评审的用户记录决定。 |
-|已自动评审 | 系统已为未评审的所有用户记录了决定。 如果启用了“自动应用”，则评审可以进入“正在应用”阶段了  。 |
+|已自动评审 | 系统已为未评审的所有用户记录了决定。 如果启用了“自动应用”，则评审可以进入“正在应用”阶段了。 |
 |正在应用 | 对于已批准的用户，访问权限不会更改。 |
 |已应用 | 已经从源或目录删除拒绝的用户（如果有）。 |
 

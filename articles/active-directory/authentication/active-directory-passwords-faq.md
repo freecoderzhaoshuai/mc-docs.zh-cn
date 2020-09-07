@@ -5,22 +5,22 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: authentication
 ms.topic: how-to
-ms.date: 07/07/2020
+ms.date: 08/28/2020
 ms.author: v-junlch
 author: iainfoulds
 manager: daveba
-ms.reviewer: sahenry
+ms.reviewer: rhicock
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 68bbad049cf51d0c9e1f021fc5a7dd0474afc009
-ms.sourcegitcommit: 92b9b1387314b60661f5f62db4451c9ff2c49500
+ms.openlocfilehash: a49ca84dd5b4cd82931662a688122cd218f2e880
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86165020"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046285"
 ---
-# <a name="password-management-frequently-asked-questions"></a>密码管理常见问题
+# <a name="self-service-password-reset-frequently-asked-questions"></a>自助式密码重置常见问题解答
 
-下面是与密码重置相关的所有方面的一些常见问题解答 (FAQ)。
+下面是与自助式密码重置相关的所有事项的一些常见问题解答 (FAQ)。
 
 如果遇到 Azure Active Directory (Azure AD) 和自助密码重置 (SSPR) 的一般性问题，而在本文中又找不到答案，可以在 [Azure Active Directory 的 Microsoft Q&A 问题页](https://docs.microsoft.com/answers/topics/azure-active-directory.html)中请求社区帮助。 社区的成员包括工程师、产品经理、MVP 和其他 IT 专业人员。
 
@@ -192,7 +192,7 @@ ms.locfileid: "86165020"
 
 * **问：我的用户应当到何处去更改其密码？**
 
-  > **答:** 用户可以在看到其个人资料图片或图标的任何位置更改其密码。 用户可以从[访问面板个人资料页](https://account.activedirectory.azure.cn/r#/profile)更改其密码。 如果用户的密码已过期，还可以在 Azure AD 登录页上自动要求他们更改其密码。 最后，如果用户希望更改其密码，可以直接浏览到 [Azure AD 密码更改门户](https://account.activedirectory.azure.cn/ChangePassword.aspx)。
+  > **答:** 用户可以在能够看到其个人资料图片或图标的任何位置（例如在其[访问面板](https://account.activedirectory.windowsazure.cn/r#/applications)体验的右上角）更改其密码。 用户可以从[访问面板个人资料页](https://account.activedirectory.windowsazure.cn/r#/profile)更改其密码。 如果用户的密码已过期，还可以在 Azure AD 登录页上自动要求他们更改其密码。 最后，如果用户希望更改其密码，可以直接浏览到 [Azure AD 密码更改门户](https://account.activedirectory.windowsazure.cn/ChangePassword.aspx)。
   >
   >
 * **问：当用户的本地密码过期时，他们是否可以在 Office 门户中收到通知？**

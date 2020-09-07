@@ -4,14 +4,14 @@ description: 本文介绍如何使用用于容器的 Azure Monitor 查看和分�
 ms.topic: conceptual
 author: Johnnytechn
 origin.date: 10/15/2019
-ms.date: 07/17/2020
+ms.date: 08/20/2020
 ms.author: v-johya
-ms.openlocfilehash: 2224c4a64d35efc84e509d2fe8e112de365d88df
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: ab1c7192234f3ea93b6c775fe349b781f3c49c33
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244539"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148587"
 ---
 # <a name="monitor-your-kubernetes-cluster-performance-with-azure-monitor-for-containers"></a>使用适用于容器的 Azure Monitor 监视 Kubernetes 群集性能
 
@@ -69,7 +69,7 @@ Azure Monitor 提供一个多群集视图，显示在订阅中跨资源组部署
 
 下表提供了计算明细，该计算控制多群集视图中受监视群集的运行状况。
 
-| |状态 |可用性 |
+| 受监视的群集 |状态 |可用性 |
 |-------|-------|-----------------|
 |**用户 Pod**| | |
 | |正常 |100% |
@@ -192,7 +192,7 @@ Azure Monitor 提供一个多群集视图，显示在订阅中跨资源组部署
 
 下表描述了查看“节点”选项卡时显示的信息。
 
-| 列 | 说明 |
+| 列 | 描述 |
 |--------|-------------|
 | 名称 | 主机的名称。 |
 | 状态 | 节点状态的 Kubernetes 视图。 |
@@ -235,7 +235,7 @@ Azure Monitor 提供一个多群集视图，显示在订阅中跨资源组部署
 
 下表描述了查看控制器时显示的信息：
 
-| 列 | 说明 |
+| 列 | 描述 |
 |--------|-------------|
 | 名称 | 控制器的名称。|
 | 状态 | 容器完成运行并处于“正常”、“已终止”、“已失败”、“已停止”或“已暂停”等状态时的汇总状态    。 如果容器仍在运行，但是状态未正确显示或者未被代理选择并且超出 30 分钟后仍未响应，则状态为“未知”。 下表提供了状态图标的更多详细信息。|
@@ -272,7 +272,7 @@ Azure Monitor 提供一个多群集视图，显示在订阅中跨资源组部署
 
 下表描述了查看容器时显示的信息。
 
-| 列 | 说明 |
+| 列 | 描述 |
 |--------|-------------|
 | 名称 | 控制器的名称。|
 | 状态 | 容器状态（如果有）。 接下来的表格提供状态图标的更多详细信息。|
@@ -327,4 +327,4 @@ Azure Monitor 提供一个多群集视图，显示在订阅中跨资源组部署
 - 请查看[使用用于容器的 Azure Monitor 创建性能警报](container-insights-alerts.md)，了解如何针对高 CPU 和内存利用率创建警报以支持 DevOps 或操作流程和过程。
 
 - 通过查看[日志查询示例](container-insights-log-search.md#search-logs-to-analyze-data)，可查看预定义的查询和示例，从而对其进行评估或自定义，以便对群集执行警报、可视化或分析操作。
-<!--Moved to limited preview by the end of June 2020: container-insights-health.md-->
+

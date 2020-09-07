@@ -4,22 +4,25 @@ description: 详细介绍如何使用 Azure 虚拟机上的自定义数据和 Cl
 services: virtual-machines
 author: rockboyfor
 ms.service: virtual-machines
-ms.topic: article
+ms.topic: how-to
 origin.date: 03/06/2020
-ms.date: 07/06/2020
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 5ac517fd10da625c6d726c051b9e86e97cb46569
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 2e14f85a6600577e225bcddd9e7f0936601a5dc6
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945655"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052427"
 ---
 # <a name="custom-data-and-cloud-init-on-azure-virtual-machines"></a>Azure 虚拟机上的自定义数据和 Cloud-Init
 
+<!--MOONCAKE CUSTOMIZED ON SCORECARD ON an Azure-->
 你可能需要在预配时将脚本或其他元数据注入 Azure 虚拟机。  在其他云中，此概念通常称为用户数据。  在 Azure 中有一项称作自定义数据的类似功能。 
 
-自定义数据仅在首次启动/初始设置（称为“预配”）期间提供给 VM。 预配是指向 VM 提供“VM 创建”参数（例如主机名、用户名、密码、证书、自定义数据、密钥等）的过程，某个预配代理（例如 [Linux 代理](/virtual-machines/extensions/agent-linux)和 [cloud-init](/virtual-machines/linux/using-cloud-init#troubleshooting-cloud-init)）会处理这些参数。 
+自定义数据仅在首次启动/初始设置（称为“预配”）期间提供给 VM。 预配是指向 VM 提供“VM 创建”参数（例如主机名、用户名、密码、证书、自定义数据、密钥等）的过程，某个预配代理（例如 [Linux 代理](./extensions/agent-linux.md)和 [cloud-init](./linux/using-cloud-init.md#troubleshooting-cloud-init)）会处理这些参数。 
 
 ## <a name="passing-custom-data-to-the-vm"></a>将自定义数据传递给 VM
 若要使用自定义数据，除非使用 AZ CLI 等 CLI 工具执行转换，否则在将内容传递给 API 之前，必须先对其进行 base64 编码。 大小不能超过 64 KB。
@@ -34,7 +37,7 @@ az vm create \
   --generate-ssh-keys
 ```
 
-Azure 资源管理器 (ARM) 中有一个 [base64 函数](/azure-resource-manager/templates/template-functions-string#base64)。
+Azure 资源管理器 (ARM) 中有一个 [base64 函数](../azure-resource-manager/templates/template-functions-string.md#base64)。
 
 ```json
 "name": "[parameters('virtualMachineName')]",
@@ -76,9 +79,9 @@ Azure 目前支持两个预配代理：
 
 若要排查自定义数据执行问题，请查看 */var/log/waagent.log*
 
-* 云初始化 - 默认情况下会处理自定义数据，云初始化接受[多种格式](https://cloudinit.readthedocs.io/en/latest/topics/format.html)的自定义数据，如云初始化配置、脚本等。当云初始化处理自定义数据时，类似于 Linux 代理。 如果在执行配置处理或脚本的过程中出现错误，则不会将其视为致命的预配失败，需要创建通知路径以提醒你脚本的完成状态。 但是，与 Linux 代理不同，cloud-init 不会等待用户自定义数据配置完成后再向平台报告 VM 已准备就绪。 有关 Azure 上的 cloud-init 的详细信息，请查看[文档](/virtual-machines/linux/using-cloud-init)。
+* 云初始化 - 默认情况下会处理自定义数据，云初始化接受[多种格式](https://cloudinit.readthedocs.io/en/latest/topics/format.html)的自定义数据，如云初始化配置、脚本等。当云初始化处理自定义数据时，类似于 Linux 代理。 如果在执行配置处理或脚本的过程中出现错误，则不会将其视为致命的预配失败，需要创建通知路径以提醒你脚本的完成状态。 但是，与 Linux 代理不同，cloud-init 不会等待用户自定义数据配置完成后再向平台报告 VM 已准备就绪。 有关 Azure 上的 cloud-init 的详细信息，请查看[文档](./linux/using-cloud-init.md)。
 
-若要排查自定义数据执行问题，请查看故障排除[文档](/virtual-machines/linux/using-cloud-init#troubleshooting-cloud-init)。
+若要排查自定义数据执行问题，请查看故障排除[文档](./linux/using-cloud-init.md#troubleshooting-cloud-init)。
 
 ## <a name="faq"></a>常见问题
 ### <a name="can-i-update-custom-data-after-the-vm-has-been-created"></a>是否可以在创建 VM 后更新自定义数据？
@@ -88,7 +91,7 @@ Azure 目前支持两个预配代理：
 * 新实例会接收新的自定义数据。
 
 ### <a name="can-i-place-sensitive-values-in-custom-data"></a>是否可将敏感值放入自定义数据中？
-建议**不要**将敏感数据存储在自定义数据中。 有关详细信息，请参阅 [Azure 安全和加密最佳做法](/security/fundamentals/data-encryption-best-practices)。
+建议**不要**将敏感数据存储在自定义数据中。 有关详细信息，请参阅 [Azure 安全和加密最佳做法](../security/fundamentals/data-encryption-best-practices.md)。
 
 ### <a name="is-custom-data-made-available-in-imds"></a>自定义数据在 IMDS 中是否可用？
 目前不提供此功能。

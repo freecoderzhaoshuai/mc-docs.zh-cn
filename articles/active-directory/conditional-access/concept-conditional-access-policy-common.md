@@ -5,22 +5,22 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: conditional-access
 ms.topic: conceptual
-ms.date: 04/24/2020
+ms.date: 08/27/2020
 ms.author: v-junlch
 author: MicrosoftGuyJFlo
 manager: daveba
 ms.reviewer: calebb, rogoya
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: f855398b3ca5a007aee1aabb6d354eec1a4144a6
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.openlocfilehash: 0ab74fa9fabf9ad6509853b128c0dbed90ee0fdb
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82126296"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046376"
 ---
 # <a name="common-conditional-access-policies"></a>常用条件访问策略
 
-安全默认值很好，但是对于许多组织而言，需要比这些策略提供的更高的灵活性。 例如，许多组织都需要能够从需要多重身份验证的条件访问策略中排除特定帐户，如其紧急访问帐户或不受限管理帐户。 对于这些组织，可以使用本文中提到的常用策略。
+[安全默认值](../fundamentals/concept-fundamentals-security-defaults.md)适用于某些组织，但是许多组织需要的灵活性超出了这些策略能提供的灵活性。 例如，许多组织都需要能够从需要多重身份验证的条件访问策略中排除特定帐户，如其紧急访问帐户或不受限管理帐户。 对于这些组织，可以使用本文中提到的常用策略。
 
 ![Azure 门户中的条件访问策略](./media/concept-conditional-access-policy-common/conditional-access-policies-azure-ad-listing.png)
 
@@ -36,6 +36,8 @@ ms.locfileid: "82126296"
 * [要求对管理员执行 MFA](howto-conditional-access-policy-admin-mfa.md)\*
 * [要求将 MFA 用于 Azure 管理](howto-conditional-access-policy-azure-management.md)\*
 * [要求对所有用户进行 MFA](howto-conditional-access-policy-all-users-mfa.md)\*
+
+\* 这四个策略一起配置时可模拟[安全默认值](../fundamentals/concept-fundamentals-security-defaults.md)启用的功能。
 
 ## <a name="additional-policies"></a>其他策略
 

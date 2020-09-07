@@ -5,18 +5,18 @@ services: multi-factor-authentication
 ms.service: active-directory
 ms.subservice: authentication
 ms.topic: how-to
-ms.date: 07/07/2020
+ms.date: 08/28/2020
 ms.author: v-junlch
 author: iainfoulds
 manager: daveba
 ms.reviewer: michmcla
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: e3661a4aa9d760c0bdfdaae1d58f788a35a3b21d
-ms.sourcegitcommit: 92b9b1387314b60661f5f62db4451c9ff2c49500
+ms.openlocfilehash: c7ecce10ce0e905fd2398d2a7e7be271da9d4eff
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86165012"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046354"
 ---
 # <a name="enable-per-user-azure-multi-factor-authentication-to-secure-sign-in-events"></a>启用按用户的 Azure 多重身份验证来保护登录事件
 
@@ -25,7 +25,7 @@ ms.locfileid: "86165012"
 > [!NOTE]
 > 建议的方法是使用条件访问策略启用 Azure 多重身份验证。 除非许可证不包含条件访问，否则我们不再建议更改用户状态，因为这要求用户每次登录时都执行 MFA。 若要开始使用条件访问，请参阅[教程：使用 Azure 多重身份验证保护用户登录事件](tutorial-enable-azure-mfa.md)。
 >
->
+> 对于不带条件访问的 Azure AD 免费租户，你可以[使用安全默认值来保护用户](../fundamentals/concept-fundamentals-security-defaults.md)。
 
 ## <a name="azure-multi-factor-authentication-user-states"></a>Azure 多重身份验证用户状态
 
@@ -55,7 +55,7 @@ Azure 多重身份验证中的用户帐户具有以下三种不同状态：
 
 1. 以管理员身份登录到 [Azure 门户](https://portal.azure.cn)。
 1. 搜索并选择“Azure Active Directory”，然后选择“用户” > “所有用户” 。
-1. 选择“多重身份验证”。 可能需要向右滚动才能看到此菜单选项。 选择以下示例屏幕截图中所示的选项，以查看完整的 Azure 门户窗口和菜单位置：[![](./media/howto-mfa-userstates/selectmfa-cropped.png "在 Azure AD 的“用户”窗口中选择“多重身份验证”")](./media/howto-mfa-userstates/selectmfa.png#lightbox)
+1. 选择“多重身份验证”。 可能需要向右滚动才能看到此菜单选项。 选择以下示例屏幕截图，以查看完整的 Azure 门户窗口和菜单位置：[![在 Azure AD 的“用户”窗口中选择“多重身份验证”。](./media/howto-mfa-userstates/selectmfa-cropped.png)](./media/howto-mfa-userstates/selectmfa.png#lightbox)
 1. 此时会打开一个显示用户状态的新页，如以下示例中所示。
    ![显示了 Azure 多重身份验证的示例用户状态信息的屏幕截图](./media/howto-mfa-userstates/userstate1.png)
 
@@ -78,7 +78,7 @@ Azure 多重身份验证中的用户帐户具有以下三种不同状态：
 
 ## <a name="change-state-using-powershell"></a>使用 PowerShell 更改状态
 
-若要使用 [Azure AD PowerShell](https://docs.microsoft.com/powershell/azure/overview) 更改用户状态，请更改用户帐户的 `$st.State` 参数。 用户帐户有三种可能的状态：
+若要使用 [Azure AD PowerShell](https://docs.microsoft.com/powershell/azure/) 更改用户状态，请更改用户帐户的 `$st.State` 参数。 用户帐户有三种可能的状态：
 
 * *Enabled*
 * *已强制*
@@ -177,11 +177,12 @@ Get-MsolUser -All | Set-MfaState -State Disabled
 ```
 
 > [!NOTE]
-> 我们最近更改了该行为和此 PowerShell 脚本。 以前，该脚本会保存 MFA 方法、禁用 MFA 和还原这些方法。 现在这些操作已不再需要，因为默认的禁用行为不会清除方法。
->
 > 如果在已有注册详细信息（如电话号码或电子邮件）的用户对象上重新启用 MFA，则管理员需要通过 Azure 门户或 PowerShell 重新注册 MFA。 如果用户不重新注册，其 MFA 状态在 MFA 管理 UI 中不会从“已启用”转换为“已强制” 。
 
 ## <a name="next-steps"></a>后续步骤
 
-若要配置 Azure 多重身份验证设置（例如受信任的 IP、自定义语音消息和欺诈警报），请参阅[配置 Azure 多重身份验证设置](howto-mfa-mfasettings.md)。 若要管理 Azure 多重身份验证的用户设置，请参阅[管理 Azure 多重身份验证的用户设置](howto-mfa-userdevicesettings.md)。
+若要配置 Azure 多重身份验证设置，请参阅[配置 Azure 多重身份验证设置](howto-mfa-mfasettings.md)。
+
+若要管理 Azure 多重身份验证的用户设置，请参阅[管理 Azure 多重身份验证的用户设置](howto-mfa-userdevicesettings.md)。
+
 

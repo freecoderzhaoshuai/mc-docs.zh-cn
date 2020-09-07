@@ -5,18 +5,18 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: authentication
 ms.topic: conceptual
-ms.date: 07/07/2020
+ms.date: 08/28/2020
 ms.author: v-junlch
 author: iainfoulds
 manager: daveba
 ms.reviewer: rateller
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: c745c12188f2f8491a8410008fdb66212a8f80a0
-ms.sourcegitcommit: 92b9b1387314b60661f5f62db4451c9ff2c49500
+ms.openlocfilehash: 4da4c33ec3fd1794f44d4a21005f824a15443d99
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86165019"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046323"
 ---
 # <a name="configure-and-enable-users-for-sms-based-authentication-using-azure-active-directory-preview"></a>为用户配置和启用通过 Azure Active Directory 进行基于短信的身份验证（预览版）
 
@@ -65,7 +65,7 @@ ms.locfileid: "86165019"
 1. 搜索并选择“Azure Active Directory”。
 1. 在“Azure Active Directory”窗口左侧的导航菜单中，选择“安全性”>“身份验证方法”>“身份验证方法策略(预览版)”。
 
-    [![](./media/howto-authentication-sms-signin/authentication-method-policy-cropped.png "Browse to and select the Authentication method policy (preview) window in the Azure portal")](./media/howto-authentication-sms-signin/authentication-method-policy.png#lightbox)
+    [![在 Azure 门户中浏览到“身份验证方法策略(预览版)”窗口并将其选中。](./media/howto-authentication-sms-signin/authentication-method-policy-cropped.png)](./media/howto-authentication-sms-signin/authentication-method-policy.png#lightbox)
 
 1. 从可用身份验证方法列表中选择“短信”。
 1. 将“启用”设置为“是”。
@@ -81,7 +81,7 @@ ms.locfileid: "86165019"
 1. 在短信身份验证策略窗口中，将“目标”设置为“选择用户”。
 1. 选择“添加用户或组”，然后选择某个测试用户或组，例如“Contoso 用户”或“Contoso 短信用户”。 
 
-    [![](./media/howto-authentication-sms-signin/add-users-or-groups-cropped.png "Choose users or groups to enable for SMS-based authentication in the Azure portal")](./media/howto-authentication-sms-signin/add-users-or-groups.png#lightbox)
+    [![在 Azure 门户中选择要启用基于短信的身份验证的用户或组。](./media/howto-authentication-sms-signin/add-users-or-groups-cropped.png)](./media/howto-authentication-sms-signin/add-users-or-groups.png#lightbox)
 
 1. 选择用户或组后，选择“选择”，然后保存更新的身份验证方法策略。 
 

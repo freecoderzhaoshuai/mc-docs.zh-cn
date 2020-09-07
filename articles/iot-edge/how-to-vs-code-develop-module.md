@@ -1,20 +1,21 @@
 ---
-title: 开发和调试 Azure IoT Edge 模块
+title: 开发和调试 Azure IoT Edge 模块 | Microsoft Docs
 description: 使用 Visual Studio Code 开发、生成和调试使用 C#、Python、Node.js、Java 或 C 的 Azure IoT Edge 模块
 services: iot-edge
 keywords: ''
 author: shizn
 ms.author: v-tawe
 origin.date: 08/07/2019
-ms.date: 03/16/2020
+ms.date: 08/27/2020
 ms.topic: conceptual
 ms.service: iot-edge
-ms.openlocfilehash: 4398019ba6c4260d4a5673c7c23d6f44386e3c79
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-javascript
+ms.openlocfilehash: 040eccc7a9d80c9d8a480224aeaf317d735e785d
+ms.sourcegitcommit: c8e590d907f20bbc9c4c05d9bfc93cf7cb1d776f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80243894"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88957766"
 ---
 # <a name="use-visual-studio-code-to-develop-and-debug-modules-for-azure-iot-edge"></a>使用 Visual Studio Code 开发和调试 Azure IoT Edge 模块
 
@@ -93,7 +94,7 @@ ms.locfileid: "80243894"
 
 1. 输入模块的名称。 选择容器注册表中唯一的名称。
 
-1. 提供模块的映像存储库的名称。 Visual Studio Code 使用“localhost:5000/<你的模块名称\>”自动填充模块名  。 将其替换为你自己的注册表信息。 如果使用本地 Docker 注册表进行测试，则可以使用 localhost  。 如果使用 Azure 容器注册表，那么请从注册表的设置中使用登录服务器。 登录服务器类似于 **_\<注册表名称\>_ .azurecr.cn**。 仅替换字符串的 **localhost:5000** 部分，使最终结果类似于 **\<*注册表名称*\>.azurecr.cn/ _\<模块名称\>_** 。
+1. 提供模块的映像存储库的名称。 Visual Studio Code 使用“localhost:5000/<你的模块名称\>”自动填充模块名  。 将其替换为你自己的注册表信息。 如果使用本地 Docker 注册表进行测试，则可以使用 localhost  。 如果使用 Azure 容器注册表，那么请从注册表的设置中使用登录服务器。 登录服务器类似于 **_\<registry name\>_ .azurecr.cn**。 仅替换字符串的 **localhost:5000** 部分，使最终结果类似于 **\<*registry name*\>.azurecr.cn/ _\<your module name\>_**。
 
    ![提供 Docker 映像存储库](./media/how-to-develop-csharp-module/repository.png)
 

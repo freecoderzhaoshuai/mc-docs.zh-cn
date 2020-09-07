@@ -2,25 +2,28 @@
 title: Azure VM 大小 - 内存 | Azure
 description: 列出了 Azure 中虚拟机可用的不同内存优化大小。 列出了有关此系列中各大小的 vCPU 数、数据磁盘数和 NIC 数以及存储吞吐量和网络带宽的信息。
 services: virtual-machines
+documentationcenter: ''
 author: rockboyfor
-manager: digimobile
+manager: gwallace
+editor: ''
 tags: azure-resource-manager,azure-service-management
 keywords: VM 隔离,隔离的 VM,隔离,隔离的
+ms.assetid: ''
 ms.service: virtual-machines
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.workload: infrastructure-services
 origin.date: 02/03/2020
-ms.date: 07/27/2020
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: d2c1d793b7e1eb87f85d322b8629f2011ef50027
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: 92c254323f592bc513779a9265ce91ccc3ed1b17
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244270"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052438"
 ---
 # <a name="memory-optimized-virtual-machine-sizes"></a>内存优化虚拟机大小
 
@@ -35,7 +38,6 @@ ms.locfileid: "87244270"
 - [Ev3 和 Esv3 系列](ev3-esv3-series.md)具有采用超线程配置的 Intel&reg; Xeon&reg; 8171M 2.1 GHz (Skylake) 或 Intel&reg; Xeon&reg; E5-2673 v4 2.3 GHz (Broadwell) 处理器，为大多数常规用途工作负荷提供更好的价值定位，并使 Ev3 满足大多数其他云的常规用途 VM 的要求。 内存已扩展（从 7 GiB/vCPU 扩展到 8 GiB/vCPU），而磁盘和网络限制已基于每个核心进行了调整，以适应向超线程的转变。 Ev3 是 D/Dv2 系列的高内存 VM 大小产品的后继产品。
     
     <!--Pending on  [Ev4 and Esv4-series](ev4-esv4-series.md)-->
-
     <!--Pending on  [Edv4 and Edsv4-series](edv4-edsv4-series.md)-->
 
 - [M 系列](m-series.md)提供高 vCPU 计数（最多 128 个vCPU）和大量内存（最高 3.8 TiB）。 它也非常适用于极大型数据库或受益于高 vCPU 计数和大量内存的其他应用程序。
@@ -60,5 +62,7 @@ Azure 计算提供独立于特定硬件类型并专用于单个客户的虚拟�
 ## <a name="next-steps"></a>后续步骤
 
 了解有关 [Azure 计算单元 (ACU)](acu.md) 如何帮助跨 Azure SKU 比较计算性能的详细信息。
+
+有关 Azure 如何命名其 VM 的详细信息，请参阅 [Azure 虚拟机大小命名约定](./vm-naming-conventions.md)。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

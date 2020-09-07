@@ -12,17 +12,17 @@ ms.workload: data-services
 ms.custom: seo-lt-2019,fasttrack-edit
 ms.topic: article
 origin.date: 01/08/2020
-ms.date: 06/22/2020
-ms.openlocfilehash: 36d477245220c4cc40996387d1c0412777fdc291
-ms.sourcegitcommit: 48b5ae0164f278f2fff626ee60db86802837b0b4
+ms.date: 08/31/2020
+ms.openlocfilehash: 5c46f05ff325f0656027ab19981874de034abd15
+ms.sourcegitcommit: f8ed85740f873c15c239ab6ba753e4b76e030ba7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85098638"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045741"
 ---
 # <a name="tutorial-migrate-sql-server-to-an-azure-sql-managed-instance-offline-using-dms"></a>教程：使用 DMS 将 SQL Server 脱机迁移到 Azure SQL 托管实例
 
-可使用 Azure 数据库迁移服务将数据库从 SQL Server 实例迁移到 [Azure SQL 托管实例](../sql-database/sql-database-managed-instance.md)。 有关需要一些手动操作的其他方法，请参阅[将 SQL Server 实例迁移到 SQL 托管实例](../sql-database/sql-database-managed-instance-migrate.md)一文。
+可使用 Azure 数据库迁移服务将数据库从 SQL Server 实例迁移到 [Azure SQL 托管实例](../azure-sql/managed-instance/sql-managed-instance-paas-overview.md)。 有关需要一些手动操作的其他方法，请参阅[将 SQL Server 实例迁移到 SQL 托管实例](../azure-sql/managed-instance/migrate-to-instance-from-sql-server.md)一文。
 
 本教程介绍如何使用 Azure 数据库迁移服务，将 Adventureworks2012 数据库从 SQL Server 的本地实例迁移到 SQL 托管实例。
 
@@ -62,7 +62,7 @@ ms.locfileid: "85098638"
 - 如果使用动态端口运行多个命名 SQL Server 实例，则可能需要启用 SQL Browser 服务并允许通过防火墙访问 UDP 端口 1434，以便 Azure 数据库迁移服务可连接到源服务器上的命名实例。
 - 如果在源数据库的前面使用了防火墙设备，可能需要添加防火墙规则以允许 Azure 数据库迁移服务访问要迁移的源数据库，并通过 SMB 端口 445 访问文件。
 - 按照[在 Azure 门户中创建 SQL 托管实例](/sql-database/sql-database-managed-instance-get-started)一文中的详述创建 SQL 托管实例。
-- 确保用于连接源 SQL Server 和目标托管实例的登录名是 sysadmin 服务器角色的成员。
+- 确保用于连接源 SQL Server 和目标 SQL 托管实例的登录名是 sysadmin 服务器角色的成员。
 
     >[!NOTE]
     >默认情况下，Azure 数据库迁移服务仅支持迁移 SQL 登录名。 但是，可通过以下方式启用迁移 Windows 登录名的功能：
@@ -246,6 +246,6 @@ ms.locfileid: "85098638"
 
 ## <a name="next-steps"></a>后续步骤
 
-- 有关介绍如何使用 T-SQL RESTORE 命令将数据库迁移到托管实例的教程，请参阅[使用 restore 命令将备份还原到托管实例](../sql-database/sql-database-managed-instance-restore-from-backup-tutorial.md)。
-- 有关托管实例的信息，请参阅[什么是托管实例](../sql-database/sql-database-managed-instance.md)。
-- 若要了解如何将应用连接到托管实例，请参阅[连接应用程序](../sql-database/sql-database-managed-instance-connect-app.md)。
+- 有关介绍如何使用 T-SQL RESTORE 命令将数据库迁移到 SQL 托管实例的教程，请参阅[使用 restore 命令将备份还原到 SQL 托管实例](../sql-database/sql-database-managed-instance-restore-from-backup-tutorial.md)。
+- 有关 SQL 托管实例的信息，请参阅[什么是 SQL 托管实例](../azure-sql/managed-instance/sql-managed-instance-paas-overview.md)。
+- 若要了解如何将应用连接到 SQL 托管实例，请参阅[连接应用程序](../azure-sql/managed-instance/connect-application-instance.md)。

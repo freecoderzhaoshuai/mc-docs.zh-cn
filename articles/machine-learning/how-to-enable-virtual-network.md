@@ -11,12 +11,12 @@ author: aashishb
 ms.date: 07/07/2020
 ms.topic: conceptual
 ms.custom: how-to, contperfq4, tracking-python
-ms.openlocfilehash: 8580f9988ee1dad1d79599a0b1f77ac5700c88df
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 3bc070b568ebf844089e923bd6140ec50a08fea8
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228283"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947153"
 ---
 # <a name="network-isolation-during-training--inference-with-private-virtual-networks"></a>使用专用虚拟网络进行训练和推理期间的网络隔离
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -33,8 +33,12 @@ __虚拟网络__充当安全边界，可将 Azure 资源与公共 Internet 相�
 
 + 用于计算资源的预先存在的虚拟网络和子网。
 
++ 若要将资源部署到虚拟网络或子网中，你的用户帐户必须在 Azure 基于角色的访问控制 (RBAC) 中具有以下操作的权限：
 
+    - “Microsoft.Network/virtualNetworks/join/action”（在虚拟网络资源上）。
+    - “Microsoft.Network/virtualNetworks/subnet/join/action”（在子网资源上）。
 
+    若要详细了解如何将 RBAC 与网络配合使用，请参阅[网络内置角色](/role-based-access-control/built-in-roles#networking)
 
 <a id="amlcompute"></a>
 

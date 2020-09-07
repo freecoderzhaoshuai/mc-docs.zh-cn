@@ -3,17 +3,16 @@ title: Azure Monitor 日志查询示例 | Microsoft Docs
 description: 使用 Kusto 查询语言在 Azure Monitor 中进行日志查询的示例。
 ms.subservice: logs
 ms.topic: conceptual
-author: lingliw
-manager: digimobile
+author: Johnnytechn
+ms.author: v-johya
+ms.date: 08/20/2020
 origin.date: 10/01/2019
-ms.date: 10/25/2019
-ms.author: v-lingwu
-ms.openlocfilehash: e6e5af38edd23f1c7a09589f35b22d66f5ef01fc
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: c62915c1f6f3e6fb00867c7d3065ecc606a9b0b3
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78850277"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148657"
 ---
 # <a name="azure-monitor-log-query-examples"></a>Azure Monitor 日志查询示例
 本文包含使用 [Kusto 查询语言](https://docs.microsoft.com/azure/kusto/query/)从 Azure Monitor 中检索不同类型的日志数据的各种[查询](log-query-overview.md)示例。 其中使用了不同的方法来合并和分析数据，因此，你可以使用这些示例来识别符合自身要求的不同策略。  
@@ -231,7 +230,7 @@ protection_data | join (heartbeat_data) on Computer, round_time
 ### <a name="count-security-events-by-activity-id"></a>按活动 ID 统计安全事件数
 
 
-此示例依赖于 **Activity** 列的固定结构：\<ID\>-\<名称\>。
+此示例依赖于 **Activity** 列的固定结构：\<ID\>-\<Name\>。
 它将 **Activity** 值分析为两个新列，并统计每个 **activityID** 的出现次数。
 
 ```Kusto
@@ -272,7 +271,7 @@ SecurityEvent
 ```
 
 ### <a name="parse-activity-name-and-id"></a>分析活动名称和 ID
-以下两个示例依赖于 **Activity** 列的固定结构：\<ID\>-\<名称\>。 第一个示例使用 **parse** 运算符将值分配给两个新列：**activityID** 和 **activityDesc**。
+以下两个示例依赖于 **Activity** 列的固定结构：\<ID\>-\<Name\>。 第一个示例使用 **parse** 运算符将值分配给两个新列：**activityID** 和 **activityDesc**。
 
 ```Kusto
 SecurityEvent
@@ -377,40 +376,47 @@ suspicious_users_that_later_logged_in
 
 ## <a name="usage"></a>使用情况
 
-### <a name="calculate-the-average-size-of-perf-usage-reports-per-computer"></a>计算每台计算机的 perf 使用率报告的平均大小
+`Usage` 数据类型可用于按解决方案或数据类型跟踪引入数据量。 还可以使用其他方法来研究按[计算机](../platform/manage-cost-storage.md#data-volume-by-computer)或 [Azure 订阅、资源组或资源](../platform/manage-cost-storage.md#data-volume-by-azure-resource-resource-group-or-subscription)引入的数据量。
 
-此示例计算过去 3 小时内每台计算机的 perf 使用率报告的平均大小。
-结果将显示在条形图中。
-```Kusto
+#### <a name="data-volume-by-solution"></a>按解决方案统计的数据量
+
+用于按解决方案查看上个月（不包括最后不完整的一天）的计费数据量的查询是：
+
+```kusto
 Usage 
-| where TimeGenerated > ago(3h)
-| where DataType == "Perf" 
-| where QuantityUnit == "MBytes" 
-| summarize avg(Quantity) by Computer
-| sort by avg_Quantity desc nulls last
-| render barchart
+| where TimeGenerated > ago(32d)
+| where StartTime >= startofday(ago(31d)) and EndTime < startofday(now())
+| where IsBillable == true
+| summarize BillableDataGB = sum(Quantity) / 1000. by bin(StartTime, 1d), Solution | render barchart
 ```
 
-### <a name="timechart-latency-percentiles-50-and-95"></a>时间表延迟第 50 和 95 百分位
+请注意，子句 `where IsBillable = true` 从某些解决方案中筛选掉没有引入费用的数据类型。  另外，带有 `TimeGenerated` 的子句仅用于确保 Azure 门户中的查询体验的回溯范围会超出默认的 24 小时。 使用“使用情况”数据类型时，`StartTime` 和 `EndTime` 表示显示结果的时间存储桶。 
 
-此示例计算过去 24 小时内每小时报告的 **avgLatency** 的第 50 和 95 百分位并绘制图表。
+#### <a name="data-volume-by-type"></a>按类型的数据量
 
-```Kusto
-Usage
-| where TimeGenerated > ago(24h)
-| summarize percentiles(AvgLatencyInSeconds, 50, 95) by bin(TimeGenerated, 1h) 
-| render timechart
+可以进一步钻取，按数据类型查看数据趋势：
+
+```kusto
+Usage 
+| where TimeGenerated > ago(32d)
+| where StartTime >= startofday(ago(31d)) and EndTime < startofday(now())
+| where IsBillable == true
+| summarize BillableDataGB = sum(Quantity) / 1000. by bin(StartTime, 1d), DataType | render barchart
 ```
 
-### <a name="usage-of-specific-computers-today"></a>当天特定计算机的使用情况
-此示例包含字符串 _ContosoFile_ 的计算机名在过去一天的**使用情况**数据。 结果将按 **TimeGenerated** 排序。
+或者按解决方案和类型查看上个月的表，
 
-```Kusto
-Usage
-| where TimeGenerated > ago(1d)
-| where  Computer contains "ContosoFile" 
-| sort by TimeGenerated desc nulls last
+```kusto
+Usage 
+| where TimeGenerated > ago(32d)
+| where StartTime >= startofday(ago(31d)) and EndTime < startofday(now())
+| where IsBillable == true
+| summarize BillableDataGB = sum(Quantity) / 1000. by Solution, DataType
+| sort by Solution asc, DataType asc
 ```
+
+> [!NOTE]
+> 使用情况数据类型的某些字段虽然仍在架构中，但已弃用，其值将不再填充。 这些是**计算机**以及与引入相关的字段（**TotalBatches**、**BatchesWithinSla**、**BatchesOutsideSla**、**BatchesCapped** 和 **AverageProcessingTimeMs**）。
 
 ## <a name="updates"></a>更新
 
@@ -434,3 +440,4 @@ Update
 
 - 有关语言的详细信息，请参阅 [Kusto 语言参考](https://docs.microsoft.com/azure/kusto/query)。
 - 演练[有关在 Azure Monitor 中编写日志查询的课程](get-started-queries.md)。
+

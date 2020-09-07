@@ -4,14 +4,15 @@ description: 了解如何为高级层 Azure Redis 缓存实例创建和管理虚
 author: yegu-ms
 ms.author: v-junlch
 ms.service: cache
+ms.custom: devx-track-csharp
 ms.topic: conceptual
-ms.date: 08/10/2020
-ms.openlocfilehash: c1aa813c6e04f06d68ba7e7a276d1114d1a657e4
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.date: 08/24/2020
+ms.openlocfilehash: a75cb79df9b3d3559b21ff825f169413359ae0d6
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222604"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946962"
 ---
 # <a name="how-to-configure-virtual-network-support-for-a-premium-azure-cache-for-redis"></a>如何为高级 Azure Redis 缓存配置虚拟网络支持
 Azure Redis 缓存具有不同的缓存产品/服务，从而在缓存大小和功能（包括群集、暂留和虚拟网络支持等高级层功能）的选择上具有灵活性。 VNet 是云中的专用网络。 为 Azure Redis 缓存实例配置了 VNet 后，该实例不可公开寻址，而只能从 VNet 中的虚拟机和应用程序进行访问。 本文说明如何为高级 Azure Redis 缓存实例配置虚拟网络支持。
@@ -20,8 +21,6 @@ Azure Redis 缓存具有不同的缓存产品/服务，从而在缓存大小和�
 > Azure Redis 缓存同时支持经典 VNet 和资源管理器 VNet。
 > 
 > 
-
-有关其他高级缓存功能的信息，请参阅 [Azure Redis 缓存高级层简介](cache-premium-tier-intro.md)。
 
 ## <a name="why-vnet"></a>为何使用 VNet？
 [Azure 虚拟网络 (VNet)](https://www.azure.cn/home/features/virtual-network/) 部署为 Azure Redis 缓存提供增强的安全性和隔离性，并提供子网、访问控制策略以及其他进一步限制访问的功能。
@@ -237,9 +236,9 @@ Azure 会保留每个子网中的某些 IP 地址，不可以使用这些地址�
 有关 ExpressRoute 的详细信息，请参阅 [ExpressRoute 技术概述](../expressroute/expressroute-introduction.md)。
 
 ## <a name="next-steps"></a>后续步骤
-了解如何使用更多的高级缓存功能。
+了解有关 Azure Cache for Redis 功能的详细信息。
 
-* [Azure Redis 缓存高级层简介](cache-premium-tier-intro.md)
+* [Azure Cache for Redis 高级服务层](cache-overview.md#service-tiers)
 
 <!-- IMAGES -->
 

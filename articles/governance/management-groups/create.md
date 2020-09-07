@@ -1,16 +1,16 @@
 ---
 title: 创建管理组以组织资源 - Azure 治理
 description: 了解如何使用门户、Azure PowerShell 和 Azure CLI 创建 Azure 管理组以管理多个资源。
-origin.date: 04/05/2019
-ms.date: 08/06/2020
+origin.date: 08/10/2020
+ms.date: 08/27/2020
 ms.author: v-tawe
 ms.topic: conceptual
-ms.openlocfilehash: e1bc0af38958603426649cc598b716594350782f
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 13947c860ea0b371dd840c75c7447a3314503997
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917053"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951214"
 ---
 # <a name="create-management-groups-for-resource-organization-and-management"></a>创建用来组织和管理资源的管理组
 
@@ -27,7 +27,7 @@ ms.locfileid: "87917053"
 
 ### <a name="create-in-portal"></a>在门户中创建
 
-1. 登录到 [Azure 门户](http://portal.azure.cn)。
+1. 登录到 [Azure 门户](https://portal.azure.cn)。
 
 1. 选择“所有服务” > “管理 + 治理” 。
 

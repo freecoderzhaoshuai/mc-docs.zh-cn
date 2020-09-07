@@ -11,16 +11,16 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: reference
-ms.date: 07/06/2020
+ms.date: 08/27/2020
 ms.subservice: hybrid
 ms.author: v-junlch
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 69bab3d9d0527dc702d691ad2d7afdf2f9472610
-ms.sourcegitcommit: 92b9b1387314b60661f5f62db4451c9ff2c49500
+ms.openlocfilehash: e5524977a38a68cd22ec4a4ad23f1c7d86043ec8
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86164843"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946954"
 ---
 # <a name="azure-active-directory-connect-faq"></a>Azure Active Directory Connect 常见问题解答
 
@@ -207,6 +207,14 @@ Azure AD Connect 服务偶尔会在升级以后无法启动。 在这种情况�
 **问：我不知道升级到新版 Azure AD Connect 后会有什么风险。你们能通过电话帮助我升级吗？**  
 如果在升级到新版 Azure AD Connect 时需要帮助，请参阅[创建服务请求以联系 Office 365 支持部门](https://blogs.technet.microsoft.com/praveenkumar/2013/07/17/how-to-create-service-requests-to-contact-office-365-support/)开具支持票证。
 
+## <a name="operational-best-practice"></a>操作方面的最佳做法    
+下面是在 Windows Server Active Directory 和 Azure Active Directory 之间同步时应实施的一些最佳做法。
+
+**为所有已同步的帐户应用多重身份验证** Azure 多重身份验证有助于保护对数据和应用程序的访问，同时满足用户对简单性的需求。 它通过要求第二种形式的身份验证提供额外的安全性，并通过一系列简单的身份验证方法提供增强式身份验证。 根据管理员制定的配置决策，用户可能会受到 MFA 的质疑，也可能不会受到 MFA 的质疑。 有关 MFA 的详细信息，可参阅此文： https://www.microsoft.com/security/business/identity/mfa?rtc=1
+
+**遵循 Azure AD Connect 服务器安全指导原则** Azure AD Connect 服务器包含关键标识数据，应将其视为第 0 层组件，如 [Active Directory 管理层模型](https://docs.microsoft.com/windows-server/identity/securing-privileged-access/securing-privileged-access-reference-material)中所述。 另请参阅我们的 [AADConnect 服务器安全指南](/active-directory/hybrid/how-to-connect-install-prerequisites#azure-ad-connect-server)。
+
+
 ## <a name="troubleshooting"></a>故障排除
 **问：如何获取有关 Azure AD Connect 的帮助？**
 
@@ -224,4 +232,3 @@ Azure AD Connect 服务偶尔会在升级以后无法启动。 在这种情况�
 
 事件 6311 - **服务器在执行回叫时遇到意外错误**，而 6401 - **管理代理控制器遇到意外错误** - 始终在同步步骤错误之后记录。 若要解决这些错误，需要清除同步步骤错误。  有关详细信息，请参阅[对同步期间的错误进行故障排除](tshoot-connect-sync-errors.md)和[使用 Azure AD Connect 同步进行对象同步故障排除](tshoot-connect-objectsync.md)
 
-<!-- Update_Description: wording update -->

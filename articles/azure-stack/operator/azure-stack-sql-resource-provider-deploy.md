@@ -5,16 +5,16 @@ description: 了解如何在 Azure Stack Hub 上部署 SQL Server 资源提供�
 author: WenJason
 ms.topic: article
 origin.date: 10/02/2019
-ms.date: 05/18/2020
+ms.date: 08/31/2020
 ms.lastreviewed: 03/18/2019
 ms.author: v-jay
 ms.reviewer: xiao
-ms.openlocfilehash: 6da2f9736420a6ee85cb5f97c52794122b53f9d8
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: e4dd825bd077caf19fda85eb4d4055d80a2618a8
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422548"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868071"
 ---
 # <a name="deploy-the-sql-server-resource-provider-on-azure-stack-hub"></a>在 Azure Stack Hub 上部署 SQL Server 资源提供程序
 
@@ -50,7 +50,7 @@ ms.locfileid: "83422548"
     |-----|-----|
     |正确设置了条件性 DNS 转发。|[Azure Stack Hub 数据中心集成 - DNS](azure-stack-integrate-dns.md)|
     |资源提供程序的入站端口处于打开状态。|[Azure Stack Hub 数据中心集成 - 入站端口和协议](azure-stack-integrate-endpoints.md#ports-and-protocols-inbound)|
-    |正确设置了 PKI 证书使用者和 SAN。|[Azure Stack Hub 部署必备 PKI 先决条件](azure-stack-pki-certs.md#mandatory-certificates)<br>[Azure Stack Hub 部署 PaaS 证书先决条件](azure-stack-pki-certs.md#optional-paas-certificates)|
+    |正确设置了 PKI 证书使用者和 SAN。|[Azure Stack Hub 部署必备 PKI 先决条件](azure-stack-pki-certs.md)<br>[Azure Stack Hub 部署 PaaS 证书先决条件](azure-stack-pki-certs.md)|
     |     |     |
 
 在离线场景中，请完成以下步骤下载所需的 PowerShell 模块，并手动注册存储库。
@@ -89,7 +89,7 @@ New-Item -Path $env:ProgramFiles -name "SqlMySqlPsh" -ItemType "Directory"
 
 ### <a name="certificates"></a>证书
 
-_仅适用于集成系统安装_。 必须提供 [Azure Stack Hub 部署 PKI 要求](./azure-stack-pki-certs.md#optional-paas-certificates)中的“可选 PaaS 证书”部分所述的 SQL PaaS PKI 证书。 将 .pfx 文件放在 **DependencyFilesLocalPath** 参数指定的位置。 对于 ASDK 系统，请不要提供证书。
+_仅适用于集成系统安装_。 必须提供 [Azure Stack Hub 部署 PKI 要求](./azure-stack-pki-certs.md)中的“可选 PaaS 证书”部分所述的 SQL PaaS PKI 证书。 将 .pfx 文件放在 **DependencyFilesLocalPath** 参数指定的位置。 对于 ASDK 系统，请不要提供证书。
 
 ## <a name="deploy-the-sql-resource-provider"></a>部署 SQL 资源提供程序
 
@@ -201,7 +201,7 @@ $env:PSModulePath = $env:PSModulePath + ";" + $rpModulePath
 
 1. 以服务管理员身份登录到管理员门户。
 2. 选择“资源组”  。
-3. 选择“system.\<位置\>.sqladapter”资源组。 
+3. 选择 **system.\<location\>.sqladapter** 资源组。
 4. 在资源组概述摘要页上，应当没有失败的部署。
 
     ![在 Azure Stack Hub 管理员门户中验证 SQL 资源提供程序的部署](./media/azure-stack-sql-rp-deploy/sqlrp-verify.png)

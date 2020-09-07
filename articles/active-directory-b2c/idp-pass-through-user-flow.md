@@ -3,20 +3,20 @@ title: 通过用户流将访问令牌传递给应用
 titleSuffix: Azure AD B2C
 description: 了解如何在 Azure Active Directory B2C 中以用户流中声明的方式传递 OAuth2.0 标识提供者的访问令牌。
 services: active-directory-b2c
-author: mmacy
+author: msmimart
 manager: celestedg
 ms.service: active-directory
 ms.workload: identity
-ms.topic: conceptual
-ms.date: 02/04/2020
+ms.topic: how-to
+ms.date: 08/25/2020
 ms.author: v-junlch
 ms.subservice: B2C
-ms.openlocfilehash: 85328a914efb2165c7211cf5e2c11527d94978fe
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 433075611247509df6481f6b69f23275ea6f8a2b
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77028170"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946577"
 ---
 # <a name="pass-an-access-token-through-a-user-flow-to-your-application-in-azure-active-directory-b2c"></a>在 Azure Active Directory B2C 中使用用户流将访问令牌传递给应用程序
 
@@ -26,7 +26,7 @@ Azure AD B2C 当前仅支持传递 [OAuth 2.0](authorization-code-flow.md) 标�
 
 ## <a name="prerequisites"></a>必备条件
 
-* 应用程序必须使用 [v2 用户流](user-flow-versions.md)。
+* 应用程序必须使用[建议的用户流](user-flow-versions.md)。
 * 用户流是使用 OAuth 2.0 标识提供者配置的。
 
 ## <a name="enable-the-claim"></a>启用声明
@@ -58,4 +58,3 @@ Azure AD B2C 当前仅支持传递 [OAuth 2.0](authorization-code-flow.md) 标�
 
 在 [Azure AD B2C 令牌概述](tokens-overview.md)中了解详细信息。
 
-<!-- Update_Description: links update -->

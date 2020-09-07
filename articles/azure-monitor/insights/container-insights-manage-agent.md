@@ -5,13 +5,13 @@ ms.topic: conceptual
 author: Johnnytechn
 ms.author: v-johya
 origin.date: 12/06/2018
-ms.date: 07/17/2020
-ms.openlocfilehash: 8919a18cc5d61f993f297eb01780d99da1600118
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.date: 08/20/2020
+ms.openlocfilehash: 197798225ef8c362cef9c45570bcb7535c6c342e
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244718"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148603"
 ---
 # <a name="how-to-manage-the-azure-monitor-for-containers-agent"></a>如何管理用于容器的 Azure Monitor 代理
 <!--Customized in MC: Not available about Azure OpenShift feature-->
@@ -34,28 +34,12 @@ ms.locfileid: "87244718"
 
 若要安装代理的新版本，请遵循[使用 Azure CLI 启用监视](container-insights-enable-new-cluster.md#enable-using-azure-cli)中介绍的步骤来完成此过程。  
 
-重新启用监视后，可能需要约 15 分钟才能查看群集的更新后运行状况指标。 若要验证代理是否成功升级，请运行以下命令：`kubectl logs omsagent-484hw --namespace=kube-system`
+重新启用监视后，可能需要约 15 分钟才能查看群集的更新后运行状况指标。 若要验证代理是否已成功升级，可以执行以下操作：
 
-状态应类似于以下示例，其中 omi 和 omsagent 的值应与[代理发布历史记录](https://github.com/microsoft/docker-provider/tree/ci_feature_prod)中指定的最新版本相匹配 。  
+* 运行 `kubectl get pod <omsagent-pod-name> -n kube-system -o=jsonpath='{.spec.containers[0].image}'` 命令。 在返回的状态中，记下输出的“容器”部分中“映像”下 omsagent 的值。
+* 在“节点”选项卡上选择群集节点，然后在右侧的“属性”窗格中记下“代理映像标记”下的值。  
 
-    User@aksuser:~$ kubectl logs omsagent-484hw --namespace=kube-system
-    :
-    :
-    instance of Container_HostInventory
-    {
-        [Key] InstanceID=3a4407a5-d840-4c59-b2f0-8d42e07298c2
-        Computer=aks-nodepool1-39773055-0
-        DockerVersion=1.13.1
-        OperatingSystem=Ubuntu 16.04.3 LTS
-        Volume=local
-        Network=bridge host macvlan null overlay
-        NodeRole=Not Orchestrated
-        OrchestratorType=Kubernetes
-    }
-    Primary Workspace: b438b4f6-912a-46d5-9cb1-b44069212abc    Status: Onboarded(OMSAgent Running)
-    omi 1.4.2.5
-    omsagent 1.6.0-163
-    docker-cimprov 1.0.0.31
+显示的代理版本应与[版本历史记录](https://github.com/microsoft/docker-provider/tree/ci_feature_prod)页上列出的最新版本匹配。
 
 ### <a name="upgrade-agent-on-hybrid-kubernetes-cluster"></a>升级混合 Kubernetes 群集上的代理
 
@@ -71,23 +55,24 @@ $ helm upgrade --name myrelease-1 \
 --set omsagent.domain=opinsights.azure.cn,omsagent.secret.wsid=<your_workspace_id>,omsagent.secret.key=<your_workspace_key>,omsagent.env.clusterName=<your_cluster_name> incubator/azuremonitor-containers
 ```
 
+<!--Not available in MC: ### Upgrade agent on Azure Arc enabled Kubernetes-->
 ## <a name="how-to-disable-environment-variable-collection-on-a-container"></a>如何禁用容器上的环境变量集合
 
 用于容器的 Azure Monitor 从在 pod 中运行的容器中收集环境变量，并将这些环境变量显示在“容器”视图中所选容器的属性窗格中。 可在部署 Kubernetes 集群期间或之后通过设置环境变量 AZMON_COLLECT_ENV 禁用特定容器的集合来控制此行为。 此功能可从代理版本 ciprod11292018 或更高版本获得。  
 
 要禁用新容器或现有容器上的环境变量集合，请在 Kubernetes 部署 yaml 配置文件中将变量 AZMON_COLLECT_ENV 设置为“False”值 。 
 
-```  
+```yaml
 - name: AZMON_COLLECT_ENV  
   value: "False"  
-```  
+```
 
 运行以下命令，将更改应用到 Kubernetes 群集：`kubectl apply -f  <path to yaml file>`。
 要验证配置更改是否生效，请在用于容器的 Azure Monitor 中的“容器”视图中选择容器，并在属性面板中展开“环境变量” 。  此部分应只显示前面创建的变量 - AZMON_COLLECT_ENV=FALSE。 对于所有其他容器，环境变量部分应列出发现的所有环境变量。
 
 要重新启用环境变量的发现，请应用与前面相同的过程，将值从“False”更改为“True”，然后重新运行 `kubectl` 命令来更新容器 。  
 
-```  
+```yaml
 - name: AZMON_COLLECT_ENV  
   value: "True"  
 ```  

@@ -5,18 +5,18 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: conditional-access
 ms.topic: how-to
-ms.date: 07/01/2020
+ms.date: 08/27/2020
 ms.author: v-junlch
 author: MicrosoftGuyJFlo
 manager: daveba
 ms.reviewer: calebb, rogoya
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 8b54edf53e56f136f253eaedcd17e59cf3f2c0c8
-ms.sourcegitcommit: 1008ad28745709e8d666f07a90e02a79dbbe2be5
+ms.openlocfilehash: ab0e70c870e2dec831058be46cbad2b9333f3780
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945039"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046356"
 ---
 # <a name="conditional-access-block-access-by-location"></a>条件访问：按位置阻止访问
 
@@ -43,21 +43,19 @@ ms.locfileid: "85945039"
 1. 为策略指定一个名称。 建议组织创建一个有意义的策略名称标准。
 1. 在“分配”下，选择“用户和组”
    1. 在“包括”下，选择“所有用户”。
-   1. 选择“完成”。
-1. 在“云应用或操作” > “包含”下方，选择“所有云应用” ，然后选择“完成”。
+1. 在“云应用或操作” > “包括”下，选择“所有云应用”。
 1. 在“条件” > “位置”下方。
    1. 将“配置”设置为“是” 
-   1. 对于“包含”，选择“所选位置” 
+   1. 在“包括”下，选择“选定位置” 
    1. 选择你为组织创建的阻止位置。
-   1. 单击“选择” > “完成” > “完成”。
-1. 在“条件” > “客户端应用(预览)”下，将“配置”设置为“是”，然后选择“完成”。
-1. 在“访问控制” >  “阻止”下方，选择“选择”。
-1. 确认设置并将“启用策略”设置为“开启”。
-1. 选择“创建”以创建并启用策略。
+   1. 单击“选择”。
+1. 在“访问控制”下，选择“阻止访问”，然后选择“选择”。  
+1. 确认设置，然后将“启用策略”设置为“打开”。 
+1. 选择“创建”以创建条件访问策略。
 
 ## <a name="next-steps"></a>后续步骤
 
-[常用条件访问策略](concept-conditional-access-policy-common.md)
+[条件访问常见策略](concept-conditional-access-policy-common.md)
 
 [使用条件访问 What If 工具模拟登录行为](troubleshoot-conditional-access-what-if.md)
 

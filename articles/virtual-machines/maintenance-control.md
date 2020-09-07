@@ -6,14 +6,16 @@ ms.service: virtual-machines
 ms.topic: conceptual
 ms.workload: infrastructure-services
 origin.date: 04/22/2020
-ms.date: 07/06/2020
+ms.date: 08/31/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: f38994a8343e4cecbbd92741141fd8698a7250d2
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: d206422e697809d25d305963c7cfb993d84ae247
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946081"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052359"
 ---
 # <a name="managing-platform-updates-with-maintenance-control"></a>使用维护控制管理平台更新 
 
@@ -24,12 +26,12 @@ ms.locfileid: "85946081"
 使用维护控制，你可以：
 - 将许多更新作为一个更新包进行批处理。
 - 等待长达 35 天才应用更新。 
-- 使用 Azure Functions 在维护时段内自动执行平台更新。
+- 使用 [Azure Functions](https://github.com/Azure/azure-docs-powershell-samples/tree/master/maintenance-auto-scheduler) 在维护时段内自动执行平台更新。
 - 维护配置跨订阅和资源组生效。 
 
 ## <a name="limitations"></a>限制
 
-- VM 必须位于[专用主机](./linux/dedicated-hosts.md)上，或者必须使用[独立 VM 大小](./linux/isolation.md)进行创建。
+- VM 必须位于[专用主机](./linux/dedicated-hosts.md)上，或者必须使用[独立 VM 大小](isolation.md)进行创建。
 - 35 天后，更新将自动应用。
 - 用户必须具有“资源参与者”  访问权限。
 
@@ -41,6 +43,8 @@ ms.locfileid: "85946081"
 - [Azure PowerShell](maintenance-control-powershell.md)
 
 <!--Not Available on - [Azure portal](maintenance-control-portal.md)-->
+
+有关 Azure Functions 示例，请参阅[使用维护控制和 Azure Functions 来计划维护更新](https://github.com/Azure/azure-docs-powershell-samples/tree/master/maintenance-auto-scheduler)。
 
 ## <a name="next-steps"></a>后续步骤
 

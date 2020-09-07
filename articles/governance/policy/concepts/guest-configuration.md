@@ -2,15 +2,15 @@
 title: 了解如何审核虚拟机的内容
 description: 了解 Azure Policy 如何使用来宾配置代理审核虚拟机内部的设置。
 ms.author: v-tawe
-origin.date: 05/20/2020
-ms.date: 08/06/2020
+origin.date: 08/07/2020
+ms.date: 08/27/2020
 ms.topic: conceptual
-ms.openlocfilehash: b1d29e27c421b788023abd98e914babb3556ae91
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 7fe778433380149bfcac5e6c39049fd6ebb13bdd
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917105"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951271"
 ---
 # <a name="understand-azure-policys-guest-configuration"></a>了解 Azure Policy 的来宾配置
 
@@ -37,8 +37,9 @@ Azure Policy 可以审核 Azure 中计算机内部的设置。
 为了审核计算机内部设置，需要启用[虚拟机扩展](../../../virtual-machines/extensions/overview.md)，并且计算机必须具有系统托管标识。 该扩展下载适用的策略分配和相应的配置定义。 该标识用于在计算机读取和写入来宾配置服务时对计算机进行身份验证。 已连接 Arc 的计算机不需要该扩展，因为已连接 Arc 的计算机代理中包含该扩展。
 
 > [!IMPORTANT]
-> 审核 Azure 虚拟机需要来宾配置扩展和托管标识。 在 Azure 虚拟机中执行审核需要来宾配置扩展。 要大规模部署扩展，请分配以下策略计划：大规模部署扩展，并分配以下策略定义： 
->  - [部署先决条件以在虚拟机上启用来宾配置策略](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F12794019-7a00-42cf-95c2-882eed337cc8)
+> 审核 Azure 虚拟机需要来宾配置扩展和托管标识。 若要大规模部署扩展，请分配以下策略计划：
+> 
+> - [部署先决条件以在虚拟机上启用来宾配置策略](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F12794019-7a00-42cf-95c2-882eed337cc8)
 
 ### <a name="limits-set-on-the-extension"></a>对扩展设置的限制
 
@@ -52,7 +53,7 @@ Azure Policy 可以审核 Azure 中计算机内部的设置。
 
 |操作系统|验证工具|说明|
 |-|-|-|
-|Windows|[Windows PowerShell Desired State Configuration](https://docs.microsoft.com/powershell/scripting/dsc/overview/overview) v2| 侧加载到仅由 Azure Policy 使用的文件夹。 不会与 Windows PowerShell DSC 冲突。 PowerShell Core 不会添加到系统路径。|
+|Windows|[PowerShell Desired State Configuration](https://docs.microsoft.com/powershell/scripting/dsc/overview/overview) v2| 侧加载到仅由 Azure Policy 使用的文件夹。 不会与 Windows PowerShell DSC 冲突。 PowerShell Core 不会添加到系统路径。|
 |Linux|[Chef InSpec](https://www.chef.io/inspec/)| 在默认位置安装 Chef InSpec 版本 2.2.61，并将其添加到系统路径。 还会安装 InSpec 包的依赖项，包括 Ruby 和 Python。 |
 
 ### <a name="validation-frequency"></a>验证频率
@@ -71,18 +72,58 @@ Azure Policy 可以审核 Azure 中计算机内部的设置。
 |Microsoft|Windows Server|2012 及更高版本|
 |Microsoft|Windows 客户端|Windows 10|
 |OpenLogic|CentOS|7.3 及更高版本|
-|Red Hat|Red Hat Enterprise Linux|7.4 - 7.8、9.0 及更高版本|
+|Red Hat|Red Hat Enterprise Linux|7.4 - 7.8|
 |Suse|SLES|12 SP3 及更高版本|
 
 来宾配置策略支持自定义虚拟机映像，只要它们是上表中的操作系统之一。
 
-## <a name="guest-configuration-extension-network-requirements"></a>来宾配置扩展网络要求
+## <a name="network-requirements"></a>网络要求
 
-要与 Azure 中的来宾配置资源提供程序通信，计算机需要对端口**443**上的 Azure 数据中心进行出站访问。 如果 Azure 中的网络不允许出站流量，请使用[网络安全组](../../../virtual-network/manage-network-security-group.md#create-a-security-rule)规则配置异常。 [服务标记](../../../virtual-network/service-tags-overview.md)“GuestAndHybridManagement”可用于引用来宾配置服务。
+Azure 中的虚拟机可以使用其本地网络适配器与 Guest Configuration 服务通信。
+
+<!-- Azure Arc machines connect using the on-premises network infrastructure
+to reach Azure services and report compliance status. -->
+
+### <a name="communicate-over-virtual-networks-in-azure"></a>通过 Azure 中的虚拟网络进行通信
+
+使用虚拟网络通信的虚拟机将需要在端口 `443` 上对 Azure 数据中心进行出站访问。
+
+<!-- If you're using a private virtual
+network in Azure that doesn't allow outbound traffic, configure exceptions with
+Network Security Group rules. The service tag "GuestAndHybridManagement" can be
+used to reference the Guest Configuration service. -->
+
+<!-- ### Communicate over private link in Azure
+
+Virtual machines can use [private link](../../../private-link/private-link-overview.md)
+for communication to the Guest Configuration service. Apply tag with the name
+`EnablePrivateNeworkGC` and value `TRUE` to enable this feature. The tag can be
+applied before or after Guest Configuration policies are applied to the machine.
+
+Traffic is routed using the Azure
+[virtual public IP address](../../../virtual-network/what-is-ip-address-168-63-129-16.md)
+to establish
+a secure, authenticated channel with Azure platform resources. -->
+
+<!-- 
+### Azure Arc connected machines
+
+Nodes located outside Azure that are connected by Azure Arc require connectivity
+to the Guest Configuration service.
+Details about network and proxy requirements provided in the
+[Azure Arc documentation](../../../azure-arc/servers/overview.md).
+
+To communicate with the Guest Configuration resource provider in Azure, machines require outbound
+access to Azure datacenters on port **443**. If a network in Azure doesn't allow outbound traffic,
+configure exceptions with [Network Security
+Group](../../../virtual-network/manage-network-security-group.md#create-a-security-rule) rules. The
+[service tag](../../../virtual-network/service-tags-overview.md) "GuestAndHybridManagement" can be
+used to reference the Guest Configuration service.
+-->
 
 ## <a name="managed-identity-requirements"></a>托管标识要求
 
-[部署先决条件以在虚拟机上启用来宾配置策略](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F12794019-7a00-42cf-95c2-882eed337cc8)计划中的策略会启用系统分配的托管标识（如果不存在）。 计划中有两个管理标识创建的策略定义。 策略定义中的 IF 条件基于 Azure 中计算机资源的当前状态确保行为正确。
+[部署先决条件以在虚拟机上启用 Guest Configuration 策略](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F12794019-7a00-42cf-95c2-882eed337cc8)计划中的策略定义会启用系统分配的托管标识（如果不存在）。 计划中有两个管理标识创建的策略定义。 策略定义中的 IF 条件基于 Azure 中计算机资源的当前状态确保行为正确。
 
 如果计算机当前没有任何托管标识，则有效策略将为：[\[预览版\]:添加系统分配的托管标识，在没有标识的虚拟机上启用来宾配置分配](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F3cf2ab00-13f1-4d0c-8971-2ac904541a7e)
 
@@ -128,7 +169,12 @@ Azure Policy 的最新功能可用于配置计算机内部的设置。 “在 Wi
 分配以“配置”开头的定义时，还必须分配定义“部署必备组件以在 Windows VM 上启用来宾配置策略”。 如果需要，可将这些定义合并到一个计划中。
 
 <!-- Azure Acr is not available in mc -->
-<!-- #### Assigning policies to machines outside of Azure -->
+<!-- #### Assigning policies to machines outside of Azure
+
+The Audit policies available for Guest Configuration include the
+**Microsoft.HybridCompute/machines** resource type. Any machines onboarded to
+[Azure Arc for servers](../../../azure-arc/servers/overview.md) that are in the scope of the policy
+assignment are automatically included. -->
 
 ### <a name="multiple-assignments"></a>多个分配
 
@@ -183,8 +229,8 @@ egrep -B $linesToIncludeBeforeMatch -A $linesToIncludeAfterMatch 'DSCEngine|DSCM
 
 - 了解如何从[来宾配置符合性视图](../how-to/determine-non-compliance.md#compliance-details-for-guest-configuration)中查看每个设置的详细信息
 - 在 [Azure Policy 示例](../samples/index.md)中查看示例。
-- 查看 [Azure Policy 定义结构](definition-structure.md)。
-- 查看[了解策略效果](effects.md)。
+- 查看 [Azure Policy 定义结构](./definition-structure.md)。
+- 查看[了解策略效果](./effects.md)。
 - 了解如何[以编程方式创建策略](../how-to/programmatically-create.md)。
 - 了解如何[获取符合性数据](../how-to/get-compliance-data.md)。
 - 了解如何[修正不符合的资源](../how-to/remediate-resources.md)。

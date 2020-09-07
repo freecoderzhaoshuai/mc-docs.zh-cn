@@ -11,12 +11,12 @@ ms.author: nigup
 author: nishankgu
 ms.date: 07/24/2020
 ms.custom: how-to, seodec18
-ms.openlocfilehash: 4cc21d6400b18b7479fba841258a968e5c1f05c6
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 1f513b781048288b5a63cd10dfab7830d82df5f2
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228235"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947049"
 ---
 # <a name="manage-access-to-an-azure-machine-learning-workspace"></a>管理对 Azure 机器学习工作区的访问权限
 [!INCLUDE [aml-applies-to-basic-enterprise-sku](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -146,6 +146,8 @@ az ml workspace share -w my_workspace -g my_resource_group --role "Data Scientis
 | 使用交互式笔记本访问存储 | 不是必需 | 不是必需 | 所有者、参与者或自定义角色允许：`"/workspaces/computes/read", "/workspaces/notebooks/samples/read", "/workspaces/notebooks/storage/*"` |
 | 创建新的自定义角色 | 所有者、参与者或自定义角色允许 `Microsoft.Authorization/roleDefinitions/write` | 不是必需 | 所有者、参与者或自定义角色允许：`/workspaces/computes/write` |
 
+> [!TIP]
+> 如果第一次尝试创建工作区时遇到失败，请确保角色允许 `Microsoft.MachineLearningServices/register/action`。 可以通过此操作将 Azure 机器学习资源提供程序注册到 Azure 订阅。
 
 ### <a name="q-are-we-publishing-azure-built-in-roles-for-the-machine-learning-service"></a>问： 是否会针对机器学习服务发布 Azure 内置角色？
 
@@ -360,8 +362,8 @@ az role definition list --subscription <sub-id> --custom-role-only true
 
 在 Azure CLI 中运行以下命令。
 
-```azurecli-interactive
-az provider operation show �n Microsoft.MachineLearningServices
+```azurecli
+az provider operation show -n Microsoft.MachineLearningServices
 ```
 
 还可以在[资源提供程序操作](/role-based-access-control/resource-provider-operations#microsoftmachinelearningservices)的列表中找到它们。
@@ -372,8 +374,13 @@ az provider operation show �n Microsoft.MachineLearningServices
 使用 Azure 基于角色的访问控制 (Azure RBAC) 时，请注意以下几点：
 
 - 在 Azure 中创建资源时，例如创建工作区时，你不会直接成为工作区的所有者。 你的角色继承自你在该订阅中获得相应授权的最高作用域角色。 例如，如果你是网络管理员，有权创建机器学习工作区，则会为你分配该工作区的网络管理员角色，而不是所有者角色。
-- 针对同一 AAD 用户的两个角色分配具有冲突的 Actions/NotActions 部分时，如果操作在某个角色的 NotActions 中列出，但也在另一个角色中作为 Actions 列出，则此类操作可能不会生效。 若要详细了解 Azure 如何分析角色分配，请参阅 [Azure RBAC 如何确定用户是否有权访问资源](/role-based-access-control/overview#how-azure-rbac-determines-if-a-user-has-access-to-a-resource)
-- 若要在 VNet 中部署计算资源，需要在该 VNet 资源上显式拥有“Microsoft.Network/virtualNetworks/join/action”的权限。
+- 针对同一 Azure Active Directory 用户的两个角色分配具有冲突的 Actions/NotActions 部分时，如果操作在某个角色的 NotActions 中列出，但也在另一个角色中作为 Actions 列出，则此类操作可能不会生效。 若要详细了解 Azure 如何分析角色分配，请参阅 [Azure RBAC 如何确定用户是否有权访问资源](/azure/role-based-access-control/overview#how-azure-rbac-determines-if-a-user-has-access-to-a-resource)
+- 若要在 VNet 中部署计算资源，需要显式拥有以下操作的权限：
+    - “Microsoft.Network/virtualNetworks/join/action”（在 VNet 资源上）。
+    - “Microsoft.Network/virtualNetworks/subnet/join/action”（在子网资源上）。
+    
+    若要详细了解如何将 RBAC 与网络配合使用，请参阅[网络内置角色](/role-based-access-control/built-in-roles#networking)。
+
 - 新的角色分配有时可能需要长达 1 小时才能生效，覆盖整个堆栈的缓存权限。
 
 
@@ -382,9 +389,9 @@ az provider operation show �n Microsoft.MachineLearningServices
 若要在 Amlcompute 群集上分配用户分配的标识，必须具有创建计算所需的写入权限，并且必须具有[托管标识操作员角色](/role-based-access-control/built-in-roles#managed-identity-operator)。 若要详细了解如何将 RBAC 与托管标识配合使用，请阅读[如何管理用户分配的标识](/azure/active-directory/managed-identities-azure-resources/how-to-manage-ua-identity-portal)
 
 
-### <a name="q-do-we-support-role-based-access-controls-on-the-studio-portal"></a>问： 工作室门户上是否支持基于角色的访问控制？
+### <a name="q-do-we-support-role-based-access-control-on-the-studio-portal"></a>问： 工作室门户上是否支持基于角色的访问控制？
 
-Azure 机器学习工作室支持基于角色的访问控制。 
+Azure 机器学习工作室支持 Azure 基于角色的访问控制 (Azure RBAC)。 
 
 > [!IMPORTANT]
 > 在你为工作区中的数据科学家分配了具有特定权限的自定义角色后，系统会自动对用户隐藏相应的操作（例如添加一个计算按钮）。 隐藏这些项可防止用户在使用它们时看到控件返回来自服务的“未经授权的访问”通知，从而避免混乱。

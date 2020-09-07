@@ -3,18 +3,18 @@ title: 验证 Azure 注册
 titleSuffix: Azure Stack Hub
 description: 了解如何使用 Azure Stack Hub 就绪性检查器工具来验证 Azure 注册。
 author: WenJason
-ms.topic: conceptual
-origin.date: 10/03/2019
-ms.date: 02/24/2020
+ms.topic: how-to
+origin.date: 06/25/2020
+ms.date: 08/31/2020
 ms.author: v-jay
-ms.reviewer: unknown
-ms.lastreviewed: 03/23/2019
-ms.openlocfilehash: 91f9533e8393b41cfaae81211627a7d2a91a624d
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.reviewer: jerskine
+ms.lastreviewed: 06/25/2020
+ms.openlocfilehash: 94bca343853386b634ed164da53266f730015b5a
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540611"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868098"
 ---
 # <a name="validate-azure-registration"></a>验证 Azure 注册
 
@@ -29,27 +29,35 @@ ms.locfileid: "77540611"
 
 从 [PowerShell 库](https://aka.ms/AzsReadinessChecker)下载最新版本的 **AzsReadinessChecker**。  
 
-## <a name="prerequisites"></a>必备条件
+## <a name="install-and-configure"></a>安装和配置
+
+### <a name="azurerm-powershell"></a>[AzureRM PowerShell](#tab/rm)
+
+### <a name="prerequisites"></a>必备条件
 
 需要以下先决条件：
 
-### <a name="the-computer-on-which-the-tool-runs"></a>运行该工具的计算机
+#### <a name="azurerm-powershell-modules"></a>AzureRM PowerShell 模块
+
+将需要安装 Az PowerShell 模块。 有关说明，请参阅[安装 PowerShell AzureRM 模块](azure-stack-powershell-install.md)。
+
+#### <a name="the-computer-on-which-the-tool-runs"></a>运行该工具的计算机
 
 - Windows 10 或 Windows Server 2016，具有 Internet 连接。
-- PowerShell 5.1 或更高版本。 若要检查版本，请运行以下 PowerShell cmdlet，然后查看主要  版本和次要  版本：  
+- PowerShell 5.1 或更高版本。 若要检查版本，请运行以下 PowerShell cmdlet，然后查看主要版本和次要版本：  
   ```powershell
   $PSVersionTable.PSVersion
   ```
 - [为 Azure Stack Hub 配置的 PowerShell](azure-stack-powershell-install.md)。
 - 最新版本的 [Azure Stack Hub 就绪性检查器](https://aka.ms/AzsReadinessChecker)工具。  
 
-### <a name="azure-active-directory-aad-environment"></a>Azure Active Directory (AAD) 环境
+#### <a name="azure-active-directory-azure-ad-environment"></a>Azure Active Directory (Azure AD) 环境
 
 - 标识将与 Azure Stack Hub 配合使用的帐户的用户名和密码，该帐户必须是 Azure 订阅所有者。  
 - 标识将使用的 Azure 订阅的订阅 ID。
 - 标识将使用的 **AzureEnvironment**。 环境名称参数支持的值是 **AzureChinaCloud**，具体取决于所使用的 Azure 订阅。
 
-## <a name="steps-to-validate-the-azure-registration"></a>验证 Azure 注册的步骤
+### <a name="steps-to-validate-the-azure-registration"></a>验证 Azure 注册的步骤
 
 1. 在满足先决条件的计算机上，打开一个提升的 PowerShell 提示符，然后运行以下命令来安装 **AzsReadinessChecker**：
 
@@ -82,13 +90,68 @@ ms.locfileid: "77540611"
 
 5. 运行该工具后，查看输出。 确认状态是否符合登录和注册要求。 验证成功时会显示类似于以下示例的输出：
 
-   ```shell
+   ```powershell
    Invoke-AzsRegistrationValidation v1.1809.1005.1 started.
    Checking Registration Requirements: OK
    Log location (contains PII): C:\Users\username\AppData\Local\Temp\AzsReadinessChecker\AzsReadinessChecker.log
    Report location (contains PII): C:\Users\username\AppData\Local\Temp\AzsReadinessChecker\AzsReadinessCheckerReport.json
    Invoke-AzsRegistrationValidation Completed
    ```
+
+### <a name="az-powershell"></a>[Az PowerShell](#tab/az)
+
+### <a name="prerequisites"></a>必备条件
+
+需要以下先决条件：
+
+#### <a name="az-powershell-modules"></a>Az PowerShell 模块
+
+将需要安装 Az PowerShell 模块。 有关说明，请参阅[安装 PowerShell Az 预览版模块](powershell-install-az-module.md)。
+
+#### <a name="azure-active-directory-aad-environment"></a>Azure Active Directory (AAD) 环境
+
+- 标识将与 Azure Stack Hub 配合使用的帐户的用户名和密码，该帐户必须是 Azure 订阅所有者。  
+- 标识将使用的 Azure 订阅的订阅 ID。
+
+### <a name="steps-to-validate-the-azure-registration"></a>验证 Azure 注册的步骤
+
+1. 打开一个提升的 PowerShell 提示符，然后运行以下命令来安装 **AzsReadinessChecker**：
+
+   ```powershell
+   Install-Module -Name Az.BootStrapper -Force -AllowPrerelease
+   Install-AzProfile -Profile 2019-03-01-hybrid -Force
+   Install-Module -Name Microsoft.AzureStack.ReadinessChecker -AllowPrerelease
+   ```
+
+2. 在 PowerShell 提示符下运行以下命令，将 `$subscriptionID` 设置为要使用的 Azure 订阅。 将 `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` 替换为你自己的订阅 ID：
+
+   ```powershell
+   $subscriptionID = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+   ```
+
+3. 在 PowerShell 提示符下，运行以下命令： 
+
+   ```powershell
+   Connect-AzAccount -subscription $subscriptionID -Environment AzureChinaCloud
+   ```
+
+4. 在 PowerShell 提示符下运行以下命令，开始验证订阅。 提供 Azure AD 管理员和 Azure AD 租户名称：
+
+   ```powershell
+   Invoke-AzsRegistrationValidation  -RegistrationSubscriptionID $subscriptionID
+   ```
+
+5. 运行该工具后，查看输出。 确认状态是否符合登录和注册要求。 验证成功时会显示类似于以下示例的输出：
+
+   ```powershell
+   Invoke-AzsRegistrationValidation v1.2005.1269 started.
+   Checking Registration Requirements: OK
+
+   Log location (contains PII): C:\Users\[*redacted*]\AppData\Local\Temp\AzsReadinessChecker\AzsReadinessChecker.log
+   Report location (contains PII): C:\Users\[*redacted*]\AppData\Local\Temp\AzsReadinessChecker\AzsReadinessCheckerReport.json
+   Invoke-AzsRegistrationValidation Completed
+   ```
+---
 
 ## <a name="report-and-log-file"></a>报表和日志文件
 

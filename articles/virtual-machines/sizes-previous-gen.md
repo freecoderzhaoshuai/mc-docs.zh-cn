@@ -1,22 +1,22 @@
 ---
-title: 前几代虚拟机大小
+title: Azure VM 大小 - 前几代 | Azure
 description: 列出 Azure 中可用的前几代虚拟机大小。 针对此系列中的大小列出了 vCPU、数据磁盘和 NIC 的数量，以及存储吞吐量和网络带宽。
 services: virtual-machines
 ms.subservice: sizes
 author: rockboyfor
-ms.topic: article
+ms.topic: conceptual
 ms.workload: infrastructure-services
 origin.date: 02/20/2020
-ms.date: 07/27/2020
+ms.date: 08/31/2020
 ms.testscope: yes
-ms.testdate: 07/27/2020
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 611b1a491ba3a6e3e9ba2e6526a6caa394f81f42
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: c9013972f1f596847258eec859e499422f6476d7
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244704"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052434"
 ---
 # <a name="previous-generations-of-virtual-machine-sizes"></a>前几代虚拟机大小
 
@@ -73,7 +73,7 @@ Mbps = 每秒 10^6 字节，GiB = 1024^3 字节。
 
 ## <a name="older-generations-of-virtual-machine-sizes"></a>前几代虚拟机大小
 
-本部分提供了有关先前几代虚拟机大小的信息。 这些大小仍受支持，但无法接收更多的容量。 有更新的或备用的大小，这些大小已公开发布。 请参阅 [Azure 中 Linux 虚拟机的大小](linux/sizes.md)，选择最适合自己需求的 VM 大小。  
+本部分提供了有关先前几代虚拟机大小的信息。 这些大小仍受支持，但无法接收更多的容量。 有更新的或备用的大小，这些大小已公开发布。 请参阅 [Azure 中 Linux 虚拟机的大小](./sizes.md)，选择最适合自己需求的 VM 大小。  
 
 有关如何调整 Linux VM 的大小的详细信息，请参阅[调整 Linux VM 的大小](linux/change-vm-size.md)。  
 
@@ -234,8 +234,6 @@ ACU：160-250 <sup>1,2</sup>
 <sup>2</sup> VM 系列可以在下述 CPU 之一上运行：2.2 GHz Intel Xeon® E5-2660 v2、2.4 GHz Intel Xeon® E5-2673 v3 (Haswell) 或 2.3 GHz Intel XEON® E5-2673 v4 (Broadwell)  
 
 <!--CORRECT ON [Windows](windows/premium-storage-performance.md)-->
-
-<br />
 
 <!--Not Available on ### Ls-series-->
 <!--Not Avaialble on ### GS-series -->

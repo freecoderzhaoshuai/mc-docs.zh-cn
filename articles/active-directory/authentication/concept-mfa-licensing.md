@@ -5,18 +5,18 @@ services: multi-factor-authentication
 ms.service: active-directory
 ms.subservice: authentication
 ms.topic: conceptual
-ms.date: 07/20/2020
+ms.date: 08/28/2020
 ms.author: v-junlch
 author: iainfoulds
 manager: daveba
 ms.reviewer: michmcla
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: b1506a0b252db1eb2ae241275b3cf384122e037b
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.openlocfilehash: 2f83b9147667c751370d9b03503975af4d11d775
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86472047"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046348"
 ---
 # <a name="features-and-licenses-for-azure-multi-factor-authentication"></a>Azure 多重身份验证的功能和许可证
 
@@ -34,8 +34,8 @@ ms.locfileid: "86472047"
 | Microsoft 365 商业高级版和 EMS 或 Microsoft 365 E3 和 E5 | EMS E3、Microsoft 365 E3 和 Microsoft 365 商业高级版包括 Azure AD 高级版 P1。 EMS E5 或 Microsoft 365 E5 包括 Azure AD Premium P2。 可使用以下部分所述的相同条件访问功能向用户提供多重身份验证。 |
 | Azure AD Premium P1 | 在特定的情况下或者发生适合业务要求的事件时，使用 [Azure AD 条件访问](../conditional-access/howto-conditional-access-policy-all-users-mfa.md)提示用户执行多重身份验证。 |
 | Azure AD Premium P2 | 提供最强的安全形势和改进的用户体验。 将基于风险的条件访问添加到 Azure AD Premium P1 功能，可适应用户的模式，并尽量减少多重身份验证提示。 |
-| 所有 Microsoft 365 计划 | 可以[基于每个用户](howto-mfa-userstates.md)启用 Azure 多重身份验证，也可以使用安全默认设置为所有用户、为所有登录事件启用或禁用 Azure 多重身份验证。 Azure 多重身份验证的管理通过 Office 365 门户进行。 若要改进用户体验，请升级到 Azure AD Premium P1 或 P2 并使用条件访问。 有关详细信息，请参阅[使用多重身份验证保护 Office 365 资源](https://support.office.com/article/Set-up-multi-factor-authentication-for-Office-365-users-8f0454b2-f51a-4d9c-bcde-2c48e41621c6)。 |
-| Azure AD 免费版 | 可以使用[安全默认设置](../fundamentals/concept-fundamentals-security-defaults.md)在每次发出身份验证请求时为所有用户启用多重身份验证。 无法精细控制已启用多重身份验证的用户或方案，但此版本确实提供附加的安全措施。<br /> 即使不使用安全默认值来为每个人启用多重身份验证，也可以将分配有“Azure AD 全局管理员”角色的用户配置为使用多重身份验证。 此免费层功能确保关键的管理员帐户受到多重身份验证的保护。 |
+| 所有 Microsoft 365 计划 | 可以[基于每个用户](howto-mfa-userstates.md)启用 Azure 多重身份验证，也可以使用[安全默认值](../fundamentals/concept-fundamentals-security-defaults.md)为所有用户启用或禁用 Azure 多重身份验证。 Azure 多重身份验证的管理通过 Microsoft 365 门户进行。 若要改进用户体验，请升级到 Azure AD Premium P1 或 P2 并使用条件访问。 有关详细信息，请参阅[使用多重身份验证保护 Microsoft 365 资源](https://docs.microsoft.com/microsoft-365/admin/security-and-compliance/set-up-multi-factor-authentication)。 |
+| Azure AD 免费版 | 可以使用[安全默认值](../fundamentals/concept-fundamentals-security-defaults.md)为所有用户启用多重身份验证。 无法精细控制已启用多重身份验证的用户或方案，但此版本确实提供附加的安全措施。<br /> 即使不使用安全默认值来为每个人启用多重身份验证，也可以将分配有“Azure AD 全局管理员”角色的用户配置为使用多重身份验证。 此免费层功能确保关键的管理员帐户受到多重身份验证的保护。 |
 
 ## <a name="feature-comparison-of-versions"></a>版本功能比较
 
@@ -61,12 +61,12 @@ Azure AD Premium 版本通过 Microsoft 代表、[开放批量许可计划](http
 
 ### <a name="azure-ad-free-tier"></a>Azure AD Free 层
 
-Azure AD Free 租户中的所有用户都可以通过安全默认值来使用 Azure 多重身份验证。 每次用户登录时，这些安全默认值将为这些用户启用 Azure 多重身份验证。 移动身份验证应用是在使用 Azure AD 免费版安全默认设置时可用于进行 Azure 多重身份验证的唯一方法。
+Azure AD Free 租户中的所有用户都可以通过安全默认值来使用 Azure 多重身份验证。 移动身份验证应用是在使用 Azure AD 免费版安全默认设置时可用于进行 Azure 多重身份验证的唯一方法。
 
 * [详细了解 Azure AD 安全默认设置](../fundamentals/concept-fundamentals-security-defaults.md)
 * [为 Azure AD 免费版中的用户启用安全默认设置](../fundamentals/concept-fundamentals-security-defaults.md#enabling-security-defaults)
 
-如果不想为所有用户和每次登录事件启用 Azure 多重身份验证，则可以改为选择仅保护使用 *Azure AD 全局管理员*角色的用户帐户。 此方法为关键管理员帐户提供了其他身份验证提示。 可以通过以下方式之一启用 Azure 多重身份验证，具体取决于所使用的帐户类型：
+如果不希望为所有用户启用 Azure 多重身份验证，可以改为选择仅使用“Azure AD 全局管理员”角色来保护用户帐户。 此方法为关键管理员帐户提供了其他身份验证提示。 可以通过以下方式之一启用 Azure 多重身份验证，具体取决于所使用的帐户类型：
 
 * 如果使用 Microsoft 帐户，请[注册多重身份验证](https://support.microsoft.com/help/12408/microsoft-account-about-two-step-verification)。
 * 如果使用的不是 Microsoft 帐户，请[在 Azure AD 中为用户或组启用多重身份验证](howto-mfa-userstates.md)。

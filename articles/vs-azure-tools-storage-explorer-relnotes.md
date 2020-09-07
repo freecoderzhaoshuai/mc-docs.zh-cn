@@ -1,10 +1,10 @@
 ---
-title: 世纪互联 Azure 存储资源管理器发行说明
-description: 世纪互联 Azure 存储资源管理器的发行说明
+title: Azure 存储资源管理器发行说明
+description: 阅读最新版 Azure 存储资源管理器的发行说明。 还显示了旧版发行说明。
 services: storage
 documentationcenter: na
-author: lingliw
-manager: digimobile
+author: cawaMS
+manager: paulyuk
 editor: ''
 ms.assetid: ''
 ms.service: storage
@@ -13,18 +13,18 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 origin.date: 06/12/2018
-ms.date: 01/21/2019
-ms.author: v-lingwu
-ms.openlocfilehash: a7e0458b484413f700244c229cd12ef78cae07b3
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.date: 08/27/2020
+ms.author: v-tawe
+ms.openlocfilehash: d3078d5a3cd42eefa536aa77641e9c910df2c835
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77068128"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951247"
 ---
-# <a name="21vianet-azure-storage-explorer-release-notes"></a>世纪互联 Azure 存储资源管理器发行说明
+# <a name="azure-storage-explorer-release-notes"></a>Azure 存储资源管理器发行说明
 
-本文包含 Azure 存储资源管理器 1.10.0 发行版及以前版本的发行说明。
+本文包含 Azure 存储资源管理器的最新发行说明和旧版发行说明。 
 
 [Microsoft Azure 存储资源管理器](./vs-azure-tools-storage-manage-with-storage-explorer.md)是一款独立应用，可用于在 Windows、macOS 和 Linux 上轻松处理 Azure 存储数据。
 
@@ -95,7 +95,7 @@ ms.locfileid: "77068128"
 * 由于 NodeJS 中的 bug，从 OneDrive 文件夹上传不正常工作。 该 bug 已修复，但尚未集成到 Electron 中。 若要在向/从 Blob 容器上传或下载时解决此问题，可以使用试验性的 AzCopy 功能。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是此处介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * Azure Stack 不支持以下功能。 在处理 Azure Stack 资源时尝试使用这些功能可能会导致意外错误。
    * 文件共享
@@ -163,18 +163,20 @@ ms.locfileid: "77068128"
 ### <a name="new"></a>新建
 * 存储资源管理器现在提供专用的“设置”UI。 可以通过“编辑”→“设置”访问该 UI，或者，可以单击左侧垂直工具栏中的“设置”图标（齿轮）。 只有在了解此功能后，才能提供各种[用户请求的设置](https://github.com/microsoft/AzureStorageExplorer/labels/%3Abulb%3A%20setting%20candidate)。 从此版本开始支持以下设置：
   * 主题
-  * 代理
+  * Proxy (代理)
   * 退出时注销 #6
   * 启用设备代码流登录
   * 自动刷新 #1526
   * 启用 AzCopy
   * AzCopy SAS 持续时间。如果你还希望添加其他设置，请[在 GitHub 上提出问题](https://github.com/microsoft/AzureStorageExplorer/issues/new?assignees=&labels=%3Abulb%3A%20setting%20candidate&template=feature_request.md&title=)并描述所需的设置。
-* 存储资源管理器现在支持托管磁盘。 方法：
+* 存储资源管理器现在支持托管磁盘。 你可以：
   * 将本地 VHD 上传到新磁盘
   * 下载磁盘
   * 跨资源组和区域复制并粘贴磁盘
   * 删除磁盘
-  * 创建磁盘的快照。磁盘的上传、下载和跨区域复制由 AzCopy v10 提供支持。
+  * 创建磁盘的快照
+
+磁盘的上传、下载和跨区域复制由 AzCopy v10 提供支持。
 * 现在可以通过 Linux 上的 Snap Store 安装存储资源管理器。 通过 Snap Store 安装时，系统将为你安装所有依赖项，包括 .NET Core！ 目前，我们已验证存储资源管理器可在 Ubuntu 和 CentOS 上正常运行。 如果在从其他 Linux 分发版上的 Snap Store 安装时遇到问题，请[在 GitHub 上提出问题](https://github.com/microsoft/AzureStorageExplorer/issues/new?assignees=&labels=snaps&template=bug-report.md&title=)。 若要详细了解如何从 Snap Store 安装，请参阅[入门指南](https://docs.microsoft.com/azure/vs-azure-tools-storage-manage-with-storage-explorer?tabs=linux)。 #68
 * 使用 Azure Active Directory Azure Active Directory (Azure AD) 附加资源的功能已发生两项重大更改，目的是使该功能为 ADLS Gen2 用户提供更大的价值：
   * 现在可以选择要附加的资源所在的租户。 这意味着，不再需要对资源的订阅拥有 RBAC 访问权限。
@@ -209,7 +211,7 @@ ms.locfileid: "77068128"
 * 由于 NodeJS 中的 bug，从 OneDrive 文件夹上传不正常工作。 该 bug 已修复，但尚未集成到 Electron 中。 若要在向/从 Blob 容器上传或下载时解决此问题，可以使用试验性的 AzCopy 功能。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是此处介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * Azure Stack 不支持以下功能。 在处理 Azure Stack 资源时尝试使用这些功能可能会导致意外错误。
    * 文件共享
@@ -233,7 +235,7 @@ ms.locfileid: "77068128"
 
 * 存储资源管理器现在提供专用的“设置”UI。 可以通过“编辑”→“设置”访问该 UI，或者，可以单击左侧垂直工具栏中的“设置”图标（齿轮）。 只有在了解此功能后，才能提供各种[用户请求的设置](https://github.com/microsoft/AzureStorageExplorer/labels/%3Abulb%3A%20setting%20candidate)。 从此版本开始支持以下设置：
     * 主题
-    * 代理
+    * Proxy (代理)
     * 退出时注销 [#6](https://www.github.com/Microsoft/AzureStorageExplorer/issues/6)
     * 启用设备代码流登录
     * 自动刷新 [#1526](https://www.github.com/Microsoft/AzureStorageExplorer/issues/1526)
@@ -241,7 +243,7 @@ ms.locfileid: "77068128"
     * AzCopy SAS 持续时间
 
     如果你还希望添加其他设置，请[在 GitHub 上提出问题并描述所需的设置](https://github.com/microsoft/AzureStorageExplorer/issues/new?assignees=&labels=%3Abulb%3A%20setting%20candidate&template=feature_request.md&title=)。
-* 存储资源管理器现在支持托管磁盘。 方法：
+* 存储资源管理器现在支持托管磁盘。 你可以：
     * 将本地 VHD 上传到新磁盘
     * 下载磁盘
     * 跨资源组和区域复制并粘贴磁盘
@@ -275,7 +277,7 @@ ms.locfileid: "77068128"
 * 如果磁盘上传或粘贴失败，并且在失败之前创建了新磁盘，则存储资源管理器不会删除新磁盘。
 * 根据取消磁盘上传或粘贴操作的时间，新磁盘可能会保持损坏状态。 如果发生这种情况，需要删除新磁盘，或手动调用磁盘 API 来替换磁盘内容，使其不再损坏。
 * 在执行非 AzCopy Blob 下载时，不会验证大型文件的 MD5。 这是由存储 SDK 中的一个 bug 导致的。 [#1212](https://www.github.com/Microsoft/AzureStorageExplorer/issues/1212)
-* 使用 RBAC 时，存储资源管理器需要一些管理层权限才能访问存储资源。 有关详细信息，请参阅[故障排除指南](/storage/common/storage-explorer-troubleshooting)。
+* 使用 RBAC 时，存储资源管理器需要一些管理层权限才能访问存储资源。 有关详细信息，请参阅[故障排除指南](https://docs.azure.cn/storage/common/storage-explorer-troubleshooting)。
 * 从通过 SAS URI 附加的资源（例如 Blob 容器）进行分离可能会导致一个错误，该错误会阻止其他附件正确显示。 若要解决此问题，只需刷新组节点。 有关详细信息，请参阅 #537。
 * 如果使用用于 Mac 的 VS 并曾经创建过自定义 AAD 配置，可能无法登录。 若要解决此问题，请删除 ~/.IdentityService/AadConfigurations 的内容。 如果这样做不能对你解除阻止，请对此问题发表评论。
 * Azurite 还没有完全实现所有存储 API。 因此，在使用 Azurite 进行开发存储时可能会出现意外的错误或行为。
@@ -283,7 +285,7 @@ ms.locfileid: "77068128"
 * 由于 NodeJS 中的 bug，从 OneDrive 文件夹上传不正常工作。 该 bug 已修复，但尚未集成到 Electron 中。 若要在向/从 Blob 容器上传或下载时解决此问题，可以使用试验性的 AzCopy 功能。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是此处介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * Azure Stack 不支持以下功能。 在处理 Azure Stack 资源时尝试使用这些功能可能会导致意外错误。
    * 文件共享
@@ -297,7 +299,7 @@ ms.locfileid: "77068128"
     ./StorageExplorer.exe --disable-gpu
     ```
 
-* 在 Linux 上运行存储资源管理器需要首先安装某些依赖项。 有关详细信息，请查看存储资源管理器[故障排除指南](/storage/common/storage-explorer-troubleshooting?tabs=1804#linux-dependencies)。
+* 在 Linux 上运行存储资源管理器需要首先安装某些依赖项。 有关详细信息，请查看存储资源管理器[故障排除指南](https://docs.azure.cn/storage/common/storage-explorer-troubleshooting?tabs=1804#linux-dependencies)。
 
 ## <a name="version-190"></a>版本 1.9.0
 2019/7/1
@@ -342,7 +344,7 @@ ms.locfileid: "77068128"
 * 由于 NodeJS 中的 bug，从 OneDrive 文件夹上传不正常工作。 该 bug 已修复，但尚未集成到 Electron 中。 若要在向/从 Blob 容器上传或下载时解决此问题，可以使用试验性的 AzCopy 功能。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是此处介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * Azure Stack 不支持以下功能。 在处理 Azure Stack 资源时尝试使用这些功能可能会导致意外错误。
    * 文件共享
@@ -399,7 +401,7 @@ ms.locfileid: "77068128"
 * 由于 NodeJS 中的 bug，从 OneDrive 文件夹上传不正常工作。 该 bug 已修复，但尚未集成到 Electron 中。 若要在向/从 Blob 容器上传或下载时解决此问题，可以使用试验性的 AzCopy 功能。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是此处介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * Azure Stack 不支持以下功能。 在处理 Azure Stack 资源时尝试使用这些功能可能会导致意外错误。
    * 文件共享
@@ -451,7 +453,7 @@ ms.locfileid: "77068128"
 * 由于 NodeJS 中的 bug，从 OneDrive 文件夹上传不正常工作。 该 bug 已修复，但尚未集成到 Electron 中。 若要在向/从 Blob 容器上传或下载时解决此问题，可以使用试验性的 AzCopy 功能。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是此处介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * Azure Stack 不支持以下功能。 在处理 Azure Stack 资源时尝试使用这些功能可能会导致意外错误。
    * 文件共享
@@ -491,14 +493,14 @@ ms.locfileid: "77068128"
 * 在 Blob 编辑器中，不再能够按剩余保留天数或状态进行排序。 此问题已解决。 #1106
 * 在版本 1.5.0 之后，存储资源管理器不再会先等待服务器端复制完成，然后在重命名或复制/粘贴操作期间报告成功结果。 此问题已解决。 #976
 * 使用试验性的 AzCopy 功能时，单击“将命令复制到剪贴板”后复制的命令本身不一定始终可运行。 现在，将会复制手动运行传输所需的所有命令。 #1079
-* 以前，如果在代理后面操作，则无法访问 ADLS Gen2 Blob。 这是因为存储 SDK 使用的新网络库中存在一个 bug。 1\.7.0 会尝试缓解此问题，但有些人仍可能会遇到问题。 在将来的更新中会发布完整修复措施。 #1090
+* 以前，如果在代理后面操作，则无法访问 ADLS Gen2 Blob。 这是因为存储 SDK 使用的新网络库中存在一个 bug。 1.7.0 会尝试缓解此问题，但有些人仍可能会遇到问题。 在将来的更新中会发布完整修复措施。 #1090
 * 在 1.7.0 中，“保存文件”对话框现在会正确记住文件的上次保存位置。 #16
 * 在“属性”窗格中，存储帐户的 SKU 层显示为帐户类型。 此问题已解决。 #654
 * 有时，即使正确输入 Blob 的名称，也无法中断该 Blob 的租约。 此问题已解决。 #1070
 
 ### <a name="known-issues"></a>已知问题
 
-* 使用 RBAC 时，存储资源管理器需要一些管理层权限才能访问存储资源。 有关详细信息，请参阅[故障排除指南](/storage/common/storage-explorer-troubleshooting)。
+* 使用 RBAC 时，存储资源管理器需要一些管理层权限才能访问存储资源。 有关详细信息，请参阅[故障排除指南](https://docs.azure.cn/storage/common/storage-explorer-troubleshooting)。
 * 在代理后面尝试访问 ADLS Gen2 Blob 可能会失败。
 * 从通过 SAS URI 附加的资源（例如 Blob 容器）进行分离可能会导致一个错误，该错误会阻止其他附件正确显示。 若要解决此问题，只需刷新组节点。 有关详细信息，请参阅 #537。
 * 从通过 SAS URI 附加的资源（例如 Blob 容器）进行分离可能会导致一个错误，该错误会阻止其他附件正确显示。 若要解决此问题，只需刷新组节点。 有关详细信息，请参阅 #537。
@@ -508,7 +510,7 @@ ms.locfileid: "77068128"
 * 由于 NodeJS 中的 bug，从 OneDrive 文件夹上传不正常工作。 该 bug 已修复，但尚未集成到 Electron 中。 若要在向/从 Blob 容器上传或下载时解决此问题，可以使用试验性的 AzCopy 功能。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是此处介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * Azure Stack 不支持以下功能。 在处理 Azure Stack 资源时尝试使用这些功能可能会导致意外错误。
    * 文件共享
@@ -580,7 +582,7 @@ ms.locfileid: "77068128"
 * 由于 NodeJS 中的 bug，从 OneDrive 文件夹上传不正常工作。 该 bug 已修复，但尚未集成到 Electron 中。 若要在向/从 Blob 容器上传或下载时解决此问题，可以使用试验性的 AzCopy 功能。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是此处介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * Azure Stack 不支持以下功能。 在处理 Azure Stack 资源时尝试使用这些功能可能会导致意外错误。
    * 文件共享
@@ -649,7 +651,7 @@ ms.locfileid: "77068128"
 * 由于 NodeJS 中的 bug，从 OneDrive 文件夹上传不正常工作。 该 bug 已修复，但尚未集成到 Electron 中。 若要在向/从 Blob 容器上传或下载时解决此问题，可以使用试验性的 AzCopy 功能。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是此处介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * Azure Stack 不支持以下功能。 在处理 Azure Stack 资源时尝试使用这些功能可能会导致意外错误。
    * 文件共享
@@ -661,7 +663,7 @@ ms.locfileid: "77068128"
     ./StorageExplorer.exe --disable-gpu
     ```
 
-* 对于 Linux 用户，需要安装 [.NET Core 2.0](https://docs.microsoft.com/dotnet/core/linux-prerequisites?tabs=netcore2x)。
+* 对于 Linux 用户，需要安装 [.NET Core 2.0](https://dotnet.microsoft.com/download/dotnet-core/2.0)。
 * 对于 Ubuntu 14.04 用户，需确保 GCC 是最新版本 - 为此，可运行以下命令并重启计算机：
 
     ```
@@ -704,7 +706,7 @@ ms.locfileid: "77068128"
 * 由于 NodeJS 中的 bug，从 OneDrive 文件夹上传不正常工作。 该 bug 已修复，但尚未集成到 Electron 中。 若要在向/从 Blob 容器上传或下载时解决此问题，可以使用试验性的 AzCopy 功能。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是此处介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * Azure Stack 不支持以下功能。 在处理 Azure Stack 资源时尝试使用这些功能可能会导致意外错误。
    * 文件共享
@@ -768,7 +770,7 @@ ms.locfileid: "77068128"
 * 由于 NodeJS 中的 bug，从 OneDrive 文件夹上传不正常工作。 该 bug 已修复，但尚未集成到 Electron 中。 若要在向/从 Blob 容器上传或下载时解决此问题，可以使用试验性的 AzCopy 功能。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是此处介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * Azure Stack 不支持以下功能。 在处理 Azure Stack 资源时尝试使用这些功能可能会导致意外错误。
    * 文件共享
@@ -809,7 +811,7 @@ ms.locfileid: "77068128"
    * 自定义要附加的资源的显示名称。 [#31](https://github.com/Microsoft/AzureStorageExplorer/issues/31)
    * 附加到使用不同端口的多个本地模拟器。 [#193](https://github.com/Microsoft/AzureStorageExplorer/issues/193)
    * 将附加的资源添加到“快速访问”。 [#392](https://github.com/Microsoft/AzureStorageExplorer/issues/392)
-* 存储资源管理器现在支持软删除。 方法：
+* 存储资源管理器现在支持软删除。 你可以：
    * 通过右键单击你的存储帐户的“Blob 容器”节点来配置软删除策略。
    * 通过在导航栏旁边的下拉列表中选择“活动的和已删除的 Blob”在 Blob 编辑器中查看软删除的 Blob。
    * 撤消删除已删除的 Blob。
@@ -828,7 +830,7 @@ ms.locfileid: "77068128"
 * 由于 NodeJS 中的 bug，从 OneDrive 文件夹上传不正常工作。 该 bug 已修复，但尚未集成到 Electron 中。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是[此处](https://github.com/Azure/azure-storage-node/issues/317)介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * 尽管 Azure Stack 当前不支持文件共享，但附加 Azure Stack 存储帐户下仍会显示“文件共享”节点。
 * 存储资源管理器使用的 Electron shell 在进行某项 GPU（图形处理单元）硬件加速时出现问题。 如果存储资源管理器显示了一个空白（空的）主窗口，则可以尝试从命令行启动存储资源管理器，并通过添加 `--disable-gpu` 开关禁用 GPU 加速。
@@ -865,7 +867,7 @@ ms.locfileid: "77068128"
    * 自定义要附加的资源的显示名称。 [#31](https://github.com/Microsoft/AzureStorageExplorer/issues/31)
    * 附加到使用不同端口的多个本地模拟器。 [#193](https://github.com/Microsoft/AzureStorageExplorer/issues/193)
    * 将附加的资源添加到“快速访问”。 [#392](https://github.com/Microsoft/AzureStorageExplorer/issues/392)
-* 存储资源管理器现在支持软删除。 方法：
+* 存储资源管理器现在支持软删除。 你可以：
    * 通过右键单击你的存储帐户的“Blob 容器”节点来配置软删除策略。
    * 通过在导航栏旁边的下拉列表中选择“活动的和已删除的 Blob”在 Blob 编辑器中查看软删除的 Blob。
    * 撤消删除已删除的 Blob。
@@ -884,7 +886,7 @@ ms.locfileid: "77068128"
 * 由于 NodeJS 中的 bug，从 OneDrive 文件夹上传不正常工作。 该 bug 已修复，但尚未集成到 Electron 中。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是[此处](https://github.com/Azure/azure-storage-node/issues/317)介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * 尽管 Azure Stack 当前不支持文件共享，但附加 Azure Stack 存储帐户下仍会显示“文件共享”节点。
 * 存储资源管理器使用的 Electron shell 在进行某项 GPU（图形处理单元）硬件加速时出现问题。 如果存储资源管理器显示了一个空白（空的）主窗口，则可以尝试从命令行启动存储资源管理器，并通过添加 `--disable-gpu` 开关禁用 GPU 加速。
@@ -920,7 +922,7 @@ ms.locfileid: "77068128"
    * 自定义要附加的资源的显示名称。 [#31](https://github.com/Microsoft/AzureStorageExplorer/issues/31)
    * 附加到使用不同端口的多个本地模拟器。 [#193](https://github.com/Microsoft/AzureStorageExplorer/issues/193)
    * 将附加的资源添加到“快速访问”。 [#392](https://github.com/Microsoft/AzureStorageExplorer/issues/392)
-* 存储资源管理器现在支持软删除。 方法：
+* 存储资源管理器现在支持软删除。 你可以：
    * 通过右键单击你的存储帐户的“Blob 容器”节点来配置软删除策略。
    * 通过在导航栏旁边的下拉列表中选择“活动的和已删除的 Blob”在 Blob 编辑器中查看软删除的 Blob。
    * 撤消删除已删除的 Blob。
@@ -939,7 +941,7 @@ ms.locfileid: "77068128"
 * 由于 NodeJS 中的 bug，从 OneDrive 文件夹上传不正常工作。 该 bug 已修复，但尚未集成到 Electron 中。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是[此处](https://github.com/Azure/azure-storage-node/issues/317)介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * 尽管 Azure Stack 当前不支持文件共享，但附加 Azure Stack 存储帐户下仍会显示“文件共享”节点。
 * 存储资源管理器使用的 Electron shell 在进行某项 GPU（图形处理单元）硬件加速时出现问题。 如果存储资源管理器显示了一个空白（空的）主窗口，则可以尝试从命令行启动存储资源管理器，并通过添加 `--disable-gpu` 开关禁用 GPU 加速。
@@ -948,7 +950,7 @@ ms.locfileid: "77068128"
     ./StorageExplorer.exe --disable-gpu
     ```
 
-* 对于 Linux 用户，需要安装 [.NET Core 2.0](https://docs.microsoft.com/dotnet/core/linux-prerequisites?view=azure-dotnet?tabs=netcore2x)。
+* 对于 Linux 用户，需要安装 [.NET Core 2.0](https://dotnet.microsoft.com/download/dotnet-core/2.0)。
 * 对于 Ubuntu 14.04 用户，需确保 GCC 是最新版本 - 为此，可运行以下命令并重启计算机：
 
     ```
@@ -980,7 +982,7 @@ ms.locfileid: "77068128"
    * 自定义要附加的资源的显示名称。 [#31](https://github.com/Microsoft/AzureStorageExplorer/issues/31)
    * 附加到使用不同端口的多个本地模拟器。 [#193](https://github.com/Microsoft/AzureStorageExplorer/issues/193)
    * 将附加的资源添加到“快速访问”。 [#392](https://github.com/Microsoft/AzureStorageExplorer/issues/392)
-* 存储资源管理器现在支持软删除。 方法：
+* 存储资源管理器现在支持软删除。 你可以：
    * 通过右键单击你的存储帐户的“Blob 容器”节点来配置软删除策略。
    * 通过在导航栏旁边的下拉列表中选择“活动的和已删除的 Blob”在 Blob 编辑器中查看软删除的 Blob。
    * 撤消删除已删除的 Blob。
@@ -999,7 +1001,7 @@ ms.locfileid: "77068128"
 * 由于 NodeJS 中的 bug，从 OneDrive 文件夹上传不正常工作。 该 bug 已修复，但尚未集成到 Electron 中。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是[此处](https://github.com/Azure/azure-storage-node/issues/317)介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * 尽管 Azure Stack 当前不支持文件共享，但附加 Azure Stack 存储帐户下仍会显示“文件共享”节点。
 * 存储资源管理器使用的 Electron shell 在进行某项 GPU（图形处理单元）硬件加速时出现问题。 如果存储资源管理器显示了一个空白（空的）主窗口，则可以尝试从命令行启动存储资源管理器，并通过添加 `--disable-gpu` 开关禁用 GPU 加速。
@@ -1008,7 +1010,7 @@ ms.locfileid: "77068128"
     ./StorageExplorer.exe --disable-gpu
     ```
 
-* 对于 Linux 用户，需要安装 [.NET Core 2.0](https://docs.microsoft.com/dotnet/core/linux-prerequisites?view=azure-dotnet?tabs=netcore2x)。
+* 对于 Linux 用户，需要安装 [.NET Core 2.0](https://dotnet.microsoft.com/download/dotnet-core/2.0)。
 * 对于 Ubuntu 14.04 用户，需确保 GCC 是最新版本 - 为此，可运行以下命令并重启计算机：
 
     ```
@@ -1031,7 +1033,7 @@ ms.locfileid: "77068128"
 * 现在支持访问静态网站使用的 $web 容器。 这使你可以轻松上传和管理网站使用的文件和文件夹。 [#223](https://github.com/Microsoft/AzureStorageExplorer/issues/223)
 * macOS 上的应用栏已经重新组织。 更改包括“文件”菜单、一些快捷键更改以及应用菜单下的几个新命令。 [#99](https://github.com/Microsoft/AzureStorageExplorer/issues/99)
 * 用于登录到 Azure 美国政府的颁发机构终结点已更改为 https://login.chinacloudapi.cn/
-* 辅助功能：当屏幕阅读器处于活动状态时，键盘导航现在可以与用于在右侧显示项目的表格配合使用。 可以使用箭头键在行和列中导航，使用 Enter 调用默认操作，使用上下文菜单键打开项目的上下文菜单，使用 Shift 或 Control 进行多选。 [#103](https://github.com/Microsoft/AzureStorageExplorer/issues/103)
+* 可访问性：当屏幕阅读器处于活动状态时，键盘导航现在可以与用于在右侧显示项目的表格配合使用。 可以使用箭头键在行和列中导航，使用 Enter 调用默认操作，使用上下文菜单键打开项目的上下文菜单，使用 Shift 或 Control 进行多选。 [#103](https://github.com/Microsoft/AzureStorageExplorer/issues/103)
 
 ### <a name="fixes"></a>修复项
 *  在某些计算机上，子进程需要很长时间才能启动。 当发生这种情况时，会出现“子进程无法及时启动”错误。 分配给子进程用于启动的时间现在已经从 20 秒增加到 90 秒。 如果仍然受此问题影响，请对链接的 GitHub 问题发表评论。 [#281](https://github.com/Microsoft/AzureStorageExplorer/issues/281)
@@ -1039,11 +1041,11 @@ ms.locfileid: "77068128"
 * 为容器设置公共访问级别将删除所有访问策略，反之亦然。 现在，在设置两者中的任何一个时，都会保留公共访问级别和访问策略。 [#197](https://github.com/Microsoft/AzureStorageExplorer/issues/197)
 * “AccessTierChangeTime”在“属性”对话框中被截断。 此问题已解决。 [#145](https://github.com/Microsoft/AzureStorageExplorer/issues/145)
 * “创建新目录”对话框中缺少“Microsoft Azure 存储资源管理器 -”前缀。 此问题已解决。 [#299](https://github.com/Microsoft/AzureStorageExplorer/issues/299)
-* 辅助功能：使用 VoiceOver 时很难在“添加实体”对话框中导航。 已进行改进。 [#206](https://github.com/Microsoft/AzureStorageExplorer/issues/206)
-* 辅助功能：“操作和属性”窗格的“折叠/展开”按钮的背景颜色与“高对比度黑色”主题中的类似 UI 控件不一致。 颜色已更改。 [#123](https://github.com/Microsoft/AzureStorageExplorer/issues/123)
-* 辅助功能：在“高对比度黑色”主题中，“属性”对话框中“X”按钮的焦点样式不可见。 此问题已解决。 [#243](https://github.com/Microsoft/AzureStorageExplorer/issues/243)
-* 辅助功能：“操作”和“属性”选项卡缺少几个 aria 值，这导致了低于标准的屏幕阅读器体验。 现在已经添加了缺失的 aria 值。 [#316](https://github.com/Microsoft/AzureStorageExplorer/issues/316)
-* 辅助功能：左侧的折叠树节点未被赋予 aria 扩展值 false。 此问题已解决。 [#352](https://github.com/Microsoft/AzureStorageExplorer/issues/352)
+* 可访问性：使用 VoiceOver 时很难在“添加实体”对话框中导航。 已进行改进。 [#206](https://github.com/Microsoft/AzureStorageExplorer/issues/206)
+* 可访问性：“操作和属性”窗格的“折叠/展开”按钮的背景颜色与“高对比度黑色”主题中的类似 UI 控件不一致。 颜色已更改。 [#123](https://github.com/Microsoft/AzureStorageExplorer/issues/123)
+* 可访问性：在“高对比度黑色”主题中，“属性”对话框中“X”按钮的焦点样式不可见。 此问题已解决。 [#243](https://github.com/Microsoft/AzureStorageExplorer/issues/243)
+* 可访问性：“操作”和“属性”选项卡缺少几个 aria 值，这导致了低于标准的屏幕阅读器体验。 现在已经添加了缺失的 aria 值。 [#316](https://github.com/Microsoft/AzureStorageExplorer/issues/316)
+* 可访问性：左侧的折叠树节点未被赋予 aria 扩展值 false。 此问题已解决。 [#352](https://github.com/Microsoft/AzureStorageExplorer/issues/352)
 
 ### <a name="known-issues"></a>已知问题
 * 从通过 SAS URI 附加的资源（例如 Blob 容器）进行分离可能会导致一个错误，该错误会阻止其他附件正确显示。 若要解决此问题，只需刷新组节点。 有关详细信息，请参阅[此问题](https://github.com/Microsoft/AzureStorageExplorer/issues/537)。
@@ -1053,7 +1055,7 @@ ms.locfileid: "77068128"
 * 由于 NodeJS 中的 bug，从 OneDrive 文件夹上传不正常工作。 该 bug 已修复，但尚未集成到 Electron 中。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是[此处](https://github.com/Azure/azure-storage-node/issues/317)介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * Azure Stack 不支持以下功能，在使用 Azure Stack 时尝试使用这些功能可能会导致出现意外错误：
    * 文件共享
@@ -1113,7 +1115,7 @@ ms.locfileid: "77068128"
 * 由于 NodeJS 中的 bug，从 OneDrive 文件夹上传不正常工作。 该 bug 已修复，但尚未集成到 Electron 中。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是[此处](https://github.com/Azure/azure-storage-node/issues/317)介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * 尽管 Azure Stack 当前不支持文件共享，但附加 Azure Stack 存储帐户下仍会显示“文件共享”节点。
 * 存储资源管理器使用的 Electron shell 在进行某项 GPU（图形处理单元）硬件加速时出现问题。 如果存储资源管理器显示了一个空白（空的）主窗口，则可以尝试从命令行启动存储资源管理器，并通过添加 `--disable-gpu` 开关禁用 GPU 加速。
@@ -1143,7 +1145,7 @@ ms.locfileid: "77068128"
 
 ### <a name="new"></a>新建
 * 存储资源管理器现在支持使用 Azurite。 请注意：与 Azurite 的连接已硬编码到默认开发终结点。
-* 存储资源管理器现在仅支持 Blob 的访问层和 GPV2 存储帐户。 在[此处](/storage/blobs/storage-blob-storage-tiers)详细了解访问层。
+* 存储资源管理器现在仅支持 Blob 的访问层和 GPV2 存储帐户。 在[此处](https://docs.azure.cn/storage/blobs/storage-blob-storage-tiers)详细了解访问层。
 * 生成 SAS 时不再需要开始时间。
 
 ### <a name="fixes"></a>修复项
@@ -1167,7 +1169,7 @@ ms.locfileid: "77068128"
 * 由于 NodeJS 中的 bug，从 OneDrive 文件夹上传不正常工作。 该 bug 已修复，但尚未集成到 Electron 中。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是[此处](https://github.com/Azure/azure-storage-node/issues/317)介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * 尽管 Azure Stack 当前不支持文件共享，但附加 Azure Stack 存储帐户下仍会显示“文件共享”节点。
 * 存储资源管理器使用的 Electron shell 在进行某项 GPU（图形处理单元）硬件加速时出现问题。 如果存储资源管理器显示了一个空白（空的）主窗口，则可以尝试从命令行启动存储资源管理器，并通过添加 `--disable-gpu` 开关禁用 GPU 加速。
@@ -1201,9 +1203,9 @@ ms.locfileid: "77068128"
 * 对于由 AAD 提供支持的 Azure Stack 帐户，当已启用“目标 Azure Stack”时，存储资源管理器现在会检索 Azure Stack 订阅。 不再需要创建自定义登录环境。
 * 添加了几个快捷方式以启用更快的导航。 这些快捷方式包括切换各种面板和在编辑器之间移动。 有关更多详细信息，请参阅“视图”菜单。
 * 存储资源管理器反馈现在位于 GitHub 上。 可以通过单击左下方的“反馈”按钮或通过转到 [https://github.com/Microsoft/AzureStorageExplorer/issues](https://github.com/Microsoft/AzureStorageExplorer/issues) 来访问我们的问题页面。 请随意提出建议、报告问题、提出问题或留下任何其他形式的反馈。
-* 如果遇到 SSL 证书问题但找不到有问题的证书，现在可以从命令行使用 `--ignore-certificate-errors`标志启动存储资源管理器。 使用此标志启动时，存储资源管理器会忽略 SSL 证书错误。
+* 如果遇到 TLS/SSL 证书问题但找不到有问题的证书，现在可以从命令行使用 `--ignore-certificate-errors` 标志启动存储资源管理器。 使用此标志启动时，存储资源管理器会忽略 TLS/SSL 证书错误。
 * 现在，在 blob 和文件项的上下文菜单中将出现“下载”选项。
-* 改进了辅助功能和屏幕阅读器支持。 如果依赖于辅助功能，请参阅我们的[辅助功能文档](/vs-azure-tools-storage-explorer-accessibility)了解详细信息。
+* 改进了辅助功能和屏幕阅读器支持。 如果依赖于辅助功能，请参阅我们的[辅助功能文档](https://docs.azure.cn/vs-azure-tools-storage-explorer-accessibility)了解详细信息。
 * 存储资源管理器现在使用 Electron 1.8.3
 
 ### <a name="breaking-changes"></a>重大更改
@@ -1233,7 +1235,7 @@ ms.locfileid: "77068128"
 * 在极少数情况下，树焦点可能会停滞在“快速访问”上。 要使焦点取消停滞，可以单击“全部刷新”。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是此处介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * 尽管 Azure Stack 当前不支持文件共享，但附加 Azure Stack 存储帐户下仍会显示“文件共享”节点。
 * 存储资源管理器使用的 Electron shell 在进行某项 GPU（图形处理单元）硬件加速时出现问题。 如果存储资源管理器显示了一个空白（空的）主窗口，则可以尝试从命令行启动存储资源管理器，并通过添加 `--disable-gpu` 开关禁用 GPU 加速。
@@ -1269,7 +1271,7 @@ ms.locfileid: "77068128"
 * 存储资源管理器不支持 ADFS 帐户。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是[此处](https://github.com/Azure/azure-storage-node/issues/317)介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 帐户设置面板可能显示需重新输入凭据以筛选订阅。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * 尽管 Azure Stack 当前不支持文件共享，但附加 Azure Stack 存储帐户下仍会显示“文件共享”节点。
@@ -1312,13 +1314,13 @@ ms.locfileid: "77068128"
 
 ### <a name="fixes"></a>修复项
 * 启动性能得到改进。
-* 修复了多个 Bug。
+* 各种 bug 修补程序。
 
 ### <a name="known-issues"></a>已知问题
 * 存储资源管理器不支持 ADFS 帐户。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是此处介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 帐户设置面板可能显示需重新输入凭据以筛选订阅。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * 尽管 Azure Stack 当前不支持文件共享，但附加 Azure Stack 存储帐户下仍会显示“文件共享”节点。
@@ -1347,25 +1349,25 @@ ms.locfileid: "77068128"
 2018 年 1 月 21 日
 
 ### <a name="new"></a>新建
-* 出现以下情况时，会重复使用现有的存储资源管理器窗口：
-    * 打开在存储资源管理器中生成的直接链接。
-    * 从门户中打开存储资源管理器。
+* 在以下情况下，将重新使用现有的存储资源管理器窗口：
+    * 打开存储资源管理器中生成的直接链接。
+    * 从门户打开存储资源管理器。
     * 从 Azure 存储 VS Code 扩展（即将推出）打开存储资源管理器。
-* 增加了从存储资源管理器内部打开新的存储资源管理器窗口的功能。
-    * 对于 Windows，在“文件菜单”下以及任务栏的上下文菜单中有一个“新建窗口”选项。
-    * 对于 Mac，在“应用菜单”下有一个“新建窗口”选项。
+* 增加了从存储资源管理器内部打开新存储资源管理器窗口的功能。
+    * 对于 Windows，文件菜单下以及任务栏的上下文菜单中有一个“新建窗口”选项。
+    * 对于 Mac，应用菜单下有一个“新建窗口”选项。
 
 ### <a name="fixes"></a>修复项
 * 修复了安全性问题。 请尽早升级到 0.9.4。
-* 旧活动未正确清理。 这影响了长期运行的作业的性能。 这些活动现在可以正确清理。
-* 涉及大量文件和目录的操作有时会导致存储资源管理器冻结。 现在限制了对 Azure 的文件共享请求，以限制系统资源的使用。
+* 以前不会适当地清理旧活动。 这影响了长时间运行的作业的性能。 现在会正确清理旧活动。
+* 涉及大量文件和目录的操作有时可能导致存储资源管理器冻结。 现在限制了对 Azure 的文件共享请求，以限制系统资源的使用。
 
 ### <a name="known-issues"></a>已知问题
 * 存储资源管理器不支持 ADFS 帐户。
 * “查看资源管理器”和“查看帐户管理”的快捷键应当分别为 Ctrl/Cmd+Shift+E 和 Ctrl/Cmd+Shift+A。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是此处介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 帐户设置面板可能显示需重新输入凭据以筛选订阅。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * 尽管 Azure Stack 当前不支持文件共享，但附加 Azure Stack 存储帐户下仍会显示“文件共享”节点。
@@ -1429,7 +1431,7 @@ ms.locfileid: "77068128"
 * “查看资源管理器”和“查看帐户管理”的快捷键应当分别为 Ctrl/Cmd+Shift+E 和 Ctrl/Cmd+Shift+A。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是此处介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 帐户设置面板可能显示需重新输入凭据以筛选订阅。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * 尽管 Azure Stack 当前不支持文件共享，但附加 Azure Stack 存储帐户下仍会显示“文件共享”节点。
@@ -1485,7 +1487,7 @@ ms.locfileid: "77068128"
 * “查看资源管理器”和“查看帐户管理”的快捷键应当分别为 Ctrl/Cmd+Shift+E 和 Ctrl/Cmd+Shift+A。
 * 当以 Azure Stack 为目标时，将某些文件作为追加 blob 进行上传可能会失败。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是因为我们使用的是此处介绍的“取消筛选”解决办法。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 帐户设置面板可能显示需重新输入凭据以筛选订阅。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * 尽管 Azure Stack 当前不支持文件共享，但附加 Azure Stack 存储帐户下仍会显示“文件共享”节点。
@@ -1530,8 +1532,8 @@ ms.locfileid: "77068128"
 * 目前无法正常使用名称和密钥连接字符串。 下一个版本会修复此问题。 在此之前，可以使用附加名称和密钥的功能。
 * 如果尝试打开具有无效 Windows 文件名的文件，下载操作会导致“找不到文件”错误。
 * 对任务单击“取消”后，可能需要一段时间才能取消该任务。 这是 Azure 存储节点库的局限性。
-* 完成 Blob 上传后，系统会刷新启动上传的选项卡。 这是对以前行为的更改，也将导致回转到所在容器的根目录中。
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择。
+* 完成 blob 上传后，系统会刷新启动上传的选项卡。 这是对以前行为的更改，也将导致回转到所在容器的根目录中。
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择。
 * 帐户设置面板可能显示需重新输入凭据以筛选订阅。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * 尽管 Azure Stack 当前不支持文件共享，但附加 Azure Stack 存储帐户下仍会显示“文件共享”节点。
@@ -1556,15 +1558,15 @@ ms.locfileid: "77068128"
 ### <a name="new"></a>新建
 
 * 已将 Electron 版本更新为 1.7.2，以便利用若干关键安全更新
-* 现可从帮助菜单快速访问联机故障排除指南
-* 存储资源管理器故障排除[指南][2]
-* 有关连接到 Azure Stack 订阅的[说明][3]
+* 现可从帮助菜单快速访问联机疑难解答指南
+* 存储资源管理器疑难解答[指南][2]
+* 连接到 Azure Stack 订阅相关[说明][3]
 
 ### <a name="known-issues"></a>已知问题
 
 * 用鼠标单击 Linux 中删除文件夹确认对话框上的按钮无反应。 解决方法是使用 Enter 键
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择
-* 同时上传 3 组以上的 Blob 或文件可能导致错误
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择
+* 同时上传 3 组以上的 blob 或文件可能导致错误
 * 帐户设置面板可能显示需重新输入凭据才能筛选订阅
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * 尽管 Azure Stack 当前不支持文件共享，但附加 Azure Stack 存储帐户下仍会显示“文件共享”节点。
@@ -1582,12 +1584,12 @@ ms.locfileid: "77068128"
 
 #### <a name="new"></a>新建
 
-* 存储资源管理器故障排除[指南][2]
-* 有关连接到 Azure Stack 订阅的[说明][3]
+* 存储资源管理器疑难解答[指南][2]
+* 连接到 Azure Stack 订阅相关[说明][3]
 
 #### <a name="fixes"></a>修复项
 
-* 已修复：文件上传很可能导致内存不足的错误
+* 已修复：文件上传很可能导致内存不足错误
 * 已修复：现可使用 PIN/智能卡登录
 * 已修复：在门户中打开现适用于 Azure 中国世纪互联、Azure Germany、Azure US Government 和 Azure Stack
 * 已修复：将文件夹上传到 blob 容器中时，“非法操作”错误时有发生
@@ -1596,9 +1598,9 @@ ms.locfileid: "77068128"
 
 #### <a name="known-issues"></a>已知问题
 
-* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器，使其忘记该选择
+* 如果选择错误的 PIN/智能卡证书，需要重启存储资源管理器使其忘记该选择
 * 放大或缩小时，缩放级别可能暂时重置为默认级别
-* 同时上传 3 组以上的 Blob 或文件可能导致错误
+* 同时上传 3 组以上的 blob 或文件可能导致错误
 * 帐户设置面板可能显示需重新输入凭据才能筛选订阅
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * 尽管 Azure Stack 当前不支持文件共享，但附加 Azure Stack 存储帐户下仍会显示“文件共享”节点。
@@ -1619,29 +1621,29 @@ ms.locfileid: "77068128"
 
 * 如今，如果从更新通知安装更新，存储资源管理器会自动关闭
 * 对使用经常访问的资源而言，就地快速访问提供增强的体验
-* 在 Blob 容器编辑器中，现可查看租用 Blob 所属的虚拟机
+* 在 Blob 容器编辑器中，现可查看租用 blob 所属的虚拟机
 * 现可折叠左侧面板
 * 发现现与下载同时运行
 * 在 Blob 容器、文件共享和表编辑器中使用统计信息来查看资源或所选内容的大小
 * 现可登录到基于 Azure Active Directory (AAD) 的 Azure Stack 帐户。
 * 现可将超过 32 MB 的存档文件上传到高级存储帐户
 * 改进的辅助功能支持
-* 现可通过转到“编辑”-&gt;“SSL 证书”-&gt;“导入证书”来添加受信任的 Base-64 编码 X.509 SSL 证书
+* 现可通过转到“编辑”-&gt;“TLS/SSL 证书”-&gt;“导入证书”来添加受信任的 Base-64 编码 X.509 TLS/SSL 证书
 
 #### <a name="fixes"></a>修复项
 
 * 已修复：刷新帐户凭据后，树状视图有时不会自动刷新
-* 已修复：为模拟器队列和表生成 SAS 会导致无效的 URL
+* 已修复：为仿真器队列和表生成 SAS 会导致无效的 URL
 * 已修复：现可在启用代理时扩展高级存储帐户
 * 已修复：如果选择了 1 个或 0 个帐户，帐户管理页上的应用按钮无效
-* 已修复：上传需要解决冲突的 Blob 可能失败 - 已在 0.8.11 中修复
+* 已修复：上传需要解决冲突的 blob 可能失败 - 已在 0.8.11 中修复
 * 已修复：0.8.11 中正在发送的反馈损坏 - 已在 0.8.12 中修复
 
 #### <a name="known-issues"></a>已知问题
 
 * 升级到 0.8.10 后，需要刷新所有凭据。
 * 放大或缩小时，缩放级别可能暂时重置为默认级别。
-* 同时上传 3 组以上的 Blob 或文件可能导致错误。
+* 同时上传 3 组以上的 blob 或文件可能导致错误。
 * 帐户设置面板可能显示需重新输入凭据才能筛选订阅。
 * 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据。
 * 尽管 Azure Stack 当前不支持文件共享，但附加 Azure Stack 存储帐户下仍会显示“文件共享”节点。
@@ -1654,6 +1656,7 @@ ms.locfileid: "77068128"
     sudo apt-get dist-upgrade
     ```
 
+
 ### <a name="version-089-and-088"></a>版本 0.8.9 和 0.8.8
 2017/02/23
 
@@ -1661,10 +1664,10 @@ ms.locfileid: "77068128"
 
 * 存储资源管理器 0.8.9 自动下载最新版本进行更新。
 * 修补程序：使用门户生成的 SAS URI 附加存储帐户会导致错误。
-* 现可创建、管理和提升 Blob 快照。
+* 现可创建、管理和提升 blob 快照。
 * 现可登录 Azure 中国世纪互联、Azure Germany、Azure US Government 帐户。
 * 现可更改缩放级别。 使用“视图”菜单中的选项放大、缩小和重置缩放。
-* 现支持在 Blob 和文件的用户元数据中使用 Unicode 字符。
+* 现支持在 blob 和文件的用户元数据中使用 Unicode 字符。
 * 辅助功能改进。
 * 可从更新通知中查看下一版本的发行说明。 还可从“帮助”菜单查看当前发行说明。
 
@@ -1679,8 +1682,8 @@ ms.locfileid: "77068128"
 
 * 放大或缩小时，缩放级别可能暂时重置为默认级别。
 * 快速访问仅适用于基于订阅的项。 此版本不支持本地资源或通过密钥或 SAS 令牌附加的资源。
-* 快速访问可能需要几秒钟时间导航至目标资源，具体取决于拥有的资源数。
-* 同时上传 3 组以上的 Blob 或文件可能导致错误。
+* 快速访问可能需要几秒钟时间导航至目标资源，具体取决于所拥有的资源数。
+* 同时上传 3 组以上的 blob 或文件可能导致错误。
 
 2016/12/16
 ### <a name="version-087"></a>版本 0.8.7
@@ -1705,7 +1708,7 @@ ms.locfileid: "77068128"
 
 * 快速访问仅适用于基于订阅的项。 此版本不支持本地资源或通过密钥或 SAS 令牌附加的资源
 * 快速访问可能需要几秒钟时间导航至目标资源，具体取决于所拥有的资源数
-* 同时上传 3 组以上的 Blob 或文件可能导致错误
+* 同时上传 3 组以上的 blob 或文件可能导致错误
 * 搜索功能会处理作用范围约 50,000 个节点的搜索操作，之后，如超过此范围，则性能可能会受影响，或导致未经处理的异常
 * 第一次在 macOS 上使用存储资源管理器时，可能会出现多个请求用户提供密钥链访问权限的提示。 建议选择“始终允许”，使提示不再显示
 
@@ -1725,12 +1728,12 @@ ms.locfileid: "77068128"
 * 可修改 Blob 和文件属性
 * 现在支持编码 (base64) 和未编码的队列消息
 * 对于 Linux，现要求 64 位操作系统。 对于此版本，仅支持 64 位 Ubuntu 16.04.1 LTS
-* 我们已更新徽标！
+* 已更新徽标！
 
 #### <a name="fixes"></a>修复项
 
 * 已修复：屏幕死机问题
-* 已修复：增强的安全性
+* 已修复：安全性已增强
 * 已修复：有时可能会出现重复的附加帐户
 * 已修复：具有未定义内容类型的 blob 可能产生异常
 * 已修复：不能在空表上打开“查询面板”
@@ -1744,10 +1747,10 @@ ms.locfileid: "77068128"
 * 若要为同一资源打开多个选项卡，请勿连续单击同一资源。 单击另一资源，然后返回，然后单击原始资源以在另一选项卡中再次打开
 * 快速访问仅适用于基于订阅的项。 此版本不支持本地资源或通过密钥或 SAS 令牌附加的资源
 * 快速访问可能需要几秒钟时间导航至目标资源，具体取决于所拥有的资源数
-* 同时上传 3 组以上的 Blob 或文件可能导致错误
+* 同时上传 3 组以上的 blob 或文件可能导致错误
 * 搜索功能会处理作用范围约 50,000 个节点的搜索操作，之后，如超过此范围，则性能可能会受影响，或导致未经处理的异常
 
-2016/10/03
+10/03/2016
 ### <a name="version-085"></a>版本 0.8.5
 
 #### <a name="new"></a>新建
@@ -1773,11 +1776,11 @@ ms.locfileid: "77068128"
 
 #### <a name="new"></a>新建
 
-* 生成指向存储帐户、容器、队列、表或文件共享的直接链接，以便共享和轻松访问资源 - Windows 和 Mac OS 支持
+* 生成指向存储帐户、容器、队列、表或文件共享的直接链接，以便共享和轻松访问资源 - Windows 和 Mac 操作系统支持
 * 从搜索框搜索 blob 容器、表、队列、文件共享或存储帐户
 * 现可在表查询生成器中对子句进行分组
-* 从 SAS 附加帐户和容器中重命名并复制/粘贴 Blob 容器、文件共享、表、Blob、Blob 文件夹、文件和目录
-* 重命名和复制 Blob 容器和文件共享现可保留属性和元数据
+* 从 SAS 附加帐户和容器中重命名并复制/粘贴 blob 容器、文件共享、表、blob、blob 文件夹、文件和目录
+* 重命名和复制 blob 容器和文件共享现可保留属性和元数据
 
 #### <a name="fixes"></a>修复项
 
@@ -1795,7 +1798,7 @@ ms.locfileid: "77068128"
 * 重命名容器、表和文件共享
 * 提升了查询生成器体验
 * 能够保存和加载查询
-* 存储帐户或容器、队列、表或文件共享的直接链接，以便共享和轻松访问资源（仅限 Windows - macOS 支持即将推出！）
+* 存储帐户或容器、队列、表或文件共享的直接链接，以便共享和轻松访问资源（即将推出仅 Windows 和 macOS 支持！）
 * 能够管理和配置 CORS 规则
 
 #### <a name="fixes"></a>修复项
@@ -1807,8 +1810,8 @@ ms.locfileid: "77068128"
 * 有时 UI 可能出现冻结 - 窗口最大化可帮助解决此问题
 * macOS 安装可能需要提升的权限
 * 帐户设置面板可能显示需重新输入凭据才能筛选订阅
-* 重命名文件共享、Blob 容器和表不会保留容器中的元数据或其他属性，例如文件共享配额、公共访问级别或访问策略
-* 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间会保留 blob、文件和实体的所有其他属性及元数据
+* 重命名文件共享、blob 容器和表不会保留容器中的元数据或其他属性，例如文件共享配额、公共访问级别或访问策略
+* 重命名 blob（单独地或在已重命名的 blob 容器中）不保留快照。 重命名期间保留 blob、文件和实体的所有其他属性和元数据
 * 在 SAS 附加帐户中，复制或重命名资源无法正常工作
 
 2016/07/07
@@ -1819,8 +1822,8 @@ ms.locfileid: "77068128"
 * 存储帐户按订阅分组；通过密钥或 SAS 附加的开发存储和资源显示在（本地和附加）节点下
 * 从“Azure 帐户设置”面板注销帐户
 * 配置代理设置以启用和管理登录
-* 创建和中断 Blob 租用
-* 通过单击打开 Blob 容器、队列、表和文件
+* 创建和中断 blob 租用
+* 通过单击打开 blob 容器、队列、表和文件
 
 #### <a name="fixes"></a>修复项
 
@@ -1841,12 +1844,12 @@ ms.locfileid: "77068128"
 * 改进了使用 SAS URI 或帐户密钥连接到存储的用户体验
 * 导出表查询结果
 * 表列重新排序和自定义
-* 查看含已启用指标的存储帐户 $logs Blob 容器和 $metrics 表
+* 查看含已启用指标的存储帐户 $logs blob 容器和 $metrics 表
 * 改进了导出和导入行为，现包括属性值类型
 
 #### <a name="fixes"></a>修复项
 
-* 已修复：上传或下载大型 Blob 可能导致上传/下载不完整
+* 已修复：上传或下载大型 blob 可能导致上传/下载不完整
 * 已修复：编辑、添加或导入具有数值字符串值（“1”）的实体会将其转换为双精度
 * 已修复：无法在本地开发环境中展开表节点
 
@@ -1864,11 +1867,11 @@ ms.locfileid: "77068128"
 
 #### <a name="fixes"></a>修复项
 
-* 修复了需要登录凭据时信息栏消息有时不显示的 Bug
+* 修复了需要登录凭据时信息栏消息有时不显示的 bug
 
 #### <a name="known-issues"></a>已知问题
 
-* 表：添加、编辑或导入其属性具有不明确数值（如“1”或“1.0”）的实体，并且用户尝试将其作为 `Edm.String` 发送，该值将通过客户端 API 作为 Edm.Double 返回
+* 表：添加、编辑或导入具有不明确数值（如“1”或“1.0”）的属性的实体，并且用户尝试将其作为 `Edm.String` 发送，该值将通过客户端 API 作为 Edm.Double 返回
 
 2016/03/31
 
@@ -1889,7 +1892,7 @@ ms.locfileid: "77068128"
 
 ### <a name="known-issues-amp-mitigations"></a>已知问题 &amp; 缓解措施
 
-* 大型 Blob 文件无法正常下载 - 建议在我们处理此问题期间使用 AzCopy
+* 大型 blob 文件无法正常下载 - 建议在我们处理此问题期间使用 AzCopy
 * 如果无法找到或无法写入主文件夹，则不会检索或缓存帐户凭据
 * 如果正在添加、编辑或导入具有不明确数值（如“1”或“1.0”）的属性的实体，并且用户尝试将其作为 `Edm.String` 发送，则该值将通过客户端 API 作为 Edm.Double 返回
 * 导入包含多行记录的 CSV 文件时，数据可能被截或加密
@@ -1900,7 +1903,7 @@ ms.locfileid: "77068128"
 
 #### <a name="fixes"></a>修复项
 
-* 上传、下载和复制 Blob 时整体性能提升
+* 上传、下载和复制 blob 时整体性能提升
 
 2016/01/14
 
@@ -1909,21 +1912,21 @@ ms.locfileid: "77068128"
 #### <a name="new"></a>新建
 
 * Linux 支持（OSX 的奇偶校验功能）
-* 添加具有共享访问签名 (SAS) 密钥的 Blob 容器
+* 添加具有共享访问签名 (SAS) 密钥的 blob 容器
 * 添加 Azure 中国世纪互联的存储帐户
 * 添加具有自定义终结点的存储帐户
 * 打开并查看内容文本和图片 blob
-* 查看和编辑 blob 属性及元数据
+* 查看和编辑 blob 属性和元数据
 
 #### <a name="fixes"></a>修复项
 
-* 已修复：上传或下载大量 Blob (500+) 有时可能导致应用白屏
-* 已修复：设置 Blob 容器公共访问级别时，新值在重置容器焦点前不会更新。 此外，对话框始终默认为“无公共访问”，而不是实际的当前值。
+* 已修复：上传或下载大量 blob (500+) 有时可能导致应用白屏
+* 已修复：设置 blob 容器公共访问级别时，新值在重置容器焦点前不会更新。 此外，对话框始终默认为“无公共访问”，而不是实际的当前值。
 * 总体更佳的键盘/辅助功能和 UI 支持
 * 痕迹导航历史记录文本在出现较长空格时换行
 * SAS 对话框支持输入验证
 * 即使用户凭据已过期，本地存储仍然可用
-* 删除打开的 Blob 容器后，右侧的 Blob 资源管理器关闭
+* 删除打开的 blob 容器后，右侧的 blob 资源管理器关闭
 
 #### <a name="known-issues"></a>已知问题
 
@@ -1942,12 +1945,12 @@ ms.locfileid: "77068128"
 * 登录查看存储帐户 - 使用组织帐户、Azure 帐户、2FA 等。
 * 本地开发存储（使用存储模拟器，仅限 Windows）
 * Azure 资源管理器和经典资源支持
-* 创建和删除 Blob、队列或表
-* 搜索特定 Blob、队列或表
-* 浏览 Blob 容器的内容
+* 创建和删除 blob、队列或表
+* 搜索特定 blob、队列或表
+* 浏览 blob 容器的内容
 * 查看和浏览目录
-* 上传、下载和删除 Blob 和文件夹
-* 查看和编辑 blob 属性及元数据
+* 上传、下载和删除 blob 和文件夹
+* 查看和编辑 blob 属性和元数据
 * 生成 SAS 密钥
 * 管理和创建存储访问策略 (SAP)
 * 按前缀搜索 blob
@@ -1955,14 +1958,17 @@ ms.locfileid: "77068128"
 
 #### <a name="known-issues"></a>已知问题
 
-* 设置 Blob 容器公共访问级别时，新值在重置容器焦点前不会更新
+* 设置 blob 容器公共访问级别时，新值在重置容器焦点前不会更新
 * 打开设置公共访问级别的对话框时，始终显示“无公共访问”作为默认值，而不是实际的当前值
-* 无法重命名已下载 Blob
+* 无法重命名已下载 blob
 * 出现错误且不显示该错误时，活动日志条目有时会“停滞”在正在进行状态
-* 尝试上传或下载大量 Blob 时，系统有时会崩溃或完全白屏
+* 尝试上传或下载大量 blob 时，系统有时会崩溃或完全白屏
 * 取消复制操作有时无效
-* 在创建容器（Blob/队列/表）期间，如果输入无效名称并继续创建不同容器类型的另一容器，则不能对新类型设置焦点
+* 在创建容器（blob/队列/表）期间，如果输入无效名称并继续创建不同容器类型的另一容器，则不能对新类型设置焦点
 * 无法创建新文件夹或重命名文件夹
+
+
+
 
 [2]: https://support.microsoft.com/help/4021389/storage-explorer-troubleshooting-guide
 [3]: vs-azure-tools-storage-manage-with-storage-explorer.md

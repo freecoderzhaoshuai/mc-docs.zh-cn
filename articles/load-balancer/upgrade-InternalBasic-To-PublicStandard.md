@@ -1,5 +1,5 @@
 ---
-title: 从基本公共版升级到标准公共版 - Azure 负载均衡器
+title: 从基本内部版升级到标准公共版 - Azure 负载均衡器
 description: 本文介绍如何将 Azure 基本内部负载均衡器升级到标准公共负载均衡器
 services: load-balancer
 author: WenJason
@@ -8,12 +8,12 @@ ms.topic: how-to
 origin.date: 01/23/2020
 ms.date: 07/20/2020
 ms.author: v-jay
-ms.openlocfilehash: 171cdef4bdfe9a5700d46a3a8e350ffae5a87903
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.openlocfilehash: 9680776283331028cbfda2856c98ce3f0c20a57d
+ms.sourcegitcommit: f8ed85740f873c15c239ab6ba753e4b76e030ba7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440339"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045757"
 ---
 # <a name="upgrade-azure-internal-load-balancer---outbound-connection-required"></a>升级 Azure 内部负载均衡器 - 需要出站连接
 [Azure 标准负载均衡器](load-balancer-overview.md)提供丰富的功能和高可用性。 有关负载均衡器 SKU 的详细信息，请参阅[比较表](/load-balancer/skus#skus)。 由于标准内部负载均衡器不提供出站连接，因此我们提供了一个解决方案，改为创建标准公共负载均衡器。

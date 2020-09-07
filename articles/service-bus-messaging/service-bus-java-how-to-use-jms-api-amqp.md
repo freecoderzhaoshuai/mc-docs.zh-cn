@@ -3,20 +3,27 @@ title: 将 AMQP 与 Java 消息服务 API 及 Azure 服务总线配合使用
 description: 了解如何将 Java 消息服务 (JMS) 用于 Azure 服务总线和高级消息队列协议 (AMQP) 1.0。
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 08/24/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-author: rockboyfor
-ms.custom: seo-java-july2019, seo-java-august2019, seo-java-september2019
-ms.openlocfilehash: 513501662be508859efb813007a964cfee7fe39d
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.custom: seo-java-july2019, seo-java-august2019, seo-java-september2019, devx-track-java
+ms.openlocfilehash: e2ba2112e88ffe0fbdde5d4296f3b3643a05d74d
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162115"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946609"
 ---
 # <a name="use-the-java-message-service-jms-with-azure-service-bus-and-amqp-10"></a>将 Java 消息服务 (JMS) 用于 Azure 服务总线和 AMQP 1.0
+
+> [!WARNING]
+> 下面的指南适用于对 Java 消息服务 (JMS) 1.1 API 的**有限支持**，仅针对 Azure 服务总线标准层。
+>
+> 对 Java 消息服务 (JMS) 2.0 API 的支持只在 [Azure 服务总线高级层（预览版）](how-to-use-java-message-service-20.md)提供，强烈建议使用它。
+>
+
 本文说明了如何通过采用常用 Java 消息服务 (JMS) API 标准的 Java 应用程序使用 Azure 服务总线消息传送功能（队列和发布/订阅主题）。 此处的[随附文章](service-bus-amqp-dotnet.md)解释如何使用 Azure 服务总线 .NET API 来执行相同操作。 使用 AMQP 1.0，可以同时使用以下两个指南来了解跨平台消息。
 
 高级消息队列协议 (AMQP) 1.0 是一个高效、可靠的线级消息传送协议，可用于构建可靠的跨平台消息传送应用程序。
@@ -27,14 +34,14 @@ Azure 服务总线支持 AMQP 1.0，这意味着，可以通过一系列使用�
 此指南假定已有包含名为 `basicqueue` 的队列的服务总线命名空间。 如果没有，则可以使用 [Azure 经典门户](https://portal.azure.cn)[创建命名空间和队列](service-bus-create-namespace-portal.md)。 有关如何创建服务总线命名空间和队列的详细信息，请参阅[服务总线队列入门](service-bus-dotnet-get-started-with-queues.md)。
 
 > [!NOTE]
-> 分区队列和主题也支持 AMQP。 有关详细信息，请参阅[分区消息实体](service-bus-partitioning.md)和[针对服务总线分区队列和主题的 AMQP 1.0 支持](service-bus-partitioned-queues-and-topics-amqp-overview.md)。
+> 分区队列和主题也支持 AMQP。 有关详细信息，请参阅[分区消息实体](service-bus-partitioning.md)和[针对服务总线分区队列和主题的 AMQP 1.0 支持](./service-bus-amqp-protocol-guide.md)。
 > 
 > 
 
 ## <a name="downloading-the-amqp-10-jms-client-library"></a>下载 AMQP 1.0 JMS 客户端库
 有关 Apache Qpid JMS AMQP 1.0 客户端库最新版本的下载地址的信息，请访问 [https://qpid.apache.org/download.html](https://qpid.apache.org/download.html)。
 
-使用 Service Bus 构建和运行 JMS 应用程序时必须将以下 4 个 JAR 文件从 Apache Qpid JMS AMQP 1.0 分发存档添加到 Java CLASSPATH：
+使用服务总线构建和运行 JMS 应用程序时必须将以下 JAR 文件从 Apache Qpid JMS AMQP 1.0 分发存档添加到 Java CLASSPATH：
 
 * geronimo-jms\_1.1\_spec-1.0.jar
 * qpid-jms-client-[version].jar
@@ -126,7 +133,7 @@ hashtable.put("connectionfactory.SBCF", "amqps://" + csb.getEndpoint().getHost()
 hashtable.put("queue.QUEUE", "BasicQueue");
 hashtable.put(Context.INITIAL_CONTEXT_FACTORY, "org.apache.qpid.jms.jndi.JmsInitialContextFactory");
 Context context = new InitialContext(hashtable);
-```
+``` 
 
 ### <a name="a-simple-jms-application-using-a-service-bus-queue"></a>使用服务总线队列的简单 JMS 应用程序
 以下示例程序将 JMS TextMessages 发送到 JNDI 逻辑名称为 QUEUE 的 Service Bus 队列，并接收返回的消息。
@@ -367,7 +374,7 @@ JMS 主题允许客户端动态创建非持久的和持久的订阅者，这样�
 | createTopic                 | 通过管理 API/工具/门户创建主题                                           |
 | unsubscribe                 | 删除主题管理 API/工具/门户                                             |
 | createBrowser               | 不受支持。 使用服务总线 API 的 Peek() 功能                         |
-| createQueue                 | 通过管理 API/工具/门户创建队列                                           |
+| createQueue                 | 通过管理 API/工具/门户创建队列                                           | 
 | createTemporaryQueue        | 通过管理 API/工具/门户创建队列（AutoDeleteOnIdle 被设置为过期期间） |
 | receiveNoWait               | 使用服务总线 SDK 提供的 receive() 方法并指定非常低或为零的超时 |
 
@@ -378,7 +385,7 @@ JMS 主题允许客户端动态创建非持久的和持久的订阅者，这样�
 
 ## <a name="next-steps"></a>后续步骤
 * [Azure 服务总线中的 AMQP 1.0 支持](service-bus-amqp-overview.md)
-* [如何将 AMQP 1.0 与服务总线 .NET API 配合使用](service-bus-dotnet-advanced-message-queuing.md)
+* [如何将 AMQP 1.0 与服务总线 .NET API 配合使用](./service-bus-amqp-dotnet.md)
 * [服务总线 AMQP 1.0 开发人员指南](service-bus-amqp-dotnet.md)
 * [服务总线队列入门](service-bus-dotnet-get-started-with-queues.md)
 * [Java 开发中心](https://docs.azure.cn/develop/java/)

@@ -1,19 +1,19 @@
 ---
-title: Azure 服务总线故障排除指南
+title: Azure 服务总线故障排除指南 | Azure
 description: 本文提供了 Azure 服务总线消息传送异常以及发生异常时建议采取的措施的列表。
 ms.topic: article
-origin.date: 06/23/2020
-ms.date: 07/27/2020
+origin.date: 07/15/2020
+author: rockboyfor
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-author: rockboyfor
-ms.openlocfilehash: 60cafa3dc8a5678a7da2a027bcfb8fae9160a049
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 76298df71ea78c7ed2b34341cfaf8a95b5a77edb
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162261"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946603"
 ---
 # <a name="troubleshooting-guide-for-azure-service-bus"></a>Azure 服务总线故障排除指南
 本文提供的故障排除技巧和建议适用于你在使用 Azure 服务总线时可能会遇到的一些问题。 
@@ -21,7 +21,7 @@ ms.locfileid: "87162261"
 ## <a name="connectivity-certificate-or-timeout-issues"></a>连接性、证书或超时问题
 以下步骤可帮助排查 *.servicebus.chinacloudapi.cn 下所有服务的连接性/证书/超时问题。 
 
-- 浏览至 `https://<yournamespace>.servicebus.chinacloudapi.cn/` 或使用 [wget](https://www.gnu.org/software/wget/)。 它可用于检查你是否有 IP 筛选、虚拟网络或证书链问题（在使用 Java SDK 时最常见）。
+- 浏览至 `https://<yournamespace>.servicebus.chinacloudapi.cn/` 或使用 [wget](https://www.gnu.org/software/wget/)。 这可帮助检查是否存在 IP 筛选或虚拟网络或证书链问题（使用 Java SDK 时常见）。
 
     成功消息的示例：
 
@@ -59,25 +59,48 @@ ms.locfileid: "87162261"
 - 如果上述步骤没有帮助，请获取网络跟踪，并使用 [Wireshark](https://www.wireshark.org/) 之类的工具对其进行分析。 如果需要，请联系 [Azure 支持部门](https://support.microsoft.com/)。 
 
 ## <a name="issues-that-may-occur-with-service-upgradesrestarts"></a>服务升级/重启时可能出现的问题
-后端服务升级和重启可能会对应用程序造成以下影响：
 
+### <a name="symptoms"></a>症状
 - 可能会暂时限制请求。
 - 传入的消息/请求可能会减少。
 - 日志文件可能包含错误消息。
 - 应用程序可能会在几秒内断开与服务的连接。
 
+### <a name="cause"></a>原因
+后端服务升级和重启可能会在应用程序中导致这些问题。
+
+### <a name="resolution"></a>解决方法
 如果应用程序代码使用 SDK，则重试策略已内置且处于活动状态。 应用程序会重新连接，此操作不会对应用程序/工作流产生重大影响。
 
 ## <a name="unauthorized-access-send-claims-are-required"></a>未授权访问：需要发送声明
+
+### <a name="symptoms"></a>症状 
 尝试使用具有发送权限的用户分配的托管标识从本地计算机上的 Visual Studio 访问服务总线主题时，可能会出现此错误。
 
 ```bash
 Service Bus Error: Unauthorized access. 'Send' claim\(s\) are required to perform this operation.
 ```
 
-要解决此错误，请安装 [Microsoft.Azure.Services.AppAuthentication](https://www.nuget.org/packages/Microsoft.Azure.Services.AppAuthentication/) 库。  有关详细信息，请参阅[本地开发身份验证](..\key-vault\service-to-service-authentication.md#local-development-authentication)。 
+### <a name="cause"></a>原因
+标识无权访问服务总线主题。 
+
+### <a name="resolution"></a>解决方法
+要解决此错误，请安装 [Microsoft.Azure.Services.AppAuthentication](https://www.nuget.org/packages/Microsoft.Azure.Services.AppAuthentication/) 库。  有关详细信息，请参阅[本地开发身份验证](../key-vault/general/service-to-service-authentication.md#local-development-authentication)。 
 
 要了解如何将权限分配给角色，请参阅[使用 Azure Active Directory 对托管标识进行身份验证，以便访问 Azure 服务总线资源](service-bus-managed-service-identity.md)。
+
+## <a name="service-bus-exception-put-token-failed"></a>服务总线异常：put-token 失败
+
+### <a name="symptoms"></a>症状
+尝试使用同一服务总线连接发送超过 1000 条消息时，会收到以下错误消息： 
+
+`Microsoft.Azure.ServiceBus.ServiceBusException: Put token failed. status-code: 403, status-description: The maximum number of '1000' tokens per connection has been reached.` 
+
+### <a name="cause"></a>原因
+用来通过单个到服务总线命名空间的连接发送和接收消息的令牌数量存在限制。 该数量限制为 1000。 
+
+### <a name="resolution"></a>解决方法
+打开到服务总线命名空间的新连接以发送更多消息。
 
 ## <a name="next-steps"></a>后续步骤
 请参阅以下文章： 

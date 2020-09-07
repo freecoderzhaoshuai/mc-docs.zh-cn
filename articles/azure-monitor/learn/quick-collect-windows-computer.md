@@ -11,21 +11,21 @@ origin.date: 08/22/2019
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.topic: quickstart
-ms.date: 05/28/2020
+ms.date: 08/20/2020
 ms.author: v-johya
 ms.custom: mvc, seo-javascript-october2019
-ms.openlocfilehash: d2872248fbfd7eebca16f61e5f468593aee81310
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: adf48ec1fe224919d2aac06f2bacfce291a34a3f
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440645"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148685"
 ---
 # <a name="collect-data-from-a-windows-computer-in-a-hybrid-environment-with-azure-monitor"></a>使用 Azure Monitor 从混合环境中的 Windows 计算机收集数据
 
-[Azure Monitor](../overview.md) 可以直接从环境中的物理或虚拟 Windows 计算机将数据收集到 Log Analytics 工作区中，以便进行详细分析和关联。 安装 [Log Analytics 代理](../platform/log-analytics-agent.md)可让 Azure Monitor 从数据中心或其他云环境收集数据。 本快速入门介绍如何通过几个简单步骤，从 Windows 计算机中配置或收集数据。 有关 Azure Windows VM 的信息，请参阅[收集有关 Azure 虚拟机的数据](../../azure-monitor/learn/quick-collect-azurevm.md)。  
+[Azure Monitor](../overview.md) 可以直接从环境中的物理或虚拟 Windows 计算机将数据收集到 Log Analytics 工作区中，以便进行详细分析和关联。 安装 [Log Analytics 代理](../platform/log-analytics-agent.md)可让 Azure Monitor 从数据中心或其他云环境收集数据。 本快速入门介绍如何通过几个简单步骤，从 Windows 计算机中配置或收集数据。 有关 Azure Windows VM 的信息，请参阅[收集有关 Azure 虚拟机的数据](./quick-collect-azurevm.md)。  
 
-若要了解支持的配置，请参阅[支持的 Windows 操作系统](../../azure-monitor/platform/log-analytics-agent.md#supported-windows-operating-systems)和[网络防火墙配置](../../azure-monitor/platform/log-analytics-agent.md#network-requirements)。
+若要了解支持的配置，请参阅[支持的 Windows 操作系统](../platform/log-analytics-agent.md#supported-windows-operating-systems)和[网络防火墙配置](../platform/log-analytics-agent.md#network-requirements)。
  
 如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
 
@@ -49,7 +49,7 @@ ms.locfileid: "84440645"
   
         ![创建 Log Analytics 资源边栏选项卡](./media/quick-collect-azurevm/create-log-analytics-workspace-azure-portal.png) 
 
-3. 在“Log Analytics 工作区”窗格中提供所需的信息后，选择“确定”。   
+3. 在“Log Analytics 工作区”窗格中提供所需的信息后，选择“确定”。  
 
 在验证信息和创建工作区时，可以在菜单中的“通知”下面跟踪操作进度。 
 
@@ -72,23 +72,23 @@ ms.locfileid: "84440645"
 
 ## <a name="install-the-agent-for-windows"></a>安装适用于 Windows 的代理
 
-以下步骤将安装并配置 Azure 和 Azure 政府版中用于 Log Analytics 的代理。 你将使用 Microsoft Monitoring Agent 安装程序在计算机上安装该代理。
+以下步骤将安装并配置 Azure 中国中用于 Log Analytics 的代理。 你将使用 Microsoft Monitoring Agent 安装程序在计算机上安装该代理。
 
 1. 延续前面的步骤，在“Windows 服务器”页上，选择要下载的 **Windows 代理**版本。 选择适用于你的 Windows 操作系统处理器体系结构的版本。
 
 2. 运行安装程序在计算机上安装该代理。
 
-3. 在“欢迎”页上，选择“下一步”。 
+3. 在“欢迎”页上，选择“下一步”。
 
 4. 在“许可条款”页面上阅读许可协议，然后选择“我接受” 。
 
 5. 在“目标文件夹”页面上更改或保留默认安装文件夹，然后选择“下一步” 。
 
-6. 在“代理安装选项”页上，将代理连接到 Azure Log Analytics，然后选择“下一步”。 
+6. 在“代理安装选项”页上，将代理连接到 Azure Log Analytics，然后选择“下一步”。
 
 7. 在“Azure Log Analytics”页上完成以下步骤：
 
-   1. 粘贴前面复制的“工作区 ID”和“工作区密钥(主密钥)”。  如果计算机应向 Azure 政府中的 Log Analytics 工作区报告，请在“Azure 云”列表中选择“Azure 中国”。   
+   1. 粘贴前面复制的“工作区 ID”和“工作区密钥(主密钥)”。在“Azure 云”列表中选择“Azure 中国”。     
    2. 如果计算机需要通过代理服务器来与 Log Analytics 服务通信，请选择“高级”并提供代理服务器的 URL 和端口号。 如果代理服务器要求身份验证，请输入用于在代理服务器上进行身份验证的用户名和密码，然后选择“下一步”。  
 
 8. 添加配置设置后，选择“下一步”：
@@ -97,7 +97,7 @@ ms.locfileid: "84440645"
 
 9. 在“准备安装”页上检查所做的选择，并选择“安装” 。
 
-10. 在“配置已成功完成”页上，选择“完成”。 
+10. 在“配置已成功完成”页上，选择“完成”。
 
 完成安装和设置后，Microsoft Monitoring Agent 将显示在控制面板中。 可以检查配置，并验证代理是否已连接到 Log Analytics 工作区。 连接后，在“Azure Log Analytics”选项卡上，代理将显示以下消息：Microsoft Monitoring Agent 已成功连接到 Microsoft Log Analytics 服务。<br><br> ![MMA 连接状态](./media/quick-collect-windows-computer/log-analytics-mma-laworkspace-status.png)
 
@@ -115,7 +115,7 @@ Azure Monitor 可从 Windows 事件日志以及性能计数器中收集指定的
 
 4. 可通过输入日志名称来添加事件日志。 输入“系统”，然后选择加号 ( **+** )。  
 
-5. 在表中，选择“错误”和“警告”严重性。 
+5. 在表中，选择“错误”和“警告”严重性。
 
 6. 在页面顶部选择“保存”。
 
@@ -123,7 +123,7 @@ Azure Monitor 可从 Windows 事件日志以及性能计数器中收集指定的
 
 8. 首次为新的 Log Analytics 工作区配置 Windows 性能计数器时，可以选择快速创建几个通用的计数器。 每个选项将会列出，其旁边带有一个复选框：
 
-    ![Windows 性能计数器](./media/quick-collect-windows-computer/windows-perfcounters-default.png)上获取。
+    ![Windows 性能计数器](./media/quick-collect-windows-computer/windows-perfcounters-default.png).
     
     选择“添加所选性能计数器”。 随即会添加这些计数器，并为其预设 10 秒收集采样间隔。
 
@@ -153,7 +153,7 @@ Azure Monitor 可从 Windows 事件日志以及性能计数器中收集指定的
 
 2. 打开“程序和功能”。
 
-3. 在“程序和功能”中选择“Microsoft Monitoring Agent”，然后选择“卸载”。  
+3. 在“程序和功能”中选择“Microsoft Monitoring Agent”，然后选择“卸载”。
 
 若要删除前面创建的 Log Analytics 工作区，请将其选中，然后在资源页上选择“删除”：
 
@@ -166,4 +166,6 @@ Azure Monitor 可从 Windows 事件日志以及性能计数器中收集指定的
 若要了解如何查看和分析数据，请继续学习以下教程：
 
 > [!div class="nextstepaction"]
+> [在 Log Analytics 中查看或分析数据](../log-query/get-started-portal.md)
+
 

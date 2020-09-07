@@ -11,23 +11,25 @@ ms.subservice: core
 ms.topic: how-to
 ms.date: 05/28/2020
 ms.custom: seodec18
-ms.openlocfilehash: 34750d8918d6b32dc7b4ad974fe3db2cb038a30f
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 36a4ae203f25a53c640f5dd97ea348d694619de3
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228231"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947047"
 ---
 # <a name="featurization-in-automated-machine-learning"></a>自动化机器学习中的特征化
 
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
 
-本指南介绍：
+本指南中介绍：
 
 - Azure 机器学习提供了哪些特征化设置。
 - 如何为[自动化机器学习试验](concept-automated-ml.md)自定义这些功能。
 
 “特征工程”是使用数据领域知识创建特征的过程，这些特征有助于机器学习 (ML) 算法提高学习效果。 在 Azure 机器学习中，应用了数据缩放和规范化技术来简化特征工程。 这些技术和此特征工程在自动化机器学习 (AutoML) 试验中统称为特征化。 
+
+## <a name="prerequisites"></a>必备条件
 
 本文假设你已知道如何配置 AutoML 试验。 有关配置的信息，请参阅以下文章：
 
@@ -140,34 +142,196 @@ featurization_config.add_transformer_params('Imputer', ['bore'], {"strategy": "m
 featurization_config.add_transformer_params('HashOneHotEncoder', [], {"number_of_bits": 3})
 ```
 
-## <a name="bert-integration"></a>BERT 集成 
-[BERT](https://techcommunity.microsoft.com/t5/azure-ai/how-bert-is-integrated-into-azure-automated-machine-learning/ba-p/1194657) 在自动化 ML 的特征化层中使用。 在此层中，我们会检测列包含的是自由文本还是其他类型的数据（例如时间戳或简单编号），并相应地进行特征化。 对于 BERT，我们会使用用户提供的标签来微调/训练模型，然后将文档嵌入项（对于 BERT，这些是与特殊 [CLS] 标记相关联的最终隐藏状态）作为特征与许多典型数据集具有的其他特征（例如基于时间戳的特征，如周几）或编号一起输出。 
+## <a name="featurization-transparency"></a>特征化透明度
 
-若要启用 BERT，应使用 GPU 计算进行训练。 如果使用 CPU 计算，则 AutoML 会启用 BiLSTM DNN 特征化器，而非启用 BERT。 为了调用 BERT，必须在 automl_settings 中设置“enable_dnn:True”，并使用 GPU 计算（例如，vm_size = "STANDARD_NC6" 或更高的 GPU）。 有关示例，请参阅[此笔记本](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/automated-machine-learning/classification-text-dnn/auto-ml-classification-text-dnn.ipynb)。
+每个 AutoML 模型均已自动应用特征化。  特征化包括自动特征工程（执行 `"featurization": 'auto'` 时）和缩放和归一化，这会影响所选算法及其超参数值。 AutoML 支持不同的方法，以确保你直观了解对模型应用了哪些内容。
 
-对于 BERT，AutoML 需执行以下步骤（请注意，必须在 automl_settings 中设置“enable_dnn:True”，这些项才能发生）：
+请考虑此预测示例：
 
-1. 预处理包括所有文本列的标记化，你会在最终模型的特征化摘要中看到“StringCast”转换器。 请访问[此笔记本](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/automated-machine-learning/classification-text-dnn/auto-ml-classification-text-dnn.ipynb)，通过示例了解如何使用 `get_featurization_summary()` 方法生成模型的特征化摘要。
++ 有四个输入功能：A（数值）、B（数值）、C（数值）、D（日期/时间）。
++ 数值特征 C 被删除，因为它是一个 ID 列，具有所有唯一值。
++ 数值特征 A 和 B 包含缺失值，因此由平均值进行插补。
++ 日期/时间特征 D 已特征化为 11 个不同的工程特征。
+
+若要获取此信息，请使用来自自动化 ML 试验运行的 `fitted_model` 输出。
 
 ```python
-text_transformations_used = []
-for column_group in fitted_model.named_steps['datatransformer'].get_featurization_summary():
-    text_transformations_used.extend(column_group['Transformations'])
-text_transformations_used
+automl_config = AutoMLConfig(…)
+automl_run = experiment.submit(automl_config …)
+best_run, fitted_model = automl_run.get_output()
+```
+### <a name="automated-feature-engineering"></a>自动化特征工程 
+`get_engineered_feature_names()` 返回工程特征名称的列表。
+
+  >[!Note]
+  >请将“timeseriestransformer”用于任务为“预测”的情况，否则请将“datatransformer”用于“回归”或“分类”任务。
+
+  ```python
+  fitted_model.named_steps['timeseriestransformer']. get_engineered_feature_names ()
+  ```
+
+此列表包括所有工程特征的名称。 
+
+  ```
+  ['A', 'B', 'A_WASNULL', 'B_WASNULL', 'year', 'half', 'quarter', 'month', 'day', 'hour', 'am_pm', 'hour12', 'wday', 'qday', 'week']
+  ```
+
+`get_featurization_summary()` 获取所有输入特征的特征化摘要。
+
+  ```python
+  fitted_model.named_steps['timeseriestransformer'].get_featurization_summary()
+  ```
+
+输出
+
+  ```
+  [{'RawFeatureName': 'A',
+    'TypeDetected': 'Numeric',
+    'Dropped': 'No',
+    'EngineeredFeatureCount': 2,
+    'Tranformations': ['MeanImputer', 'ImputationMarker']},
+   {'RawFeatureName': 'B',
+    'TypeDetected': 'Numeric',
+    'Dropped': 'No',
+    'EngineeredFeatureCount': 2,
+    'Tranformations': ['MeanImputer', 'ImputationMarker']},
+   {'RawFeatureName': 'C',
+    'TypeDetected': 'Numeric',
+    'Dropped': 'Yes',
+    'EngineeredFeatureCount': 0,
+    'Tranformations': []},
+   {'RawFeatureName': 'D',
+    'TypeDetected': 'DateTime',
+    'Dropped': 'No',
+    'EngineeredFeatureCount': 11,
+    'Tranformations': ['DateTime','DateTime','DateTime','DateTime','DateTime','DateTime','DateTime','DateTime','DateTime','DateTime','DateTime']}]
+  ```
+
+   |输出|定义|
+   |----|--------|
+   |RawFeatureName|从提供的数据集中输入特征/列名称。|
+   |TypeDetected|检测到的输入特征的数据类型。|
+   |Dropped|指示是否已删除或使用输入特征。|
+   |EngineeringFeatureCount|通过自动化特征工程转换生成的特征数。|
+   |转换|应用于输入特征以生成工程特征的转换列表。|
+
+### <a name="scaling-and-normalization"></a>缩放和归一化
+
+若要了解缩放/归一化和所选算法及其超参数值，请使用 `fitted_model.steps`。 
+
+下面的示例输出是针对所选运行而运行 `fitted_model.steps` 的结果：
+
+```
+[('RobustScaler', 
+  RobustScaler(copy=True, 
+  quantile_range=[10, 90], 
+  with_centering=True, 
+  with_scaling=True)), 
+
+  ('LogisticRegression', 
+  LogisticRegression(C=0.18420699693267145, class_weight='balanced', 
+  dual=False, 
+  fit_intercept=True, 
+  intercept_scaling=1, 
+  max_iter=100, 
+  multi_class='multinomial', 
+  n_jobs=1, penalty='l2', 
+  random_state=None, 
+  solver='newton-cg', 
+  tol=0.0001, 
+  verbose=0, 
+  warm_start=False))
 ```
 
-2. 将所有文本列连接到单个文本列中，因此你在最终模型中会看到“StringConcatTransformer”。 
+若要获取更多详细信息，请使用此帮助程序函数： 
 
-> [!NOTE]
-> 我们实现的 BERT 将训练示例的总文本长度限制为 128 个标记。 这意味着，在连接时，所有文本列理想情况下的长度最多应为 128 个标记。 理想情况下，如果存在多个列，则应修剪每个列，使此条件得到满足。 例如，如果数据中有两个文本列，则应将这两个文本列修剪为每个列 64 个标记（假设你希望两个列在最终连接的文本列中得到相同的体现），然后再将数据馈送到 AutoML。 对于长度大于 128 个标记的连接列，BERT 的 tokenizer 层会将此输入截断为 128 个标记。
+```python
+from pprint import pprint
 
-3. 在特征扫描步骤中，AutoML 会基于数据的样本将 BERT 与基线（单词特征包 + 预先训练的单词嵌入项）进行比较，并确定 BERT 是否会改进准确度。 如果它确定 BERT 的性能比基线更好，则 AutoML 会使用适用于文本特征化的 BERT 作为最佳的特征化策略，并继续对整个数据进行特征化。 在这种情况下，你会在最终模型中看到“PretrainedTextDNNTransformer”。
+def print_model(model, prefix=""):
+    for step in model.steps:
+        print(prefix + step[0])
+        if hasattr(step[1], 'estimators') and hasattr(step[1], 'weights'):
+            pprint({'estimators': list(
+                e[0] for e in step[1].estimators), 'weights': step[1].weights})
+            print()
+            for estimator in step[1].estimators:
+                print_model(estimator[1], estimator[0] + ' - ')
+        else:
+            pprint(step[1].get_params())
+            print()
 
-BERT 的运行时间通常比大多数其他的特征化器更长。 可以通过在群集中提供更多计算资源来加快速度。 如果有多个节点可用（最多可以使用 8 个节点），则 AutoML 会在多个节点之间分布 BERT 训练。 这可以通过将 [max_concurrent_iterations](https://docs.microsoft.com/python/api/azureml-train-automl-client/azureml.train.automl.automlconfig.automlconfig?view=azure-ml-py) 设置为大于 1 的值来实现。 为了获得更好的性能，我们建议使用带 RDMA 功能的 SKU（例如“STANDARD_NC24r”或“STANDARD_NC24rs_V3”）
+print_model(model)
+```
+
+此帮助程序函数使用 `LogisticRegression with RobustScalar` 作为特定算法返回特定运行的以下输出。
+
+```
+RobustScaler
+{'copy': True,
+'quantile_range': [10, 90],
+'with_centering': True,
+'with_scaling': True}
+
+LogisticRegression
+{'C': 0.18420699693267145,
+'class_weight': 'balanced',
+'dual': False,
+'fit_intercept': True,
+'intercept_scaling': 1,
+'max_iter': 100,
+'multi_class': 'multinomial',
+'n_jobs': 1,
+'penalty': 'l2',
+'random_state': None,
+'solver': 'newton-cg',
+'tol': 0.0001,
+'verbose': 0,
+'warm_start': False}
+```
+
+### <a name="predict-class-probability"></a>预测类概率
+
+使用自动化 ML 生成的模型都具有包装器对象，这些对象对其开源来源类中的功能进行镜像。 自动化 ML 返回的大多数分类模型包装器对象都实现了 `predict_proba()` 函数，该函数接受特征（X 值）的数组式或稀疏矩阵数据样本，并返回每个样本的 n 维数组及其各自的类概率。
+
+假设你已使用上文中的相同调用检索了最佳运行和拟合的模型，则可以直接从拟合的模型调用 `predict_proba()`，并根据模型类型提供相应格式的 `X_test` 样本。
+
+```python
+best_run, fitted_model = automl_run.get_output()
+class_prob = fitted_model.predict_proba(X_test)
+```
+
+如果基础模型不支持 `predict_proba()` 函数或者格式不正确，则会引发特定于模型类的异常。\ 有关如何针对不同的模型类型实现此函数的示例，请参阅 [RandomForestClassifier](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html#sklearn.ensemble.RandomForestClassifier.predict_proba) 和 [XGBoost](https://xgboost.readthedocs.io/en/latest/python/python_api.html) 参考文档。
+
+## <a name="bert-integration"></a>BERT 集成
+
+[BERT](https://techcommunity.microsoft.com/t5/azure-ai/how-bert-is-integrated-into-azure-automated-machine-learning/ba-p/1194657) 在 AutoML 的特征化层中使用。 在此层中，如果列包含自由文本或其他类型的数据（例如时间戳或简单编号），则会相应地应用特征化。
+
+对于 BERT，已利用用户提供的标签对该模型进行了微调和训练。 在这里，文档嵌入会作为特征随其他特征（例如基于时间戳的特征、周中的某一天）一起输出。 
+
+
+### <a name="bert-steps"></a>BERT 步骤
+
+若要调用 BERT，必须在 automl_settings 中设置 `enable_dnn: True`，并使用 GPU 计算（例如 `vm_size = "STANDARD_NC6"` 或性能更高的 GPU）。 如果使用 CPU 计算，则 AutoML 会启用 BiLSTM DNN 特征化器，而非启用 BERT。
+
+AutoML 会为 BERT 执行以下步骤。 
+
+1. 所有文本列的预处理和标记化。 例如，可以在最终模型的特征化摘要中找到“StringCast”转换器。 [此笔记本](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/automated-machine-learning/classification-text-dnn/auto-ml-classification-text-dnn.ipynb)中提供了一个有关如何生成模型的特征化摘要的示例。
+
+2. **将所有文本列连接到单个文本列中**，因此在最终模型中会调用 `StringConcatTransformer`。 
+
+    我们实现的 BERT 将训练示例的总文本长度限制为 128 个标记。 这意味着，当已连接时，所有文本列在理想情况下的长度最多应为 128 个标记。 如果存在多个列，则应修剪每个列，使此条件得到满足。 否则，对于长度大于 128 个标记的已连接列，BERT 的 tokenizer 层会将此输入截断为 128 个标记。
+
+3. 在特征扫描过程中，AutoML 在数据样本上将 BERT 与基线（词袋特征）进行比较。 这一比较确定了 BERT 是否可以提高准确性。 如果 BERT 的性能优于基线，AutoML 会使用 BERT 对整个数据进行文本特征化。 在这种情况下，你将在最终模型中看到 `PretrainedTextDNNTransformer`。
+
+BERT 的运行时间通常比其他的特征化器更长。 为了提高性能，我们建议使用“STANDARD_NC24r”或“STANDARD_NC24rs_V3”以提供其 RDMA 功能。 
+
+如果有多个节点可用（最多可以使用 8 个节点），则 AutoML 会在多个节点之间分配 BERT 训练。 可以通过将 `max_concurrent_iterations` 参数设置为大于 1，在 `AutoMLConfig` 对象中完成此操作。 
+### <a name="supported-languages"></a>支持的语言
 
 AutoML 目前支持大约 100 种语言，它根据数据集的语言选择合适的 BERT 模型。 对于德语数据，我们使用德语 BERT 模型。 对于英语，我们使用英语 BERT 模型。 对于所有其他语言，我们使用多语言 BERT 模型。
 
-在下面的代码中，将触发德语 BERT 模型，因为数据集语言被指定为“deu”，而根据 [ISO 分类](https://iso639-3.sil.org/code/deu)，这个 3 个字母的代码表示德语：
+在下面的代码中，将触发德语 BERT 模型，因为数据集语言被指定为 `deu`，而根据 [ISO 分类](https://iso639-3.sil.org/code/deu)，这一 3 个字母的代码表示德语：
 
 ```python
 from azureml.automl.core.featurization import FeaturizationConfig

@@ -4,20 +4,20 @@ description: 了解如何将 Azure IoT Edge 解决方案从开发环境转移到
 author: kgremban
 manager: philmea
 ms.author: v-tawe
-origin.date: 04/02/2020
-ms.date: 07/01/2020
+origin.date: 07/10/2020
+ms.date: 08/27/2020
 ms.topic: conceptual
 ms.service: iot-edge
 services: iot-edge
 ms.custom:
 - amqp
 - mqtt
-ms.openlocfilehash: 6e25b729c12297394fa50c156f80d3928725d9a2
-ms.sourcegitcommit: 4f84bba7e509a321b6f68a2da475027c539b8fd3
+ms.openlocfilehash: aedc791de87bc0d9ae49bdde648606b415aafbd1
+ms.sourcegitcommit: c8e590d907f20bbc9c4c05d9bfc93cf7cb1d776f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85796213"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88957807"
 ---
 # <a name="prepare-to-deploy-your-iot-edge-solution-in-production"></a>准备在生产环境中部署 IoT Edge 解决方案
 
@@ -39,11 +39,14 @@ IoT Edge 设备的类型多种多样，其中包括 Raspberry Pi、便携式计�
 
 ### <a name="install-production-certificates"></a>安装生产证书
 
-生产环境中的每个 IoT Edge 设备上需要安装设备证书颁发机构 (CA) 证书。 然后，在 config.yaml 文件中将该 CA 证书声明到 IoT Edge 运行时。 对于开发和测试场景，如果 config.yaml 文件中没有声明证书，则 IoT Edge 运行时将创建临时证书。 但是，这些临时证书将在三个月后过期，并且对于生产方案而言并不安全。
+生产环境中的每个 IoT Edge 设备上需要安装设备证书颁发机构 (CA) 证书。 然后，在 config.yaml 文件中将该 CA 证书声明到 IoT Edge 运行时。 对于开发和测试场景，如果 config.yaml 文件中没有声明证书，则 IoT Edge 运行时将创建临时证书。 但是，这些临时证书将在三个月后过期，并且对于生产方案而言并不安全。 对于生产方案，你应该提供自己的设备 CA 证书，不管是自签名证书颁发机构颁发的证书，还是从商业证书颁发机构购买的证书。
+
+> [!NOTE]
+> 目前存在一个 libiothsm 限制，会阻止使用在 2050 年 1 月 1 日或之后过期的证书。
 
 若要了解设备 CA 证书的作用，请参阅 [Azure IoT Edge 如何使用证书](iot-edge-certs.md)。
 
-有关如何在 IoT Edge 设备上安装证书并从 config.yaml 文件引用这些证书的详细信息，请参阅[在 IoT Edge 设备上安装生产证书](how-to-manage-device-certificates.md)。
+若要详细了解如何在 IoT Edge 设备上安装证书并从 config.yaml 文件引用这些证书，请参阅[在 IoT Edge 设备上管理证书](how-to-manage-device-certificates.md)。
 
 ### <a name="have-a-device-management-plan"></a>创建设备管理计划
 

@@ -11,21 +11,21 @@ origin.date: 12/24/2019
 ms.workload: na
 ms.tgt_pltfrm: na
 ms.topic: quickstart
-ms.date: 07/17/2020
+ms.date: 08/20/2020
 ms.author: v-johya
 ms.custom: mvc, seo-javascript-september2019, seo-javascript-october2019
-ms.openlocfilehash: c134b1b5bfeadedeea25d883c48442c7679c0eac
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.openlocfilehash: 01749ca17e795b24d5f8c36419cb0ceb477ddcb6
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440460"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148686"
 ---
 # <a name="quickstart-collect-data-from-a-linux-computer-in-a-hybrid-environment-with-azure-monitor"></a>快速入门：使用 Azure Monitor 从混合环境中的 Linux 计算机收集数据
 
-[Azure Monitor](../overview.md) 可以直接从环境中的物理或虚拟 Linux 计算机将数据收集到 Log Analytics 工作区中，以便进行详细分析和关联。 安装 [Log Analytics 代理](../platform/log-analytics-agent.md)可让 Azure Monitor 从数据中心或其他云环境收集数据。 本快速入门介绍如何通过几个简单步骤，从 Linux 服务器中配置和收集数据。 有关 Azure Linux VM 的信息，请参阅[收集有关 Azure 虚拟机的数据](../../azure-monitor/learn/quick-collect-azurevm.md)。  
+[Azure Monitor](../overview.md) 可以直接从环境中的物理或虚拟 Linux 计算机将数据收集到 Log Analytics 工作区中，以便进行详细分析和关联。 安装 [Log Analytics 代理](../platform/log-analytics-agent.md)可让 Azure Monitor 从数据中心或其他云环境收集数据。 本快速入门介绍如何通过几个简单步骤，从 Linux 服务器中配置和收集数据。 有关 Azure Linux VM 的信息，请参阅[收集有关 Azure 虚拟机的数据](./quick-collect-azurevm.md)。  
 
-若要了解支持的配置，请参阅[支持的 Windows 操作系统](../../azure-monitor/platform/log-analytics-agent.md#supported-linux-operating-systems)和[网络防火墙配置](../../azure-monitor/platform/log-analytics-agent.md#network-requirements)。
+若要了解支持的配置，请参阅[支持的 Windows 操作系统](../platform/log-analytics-agent.md#supported-linux-operating-systems)和[网络防火墙配置](../platform/log-analytics-agent.md#network-requirements)。
  
 如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
 
@@ -73,7 +73,7 @@ ms.locfileid: "86440460"
 
 ## <a name="install-the-agent-for-linux"></a>安装适用于 Linux 的代理
 
-以下步骤在 Azure 和 Azure 中国云中配置 Log Analytics 代理的设置。  
+以下步骤在 Azure 中国云中配置 Log Analytics 代理的设置。  
 
 >[!NOTE]
 >无法将适用于 Linux 的 Log Analytics 代理配置为向多个 Log Analytics 工作区报告。  
@@ -94,16 +94,16 @@ ms.locfileid: "86440460"
     wget https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/master/installer/scripts/onboard_agent.sh && sh onboard_agent.sh -p [protocol://][user:password@]proxyhost[:port] -w <YOUR WORKSPACE ID> -s <YOUR WORKSPACE PRIMARY KEY>
     ```
 
-2. 若要配置 Linux 计算机以连接至 Azure 政府云中的 Log Analytics 工作区，请运行以下命令，并提供先前所复制的工作区 ID 和主密钥。 以下命令将下载代理、验证其校验和并将其安装好。 
+2. 若要配置 Linux 计算机以连接至 Log Analytics 工作区，请运行以下命令，并提供先前复制的工作区 ID 和主密钥。 以下命令将下载代理、验证其校验和并将其安装好。 
 
     ```
-    wget https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/master/installer/scripts/onboard_agent.sh && sh onboard_agent.sh -w <YOUR WORKSPACE ID> -s <YOUR WORKSPACE PRIMARY KEY> -d opinsights.azure.us
+    wget https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/master/installer/scripts/onboard_agent.sh && sh onboard_agent.sh -w <YOUR WORKSPACE ID> -s <YOUR WORKSPACE PRIMARY KEY> -d opinsights.azure.cn
     ``` 
 
     代理服务器要求进行身份验证时，以下命令包括 `-p` 代理参数和示例语法：
 
    ```
-    wget https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/master/installer/scripts/onboard_agent.sh && sh onboard_agent.sh -p [protocol://][user:password@]proxyhost[:port] -w <YOUR WORKSPACE ID> -s <YOUR WORKSPACE PRIMARY KEY> -d opinsights.azure.us
+    wget https://raw.githubusercontent.com/Microsoft/OMS-Agent-for-Linux/master/installer/scripts/onboard_agent.sh && sh onboard_agent.sh -p [protocol://][user:password@]proxyhost[:port] -w <YOUR WORKSPACE ID> -s <YOUR WORKSPACE PRIMARY KEY> -d opinsights.azure.cn
     ```
 
 3. 运行以下命令重启代理： 
@@ -169,6 +169,6 @@ Azure Monitor 可以从你为长期分析和报告指定的 Linux syslog 和性�
 若要了解如何查看和分析数据，请继续本教程。
 
 > [!div class="nextstepaction"]
-> [在 Log Analytics 中查看或分析数据](../../azure-monitor/log-query/get-started-portal.md)
-<!--Correct in MC: ../../azure-monitor/log-query/get-started-portal.md-->
+> [在 Log Analytics 中查看或分析数据](../log-query/get-started-portal.md)
+
 

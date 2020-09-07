@@ -5,19 +5,19 @@ author: rockboyfor
 ms.service: virtual-machines
 ms.subservice: sizes
 ms.devlang: na
-ms.topic: article
+ms.topic: conceptual
 ms.workload: infrastructure-services
 origin.date: 02/20/2020
-ms.date: 07/27/2020
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: f53d8c97a7cd1ef76713e20b798e49799a9afb48
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: 079de0052dba0bf6a6b218889585203e00fceff5
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244761"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052441"
 ---
 <!--Verified successfully-->
 <!--Partical Content from verified-->
@@ -58,5 +58,7 @@ ms.locfileid: "87244761"
 ## <a name="next-steps"></a>后续步骤
 
 了解有关 [Azure 计算单元 (ACU)](acu.md) 如何帮助跨 Azure SKU 比较计算性能的详细信息。
+
+有关 Azure 如何命名其 VM 的详细信息，请参阅 [Azure 虚拟机大小命名约定](./vm-naming-conventions.md)。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

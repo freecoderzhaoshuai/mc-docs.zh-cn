@@ -12,13 +12,13 @@ ms.workload: data-services
 ms.custom: seo-lt-2019
 ms.topic: article
 origin.date: 10/25/2019
-ms.date: 06/22/2020
-ms.openlocfilehash: b57d7e91aef836258c84da400482daab742ae8c7
-ms.sourcegitcommit: 48b5ae0164f278f2fff626ee60db86802837b0b4
+ms.date: 08/31/2020
+ms.openlocfilehash: b26d96cb18c4d27e488df98146c88daf17020598
+ms.sourcegitcommit: f8ed85740f873c15c239ab6ba753e4b76e030ba7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85098445"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045734"
 ---
 # <a name="custom-roles-for-sql-server-to-azure-sql-managed-instance-online-migrations"></a>用于从 SQL Server 在线迁移到 Azure SQL 托管实例的自定义角色
 
@@ -84,7 +84,7 @@ Azure 数据库迁移服务使用应用 ID 来与 Azure 服务交互。 应用 I
 
 以上 JSON 必须存储在三个文本文件中，可以在 AzureRM、AZ PowerShell cmdlet 或 Azure CLI 中使用 **New-AzureRmRoleDefinition (AzureRM)** 或 **New-AzRoleDefinition (AZ)** 创建角色。
 
-有关详细信息，请参阅 [Azure 资源的自定义角色](/role-based-access-control/custom-roles)一文。
+有关详细信息，请参阅 [Azure 自定义角色](/role-based-access-control/custom-roles)一文。
 
 创建这些自定义角色后，必须将角色分配添加到相应资源或资源组中的用户和应用 ID：
 

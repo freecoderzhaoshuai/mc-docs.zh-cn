@@ -4,14 +4,14 @@ description: 了解如何执行管理任务，如重启 Azure Redis 缓存和为
 author: yegu-ms
 ms.service: cache
 ms.topic: conceptual
-ms.date: 08/10/2020
+ms.date: 08/24/2020
 ms.author: v-junlch
-ms.openlocfilehash: f892e9a4c4cd21a36c70a74fc5a54a6e7d11dde2
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: 37b0f2e34cfe5041bec78086815b1cde0eee8a42
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223220"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946675"
 ---
 # <a name="how-to-administer-azure-cache-for-redis"></a>如何管理 Azure Redis 缓存
 本主题介绍如何为 Azure Redis 缓存实例执行管理任务，如[重启](#reboot)和[计划更新](#schedule-updates)。
@@ -98,6 +98,8 @@ ms.locfileid: "88223220"
 * [Remove-AzRedisCachePatchSchedule](https://docs.microsoft.com/powershell/module/az.rediscache/remove-azrediscachepatchschedule)
 
 ## <a name="next-steps"></a>后续步骤
-* 了解更多 [Azure Redis 缓存高级层](cache-premium-tier-intro.md)功能。
+了解有关 Azure Cache for Redis 功能的详细信息。
+
+* [Azure Cache for Redis 服务层](cache-overview.md#service-tiers)
 
 

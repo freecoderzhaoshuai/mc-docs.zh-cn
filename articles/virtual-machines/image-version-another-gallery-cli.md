@@ -1,5 +1,5 @@
 ---
-title: 从另一个库复制映像版本
+title: 使用 CLI 从另一个库复制映像版本
 description: 使用 Azure CLI 从另一个库复制映像版本。
 author: rockboyfor
 ms.service: virtual-machines
@@ -7,18 +7,20 @@ ms.subservice: imaging
 ms.topic: how-to
 ms.workload: infrastructure
 origin.date: 05/04/2020
-ms.date: 07/06/2020
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.reviewer: akjosh
-ms.openlocfilehash: c05df5722f2251b1bad9dad268c0397d59331ed2
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 6e496e3580b08fcaf0ea8266304b1f957c8b8eaf
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945998"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052391"
 ---
 <!--Verified successfully-->
-# <a name="copy-an-image-from-another-gallery"></a>复制另一个库中的映像
+# <a name="copy-an-image-from-another-gallery-using-the-azure-cli"></a>使用 Azure CLI 复制另一个库中的映像
 
 如果你的组织中有多个库，则你还可以从其他库中存储的现有映像版本创建自己的映像版本。 例如，你可能会使用一个开发和测试库用于创建和测试新映像。 准备好在生产环境中使用这些映像时，可以遵循本示例将它们复制到生产库中。 也可以使用 [Azure PowerShell](image-version-another-gallery-powershell.md) 从另一个库中的映像创建映像。
 
@@ -40,7 +42,7 @@ ms.locfileid: "85945998"
 az sig list -o table
 ```
 
-使用 [az sig image-definition list](https://docs.microsoft.com/cli/azure/sig/image-definition?view=azure-cli-latest#az-sig-image-definition-list) 列出库中的映像定义。 在此示例中，我们将搜索 *myGalleryRG* 资源组中名为 *myGallery* 的库内的映像定义。
+使用 [az sig image-definition list](https://docs.microsoft.com/cli/azure/sig?view=azure-cli-latest#az-sig-image-definition-list) 列出库中的映像定义。 在此示例中，我们将搜索 *myGalleryRG* 资源组中名为 *myGallery* 的库内的映像定义。
 
 ```azurecli 
 az sig image-definition list \
@@ -49,7 +51,7 @@ az sig image-definition list \
    -o table
 ```
 
-使用 [az sig image-version list](https://docs.microsoft.com/cli/azure/sig/image-version?view=azure-cli-latest#az-sig-image-version-list) 列出库中映像的版本，以查找要复制到新库中的映像版本。 在此示例中，我们将查找包含在 *myImageDefinition* 映像定义中的所有映像版本。
+使用 [az sig image-version list](https://docs.microsoft.com/cli/azure/sig?view=azure-cli-latest#az-sig-image-version-list) 列出库中映像的版本，以查找要复制到新库中的映像版本。 在此示例中，我们将查找包含在 *myImageDefinition* 映像定义中的所有映像版本。
 
 ```azurecli
 az sig image-version list \
@@ -59,7 +61,7 @@ az sig image-version list \
    -o table
 ```
 
-获取全部所需信息后，可以使用 [az sig image-version show](https://docs.microsoft.com/cli/azure/sig/image-version?view=azure-cli-latest#az-sig-image-version-show) 获取源映像版本的 ID。
+获取全部所需信息后，可以使用 [az sig image-version show](https://docs.microsoft.com/cli/azure/sig?view=azure-cli-latest#az-sig-image-version-show) 获取源映像版本的 ID。
 
 ```azurecli
 az sig image-version show \
@@ -72,7 +74,7 @@ az sig image-version show \
 
 ## <a name="create-the-image-definition"></a>创建映像定义 
 
-需要创建一个与源映像版本的映像定义相匹配的映像定义。 可以使用 [az sig image-definition show](https://docs.microsoft.com/cli/azure/sig/image-definition?view=azure-cli-latest#az-sig-image-definition-show) 查看在新库中重新创建映像定义所需的全部信息。
+需要创建一个与源映像版本的映像定义相匹配的映像定义。 可以使用 [az sig image-definition show](https://docs.microsoft.com/cli/azure/sig?view=azure-cli-latest#az-sig-image-definition-show) 查看在新库中重新创建映像定义所需的全部信息。
 
 ```azurecli
 az sig image-definition show \
@@ -128,7 +130,7 @@ az sig image-definition create \
 
 ## <a name="create-the-image-version"></a>创建映像版本
 
-使用 [az image gallery create-image-version](https://docs.microsoft.com/cli/azure/sig/image-version?view=azure-cli-latest#az-sig-image-version-create) 创建版本。 你需要传入托管映像的 ID 以作为创建映像版本时要使用的基线。 可以使用 [az image list](https://docs.azure.cn/cli/image?view?view=azure-cli-latest#az-image-list) 获取资源组中的映像的相关信息。 
+使用 [az image gallery create-image-version](https://docs.microsoft.com/cli/azure/sig?view=azure-cli-latest#az-sig-image-version-create) 创建版本。 你需要传入托管映像的 ID 以作为创建映像版本时要使用的基线。 可以使用 [az image list](https://docs.azure.cn/cli/image?view?view=azure-cli-latest#az-image-list) 获取资源组中的映像的相关信息。 
 
 允许用于映像版本的字符为数字和句点。 数字必须在 32 位整数范围内。 格式：*MajorVersion*.*MinorVersion*.*Patch*。
 
@@ -165,4 +167,5 @@ az sig image-version create \
 
 <!--Not Available on [Azure Image Builder (preview)](./linux/image-builder-overview.md)-->
 
+<!--Not Available on For information about how to supply purchase plan information, see [Supply Azure Marketplace purchase plan information when creating images](marketplace-images.md).-->
 <!-- Update_Description: update meta properties, wording update, update link -->

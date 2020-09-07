@@ -3,17 +3,17 @@ title: Azure 服务总线消息会话 | Azure
 description: 本文说明了如何使用会话实现对无限的相关消息序列的连贯有序处理。
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-author: rockboyfor
-ms.openlocfilehash: 261b8b6d4743d5b1ebd3ddd1a6f71eb481283373
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: bf623c0d58eda91275a472988d479b25af038103
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162406"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946995"
 ---
 # <a name="message-sessions"></a>消息会话
 使用 Azure 服务总线会话，可以连贯有序的方式处理一系列无限多的相关消息。 可以在“先进先出 (FIFO)”和“请求-响应”模式下使用会话。 本文展示了如何在使用服务总线时使用会话来实现这些模式。 
@@ -36,7 +36,7 @@ ms.locfileid: "87162406"
 
 在门户中，选中下图中展示的复选框设置标志：
 
-![][2]
+![“创建队列”对话框的屏幕截图，其中的“启用会话”选项处于选中状态并用红色标出。][2]
 
 > [!NOTE]
 > 在队列或订阅上启用会话时，客户端应用程序可以***不再***发送/接收常规消息。 所有消息必须作为会话的一部分发送（通过设置会话 ID），并通过接收会话来接收。
@@ -47,7 +47,7 @@ ms.locfileid: "87162406"
 
 会话支持对交错消息流进行并发解多路复用，同时保留和保证有序传递。
 
-![][1]
+![示意图，显示会话功能如何保持按序送达。][1]
 
 [MessageSession](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.messagesession?view=azure-dotnet) 接收程序是由接受会话的客户端创建。 客户端调用 C# 编写的 [QueueClient.AcceptMessageSession](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.queueclient.acceptmessagesession?view=azure-dotnet#Microsoft_ServiceBus_Messaging_QueueClient_AcceptMessageSession) 或 [QueueClient.AcceptMessageSessionAsync](https://docs.azure.cn/dotnet/api/microsoft.servicebus.messaging.queueclient.acceptmessagesessionasync?view=azure-dotnet#Microsoft_ServiceBus_Messaging_QueueClient_AcceptMessageSessionAsync)。 在反应回调模型中，它会注册会话处理程序。
 
@@ -81,7 +81,7 @@ ms.locfileid: "87162406"
 
 在会话上下文中，每条消息的传递计数的定义与在没有会话的情况下的定义略有不同。 下表汇总了递增传送计数的时间。
 
-| 场景 | 消息的传递计数是否递增 |
+| 方案 | 消息的传递计数是否递增 |
 |----------|---------------------------------------------|
 | 接受会话，但会话锁已过期（由于超时） | 是 |
 | 接受会话，会话中的消息未完成（即使它们已锁定），并且会话已关闭 | 否 |

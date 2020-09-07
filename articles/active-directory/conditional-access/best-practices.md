@@ -4,19 +4,19 @@ description: 了解用户须知内容，以及在配置条件访问策略时应�
 services: active-directory
 ms.service: active-directory
 ms.subservice: conditional-access
-ms.topic: article
-ms.date: 04/24/2020
+ms.topic: how-to
+ms.date: 08/27/2020
 ms.author: v-junlch
 author: MicrosoftGuyJFlo
 manager: daveba
 ms.reviewer: calebb
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 3b3903e5f9bdf3a5d8bd9d20ae4fafac99317491
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.openlocfilehash: 667d6babecde4e28e2c6de1feeaa435f7da5b2e8
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82126301"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046391"
 ---
 # <a name="best-practices-for-conditional-access-in-azure-active-directory"></a>Azure Active Directory 中条件访问的最佳做法
 
@@ -37,7 +37,7 @@ ms.locfileid: "82126301"
 
 | 对象           | 方式                                  | 原因 |
 | :--            | :--                                  | :-- |
-| 云应用  |选择一个或多个应用。  | 条件访问策略的目标是使你能够控制已授权用户访问云应用的方式。|
+| **云应用** |选择一个或多个应用。  | 条件访问策略的目标是使你能够控制已授权用户访问云应用的方式。|
 | 用户和组  | 至少选择一个已经授权的用户或组来访问所选云应用。 | 未在其中分配任何用户和组的条件访问策略永远不会触发。 |
 | 访问控制  | 至少选择一个访问控制。 | 策略处理器需要知道条件满足时需要执行的操作。 |
 
@@ -49,14 +49,21 @@ ms.locfileid: "82126301"
 
 所有策略都是在两个阶段中强制实施的：
 
-- 阶段 1： 
-   - 收集详细信息：收集详细信息以确定已符合的策略。
-   - 在此阶段，如果设备符合性是条件访问策略的一部分，用户可能会看到证书提示。 如果设备操作系统不是 Windows 10，浏览器应用可能会显示此提示。
-   - 针对所有已启用的策略执行策略评估的第 1 阶段。
-- 阶段 2：
-   - 强制实施：考虑到第 1 阶段收集的详细信息，要求用户满足尚未满足的任何其他要求。
-   - 将结果应用于会话。 
-   - 针对所有已启用的策略执行策略评估的第 2 阶段。
+- 阶段 1：收集会话详细信息 
+   - 收集会话详细信息，例如进行策略评估所需的用户位置和设备标识。 
+   - 在此阶段，如果设备符合性是条件访问策略的一部分，用户可能会看到证书提示。 如果设备操作系统不是 Windows 10，浏览器应用可能会显示此提示。 
+   - 针对已启用的策略和“仅限报告”模式下的策略执行策略评估的第 1 阶段。
+- 阶段 2：强制 
+   - 使用在第 1 阶段收集的会话详细信息来识别尚未满足的任何要求。 
+   - 如果有一个策略配置为阻止访问，则在使用阻止授权控制的情况下，将在此处停止强制，用户会被阻止。 
+   - 然后，系统会提示用户完成额外的授权控制要求（这些要求未在第 1 阶段按以下顺序满足），直到满足策略要求：  
+      - 多重身份验证 
+      - 批准的客户端应用/应用保护策略 
+      - 受管理设备（合规或混合 Azure AD 加入） 
+      - 使用条款 
+      - 自定义控件  
+      - 在满足授权控制后应用会话控制（应用强制实施、Microsoft Cloud App Security 和令牌生存期） 
+   - 针对所有已启用的策略执行策略评估的第 2 阶段。 
 
 ### <a name="how-are-assignments-evaluated"></a>如何计算分配？
 
@@ -147,6 +154,6 @@ ms.locfileid: "82126301"
 
 如果希望了解：
 
-- 如何配置条件访问策略，请参阅[通过 Azure Active Directory 条件访问要求特定应用必须使用 MFA](/active-directory/authentication/tutorial-enable-azure-mfa)。
+- 如何配置条件访问策略，请参阅[通过 Azure Active Directory 条件访问要求特定应用必须使用 MFA](app-based-mfa.md)。
 - 若要了解如何规划条件访问策略，请参阅[如何在 Azure Active Directory 中规划条件访问部署](plan-conditional-access.md)。
 

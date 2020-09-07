@@ -2,24 +2,24 @@
 title: 分配或删除许可证 - Azure Active Directory | Microsoft Docs
 description: 关于如何对用户或组分配或删除 Azure Active Directory 许可证的说明。
 services: active-directory
-author: msaburnley
+author: ajburnle
 manager: daveba
 ms.assetid: f8b932bc-8b4f-42b5-a2d3-f2c076234a78
 ms.service: active-directory
 ms.subservice: fundamentals
 ms.workload: identity
-ms.topic: conceptual
-ms.date: 04/23/2020
+ms.topic: how-to
+ms.date: 08/27/2020
 ms.author: v-junlch
 ms.reviewer: jeffsta
 ms.custom: it-pro, seodec18
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: d5edc5acb4a6e2428779177c13d535506c0e0243
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.openlocfilehash: e0e55a52218de9bb167d3b9513028a231662039e
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82126378"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046433"
 ---
 # <a name="assign-or-remove-licenses-in-the-azure-active-directory-portal"></a>在 Azure Active Directory 门户中分配或删除许可证
 
@@ -35,7 +35,7 @@ ms.locfileid: "82126378"
 
 - Azure AD Premium P2
 
-有关每个许可计划的特定信息和关联许可详细信息，请参阅[需要哪个许可证？](https://www.azure.cn/pricing/details/active-directory/)。
+有关每个许可计划的特定信息和关联许可详细信息，请参阅[需要哪个许可证？](https://www.azure.cn/pricing/details/active-directory/)。 若要注册 Azure AD Premium 许可计划，请参阅[此文](/active-directory/fundamentals/active-directory-get-started-premium)。
 
 并非所有 Microsoft 服务都可在所有位置使用。 必须先为所有成员指定“使用位置”  ，然后才能将许可证分配给组。 可以在 Azure AD 的“Azure Active Directory”&gt;“用户”&gt;“配置文件”&gt;“设置”  区域中设置此值。 未指定使用位置的任何用户都会继承 Azure AD 组织的位置。
 

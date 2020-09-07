@@ -7,15 +7,15 @@ manager: celestedg
 ms.service: active-directory
 ms.workload: identity
 ms.topic: overview
-ms.date: 06/28/2020
+ms.date: 08/25/2020
 ms.author: v-junlch
 ms.subservice: B2C
-ms.openlocfilehash: 3d718660497093fca1756ac50a867cce00728796
-ms.sourcegitcommit: 3a8a7d65d0791cdb6695fe6c2222a1971a19f745
+ms.openlocfilehash: e1b9b04ccc88868db13d0cfefea4dcbb0d4c063d
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2020
-ms.locfileid: "85516488"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946563"
 ---
 # <a name="technical-and-feature-overview-of-azure-active-directory-b2c"></a>Azure Active Directory B2C 的技术和功能概述
 
@@ -59,7 +59,7 @@ Azure AD B2C 定义多种类型的用户帐户。 Azure Active Directory、Azure
 * **本地**标识：将用户名和密码存储在 Azure AD B2C 目录本地。 我们通常将此类标识称为“本地帐户”。
 * **社交**或**企业**标识：用户的标识由 Microsoft、ADFS 或 Salesforce 等联合标识提供者进行管理。
 
-具有使用者帐户的用户可以通过多个标识（例如用户名、电子邮件、员工 ID、政府 ID 等）登录。 单个帐户可以有多个本地和社交标识。
+具有使用者帐户的用户可以通过多个标识（例如用户名、电子邮件、员工 ID 等）登录。 单个帐户可以有多个本地和社交标识。
 
 ![使用者帐户标识](./media/technical-overview/identities.png)<br/>*图：在 Azure AD B2C 中具有多个标识的单个使用者帐户*
 
@@ -132,6 +132,9 @@ Identity Experience Framework 可让你使用步骤的任意组合来构造用�
 
 - 对于外部标识，Azure AD B2C 支持与任何 OAuth 1.0、OAuth 2.0、OpenID Connect、SAML 标识提供者联合。
 
+下图显示了 Azure AD B2C 如何使用同一身份验证流中的各种协议进行通信：
+
+![基于 OIDC 的客户端应用与基于 SAML 的 IdP 联合的示意图](./media/technical-overview/protocols.png)
 
 1. 信赖方应用程序使用 OpenID Connect 向 Azure AD B2C 发起授权请求。
 1. 当应用程序的用户选择通过使用 SAML 协议的外部标识提供者登录时，Azure AD B2C 将调用 SAML 协议来与该标识提供者通信。
@@ -242,11 +245,11 @@ Azure AD B2C 发出审核日志，其中包含有关其资源、颁发的令牌�
 ![Azure 门户中显示的单个用户审核日志](./media/technical-overview/audit-log.png)
 
 
+### <a name="usage-insights"></a>使用情况见解
+
+在 Azure AD B2C 中，可以发现用户何时注册或登录你的 Web 应用、用户所在的位置，以及他们使用的是哪种浏览器和操作系统。 通过使用自定义策略将 Azure Application Insights 集成到 Azure AD B2C，可以深入了解用户如何注册、登录、重置其密码或编辑其个人资料。 了解此类信息后，可以针对未来的开发周期做出数据驱动的决策。
+
 ## <a name="next-steps"></a>后续步骤
 
-更深入地了解 Azure Active Directory B2C 的功能和技术方面后，可以通过创建一个 B2C 租户开始使用该服务：
+现在你已更深入地了解 Azure Active Directory B2C 的功能和技术方面，可以开始使用[创建 Azure Active Directory B2C 租户教程](tutorial-create-tenant.md)了。
 
-> [!div class="nextstepaction"]
-> [教程：创建 Azure Active Directory B2C 租户 >](tutorial-create-tenant.md)
-
-<!-- Update_Description: wording update -->

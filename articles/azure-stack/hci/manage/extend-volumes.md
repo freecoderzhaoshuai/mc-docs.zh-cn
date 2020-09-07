@@ -3,27 +3,28 @@ title: 在 Azure Stack HCI 中扩展卷
 description: 如何使用 Windows Admin Center 和 PowerShell 在 Azure Stack HCI 中重设卷大小。
 author: WenJason
 ms.author: v-jay
-ms.topic: article
-origin.date: 03/10/2020
-ms.date: 03/23/2020
-ms.openlocfilehash: 75a2404388714e58893e868af8dffd76c38e60e0
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.topic: how-to
+origin.date: 07/21/2020
+ms.date: 08/31/2020
+ms.openlocfilehash: 200a66b9939bf0f4520a61cf6a280d275ab3aa40
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79547117"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868064"
 ---
-# <a name="extending-volumes-in-storage-spaces-direct"></a>扩展存储空间直通中的卷
-> 适用于：Windows Server 2019
+# <a name="extending-volumes-in-azure-stack-hci"></a>在 Azure Stack HCI 中扩展卷
 
-本主题说明了如何使用 Windows Admin Center 在[存储空间直通](https://docs.microsoft.com/windows-server/storage/storage-spaces/storage-spaces-direct-overview)群集上重设卷大小。
+> 适用于：Azure Stack HCI 版本 20H2；Windows Server 2019
+
+本主题说明如何使用 Windows Admin Center 在 Azure Stack HCI 群集上重设卷的大小。
 
 > [!WARNING]
 > **不支持：重设存储空间直通使用的基础存储的大小。** 如果在虚拟化存储环境（包括 Azure）中运行存储空间直通，则不支持重设虚拟机所用存储设备的大小或更改其特征，那样做会导致数据变得不可访问。 相反，应按照[添加服务器或驱动器](https://docs.microsoft.com/windows-server/storage/storage-spaces/add-nodes)部分的说明来添加更多容量，然后再扩展卷。
 
 ## <a name="extending-volumes-using-windows-admin-center"></a>使用 Windows Admin Center 扩展卷
 
-1. 在 Windows Admin Center 中连接到存储空间直通群集，然后从“工具”  窗格中选择“卷”  。
+1. 在 Windows Admin Center 中连接到 Azure Stack HCI 群集，然后在“工具”窗格中选择“卷”。 
 2. 在“卷”  页上选择“清单”选项卡，然后选择要重设大小的卷。 
 
     卷的存储容量在卷详细信息页上指示。 还可以直接从“仪表板”打开卷详细信息页。 在“仪表板”上的“警报”窗格中选择警报（此警报会通知你卷的存储容量是否足够），然后选择“转到卷”  。
@@ -58,7 +59,7 @@ Get-VirtualDisk
 例如，下面展示了如何将 Get- cmdlet 从虚拟磁盘传递到其卷：
 
 ```PowerShell
-Get-VirtualDisk <FriendlyName> | Get-Disk | Get-Partition | Get-Volume 
+Get-VirtualDisk <FriendlyName> | Get-Disk | Get-Partition | Get-Volume
 ```
 
 ### <a name="step-1--resize-the-virtual-disk"></a>步骤 1 - 重设虚拟磁盘的大小
@@ -68,7 +69,7 @@ Get-VirtualDisk <FriendlyName> | Get-Disk | Get-Partition | Get-Volume
 若要进行检查，请运行以下 cmdlet：
 
 ```PowerShell
-Get-VirtualDisk <FriendlyName> | Get-StorageTier 
+Get-VirtualDisk <FriendlyName> | Get-StorageTier
 ```
 
 如果该 cmdlet 不返回任何内容，则表明虚拟磁盘不使用存储层。
@@ -123,7 +124,7 @@ $VirtualDisk = Get-VirtualDisk <FriendlyName>
 # Get its partition
 $Partition = $VirtualDisk | Get-Disk | Get-Partition | Where PartitionNumber -Eq 2
 
-# Resize to its maximum supported size 
+# Resize to its maximum supported size
 $Partition | Resize-Partition -Size ($Partition | Get-PartitionSupportedSize).SizeMax
 ```
 
@@ -140,6 +141,6 @@ $Partition | Resize-Partition -Size ($Partition | Get-PartitionSupportedSize).Si
 
 如需其他重要的存储管理任务的分步说明，另请参阅：
 
-- [在存储空间直通中规划卷](https://docs.microsoft.com/windows-server/storage/storage-spaces/plan-volumes)
-- [在存储空间直通中创建卷](https://docs.microsoft.com/windows-server/storage/storage-spaces/create-volumes)
-- [删除存储空间直通中的卷](https://docs.microsoft.com/windows-server/storage/storage-spaces/delete-volumes)
+- [规划卷](../concepts/plan-volumes.md)
+- [创建卷](create-volumes.md)
+- [删除卷](delete-volumes.md)

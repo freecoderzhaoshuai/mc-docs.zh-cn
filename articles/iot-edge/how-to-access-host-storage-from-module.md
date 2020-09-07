@@ -4,17 +4,17 @@ description: 使用环境变量和创建选项来启用对 IoT Edge 设备本地
 author: kgremban
 manager: philmea
 ms.author: v-tawe
-origin.date: 11/18/2019
-ms.date: 03/02/2020
+origin.date: 08/14/2020
+ms.date: 08/27/2020
 ms.topic: conceptual
 ms.service: iot-edge
 services: iot-edge
-ms.openlocfilehash: ce55de93396ee74f3e64204a50b953aa2ed2f462
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: bccf2752d9484e20218c1442f8db39db2fa381e3
+ms.sourcegitcommit: c8e590d907f20bbc9c4c05d9bfc93cf7cb1d776f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77494357"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88957757"
 ---
 # <a name="give-modules-access-to-a-devices-local-storage"></a>向模块授予对设备本地存储的访问权限
 
@@ -83,6 +83,12 @@ sudo chmod 700 <HostStoragePath>
 ```
 
 可以从 [docker 文档](https://docs.docker.com/engine/api/v1.32/#operation/ContainerCreate)中找到有关如何创建选项的更多详细信息。
+
+## <a name="encrypted-data-in-module-storage"></a>模块存储中的加密数据
+
+当模块调用 IoT Edge 守护程序的工作负载 API 来加密数据时，系统会使用模块 ID 和模块的生成 ID 来派生加密密钥。 如果从部署中删除了某个模块，然后将另一具有相同模块 ID 的模块部署到同一设备，则会使用生成 ID 来保护机密。 可以使用 Azure CLI 命令 [az iot hub module-identity show](https://docs.microsoft.com/cli/azure/ext/azure-cli-iot-ext/iot/hub/module-identity?view=azure-cli-latest#ext-azure-cli-iot-ext-az-iot-hub-module-identity-show) 查看模块的生成 ID。
+
+如果要跨代在模块之间共享文件，则这些文件不能包含任何机密，否则无法解密。
 
 ## <a name="next-steps"></a>后续步骤
 

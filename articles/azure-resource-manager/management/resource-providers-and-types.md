@@ -3,14 +3,18 @@ title: 资源提供程序和资源类型
 description: 介绍支持 Resource Manager 的资源提供程序及其架构和可用 API 版本，以及可托管资源的区域。
 ms.topic: conceptual
 origin.date: 08/29/2019
-ms.date: 03/23/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.author: v-yeche
-ms.openlocfilehash: df109e49f59a7bd390b2e09cd765c8f22641c8d4
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 94f8a2972a1c329e414c1bbff79e4f92447e9e0b
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79543889"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807878"
 ---
 # <a name="azure-resource-providers-and-types"></a>Azure 资源提供程序和类型
 
@@ -38,13 +42,13 @@ ms.locfileid: "79543889"
 1. 登录 [Azure 门户](https://portal.azure.cn)。
 2. 在 Azure 门户菜单中，选择“所有服务”  。
 
-    ![选择“订阅”](./media/resource-providers-and-types/select-all-services.png)
+    :::image type="content" source="./media/resource-providers-and-types/select-all-services.png" alt-text="选择订阅":::
 
 3. 在“所有服务”  框中，输入“订阅”  ，然后选择“订阅”  。
 4. 从订阅列表中选择订阅进行查看。
 5. 选择“资源提供程序”  并查看可用资源提供程序的列表。
 
-    ![显示资源提供程序](./media/resource-providers-and-types/show-resource-providers.png)
+    :::image type="content" source="./media/resource-providers-and-types/show-resource-providers.png" alt-text="显示资源提供程序":::
     
     <!--MOONCAKE CUSTOMIZED: Microsoft.Batch to replace Microsoft.Blueprint--> 
     
@@ -58,23 +62,23 @@ ms.locfileid: "79543889"
 2. 在 Azure 门户菜单中，选择“所有服务”  。
 3. 在“所有服务”  框中，输入“资源浏览器”  ，然后选择“资源浏览器”  。
 
-    ![选择“所有服务”](./media/resource-providers-and-types/select-resource-explorer.png)
+    :::image type="content" source="./media/resource-providers-and-types/select-resource-explorer.png" alt-text="选择“所有服务”":::
 
 4. 通过选择向右箭头来展开“提供程序”  。
 
-    ![选择“提供程序”](./media/resource-providers-and-types/select-providers.png)
+    :::image type="content" source="./media/resource-providers-and-types/select-providers.png" alt-text="选择提供程序":::
 
 5. 展开要查看的资源提供程序和资源类型。
 
-    ![选择“资源类型”](./media/resource-providers-and-types/select-resource-type.png)
+    :::image type="content" source="./media/resource-providers-and-types/select-resource-type.png" alt-text="选择资源类型":::
 
 6. 所有区域都支持 Resource Manager，但部署的资源可能无法在所有区域中受到支持。 此外，订阅可能存在一些限制，以防止用户使用某些支持该资源的区域。 资源浏览器显示资源类型的有效位置。
 
-    ![显示位置](./media/resource-providers-and-types/show-locations.png)
+    :::image type="content" source="./media/resource-providers-and-types/show-locations.png" alt-text="显示位置":::
 
 7. API 版本对应于资源提供程序发布的 REST API 操作版本。 资源提供程序启用新功能时，会发布 REST API 的新版本。 资源浏览器显示资源类型的有效 API 版本。
 
-    ![显示 API 版本](./media/resource-providers-and-types/show-api-versions.png)
+    :::image type="content" source="./media/resource-providers-and-types/show-api-versions.png" alt-text="显示 API 版本":::
 
 ## <a name="azure-powershell"></a>Azure PowerShell
 

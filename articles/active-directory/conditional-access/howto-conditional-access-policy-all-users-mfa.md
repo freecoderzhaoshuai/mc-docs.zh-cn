@@ -5,18 +5,18 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: conditional-access
 ms.topic: how-to
-ms.date: 07/01/2020
+ms.date: 08/27/2020
 ms.author: v-junlch
 author: MicrosoftGuyJFlo
 manager: daveba
 ms.reviewer: calebb, rogoya
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 20ad4ac576fb5b9a1294012f6d600515574dd0e9
-ms.sourcegitcommit: 1008ad28745709e8d666f07a90e02a79dbbe2be5
+ms.openlocfilehash: 86798423b814e25eef97874d45d842a9f1869110
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945057"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046368"
 ---
 # <a name="conditional-access-require-mfa-for-all-users"></a>条件访问：要求所有用户执行 MFA
 
@@ -53,7 +53,7 @@ ms.locfileid: "85945057"
    1. 选择“完成” 。
 1. 在“云应用或操作” > “包括”下，选择“所有云应用”。
    1. 在“排除”下，选择任何不需要多重身份验证的应用程序。
-1. 在“条件” > “客户端应用(预览)”下，将“配置”设置为“是”   。 在“选择适用于该策略的客户端应用”下保留选择的所有默认值，然后选择“完成” 。
+1. 在“条件” > “客户端应用(预览版)”下，在“选择该策略应用到的客户端应用”下保留选择的所有默认值，然后选择“完成”   。
 1. 在“访问控制” > “授予”下，依次选择“授予访问权限”、“需要多重身份验证”、“选择”。  
 1. 确认设置，然后将“启用策略”设置为“打开”。 
 1. 选择“创建”，以便创建启用策略所需的项目。
@@ -68,7 +68,7 @@ ms.locfileid: "85945057"
    1. 配置：“是”。
    1. 包括：“任何位置”。
    1. 排除：“所有受信任的位置”。
-   1. 选择“完成” 。
+   1. 选择“完成”  。
 1. 选择“完成” 。
 1. 保存策略更改。
 

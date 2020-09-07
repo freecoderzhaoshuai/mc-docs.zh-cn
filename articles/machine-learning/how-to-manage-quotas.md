@@ -11,12 +11,12 @@ author: nishankgu
 ms.author: nigup
 ms.date: 05/08/2020
 ms.custom: contperfq4
-ms.openlocfilehash: eca0ab4183687b29300eb249a84f3320f25c0f1c
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: b3c0b7162a8845569417137f2097fc900afe79b4
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228278"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946951"
 ---
 # <a name="manage--increase-quotas-for-resources-with-azure-machine-learning"></a>管理和增加 Azure 机器学习资源的配额
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -51,8 +51,6 @@ ms.locfileid: "88228278"
 
 [!INCLUDE [azure-subscription-limits-azure-resource-manager](../../includes/azure-subscription-limits-azure-resource-manager.md)]
 
-有关配额限制更详细的最新列表，请查看[适用于 Azure 的配额文章](https://docs.microsoft.com/azure/azure-resource-manager/management/azure-subscription-service-limits)。
-
 ### <a name="azure-machine-learning-compute"></a>Azure 机器学习计算
 在 [Azure 机器学习计算](concept-compute-target.md#azure-machine-learning-compute-managed)中，订阅中每个区域所允许的核心数和唯一计算资源数都有默认配额限制。 该配额与上述的 VM 核心配额不同，并且核心限制没有在这两种资源类型之间共享，因为 AmlCompute 是在托管代表模型中部署资源的托管服务。
 
@@ -83,16 +81,10 @@ ms.locfileid: "88228278"
 - 管道中所允许的最大步骤数为 30,000
 - 每个月根据每个订阅的已发布管道的博客触发计划执行的基于计划的运行数与 Blob 提取数之和的最大数目为 100,000
 
-> [!NOTE]
-> 如果想要增加此限制，请联系 [Microsoft 支持](https://azure.microsoft.com/support/options/)。
-
 ### <a name="container-instances"></a>容器实例
 
 可以在给定时间段内（以小时为范围）或在你的整个订阅中启动的容器实例数量也有限制。
-
-[!INCLUDE [container-instances-limits](../../includes/container-instances-limits.md)]
-
-有关配额限制更详细的最新列表，请在[此处](https://docs.microsoft.com/azure/azure-resource-manager/management/azure-subscription-service-limits#container-instances-limits)查看适用于 Azure 的配额文章。
+有关限制，请参阅[容器实例限制](/azure-resource-manager/management/azure-subscription-service-limits#container-instances-limits)。
 
 ### <a name="storage"></a>存储
 给定订阅中每个区域的存储帐户数量也有限制。 默认限制数量为 250，包括标准和高级存储帐户。 如果在某特定区域中需要的存储帐户多于 250 个，请通过 [Azure 支持](https://ms.portal.azure.cn/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest/)提出请求。 Azure 存储团队将评审业务案例，对于特定区域最多可以批准 250 个存储帐户。
@@ -116,7 +108,7 @@ ms.locfileid: "88228278"
 
 ## <a name="view-your-usage-and-quotas"></a>查看使用情况和配额
 
-Azure 机器学习计算与订阅中的其他 Azure 资源配额分开管理。 若要查看此配额，需要向下钻取到机器学习服务。  
+订阅中的 Azure 机器学习计算配额与其他 Azure 资源配额分开管理。 若要查看此配额，需要向下钻取到机器学习服务。  
 
 1. 在左窗格中，选择“机器学习服务”，然后从显示的列表中选择任何工作区。
 
@@ -135,6 +127,8 @@ Azure 机器学习计算与订阅中的其他 Azure 资源配额分开管理。 
 
 1. 从订阅列表中选择要查找其配额的订阅。
 
+3. 选择“使用情况 + 配额”以查看当前的配额限制和使用情况。 使用筛选器选择提供者和位置。 
+
 ## <a name="request-quota-increases"></a>请求增加配额
 
 如果想将限制或配额提高到默认值限制以上，可以免费[打开联机客户支持请求](https://ms.portal.azure.cn/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest/)。
@@ -143,10 +137,3 @@ Azure 机器学习计算与订阅中的其他 Azure 资源配额分开管理。 
 
 请求配额增加时，需要选择要请求提高配额的服务，这可能是机器学习服务配额、容器实例或存储配额的服务。 此外，对于 Azure 机器学习计算，可以在按照上述步骤查看配额时单击“请求配额”按钮。
 
-
-## <a name="next-steps"></a>后续步骤
-
-通过以下文章，了解详细信息：
-
-
-+ [如何增加配额](https://docs.microsoft.com/azure/azure-resource-manager/resource-manager-quota-errors)。

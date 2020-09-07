@@ -1,19 +1,19 @@
 ---
-title: Azure 服务总线和事件中心内的 AMQP 1.0 协议指南
+title: Azure 服务总线和事件中心内的 AMQP 1.0 协议指南 | Azure
 description: Azure 服务总线和事件中心内 AMQP 1.0 协议的表达与描述指南
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-author: rockboyfor
-ms.openlocfilehash: 6b018bd48862620dbe5bd309b6371cbdd4394223
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 4f1a30469ffa08d9490f4eea63b6d6749adb5d8e
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162403"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947109"
 ---
 # <a name="amqp-10-in-azure-service-bus-and-event-hubs-protocol-guide"></a>Azure 服务总线和事件中心内的 AMQP 1.0 协议指南
 
@@ -51,13 +51,13 @@ AMQP 1.0 协议被设计为可扩展，允许进一步规范以增强其功能�
 
 了解 AMQP 工作原理的最权威来源是 AMQP 1.0 规范，但此规范是为了精确引导实现而编写，而非用于传授协议知识。 本部分着重于尽可能介绍描述服务总线如何使用 AMQP 1.0 的术语。 
 
-<!--Not Available on For a more comprehensive introduction to AMQP, as well as a broader discussion of AMQP 1.0, you can review [this video course][this video course].-->
+<!--Not Available on For a more comprehensive introduction to AMQP, as well as a broader discussion of AMQP 1.0, you can review [this video course][this video course]-->
 
 ### <a name="connections-and-sessions"></a>连接和会话
 
 AMQP 将通信程序称为容器  ；其中包含节点  ，即这些容器内的通信实体。 队列可以是此类节点。 AMQP 允许多路复用，因此单个连接可用于节点之间的许多通信路径；例如，应用程序客户端可以同时从一个队列接收，并通过相同的网络连接发送到另一个队列。
 
-![][1]
+![示意图，显示在不同容器之间进行的会话和连接。][1]
 
 网络连接因此固定在容器上。 它由采用客户端角色的容器启动，对采用接收者角色的容器进行出站 TCP 套接字连接，以侦听和接受入站 TCP 连接。 连接握手包括协商协议版本，声明或协商传输级别安全性 (TLS/SSL) 的使用，以及基于 SASL 的连接范围的身份验证/授权握手。
 
@@ -92,7 +92,7 @@ Azure 服务总线目前只对每个连接使用一个会话。 服务总线标�
 
 AMQP 通过链接传输消息。 链接是在能以单个方向传输消息的会话中创建的通信路径；传输状态协商通过链接在已连接方之间双向进行。
 
-![][2]
+![屏幕截图，显示在两个容器之间进行链接连接的会话。][2]
 
 任一容器可以在现有的会话中随时创建链接，这使 AMQP 不同于其他许多协议（包括 HTTP 和 MQTT），其中启动传输和传输路径是创建套接字连接之一方的独占权限。
 
@@ -108,7 +108,7 @@ AMQP 通过链接传输消息。 链接是在能以单个方向传输消息的�
 
 建立链接后，即可通过该链接传输消息。 在 AMQP 中，使用明确的协议手势运行传输（传输行为原语），以通过链接将消息从发送者转到接收者。 传输在“安置好”时完成，这意味着双方已建立该传输结果的共识。
 
-![][3]
+![示意图，显示在发送方与接收方之间进行的消息传输以及由此进行的处理。][3]
 
 在最简单的情况下，发送者可以选择发送“预先安置”的消息，这意味着客户端对结果不感兴趣，并且接收者不提供任何有关操作结果的反馈。 此模式由服务总线在 AMQP 协议级别支持，但不显示在任何客户端 API 中。
 
@@ -128,7 +128,7 @@ AMQP 1.0 规范定义进一步的处置状态（称为“已接收”），其�
 
 除了以前介绍过的会话级别流量控制模型以外，每个链接都有自己的流量控制模型。 会话级别流量控制可防止容器必须一次处理太多帧，链接级别流量控制让应用程序负责控制它想要从链接处理的消息数目以及时机。
 
-![][4]
+![日志的屏幕截图，显示源、目标、源端口、目标端口和协议名称。 在第一行中，目标端口 10401 (0x28 A 1) 带有黑色边框。][4]
 
 在链接上，传输只发生于发送者有足够的“链接信用额度”时。 链接信用额度是接收者使用*流程*行为原语所设置的计数器，其范围是链接。 将链接信用额度分配给发送者时，将通过传递消息来尝试用完该信用额度。 每个消息传递使剩余的链接信用额度减 1。 当链接信用额度用完时，便会停止传递。
 
@@ -272,8 +272,8 @@ AMQP 1.0 规范定义进一步的处置状态（称为“已接收”），其�
 
 开始事务性工作。 控制器必须从协调器获取一个 `txn-id`。 通过发送 `declare` 类型消息完成此操作。 如果声明成功，协调器会响应一个处置结果，其中包含分配的 `txn-id`。
 
-| 客户端（控制器） | | 服务总线（协调器） |
-| --- | --- | --- |
+| 客户端（控制器） | 方向 | 服务总线（协调器） |
+| :--- | :---: | :--- |
 | attach(<br/>name={link name},<br/>... ,<br/>role=**sender**,<br/>target=**Coordinator**<br/>) | ------> |  |
 |  | <------ | attach(<br/>name={link name},<br/>... ,<br/>target=Coordinator()<br/>) |
 | transfer(<br/>delivery-id=0, ...)<br/>{ AmqpValue (**Declare()** )}| ------> |  |
@@ -285,8 +285,8 @@ AMQP 1.0 规范定义进一步的处置状态（称为“已接收”），其�
 
 > 请注意：fail=true 表示事务回滚，fail=false 表示提交。
 
-| 客户端（控制器） | | 服务总线（协调器） |
-| --- | --- | --- |
+| 客户端（控制器） | 方向 | 服务总线（协调器） |
+| :--- | :---: | :--- |
 | transfer(<br/>delivery-id=0, ...)<br/>{ AmqpValue (Declare())}| ------> |  |
 |  | <------ | disposition( <br/> first=0, last=0, <br/>state=Declared(<br/>txn-id={transaction ID}<br/>))|
 | | . . . <br/>其他链接上的<br/>事务性工作<br/> . . . |
@@ -297,8 +297,8 @@ AMQP 1.0 规范定义进一步的处置状态（称为“已接收”），其�
 
 所有事务性工作都是通过包含 txn-id 的事务性传递状态 `transactional-state` 完成的。在发送消息时，transactional-state 位于消息的传输框架中。 
 
-| 客户端（控制器） | | 服务总线（协调器） |
-| --- | --- | --- |
+| 客户端（控制器） | 方向 | 服务总线（协调器） |
+| :--- | :---: | :--- |
 | transfer(<br/>delivery-id=0, ...)<br/>{ AmqpValue (Declare())}| ------> |  |
 |  | <------ | disposition( <br/> first=0, last=0, <br/>state=Declared(<br/>txn-id={transaction ID}<br/>))|
 | transfer(<br/>handle=1,<br/>delivery-id=1, <br/>**state=<br/>TransactionalState(<br/>txn-id=0)** )<br/>{ payload }| ------> |  |
@@ -308,8 +308,8 @@ AMQP 1.0 规范定义进一步的处置状态（称为“已接收”），其�
 
 消息处置包括类似 `Complete` / `Abandon` / `DeadLetter` / `Defer` 的操作。 若要在事务中执行这些操作，请通过 disposition 传递 `transactional-state`。
 
-| 客户端（控制器） | | 服务总线（协调器） |
-| --- | --- | --- |
+| 客户端（控制器） | 方向 | 服务总线（协调器） |
+| :--- | :---: | :--- |
 | transfer(<br/>delivery-id=0, ...)<br/>{ AmqpValue (Declare())}| ------> |  |
 |  | <------ | disposition( <br/> first=0, last=0, <br/>state=Declared(<br/>txn-id={transaction ID}<br/>))|
 | | <------ |transfer(<br/>handle=2,<br/>delivery-id=11, <br/>state=null)<br/>{ payload }|  
@@ -406,8 +406,8 @@ name 属性标识应与此令牌关联的实体。 在服务总线中，这是�
 
 > 注意：在建立此链接前，*via-entity* 和 *destination-entity* 都需要通过身份验证。
 
-| 客户端 | | 服务总线 |
-| --- | --- | --- |
+| 客户端 | 方向 | 服务总线 |
+| :--- | :---: | :--- |
 | attach(<br/>name={link name},<br/>role=sender,<br/>source={client link ID},<br/>target= **{via-entity}** ,<br/>**properties=map [(<br/>com.microsoft:transfer-destination-address=<br/>{destination-entity} )]** ) | ------> | |
 | | <------ | attach(<br/>name={link name},<br/>role=receiver,<br/>source={client link ID},<br/>target={via-entity},<br/>properties=map [(<br/>com.microsoft:transfer-destination-address=<br/>{destination-entity} )] ) |
 
@@ -424,6 +424,5 @@ name 属性标识应与此令牌关联的实体。 在服务总线中，这是�
 
 [服务总线 AMQP 概述]: service-bus-amqp-overview.md
 [针对服务总线分区队列和主题的 AMQP 1.0 支持]: service-bus-partitioned-queues-and-topics-amqp-overview.md
-[适用于 Windows Server 的服务总线中的 AMQP]: https://msdn.microsoft.com/library/dn574799.aspx
-
+[适用于 Windows Server 的服务总线中的 AMQP]: https://docs.microsoft.com/previous-versions/service-bus-archive/dn574799(v=azure.100)
 <!-- Update_Description: update meta properties, wording update, update link -->

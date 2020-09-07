@@ -2,23 +2,23 @@
 title: 将现有 Azure 订阅添加到租户 - Azure AD
 description: 有关将现有 Azure 订阅添加到 Azure Active Directory 租户的说明。
 services: active-directory
-author: msaburnley
+author: ajburnle
 manager: daveba
 ms.service: active-directory
 ms.workload: identity
 ms.subservice: fundamentals
-ms.topic: conceptual
-ms.date: 07/02/2020
+ms.topic: how-to
+ms.date: 08/27/2020
 ms.author: v-junlch
 ms.reviewer: jeffsta
 ms.custom: it-pro, seodec18, contperfq4
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 06c3aa782729154f55e641d29d19f21d46751a01
-ms.sourcegitcommit: 1008ad28745709e8d666f07a90e02a79dbbe2be5
+ms.openlocfilehash: e0d22bac0fc133d8285af0aeeac1541bc6993354
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945000"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046340"
 ---
 # <a name="associate-or-add-an-azure-subscription-to-your-azure-active-directory-tenant"></a>将 Azure 订阅关联或添加到 Azure Active Directory 租户
 
@@ -31,7 +31,7 @@ Azure 订阅与 Azure Active Directory (Azure AD) 之间存在信任关系。 �
 所有用户都有一个用于身份验证的“主”目录。 用户还可以充当其他目录中的来宾。 可在 Azure AD 中查看每位用户的主目录和来宾目录。
 
 > [!Important]
-> 当你将订阅与其他目录关联时，具有使用[基于角色的访问控制 (RBAC)](../../role-based-access-control/role-assignments-portal.md) 分配的角色的用户将失去其访问权限。 经典订阅管理员（包括服务管理员和共同管理员）也将失去其访问权限。
+> 将订阅关联到其他目录时，如果用户的角色是使用 [Azure 基于角色的访问控制 (Azure RBAC)](../../role-based-access-control/role-assignments-portal.md) 分配的，则用户将失去其访问权限。 经典订阅管理员（包括服务管理员和共同管理员）也将失去其访问权限。
 >
 > 当订阅与不同的目录关联时，还会从该订阅中删除策略分配。
 >
@@ -59,18 +59,26 @@ Azure 订阅与 Azure Active Directory (Azure AD) 之间存在信任关系。 �
 
 ## <a name="associate-a-subscription-to-a-directory"></a>将订阅关联到目录<a name="to-associate-an-existing-subscription-to-your-azure-ad-directory"></a>
 
-将现有订阅关联到 Azure AD 目录
+若要将现有订阅关联到 Azure AD 目录，请执行以下步骤：
 
-1. 登录，然后在[门户](https://portal.azure.cn/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview)中，选择“Azure Active Directory”。
+1. 登录，然后从 [Azure 门户中的“订阅”页面](https://portal.azure.cn/#blade/Microsoft_Azure_Billing/SubscriptionsBlade)选择要使用的订阅。
 
-2. 选择“切换目录”。
+1. 选择“更改目录”。
 
-    ![订阅页面，其中突出显示了“更改目录”选项](./media/active-directory-how-subscriptions-associated-directory/change-directory-button.png)
+    ![订阅页面，其中突出显示了“更改目录”选项](./media/active-directory-how-subscriptions-associated-directory/change-directory-in-azure-subscriptions.png)
 
-3. 选择“所有目录”，然后单击要切换的目录。
+1. 查看出现的任何警告，然后选择“更改”。
 
     ![“更改目录”页，显示要更改到的目录](./media/active-directory-how-subscriptions-associated-directory/edit-directory-ui.png)
-  
+
+    订阅目录更改后，会显示一条成功消息。
+
+  1. 选择订阅页上的“切换目录”，转到新目录。 
+
+      ![“目录切换器”页，包含示例信息](./media/active-directory-how-subscriptions-associated-directory/directory-switcher.png)
+
+      正确显示所有内容可能需要数小时。 如果时间看起来太长，请查看“全局订阅筛选器”。 确保未隐藏移动的订阅。 可能需要注销 Azure 门户并重新登录才能查看新目录。
+
 更改订阅目录是服务级操作，不会影响订阅的账单所有权。 帐户管理员仍可从[帐户中心](https://account.windowsazure.cn/subscriptions)更改服务管理员。 若要删除原始目录，必须将订阅的账单所有权转让给新的帐户管理员。若要详细了解如何转让账单所有权，请参阅[将 Azure 订阅所有权转让给其他帐户](/billing/billing-subscription-transfer)。
 
 ## <a name="post-association-steps"></a>关联后的步骤
@@ -87,7 +95,7 @@ Azure 订阅与 Azure Active Directory (Azure AD) 之间存在信任关系。 �
 
 - 若要创建新的 Azure AD 租户，请参阅[快速入门：在 Azure Active Directory 中创建新租户](active-directory-access-create-new-tenant.md)。
 
-- 若要详细了解 Azure 如何控制资源访问，请参阅[经典订阅管理员角色、Azure RBAC 角色和 Azure AD 管理员角色](../../role-based-access-control/rbac-and-directory-admin-roles.md)。
+- 若要详细了解 Azure 如何控制资源访问，请参阅[经典订阅管理员角色、Azure 角色和 Azure AD 管理员角色](../../role-based-access-control/rbac-and-directory-admin-roles.md)。
 
 - 若要详细了解如何在 Azure AD 中分配角色，请参阅[为使用 Azure Active Directory 的用户分配管理员和非管理员角色](active-directory-users-assign-role-azure-portal.md)。
 

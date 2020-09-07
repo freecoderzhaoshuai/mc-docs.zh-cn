@@ -5,19 +5,19 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: conditional-access
 ms.topic: conceptual
-ms.date: 07/08/2020
+ms.date: 08/27/2020
 ms.author: v-junlch
 author: MicrosoftGuyJFlo
 manager: daveba
 ms.reviewer: calebb
 ms.collection: M365-identity-device-management
 ms.custom: contperfq4
-ms.openlocfilehash: e0aeff993136d04ae046cea344051f4463743a1a
-ms.sourcegitcommit: 92b9b1387314b60661f5f62db4451c9ff2c49500
+ms.openlocfilehash: fbe2b445c347082d9785b792b7e0501ea0940947
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86164998"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046370"
 ---
 # <a name="using-the-location-condition-in-a-conditional-access-policy"></a>在条件访问策略中使用位置条件 
 
@@ -74,7 +74,7 @@ ms.locfileid: "86164998"
 
 ### <a name="configure-mfa-trusted-ips"></a>配置 MFA 受信任的 IP
 
-还可以在[多重身份验证服务设置](https://account.activedirectory.azure.cn/usermanagement/mfasettings.aspx)中配置 IP 地址范围，用于表示组织的本地 Intranet。 使用此功能最多可以配置 50 个 IP 地址范围。 IP 地址范围采用 CIDR 格式。 有关详细信息，请参阅[受信任的 IP](../authentication/howto-mfa-mfasettings.md#trusted-ips)。  
+还可以在[多重身份验证服务设置](https://account.activedirectory.windowsazure.cn/usermanagement/mfasettings.aspx)中配置 IP 地址范围，用于表示组织的本地 Intranet。 使用此功能最多可以配置 50 个 IP 地址范围。 IP 地址范围采用 CIDR 格式。 有关详细信息，请参阅[受信任的 IP](../authentication/howto-mfa-mfasettings.md#trusted-ips)。  
 
 如果已配置受信任的 IP，这些 IP 将作为“MFA 受信任的 IP”显示在位置条件的位置列表中。
 
@@ -190,11 +190,11 @@ Azure Active Directory (Azure AD) 当前不支持使用 IPv6 的直接网络连�
 
 使用云托管代理或 VPN 解决方案时，Azure AD 在评估策略时使用的 IP 地址是该代理的 IP 地址。 不会使用包含用户公共 IP 地址的 X-Forwarded-For (XFF) 标头，因为没有任何机制验证该地址是否来自受信任的源，该标头可能提供了一种用于伪造 IP 地址的方法。
 
-当云代理准备就绪时，可以使用一个策略来要求设备加入域，或使用来自 AD FS 的内部企业网络声明。
+当云代理准备就绪时，可以使用一个策略来要求设备加入混合 Azure AD，或使用来自 AD FS 的公司网络内部的声明。
 
 ### <a name="api-support-and-powershell"></a>API 支持和 PowerShell
 
-命名位置尚不支持 API 和 PowerShell。
+命名位置的 Graph API 预览版本可用。有关详细信息，请参阅 [namedLocation API](https://docs.microsoft.com/graph/api/resources/namedlocation?view=graph-rest-beta)。
 
 ## <a name="next-steps"></a>后续步骤
 

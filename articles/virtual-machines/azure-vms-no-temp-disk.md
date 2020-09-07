@@ -3,24 +3,24 @@ title: 无本地临时磁盘的 Azure VM 规格的常见问题解答
 description: 本文提供有关没有本地临时磁盘的 Azure VM 规格的常见问题解答 (FAQ)。
 author: rockboyfor
 ms.service: virtual-machines
-ms.topic: article
+ms.topic: conceptual
 ms.reviewer: mimckitt
 origin.date: 06/15/2020
-ms.date: 07/27/2020
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 58a5644e8431ffbffea13bce525736ccfe2528d4
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: 06ca252eea29b4dbf0a23c3fd916bea56eb72643
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87254857"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052425"
 ---
 <!--Pending GA on Q3 2020, only be suitable for China East 2 site-->
 <!--RELEASE BEFORE CONFIRME AND BE CAREFULLY-->
 # <a name="azure-vm-sizes-with-no-local-temporary-disk"></a>无本地临时磁盘的 Azure VM 规格 
-本文提供有关没有本地临时磁盘（即无本地临时磁盘）的 Azure VM 规格的常见问题解答 (FAQ)。 有关这些 VM 规格的详细信息，请参阅 [Dv4 和 Dsv4 系列规范（常规用途工作负载）](dv4-dsv4-series.md)或 [Ev4 和 Esv4 系列规范（内存优化工作负载）](ev4-esv4-series.md)。
+本文提供有关没有本地临时磁盘（即无本地临时磁盘）的 Azure VM 大小的常见问题解答 (FAQ)。 有关这些 VM 规格的详细信息，请参阅 [Dv4 和 Dsv4 系列规范（常规用途工作负载）](dv4-dsv4-series.md)或 [Ev4 和 Esv4 系列规范（内存优化工作负载）](ev4-esv4-series.md)。
 
 > [!IMPORTANT]
 > Dv4、Dsv4、Ev4 和 Esv4 的 VM 规格现以公共预览版提供。 若要注册公共预览版，请填写此 [窗体](https://forms.office.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR_Y3toRKxchLjARedqtguBRURE1ZSkdDUzg1VzJDN0cwWUlKTkcyUlo5Mi4u)。 
@@ -28,7 +28,7 @@ ms.locfileid: "87254857"
 ## <a name="what-does-no-local-temp-disk-mean"></a>无本地临时磁盘是什么意思？ 
 通常，我们的 VM 规格（例如 Standard_D2s_v3、Standard_E48_v3）包含一个小型本地磁盘（例如 D:驱动器）。 现在，使用这些新的 VM 规格，该小型本地磁盘将不再存在；但你仍然可以附加标准 HDD、高级 SSD 或超级 SSD。
 
-## <a name="what-if-i-still-want-local-temp-disk"></a>如果仍需要本地临时磁盘怎么办？
+## <a name="what-if-i-still-want-a-local-temp-disk"></a>如果仍需本地临时磁盘，该怎么办？
 如果工作负载需要本地临时磁盘，我们也提供了新的 [Ddv4 和 Ddsv4](ddv4-ddsv4-series.md) 或 [Edv4 和 Edsv4](edv4-edsv4-series.md) VM 规格。 与以前的 v3 规格相比，这些规格提供大 50% 的临时磁盘。
 
 > [!NOTE]
@@ -61,10 +61,9 @@ ms.locfileid: "87254857"
 填写[反馈窗体]( https://forms.office.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR_Y3toRKxchLjARedqtguBRUMzdCQkw0OVVRTldFUUtXSTlLQVBPUkVHSy4u)。 
 
 ## <a name="next-steps"></a>后续步骤 
-本文档详细介绍了有关具有本地临时磁盘的 Azure VM 的最常见问题。 有关这些 VM 规格的详细信息，请参阅以下文章：
+本文档详细介绍了与没有本地临时磁盘的 Azure VM 相关的最常见问题。 有关这些 VM 规格的详细信息，请参阅以下文章：
 
 - [Dv4 和 Dsv4 系列规格（常规用途工作负载）](dv4-dsv4-series.md)
 - [Ev4 和 Esv4 系列规范（内存优化工作负载）](ev4-esv4-series.md)
 
-<!-- Update_Description: new article about azure vms no temp disk -->
-<!--NEW.date: 07/27/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

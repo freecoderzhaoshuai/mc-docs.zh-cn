@@ -5,18 +5,18 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: conditional-access
 ms.topic: how-to
-ms.date: 07/01/2020
+ms.date: 08/27/2020
 ms.author: v-junlch
 author: MicrosoftGuyJFlo
 manager: daveba
 ms.reviewer: calebb, rogoya
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 6487eda81e6fa36fc539284d8825abd9e726bf60
-ms.sourcegitcommit: 1008ad28745709e8d666f07a90e02a79dbbe2be5
+ms.openlocfilehash: 5fda1cddaaed069d2cac2d0851321d33e5b1d3af
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945050"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046360"
 ---
 # <a name="conditional-access-block-legacy-authentication"></a>条件访问：阻止传统身份验证
 
@@ -36,8 +36,8 @@ ms.locfileid: "85945050"
    1. 选择“完成”。
 1. 在“云应用或操作”下，选择“所有云应用”。
    1. 选择“完成”。
-1. 在“条件” > “客户端应用（预览）”下，将“配置”设置为“是”。
-   1. 仅选中“移动应用和桌面客户端” > “其他客户端”复选框。
+1. 在“条件” > “客户端应用”下，将“配置”设置为“是”   。
+   1. 仅勾选“Exchange ActiveSync 客户端”和“其他客户端”框。 
    1. 选择“完成”。
 1. 在“访问控制” > “授予”下，选择“阻止访问”。
    1. 选择“选择”。
@@ -49,4 +49,6 @@ ms.locfileid: "85945050"
 [常用条件访问策略](concept-conditional-access-policy-common.md)
 
 [使用条件访问 What If 工具模拟登录行为](troubleshoot-conditional-access-what-if.md)
+
+[如何设置多功能设备或应用程序以使用 Office 365 和 Microsoft 365 发送电子邮件](https://docs.microsoft.com/exchange/mail-flow-best-practices/how-to-set-up-a-multifunction-device-or-application-to-send-email-using-office-3)
 

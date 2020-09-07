@@ -1,5 +1,5 @@
 ---
-title: 在运行 Windows 的 N 系列 VM 上安装 NVIDIA GPU 驱动程序
+title: 适用于 Windows 的 Azure N 系列 NVIDIA GPU 驱动程序安装
 description: 如何为 Azure 中运行 Windows Server 或 Windows 的 N 系列 VM 安装 NVIDIA GPU 驱动程序
 author: rockboyfor
 manager: jkabat
@@ -8,27 +8,28 @@ ms.topic: how-to
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 origin.date: 09/24/2018
-ms.date: 08/10/2020
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: 07/06/2020
 ms.author: v-yeche
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: cb5f008c6a67167308ec7f19289e94bb58e3db88
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: fdb218aaa9d69dc9f2f12d2b55d5e424d1208838
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917238"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951281"
 ---
 <!--Not Available on Mooncake-->
 <!--NVV4 series is not Available on MOONCAKE-->
 # <a name="install-nvidia-gpu-drivers-on-n-series-vms-running-windows"></a>在运行 Windows 的 N 系列 VM 上安装 NVIDIA GPU 驱动程序 
 
-若要利用 NVIDIA GPU 支持的 Azure N 系列 VM 的 GPU 功能，必须安装 NVIDIA GPU 驱动程序。 [NVIDIA GPU 驱动程序扩展](../extensions/hpccompute-gpu-windows.md)可在 N 系列 VM 上安装适当的 NVIDIA CUDA 驱动程序。 请使用 Azure 门户或工具（例如 Azure PowerShell 或 Azure 资源管理器模板）安装或管理该扩展。 有关受支持的操作系统和部署步骤，请参阅 [NVIDIA GPU 驱动程序扩展文档](../extensions/hpccompute-gpu-windows.md)。
+若要利用 NVIDIA GPU 支持的 Azure N 系列 VM 的 GPU 功能，必须安装 NVIDIA GPU 驱动程序。
 
-<!--Not Available on or GRID -->
+<!--Not Avaialble on [NVIDIA GPU Driver Extension](../extensions/hpccompute-gpu-windows.md)-->
+<!--Not Available on [NVIDIA GPU Driver Extension documentation](../extensions/hpccompute-gpu-windows.md)-->
 
-如果选择手动安装 NVIDIA GPU 驱动程序，请参阅本文，其中提供了受支持的操作系统、驱动程序以及安装和验证步骤。 针对 [Linux VM](../linux/n-series-driver-setup.md?toc=%2fvirtual-machines%2flinux%2ftoc.json) 也提供了驱动程序手动安装信息。
+选择手动安装 NVIDIA GPU 驱动程序时，请参阅本文，其中提供了受支持的操作系统、驱动程序以及安装和验证步骤。 针对 [Linux VM](../linux/n-series-driver-setup.md?toc=%2fvirtual-machines%2flinux%2ftoc.json) 也提供了驱动程序手动安装信息。
 
 有关基本规范、存储容量和磁盘详细信息，请参阅 [GPU Windows VM 大小](../sizes-gpu.md?toc=/virtual-machines/windows/toc.json)。 
 

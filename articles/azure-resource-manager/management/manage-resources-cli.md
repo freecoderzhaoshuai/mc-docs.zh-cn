@@ -1,17 +1,20 @@
 ---
 title: 管理资源 - Azure CLI
 description: 使用 Azure CLI 和 Azure 资源管理器管理资源。 演示如何部署和删除资源。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 02/11/2019
-ms.date: 01/06/2020
+author: rockboyfor
+ms.date: 08/24/2020
+ms.testscope: yes
+ms.testdate: 08/24/2020
 ms.author: v-yeche
-ms.openlocfilehash: 28d740a17167bf97e55df22e00ab58515c63df3d
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 958ee8ccc82bb896f9d14e12819b3c3c8f89439a
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75631153"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807755"
 ---
 # <a name="manage-azure-resources-by-using-azure-cli"></a>使用 Azure CLI 管理 Azure 资源
 
@@ -57,11 +60,11 @@ az group deployment create --resource-group $resourceGroupName --template-uri "h
 
 ## <a name="deploy-a-resource-group-and-resources"></a>部署资源组和资源
 
-可以创建一个资源组，然后将资源部署到该组。 有关详细信息，请参阅[创建资源组并部署资源](../templates/deploy-to-subscription.md#resource-group-and-resources)。
+可以创建一个资源组，然后将资源部署到该组。 有关详细信息，请参阅[创建资源组并部署资源](../templates/deploy-to-subscription.md#resource-groups)。
 
 ## <a name="deploy-resources-to-multiple-subscriptions-or-resource-groups"></a>将资源部署到多个订阅或资源组
 
-通常情况下，将模板中的所有资源部署到单个资源组。 不过，在某些情况下，你可能希望将一组资源部署在一起但将其放置在不同的资源组或订阅中。 有关详细信息，请参阅[将 Azure 资源部署到多个订阅或资源组](../templates/cross-resource-group-deployment.md)。
+通常情况下，将模板中的所有资源部署到单个资源组。 不过，在某些情况下，你可能希望将一组资源部署在一起但将其放置在不同的资源组或订阅中。 有关详细信息，请参阅[将 Azure 资源部署到多个订阅或资源组](../templates/cross-scope-deployment.md)。
 
 ## <a name="delete-resources"></a>删除资源
 
@@ -137,13 +140,13 @@ az lock delete --ids $lockId
 
 ## <a name="manage-access-to-resources"></a>管理对资源的访问
 
-可以在 Azure 中通过[基于角色的访问控制 (RBAC)](../../role-based-access-control/overview.md) 这种方式管理对资源的访问。 有关详细信息，请参阅[使用 RBAC 和 Azure CLI 管理访问权限](../../role-based-access-control/role-assignments-cli.md)。
+可以通过 [Azure 基于角色的访问控制 (Azure RBAC)](../../role-based-access-control/overview.md) 管理对 Azure 中资源的访问权限。 有关详细信息，请参阅[使用 RBAC 和 Azure CLI 管理访问权限](../../role-based-access-control/role-assignments-cli.md)。
 
 ## <a name="next-steps"></a>后续步骤
 
 - 若要了解 Azure 资源管理器，请参阅 [Azure 资源管理器概述](overview.md)。
 - 若要了解资源管理器模板语法，请参阅[了解 Azure 资源管理器模板的结构和语法](../templates/template-syntax.md)。
-- 若要了解如何开发模板，请参阅[分步教程](/azure-resource-manager/)。
+- 若要了解如何开发模板，请参阅[分步教程](../index.yml)。
 
 <!--Not Available on [template reference](https://docs.microsoft.com/azure/templates/)-->
 <!-- Update_Description: update meta properties, wording update, update link -->

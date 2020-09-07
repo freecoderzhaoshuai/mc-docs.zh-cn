@@ -4,16 +4,16 @@ description: 了解缩放单元节点操作，包括开机、关机、禁用、�
 author: WenJason
 ms.topic: how-to
 origin.date: 04/30/2020
-ms.date: 06/22/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: thoroet
 ms.lastreviewed: 11/11/2019
-ms.openlocfilehash: 2c1789c11ef815dc0cab9e61f3959686f8ef6371
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 815eb67542c979f223ad854bd42da5051f976f2f
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096508"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867862"
 ---
 # <a name="scale-unit-node-actions-in-azure-stack-hub"></a>Azure Stack Hub 中的缩放单元节点操作
 
@@ -63,7 +63,7 @@ Azure Stack Hub 在执行排出、恢复、修复、关闭或启动之类的操�
 
 在应用以下步骤之前，请确保当前没有正在进行的操作。 更新终结点，使之与环境匹配。
 
-1. 打开 PowerShell 并添加 Azure Stack Hub 环境。 这需要在计算机上[安装 Azure Stack Hub PowerShell](/azure-stack/operator/azure-stack-powershell-install)。
+1. 打开 PowerShell 并添加 Azure Stack Hub 环境。 这需要在计算机上[安装 Azure Stack Hub PowerShell](./azure-stack-powershell-install.md)。
 
    ```powershell
    Add-AzureRmEnvironment -Name AzureStack -ARMEndpoint https://adminmanagement.local.azurestack.external
@@ -102,7 +102,7 @@ Azure Stack Hub 在执行排出、恢复、修复、关闭或启动之类的操�
 
 “停止”操作会关闭节点。 它的作用如同按下电源按钮。 它不会向操作系统发送关闭信号。 对于计划的停止操作，请始终先尝试关闭操作。
 
-当节点处于挂起状态，不再响应请求时，通常使用此操作。
+当节点不再响应请求时，通常使用此操作。
 
 若要运行停止操作，请打开权限提升的 PowerShell 提示符，并运行以下 cmdlet：
 
@@ -202,6 +202,6 @@ Azure Stack Hub 在执行排出、恢复、修复、关闭或启动之类的操�
 
 ## <a name="next-steps"></a>后续步骤
 
-- [安装 Azure Stack PowerShell](/azure-stack/operator/azure-stack-powershell-install)
+- [安装 Azure Stack PowerShell](./azure-stack-powershell-install.md)
 - [了解 Azure Stack Hub Fabric 操作员模块](https://docs.microsoft.com/powershell/module/azs.fabric.admin/?view=azurestackps-1.6.0)。
-- [监视“添加节点”操作](/azure-stack/operator/azure-stack-add-scale-node#monitor-add-node-operations)
+- [监视“添加节点”操作](./azure-stack-add-scale-node.md#monitor-add-node-operations)

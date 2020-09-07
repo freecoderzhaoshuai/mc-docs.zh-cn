@@ -4,17 +4,17 @@ description: 了解可以运行 Azure IoT Edge 守护程序和运行时的操作
 author: kgremban
 manager: philmea
 ms.author: v-tawe
-origin.date: 06/10/2020
-ms.date: 07/01/2020
+origin.date: 07/17/2020
+ms.date: 08/27/2020
 ms.topic: conceptual
 ms.service: iot-edge
 services: iot-edge
-ms.openlocfilehash: 453e8497ec216b99b0557f1bc86c30a8c87b7d7d
-ms.sourcegitcommit: 4f84bba7e509a321b6f68a2da475027c539b8fd3
+ms.openlocfilehash: 5f5be5cfe2bfc4a8baa94204c537c8d06df62579
+ms.sourcegitcommit: c8e590d907f20bbc9c4c05d9bfc93cf7cb1d776f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85796212"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88957811"
 ---
 # <a name="azure-iot-edge-supported-systems"></a>Azure IoT Edge 支持的系统
 
@@ -24,7 +24,7 @@ ms.locfileid: "85796212"
 
 **报告 bug** – 涉及 Azure IoT Edge 产品的大多数开发都是在 IoT Edge 开放源代码项目中进行的。 可以在项目的[问题页面](https://github.com/azure/iotedge/issues)上报告 bug。 修复很快就会从项目实施到产品更新中。
 
-**Microsoft 客户支持团队** - 拥有[支持计划](https://azure.microsoft.com/support/plans/)的用户可以通过直接从 [Azure 门户]( https://portal.azure.cn/signin/index/?feature.settingsportalinstance=mpac)创建支持票证来与 Microsoft 客户支持团队进行沟通。
+**Microsoft 客户支持团队** – 拥有[支持计划](https://azure.microsoft.com/support/plans/)的用户可以通过直接从 [Azure 门户]( https://portal.azure.cn/signin/index/?feature.settingsportalinstance=mpac)创建支持票证来与 Microsoft 客户支持团队进行沟通。
 
 **功能请求** – Azure IoT Edge 产品通过产品的 [User Voice 页面](https://feedback.azure.com/forums/907045-azure-iot-edge)跟踪功能请求。
 
@@ -91,12 +91,15 @@ Azure IoT Edge 在大多数可以运行容器的操作系统上运行；但是�
 | [Wind River 8](https://docs.windriver.com/category/os-wind_river_linux) | ![Wind River 8 + AMD64](./media/tutorial-c-module/green-check.png) |  |  |
 | [Yocto](https://www.yoctoproject.org/) | ![Yocto + AMD64](./media/tutorial-c-module/green-check.png) | ![Yocto + ARM32v7](./media/tutorial-c-module/green-check.png) | ![Yocto + ARM64](./media/tutorial-c-module/green-check.png) |
 | Raspbian Buster <sup>1</sup> |  | ![Raspbian Buster + ARM32v7](./media/tutorial-c-module/green-check.png) | ![Raspbian Buster + ARM64](./media/tutorial-c-module/green-check.png) |
+| [Ubuntu 20.04 <sup>2</sup>](https://wiki.ubuntu.com/FocalFossa/ReleaseNotes) | ![Ubuntu 20.04 + AMD64](./media/tutorial-c-module/green-check.png) | ![Ubuntu 20.04 + ARM32v7](./media/tutorial-c-module/green-check.png) | ![Ubuntu 20.04 + ARM64](./media/tutorial-c-module/green-check.png) |
 
 <sup>1</sup> Debian 10 系统（包括 Raspian Buster）使用了 IoT Edge 不支持的 OpenSSL 版本。 在安装 IoT Edge 之前，请使用以下命令安装较低版本：
 
 ```bash
 sudo apt-get install libssl1.0.2
 ```
+
+<sup>2</sup> [Azure IoT Edge 版本存储库](https://github.com/Azure/azure-iotedge/releases)中的 Debian 9 包应该可以直接与 Ubuntu 20.04 配合使用。
 
 ## <a name="releases"></a>发行版本
 
@@ -106,7 +109,7 @@ IoT Edge 组件可以单独安装或更新，并后向兼容旧版中的组件�
 
 | 发布 | 安全守护程序 | Edge 中心<br>Edge 代理 | Libiothsm | Moby |
 |--|--|--|--|--|
-| **1.0.9** | 1.0.9.2<br>1.0.9.1<br>1.0.9 | 1.0.9.2<br>1.0.9.1<br>1.0.9 | 1.0.9.2<br>1.0.9.1<br>1.0.9 |  |
+| **1.0.9** | 1.0.9.4<br>1.0.9.3<br>1.0.9.2<br>1.0.9.1<br>1.0.9 | 1.0.9.4<br>1.0.9.3<br>1.0.9.2<br>1.0.9.1<br>1.0.9 | 1.0.9.4<br>1.0.9.3<br>1.0.9.2<br>1.0.9.1<br>1.0.9 |  |
 | **1.0.8** | 1.0.8 | 1.0.8.5<br>1.0.8.4<br>1.0.8.3<br>1.0.8.2<br>1.0.8.1<br>1.0.8 | 1.0.8 | 3.0.6 |
 | **1.0.7** | 1.0.7.1<br>1.0.7 | 1.0.7.1<br>1.0.7 | 1.0.7.1<br>1.0.7 | 3.0.5<br>3.0.4（ARMv7hl，CentOS） |
 | **1.0.6** | 1.0.6.1<br>1.0.6 | 1.0.6.1<br>1.0.6 | 1.0.6.1<br>1.0.6 |  |

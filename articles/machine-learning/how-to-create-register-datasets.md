@@ -12,12 +12,12 @@ manager: cgronlun
 ms.reviewer: nibaccam
 origin.date: 07/31/2020
 ms.date: 08/27/2020
-ms.openlocfilehash: c381d6c5372faecda6b664baa99a0c8489842132
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 053b676459f236a6c4893592b3fee3b24fdd241a
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228223"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946628"
 ---
 # <a name="create-azure-machine-learning-datasets"></a>创建 Azure 机器学习数据集
 
@@ -31,11 +31,9 @@ ms.locfileid: "88228223"
 
 * 在存储中保留数据的单个副本，供数据集引用。
 
-* 在模型训练期间无缝访问数据，而无需考虑连接字符串或数据路径。
+* 在模型训练期间无缝访问数据，而无需考虑连接字符串或数据路径。[详细了解如何使用数据集进行训练](how-to-train-with-datasets.md)。
 
 * 与其他用户共享数据和展开协作。
-
-[详细了解如何使用数据集进行训练](how-to-train-with-datasets.md)。
 
 ## <a name="prerequisites"></a>先决条件
 
@@ -46,6 +44,12 @@ ms.locfileid: "88228223"
 * 一个 [Azure 机器学习工作区](how-to-manage-workspace.md)。
 
 * [已安装适用于 Python 的 Azure 机器学习 SDK](https://docs.microsoft.com/python/api/overview/azure/ml/install?view=azure-ml-py)，其中包含 azureml-datasets 包。
+
+    * 创建一个 [Azure 机器学习计算实例](concept-compute-instance.md#managing-a-compute-instance)，它是一个完全配置且托管的开发环境，其中包括集成的笔记本和已安装的 SDK。
+
+    **或者**
+
+    * 使用自己的 Jupyter 笔记本，按照[这些说明](https://docs.microsoft.com/python/api/overview/azure/ml/install?view=azure-ml-py)自行安装 SDK。
 
 > [!NOTE]
 > 某些数据集类依赖于 [azureml-dataprep](https://docs.microsoft.com/python/api/azureml-dataprep/?view=azure-ml-py) 包，此包仅兼容64位 Python。 对于 Linux 用户，只有以下分发版支持这些类：Red Hat Enterprise Linux（7、8）、Ubuntu（14.04、16.04、18.04）、Fedora（27、28）、Debian（8、9）和 CentOS (7)。
@@ -225,47 +229,6 @@ titanic_ds = titanic_ds.register(workspace=workspace,
 ## <a name="train-with-datasets"></a>使用数据集进行训练
 
 在机器学习试验中使用数据集来训练 ML 模型。 [详细了解如何使用数据集进行训练](how-to-train-with-datasets.md)
-
-## <a name="create-datasets-with-azure-open-datasets"></a>使用 Azure 开放数据集创建数据集
-
-[Azure 开放数据集](https://azure.microsoft.com/services/open-datasets/)是精选公共数据集，可用于将方案专属特征添加到机器学习解决方案，以提高模型的准确度。 数据集包括不受任何限制的天气、人口普查、节假日、公共安全和位置数据，有助于定型机器学习模型和扩充预测解决方案。 开放数据集位于 Microsoft Azure 云中，并且会同时包含在 SDK 和工作区 UI 中。
-
-### <a name="use-the-sdk"></a>使用 SDK
-
-若要通过 SDK 使用 Azure 开放数据集创建数据集，请确保已使用 `pip install azureml-opendatasets` 安装相应的包。 每个离散数据集在 SDK 中由其自身的类表示，某些类作为 `TabularDataset` 和/或 `FileDataset` 提供。 有关完整的类列表，请参阅[参考文档](https://docs.microsoft.com/python/api/azureml-opendatasets/azureml.opendatasets?view=azure-ml-py)。
-
-可以检索 `TabularDataset` 或 `FileDataset` 形式的某些类，这样就可以直接操控和/或下载文件。 其他类可以使用 `get_tabular_dataset()` 或 `get_file_dataset()` 函数之一，**只**获取数据集。 以下代码示例演示了上述类类型的几个例子。
-
-```python
-from azureml.opendatasets import MNIST
-
-# MNIST class can return either TabularDataset or FileDataset
-tabular_dataset = MNIST.get_tabular_dataset()
-file_dataset = MNIST.get_file_dataset()
-
-from azureml.opendatasets import Diabetes
-
-# Diabetes class can return ONLY TabularDataset and must be called from the static function
-diabetes_tabular = Diabetes.get_tabular_dataset()
-```
-
-注册从开放数据集创建的数据集时，不会立即下载数据，但以后可按请求（例如，在训练期间）从某个中心存储位置访问数据。
-
-### <a name="use-the-ui"></a>使用 UI
-
-也可以通过 UI 从开放数据集类创建数据集。 在工作区中，选择“资产”下的“数据集”选项卡。  在“创建数据集”下拉菜单中，选择“从开放数据集”。 
-
-![UI 中的开放数据集](./media/how-to-create-register-datasets/open-datasets-1.png)
-
-选择数据集对应的磁贴将其选中。 （可以选择使用搜索栏进行筛选。）选择“**下一步**”。
-
-![选择数据集](./media/how-to-create-register-datasets/open-datasets-2.png)
-
-选择数据集的注册名称，并（可选）使用可用的筛选器筛选数据。 在本例中，对于公共节假日数据集，可按如下所述进行筛选：将时间段设置为一年，将国家/地区代码设置为仅限 US。 选择“创建” 。
-
-![设置数据集参数并创建数据集](./media/how-to-create-register-datasets/open-datasets-3.png)
-
-现在，该数据集已显示在工作区中的“数据集”下。 可以像使用创建的其他数据集一样来使用它。
 
 ## <a name="version-datasets"></a>对数据集进行版本控制
 

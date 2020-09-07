@@ -2,17 +2,18 @@
 title: 用于部署的链接模板
 description: 介绍如何使用 Azure Resource Manager 模板中的链接模板创建一个模块化的模板的解决方案。 演示如何传递参数值、指定参数文件和动态创建的 URL。
 ms.topic: conceptual
-origin.date: 06/26/2020
-ms.date: 07/13/2020
+origin.date: 07/21/2020
+author: rockboyfor
+ms.date: 08/24/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 8d013b53c2f2a5234df6a0d175847080ded7e41c
-ms.sourcegitcommit: 2bd0be625b21c1422c65f20658fe9f9277f4fd7c
+ms.openlocfilehash: 52281e157f3d3470fd37d72c28a4cf743da36648
+ms.sourcegitcommit: 601f2251c86aa11658903cab5c529d3e9845d2e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86441005"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88807756"
 ---
 # <a name="using-linked-and-nested-templates-when-deploying-azure-resources"></a>部署 Azure 资源时使用链接模版和嵌套模版
 
@@ -20,7 +21,7 @@ ms.locfileid: "86441005"
 
 对于中小型解决方案，单个模板更易于理解和维护。 可以查看单个文件中的所有资源和值。 对于高级方案，使用链接模板可将解决方案分解为目标组件。 可以轻松地将这些模板重复用于其他方案。
 
-如需教程，请参阅[教程：创建链接的 Azure 资源管理器模板](template-tutorial-create-linked-templates.md)。
+如需教程，请参阅[教程：创建链接的 Azure 资源管理器模板](./deployment-tutorial-linked-template.md)。
 
 > [!NOTE]
 > 对于链接模板或嵌套模板，只能使用[增量](deployment-modes.md)部署模式。
@@ -165,7 +166,7 @@ ms.locfileid: "86441005"
 
 `exampleVar` 的值因 `expressionEvaluationOptions` 中 `scope` 属性的值而异。 下表显示了这两个作用域的结果。
 
-| `expressionEvaluationOptions` `scope` | 输出 |
+| `expressionEvaluationOptions` 作用域 | 输出 |
 | ----- | ------ |
 | 内部 | from nested template |
 | outer（或默认值） | from parent template |
@@ -620,7 +621,7 @@ ms.locfileid: "86441005"
 
 资源管理器将每个模板作为部署历史记录中的单独部署进行处理。 包含三个链接模板或嵌套模板的主模板在部署历史记录中显示为：
 
-![部署历史记录](./media/linked-templates/deployment-history.png)
+:::image type="content" source="./media/linked-templates/deployment-history.png" alt-text="部署历史记录":::
 
 部署后，可以使用历史记录中这些不同的条目来检索输出值。 以下模板创建一个公共 IP 地址并输出该 IP 地址：
 
@@ -801,7 +802,7 @@ az deployment group create --resource-group ExampleGroup --template-uri $url?$to
 
 ## <a name="next-steps"></a>后续步骤
 
-* 若要浏览教程，请参阅[教程：创建链接的 Azure 资源管理器模板](template-tutorial-create-linked-templates.md)。
+* 若要浏览教程，请参阅[教程：创建链接的 Azure 资源管理器模板](./deployment-tutorial-linked-template.md)。
 * 若要了解如何为资源定义部署顺序，请参阅[在 Azure 资源管理器模板中定义依赖关系](define-resource-dependency.md)。
 * 若要了解如何定义一个资源而创建多个实例，请参阅[在 Azure 资源管理器中创建多个资源实例](copy-resources.md)。
 * 有关在存储帐户中设置模板和生成 SAS 令牌的步骤，请参阅[使用 Resource Manager 模板和 Azure PowerShell 部署资源](deploy-powershell.md)或[使用 Resource Manager 模板和 Azure CLI 部署资源](deploy-cli.md)。

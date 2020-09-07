@@ -1,19 +1,19 @@
 ---
-title: Azure 中继 .NET Standard API 概述
+title: Azure 中继 .NET Standard API 概述 | Azure
 description: 本文总结了 Azure 中继混合连接 .NET 标准 API 的一些关键技术。
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 07/27/2020
-ms.testscope: no
+author: rockboyfor
+ms.date: 08/31/2020
+ms.testscope: yes|no
 ms.testdate: ''
 ms.author: v-yeche
-author: rockboyfor
-ms.openlocfilehash: be5fa05259480076a081cb4a432fe31d3dc26a99
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 952a395e9f7eaab2f4e0afa44ce06ccc4d31f5eb
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162414"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947070"
 ---
 # <a name="azure-relay-hybrid-connections-net-standard-api-overview"></a>Azure 中继混合连接 .NET 标准 API 概述
 
@@ -87,7 +87,7 @@ var hybridConnectionStream = await client.CreateConnectionAsync();
 
 ### <a name="receiving-data"></a>接收数据
 
-[HybridConnectionStream][HCStream] 类允许进行双向通信。 在大多数情况下，都会持续地从流接收信息。 如果正在从流读取文本，则还需使用 [StreamReader](https://msdn.microsoft.com/library/system.io.streamreader(v=vs.110).aspx) 对象，以便于分析数据。 例如，可以将数据读取为文本，而不能读取为 `byte[]`。
+[HybridConnectionStream][HCStream] 类允许进行双向通信。 在大多数情况下，都会持续地从流接收信息。 如果正在从流读取文本，则还需使用 [StreamReader](https://docs.microsoft.com/dotnet/api/system.io.streamreader?view=netcore-3.1) 对象，以便于分析数据。 例如，可以将数据读取为文本，而不能读取为 `byte[]`。
 
 以下代码可从流中读取各行文本，直到请求取消为止：
 
@@ -114,14 +114,14 @@ while (!cancellationToken.IsCancellationRequested)
 
 ### <a name="sending-data"></a>发送数据
 
-建立连接后，即可将消息发送到中继终结点。 由于连接对象继承 [Stream](https://msdn.microsoft.com/library/system.io.stream(v=vs.110).aspx)，因此以 `byte[]` 形式发送数据。 以下示例介绍如何执行此操作：
+建立连接后，即可将消息发送到中继终结点。 由于连接对象继承 [Stream](https://docs.microsoft.com/dotnet/api/system.io.stream?view=netcore-3.1)，因此以 `byte[]` 形式发送数据。 以下示例介绍如何执行此操作：
 
 ```csharp
 var data = Encoding.UTF8.GetBytes("hello");
 await clientConnection.WriteAsync(data, 0, data.Length);
 ```
 
-但是，如果要直接发送文本，而无需每次都对字符串进行编码，则可以使用 [StreamWriter](https://msdn.microsoft.com/library/system.io.streamwriter(v=vs.110).aspx) 对象包装 `hybridConnectionStream` 对象。
+但是，如果要直接发送文本，而无需每次都对字符串进行编码，则可以使用 [StreamWriter](https://docs.microsoft.com/dotnet/api/system.io.streamwriter?view=netcore-3.1) 对象包装 `hybridConnectionStream` 对象。
 
 ```csharp
 // The StreamWriter object only needs to be created once

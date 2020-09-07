@@ -5,18 +5,18 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: conditional-access
 ms.topic: conceptual
-ms.date: 07/01/2020
+ms.date: 08/27/2020
 ms.author: v-junlch
 author: MicrosoftGuyJFlo
 manager: daveba
 ms.reviewer: calebb
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 70bc60235f274424e2579e04fe319ece223d8924
-ms.sourcegitcommit: 1008ad28745709e8d666f07a90e02a79dbbe2be5
+ms.openlocfilehash: 9ea0652a477ea0da846310c9474b286aab97de8a
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945063"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046378"
 ---
 # <a name="conditional-access-grant"></a>条件访问：授予
 
@@ -36,6 +36,7 @@ ms.locfileid: "85945063"
 
 - [需要多重身份验证（Azure 多重身份验证）](../authentication/concept-mfa-howitworks.md)
 - [“需要已批准的客户端应用”](app-based-conditional-access.md)
+- [要求更改密码](#require-password-change)
 
 当管理员组合使用这些选项时，可以选择以下方法：
 
@@ -48,9 +49,6 @@ ms.locfileid: "85945063"
 
 选中此复选框会要求用户执行 Azure 多重身份验证。 在[规划基于云的 Azure 多重身份验证部署](../authentication/howto-mfa-getstarted.md)一文中可以找到有关部署 Azure 多重身份验证的详细信息。
 
-### <a name="require-device-to-be-marked-as-compliant"></a>要求将设备标记为合规
-
-部署了 Microsoft Intune 的组织可以根据从其设备返回的信息来识别符合具体合规要求的设备。 此策略合规性信息将从 Intune 转发到 Azure AD，其中的条件访问可以决定是要授予还是阻止对资源的访问。 
 
 ### <a name="require-approved-client-app"></a>需要批准的客户端应用
 
@@ -66,8 +64,7 @@ ms.locfileid: "85945063"
 - Microsoft Dynamics 365
 - Microsoft Edge
 - Microsoft Excel
-- Microsoft Flow
-- Microsoft Intune Managed Browser
+- Microsoft Power Automate
 - Microsoft Invoicing
 - Microsoft Kaizala
 - Microsoft Launcher
@@ -100,25 +97,24 @@ ms.locfileid: "85945063"
 
 请参阅文章[如何：使用条件访问要求使用批准的设备应用访问云应用](app-based-conditional-access.md)，以获取配置示例。
 
-### <a name="require-app-protection-policy"></a>需要应用保护策略
+### <a name="require-password-change"></a>要求更改密码 
 
-在条件访问策略中，你可以要求客户端应用上先存在 [Intune 应用保护策略](https://docs.microsoft.com/intune/app-protection-policy)，然后才能访问所选云应用。 
+如果检测到用户风险，则使用用户风险策略条件，管理员可以选择让用户通过 Azure AD 自助式密码重置来安全地更改密码。 如果检测到用户风险，用户可以执行自助式密码重置进行自我修正，这将关闭用户风险事件，以避免为管理员带来不必要的干扰。 
 
-为了利用此授权控制，条件访问要求在 Azure Active Directory 中注册设备，这需要使用代理应用。 代理应用可以是适用于 iOS 的 Microsoft Authenticator，也可以是适用于 Android 设备的 Microsoft 公司门户。 如果用户尝试进行身份验证时设备上未安装代理应用，则会将用户重定向到应用商店来安装代理应用。
+当系统提示用户更改其密码时，他们首先需要完成多重身份验证。 你需要确保所有用户都已注册多重身份验证，为其帐户检测到风险做准备。  
 
-此设置适用于以下客户端应用：
+> [!WARNING]
+> 用户必须预先注册了自助式密码重置，然后才能触发用户风险策略。 
 
-- Microsoft Cortana
-- Microsoft OneDrive
-- Microsoft Outlook
-- Microsoft Planner
+使用密码更改控件来配置策略时，存在几个限制。  
 
-**备注**
+1. 必须将策略分配到“所有云应用”。 这可以防止攻击者使用不同的应用更改用户的密码并重置帐户的风险，只需登录到不同的应用即可。 
+1. 要求密码更改不能与其他控件一起使用，例如，要求设备符合规范。  
+1. 密码更改控件只能与用户和组分配条件、云应用分配条件（必须设置为“全部”）和用户风险条件一起使用。 
 
-- 适用于应用保护策略的应用支持带策略保护的 Intune 移动应用程序管理功能。
-- “需要应用保护策略”要求：
-    - 仅支持 iOS 和 Android 作为设备平台条件。
-    - 注册设备需要代理应用。 在 iOS 上，代理应用是 Microsoft Authenticator；在 Android 上，代理应用是 Intune 公司门户应用。
+### <a name="terms-of-use"></a>使用条款
+
+如果你的组织已创建使用条款，则授权控制下可能会显示其他选项。 管理员可以通过这些选项要求用户确认使用条款，作为访问受策略保护的资源的条件。
 
 ## <a name="next-steps"></a>后续步骤
 

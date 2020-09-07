@@ -12,13 +12,13 @@ ms.workload: data-services
 ms.custom: seo-lt-2019
 ms.topic: article
 origin.date: 06/09/2020
-ms.date: 06/22/2020
-ms.openlocfilehash: a74d1166930947d9b7dfd268df72505abfffbfad
-ms.sourcegitcommit: 48b5ae0164f278f2fff626ee60db86802837b0b4
+ms.date: 08/31/2020
+ms.openlocfilehash: 833726facc795fd87c6a1004f72323920d4057a0
+ms.sourcegitcommit: f8ed85740f873c15c239ab6ba753e4b76e030ba7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85098302"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045749"
 ---
 # <a name="tutorial-migrate-rds-mysql-to-azure-database-for-mysql-online-using-dms"></a>教程：使用 DMS 将 RDS MySQL 联机迁移到 Azure Database for MySQL
 
@@ -123,6 +123,10 @@ ms.locfileid: "85098302"
     ```
 
 4. 运行查询结果中的 drop foreign key（第二列），以删除外键。
+
+> [!NOTE]
+> Azure DMS 不支持 CASCADE 引用操作，这有助于在父表中删除或更新行时，自动删除或更新子表中的匹配行。 有关详细信息，请参阅 MySQL 文档的[外键约束](https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html)一文中的“引用操作”部分。
+> Azure DMS 要求在初始数据加载期间在目标数据库服务器中删除外键约束，并且不能使用引用操作。 如果你的工作负载依赖于通过此引用操作更新相关子表，我们建议你改为执行[转储并还原](/mysql/concepts-migrate-dump-restore)。 
 
 5. 如果数据中包含触发器（insert 或 update 触发器），该触发器会在从源复制数据之前在目标中强制实施数据完整性。 建议在迁移期间禁用目标的所有表中的触发器，然后在迁移完成后再启用这些触发器。
 

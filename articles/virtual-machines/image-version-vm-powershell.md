@@ -1,5 +1,5 @@
 ---
-title: 预览版 - 从 VM 创建映像
+title: 从 VM 创建映像（预览版）
 description: 了解如何使用 Azure PowerShell，在共享映像库中从 Azure 中的现有 VM 创建映像。
 author: rockboyfor
 ms.topic: how-to
@@ -7,22 +7,24 @@ ms.service: virtual-machines
 ms.subservice: imaging
 ms.workload: infrastructure
 origin.date: 05/04/2020
-ms.date: 07/06/2020
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.reviewer: akjosh
-ms.openlocfilehash: 8f4fc575fdd90ac08ecaabd5c1ef1ebf5a1fca12
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 1fecddd4260668e6d83223d7f6439c39d1fcfc91
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945993"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052379"
 ---
 <!--Verified Successfully-->
 # <a name="preview-create-an-image-from-a-vm"></a>预览版：从 VM 创建映像
 
 如果要使用现有 VM 生成多个相同的 VM，你可以使用该 VM 在共享映像库中通过 Azure PowerShell 创建映像。 还可以使用 [Azure CLI](image-version-vm-cli.md) 从 VM 创建映像。
 
-你可以使用 Azure PowerShell 从[专用化和通用化](/virtual-machines/windows/shared-image-galleries#generalized-and-specialized-images) VM 捕获映像。 
+你可以使用 Azure PowerShell 从[专用化和通用化](./windows/shared-image-galleries.md#generalized-and-specialized-images) VM 捕获映像。 
 
 映像库中的映像具有两个组件，我们将在此示例中创建这两个组件：
 - “映像定义”包含有关映像及其使用要求的信息。 这包括该映像是 Windows 映像还是 Linux 映像、是专用映像还是通用映像，此外还包括发行说明以及最低和最高内存要求。 它是某种映像类型的定义。 
@@ -77,7 +79,7 @@ Stop-AzVM `
 
 制作映像定义时，请确保它具有所有正确信息。 如果已通用化 VM（使用适用于 Windows 的 Sysprep，或适用于 Linux 的 waagent -deprovision），则应使用 `-OsState generalized` 创建映像定义。 如果未通用化 VM，请使用 `-OsState specialized` 创建映像定义。
 
-若要详细了解可以为映像定义指定的值，请参阅[映像定义](/virtual-machines/windows/shared-image-galleries#image-definitions)。
+若要详细了解可以为映像定义指定的值，请参阅[映像定义](./windows/shared-image-galleries.md#image-definitions)。
 
 使用 [New-AzGalleryImageDefinition](https://docs.microsoft.com/powershell/module/az.compute/new-azgalleryimageversion) 创建映像定义。 
 
@@ -143,5 +145,6 @@ $job.State
 
 验证新映像版本正常工作后，即可创建 VM。 从[专用化映像版本](vm-specialized-image-version-powershell.md)或[通用化映像版本](vm-generalized-image-version-powershell.md)创建 VM。
 
-<!-- Update_Description: new article about image version vm powershell -->
-<!--NEW.date: 06/01/2020-->
+<!--Not Available on For information about how to supply purchase plan information, see [Supply Azure Marketplace purchase plan information when creating images](marketplace-images.md).-->
+
+<!-- Update_Description: update meta properties, wording update, update link -->

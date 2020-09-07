@@ -4,19 +4,19 @@ description: 创建要求合规设备的自定义条件访问策略
 services: active-directory
 ms.service: active-directory
 ms.subservice: conditional-access
-ms.topic: conceptual
-ms.date: 04/24/2020
+ms.topic: how-to
+ms.date: 08/27/2020
 ms.author: v-junlch
 author: MicrosoftGuyJFlo
 manager: daveba
 ms.reviewer: calebb, rogoya
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: dcc6b83605f9e8db3cd6ec1cecb90937579f2e8f
-ms.sourcegitcommit: d6db729fea7d491d876d491f19ff89ef52384329
+ms.openlocfilehash: 451d87a72423607af3f57a601de9400f9a442ab5
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82275349"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046358"
 ---
 # <a name="conditional-access-require-compliant-devices"></a>条件访问：要求符合的设备
 
@@ -44,7 +44,7 @@ ms.locfileid: "82275349"
 1. 在“云应用或操作”   >   “包括”下，选择“所有云应用”。 
    1. 如果必须将特定应用程序排除在策略之外，可以在“选择排除的云应用”下的“排除”选项卡中选择它们，然后选择“选择”。   
    1. 选择“完成”  。
-1. 在“条件”   >   “客户端应用(预览)”下，将“配置”设置为“是”，然后选择“完成”。   
+1. 在“条件” > “客户端应用(预览版)” > “选择该策略应用到的客户端应用”下保留选择的所有默认值，然后选择“完成”   。
 1. 在“访问控制”   >   “授予”下，选择“要求将设备标记为合规”。 
    1. 选择“选择”  。
 1. 确认设置，然后将“启用策略”设置为“打开”。  

@@ -4,16 +4,18 @@ description: Dv2 和 DSv2 系列 VM 的规范。
 author: rockboyfor
 ms.service: virtual-machines
 ms.subservice: sizes
-ms.topic: article
+ms.topic: conceptual
 origin.date: 02/03/2020
-ms.date: 07/06/2020
+ms.date: 08/31/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: c933389447b81dfa7e01ceacee062b972ee591ca
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 8eda6e2835f257929cf03881baf4d91b043114e7
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945584"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052413"
 ---
 <!--Verified successfully-->
 <!--Partical Content from verified-->
@@ -31,13 +33,17 @@ ACU：210 - 250
 
 高级存储缓存：不支持
 
-| 大小 | vCPU | 内存:GiB | 临时存储 (SSD) GiB | 最大临时存储吞吐量：IOPS/读取 MBps/写入 MBps | 最大数据磁盘数/吞吐量：IOPS | 最大 NIC 数/预期网络带宽 (Mbps) |
-|---|---|---|---|---|---|---|
-| Standard_D11_v2 | 2  | 14  | 100 | 6000/93/46    | 8/8x500   | 2/1500  |
-| Standard_D12_v2 | 4  | 28  | 200 | 12000/187/93  | 16/16x500 | 4/3000  |
-| Standard_D13_v2 | 8  | 56  | 400 | 24000/375/187 | 32/32x500 | 8/6000  |
-| Standard_D14_v2 | 16 | 112 | 800 | 48000/750/375 | 64/64x500 | 8/12000 |
-| Standard_D15_v2 <sup>1</sup> | 20 个 | 140 | 1000 | 60000/937/468 | 64/64x500 | 8/25000 <sup>2</sup> |
+实时迁移：支持
+
+内存保留更新：支持
+
+| 大小 | vCPU | 内存:GiB | 临时存储 (SSD) GiB | 最大临时存储吞吐量：IOPS/读取 MBps/写入 MBps | 最大数据磁盘数/吞吐量：IOPS | 最大 NIC 数 | 预期的网络带宽 (Mbps) |
+|---|---|---|---|---|---|---|---|
+| Standard_D11_v2 | 2  | 14  | 100 | 6000/93/46    | 8/8x500   | 2|1500  |
+| Standard_D12_v2 | 4  | 28  | 200 | 12000/187/93  | 16/16x500 | 4|3000  |
+| Standard_D13_v2 | 8  | 56  | 400 | 24000/375/187 | 32/32x500 | 8|6000  |
+| Standard_D14_v2 | 16 | 112 | 800 | 48000/750/375 | 64/64x500 | 8|12000 |
+| Standard_D15_v2 <sup>1</sup> | 20 | 140 | 1000 | 60000/937/468 | 64/64x500 | 8|25000 <sup>2</sup> |
 
 <!-- Please acknowledge that Dv2 Max Disk Count are 8,16,32,64,64 -->
 
@@ -54,13 +60,17 @@ ACU：210 - 250 <sup>1</sup>
 
 高级存储缓存：支持
 
-| 大小 | vCPU | 内存:GiB | 临时存储 (SSD) GiB | 最大数据磁盘数 | 最大缓存吞吐量和临时存储吞吐量：IOPS/MBps（以 GiB 为单位的缓存大小） | 最大非缓存磁盘吞吐量：IOPS/MBps | 最大 NIC 数/预期网络带宽 (Mbps) |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| Standard_DS11_v2 <sup>3</sup> | 2  | 14  | 28  | 8  | 8000/64 (72)    | 6400/96   | 2/1500  |
-| Standard_DS12_v2 <sup>3</sup> | 4  | 28  | 56  | 16 | 16000/128 (144) | 12800/192 | 4/3000  |
-| Standard_DS13_v2 <sup>3</sup> | 8  | 56  | 112 | 32 | 32000/256 (288) | 25600/384 | 8/6000  |
-| Standard_DS14_v2 <sup>3</sup> | 16 | 112 | 224 | 64 | 64000/512 (576) | 51200/768 | 8/12000 |
-| Standard_DS15_v2 <sup>2</sup> | 20 个 | 140 | 280 | 64 | 80000/640 (720) | 64000/960 | 8/25000 <sup>4</sup> |
+实时迁移：支持
+
+内存保留更新：支持
+
+| 大小 | vCPU | 内存:GiB | 临时存储 (SSD) GiB | 最大数据磁盘数 | 最大缓存吞吐量和临时存储吞吐量：IOPS/MBps（以 GiB 为单位的缓存大小） | 最大非缓存磁盘吞吐量：IOPS/MBps | 最大 NIC 数 | 预期的网络带宽 (Mbps) |
+| --- | --- | --- | --- | --- | --- | --- | --- |---|
+| Standard_DS11_v2 <sup>3</sup> | 2  | 14  | 28  | 8  | 8000/64 (72)    | 6400/96   | 2|1500  |
+| Standard_DS12_v2 <sup>3</sup> | 4  | 28  | 56  | 16 | 16000/128 (144) | 12800/192 | 4|3000  |
+| Standard_DS13_v2 <sup>3</sup> | 8  | 56  | 112 | 32 | 32000/256 (288) | 25600/384 | 8|6000  |
+| Standard_DS14_v2 <sup>3</sup> | 16 | 112 | 224 | 64 | 64000/512 (576) | 51200/768 | 8|12000 |
+| Standard_DS15_v2 <sup>2</sup> | 20 | 140 | 280 | 64 | 80000/640 (720) | 64000/960 | 8|25000 <sup>4</sup> |
 
 <!-- Please acknowledge that DSv2 Max Disk Count are 8,16,32,64,64 -->
 
@@ -71,7 +81,7 @@ ACU：210 - 250 <sup>1</sup>
 
 [!INCLUDE [virtual-machines-common-sizes-table-defs](../../includes/virtual-machines-common-sizes-table-defs.md)]
 
-## <a name="other-sizes"></a>其他大小
+## <a name="other-sizes-and-information"></a>其他大小和信息
 
 - [常规用途](sizes-general.md)
 - [内存优化](sizes-memory.md)
@@ -83,6 +93,10 @@ ACU：210 - 250 <sup>1</sup>
     <!--Not Available on - [High performance compute](sizes-hpc.md)-->
     
 - [前几代](sizes-previous-gen.md)
+
+定价计算器：[定价计算器](https://www.azure.cn/pricing/calculator/)
+
+有关磁盘类型的详细信息：[磁盘类型](./linux/disks-types.md)
 
 ## <a name="next-steps"></a>后续步骤
 

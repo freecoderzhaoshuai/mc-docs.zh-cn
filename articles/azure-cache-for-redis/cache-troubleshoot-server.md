@@ -1,26 +1,17 @@
 ---
-title: 排查 Azure Cache for Redis 服务器端问题 | Microsoft Docs
-description: 了解如何解决 Azure Cache for Redis 的常见服务器端问题
-services: cache
-documentationcenter: ''
+title: 排查 Azure Cache for Redis 服务器端问题
+description: 了解如何解决 Azure Cache for Redis 的常见服务器端问题，例如内存压力、CPU 过高、命令运行时间过长或带宽限制。
 author: yegu-ms
-manager: maiye
-editor: ''
-ms.assetid: ''
-ms.service: cache
-ms.workload: tbd
-ms.tgt_pltfrm: cache
-ms.devlang: na
-ms.topic: article
-origin.date: 10/18/2019
-ms.date: 11/11/2019
 ms.author: v-junlch
-ms.openlocfilehash: a2d8a367773851e29c206b63f59975ce4783b869
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.service: cache
+ms.topic: conceptual
+ms.date: 08/24/2020
+ms.openlocfilehash: c6ba68612416f80e8746cf3a4f7526bed940cff9
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291928"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947043"
 ---
 # <a name="troubleshoot-azure-cache-for-redis-server-side-issues"></a>排查 Azure Cache for Redis 服务器端问题
 
@@ -85,8 +76,8 @@ Redis 通过 [INFO](https://redis.io/commands/info) 命令公开以下两项统�
 ## <a name="additional-information"></a>其他信息
 
 - [排查 Azure Cache for Redis 客户端问题](cache-troubleshoot-client.md)
-- [我应使用哪种 Azure Redis 缓存产品/服务和大小？](cache-faq.md#what-azure-cache-for-redis-offering-and-size-should-i-use)
-- [如何制定基准和测试缓存性能？](cache-faq.md#how-can-i-benchmark-and-test-the-performance-of-my-cache)
+- [选择正确的层](cache-overview.md#choosing-the-right-tier)
+- [如何制定基准和测试缓存性能？](cache-management-faq.md#how-can-i-benchmark-and-test-the-performance-of-my-cache)
 - [如何监视 Azure Redis 缓存](cache-how-to-monitor.md)
-- [如何运行 Redis 命令？](cache-faq.md#how-can-i-run-redis-commands)
+- [如何运行 Redis 命令？](cache-development-faq.md#how-can-i-run-redis-commands)
 

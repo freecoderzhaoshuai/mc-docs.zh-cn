@@ -3,18 +3,18 @@ title: 注册 Azure Functions 绑定扩展
 description: 了解如何根据你的环境注册 Azure Functions 绑定扩展。
 author: craigshoemaker
 ms.topic: reference
-ms.date: 03/03/2020
+ms.date: 08/24/2020
 ms.author: v-junlch
-ms.openlocfilehash: 66c1b8b235935f303df45284531e871553f336aa
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 74683005b0fd1a8e7e0bb7d23076760a193e2691
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79293358"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947138"
 ---
 # <a name="register-azure-functions-binding-extensions"></a>注册 Azure Functions 绑定扩展
 
-在 Azure Functions 版本 2.x 中，[绑定](./functions-triggers-bindings.md)以独立于函数运行时的包的形式提供。 虽然 .NET 函数通过 NuGet 包访问绑定，但扩展捆绑包允许其他函数通过配置设置访问所有绑定。
+从 Azure Functions 版本 2.x 开始，[绑定](./functions-triggers-bindings.md)以独立于 Functions 运行时的包的形式提供。 虽然 .NET 函数通过 NuGet 包访问绑定，但扩展捆绑包允许其他函数通过配置设置访问所有绑定。
 
 请考虑以下与绑定扩展相关的项：
 
@@ -24,30 +24,38 @@ ms.locfileid: "79293358"
 
 下表指明了何时以及如何注册绑定。
 
-| 开发环境 |注册<br/> Functions 1.x 中注册  |注册<br/> Functions 2.x 中注册  |
+| 开发环境 |在<br/> Functions 1.x 中注册  |在<br/> Functions 3.x/2.x 中注册  |
 |-------------------------|------------------------------------|------------------------------------|
-|Azure 门户|自动|自动|
+|Azure 门户|自动|自动<sup>*</sup>|
 |非 .NET 语言或本地 Azure Core Tools 开发|自动|[使用 Azure Functions Core Tools 和扩展捆绑包](#extension-bundles)|
 |使用 Visual Studio 的 C# 类库|[使用 NuGet 工具](#vs)|[使用 NuGet 工具](#vs)|
 |使用 Visual Studio Code 的 C# 类库|不适用|[使用 .NET Core CLI](#vs-code)|
 
-## <a name="extension-bundles-for-local-development"></a><a name="extension-bundles"></a>用于本地开发的扩展捆绑
+<sup>*</sup> 门户使用扩展捆绑包。
 
-扩展捆绑是一种部署技术，可让你将一组兼容的 Functions 绑定扩展添加到函数应用。 生成应用时，会添加一组预定义的扩展。 捆绑中定义的扩展包彼此兼容，这有助于避免包之间发生冲突。 可以在应用的 host.json 文件中启用扩展捆绑。  
+## <a name="extension-bundles"></a><a name="extension-bundles"></a>扩展捆绑包
 
-可以将扩展捆绑与 2.x 版和更高版本的 Functions 运行时一起使用。 进行本地开发时，请确保使用最新版本的 [Azure Functions Core Tools](functions-run-local.md#v2)。
+使用扩展捆绑包可将一组兼容的 Functions 绑定扩展添加到函数应用。 如果使用捆绑包，则在生成应用时会添加一组预定义的扩展。 捆绑包中定义的扩展包已经过验证，可以彼此兼容，这有助于避免包之间发生冲突。 有了扩展捆绑包，就不需使用非 .NET 函数项目发布 .NET 项目代码。 可以在应用的 host.json 文件中启用扩展捆绑。  
 
-对于使用 Azure Functions Core Tools、Visual Studio Code 进行的本地开发，以及在远程生成时，请使用扩展捆绑。
+可以将扩展捆绑与 2.x 版和更高版本的 Functions 运行时一起使用。 
 
-如果不使用扩展捆绑，则必须先在本地计算机上安装 .NET Core 2.x SDK，然后才能安装任何绑定扩展。 扩展捆绑消除了本地开发的这一要求。 
+对于使用 Azure Functions Core Tools、Visual Studio Code 进行的本地开发，以及在远程生成时，请使用扩展捆绑。 进行本地开发时，请确保使用最新版本的 [Azure Functions Core Tools](functions-run-local.md#v2)。 在 Azure 门户中开发函数时，也可使用扩展捆绑包。 
+
+如果不使用扩展捆绑包，则必须先在本地计算机上安装 .NET Core 2.x SDK，然后才能[显式安装任何绑定扩展](#explicitly-install-extensions)。 将向你的项目添加一个可显式定义所需扩展的 extensions.csproj 文件。 扩展捆绑包消除了本地开发的这些要求。 
 
 若要使用扩展捆绑，请更新 *host json*文件以包含 `extensionBundle` 的以下条目：
  
 [!INCLUDE [functions-extension-bundles-json](../../includes/functions-extension-bundles-json.md)]
 
-<a name="local-csharp"></a>
+## <a name="explicitly-install-extensions"></a>显式安装扩展
 
-## <a name="c-class-library-with-visual-studio"></a><a name="vs"></a>使用 Visual Studio 的 C\# 类库
+[!INCLUDE [functions-extension-register-core-tools](../../includes/functions-extension-register-core-tools.md)]
+
+## <a name="nuget-packages"></a><a name="local-csharp"></a>NuGet 包
+
+对于基于 C# 类库的函数项目，应直接安装扩展。 扩展捆绑包专用于不基于 C# 类库的项目。
+
+### <a name="c-class-library-with-visual-studio"></a><a name="vs"></a>使用 Visual Studio 的 C\# 类库
 
 在 **Visual Studio** 中，可以使用 [Install-Package](https://docs.microsoft.com/nuget/tools/ps-ref-install-package) 命令从包管理器控制台安装包，如以下示例所示：
 
@@ -79,5 +87,3 @@ dotnet add package Microsoft.Azure.WebJobs.Extensions.<BINDING_TYPE_NAME> --vers
 > [!div class="nextstepaction"]
 > [Azure Functions 触发器和绑定示例](./functions-bindings-example.md)
 
-
-<!-- Update_Description: link update -->

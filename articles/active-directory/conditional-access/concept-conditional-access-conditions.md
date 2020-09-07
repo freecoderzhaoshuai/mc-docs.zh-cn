@@ -5,24 +5,24 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: conditional-access
 ms.topic: conceptual
-ms.date: 07/08/2020
+ms.date: 08/27/2020
 ms.author: v-junlch
 author: MicrosoftGuyJFlo
 manager: daveba
 ms.reviewer: calebb
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: c29a542e07436ad09abf5d62179440bfcde9ab53
-ms.sourcegitcommit: 92b9b1387314b60661f5f62db4451c9ff2c49500
+ms.openlocfilehash: 72ae4235be8a0ecbc2c09b1b3b13d3256132de0e
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86164995"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046382"
 ---
 # <a name="conditional-access-conditions"></a>条件访问：Conditions
 
 在条件访问策略中，管理员可以利用风险、设备平台或位置等条件的信号来增强其策略决策。 
 
-![定义条件访问策略并指定条件](./media/concept-conditional-access-conditions/conditional-access-conditions.png)
+[ ![定义条件访问策略并指定条件](./media/concept-conditional-access-conditions/conditional-access-conditions.png)](./media/concept-conditional-access-conditions/conditional-access-conditions.png#lightbox)
 
 可以结合多个条件来创建精细且具体的条件访问策略。
 
@@ -40,9 +40,6 @@ Azure AD 条件访问支持以下设备平台：
 - Windows
 - macOS
 
-> [!WARNING]
-> Microsoft 察觉到条件访问策略和基于 macOS 10.15.4 的设备存在问题。 有关详细信息，可参阅博客文章：[已知问题：条件访问意外阻止了 macOS 10.15.4 本机邮件客户端/其他应用](https://techcommunity.microsoft.com/t5/intune-customer-success/known-issue-conditional-access-unexpectedly-blocking-macos-10-15/ba-p/1322283)。
-
 如果使用**其他客户端**条件来阻止旧身份验证，还可以设置设备平台条件。
 
 ## <a name="locations"></a>位置
@@ -55,18 +52,28 @@ Azure AD 条件访问支持以下设备平台：
 
 有关位置的详细信息，可参阅 [Azure Active Directory 条件访问中的位置条件是什么](location-condition.md)一文。
 
-## <a name="client-apps-preview"></a>客户端应用（预览）
+## <a name="client-apps"></a>客户端应用
 
-条件访问策略默认应用到基于浏览器的应用程序，以及利用新式身份验证协议的应用程序。 除这些应用程序以外，管理员还可以选择包括 Exchange ActiveSync 客户端以及其他利用旧式协议的客户端。
+默认情况下，所有新创建的条件访问策略都会应用到所有客户端应用类型，即使未配置客户端应用条件。 
 
-- 浏览者
-   - 这包括使用 SAML、WS 联合身份验证、OpenID Connect 等协议的基于 Web 的应用程序，或注册为 OAuth 机密客户端的服务。
-- 移动应用和桌面客户端
-   - 新式身份验证客户端
-      - 此选项包括 Office 桌面和手机应用程序等应用程序。
+> [!NOTE]
+> 已于 2020 年 8 月更新了客户端应用条件的行为。 如果你有现有的条件访问策略，这些策略将保持不变。 但是，如果你单击某个现有策略，则会发现“配置”开关已被删除，且该策略所应用到的客户端应用处于选中状态。
+
+> [!IMPORTANT]
+> 旧身份验证客户端的登录不支持 MFA，不会将设备状态信息传递到 Azure AD，因此会被条件访问授权控制（例如需要 MFA 或合规设备）阻止。 如果你的帐户必须使用旧身份验证，则必须从策略中排除这些帐户，或将策略配置为仅应用于新式身份验证客户端。
+
+在设置为“是”时，“配置”开关适用于勾选的项；在设置为“否”时，该开关适用于所有客户端应用，包括新式的和旧式的身份验证客户端。   此开关不显示在 2020 年 8 月之前创建的策略中。
+
+- 新式身份验证客户端
+   - 浏览者
+      - 这包括使用 SAML、WS 联合身份验证、OpenID Connect 等协议的基于 Web 的应用程序，或注册为 OAuth 机密客户端的服务。
+   - 移动应用和桌面客户端
+      -  此选项包括 Office 桌面和手机应用程序等应用程序。
+- 旧式身份验证客户端
    - Exchange ActiveSync 客户端
-      - 默认情况下，这包括 Exchange ActiveSync (EAS) 协议的所有使用。 选择“仅将策略应用于受支持的平台”会将平台限制为受支持的平台（如 iOS、Android 和 Windows）。
+      - 这包括所有使用 Exchange ActiveSync (EAS) 协议的情况。
       - 当策略阻止使用 Exchange ActiveSync 时，受影响的用户将收到一封隔离电子邮件。 此电子邮件将提供受阻原因，并提供修正说明（如果可以修正）。
+      - 管理员可以通过条件访问 MS Graph API 将策略仅应用到受支持的平台（例如 iOS、Android 和 Windows）。
    - 其他客户端
       - 此选项包括使用那些不支持新式身份验证的基本/旧式身份验证协议的客户端。
          - 经身份验证的 SMTP - 由 POP 和 IMAP 客户端用来发送电子邮件。

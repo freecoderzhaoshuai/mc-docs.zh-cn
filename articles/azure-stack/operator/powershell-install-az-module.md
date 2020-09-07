@@ -4,20 +4,22 @@ description: 了解如何安装适用于 Azure Stack Hub 的 PowerShell。
 author: WenJason
 ms.topic: article
 origin.date: 06/22/2020
-ms.date: 07/20/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: sijuman
 ms.lastreviewed: 06/22/2020
-ms.openlocfilehash: 359e47fa2e2875d09c236e87a66e1c0350d07cc2
-ms.sourcegitcommit: e9ffd50aa5eaab402a94bfabfc70de6967fe6278
+ms.openlocfilehash: 3baebc1d10fac8c7d15cf39503a3aa10794b0faa
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2020
-ms.locfileid: "86307385"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868091"
 ---
 # <a name="install-powershell-az-preview-module-for-azure-stack-hub"></a>安装适用于 Azure Stack Hub 的 PowerShell Az 预览版模块
 
 本文介绍如何使用 PowerShellGet 安装 Azure PowerShell Az 和兼容的 Azure Stack Hub 管理员模块。 Az 模块可以在 Windows、macOS 和 Linux 平台上安装。
+
+还可以在 Docker 容器中运行 Azure Stack Hub 的 Az 模块。 有关说明，请参阅[使用 Docker 运行适用于 Azure Stack Hub 的 PowerShell](../user/azure-stack-powershell-user-docker.md)。
 
 如果要安装适用于 Azure Stack Hub 的 PowerShell AzureRM 模块，请参阅[安装适用于 Azure Stack Hub 的 PowerShell AzureRM 模块](azure-stack-powershell-install.md)。
 
@@ -33,7 +35,7 @@ API 配置文件提供一种管理 Azure 与 Azure Stack Hub 之间版本差异�
 
 ## <a name="1-verify-your-prerequisites"></a>1.验证先决条件
 
-仅[带 Update 2002 的 Azure Stack Hub](/azure-stack/operator/release-notes?view=azs-2002#2002-build-reference) 和最新[修补程序](/azure-stack/operator/release-notes?view=azs-2002#hotfixes)支持 Az 模块。
+仅[带 Update 2002 的 Azure Stack Hub](./release-notes.md?view=azs-2002#2002-build-reference) 和最新[修补程序](./release-notes.md?view=azs-2002#hotfixes)支持 Az 模块。
 
 Azure PowerShell 适用于 Windows 上的 PowerShell 5.1 或更高版本，或者所有平台上的 PowerShell Core 6.x 及更高版本。 你应该安装适用于你的操作系统的[最新版本的 PowerShell Core](https://docs.microsoft.com/powershell/scripting/install/installing-powershell#powershell-core)。 在 PowerShell Core 上运行时，Azure PowerShell 没有额外要求。
 
@@ -46,7 +48,7 @@ $PSVersionTable.PSVersion
 ### <a name="prerequisites-for-windows"></a>Windows 先决条件
 若要在 Windows 上的 PowerShell 5.1 中使用 Azure PowerShell，请执行以下操作：
 
-1. 在必要时更新到 [Windows PowerShell 5.1](https://docs.microsoft.com/powershell/scripting/install/installing-windows-powershell#upgrading-existing-windows-powershell)。 如果是在 Windows 10 平台上，则已安装 PowerShell 5.1。
+1. 在必要时更新到 [Windows PowerShell 5.1](https://docs.microsoft.com/powershell/scripting/windows-powershell/install/installing-windows-powershell#upgrading-existing-windows-powershell)。 如果是在 Windows 10 平台上，则已安装 PowerShell 5.1。
 2. 安装 [.NET Framework 4.7.2 或更高版本](https://docs.microsoft.com/dotnet/framework/install)。
 3. 确保你具有最新版本的 PowerShellGet。 运行 `Install-Module PowerShellGet -MinimumVersion 2.2.3 -Force`。 
 
@@ -77,7 +79,7 @@ Azure Stack Az 模块将在 Azure Stack Hub 2002 或更高版本上运行。 此
 ```powershell  
 Install-Module -Name Az.BootStrapper -Force -AllowPrerelease
 Install-AzProfile -Profile 2019-03-01-hybrid -Force
-Install-Module -Name AzureStack -RequiredVersion 2.0.1-preview -AllowPrerelease
+Install-Module -Name AzureStack -RequiredVersion 2.0.2-preview -AllowPrerelease
 ```
 
 > [!Note]  
@@ -102,10 +104,9 @@ Install-Module -Name AzureStack -RequiredVersion 2.0.1-preview -AllowPrerelease
 
 ### <a name="install-azure-stack-hub-powershell"></a>安装 Azure Stack Hub PowerShell
 
-::: moniker range=">=azs-2002"
 Azure Stack Hub 2002 或更高版本。
 
-可以使用 AzureRM 或 Az 预览版模块。 对于 RM 模块，请参阅[安装 PowerShell AzureRM 模块](azure-stack-powershell-install.md)中的说明。
+可以使用 AzureRM 或 Az 预览版模块。 对于 RM 模块，请参阅[安装 PowerShell AzureRM 模块](azure-stack-powershell-install.md)中的说明。 以下代码保存可信联机存储库 https://www.powershellgallery.com/ 中的模块。
 
 ```powershell
 
@@ -116,7 +117,6 @@ $savedModulesPath = "<Path that is used to save the packages>"
 Save-Package -ProviderName NuGet -Source https://www.powershellgallery.com/api/v2 -Name Az -Path $savedModulesPath -Force -RequiredVersion 0.10.0-preview
 Save-Package -ProviderName NuGet -Source https://www.powershellgallery.com/api/v2 -Name AzureStack -Path $savedModulesPath -Force -RequiredVersion 2.0.1-preview
 ```
-::: moniker-end
 
 > [!NOTE]  
 > 在没有 Internet 连接的计算机上，建议执行以下 cmdlet 以禁用遥测数据收集功能。 在不禁用遥测数据收集功能的情况下，可能会遇到 cmdlet 性能降级的问题。 这仅适用于没有 Internet 连接的计算机。
@@ -145,7 +145,7 @@ Save-Package -ProviderName NuGet -Source https://www.powershellgallery.com/api/v
 
    Register-PSRepository -Name $RepoName -SourceLocation $SourceLocation -InstallationPolicy Trusted
 
-   Install-Module -Name AzureStack -Repository $RepoName -RequiredVersion 2.0.1-preview -AllowPrerelease -Scope AllUsers
+   Install-Module -Name AzureStack -Repository $RepoName -RequiredVersion 2.0.2-preview -AllowPrerelease -Scope AllUsers
 
    Install-Module -Name Az -Repository $RepoName -RequiredVersion 0.10.0-preview -AllowPrerelease -Scope AllUsers
    ```

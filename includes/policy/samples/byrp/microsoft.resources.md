@@ -1,17 +1,19 @@
 ---
-author: rockboyfor
 ms.service: azure-policy
 ms.topic: include
-origin.date: 06/10/2020
-ms.date: ''
+origin.date: 07/10/2020
+author: rockboyfor
+ms.date: 08/17/2020
+ms.testscope: yes
+ms.testdate: 08/17/2020
 ms.author: v-yeche
 ms.custom: generated
-ms.openlocfilehash: 17c5b31d4d8ac02fc71fdb1dff1f48454e8e22bd
-ms.sourcegitcommit: 48b5ae0164f278f2fff626ee60db86802837b0b4
+ms.openlocfilehash: a0cc526446cefb8abd1fccfb4c384378dd34cddf
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85102075"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951961"
 ---
 <!--Verified successfully-->
 
@@ -23,6 +25,8 @@ ms.locfileid: "85102075"
 |[活动日志至少应保留一年](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Fb02aacc0-b073-424e-8298-42b22829ee0a) |此策略审核活动日志的保留期是否未设置为365 天或永久（保留天数设置为 0）。 |AuditIfNotExists、Disabled |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Monitoring/ActivityLogRetention_365orGreater.json) |
 |[将标记添加到资源组](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F726aca4c-86e9-4b04-b0c5-073027359532) |创建或更新任何缺少此标记的资源组时添加指定的标记和值。 可以通过触发修正任务来修正现有资源组。 如果存在具有不同值的标记，则不会更改该资源组。 |modify |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Tags/AddTag_ResourceGroup_Modify.json) |
 |[在资源组中添加或替换标记](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Fd157c373-a6c4-483d-aaad-570756956268) |创建或更新任何资源组时添加或替换指定的标记和值。 可以通过触发修正任务来修正现有资源组。 |modify |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Tags/AddOrReplaceTag_ResourceGroup_Modify.json) |
+|[应在 Azure SQL 数据库服务器上启用高级数据安全](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F7fe3b40f-802b-4cdd-8bd4-fd799c948cc2) |高级数据安全提供了以下功能：呈现和缓解潜在数据库漏洞、检测可能指示对 SQL 数据库产生威胁的异常活动，以及发现敏感数据并对其进行分类。 |AuditIfNotExists、Disabled |[1.0.1](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Security%20Center/ASC_EnableAdvancedDataSecurityOnSqlServers_Audit.json) |
+|[应在虚拟机上启用高级威胁防护](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F4da35fc9-c9e7-4960-aec9-797fe7d9051d) |高级威胁防护可为虚拟机工作负载提供实时威胁防护，并生成强化建议以及有关可疑活动的警报。 |AuditIfNotExists、Disabled |[1.0.2](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Security%20Center/ASC_EnableAdvancedThreatProtectionOnVM_Audit.json) |
 |[允许的资源组位置](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Fe765b5de-1225-4ba3-bd56-1ac6695af988) |通过此策略，可限制组织可以创建资源组的位置。 用于强制执行异地符合性要求。 |deny |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/General/ResourceGroupAllowedLocations_Deny.json) |
 |[特定管理操作应有活动日志警报](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Fb954148f-4c11-4c38-8221-be76711e194a) |此策略审核未配置任何活动日志警报的特定管理操作。 |AuditIfNotExists、Disabled |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Monitoring/ActivityLog_AdministrativeOperations_Audit.json) |
 |[特定策略操作应有活动日志警报](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Fc5447c04-a4d7-4ba8-a263-c9ee321a6858) |此策略审核未配置任何活动日志警报的特定策略操作。 |AuditIfNotExists、Disabled |[2.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Monitoring/ActivityLog_PolicyOperations_Audit.json) |
@@ -36,8 +40,8 @@ ms.locfileid: "85102075"
 |[Azure 订阅应有用于活动日志的日志配置文件](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F7796937f-307b-4598-941c-67d3a05ebfe7) |此策略确保启用一个日志配置文件来导出活动日志。 它会审核是否未创建日志配置文件将日志导出到存储帐户或事件中心。 |AuditIfNotExists、Disabled |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Monitoring/Logprofile_activityLogs_Audit.json) |
 |[应从订阅中删除弃用的帐户](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F6b1cbf55-e8b6-442f-ba4c-7246b6381474) |应从订阅中删除弃用的帐户。  已弃用帐户是已阻止登录的帐户。 |AuditIfNotExists、Disabled |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Security%20Center/ASC_RemoveDeprecatedAccounts_Audit.json) |
 |[应从订阅中删除拥有所有者权限的已弃用帐户](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Febb62a0c-3560-49e1-89ed-27e074e9f8ad) |应从订阅中删除拥有所有者权限的已弃用帐户。  已弃用帐户是已阻止登录的帐户。 |AuditIfNotExists、Disabled |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Security%20Center/ASC_RemoveDeprecatedAccountsWithOwnerPermissions_Audit.json) |
-|[应启用高严重性警报的电子邮件通知](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F6e2593d9-add6-4083-9c9b-4b7d2188c899) |启用向安全联系人发送电子邮件安全警报，使他们能够收到来自 Microsoft 的安全警报电子邮件。 这可以确保适当的人员能够意识到任何潜在安全问题，并降低风险 |AuditIfNotExists、Disabled |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Security%20Center/ASC_Email_notification.json) |
-|[应启用向订阅所有者发送高严重性警报的电子邮件通知](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F0b15565f-aa9e-48ba-8619-45960f2c314d) |启用向订阅所有者发送电子邮件安全警报，使他们能够收到来自 Microsoft 的安全警报电子邮件。 这可以确保他们意识到任何潜在安全问题，并及时降低风险 |AuditIfNotExists、Disabled |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Security%20Center/ASC_Email_notification_to_subscription_owner.json) |
+|[应启用高严重性警报的电子邮件通知](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F6e2593d9-add6-4083-9c9b-4b7d2188c899) |允许向安全联系人发送电子邮件安全警报，使他们能够收到来自 Azure 的安全警报电子邮件。 这可以确保适当的人员能够意识到任何潜在安全问题，并降低风险 |AuditIfNotExists、Disabled |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Security%20Center/ASC_Email_notification.json) |
+|[应启用向订阅所有者发送高严重性警报的电子邮件通知](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F0b15565f-aa9e-48ba-8619-45960f2c314d) |允许向订阅所有者发送电子邮件安全警报，使他们能够收到来自 Azure 的安全警报电子邮件。 这可以确保他们意识到任何潜在安全问题，并及时降低风险 |AuditIfNotExists、Disabled |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Security%20Center/ASC_Email_notification_to_subscription_owner.json) |
 |[在订阅中启用 Azure 安全中心](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Fac076320-ddcf-4066-b451-6154267e8ad2) |识别不受 Azure 安全中心 (ASC) 监视的现有订阅。 不受 ASC 监视的订阅将注册到免费定价层。 已由 ASC 监视的订阅（免费或标准层）被视为合规。 若要注册新建的订阅，请打开合规性选项卡，选择相关的不合规分配，并创建修正任务。 需要使用安全中心监视一个或多个新订阅时，请重复此步骤。 |deployIfNotExists |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Security%20Center/ASC_Register_To_Azure_Security_Center_Deploy.json) |
 |[允许安全中心在你的订阅上自动预配包含自定义工作区的 Log Analytics 代理。](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F8e7da0a5-0a0e-4bbc-bfc0-7773c018b616) |允许安全中心在你的订阅上自动预配 Log Analytics 代理，以使用自定义工作区来监视和收集安全数据。 |DeployIfNotExists、Disabled |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Security%20Center/ASC_Deploy_auto_provisioning_log_analytics_monitoring_agent_custom_workspace.json) |
 |[允许安全中心在你的订阅上自动预配包含默认工作区的 Log Analytics 代理。](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F6df2fee6-a9ed-4fef-bced-e13be1b25f1c) |允许安全中心在你的订阅上自动预配 Log Analytics 代理，以使用 ASC 默认工作区来监视和收集安全数据。 |DeployIfNotExists、Disabled |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Security%20Center/ASC_Deploy_auto_provisioning_log_analytics_monitoring_agent_default_workspace.json) |
@@ -52,8 +56,11 @@ ms.locfileid: "85102075"
 |[需要资源组上的标记](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F96670d01-0a4d-4649-9c89-2d3abc0a5025) |强制要求资源组中存在某个标记。 |deny |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Tags/ResourceGroupRequireTag_Deny.json) |
 |[应为订阅分配了多个所有者](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F09024ccc-0c5f-475e-9457-b7c0d9ed487b) |建议指定多个订阅所有者，这样才会有管理员访问冗余。 |AuditIfNotExists、Disabled |[1.0.0](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Security%20Center/ASC_DesignateMoreThanOneOwner_Audit.json) |
 
-<!--Not Available on line 30 + 1 [Deploy export to Event Hub for Azure Security Center alerts and recommendations]-->
-<!--Not Available on line 30 + 2 [Deploy export to Log Analytics workspace]-->
-<!--Not Available on line 30 + 3 [Deploy Workflow Automation for Azure Security Center alerts]-->
-<!--Not Available on line 30 + 4 [Deploy Workflow Automation for Azure Security Center recommendations]-->
-    
+<!--Not Available on line 22 + 1~6-->
+
+<!--Not Available on line 39 + 1 [Deploy export to Event Hub for Azure Security Center alerts and recommendations]-->
+<!--Not Available on line 39 + 2 [Deploy export to Log Analytics workspace]-->
+<!--Not Available on line 39 + 3 [Deploy Workflow Automation for Azure Security Center alerts]-->
+<!--Not Available on line 39 + 4 [Deploy Workflow Automation for Azure Security Center recommendations]-->
+
+<!-- Update_Description: update meta properties, wording update, update link -->

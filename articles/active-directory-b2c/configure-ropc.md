@@ -7,16 +7,16 @@ author: msmimart
 manager: celestedg
 ms.service: active-directory
 ms.workload: identity
-ms.topic: conceptual
-ms.date: 06/28/2020
+ms.topic: how-to
+ms.date: 08/25/2020
 ms.author: v-junlch
 ms.subservice: B2C
-ms.openlocfilehash: 9a65be5ed0f483d52b27362597565e71abe45654
-ms.sourcegitcommit: 3a8a7d65d0791cdb6695fe6c2222a1971a19f745
+ms.openlocfilehash: d93cda3b02b8df7430455b1d9da00999e57fdc92
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2020
-ms.locfileid: "85516522"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946588"
 ---
 # <a name="configure-the-resource-owner-password-credentials-flow-in-azure-ad-b2c"></a>在 Azure AD B2C 中配置资源所有者密码凭据流
 
@@ -30,13 +30,14 @@ ms.locfileid: "85516522"
 
 1. 以 Azure AD B2C 租户的全局管理员身份登录 Azure 门户。
 2. 若要切换到 Azure AD B2C 租户，请在门户右上角选择 B2C 目录。
-3. 单击“用户流”，然后选择“新建用户流”。
-4. 单击“全部”选项卡，然后选择“使用 ROPC 登录”。
-5. 提供用户流名称，例如 ROPC_Auth。
-6. 在“应用程序声明”下，单击“显示更多”。
-7. 选择应用程序所需的应用程序声明，例如“显示名称”、“电子邮件”和“标识提供者”。
-8. 选择“确定”，然后选择“创建” 。
-9. 单击“运行用户流”。
+3. 选择“用户流”，然后选择“新建用户流”。
+4. 选择“使用资源所有者密码凭据(ROPC)登录”。
+5. 在“版本”下，确保选中“预览版”，然后选择“创建”。  
+7. 提供用户流名称，例如 ROPC_Auth。
+8. 在“应用程序声明”下，单击“显示更多”。
+9. 选择应用程序所需的应用程序声明，例如“显示名称”、“电子邮件”和“标识提供者”。
+10. 选择“确定”，然后选择“创建” 。
+11. 单击“运行用户流”。
 
    你随后会看到一个终结点，如以下示例所示：
 
@@ -56,7 +57,7 @@ ms.locfileid: "85516522"
 
 `https://<tenant-name>.b2clogin.cn/<tenant-name>.partner.onmschina.cn/B2C_1_ROPC_Auth/oauth2/v2.0/token`
 
-| 键 | Value |
+| 键 | 值 |
 | --- | ----- |
 | username | leadiocl@outlook.com |
 | password | Passxword1 |
@@ -96,7 +97,7 @@ username=leadiocl%40trashmail.ws&password=Passxword1&grant_type=password&scope=o
 
 `https://<tenant-name>.b2clogin.cn/<tenant-name>.partner.onmschina.cn/B2C_1_ROPC_Auth/oauth2/v2.0/token`
 
-| 键 | Value |
+| 密钥 | 值 |
 | --- | ----- |
 | grant_type | refresh_token |
 | response_type | id_token |
@@ -130,9 +131,5 @@ username=leadiocl%40trashmail.ws&password=Passxword1&grant_type=password&scope=o
 
 Azure AD B2C 实现符合公共客户端资源所有者密码凭据的 OAuth 2.0 标准，并且应与大多数客户端 SDK 兼容。 我们已在生产环境中针对适用于 iOS 的 AppAuth 和适用于 Android 的 AppAuth 广泛测试这一流程。 有关最新信息，请参阅[适用于 OAuth 2.0 的本机应用 SDK 和实现新式最佳做法的 OpenID Connect](https://appauth.io/)。
 
-从 GitHub 下载已配置为与 Azure AD B2C 一起使用的工作示例：[用于 Android](https://aka.ms/aadb2cappauthropc) 和[用于 iOS](https://aka.ms/aadb2ciosappauthropc)。
-
-<!-- Update_Description: wording update -->
-
-
+从 GitHub 下载已配置为与 Azure AD B2C 一起使用的工作示例：[用于 Android](https://github.com/Azure-Samples/active-directory-b2c-android-appauth-ropc) 和[用于 iOS](https://github.com/Azure-Samples/active-directory-b2c-ios-appauth-ropc)。
 

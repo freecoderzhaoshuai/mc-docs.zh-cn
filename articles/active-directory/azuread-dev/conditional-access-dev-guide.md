@@ -6,21 +6,21 @@ author: rwike77
 manager: CelesteDG
 ms.author: v-junlch
 ms.reviewer: jmprieur, saeeda
-ms.date: 07/02/2020
+ms.date: 08/27/2020
 ms.service: active-directory
 ms.subservice: azuread-dev
 ms.custom: aaddev
 ms.topic: conceptual
 ms.workload: identity
 ROBOTS: NOINDEX
-ms.openlocfilehash: 5183a826c23b2bb32c7058c0281c9041b93ba9ba
-ms.sourcegitcommit: 1008ad28745709e8d666f07a90e02a79dbbe2be5
+ms.openlocfilehash: 654f69fd586b785e0c3d93b4565b49012164c2fb
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945093"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046294"
 ---
-# <a name="developer-guidance-for-azure-active-directory-conditional-access"></a>Azure Active Directory 条件访问开发人员指南
+# <a name="developer-guidance-for-the-azure-active-directory-conditional-access-feature"></a>Azure Active Directory 条件访问功能开发人员指南
 
 [!INCLUDE [active-directory-azuread-dev](../../../includes/active-directory-azuread-dev.md)]
 
@@ -90,7 +90,7 @@ claims={"access_token":{"polids":{"essential":true,"Values":["<GUID>"]}}}
 
 ### <a name="prerequisites"></a>先决条件
 
-Azure AD 条件访问是 [Azure AD Premium](/active-directory/active-directory-whatis) 包含的一项功能。 可以在[未授权用户使用情况报表](/active-directory/reports-monitoring/overview-reports)中了解有关许可要求的更多信息。 开发人员可以加入 [Microsoft 开发人员网络](https://msdn.microsoft.com/dn308572.aspx)，其中包含企业移动套件（包含 Azure AD Premium）订阅。
+Azure AD 条件访问是 [Azure AD Premium](../fundamentals/active-directory-whatis.md) 包含的一项功能。 可以在[未授权用户使用情况报表](../reports-monitoring/overview-reports.md)中了解有关许可要求的更多信息。 开发人员可以加入 [Microsoft 开发人员网络](/)，其中包含企业移动套件（包含 Azure AD Premium）订阅。
 
 ### <a name="considerations-for-specific-scenarios"></a>特定应用场景的注意事项
 
@@ -177,7 +177,7 @@ error_description=AADSTS50076: Due to a configuration change made by your admini
 
 ## <a name="see-also"></a>另请参阅
 
-* 若要详细了解这些功能，请参阅 [Azure Active Directory 中的条件访问](/active-directory/conditional-access/overview)。
+* 若要详细了解这些功能，请参阅 [Azure Active Directory 中的条件访问](../conditional-access/overview.md)。
 * 若要获取更多 Azure AD 代码示例，请参阅 [GitHub 存储库的代码示例](https://github.com/azure-samples?utf8=%E2%9C%93&q=active-directory)。
 * 有关 ADAL SDK 和访问参考文档的详细信息，请参阅[库指南](active-directory-authentication-libraries.md)。
 * 若要详细了解多租户应用场景，请参阅[如何使用多租户模式让用户进行登录](../develop/howto-convert-app-to-be-multi-tenant.md?toc=/active-directory/azuread-dev/toc.json&bc=/active-directory/azuread-dev/breadcrumb/toc.json)。

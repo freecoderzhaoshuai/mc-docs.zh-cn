@@ -7,12 +7,12 @@ ms.date: 08/24/2020
 ms.testscope: no
 ms.testdate: 04/27/2020
 ms.author: v-yeche
-ms.openlocfilehash: cc483c8af8615f5606b1b52fb1373347584e0351
-ms.sourcegitcommit: e633c458126612223fbf7a8853dbf19acc7f0fa5
+ms.openlocfilehash: 53aad66b5173b73c293556f5ee00730fb17a4bfd
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "88654908"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951276"
 ---
 # <a name="use-rdma-or-gpu-instances-in-batch-pools"></a>在 Batch 池中使用 RDMA 或 GPU 实例
 
@@ -114,9 +114,9 @@ Batch 中计算密集型大小的 RDMA 或 GPU 功能仅在某些操作系统中
 若要在 Linux NC 节点的池上运行 CUDA 应用程序，需要从 CUDA Toolkit 安装必要的 NVIDIA Tesla GPU 驱动程序。 以下示例步骤使用 GPU 驱动程序创建和部署自定义 Ubuntu 16.04 LTS 映像：
 
 1. 部署运行 Ubuntu 16.04 LTS 的 Azure NC 系列 VM。 例如：在美国中南部区域创建 VM。 
-2. 使用 Azure 门户和连接到 Azure 订阅的客户端计算机将 [NVIDIA GPU 驱动程序扩展](../virtual-machines/extensions/hpccompute-gpu-linux.md
-)添加到 VM。 或者，按照以下步骤连接到 VM 并手动[安装 CUDA 驱动程序](../virtual-machines/linux/n-series-driver-setup.md)。
-
+2. 请照以下步骤手动连接到 VM 并[安装 CUDA 驱动程序](../virtual-machines/linux/n-series-driver-setup.md)。
+    
+    <!--Not Avaialble on [NVIDIA GPU Drivers extension](../virtual-machines/extensions/hpccompute-gpu-linux.md)-->
     <!--Not Available on  or Azure Cloud Shell-->
     
 3. 按照以下步骤为 Batch 创建[共享映像库映像](batch-sig-images.md)。

@@ -4,20 +4,24 @@ description: NCv3 系列 VM 的规范。
 ms.subservice: sizes
 author: rockboyfor
 ms.service: virtual-machines
-ms.topic: article
+ms.topic: conceptual
 origin.date: 02/03/2020
-ms.date: 07/06/2020
+ms.date: 08/31/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 17cec2235d867b6b524ed372abb3cec050f5893e
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: d41e278882950265492ef8a002b09d21605cce6a
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945939"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052444"
 ---
 # <a name="ncv3-series"></a>NCv3 系列
 
-NCv3 系列 VM 采用 [NVIDIA Tesla V100](https://www.nvidia.com/data-center/tesla-v100/) GPU。 这些 GPU 可提供 NCv2 系列的 1.5 倍计算性能。 客户可将这些更新的 GPU 用于传统的 HPC 工作负荷，例如油藏模拟、DNA 测序、蛋白质分析、Monte Carlo 模拟和其他工作负荷。 NC24rs v3 配置提供了针对紧密耦合的并行计算工作负荷优化的低延迟、高吞吐量网络接口。 除了 GPU 之外，NCv3 系列 VM 还采用 Intel Xeon E5-2690 v4 (Broadwell) CPU。
+NCv3 系列 VM 采用 NVIDIA Tesla V100 GPU。 客户可将这些更新的 GPU 用于传统的 HPC 工作负荷，例如油藏模拟、DNA 测序、蛋白质分析、Monte Carlo 模拟和其他工作负荷。 NC24rs v3 配置提供了针对紧密耦合的并行计算工作负荷优化的低延迟、高吞吐量网络接口。 除了 GPU 之外，NCv3 系列 VM 还采用 Intel Xeon E5-2690 v4 (Broadwell) CPU。
+
+<!--Not Available on These GPUs can provide 1.5x the computational performance of the NCv2-series-->
 
 高级存储：支持
 
@@ -51,9 +55,9 @@ NCv3 系列 VM 采用 [NVIDIA Tesla V100](https://www.nvidia.com/data-center/tes
 
 若要利用 Azure N 系列 VM 的 GPU 功能，必须安装 NVIDIA GPU 驱动程序。
 
-[NVIDIA GPU 驱动程序扩展](./extensions/hpccompute-gpu-windows.md)可在 N 系列 VM 上安装适当的 NVIDIA CUDA 或 GRID 驱动程序。 请使用 Azure 门户或工具（例如 Azure PowerShell 或 Azure 资源管理器模板）安装或管理该扩展。 有关受支持的操作系统和部署步骤，请参阅 [NVIDIA GPU 驱动程序扩展文档](./extensions/hpccompute-gpu-windows.md)。 有关 VM 扩展的常规信息，请参阅 [Azure 虚拟机扩展和功能](./extensions/overview.md)。
+<!--Not Available on The [NVIDIA GPU Driver Extension](./extensions/hpccompute-gpu-windows.md) installs appropriate NVIDIA CUDA or GRID drivers on an N-series VM. Install or manage the extension using the Azure portal or tools such as Azure PowerShell or Azure Resource Manager templates. See the [NVIDIA GPU Driver Extension documentation](./extensions/hpccompute-gpu-windows.md) for supported operating systems and deployment steps. For general information about VM extensions, see [Azure virtual machine extensions and features](./extensions/overview.md).-->
 
-如果选择手动安装 NVIDIA GPU 驱动程序，请参阅[适用于 Windows 的 N 系列 GPU 驱动程序安装](./windows/n-series-driver-setup.md)或[适用于 Linux 的 N 系列 GPU 驱动程序安装](./linux/n-series-driver-setup.md)，了解受支持的操作系统、驱动程序以及安装和验证步骤。
+选择手动安装 NVIDIA GPU 驱动程序时，请参阅[适用于 Windows 的 N 系列 GPU 驱动程序安装](./windows/n-series-driver-setup.md)或[适用于 Linux 的 N 系列 GPU 驱动程序安装](./linux/n-series-driver-setup.md)，了解受支持的操作系统、驱动程序以及安装和验证步骤。
 
 ## <a name="other-sizes"></a>其他大小
 

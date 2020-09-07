@@ -5,18 +5,18 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: conditional-access
 ms.topic: how-to
-ms.date: 07/01/2020
+ms.date: 08/27/2020
 ms.author: v-junlch
 author: MicrosoftGuyJFlo
 manager: daveba
 ms.reviewer: calebb, rogoya
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 6d2d4ee4fc4677174ce22577148a679bc178d00f
-ms.sourcegitcommit: 1008ad28745709e8d666f07a90e02a79dbbe2be5
+ms.openlocfilehash: 3741a0f924d223da785064748182400b0431f83e
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945052"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046361"
 ---
 # <a name="conditional-access-require-mfa-for-azure-management"></a>条件访问：要求将 MFA 用于 Azure 管理
 
@@ -49,8 +49,8 @@ ms.locfileid: "85945052"
    1. 在“包括”下，选择“所有用户”。 
    1. 在“排除”下选择“用户和组”，然后选择组织的紧急访问帐户或不受限帐户。 
    1. 选择“完成” 。
-1. 在“云应用或操作” > “包括”下，依次选择“选择应用”、“Microsoft Azure 管理”、“选择”、“完成”。   
-1. 在“条件” > “客户端应用(预览)”下，将“配置”设置为“是”，然后选择“完成”。  
+1. 在“云应用或操作” > “包括”下，依次选择“选择应用”、“Azure 管理”、“选择”、“完成”。   
+1. 在“条件” > “客户端应用(预览版)”下，在“选择该策略应用到的客户端应用”下保留选择的所有默认值，然后选择“完成”   。
 1. 在“访问控制” > “授予”下，依次选择“"授予访问权限”、“需要多重身份验证”和“选择”。
 1. 确认设置，然后将“启用策略”设置为“打开”。 
 1. 选择“创建”，以便创建启用策略所需的项目。

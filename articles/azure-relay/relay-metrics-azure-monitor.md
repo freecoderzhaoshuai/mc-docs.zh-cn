@@ -1,25 +1,25 @@
 ---
-title: Azure Monitor 中的 Azure 中继指标
+title: Azure Monitor 中的 Azure 中继指标 | Azure
 description: 本文介绍如何使用 Azure Monitor 监视 Azure 中继状态。
 services: service-bus-relay
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-author: rockboyfor
-ms.openlocfilehash: f3c3a380c28b0b5600f6d65f15389157dadff65e
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 6b90c665ab2477a273aa36866a75fc90ba6d1a0e
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162205"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947116"
 ---
 # <a name="azure-relay-metrics-in-azure-monitor"></a>Azure Monitor 中的 Azure 中继指标 
 Azure 中继指标提供 Azure 订阅中的资源的状态。 通过一组丰富的指标数据，可在命名空间和实体级别评估中继资源的总体运行状况。 这些统计信息非常重要，因为它们能够帮助监视 Azure 中继的状态。 另外，指标也可帮助解决由根本原因造成的问题，而无需联系 Azure 支持。
 
-Azure Monitor 提供了统一的用户界面，可用于监视各种 Azure 服务。 有关详细信息，请参阅 GitHub 上的[在 Azure 中进行监视](../monitoring-and-diagnostics/monitoring-overview.md)和[通过 .NET 检索 Azure Monitor 指标](https://github.com/Azure-Samples/monitor-dotnet-metrics-api)示例。
+Azure Monitor 提供了统一的用户界面，可用于监视各种 Azure 服务。 有关详细信息，请参阅 GitHub 上的[在 Azure 中进行监视](../azure-monitor/overview.md)和[通过 .NET 检索 Azure Monitor 指标](https://github.com/Azure-Samples/monitor-dotnet-metrics-api)示例。
 
 > [!IMPORTANT]
 > 本文仅适用于 Azure 中继的混合连接功能，而不适用于 WCF 中继。 
@@ -34,7 +34,7 @@ Azure Monitor 提供多种访问指标的方法。 可从 [Azure 门户](https:/
 
 可在 [Azure 门户](https://portal.azure.cn)中监视一段时间内的指标。 以下示例演示了如何在帐户级别查看成功的请求和传入的请求：
 
-![][1]
+![标题为“监视 - 指标(预览)”的页面显示过去 30 天的内存使用情况的折线图。][1]
 
 也可以直接通过命名空间来访问指标。 为此，请选择命名空间，然后单击“指标”。 
 
@@ -53,7 +53,7 @@ Azure Monitor 提供多种访问指标的方法。 可从 [Azure 门户](https:/
 
 ## <a name="connection-metrics"></a>连接指标
 
-| 指标名称 | 说明 |
+| 标准名称 | 说明 |
 | ------------------- | ----------------- |
 | ListenerConnections-Success  | 在指定的期间内成功与 Azure 中继建立的侦听器连接数。 <br/><br/> 单元：计数 <br/> 聚合类型：总计 <br/> 维度：EntityName|
 |ListenerConnections-ClientError |在指定的期间内在侦听器连接上发生的客户端错误数。<br/><br/> 单元：计数 <br/> 聚合类型：总计 <br/> 维度：EntityName|
@@ -65,14 +65,14 @@ Azure Monitor 提供多种访问指标的方法。 可从 [Azure 门户](https:/
 |SenderConnections-TotalRequests |在指定的期间内由发送者发出的连接请求数。<br/><br/> 单元：计数 <br/> 聚合类型：总计 <br/> 维度：EntityName|
 |ActiveConnections |活动连接的数目。 此值为时间点值。<br/><br/> 单元：计数 <br/> 聚合类型：总计 <br/> 维度：EntityName|
 |ActiveListeners |活动侦听器的数目。 此值为时间点值。<br/><br/> 单元：计数 <br/> 聚合类型：总计 <br/> 维度：EntityName|
-|ListenerDisconnects |指定的期间内断开连接的侦听器数。<br/><br/> 单元：字节 <br/> 聚合类型：总计 <br/> 维度：EntityName|
-|SenderDisconnects |指定的期间内断开连接的发送者数。<br/><br/> 单元：字节 <br/> 聚合类型：总计 <br/> 维度：EntityName|
+|ListenerDisconnects |指定的期间内断开连接的侦听器数。<br/><br/> 单位：字节 <br/> 聚合类型：总计 <br/> 维度：EntityName|
+|SenderDisconnects |指定的期间内断开连接的发送者数。<br/><br/> 单位：字节 <br/> 聚合类型：总计 <br/> 维度：EntityName|
 
 ## <a name="memory-usage-metrics"></a>内存使用情况指标
 
-| 指标名称 | 说明 |
+| 标准名称 | 说明 |
 | ------------------- | ----------------- |
-|BytesTransferred |在指定的期间内传输的字节数。<br/><br/> 单元：字节 <br/> 聚合类型：总计 <br/> 维度：EntityName|
+|BytesTransferred |在指定的期间内传输的字节数。<br/><br/> 单位：字节 <br/> 聚合类型：总计 <br/> 维度：EntityName|
 
 ## <a name="metrics-dimensions"></a>指标维度
 
@@ -84,7 +84,7 @@ Azure 中继支持为 Azure Monitor 中的指标使用以下维度。 为指标�
 
 ## <a name="next-steps"></a>后续步骤
 
-请参阅 [Azure 监视概述](../monitoring-and-diagnostics/monitoring-overview.md)。
+请参阅 [Azure 监视概述](../azure-monitor/overview.md)。
 
 [1]: ./media/relay-metrics-azure-monitor/relay-monitor1.png
 

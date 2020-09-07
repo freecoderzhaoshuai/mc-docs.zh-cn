@@ -2,13 +2,14 @@
 title: 如何在 Azure Functions 中禁用函数
 description: 了解如何在 Azure Functions 中禁用与启用函数。
 ms.topic: conceptual
-ms.date: 07/02/2020
-ms.openlocfilehash: feb2ece9b43aa54b5f91d421a9914aaadb0a6437
-ms.sourcegitcommit: 1008ad28745709e8d666f07a90e02a79dbbe2be5
+ms.date: 08/24/2020
+ms.custom: devx-track-csharp, devx-track-azurecli
+ms.openlocfilehash: 4b1e85a89f3bc52515f9b4928c939d550b33f3f4
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945247"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947165"
 ---
 # <a name="how-to-disable-functions-in-azure-functions"></a>如何在 Azure Functions 中禁用函数
 
@@ -45,6 +46,21 @@ az functionapp config appsettings set --name <myFunctionApp> \
 
 > [!NOTE]  
 > 门户集成的测试功能会忽略 `Disabled` 设置。 这意味着，从门户的“测试”窗口启动时，禁用的函数仍会运行。 
+
+## <a name="localsettingsjson"></a>local.settings.json
+
+在本地运行时，可以用相同的方式禁用函数。 若要禁用名为 `HttpExample` 的函数，请在 local.settings.json 文件的“值”集合中添加一个条目，如下所示：
+
+```json
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "java",
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true", 
+    "AzureWebJobs.HttpExample.Disabled": "true"
+  }
+}
+``` 
 
 ## <a name="other-methods"></a>其他方法
 

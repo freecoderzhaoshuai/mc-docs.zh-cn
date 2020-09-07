@@ -7,17 +7,17 @@ manager: daveba
 ms.service: active-directory
 ms.subservice: user-help
 ms.workload: identity
-ms.topic: conceptual
-ms.date: 04/21/2020
+ms.topic: end-user-help
+ms.date: 08/26/2020
 ms.author: v-junlch
 ms.reviewer: kasimpso
 ms.custom: user-help, seo-update-azuread-jan
-ms.openlocfilehash: b5f1d608cc04c30c82a82fd7bfe76ba8ef25bf6d
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.openlocfilehash: 80e912548e730b2fd2d615468c594ed007942cfb
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82127209"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947094"
 ---
 # <a name="use-your-phone-number-as-a-user-name-preview"></a>使用电话号码作为用户名（预览版）
 
@@ -52,11 +52,11 @@ ms.locfileid: "82127209"
 
 1. 允许通过短信登录时，系统会显示一条横幅，询问你是否允许使用该电话号码进行短信登录：
 
-    [![](./media/sms-sign-in-explainer/sms-sign-in-banner.png "Banner to enable SMS sign-in for a phone number")](./media/sms-sign-in-explainer/sms-sign-in-banner.png#lightbox)
+    [![启用电话号码进行短信登录的横幅。](./media/sms-sign-in-explainer/sms-sign-in-banner.png)](./media/sms-sign-in-explainer/sms-sign-in-banner.png#lightbox)
 
 1. 此外，如果在手机方法磁贴中选择脱字号，则会显示“启用”按钮  ：
 
-    [![](./media/sms-sign-in-explainer/sms-sign-in-phone-method.png "Banner to enable SMS sign-in for a phone number")](./media/sms-sign-in-explainer/sms-sign-in-phone-method.png#lightbox)
+    [![启用电话号码进行短信登录的横幅。](./media/sms-sign-in-explainer/sms-sign-in-phone-method.png)](./media/sms-sign-in-explainer/sms-sign-in-phone-method.png#lightbox)
 
 1. 若要启用该方法，请选择“启用”  。 系统会提示确认该操作：
 
@@ -68,7 +68,7 @@ ms.locfileid: "82127209"
 
 1. 若要删除电话号码，请选择短信登录手机方法磁贴中的删除按钮。
 
-    [![](./media/sms-sign-in-explainer/sms-sign-in-delete-method.png "Banner to delete SMS sign-in for a phone number")](./media/sms-sign-in-explainer/sms-sign-in-delete-method.png#lightbox)
+    [![删除用于短信登录的电话号码的横幅。](./media/sms-sign-in-explainer/sms-sign-in-delete-method.png)](./media/sms-sign-in-explainer/sms-sign-in-delete-method.png#lightbox)
 
 2. 当系统提示确认该操作时，请选择“确定”  。
 

@@ -7,15 +7,17 @@ ms.service: virtual-machines
 ms.subservice: imaging
 ms.workload: infrastructure
 origin.date: 05/04/2020
-ms.date: 07/06/2020
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.reviewer: akjosh
-ms.openlocfilehash: 35086f308266409d921dbd60bda6abb947721e6e
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 7a89cd50238b20bb916f337da5331dc1453e414b
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945995"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052386"
 ---
 # <a name="migrate-from-a-managed-image-to-a-shared-image-gallery-image"></a>从托管映像迁移到共享映像库映像
 
@@ -53,7 +55,7 @@ $gallery = Get-AzGallery `
 
 创建映像定义时，请确保它包含所有正确信息。 由于托管映像始终会通用化，因此应设置 `-OsState generalized`。 
 
-若要详细了解可以为映像定义指定的值，请参阅[映像定义](/virtual-machines/windows/shared-image-galleries#image-definitions)。
+若要详细了解可以为映像定义指定的值，请参阅[映像定义](./windows/shared-image-galleries.md#image-definitions)。
 
 使用 [New-AzGalleryImageDefinition](https://docs.microsoft.com/powershell/module/az.compute/new-azgalleryimageversion) 创建映像定义。 在此示例中，映像定义名为 *myImageDefinition*，适用于通用化 Windows OS。 若要使用 Linux OS 创建映像的定义，请使用 `-OsType Linux`。 
 
@@ -96,8 +98,8 @@ $job = $imageVersion = New-AzGalleryImageVersion `
    -GalleryImageDefinitionName $imageDefinition.Name `
    -GalleryImageVersionName '1.0.0' `
    -GalleryName $gallery.Name `
-   -ResourceGroupName $resourceGroup.ResourceGroupName `
-   -Location $resourceGroup.Location `
+   -ResourceGroupName $imageDefinition.ResourceGroupName `
+   -Location $imageDefinition.Location `
    -TargetRegion $targetRegions  `
    -Source $managedImage.Id.ToString() `
    -PublishingProfileEndOfLifeDate '2020-12-31' `
@@ -131,5 +133,7 @@ Remove-AzImage `
 ## <a name="next-steps"></a>后续步骤
 
 确认复制完成后，可以从[通用化映像](vm-generalized-image-version-powershell.md)创建 VM。
+
+<!-Not Available on For information about how to supply purchase plan information, see [Supply Azure Marketplace purchase plan information when creating images](marketplace-images.md)-->
 
 <!-- Update_Description: update meta properties, wording update, update link -->

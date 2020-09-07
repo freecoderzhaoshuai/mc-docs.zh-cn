@@ -7,15 +7,15 @@ manager: celestedg
 ms.service: active-directory
 ms.workload: identity
 ms.topic: conceptual
-ms.date: 06/28/2020
+ms.date: 08/25/2020
 ms.author: v-junlch
 ms.subservice: B2C
-ms.openlocfilehash: b9fa3adf37ad8d090881febbe3e37c59976a75e4
-ms.sourcegitcommit: 3a8a7d65d0791cdb6695fe6c2222a1971a19f745
+ms.openlocfilehash: 8c23e7016bafc76e28adcca1432ff04831c8c157
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2020
-ms.locfileid: "85516472"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946544"
 ---
 # <a name="overview-of-tokens-in-azure-active-directory-b2c"></a>Azure Active Directory B2C 中的令牌概述
 
@@ -97,7 +97,7 @@ ID 令牌中的声明不按任何特定顺序返回。 新的声明可以在任�
 
 ## <a name="pass-through"></a>直通
 
-用户旅程开始时，Azure AD B2C 会从标识提供者处收到一个访问令牌。 Azure AD B2C 使用该令牌来检索有关用户的信息。 [在用户流中启用声明](idp-pass-through-user-flow.md)或[在自定义策略中定义声明](idp-pass-through-custom.md)即可将该令牌传递给你在 Azure AD B2C 中注册的应用程序。 应用程序必须使用 [v2 用户流](user-flow-versions.md)才能利用将令牌作为声明传递的优势。
+用户旅程开始时，Azure AD B2C 会从标识提供者处收到一个访问令牌。 Azure AD B2C 使用该令牌来检索有关用户的信息。 [在用户流中启用声明](idp-pass-through-user-flow.md)或[在自定义策略中定义声明](idp-pass-through-custom.md)即可将该令牌传递给你在 Azure AD B2C 中注册的应用程序。 应用程序必须使用[建议的用户流](user-flow-versions.md)才能利用将令牌作为声明传递的优势。
 
 Azure AD B2C 当前仅支持传递 OAuth 2.0 标识提供者的访问令牌。 对于所有其他标识提供者，声明将返回空白。
 

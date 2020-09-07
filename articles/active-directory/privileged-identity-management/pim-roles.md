@@ -10,16 +10,16 @@ ms.service: active-directory
 ms.topic: conceptual
 ms.workload: identity
 ms.subservice: pim
-ms.date: 05/28/2020
+ms.date: 08/27/2020
 ms.author: v-junlch
 ms.custom: pim ; H1Hack27Feb2017;oldportal;it-pro;
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 3c8b62689740d87e1a6e6b0271085c0a3e29407c
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: 9f5a3e480e058e1023c29d3d979a262f8e2e2a7a
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186811"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046405"
 ---
 # <a name="roles-you-cant-manage-in-privileged-identity-management"></a>无法在 Privileged Identity Management 中管理的角色
 
@@ -33,7 +33,7 @@ ms.locfileid: "84186811"
 - 服务管理员
 - 共同管理员
 
-有关经典订阅管理员角色的详细信息，请参阅[经典订阅管理员角色、Azure RBAC 角色和 Azure AD 管理员角色](../../role-based-access-control/rbac-and-directory-admin-roles.md)。
+有关经典订阅管理员角色的详细信息，请参阅[经典订阅管理员角色、Azure 角色和 Azure AD 管理员角色](../../role-based-access-control/rbac-and-directory-admin-roles.md)。
 
 ## <a name="what-about-office-365-admin-roles"></a>那么 Office 365 管理员角色呢？
 

@@ -5,18 +5,18 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: conditional-access
 ms.topic: conceptual
-ms.date: 07/08/2020
+ms.date: 08/27/2020
 ms.author: v-junlch
 author: MicrosoftGuyJFlo
 manager: daveba
 ms.reviewer: nigu
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 39d21d423990f422a138fc02aeb693a2c3dc600a
-ms.sourcegitcommit: 92b9b1387314b60661f5f62db4451c9ff2c49500
+ms.openlocfilehash: 173b3489209b89b783974d9d30e07e2c3f3e803e
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86164988"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046398"
 ---
 # <a name="troubleshoot-using-the-what-if-tool-in-conditional-access"></a>在条件访问中使用 What If 工具进行故障排除
 
@@ -40,7 +40,7 @@ ms.locfileid: "86164988"
      
 下一步，可以启动用于评估设置的模拟运行。 评估运行中仅包含启用的策略。
 
-完成评估后，此工具将生成一份受影响策略的报表。
+完成评估后，此工具将生成一份受影响策略的报表。 若要收集有关条件访问策略的详细信息，可参阅[条件访问见解和报表工作簿](howto-conditional-access-insights-reporting.md)，更详细地了解“仅限报告”模式的策略以及那些目前已启用的策略。
 
 ## <a name="running-the-tool"></a>运行此工具
 
@@ -76,7 +76,7 @@ IP 地址为单个 IPv4 地址，用于模拟[位置条件](location-condition.m
 
 ### <a name="client-apps"></a>客户端应用
 
-此设置模拟[客户端应用条件](concept-conditional-access-conditions.md#client-apps-preview)。
+此设置模拟[客户端应用条件](concept-conditional-access-conditions.md#client-apps)。
 默认情况下，此设置会导致对同时选中“浏览器”和“移动应用和桌面客户端”或其中之一的所有策略进行评估。 此外，此设置还检测强制实施“Exchange ActiveSync (EAS)”的策略。 可以通过选择以下内容缩小此设置的范围：
 
 - 浏览器：评估至少选择了“浏览器”的所有策略。 
@@ -104,5 +104,6 @@ IP 地址为单个 IPv4 地址，用于模拟[位置条件](location-condition.m
 
 ## <a name="next-steps"></a>后续步骤
 
+- 有关条件访问策略应用程序的详细信息，可以使用[条件访问见解和报告](howto-conditional-access-insights-reporting.md)通过策略的“仅限报告”模式来查找。
 - 如果已准备好为环境配置条件访问策略，请参阅[条件访问常见策略](concept-conditional-access-policy-common.md)。 
 

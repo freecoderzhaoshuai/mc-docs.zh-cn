@@ -5,19 +5,19 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: conditional-access
 ms.topic: conceptual
-ms.date: 07/20/2020
+ms.date: 08/27/2020
 ms.author: v-junlch
 author: MicrosoftGuyJFlo
 manager: daveba
 ms.reviewer: rogoya
 ms.collection: M365-identity-device-management
 ms.custom: contperfq4
-ms.openlocfilehash: 0b3c71842adbd232afef154bf3adc90673c1786b
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.openlocfilehash: 923932282d022334dac07e06b0bc2dde3ae2be93
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86472605"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046479"
 ---
 # <a name="what-are-security-defaults"></a>什么是安全默认值？
 
@@ -90,7 +90,7 @@ Microsoft 正在向所有用户提供安全默认值。 目标是确保所有组
 在租户中启用安全默认值后，旧协议发出的所有身份验证请求都将被阻止。 安全默认值会阻止 Exchange Active Sync 基本身份验证。
 
 > [!WARNING]
-> 启用安全默认值之前，请确保管理员没有使用旧身份验证协议。 
+> 启用安全默认值之前，请确保管理员没有使用旧身份验证协议。 有关详细信息，请参阅[如何弃用旧身份验证](concept-fundamentals-block-legacy-authentication.md)。
 
 - [如何设置多功能设备或应用程序以使用 Office 365 和 Microsoft 365 发送电子邮件](https://docs.microsoft.com/exchange/mail-flow-best-practices/how-to-set-up-a-multifunction-device-or-application-to-send-email-using-microsoft-365-or-office-365)
 

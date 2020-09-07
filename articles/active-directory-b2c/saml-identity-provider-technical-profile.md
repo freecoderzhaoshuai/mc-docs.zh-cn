@@ -8,15 +8,15 @@ manager: celestedg
 ms.service: active-directory
 ms.workload: identity
 ms.topic: reference
-ms.date: 07/27/2020
+ms.date: 08/25/2020
 ms.author: v-junlch
 ms.subservice: B2C
-ms.openlocfilehash: 1550573820b43aa0968abf435a4eb86aed5d4db7
-ms.sourcegitcommit: dd2bc914f6fc2309f122b1c7109e258ceaa7c868
+ms.openlocfilehash: 66bfef0bee6dbbe7a13650b78c815615ed9e9d49
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87297718"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946564"
 ---
 # <a name="define-a-saml-identity-provider-technical-profile-in-an-azure-active-directory-b2c-custom-policy"></a>在 Azure Active Directory B2C 自定义策略中定义 SAML 标识提供者技术配置文件
 
@@ -70,7 +70,7 @@ https://your-tenant-name.b2clogin.cn/your-tenant-name/your-policy/samlp/metadata
 3. 将技术配置文件元数据 WantsEncryptedAssertions 设为 `true`。
 4. 使用新的 Azure AD B2C 技术配置文件元数据更新身份提供程序。 你应该会看到 KeyDescriptor，其中的“使用”属性设置为包含你的证书的公钥的 `encryption`。
 
-以下示例显示元数据的 Azure AD B2C 技术配置文件加密部分：
+以下示例显示了用于加密的 SAML 元数据的“密钥描述符”部分：
 
 ```xml
 <KeyDescriptor use="encryption">
@@ -169,4 +169,36 @@ SAML 断言：
 | SamlMessageSigning |是 | X509 证书（RSA 密钥集），用于对 SAML 消息进行签名。 Azure AD B2C 使用此密钥对请求进行签名并将其发送给身份提供程序。 |
 | SamlAssertionDecryption |是 | X509 证书（RSA 密钥集），用于解密 SAML 消息。 此证书应由身份提供程序提供。 Azure AD B2C 使用此证书解密身份提供程序发送的数据。 |
 | MetadataSigning |否 | X509 证书（RSA 密钥集），用于对 SAML 元数据进行签名。 Azure AD B2C 使用此密钥对元数据进行签名。  |
+
+## <a name="saml-entityid-customization"></a>SAML entityID 自定义
+
+如果有多个依赖于不同 entityID 值的 SAML 应用程序，可以重写信赖方文件中的 `issueruri` 值。 为此，请从基础文件复制 ID 为“Saml2AssertionIssuer”的技术配置文件，重写 `issueruri` 值。
+
+> [!TIP]
+> 从基础文件中复制 `<ClaimsProviders>` 节，并在声明提供程序中保留这些元素：`<DisplayName>Token Issuer</DisplayName>`、`<TechnicalProfile Id="Saml2AssertionIssuer">` 和 `<DisplayName>Token Issuer</DisplayName>`。
+ 
+示例：
+
+```xml
+   <ClaimsProviders>   
+    <ClaimsProvider>
+      <DisplayName>Token Issuer</DisplayName>
+      <TechnicalProfiles>
+        <TechnicalProfile Id="Saml2AssertionIssuer">
+          <DisplayName>Token Issuer</DisplayName>
+          <Metadata>
+            <Item Key="IssuerUri">customURI</Item>
+          </Metadata>
+        </TechnicalProfile>
+      </TechnicalProfiles>
+    </ClaimsProvider>
+  </ClaimsProviders>
+  <RelyingParty>
+    <DefaultUserJourney ReferenceId="SignUpInSAML" />
+    <TechnicalProfile Id="PolicyProfile">
+      <DisplayName>PolicyProfile</DisplayName>
+      <Protocol Name="SAML2" />
+      <Metadata>
+     …
+```
 

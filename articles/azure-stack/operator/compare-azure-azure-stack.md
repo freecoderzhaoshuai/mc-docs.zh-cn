@@ -4,17 +4,17 @@ titleSuffix: Azure Stack Hub
 description: 了解全球 Azure、Azure Stack Hub 与 Azure Stack HCI 之间的差异。
 author: WenJason
 ms.topic: overview
-origin.date: 05/03/2019
-ms.date: 06/22/2020
+origin.date: 07/10/2019
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: unknown
 ms.lastreviewed: 03/29/2019
-ms.openlocfilehash: 18e55cf5d93ad1d84f48d659d37b6c4c107fe87b
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 468b63571c43662cb460b0ad3b33073b5e8078de
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096451"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88868096"
 ---
 # <a name="differences-between-azure-azure-stack-hub-and-azure-stack-hci"></a>Azure、Azure Stack Hub 与 Azure Stack HCI 之间的差异
 
@@ -69,15 +69,9 @@ Azure Stack Hub 的 PaaS 功能是可选的，因为 Azure Stack Hub 不是由 M
 
 ## <a name="azure-stack-hci"></a>Azure Stack HCI
 
-使用 [Azure Stack HCI](../hci/overview.md) 解决方案可以通过超融合基础结构 (HCI) 解决方案在本地运行虚拟机并轻松连接到 Azure。 根据法规或技术要求，在本地使用一致的 Azure 服务来构建和运行云应用。 除了在本地运行虚拟化的应用以外，Azure Stack HCI 还可让你更换与整合过时的服务器基础结构，并使用 Windows 管理中心连接到 Azure 云服务。
+[Azure Stack HCI](../hci/overview.md) 是超融合的群集，可在本地环境使用经过验证的硬件来运行虚拟化 Windows 和 Linux 工作负载，并轻松连接到 Azure 以实现基于云的备份、恢复和监视。 最初基于 Windows Server 2019 的 Azure Stack HCI 现在作为 Azure 服务提供，并内置了基于订阅的许可模式和混合功能。 尽管 Azure Stack HCI 基于与 Windows Server 相同的核心操作系统组件，但它是一个全新的产品系列，专注于成为最佳的虚拟化主机。
 
-Azure Stack HCI 提供经过验证的，采用 Hyper-V、存储空间直通和 Windows Server 2019 软件定义的数据中心 (SDDC) 技术的 HCI 解决方案。 Windows 管理中心用于对 Azure 服务进行管理和集成式访问，例如：
-
-- Azure 备份
-- Azure Site Recovery
-- Azure Monitor 和更新
-
-有关可与 Azure Stack HCI 连接的 Azure 服务的更新列表，请参阅[将 Windows Server 连接到 Azure 混合服务](https://docs.microsoft.com/windows-server/azure-hybrid-services/index)。
+Azure Stack HCI 使用 OEM 合作伙伴提供的经 Microsoft 验证的硬件来确保最佳性能和可靠性。 这些解决方案包括对 NVMe 驱动器、永久性内存和远程直接内存访问 (RDMA) 网络等技术的支持。
 
 ### <a name="example-use-cases-for-azure-stack-hci"></a>Azure Stack HCI 的示例用例
 
@@ -87,9 +81,7 @@ Azure Stack HCI 提供经过验证的，采用 Hyper-V、存储空间直通和 W
 - 业务关键型基础结构
 - 低成本存储
 - 云中的高可用性和灾难恢复
-- SQL Server 等企业应用
-
-请访问 [Azure Stack HCI 网站](https://azure.microsoft.com/overview/azure-stack/hci/)，以查看 Microsoft 合作伙伴目前提供的 70 多种 Azure Stack HCI 解决方案。
+- 虚拟化企业应用，如 SQL Server
 
 ## <a name="next-steps"></a>后续步骤
 

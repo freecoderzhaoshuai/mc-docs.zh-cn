@@ -4,19 +4,19 @@ description: 支持 Azure 资源托管标识和 Azure AD 身份验证的服务�
 services: active-directory
 author: MarkusVi
 ms.author: v-junlch
-ms.date: 06/30/2020
+ms.date: 08/27/2020
 ms.topic: conceptual
 ms.service: active-directory
 ms.subservice: msi
 manager: markvi
 ms.collection: M365-identity-device-management
 ms.custom: references_regions
-ms.openlocfilehash: f1d7e94258bae2c07e40fba028a018d107123ab4
-ms.sourcegitcommit: 1008ad28745709e8d666f07a90e02a79dbbe2be5
+ms.openlocfilehash: ea71ab5fb85f21366fb0974e18dd10b0c299b8df
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945149"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046307"
 ---
 # <a name="services-that-support-managed-identities-for-azure-resources"></a>支持 Azure 资源托管标识的服务
 
@@ -56,6 +56,12 @@ Azure 资源的托管标识在 Azure Active Directory 中为 Azure 服务提供�
 - [Azure PowerShell](/app-service/overview-managed-identity#using-azure-powershell)
 - [Azure Resource Manager 模板](/app-service/overview-managed-identity#using-an-azure-resource-manager-template)
 
+### <a name="azure-arc-enabled-kubernetes"></a>已启用 Azure Arc 的 Kubernetes
+
+| 托管标识类型 | 所有正式发布版<br>全球 Azure 区域 | Azure Government | Azure 德国 | Azure 中国世纪互联 |
+| --- | :-: | :-: | :-: | :-: |
+| 系统分配 | 预览 | 不可用 | 不可用 | 不可用 | 
+| 用户分配 | 不可用 | 不可用 | 不可用 | 不可用 |
 
 ### <a name="azure-blueprints"></a>Azure 蓝图
 
@@ -63,6 +69,21 @@ Azure 资源的托管标识在 Azure Active Directory 中为 Azure 服务提供�
 | --- | :-: | :-: | :-: | :-: |
 | 系统分配 | ![可用][check] | ![可用][check] | 不可用 | 不可用 |
 | 用户分配 | ![可用][check] | ![可用][check] | 不可用 | 不可用 |
+
+### <a name="azure-cognitive-search"></a>Azure 认知搜索
+
+托管标识类型 | 所有正式发布版<br>全球 Azure 区域 | Azure Government | Azure 德国 | Azure 中国世纪互联 |
+| --- | :-: | :-: | :-: | :-: |
+| 系统分配 | ![可用][check] | ![可用][check] | 不可用 | ![可用][check] |
+| 用户分配 | 不可用 | 不可用 | 不可用 | 不可用 |
+
+### <a name="azure-cognitive-services"></a>Azure 认知服务
+
+托管标识类型 | 所有正式发布版<br>全球 Azure 区域 | Azure Government | Azure 德国 | Azure 中国世纪互联 |
+| --- | :-: | :-: | :-: | :-: |
+| 系统分配 | ![可用][check] | ![可用][check] | 不可用 | ![可用][check] |
+| 用户分配 | 不可用 | 不可用 | 不可用 | 不可用 |
+
 
 ### <a name="azure-container-instances"></a>Azure 容器实例
 
@@ -116,7 +137,7 @@ Azure 资源的托管标识在 Azure Active Directory 中为 Azure 服务提供�
 
 托管标识类型 |所有正式发布版<br>全球 Azure 区域 | Azure Government | Azure 德国 | Azure 中国世纪互联 |
 | --- | :-: | :-: | :-: | :-: |
-| 系统分配 | 预览 | 不可用 | 不可用 | 不可用 |
+| 系统分配 | 预览 | 预览 | 不可用 | 预览 |
 | 用户分配 | 不可用 | 不可用  | 不可用  | 不可用 |
 
 
@@ -161,8 +182,12 @@ Azure 资源的托管标识在 Azure Active Directory 中为 Azure 服务提供�
 
 | 托管标识类型 | 所有正式发布版<br>全球 Azure 区域 | Azure Government | Azure 德国 | Azure 中国世纪互联 |
 | --- | :-: | :-: | :-: | :-: |
-| 系统分配 | ![可用][check] | - | - | - | 
-| 用户分配 | ![可用][check] | - | - | - |
+| 系统分配 | ![可用][check] | ![可用][check] | 不可用 | ![可用][check] | 
+| 用户分配 | ![可用][check] | ![可用][check] | 不可用 | ![可用][check] |
+
+
+有关详细信息，请参阅[在 Azure Kubernetes 服务中使用托管标识](/aks/use-managed-identity)。
+
 
 ### <a name="azure-logic-apps"></a>Azure 逻辑应用
 
@@ -196,7 +221,7 @@ Azure 资源的托管标识在 Azure Active Directory 中为 Azure 服务提供�
 
 ### <a name="azure-service-fabric"></a>Azure Service Fabric
 
-[Service Fabric 应用程序的托管标识](/service-fabric/concepts-managed-identity)处于预览状态，并在所有区域中均可用。
+[Service Fabric 应用程序的托管标识](/service-fabric/concepts-managed-identity)在所有区域中均可用。
 
 托管标识类型 | 所有正式发布版<br>全球 Azure 区域 | Azure Government | Azure 德国 | Azure 中国世纪互联 |
 | --- | :-: | :-: | :-: | :-: |
@@ -255,12 +280,22 @@ Azure 资源的托管标识在 Azure Active Directory 中为 Azure 服务提供�
 | 系统分配 | 不可用 | 不可用 | 不可用 | 不可用 | 
 | 用户分配 | 在支持的区域中可用 | 不可用 | 不可用 | 不可用 |
 
+### <a name="azure-signalr-service"></a>Azure SignalR 服务
+
+托管标识类型 | 所有正式发布版<br>全球 Azure 区域 | Azure Government | Azure 德国 | Azure 中国世纪互联 |
+| --- | :-: | :-: | :-: | :-: |
+| 系统分配 | 预览 | 预览 | 不可用 | 预览 |
+| 用户分配 | 预览 | 预览 | 不可用 | 预览 |
+
+请参阅以下列表来配置 Azure SignalR 服务的托管标识（在可用的区域中）：
+
+- [Azure Resource Manager 模板](../../azure-signalr/howto-use-managed-identity.md)
 
 ## <a name="azure-services-that-support-azure-ad-authentication"></a>支持 Azure AD 身份验证的 Azure 服务
 
 以下服务支持 Azure AD 身份验证，已通过使用 Azure 资源托管标识的客户端服务进行测试。
 
-### <a name="azure-resource-manager"></a>Azure Resource Manager
+### <a name="azure-resource-manager"></a>Azure 资源管理器
 
 请参阅以下列表配置对 Azure 资源管理器的访问权限：
 

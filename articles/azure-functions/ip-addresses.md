@@ -2,13 +2,13 @@
 title: Azure Functions 中的 IP 地址
 description: 了解如何查找函数应用的入站和出站 IP 地址，以及这些地址发生更改的原因。
 ms.topic: conceptual
-ms.date: 06/08/2020
-ms.openlocfilehash: b594ebf3e4e84b9debe6bc8f7728ccbf8f0a7696
-ms.sourcegitcommit: f1a76ee3242698123a3d77f44c860db040b48f70
+ms.date: 08/24/2020
+ms.openlocfilehash: 57f6caf92c5e4ba486c01aa21a7eed897db87aad
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84563603"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946982"
 ---
 # <a name="ip-addresses-in-azure-functions"></a>Azure Functions 中的 IP 地址
 
@@ -40,22 +40,23 @@ IP 地址与函数应用而不是单个函数相关联。 传入的 HTTP 请求�
 az webapp show --resource-group <group_name> --name <app_name> --query outboundIpAddresses --output tsv
 az webapp show --resource-group <group_name> --name <app_name> --query possibleOutboundIpAddresses --output tsv
 ```
+
 > [!NOTE]
-> 缩放按[消耗计划](functions-scale.md#consumption-plan)运行的函数应用时，可以分配新范围的出站 IP 地址。 按消耗计划运行时，可能需要将整个数据中心加入允许列表。
+> 缩放按[消耗计划](functions-scale.md#consumption-plan)运行的函数应用时，可以分配新范围的出站 IP 地址。 按消耗计划运行时，可能需要将整个数据中心添加到允许列表。
 
 ## <a name="data-center-outbound-ip-addresses"></a>数据中心出站 IP 地址
 
-如果需要将函数应用使用的出站 IP 地址加入允许列表，另一种做法是将函数应用的数据中心（Azure 区域）加入允许列表。 可以[下载列出所有 Azure 数据中心 IP 地址的 JSON 文件](https://www.microsoft.com/en-us/download/details.aspx?id=56519)。 然后，找到应用于运行函数应用的区域的 JSON 片段。
+如果需要将函数应用使用的出站 IP 地址添加到允许列表，另一种做法是将函数应用的数据中心（Azure 区域）添加到允许列表。 可以[下载列出所有 Azure 数据中心 IP 地址的 JSON 文件](https://www.microsoft.com/en-us/download/details.aspx?id=56519)。 然后，找到应用于运行函数应用的区域的 JSON 片段。
 
-例如，中国北部区域的 JSON 片段可能如下所示：
+例如，“中国北部 2”区域的 JSON 片段可能如下所示：
 
 ```
 {
-  "name": "AzureChinaCloud.chinanorth",
-  "id": "AzureChinaCloud.chinanorth",
+  "name": "AzureChinaCloud.chinanorth2",
+  "id": "AzureChinaCloud.chinanorth2",
   "properties": {
     "changeNumber": 9,
-    "region": "chinanorth",
+    "region": "chinanorth2",
     "platform": "Azure",
     "systemService": "",
     "addressPrefixes": [

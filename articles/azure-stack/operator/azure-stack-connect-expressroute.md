@@ -3,23 +3,23 @@ title: 使用 ExpressRoute 将 Azure Stack Hub 连接到 Azure
 description: 了解如何使用 ExpressRoute 将 Azure Stack Hub 中的虚拟网络连接到 Azure 中的虚拟网络。
 author: WenJason
 ms.topic: conceptual
-origin.date: 04/20/2020
-ms.date: 07/20/2020
+origin.date: 07/27/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: unknown
 ms.lastreviewed: 10/22/2019
-ms.openlocfilehash: d14380e109d6e59c73ba466a0b70634ea9a4ebcd
-ms.sourcegitcommit: e9ffd50aa5eaab402a94bfabfc70de6967fe6278
+ms.openlocfilehash: 3b0f8c67867f74ea86cbb87415f00c9a1e93e3fe
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2020
-ms.locfileid: "86307422"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867751"
 ---
 # <a name="connect-azure-stack-hub-to-azure-using-azure-expressroute"></a>使用 Azure ExpressRoute 将 Azure Stack Hub 连接到 Azure
 
 本文介绍如何使用 [Azure ExpressRoute](/expressroute/) 直接连接将 Azure Stack Hub 虚拟网络连接到 Azure 虚拟网络。
 
-可以使用本文作为教程，并使用示例设置相同的测试环境。 或者，可以使用本文作为引导性的演练来设置自己的 ExpressRoute 环境。
+可以使用本文作为教程，并使用示例设置相同的测试环境。 或者，可以阅读本文，将其作为引导性的演练来设置自己的 ExpressRoute 环境。
 
 ## <a name="overview-assumptions-and-prerequisites"></a>概述、假设和先决条件
 
@@ -602,4 +602,4 @@ New-NetFirewallRule `
 
 ## <a name="next-steps"></a>后续步骤
 
-[将应用部署到 Azure 和 Azure Stack Hub](../user/azure-stack-solution-pipeline.md)
+[将应用部署到 Azure 和 Azure Stack Hub](https://github.com/Azure-Samples/azure-intelligent-edge-patterns/tree/master/hybrid-devops)

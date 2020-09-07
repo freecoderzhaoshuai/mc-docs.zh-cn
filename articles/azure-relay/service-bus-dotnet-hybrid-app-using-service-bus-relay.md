@@ -1,19 +1,19 @@
 ---
-title: Azure Windows Communication Foundation (WCF) 中继混合本地/云应用程序 (.NET)
+title: Azure Windows Communication Foundation (WCF) 中继混合本地/云应用程序 (.NET) | Azure
 description: 了解如何使用 Azure 中继向云中的 Web 应用程序公开本地 WCF 服务
 ms.topic: conceptual
 origin.date: 06/23/2020
-ms.date: 07/27/2020
+ms.date: 08/31/2020
 ms.testscope: yes
 ms.testdate: 07/20/2020
 ms.author: v-yeche
 author: rockboyfor
-ms.openlocfilehash: 27d1c9c57a71a6e9d22d795ddb677a25e0085257
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 9e53f608239da241393e96e36aa70604e2dcbc94
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162410"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947117"
 ---
 # <a name="expose-an-on-premises-wcf-service-to-a-web-application-in-the-cloud-by-using-azure-relay"></a>使用 Azure 中继向云中的 Web 应用程序公开本地 WCF 服务
 
@@ -49,7 +49,7 @@ ms.locfileid: "87162410"
 
 解决方案架构师开始使用云来轻松地处理缩放需求和降低运营成本。 在此过程中，他们发现希望用作其解决方案的构建基块的现有服务资产位于企业防火墙内，无法通过云解决方案轻松访问。 许多内部服务的构建或托管方式使得它们无法在企业网络边缘轻松公开。
 
-[Azure 中继](https://www.azure.cn/pricing/details/service-bus/)可以利用现有的 WCF Web 服务，并使公司外部的解决方案可以安全地访问这些服务，而无需对企业网络基础结构进行侵入式更改。 虽然此类中继服务仍托管在现有环境中，但它们会将侦听传入会话和请求这一任务委派给云托管的中继服务。 Azure 中继还会通过使用[共享访问签名 (SAS)](../service-bus-messaging/service-bus-sas.md) 身份验证来保护这些服务，以阻止未经授权的访问。
+[Azure 中继](https://www.azure.cn/home/features/service-bus/)可以利用现有的 WCF Web 服务，并使公司外部的解决方案可以安全地访问这些服务，而无需对企业网络基础结构进行侵入式更改。 虽然此类中继服务仍托管在现有环境中，但它们会将侦听传入会话和请求这一任务委派给云托管的中继服务。 Azure 中继还会通过使用[共享访问签名 (SAS)](../service-bus-messaging/service-bus-sas.md) 身份验证来保护这些服务，以阻止未经授权的访问。
 
 ## <a name="review-the-scenario"></a>查看方案
 

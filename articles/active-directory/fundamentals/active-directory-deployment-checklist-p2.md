@@ -3,20 +3,20 @@ title: Azure AD 部署清单
 description: Azure Active Directory 功能部署清单
 services: active-directory
 ms.service: active-directory
-ms.subservice: ''
+ms.subservice: fundamentals
 ms.topic: conceptual
-ms.date: 05/26/2020
+ms.date: 08/27/2020
 ms.author: v-junlch
 author: MicrosoftGuyJFlo
 manager: daveba
 ms.reviewer: martinco
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: b82bdce8c7c6c896fdaae966ead6a49834434364
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: 5ab9be1644214325f9b4316aae2c08a62f3eead3
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186998"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046444"
 ---
 # <a name="azure-active-directory-feature-deployment-guide"></a>Azure Active Directory 功能部署指南
 
@@ -48,6 +48,7 @@ ms.locfileid: "84186998"
 | [启用 Microsoft 的密码指导](https://www.microsoft.com/research/publication/password-guidance/) | 停止要求用户按照设置的计划更改其密码，禁用复杂性要求，用户更倾向于记住他们习惯的密码，并妥善保管其密码。 | Azure AD Free |
 | [对基于云的用户帐户禁用定期密码重置](../authentication/concept-sspr-policy.md#set-a-password-to-never-expire) | 定期密码重置会促使用户增加其现有密码。 使用 Microsoft 密码指导文档中的指导原则，并将相同的本地策略运用到仅限云的用户。 | Azure AD Free |
 | [为 AD FS 启用 Extranet 智能锁定](https://docs.microsoft.com/windows-server/identity/ad-fs/operations/configure-ad-fs-extranet-smart-lockout-protection) | AD FS Extranet 锁定可以防范暴力密码猜测攻击，同时可让有效的 AD FS 用户继续使用其帐户。 | |
+| [使用条件访问阻止向 Azure AD 进行旧身份验证](../conditional-access/block-legacy-authentication.md) | 阻止旧式身份验证协议（例如 POP、SMTP、IMAP 和 MAPI），这些协议不能强制实施多重身份验证，因此成为攻击者的首选入口点。 | Azure AD Premium P1 |
 | [使用条件访问策略部署 Azure AD 多重身份验证](../authentication/howto-mfa-getstarted.md) | 要求用户在使用条件访问策略访问敏感应用程序时执行双重验证。 | Azure AD Premium P1 |
 
 ## <a name="phase-2-import-users-enable-synchronization-and-manage-devices"></a>阶段 2：导入用户、启用同步和管理设备

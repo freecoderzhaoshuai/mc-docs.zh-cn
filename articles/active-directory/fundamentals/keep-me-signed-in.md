@@ -8,16 +8,16 @@ ms.service: active-directory
 ms.topic: how-to
 ms.workload: identity
 ms.subservice: fundamentals
-ms.date: 07/09/2020
+ms.date: 08/27/2020
 ms.author: v-junlch
 ms.reviewer: asteen, jlu, hirsin
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: b8a1d9bab2baf10ebf150b04f715a3ca64627b61
-ms.sourcegitcommit: 92b9b1387314b60661f5f62db4451c9ff2c49500
+ms.openlocfilehash: 9fb713666889e0992741c3971df8bbb08d06caa3
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86164894"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046333"
 ---
 # <a name="configure-the-stay-signed-in-prompt-for-azure-ad-accounts"></a>为 Azure AD 帐户 配置“保持登录状态？”提示
 
@@ -55,7 +55,18 @@ ms.locfileid: "86164894"
 
 :::image type="content" source="./media/keep-me-signed-in/kmsi-sign-ins-log-entry.png" alt-text="包含“使我保持登录状态”过程中断信息的登录日志条目示例":::
 
-你可以通过在高级品牌设置中将“显示保持登录状态的选项”设置为“否”来阻止用户看到中断信息 。
+你可以通过在高级品牌设置中将“显示保持登录状态的选项”设置为“否”来阻止用户看到中断信息 。 对于 Azure AD 目录中的所有用户，这会禁用 KMSI 提示。
+
+你还可以在条件访问中使用持久性浏览器会话控件来防止用户查看 KMSI 提示。 使用此选项可以对选择的用户组（例如全局管理员）禁用 KMSI 提示，而不会影响目录中其他用户的登录行为。 
+
+为了确保 KMSI 提示只在有益于用户的情况下显示，在以下情况下我们有意不显示 KMSI 提示：
+
+* 用户是通过无缝 SSO 和集成 Windows 身份验证 (IWA) 登录的
+* 用户是通过 Active Directory 联合身份验证服务和 IWA 登录的
+* 用户是租户中的来宾
+* 用户的风险评分高
+* 登录发生在用户或管理员同意流期间
+* 持久性浏览器会话控制在条件访问策略中配置
 
 ## <a name="next-steps"></a>后续步骤
 

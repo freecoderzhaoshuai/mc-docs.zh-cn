@@ -1,6 +1,6 @@
 ---
-title: Azure 存储资源管理器可访问性（预览版）| Microsoft Docs
-description: Azure 存储资源管理器可访问性（预览版）
+title: Azure 存储资源管理器可访问性 | Microsoft Docs
+description: 了解 Azure 存储资源管理器中的可访问性。 查看可用的读屏器、缩放功能、高对比度主题和快捷键。
 services: storage
 documentationcenter: na
 author: MrayermannMSFT
@@ -13,17 +13,19 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 origin.date: 02/20/2018
-ms.date: 07/12/2018
-ms.author: v-junlch
-ms.openlocfilehash: 3262d82df6761edc89d749a5bb8e062d093517ee
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.date: 08/27/2020
+ms.author: v-tawe
+ms.openlocfilehash: 011592a89df5fe53de0fc9594785f8027640e0f5
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "65586898"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951241"
 ---
 # <a name="storage-explorer-accessibility"></a>存储资源管理器可访问性
+
 ## <a name="screen-readers"></a>屏幕阅读器
+
 存储资源管理器支持在 Windows 和 Mac 中使用屏幕阅读器。 建议对每种平台使用以下屏幕阅读器：
 
 平台 | 屏幕阅读器
@@ -35,7 +37,8 @@ Linux    | （Linux 不支持屏幕阅读器）
 如果使用存储资源管理器时遇到可访问性问题，请[在 GitHub 上提交问题](https://github.com/Microsoft/AzureStorageExplorer/issues)。
 
 ## <a name="zoom"></a>Zoom
-可通过放大操作，将存储资源管理器中的文本放大。 若要放大，请在“帮助”菜单中单击“放大”  。 还可使用“帮助”菜单缩小文本和将缩放级别重置回默认级别。
+
+可通过放大操作，将存储资源管理器中的文本放大。 若要放大，请在“帮助”菜单中单击“放大”****。 还可使用“帮助”菜单缩小文本和将缩放级别重置回默认级别。
 
 ![帮助菜单中的缩放选项][0]
 
@@ -43,24 +46,25 @@ Linux    | （Linux 不支持屏幕阅读器）
 
 ## <a name="high-contrast-themes"></a>高对比度主题
 
-存储资源管理器具有两个高对比度主题，“高对比度浅色”和“高对比度深色”   。 可以通过从“帮助”>“主题”菜单中进行选择来更改主题。
+存储资源管理器具有两个高对比度主题，“高对比度浅色”和“高对比度深色”********。 可以通过从“帮助”>“主题”菜单中进行选择来更改主题。
 
 ![“主题”子菜单][1]
 
 主题设置更改大多数 UI 元素的颜色。 建议同时启用 OS 的匹配的高对比度主题，以确保所有 UI 元素都正确着色。
 
 ## <a name="shortcut-keys"></a>快捷键
+
 ### <a name="window-commands"></a>窗口命令
 
-Command       | 键盘快捷键
+命令       | 键盘快捷键
 --------------|--------------------
 新建窗口    | **Control+Shift+N**
 关闭编辑器  | **Control+F4**
-退出          | **Control+Shift+W**
+Quit          | **Control+Shift+W**
 
 ### <a name="navigation-commands"></a>导航命令
 
-Command                | 键盘快捷键
+命令                | 键盘快捷键
 -----------------------|----------------------
 聚焦于下一个面板       | **F6**
 聚焦于上一个面板   | **Shift+F6**
@@ -75,36 +79,34 @@ Command                | 键盘快捷键
 
 ### <a name="zoom-commands"></a>缩放命令
 
-Command  | 键盘快捷键
+命令  | 键盘快捷键
 ---------|------------------
 放大  | **Control+=**
 缩小 | **Control+-**
 
 ### <a name="blob-and-file-share-editor-commands"></a>Blob 和文件共享编辑器命令
 
-Command | 键盘快捷键
+命令 | 键盘快捷键
 --------|--------------------
-后退    | **Alt+向左箭头**
-前进 | **Alt+向右箭头**
-向上      | **Alt+向上箭头**
+返回    | **Alt+向左键**
+前进 | **Alt+向右键**
+向上      | **Alt+向上键**
 
 ### <a name="editor-commands"></a>编辑器命令
 
-Command | 键盘快捷键
+命令 | 键盘快捷键
 --------|------------------
-复制    | **Control+C**
-剪切     | **Control+X**
-粘贴   | **Control+V**
+复制    | **Ctrl+C**
+剪切     | **Ctrl+X**
+粘贴   | **Ctrl+V**
 刷新  | **Control+R**
 
 ### <a name="other-commands"></a>其他命令
 
-Command                | 键盘快捷键
+命令                | 键盘快捷键
 -----------------------|------------------
 切换开发人员工具 | **F12**
 重新加载                 | **Alt+Control+R**
 
 [0]: ./media/vs-azure-tools-storage-explorer-accessibility/Zoom.png
 [1]: ./media/vs-azure-tools-storage-explorer-accessibility/HighContrast.png
-
-<!-- Update_Description: wording update -->

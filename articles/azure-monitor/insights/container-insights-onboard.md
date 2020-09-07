@@ -5,29 +5,30 @@ ms.topic: conceptual
 author: Johnnytechn
 ms.author: v-johya
 origin.date: 11/18/2019
-ms.date: 07/17/2020
-ms.openlocfilehash: 23e91896d0cc82bfee494f5f300e4504907de095
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.date: 08/20/2020
+ms.openlocfilehash: b812e22a14472e07bb3937202c67c9552b8aba94
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244504"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148560"
 ---
 # <a name="enable-azure-monitor-for-containers"></a>对容器启用 Azure Monitor
 
 本文概述了可用于为容器设置 Azure Monitor 的选项，这些选项用于监视部署到 Kubernetes 环境并托管在以下位置上的工作负载的性能：
 
-- [Azure Kubernetes 服务 (AKS)](/aks/)  
+- [Azure Kubernetes 服务 (AKS)](../../aks/index.yml)  
 
 你也可以监视部署到自托管 Kubernetes 群集的工作负载的性能，这些群集托管在以下位置上：
 - Azure（通过使用 [AKS 引擎](https://github.com/Azure/aks-engine)）
-- [Azure Stack](https://docs.microsoft.com/azure-stack/user/azure-stack-kubernetes-aks-engine-overview?view=azs-1910) 或本地（通过使用 AKS 引擎）。
+- [Azure Stack](/azure-stack/user/azure-stack-kubernetes-aks-engine-overview?view=azs-1910) 或本地（通过使用 AKS 引擎）。
 
 可使用以下支持的任意方法为 Kubernetes 的新部署或是一个/多个现有部署启用用于容器的 Azure Monitor：
 
 - Azure 门户
 - Azure PowerShell
 - Azure CLI
+- [Terraform 和 AKS](https://docs.microsoft.com/azure/developer/terraform/create-k8s-cluster-with-tf-and-aks)
 
 [!INCLUDE [updated-for-az](../../../includes/updated-for-az.md)]
 
@@ -61,7 +62,7 @@ ms.locfileid: "87244504"
 
 用于容器的 Azure Monitor 正式支持以下配置：
 
-- 环境：本地 Kubernetes 以及 Azure 和 Azure Stack 上的 AKS 引擎。 有关详细信息，请参阅 [Azure Stack 上的 AKS 引擎](https://docs.microsoft.com/azure-stack/user/azure-stack-kubernetes-aks-engine-overview?view=azs-1908)。
+- 环境：本地 Kubernetes 以及 Azure 和 Azure Stack 上的 AKS 引擎。 有关详细信息，请参阅 [Azure Stack 上的 AKS 引擎](/azure-stack/user/azure-stack-kubernetes-aks-engine-overview?view=azs-1908)。
 - Kubernetes 和支持策略的版本与 [Azure Kubernetes 服务 (AKS) 中支持的版本](../../aks/supported-kubernetes-versions.md)相同。 
 
 ## <a name="network-firewall-requirements"></a>网络防火墙要求
@@ -106,4 +107,5 @@ ms.locfileid: "87244504"
 ## <a name="next-steps"></a>后续步骤
 
 你现在已启用监视，接着可开始分析 Azure Kubernetes 服务 (AKS)、Azure Stack 或其他环境中托管的 Kubernetes 群集的性能。 若要了解如何使用用于容器的 Azure Monitor，请参阅[查看 Kubernetes 群集性能](container-insights-analyze.md)。
+
 

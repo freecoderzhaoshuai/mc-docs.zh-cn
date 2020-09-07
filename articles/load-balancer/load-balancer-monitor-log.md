@@ -7,19 +7,19 @@ documentationcenter: na
 author: WenJason
 ms.service: load-balancer
 ms.devlang: na
-ms.topic: article
+ms.topic: how-to
 ms.custom: seodec18
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
 origin.date: 05/05/2020
-ms.date: 06/08/2020
+ms.date: 08/31/2020
 ms.author: v-jay
-ms.openlocfilehash: a1232b157260bccc1e43695ac150f7ad116a319c
-ms.sourcegitcommit: 9811bf312e0d037cb530eb16c8d85238fd276949
+ms.openlocfilehash: b87f81ac5727824b3ed4d829e3039c635ca24ff3
+ms.sourcegitcommit: f8ed85740f873c15c239ab6ba753e4b76e030ba7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84275664"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89045775"
 ---
 # <a name="azure-monitor-logs-for-public-basic-load-balancer"></a>公共基本负载均衡器的 Azure Monitor 日志
 
@@ -30,7 +30,7 @@ ms.locfileid: "84275664"
 * **运行状况探测日志：** 可以使用此日志查看运行状况探测器检测到的问题，例如后端池中由于运行状况探测失败未从负载均衡器接收请求的实例数。 当运行状况探测状态发生更改时，将写入此日志。
 
 > [!IMPORTANT]
-> Azure Monitor 日志当前仅适用于公共基本负载均衡器。 日志仅适用于在资源管理器部署模型中部署的资源。 不能将日志用于经典部署模型中的资源。 有关部署模型的详细信息，请参阅[了解 Resource Manager 部署和经典部署](../azure-resource-manager/management/deployment-models.md)。
+> **运行状况探测事件日志当前不起作用，已在 [Azure 负载均衡器已知问题](whats-new.md#known-issues)中列出。** Azure Monitor 日志当前仅适用于公共基本负载均衡器。 日志仅适用于在资源管理器部署模型中部署的资源。 不能将日志用于经典部署模型中的资源。 有关部署模型的详细信息，请参阅[了解 Resource Manager 部署和经典部署](../azure-resource-manager/management/deployment-models.md)。
 
 ## <a name="enable-logging"></a>启用日志记录
 

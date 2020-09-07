@@ -9,19 +9,19 @@ editor: ''
 ms.assetid: 995ee876-4415-4bb0-a258-cca3cbb02193
 ms.service: active-directory
 ms.devlang: na
-ms.topic: conceptual
+ms.topic: how-to
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 03/11/2020
+ms.date: 08/27/2020
 ms.subservice: hybrid
 ms.author: v-junlch
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 26829595f7e78df35bac76c19472aad2100580ef
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 93487b66467cc8e97a60b213a66266192d478322
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79133811"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946862"
 ---
 # <a name="azure-ad-connect-sync-directory-extensions"></a>Azure AD Connect 同步：目录扩展
 通过目录扩展，可以使用本地 Active Directory 中的属性扩展 Azure AD 中的架构。 此功能允许使用继续在本地管理的属性来构建 LOB 应用。 可通过[扩展](https://docs.microsoft.com/graph/extensibility-overview)使用这些属性。 可以使用 [Microsoft Graph 浏览器](https://developer.microsoft.com/zh-cn/graph/graph-explorer-china)查看可用属性。 
@@ -32,8 +32,8 @@ ms.locfileid: "79133811"
 
 在安装向导的自定义设置路径中配置要同步的其他属性。
 
->[!NOTE]
->“可用属性”框区分大小写。
+> [!NOTE]
+> 在 1.2.65.0 之前的 Azure AD Connect 版本中，“可用属性”搜索框区分大小写。
 
 ![架构扩展向导](./media/how-to-connect-sync-feature-directory-extensions/extension2.png)  
 

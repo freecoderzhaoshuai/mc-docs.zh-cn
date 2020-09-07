@@ -3,25 +3,25 @@ title: 对应用程序执行许可时发生的意外错误 | Microsoft Docs
 description: 介绍对应用程序进行许可期间可能发生的错误，以及解决这些错误的方法
 services: active-directory
 documentationcenter: ''
-author: msmimart
-manager: CelesteDG
+author: kenwith
+manager: celestedg
 ms.assetid: ''
 ms.service: active-directory
 ms.subservice: app-mgmt
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: conceptual
-ms.date: 04/24/2020
+ms.topic: troubleshooting
+ms.date: 08/27/2020
 ms.author: v-junlch
 ms.reviewer: asteen
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 2b3729c07557f7a0c636cf008147d9cf3fd04176
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.openlocfilehash: da5d2593092f823e012e9948e58a4739cb7585d9
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82126538"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046472"
 ---
 # <a name="unexpected-error-when-performing-consent-to-an-application"></a>对应用程序执行许可时发生的意外错误
 
@@ -38,6 +38,8 @@ ms.locfileid: "82126538"
 当非公司管理员用户尝试使用的应用程序请求只有管理员才能授予的权限时，会发生此错误。 此错误可通过管理员代表其组织授予访问此应用程序的权限进行解决。
 
 如果 Microsoft 检测到权限请求存在风险而阻止用户许可应用程序，则也可能会发生此错误。 在这种情况下，还将记录一个审核事件，其“类别”为“ApplicationManagement”、“活动类型”为“许可应用程序”、“状态原因”为“检测到风险应用程序”。
+
+可能发生此错误的另一种情况是，应用程序需要用户分配，但未获得管理员同意。 在这种情况下，必须先获得管理员同意。   
 
 ## <a name="policy-prevents-granting-permissions-error"></a>策略阻止权限授予错误
 * **AADSTS90093：** &lt;tenantDisplayName&gt; 管理员设置的策略阻止授予 &lt;name of app&gt; 请求的权限。 请与 &lt;tenantDisplayName&gt; 管理员联系，他/她可代表你授予对此应用的权限。

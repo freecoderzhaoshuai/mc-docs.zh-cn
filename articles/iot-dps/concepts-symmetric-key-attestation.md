@@ -4,17 +4,17 @@ description: 本文以概念的方式概述了使用 IoT 设备预配服务 (DPS
 author: wesmc7777
 ms.author: v-tawe
 origin.date: 04/04/2019
-ms.date: 03/02/2020
+ms.date: 08/27/2020
 ms.topic: conceptual
 ms.service: iot-dps
 services: iot-dps
 manager: philmea
-ms.openlocfilehash: e41c62da680001621f35264d156c61a36f7be11a
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.openlocfilehash: 56c01382ce57cda1f58f35e62d63d03e9b3f26b7
+ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588610"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88951320"
 ---
 # <a name="symmetric-key-attestation"></a>对称密钥证明
 
@@ -27,7 +27,7 @@ ms.locfileid: "82588610"
 
 ## <a name="symmetric-key-creation"></a>对称密钥创建
 
-默认情况下，当保存新注册且启用“自动生成密钥”选项时，设备预配服务会创建默认长度为 32 个字节的新对称密钥  。
+默认情况下，当保存新注册且启用“自动生成密钥”选项时，设备预配服务会创建默认长度为 64 字节的新对称密钥。
 
 ![自动生成对称密钥](./media/concepts-symmetric-key-attestation/auto-generate-keys.png)
 

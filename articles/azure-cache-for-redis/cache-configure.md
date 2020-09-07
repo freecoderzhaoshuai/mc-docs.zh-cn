@@ -4,14 +4,14 @@ description: 了解 Azure Redis 缓存的默认 Redis 配置，并了解如何�
 author: yegu-ms
 ms.service: cache
 ms.topic: conceptual
-ms.date: 04/26/2020
+ms.date: 08/24/2020
 ms.author: v-junlch
-ms.openlocfilehash: 2098b459a45c834b9b8bc72a36949afa4b2ef233
-ms.sourcegitcommit: e3512c5c2bbe61704d5c8cbba74efd56bfe91927
+ms.openlocfilehash: 0212b9b7aadb89d21f0b8a3e6a26a3f1d4cb7fbd
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82267562"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88946968"
 ---
 # <a name="how-to-configure-azure-cache-for-redis"></a>如何配置 Azure Redis 缓存
 本主题介绍可用于 Azure Redis 缓存实例的配置。 本主题还介绍了适用于 Azure Redis 缓存实例的默认 Redis 服务器配置。
@@ -185,12 +185,12 @@ Redis 密钥空间通知是在“高级设置”  边栏选项卡上配置的。
 
 | Azure Redis 缓存指标 | 详细信息 |
 | --- | --- |
-| 网络带宽使用率 |[缓存性能 - 可用带宽](cache-faq.md#cache-performance) |
+| 网络带宽使用率 |[缓存性能 - 可用带宽](cache-planning-faq.md#azure-cache-for-redis-performance) |
 | 连接的客户端数 |[默认 Redis 服务器配置 - maxclients](#maxclients) |
 | 服务器负载 |[使用率图表 - Redis 服务器负载](cache-how-to-monitor.md#usage-charts) |
-| 内存使用率 |[缓存性能 - 大小](cache-faq.md#cache-performance) |
+| 内存使用率 |[缓存性能 - 大小](cache-planning-faq.md#azure-cache-for-redis-performance) |
 
-若要升级缓存，请单击“立即升级”  以更改定价层并[缩放](#scale)缓存。 有关选择定价层的详细信息，请参阅[应使用哪种 Azure Redis 缓存套餐和大小？](cache-faq.md#what-azure-cache-for-redis-offering-and-size-should-i-use)
+若要升级缓存，请单击“立即升级”  以更改定价层并[缩放](#scale)缓存。 有关选择定价层的详细信息，请参阅[选择适当的层](cache-overview.md#choosing-the-right-tier)
 
 
 ### <a name="scale"></a>缩放
@@ -414,7 +414,7 @@ Redis 密钥空间通知是在“高级设置”  边栏选项卡上配置的。
   * P4 (53 GB - 530 GB) - 最多支持 64 个数据库
   * 所有启用了 Redis 群集的高级缓存 - Redis 群集仅支持使用数据库 0，因此任何启用了 Redis 群集的高级缓存的 `databases` 限制实际上是 1，并且不允许使用 [Select](https://redis.io/commands/select) 命令。 有关详细信息，请参阅[使用群集功能时，是否需要对客户端应用程序进行更改？](cache-how-to-premium-clustering.md#do-i-need-to-make-any-changes-to-my-client-application-to-use-clustering)
 
-有关数据库的详细信息，请参阅[什么是 Redis 数据库？](cache-faq.md#what-are-redis-databases)
+有关数据库的详细信息，请参阅[什么是 Redis 数据库？](cache-development-faq.md#what-are-redis-databases)
 
 > [!NOTE]
 > `databases` 设置只能在创建缓存期间配置，并且只能使用 PowerShell、CLI 或其他管理客户端进行配置。 有关在创建缓存期间使用 PowerShell 配置 `databases` 的示例，请参阅 [New-AzRedisCache](cache-how-to-manage-redis-cache-powershell.md#databases)。
@@ -505,5 +505,5 @@ shard1>get myKey
 有关在资源组之间以及订阅之间移动资源的信息，请参阅[将资源移到新的资源组或订阅](../azure-resource-manager/management/move-resource-group-and-subscription.md)。
 
 ## <a name="next-steps"></a>后续步骤
-* 有关使用 Redis 命令的详细信息，请参阅[如何运行 Redis 命令？](cache-faq.md#how-can-i-run-redis-commands)
+* 有关使用 Redis 命令的详细信息，请参阅[如何运行 Redis 命令？](cache-development-faq.md#how-can-i-run-redis-commands)
 

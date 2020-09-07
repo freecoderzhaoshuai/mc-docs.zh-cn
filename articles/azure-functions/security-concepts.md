@@ -1,14 +1,14 @@
 ---
 title: 保护 Azure Functions
 description: 了解如何使 Azure 中运行的函数代码更安全，使其免遭常见攻击的威胁。
-ms.date: 08/12/2020
+ms.date: 08/24/2020
 ms.topic: conceptual
-ms.openlocfilehash: 0d6f8859f94ed0699b3d3488656c18993e5d1e3b
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: dbe520d74436903e342821591fe619546a8cef82
+ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222667"
+ms.lasthandoff: 08/27/2020
+ms.locfileid: "88947137"
 ---
 # <a name="securing-azure-functions"></a>保护 Azure Functions
 
@@ -66,6 +66,18 @@ Functions 还与 Azure Monitor 日志集成，使你能够将函数应用日志�
 <sup>2</sup>按扩展设置的特定名称。
 
 若要了解有关访问密钥的更多信息，请参阅 [HTTP 触发器绑定文章](functions-bindings-http-webhook-trigger.md#obtaining-keys)。
+
+
+#### <a name="secret-repositories"></a>机密存储库
+
+默认情况下，密钥存储在通过 `AzureWebJobsStorage` 设置提供的帐户中的 Blob 存储容器中。 可以使用特定的应用程序设置来重写此行为，将密钥存储在另一位置。
+
+|位置  |设置 | 值 | 描述  |
+|---------|---------|---------|---------|
+|不同的存储帐户     |  `AzureWebJobsSecretStorageSas`       | `<BLOB_SAS_URL` | 根据提供的 SAS URL，将密钥存储在另一个存储帐户的 Blob 存储中。 在使用函数应用特有的机密存储密钥之前对密钥进行加密。 |
+|文件系统   | `AzureWebJobsSecretStorageType`   |  `files`       | 密钥持久保留在文件系统中，在使用函数应用特有的机密进行存储之前加密。 |
+|Azure Key Vault  | `AzureWebJobsSecretStorageType`<br/>`AzureWebJobsSecretStorageKeyVaultName` | `keyvault`<br/>`<VAULT_NAME>` | 保管库必须有一项与承载资源的系统分配托管标识相对应的访问策略。 访问策略应向标识授予以下机密权限：`Get`、`Set`、`List` 和 `Delete`。 <br/>在本地运行时使用开发人员标识，且设置必须位于 [local.settings.json 文件](functions-run-local.md#local-settings-file)中。 | 
+|Kubernetes 机密  |`AzureWebJobsSecretStorageType`<br/>`AzureWebJobsKubernetesSecretName`（可选） | `kubernetes`<br/>`<SECRETS_RESOURCE>` | 仅当在 Kubernetes 中运行 Functions 运行时时才受支持。 如果未设置 `AzureWebJobsKubernetesSecretName`，则会将存储库视为只读。 在这种情况下，必须在部署之前生成值。 在部署到 Kubernetes 时，Azure Functions Core Tools 会自动生成值。|
 
 ### <a name="authenticationauthorization"></a>身份验证/授权
 

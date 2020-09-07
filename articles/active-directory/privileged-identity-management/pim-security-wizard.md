@@ -1,74 +1,69 @@
 ---
-title: PIM 中的 Azure AD 角色安全向导 - Azure Active Directory | Microsoft Docs
-description: 介绍了可以用来使用 Azure AD Privileged Identity Management (PIM) 将永久特权 Azure AD 角色分配转换为符合条件的分配的安全向导。
+title: Privileged Identity Management 中以前称为安全向导的 Azure AD 角色发现和见解（预览版）- Azure Active Directory
+description: 发现和见解（以前称为安全向导）可帮助你将永久 Azure AD 角色分配转换为 Privileged Identity Management 的实时分配。
 services: active-directory
 documentationcenter: ''
 author: curtand
 manager: daveba
 editor: ''
 ms.service: active-directory
-ms.topic: conceptual
+ms.topic: how-to
 ms.workload: identity
 ms.subservice: pim
-ms.date: 05/28/2020
+ms.date: 08/27/2020
 ms.author: v-junlch
 ms.custom: pim ; H1Hack27Feb2017
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 9027e5e165954b74c334f5279e69ed74e5b07bca
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: 8253e39ca7e37332dbc103e4d5de003e8e5eafa5
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186812"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046452"
 ---
-# <a name="azure-ad-roles-security-wizard-in-privileged-identity-management"></a>Privileged Identity Management 中的 Azure AD 角色安全向导
+# <a name="discovery-and-insights-preview-for-azure-ad-roles-formerly-security-wizard"></a>Azure AD 角色的发现和见解（以前称为安全向导）（预览版）
 
-如果你是 Azure Active Directory (Azure AD) 组织中第一个使用 Privileged Identity Management (PIM) 的人，则会向你显示一个向导以便开始使用。 该向导可帮助你了解特权标识的安全风险，以及如何使用 Privileged Identity Management 来降低这些风险。 如果希望以后再对现有的角色分配进行任何更改，则暂时不需要在向导中进行这些更改。
+如果你在 Azure Active Directory (Azure AD) 组织中开始使用 Privileged Identity Management (PIM)，可以使用**发现和见解（预览版）** 页来入门。 此功能显示已分配到组织中的特权角色的用户，以及如何使用 PIM 快速将永久角色分配更改为实时分配。 可以在**发现和见解（预览版）** 中查看或更改永久特权角色分配。 它是一个分析工具，也是一个操作工具。
 
-> [!Important]
-> 安全向导暂时不可用。 感谢你的耐心等待。
+## <a name="discovery-and-insights-preview"></a>发现和见解（预览版）
 
-## <a name="wizard-overview"></a>向导概述
+在你的组织开始使用 Privileged Identity Management 之前，所有角色分配都是永久性的。 即使用户不需要其权限，用户也始终处于已分配的角色中。 发现和见解（预览版）取代了以前的安全向导，它会显示特权角色的列表以及当前有多少个用户处于这些角色中。 你可以列出角色的分配，以便详细了解分配的用户（如果你不熟悉其中一个或多个用户）。
 
-在组织开始使用 Privileged Identity Management 之前，所有角色分配都是永久性的：即使用户当前无需其权限，但他们一直保留这些角色。 该向导的第一个步骤显示高特权角色的列表，以及当前有多少用户充当这些角色。 如果不熟悉其中的一个或多个用户，可以深入到某个特定角色来详细了解相应的用户。
+:heavy_check_mark:Microsoft 建议你保留 2 个紧急访问帐户，这些帐户永久分配给在登录时无需进行多重身份验证的全局管理员角色。 可以在任何紧急情况下，或在任何人都无法提升为全局管理员角色的情况下使用这些帐户。
 
-该向导的第二个步骤用于更改管理员的角色分配。  
+此外，如果用户具有 Microsoft 帐户（即，用于登录 Skype 或 Outlook.com 等 Microsoft 服务的帐户），则永久保留角色分配。 如果需要在此类角色中激活多重身份验证，则用户将被锁定。
 
-> [!WARNING]
-> 必须至少有一个全局管理员，并且要有多个具有工作或学校帐户（而不是 Microsoft 帐户）的特权角色管理员。 如果只有一个特权角色管理员，一旦该帐户遭到删除，组织就无法管理 Privileged Identity Management。
-> 此外，如果用户具有 Microsoft 帐户（即，用于登录 Skype 和 Outlook.com 等 Microsoft 服务的帐户），则永久保留角色分配。 如果打算要求执行多重身份验证以激活该角色，则该用户将被锁定。
-
-## <a name="run-the-wizard"></a>运行向导
+## <a name="open-discovery-and-insights-preview"></a>打开发现和见解（预览版）
 
 1. 登录到 [Azure 门户](https://portal.azure.cn/)。
 
 1. 打开“Azure AD Privileged Identity Management”。
 
-1. 选择“Azure AD 角色”，然后选择“向导”。
+1. 选择“Azure AD 角色”，然后选择“发现和见解(预览)”。 打开该页面将开始发现过程，以查找相关的角色分配。
 
-    ![“Azure AD 角色 - 向导”页，其中显示运行向导的 3 个步骤](./media/pim-security-wizard/wizard-start.png)
+    ![Azure AD 角色 - 发现和见解页面，其中显示 3 个选项](./media/pim-security-wizard/new-preview-link.png)
 
-1. 选择“1 发现特权角色”。
+1. 选择“减少全局管理员”。
 
-1. 查看特权角色列表以查看哪些用户是永久的或符合条件的。
+    ![减少全局管理员 -“角色”窗格，其中显示所有成员](./media/pim-security-wizard/new-preview-page.png)
 
-    ![“发现特权角色 - 角色”窗格，其中显示永久和符合条件的成员](./media/pim-security-wizard/discover-privileged-roles-users.png)
+1. 查看全局管理员角色分配的列表。
 
-1. 选择“下一步”以选择要使其符合条件的用户或组。
+    ![减少全局管理员 -“角色”窗格，其中显示所有成员](./media/pim-security-wizard/new-global-administrator-list.png)
 
-    ![“将成员转换为符合条件成员”页，其中显示选择要使其符合角色条件的成员的选项](./media/pim-security-wizard/convert-members-eligible.png)
+1. 选择“下一步”以选择要设为符合条件的管理员的用户或组，然后选择“设为符合条件的管理员”或“删除分配”。
 
-1. 选择用户或组后，选择“下一步”。
+    ![“将成员转换为符合条件成员”页，其中显示选择要使其符合角色条件的成员的选项](./media/pim-security-wizard/new-global-administrator-buttons.png)
 
-    ![“查看更改”页，显示将要转换的具有永久角色分配的成员](./media/pim-security-wizard/review-changes.png)
+1. 还可以要求所有全局管理员评审其自己的访问权限。
 
-1. 选择“确定”以将永久分配转换为符合条件的分配。
+    ![“全局管理员”页面，其中显示“访问评审”部分](./media/pim-security-wizard/new-global-administrator-access-review.png)
 
-    转换完成后，你将看到一条通知。
+1. 选择其中任何一个更改后，你将看到 Azure 通知。
 
-    ![显示转换状态的通知](./media/pim-security-wizard/notification-completion.png)
+1. 然后，可以选择“消除现有访问权限”或“评审服务主体”，在其他特权角色和服务主体分配上重复上述步骤。 对于服务主体角色分配，只能删除角色分配。
 
-如果需要将其他特权角色分配转换为符合条件的，可以再次运行向导。 若要使用 Privileged Identity Management 接口而不是向导，请参阅[在 Privileged Identity Management 中分配 Azure AD 角色](pim-how-to-add-role-to-user.md)。
+    ![用于消除现有访问权限和评审服务主体的其他见解选项 ](./media/pim-security-wizard/new-preview-page-service-principals.png)
 
 ## <a name="next-steps"></a>后续步骤
 

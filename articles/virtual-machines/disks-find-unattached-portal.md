@@ -5,15 +5,17 @@ author: rockboyfor
 ms.service: virtual-machines
 ms.topic: how-to
 origin.date: 06/01/2020
-ms.date: 07/06/2020
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.subservice: disks
-ms.openlocfilehash: 979e31e2a2152ce62accba72a63d64ad21eb178f
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: f045b0354f28a310e594eb26ce6193903507f680
+ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946206"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89052419"
 ---
 <!--Verified Successfully-->
 # <a name="find-and-delete-unattached-azure-managed-and-unmanaged-disks---azure-portal"></a>查找并删除未附加的 Azure 托管和非托管磁盘 - Azure 门户
@@ -29,7 +31,7 @@ ms.locfileid: "85946206"
 
     “磁盘”边栏选项卡上会显示所有磁盘的列表。 “所有者”列中含有“-”的任何磁盘都是未附加的磁盘 。
 
-    [![](media/disks-find-unattached-portal/managed-disk-unattached-owner.png "Screenshot of the managed disks blade, if a disk has - in the Owner column, it is an unattached disk")](media/disks-find-unattached-portal/managed-disk-owner-unattached.png#lightbox)
+    [:::image type="content" source="media/disks-find-unattached-portal/managed-disk-unattached-owner.png" alt-text="托管磁盘边栏选项卡的屏幕截图，如果磁盘的“所有者”列中包含“-”，表明它是一个未附加的磁盘。":::](media/disks-find-unattached-portal/managed-disk-owner-unattached.png#lightbox)
 
 1. 选择要删除的未附加磁盘，随即会打开磁盘的边栏选项卡。
 1. 在磁盘的边栏选项卡上，确认磁盘状态为未附加，然后选择“删除”。
@@ -63,7 +65,8 @@ ms.locfileid: "85946206"
 
 如果要自动查找和删除未附加的存储帐户，请参阅 [CLI](linux/find-unattached-disks.md) 或 [PowerShell](windows/find-unattached-disks.md) 文章。
 
-有关详细信息，请参阅[删除存储帐户](../storage/common/storage-account-create.md#delete-a-storage-account)和[使用 PowerShell 标识孤立磁盘](https://blogs.technet.microsoft.com/ukplatforms/2018/02/21/azure-cost-optimisation-series-identify-orphaned-disks-using-powershell/)
+<!--Correct on windows/find-unattached-disks.md-->
 
-<!-- Update_Description: new article about disks find unattached portal -->
-<!--NEW.date: 07/06/2020-->
+有关详细信息，请参阅[删除存储帐户](../storage/common/storage-account-create.md#delete-a-storage-account)和[使用 PowerShell 标识孤立磁盘](https://docs.microsoft.com/archive/blogs/ukplatforms/azure-cost-optimisation-series-identify-orphaned-disks-using-powershell)
+
+<!-- Update_Description: update meta properties, wording update, update link -->

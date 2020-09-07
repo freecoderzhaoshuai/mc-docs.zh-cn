@@ -3,17 +3,17 @@ title: Azure Stack Hub 的标识体系结构
 description: 了解 Azure Stack Hub 的标识体系结构，以及 Azure AD 和 AD FS 之间的差异。
 author: WenJason
 ms.topic: conceptual
-origin.date: 04/10/2020
-ms.date: 06/22/2020
+origin.date: 07/20/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: fiseraci
-ms.lastreviewed: 05/09/2019
-ms.openlocfilehash: 14255905e7b580087051eb533d66313a521d4dcc
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.lastreviewed: 07/20/2020
+ms.openlocfilehash: 923781e37edc023ca8049a8c0bf4e4f7a909ad24
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096467"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867842"
 ---
 # <a name="identity-architecture-for-azure-stack-hub"></a>Azure Stack Hub 的标识体系结构
 
@@ -35,6 +35,7 @@ ms.locfileid: "85096467"
 |使用机密（密钥）创建服务主体    |是 |是|
 |应用程序可以使用 Graph 服务           |是 |否|
 |应用程序可以将标识提供程序用于登录 |是 |是（要求应用与本地 AD FS 实例联合） |
+| 托管系统标识 | 否 | 否 |
 
 ## <a name="topologies"></a>拓扑
 

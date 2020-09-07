@@ -1,28 +1,27 @@
 ---
-title: 在 Privileged Identity Management 中为 Azure 资源使用自定义角色 - Azure Active Directory | Microsoft Docs
-description: 了解如何在 Azure AD Privileged Identity Management (PIM) 中为 Azure 资源使用自定义角色。
+title: 在 PIM 中使用 Azure 自定义角色 - Azure AD | Microsoft Docs
+description: 了解如何在 Azure AD Privileged Identity Management (PIM) 中使用 Azure 自定义角色。
 services: active-directory
 documentationcenter: ''
 author: curtand
-manager: mtillman
+manager: daveba
 ms.service: active-directory
 ms.devlang: na
-ms.topic: conceptual
+ms.topic: how-to
 ms.tgt_pltfrm: na
 ms.workload: identity
 ms.subservice: pim
-origin.date: 10/23/2019
-ms.date: 11/05/2019
+ms.date: 08/27/2020
 ms.author: v-junlch
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 5799d04dbcf2729ac1c4721a32698c69ec6c57ee
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 95afe892e4ea1e91557d44bbb8fa3a72804144d7
+ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "73830740"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89046411"
 ---
-# <a name="use-custom-roles-for-azure-resources-in-privileged-identity-management"></a>在 Privileged Identity Management 中为 Azure 资源使用自定义角色
+# <a name="use-azure-custom-roles-in-privileged-identity-management"></a>在 Privileged Identity Management 中使用 Azure 自定义角色
 
 可能需要对 Azure Active Directory (Azure AD) 组织中具有特权角色的某些用户应用严格的 Privileged Identity Management (PIM) 设置，同时为其他用户提供更大的自主权。 例如，假设你的组织招聘了几名合同工来帮助开发将在 Azure 订阅中运行的应用程序。
 
@@ -32,7 +31,7 @@ ms.locfileid: "73830740"
 
 ## <a name="create-the-custom-role"></a>创建自定义角色
 
-若要为资源创建自定义角色，请按照[创建用于 Azure 基于角色的访问控制的自定义角色](../role-based-access-control-custom-roles.md)中所述的步骤操作。
+若要为资源创建自定义角色，请按照 [Azure 自定义角色](../role-based-access-control-custom-roles.md)中所述的步骤操作。
 
 创建自定义角色后，请提供一个描述性名称，以便可以轻松记住你打算复制的内置角色。
 
@@ -54,4 +53,3 @@ ms.locfileid: "73830740"
 - [在 Privileged Identity Management 中配置 Azure 资源角色设置](pim-resource-roles-configure-role-settings.md)
 - [Azure 中的自定义角色](../../role-based-access-control/custom-roles.md)
 
-<!-- Update_Description: wording update -->

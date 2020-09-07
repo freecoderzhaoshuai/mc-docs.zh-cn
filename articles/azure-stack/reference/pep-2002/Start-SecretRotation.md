@@ -1,19 +1,19 @@
 ---
-title: Azure Stack Hub 的 Close-PrivilegedEndpoint 特权终结点
-description: PowerShell Azure Stack 特权终结点 - Close-PrivilegedEndpoint 参考
+title: Azure Stack Hub 的 Start-SecretRotation 特权终结点 cmdlet
+description: PowerShell Azure Stack Hub 特权终结点参考 - Start-SecretRotation
 author: WenJason
 ms.topic: reference
-origin.date: 04/27/2020
-ms.date: 06/22/2020
+origin.date: 07/29/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: fiseraci
 ms.lastreviewed: 04/27/2020
-ms.openlocfilehash: a84d51f29ec80b4381e7909babdb3484f69ea14f
-ms.sourcegitcommit: d86e169edf5affd28a1c1a4476d72b01a7fb421d
+ms.openlocfilehash: 5ce1a3c63347c4af33854b2d26c02e849070654c
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85096834"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867979"
 ---
 # <a name="start-secretrotation"></a>Start-SecretRotation
 
@@ -28,12 +28,12 @@ Start-SecretRotation [-PathAccessCredential <Object>] [-ReRun] [-CertificatePass
 ```
 
 ## <a name="description"></a>说明
-调用机密轮换进程。
+为 Azure Stack Hub 系统的基础结构机密调用机密轮换过程。 默认情况下，它只轮换外部网络基础结构终结点的证书。 请参阅[在 Azure Stack Hub 中轮换机密](../../operator/azure-stack-rotate-secrets.md)，了解更多详细信息。
 
 ## <a name="parameters"></a>parameters
 
 ### <a name="-internal"></a>-Internal
- 
+轮换内部网络基础结构终结点的机密。
 
 ```yaml
 Type: SwitchParameter
@@ -142,4 +142,4 @@ Accept wildcard characters: False
 
 ## <a name="next-steps"></a>后续步骤
 
-有关如何访问和使用特权终结点的信息，请参阅[使用 Azure Stack Hub 中的特权终结点](/azure-stack/operator/azure-stack-privileged-endpoint)。
+有关如何访问和使用特权终结点的信息，请参阅[使用 Azure Stack Hub 中的特权终结点](../../operator/azure-stack-privileged-endpoint.md)。

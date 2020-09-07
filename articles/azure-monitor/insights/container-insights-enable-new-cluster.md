@@ -1,21 +1,21 @@
 ---
-title: 监视新的 Azure Kubernetes 服务 (AKS) 群集 | Microsoft Docs
+title: 监视新的 Azure Kubernetes 服务 (AKS) 群集
 description: 了解如何使用用于容器的 Azure Monitor 订阅启用对新的 Azure Kubernetes 服务 (AKS) 群集的监视。
 ms.topic: conceptual
-author: lingliw
-ms.author: v-lingwu
 origin.date: 04/25/2019
-ms.date: 08/19/2019
-ms.openlocfilehash: c3fd751e6977b7547611914dca7a6b151c9ebd3e
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+author: Johnnytechn
+ms.date: 08/20/2020
+ms.custom: devx-track-terraform
+ms.openlocfilehash: 4ef7e8c3a45bc480aa8d4c3d509bef3d17ad91dc
+ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79290891"
+ms.lasthandoff: 08/30/2020
+ms.locfileid: "89148628"
 ---
 # <a name="enable-monitoring-of-a-new-azure-kubernetes-service-aks-cluster"></a>启用对新的 Azure Kubernetes 服务 (AKS) 群集的监视
 
-本文介绍如何设置用于容器的 Azure Monitor，以监视准备在订阅中部署的 [Azure Kubernetes 服务](/aks/)上托管的托管 Kubernetes 群集。
+本文介绍如何设置用于容器的 Azure Monitor，以监视准备在订阅中部署的 [Azure Kubernetes 服务](../../aks/index.yml)上托管的托管 Kubernetes 群集。
 
 可以使用下述支持的方法之一，启用对 AKS 群集的监视：
 
@@ -27,11 +27,11 @@ ms.locfileid: "79290891"
 若要使用 Azure CLI 对新建的 AKS 群集启用监视，请遵循快速入门文章的[创建 AKS 群集](../../aks/kubernetes-walkthrough.md#create-aks-cluster)部分中所述的步骤。  
 
 >[!NOTE]
->如果选择使用 Azure CLI，首先需要在本地安装和使用 CLI。 必须运行 Azure CLI 2.0.74 或更高版本。 若要确定版本，请运行 `az --version`。 如果需要安装或升级 Azure CLI，请参阅[安装 Azure CLI](/cli/install-azure-cli?view=azure-cli-latest)。 如果你安装了 aks-preview CLI 扩展版本 0.4.12 或更高版本，请删除你为启用预览扩展所做的任何更改，因为这些更改会覆盖默认的 Azure CLI 行为，因为 Azure 中国云不提供 AKS 预览功能。
+>如果选择使用 Azure CLI，首先需要在本地安装和使用 CLI。 必须运行 Azure CLI 2.0.74 或更高版本。 若要确定版本，请运行 `az --version`。 如果需要安装或升级 Azure CLI，请参阅[安装 Azure CLI](/cli/install-azure-cli)。 如果你安装了 aks-preview CLI 扩展 0.4.12 或更高版本，请删除你为启用预览扩展所做的任何更改，因为这些更改会重写默认的 Azure CLI 行为。
 
 ## <a name="enable-using-terraform"></a>使用 Terraform
 
-如果正在使用 Terraform 部署新的 AKS 群集，请指定配置文件所需的参数，以便在未指定现有工作区时[创建 Log Analytics 工作区](https://www.terraform.io/docs/providers/azurerm/r/log_analytics_workspace.html)。 
+如果正在[使用 Terraform 部署新的 AKS 群集](https://docs.microsoft.com/azure/developer/terraform/create-k8s-cluster-with-tf-and-aks)，请指定配置文件所需的参数，以便在未指定现有工作区时[创建 Log Analytics 工作区](https://www.terraform.io/docs/providers/azurerm/r/log_analytics_workspace.html)。 
 
 >[!NOTE]
 >如果选择使用 Terraform，则必须运行 Terraform Azure RM 提供程序 1.17.0 版或更高版本。
@@ -40,8 +40,8 @@ ms.locfileid: "79290891"
 
 启用监视并成功完成所有配置任务后，可通过两种方法监视群集性能：
 
-* 直接在 AKS 群集中从左侧窗格选择“运行状况”  。
-* 在选定群集的 AKS 群集页面中选择“监视容器见解”磁贴  。 在 Azure Monitor 中，从左侧窗格选择“运行状况”  。 
+* 直接在 AKS 群集的左侧窗格中选择“见解”。
+* 在选定群集的 AKS 群集页面中选择“监视容器见解”磁贴  。 在 Azure Monitor 的左侧窗格中选择“见解”。 
 
   ![用于在 AKS 中为容器选择 Azure Monitor 的选项](./media/container-insights-onboard/kubernetes-select-monitoring-01.png)
 
@@ -120,3 +120,5 @@ az aks show -g <resourceGroupofAKSCluster> -n <nameofAksCluster>
 * 如果在尝试载入解决方案时遇到问题，请查看[故障排除指南](container-insights-troubleshoot.md)
 
 * 启用监视以收集 AKS 群集及其上运行的工作负荷的运行状况和资源利用率，了解[如何使用](container-insights-analyze.md)用于容器的 Azure Monitor。
+
+
