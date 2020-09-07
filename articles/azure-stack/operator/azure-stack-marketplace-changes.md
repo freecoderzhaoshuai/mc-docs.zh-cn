@@ -3,17 +3,17 @@ title: Azure Stack Hub 市场中的新增内容
 description: 查看 Azure Stack Hub 市场中的新功能，包括新的、弃用的和更新的市场项。
 author: WenJason
 ms.topic: article
-origin.date: 06/15/2020
-ms.date: 07/20/2020
+origin.date: 08/07/2020
+ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: ihcherie
 ms.lastreviewed: 05/28/2020
-ms.openlocfilehash: 58494ff9f29a7172fe49d83ef9bb75f73f112044
-ms.sourcegitcommit: e9ffd50aa5eaab402a94bfabfc70de6967fe6278
+ms.openlocfilehash: 1c6ce12d1ceded3ae77406cf66b9ed33889b45e1
+ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/14/2020
-ms.locfileid: "86307436"
+ms.lasthandoff: 08/26/2020
+ms.locfileid: "88867840"
 ---
 # <a name="azure-stack-hub-marketplace-changes"></a>Azure Stack Hub 市场更改
 
@@ -35,8 +35,11 @@ ms.locfileid: "86307436"
 
 ## <a name="updated-marketplace-items"></a>更新弃用市场项
 
-- 5/21/2020：Ubuntu Server 16.04 LTS - 版本 16.04.202004290
-- 5/21/2020：Ubuntu Server 18.04 LTS - 版本 18.04.202004080
+- 2020/07/27：Ubuntu Server 20.04 LTS � 版本 20.04.202007080
+- 2020/07/27：Ubuntu Server 20.04 LTS � 版本 20.04.202007160
+- 2020/07/27：Ubuntu Server 20.04 LTS � 版本 20.04.202004230
+- 2020/07/27：Ubuntu Server 16.04 LTS � 版本 16.04.202007080
+- 2020/07/27：Ubuntu Server 18.04 LTS � 版本 16.04.202007080
 - 09/25/2019：Debian 8 - 版本 8.0.20190806
 - 09/12/2019：Service Fabric - 版本 1.0.3
 - 09/02/2019：AKS 基础映像 - 版本 2019.08.09 和版本 2019.08.21
