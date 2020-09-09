@@ -27439,7 +27439,12 @@
             "source_path": "articles/media-services/live-video-analytics-edge/analyze-with-ai-your-choice-how-to.md",
             "redirect_url": "/media-services/live-video-analytics-edge/http-data-contract",
             "redirect_document_id": false
-         }
+        },
+        {
+            "source_path": "articles/hdinsight/domain-joined/apache-domain-joined-configure.md",
+            "redirect_url": "/hdinsight/domain-joined/apache-domain-joined-configure-using-azure-adds",
+            "redirect_document_id": false
+        }
 
 
 
