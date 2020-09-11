@@ -3,14 +3,14 @@ author: trevorbye
 ms.service: cognitive-services
 ms.topic: include
 origin.date: 04/13/2020
-ms.date: 04/20/2020
+ms.date: 08/03/2020
 ms.author: v-tawe
-ms.openlocfilehash: b24b6af791fad5472292c75d09933ac2bdae02ad
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.openlocfilehash: 1d2f3d846e56af67fe22ee1aeed8c3ccd93ca0aa
+ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82127229"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "89323281"
 ---
 ## <a name="prerequisites"></a>先决条件
 
@@ -40,9 +40,7 @@ using namespace Microsoft::CognitiveServices::Speech::Translation;
 
 ## <a name="sensitive-data-and-environment-variables"></a>敏感数据和环境变量
 
-本文中的示例源代码依赖于用于存储敏感数据的环境变量，如语音资源订阅密钥和区域。 C++ 代码文件包含从主机环境变量（即 `SPEECH__SUBSCRIPTION__KEY` 和 `SPEECH__SERVICE__REGION`）分配的两个字符串值。 这两个字段都在类范围内，因此可以在类的方法主体中访问它们。
-
-<!-- For more information on environment variables, see [environment variables and application configuration](../../../../cognitive-services-security.md#environment-variables-and-application-configuration). -->
+本文中的示例源代码依赖于用于存储敏感数据的环境变量，如语音资源订阅密钥和区域。 C++ 代码文件包含从主机环境变量（即 `SPEECH__SUBSCRIPTION__KEY` 和 `SPEECH__SERVICE__REGION`）分配的两个字符串值。 这两个字段都在类范围内，因此可以在类的方法主体中访问它们。 有关环境变量的详细信息，请参阅[环境变量和应用程序配置](../../../../cognitive-services-security.md#environment-variables-and-application-configuration)。
 
 ```cpp
 auto SPEECH__SUBSCRIPTION__KEY = getenv("SPEECH__SUBSCRIPTION__KEY");
@@ -51,10 +49,10 @@ auto SPEECH__SERVICE__REGION = getenv("SPEECH__SERVICE__REGION");
 
 ## <a name="create-a-speech-translation-configuration"></a>创建语音翻译配置
 
-若要使用语音 SDK 调用语音服务，需要创建 [`SpeechTranslationConfig`][config]。 此类包含有关订阅的信息，例如密钥和关联的区域、终结点、主机或授权令牌。
+若要使用语音 SDK 调用语音服务，需要创建 [`SpeechTranslationConfig`][config]。 此类包含有关你的订阅的信息，例如你的密钥和关联的区域、终结点、主机或授权令牌。
 
 > [!TIP]
-> 无论是要执行语音识别、语音合成还是翻译，都需要创建一个配置。
+> 无论你是要执行语音识别、语音合成、翻译，还是意向识别，都需要创建一个配置。
 
 可以通过以下几种方法初始化 [`SpeechTranslationConfig`][config]：
 
@@ -99,7 +97,7 @@ void translateSpeech() {
 
 ## <a name="add-translation-language"></a>添加翻译语言
 
-语音翻译的另一项常见任务是指定目标翻译语言，至少需要一种语言，但支持多种语言。 在以下代码片段中，法语和德语都作为目标翻译语言。
+语音翻译的另一项常见任务是指定目标翻译语言，至少需要一种语言，但支持多种语言。 以下代码片段将法语和德语设置成了目标翻译语言。
 
 ```cpp
 void translateSpeech() {
@@ -237,7 +235,7 @@ void translateSpeech() {
     translationConfig->SetSpeechRecognitionLanguage(fromLanguage);
     translationConfig->AddTargetLanguage(toLanguage);
 
-    // See: https://aka.ms/speech/sdkregion#standard-and-neural-voices
+    // See: https://docs.azure.cn/cognitive-services/speech-service/regions#standard-and-neural-voices
     translationConfig->SetVoiceName("de-DE-Hedda");
 
     auto recognizer = TranslationRecognizer::FromConfig(translationConfig);
@@ -294,7 +292,7 @@ void translateSpeech() {
     auto result = recognizer->RecognizeOnceAsync().get();
     if (result->Reason == ResultReason::TranslatedSpeech)
     {
-        // See: https://aka.ms/speech/sdkregion#standard-and-neural-voices
+        // See: https://docs.azure.cn/cognitive-services/speech-service/regions#standard-and-neural-voices
         map<string, string> languageToVoiceMap;
         languageToVoiceMap["de"] = "de-DE-KatjaNeural";
         languageToVoiceMap["en"] = "en-US-AriaNeural";

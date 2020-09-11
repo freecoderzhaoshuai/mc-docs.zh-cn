@@ -1,18 +1,17 @@
 ---
 title: 使用自动缩放发送电子邮件和 Webhook 警报通知
 description: 了解如何在 Azure Monitor 中使用自动缩放操作来调用 Web URL 或发送电子邮件通知。
-author: lingliw
+author: Johnnytechn
 ms.topic: conceptual
-origin.date: 04/03/2017
-ms.date: 04/03/2018
-ms.author: v-lingwu
+ms.date: 08/20/2020
 ms.subservice: autoscale
-ms.openlocfilehash: 91e05815e5c367acf876a6e6745e95295d8c0c59
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+origin.date: 04/03/2017
+ms.openlocfilehash: 2d57b57d74ef6a992f5ec51715d41f75dbe8070f
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77497599"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457220"
 ---
 # <a name="use-autoscale-actions-to-send-email-and-webhook-alert-notifications-in-azure-monitor"></a>使用自动缩放操作在 Azure 监视器中发送电子邮件和 webhook 警报通知
 本文演示如何设置触发器，以便可以在 Azure 中基于自动缩放操作调用特定 Web URL 或发送电子邮件。  
@@ -32,7 +31,7 @@ ms.locfileid: "77497599"
 
 ## <a name="virtual-machine-scale-sets"></a>虚拟机规模集
 对于使用 Resource Manager（虚拟机规模集）创建的较新虚拟机，可以使用REST API、Resource Manager 模板、PowerShell 和 CLI 进行配置。 门户界面尚不可用。
-使用 REST API 或 Resource Manager 模板时，包括具有以下选项的通知元素。
+使用 REST API 或资源管理器模板时，在 [autoscalesettings](https://docs.microsoft.com/azure/templates/microsoft.insights/2015-04-01/autoscalesettings) 中包括具有以下选项的通知元素。
 
 ```
 "notifications": [

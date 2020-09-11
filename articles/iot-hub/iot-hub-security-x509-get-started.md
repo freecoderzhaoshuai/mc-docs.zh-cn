@@ -11,12 +11,12 @@ ms.workload: na
 origin.date: 08/20/2019
 ms.date: 06/08/2020
 ms.author: yiso
-ms.openlocfilehash: a9adfd5bf3675d221adb404cbebc1c22f1af11a5
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: 9d65ca7aad67fc547e29e781420afa0338656ebb
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186884"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463033"
 ---
 # <a name="set-up-x509-security-in-your-azure-iot-hub"></a>在 Azure IoT 中心设置 X.509 安全性
 
@@ -46,9 +46,12 @@ IoT 中心基于 X.509 证书的安全性需从 [X.509 证书链](https://en.wik
 
 这些步骤说明如何通过门户将新的证书颁发机构添加到 IoT 中心。
 
+> [!NOTE]
+> 可注册到 IoT 中心的 X.509 CA 证书的最大数目为 25。 有关详细信息，请参阅 [Azure IoT 中心配额和限制](iot-hub-devguide-quotas-throttling.md)。
+
 1. 在 Azure 门户中，导航到你的 IoT 中心，并选择中心的“设置” > “证书”。 
 
-1. 选择“添加”以添加新证书。
+1. 选择“添加”以添加新证书。 
 
 1. 在“证书名称”中输入一个易记的显示名称，并从计算机中选择在上一部分创建的证书文件。
 
@@ -94,7 +97,7 @@ IoT 中心基于 X.509 证书的安全性需从 [X.509 证书链](https://en.wik
 
 1. 在解决方案资源管理器中，右键单击“SimulateX509Device”项目，然后选择“管理 NuGet 包”。 
 
-1. 在“NuGet 包管理器”中，选择“浏览”，然后搜索并选择“Microsoft.Azure.Devices.Client”。   选择“安装”。
+1. 在“NuGet 包管理器”中，选择“浏览”，然后搜索并选择“Microsoft.Azure.Devices.Client”。   选择“安装”  。
 
    ![在 Visual Studio 中添加设备 SDK NuGet 包](./media/iot-hub-security-x509-get-started/device-sdk-nuget.png)
 

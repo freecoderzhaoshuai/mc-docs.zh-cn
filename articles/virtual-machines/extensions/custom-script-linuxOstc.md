@@ -1,26 +1,10 @@
 ---
-title: 在 Linux 虚拟机上使用 Azure 自定义脚本扩展版本 1
-description: 使用自定义脚本扩展 v1 自动化 Linux VM 配置任务
-services: virtual-machines-linux
-documentationcenter: ''
-author: rockboyfor
-manager: digimobile
-editor: ''
-tags: azure-resource-manager
-ms.assetid: ''
-ms.service: virtual-machines-linux
-ms.topic: article
-ms.tgt_pltfrm: vm-linux
-ms.workload: infrastructure-services
-origin.date: 08/14/2018
-ms.date: 07/06/2020
-ms.author: v-yeche
-ms.openlocfilehash: 579dad9da125587fb84e4acd23d2b8385bdd6883
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
-ms.translationtype: HT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945663"
+title:在 Azure 中的 Linux 虚拟机上运行自定义脚本扩展版本 1（已弃用）的说明：使用自定义脚本扩展 v1 服务自动执行 Linux VM 配置任务：virtual-machines-linux documentationcenter: ''
+
+manager: gwallace editor: '' tags: azure-resource-manager
+
+ms.assetid: ms.service - virtual-machines-linux ms.topic: article ms.tgt_pltfrm: vm-linux ms.workload: infrastructure-services origin.date:08/14/2018 author: rockboyfor ms.date:09/07/2020 ms.testscope: yes ms.testdate:08/31/2020 ms.author: v-yeche
+
 ---
 # <a name="use-the-azure-custom-script-extension-version-1-with-linux-virtual-machines"></a>在 Linux 虚拟机上使用 Azure 自定义脚本扩展版本 1
 
@@ -119,6 +103,8 @@ ms.locfileid: "85945663"
 }
 ```
 
+<!--Correct on Add "storageAccountEndPoint": "https://core.chinacloudapi.cn/",-->
+
 ### <a name="property-values"></a>属性值
 
 | 名称 | 值/示例 | 数据类型 |
@@ -198,11 +184,15 @@ az vm extension set -n VMAccessForLinux \
   --protected-settings '{"commandToExecute": "echo hello"}'
 ```
 
+<!--MOONCAKE CUSTOMIZATION-->
+
 > [!NOTE]
 > 当我们在 Microsoft PowrShell 环境中运行 Azure CLI 时，应在相应的脚本中替换以下格式：
 > 1. 将 `\` 的串联替换为 ```。
 > 2. 将 `protected-settings` 的属性替换为实际值。
 >     `--protected-settings "{'commandToExecute': 'echo hello'}"`
+
+<!--MOONCAKE CUSTOMIZATION-->
 
 （可选）可以在命令中以 JSON 格式字符串的形式指定设置。 这样，便可以在执行期间指定配置，而无需使用单独的配置文件。
 

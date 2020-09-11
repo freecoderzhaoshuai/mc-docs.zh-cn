@@ -8,13 +8,13 @@ ms.workload: big-data
 ms.service: time-series-insights
 services: time-series-insights
 ms.topic: conceptual
-ms.date: 08/20/2020
-ms.openlocfilehash: ff0eaa297bec085d17c6de3e98aeafaf79ba4095
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.date: 09/01/2020
+ms.openlocfilehash: 2d0c62be772089fba34c853135f31b3f6f93748d
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715342"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413521"
 ---
 # <a name="azure-time-series-insights-gen2-event-sources"></a>Azure 时序见解第 2 代事件源
 
@@ -27,7 +27,7 @@ ms.locfileid: "88715342"
 
 ## <a name="create-or-edit-event-sources"></a>创建或编辑事件源
 
-事件源资源可以与 Azure 时序见解第 2 代环境位于同一 Azure 订阅中，也可以位于不同的订阅中。你可以使用 Azure 门户、[Azure CLI](https://github.com/Azure/azure-cli-extensions/tree/master/src/timeseriesinsights)、[ARM 模板](time-series-insights-manage-resources-using-azure-resource-manager-template.md)和 [REST API](https://docs.microsoft.com/rest/api/time-series-insights/management(gen1/gen2)/eventsources) 来创建、编辑或删除环境的事件源。
+你的事件源资源可以与你的 Azure 时序见解 Gen2 环境位于同一 Azure 订阅中，也可以位于其他订阅。你可以使用 [Azure门户](tutorials-set-up-tsi-environment.md#create-a-preview-payg-environment)、[Azure CLI](https://github.com/Azure/azure-cli-extensions/tree/master/src/timeseriesinsights)、[ARM 模板](time-series-insights-manage-resources-using-azure-resource-manager-template.md)和 [REST API](https://docs.microsoft.com/rest/api/time-series-insights/management(gen1/gen2)/eventsources) 来创建、编辑或删除环境的事件源。
 
 连接事件源时，Azure 时序见解第 2 代环境会从最早的事件开始，读取当前存储在 IoT 中心或事件中心的所有事件。
 

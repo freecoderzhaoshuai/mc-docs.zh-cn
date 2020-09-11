@@ -1,32 +1,15 @@
 ---
-title: 适用于 Linux 的 DSC 扩展
-description: 安装 OMI 和 DSC 包，以便能够使用 Desired State Configuration 来配置 Azure Linux VM。
-services: virtual-machines-linux
-documentationcenter: ''
-author: rockboyfor
-manager: digimobile
-editor: ''
-ms.assetid: ''
-ms.service: virtual-machines-linux
-ms.topic: article
-ms.tgt_pltfrm: vm-linux
-ms.workload: infrastructure-services
-origin.date: 06/12/2018
-ms.date: 04/27/2020
-ms.author: v-yeche
-ms.openlocfilehash: d56683adbcce15cd1a4ee5e562c7cf68678d5bf6
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
-ms.translationtype: HT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596370"
+title:适用于 Linux 的 Azure DSC 扩展的说明：安装 OMI 和 DSC 包，以便能够使用 Desired State Configuration 来配置 Azure Linux VM。
+services: virtual-machines-linux documentationcenter: ''
+
+manager: carmonm editor: '' ms.assetid: ms.service - virtual-machines-linux ms.topic: article ms.tgt_pltfrm: vm-linux ms.workload: infrastructure-services origin.date:06/12/2018 author: rockboyfor ms.date:09/07/2020 ms.testscope: yes ms.testdate:08/31/2020 ms.author: v-yeche
 ---
 # <a name="dsc-extension-for-linux-microsoftostcextensionsdscforlinux"></a>适用于 Linux 的 DSC 扩展 (Microsoft.OSTCExtensions.DSCForLinux)
 
 Desired State Configuration (DSC) 是一个管理平台，可让你使用“配置即代码”来管理 IT 和开发基础结构。
 
 > [!NOTE]
-> 适用于 Linux 的 DSC 扩展和[适用于 Linux 的 Azure Monitor 虚拟机扩展](/virtual-machines/extensions/oms-linux)当前存在冲突，并在并列配置中不受支持。 不要在同一 VM 上同时使用这两个解决方案。
+> 适用于 Linux 的 DSC 扩展和[适用于 Linux 的 Azure Monitor 虚拟机扩展](./oms-linux.md)当前存在冲突，并在并列配置中不受支持。 不要在同一 VM 上同时使用这两个解决方案。
 
 DSCForLinux 扩展由 Azure 发布并提供支持。 该扩展在 Azure 虚拟机上安装 OMI 和 DSC 代理。 DSC 扩展还能执行以下操作：
 
@@ -42,16 +25,13 @@ DSCForLinux 扩展由 Azure 发布并提供支持。 该扩展在 Azure 虚拟�
 
 ### <a name="operating-system"></a>操作系统
 
-DSC Linux 扩展支持所有[在 Azure 上认可的 Linux 分发版](/virtual-machines/linux/endorsed-distros)，除了以下这些：
-
-| 分发 | 版本 |
-|---|---|
-| Debian | 所有版本 |
-| Ubuntu| 18.04 |
+对于运行 Linux 的节点，DSC Linux 扩展支持 [PowerShell DSC 文档](https://docs.microsoft.com/powershell/scripting/dsc/getting-started/lnxgettingstarted)中列出的所有 Linux 发行版。
 
 ### <a name="internet-connectivity"></a>Internet 连接
 
 DSCForLinux 扩展要求目标虚拟机已连接到 Internet。 例如，Register 扩展要求连接到自动化服务。 对于其他操作（例如 Pull），Install 扩展要求连接到 Azure 存储和 GitHub。 它依赖于客户提供的设置。
+
+<!--Delete a 'Pull' from Azure Global-->
 
 ## <a name="extension-schema"></a>扩展架构
 
@@ -63,13 +43,13 @@ DSCForLinux 扩展要求目标虚拟机已连接到 Internet。 例如，Registe
 * `ResourceName`：（可选，字符串）自定义资源模块的名称。
 * `ExtensionAction`：（可选，字符串）指定扩展的功能。 有效值为 Register、Push、Pull、Install 和 Remove。 如果未指定，则默认将值视为推送操作。
 * `NodeConfigurationName`：（可选，字符串）要应用的节点配置的名称。
-* `RefreshFrequencyMins`：（可选，整数）指定 DSC 尝试从提取服务器获取配置的频率（以分钟为单位）。 
+* `RefreshFrequencyMins`：（可选，整数）指定 DSC 尝试从提取服务器获取配置的频率（以分钟为单位）。
        如果提取服务器上的配置不同于目标节点上的当前配置，则会将前者复制到挂起的存储并应用。
 * `ConfigurationMode`：（可选，字符串）指定 DSC 如何应用配置。 有效值为 ApplyOnly、ApplyAndMonitor 和 ApplyAndAutoCorrect。
 * `ConfigurationModeFrequencyMins`：（可选，整数）指定 DSC 确保配置处于所需状态的频率（以分钟为单位）。
 
 > [!NOTE]
-> 如果使用的版本低于 2.3，则 mode 参数与 ExtensionAction 相同。 Mode（模式）看上去像是一个重载的术语。 为了避免混淆，从版本 2.3 开始使用了 ExtensionAction。 为了向后兼容，扩展支持 mode 和 ExtensionAction。 
+> 如果使用的版本低于 2.3，则 mode 参数与 ExtensionAction 相同。 Mode（模式）看上去像是一个重载的术语。 为了避免混淆，从版本 2.3 开始使用了 ExtensionAction。 为了向后兼容，扩展支持 mode 和 ExtensionAction。
 >
 
 ### <a name="protected-configuration"></a>受保护的配置
@@ -119,6 +99,8 @@ $publicConfig = '{
 ```
 
 ### <a name="apply-an-mof-configuration-file-in-an-azure-storage-account-to-the-vm"></a>将 MOF 配置文件（在 Azure 存储帐户中）应用到 VM
+
+<!--MOONCAKE CUSTOMIZATION ON: "storageAccountEndPoint": "https://core.chinacloudapi.cn/"-->
 
 protected.json
 ```json
@@ -334,13 +316,13 @@ DSCForLinux Microsoft.OSTCExtensions <version> \
 
 可运行以下命令在 Azure 服务管理模式下登录到 Azure 帐户：
 
-```powershell>
+```powershell
 Add-AzureAccount -Environment AzureChinaCloud
 ```
 
 运行以下命令部署 DSCForLinux 扩展：
 
-```powershell>
+```powershell
 $vmname = '<vm-name>'
 $vm = Get-AzureVM -ServiceName $vmname -Name $vmname
 $extensionName = 'DSCForLinux'
@@ -374,7 +356,7 @@ Set-AzureVMExtension -ExtensionName $extensionName -VM $vm -Publisher $publisher
 
 可运行以下命令在 Azure 资源管理器模式下登录到 Azure 帐户：
 
-```powershell>
+```powershell
 Connect-AzAccount -Environment AzureChinaCloud
 ```
 
@@ -382,7 +364,7 @@ Connect-AzAccount -Environment AzureChinaCloud
 
 可运行以下命令部署 DSCForLinux 扩展：
 
-```powershell>
+```powershell
 $rgName = '<resource-group-name>'
 $vmName = '<vm-name>'
 $location = '< location>'
@@ -415,7 +397,7 @@ Set-AzVMExtension -ResourceGroupName $rgName -VMName $vmName -Location $location
 
 ## <a name="troubleshoot-and-support"></a>故障排除和支持
 
-### <a name="troubleshoot"></a>故障排除
+### <a name="troubleshoot"></a>疑难解答
 
 有关扩展部署状态的数据可以从 Azure 门户和使用 Azure CLI 进行检索。 若要查看给定 VM 的扩展部署状态，请使用 Azure CLI 运行以下命令。
 

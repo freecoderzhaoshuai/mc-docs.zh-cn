@@ -1,7 +1,7 @@
 ---
 title: 如何跟踪语音 SDK 内存使用情况 - 语音服务
 titleSuffix: Azure Cognitive Services
-description: 语音服务 SDK 支持使用多种编程语言进行语音到文本和文本到语音转换，以及语音翻译。 本文讨论了 SDK 中内置的内存管理工具。
+description: 语音服务 SDK 支持多种编程语言，可用于语音到文本和文本到语音转换，以及语音翻译。 本文讨论了 SDK 中内置的内存管理工具。
 services: cognitive-services
 author: erhopf
 manager: nitinme
@@ -9,15 +9,16 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: conceptual
 origin.date: 12/10/2019
-ms.date: 01/13/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
+ms.custom: devx-track-csharp
 zone_pivot_groups: programming-languages-set-two
-ms.openlocfilehash: 7740fc44cb5cbee670332319175bde3af986044c
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: a17f00618d87a10702d5f7efbeea176958b0829b
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "76123363"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317423"
 ---
 # <a name="how-to-track-speech-sdk-memory-usage"></a>如何跟踪语音 SDK 内存使用情况
 
@@ -70,7 +71,7 @@ config.setProperty("SPEECH-ObjectCountWarnThreshold", "10000");
 ::: zone pivot="programming-language-python"
 
 ```Python
-speech_config.set_property_by_name(“SPEECH-ObjectCountWarnThreshold", "10000")?
+speech_config.set_property_by_name("SPEECH-ObjectCountWarnThreshold", "10000")?
 ```
 
 ::: zone-end
@@ -132,7 +133,7 @@ config.setProperty("SPEECH-ObjectCountErrorThreshold", "10000");
 ::: zone pivot="programming-language-python"
 
 ```Python
-speech_config.set_property_by_name(“SPEECH-ObjectCountErrorThreshold", "10000")?
+speech_config.set_property_by_name("SPEECH-ObjectCountErrorThreshold", "10000")?
 ```
 
 ::: zone-end
@@ -150,5 +151,4 @@ speech_config.set_property_by_name(“SPEECH-ObjectCountErrorThreshold", "10000"
 
 ## <a name="next-steps"></a>后续步骤
 
-* [获取语音服务试用订阅](get-started.md)
-* [了解如何使用麦克风识别语音](quickstarts/speech-to-text-from-microphone.md)
+* [详细了解语音 SDK](speech-sdk.md)

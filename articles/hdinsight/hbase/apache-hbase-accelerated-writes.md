@@ -8,12 +8,12 @@ ms.author: v-yiso
 ms.topic: conceptual
 origin.date: 01/24/2020
 ms.date: 03/02/2020
-ms.openlocfilehash: ad3c3351d97f3a45d66a717f541dd0c723f6ed1d
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: f0296049b533a4c2f391e37fb5d4d08e393f8abb
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77563381"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463101"
 ---
 # <a name="azure-hdinsight-accelerated-writes-for-apache-hbase"></a>Azure HDInsight 的 Apache HBase 加速写入
 
@@ -33,7 +33,7 @@ HBase 最初会将数据更新写入到一种名为“预写日志”(WAL) 的�
 
 ## <a name="accelerated-writes-feature-in-azure-hdinsight-for-apache-hbase"></a>Azure HDInsight 中 Apache HBase 的加速写入功能
 
-加速写入功能解决了使用云存储中的预写日志导致写入延迟增大的问题。  HDInsight Apache HBase 群集的加速写入功能将高级 SSD 托管磁盘附加到每个区域服务器（工作器节点）。 然后，预写日志将写入到这些高级托管磁盘中装载的 Hadoop 文件系统 (HDFS)，而不是写入到云存储。  高级托管磁盘使用固态硬盘 (SSD)，提供卓越的 I/O 性能和容错能力。  与非托管磁盘不同，一个存储单元发生故障不会影响到同一个可用性集中的其他存储单元。  因此，托管磁盘可为应用程序提供较低的写入延迟和更好的复原能力。 有关 Azure 托管磁盘的详细信息，请参阅 [Azure 托管磁盘简介](../../virtual-machines/windows/managed-disks-overview.md)。 
+加速写入功能解决了使用云存储中的预写日志导致写入延迟增大的问题。  HDInsight Apache HBase 群集的加速写入功能将高级 SSD 托管磁盘附加到每个区域服务器（工作器节点）。 然后，预写日志将写入到这些高级托管磁盘中装载的 Hadoop 文件系统 (HDFS)，而不是写入到云存储。  高级托管磁盘使用固态硬盘 (SSD)，提供卓越的 I/O 性能和容错能力。  与非托管磁盘不同，一个存储单元发生故障不会影响到同一个可用性集中的其他存储单元。  因此，托管磁盘可为应用程序提供较低的写入延迟和更好的复原能力。 有关 Azure 托管磁盘的详细信息，请参阅 [Azure 托管磁盘简介](../../virtual-machines/managed-disks-overview.md)。
 
 ## <a name="how-to-enable-accelerated-writes-for-hbase-in-hdinsight"></a>如何启用 HDInsight 中 HBase 的加速写入
 

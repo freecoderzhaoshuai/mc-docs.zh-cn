@@ -8,14 +8,14 @@ ms.workload: big-data
 ms.service: time-series-insights
 services: time-series-insights
 ms.topic: conceptual
-ms.date: 08/04/2020
+ms.date: 09/01/2020
 ms.custom: seodec18
-ms.openlocfilehash: 67c155c4e77b027b3ff0be2c7b67fad5b7917132
-ms.sourcegitcommit: 36e7f37481969f92138bfe70192b1f4a2414caf7
+ms.openlocfilehash: 44c4c3b193eb6bf6ce64eb5654894d3b044e4dcf
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87801850"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413524"
 ---
 # <a name="data-storage"></a>数据存储
 
@@ -84,9 +84,9 @@ Azure 时序见解第 2 代按如下方式存储数据的副本：
 
 `PT=Time` 文件夹中的 blob 名称中的时间戳对应于数据到达 Azure 时序见解第 2 代的时间，而不是对应于事件的时间戳。
 
-`PT=TsId` 文件夹中的数据会不断针对查询进行优化，不是静态的。 在重新分区期间，某些事件可能会出现在多个 blob 中。 不保证此文件夹中的 blob 的命名保持不变。 
+`PT=TsId` 文件夹中的数据会不断针对查询进行优化，不是静态的。 在重新分区期间，某些事件可能会出现在多个 blob 中。 不保证此文件夹中的 blob 的命名保持不变。
 
-通常，如果需要直接通过 Parquet 文件访问数据，请使用 `PT=Time` 文件夹。  将来的功能将能够有效地访问 `PT=TsId` 文件夹。 
+通常，如果需要直接通过 Parquet 文件访问数据，请使用 `PT=Time` 文件夹。  将来的功能将能够有效地访问 `PT=TsId` 文件夹。
 
 > [!NOTE]
 >

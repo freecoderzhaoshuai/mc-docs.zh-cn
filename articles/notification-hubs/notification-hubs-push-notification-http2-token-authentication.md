@@ -12,16 +12,17 @@ ms.tgt_pltfrm: mobile-multiple
 ms.devlang: dotnet
 ms.topic: article
 origin.date: 11/14/2019
-ms.date: 07/01/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.reviewer: jowargo
 ms.lastreviewed: 02/13/2019
-ms.openlocfilehash: 5653ed6b7fb8fb2fa8ee8fa717b2ba1b1bef5397
-ms.sourcegitcommit: 4f84bba7e509a321b6f68a2da475027c539b8fd3
+ms.custom: devx-track-csharp
+ms.openlocfilehash: bee716148243e4ed65d2a7daa3de396942af14e2
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85802772"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316458"
 ---
 # <a name="token-based-http2-authentication-for-apns"></a>针对 APNS 进行基于令牌的 (HTTP/2) 身份验证
 
@@ -54,15 +55,15 @@ ms.locfileid: "85802772"
 
 可以从 Apple 开发人员帐户中“密钥”页的“证书、标识符和配置文件”下获取密钥标识符： 
 
-![](./media/notification-hubs-push-notification-http2-token-authentification/keys.png)
+![证书](./media/notification-hubs-push-notification-http2-token-authentification/keys.png)
 
-![](./media/notification-hubs-push-notification-http2-token-authentification/obtaining-auth-information-from-apple.png)
+![标识符](./media/notification-hubs-push-notification-http2-token-authentification/obtaining-auth-information-from-apple.png)
 
 ### <a name="application-identifier-and-application-name"></a>应用程序标识符和应用程序名称
 
 开发人员帐户中的“证书、标识符和配置文件”页还提供了应用程序名称和标识符：
 
-![](./media/notification-hubs-push-notification-http2-token-authentification/app-name.png)
+![证书和 ID](./media/notification-hubs-push-notification-http2-token-authentification/app-name.png)
 
 ### <a name="configure-via-the-net-sdk-or-the-azure-portal"></a>通过 .NET SDK 或 Azure 门户进行配置
 
@@ -78,9 +79,9 @@ ms.locfileid: "85802772"
 
 * **密钥 ID**：在 Apple 开发人员门户中生成的私钥的标识符；例如 `2USFGKSKLT`。
 * **团队 ID**：也称为“前缀”或“应用前缀”。 这是 Apple 开发人员门户中的组织标识符；例如 `S4V3D7CHJR`。
-* **捆绑 ID**：也称为“应用 ID”。 这是应用程序的捆绑标识符；例如 `com.microsoft.nhubsample2019`。 请注意，可对多个应用使用一个密钥。 此值在发送通知时将映射到 `apns-topic` HTTP 标头，并用于将特定应用程序指定为目标。
+* **捆绑 ID**：也称为“应用 ID”。 这是应用程序的捆绑标识符；例如 `com.example.myapp`。 请注意，可对多个应用使用一个密钥。 此值在发送通知时将映射到 `apns-topic` HTTP 标头，并用于将特定应用程序指定为目标。 请注意，不能显式设置 `apns-topic` 的值。
 * **令牌**：也称为“密钥”或“私钥”。 此值是从 Apple 开发人员门户上生成的 .p8 文件中获取的。 必须为密钥启用 APNS（生成密钥时在 Apple 开发人员门户上选择 APNS）。 在 NH 门户/API 中提供此值时，必须去除其中的 PEM 头部/尾部。
-* **终结点**：这是通知中心门户边栏选项卡中的一个切换开关，且是 API 中的一个字符串字段。 有效值为 `https://api.push.apple.com` or `https://api.sandbox.push.apple.com`进行求值的基于 SQL 语言的筛选器表达式。 通知中心在生产或沙盒环境使用此值来发送通知。 此值必须与应用中的 `aps-environment` 权利相匹配，否则，生成的 APNS 设备令牌将与环境不匹配，并且无法发送通知。
+* **终结点**：这是通知中心门户边栏选项卡中的一个切换开关，且是 API 中的一个字符串字段。 有效值为 `https://api.development.push.apple.com:443/3/device` or `https://api.sandbox.push.apple.com:443/3/device`进行求值的基于 SQL 语言的筛选器表达式。 通知中心在生产或沙盒环境使用此值来发送通知。 此值必须与应用中的 `aps-environment` 权利相匹配，否则，生成的 APNS 设备令牌将与环境不匹配，并且无法发送通知。
 
 下面是演示了正确用法的代码示例：
 

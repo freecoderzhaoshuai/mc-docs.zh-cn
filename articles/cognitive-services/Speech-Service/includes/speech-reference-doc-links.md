@@ -10,12 +10,12 @@ ms.topic: include
 origin.date: 12/06/2019
 ms.date: 06/19/2019
 ms.author: v-tawe
-ms.openlocfilehash: d77dcd89ba75129dce6bead092975d6b78537d21
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+ms.openlocfilehash: 028dba55e183ccb7911cba5a1deca937043654f8
+ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85613386"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "89317588"
 ---
 ## <a name="reference-docs"></a>参考文档
 
@@ -43,7 +43,7 @@ ms.locfileid: "85613386"
 
 有关各种语音服务 REST API 的参考，请参阅下面的列表：
 
-<!-- - [REST API: Pronunciation assessment](../rest-speech-to-text.md#pronunciation-assessment-parameters) -->
+- [REST API：发音评估](../rest-speech-to-text.md#pronunciation-assessment-parameters)
 
 - [REST API：语音转文本](../rest-speech-to-text.md)
 - [REST API：文本转语音](../rest-text-to-speech.md)

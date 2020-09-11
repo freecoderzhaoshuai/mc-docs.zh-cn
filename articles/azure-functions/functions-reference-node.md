@@ -3,14 +3,14 @@ title: Azure Functions JavaScript 开发者参考
 description: 了解如何使用 JavaScript 开发函数。
 ms.assetid: 45dedd78-3ff9-411f-bb4b-16d29a11384c
 ms.topic: conceptual
-ms.date: 08/24/2020
+ms.date: 09/03/2020
 ms.custom: devx-track-javascript
-ms.openlocfilehash: 79144b23dc2d3e22a5f7ee5260b9da233a9ec28a
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: e109c6c500958b487db10c71f556fd7e432a0d63
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947040"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413446"
 ---
 # <a name="azure-functions-javascript-developer-guide"></a>Azure Functions JavaScript 开发人员指南
 
@@ -183,15 +183,38 @@ module.exports = async function (context, req) {
 `dataType` 的选项为 `binary`、`stream` 和 `string`。
 
 ## <a name="context-object"></a>上下文对象
-运行时使用 `context` 对象将数据传入和传出函数，并能与其进行通信。 上下文对象可用于从绑定读取和设置数据、写入日志，以及当导出的函数是同步函数时使用 `context.done` 回调。
 
-`context` 对象始终是传递给函数的第一个参数。 之所以需要包含此对象，是因为它包含 `context.done` 和 `context.log` 等重要方法。 可以按个人喜好为对象命名（例如 `ctx` 或 `c`）。
+运行时使用 `context` 对象将数据传入和传出函数和运行时。 `context` 对象用于从绑定读取和设置数据并用于写入日志，它始终是传递到函数的第一个参数。
+
+对于具有同步代码的函数，上下文对象包括在函数完成处理时调用的 `done` 回叫。 编写异步代码时，无需显式调用 `done`；`done` 回叫是隐式调用的。
 
 ```javascript
-// You must include a context, but other arguments are optional
-module.exports = function(ctx) {
-    // function logic goes here :)
-    ctx.done();
+module.exports = (context) => {
+
+    // function logic goes here
+
+    context.log("The function has executed.");
+
+    context.done();
+};
+```
+
+传递到函数的上下文公开了一个 `executionContext` 属性，该属性是一个具有以下属性的对象：
+
+| 属性名称  | 类型  | 说明 |
+|---------|---------|---------|
+| `invocationId` | String | 提供特定函数调用的唯一标识符。 |
+| `functionName` | String | 提供正在运行的函数的名称 |
+| `functionDirectory` | String | 提供函数应用目录。 |
+
+以下示例演示如何返回 `invocationId`。
+
+```javascript
+module.exports = (context, req) => {
+    context.res = {
+        body: context.executionContext.invocationId
+    };
+    context.done();
 };
 ```
 
@@ -414,7 +437,7 @@ HTTP 和 webhook 触发器以及 HTTP 输出绑定使用请求和响应对象来
 
 ## <a name="scaling-and-concurrency"></a>缩放和并发
 
-默认情况下，Azure Functions 会自动监视应用程序上的负载，并按需为 Node.js 创建更多主机实例。 针对不同触发器类型，Functions 会使用内置阈值（而非用户可配置的阈值）来决定何时添加实例，如消息时间和 QueueTrigger 的队列大小。 有关详细信息，请参阅[消耗计划的工作原理](functions-scale.md#how-the-consumption-plans-work)。
+默认情况下，Azure Functions 会自动监视应用程序上的负载，并按需为 Node.js 创建更多主机实例。 Functions 针对不同触发器类型使用内置（用户不可配置）阈值来确定何时添加实例，例如 QueueTrigger 的消息和队列大小。 有关详细信息，请参阅[消耗计划的工作原理](functions-scale.md#how-the-consumption-plans-work)。
 
 此缩放行为足以满足多个 Node.js 应用程序的需求。 对于占用大量 CPU 的应用程序，可使用多个语言工作进程进一步提高性能。
 

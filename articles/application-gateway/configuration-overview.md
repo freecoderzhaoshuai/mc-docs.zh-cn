@@ -5,14 +5,14 @@ services: application-gateway
 author: vhorne
 ms.service: application-gateway
 ms.topic: conceptual
-ms.date: 08/03/2020
+ms.date: 09/01/2020
 ms.author: v-junlch
-ms.openlocfilehash: eddd34362b1c5583e4a659c9632f63d1716154dc
-ms.sourcegitcommit: 36e7f37481969f92138bfe70192b1f4a2414caf7
+ms.openlocfilehash: f692920eb2c7498105a6fdda05c0117e67c1a51f
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87796252"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413671"
 ---
 # <a name="application-gateway-configuration-overview"></a>应用程序网关配置概述
 
@@ -38,11 +38,13 @@ Azure 应用程序网关由多个组件构成，可根据不同的方案以不�
 
 如果配置了专用前端 IP，则应用程序网关将使用每个实例的 1 个专用 IP 地址，以及另一个专用 IP 地址。
 
-另外，Azure 会在每个子网中保留 5 个 IP 地址供内部使用：前 4 个 IP 地址和最后一个 IP 地址。 例如，假设有 15 个应用程序网关实例没有专用前端 IP。 至少需要为此子网提供 20 个 IP 地址：5 个 IP 地址供内部使用，15 个 IP 地址供应用程序网关实例使用。 因此，需要 /27 或更大的子网大小。
+另外，Azure 会在每个子网中保留 5 个 IP 地址供内部使用：前 4 个 IP 地址和最后一个 IP 地址。 例如，假设有 15 个应用程序网关实例没有专用前端 IP。 至少需要为此子网提供 20 个 IP 地址：5 个 IP 地址供内部使用，15 个 IP 地址供应用程序网关实例使用。
 
-假设某个子网包含 27 个应用程序网关实例，并且包含一个用作专用前端 IP 的 IP 地址。 在这种情况下，需要 33 个 IP 地址：27 个 IP 地址用于应用程序网关实例，1 个 IP 地址用于专用前端，5 个 IP 地址供内部使用。 因此，需要 /26 或更大的子网大小。
+假设某个子网包含 27 个应用程序网关实例，并且包含一个用作专用前端 IP 的 IP 地址。 在这种情况下，需要 33 个 IP 地址：27 个 IP 地址用于应用程序网关实例，1 个 IP 地址用于专用前端，5 个 IP 地址供内部使用。
 
-我们建议至少使用 /28 子网大小。 这种大小可以提供 11 个可用的 IP 地址。 如果应用程序负载需要 10 个以上的应用程序网关实例，请考虑 /27 或 /26 子网大小。
+应用程序网关（标准或 WAF）SKU 最多可支持 32 个实例（已预留 32 个实例 IP 地址 + 1 个专用前端 IP + 5 个 Azure）- 因此建议使用的最小子网大小为 /26
+
+应用程序网关（Standard_v2 或 WAF_v2 SKU）最多可支持 125 个实例（已预留 125 个实例 IP 地址 + 1 个专用前端 IP + 5 个 Azure）- 因此建议使用的最小子网大小为 /24
 
 #### <a name="network-security-groups-on-the-application-gateway-subnet"></a>应用程序网关子网中的网络安全组
 

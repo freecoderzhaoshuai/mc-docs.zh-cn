@@ -1,5 +1,5 @@
 ---
-title: 更改通知中心命名空间的定价层 | Azure
+title: 更改通知中心命名空间的定价层 | Microsoft Docs
 description: 了解如何更改 Azure 通知中心命名空间的定价层。
 services: notification-hubs
 author: sethmanheim
@@ -9,17 +9,17 @@ ms.workload: mobile
 ms.tgt_pltfrm: ''
 ms.devlang: ''
 ms.topic: article
-origin.date: 04/02/2019
-ms.date: 04/20/2020
+origin.date: 08/03/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.reviewer: thsomasu
 ms.lastreviewed: 01/28/2019
-ms.openlocfilehash: 59429775623892041993ec8b51d4ecbd55826920
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.openlocfilehash: 1e44f07b29c546dc9f2ce3ab2b1a0787225d51bc
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588487"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316378"
 ---
 # <a name="change-pricing-tier-of-an-azure-notification-hubs-namespace"></a>更改 Azure 通知中心命名空间的定价层
 
@@ -27,11 +27,11 @@ ms.locfileid: "82588487"
 
 ## <a name="overview"></a>概述
 
-在 Azure 通知中心内，中心是最小的资源/实体。 它通常映射到一个应用程序，可以为每个能够用于应用的平台通知系统 (PNS) 保留一个证书。 该应用程序可以是一个混合应用程序，也可以是一个跨平台的本机应用程序。
+在 Azure 通知中心内，通知中心是最小的资源/实体。 它通常映射到一个应用程序，可以为每个能够用于应用的平台通知系统 (PNS) 保留一个证书。 该应用程序可以是一个混合应用程序，也可以是一个跨平台的本机应用程序。
 
-**命名空间**是通知中心的集合。 每个命名空间通常包含多个中心，这些中心是相关的，用于特定目的。 例如，可以有三个不同的命名空间，分别用于开发、测试和生产。
+*命名空间*是通知中心的集合。 每个命名空间通常包含多个中心，这些中心是相关的，用于特定目的。 例如，可以有三个不同的命名空间，分别用于开发、测试和生产。
 
-可以将命名空间与“免费”  、“基本”  或“标准”  定价层相关联。 可以将层用于符合要求的命名空间。 以下部分介绍如何更改通知中心命名空间的定价层。
+可以将命名空间与“免费”  、“基本”  或“标准”  定价层相关联。 对于任何命名空间，都可以使用符合要求的层。 以下部分介绍如何更改通知中心命名空间的定价层。
 
 ## <a name="use-azure-portal"></a>使用 Azure 门户
 
@@ -43,7 +43,7 @@ ms.locfileid: "82588487"
 
 1. 登录到 [Azure 门户](https://portal.azure.cn)。
 2. 在左侧菜单中，选择“所有服务”  。
-3. 在“物联网”部分选择“通知中心命名空间”。   如果选择文本旁边的星号 (`*`)，则会将其添加到左侧导航栏并置于“收藏夹”下。  这样，以后可以更快地访问命名空间页。 将其添加到“收藏夹”后，选择“通知中心命名空间”。 
+3. 在“物联网”部分选择“通知中心命名空间”。   如果选择文本旁边的星号 (`*`)，则会将其添加到左侧导航栏并置于“收藏夹”下。 这样，下次可以更快地访问命名空间页。 将其添加到“收藏夹”后，选择“通知中心命名空间” 。
 
     ![所有服务 -> 通知中心命名空间](./media/change-pricing-tier/all-services-nhub.png)
 
@@ -52,7 +52,7 @@ ms.locfileid: "82588487"
 
     ![命名空间页上的当前定价层](./media/change-pricing-tier/pricing-tier-before.png)
 
-6. 在命名空间的“通知中心命名空间”页上，  在“管理”部分选择“定价层”。  
+6. 在命名空间的“通知中心命名空间”页上，在“管理”部分选择“定价层”  。
 
     ![在命名空间页上选择定价层](./media/change-pricing-tier/namespace-select-pricing-menu.png)
 
@@ -63,7 +63,7 @@ ms.locfileid: "82588487"
 
 ### <a name="change-tier-on-the-hub-page"></a>在中心页上更改层
 
-以下过程演示了如何在中心页上更改命名空间的定价层。 即使是从中心页开始执行这些步骤，但实际上也会更改命名空间以及命名空间中的所有中心的定价层。
+按照以下步骤在中心页上更改命名空间的定价层。 即使是从中心页开始执行这些步骤，但实际上也会更改命名空间以及命名空间中的所有中心的定价层：
 
 1. 登录到 [Azure 门户](https://portal.azure.cn)。
 2. 在左侧菜单中，选择“所有服务”  。
@@ -98,4 +98,4 @@ Body: <NotificationHubPlan xmlns:i="https://www.w3.org/2001/XMLSchema-instance" 
 
 ## <a name="next-steps"></a>后续步骤
 
-有关这些层和定价的详细信息，请参阅[通知中心定价](https://www.azure.cnpricing/details/notification-hubs/)。
+有关这些层和定价的详细信息，请参阅[通知中心定价](https://www.azure.cn/pricing/details/notification-hubs/)。

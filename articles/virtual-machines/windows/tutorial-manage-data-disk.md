@@ -1,22 +1,24 @@
 ---
 title: 教程 - 使用 Azure PowerShell 管理 Azure 磁盘
 description: 本教程介绍如何使用 Azure PowerShel 为虚拟机创建和管理 Azure 磁盘
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.subservice: disks
 ms.topic: tutorial
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 11/29/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: 069f366e61770f7b9fe578943eabf1c907462408
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 032edbb1dc302098a4ba4cde9c59f0e28c26e912
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945849"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463173"
 ---
 # <a name="tutorial---manage-azure-disks-with-azure-powershell"></a>教程 - 使用 Azure PowerShell 管理 Azure 磁盘
 
@@ -33,13 +35,15 @@ Azure 虚拟机使用磁盘来存储 VM 操作系统、应用程序和数据。 
 
 打开 Azure Powershell 控制台，以管理员权限运行下面列出的脚本。
 
+<!--Not Available on Azure Cloud Shell-->
+
 ## <a name="default-azure-disks"></a>默认 Azure 磁盘
 
 创建 Azure 虚拟机后，将自动向此虚拟机附加两个磁盘。 
 
 **操作系统磁盘** - 操作系统磁盘大小最大可达 4 TB，并可托管 VM 操作系统。 如果从 [Azure 市场](https://market.azure.cn/marketplace/)映像创建新的虚拟机 (VM)，通常为 127 GB（但某些映像的 OS 磁盘更小）。 OS 磁盘默认分配有一个 C: 驱动器号。 已针对 OS 性能优化了 OS 磁盘的磁盘缓存配置。 OS 磁盘不得承载应用程序或数据。 对于应用程序和数据，请使用数据磁盘，详情请参见本文稍后部分。
 
-临时磁盘- 临时磁盘使用 VM 所在的 Azure 主机上的固态驱动器。 临时磁盘具有高性能，可用于临时数据处理等操作。 但是，如果将 VM 移动到新的主机，临时磁盘上存储的数据都将被删除。 临时磁盘的大小由 [VM 大小](sizes.md)决定。 临时磁盘默认分配有一个 D: 驱动器号。
+临时磁盘- 临时磁盘使用 VM 所在的 Azure 主机上的固态驱动器。 临时磁盘具有高性能，可用于临时数据处理等操作。 但是，如果将 VM 移动到新的主机，临时磁盘上存储的数据都将被删除。 临时磁盘的大小由 [VM 大小](../sizes.md)决定。 临时磁盘默认分配有一个 D: 驱动器号。
 
 ## <a name="azure-data-disks"></a>Azure 数据磁盘
 
@@ -51,20 +55,21 @@ Azure 提供两种类型的磁盘。
 
 **标准磁盘** - 受 HDD 支持，可以在确保性能的同时提供经济高效的存储。 标准磁盘适用于经济高效的开发和测试工作负荷。
 
-**高级磁盘** - 由基于 SSD 的高性能、低延迟磁盘提供支持。 完美适用于运行生产工作负荷的 VM。 高级存储支持 DS 系列、DSv2 系列和 FS 系列 VM。 高级磁盘分为五种类型（P10、P20、P30、P40、P50），磁盘大小决定了磁盘类型。 选择时，磁盘大小值舍入为下一类型。 例如，如果大小不到 128 GB，则磁盘类型为 P10；如果大小在 129 GB 到 512 GB 之间，则磁盘类型为 P20。
+**高级磁盘** - 由基于 SSD 的高性能、低延迟磁盘提供支持。 完美适用于运行生产工作负荷的 VM。 [大小名称](../vm-naming-conventions.md)中带有“S”的 VM 大小通常支持高级存储。 例如，DS 系列、DSv2 系列和 FS 系列 VM 都支持高级存储。 选择磁盘大小时，大小值将向上舍入到下一类型。 例如，如果磁盘大小大于 64 GB，但小于 128 GB，则磁盘类型为 P10。 
 
 <!-- Not Available on GS Series -->
 
-### <a name="premium-disk-performance"></a>高级磁盘性能
 [!INCLUDE [disk-storage-premium-ssd-sizes](../../../includes/disk-storage-premium-ssd-sizes.md)]
 
-尽管上表确定了每个磁盘的最大 IOPS，但还可通过条带化多个数据磁盘实现更高级别的性能。 例如，可向 Standard_GS5 VM 附加 64 个数据磁盘。 如果这些磁盘的大小都为 P30，则最大可实现 80,000 IOPS。 若要详细了解每个 VM 的最大 IOPS，请参阅 [VM 类型和大小](./sizes.md)。
+预配高级存储磁盘时，可以获得该磁盘的容量、IOPS 和吞吐量保证，这与标准存储不同。 例如，如果创建 P50 磁盘，Azure 将为此磁盘预配 4,095-GB 存储容量、7,500 IOPS 和 250-MB/秒的吞吐量。 应用程序可以使用全部或部分容量与性能。 高级 SSD 磁盘的设计目的是在 99.9% 的时间内提供较低的个位数毫秒延迟以及上表所述的目标 IOPS 和吞吐量。
+
+尽管上表确定了每个磁盘的最大 IOPS，但还可通过条带化多个数据磁盘实现更高级别的性能。 例如，可向 Standard_GS5 VM 附加 64 个数据磁盘。 如果这些磁盘的大小都为 P30，则最大可实现 80,000 IOPS。 若要详细了解每个 VM 的最大 IOPS，请参阅 [VM 类型和大小](../sizes.md)。
 
 ## <a name="create-and-attach-disks"></a>创建并附加磁盘
 
 若要完成本教程中的示例，必须现有一个虚拟机。 需要时，使用以下命令创建虚拟机。
 
-使用 [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential) 设置虚拟机上管理员帐户所需的用户名和密码：
+使用 [Get-Credential](https://docs.microsoft.com/powershell/module/microsoft.powershell.security/get-credential?view=powershell-5.1) 设置虚拟机上管理员帐户所需的用户名和密码：
 
 使用 [New-AzVM](https://docs.microsoft.com/powershell/module/az.compute/new-azvm) 创建虚拟机。 系统将提示你输入 VM 的管理员帐户的用户名和密码。
 
@@ -88,7 +93,7 @@ $diskConfig = New-AzDiskConfig `
     -DiskSizeGB 128
 ```
 
-使用 [New-AzDisk](https://docs.microsoft.com/powershell/module/az.compute/new-Azdisk) 命令创建数据磁盘。
+使用 [New-AzDisk](https://docs.microsoft.com/powershell/module/az.compute/new-azdisk) 命令创建数据磁盘。
 
 ```powershell
 $dataDisk = New-AzDisk `
@@ -128,7 +133,7 @@ Update-AzVM -ResourceGroupName "myResourceGroupDisk" -VM $vm
 
 创建与虚拟机的 RDP 连接。 打开 PowerShell 并运行此脚本。
 
-```powershell
+```azurepowershell
 Get-Disk | Where partitionstyle -eq 'raw' |
     Initialize-Disk -PartitionStyle MBR -PassThru |
     New-Partition -AssignDriveLetter -UseMaximumSize |
@@ -169,6 +174,6 @@ VirtualHardDisk :
 转到下一教程，了解如何自动配置 VM。
 
 > [!div class="nextstepaction"]
-> [自动执行 VM 配置](./tutorial-automate-vm-deployment.md)
+> [自动配置 VM](./tutorial-automate-vm-deployment.md)
 
 <!-- Update_Description: update meta properties, wording update, update link -->

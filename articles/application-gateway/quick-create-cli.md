@@ -1,20 +1,20 @@
 ---
 title: 快速入门：使用 CLI 定向 Web 流量
 titleSuffix: Azure Application Gateway
-description: 了解如何使用 Azure CLI 创建 Azure 应用程序网关，用以将 Web 流量定向到后端池中的虚拟机。
+description: 本快速入门介绍如何使用 Azure CLI 创建 Azure 应用程序网关，用以将 Web 流量定向到后端池中的虚拟机。
 services: application-gateway
 author: vhorne
 ms.service: application-gateway
 ms.topic: quickstart
-ms.date: 03/30/2020
+ms.date: 09/01/2020
 ms.author: v-junlch
-ms.custom: mvc
-ms.openlocfilehash: bcfe44c67d73cad74a8423a323f77879a9118ea0
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: mvc, devx-track-javascript, devx-track-azurecli
+ms.openlocfilehash: 95455c991f6940b09f31f5814286fb91bfa776a1
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80581812"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413850"
 ---
 # <a name="quickstart-direct-web-traffic-with-azure-application-gateway---azure-cli"></a>快速入门：使用 Azure 应用程序网关定向 Web 流量 - Azure CLI
 
@@ -33,35 +33,35 @@ ms.locfileid: "80581812"
 
 在 Azure 中，可将相关的资源分配到资源组。 使用 `az group create` 创建一个资源组。 
 
-以下示例在“chinanorth”  位置创建名为“myResourceGroupAG”  的资源组。
+以下示例在“chinanorth2”  位置创建名为“myResourceGroupAG”  的资源组。
 
 ```azurecli 
-az group create --name myResourceGroupAG --location chinanorth
+az group create --name myResourceGroupAG --location chinanorth2
 ```
 
 ## <a name="create-network-resources"></a>创建网络资源 
 
-Azure 需要一个虚拟网络才能在创建的资源之间通信。  应用程序网关子网只能包含应用程序网关。 不允许其他资源。  可为应用程序网关创建新的子网，或者使用现有的子网。 在此示例中，你将创建两个子网：一个用于应用程序网关，另一个用于后端服务器。 可根据用例将应用程序网关的前端 IP 配置为公共或专用 IP。 在此示例中，你将选择公共前端 IP 地址。
+Azure 需要一个虚拟网络才能在创建的资源之间通信。  应用程序网关子网只能包含应用程序网关。 不允许其他资源。  可为应用程序网关创建新的子网，或者使用现有的子网。 在此示例中，你将创建两个子网：一个用于应用程序网关，另一个用于后端服务器。 可以根据用例将应用程序网关的前端 IP 配置为公共或专用。 在此示例中，你将选择公共前端 IP 地址。
 
 若要创建虚拟网络和子网，请使用 `az network vnet create`。 运行 `az network public-ip create` 来创建公共 IP 地址。
 
 ```azurecli
-az network vnet create `
-  --name myVNet `
-  --resource-group myResourceGroupAG `
-  --location chinanorth `
-  --address-prefix 10.0.0.0/16 `
-  --subnet-name myAGSubnet `
+az network vnet create \
+  --name myVNet \
+  --resource-group myResourceGroupAG \
+  --location chinanorth2 \
+  --address-prefix 10.0.0.0/16 \
+  --subnet-name myAGSubnet \
   --subnet-prefix 10.0.1.0/24
-az network vnet subnet create `
-  --name myBackendSubnet `
-  --resource-group myResourceGroupAG `
-  --vnet-name myVNet   `
+az network vnet subnet create \
+  --name myBackendSubnet \
+  --resource-group myResourceGroupAG \
+  --vnet-name myVNet   \
   --address-prefix 10.0.2.0/24
-az network public-ip create `
-  --resource-group myResourceGroupAG `
-  --name myAGPublicIPAddress `
-  --allocation-method Static `
+az network public-ip create \
+  --resource-group myResourceGroupAG \
+  --name myAGPublicIPAddress \
+  --allocation-method Static \
   --sku Standard
 ```
 
@@ -121,18 +121,18 @@ runcmd:
 
 ```azurecli
 for i in `seq 1 2`; do
-  az network nic create `
-    --resource-group myResourceGroupAG `
-    --name myNic$i `
-    --vnet-name myVNet `
+  az network nic create \
+    --resource-group myResourceGroupAG \
+    --name myNic$i \
+    --vnet-name myVNet \
     --subnet myBackendSubnet
-  az vm create `
-    --resource-group myResourceGroupAG `
-    --name myVM$i `
-    --nics myNic$i `
-    --image UbuntuLTS `
-    --admin-username azureuser `
-    --generate-ssh-keys `
+  az vm create \
+    --resource-group myResourceGroupAG \
+    --name myVM$i \
+    --nics myNic$i \
+    --image UbuntuLTS \
+    --admin-username azureuser \
+    --generate-ssh-keys \
     --custom-data cloud-init.txt
 done
 ```
@@ -144,36 +144,36 @@ done
 ```azurecli
 address1=$(az network nic show --name myNic1 --resource-group myResourceGroupAG | grep "\"privateIpAddress\":" | grep -oE '[^ ]+$' | tr -d '",')
 address2=$(az network nic show --name myNic2 --resource-group myResourceGroupAG | grep "\"privateIpAddress\":" | grep -oE '[^ ]+$' | tr -d '",')
-az network application-gateway create `
-  --name myAppGateway `
-  --location chinanorth `
-  --resource-group myResourceGroupAG `
-  --capacity 2 `
-  --sku Standard_v2 `
-  --http-settings-cookie-based-affinity Enabled `
-  --public-ip-address myAGPublicIPAddress `
-  --vnet-name myVNet `
-  --subnet myAGSubnet `
+az network application-gateway create \
+  --name myAppGateway \
+  --location chinanorth2 \
+  --resource-group myResourceGroupAG \
+  --capacity 2 \
+  --sku Standard_v2 \
+  --http-settings-cookie-based-affinity Enabled \
+  --public-ip-address myAGPublicIPAddress \
+  --vnet-name myVNet \
+  --subnet myAGSubnet \
   --servers "$address1" "$address2"
 ```
 
-Azure 可能需要长达 30 分钟的时间来创建应用程序网关。 创建该网关以后，即可在“应用程序网关”页的“设置”部分查看以下设置：  
+Azure 可能需要长达 30 分钟的时间来创建应用程序网关。 创建该网关以后，即可在“应用程序网关”页的“设置”部分查看以下设置： 
 
-- **appGatewayBackendPool**：位于“后端池”页。  它指定所需的后端池。
-- **appGatewayBackendHttpSettings**：位于“HTTP设置”页。  它指定应用程序网关使用端口 80 和 HTTP 协议进行通信。
-- **appGatewayHttpListener**：位于“侦听器”页。  它指定与 **appGatewayBackendPool** 关联的默认侦听器。
-- **appGatewayFrontendIP**：位于“前端 IP 配置”页。  它将 *myAGPublicIPAddress* 分配到 **appGatewayHttpListener**。
-- **rule1**：位于“规则”页。  它指定与 **appGatewayHttpListener** 关联的默认路由规则。
+- **appGatewayBackendPool**：位于“后端池”页。 它指定所需的后端池。
+- **appGatewayBackendHttpSettings**：位于“HTTP设置”页。 它指定应用程序网关使用端口 80 和 HTTP 协议进行通信。
+- **appGatewayHttpListener**：位于“侦听器”页。 它指定与 **appGatewayBackendPool** 关联的默认侦听器。
+- **appGatewayFrontendIP**：位于“前端 IP 配置”页。 它将 *myAGPublicIPAddress* 分配到 **appGatewayHttpListener**。
+- **rule1**：位于“规则”页。 它指定与 **appGatewayHttpListener** 关联的默认路由规则。
 
 ## <a name="test-the-application-gateway"></a>测试应用程序网关
 
 虽然 Azure 不需 NGINX Web 服务器即可创建应用程序网关，但本快速入门中安装了它，用来验证 Azure 是否已成功创建应用程序网关。 若要获取新应用程序网关的公共 IP 地址，请使用 `az network public-ip show`。 
 
 ```azurecli
-az network public-ip show `
-  --resource-group myResourceGroupAG `
-  --name myAGPublicIPAddress `
-  --query [ipAddress] `
+az network public-ip show \
+  --resource-group myResourceGroupAG \
+  --name myAGPublicIPAddress \
+  --query [ipAddress] \
   --output tsv
 ```
 

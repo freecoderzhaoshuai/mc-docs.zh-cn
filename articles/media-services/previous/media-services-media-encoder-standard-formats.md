@@ -1,6 +1,6 @@
 ---
 title: Media Encoder Standard 格式和编解码器 - Azure
-description: 本主题概述 Media Encoder Standard 格式和编解码器。
+description: 本文概述 Media Encoder Standard 格式和编解码器。
 services: media-services
 documentationcenter: ''
 author: WenJason
@@ -12,15 +12,15 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/18/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
 ms.reviewer: anilmur
-ms.openlocfilehash: 5227511b5a91e848110d235167fc3d05e6e998ad
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: b83d3b0c437ea7a62fb6ac17ec236073582dfef4
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71124446"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413702"
 ---
 # <a name="media-encoder-standard-formats-and-codecs"></a>Media Encoder Standard 格式和编解码器
 
@@ -40,7 +40,7 @@ ms.locfileid: "71124446"
 | Windows Media 视频 (WMV)/ASF（.wmv、.asf） |是 |
 | AVI（8 位/10 位未压缩）(.avi) |是 |
 | MP4（.mp4、.m4a、.m4v）/ISMV（.isma、.ismv） |是 |
-| [Microsoft Digital Video Recording(DVR-MS)](https://msdn.microsoft.com/library/windows/desktop/dd692984) (.dvr-ms) |是 |
+| [Microsoft Digital Video Recording(DVR-MS)](https://docs.microsoft.com/previous-versions/windows/desktop/mstv/about-the-dvr-ms-file-format) (.dvr-ms) |是 |
 | Matroska/WebM (.mkv) |是 |
 | WAVE/WAV (.wav) |是 |
 | QuickTime (.mov) |是 |
@@ -114,4 +114,3 @@ Media Encoder Standard 支持在输入容器中带有以下音频格式：
 [使用 Azure 媒体服务对按需内容进行编码](media-services-encode-asset.md)
 
 [如何使用 Media Encoder Standard 进行编码](media-services-dotnet-encode-with-media-encoder-standard.md)
-

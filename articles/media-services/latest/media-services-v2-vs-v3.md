@@ -14,14 +14,14 @@ ms.topic: article
 ms.tgt_pltfrm: multiple
 ms.workload: media
 origin.date: 03/09/2020
-ms.date: 07/27/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 8be60fbcd9401e88ca2b7249f1584b10785754d1
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 805f154f446476295b781f1736596e00bd6356d3
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162183"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414055"
 ---
 # <a name="media-services-v2-vs-v3"></a>媒体服务 v2 与 v3
 
@@ -29,7 +29,7 @@ ms.locfileid: "87162183"
 
 ## <a name="general-changes-from-v2"></a>v2 中的常规更改
 
-* 对于通过 v3 创建的资产，媒体服务仅支持 [Azure 存储服务器端存储加密](/storage/common/storage-service-encryption)。
+* 对于通过 v3 创建的资产，媒体服务仅支持 [Azure 存储服务器端存储加密](../../storage/common/storage-service-encryption.md)。
     * 对于通过 v2 API 创建的，并采用媒体服务提供的[存储加密](../previous/media-services-rest-storage-encryption.md) (AES 256) 的资产，可以使用 v3 API。
     * 无法使用 v3 API 创建采用旧版 AES 256 [存储加密](../previous/media-services-rest-storage-encryption.md)的新资产。
 * v3 中[资产](assets-concept.md)的属性与 v2 不同，请参阅[属性如何映射](#map-v3-asset-properties-to-v2)。
@@ -84,7 +84,8 @@ ms.locfileid: "87162183"
     * 在输入不包含音频时插入静音曲目
     * 在输入不包含视频时插入视频轨道
 * 包含转码的直播活动目前不支持静态图像插入中间流，以及通过 API 调用执行的广告标记插入。 
- 
+* 有关使用 .NETCore SDK 上的 V2 REST API 的最佳做法和模式，请参阅 `https://github.com/Azure-Samples/media-services-v2-dotnet-core-restsharp-sample.git`。
+
 ## <a name="asset-specific-changes"></a>特定于资产的更改
 
 ### <a name="map-v3-asset-properties-to-v2"></a>将 v3 资产属性映射到 v2
@@ -111,8 +112,8 @@ ms.locfileid: "87162183"
 |加密选项|说明|媒体服务 v2|媒体服务 v3|
 |---|---|---|---|
 |媒体服务存储加密|AES-256 加密，媒体服务管理的密钥。|支持<sup>(1)</sup>|不支持<sup>(2)</sup>|
-|[静态数据的存储服务加密](/storage/common/storage-service-encryption)|由 Azure 存储提供的服务器端加密，由 Azure 或客户托管的密钥。|支持|支持|
-|[存储客户端加密](/storage/common/storage-client-side-encryption)|由 Azure 存储提供的客户端加密，由 Key Vault 中的客户托管密钥。|不支持|不支持|
+|[静态数据的存储服务加密](../../storage/common/storage-service-encryption.md)|由 Azure 存储提供的服务器端加密，由 Azure 或客户托管的密钥。|支持|支持|
+|[存储客户端加密](../../storage/common/storage-client-side-encryption.md)|由 Azure 存储提供的客户端加密，由 Key Vault 中的客户托管密钥。|不支持|不支持|
 
 <sup>1</sup> 虽然媒体服务确实支持处理明文形式（未经过任何形式的加密）的内容，但不建议这样做。
 

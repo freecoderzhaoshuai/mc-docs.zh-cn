@@ -1,31 +1,33 @@
 ---
-title: 规划将 IaaS 资源从经典部署模型迁移到 Azure Resource Manager
+title: 规划从经典部署模型到 Azure 资源管理器部署模型的迁移
 description: 规划将 IaaS 资源从经典部署模型迁移到 Azure Resource Manager
-author: rockboyfor
-manager: digimobile
+manager: vashan
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.topic: conceptual
 origin.date: 02/06/2020
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 07ed96c1b65fcd1ddc6829b19b1682baee679c1c
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 5170d35ffeee500fe3013bdb5091dd3a97976692
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945713"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463195"
 ---
-# <a name="planning-for-migration-of-iaas-resources-from-classic-to-azure-resource-manager"></a>规划将 IaaS 资源从经典部署模型迁移到 Azure Resource Manager
+# <a name="planning-for-migration-of-iaas-resources-from-classic-to-azure-resource-manager-in-windows"></a>规划从经典部署模型到 Windows 中的 Azure 资源管理器的 IaaS 资源迁移
 
 > [!IMPORTANT]
-> 目前，大约有 90% 的 IaaS VM 在使用 [Azure 资源管理器](https://www.azure.cn/home/features/resource-manager/)。 自 2020 年 2 月 28 日起，经典 VM 已弃用，并将于 2023 年 3 月 1 日完全停用。 [详细了解](https://docs.azure.cn/virtual-machines/classic-vm-deprecation/)此弃用以及[它对你的影响](/virtual-machines/classic-vm-deprecation#how-does-this-affect-me)。
+> 目前，大约有 90% 的 IaaS VM 在使用 [Azure 资源管理器](https://www.azure.cn/home/features/resource-manager/)。 自 2020 年 2 月 28 日起，经典 VM 已弃用，并将于 2023 年 3 月 1 日完全停用。 [详细了解]( https://docs.azure.cn/virtual-machines/classic-vm-deprecation)此弃用以及[它对你的影响](../classic-vm-deprecation.md#how-does-this-affect-me)。
 
 尽管 Azure 资源管理器提供了许多精彩功能，但请务必计划迁移，以确保一切顺利进行。 花时间进行规划可确保执行迁移活动时不会遇到问题。
 
 迁移之旅包括四个常规阶段：<br />
 
-![迁移阶段](../media/virtual-machines-windows-migration-classic-resource-manager/plan-labtest-migrate-beyond.png)
+:::image type="content" source="../media/virtual-machines-windows-migration-classic-resource-manager/plan-labtest-migrate-beyond.png" alt-text="迁移阶段":::
 
 ## <a name="plan"></a>计划
 
@@ -50,13 +52,13 @@ ms.locfileid: "85945713"
 成功迁移的客户制定了详细计划，在此期间讨论、记录并控制了上述问题。  确保与发起人和利益干系人就迁移计划进行广泛交流。  使用迁移选项的知识武装自身，强烈建议浏览下面的迁移文档集。
 
 * [平台支持的从经典部署模型到 Azure Resource Manager 部署模型的 IaaS 资源迁移概述](migration-classic-resource-manager-overview.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
-* [有关平台支持的从经典部署模型到 Azure Resource Manager 部署模型的迁移的技术深入探讨](migration-classic-resource-manager-deep-dive.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
+* [有关平台支持的从经典部署模型到 Azure Resource Manager 部署模型的迁移的技术深入探讨](../migration-classic-resource-manager-deep-dive.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
 * [规划从经典部署模型到 Azure Resource Manager 的 IaaS 资源迁移](migration-classic-resource-manager-plan.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
 * [使用 PowerShell 将 IaaS 资源从经典部署模型迁移到 Azure 资源管理器](migration-classic-resource-manager-ps.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
 * [使用 CLI 将 IaaS 资源从经典部署模型迁移到 Azure 资源管理器](../linux/migration-classic-resource-manager-cli.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
 * [用于帮助将 IaaS 资源从经典部署模型迁移到 Azure 资源管理器部署模型的社区工具](migration-classic-resource-manager-community-tools.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
 * [查看最常见的迁移错误](migration-classic-resource-manager-errors.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
-* [查看有关将 IaaS 资源从经典部署模型迁移到 Azure 资源管理器部署模型的最常见问题](migration-classic-resource-manager-faq.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
+* [查看有关将 IaaS 资源从经典部署模型迁移到 Azure 资源管理器部署模型的最常见问题](../migration-classic-resource-manager-faq.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ### <a name="pitfalls-to-avoid"></a>需避免的错误
 
@@ -199,7 +201,7 @@ ms.locfileid: "85945713"
 
 对现在想要在 Azure Resource Manager 中启用哪些服务具有目的性。  许多客户找到以下关于其 Azure 环境令人关注的事实：
 
-- [基于角色的访问控制](../../role-based-access-control/overview.md)。
+- [Azure 基于角色的访问控制 (Azure RBAC)](../../role-based-access-control/overview.md)。
 - [使用 Azure Resource Manager 模板以更轻松、更可控的方式完成部署](../../azure-resource-manager/templates/overview.md)。
 - [标记](../../azure-resource-manager/management/tag-resources.md)。
 - [活动控制](../../azure-resource-manager/management/view-activity-logs.md)
@@ -212,13 +214,13 @@ ms.locfileid: "85945713"
 ## <a name="next-steps"></a>后续步骤
 
 * [平台支持的从经典部署模型到 Azure Resource Manager 部署模型的 IaaS 资源迁移概述](migration-classic-resource-manager-overview.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
-* [有关平台支持的从经典部署模型到 Azure Resource Manager 部署模型的迁移的技术深入探讨](migration-classic-resource-manager-deep-dive.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
+* [有关平台支持的从经典部署模型到 Azure Resource Manager 部署模型的迁移的技术深入探讨](../migration-classic-resource-manager-deep-dive.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
 * [使用 PowerShell 将 IaaS 资源从经典部署模型迁移到 Azure 资源管理器](migration-classic-resource-manager-ps.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
 * [使用 CLI 将 IaaS 资源从经典部署模型迁移到 Azure 资源管理器](../linux/migration-classic-resource-manager-cli.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
-* [VPN 网关从经典部署模型迁移到资源管理器部署模型](/vpn-gateway/vpn-gateway-classic-resource-manager-migration)
-* [将 ExpressRoute 线路和关联的虚拟网络从经典部署模型迁移到资源管理器部署模型](/expressroute/expressroute-migration-classic-resource-manager)
+* [VPN 网关从经典部署模型迁移到资源管理器部署模型](../../vpn-gateway/vpn-gateway-classic-resource-manager-migration.md)
+* [将 ExpressRoute 线路和关联的虚拟网络从经典部署模型迁移到资源管理器部署模型](../../expressroute/expressroute-migration-classic-resource-manager.md)
 * [用于帮助将 IaaS 资源从经典部署模型迁移到 Azure 资源管理器部署模型的社区工具](migration-classic-resource-manager-community-tools.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
 * [查看最常见的迁移错误](migration-classic-resource-manager-errors.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
-* [查看有关将 IaaS 资源从经典部署模型迁移到 Azure 资源管理器部署模型的最常见问题](migration-classic-resource-manager-faq.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
+* [查看有关将 IaaS 资源从经典部署模型迁移到 Azure 资源管理器部署模型的最常见问题](../migration-classic-resource-manager-faq.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
 
-<!--Update_Description: update meta properties, wording update-->
+<!-- Update_Description: update meta properties, wording update, update link -->

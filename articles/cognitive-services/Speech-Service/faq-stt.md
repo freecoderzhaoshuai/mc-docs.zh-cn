@@ -8,15 +8,15 @@ manager: nitinme
 ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: conceptual
-origin.date: 12/04/2019
-ms.date: 07/28/2020
+origin.date: 08/20/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: 5ea6bf305aa01e78b2ea531b6ddd0265bdcfe63e
-ms.sourcegitcommit: 5d167ad5411b018522a0fac9f5435a48f4ceb3a6
+ms.openlocfilehash: d80ac386bbd249f5b4161158fa5b59790c60eed0
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/29/2020
-ms.locfileid: "87378192"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317437"
 ---
 # <a name="speech-to-text-frequently-asked-questions"></a>语音转文本常见问题解答
 
@@ -76,7 +76,7 @@ ms.locfileid: "87378192"
 
 **问：我的请求是否受到限制？**
 
-**答**：REST API 将请求限制为每 5 秒 25 个。 可以在我们的[语音转文本](speech-to-text.md)页面中找到详细信息。
+**答**：请参阅[语音服务配额和限制](speech-services-quotas-and-limits.md)。
 
 **问：双声道音频如何收费？**
 
@@ -86,54 +86,14 @@ ms.locfileid: "87378192"
 > 如果有禁止使用自定义语音识别服务的其他隐私问题，请联系其中一个支持渠道。
 
 ## <a name="increasing-concurrency"></a>提高并发性
+请参阅[语音服务配额和限制](speech-services-quotas-and-limits.md)。
 
-**问：如果我的已部署模型需要比门户提供的并发性更高的并发性，该怎么办？**
-
-**答**：以 20 个并发请求为增量纵向扩展模型。
-
-使用所需信息，在 [Azure 支持门户](https://portal.azure.cn/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/overview)中创建支持请求。 请勿在[支持页面](support.md)上提到的任何公共渠道（GitHub、Stackoverflow 等）上发布信息。
-
-为了增加自定义模型的并发性，我们需要以下信息：
-
-- 部署模型的区域；
-- 已部署模型的终结点 ID：
-  - 转到[自定义语音识别门户](https://speech.azure.cn/customspeech)，
-  - 视需要登录；
-  - 选择项目和部署；
-  - 选择需要增加其并发性的终结点；
-  - 复制 `Endpoint ID`。
-
-为了增加基础模型的并发性，我们需要以下信息：
-
-- 服务的区域；
-
-以及
-
-- 订阅的访问令牌（查看[此文](https://docs.azure.cn/cognitive-services/speech-service/rest-speech-to-text#how-to-get-an-access-token)）；
-
-或
-
-- 订阅的资源 ID：
-  - 转到 [Azure 门户](https://portal.azure.cn)；
-  - 在搜索框中选择 `Cognitive Services`；
-  - 从显示的服务中，选取需要增加其并发性的语音服务；
-  - 显示此服务的 `Properties`；
-  - 复制完整的 `Resource ID`。
-  
-**问：提高并发限制会提高成本吗？**
-
-**答**：不会，成本取决于使用情况。 提高并发性不会提高成本。 有关成本的详细信息，请参阅我们的[定价页面](https://www.azure.cn/pricing/details/cognitive-services/)。
-
-<!--
->[!NOTE]
->[Containers](https://docs.azure.cn/cognitive-services/speech-service/speech-container-howto) do not require increases to concurrency limits, as containers are constrained only by the CPUs of the hardware they are hosted on.
--->
 
 ## <a name="importing-data"></a>导入数据
 
 **问：数据集大小的限制是什么？为何限制？**
 
-**答**：答：数据集的当前限制为 2 GB。 之所以有此限制，是由于 HTTP 上传文件大小存在限制。
+**答**：之所以有此限制，是由于 HTTP 上传文件大小存在限制。 有关实际限制，请参阅[语音服务配额和限制](speech-services-quotas-and-limits.md)。
 
 **问：是否可以压缩文本文件，以便上传更大的文本文件？**
 

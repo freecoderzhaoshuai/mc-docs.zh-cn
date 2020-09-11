@@ -13,15 +13,15 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/14/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2019
 ms.author: v-jay
 ms.reviewer: anilmur
-ms.openlocfilehash: b89c8d2d44d1472cd091eaac66e68f01ccc10dba
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 5ad6b697e69b1dd87d23bf5f16352d3af21fc07e
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71124408"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413777"
 ---
 # <a name="comparison-of-azure-on-demand-media-encoders"></a>Azure 点播媒体编码器之间的对比  
 
@@ -35,7 +35,7 @@ ms.locfileid: "71124408"
 |---|---|---|
 |在编码时应用条件逻辑<br/>（例如，如果输入是 HD，执行 5.1 音频编码）|否|是|
 |隐藏式字幕|否|[是](media-services-premium-workflow-encoder-formats.md#closed_captioning)|
-|[Dolby® 专业响度校正](https://www.dolby.com/us/en/technologies/dolby-professional-loudness-solutions.pdf)<br/> （使用 Dialogue Intelligence™）|否|是|
+|[Dolby&reg; 专业响度校正](https://professional.dolby.com/product/broadcast/vm600/)<br/> （使用 Dialogue Intelligence&trade;）|否|是|
 |反交错、反转电视电影|基本|广播质量|
 |检测和删除黑色边框 <br/>（左右黑边、上下黑边）|否|是|
 |生成缩略图|[是](media-services-dotnet-generate-thumbnail-with-mes.md)|[是](media-services-media-encoder-premium-workflow-tutorials.md#thumbnails_to__multibitrate_MP4)|
@@ -53,7 +53,7 @@ ms.locfileid: "71124408"
 ## <a name="input-containerfile-formats"></a>输入容器/文件格式
 | 输入容器/文件格式 | 媒体编码器标准版 | 媒体编码器高级工作流 |
 | --- | --- | --- |
-| Adobe® Flash® F4V |是 |是 |
+| Adobe&reg; Flash&reg; F4V |是 |是 |
 | MXF/SMPTE 377M |是 |是 |
 | GXF |是 |是 |
 | Mpeg-2 传输流 |是 |是 |
@@ -63,7 +63,7 @@ ms.locfileid: "71124408"
 | AVI（8 位/10 位未压缩） |是 |是 |
 | 3GPP/3GPP2 |是 |否 |
 | 平滑流文件格式 (PIFF 1.3) |是 |否 |
-| [Microsoft Digital Video Recording(DVR-MS)](https://msdn.microsoft.com/library/windows/desktop/dd692984) |是 |否 |
+| [Microsoft Digital Video Recording(DVR-MS)](https://docs.microsoft.com/previous-versions/windows/desktop/mstv/about-the-dvr-ms-file-format) |是 |否 |
 | Matroska/WebM |是 |否 |
 | QuickTime (.mov) |是 |否 |
 
@@ -74,7 +74,7 @@ ms.locfileid: "71124408"
 | Avid DNxHD（MXF 格式） |是 |是 |
 | DVCPro/DVCProHD（MXF 格式） |是 |是 |
 | JPEG2000 |是 |是 |
-| Mpeg-2（最高支持 422 Profile 和 High Level；包括 XDCAM、XDCAM HD、XDCAM IMX、CableLabs® 和 D10 等变体） |最高支持 422 Profile |是 |
+| MPEG-2（最高支持 422 Profile 和 High Level；包括 XDCAM、XDCAM HD、XDCAM IMX、CableLabs&reg; 和 D10 等变体） |最高支持 422 Profile |是 |
 | MPEG-1 |是 |是 |
 | Windows Media 视频/VC-1 |是 |是 |
 | Canopus HQ/HQX |否 |否 |
@@ -92,9 +92,9 @@ ms.locfileid: "71124408"
 | 输入音频编解码器 | 媒体编码器标准版 | 媒体编码器高级工作流 |
 | --- | --- | --- |
 | AES（SMPTE 331M 和 302M、AES3-2003） |否 |是 |
-| Dolby® E |否 |是 |
-| Dolby® Digital (AC3) |否 |是 |
-| Dolby® Digital Plus (E-AC3) |否 |是 |
+| Dolby&reg; E |否 |是 |
+| Dolby&reg; Digital (AC3) |否 |是 |
+| Dolby&reg; Digital Plus (E-AC3) |否 |是 |
 | AAC(AAC-LC、AAC-HE 和 AAC-HEv2；最高支持 5.1） |是 |是 |
 | MPEG Layer 2 |是 |是 |
 | MP3 (MPEG-1 Audio Layer 3) |是 |是 |
@@ -107,7 +107,7 @@ ms.locfileid: "71124408"
 ## <a name="output-containerfile-formats"></a>输出容器/文件格式
 | 输出容器/文件格式 | 媒体编码器标准版 | 媒体编码器高级工作流 |
 | --- | --- | --- |
-| Adobe® Flash® F4V |否 |是 |
+| Adobe&reg; Flash&reg; F4V |否 |是 |
 | MXF（OP1a、XDCAM 和 AS02） |否 |是 |
 | DPP（包括 AS11） |否 |是 |
 | GXF |否 |是 |
@@ -123,7 +123,7 @@ ms.locfileid: "71124408"
 | AVC（H.264；8 位；最高支持 High Profile、Level 5.2；4K Ultra HD；AVC Intra） |仅限 8 位 4:2:0 |是 |
 | HEVC（H.265；8 位和 10 位；）  |否 |是 |
 | Avid DNxHD（MXF 格式） |否 |是 |
-| Mpeg-2（最高支持 422 Profile 和 High Level；包括 XDCAM、XDCAM HD、XDCAM IMX、CableLabs® 和 D10 等变体） |否 |是 |
+| MPEG-2（最高支持 422 Profile 和 High Level；包括 XDCAM、XDCAM HD、XDCAM IMX、CableLabs&reg; 和 D10 等变体） |否 |是 |
 | MPEG-1 |否 |是 |
 | Windows Media 视频/VC-1 |否 |是 |
 | JPEG 缩图创建 |是 |是 |
@@ -134,15 +134,15 @@ ms.locfileid: "71124408"
 | 输出音频编解码器 | 媒体编码器标准版 | 媒体编码器高级工作流 |
 | --- | --- | --- |
 | AES（SMPTE 331M 和 302M、AES3-2003） |否 |是 |
-| Dolby® Digital (AC3) |否 |是 |
-| Dolby® Digital Plus (E-AC3)，最高支持 7.1 |否 |是 |
+| Dolby&reg; Digital (AC3) |否 |是 |
+| Dolby&reg; Digital Plus (E-AC3)，最高支持 7.1 |否 |是 |
 | AAC(AAC-LC、AAC-HE 和 AAC-HEv2；最高支持 5.1） |是 |是 |
 | MPEG Layer 2 |否 |是 |
 | MP3 (MPEG-1 Audio Layer 3) |否 |是 |
 | Windows Media 音频 |否 |是 |
 
 >[!NOTE]
->如果编码为 Dolby® Digital (AC3)，则只能将输出写入到 ISO MP4 文件。
+>如果编码为 Dolby&reg; Digital (AC3)，则只能将输出写入到 ISO MP4 文件。
 
 ## <a name="media-services-learning-paths"></a>媒体服务学习路径
 [!INCLUDE [media-services-learning-paths-include](../../../includes/media-services-learning-paths-include.md)]

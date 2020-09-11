@@ -1,5 +1,5 @@
 ---
-title: 通过使用 Web API 注册推送通知的当前用户 | Azure
+title: 通过使用 Web API 注册推送通知的当前用户 | Microsoft 文档
 description: 了解在 ASP.NET Web API 执行注册时如何在 iOS 应用程序中请求向 Azure 通知中心注册推送通知。
 services: notification-hubs
 documentationcenter: ios
@@ -11,16 +11,16 @@ ms.tgt_pltfrm: ios
 ms.devlang: objective-c
 ms.topic: article
 origin.date: 01/04/2019
-ms.date: 07/21/2020
+ms.date: 03/02/2020
 ms.author: v-tawe
 ms.reviewer: jowargo
 ms.lastreviewed: 01/04/2019
-ms.openlocfilehash: 59484f13cc827c19368fd5aae8cc2634dd8a07db
-ms.sourcegitcommit: 5656c18d7d2faa09329b1a15e352d1622e252d5f
+ms.openlocfilehash: 474dc022fc98e2ccbe76063ab5ed64d94fa57ab6
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86862827"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316465"
 ---
 # <a name="register-the-current-user-for-push-notifications-by-using-aspnet"></a>通过使用 ASP.NET 注册推送通知的当前用户
 
@@ -45,11 +45,11 @@ ms.locfileid: "86862827"
 
      此时，Storyboard 应与下图类似：
 
-     ![][0]
+     ![已添加组件的 MainStoryboard_iPhone.storyboard 应用的屏幕截图。][0]
 
 2. 在助手编辑器中，创建所有带开关控件的容器并调用它们，连接文本字段与视图控制器（委派），并创建“**登录**”按钮的“**操作**”。
 
-    ![][1]
+    ![MainStoryboard_iPhone.storyboard 应用中的助手编辑器的屏幕截图。][1]
 
     BreakingNewsViewController.h 文件现在应当包含以下代码：
 
@@ -221,7 +221,7 @@ ms.locfileid: "86862827"
     // build auth string
     NSString* authString = [NSString stringWithFormat:@"%@:%@", self.User.text, self.Password.text];
 
-            NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://nhnotifyuser.chinacloudsites.cn/api/register"]];
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://nhnotifyuser.chinacloudsites.cn/api/register"]];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[json dataUsingEncoding:NSUTF8StringEncoding]];
     [request addValue:[@([json lengthOfBytesUsingEncoding:NSUTF8StringEncoding]) description] forHTTPHeaderField:@"Content-Length"];

@@ -7,15 +7,15 @@ manager: celestedg
 ms.service: active-directory
 ms.workload: identity
 ms.topic: reference
-ms.date: 07/27/2020
+ms.date: 09/02/2020
 ms.author: v-junlch
 ms.subservice: B2C
-ms.openlocfilehash: 11d9476d79d98d992d00b5ac30282453f64997fe
-ms.sourcegitcommit: dd2bc914f6fc2309f122b1c7109e258ceaa7c868
+ms.openlocfilehash: df178c3637cfaccd76f90f60d2c26d38c6bd66af
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87297713"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413354"
 ---
 # <a name="relyingparty"></a>RelyingParty
 
@@ -188,7 +188,15 @@ Protocol 元素包含以下属性：
 | --------- | -------- | ----------- |
 | 名称 | 是 | Azure AD B2C 支持的有效协议的名称，用作技术配置文件的一部分。 可能的值：`OpenIdConnect` 或 `SAML2`。 `OpenIdConnect` 值表示根据 OpenID 基本规范的 OpenID Connect 1.0 协议标准。 `SAML2` 表示根据 OASIS 规范的 SAML 2.0 协议标准。 |
 
-## <a name="outputclaims"></a>OutputClaims
+### <a name="metadata"></a>Metadata
+
+如果协议是 `SAML`，则元数据元素包含以下元素。
+
+| Attribute | 必须 | 说明 |
+| --------- | -------- | ----------- |
+| XmlSignatureAlgorithm | 否 | Azure AD B2C 用于对 SAML 响应进行签名的方法。 可能的值：`Sha256`、`Sha384`、`Sha512` 或 `Sha1`。 确保在两端配置具有相同值的签名算法。 仅使用证书支持的算法。 若要配置 SAML 断言，请参阅 [SAML 颁发者技术配置文件元数据](saml-issuer-technical-profile.md#metadata)。 |
+
+### <a name="outputclaims"></a>OutputClaims
 
 OutputClaims 元素包含以下元素：
 
@@ -208,13 +216,14 @@ OutputClaim 元素包含以下属性：
 
 使用 SubjectNameingInfo 元素，可以控制令牌使用者的值：
 - **JWT 令牌** - `sub` 声明。 这是令牌针对其断言信息的主体，例如应用程序的用户。 此值固定不变，无法重新分配或重复使用。 可使用它安全地执行授权检查，例如，使用令牌访问资源时。 默认情况下，将使用目录中用户的对象 ID 填充使用者声明。 有关详细信息，请参阅[令牌、会话和单一登录配置](session-behavior.md)。
-- SAML 令牌 - 标识使用者元素的 `<Subject><NameID>` 元素。
+- SAML 令牌 - 标识使用者元素的 `<Subject><NameID>` 元素。 可以修改 NameId 格式。
 
 SubjectNamingInfo 元素包含以下属性：
 
 | 属性 | 必须 | 说明 |
 | --------- | -------- | ----------- |
 | ClaimType | 是 | 对输出声明的 PartnerClaimType 的引用。 输出声明必须在信赖方策略 OutputClaims 集合中定义。 |
+| 格式 | 否 | 用于 SAML 依赖方，以设置 SAML 断言中返回的 NameId 格式。 |
 
 下面的示例演示如何定义 OpenID Connect 信赖方。 使用者名称信息配置为 `objectId`：
 
@@ -244,5 +253,26 @@ JWT 令牌包括带用户 objectId 的 `sub` 声明：
   "sub": "6fbbd70d-262b-4b50-804c-257ae1706ef2",
   ...
 }
+```
+
+下面的示例演示如何定义 SAML 信赖方。 主体名称信息配置为 `objectId`，并提供了 NameId `format`：
+
+```xml
+<RelyingParty>
+  <DefaultUserJourney ReferenceId="SignUpOrSignIn" />
+  <TechnicalProfile Id="PolicyProfile">
+    <DisplayName>PolicyProfile</DisplayName>
+    <Protocol Name="SAML2" />
+    <OutputClaims>
+      <OutputClaim ClaimTypeReferenceId="displayName" />
+      <OutputClaim ClaimTypeReferenceId="givenName" />
+      <OutputClaim ClaimTypeReferenceId="surname" />
+      <OutputClaim ClaimTypeReferenceId="email" />
+      <OutputClaim ClaimTypeReferenceId="objectId" PartnerClaimType="sub"/>
+      <OutputClaim ClaimTypeReferenceId="identityProvider" />
+    </OutputClaims>
+    <SubjectNamingInfo ClaimType="sub" Format="urn:oasis:names:tc:SAML:2.0:nameid-format:transient"/>
+  </TechnicalProfile>
+</RelyingParty>
 ```
 

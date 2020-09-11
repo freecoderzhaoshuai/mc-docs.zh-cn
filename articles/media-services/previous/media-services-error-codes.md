@@ -1,6 +1,6 @@
 ---
 title: Azure 媒体服务错误代码 | Microsoft Docs
-description: 本主题概述 Azure 媒体服务错误代码。
+description: 你可能会从服务收到因问题而异的 HTTP 错误代码，例如身份验证令牌到期或媒体服务不支持操作。 本文概述了 Azure 媒体服务 v2 API 错误代码。
 author: WenJason
 manager: digimobile
 editor: ''
@@ -13,19 +13,19 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/18/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 42eafb9ba0f3f0a52789ab1bfb93e9b20b4e0657
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: cbdcfbe64d74bd7a490a491c6ad7803b13a61440
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71124484"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413179"
 ---
 # <a name="azure-media-services-error-codes"></a>Azure 媒体服务错误代码
 使用 Azure 媒体服务时，可能会从服务收到因问题而异的 HTTP 错误代码，例如身份验证令牌到期或媒体服务不支持操作。 以下是媒体服务可能返回的 **HTTP 错误代码**及可能的错误原因的列表。  
 
-## <a name="400-bad-request"></a>400 错误请求
+## <a name="400-bad-request"></a>400 错误的请求
 请求包含无效信息，并因以下可能的原因之一被拒绝：
 
 * 指定了不支持的 API 版本。 有关最新版本，请参阅[媒体服务 REST API 开发的设置](media-services-rest-how-to-use.md)。
@@ -49,11 +49,11 @@ ms.locfileid: "71124484"
 
 * 缺少身份验证标头。
 * 错误的身份验证标头值。
-  * 令牌已过期。 
+  * 标记已过期。 
   * 令牌包含无效签名。
 
 ## <a name="403-forbidden"></a>403 禁止访问
-出于以下原因之一，未允许该请求：
+出于以下原因之一，不允许该请求：
 
 * 找不到或已删除媒体服务帐户。
 * 已禁用媒体服务帐户，且请求类型不是 HTTP GET。 服务操作也将返回 403 响应。
@@ -76,7 +76,7 @@ ms.locfileid: "71124484"
 * 曾尝试指定未与媒体服务帐户关联的存储帐户。  
 
 ## <a name="409-conflict"></a>409 冲突
-出于以下原因之一，未允许该请求：
+出于以下原因之一，不允许该请求：
 
 * 资产内的多个 AssetFile 具有指定名称。
 * 曾尝试在资产中创建第二个主 AssetFile。
@@ -90,14 +90,14 @@ ms.locfileid: "71124484"
 * 将资产的存储帐户链接到 IngestManifestAsset 与父 IngestManifest 所使用的存储帐户的情况不同。  
 
 ## <a name="500-internal-server-error"></a>500 内部服务器错误
-在处理请求期间，媒体服务遇到了某种错误，从而阻止继续处理请求。 这可能是以下原因之一造成的：
+在处理请求期间，媒体服务会遇到一些阻止处理继续执行的错误。 这可能是以下原因之一造成的：
 
 * 创建资产或作业失败，因为媒体服务帐户的服务配额信息暂不可用。
 * 创建资产或 IngestManifest blob 存储容器失败，因为帐户的存储帐户信息暂不可用。
 * 其他意外错误。
 
 ## <a name="503-service-unavailable"></a>503 服务不可用
-服务器当前无法接收请求。 服务请求过多可能引发此错误。 媒体服务限制机制会限制那些发出过多服务请求的应用程序的资源使用情况。
+服务器当前无法接收请求。 导致此错误的可能原因是向服务发出了过多的请求。 媒体服务限制机制会限制那些发出过多服务请求的应用程序的资源使用情况。
 
 > [!NOTE]
 > 检查错误消息和错误代码字符串以获取有关收到 503 错误的原因的更多详细信息。 此错误并不始终意味着限制。
@@ -108,9 +108,9 @@ ms.locfileid: "71124484"
 
 * “服务器正忙。 之前运行这种类型的请求所用时间超过 {0} 秒。”
 * “服务器正忙。 每秒超过 {0} 个请求可能会受到限制。”
-* “服务器正忙。 {0} 秒中超过 {1} 个请求可能会受到限制。”
+* “服务器正忙。 {1} 秒中超过 {0} 个请求可能会受到限制。”
 
-若要处理此错误，建议使用指数退让重试逻辑。 这意味着需要在重试之间使用渐进式（越来越长）的等待时长，从而生成连续错误响应。  有关详细信息，请参阅[暂时性故障处理应用程序块](https://msdn.microsoft.com/library/hh680905.aspx)。
+若要处理此错误，建议使用指数退让重试逻辑。 这意味着需要在重试之间使用渐进式（越来越长）的等待时长，从而生成连续错误响应。  有关详细信息，请参阅[暂时性故障处理应用程序块](https://docs.microsoft.com/previous-versions/msp-n-p/hh680905(v=pandp.50))。
 
 > [!NOTE]
 > 如果使用[用于 .Net 的 Azure 媒体服务 SDK](https://github.com/Azure/azure-sdk-for-media-services/tree/master)，则该 SDK 已实现 503 错误的重试逻辑。  
@@ -118,7 +118,7 @@ ms.locfileid: "71124484"
 > 
 
 ## <a name="see-also"></a>另请参阅
-[媒体服务管理错误代码](https://msdn.microsoft.com/library/windowsazure/dn167016.aspx)
+[媒体服务管理错误代码](https://docs.microsoft.com/rest/api/media/)
 
 ## <a name="next-steps"></a>后续步骤
 [!INCLUDE [media-services-learning-paths-include](../../../includes/media-services-learning-paths-include.md)]

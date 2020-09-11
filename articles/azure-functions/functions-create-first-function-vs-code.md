@@ -2,15 +2,15 @@
 title: 在 Azure 中使用 Visual Studio Code 创建你的第一个函数
 description: 使用 Visual Studio Code 中的 Azure Functions扩展创建一个简单的 HTTP 触发函数并将其发布到 Azure。
 ms.topic: quickstart
-ms.date: 08/11/2020
-ms.custom: mvc, devcenter, seo
+ms.date: 09/02/2020
+ms.custom: devx-track-csharp, mvc, devcenter, seo
 zone_pivot_groups: programming-languages-set-functions
-ms.openlocfilehash: 18aa6283a546ba1786ad4f880e37723f761160ab
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: 1df6612ae2a004357d922249a8cf9676160d1533
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222584"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413637"
 ---
 # <a name="quickstart-create-a-function-in-azure-using-visual-studio-code"></a>快速入门：在 Azure 中使用 Visual Studio Code 创建函数
 
@@ -49,30 +49,30 @@ ms.locfileid: "88222584"
 ::: zone pivot="programming-language-csharp,programming-language-powershell"  
 + [Node.js](https://nodejs.org/)，在 Windows 上使用 npm 时所必需的。 仅限[活动 LTS 和维护 LTS 版本](https://nodejs.org/about/releases/)。 可以使用 `node --version` 命令检查你的版本。
     对于 macOS 和 Linux 上的本地开发而言，这不是必需的。   
-::: zone-end  
+::: zone-end   
 ::: zone pivot="programming-language-javascript,programming-language-typescript"  
-+ [Node.js](https://nodejs.org/)，活动 LTS 和维护 LTS 版本（建议使用 10.14.1）。 可以使用 `node --version` 命令检查你的版本。
-::: zone-end 
++ [Node.js](https://nodejs.org/)，活动 LTS 和维护 LTS 版本（建议使用 10.14.1）。 可以使用 `node --version` 命令检查你的版本。  
+::: zone-end  
 
 ::: zone pivot="programming-language-powershell"
-+ [PowerShell Core](https://docs.microsoft.com/powershell/scripting/install/installing-powershell-core-on-windows)
++ [PowerShell 7](https://docs.microsoft.com/powershell/scripting/install/installing-powershell-core-on-windows)
 
-+ [.NET Core SDK 2.2+](https://www.microsoft.com/net/download)  
++ [.NET Core 3.1](https://www.microsoft.com/net/download) 和 [.NET Core 2.1](https://dotnet.microsoft.com/download/dotnet-core/2.2)  
 ::: zone-end  
 ::: zone pivot="programming-language-java"  
 + [Java 开发人员工具包](https://aka.ms/azure-jdks)版本 8。
 
 + [Apache Maven](https://maven.apache.org) 3.0 或更高版本。
 ::: zone-end  
-+ 安装在某个[受支持的平台](https://code.visualstudio.com/docs/supporting/requirements#_platforms)上的 [Visual Studio Code](https://code.visualstudio.com/)。  
++ 安装在某个[受支持的平台](https://code.visualstudio.com/docs/supporting/requirements#_platforms)上的 [Visual Studio Code](https://code.visualstudio.com/)。    
 ::: zone pivot="programming-language-csharp"  
 + Visual Studio Code 的 [C# 扩展](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)。  
 ::: zone-end  
-::: zone pivot="programming-language-powershell"
-+ [Visual Studio Code 的 PowerShell 扩展](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell)。 
+::: zone pivot="programming-language-powershell"  
++ [Visual Studio Code 的 PowerShell 扩展](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell)。  
 ::: zone-end  
-::: zone pivot="programming-language-java"  
-+ [Java 扩展包](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
+::: zone pivot="programming-language-java"   
++ [Java 扩展包](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)  
 ::: zone-end  
 
 + Visual Studio Code 的 [Azure Functions 扩展](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)。 
@@ -106,6 +106,8 @@ ms.locfileid: "88222584"
     ::: zone-end
     ::: zone pivot="programming-language-java"  
     + **选择函数项目的语言**：选择`Java`。
+
+    + **选择 Java 的版本**：选择在 Azure 中运行函数的 `Java 8` 或 `Java 11 (preview)`。 选择已在本地验证的 Java 版本。
 
     + **提供组 ID**：选择`com.function`。
 

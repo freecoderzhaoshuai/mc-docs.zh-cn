@@ -1,23 +1,25 @@
 ---
-title: 使用 Azure 门户将托管数据磁盘附加到 Windows VM
+title: 将托管数据磁盘附加到 Windows VM - Azure
 description: 如何使用 Azure 门户将托管数据磁盘附加到 Windows VM。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.topic: how-to
 origin.date: 02/06/2020
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.subservice: disks
-ms.openlocfilehash: adbecd327186f45bf175ffd1c74eb476284243ea
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: cbe6e01efa753a4bb5949cd5c34bbd1e05daed7a
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945643"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462842"
 ---
 # <a name="attach-a-managed-data-disk-to-a-windows-vm-by-using-the-azure-portal"></a>使用 Azure 门户将托管数据磁盘附加到 Windows VM
 
-本文介绍如何使用 Azure 门户将新的托管数据磁盘附加到 Windows 虚拟机 (VM)。 VM 的大小决定了可以附加的数据磁盘数量。 有关详细信息，请参阅[虚拟机的大小](sizes.md)。
+本文介绍如何使用 Azure 门户将新的托管数据磁盘附加到 Windows 虚拟机 (VM)。 VM 的大小决定了可以附加的数据磁盘数量。 有关详细信息，请参阅[虚拟机的大小](../sizes.md)。
 
 ## <a name="add-a-data-disk"></a>添加数据磁盘
 
@@ -49,4 +51,4 @@ ms.locfileid: "85945643"
 - 还可以[使用 PowerShell 附加数据磁盘](attach-disk-ps.md)。
 - 如果应用程序需要使用 *D:* 盘存储数据，可以[更改 Windows 临时磁盘的驱动器号](change-drive-letter.md)。
 
-<!-- Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

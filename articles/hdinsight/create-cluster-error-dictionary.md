@@ -6,14 +6,14 @@ author: karkrish
 ms.service: hdinsight
 ms.custom: hdinsightactive,hdiseo17may2017
 ms.topic: troubleshooting
-origin.date: 11/19/2019
-ms.date: 03/23/2020
-ms.openlocfilehash: cf4f7e5c2c4fc92224432706d69aafc1b17f0b7d
-ms.sourcegitcommit: 3de7d92ac955272fd140ec47b3a0a7b1e287ca14
+origin.date: 08/24/2020
+ms.date: 09/14/2020
+ms.openlocfilehash: bfed8441223c3e576f52784715e92b9b439ec427
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84723064"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462817"
 ---
 # <a name="azure-hdinsight-cluster-creation-errors"></a>Azure HDInsight：群集创建错误
 
@@ -24,19 +24,17 @@ ms.locfileid: "84723064"
 
 ## <a name="error-codedeploymentdocument-csmdocument_2_0-failed-the-validation"></a>错误代码： DeploymentDocument 'CsmDocument_2_0' 验证失败
 
-### <a name="error"></a>错误
+**错误**：“无法通过 URI:\<SCRIPT ACTION URL\>”
 
-“无法通过 URI:\<SCRIPT ACTION URL\>”
-
-#### <a name="error-message"></a>错误消息
+### <a name="error-message-1"></a>错误消息 1
 
 “远程服务器返回错误:(404)未找到。”
 
-### <a name="cause"></a>原因
+#### <a name="cause"></a>原因
 
 HDInsight 服务无法访问作为“创建群集”请求的一部分提供的脚本操作 URL。 当该服务尝试访问该脚本操作时，会收到上述错误消息。
 
-### <a name="resolution"></a>解决方法
+#### <a name="resolution"></a>解决方法
 
 - 对于 HTTP 或 HTTPS URL，请尝试从 Incognito 浏览器窗口转到该 URL 进行验证。
 - 对于 WASB URL，请确保该脚本在请求中指定的存储帐户中存在。 另请确保此存储帐户的存储密钥正确。
@@ -44,37 +42,29 @@ HDInsight 服务无法访问作为“创建群集”请求的一部分提供的�
 
 ---
 
-## <a name="error-codedeploymentdocument-csmdocument_2_0-failed-the-validation"></a>错误代码： DeploymentDocument 'CsmDocument_2_0' 验证失败
-
-### <a name="error"></a>错误
-
-“无法通过 URI:\<SCRIPT_ACTION_URL\>”
-
-#### <a name="error-message"></a>错误消息
+### <a name="error-message-2"></a>错误消息 2
 
 “给定的脚本 URI \<SCRIPT_URI\> 在 ADLS 中，但此群集没有 Data Lake Storage 主体”
 
-### <a name="cause"></a>原因
+#### <a name="cause"></a>原因
 
 HDInsight 服务无法访问作为“创建群集”请求的一部分提供的脚本操作 URL。 当该服务尝试访问该脚本操作时，会收到上述错误消息。
 
-### <a name="resolution"></a>解决方法
+#### <a name="resolution"></a>解决方法
 
 将相应的 Azure Data Lake Storage Gen 1 帐户添加到群集。 此外，将用于访问 Data Lake Storage Gen 1 帐户的服务主体添加到群集。
 
 ---
 
-## <a name="error-code-deploymentdocument-csmdocument_2_0-failed-the-validation"></a>错误代码：DeploymentDocument 'CsmDocument_2_0' 验证失败
-
-### <a name="error"></a>错误
+### <a name="error-message-3"></a>错误消息 3
 
 “请求中提供的 VM 大小 \<CUSTOMER_SPECIFIED_VM_SIZE\> 无效，或者不支持 \<ROLE\> 角色。 有效值是：\<VALID_VM_SIZE_FOR_ROLE\>”
 
-### <a name="cause"></a>原因
+#### <a name="cause"></a>原因
 
 该角色不允许指定的虚拟机大小。 此错误的可能原因是 VM 大小值不符合预期，或者不适合该计算机角色。
 
-### <a name="resolution"></a>解决方法
+#### <a name="resolution"></a>解决方法
 
 错误消息列出了 VM 大小的有效值。 请选择其中的一个值，然后重试“创建群集”请求。
 

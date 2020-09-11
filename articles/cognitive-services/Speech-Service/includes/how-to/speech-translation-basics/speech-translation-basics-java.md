@@ -3,14 +3,15 @@ author: trevorbye
 ms.service: cognitive-services
 ms.topic: include
 origin.date: 04/13/2020
-ms.date: 04/20/2020
+ms.date: 08/03/2020
+ms.custom: devx-track-java
 ms.author: v-tawe
-ms.openlocfilehash: ebce77eabda19b7a640e7c6064e4d020eebc094c
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.openlocfilehash: f38d4c54c39253ea3f5b98fc6691179aa21ae6c6
+ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82127233"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "89323280"
 ---
 ## <a name="prerequisites"></a>先决条件
 
@@ -18,7 +19,7 @@ ms.locfileid: "82127233"
 
 ## <a name="install-the-speech-sdk"></a>安装语音 SDK
 
-需要先安装语音 SDK，然后才能执行任何操作。 根据你的平台，按照“语音 SDK”一文的<a href="https://docs.azure.cn/cognitive-services/speech-service/speech-sdk#get-the-speech-sdk" target="_blank">获取语音 SDK<span class="docon docon-navigate-external x-hidden-focus"></span></a> 部分中的说明进行操作。
+需要先安装语音 SDK，然后才能执行任何操作。 根据你的平台，按照“关于语音 SDK”一文的<a href="https://docs.azure.cn/cognitive-services/speech-service/speech-sdk#get-the-speech-sdk" target="_blank">获取语音 SDK<span class="docon docon-navigate-external x-hidden-focus"></span></a> 部分中的说明进行操作。
 
 ## <a name="import-dependencies"></a>导入依赖项
 
@@ -37,9 +38,7 @@ import com.microsoft.cognitiveservices.speech.translation.*;
 
 ## <a name="sensitive-data-and-environment-variables"></a>敏感数据和环境变量
 
-本文中的示例源代码依赖于用于存储敏感数据的环境变量，如语音资源订阅密钥和区域。 Java 代码文件包含从主机环境变量（即 `SPEECH__SUBSCRIPTION__KEY` 和 `SPEECH__SERVICE__REGION`）分配的两个 `static final String` 值。 这两个字段都在类范围内，因此可以在类的方法主体中访问它们。
-
-<!-- For more information on environment variables, see [environment variables and application configuration](../../../../cognitive-services-security.md#environment-variables-and-application-configuration). -->
+本文中的示例源代码依赖于用于存储敏感数据的环境变量，如语音资源订阅密钥和区域。 Java 代码文件包含从主机环境变量（即 `SPEECH__SUBSCRIPTION__KEY` 和 `SPEECH__SERVICE__REGION`）分配的两个 `static final String` 值。 这两个字段都在类范围内，因此可以在类的方法主体中访问它们。 有关环境变量的详细信息，请参阅[环境变量和应用程序配置](../../../../cognitive-services-security.md#environment-variables-and-application-configuration)。
 
 ```java
 public class App {
@@ -53,10 +52,10 @@ public class App {
 
 ## <a name="create-a-speech-translation-configuration"></a>创建语音翻译配置
 
-若要使用语音 SDK 调用语音服务，需要创建 [`SpeechTranslationConfig`][config]。 此类包含有关订阅的信息，例如密钥和关联的区域、终结点、主机或授权令牌。
+若要使用语音 SDK 调用语音服务，需要创建 [`SpeechTranslationConfig`][config]。 此类包含有关你的订阅的信息，例如你的密钥和关联的区域、终结点、主机或授权令牌。
 
 > [!TIP]
-> 无论是要执行语音识别、语音合成、翻译还是意向识别，都需要创建一个配置。
+> 无论你是要执行语音识别、语音合成、翻译，还是意向识别，都需要创建一个配置。
 
 可以通过以下几种方法初始化 [`SpeechTranslationConfig`][config]：
 
@@ -108,7 +107,7 @@ static void translateSpeech() {
 
 ## <a name="add-translation-language"></a>添加翻译语言
 
-语音翻译的另一项常见任务是指定目标翻译语言，至少需要一种语言，但支持多种语言。 在以下代码片段中，法语和德语都作为目标翻译语言。
+语音翻译的另一项常见任务是指定目标翻译语言，至少需要一种语言，但支持多种语言。 以下代码片段将法语和德语设置成了目标翻译语言。
 
 ```java
 static void translateSpeech() {
@@ -248,7 +247,7 @@ static void translateSpeech() throws ExecutionException, FileNotFoundException, 
     translationConfig.setSpeechRecognitionLanguage(fromLanguage);
     translationConfig.addTargetLanguage(toLanguage);
 
-    // See: https://aka.ms/speech/sdkregion#standard-and-neural-voices
+    // See: https://docs.azure.cn/cognitive-services/speech-service/regions#standard-and-neural-voices
     translationConfig.setVoiceName("de-DE-Hedda");
 
     try (TranslationRecognizer recognizer = new TranslationRecognizer(translationConfig)) {
@@ -302,7 +301,7 @@ static void translateSpeech() throws ExecutionException, InterruptedException {
 
         TranslationRecognitionResult result = recognizer.recognizeOnceAsync().get();
         if (result.getReason() == ResultReason.TranslatedSpeech) {
-            // See: https://aka.ms/speech/sdkregion#standard-and-neural-voices
+            // See: https://docs.azure.cn/cognitive-services/speech-service/regions#standard-and-neural-voices
             Map<String, String> languageToVoiceMap = new HashMap<String, String>();
             languageToVoiceMap.put("de", "de-DE-KatjaNeural");
             languageToVoiceMap.put("en", "en-US-AriaNeural");

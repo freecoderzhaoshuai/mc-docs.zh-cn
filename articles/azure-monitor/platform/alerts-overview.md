@@ -1,18 +1,16 @@
 ---
 title: Azure 中的警报和通知监视概述
 description: Azure 中的警报概述。 警报、经典警报和警报界面。
-author: Johnnytechn
 ms.subservice: alerts
 ms.topic: conceptual
+ms.date: 08/20/2020
 origin.date: 01/28/2018
-ms.date: 05/28/2020
-ms.author: v-johya
-ms.openlocfilehash: 17ab0b3100fb36d4108417d40e608ef3a7bf575a
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: ff95c43528738af6aa1ddc0cbdbe4cf129b3bfdf
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440710"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457304"
 ---
 # <a name="overview-of-alerts-in-azure"></a>Azure 中的警报概述 
 
@@ -55,11 +53,11 @@ ms.locfileid: "84440710"
 - 严重性为 3 = 信息
 - 严重性为 4 = 详细 
 
-**操作**：触发警报时执行的特定操作。 有关详细信息，请参阅[操作组](../../azure-monitor/platform/action-groups.md)。
+**操作**：触发警报时执行的特定操作。 有关详细信息，请参阅[操作组](./action-groups.md)。
 
 ## <a name="what-you-can-alert-on"></a>可以报警的内容
 
-可以按照[监视数据源](../../azure-monitor/platform/data-sources.md)中的说明，针对指标和日志发出警报。 这些检查包括但不限于：
+可以按照[监视数据源](./data-sources.md)中的说明，针对指标和日志发出警报。 这些检查包括但不限于：
 
 - 指标值
 - 日志搜索查询
@@ -71,8 +69,8 @@ ms.locfileid: "84440710"
 
 | **监视器源** | **信号类型**  | **说明** |
 |-------------|----------------|-------------|
-| 服务运行状况 | 活动日志  | 不支持。 请参阅[创建有关服务通知的活动日志警报](../../azure-monitor/platform/alerts-activity-log-service-notifications.md)。  |
-| Application Insights | Web 可用性测试 | 不支持。 请参阅 [Web 测试警报](../../azure-monitor/app/monitor-web-app-availability.md)。 适用于任何经检测可将数据发送到 Application Insights 的网站。 网站的可用性或响应度低于预期时，就会收到通知。 |
+| 服务运行状况 | 活动日志  | 不支持。 请参阅[创建有关服务通知的活动日志警报](../../service-health/alerts-activity-log-service-notifications-portal.md)。  |
+| Application Insights | Web 可用性测试 | 不支持。 请参阅 [Web 测试警报](../app/monitor-web-app-availability.md)。 适用于任何经检测可将数据发送到 Application Insights 的网站。 网站的可用性或响应度低于预期时，就会收到通知。 |
 
 ## <a name="manage-alerts"></a>管理警报
 可以设置警报状态来指定它在解决过程中所处的阶段。 符合警报规则中指定的条件以后，就会创建或触发警报，其状态为“新”。 可以在确认警报和关闭警报时更改状态。 所有状态更改都存储在警报历史记录中。
@@ -137,9 +135,9 @@ ms.locfileid: "84440710"
  
 这个创作过程经过了简化，用户在选择 Azure 资源之前，不再需要知道受支持的监视源或信号。 可用信号列表会根据你选择的目标资源自动筛选。 另外，还将根据该目标引导你自动定义警报规则的逻辑。  
 
-可以在[使用 Azure Monitor 创建、查看和管理警报](../../azure-monitor/platform/alerts-metric.md)中详细了解如何创建警报规则。
+可以在[使用 Azure Monitor 创建、查看和管理警报](./alerts-metric.md)中详细了解如何创建警报规则。
 
-警报可在多个 Azure 监视服务中使用。 有关如何以及何时使用其中每种服务的信息，请参阅[监视 Azure 应用程序和资源](../../azure-monitor/overview.md)。 
+警报可在多个 Azure 监视服务中使用。 有关如何以及何时使用其中每种服务的信息，请参阅[监视 Azure 应用程序和资源](../overview.md)。 
 
 
 ## <a name="all-alerts-page"></a>“所有警报”页 
@@ -178,7 +176,7 @@ ms.locfileid: "84440710"
 
 ## <a name="role-based-access-control-rbac-for-your-alert-instances"></a>警报实例的基于角色的访问控制 (RBAC)
 
-使用和管理警报实例需要用户具有[监视参与者](/role-based-access-control/built-in-roles#monitoring-contributor)或[监视读取者](/role-based-access-control/built-in-roles#monitoring-reader)的内置 RBAC 角色。 在任何 Azure 资源管理器范围（从订阅级别到资源级别的粒度分配）内都支持这些角色。 例如，如果用户只具有虚拟机 `ContosoVM1` 的“监视参与者”访问权限，则该用户只能使用和管理 `ContosoVM1` 上生成的警报。
+使用和管理警报实例需要用户具有[监视参与者](../../role-based-access-control/built-in-roles.md#monitoring-contributor)或[监视读取者](../../role-based-access-control/built-in-roles.md#monitoring-reader)的 Azure 内置角色。 在任何 Azure 资源管理器范围（从订阅级别到资源级别的粒度分配）内都支持这些角色。 例如，如果用户只具有虚拟机 `ContosoVM1` 的“监视参与者”访问权限，则该用户只能使用和管理 `ContosoVM1` 上生成的警报。
 
 ## <a name="manage-your-alert-instances-programmatically"></a>以编程方式管理警报实例
 
@@ -208,14 +206,8 @@ ms.locfileid: "84440710"
 ## <a name="next-steps"></a>后续步骤
 
 - [详细了解智能组](https://aka.ms/smart-groups)
-- [了解操作组](../../azure-monitor/platform/action-groups.md)
+- [了解操作组](./action-groups.md)
 - [在 Azure 中管理警报实例](https://aka.ms/managing-alert-instances)
 - [Managing Smart Groups](https://aka.ms/managing-smart-groups)（管理智能组）
 - [详细了解 Azure 警报定价](https://www.azure.cn/pricing/details/monitor/)
-
-
-
-
-
-
 

@@ -1,6 +1,6 @@
 ---
 title: 连接到 Azure 媒体服务 v3 API - .NET
-description: 了解如何使用 .NET 连接到媒体服务 v3 API。
+description: 本文演示如何使用 .NET 连接到媒体服务 v3 API。
 services: media-services
 documentationcenter: ''
 author: WenJason
@@ -12,14 +12,15 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 09/18/2019
-ms.date: 11/04/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: b3400b51df1ea0ede695e0f0a4293f83b8afe6f6
-ms.sourcegitcommit: 1f890a4085e184cc678485d05f08dd6de8dc973f
+ms.custom: has-adal-ref
+ms.openlocfilehash: 916425d14a2b559a338ac0646a030b5e9fdb4d0d
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84438930"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413367"
 ---
 # <a name="connect-to-media-services-v3-api---net"></a>连接到媒体服务 v3 API - .NET
 
@@ -27,7 +28,7 @@ ms.locfileid: "84438930"
 
 ## <a name="prerequisites"></a>先决条件
 
-- [创建媒体服务帐户](create-account-cli-how-to.md)。 请务必记住资源组名称和媒体服务帐户名称
+- [创建媒体服务帐户](./create-account-howto.md)。 请务必记住资源组名称和媒体服务帐户名称
 - 安装用于 .NET 开发的工具。 本文中的步骤演示如何使用 [Visual Studio 2019 Community Edition](https://www.visualstudio.com/downloads/)。 你也可以使用 Visual Studio Code，具体请参阅[使用 C#](https://code.visualstudio.com/docs/languages/csharp)。 或者，可以使用其他代码编辑器。
 
 > [!IMPORTANT]
@@ -39,7 +40,7 @@ ms.locfileid: "84438930"
 1. 在“文件”菜单中，单击“新建” > “项目”。   
 1. 创建 **.NET Core** 控制台应用程序。
 
-本主题中的示例应用面向 `netcoreapp2.0`。 代码使用从 C# 7.1 开始提供的“async main”。 有关更多详细信息，请参阅[此博客](https://blogs.msdn.microsoft.com/benwilli/2017/12/08/async-main-is-available-but-hidden/)。
+本主题中的示例应用面向 `netcoreapp2.0`。 代码使用从 C# 7.1 开始提供的“async main”。 有关更多详细信息，请参阅[此博客](https://docs.microsoft.com/archive/blogs/benwilli/async-main-is-available-but-hidden)。
 
 ## <a name="add-required-nuget-packages"></a>添加所需的 NuGet 包
 
@@ -64,7 +65,7 @@ ms.locfileid: "84438930"
 
 ### <a name="set-values-in-appsettingsjson"></a>设置 appsettings.json 中的值
 
-根据[访问 API](access-api-cli-how-to.md) 中所述运行 `az ams account sp create` 命令。 该命令返回要复制到“appsettings.json”中的 JSON。
+根据[访问 API](./access-api-howto.md) 中所述运行 `az ams account sp create` 命令。 该命令返回要复制到“appsettings.json”中的 JSON。
  
 ## <a name="add-configuration-file"></a>添加配置文件
 

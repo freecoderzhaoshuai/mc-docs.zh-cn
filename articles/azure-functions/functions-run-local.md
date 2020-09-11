@@ -3,14 +3,14 @@ title: 使用 Azure Functions Core Tools
 description: 了解如何通过本地计算机上的命令提示符或终端编写和测试 Azure 函数，然后在 Azure Functions 中运行这些函数。
 ms.assetid: 242736be-ec66-4114-924b-31795fd18884
 ms.topic: conceptual
-ms.date: 08/24/2020
+ms.date: 09/03/2020
 ms.custom: devx-track-csharp, 80e4ff38-5174-43
-ms.openlocfilehash: ea0a2a8ae8ea09db5789f3341d39ce95e7834372
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: d0da693a8169e056e820157c45ec1d171fb4e982
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88946893"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413460"
 ---
 # <a name="work-with-azure-functions-core-tools"></a>使用 Azure Functions Core Tools
 
@@ -37,7 +37,7 @@ Azure Functions Core Tools 有三个版本。 使用的版本取决于本地开�
 
 + **版本 1.x**：支持 1.x 版的 Azure Functions 运行时。 此 Tools 版本仅在 Windows 计算机上受支持，需从 [npm 包](https://www.npmjs.com/package/azure-functions-core-tools)安装。
 
-除非另有说明，否则本文中的示例适用于版本 3.x。
+你只能在给定计算机上安装一个版本的核心工具。 除非另有说明，否则本文中的示例适用于版本 3.x。
 
 ## <a name="prerequisites"></a>先决条件
 
@@ -165,6 +165,9 @@ Functions 项目目录包含文件 [host.json](functions-host-json.md) 和 [loca
 func init MyFunctionProj
 ```
 
+>[!IMPORTANT]
+> Java 使用 Maven archetype 来创建本地 Functions 项目，以及第一个由 HTTP 触发的函数。 使用以下命令创建 Java 项目：`mvn archetype:generate -DarchetypeGroupId=com.microsoft.azure -DarchetypeArtifactId=azure-functions-archetype`。 有关使用 Maven archetype 的示例，请参阅[命令行快速入门](/azure-functions/functions-create-first-azure-function-azure-cli?pivots=programming-language-java)。  
+
 提供项目名称后，系统就会创建并初始化使用该名称的新文件夹， 否则会初始化当前文件夹。  
 在版本 3.x/2.x 中运行命令时，必须为项目选择一个运行时。 
 
@@ -251,20 +254,21 @@ Initialized empty Git repository in C:/myfunctions/myMyFunctionProj/.git/
 
   ![从存储资源管理器复制连接字符串](./media/functions-run-local/storage-explorer.png)
 
-+ 使用核心工具通过下列命令之一从 Azure 下载连接字符串：
++ 使用项目根目录中的核心工具通过下列命令之一从 Azure 下载连接字符串：
 
   + 从现有函数应用下载所有设置：
 
     ```
     func azure functionapp fetch-app-settings <FunctionAppName>
     ```
+
   + 获取特定存储帐户的连接字符串。
 
     ```
     func azure storage fetch-connection-string <StorageAccountName>
     ```
 
-    如果你尚未登录到 Azure，系统会要求登录。
+    如果你尚未登录到 Azure，系统会要求登录。 这些命令将覆盖 local.settings.json 文件中的任何现有设置。 
 
 ## <a name="create-a-function"></a><a name="create-func"></a>创建函数
 
@@ -331,6 +335,14 @@ func new --template "Queue Trigger" --name QueueTriggerJS
 ```
 func start --build
 ```
+
+# <a name="java"></a>[Java](#tab/java)
+
+```
+mvn clean package 
+mvn azure-functions:run
+```
+
 # <a name="javascript"></a>[JavaScript](#tab/node)
 
 ```
@@ -494,6 +506,9 @@ Azure Functions Core Tools 支持两种类型的部署：通过 [Zip Deploy](fun
 ```
 func azure functionapp publish <FunctionAppName>
 ```
+
+>[!IMPORTANT]
+> Java 使用 Maven 将本地项目发布到 Azure。 使用以下命令发布到 Azure：`mvn azure-functions:deploy`。 Azure 资源是在初始部署期间创建的。
 
 此命令发布到 Azure 中的现有函数应用。 如果尝试发布到订阅中不存在的 `<FunctionAppName>`，则会收到错误。 若要了解如何使用 Azure CLI 从命令提示符或终端窗口创建函数应用，请参阅[为无服务器执行创建函数应用](./scripts/functions-cli-create-serverless.md)。 默认情况下，此命令使用[远程生成](functions-deployment-technologies.md#remote-build)并将应用部署为[从部署包运行](run-functions-from-deployment-package.md)。 若要禁用此建议的部署模式，请使用 `--nozip` 选项。
 

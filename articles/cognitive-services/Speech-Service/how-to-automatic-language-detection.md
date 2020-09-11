@@ -9,16 +9,16 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: conceptual
 origin.date: 05/19/2020
-ms.date: 08/03/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 zone_pivot_groups: programming-languages-speech-services-nomore-variant
-ms.custom: devx-track-javascript
-ms.openlocfilehash: 58f1fa5d66d7980c52c5a83835d95efe058d6fe4
-ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
+ms.custom: devx-track-javascript, devx-track-csharp
+ms.openlocfilehash: b1df397d6c38144ca7be215f19d16535ab771b73
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87516135"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317435"
 ---
 # <a name="automatic-language-detection-for-speech-to-text"></a>语音转文本的自动语言检测
 
@@ -27,7 +27,7 @@ ms.locfileid: "87516135"
 本文介绍如何使用 `AutoDetectSourceLanguageConfig` 来构造 `SpeechRecognizer` 对象并检索检测到的语言。
 
 > [!IMPORTANT]
-> 此功能仅适用于具有 C#、C++、Java、Python 和 Objective-C 的语音 SDK。
+> 此功能仅适用于具有 C#、C++、Java、Python、JavaScript 和 Objective-C 的语音 SDK。
 
 ## <a name="automatic-language-detection-with-the-speech-sdk"></a>使用语言 SDK 进行自动语言检测
 
@@ -241,4 +241,24 @@ var autoDetectConfig = SpeechSDK.AutoDetectSourceLanguageConfig.fromSourceLangua
 
 ## <a name="next-steps"></a>后续步骤
 
-- [语音 SDK 参考文档](speech-sdk.md)
+::: zone pivot="programming-language-csharp"
+* 有关自动语言检测，请参阅 GitHub 上的[示例代码](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/speech_recognition_samples.cs#L741)
+::: zone-end
+
+::: zone pivot="programming-language-cpp"
+* 有关自动语言检测，请参阅 GitHub 上的[示例代码](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/cpp/windows/console/samples/speech_recognition_samples.cpp#L507)
+::: zone-end
+
+::: zone pivot="programming-language-java"
+* 有关自动语言检测，请参阅 GitHub 上的[示例代码](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/java/jre/console/src/com/microsoft/cognitiveservices/speech/samples/console/SpeechRecognitionSamples.java#L521)
+::: zone-end
+
+::: zone pivot="programming-language-python"
+* 有关自动语言检测，请参阅 GitHub 上的[示例代码](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/python/console/speech_synthesis_sample.py#L434)
+::: zone-end
+
+::: zone pivot="programming-language-objectivec"
+* 有关自动语言检测，请参阅 GitHub 上的[示例代码](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/objective-c/ios/speech-samples/speech-samples/ViewController.m#L494)
+::: zone-end
+
+* [语音 SDK 参考文档](speech-sdk.md)

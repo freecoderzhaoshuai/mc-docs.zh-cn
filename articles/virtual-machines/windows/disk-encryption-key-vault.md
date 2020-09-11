@@ -3,27 +3,32 @@ title: 创建和配置用于 Azure 磁盘加密的密钥保管库
 description: 本文介绍创建和配置用于 Azure 磁盘加密的密钥保管库的步骤
 ms.service: virtual-machines
 ms.subservice: security
-ms.topic: article
-author: rockboyfor
+ms.topic: how-to
 origin.date: 08/06/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: seodec18
-ms.openlocfilehash: ef60debaf41371dd6583834eba4943824aa0cd0f
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 70c5395016fc9cbca7e80fd0bc7be6c1853c99b4
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946010"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463198"
 ---
 # <a name="creating-and-configuring-a-key-vault-for-azure-disk-encryption"></a>创建和配置用于 Azure 磁盘加密的密钥保管库
 
-Azure Disk Encryption 使用 Azure Key Vault 来控制和管理磁盘加密密钥和机密。  有关 Key Vault 的详细信息，请参阅 [Azure Key Vault 入门](../../key-vault/key-vault-get-started.md)和[保护 Key Vault](../../key-vault/general/secure-your-key-vault.md)。 
+Azure Disk Encryption 使用 Azure Key Vault 来控制和管理磁盘加密密钥和机密。  有关 Key Vault 的详细信息，请参阅 [Azure Key Vault 入门](../../key-vault/general/overview.md)和[保护 Key Vault](../../key-vault/general/secure-your-key-vault.md)。 
 
 > [!WARNING]
 > - 如果之前是使用 Azure 磁盘加密与 Azure AD 来加密 VM，则必须继续使用此选项来加密 VM。 有关详细信息，请参阅[使用 Azure AD 创建和配置用于 Azure 磁盘加密的 Key Vault（以前版本）](disk-encryption-key-vault-aad.md)。
 
 创建和配置用于 Azure 磁盘加密的 Key Vault 需要三个步骤：
+
+> [!Note]
+> 必须在 Azure Key Vault 访问策略设置中选择该选项，才能为卷加密启用对 Azure 磁盘加密的访问。 如果已在密钥保管库上启用防火墙，则必须转到密钥保管库上的“网络”选项卡并启用对 Azure 受信任的服务的访问。 
 
 1. 创建资源组（如果需要）。
 2. 创建密钥保管库。 
@@ -41,7 +46,7 @@ Azure Disk Encryption 使用 Azure Key Vault 来控制和管理磁盘加密密�
 
 ## <a name="install-tools-and-connect-to-azure"></a>安装工具并连接到 Azure
 
-可以使用 [Azure CLI](https://docs.azure.cn/cli/?view=azure-cli-latest)、[Azure PowerShell Az 模块](https://docs.microsoft.com/powershell/azure/overview)或 [Azure 门户](https://portal.azure.cn)来完成本文中的步骤。
+可以使用 [Azure CLI](https://docs.azure.cn/cli/?view=azure-cli-latest)、[Azure PowerShell Az 模块](https://docs.microsoft.com/powershell/azure/)或 [Azure 门户](https://portal.azure.cn)来完成本文中的步骤。
 
 虽然可以通过浏览器访问门户，但 Azure CLI 和 Azure PowerShell 需要本地安装；有关详细信息，请参阅[适用于 Windows 的 Azure 磁盘加密：安装工具](disk-encryption-windows.md#install-tools-and-connect-to-azure)。
 

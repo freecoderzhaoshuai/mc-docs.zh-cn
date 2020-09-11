@@ -4,14 +4,15 @@ description: 了解如何使用 Azure Cache for Redis 缓存 ASP.NET 页面输�
 author: yegu-ms
 ms.author: v-junlch
 ms.service: cache
+ms.custom: devx-track-csharp
 ms.topic: conceptual
-ms.date: 06/16/2020
-ms.openlocfilehash: 32d18024f425e7b122f99860db81b8cd23daef22
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.date: 08/31/2020
+ms.openlocfilehash: 1f9a8f4edad7050e5a5de223d253088baa1c177a
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097306"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413951"
 ---
 # <a name="aspnet-output-cache-provider-for-azure-cache-for-redis"></a>Azure Redis 缓存的 ASP.NET 输出缓存提供程序
 
@@ -56,7 +57,7 @@ NuGet 包会下载并添加所需的程序集引用，并将以下节添加到 w
 | *host* | string | "localhost" | Redis 服务器 IP 地址或主机名 |
 | *port* | 正整数 | 6379（非 TLS/SSL）<br/>6380（TLS/SSL） | Redis 服务器端口 |
 | *accessKey* | string | "" | 启用 Redis 授权时的 Redis 服务器密码。 该值默认为空字符串，即，会话状态提供程序在连接到 Redis 服务器时不使用任何密码。 **如果 Redis 服务器位于 Azure Redis 缓存等可公开访问的网络中，请务必启用 Redis 授权以提高安全性，并提供安全密码。** |
-| *ssl* | boolean | **false** | 是否要通过 TLS 连接到 Redis 服务器。 此值默认为“false”****，因为 Redis 并非现成支持 TLS。 **如果使用现成支持 SSL 的 Azure Redis 缓存，请务必将此属性设置为 true，以提高安全性。**<br/><br/>默认情况下，将为新缓存禁用非 TLS 端口。 为此设置指定“true”**** 可使用 TLS 端口。 有关启用非 TLS 端口的详细信息，请参阅[配置缓存](cache-configure.md)主题中的[访问端口](cache-configure.md#access-ports)部分。 |
+| *ssl* | boolean | **false** | 是否要通过 TLS 连接到 Redis 服务器。 此值默认为“false”****，因为 Redis 并非现成支持 TLS。 **如果使用现成支持 SSL 的 Azure Redis 缓存，请务必将此属性设置为 true，以提高安全性。**<br/><br/>默认情况下，将为新缓存禁用非 TLS 端口。 为此设置指定“true”可使用非 TLS 端口。 有关启用非 TLS 端口的详细信息，请参阅[配置缓存](cache-configure.md)主题中的[访问端口](cache-configure.md#access-ports)部分。 |
 | *databaseIdNumber* | 正整数 | 0 | 只能通过 web.config 或 AppSettings 指定此属性。**<br/><br/>指定要使用的 Redis 数据库。 |
 | *connectionTimeoutInMilliseconds* | 正整数 | 由 StackExchange.Redis 提供 | 用于在创建 StackExchange.Redis.ConnectionMultiplexer 时设置 *ConnectTimeout*。 |
 | *operationTimeoutInMilliseconds* | 正整数 | 由 StackExchange.Redis 提供 | 用于在创建 StackExchange.Redis.ConnectionMultiplexer 时设置 *SyncTimeout*。 |
@@ -193,7 +194,7 @@ namespace MyCompany.Redis
 <%@ OutputCache Duration="60" VaryByParam="*" %>
 ```
 
-在上例中，缓存的页面数据可在缓存中保留 60 秒，并且为每个参数组合缓存不同版本的页面。 有关 OutputCache 指令的详细信息，请参阅 [@OutputCache](https://go.microsoft.com/fwlink/?linkid=320837)。
+在上例中，缓存的页面数据可在缓存中保留 60 秒，并且为每个参数组合缓存不同版本的页面。 有关 OutputCache 指令的详细信息，请参阅 [@OutputCache](https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-4.0/hdxfb6cy(v=vs.100)?redirectedfrom=MSDN)。
 
 执行这些步骤后，应用程序已配置为使用 Redis 输出缓存提供程序。
 

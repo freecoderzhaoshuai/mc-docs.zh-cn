@@ -1,25 +1,25 @@
 ---
-title: 使用 PowerShell 更改 Azure VM 使用的 OS 磁盘
+title: 使用 PowerShell 更换 Azure VM 的 OS 磁盘
 description: 使用 PowerShell 更改 Azure 虚拟机使用的操作系统磁盘。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.topic: how-to
 origin.date: 04/24/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 4e0538eabf924198af2666ba0008618ad8fbe51b
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 3c5d5745f5899e01a16b7648ee22baf8304620ab
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945814"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463201"
 ---
 # <a name="change-the-os-disk-used-by-an-azure-vm-using-powershell"></a>使用 PowerShell 更改 Azure VM 使用的 OS 磁盘
 
 如果当前具备 VM，但希望将磁盘更换为备份磁盘或其他 OS 磁盘，可使用 Azure PowerShell 更换 OS 磁盘。 无需删除和重新创建 VM。 甚至可在另一资源组中使用托管磁盘，只要该磁盘尚未使用。
-
-[!INCLUDE [updated-for-az.md](../../../includes/updated-for-az.md)]
 
 需要停止/取消分配 VM，然后才可将该托管磁盘的资源 ID 替换为其他托管磁盘的资源 ID。
 

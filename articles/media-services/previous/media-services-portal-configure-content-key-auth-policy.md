@@ -1,6 +1,6 @@
 ---
 title: 使用 Azure 门户配置内容密钥授权策略 | Microsoft Docs
-description: 了解如何配置内容密钥的授权策略。
+description: 本文介绍如何配置内容密钥的授权策略。
 services: media-services
 documentationcenter: ''
 author: WenJason
@@ -13,14 +13,14 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/19/2019
-ms.date: 03/04/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 880774c41be6e85122737beed2ad4a094f9d4cec
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: b9b4b89712d99c9f2c2a8e607fe9033ab64335c2
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78412631"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413678"
 ---
 # <a name="configure-a-content-key-authorization-policy"></a>配置内容密钥授权策略
 
@@ -62,7 +62,7 @@ ms.locfileid: "78412631"
 ### <a name="token-restriction"></a>令牌限制
 若要选择令牌限制策略，请选择“令牌”  按钮。
 
-令牌受限制策略必须附带由安全令牌服务 (STS) 颁发的令牌。 媒体服务支持采用简单 Web 令牌 ([SWT](https://msdn.microsoft.com/library/gg185950.aspx#BKMK_2)) 格式和 JSON Web 令牌 (JWT) 格式的令牌。 有关详细信息，请参阅 [JWT 身份验证](http://www.gtrifonov.com/2015/01/03/jwt-token-authentication-in-azure-media-services-and-dynamic-encryption/)。
+令牌受限制策略必须附带由安全令牌服务 (STS) 颁发的令牌。 媒体服务支持采用简单 Web 令牌 ([SWT](https://docs.microsoft.com/previous-versions/azure/azure-services/gg185950(v=azure.100)#BKMK_2)) 格式和 JSON Web 令牌 (JWT) 格式的令牌。 有关详细信息，请参阅 [JWT 身份验证](http://www.gtrifonov.com/2015/01/03/jwt-token-authentication-in-azure-media-services-and-dynamic-encryption/)。
 
 媒体服务不提供 STS。 可以创建自定义 STS 来颁发令牌。 必须将 STS 配置为创建令牌，该令牌使用指定密钥以及在令牌限制配置中指定的颁发声明进行签名。 如果令牌有效，并且令牌中的声明与为内容密钥配置的声明相匹配，则媒体服务密钥传送服务会将加密密钥返回到客户端。
 
@@ -71,17 +71,19 @@ ms.locfileid: "78412631"
 ### <a name="playready"></a>PlayReady
 使用 PlayReady 保护内容时，需要在授权策略中指定的项目之一是用于定义 PlayReady 许可证模板的 XML 字符串。 默认情况下，已设置以下策略：
 
-    <PlayReadyLicenseResponseTemplate xmlns:i="https://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/Azure/MediaServices/KeyDelivery/PlayReadyTemplate/v1">
-          <LicenseTemplates>
-            <PlayReadyLicenseTemplate><AllowTestDevices>true</AllowTestDevices>
-              <ContentKey i:type="ContentEncryptionKeyFromHeader" />
-              <LicenseType>Nonpersistent</LicenseType>
-              <PlayRight>
-                <AllowPassingVideoContentToUnknownOutput>Allowed</AllowPassingVideoContentToUnknownOutput>
-              </PlayRight>
-            </PlayReadyLicenseTemplate>
-          </LicenseTemplates>
-        </PlayReadyLicenseResponseTemplate>
+```xml
+<PlayReadyLicenseResponseTemplate xmlns:i="https://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/Azure/MediaServices/KeyDelivery/PlayReadyTemplate/v1">
+  <LicenseTemplates>
+    <PlayReadyLicenseTemplate><AllowTestDevices>true</AllowTestDevices>
+      <ContentKey i:type="ContentEncryptionKeyFromHeader" />
+      <LicenseType>Nonpersistent</LicenseType>
+      <PlayRight>
+        <AllowPassingVideoContentToUnknownOutput>Allowed</AllowPassingVideoContentToUnknownOutput>
+      </PlayRight>
+    </PlayReadyLicenseTemplate>
+  </LicenseTemplates>
+</PlayReadyLicenseResponseTemplate>
+```
 
 可以选择“导入策略 xml”  按钮并提供遵循在[媒体服务 PlayReady 许可证模板概述](media-services-playready-license-template-overview.md)中定义的 XML 架构的一个不同 XML。
 

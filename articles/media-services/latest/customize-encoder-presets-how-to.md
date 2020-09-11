@@ -10,15 +10,15 @@ ms.service: media-services
 ms.workload: ''
 ms.topic: article
 origin.date: 05/03/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
 ms.custom: seodec18
-ms.openlocfilehash: 418fb10b6598a6aa302d280639239e766d6a3b14
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: d3344210e3db3220f112214e03076de2bd1b7837
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223039"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413875"
 ---
 # <a name="how-to-encode-with-a-custom-transform---net"></a>如何对自定义转换进行编码 - .NET
 
@@ -33,7 +33,7 @@ ms.locfileid: "88223039"
 
 ## <a name="prerequisites"></a>先决条件 
 
-[创建媒体服务帐户](create-account-cli-how-to.md)
+[创建媒体服务帐户](./create-account-howto.md)
 
 ## <a name="download-the-sample"></a>下载示例
 
@@ -53,7 +53,7 @@ ms.locfileid: "88223039"
 
 ### <a name="example"></a>示例
 
-下面的示例定义了一组我们希望在使用此转换时生成的输出。 我们首先为音频编码添加一个 AacAudio 层，为视频编码添加两个 H264Video 层。 在视频层中，我们分配标签，以便可以在输出文件名中使用它们。 接下来，我们希望输出还包括缩略图。 在以下示例中，我们指定 PNG 格式的图像，这些图像以输入视频分辨率的 50% 生成，并以输入视频长度的 {25%, 50%, 75} 三个时间戳生成。 最后，我们指定输出文件的格式 - 一个用于视频 + 音频，另一个用于缩略图。 由于我们有多个 H264 层，因此我们必须使用宏来为每个层生成唯一的名称。 可以使用 `{Label}` 或 `{Bitrate}` 宏，此示例显示了前者。
+下面的示例定义了一组我们希望在使用此转换时生成的输出。 我们首先为音频编码添加一个 AacAudio 层，为视频编码添加两个 H264Video 层。 在视频层中，我们分配标签，以便可以在输出文件名中使用它们。 接下来，我们希望输出还包括缩略图。 在以下示例中，我们指定 PNG 格式的图像，这些图像以输入视频分辨率的 50% 生成，并以输入视频长度的 {25%, 50%, 75%} 三个时间戳生成。 最后，我们指定输出文件的格式 - 一个用于视频 + 音频，另一个用于缩略图。 由于我们有多个 H264 层，因此我们必须使用宏来为每个层生成唯一的名称。 可以使用 `{Label}` 或 `{Bitrate}` 宏，此示例显示了前者。
 
 ```c#
 private static Transform EnsureTransformExists(IAzureMediaServicesClient client, string resourceGroupName, string accountName, string transformName)

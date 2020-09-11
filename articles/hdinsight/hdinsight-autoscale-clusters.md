@@ -6,14 +6,14 @@ ms.author: hrasheed
 ms.reviewer: jasonh
 ms.service: hdinsight
 ms.topic: how-to
-ms.custom: hdinsightactive,seoapr2020
-ms.date: 04/29/2020
-ms.openlocfilehash: 02d0ecad57ae7b34552afce0211cf021608503b3
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.custom: contperfq1
+ms.date: 08/21/2020
+ms.openlocfilehash: 81e9151d9e67955a06f73c2bf9cc4ed39c43a009
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715652"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463065"
 ---
 # <a name="automatically-scale-azure-hdinsight-clusters"></a>自动缩放 Azure HDInsight 群集
 
@@ -252,6 +252,26 @@ Azure 门户中列出的群集状态可帮助你监视自动缩放活动。
 ### <a name="minimum-cluster-size"></a>最小的群集大小
 
 请勿将群集缩减到三个节点以下。 将群集缩放成少于三个节点可能导致系统停滞在安全模式下，因为没有进行充分的文件复制。  有关详细信息，请参阅[停滞在安全模式下](./hdinsight-scaling-best-practices.md#getting-stuck-in-safe-mode)。
+
+### <a name="llap-daemons-count"></a>LLAP 守护程序计数
+
+如果 LLAP 群集启用了自动缩放，则自动放/缩事件还会将 LLAP 守护程序的数量放/缩为活动工作器节点的数量。 但守护进程数量的这种变化不会保存在 Ambari 的 num_llap_nodes 配置中。 如果手动重启 Hive 服务，则 LLAP 守护程序的数量将根据 Ambari 中的配置进行重置。
+
+我们来看一下以下方案：
+1. 创建启用了 LLAP 自动缩放且具有 3 个工作器节点的群集，并启用基于负载且最小工作器节点为 3，最大工作器节点为 10 的自动缩放。
+2. LLAP 守护程序根据 LLAP 配置对配置进行计数，因此 Ambari 为 3，因为创建的群集具有 3 个工作器节点。
+3. 然后，由于群集上的负载触发了自动扩展，群集现已扩展为 10 个节点。
+4. 定期运行的自动缩放检查会注意到 LLAP 守护程序计数为 3，但活动工作器节点的数量为 10，自动缩放过程会立即将 LLAP 守护程序计数增加为 10，但这一更改不会保存到 Ambari 配置 - num_llap_nodes。
+5. 现已禁用自动缩放。
+6. 群集现在具有 10 个工作器节点和 10 个 LLAP 守护程序。
+7. 手动重启 LLAP 服务。
+8. 重启期间，它将检查 LLAP 配置中的 num_llap_nodes 配置，并会注意到该值为 3，因此它将启动守护程序的 3 实例，但工作器节点的数量为 10。 目前两者不匹配。
+
+发生这种情况时，我们需要手动更改高级 hive-interactive-env 下的 num_llap_node 配置（用于运行 Hive LLAP 守护程序的节点数），以匹配当前的活动工作器节点数。
+
+**注意**
+
+自动缩放事件不会更改 Ambari 中的 Hive 配置“最大并发查询总数”。 这意味着，即使 LLAP 守护程序计数根据负载/计划进行缩放，Hive Server 2 交互式服务在任意时间点都只能处理指定数量的并发查询。 通常建议针对峰值使用方案设置此配置，以避免手动干预。 但请注意，如果最小数量的工作器节点无法容纳指定数量的 Tez Ams（等同于最大并发查询总数配置），则为最大并发查询总数配置设置较高的值可能会导致 Hive Server 2 交互式服务重启失败
 
 ## <a name="next-steps"></a>后续步骤
 

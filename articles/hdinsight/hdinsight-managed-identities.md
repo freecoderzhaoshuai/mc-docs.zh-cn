@@ -7,14 +7,14 @@ ms.reviewer: jasonh
 ms.service: hdinsight
 ms.topic: conceptual
 ms.custom: hdinsightactive
-origin.date: 11/20/2019
-ms.date: 03/23/2020
-ms.openlocfilehash: 4c3803dc7bf0f335fca2cea8daa2304e242b626e
-ms.sourcegitcommit: 3de7d92ac955272fd140ec47b3a0a7b1e287ca14
+origin.date: 04/15/2020
+ms.date: 09/14/2020
+ms.openlocfilehash: 309eb5c5a0074202685105ef1aee252523a65401
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84723764"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463183"
 ---
 # <a name="managed-identities-in-azure-hdinsight"></a>Azure HDInsight 中的托管标识
 
@@ -26,7 +26,9 @@ ms.locfileid: "84723764"
 
 ## <a name="hdinsight-managed-identity-implementation"></a>HDInsight 托管标识的实现
 
-在 Azure HDInsight 中，托管标识是在群集的每个节点上预配的。 但是，这些标识组件只可由 HDInsight 服务使用。 目前没有任何支持的方法可用于通过 HDInsight 群集节点上安装的托管标识生成访问令牌。 对于某些 Azure 服务，托管标识是使用某个终结点实现的。使用该终结点，可以自行获取用来与其他 Azure 服务交互的访问令牌。
+在 Azure HDInsight 中，托管标识仅适用于内部组件的 HDInsight 服务。 目前没有任何支持的方法可用于通过 HDInsight 群集节点上安装的托管标识生成访问令牌来访问外部服务。 对于计算 VM 等某些 Azure 服务，托管标识是使用某个可用于获取访问令牌的终结点实现的。 此终结点当前在 HDInsight 节点中不可用。
+
+如果需要启动应用程序以避免将机密/密码放入分析作业（例如 SCALA 作业），可以使用脚本操作将自己的证书分发到群集节点，然后使用该证书获取访问令牌（例如，用于访问 Azure KeyVault 的令牌）。
 
 ## <a name="create-a-managed-identity"></a>创建托管标识
 

@@ -5,13 +5,13 @@ ms.subservice: logs
 ms.topic: conceptual
 author: Johnnytechn
 ms.author: v-johya
-ms.date: 05/20/2020
-ms.openlocfilehash: 85491a58621f5ccd86dfb4744a71bb6c9dcb31b9
-ms.sourcegitcommit: a04b0b1009b0c62f2deb7c7acee75a1304d98f87
+ms.date: 08/20/2020
+ms.openlocfilehash: d8d4492eaadbd308805a1a3f9dcc4fa420a7d502
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/22/2020
-ms.locfileid: "83796970"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457459"
 ---
 # <a name="connect-linux-computers-to-azure-monitor"></a>将 Linux 计算机连接到 Azure Monitor
 
@@ -22,7 +22,7 @@ ms.locfileid: "83796970"
 * [手动下载并安装](#install-the-agent-manually)代理。 如果 Linux 计算机无法访问 Internet，并通过 [Log Analytics 网关](gateway.md)与 Azure Monitor 或 Azure 自动化进行通信，则需要执行此步骤。 
 * [使用 GitHub 上托管的包装器脚本安装 Linux 代理](#install-the-agent-using-wrapper-script)。 如果计算机已直接或通过代理服务器连接到 Internet，则建议使用此方法安装和升级代理。
 
-若要了解支持的配置，请查看[支持的 Linux 操作系统](log-analytics-agent.md#supported-linux-operating-systems)和[网络防火墙配置](log-analytics-agent.md)。
+若要了解支持的配置，请查看[支持的 Linux 操作系统](log-analytics-agent.md#supported-linux-operating-systems)和[网络防火墙配置](log-analytics-agent.md#network-requirements)。
 
 >[!NOTE]
 >无法将适用于 Linux 的 Log Analytics 代理配置为向多个 Log Analytics 工作区报告。 只能将此代理配置为同时向 System Center Operations Manager 管理组和 Log Analytics 工作区报告，或者向两者之一报告。
@@ -155,6 +155,19 @@ sudo sh ./omsagent-*.universal.x64.sh --extract
     ```
     sudo /opt/microsoft/omsagent/bin/service_control restart [<workspace id>]
     ``` 
+
+## <a name="supported-linux-hardening"></a>支持的 Linux 强化
+OMS 代理对 Linux 提供了有限的自定义支持。 
+
+当前支持以下内容： 
+- FIPS
+
+以下内容已计划，但尚不受支持：
+- CIS
+- SELINUX
+
+OMS 代理不支持且未计划使用其他强化和自定义方法。  
+
 
 ## <a name="upgrade-from-a-previous-release"></a>从以前的版本升级
 

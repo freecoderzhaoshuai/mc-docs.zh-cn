@@ -9,14 +9,14 @@ manager: diviso
 ms.devlang: csharp
 ms.workload: big-data
 ms.topic: conceptual
-ms.date: 08/20/2020
+ms.date: 09/01/2020
 ms.custom: seodec18
-ms.openlocfilehash: 62c7c6dbbfe1697109208ae0774099556270ac08
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 9c9fa2200fdd59510caa9884720307e72740198d
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715266"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414054"
 ---
 # <a name="query-data-from-the-azure-time-series-insights-gen1-environment-using-c-sharp"></a>使用 C Sharp 查询 Azure 时序见解 Gen1 环境中的数据
 
@@ -75,7 +75,7 @@ ms.locfileid: "88715266"
 
 ## <a name="c-sample-code"></a>C# 示例代码
 
-时序见解 Gen1 示例可在 [csharpquery-示例](https://github.com/Azure-Samples/Azure-Time-Series-Insights#tsi-gen1)中查看
+请参阅 [Azure 时序见解](https://github.com/Azure-Samples/Azure-Time-Series-Insights/blob/master/gen1-sample/csharp-tsi-gen1-sample/Program.cs)存储库以访问 C# 示例代码。 
 
 ## <a name="next-steps"></a>后续步骤
 

@@ -1,27 +1,27 @@
 ---
-title: 使用 Azure Policy 限制 Windows VM 上的扩展安装
+title: 使用 Azure Policy 限制 VM 扩展安装 (Windows)
 description: 使用 Azure Policy 限制扩展部署。
 services: virtual-machines-linux
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 editor: ''
 ms.service: virtual-machines-linux
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 origin.date: 03/23/2018
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: yes
-ms.testdate: 07/27/2020
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.reviewer: cynthn
-ms.openlocfilehash: 93ffc36292bd66cbefdad4faf7ed69fcbfc31e57
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: 8260fe4fc7494a0f330ccbdb2ad4346f008e8d9d
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244914"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413720"
 ---
 # <a name="use-azure-policy-to-restrict-extensions-installation-on-windows-vms"></a>使用 Azure Policy 限制 Windows VM 上的扩展安装
 
@@ -45,7 +45,7 @@ ms.locfileid: "87244914"
 <!--CORRECT ON REMOVE $home/clouddrive/ ON CLOUD SHELL-->
 
 ```powershell
-nano rules.json
+nano $home/clouddrive/rules.json
 ```
 
 将以下 .json 的内容复制并粘贴到该文件。
@@ -80,7 +80,7 @@ nano rules.json
 
 还需要一个[参数](../../governance/policy/concepts/definition-structure.md#parameters)文件，以创建一个用于传入要阻止的扩展列表的结构。 
 
-此示例演示如何在本地 PowerShell 中为 VM 创建参数文件。 在本地 PowerShell 中操作时，可以在计算机上创建一个本地文件。
+此示例演示如何在本地 PowerShell 中为 VM 创建参数文件。 如果在本地使用 PowerShell，也可以创建一个本地文件并将路径 ($home/clouddrive) 替换为计算机上本地文件的路径。
 
 <!--Not Available on and replace the path ($home/clouddrive) with the path to the local file-->
 <!-- Not Available on in Cloud Shell-->
@@ -89,7 +89,7 @@ nano rules.json
 <!--CORRECT ON REMOVE $home/clouddrive/ ON CLOUD SHELL-->
 
 ```powershell
-nano parameters.json
+nano $home/clouddrive/parameters.json
 ```
 
 将以下 .json 的内容复制并粘贴到该文件。
@@ -112,21 +112,16 @@ nano parameters.json
 
 策略定义是用于存储想要使用的配置的对象。 策略定义使用规则和参数文件定义策略。 使用 [New-AzPolicyDefinition](https://docs.microsoft.com/powershell/module/az.resources/new-azpolicydefinition) cmdlet 创建策略定义。
 
- 策略规则和参数是在本地 shell 中创建并存储为 .json 文件的文件。
- 
-<!-- Notice: Change cloud shell to local shell -->
-<!--CORRECT ON REMOVE C:\Users\ContainerAdministrator\clouddrive\-->
+策略规则和参数是在本地 shell 中创建并存储为 .json 文件的文件。
 
 ```powershell
 $definition = New-AzPolicyDefinition `
    -Name "not-allowed-vmextension-windows" `
    -DisplayName "Not allowed VM Extensions" `
    -description "This policy governs which VM extensions that are explicitly denied."   `
-   -Policy 'rules.json' `
-   -Parameter 'parameters.json'
+   -Policy 'C:\Users\ContainerAdministrator\clouddrive\rules.json' `
+   -Parameter 'C:\Users\ContainerAdministrator\clouddrive\parameters.json'
 ```
-
-<!--CORRECT ON REMOVE C:\Users\ContainerAdministrator\clouddrive\-->
 
 ## <a name="assign-the-policy"></a>分配策略
 
@@ -180,4 +175,4 @@ Remove-AzPolicyDefinition -Name not-allowed-vmextension-windows
 ## <a name="next-steps"></a>后续步骤
 有关详细信息，请参阅 [Azure Policy](../../governance/policy/overview.md)。
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

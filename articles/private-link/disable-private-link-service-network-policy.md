@@ -2,18 +2,20 @@
 title: 对 Azure 专用链接服务源 IP 地址禁用网络策略
 description: 了解如何对 Azure 专用链接禁用网络策略。
 services: private-link
-author: rockboyfor
 ms.service: private-link
-ms.topic: article
+ms.topic: how-to
 origin.date: 09/16/2019
-ms.date: 06/15/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: 06/15/2020
 ms.author: v-yeche
-ms.openlocfilehash: ac8652d76881fabfba14079cf805f454b3fa94a5
-ms.sourcegitcommit: 3de7d92ac955272fd140ec47b3a0a7b1e287ca14
+ms.openlocfilehash: 01785961ff24c4149f362e0ddbc860fcf0c66361
+ms.sourcegitcommit: 6e88e0e41b35d160a09f7a906ca3b7e837f51803
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84723326"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89412113"
 ---
 # <a name="disable-network-policies-for-private-link-service-source-ip"></a>对专用链接服务源 IP 禁用网络策略
 
@@ -27,13 +29,15 @@ ms.locfileid: "84723326"
 
 ## <a name="using-azure-powershell"></a>使用 Azure PowerShell
 本部分介绍如何使用 Azure PowerShell 禁用子网专用终结点策略。
+在代码中，将“默认”替换为虚拟子网的名称。
 
 ```azurepowershell
+$virtualSubnetName = "default"
 $virtualNetwork= Get-AzVirtualNetwork `
   -Name "myVirtualNetwork" ` 
-  -ResourceGroupName "myResourceGroup"  
+  -ResourceGroupName "myResourceGroup"
 
-($virtualNetwork | Select -ExpandProperty subnets | Where-Object  {$_.Name -eq 'default'} ).privateLinkServiceNetworkPolicies = "Disabled"  
+($virtualNetwork | Select -ExpandProperty subnets | Where-Object  {$_.Name -eq $virtualSubnetName} ).privateLinkServiceNetworkPolicies = "Disabled"  
 
 $virtualNetwork | Set-AzVirtualNetwork 
 ```
@@ -76,5 +80,4 @@ az network vnet subnet update \
 ## <a name="next-steps"></a>后续步骤
 - 详细了解 [Azure 专用终结点](private-endpoint-overview.md)
 
-<!-- Update_Description: new article about disable private link service network policy -->
-<!--NEW.date: 01/06/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -1,10 +1,9 @@
 ---
-title: 使用 RDP 连接到 Azure VM 时排查身份验证错误 | Azure
+title: 排查使用 RDP 连接到 Azure 中国 VM 时的身份验证错误 | Azure
 description: 了解如何排查使用远程桌面协议 (RDP) 连接到 Azure 虚拟机 (VM) 时出现的身份验证错误。
 services: virtual-machines-windows
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: ''
 ms.service: virtual-machines
@@ -13,16 +12,19 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-windows
 ms.devlang: azurecli
 origin.date: 11/01/2018
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 08bd1694ceffa649bdcbb1de06a7fcd31b7f8fef
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: 93218eb8801e0b0979e53dc430ebd297a8fd0900
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596333"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456819"
 ---
-# <a name="troubleshoot-authentication-errors-when-you-use-rdp-to-connect-to-azure-vm"></a>使用 RDP 连接到 Azure VM 时排查身份验证错误
+# <a name="troubleshoot-authentication-errors-when-you-use-rdp-to-connect-to-azure-china-vm"></a>排查使用 RDP 连接到 Azure 中国 VM 时的身份验证错误
 
 你可通过本文解决使用远程桌面协议 (RDP) 连接来连接到 Azure 虚拟机 (VM) 时出现的身份验证错误。
 
@@ -280,10 +282,10 @@ reg query "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server\WinStations\RDP
 
 ## <a name="next-steps"></a>后续步骤
 
-[Win32_TSGeneralSetting 类的 SetEncryptionLevel 方法](https://docs.microsoft.com/windows/desktop/TermServ/win32-tsgeneralsetting-setencryptionlevel)
+[Win32_TSGeneralSetting 类的 SetEncryptionLevel 方法](https://docs.microsoft.com/windows/desktop/termserv/win32-tsgeneralsetting-setencryptionlevel)
 
-[配置服务器身份验证和加密级别](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc770833(v=ws.11))
+[配置服务器身份验证和加密级别](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc770833(v=ws.11))
 
-[Win32_TSGeneralSetting 类](https://docs.microsoft.com/windows/desktop/TermServ/win32-tsgeneralsetting)
+[Win32_TSGeneralSetting 类](https://docs.microsoft.com/windows/desktop/termserv/win32-tsgeneralsetting)
 
 <!-- Update_Description: update meta properties, wording update, update link -->

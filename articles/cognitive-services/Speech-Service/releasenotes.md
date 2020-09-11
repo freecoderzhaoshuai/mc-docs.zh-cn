@@ -8,18 +8,63 @@ manager: jhakulin
 ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: conceptual
-origin.date: 07/07/2020
-ms.date: 08/03/2020
+origin.date: 08/17/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.custom: seodec18
-ms.openlocfilehash: 44f8ca43d665fb6f97c7c9e33b768add33d009c3
-ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
+ms.openlocfilehash: 78fb8fd02c46991e12871e06f1e8d924ce56a095
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87516118"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317567"
 ---
 # <a name="speech-service-release-notes"></a>语音服务发行说明
+
+## <a name="text-to-speech-2020-august-release"></a>文本转语音 2020 年 8 月发行版
+
+### <a name="new-features"></a>新增功能
+
+* **神经网络 TTS：`en-US` Aria 语音的一种新的说话风格**。 播报新闻时，AriaNeural 听起来像新闻播音员。 “newscast-formal”风格听起来更严肃，而“newscast-casual”风格则更为放松和随意。 请参阅[如何在 SSML 中使用说话风格](speech-synthesis-markup.md)。
+
+* **音频内容创建：一组新功能，可实现更强大的语音优化和音频管理功能**。
+
+    * 发音：将发音优化功能更新为最新的音素集。 可以从库中选取正确的音素元素，并优化所选字词的发音。 
+
+    * 下载：音频“下载”/“导出”这一功能得到增强，支持按段落生成音频。 可以编辑同一文件/SSML 中的内容，同时生成多个音频输出。 “下载”的文件结构也得到了完善。 现在，可以轻松地将所有音频保存在一个文件夹中。 
+
+    * 任务状态：多文件导出体验得到改善。 过去导出多个文件时，如果其中一个文件失败，则整个任务将失败。 但现在，所有其余文件都将成功导出。 任务报表中包含了更加详细和结构化的信息。 可以通过报表查看所有失败文件和句子的记录。 
+
+    * SSML 文档：链接到 SSML 文档，查看有关如何使用所有优化功能的规则。
+
+* **语音列表 API 已更新，现包含用户易记的显示名称和神经网络语音支持的说话风格**。
+
+### <a name="general-tts-voice-quality-improvements"></a>一般性的 TTS 语音质量改进
+
+* 降低了单词级别发音错误 %：`ru-RU`（错误减少 56%）、`sv-SE`（错误减少 49%）
+
+* 对 `en-US` 神经网络语音的复音词读取能力提高了 40%。 复音词的示例包括“read”、“live”、“content”、“record”、“object”等。 
+
+* 使 `fr-FR` 中的疑问语气更加自然。 MOS（平均意见得分）增益：+0.28
+
+* 更新了以下语音的 vocoder，提高了保真度，整体性能提高 40%。
+
+    | Locale | 语音 |
+    |---|---|    
+    | `en-GB` | Mia |
+    | `es-MX` | Dalia |
+    | `fr-CA` | Sylvie |
+    | `fr-FR` | Denise |
+    | `ja-JP` | Nanami |
+    | `ko-KR` | Sun-Hi |
+
+### <a name="bug-fixes"></a>Bug 修复
+
+* 修复了音频内容创建工具的一些 Bug 
+    * 修复了自动刷新问题。 
+    * 修复了稳定性问题，包括“break”标记的导出错误和标点错误。    
+
+
 
 ## <a name="speech-sdk-1130-2020-july-release"></a>语音 SDK 1.13.0：2020 年 7 月发行版
 
@@ -605,7 +650,8 @@ ms.locfileid: "87516118"
 
 **新功能**
 
-- 支持 iOS 中的 Objective-C。 请查看[适用于 iOS 的 Objective-C 快速入门](~/articles/cognitive-services/Speech-Service/quickstarts/speech-to-text-from-microphone-langs/objectivec-ios.md)。
+<!-- - Support for Objective-C on iOS. Check out our [Objective-C quickstart for iOS](~/articles/cognitive-services/Speech-Service/quickstarts/speech-to-text-from-microphone-langs/objectivec-ios.md). -->
+
 - 支持浏览器中的 JavaScript。 请查看 [JavaScript 快速入门](quickstart-js-browser.md)。
 
 **重大更改**

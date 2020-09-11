@@ -1,27 +1,27 @@
 ---
-title: 使用 Azure Policy 限制 Linux VM 上的扩展安装
+title: 使用 Azure Policy 限制 VM 扩展安装 (Linux)
 description: 使用 Azure Policy 限制 VM 扩展部署。
 services: virtual-machines-linux
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 editor: ''
 ms.service: virtual-machines-linux
 ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 origin.date: 03/23/2018
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: yes
-ms.testdate: 07/27/2020
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.reviewer: cynthn
-ms.openlocfilehash: 8743c1aeee7f4e4d4bb0f239ecbf9c7946a6816d
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: d92661ad681f9a6547df5042a6289605f7a04b69
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244765"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413718"
 ---
 # <a name="use-azure-policy-to-restrict-extensions-installation-on-linux-vms"></a>使用 Azure Policy 限制 Linux VM 上的扩展安装
 
@@ -33,15 +33,14 @@ ms.locfileid: "87244765"
 
 若要限制可以安装哪些扩展，需要使用[规则](../../governance/policy/concepts/definition-structure.md#policy-rule)来提供用于识别扩展的逻辑。
 
-此示例演示了如何通过创建规则文件来拒绝安装“Microsoft.OSTCExtensions”发布的扩展。
+此示例演示了如何通过创建规则文件来拒绝安装“Microsoft.OSTCExtensions”发布的扩展。 如果在本地使用 CLI，也可以创建一个本地文件并将路径 (<your_file_path>) 替换为计算机上本地文件的路径。
 
-<!--Not Available on  When you are working in CLI locally, you can also create a local file and replace the path (~/clouddrive) with the path to the local file on your machine.-->
 <!-- Not Available on Azure Cloud Shell -->
 <!-- Not Available on [bash Cloud Shell](https://shell.azure.com/bash)-->
 <!--CORRECT ON REMOVE ~/clouddrive/ ON CLOUD SHELL-->
 
 ```azurecli 
-vim azurepolicy.rules.json
+vim <your_file_path>/azurepolicy.rules.json
 ```
 
 将以下 .json 的内容复制并粘贴到该文件。
@@ -77,14 +76,14 @@ vim azurepolicy.rules.json
 还需要一个[参数](../../governance/policy/concepts/definition-structure.md#parameters)文件，以创建一个用于传入要阻止的扩展列表的结构。 
 
 此示例演示如何为 Linux VM 创建参数文件。
+如果在本地使用 CLI，也可以创建一个本地文件并将路径 (<your_file_path>) 替换为计算机上本地文件的路径。
 
-<!--Not Available on  When you are working in CLI locally, you can also create a local file and replace the path (~/clouddrive) with the path to the local file on your machine.-->
 <!-- Not Available on Azure Cloud Shell -->
 <!-- Not Available on [bash Cloud Shell](https://shell.azure.com/bash)-->
 <!--CORRECT ON REMOVE ~/clouddrive/ ON CLOUD SHELL-->
 
 ```azurecli
-vim azurepolicy.parameters.json
+vim <your_file_path>/azurepolicy.parameters.json
 ```
 
 将以下 .json 的内容复制并粘贴到该文件。

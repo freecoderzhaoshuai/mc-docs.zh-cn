@@ -6,14 +6,14 @@ author: WenJason
 ms.service: vpn-gateway
 ms.topic: conceptual
 origin.date: 03/05/2020
-ms.date: 07/06/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 524850b845f73dc73b95a8a8b4f599dfcfe28d0b
-ms.sourcegitcommit: 7ea2d04481512e185a60fa3b0f7b0761e3ed7b59
+ms.openlocfilehash: 11e3978dc55fbaa77e5a0aa07593b9295a306b02
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85845867"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463145"
 ---
 # <a name="vpn-gateway-faq"></a>VPN 网关常见问题
 
@@ -95,7 +95,7 @@ VPN 网关是一种虚拟网络网关。 VPN 网关通过公共连接在虚拟�
 
 ### <a name="can-i-request-a-static-public-ip-address-for-my-vpn-gateway"></a>能否为 VPN 网关请求静态公共 IP 地址？
 
-否。 仅支持动态 IP 地址分配。 但这并不意味着 IP 地址在分配到 VPN 网关后会更改。 VPN 网关 IP 地址只在删除或重新创建网关时更改。 VPN 网关公共 IP 地址不会因为重新调整大小、重置或其他 VPN 网关内部维护/升级而更改。 
+否。 仅支持动态 IP 地址分配。 但这并不意味着 IP 地址在分配到 VPN 网关后会更改。 VPN 网关 IP 地址只在删除并重新创建网关时更改。 当重设大小、重置或完成其他 VPN 网关内部维护和升级时，VPN 网关公共 IP 地址不会更改。
 
 ### <a name="how-does-my-vpn-tunnel-get-authenticated"></a>VPN 隧道如何进行身份验证？
 

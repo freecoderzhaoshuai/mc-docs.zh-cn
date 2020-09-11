@@ -9,18 +9,16 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: conceptual
 origin.date: 03/12/2019
-ms.date: 06/19/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: 6b0214cfa66f4e285ff99ef5082602398c59151b
-ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
+ms.openlocfilehash: b1b95ab97b220613a2251dcd8f791f06ab670985
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87516112"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317589"
 ---
 # <a name="what-is-speech-to-text"></a>什么是语音转文本？
-
-[!INCLUDE [TLS 1.2 enforcement](../../../includes/cognitive-services-tls-announcement.md)]
 
 使用语音服务提供的语音转文本（也称为语音识别）功能，可将音频流实时听录为文本。 应用程序、工具或设备可以使用、显示和处理此文本即命令输入。 此服务由 Microsoft 对 Cortana 和 Office 产品使用的同一识别技术提供支持。 它可与<a href="./speech-translation.md" target="_blank">翻译<span class="docon docon-navigate-external x-hidden-focus"></span></a>和<a href="./text-to-speech.md" target="_blank">文本转语音<span class="docon docon-navigate-external x-hidden-focus"></span></a>服务产品无缝地协同工作。 有关可用语音转文本语言的完整列表，请参阅[支持的语言](language-support.md#speech-to-text)。
 
@@ -34,6 +32,8 @@ ms.locfileid: "87516112"
 > - [Migrate from Bing Speech to the Speech service](how-to-migrate-from-bing-speech.md)
 -->
 
+[!INCLUDE [TLS 1.2 enforcement](../../../includes/cognitive-services-tls-announcement.md)]
+
 ## <a name="get-started-with-speech-to-text"></a>语音转文本入门
 
 语音转文本服务通过[语音 SDK](speech-sdk.md) 提供。 有几种常见方案可作为快速入门，以各种语言和平台提供：
@@ -44,7 +44,7 @@ ms.locfileid: "87516112"
 
 如果你偏向于使用语音转文本 REST 服务，请参阅 [REST API](rest-speech-to-text.md)。
 
-- [快速入门：通过参考输入进行发音评估](rest-speech-to-text.md#pronunciation-assessment-parameters)
+ - [快速入门：通过参考输入进行发音评估](rest-speech-to-text.md#pronunciation-assessment-parameters)
 
 ## <a name="tutorials-and-sample-code"></a>教程和示例代码
 
@@ -56,12 +56,15 @@ GitHub 上提供了语音 SDK 的示例代码。 这些示例涵盖了常见方�
 
 - [语音转文本示例 (SDK)](https://github.com/Azure-Samples/cognitive-services-speech-sdk)
 - [批量听录示例 (REST)](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/batch)
-
 - [发音评估示例 (REST)](rest-speech-to-text.md#pronunciation-assessment-parameters)
 
 ## <a name="customization"></a>自定义
 
 除了标准语音服务模型外，还可以创建自定义模型。 自定义有助于克服语音识别障碍，如说话风格、词汇和背景噪音，详见[自定义语音识别](how-to-custom-speech.md)。 自定义选项因语言/区域设置而异，请参阅[支持的语言](supported-languages.md)以验证相关支持。
+
+## <a name="batch-transcription"></a>批量听录
+
+批量听录是一组 REST API 操作，可用于听录存储中的大量音频。 你可以指向具有共享访问签名 (SAS) URI 的音频文件并异步接收听录结果。 有关如何使用批量听录 API 的详细信息，请参阅[操作说明](batch-transcription.md)。
 
 [!INCLUDE [speech-reference-doc-links](includes/speech-reference-doc-links.md)]
 

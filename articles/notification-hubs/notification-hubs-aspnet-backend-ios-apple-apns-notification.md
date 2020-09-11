@@ -1,5 +1,5 @@
 ---
-title: 使用 Azure 通知中心向特定用户发送推送通知 | Azure
+title: 使用 Azure 通知中心向特定用户发送推送通知 | Microsoft Docs
 description: 了解如何使用 Azure 通知中心向特定用户推送通知。
 documentationcenter: ios
 author: sethm
@@ -10,17 +10,17 @@ ms.workload: mobile
 ms.tgt_pltfrm: ios
 ms.devlang: objective-c
 ms.topic: article
-origin.date: 01/04/2019
-ms.date: 07/21/2020
+origin.date: 08/07/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.reviewer: jowargo
+ms.reviewer: thsomasu
 ms.lastreviewed: 01/04/2019
-ms.openlocfilehash: 78af0b52d0816542899bfe1746e6280b43dd0a3a
-ms.sourcegitcommit: 5656c18d7d2faa09329b1a15e352d1622e252d5f
+ms.openlocfilehash: ca08ef074d3dba0b0869c5361528598f63d8da2e
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86862833"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316479"
 ---
 # <a name="tutorial-send-push-notifications-to-specific-users-using-azure-notification-hubs"></a>教程：使用 Azure 通知中心向特定用户发送推送通知
 
@@ -51,7 +51,7 @@ ms.locfileid: "86862833"
 1. 打开你在[使用 Azure 通知中心将推送通知发送到 iOS 应用](ios-sdk-get-started.md)教程中创建的单页视图应用。
 
    > [!NOTE]
-   > 本节假定项目配置了空的组织名称。 如果未配置，需要在所有类名前面追加组织名称。
+   > 本节假定项目配置了空的组织名称。 如果未配置，请在所有类名前面追加组织名称。
 
 2. 在 `Main.storyboard` 文件中，添加屏幕截图中显示的对象库中的组件。
 
@@ -64,11 +64,11 @@ ms.locfileid: "86862833"
    * **登录**：直接位于密码文本字段下方的标签式 UIButton，并取消选中属性检查器中“控件内容”下的“已启用”选项
    * **WNS**：标签和开关，用于已在中心设置 Windows 通知服务时，启用将通知发送到 Windows 通知服务。 请参阅 [Windows 入门](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md)教程。
    * **APNS**：标签和开关，用于启用将通知发送到 Apple 平台通知服务。
-   * **收件人用户名：** 包含占位符文本的 UITextField
+   * **收件人用户名**：包含占位符文本“收件人用户名标记”的 UITextField，直接位于 GCM 标签下，受左右边距限制**。
 
      在[使用 Azure 通知中心将推送通知发送到 iOS 应用](ios-sdk-get-started.md)教程中添加了一些组件。
 
-3. 按 **Ctrl** 的同时从视图中的组件拖至 `ViewController.h` 并添加这些新插座。
+3. 按 Ctrl 的同时从视图中的组件拖至 `ViewController.h` 并添加这些新插座：
 
     ```objc
     @property (weak, nonatomic) IBOutlet UITextField *UsernameField;
@@ -88,13 +88,13 @@ ms.locfileid: "86862833"
     - (IBAction)LogInAction:(id)sender;
     ```
 
-4. 在 `ViewController.h` 中，在 import 语句后面添加以下 `#define`。 将 `<Enter Your Backend Endpoint>` 占位符替换为在上一部分中用于部署应用后端的目标 URL。 例如，`http://your_backend.chinacloudsites.cn`。
+4. 在 `ViewController.h` 中，在 import 语句后面添加以下 `#define`。 将 `<Your backend endpoint>` 占位符替换为在上一部分中用于部署应用后端的目标 URL。 例如，`http://your_backend.chinacloudsites.cn`。
 
     ```objc
-    #define BACKEND_ENDPOINT @"<Enter Your Backend Endpoint>"
+    #define BACKEND_ENDPOINT @"<Your backend endpoint>"
     ```
 
-5. 在项目中，创建一个名为 `RegisterClient` 的新 Cocoa Touch 类，以便与你创建的 ASP.NET 后端交互。 创建继承自 `NSObject`的类。 然后在 `RegisterClient.h` 中添加以下代码。
+5. 在项目中，创建一个名为 `RegisterClient` 的新 Cocoa Touch 类，以便与你创建的 ASP.NET 后端交互。 创建继承自 `NSObject`的类。 然后在 `RegisterClient.h` 中添加以下代码：
 
     ```objc
     @interface RegisterClient : NSObject
@@ -496,7 +496,7 @@ ms.locfileid: "86862833"
 
 ## <a name="next-steps"></a>后续步骤
 
-本教程介绍了如何向其标记与注册相关联的特定用户推送通知。 若要了解如何推送基于位置的通知，请转到以下教程： 
+本教程介绍了如何向其标记与注册相关联的特定用户推送通知。 若要了解如何推送基于位置的通知，请转到以下教程：
 
 > [!div class="nextstepaction"]
 >[推送基于位置的通知](notification-hubs-push-bing-spatial-data-geofencing-notification.md)

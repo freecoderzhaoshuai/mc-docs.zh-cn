@@ -1,51 +1,51 @@
 ---
-title: 如何使用 Packer 在 Azure 中创建 Windows 虚拟机映像
-description: 了解如何使用 Packer 在 Azure 中创建 Windows 虚拟机映像
-author: rockboyfor
-ms.service: virtual-machines-windows
+title: PowerShell - 如何使用 Packer 创建 VM 映像
+description: 了解如何使用 Packer 和 PowerShell 在 Azure 中创建虚拟机映像
+ms.service: virtual-machines
 ms.subservice: imaging
-ms.topic: article
+ms.topic: how-to
 ms.workload: infrastructure
-origin.date: 02/22/2019
-ms.date: 07/27/2020
+origin.date: 08/05/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: yes
-ms.testdate: 07/27/2020
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: f4d1d44a9113914b379b6e348039918f6de69ca0
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: 928cf7e4d920a60df1417bb7eebf7f6652675a0e
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244267"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462932"
 ---
-# <a name="how-to-use-packer-to-create-windows-virtual-machine-images-in-azure"></a>如何使用 Packer 在 Azure 中创建 Windows 虚拟机映像
+<!--Verify Successfully with location set to 'China East 2'--> 
+# <a name="powershell-how-to-use-packer-to-create-virtual-machine-images-in-azure"></a>PowerShell：如何使用 Packer 在 Azure 中创建虚拟机映像
 Azure 中的每个虚拟机 (VM) 都是基于定义 Windows 分发和操作系统版本的映像创建的。 映像可以包括预安装的应用程序和配置。 Azure 市场为最常见的操作系统和应用程序环境提供许多第一和第三方映像，或者也可创建满足自身需求的自定义映像。 本文详细介绍了如何使用开源工具 [Packer](https://www.packer.io/) 在 Azure 中定义和生成自定义映像。
 
-本文最后一次使用 [Az PowerShell 模块](https://docs.microsoft.com/powershell/azure/install-az-ps)版本 1.3.0 和 [Packer](https://www.packer.io/docs/install) 版本 1.3.4 在 2019 年 2 月 21 日进行了测试。
+本文最后一次使用 [Packer](https://www.packer.io/docs/install) 版本 1.6.1 于 2020 年 8 月 5 日进行了测试。
 
 <!--Not Available on [Create a Windows VM with Azure Image Builder](image-builder.md)-->
 
 ## <a name="create-azure-resource-group"></a>创建 Azure 资源组
 生成过程中，Packer 将在生成源 VM 时创建临时 Azure 资源。 要捕获该源 VM 用作映像，必须定义资源组。 Packer 生成过程的输出存储在此资源组中。
 
-使用 [New-AzResourceGroup](https://docs.microsoft.com/powershell/module/az.resources/new-azresourcegroup) 创建资源组。 以下示例在“chinaeast”位置创建名为“myResourceGroup”的资源组：
+使用 [New-AzResourceGroup](https://docs.microsoft.com/powershell/module/az.resources/new-azresourcegroup) 创建资源组。 以下示例在“chinaeast”位置创建名为“myPackerGroup”的资源组：
 
 ```azurepowershell
-$rgName = "myResourceGroup"
-$location = "China East"
+$rgName = "myPackerGroup"
+$location = "China East 2"
 New-AzResourceGroup -Name $rgName -Location $location
 ```
 
 ## <a name="create-azure-credentials"></a>创建 Azure 凭据
 使用服务主体通过 Azure 对 Packer 进行身份验证。 Azure 服务主体是可与应用、服务和自动化工具（如 Packer）结合使用的安全性标识。 用户控制和定义服务主体可在 Azure 中执行的操作的权限。
 
-使用 [New-AzADServicePrincipal](https://docs.microsoft.com/powershell/module/az.resources/new-azadserviceprincipal) 创建服务主体，并为服务主体分配权限，以使用 [New-AzRoleAssignment](https://docs.microsoft.com/powershell/module/az.resources/new-azroleassignment) 创建和管理资源。 `-DisplayName` 的值必须唯一；请根据需要将其替换为你自己的值。  
+使用 [New-AzADServicePrincipal](https://docs.microsoft.com/powershell/module/az.resources/new-azadserviceprincipal) 创建服务主体。 `-DisplayName` 的值必须唯一；请根据需要将其替换为你自己的值。  
 
 ```azurepowershell
-$sp = New-AzADServicePrincipal -DisplayName "PackerServicePrincipal"
+$sp = New-AzADServicePrincipal -DisplayName "PackerSP$(Get-Random)"
 $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($sp.Secret)
 $plainPassword = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
-New-AzRoleAssignment -RoleDefinitionName Contributor -ServicePrincipalName $sp.ApplicationId
 ```
 
 然后输出密码和应用程序 ID。
@@ -80,6 +80,8 @@ Get-AzSubscription
 
 <!-- Parameter is correct to add "cloud_environment_name": "Public, China, Germany, or USGovernment" -->
 
+<!--Correct on the "managed_image_resource_group_name": "myPackerGroup",-->
+
 ```json
 {
   "builders": [{
@@ -90,7 +92,7 @@ Get-AzSubscription
     "tenant_id": "zzzzzzz-zzzz-zzzz-zzzz-zzzzzzzzzzzz",
     "subscription_id": "yyyyyyy-yyyy-yyyy-yyyy-yyyyyyyyyyy",
 
-    "managed_image_resource_group_name": "myResourceGroup",
+    "managed_image_resource_group_name": "myPackerGroup",
     "managed_image_name": "myPackerImage",
 
     "os_type": "Windows",
@@ -110,13 +112,15 @@ Get-AzSubscription
     },
 
     "cloud_environment_name": "China",
-    "location": "China East",
-    "vm_size": "Standard_DS2_v2"
+    "location": "China East 2",
+    "vm_size": "Standard_D2_v2"
   }],
   "provisioners": [{
     "type": "powershell",
     "inline": [
       "Add-WindowsFeature Web-Server",
+      "while ((Get-Service RdAgent).Status -ne 'Running') { Start-Sleep -s 5 }",
+      "while ((Get-Service WindowsAzureGuestAgent).Status -ne 'Running') { Start-Sleep -s 5 }",
       "& $env:SystemRoot\\System32\\Sysprep\\Sysprep.exe /oobe /generalize /quiet /quit",
       "while($true) { $imageState = Get-ItemProperty HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup\\State | Select ImageState; if($imageState.ImageState -ne 'IMAGE_STATE_GENERALIZE_RESEAL_TO_OOBE') { Write-Output $imageState.ImageState; Start-Sleep -s 10  } else { break } }"
     ]
@@ -127,6 +131,8 @@ Get-AzSubscription
 <!-- Parameter is correct to add "cloud_environment_name": "Public, China, Germany, or USGovernment" -->
 
 此模板生成 Windows Server 2016 Datacenter 并安装 IIS，然后使用 Sysprep 来通用化该 VM。 IIS 安装展示了如何使用 PowerShell 预配程序来运行其他命令。 最终的 Packer 映像包括必需的软件安装和配置。
+
+Windows 来宾代理参与 Sysprep 过程。 必须先完全安装代理，然后才能对 VM 执行 sysprep。 若要确保这一点，则在执行 sysprep.exe 之前，所有代理服务必须都在运行。 上述 JSON 代码片段显示了在 PowerShell 配置程序中执行此操作的一种方法。 仅当将 VM 配置为安装代理（默认设置）时，才需要此代码片段。
 
 ## <a name="build-packer-image"></a>生成 Packer 映像
 如果本地计算机上尚未安装 Packer，请[按照 Packer 安装说明](https://learn.hashicorp.com/packer/getting-started/install)进行安装。
@@ -229,7 +235,7 @@ New-AzVm `
     -Image "myPackerImage"
 ```
 
-如果你希望在与 Packer 映像不同的资源组或区域中创建虚拟机，请指定映像 ID 而不是映像名称。 可以使用 [Get-AzImage](https://docs.microsoft.com/powershell/module/az.compute/Get-AzImage) 获取映像 ID。
+如果你希望在与 Packer 映像不同的资源组或区域中创建虚拟机，请指定映像 ID 而不是映像名称。 可以使用 [Get-AzImage](https://docs.microsoft.com/powershell/module/az.compute/get-azimage) 获取映像 ID。
 
 基于 Packer 映像创建 VM 需要几分钟时间。
 
@@ -244,7 +250,7 @@ Get-AzPublicIPAddress `
 
 若要在运行中查看你的 VM，包括 Packer 预配程序中的 IIS 安装，请在 Web 浏览器中输入公共 IP 地址。
 
-![IIS 默认站点](./media/build-image-with-packer/iis.png) 
+:::image type="content" source="./media/build-image-with-packer/iis.png" alt-text="IIS 默认站点"::: 
 
 <!--Not Available on ## Next steps-->
 <!--Not Available on [Azure Image Builder](image-builder.md)-->

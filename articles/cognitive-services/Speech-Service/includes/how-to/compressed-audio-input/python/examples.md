@@ -1,0 +1,93 @@
+---
+author: amitkumarshukla
+ms.service: cognitive-services
+ms.topic: include
+origin.date: 03/09/2020
+ms.date: 08/03/2020
+ms.author: v-tawe
+ms.openlocfilehash: d9ef220dfc6775e61edd95232449dfe58921901e
+ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "89317426"
+---
+若要以压缩音频格式流式传输到语音服务，请创建 `PullAudioInputStream` 或 `PushAudioInputStream`。 然后，从流类的实例创建 `AudioConfig`，并指定流的压缩格式。
+
+假设你的用例是将 `PullStream` 用于 `MP3` 文件。 你的代码可能如下所示：
+
+```python
+
+import azure.cognitiveservices.speech as speechsdk
+
+class BinaryFileReaderCallback(speechsdk.audio.PullAudioInputStreamCallback):
+    def __init__(self, filename: str):
+        super().__init__()
+        self._file_h = open(filename, "rb")
+
+    def read(self, buffer: memoryview) -> int:
+        print('trying to read {} frames'.format(buffer.nbytes))
+        try:
+            size = buffer.nbytes
+            frames = self._file_h.read(size)
+
+            buffer[:len(frames)] = frames
+            print('read {} frames'.format(len(frames)))
+
+            return len(frames)
+        except Exception as ex:
+            print('Exception in `read`: {}'.format(ex))
+            raise
+
+    def close(self) -> None:
+        print('closing file')
+        try:
+            self._file_h.close()
+        except Exception as ex:
+            print('Exception in `close`: {}'.format(ex))
+            raise
+
+def compressed_stream_helper(compressed_format,
+        mp3_file_path,
+        default_speech_auth):
+    callback = BinaryFileReaderCallback(mp3_file_path)
+    stream = speechsdk.audio.PullAudioInputStream(stream_format=compressed_format, pull_stream_callback=callback)
+
+    speech_config = speechsdk.SpeechConfig(**default_speech_auth)
+    audio_config = speechsdk.audio.AudioConfig(stream=stream)
+
+    speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config, audio_config=audio_config)
+
+    done = False
+
+    def stop_cb(evt):
+        """callback that signals to stop continuous recognition upon receiving an event `evt`"""
+        print('CLOSING on {}'.format(evt))
+        nonlocal done
+        done = True
+
+    # Connect callbacks to the events fired by the speech recognizer
+    speech_recognizer.recognizing.connect(lambda evt: print('RECOGNIZING: {}'.format(evt)))
+    speech_recognizer.recognized.connect(lambda evt: print('RECOGNIZED: {}'.format(evt)))
+    speech_recognizer.session_started.connect(lambda evt: print('SESSION STARTED: {}'.format(evt)))
+    speech_recognizer.session_stopped.connect(lambda evt: print('SESSION STOPPED {}'.format(evt)))
+    speech_recognizer.canceled.connect(lambda evt: print('CANCELED {}'.format(evt)))
+    # stop continuous recognition on either session stopped or canceled events
+    speech_recognizer.session_stopped.connect(stop_cb)
+    speech_recognizer.canceled.connect(stop_cb)
+
+    # Start continuous speech recognition
+    speech_recognizer.start_continuous_recognition()
+    while not done:
+        time.sleep(.5)
+
+    speech_recognizer.stop_continuous_recognition()
+    # </SpeechContinuousRecognitionWithFile>
+
+def pull_audio_input_stream_compressed_mp3(mp3_file_path: str,
+        default_speech_auth):
+    # Create a compressed format
+    compressed_format = speechsdk.audio.AudioStreamFormat(compressed_stream_format=speechsdk.AudioStreamContainerFormat.MP3)
+    compressed_stream_helper(compressed_format, mp3_file_path, default_speech_auth)
+
+```

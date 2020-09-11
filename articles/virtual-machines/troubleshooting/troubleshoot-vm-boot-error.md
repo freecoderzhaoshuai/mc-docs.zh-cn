@@ -3,8 +3,7 @@ title: Linux VM 启动到 Grub 救援
 description: 虚拟机因进入救援控制台而无法启动
 services: virtual-machines-windows
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
@@ -12,14 +11,17 @@ ms.tgt_pltfrm: vm-windows
 ms.devlang: na
 ms.topic: troubleshooting
 origin.date: 08/28/2019
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 1a4d5392d25ef0e0e93996f12e5e8f68106bd1f4
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: def6f7cdf111570807c64fe3a4c2e711bd10afe0
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596352"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456846"
 ---
 # <a name="linux-vm-boots-to-grub-rescue"></a>Linux VM 启动到 Grub 救援
 
@@ -35,8 +37,8 @@ ms.locfileid: "82596352"
 
 * 如果出现“未知的文件系统”错误，则请注意，此错误可能是由于启动分区中的文件系统损坏，或者是由于内核配置不正确。 
 
-    * 对于文件系统问题，请按 [Linux Recovery:Cannot SSH to Linux VM due to file system errors (fsck, inodes)](https://blogs.msdn.microsoft.com/linuxonazure/2016/09/13/linux-recovery-cannot-ssh-to-linux-vm-due-to-file-system-errors-fsck-inodes/)（Linux 恢复：由于文件系统错误（fsck、inode）而无法通过 SSH 连接到 Linux VM）一文中的步骤操作。
-    * 对于内核问题，请按 [Linux Recovery:Manually fixing non-boot issues related to Kernel problems](https://blogs.msdn.microsoft.com/linuxonazure/2016/10/09/linux-recovery-manually-fixing-non-boot-issues-related-to-kernel-problems/)（Linux 恢复：手动修复与内核问题相关的非启动问题）或 [Linux Recovery:Fixing non-boot issues related to Kernel problems using chroot](https://blogs.msdn.microsoft.com/linuxonazure/2016/10/09/linux-recovery-fixing-non-boot-issues-related-to-kernel-problems-using-chroot/)（Linux 恢复：使用 chroot 修复与内核问题相关的非启动问题）一文中的步骤操作。
+    * 对于文件系统问题，请按 [Linux Recovery:Cannot SSH to Linux VM due to file system errors (fsck, inodes)](https://docs.microsoft.com/archive/blogs/linuxonazure/linux-recovery-cannot-ssh-to-linux-vm-due-to-file-system-errors-fsck-inodes)（Linux 恢复：由于文件系统错误（fsck、inode）而无法通过 SSH 连接到 Linux VM）一文中的步骤操作。
+    * 对于内核问题，请按照[如何从与内核相关的启动问题中恢复 Azure Linux 虚拟机](https://support.microsoft.com/help/4091524/how-recover-azure-linux-vm-from-kernel-related-boot-related-issues)或 [Linux 恢复：Fixing non-boot issues related to Kernel problems using chroot](http://linuxonazure.chinacloudsites.cn/linux-recovery-fixing-non-boot-issues-related-to-kernel-problems-using-chroot/)（Linux 恢复：使用 chroot 修复与内核问题相关的非启动问题）一文中的步骤操作。
 
 ### <a name="error---file-not-found"></a>错误 - 找不到文件
 
@@ -52,7 +54,7 @@ ms.locfileid: "82596352"
 
 ### <a name="error---no-such-partition"></a>错误 - 无此类分区
 
-* 如果出现“无此类分区”错误，  请参阅 [Case Scenario : "no such partition" error while trying to start the VM after attempting to extend the OS drive](https://blogs.technet.microsoft.com/shwetanayak/2017/03/12/case-scenario-no-such-partition-error-while-trying-to-start-the-vm-after-attempting-to-extend-the-os-drive/)（案例情况：在尝试扩展 OS 驱动器后尝试启动 VM 时出现“无此类分区”错误）。
+* 如果出现“无此类分区”错误，  请参阅 [Case Scenario : "no such partition" error while trying to start the VM after attempting to extend the OS drive](https://docs.microsoft.com/archive/blogs/shwetanayak/case-scenario-no-such-partition-error-while-trying-to-start-the-vm-after-attempting-to-extend-the-os-drive)（案例情况：在尝试扩展 OS 驱动器后尝试启动 VM 时出现“无此类分区”错误）。
 
 ### <a name="error---grubcfg-file-not-found"></a>错误 - 找不到 grub.cfg 文件
 

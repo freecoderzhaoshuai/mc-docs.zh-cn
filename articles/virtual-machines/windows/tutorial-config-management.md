@@ -1,25 +1,27 @@
 ---
 title: 教程 - 在 Azure 中管理 Windows 虚拟机配置
 description: 在本教程中，你将学习如何在 Windows 虚拟机上识别更改和管理包更新版
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.topic: tutorial
 ms.workload: infrastructure
 origin.date: 12/05/2018
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: 32fc7e67292ad8cd128b346fdb08d4b03368a8a1
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: 4d33708e20dd41c1fd0490cccbbab33ad3d028a2
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244726"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463176"
 ---
 <!--Verified successfully-->
 # <a name="tutorial-monitor-changes-and-update-a-windows-virtual-machine-in-azure"></a>教程：监视更改和更新 Azure 中的 Windows 虚拟机
 
-借助 Azure [更新管理](../../automation/automation-update-management.md)，可以轻松地识别 Azure 中 Windows 虚拟机中的更改并管理这些 VM 的操作系统更新。
+借助 Azure [更新管理](../../automation/update-management/update-mgmt-overview.md)，可以轻松地识别 Azure 中 Windows 虚拟机中的更改并管理这些 VM 的操作系统更新。
 
 <!--Not Available on [Change Tracking](../../automation/change-tracking.md)-->
 
@@ -29,7 +31,7 @@ ms.locfileid: "87244726"
 > * 管理 Windows 更新。
 > * 监视器更改和清单。
 
-## <a name="open-azure-local-powershell"></a>打开 Azure 本地 PowerShell
+## <a name="open-azure-local-shell"></a>打开 Azure 本地 Shell
 
 打开 Azure Powershell 控制台，并以管理员权限运行以下脚本。
 
@@ -40,7 +42,7 @@ ms.locfileid: "87244726"
 
 若要在本教程中配置 Azure 监视和更新管理，需要 Azure 中的 Windows VM。
 
-首先，使用 [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential) 设置 VM 的管理员用户名和密码：
+首先，使用 [Get-Credential](https://docs.microsoft.com/powershell/module/microsoft.powershell.security/get-credential?view=powershell-5.1) 设置 VM 的管理员用户名和密码：
 
 ```powershell
 $cred = Get-Credential
@@ -79,7 +81,7 @@ New-AzVm `
 
 执行验证以确定是否为该 VM 启用了更新管理。 验证包括检查 Log Analytics 工作区和链接的自动化帐户，以及解决方案是否在工作区中。
 
-应使用 [Log Analytics](../../log-analytics/log-analytics-overview.md) 工作区收集由功能和服务（如更新管理）生成的数据。 工作区提供了一个位置来查看和分析来自多个数据源的数据。
+应使用 [Log Analytics](../../azure-monitor/log-query/log-query-overview.md) 工作区收集由功能和服务（如更新管理）生成的数据。 工作区提供了一个位置来查看和分析来自多个数据源的数据。
 
 若要在需要更新的 VM 上执行其他操作，可使用 Azure 自动化针对 VM 运行 Runbook。 此类操作包括下载或应用更新。
 
@@ -91,13 +93,13 @@ New-AzVm `
 
 加入过程中缺少的下列任何先决条件会自动添加：
 
-* [Log Analytics](../../log-analytics/log-analytics-overview.md) 工作区
-* [自动化](../../automation/automation-offering-get-started.md)
+* [Log Analytics](../../azure-monitor/log-query/log-query-overview.md) 工作区
+* [自动化](../../automation/index.yml)
 * [混合 runbook 辅助角色](../../automation/automation-hybrid-runbook-worker.md)，VM 上已启用此辅助角色
 
 启用解决方案后，将打开“更新管理”窗口。 配置要使用的位置、Log Analytics 工作区和自动化帐户，然后选择“启用”。 如果这些字段变暗，则意味着已为 VM 启用其他自动化解决方案，并且必须使用该解决方案工作区和自动化帐户。
 
-![启用更新管理解决方案](./media/tutorial-monitoring/manageupdates-update-enable.png)
+:::image type="content" source="./media/tutorial-monitoring/manageupdates-update-enable.png" alt-text="启用更新管理解决方案":::
 
 可能最多需要 15 分钟才能启用更新管理解决方案。 在此期间，请勿关闭浏览器窗口。 启用该解决方案后，VM 中缺少的更新信息会流向 Azure Monitor 日志。 可能需要 30 分钟至 6 小时才可将数据用于分析。
 
@@ -105,7 +107,7 @@ New-AzVm `
 
 启用“更新管理”后，“更新管理”窗口随即显示。 评估更新完成后，可在“缺失更新”选项卡上查看缺失更新的列表。
 
- ![查看更新状态](./media/tutorial-monitoring/manageupdates-view-status-win.png)
+:::image type="content" source="./media/tutorial-monitoring/manageupdates-view-status-win.png" alt-text="查看更新状态":::
 
 ### <a name="schedule-an-update-deployment"></a>计划更新部署
 
@@ -117,10 +119,10 @@ New-AzVm `
 | --- | --- |
 | **名称** |输入用于标识更新部署的唯一名称。 |
 |**操作系统**| 选择 Linux 或 Windows 。|
-| **要更新的组** |对于在 Azure 上托管的 VM，应基于订阅、资源组、位置和标记的组合定义查询。 此查询将生成要包含在你的部署中的 Azure 托管 VM 的动态组。 <br /><br />对于未托管在 Azure 上的 VM，请选择现有的已保存搜索。 使用此搜索，可以选择要包括在部署中的一组 VM。 <br /><br /> 有关详细信息，请参阅[动态组](../../automation/automation-update-management-groups.md)。|
+| **要更新的组** |对于在 Azure 上托管的 VM，应基于订阅、资源组、位置和标记的组合定义查询。 此查询将生成要包含在你的部署中的 Azure 托管 VM 的动态组。 <br /><br />对于未托管在 Azure 上的 VM，请选择现有的已保存搜索。 使用此搜索，可以选择要包括在部署中的一组 VM。 <br /><br /> 有关详细信息，请参阅[动态组](../../automation/update-management/update-mgmt-groups.md)。|
 | **要更新的计算机** |请选择“已保存的搜索”、“已导入的组”或“计算机”  。<br/><br/>如果选择“计算机”，则可以从下拉列表中选择单个计算机。 每台计算机的准备情况将显示在表的“更新代理准备情况”列中。<br /><br /> 要了解在 Azure Monitor 日志中创建计算机组的不同方法，请参阅 [Azure Monitor 日志中的计算机组](../../azure-monitor/platform/computer-groups.md) |
 |**更新分类**|选择所有必需的更新分类。|
-|**包括/排除更新**|选择此选项可打开“包括/排除”窗格。 要包含或排除的更新位于单独的选项卡上。 有关如何处理包含的详细信息，请参阅[计划更新部署](../../automation/automation-tutorial-update-management.md#schedule-an-update-deployment)。 |
+|**包括/排除更新**|选择此选项可打开“包括/排除”窗格。 要包含或排除的更新位于单独的选项卡上。 有关如何处理包含的详细信息，请参阅[计划更新部署](../../automation/update-management/update-mgmt-deploy-updates.md#schedule-an-update-deployment)。 |
 |**计划设置**|选择启动时间，然后选择“一次”或“定期” 。|
 | **前脚本 + 后脚本**|选择要在部署前和部署后运行的脚本。|
 | **维护时段** | 输入为更新设置的分钟数。 有效值范围为 30 至 360 分钟。 |
@@ -138,7 +140,7 @@ New-AzVm `
 
 选择已完成的更新部署，查看该部署的仪表板。
 
-![特定部署的更新部署状态仪表板](./media/tutorial-monitoring/manageupdates-view-results.png)
+:::image type="content" source="./media/tutorial-monitoring/manageupdates-view-results.png" alt-text="特定部署的更新部署状态仪表板":::
 
 “更新结果”磁贴显示了 VM 上更新和部署结果的总数的概要。 右侧的表显示了每个更新的细目以及安装结果。 每个结果都具有下列值之一：
 
@@ -152,7 +154,10 @@ New-AzVm `
 
 若要查看有关任何部署错误的详细信息，请选择“错误”。
 
-<!--Not Available on ## Monitor changes and inventory-->
+## <a name="monitor-changes-and-inventory"></a>监视器更改和清单
+
+可以收集和查看清单，了解计算机上的软件、文件、Linux 守护程序、Windows 服务和 Windows 注册表项。 跟踪计算机的配置有助于查明环境中的操作问题，更好地了解计算机的状态。
+
 <!--Not Available on ### Enable change and inventory management-->
 <!--Not Available on ### Track changes-->
 <!--Not Available on ### View inventory-->

@@ -13,16 +13,17 @@ ms.tgt_pltfrm: mobile-windows
 ms.devlang: dotnet
 ms.topic: article
 origin.date: 01/04/2019
-ms.date: 03/02/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.reviewer: jowargo
 ms.lastreviewed: 01/04/2019
-ms.openlocfilehash: 6a97a23b4e5c4be2ce8ad03d1ff7d0669b68d6bb
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 8b299c2b7d1ce5213ad006b07f77b6d9b90c5f3b
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77501448"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316468"
 ---
 # <a name="enterprise-push-architectural-guidance"></a>企业推送架构指南
 
@@ -38,7 +39,7 @@ ms.locfileid: "77501448"
 
 ## <a name="architecture"></a>体系结构
 
-![][1]
+![显示事件、订阅和推送消息流的企业体系结构关系图。][1]
 
 此体系结构图中的关键部分是 Azure 服务总线，它提供了主题/订阅编程模型（可在[服务总线 Pub/Sub 编程]中找到有关它的更多内容）。 接收方，在本示例中是移动后端（通常是 [Azure 移动服务]，它会启动到移动应用的推送）不直接从后端系统接收消息，而是改用 [Azure 服务总线]提供的中间抽象层，移动后端通过它可从一个或多个后端系统接收消息。 需要为每个后端系统创建服务总线主题，例如帐户、人力资源、财务等，这些基本上都是相关“主题”，会启动要作为推送通知发送的消息。 后端系统会向这些主题发送消息。 移动后端可以通过创建服务总线订阅来订阅一个或多个此类主题。 这会授权移动后端从相应的后端系统接收通知。 移动后端将继续在其订阅上侦听消息，一条消息到达后，它将立即返回并将该消息作为通知发送到通知中心。 然后，通知中心最终将该消息传送到移动应用。 下面是关键组件列表：
 
@@ -68,7 +69,7 @@ ms.locfileid: "77501448"
 
 ### <a name="sample-code"></a>代码示例
 
-完整的示例代码可在 [通知中心示例]中找到。 它分为三个组件：
+完整的示例代码可在[通知中心示例]中找到。 它分为三个组件：
 
 1. **EnterprisePushBackendSystem**
 
@@ -227,17 +228,19 @@ ms.locfileid: "77501448"
     }
     ```
 
-    e. 要将此应用发布为 WebJob，请右键单击 Visual Studio 中的解决方案，然后选择“发布为 WebJob”  
+    e. 要将此应用发布为 WebJob，请右键单击 Visual Studio 中的解决方案，然后选择“发布为 WebJob”********
 
-    ![][2]
+    ![显示的右键单击选项的屏幕截图，其中“发布为 Azure Web 作业”以红色标出。][2]
 
-    f. 选择发布配置文件并创建新的 Azure 网站（如果它尚未存在），该网站会托管此 WebJob，拥有该网站后，单击“发布”  。
+    f. 选择发布配置文件并创建新的 Azure 网站（如果它尚未存在），该网站会托管此 WebJob，拥有该网站后，单击“发布”****。
 
-    ![][3]
+    :::image type="complex" source="./media/notification-hubs-enterprise-push-architecture/PublishAsWebJob.png" alt-text="显示在 Azure 上创建网站的工作流的屏幕截图。":::
+    “发布 Web”对话框的屏幕截图，其中已选中 Microsoft Azure 网站选项，有一个绿色箭头指向“选择现有网站”对话框，“新建”选项以红色标出，还有一个绿色箭头指向“在 Microsoft Azure 上创建网站”对话框，网站名称和“创建”选项以红色标出。
+    :::image-end:::
 
-    g. 将该作业配置为“连续运行”，以便在登录到 [Azure 门户]时应看到如下内容：
+    g. 将该作业配置为“连续运行”，以便在登录到 [Azure 门户]时，可看到如下内容：
 
-    ![][4]
+    ![Azure 门户的屏幕截图，其中显示了企业推送后端 Web 作业，名称、计划和日志值以红色标出。][4]
 
 3. **EnterprisePushMobileApp**
 
@@ -269,13 +272,13 @@ ms.locfileid: "77501448"
 
 1. 确保 WebJob 成功运行并且计划为“连续运行”。
 2. 运行 **EnterprisePushMobileApp**，这可启动 Windows 应用商店应用。
-3. 运行 EnterprisePushBackendSystem 控制台应用程序，这可模拟 LoB 后端并开始发送消息，应该出现如下图所示的 toast 通知  ：
+3. 运行 EnterprisePushBackendSystem 控制台应用程序，这可模拟 LoB 后端并开始发送消息，应该出现如下图所示的 toast 通知****：
 
-    ![][5]
+    ![运行企业推送后端系统应用的控制台以及应用发送的消息的屏幕截图。][5]
 
-4. 这些消息最初会发送到由 Web 作业中的服务总线订阅监视的服务总线主题。 收到消息后，将创建通知并将其发送到移动应用。 转到 [Azure 门户] 中 Web 作业的“日志”链接时，可以仔细查看 Web 作业日志来确认处理：
+4. 这些消息最初会发送到由 Web 作业中的服务总线订阅监视的服务总线主题。 收到消息后，将创建通知并将其发送到移动应用。 转到 [Azure 门户]中 Web 作业的“日志”链接时，可以仔细查看 Web 作业日志来确认处理：
 
-    ![][6]
+    ![“连续 Web 作业详细信息”对话框的屏幕截图，其中发送的信息以红色标出。][6]
 
 <!-- Images -->
 [1]: ./media/notification-hubs-enterprise-push-architecture/architecture.png
@@ -288,8 +291,8 @@ ms.locfileid: "77501448"
 <!-- Links -->
 [通知中心示例]: https://github.com/Azure/azure-notificationhubs-samples
 [Azure 移动服务]: https://docs.azure.cn/app-service-mobile/
-[Azure 服务总线]: https://docs.azure.cn/service-bus-messaging/service-bus-messaging-overview
-[服务总线 Pub/Sub 编程]: https://docs.azure.cn/service-bus-messaging/service-bus-dotnet-how-to-use-topics-subscriptions
+[Azure 服务总线]: ../service-bus-messaging/service-bus-messaging-overview.md
+[服务总线 Pub/Sub 编程]: ../service-bus-messaging/service-bus-dotnet-how-to-use-topics-subscriptions.md
 [Azure WebJob]: ../app-service/webjobs-create.md
-[通知中心 - Windows 通用教程]: https://docs.azure.cn/notification-hubs/notification-hubs-windows-store-dotnet-get-started-wns-push-notification
+[通知中心 - Windows 通用教程]: ./notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md
 [Azure 门户]: https://portal.azure.cn/

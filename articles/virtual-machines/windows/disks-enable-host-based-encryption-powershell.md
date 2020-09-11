@@ -1,24 +1,25 @@
 ---
 title: Azure PowerShell - 在 VM 主机上启用端到端加密
 description: 如何使用主机加密为 Azure VM 启用端到端加密。
-author: rockboyfor
 ms.service: virtual-machines
 ms.topic: how-to
-origin.date: 07/10/2020
-ms.date: 08/10/2020
-ms.testscope: yes|no
-ms.testdate: 08/10/2020null
+origin.date: 08/24/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.subservice: disks
 ms.custom: references_regions
-ms.openlocfilehash: 9d274d4236dcf9e4652ca7a28a43d2df251b7fee
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: afe1a879023685fa057618cadb1de6300cd0cb09
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87919229"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463014"
 ---
-# <a name="enable-end-to-end-encryption-using-encryption-at-host---azure-powershell"></a>使用主机加密启用端到端加密 - Azure PowerShell
+<!--NOT AVAIABLE ON Mooncake, REQUEST SUBMIT WITHOUT REPLY-->
+# <a name="use-the-azure-powershell-module-to-enable-end-to-end-encryption-using-encryption-at-host"></a>使用 Azure PowerShell 模块通过主机加密来启用端到端加密
 
 启用主机加密时，存储在 VM 主机上的数据将静态加密，且已加密的数据将流向存储服务。 有关主机加密以及其他托管磁盘加密类型的概念信息，请参阅[主机加密 - 为 VM 数据启用端到端加密](disk-encryption.md#encryption-at-host---end-to-end-encryption-for-your-vm-data)。
 
@@ -139,5 +140,4 @@ foreach($vmSize in $vmSizes)
 
 [Azure 资源管理器模板示例](https://github.com/Azure-Samples/managed-disks-powershell-getting-started/tree/master/EncryptionAtHost)
 
-<!-- Update_Description: new article about disks enable host based encryption powershell -->
-<!--NEW.date: 08/10/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

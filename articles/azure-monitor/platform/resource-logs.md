@@ -4,20 +4,20 @@ description: 了解如何将 Azure 资源日志流式传输到 Azure Monitor 中
 author: Johnnytechn
 services: azure-monitor
 ms.topic: conceptual
-ms.date: 07/15/2020
+ms.date: 08/20/2020
 ms.author: v-johya
 ms.subservice: logs
-ms.openlocfilehash: 9dc3112ddb2a1e9bc6142f098a4de14838604376
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.openlocfilehash: 27249cb4d0e7d2029d1330e22706fa9d9d8da00a
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440559"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457259"
 ---
 # <a name="azure-resource-logs"></a>Azure 资源日志
 Azure 资源日志是[平台日志](platform-logs-overview.md)，可以通过它深入了解已在 Azure 资源中执行的操作。 资源日志的内容因 Azure 服务和资源类型而异。 默认不会收集资源日志。 必须为每个 Azure 资源创建诊断设置，以便将其资源日志发送到 Log Analytics 工作区与 [Azure Monitor 日志](data-platform-logs.md)一起使用，发送到 Azure 事件中心以转发到 Azure 外部，或者发送到 Azure 存储进行存档。
 
-有关创建诊断设置的详细信息，请参阅[创建诊断设置以将平台日志和指标发送到不同的目标](diagnostic-settings.md)。若要详细了解如何使用 Azure Policy 为你创建的每个 Azure 资源自动创建诊断设置，请参阅[使用 Azure Policy 大规模部署 Azure Monitor](deploy-scale.md)。
+有关创建诊断设置的详细信息，请参阅[创建诊断设置以将平台日志和指标发送到不同的目标](diagnostic-settings.md)。若要详细了解如何使用 Azure Policy 为你创建的每个 Azure 资源自动创建诊断设置，请参阅[使用 Azure Policy 大规模部署 Azure Monitor](../deploy-scale.md)。
 
 ## <a name="send-to-log-analytics-workspace"></a>发送到 Log Analytics 工作区
  将资源日志发送到 Log Analytics 工作区，以启用 [Azure Monitor 日志](data-platform-logs.md)的功能，其中包括以下内容：
@@ -85,17 +85,15 @@ AzureDiagnostics 表的外观如下所示：
 
 
 ### <a name="select-the-collection-mode"></a>选择收集模式
-大多数 Azure 资源在“Azure 诊断”或“特定于资源”模式下将数据写入工作区，而不允许用户选择模式。  有关使用哪种模式的详细信息，请参阅[每个服务的文档](diagnostic-logs-schema.md)。 所有 Azure 服务最终都会使用特定于资源的模式。 在进行这种过渡期间，某些资源允许在诊断设置中选择模式。 为任何新的诊断设置指定特定于资源的模式，因为这可以更轻松地管理数据，并可帮助你在今后避免复杂的迁移。
+大多数 Azure 资源在“Azure 诊断”或“特定于资源”模式下将数据写入工作区，而不允许用户选择模式。  有关使用哪种模式的详细信息，请参阅[每个服务的文档](./resource-logs-schema.md)。 所有 Azure 服务最终都会使用特定于资源的模式。 在进行这种过渡期间，某些资源允许在诊断设置中选择模式。 为任何新的诊断设置指定特定于资源的模式，因为这可以更轻松地管理数据，并可帮助你在今后避免复杂的迁移。
   
    ![诊断设置模式选择器](./media/resource-logs-collect-workspace/diagnostic-settings-mode-selector.png)
 
-
-
-
 > [!NOTE]
-> 目前，只能在 Azure 门户中配置诊断设置时选择“Azure 诊断”和“特定于资源”模式。  如果使用 CLI、PowerShell 或 REST API 配置设置，则模式默认为“Azure 诊断”。
+> 有关使用资源管理器模板设置收集模式的示例，请参阅 [Azure Monitor 中的诊断设置的资源管理器模板示例](../samples/resource-manager-diagnostic-settings.md#diagnostic-setting-for-recovery-services-vault)。
 
-可将现有的诊断设置修改为特定于资源的模式。 在这种情况下，已收集的数据将保留在 _AzureDiagnostics_ 表中，直到根据工作区的保留设置删除了这些数据。 新数据将收集到专用表中。 可以使用 [union](https://docs.microsoft.com/azure/kusto/query/unionoperator) 运算符跨两个表查询数据。
+
+可将现有的诊断设置修改为特定于资源的模式。 在这种情况下，已收集的数据将保留在 _AzureDiagnostics_ 表中，直到根据工作区的保留设置删除了这些数据。 新数据将收集到专用表中。 可以使用 [union](/azure/kusto/query/unionoperator) 运算符跨两个表查询数据。
 
 有关支持特定于资源模式的 Azure 服务的公告，请继续阅读 [Azure 更新](https://azure.microsoft.com/updates/)博客。
 
@@ -191,14 +189,11 @@ insights-logs-networksecuritygrouprulecounter/resourceId=/SUBSCRIPTIONS/00000000
 
 每个 PT1H.json blob 都包含一个 JSON blob，其中的事件为在 blob URL 中指定的小时（例如 h=12）内发生的。 在当前的小时内发生的事件将附加到 PT1H.json 文件。 分钟值始终为 00 (m=00)，因为资源日志事件按小时细分成单个 blob。
 
-在 PT1H.json 文件中，每个事件都按以下格式存储。 这将使用通用顶级架构，但该架构对于每个 Azure 服务都是独一无二的，如[资源日志架构](diagnostic-logs-schema.md)中所述。
+在 PT1H.json 文件中，每个事件都按以下格式存储。 这将使用通用顶级架构，但该架构对于每个 Azure 服务都是独一无二的，如[资源日志架构](./resource-logs-schema.md)中所述。
 
 ``` JSON
 {"time": "2016-07-01T00:00:37.2040000Z","systemId": "46cdbb41-cb9c-4f3d-a5b4-1d458d827ff1","category": "NetworkSecurityGroupRuleCounter","resourceId": "/SUBSCRIPTIONS/s1id1234-5679-0123-4567-890123456789/RESOURCEGROUPS/TESTRESOURCEGROUP/PROVIDERS/MICROSOFT.NETWORK/NETWORKSECURITYGROUPS/TESTNSG","operationName": "NetworkSecurityGroupCounters","properties": {"vnetResourceGuid": "{12345678-9012-3456-7890-123456789012}","subnetPrefix": "10.3.0.0/24","macAddress": "000123456789","ruleName": "/subscriptions/ s1id1234-5679-0123-4567-890123456789/resourceGroups/testresourcegroup/providers/Microsoft.Network/networkSecurityGroups/testnsg/securityRules/default-allow-rdp","direction": "In","type": "allow","matchedConnections": 1988}}
 ```
-
-> [!NOTE]
-> 平台日志使用 [JSON 行](http://jsonlines.org/)写入到 blob 存储，其中每个事件都是一行，换行符表示新事件。 此格式已在 2018 年 11 月实现。 在此日期之前，日志以记录的 json 数组形式写入到 blob 存储，详见[为存档到存储帐户的 Azure Monitor 平台日志的格式更改做准备](resource-logs-blob-format.md)。
 
 
 ## <a name="next-steps"></a>后续步骤

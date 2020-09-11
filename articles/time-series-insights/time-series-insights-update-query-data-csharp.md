@@ -9,21 +9,21 @@ manager: diviso
 ms.devlang: csharp
 ms.workload: big-data
 ms.topic: conceptual
-ms.date: 08/20/2020
+ms.date: 09/01/2020
 ms.custom: seodec18
-ms.openlocfilehash: 3aab09dd8eae23b44b0fda654018ea3306aa3788
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 7ca3a8a99630194110b56dc71ce2d3e1724211f9
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715331"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413969"
 ---
 # <a name="query-data-from-the-azure-time-series-insights-gen2-environment-using-c-sharp"></a>使用 C# 查询 Azure 时序见解第 2 代环境中的数据
 
 本 C# 示例演示了如何在 Azure 时序见解 Gen2 环境中通过 [Gen2 数据访问 API](https://docs.microsoft.com/rest/api/time-series-insights/reference-data-access-overview) 查询数据。
 
 > [!TIP]
-> 可以访问 [https://github.com/Azure-Samples/Azure-Time-Series-Insights](https://github.com/Azure-Samples/Azure-Time-Series-Insights/tree/master/gen1-sample/csharp-tsi-gen1-sample) 查看 Gen2 C# 代码示例。
+> 可以访问 [https://github.com/Azure-Samples/Azure-Time-Series-Insights](https://github.com/Azure-Samples/Azure-Time-Series-Insights/tree/master/gen2-sample/csharp-tsi-gen2-sample) 查看 Gen2 C# 代码示例。
 
 ## <a name="summary"></a>总结
 
@@ -71,7 +71,7 @@ ms.locfileid: "88715331"
 
 ## <a name="c-sample-code"></a>C# 示例代码
 
-C# 示例代码可在 [csharpquery-example](https://github.com/Azure-Samples/Azure-Time-Series-Insights/tree/master/gen1-sample/csharp-tsi-gen1-sample) 中找到
+请参阅 [Azure 时序见解](https://github.com/Azure-Samples/Azure-Time-Series-Insights/tree/master/gen2-sample/csharp-tsi-gen2-sample)存储库以访问 C# 示例代码。 
 
 > [!NOTE]
 >

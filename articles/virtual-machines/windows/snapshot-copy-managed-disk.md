@@ -1,21 +1,23 @@
 ---
-title: 创建快照
+title: 在 Azure 中创建虚拟硬盘驱动器的快照
 description: 了解如何创建 Azure VM 的副本，以便将其用作备份或用于排查问题。
-author: rockboyfor
-manager: digimobile
+manager: twooley
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.topic: how-to
 origin.date: 10/08/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.subservice: disks
-ms.openlocfilehash: cb6bce521cf38fc2bd229fab026aa8bfb96fe0da
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 274867e040a548f2489a4953a5cd7099d462758e
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945581"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462918"
 ---
 # <a name="create-a-snapshot"></a>创建快照
 
@@ -52,18 +54,18 @@ ms.locfileid: "85945581"
 2. 获取 VM：
 
     ```powershell
-    $vm = get-azvm `
-       -ResourceGroupName $resourceGroupName 
-       -Name $vmName
+    $vm = Get-AzVM `
+        -ResourceGroupName $resourceGroupName `
+        -Name $vmName
     ```
 
 3. 创建快照配置。 该示例中，此快照是 OS 磁盘的快照：
 
     ```powershell
-    $snapshot =  New-AzSnapshotConfig 
-       -SourceUri $vm.StorageProfile.OsDisk.ManagedDisk.Id 
-       -Location $location 
-       -CreateOption copy
+    $snapshot =  New-AzSnapshotConfig `
+        -SourceUri $vm.StorageProfile.OsDisk.ManagedDisk.Id `
+        -Location $location `
+        -CreateOption copy
     ```
 
     <!--Not Available on [availability zones](../../availability-zones/az-overview.md)-->
@@ -71,10 +73,10 @@ ms.locfileid: "85945581"
 4. 拍摄快照：
 
     ```powershell
-    New-AzSnapshot 
-       -Snapshot $snapshot 
-       -SnapshotName $snapshotName 
-       -ResourceGroupName $resourceGroupName 
+    New-AzSnapshot `
+        -Snapshot $snapshot `
+        -SnapshotName $snapshotName `
+        -ResourceGroupName $resourceGroupName 
     ```
 
 ## <a name="next-steps"></a>后续步骤

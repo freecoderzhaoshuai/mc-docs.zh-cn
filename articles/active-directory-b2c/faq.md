@@ -7,15 +7,15 @@ manager: celestedg
 ms.service: active-directory
 ms.workload: identity
 ms.topic: conceptual
-ms.date: 06/28/2020
+ms.date: 09/02/2020
 ms.author: v-junlch
 ms.subservice: B2C
-ms.openlocfilehash: 2e75b3b51ffe64a8470e9a0b9da2a7b2a4e6c826
-ms.sourcegitcommit: 3a8a7d65d0791cdb6695fe6c2222a1971a19f745
+ms.openlocfilehash: 7fa5c8fe507f201792884dc59a8dbf025d15ea6f
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2020
-ms.locfileid: "85516500"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413250"
 ---
 # <a name="azure-ad-b2c-frequently-asked-questions-faq"></a>Azure AD B2C：常见问题 (FAQ)
 
@@ -101,7 +101,7 @@ Azure AD B2C 不适用于 SharePoint 外部合作伙伴共享的情况；请改�
 
 请按照以下步骤删除 Azure AD B2C 租户。
 
-可以使用新的统一“应用注册”体验或遗留下来的“应用程序(旧版)”体验。 [详细了解此新体验](app-registrations-training-guide.md)。
+可以使用新的统一“应用注册”体验或遗留下来的“应用程序(旧版)”体验。 [详细了解此新体验](/active-directory-b2c/app-registrations-training-guide)。
 
 #### <a name="app-registrations"></a>[应用注册](#tab/app-reg-ga/)
 
@@ -121,7 +121,7 @@ Azure AD B2C 不适用于 SharePoint 外部合作伙伴共享的情况；请改�
 1. 在“Azure 资源的访问管理”下，选择“是”，然后选择“保存”。
 1. 从 Azure 门户注销，然后重新登录以刷新你的访问权限。
 1. 在左侧菜单中，选择“Azure Active Directory”。
-1. 在“概述”页上，选择“删除目录”。 按照屏幕上的说明完成该过程。
+1. 在“概述”页上，选择“删除租户” 。 按照屏幕上的说明完成该过程。
 
 #### <a name="applications-legacy"></a>[应用程序(旧版)](#tab/applications-legacy/)
 

@@ -5,18 +5,18 @@ ms.subservice: logs
 ms.topic: conceptual
 author: Johnnytechn
 ms.author: v-johya
-ms.date: 05/28/2020
+ms.date: 08/20/2020
 origin.date: 10/07/2019
-ms.openlocfilehash: 2d01a57cd5c48cdcad67bcb16b00f1735c825643
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: f85562e3cf7b7f6e6bfb9eb50b7c42878c65ac4f
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440456"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457454"
 ---
 # <a name="connect-windows-computers-to-azure-monitor"></a>将 Windows 计算机连接到 Azure Monitor
 
-要使用 Azure Monitor 在本地数据中心或其他云环境中监视和管理虚拟机或物理计算机，需部署 Log Analytics 代理（也称为 Microsoft Monitoring Agent (MMA)），并将其配置为向一个或多个 Log Analytics 工作区报告。 该代理还支持用于 Azure 自动化的混合 Runbook 辅助角色。  
+若要使用 Azure Monitor 在本地数据中心或其他云环境中监视和管理虚拟机或物理计算机，需部署 Log Analytics 代理（也称为 Microsoft Monitoring Agent [MMA]），并将其配置为向一个或多个 Log Analytics 工作区报告。 该代理还支持用于 Azure 自动化的混合 Runbook 辅助角色。  
 
 在受到监视的 Windows 计算机上，该代理被列为 Microsoft Monitoring Agent 服务。 Microsoft Monitoring Agent 服务从日志文件和 Windows 事件日志、性能数据及其他遥测数据中收集事件。 即使代理无法与 Azure Monitor（其报告对象）保持通信，也会持续在受监视计算机的磁盘上运行收集的数据，并对这些数据进行排队。 还原连接后，Microsoft Monitoring Agent 服务会向该服务发送所收集的数据。
 
@@ -28,10 +28,10 @@ ms.locfileid: "84440456"
 * 适用于在 Azure Stack 中运行 Windows 本地环境的虚拟机的资源管理器模板。 
 
 >[!NOTE]
->Azure 安全中心 (ASC) 依赖于 Microsoft Monitoring Agent（也称为 Log Analytics Windows 代理），并将在其部署过程中安装和配置它以便向 Log Analytics 工作区报告。 ASC 包括一个自动预配选项，该选项允许在订阅中的所有 VM 上自动安装 Log Analytics Windows 代理，并将其配置为向特定工作区报告。 有关此选项的详细信息，请参阅[启用 Log Analytics 代理的自动预配](../../security-center/security-center-enable-data-collection.md#auto-provision-mma)。
+>Azure 安全中心 (ASC) 依赖于 Microsoft Monitoring Agent（也称为 Log Analytics Windows 代理），并将在部署过程中安装和配置它来向 Log Analytics 工作区报告。 ASC 包括一个自动预配选项，该选项允许在订阅中的所有 VM 上自动安装 Log Analytics Windows 代理，并将其配置为向特定工作区报告。 有关此选项的详细信息，请参阅[启用 Log Analytics 代理自动预配](../../security-center/security-center-enable-data-collection.md#auto-provision-mma)。
 >
 
-如果需要将代理配置为向多个工作区报告，则不能在初始设置期间执行此操作，只能在通过从控制面板或 PowerShell 更新设置之后执行，如[添加或删除工作区](agent-manage.md#adding-or-removing-a-workspace)中所述。  
+如果需要将代理配置为向多个工作区报告，则不能在初始设置期间执行此操作，而只能在之后通过从控制面板或 PowerShell 更新设置执行，如[添加或删除工作区](agent-manage.md#adding-or-removing-a-workspace)中所述。  
 
 若要了解支持的配置，请查看[支持的 Windows 操作系统](log-analytics-agent.md#supported-windows-operating-systems)和[网络防火墙配置](log-analytics-agent.md#network-requirements)。
 
@@ -52,9 +52,9 @@ ms.locfileid: "84440456"
 >
 
 1. 找到以下注册表子项：**HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols**
-2. 在 **Protocols** 下为 TLS 1.2 创建一个子项：**HKLM\System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2**
-3. 在你之前创建的 TLS 1.2 协议版本子项下创建一个 **Client** 子项。 例如，**HKLM\System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client**。
-4. 在 **HKLM\System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client** 下创建以下 DWORD 值：
+2. 在“Protocols”下为 TLS 1.2 创建一个子项：HKLM\System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2
+3. 在你之前创建的 TLS 1.2 协议版本子项下创建一个 **Client** 子项。 例如，HKLM\System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client。
+4. 在 HKLM\System\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client 下创建以下 DWORD 值：
 
     * **Enabled** [值 = 1]
     * **DisabledByDefault** [值 = 0]  
@@ -77,7 +77,7 @@ ms.locfileid: "84440456"
 4. 在“目标文件夹”页面上更改或保留默认安装文件夹，然后单击“下一步” 。
 5. 在“代理安装选项”页上，选择将代理连接到 Azure Log Analytics，单击“下一步”。    
 6. 在“Azure Log Analytics”页上执行以下操作：
-   1. 粘贴前面复制的“工作区 ID”和“工作区密钥(主密钥)”。   如果计算机应向 Azure 政府云中的 Log Analytics 工作区报告，请从“Azure 云”下拉列表中选择“Azure 中国” 。  
+   1. 粘贴前面复制的“工作区 ID”和“工作区密钥(主密钥)”。   如果计算机应向 Azure 中国云中的 Log Analytics 工作区报告，请从“Azure 云”下拉列表中选择“Azure 中国” 。  
    2. 如果计算机需要通过代理服务器来与 Log Analytics 通信，请单击“高级”并提供代理服务器的 URL 和端口号。  如果代理服务器要求身份验证，请键入用于在代理服务器上进行身份验证的用户名和密码，并单击“下一步”。  
 7. 提供所需的配置设置后，单击“下一步”。<br><br> ![粘贴工作区 ID 和主键](./media/agent-windows/log-analytics-mma-setup-laworkspace.png)<br><br>
 8. 在“准备安装”页上检查所做的选择，并单击“安装”。 
@@ -93,13 +93,13 @@ ms.locfileid: "84440456"
 
 下表突出显示了代理的安装程序支持的特定参数，包括使用 Automation DSC 进行部署的时间。
 
-|特定于 MMA 的选项                   |注释         |
+|特定于 MMA 的选项                   |说明         |
 |---------------------------------------|--------------|
 | NOAPM=1                               | 可选参数。 安装不带 .NET 应用程序性能监视的代理。|   
 |ADD_OPINSIGHTS_WORKSPACE               | 1 = 将代理配置为向工作区报告                |
 |OPINSIGHTS_WORKSPACE_ID                | 要添加的工作区的工作区 ID (GUID)                    |
 |OPINSIGHTS_WORKSPACE_KEY               | 工作区密钥，用于通过工作区进行初始身份验证 |
-|OPINSIGHTS_WORKSPACE_AZURE_CLOUD_TYPE  | 指定工作区所在的云环境 <br> 0 = Azure 商业云（默认值） <br> 1 = Azure China Cloud |
+|OPINSIGHTS_WORKSPACE_AZURE_CLOUD_TYPE  | 指定工作区所在的云环境 <br> 0 = Azure 商业云（默认值） <br> 2 = Azure 中国云 |
 |OPINSIGHTS_PROXY_URL               | 要使用的代理的 URI |
 |OPINSIGHTS_PROXY_USERNAME               | 要访问的经过身份验证的代理用户名 |
 |OPINSIGHTS_PROXY_PASSWORD               | 要访问的经过身份验证的代理密码 |
@@ -114,14 +114,14 @@ ms.locfileid: "84440456"
    或者，要将代理配置为向 Azure 中国云报告，请键入： 
 
      ```dos
-    setup.exe /qn NOAPM=1 ADD_OPINSIGHTS_WORKSPACE=1 OPINSIGHTS_WORKSPACE_AZURE_CLOUD_TYPE=1 OPINSIGHTS_WORKSPACE_ID="<your workspace ID>" OPINSIGHTS_WORKSPACE_KEY="<your workspace key>" AcceptEndUserLicenseAgreement=1
+    setup.exe /qn NOAPM=1 ADD_OPINSIGHTS_WORKSPACE=1 OPINSIGHTS_WORKSPACE_AZURE_CLOUD_TYPE=2 OPINSIGHTS_WORKSPACE_ID="<your workspace ID>" OPINSIGHTS_WORKSPACE_KEY="<your workspace key>" AcceptEndUserLicenseAgreement=1
     ```
     >[!NOTE]
     >需要将参数 OPINSIGHTS_WORKSPACE_ID 和 OPINSIGHTS_WORKSPACE_KEY 的字符串值封装在双引号中，以指示 Windows Installer 将其解释为包的有效选项。 
 
 ## <a name="install-the-agent-using-dsc-in-azure-automation"></a>使用 Azure 自动化中的 DSC 安装代理
 
-可通过以下脚本示例，使用 Azure Automation DSC 安装代理。   如果没有自动化帐户，请在使用 Automation DSC 前查看 [Azure 自动化入门](/automation/)，了解创建自动化账户的需求和步骤。  如果不熟悉 Automation DSC，请参阅 [Automation DSC 入门](../../automation/automation-dsc-getting-started.md)。
+可通过以下脚本示例，使用 Azure Automation DSC 安装代理。   如果没有自动化帐户，请在使用 Automation DSC 前查看 [Azure 自动化入门](../../automation/index.yml)，了解创建自动化账户的需求和步骤。  如果不熟悉 Automation DSC，请参阅 [Automation DSC 入门](../../automation/automation-dsc-getting-started.md)。
 
 下面的示例安装由 `URI` 值标识的 64 位代理。 还可通过替换 URI 值，使用 32 位版本。 这两个版本的 URI 分别是：
 
@@ -134,7 +134,7 @@ ms.locfileid: "84440456"
 
 32 位和 64 位版本的代理包具有不同的产品代码，新发布的版本也具有唯一的产品代码。  产品代码是一个 GUID，它是应用程序或产品的主体标志，由 Windows Installer 的“ProductCode”属性表示。  **MMAgent.ps1** 脚本中的 `ProductId` 值必须与 32 位或 64 位代理安装程序包的产品代码匹配。
 
-要直接从代理安装包检索产品代码，可使用[适用于 Windows Installer 开发者的 Windows SDK 组件](https://msdn.microsoft.com/library/windows/desktop/aa370834%28v=vs.85%29.aspx)中的 Orca.exe，该组件是 Windows 软件开发工具包的一个组件，或按照 Microsoft 最有价值专家 (MVP) 编写的[示例脚本](https://www.scconfigmgr.com/2014/08/22/how-to-get-msi-file-information-with-powershell/)来使用 PowerShell。  对于上述任一种方法，都需要先从 MMASetup 安装包中提取 **MOMagent.msi** 文件。  在前面[使用命令行安装代理](#install-the-agent-using-the-command-line)部分下的第一个步骤中演示了此操作。  
+要直接从代理安装包检索产品代码，可使用[适用于 Windows Installer 开发者的 Windows SDK 组件](https://msdn.microsoft.com/windows/win32/msi/platform-sdk-components-for-windows-installer-developers)中的 Orca.exe，该组件是 Windows 软件开发工具包的一个组件，或按照 Microsoft 最有价值专家 (MVP) 编写的[示例脚本](https://www.scconfigmgr.com/2014/08/22/how-to-get-msi-file-information-with-powershell/)来使用 PowerShell。  对于上述任一种方法，都需要先从 MMASetup 安装包中提取 **MOMagent.msi** 文件。  在前面[使用命令行安装代理](#install-the-agent-using-the-command-line)部分下的第一个步骤中演示了此操作。  
 
 1. 从 [https://www.powershellgallery.com/packages/xPSDesiredStateConfiguration](https://www.powershellgallery.com/packages/xPSDesiredStateConfiguration) 将 xPSDesiredStateConfiguration DSC 模块导入到 Azure 自动化。  
 2.    为 *OPSINSIGHTS_WS_ID* 和 *OPSINSIGHTS_WS_KEY* 创建 Azure 自动化变量资产。 将 OPSINSIGHTS_WS_ID 设置为 Log Analytics 工作区 ID，将 OPSINSIGHTS_WS_KEY 设置为工作区的主键 。
@@ -188,9 +188,9 @@ Configuration MMAgent
 
 还可在 Azure 门户中执行简单的日志查询。  
 
-1. 在 Azure 门户中，搜索并选择“监视器”。
+1. 在 Azure 门户中，搜索并选择“监视”。
 1. 在菜单中选择“日志”。
-1. 在“日志”窗格的“查询”字段中键入：  
+1. 在“日志”窗格的查询字段中键入：  
 
     ```
     Heartbeat 
@@ -202,7 +202,7 @@ Configuration MMAgent
 
 ## <a name="next-steps"></a>后续步骤
 
-- 查看[管理和维护 Windows 和 Linux 的 Log Analytics 代理](agent-manage.md)以了解如何重新配置、升级代理或从虚拟机中删除代理。
+- 查看[管理并维护 Windows 和 Linux 的 Log Analytics 代理](agent-manage.md)，了解如何重新配置、升级代理或从虚拟机中删除代理。
 
 - 如果在安装或管理代理时遇到问题，请查看 [Windows 代理疑难解答](agent-windows-troubleshoot.md)。
 

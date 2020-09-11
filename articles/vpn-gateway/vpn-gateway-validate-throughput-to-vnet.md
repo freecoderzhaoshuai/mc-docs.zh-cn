@@ -1,21 +1,22 @@
 ---
-title: 验证到达 Azure 虚拟网络的 VPN 吞吐量 | Microsoft Docs
+title: 验证 Azure 虚拟网络的 VPN 吞吐量
 description: 本文旨在帮助用户验证从本地资源到达 Azure 虚拟机的网络吞吐量。
+titleSuffix: Azure VPN Gateway
 services: vpn-gateway
 author: WenJason
 manager: digimobile
 ms.service: vpn-gateway
 ms.topic: troubleshooting
 origin.date: 05/29/2019
-ms.date: 11/11/2019
+ms.date: 09/07/2020
 ms.author: v-jay
 ms.reviewer: chadmat;genli
-ms.openlocfilehash: 6b58ec7b79367a3f003f1a6369c01773ec99990e
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: f4666ae6a9cedb32d2e658c9ee0281f43b9a9cf6
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "73742281"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463136"
 ---
 # <a name="how-to-validate-vpn-throughput-to-a-virtual-network"></a>如何验证到达虚拟网络的 VPN 吞吐量
 
@@ -43,11 +44,11 @@ VPN 网关连接涉及以下组件：
 
 1. 确定应用程序的基准吞吐量需求。
 1. 确定 Azure VPN 网关的吞吐量限制。 如需帮助，请参阅[关于 VPN 网关](vpn-gateway-about-vpngateways.md#gwsku)的“网关 SKU”部分。
-1. 确定与 VM 大小相应的 [Azure VM 吞吐量指南](../virtual-machines/virtual-machines-windows-sizes.md)。
+1. 确定与 VM 大小相应的 [Azure VM 吞吐量指南](../virtual-machines/sizes.md)。
 1. 确定 Internet 服务提供商 (ISP) 的带宽。
 1. 使用 VM、VPN 网关或 ISP 的最小带宽来计算预期的吞吐量；其度量方式是兆位/每秒 (/) 除以八 (8)。
 
-如果计算得出的吞吐量无法满足应用程序的基准吞吐量需求，则必须提高已被确定为瓶颈的资源的带宽。 若要调整 Azure VPN 网关的大小，请参阅[更改网关 SKU](vpn-gateway-about-vpn-gateway-settings.md#gwsku)。 若要调整虚拟机的大小，请参阅[调整 VM 的大小](../virtual-machines/virtual-machines-windows-resize-vm.md)。 如果 Internet 的带宽不及预期，也可联系 ISP。
+如果计算得出的吞吐量无法满足应用程序的基准吞吐量需求，则必须提高已被确定为瓶颈的资源的带宽。 若要调整 Azure VPN 网关的大小，请参阅[更改网关 SKU](vpn-gateway-about-vpn-gateway-settings.md#gwsku)。 若要调整虚拟机的大小，请参阅[调整 VM 的大小](../virtual-machines/windows/resize-vm.md)。 如果 Internet 的带宽不及预期，也可联系 ISP。
 
 > [!NOTE]
 > VPN 网关吞吐量是所有站点到站点\VNET 到 VNET 或点到站点连接的聚合。

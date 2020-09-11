@@ -13,18 +13,18 @@ ms.tgt_pltfrm: mobile-multiple
 ms.devlang: multiple
 ms.topic: article
 origin.date: 01/04/2019
-ms.date: 03/02/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.reviewer: jowargo
 ms.lastreviewed: 01/04/2019
-ms.openlocfilehash: ec29609cb4c6566995543f077643dac7dbbadd2b
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: d9f147486783524a58dae884a937da22f747b96f
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77501452"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316447"
 ---
-# <a name="templates"></a>模板
+# <a name="notification-hubs-templates"></a>通知中心模板
 
 模板可让客户端应用程序指定它想要接收的确切通知格式。 通过使用模板，应用可获得多个不同优势，其中包括：
 
@@ -63,7 +63,7 @@ ms.locfileid: "77501452"
 
 下图演示了该过程：
 
-![](./media/notification-hubs-templates/notification-hubs-hello.png)
+![显示跨平台模板使用过程的关系图](./media/notification-hubs-templates/notification-hubs-hello.png)
 
 iOS 客户端应用注册的模板如下所示：
 
@@ -122,7 +122,7 @@ Windows 应用商店客户端应用的相应模板为：
 
 通过使用此模式，后端只需发送一条消息，而不必为应用用户存储特定的个性化选项。 下图演示了此方案：
 
-![](./media/notification-hubs-templates/notification-hubs-registration-specific.png)
+![显示后端如何仅向每个平台发送一条消息的关系图。](./media/notification-hubs-templates/notification-hubs-registration-specific.png)
 
 ## <a name="how-to-register-templates"></a>如何注册模板
 
@@ -146,7 +146,7 @@ Windows 应用商店客户端应用的相应模板为：
 
 表达式可以采用上述任一格式。
 
-使用连接时，必须使用 `{}` 括住整个表达式。 例如，`{$(prop) + ‘ - ’ + $(prop2)}` 。
+使用连接时，必须使用 `{}` 括住整个表达式。 例如，`{$(prop) + ‘ - ’ + $(prop2)}`。
 
 例如，以下模板不是有效的 XML 模板：
 

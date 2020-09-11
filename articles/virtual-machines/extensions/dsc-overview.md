@@ -1,10 +1,9 @@
 ---
-title: Azure Desired State Configuration 扩展处理程序简介
+title: 适用于 Azure 的 Desired State Configuration 概述
 description: 了解如何使用 PowerShell Desired State Configuration (DSC) 的 Azure 扩展处理程序。 本文包括先决条件、体系结构和 cmdlet。
 services: virtual-machines-windows
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: evansma
 editor: ''
 tags: azure-resource-manager
 keywords: dsc
@@ -13,15 +12,18 @@ ms.service: virtual-machines-windows
 ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: na
-origin.date: 05/02/2018
-ms.date: 07/06/2020
+origin.date: 07/13/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 164b36a2af11d70ce3b266f0dd21c78c0bd85389
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 596cbfef12f2cf8a33cb5a42e7e5115c2cc551d7
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946061"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413725"
 ---
 <!--Verify successfully on the portal DSC configuration-->
 # <a name="introduction-to-the-azure-desired-state-configuration-extension-handler"></a>Azure Desired State Configuration 扩展处理程序简介
@@ -83,7 +85,7 @@ Azure DSC 扩展包括一个默认配置脚本，该脚本计划在对 Azure Aut
 ```
 
 对于节点配置名称，请确保在 Azure State Configuration 中存在节点配置。  如果不存在，扩展部署将返回失败。  另外，请确保使用“节点配置”的名称而不是“配置”的名称。
-配置在用于[编译节点配置（MOF 文件）](/automation/automation-dsc-compile)的脚本中定义。
+配置在用于[编译节点配置（MOF 文件）](../../automation/automation-dsc-compile.md)的脚本中定义。
 该名称始终为 Configuration 后接句点 `.` 以及 `localhost` 或特定计算机名。
 
 ## <a name="dsc-extension-in-resource-manager-templates"></a>资源管理器模板中的 DSC 扩展
@@ -192,11 +194,11 @@ az vm extension set \
 
 - **配置参数**：如果配置函数采用参数，请使用 **argumentName1=value1,argumentName2=value2** 格式在此处输入。 此格式与 PowerShell cmdlet 或资源管理器模板中接受的配置参数格式不同。
 
-- **配置数据 PSD1 文件**：配置要求 .psd1 中有配置数据文件，请使用此字段来选择数据文件，然后将它上传到用户 Blob 存储。 配置数据文件在 Blob 存储中受 SAS 令牌的保护。
+- **配置数据 PSD1 文件**：如果配置要求 `.psd1` 中有配置数据文件，请使用此字段来选择数据文件，然后将它上传到用户 Blob 存储。 配置数据文件在 Blob 存储中受 SAS 令牌的保护。
 
 - **WMF 版本**：指定应在 VM 上安装的 Windows Management Framework (WMF) 版本。 将此属性设置为“latest”可安装最新版本的 WMF。 目前，此属性的可能值只有“4.0”、“5.0”、“5.1”和“latest”。 这些可能值将来可能会更新。 默认值为 **latest**。
 
-- **数据收集**：确定扩展是否将收集遥测数据。 有关详细信息，请参阅 [Azure DSC 扩展数据集合](https://blogs.msdn.microsoft.com/powershell/2016/02/02/azure-dsc-extension-data-collection-2/)。
+- **数据收集**：确定扩展是否将收集遥测数据。 有关详细信息，请参阅 [Azure DSC 扩展数据集合](https://devblogs.microsoft.com/powershell/azure-dsc-extension-data-collection-2/)。
 
 - **版本**：指定要安装的 DSC 扩展的版本。 有关版本信息，请参阅 [DSC 扩展版本历史记录](https://docs.microsoft.com/powershell/scripting/dsc/getting-started/azuredscexthistory)。
 
@@ -213,4 +215,4 @@ az vm extension set \
 - 若要了解可以使用 PowerShell DSC 管理的其他功能并获取更多 DSC 资源，请浏览 [PowerShell 库](https://www.powershellgallery.com/packages?q=DscResource&x=0&y=0)。
 - 有关将敏感参数传入配置的详细信息，请参阅[使用 DSC 扩展处理程序安全管理凭据](dsc-credentials.md)。
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

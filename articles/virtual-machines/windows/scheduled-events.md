@@ -1,22 +1,23 @@
 ---
-title: Azure 元数据服务 - 适用于 Windows VM 的计划事件
+title: Azure 中适用于 Windows VM 的计划事件
 description: Windows 虚拟机上使用 Azure 元数据服务的计划事件。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.topic: how-to
 ms.workload: infrastructure-services
 origin.date: 06/01/2020
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: yes
-ms.testdate: 07/27/2020
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.reviwer: mimckitt
-ms.openlocfilehash: 29e44c14a1330afbe0777eb722356c4f871a37ee
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.custom: devx-track-azurepowershell
+ms.openlocfilehash: 6ca2d2e1f89641222c191f77bf02e34adca99983
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244633"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462829"
 ---
 # <a name="azure-metadata-service-scheduled-events-for-windows-vms"></a>Azure 元数据服务：适用于 Windows VM 的计划事件
 
@@ -42,7 +43,7 @@ ms.locfileid: "87244633"
 
 预定事件提供以下用例中的事件：
 
-- [平台启动的维护](/virtual-machines/windows/maintenance-and-updates)（例如，VM 重新启动、实时迁移或主机的内存保留更新）
+- [平台启动的维护](../maintenance-and-updates.md?bc=/virtual-machines/windows/breadcrumb/toc.json&toc=/virtual-machines/windows/toc.json)（例如，VM 重新启动、实时迁移或主机的内存保留更新）
 - 虚拟机正在根据预测很快会出现故障的[降级主机硬件](https://azure.microsoft.com/blog/find-out-when-your-virtual-machine-hardware-is-degraded-with-scheduled-events)上运行
 - 用户启动的维护（例如，用户重启或重新部署 VM）
 
@@ -204,7 +205,7 @@ import json
 import socket
 import urllib2
 
-metadata_url = "http://169.254.169.254/metadata/scheduledevents?api-version=2019-01-01"
+metadata_url = "http://169.254.169.254/metadata/scheduledevents?api-version=2019-08-01"
 this_host = socket.gethostname()
 
 def get_scheduled_events():
@@ -246,6 +247,6 @@ if __name__ == '__main__':
 
 - 在 [Azure 实例元数据计划事件 GitHub 存储库](https://github.com/Azure-Samples/virtual-machines-scheduled-events-discover-endpoint-for-non-vnet-vm)中查看计划事件代码示例。
 - 详细了解[实例元数据服务](instance-metadata-service.md)中提供的 API。
-- 了解 [Azure 中 Windows 虚拟机的计划内维护](planned-maintenance.md)。
+- 了解 [Azure 中 Windows 虚拟机的计划内维护](../maintenance-and-updates.md?bc=/virtual-machines/windows/breadcrumb/toc.json&toc=/virtual-machines/windows/toc.json)。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

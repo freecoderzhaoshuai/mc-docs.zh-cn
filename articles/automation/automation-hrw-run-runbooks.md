@@ -3,15 +3,15 @@ title: 在混合 Runbook 辅助角色上运行 Azure 自动化 Runbook
 description: 本文介绍如何使用混合 Runbook 辅助角色在本地数据中心或云提供程序的计算机上运行 Runbook。
 services: automation
 ms.subservice: process-automation
-origin.date: 01/29/2019
-ms.date: 08/10/2020
+origin.date: 08/26/2020
+ms.date: 09/07/2020
 ms.topic: conceptual
-ms.openlocfilehash: d4087d0de8bb2d83d89e5ab54507855e04e59d66
-ms.sourcegitcommit: e6b216b180734783219378410e13192e314a4497
+ms.openlocfilehash: 105691da7702cc9564ab1592b359b87a7b1affd0
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87788286"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463091"
 ---
 # <a name="run-runbooks-on-a-hybrid-runbook-worker"></a>在混合 Runbook 辅助角色中运行 Runbook
 
@@ -306,6 +306,14 @@ gpg –-clear-sign <runbook name>
 ```azurepowershell
 Start-AzAutomationRunbook –AutomationAccountName "MyAutomationAccount" –Name "Test-Runbook" -RunOn "MyHybridGroup"
 ```
+
+## <a name="logging"></a>日志记录
+
+为了帮助解决在混合 runbook 辅助角色上运行的 runbook 的问题，日志存储在本地的以下位置：
+
+* 在 Windows 的 `C:\ProgramData\Microsoft\System Center\Orchestrator\<version>\SMA\Sandboxes` 上获取详细的作业运行时进程日志记录。 概要 runbook 作业状态事件将写入 Application and Services Logs\Microsoft-Automation\Operations 事件日志中。
+
+* 在 Linux 上，可以在 `/home/nxautomation/run/worker.log` 找到用户混合辅助角色日志，可以在 `/var/opt/microsoft/omsagent/run/automationworker/worker.log` 找到系统 runbook 辅助角色日志。
 
 ## <a name="next-steps"></a>后续步骤
 

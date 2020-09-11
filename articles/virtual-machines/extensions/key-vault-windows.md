@@ -2,21 +2,23 @@
 title: 适用于 Windows 的 Azure Key Vault VM 扩展
 description: 部署一个代理，该代理使用虚拟机扩展在虚拟机上执行 Key Vault 密钥自动刷新操作。
 services: virtual-machines-windows
-author: rockboyfor
 tags: keyvault
 ms.service: virtual-machines-windows
 ms.topic: article
 origin.date: 12/02/2019
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: e5381a61b067df66578691e89acd7a155e7694cd
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: edb392ed64a5fce966484ac0d93d93242793cb50
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596337"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413705"
 ---
-<!--Verify the extension name exists-->
+<!--Verified successfully on the extension name exists-->
 # <a name="key-vault-virtual-machine-extension-for-windows"></a>适用于 Windows 的 Key Vault 虚拟机扩展
 
 密钥保管库 VM 扩展可自动刷新 Azure 密钥保管库中存储的证书。 具体而言，该扩展监视一系列观测到存储在 Key Vault 中的证书，并在检测到更改时检索并安装相应的证书。 本文档详细介绍适用于 Windows 的 Key Vault VM 虚拟机扩展支持的平台、配置和部署选项。 
@@ -39,37 +41,45 @@ ms.locfileid: "82596337"
 以下 JSON 显示 Key Vault VM 代理扩展的架构。 该扩展不需要受保护的设置 - 其所有设置都被视为公共信息。 该扩展需要受监视的证书列表、轮询频率和目标证书存储。 具体而言：  
 
 ```json
-{
-  "type": "Microsoft.Compute/virtualMachines/extensions",
-  "name": "KVVMExtensionForWindows",
-  "apiVersion": "2019-07-01",
-  "location": "<location>",
-  "dependsOn": [
-      "[concat('Microsoft.Compute/virtualMachines/', <vmName>)]"
-  ],
-  "properties": {
-        "publisher": "Microsoft.Azure.KeyVault",
-        "type": "KeyVaultForWindows",
-        "typeHandlerVersion": "1.0",
-        "autoUpgradeMinorVersion": true,
-        "settings": {
-            "secretsManagementSettings": {
-            "pollingIntervalInS": <polling interval in seconds, e.g: "3600">,
-                "certificateStoreName": <certificate store name, e.g.: "MY">,
-                "linkOnRenewal": <Only Windows. This feature enables auto-rotation of SSL certificates, without necessitating a re-deployment or binding.  e.g.: false>,
-                "certificateStoreLocation": <certificate store location, currently it works locally only e.g.: "LocalMachine">,
-                "requireInitialSync": <initial synchronization of certificates e..g: true>,
-                "observedCertificates": <list of KeyVault URIs representing monitored certificates, e.g.: "https://myvault.vault.azure.cn/secrets/mycertificate"
-            }         
+    {
+      "type": "Microsoft.Compute/virtualMachines/extensions",
+      "name": "KVVMExtensionForWindows",
+      "apiVersion": "2019-07-01",
+      "location": "<location>",
+      "dependsOn": [
+          "[concat('Microsoft.Compute/virtualMachines/', <vmName>)]"
+      ],
+      "properties": {
+      "publisher": "Microsoft.Azure.KeyVault",
+      "type": "KeyVaultForWindows",
+      "typeHandlerVersion": "1.0",
+      "autoUpgradeMinorVersion": true,
+      "settings": {
+        "secretsManagementSettings": {
+          "pollingIntervalInS": <polling interval in seconds, e.g: "3600">,
+          "certificateStoreName": <certificate store name, e.g.: "MY">,
+          "linkOnRenewal": <Only Windows. This feature enables auto-rotation of SSL certificates, without necessitating a re-deployment or binding.  e.g.: false>,
+          "certificateStoreLocation": <certificate store location, currently it works locally only e.g.: "LocalMachine">,
+          "requireInitialSync": <initial synchronization of certificates e..g: true>,
+          "observedCertificates": <list of KeyVault URIs representing monitored certificates, e.g.: "https://myvault.vault.azure.cn/secrets/mycertificate"
+        },
+        "authenticationSettings": {
+                "msiEndpoint":  <Optional MSI endpoint e.g.: "http://169.254.169.254/metadata/identity">,
+                "msiClientId":  <Optional MSI identity e.g.: "c7373ae5-91c2-4165-8ab6-7381d6e75619">
         }
-  }
-}
+       }
+      }
+    }
 ```
 
 > [!NOTE]
 > 观察到的证书 URL 的格式应为 `https://myVaultName.vault.azure.cn/secrets/myCertName`。
 > 
-> 这是因为 `/secrets` 路径将返回包含私钥的完整证书，而 `/certificates` 路径不会。 有关证书的详细信息可在此处找到：[密钥保管库证书](/key-vault/about-keys-secrets-and-certificates#key-vault-certificates)
+> 这是因为 `/secrets` 路径将返回包含私钥的完整证书，而 `/certificates` 路径不会。 有关证书的详细信息可在此处找到：[密钥保管库证书](../../key-vault/general/about-keys-secrets-certificates.md)
+
+> [!IMPORTANT]
+> 仅对于使用“用户分配的标识”的 VM，才需要“authenticationSettings”属性 。
+> 它指定用于对 Key Vault 进行身份验证的标识。
 
 ### <a name="property-values"></a>属性值
 
@@ -82,9 +92,11 @@ ms.locfileid: "82596337"
 | pollingIntervalInS | 3600 | string |
 | certificateStoreName | MY | string |
 | linkOnRenewal | false | boolean |
-| certificateStoreLocation  | LocalMachine | string |
-| requiredInitialSync | 是 | boolean |
+| certificateStoreLocation  | LocalMachine 或 CurrentUser（区分大小写） | string |
+| requiredInitialSync | true | boolean |
 | observedCertificates  | ["https://myvault.vault.azure.cn/secrets/mycertificate"] | 字符串数组
+| msiEndpoint | http://169.254.169.254/metadata/identity | string |
+| msiClientId | c7373ae5-91c2-4165-8ab6-7381d6e75619 | string |
 
 ## <a name="template-deployment"></a>模板部署
 
@@ -93,32 +105,35 @@ ms.locfileid: "82596337"
 虚拟机扩展的 JSON 配置必须嵌套在模板的虚拟机资源片段中，具体来说是嵌套在虚拟机模板的 `"resources": []` 对象中，对于虚拟机规模集而言，是嵌套在 `"virtualMachineProfile":"extensionProfile":{"extensions" :[]` 对象下。
 
 ```json
-{
-  "type": "Microsoft.Compute/virtualMachines/extensions",
-  "name": "KeyVaultForWindows",
-  "apiVersion": "2019-07-01",
-  "location": "<location>",
-  "dependsOn": [
-      "[concat('Microsoft.Compute/virtualMachines/', <vmName>)]"
-  ],
-  "properties": {
-        "publisher": "Microsoft.Azure.KeyVault",
-        "type": "KeyVaultForWindows",
-        "typeHandlerVersion": "1.0",
-        "autoUpgradeMinorVersion": true,
-        "settings": {
-            "secretsManagementSettings": {
-                "pollingIntervalInS": <polling interval in seconds, e.g: "3600">,
-                "certificateStoreName": <certificate store name, e.g.: "MY">,
-                "certificateStoreLocation": <certificate store location, currently it works locally only e.g.: "LocalMachine">,
-                "observedCertificates": <list of KeyVault URIs representing monitored certificates, e.g.: "https://myvault.vault.azure.cn/secrets/mycertificate"
-            }         
-        }
+    {
+      "type": "Microsoft.Compute/virtualMachines/extensions",
+      "name": "KeyVaultForWindows",
+      "apiVersion": "2019-07-01",
+      "location": "<location>",
+      "dependsOn": [
+          "[concat('Microsoft.Compute/virtualMachines/', <vmName>)]"
+      ],
+      "properties": {
+      "publisher": "Microsoft.Azure.KeyVault",
+      "type": "KeyVaultForWindows",
+      "typeHandlerVersion": "1.0",
+      "autoUpgradeMinorVersion": true,
+      "settings": {
+        "secretsManagementSettings": {
+          "pollingIntervalInS": <polling interval in seconds, e.g: "3600">,
+          "certificateStoreName": <certificate store name, e.g.: "MY">,
+          "certificateStoreLocation": <certificate store location, currently it works locally only e.g.: "LocalMachine">,
+          "observedCertificates": <list of KeyVault URIs representing monitored certificates, e.g.: "https://myvault.vault.azure.cn/secrets/mycertificate"
+        }      
+      }
+      }
     }
-}
 ```
 
 ## <a name="azure-powershell-deployment"></a>Azure PowerShell 部署
+
+> [!WARNING]
+> PowerShell 客户端通常会将 `\` 添加到 settings.json 中的 `"`，这会导致 akvvm_service 失败，并出现错误：`[CertificateManagementConfiguration] Failed to parse the configuration settings with:not an object.`
 
 可以使用 Azure PowerShell，将 Key Vault VM 扩展部署到现有虚拟机或虚拟机规模集。 
 
@@ -172,23 +187,23 @@ ms.locfileid: "82596337"
     <!--CORRECT ON \ WHEN CONCATENATE WITH CLI CMDLET-->
     
     ```azurecli
-       # Start the deployment
-         az vm extension set -n "KeyVaultForWindows" \
-         --publisher Microsoft.Azure.KeyVault \
-         -g "<resourcegroup>" \
-         --vm-name "<vmName>" \
-         --settings '{\"secretsManagementSettings\": { \"pollingIntervalInS\": \"<pollingInterval>\", \"certificateStoreName\": \"<certStoreName>\", \"certificateStoreLocation\": \"<certStoreLoc>\", \"observedCertificates\": [\ <observedCerts>\"] }}'
+    # Start the deployment
+    az vm extension set -n "KeyVaultForWindows" `
+     --publisher Microsoft.Azure.KeyVault `
+     -g "<resourcegroup>" `
+     --vm-name "<vmName>" `
+     --settings '{\"secretsManagementSettings\": { \"pollingIntervalInS\": \"<pollingInterval>\", \"certificateStoreName\": \"<certStoreName>\", \"certificateStoreLocation\": \"<certStoreLoc>\", \"observedCertificates\": [\ <observedCerts>\"] }}'
     ```
 
 * 在虚拟机规模集上部署该扩展：
 
-   ```azurecli
-        # Start the deployment
-        az vmss extension set -n "KeyVaultForWindows" \
-         --publisher Microsoft.Azure.KeyVault \
-         -g "<resourcegroup>" \
-         --vmss-name "<vmName>" \
-         --settings '{\"secretsManagementSettings\": { \"pollingIntervalInS\": \"<pollingInterval>\", \"certificateStoreName\": \"<certStoreName>\", \"certificateStoreLocation\": \"<certStoreLoc>\", \"observedCertificates\": [\ <observedCerts>\"] }}'
+    ```azurecli
+    # Start the deployment
+    az vmss extension set -n "KeyVaultForWindows" `
+     --publisher Microsoft.Azure.KeyVault `
+     -g "<resourcegroup>" `
+     --vmss-name "<vmName>" `
+     --settings '{\"secretsManagementSettings\": { \"pollingIntervalInS\": \"<pollingInterval>\", \"certificateStoreName\": \"<certStoreName>\", \"certificateStoreLocation\": \"<certStoreLoc>\", \"observedCertificates\": [\ <observedCerts>\"] }}'
     ```
 
 请注意以下限制/要求：
@@ -198,7 +213,7 @@ ms.locfileid: "82596337"
 
 ## <a name="troubleshoot-and-support"></a>故障排除和支持
 
-### <a name="troubleshoot"></a>故障排除
+### <a name="troubleshoot"></a>疑难解答
 
 有关扩展部署状态的数据可以从 Azure 门户和使用 Azure PowerShell 进行检索。 若要查看给定 VM 的扩展部署状态，请使用 Azure PowerShell 运行以下命令。
 

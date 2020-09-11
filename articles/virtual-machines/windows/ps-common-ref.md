@@ -1,23 +1,27 @@
 ---
-title: 用于创建和管理 Azure 虚拟机的常用 PowerShell 命令
+title: 适用于 Azure 虚拟机的常用 PowerShell 命令
 description: 帮助你开始在 Azure 中创建和管理 VM 的常用 PowerShell 命令。
-author: rockboyfor
 ms.service: virtual-machines
 ms.topic: how-to
 ms.workload: infrastructure-services
 origin.date: 06/01/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 67c59c298f6dbee0adc364fa42a067f62d2eaa47
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: dd9919b775531c5561bdd37be6684455f540d5c2
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945982"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463074"
 ---
 # <a name="common-powershell-commands-for-creating-and-managing-azure-virtual-machines"></a>用于创建和管理 Azure 虚拟机的常用 PowerShell 命令
 
 本文介绍一些可用于在 Azure 订阅中创建和管理虚拟机的 Azure PowerShell 命令。  若要获取特定命令行开关和选项的详细帮助，可以使用 **Get-Help** 命令。
+
+<!--Correct on Remain to https://status.azure.com/status-->
 
 如果在本文运行多个命令，以下变量可能对你有用：
 
@@ -36,9 +40,9 @@ ms.locfileid: "85945982"
 
 | 任务 | 命令 |
 | ---- | ------- |
-| 创建 VM 配置 |$vm = [New-AzVMConfig](https://docs.microsoft.com/powershell/module/az.compute/new-azvmconfig) -VMName $myVM -VMSize "Standard_D1_v1"<br /><br />VM 配置用于定义或更新 VM 的设置。 使用 VM 的名称及其[大小](sizes.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)对配置进行初始化。 |
-| 添加配置设置 |$vm = [Set-AzVMOperatingSystem](https://docs.microsoft.com/powershell/module/az.compute/set-azvmoperatingsystem) -VM $vm -Windows -ComputerName $myVM -Credential $cred -ProvisionVMAgent -EnableAutoUpdate<br /><br />向以前使用 New-AzVMConfig 创建的配置对象添加包括[凭据](https://technet.microsoft.com/library/hh849815.aspx)在内的操作系统设置。 |
-| 添加网络接口 |$vm = [Add-AzVMNetworkInterface](https://docs.microsoft.com/powershell/module/az.compute/Add-AzVMNetworkInterface) -VM $vm -Id $nic.Id<br /><br />VM 必须使用[网络接口](../virtual-machines-windows-ps-create.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)在虚拟网络中通信。 还可使用 [Get-AzNetworkInterface](https://docs.microsoft.com/powershell/module/az.compute/add-azvmnetworkinterface) 检索现有网络接口对象。 |
+| 创建 VM 配置 |$vm = [New-AzVMConfig](https://docs.microsoft.com/powershell/module/az.compute/new-azvmconfig) -VMName $myVM -VMSize "Standard_D1_v1"<br /><br />VM 配置用于定义或更新 VM 的设置。 使用 VM 的名称及其[大小](../sizes.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)对配置进行初始化。 |
+| 添加配置设置 |$vm = [Set-AzVMOperatingSystem](https://docs.microsoft.com/powershell/module/az.compute/set-azvmoperatingsystem) -VM $vm -Windows -ComputerName $myVM -Credential $cred -ProvisionVMAgent -EnableAutoUpdate<br /><br />向以前使用 New-AzVMConfig 创建的配置对象添加包括[凭据](https://docs.microsoft.com/powershell/module/microsoft.powershell.security/get-credential?view=powershell-5.1)在内的操作系统设置。 |
+| 添加网络接口 |$vm = [Add-AzVMNetworkInterface](https://docs.microsoft.com/powershell/module/az.compute/add-azvmnetworkinterface) -VM $vm -Id $nic.Id<br /><br />VM 必须使用[网络接口](./quick-create-powershell.md?toc=/virtual-machines/windows/toc.json)在虚拟网络中通信。 还可使用 [Get-AzNetworkInterface](https://docs.microsoft.com/powershell/module/az.compute/add-azvmnetworkinterface) 检索现有网络接口对象。 |
 | 指定平台映像 |$vm = [Set-AzVMSourceImage](https://docs.microsoft.com/powershell/module/az.compute/set-azvmsourceimage) -VM $vm -PublisherName "publisher_name" -Offer "publisher_offer" -Skus "product_sku" -Version "latest"<br /><br />向以前使用 New-AzVMConfig 创建的配置对象添加[映像信息](cli-ps-findimage.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。 仅当将操作系统磁盘设置为使用平台映像时，才使用此命令返回的对象。 |
 | 创建 VM |[New-AzVM](https://docs.microsoft.com/powershell/module/az.compute/new-azvm) -ResourceGroupName $myResourceGroup -Location $location -VM $vm<br /><br />所有资源在[资源组](../../azure-resource-manager/management/manage-resource-groups-powershell.md)中创建。 运行此命令之前，请运行 New-AzVMConfig、Set-AzVMOperatingSystem、Set-AzVMSourceImage、Add-AzVMNetworkInterface 和 Set-AzVMOSDisk。 |
 | 更新 VM |[Update-AzVM](https://docs.microsoft.com/powershell/module/az.compute/update-azvm) -ResourceGroupName $myResourceGroup -VM $vm<br /><br />使用 Get-AzVM 获取当前 VM 配置，更改 VM 对象上的配置设置，并运行此命令。 |
@@ -60,6 +64,6 @@ ms.locfileid: "85945982"
 | 删除 VM |[Remove-AzVM](https://docs.microsoft.com/powershell/module/az.compute/remove-azvm) -ResourceGroupName $myResourceGroup -Name $myVM |
 
 ## <a name="next-steps"></a>后续步骤
-* 请参阅[使用 Resource Manager 和 PowerShell 创建 Windows VM](../virtual-machines-windows-ps-create.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json) 中有关创建虚拟机的基本步骤。
+* 请参阅[使用 Resource Manager 和 PowerShell 创建 Windows VM](./quick-create-powershell.md?toc=/virtual-machines/windows/toc.json) 中有关创建虚拟机的基本步骤。
 
-<!--Update_Description: update meta properties, update link -->
+<!-- Update_Description: update meta properties, wording update, update link -->

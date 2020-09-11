@@ -1,24 +1,26 @@
 ---
-title: Azure Windows VM 关闭时停滞在“正在重启”、“正在关闭”或“正在停止服务”状态
+title: Azure 虚拟机关闭时停滞在“正在重启”、“正在关闭”或“正在停止服务”状态 | Azure
 description: 本文帮助你排查 Azure Windows 虚拟机中的服务错误。
 services: virtual-machines-windows
 documentationCenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 ms.service: virtual-machines-windows
 ms.topic: troubleshooting
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 12/19/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: bb757d193e2d53b96945aedc8f17554e5ecbdf27
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: ad7a6022ad3896eb06099d069b55f87d9f7dd7df
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945953"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456872"
 ---
 # <a name="azure-windows-vm-shutdown-is-stuck-on-restarting-shutting-down-or-stopping-services"></a>Azure Windows VM 关闭时停滞在“正在重启”、“正在关闭”或“正在停止服务”状态
 
@@ -26,9 +28,9 @@ ms.locfileid: "85945953"
 
 ## <a name="symptoms"></a>症状
 
-使用[启动诊断](/virtual-machines/troubleshooting/boot-diagnostics)查看 VM 的屏幕截图时，可能会看到屏幕截图显示消息“正在重启”、“正在关闭”或“正在停止服务”。
+使用[启动诊断](./boot-diagnostics.md)查看 VM 的屏幕截图时，可能会看到屏幕截图显示消息“正在重启”、“正在关闭”或“正在停止服务”。
 
-![“正在重启”、“正在关闭”或“正在停止服务”屏幕](./media/boot-error-troubleshooting-windows/restart-shut-down-stop-service.png)
+:::image type="content" source="./media/boot-error-troubleshooting-windows/restart-shut-down-stop-service.png" alt-text="“正在重启”、“正在关闭”或“正在停止服务”屏幕":::
 
 ## <a name="cause"></a>原因
 
@@ -47,13 +49,13 @@ Windows 使用关闭进程来执行系统维护操作，并处理更新、角色
 
 **将 OS 磁盘附加到恢复 VM**
 
-1. 拍摄受影响的 VM 的 OS 磁盘的快照作为备份。 有关详细信息，请参阅[拍摄磁盘快照](/virtual-machines/windows/snapshot-copy-managed-disk)。
+1. 拍摄受影响的 VM 的 OS 磁盘的快照作为备份。 有关详细信息，请参阅[拍摄磁盘快照](../windows/snapshot-copy-managed-disk.md)。
 
-2. [将 OS 磁盘附加到恢复 VM](/virtual-machines/windows/troubleshoot-recovery-disks-portal)。
+2. [将 OS 磁盘附加到恢复 VM](./troubleshoot-recovery-disks-portal-windows.md)。
 
 3. 通过远程桌面连接到恢复 VM。
 
-4. 如果 OS 磁盘已加密，则必须先关闭加密，然后才能进入下一步。 有关详细信息，请参阅[在无法启动的 VM 中解密加密的 OS 磁盘](/virtual-machines/troubleshooting/troubleshoot-bitlocker-boot-error#solution)。
+4. 如果 OS 磁盘已加密，则必须先关闭加密，然后才能进入下一步。 有关详细信息，请参阅[在无法启动的 VM 中解密加密的 OS 磁盘](./troubleshoot-bitlocker-boot-error.md#solution)。
 
 **找到转储文件并提交支持票证**
 
@@ -108,13 +110,13 @@ Windows 使用关闭进程来执行系统维护操作，并处理更新、角色
     reg unload HKLM\BROKENSYSTEM
     ```
 
-5. [分离 OS 磁盘，然后将 OS 磁盘重新附加到受影响的 VM](/virtual-machines/windows/troubleshoot-recovery-disks-portal)。
+5. [分离 OS 磁盘，然后将 OS 磁盘重新附加到受影响的 VM](./troubleshoot-recovery-disks-portal-windows.md)。
 
 6. 启动 VM 并访问串行控制台。
 
 7. 选择“发送不可屏蔽中断(NMI)”以触发内存转储。
 
-    ![发送不可屏蔽的中断](./media/boot-error-troubleshooting-windows/send-nonmaskable-interrupt.png)
+    :::image type="content" source="./media/boot-error-troubleshooting-windows/send-nonmaskable-interrupt.png" alt-text="发送不可屏蔽的中断":::
 
 8. 再次将 OS 磁盘附加到恢复 VM，收集转储文件。
 

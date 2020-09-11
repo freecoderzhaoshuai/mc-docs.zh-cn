@@ -3,16 +3,16 @@ title: Azure 诊断扩展故障排除
 description: 排查在 Azure 虚拟机、Service Fabric 或云服务中使用 Azure 诊断时遇到的问题。
 ms.subservice: diagnostic-extension
 ms.topic: conceptual
-author: lingliw
+author: Johnnytechn
+ms.author: v-johya
+ms.date: 08/20/2020
 origin.date: 05/08/2019
-ms.date: 11/19/2019
-ms.author: v-lingwu
-ms.openlocfilehash: 4962a5f536bd2df4d86fa3407711dcd7c6cdd9d9
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: e675aa774a76be2409ca347b05ac76734425b9ba
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79452454"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457414"
 ---
 # <a name="azure-diagnostics-troubleshooting"></a>Azure 诊断故障排除
 本文介绍有关使用 Azure 诊断的故障排除信息。 有关 Azure 诊断的详细信息，请参阅 [Azure 诊断概述](diagnostics-extension-overview.md)。
@@ -24,7 +24,7 @@ ms.locfileid: "79452454"
 
 **监视代理（MonAgent\*.exe 进程）** ：监视、收集和传输诊断数据。  
 
-## <a name="logartifact-paths"></a>日志/项目路径 <a name="log-artifacts-path"></a>
+## <a name="logartifact-paths"></a>日志/项目路径
 以下是一些重要日志和项目的路径。 文档剩余部分将始终引用此信息。
 
 ### <a name="azure-cloud-services"></a>Azure 云服务
@@ -51,7 +51,7 @@ ms.locfileid: "79452454"
 | **MonAgentHost 日志文件** | C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\<DiagnosticsVersion>\WAD0107\Configuration\MonAgentHost.<seq_num>.log |
 
 ## <a name="metric-data-doesnt-appear-in-the-azure-portal"></a>指标数据不显示在 Azure 门户中
-Azure 诊断提供可在 Azure 门户中显示的指标数据。 如果无法查看门户中的这些数据，请检查 Azure 诊断存储帐户中的 WADMetrics\* 表，以查看是否存在相应的指标记录。
+Azure 诊断提供可在 Azure 门户中显示的指标数据。 如果无法查看门户中的这些数据，请检查 Azure 诊断存储帐户中的 WADMetrics\* 表，以查看是否存在相应的指标记录，并确保[资源提供程序](../../azure-resource-manager/management/resource-providers-and-types.md) Microsoft.Insights 已注册。
 
 此处，表的 PartitionKey 是资源 ID、虚拟机或虚拟机规模集  。 RowKey 是指标名称（也称为性能计数器名称）  。
 
@@ -80,7 +80,7 @@ Azure 诊断提供可在 Azure 门户中显示的指标数据。 如果无法查
 如果配置设置正确，但仍看不到指标数据，请按照以下指南进行故障排除。
 
 
-## <a name="azure-diagnostics-is-not-starting"></a>Azure 诊断不启动 <a name="azure-diagnostics-is-not-starting"></a>
+## <a name="azure-diagnostics-is-not-starting"></a>Azure 诊断不启动
 有关为和 Azure 诊断无法启动的信息，请参阅之前提供的日志文件位置中的 DiagnosticsPluginLauncher.log 和 DiagnosticsPlugin.log 文件   。
 
 如果这些日志指示 `Monitoring Agent not reporting success after launch`，则表示启动 MonAgentHost.exe 失败。 在之前部分中指示 `MonAgentHost log file` 的位置查看日志。
@@ -216,7 +216,7 @@ Azure 存储中保存 ETW 事件的表是使用以下代码命名的：
 ## <a name="references"></a>参考
 
 ### <a name="how-to-check-diagnostics-extension-configuration"></a>如何检查诊断扩展配置
-检查扩展配置的最简方法是转到 [Azure 资源浏览器](https://login.partner.microsoftonline.cn)、再转到 Azure 诊断扩展 (IaaSDiagnostics/PaaDiagnostics) 所在的虚拟机或云服务。
+检查扩展配置的最简方法是转到 [Azure 资源浏览器](https://portal.azure.cn/#blade/HubsExtension/ArmExplorerBlade)、再转到 Azure 诊断扩展 (IaaSDiagnostics/PaaDiagnostics) 所在的虚拟机或云服务。
 
 或者，通过远程桌面连接到计算机并查看“日志项目路径部分”中所述的 Azure 诊断配置文件。
 
@@ -262,7 +262,7 @@ Azure 存储中保存 ETW 事件的表是使用以下代码命名的：
 >[!NOTE]
 > 只需对主 tsf 文件（例如 PerformanceCountersTable.tsf）运行此实用工具。 将自动处理随附的文件（例如 PerformanceCountersTables_\*\*001.tsf、PerformanceCountersTables_\*\*002.tsf 等）。
 
-### <a name="more-about-missing-trace-logs"></a>关于跟踪日志丢失的更多信息 <a name="more-about-trace-logs-missing"></a>
+### <a name="more-about-missing-trace-logs"></a>关于跟踪日志丢失的更多信息
 
 >[!NOTE]
 > 以下信息主要适用于 Azure 云服务，除非已在于 IaaS VM 上运行的应用程序上配置了 DiagnosticsMonitorTraceListener。

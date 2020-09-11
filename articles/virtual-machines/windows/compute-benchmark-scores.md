@@ -1,21 +1,23 @@
 ---
-title: Windows VM 的计算基准测试分数
+title: Azure Windows VM 的计算基准测试分数
 description: 比较运行 Windows Server 的 Azure VM 的 SPECint 计算基准测试分数。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.subservice: sizes
-ms.topic: article
+ms.topic: conceptual
 ms.workload: infrastructure-services
 origin.date: 04/29/2020
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
 ms.reviewer: davberg
-ms.openlocfilehash: faac0606f01e834fa6f3383e903fbe2587c5573f
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: ae23c3d51b17644519cb6f249b2a723c7502c5f7
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946028"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462914"
 ---
 # <a name="compute-benchmark-scores-for-windows-vms"></a>Windows VM 的计算基准测试分数
 以下 SPECInt 基准测试分数显示运行 Windows Server 的特定 Azure VM 的计算性能。 此外，还提供了 [Linux VM](../linux/compute-benchmark-scores.md?toc=%2fvirtual-machines%2flinux%2ftoc.json) 的计算基准测试分数。
@@ -323,6 +325,6 @@ ms.locfileid: "85946028"
 Windows 分数是通过在 Windows Server 上运行 [SPECint 2006](https://www.spec.org/cpu2006/results/rint2006.html) 计算得出的。 SPECint 是使用基本速率选项 (SPECint_rate2006) 运行的，每个 vCPU 一个副本。 SPECint 包括 12 项单独的测试，每项测试运行三次，取每次测试的中间值并为值加权，形成综合分数。 然后跨多个 VM 运行这些测试，提供所示的平均分。
 
 ## <a name="next-steps"></a>后续步骤
-* 有关存储容量、磁盘详细信息以及选择 VM 大小的注意事项，请参阅 [Sizes for virtual machines](sizes.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)（虚拟机的大小）。
+* 有关存储容量、磁盘详细信息以及选择 VM 大小的注意事项，请参阅 [Sizes for virtual machines](../sizes.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)（虚拟机的大小）。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

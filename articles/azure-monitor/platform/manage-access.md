@@ -6,13 +6,13 @@ ms.subservice: logs
 ms.topic: conceptual
 origin.date: 10/22/2019
 ms.author: v-johya
-ms.date: 07/17/2020
-ms.openlocfilehash: 67957b20f4345aa04a1953309492b759c08f811b
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.date: 08/20/2020
+ms.openlocfilehash: 8fc3080aa17e8045e6983d311cd73f404bfaee7a
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508401"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457438"
 ---
 # <a name="manage-access-to-log-data-and-workspaces-in-azure-monitor"></a>管理对 Azure Monitor 中的日志数据和工作区的访问
 
@@ -21,7 +21,7 @@ Azure Monitor 将[日志](data-platform-logs.md)数据存储在 Log Analytics �
 本文介绍如何管理对日志的访问，以及如何管理包含日志的工作区，包括如何执行以下操作： 
 
 * 使用工作区权限授予对工作区的访问权限。
-* 需要使用 Azure 基于角色的访问控制 (RBAC)（也称为[资源上下文](design-logs-deployment.md#access-mode)）访问特定资源中的日志数据的用户
+* 需要使用 Azure 基于角色的访问控制 (Azure RBAC)（也称为[资源上下文](design-logs-deployment.md#access-mode)）访问特定资源中的日志数据的用户
 * 使用 Azure RBAC 对需要访问工作区中特定表中的日志数据的用户授予访问权限。
 
 要了解有关 RBAC 和访问策略的日志概念，请阅读[设计 Azure Monitor 日志部署](design-logs-deployment.md)
@@ -103,7 +103,7 @@ Set-AzResource -ResourceId $_.ResourceId -Properties $_.Properties -Force
 
 ## <a name="manage-access-using-workspace-permissions"></a>使用工作区权限管理访问
 
-每个工作区可有多个与其关联的帐户，每个帐户可访问多个工作区。 使用 [Azure 基于角色的访问](../../role-based-access-control/role-assignments-portal.md)来管理访问权限。
+每个工作区可有多个与其关联的帐户，每个帐户可访问多个工作区。 使用 [Azure 基于角色的访问控制 (Azure RBAC)](../../role-based-access-control/role-assignments-portal.md) 来管理访问权限。
 
 以下活动也需要 Azure 权限：
 
@@ -311,7 +311,7 @@ Log Analytics 参与者角色包括以下 Azure 操作：
 
 ## <a name="next-steps"></a>后续步骤
 
-* 请参阅 [Log Analytics 代理概述](../../azure-monitor/platform/log-analytics-agent.md)，以从数据中心或其他云环境中的计算机收集数据。
+* 请参阅 [Log Analytics 代理概述](./log-analytics-agent.md)，以从数据中心或其他云环境中的计算机收集数据。
 
-* 请参阅[收集有关 Azure 虚拟机的数据](../../azure-monitor/learn/quick-collect-azurevm.md)，以配置 Azure VM 的数据收集。
+* 请参阅[收集有关 Azure 虚拟机的数据](../learn/quick-collect-azurevm.md)，以配置 Azure VM 的数据收集。
 

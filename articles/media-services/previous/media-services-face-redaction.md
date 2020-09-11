@@ -1,6 +1,6 @@
 ---
 title: 使用 Azure 媒体分析进行面部修订 | Microsoft Docs
-description: 本主题演示如何使用 Azure 媒体分析检测面部。
+description: Azure 媒体编修器是一种 Azure 媒体分析媒体处理器，可用于在云中进行可缩放的面部修订。 本文演示如何使用 Azure 媒体分析检测面部。
 services: media-services
 documentationcenter: ''
 author: WenJason
@@ -12,14 +12,15 @@ ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
 origin.date: 03/18/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 417a4c25899a8f222daa44837166e4e5ac0e50ef
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 1cd49bd963c074e6f55419334491ef81533acb3c
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71124487"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413191"
 ---
 # <a name="redact-faces-with-azure-media-analytics"></a>使用 Azure 媒体分析进行面部修订 
 ## <a name="overview"></a>概述
@@ -30,7 +31,7 @@ ms.locfileid: "71124487"
 ## <a name="face-redaction-modes"></a>面部修订模式
 面部修订的工作方式是：检测每一帧视频中的面部，并跟踪之前和之后的面部对象，以便同一个人在其他角度也模糊显示。 自动编修过程很复杂，并且无法始终生成 100% 符合要求的输出，因此，媒体分析提供了几种修改最终输出的方式。
 
-除了完全自动模式外，还可使用双步工作流通过 ID 列表选择/取消选择找到的面部。 此外，为了对每一帧进行任意调整，MP 使用 JSON 格式的元数据文件。 此工作流拆分为“分析”  和“修订”  模式。 可将这两个模式组合为在一个作业中运行两项任务的单个过程；此模式称为“组合”  。
+除了完全自动模式外，还可使用双步工作流通过 ID 列表选择/取消选择找到的面部。 此外，为了对每一帧进行任意调整，MP 使用 JSON 格式的元数据文件。 此工作流拆分为“分析”**** 和“修订”**** 模式。 可将这两个模式组合为在一个作业中运行两项任务的单个过程；此模式称为“组合”****。
 
 ### <a name="combined-mode"></a>组合模式
 这会自动生成经过编修的 mp4，而无需任何手动输入。
@@ -130,13 +131,15 @@ ms.locfileid: "71124487"
 
 示例 foo_IDList.txt
  
-     1
-     2
-     3
+```output
+1
+2
+3
+```
 
 ## <a name="blur-types"></a>模糊类型
 
-在“组合”或“修订”模式下，可通过 JSON 输入配置在 5 种不同的模糊模式中选择：“低”、“中”、“高”、“框”和“黑色”        。 默认情况下使用“中”  。
+在“组合”或“修订”模式下，可通过 JSON 输入配置在 5 种不同的模糊模式中选择：“低”、“中”、“高”、“框”和“黑色”****************************。 默认情况下使用“中”****。
 
 可以查找以下模糊类型的示例。
 
@@ -192,7 +195,7 @@ ms.locfileid: "71124487"
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>创建和配置 Visual Studio 项目
 
-设置开发环境，并根据[使用 .NET 进行媒体服务开发](media-services-dotnet-how-to-use.md)中所述，在 app.config 文件中填充连接信息。 
+设置开发环境，并在 app.config 文件中填充连接信息，如[使用 .NET 进行媒体服务开发](media-services-dotnet-how-to-use.md)中所述。 
 
 #### <a name="example"></a>示例
 

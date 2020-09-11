@@ -3,8 +3,7 @@ title: 对“Windows 停止错误”进行排除故障 - 目录服务初始化�
 description: 解决 Azure 中的 Active Directory 域控制器虚拟机 (VM) 陷入循环并声明其需要重启的问题。
 services: virtual-machines-windows, azure-resource-manager
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: azure-resource-manager
 ms.assetid: 3396f8fe-7573-4a15-a95d-a1e104c6b76d
@@ -13,23 +12,26 @@ ms.workload: na
 ms.tgt_pltfrm: vm-windows
 ms.topic: troubleshooting
 origin.date: 05/05/2020
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 7d673f2c346bb7ec01419f8c13021f62a88e7892
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: c0670824a6340d8c3ba353a6c8b4867af710390f
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946192"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456792"
 ---
 <!--Verified successfully-->
-# <a name="troubleshoot-windows-stop-error--directory-service-initialization-failure"></a>对“Windows 停止错误”进行排除故障 - 目录服务初始化失败
+# <a name="troubleshoot-windows-stop-error---directory-service-initialization-failure"></a>对“Windows 停止错误”进行排除故障 - 目录服务初始化失败
 
 本文提供了解决 Azure 中的 Active Directory 域控制器虚拟机 (VM) 陷入循环并声明其需要重启的问题。
 
 ## <a name="symptom"></a>症状
 
-当使用[启动诊断](/virtual-machines/troubleshooting/boot-diagnostics)查看 VM 的屏幕截图时，屏幕截图显示 VM 因错误而需要重启，并在 Windows Server 2008 R2 中显示停止代码“0xC00002E1”，在 Windows Server 2012 或更高版本中显示停止代码“0xC00002E2” 。
+当使用[启动诊断](./boot-diagnostics.md)查看 VM 的屏幕截图时，屏幕截图显示 VM 因错误而需要重启，并在 Windows Server 2008 R2 中显示停止代码“0xC00002E1”，在 Windows Server 2012 或更高版本中显示停止代码“0xC00002E2” 。
 
 ![Windows Server 2012 启动屏幕显示“你的电脑遇到问题，需要重启。 我们将收集一些错误信息，然后为你重启电脑。”](./media/troubleshoot-directory-service-initialization-failure/1.png)
 
@@ -64,7 +66,7 @@ ms.locfileid: "85946192"
 
 ### <a name="create-and-access-a-repair-vm"></a>创建和访问修复 VM
 
-1. 使用 [VM 修复命令的步骤 1-3](/virtual-machines/troubleshooting/repair-windows-vm-using-azure-virtual-machine-repair-commands#repair-process-example) 来准备一个修复 VM。
+1. 使用 [VM 修复命令的步骤 1-3](./repair-windows-vm-using-azure-virtual-machine-repair-commands.md#repair-process-example) 来准备一个修复 VM。
 1. 使用远程桌面连接来连接到修复 VM。
 
 ### <a name="free-up-space-on-disk"></a>释放磁盘上的空间
@@ -72,11 +74,11 @@ ms.locfileid: "85946192"
 由于磁盘现在连接到修复 VM，请验证托管 Active Directory 内部数据库的磁盘是否有足够的空间来正确执行操作。
 
 1. 右键单击该驱动器并选择“属性”，检查磁盘是否已满。
-1. 如果磁盘的可用空间少于 300 Mb，[请使用 PowerShell 将其最大扩展到 1 Tb](/virtual-machines/windows/expand-os-disk)。
+1. 如果磁盘的可用空间少于 300 Mb，[请使用 PowerShell 将其最大扩展到 1 Tb](../windows/expand-os-disk.md)。
 1. 如果磁盘已用空间达到 1 Tb，请清理磁盘。
 
-    1. 使用 PowerShell 从损坏的 VM 中[分离数据磁盘](/virtual-machines/windows/detach-disk#detach-a-data-disk-using-powershell)。
-    1. 从损坏的 VM 上分离数据磁盘后，[附加数据磁盘](/virtual-machines/windows/attach-disk-ps#attach-an-existing-data-disk-to-a-vm)到正常运行的 VM。
+    1. 使用 PowerShell 从损坏的 VM 中[分离数据磁盘](../windows/detach-disk.md#detach-a-data-disk-using-powershell)。
+    1. 从损坏的 VM 上分离数据磁盘后，[附加数据磁盘](../windows/attach-disk-ps.md#attach-an-existing-data-disk-to-a-vm)到正常运行的 VM。
     1. 使用[磁盘清理工具](https://support.microsoft.com/help/4026616/windows-10-disk-cleanup)释放更多空间。
 
 1. **可选** - 如果需要更多空间，请打开 CMD 实例并输入 `defrag <LETTER ASSIGNED TO THE OS DISK>: /u /x /g` 命令以在驱动器上执行碎片整理：
@@ -128,7 +130,7 @@ ms.locfileid: "85946192"
 
     用前面步骤中确定的号替换 `< Drive Letter >`。
 
-    ![屏幕截图显示了在输入“bcdedit /store <Drive Letter>:\boot\bcd /enum”命令后提升的 CMD 实例，该命令显示带有标识符的 Windows 启动管理器。](./media/troubleshoot-directory-service-initialization-failure/2.png)
+    :::image type="content" source="./media/troubleshoot-directory-service-initialization-failure/2.png" alt-text="屏幕截图显示了在输入“bcdedit /store <Drive Letter>:\boot\bcd /enum”命令后提升的 CMD 实例，该命令显示带有标识符的 Windows 启动管理器。":::
 
 1. 在启动分区上启用 `safeboot DsRepair` 标志：
 
@@ -138,7 +140,7 @@ ms.locfileid: "85946192"
 
 1. 再次查询启动选项以确保正确设置了更改。
 
-    ![屏幕截图显示启用 safeboot DsRepair 标志后提升的 CMD 实例。](./media/troubleshoot-directory-service-initialization-failure/3.png)
+    :::image type="content" source="./media/troubleshoot-directory-service-initialization-failure/3.png" alt-text="屏幕截图显示启用 safeboot DsRepair 标志后提升的 CMD 实例。":::
 
 ### <a name="recommended-before-you-rebuild-the-vm-enable-serial-console-and-memory-dump-collection"></a>建议：在重新生成 VM 之前，启用串行控制台和内存转储收集
 
@@ -185,7 +187,7 @@ ms.locfileid: "85946192"
 
 ### <a name="rebuild-the-vm"></a>重新生成 VM
 
-1. 使用 [VM 修复命令的步骤 5](/virtual-machines/troubleshooting/repair-windows-vm-using-azure-virtual-machine-repair-commands#repair-process-example) 重新装配 VM。
+1. 使用 [VM 修复命令的步骤 5](./repair-windows-vm-using-azure-virtual-machine-repair-commands.md#repair-process-example) 重新装配 VM。
 
 ### <a name="reconfigure-the-storage-area-network-policy"></a>重新配置存储区域网络策略
 
@@ -236,5 +238,4 @@ ms.locfileid: "85946192"
     >
     > [如何使用 Azure PowerShell 将现有本地 Hyper-V 域控制器上传到 Azure](https://support.microsoft.com/help/2904015)
 
-<!-- Update_Description: new article about troubleshoot directory service initialization failure -->
-<!--NEW.date: 07/06/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

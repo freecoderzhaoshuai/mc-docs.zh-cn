@@ -1,23 +1,23 @@
 ---
-title: 共享映像库概述
+title: Azure 共享映像库
 description: 了解如何使用共享映像库在整个组织中共享 VM 映像。
-author: rockboyfor
 ms.service: virtual-machines
 ms.subservice: imaging
 ms.topic: conceptual
 ms.workload: infrastructure
 origin.date: 05/06/2019
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: no
-ms.testdate: 07/06/2020
+ms.testdate: ''
 ms.author: v-yeche
 ms.reviewer: cynthn
-ms.openlocfilehash: c3d5a0a178a553229280f286f425675bf96894bc
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 04c81c0fd029911109750e35e84b11b867832f0e
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917131"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462925"
 ---
 # <a name="shared-image-gallery-overview"></a>共享映像库概述
 

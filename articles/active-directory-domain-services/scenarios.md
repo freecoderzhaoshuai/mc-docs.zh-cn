@@ -9,14 +9,14 @@ ms.service: active-directory
 ms.subservice: domain-services
 ms.workload: identity
 ms.topic: conceptual
-ms.date: 08/21/2020
+ms.date: 09/01/2020
 ms.author: v-junlch
-ms.openlocfilehash: c0e85c636a8d16308ce267152399fabd8ace6adb
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 47099d6b4ac61a39d74aa534d5ebe1d011ebd7f5
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715264"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413348"
 ---
 # <a name="common-use-cases-and-scenarios-for-azure-active-directory-domain-services"></a>Azure Active Directory 域服务的常见用例和场景
 
@@ -54,7 +54,7 @@ Azure AD DS 提供了替代方法，由此能够创建返回到本地 AD DS 环�
 
 * 需要域服务的应用程序和服务器工作负载部署在 Azure 的虚拟网络中。
     * 这可能包括迁移到 Azure（作为直接迁移策略的一部分）的旧版应用程序。
-* 为了将标识信息从其本地目录同步到其 Azure AD 租户，Litware Corporation 部署了 Azure AD Connect。
+* 为了将标识信息从其本地目录同步到其 Azure AD 租户，Litware Corporation 部署了 [Azure AD Connect][azure-ad-connect]。
     * 同步的标识信息包括用户帐户和组成员身份。
 * Litware 的 IT 团队在此虚拟网络中或在对等互连的虚拟网络中为其 Azure AD 租户启用 Azure AD DS。
 * 然后，在 Azure 虚拟网络中部署的应用程序和 VM 便可使用 Azure AD DS 功能，如域加入、LDAP 读取、LDAP 绑定、NTLM、Kerberos 身份验证以及组策略等。
@@ -151,16 +151,24 @@ Contoso 想要将此应用程序迁移到 Azure，并淘汰目前托管此应用
 
 有关此部署场景的详细信息，请参阅[如何将 Azure AD 域服务与 RDS 部署集成][windows-rds]。
 
+## <a name="domain-joined-hdinsight-clusters"></a>已加入域的 HDInsight 群集
+
+可以设置已加入启用了 Apache Ranger 的托管域的 Azure HDInsight 群集。 可以通过 Apache Ranger 创建并应用 Hive 策略，并允许数据科学家等用户使用基于 ODBC 的工具（如 Excel、Tableau）连接到 Hive。 我们会继续努力将其他工作负载（如 HBase、Spark 和 Storm）添加到已加入域的 HDInsight。
+
+有关此部署方案的详细信息，请参阅[如何配置已加入域的 HDInsight 群集][hdinsight]
+
 ## <a name="next-steps"></a>后续步骤
 
 若要开始使用，请[创建并配置 Azure Active Directory 域服务托管域][tutorial-create-instance]。
 
 <!-- INTERNAL LINKS -->
+[hdinsight]: ../hdinsight/domain-joined/apache-domain-joined-configure-using-azure-adds.md
 [tutorial-create-instance]: tutorial-create-instance.md
 [custom-ou]: create-ou.md
 [create-gpo]: manage-group-policy.md
 [sspr]: ../active-directory/authentication/overview-authentication.md#self-service-password-reset
 [compare]: compare-identity-solutions.md
+[azure-ad-connect]: ../active-directory/hybrid/whatis-azure-ad-connect.md
 
 <!-- EXTERNAL LINKS -->
 [windows-rds]: https://docs.microsoft.com/windows-server/remote/remote-desktop-services/rds-azure-adds

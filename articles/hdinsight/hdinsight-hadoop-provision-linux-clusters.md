@@ -11,12 +11,12 @@ ms.devlang: na
 ms.topic: conceptual
 origin.date: 02/12/2020
 ms.date: 03/02/2020
-ms.openlocfilehash: 26a4a011fb08a87a3b39910cc0b003ba69ce2aef
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 59943c7722985f3f119ecb4198541150e44d6c21
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715247"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462891"
 ---
 # <a name="set-up-clusters-in-hdinsight-with-apache-hadoop-apache-spark-apache-kafka-and-more"></a>使用 Apache Hadoop、Apache Spark、Apache Kafka 及其他组件在 HDInsight 中设置群集
 
@@ -43,7 +43,7 @@ Hadoop 群集由用于对任务进行分布式处理的多个虚拟机（节点�
 | [cURL](hdinsight-hadoop-create-linux-clusters-curl-rest.md) |&nbsp; |✔ |✔ |&nbsp; |
 | [Azure Resource Manager 模板](hdinsight-hadoop-create-linux-clusters-arm-templates.md) |&nbsp; |✔ |&nbsp; |&nbsp; |
 
-本文将指导你完成 [Azure 门户](https://portal.azure.cn)中的设置，你可以在其中使用默认视图或“经典”创建 HDInsight 群集。
+本文介绍如何在 [Azure 门户](https://portal.azure.cn)中进行设置，通过该门户创建 HDInsight 群集。
 
 ## <a name="basics"></a>基础知识
 
@@ -132,6 +132,9 @@ HDInsight 群集可以使用以下存储选项：
 
 > [!IMPORTANT]
 > 在创建群集后启用安全存储传输可能会导致使用存储帐户时出错，因此不建议这样做。 最好使用已启用安全传输的存储帐户创建新群集。
+
+> [!Note]  
+> Azure HDInsight 不会将 Azure 存储中存储的数据从一个区域自动传输、移动或复制到另一区域。
 
 ### <a name="metastore-settings"></a>元存储设置
 

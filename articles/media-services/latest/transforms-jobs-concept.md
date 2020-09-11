@@ -11,14 +11,14 @@ ms.service: media-services
 ms.workload: ''
 ms.topic: article
 origin.date: 08/19/2019
-ms.date: 12/09/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 638ff657f77d6e584c5d177681585acb6b738614
-ms.sourcegitcommit: 1f890a4085e184cc678485d05f08dd6de8dc973f
+ms.openlocfilehash: 206e1408473d60e71c49019ecf99226e25d22d49
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84438944"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413789"
 ---
 # <a name="transforms-and-jobs-in-media-services"></a>媒体服务中的转换和作业
 
@@ -75,7 +75,7 @@ ms.locfileid: "84438944"
 
 选择图像查看其完整大小。  
 
-<a href="./media/api-diagrams/transform-large.png" target="_blank"><img src="./media/api-diagrams/transform-small.png"></a>
+[![图显示了 Transform 对象及其引用的对象，包括对象之间的类派生关系。](./media/api-diagrams/transform-small.png)](./media/api-diagrams/transform-large.png#lightbox)
 
 ## <a name="jobs"></a>作业
 
@@ -89,6 +89,10 @@ ms.locfileid: "84438944"
 
 如果输入内容已在资产中，或者内容已存储在本地文件中，请使用[资产作为作业输入](job-input-from-local-file-how-to.md)。 如果你打算发布输入资产以供流式传输或下载（例如，要发布 MP4 文件以供下载，同时想要执行语音转文本或人脸检测），这也是一个不错的选择。 此方法支持多文件资产（例如，在本地编码的 MBR 流集）。
 
+### <a name="checking-job-progress"></a>检查作业进度
+
+使用事件网格监视事件可以获取作业的进度和状态。 有关详细信息，请参阅[使用事件网格监视事件](job-state-events-cli-how-to.md)。
+
 ### <a name="updating-jobs"></a>更新作业
 
 对[作业](https://docs.microsoft.com/rest/api/media/jobs)实体进行的更新操作可以用于在作业提交之后修改说明或优先级。 仅当作业仍处于排队状态时，对优先级属性所做的更改才有效。 如果作业已开始处理或已完成，则更改优先级不起作用。
@@ -99,7 +103,7 @@ ms.locfileid: "84438944"
 
 单击图像查看其完整大小。  
 
-<a href="./media/api-diagrams/job-large.png" target="_blank"><img src="./media/api-diagrams/job-small.png"></a>
+[![图显示了 Job 对象及其引用的对象，包括对象之间的类派生关系。](./media/api-diagrams/job-small.png)](./media/api-diagrams/job-large.png#lightbox)
 
 ## <a name="configure-media-reserved-units"></a>配置媒体预留单位
 

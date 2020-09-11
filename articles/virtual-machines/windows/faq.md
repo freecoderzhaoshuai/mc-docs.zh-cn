@@ -1,19 +1,21 @@
 ---
-title: 有关 Windows 虚拟机的常见问题
+title: 有关 Azure 中 Windows VM 的常见问题解答
 description: 解答通过 Resource Manager 模型创建 Windows 虚拟机的一些常见问题。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.topic: conceptual
 origin.date: 05/08/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 2244f83a75abd058b97eea308551472347488d8c
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 49ea8fb8f54909a3d36c601e56f12b7632c8a2d4
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945965"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463197"
 ---
 # <a name="frequently-asked-question-about-windows-virtual-machines"></a>有关 Windows 虚拟机的常见问题
 本文讨论了在 Azure 中使用 Resource Manager 部署模型创建的 Windows 虚拟机的一些常见问题。 有关本主题的 Linux 版本，请参阅[有关 Linux 虚拟机的常见问题](../linux/faq.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)。
@@ -29,7 +31,7 @@ ms.locfileid: "85945965"
 <!-- Not Available on MSDN Azure benefit subscribers and MSDN Dev -->
 
 ## <a name="how-much-storage-can-i-use-with-a-virtual-machine"></a>使用虚拟机时，我可以使用多少存储？
-每个数据磁盘的容量高达 32,767 GiB。 可以使用的数据磁盘数取决于虚拟机大小。 有关详细信息，请参阅[虚拟机大小](sizes.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。
+每个数据磁盘的容量高达 32,767 GiB。 可以使用的数据磁盘数取决于虚拟机大小。 有关详细信息，请参阅[虚拟机大小](../sizes.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。
 
 Azure 托管磁盘是推荐用于 Azure 虚拟机的磁盘存储产品，方便永久存储数据。 可对每个虚拟机使用多个托管磁盘。 托管磁盘提供两种类型的持久存储选项：高级和标准托管磁盘。 有关定价信息，请参阅[托管磁盘定价](https://www.azure.cn/pricing/details/storage/managed-disks/)。
 
@@ -38,7 +40,7 @@ Azure 存储帐户还可为操作系统磁盘和任何数据磁盘提供存储�
 ## <a name="how-can-i-access-my-virtual-machine"></a>如何访问我的虚拟机？
 使用适用于 Windows VM 的远程桌面连接 (RDP) 建立远程连接。 有关说明，请参阅[如何连接并登录到运行 Windows 的 Azure 虚拟机](connect-logon.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。 除非将服务器配置为远程桌面服务会话主机，否则最多支持两个并发连接。  
 
-如果在使用远程桌面时遇到问题，请参阅[排查连接到基于 Windows 的 Azure 虚拟机时的远程桌面连接问题](troubleshoot-rdp-connection.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。 
+如果在使用远程桌面时遇到问题，请参阅[排查连接到基于 Windows 的 Azure 虚拟机时的远程桌面连接问题](../troubleshooting/troubleshoot-rdp-connection.md?toc=/virtual-machines/windows/toc.json)。 
 
 如果熟悉 Hyper-V，可以查找与 VMConnect 类似的工具。 Azure 不提供类似工具，因为不支持通过控制台访问虚拟机。
 
@@ -88,21 +90,40 @@ Azure 存储帐户还可为操作系统磁盘和任何数据磁盘提供存储�
 
 不允许使用以下用户名：
 
-<!--MOONCAKE: CUSTOMIZED ON video-->
+<!--MOONCAKE: CUSTOMIZED ADD video DUE TO USER REQUEST-->
 
-| | | | |
-|-----------------|-----------|--------------------|----------|
-| `administrator` | `admin`   | `user`             | `user1`  |
-| `test`          | `user2`   | `test1`            | `user3`  |
-| `admin1`        | `1`       | `123`              | `a`      |
-| `actuser`       | `adm`     | `admin2`           | `aspnet` |
-| `backup`        | `console` | `david`            | `guest`  |
-| `john`          | `owner`   | `root`             | `server` |
-| `sql`           | `support` | `support_388945a0` | `sys`    |
-| `test2`         | `test3`   | `user4`            | `user5`  |
-| `video`         |           |                    |          |
+- `1`
+- `123`
+- `a`
+- `actuser`
+- `adm`
+- `admin`
+- `admin1`
+- `admin2`
+- `administrator`
+- `aspnet`
+- `backup`
+- `console`
+- `david`
+- `guest`
+- `john`
+- `owner`
+- `root`
+- `server`
+- `sql`
+- `support_388945a0`
+- `support`
+- `sys`
+- `test`
+- `test1`
+- `test2`
+- `test3`
+- `user`
+- `user1`
+- `user2`
+- `video`
 
-<!--MOONCAKE: CUSTOMIZED ON video-->
+<!--MOONCAKE: CUSTOMIZED ADD video DUE TO USER REQUEST-->
 
 ## <a name="what-are-the-password-requirements-when-creating-a-vm"></a>创建 VM 时，密码有什么要求？
 
@@ -112,8 +133,8 @@ Azure 存储帐户还可为操作系统磁盘和任何数据磁盘提供存储�
  - CLI - 12 到 123 个字符之间
 
 * 具有小写字符
-* 具有大写字符
-* 具有数字
+* 包含大写字符
+* 包含一个数字
 * 具有特殊字符（正则表达式匹配 [\W_]）
 
 不允许使用以下密码：

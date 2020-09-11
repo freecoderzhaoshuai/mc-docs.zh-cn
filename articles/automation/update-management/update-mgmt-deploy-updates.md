@@ -3,15 +3,15 @@ title: 如何为 Azure 自动化更新管理创建更新部署
 description: 本文介绍如何计划更新部署并查看其状态。
 services: automation
 ms.subservice: update-management
-origin.date: 07/28/2020
-ms.date: 08/10/2020
+origin.date: 08/20/2020
+ms.date: 09/07/2020
 ms.topic: conceptual
-ms.openlocfilehash: 59c006cc5c6515fb45949c866eb3795cbf9d4786
-ms.sourcegitcommit: e6b216b180734783219378410e13192e314a4497
+ms.openlocfilehash: 009c3972f4d6f9150be98d3cc930f12fc2c17726
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87790551"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462887"
 ---
 # <a name="how-to-deploy-updates-and-review-results"></a>如何部署更新和查看结果
 
@@ -42,8 +42,10 @@ ms.locfileid: "87790551"
 
 6. 使用“更新分类”区域为产品指定[更新分类](update-mgmt-view-update-assessments.md#work-with-update-classifications)。 对于每个产品，请取消选择所有受支持的更新分类，但要包含在更新部署中的分类除外。
 
-7. 使用“包括/排除更新”区域来选择要部署的特定更新。 “包括/排除”页按知识库文章 ID 号显示要包括或排除的更新。
-    
+    如果你的部署打算只应用一组选定的更新，那么在配置“包含/排除更新”选项时，有必要取消选择所有预先选择的更新分类，如下一步所述。 这将确保在目标计算机上只安装你指定添加在此部署中的更新。
+
+7. 使用“包含/排除更新”区域可从部署中添加或排除选定的更新。 在“包括/排除”页上，你可以输入知识库文章 ID 号来进行添加或排除。
+
    > [!IMPORTANT]
    > 请记住，排除项会替代包含项。 例如，如果定义了 `*` 排除规则，更新管理会从安装中排除所有修补程序或包。 已排除的修补程序仍显示为计算机缺少此项。 对于 Linux 计算机，如果包含一个具有依赖包的包，而该依赖包已被排除，则更新管理不会安装主包。
 

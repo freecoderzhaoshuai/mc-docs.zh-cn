@@ -1,5 +1,5 @@
 ---
-title: 使用 Azure 媒体服务 REST API 编码时对视频进行子剪辑
+title: 使用 Azure 媒体服务 REST 编码时对视频进行子剪辑
 description: 本主题说明如何在使用 REST 通过 Azure 媒体服务进行编码时对视频进行子剪辑
 services: media-services
 documentationcenter: ''
@@ -12,14 +12,14 @@ ms.tgt_pltfrm: na
 ms.devlang: ne
 ms.topic: article
 origin.date: 06/10/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: e1ad8337f6c10eee204d9e454f7012d844e31c53
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 7f0babaa45d2bc52f91378c519a3b4b9591c8500
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71125518"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413983"
 ---
 # <a name="subclip-a-video-when-encoding-with-media-services---rest"></a>使用媒体服务编码时对视频进行子剪辑 - REST
 
@@ -31,7 +31,7 @@ ms.locfileid: "71125518"
 
 若要完成本主题中所述的步骤，必须：
 
-- [创建 Azure 媒体服务帐户](create-account-cli-how-to.md)。
+- [创建 Azure 媒体服务帐户](./create-account-howto.md)。
 - [配置 Postman 以便进行 Azure 媒体服务 REST API 调用](media-rest-apis-with-postman.md)。
     
     确保遵循[获取 Azure AD 令牌](media-rest-apis-with-postman.md#get-azure-ad-token)主题中的最后一步。 

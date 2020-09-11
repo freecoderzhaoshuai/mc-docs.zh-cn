@@ -1,10 +1,9 @@
 ---
-title: 导出包含 VM 扩展的资源组 | Azure
+title: 导出包含 VM 扩展的 Azure 资源组
 description: 导出包含虚拟机扩展的 Resource Manager 模板。
 services: virtual-machines-windows
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 editor: ''
 tags: azure-resource-manager
 ms.assetid: 7f4e2ca6-f1c7-4f59-a2cc-8f63132de279
@@ -13,14 +12,17 @@ ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 origin.date: 12/05/2016
-ms.date: 11/11/2019
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 9d45d8d641b2872729761de6f1ea942c7059f862
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 736988507d74664e131ea17ef9848a33b6c840af
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79292814"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413726"
 ---
 # <a name="exporting-resource-groups-that-contain-vm-extensions"></a>导出包含 VM 扩展的资源组
 
@@ -34,18 +36,7 @@ ms.locfileid: "79292814"
 
 以下扩展可以使用自动化脚本功能导出。
 
-| 分机 ||||
-|---|---|---|---|
-| Acronis 备份 | Datadog Windows 代理 | 针对 Linux 进行的 OS 修补 | VM 快照 Linux
-| Acronis 备份 Linux | Docker 扩展 | Puppet 代理 |
-| Bg 信息 | DSC 扩展 | 站点全天候运行 Apm Insight |
-| BMC CTM 代理 Linux | Dynatrace Linux | 站点全天候运行 Linux 服务器 |
-| BMC CTM 代理 Windows | Dynatrace Windows | 站点全天候运行 Windows Server |
-| Chef 客户端 | HPE Security Application Defender | Trend Micro DSA |
-| 自定义脚本 | IaaS 反恶意软件 | Trend Micro DSA Linux |
-| 自定义脚本扩展 | IaaS 诊断 | 适用于 Linux 的 VM 访问权限 |
-| 适用于 Linux 的自定义脚本 | Linux Chef 客户端 | 适用于 Linux 的 VM 访问权限 |
-| Datadog Linux 代理 | Linux 诊断 | VM 快照 |
+> Acronis Backup、Acronis Backup Linux、Bg Info、BMC CTM Agent Linux、BMC CTM Agent Windows、Chef Client、自定义脚本、自定义脚本扩展、适用于 Linux 的自定义脚本、Datadog Linux 代理、Datadog Windows 代理、Docker 扩展、DSC 扩展、Dynatrace Linux、Dynatrace Windows、HPE Security Application Defender、IaaS Antimalware、IaaS Diagnostics、Linux Chef Client、Linux 诊断、OS Patching For Linux、Puppet 代理、Site 24x7 Apm Insight、Site 24x7 Linux Server、Site 24x7 Windows Server、Trend Micro DSA、Trend Micro DSA Linux、VM Access For Linux、适用于 Linux 的 VM 访问权限、VM Snapshot、VM Snapshot Linux
 
 ## <a name="export-the-resource-group"></a>导出资源组
 
@@ -56,7 +47,7 @@ ms.locfileid: "79292814"
 3. 从列表中选择目标资源组
 4. 在“资源组”边栏选项卡中，单击“自动化脚本”
 
-    ![模板导出](./media/export-templates/template-export.png)
+:::image type="content" source="./media/export-templates/template-export.png" alt-text="模板导出":::
 
 Azure 资源管理器自动化脚本生成一个资源管理器模板、一个参数文件以及多个示例部署脚本（例如 PowerShell 和 Azure CLI）。 目前可以使用下载按钮下载导出的模板、将其作为新模板添加到模板库，或使用部署按钮重新对其进行部署。
 
@@ -111,6 +102,7 @@ Azure 资源管理器自动化脚本生成一个资源管理器模板、一个�
 
 ```json
 "protectedSettings": {
+    "storageAccountEndPoint": "https://core.chinacloudapi.cn/",
     "storageAccountName": "[parameters('storageAccountName')]",
     "storageAccountKey": "[parameters('storageAccountKey')]",
     "storageAccountEndPoint": "https://core.chinacloudapi.cn"
@@ -141,6 +133,7 @@ Azure 资源管理器自动化脚本生成一个资源管理器模板、一个�
             "storageAccount": "[parameters('existingdiagnosticsStorageAccountName')]"
         },
         "protectedSettings": {
+            "storageAccountEndPoint": "https://core.chinacloudapi.cn/",
             "storageAccountName": "[parameters('storageAccountName')]",
             "storageAccountKey": "[parameters('storageAccountKey')]",
             "storageAccountEndPoint": "https://core.chinacloudapi.cn"
@@ -149,7 +142,7 @@ Azure 资源管理器自动化脚本生成一个资源管理器模板、一个�
 }
 ```
 
-如果使用模板参数提供属性值，则需创建这些参数。 为受保护的设置值创建模板参数时，请确保使用 `SecureString` 参数类型，以便保护敏感值。 如需详细了解如何使用参数，请参阅[创作 Azure 资源管理器模板](../../resource-group-authoring-templates.md)。
+如果使用模板参数提供属性值，则需创建这些参数。 为受保护的设置值创建模板参数时，请确保使用 `SecureString` 参数类型，以便保护敏感值。 如需详细了解如何使用参数，请参阅[创作 Azure 资源管理器模板](../../azure-resource-manager/templates/template-syntax.md)。
 
 以 `IaasDiagnostic` 扩展为例，会在 Resource Manager 模板的参数部分创建以下参数。
 
@@ -166,4 +159,4 @@ Azure 资源管理器自动化脚本生成一个资源管理器模板、一个�
 
 目前可以使用任何模板部署方法部署此模板。
 
-<!-- Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

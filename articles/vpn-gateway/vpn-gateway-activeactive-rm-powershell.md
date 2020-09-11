@@ -4,23 +4,21 @@ description: 本文逐步讲解如何使用 Azure Resource Manager 和 PowerShel
 services: vpn-gateway
 author: WenJason
 ms.service: vpn-gateway
-ms.topic: article
-origin.date: 07/24/2018
-ms.date: 06/08/2020
+ms.topic: how-to
+origin.date: 07/28/2020
+ms.date: 09/07/2020
 ms.author: v-jay
 ms.reviewer: cherylmc
-ms.openlocfilehash: a6bd55391431f6367f897de624564a3681bda8c9
-ms.sourcegitcommit: 9811bf312e0d037cb530eb16c8d85238fd276949
+ms.openlocfilehash: 6824b5a6525f28a42b17b748f94e9a1cdb5e2def
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84275466"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462805"
 ---
 # <a name="configure-active-active-s2s-vpn-connections-with-azure-vpn-gateways"></a>配置与 Azure VPN 网关的主动-主动 S2S VPN 连接
 
-本文逐步讲解如何使用 Resource Manager 部署模型和 PowerShell 创建主动-主动跨界连接与 VNet 到 VNet 连接。
-
-
+本文逐步讲解如何使用 Resource Manager 部署模型和 PowerShell 创建主动-主动跨界连接与 VNet 到 VNet 连接。 还可以在 Azure 门户中配置主动-主动网关。
 
 ## <a name="about-highly-available-cross-premises-connections"></a>关于高可用性跨界连接
 若要实现跨界连接和 VNet 到 VNet 连接的高可用性，应该部署多个 VPN 网关，在网络与 Azure 之间建立多个并行连接。 有关连接选项和拓扑的概述，请参阅[高可用性跨界连接与 VNet 到 VNet 连接](vpn-gateway-highlyavailable.md)。
@@ -50,13 +48,21 @@ ms.locfileid: "84275466"
 
 ### <a name="before-you-begin"></a>准备阶段
 * 确保拥有 Azure 订阅。 如果还没有 Azure 订阅，可以注册一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial/)。
-* 需要安装 Azure Resource Manager PowerShell cmdlet。 有关安装 PowerShell cmdlet 的详细信息，请参阅 [Azure PowerShell 概述](https://docs.microsoft.com/powershell/azure/overview)。
+* 需要安装 Azure Resource Manager PowerShell cmdlet。 有关安装 PowerShell cmdlet 的详细信息，请参阅 [Azure PowerShell 概述](https://docs.microsoft.com/powershell/azure/)。
 
 ### <a name="step-1---create-and-configure-vnet1"></a>步骤 1 - 创建并配置 VNet1
 #### <a name="1-declare-your-variables"></a>1.声明变量
-对于本练习，我们首先要声明变量。 以下示例使用此练习中的值来声明变量。 请务必在配置生产环境时，使用自己的值来替换该值。 如果执行这些步骤是为了熟悉此类型的配置，则可以使用这些变量。 修改变量，并将其复制并粘贴到 PowerShell 控制台中。
+
+对于本练习，我们首先要声明变量。 使用下面的示例来帮助连接：
 
 ```powershell
+Connect-AzAccount -Environment AzureChinaCloud
+Select-AzSubscription -SubscriptionName $Sub1
+```
+
+以下示例使用此练习中的值来声明变量。 请务必在配置生产环境时，使用自己的值来替换该值。 如果执行这些步骤是为了熟悉此类型的配置，则可以使用这些变量。 修改变量，并将其复制并粘贴到 PowerShell 控制台中。
+
+```azurepowershell
 $Sub1 = "Ross"
 $RG1 = "TestAARG1"
 $Location1 = "China North"
@@ -81,21 +87,18 @@ $Connection151 = "VNet1toSite5_1"
 $Connection152 = "VNet1toSite5_2"
 ```
 
-#### <a name="2-connect-to-your-subscription-and-create-a-new-resource-group"></a>2.连接到订阅并创建新资源组
-确保切换到 PowerShell 模式，以便使用Resource Manager cmdlet。 有关详细信息，请参阅[将 Windows PowerShell 与资源管理器配合使用](../powershell-azure-resource-manager.md)。
+#### <a name="2-create-a-new-resource-group"></a>2.创建新的资源组
 
-打开 PowerShell 控制台并连接到帐户。 使用下面的示例来帮助连接：
+使用以下示例创建新资源组：
 
-```powershell
-Connect-AzAccount -Environment AzureChinaCloud
-Select-AzSubscription -SubscriptionName $Sub1
+```azurepowershell
 New-AzResourceGroup -Name $RG1 -Location $Location1
 ```
 
 #### <a name="3-create-testvnet1"></a>3.创建 TestVNet1
 以下示例创建一个名为 TestVNet1 的虚拟网络和三个子网：一个名为 GatewaySubnet、一个名为 FrontEnd，还有一个名为 Backend。 替换值时，请务必始终将网关子网特意命名为 GatewaySubnet。 如果命名为其他名称，网关创建会失败。
 
-```powershell
+```azurepowershell
 $fesub1 = New-AzVirtualNetworkSubnetConfig -Name $FESubName1 -AddressPrefix $FESubPrefix1
 $besub1 = New-AzVirtualNetworkSubnetConfig -Name $BESubName1 -AddressPrefix $BESubPrefix1
 $gwsub1 = New-AzVirtualNetworkSubnetConfig -Name $GWSubName1 -AddressPrefix $GWSubPrefix1
@@ -107,7 +110,7 @@ New-AzVirtualNetwork -Name $VNetName1 -ResourceGroupName $RG1 -Location $Locatio
 #### <a name="1-create-the-public-ip-addresses-and-gateway-ip-configurations"></a>1.创建公共 IP 地址和网关 IP 配置
 请求两个公共 IP 地址，分配给要为 VNet 创建的网关。 你还要定义所需的子网和 IP 配置。
 
-```powershell
+```azurepowershell
 $gw1pip1 = New-AzPublicIpAddress -Name $GW1IPName1 -ResourceGroupName $RG1 -Location $Location1 -AllocationMethod Dynamic
 $gw1pip2 = New-AzPublicIpAddress -Name $GW1IPName2 -ResourceGroupName $RG1 -Location $Location1 -AllocationMethod Dynamic
 
@@ -120,14 +123,14 @@ $gw1ipconf2 = New-AzVirtualNetworkGatewayIpConfig -Name $GW1IPconf2 -Subnet $sub
 #### <a name="2-create-the-vpn-gateway-with-active-active-configuration"></a>2.使用主动-主动配置创建 VPN 网关
 为 TestVNet1 创建虚拟网络网关。 请注意有两个 GatewayIpConfig 条目，并且已设置 EnableActiveActiveFeature 标志。 创建网关可能需要花费一段时间（45 分钟或更久才能完成）。
 
-```powershell
+```azurepowershell
 New-AzVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1 -Location $Location1 -IpConfigurations $gw1ipconf1,$gw1ipconf2 -GatewayType Vpn -VpnType RouteBased -GatewaySku VpnGw1 -Asn $VNet1ASN -EnableActiveActiveFeature -Debug
 ```
 
 #### <a name="3-obtain-the-gateway-public-ip-addresses-and-the-bgp-peer-ip-address"></a>3.获取网关公共 IP 地址和 BGP 对等 IP 地址
 创建网关后，需要在 Azure VPN 网关上获取 BGP 对等节点 IP 地址。 需要此地址才能将 Azure VPN 网关配置为本地 VPN 设备的 BGP 对等节点。
 
-```powershell
+```azurepowershell
 $gw1pip1 = Get-AzPublicIpAddress -Name $GW1IPName1 -ResourceGroupName $RG1
 $gw1pip2 = Get-AzPublicIpAddress -Name $GW1IPName2 -ResourceGroupName $RG1
 $vnet1gw = Get-AzVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1
@@ -135,7 +138,7 @@ $vnet1gw = Get-AzVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1
 
 使用以下 cmdlet 显示针对 VPN 网关分配的两个公共 IP 地址，以及每个网关实例的对应 BGP 对等 IP 地址：
 
-```powershell
+```azurepowershell
 PS D:\> $gw1pip1.IpAddress
 40.112.190.5
 
@@ -165,7 +168,7 @@ PS D:\> $vnet1gw.BgpSettingsText
 #### <a name="1-declare-your-variables"></a>1.声明变量
 此练习将继续生成图中所示的配置。 请务必将值替换为要用于配置的值。
 
-```powershell
+```azurepowershell
 $RG5 = "TestAARG5"
 $Location5 = "China North"
 $LNGName51 = "Site5_1"
@@ -185,7 +188,7 @@ $BGPPeerIP51 = "10.52.255.253"
 #### <a name="2-create-the-local-network-gateway-for-site5"></a>2.为 Site5 创建本地网关
 继续操作之前，请确保仍与订阅 1 保持连接。 创建资源组（如果尚未创建）。
 
-```powershell
+```azurepowershell
 New-AzResourceGroup -Name $RG5 -Location $Location5
 New-AzLocalNetworkGateway -Name $LNGName51 -ResourceGroupName $RG5 -Location $Location5 -GatewayIpAddress $LNGIP51 -AddressPrefix $LNGPrefix51 -Asn $LNGASN5 -BgpPeeringAddress $BGPPeerIP51
 ```
@@ -193,7 +196,7 @@ New-AzLocalNetworkGateway -Name $LNGName51 -ResourceGroupName $RG5 -Location $Lo
 ### <a name="step-2---connect-the-vpn-gateway-and-local-network-gateway"></a>步骤 2 - 连接 VPN 网关和本地网关
 #### <a name="1-get-the-two-gateways"></a>1.获取这两个网关
 
-```powershell
+```azurepowershell
 $vnet1gw = Get-AzVirtualNetworkGateway -Name $GWName1  -ResourceGroupName $RG1
 $lng5gw1 = Get-AzLocalNetworkGateway  -Name $LNGName51 -ResourceGroupName $RG5
 ```
@@ -201,7 +204,7 @@ $lng5gw1 = Get-AzLocalNetworkGateway  -Name $LNGName51 -ResourceGroupName $RG5
 #### <a name="2-create-the-testvnet1-to-site5-connection"></a>2.创建 TestVNet1 到 Site5 的连接
 在本步骤中，创建从 TestVNet1 到 Site5_1 的连接，其“EnableBGP”设置为 $True。
 
-```powershell
+```azurepowershell
 New-AzVirtualNetworkGatewayConnection -Name $Connection151 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -LocalNetworkGateway2 $lng5gw1 -Location $Location1 -ConnectionType IPsec -SharedKey 'AzureA1b2C3' -EnableBGP $True
 ```
 
@@ -230,25 +233,25 @@ New-AzVirtualNetworkGatewayConnection -Name $Connection151 -ResourceGroupName $R
 #### <a name="1-create-the-second-local-network-gateway-for-site5"></a>1.为 Site5 创建第二个本地网关
 第二个本地网络网关的网关 IP地址、地址前缀和 BGP 对等连接地址不能与同一个本地网络的前一个本地网络网关重叠。
 
-```powershell
+```azurepowershell
 $LNGName52 = "Site5_2"
 $LNGPrefix52 = "10.52.255.254/32"
 $LNGIP52 = "131.107.72.23"
 $BGPPeerIP52 = "10.52.255.254"
 ```
 
-```powershell
+```azurepowershell
 New-AzLocalNetworkGateway -Name $LNGName52 -ResourceGroupName $RG5 -Location $Location5 -GatewayIpAddress $LNGIP52 -AddressPrefix $LNGPrefix52 -Asn $LNGASN5 -BgpPeeringAddress $BGPPeerIP52
 ```
 
 #### <a name="2-connect-the-vpn-gateway-and-the-second-local-network-gateway"></a>2.连接 VPN 网关与第二个本地网关
 创建从 TestVNet1 到 Site5_2 的连接，其“EnableBGP”设置为 $True
 
-```powershell
+```azurepowershell
 $lng5gw2 = Get-AzLocalNetworkGateway -Name $LNGName52 -ResourceGroupName $RG5
 ```
 
-```powershell
+```azurepowershell
 New-AzVirtualNetworkGatewayConnection -Name $Connection152 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -LocalNetworkGateway2 $lng5gw2 -Location $Location1 -ConnectionType IPsec -SharedKey 'AzureA1b2C3' -EnableBGP $True
 ```
 
@@ -282,7 +285,7 @@ New-AzVirtualNetworkGatewayConnection -Name $Connection152 -ResourceGroupName $R
 #### <a name="1-declare-your-variables"></a>1.声明变量
 请务必将值替换为要用于配置的值。
 
-```powershell
+```azurepowershell
 $RG2 = "TestAARG2"
 $Location2 = "China North"
 $VNetName2 = "TestVNet2"
@@ -307,7 +310,7 @@ $Connection12 = "VNet1toVNet2"
 
 #### <a name="2-create-testvnet2-in-the-new-resource-group"></a>2.在新资源组中创建 TestVNet2
 
-```powershell
+```azurepowershell
 New-AzResourceGroup -Name $RG2 -Location $Location2
 
 $fesub2 = New-AzVirtualNetworkSubnetConfig -Name $FESubName2 -AddressPrefix $FESubPrefix2
@@ -320,7 +323,7 @@ New-AzVirtualNetwork -Name $VNetName2 -ResourceGroupName $RG2 -Location $Locatio
 #### <a name="3-create-the-active-active-vpn-gateway-for-testvnet2"></a>3.创建 TestVNet2 的主动-主动 VPN 网关
 请求两个公共 IP 地址，分配给要为 VNet 创建的网关。 你还要定义所需的子网和 IP 配置。
 
-```powershell
+```azurepowershell
 $gw2pip1 = New-AzPublicIpAddress -Name $GW2IPName1 -ResourceGroupName $RG2 -Location $Location2 -AllocationMethod Dynamic
 $gw2pip2 = New-AzPublicIpAddress -Name $GW2IPName2 -ResourceGroupName $RG2 -Location $Location2 -AllocationMethod Dynamic
 
@@ -332,7 +335,7 @@ $gw2ipconf2 = New-AzVirtualNetworkGatewayIpConfig -Name $GW2IPconf2 -Subnet $sub
 
 使用 AS 编号和“EnableActiveActiveFeature”标志创建 VPN 网关。 请注意，必须覆盖 Azure VPN 网关上的默认 ASN。 连接的 VNet 的 ASN 必须不同，才能启用 BGP 和传输路由。
 
-```powershell
+```azurepowershell
 New-AzVirtualNetworkGateway -Name $GWName2 -ResourceGroupName $RG2 -Location $Location2 -IpConfigurations $gw2ipconf1,$gw2ipconf2 -GatewayType Vpn -VpnType RouteBased -GatewaySku VpnGw1 -Asn $VNet2ASN -EnableActiveActiveFeature
 ```
 
@@ -342,7 +345,7 @@ New-AzVirtualNetworkGateway -Name $GWName2 -ResourceGroupName $RG2 -Location $Lo
 #### <a name="1-get-both-gateways"></a>1.获取这两个网关
 请确保登录并连接到订阅 1。
 
-```powershell
+```azurepowershell
 $vnet1gw = Get-AzVirtualNetworkGateway -Name $GWName1 -ResourceGroupName $RG1
 $vnet2gw = Get-AzVirtualNetworkGateway -Name $GWName2 -ResourceGroupName $RG2
 ```
@@ -350,7 +353,7 @@ $vnet2gw = Get-AzVirtualNetworkGateway -Name $GWName2 -ResourceGroupName $RG2
 #### <a name="2-create-both-connections"></a>2.创建两个连接
 此步骤创建从 TestVNet1 到 TestVNet2 的连接，以及从 TestVNet2 到 TestVNet1 的连接。
 
-```powershell
+```azurepowershell
 New-AzVirtualNetworkGatewayConnection -Name $Connection12 -ResourceGroupName $RG1 -VirtualNetworkGateway1 $vnet1gw -VirtualNetworkGateway2 $vnet2gw -Location $Location1 -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3' -EnableBgp $True
 
 New-AzVirtualNetworkGatewayConnection -Name $Connection21 -ResourceGroupName $RG2 -VirtualNetworkGateway1 $vnet2gw -VirtualNetworkGateway2 $vnet1gw -Location $Location2 -ConnectionType Vnet2Vnet -SharedKey 'AzureA1b2C3' -EnableBgp $True
@@ -367,17 +370,17 @@ New-AzVirtualNetworkGatewayConnection -Name $Connection21 -ResourceGroupName $RG
 
 ## <a name="update-an-existing-vpn-gateway"></a><a name ="aaupdate"></a>更新现有 VPN 网关
 
-此部分有助于将现有 Azure VPN 网关从主动-待机模式更改为主动-主动模式，或反之。
+将主动-待机网关更改为主动-主动网关时，也将创建另一个公共 IP 地址，然后添加第二个网关 IP 配置。 此部分有助于使用 PowerShell 将现有 Azure VPN 网关从主动-待机模式更改为主动-主动模式，或反之。 还可以在 Azure 门户的“配置”页上为虚拟网络网关更改网关。
 
 ### <a name="change-an-active-standby-gateway-to-an-active-active-gateway"></a>将主动-待机网关更改为主动-主动网关
 
-以下示例将主动-待机网关转换为主动-主动网关。 将主动-待机网关更改为主动-主动网关时，也将创建另一个公共 IP 地址，然后添加第二个网关 IP 配置。
+以下示例将主动-待机网关转换为主动-主动网关。 
 
 #### <a name="1-declare-your-variables"></a>1.声明变量
 
 将以下用于示例的参数替换为个人配置所需的设置，然后声明这些变量。
 
-```powershell
+```azurepowershell
 $GWName = "TestVNetAA1GW"
 $VNetName = "TestVNetAA1"
 $RG = "TestVPNActiveActive01"
@@ -387,7 +390,7 @@ $GWIPconf2 = "gw1ipconf2"
 
 在声明变量后，可以将此示例复制粘贴到 PowerShell 控制台。
 
-```powershell
+```azurepowershell
 $vnet = Get-AzVirtualNetwork -Name $VNetName -ResourceGroupName $RG
 $subnet = Get-AzVirtualNetworkSubnetConfig -Name 'GatewaySubnet' -VirtualNetwork $vnet
 $gw = Get-AzVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG
@@ -396,7 +399,7 @@ $location = $gw.Location
 
 #### <a name="2-create-the-public-ip-address-then-add-the-second-gateway-ip-configuration"></a>2.创建公共 IP 地址，并添加第二个网关 IP 配置
 
-```powershell
+```azurepowershell
 $gwpip2 = New-AzPublicIpAddress -Name $GWIPName2 -ResourceGroupName $RG -Location $location -AllocationMethod Dynamic
 Add-AzVirtualNetworkGatewayIpConfig -VirtualNetworkGateway $gw -Name $GWIPconf2 -Subnet $subnet -PublicIpAddress $gwpip2
 ```
@@ -411,7 +414,7 @@ Add-AzVirtualNetworkGatewayIpConfig -VirtualNetworkGateway $gw -Name $GWIPconf2 
 
 在你的环境中使用时，如果不需要调整网关大小，也就不需要指定 -GatewaySku。 请注意在此步骤中，必须在 PowerShell 中设置网关对象以触发实际更新。 即使不调整网关，此更新也可能需要花费 30 到 45 分钟。
 
-```powershell
+```azurepowershell
 Set-AzVirtualNetworkGateway -VirtualNetworkGateway $gw -EnableActiveActiveFeature -GatewaySku HighPerformance
 ```
 
@@ -420,14 +423,14 @@ Set-AzVirtualNetworkGateway -VirtualNetworkGateway $gw -EnableActiveActiveFeatur
 
 将以下用于示例的参数替换为个人配置所需的设置，然后声明这些变量。
 
-```powershell
+```azurepowershell
 $GWName = "TestVNetAA1GW"
 $RG = "TestVPNActiveActive01"
 ```
 
 声明变量后，获取要删除的 IP 配置的名称。
 
-```powershell
+```azurepowershell
 $gw = Get-AzVirtualNetworkGateway -Name $GWName -ResourceGroupName $RG
 $ipconfname = $gw.IpConfigurations[1].Name
 ```
@@ -436,7 +439,7 @@ $ipconfname = $gw.IpConfigurations[1].Name
 
 使用此示例删除网关 IP 配置并禁用主动-主动模式。 请注意，必须在 PowerShell 中设置网关对象以触发实际更新。
 
-```powershell
+```azurepowershell
 Remove-AzVirtualNetworkGatewayIpConfig -Name $ipconfname -VirtualNetworkGateway $gw
 Set-AzVirtualNetworkGateway -VirtualNetworkGateway $gw -DisableActiveActiveFeature
 ```
@@ -444,6 +447,4 @@ Set-AzVirtualNetworkGateway -VirtualNetworkGateway $gw -DisableActiveActiveFeatu
 这种更新最多可能需要 30 到 45 分钟。
 
 ## <a name="next-steps"></a>后续步骤
-连接完成后，即可将虚拟机添加到虚拟网络。 请参阅 [创建虚拟机](../virtual-machines/virtual-machines-windows-hero-tutorial.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json) 以获取相关步骤。
-
-<!--Update_Description: code update --> 
+连接完成后，即可将虚拟机添加到虚拟网络。 请参阅 [创建虚拟机](../virtual-machines/windows/quick-create-portal.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json) 以获取相关步骤。

@@ -1,30 +1,30 @@
 ---
-title: 使用 Linux 诊断扩展监视指标和日志
+title: Azure 计算 - Linux 诊断扩展
 description: 如何配置 Azure Linux 诊断扩展 (LAD)，以收集 Azure 中运行的 Linux VM 的指标和日志事件。
 services: virtual-machines-linux
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 ms.service: virtual-machines-linux
 ms.tgt_pltfrm: vm-linux
 ms.topic: article
 origin.date: 12/13/2018
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: yes
-ms.testdate: 07/27/2020
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: b95514f713d9c24540b02c439a19a3932316cc6d
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: 38f540a1b5d52197925f1f935e48c83715ecd941
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244768"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413741"
 ---
 # <a name="use-linux-diagnostic-extension-to-monitor-metrics-and-logs"></a>使用 Linux 诊断扩展监视指标和日志
 
 本文档介绍新的 Linux 诊断扩展 3.0 版。
 
 > [!IMPORTANT]
-> 有关 2.3 版和更早版本，请参阅[此文档](../linux/classic/diagnostic-extension-v2.md)。
+> 有关 2.3 版和更早版本，请参阅[此文档](https://docs.microsoft.com/previous-versions/azure/virtual-machines/linux/classic/diagnostic-extension-v2)。
 
 ## <a name="introduction"></a>简介
 
@@ -73,7 +73,7 @@ Linux 诊断扩展支持以下分发和版本。 分发和版本的列表仅适�
 
 ### <a name="prerequisites"></a>先决条件
 
-* Azure Linux 代理 2.2.0 版或更高版本。 大部分 Azure VM Linux 库映像包含 2.2.7 或更高版本。 运行 `/usr/sbin/waagent -version` 以确认 VM 上安装的版本。 如果 VM 正在运行较早版本的来宾代理，请按照[以下说明](/virtual-machines/linux/update-agent)将其更新。
+* Azure Linux 代理 2.2.0 版或更高版本。 大部分 Azure VM Linux 库映像包含 2.2.7 或更高版本。 运行 `/usr/sbin/waagent -version` 以确认 VM 上安装的版本。 如果 VM 正在运行较早版本的来宾代理，请按照[以下说明](./update-linux-agent.md)将其更新。
 * **Azure CLI**。 在计算机上[设置 Azure CLI](https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest) 环境。
 * wget 命令（如果尚无此命令，请运行 `sudo apt-get install wget`。
 * 现有 Azure 订阅以及其中用于存储数据的现有存储帐户。
@@ -601,7 +601,7 @@ WriteBytesPerSecond | 每秒写入的字节数
 az vm extension set --publisher Microsoft.Azure.Diagnostics --name LinuxDiagnostic --version 3.0 --resource-group <resource_group_name> --vm-name <vm_name> --protected-settings ProtectedSettings.json --settings PublicSettings.json
 ```
 
-该命令假定你使用 Azure CLI 的 Azure 资源管理 (ARM) 模式。 若要为经典部署模型 (ASM) VM 配置 LAD，请切换到“asm”模式 (`azure config mode asm`)，并在命令中省略资源组名称。 有关详细信息，请参阅[跨平台 CLI 文档](/xplat-cli-connect)。
+该命令假定你使用 Azure CLI 的 Azure 资源管理模式。 若要为经典部署模型 (ASM) VM 配置 LAD，请切换到“asm”模式 (`azure config mode asm`)，并在命令中省略资源组名称。 有关详细信息，请参阅[跨平台 CLI 文档](https://docs.azure.cn/cli/authenticate-azure-cli?view=azure-cli-latest)。
 
 ### <a name="powershell"></a>PowerShell
 
@@ -789,12 +789,12 @@ Set-AzVMExtension -ResourceGroupName <resource_group_name> -VMName <vm_name> -Lo
 
 ![图像](./media/diagnostics-linux/stg_explorer.png)
 
-请参阅相关 [EventHubs 文档](../../event-hubs/event-hubs-what-is-event-hubs.md)，了解如何使用发布到 EventHubs 终结点的消息。
+请参阅相关 [EventHubs 文档](../../event-hubs/event-hubs-about.md)，了解如何使用发布到 EventHubs 终结点的消息。
 
 ## <a name="next-steps"></a>后续步骤
 
-* 在 [Azure Monitor](../../monitoring-and-diagnostics/insights-alerts-portal.md) 中为收集的指标创建指标警报。
-* 为指标创建[监控图表](../../monitoring-and-diagnostics/insights-how-to-customize-monitoring.md)。
+* 在 [Azure Monitor](../../azure-monitor/platform/alerts-classic-portal.md) 中为收集的指标创建指标警报。
+* 为指标创建[监控图表](../../azure-monitor/platform/data-platform.md)。
 * 了解如何使用指标[创建虚拟机规模集](../linux/tutorial-create-vmss.md)以控制自动缩放。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

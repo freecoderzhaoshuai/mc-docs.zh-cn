@@ -11,16 +11,17 @@ ms.topic: article
 ms.tgt_pltfrm: ''
 ms.workload: infrastructure
 origin.date: 07/07/2017
-ms.date: 04/20/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: 50194bffe845991e81df7969e44c162ad8a96c89
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: f563833798ceb7771fbe93c7fb7aff53812ca170
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588752"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316418"
 ---
-# <a name="route-traffic-through-a-network-virtual-appliance"></a>通过网络虚拟设备路由流量
+# <a name="use-an-azure-cli-script-to-route-traffic-through-a-network-virtual-appliance"></a>使用 Azure CLI 脚本通过网络虚拟设备路由流量
 
 该脚本示例创建了包含前端和后端子网的虚拟网络。 它还会创建一个 VM，并启用 IP 转发，在两个子网之间路由流量。 运行脚本后，可将网络软件（例如防火墙应用程序）部署到 VM。
 
@@ -206,7 +207,7 @@ az group delete --name MyResourceGroup --yes
 
 此脚本使用以下命令创建资源组、虚拟网络和网络安全组。 表中的每条命令链接到特定于命令的文档。
 
-| 命令 | 注释 |
+| 命令 | 说明 |
 |---|---|
 | [az group create](/cli/group) | 创建用于存储所有资源的资源组。 |
 | [az network vnet create](/cli/network/vnet) | 创建 Azure 虚拟网络和前端子网。 |

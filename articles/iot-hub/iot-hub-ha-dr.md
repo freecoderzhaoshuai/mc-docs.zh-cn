@@ -8,12 +8,12 @@ ms.topic: conceptual
 origin.date: 03/17/2020
 ms.date: 07/20/2020
 ms.author: philmea
-ms.openlocfilehash: 91a583e0b58499e25b7de63a5315df8c4c1d933f
-ms.sourcegitcommit: 9bc3e55f01e0999f05e7b4ebaea95f3ac91d32eb
+ms.openlocfilehash: 1166e3e04403e312f2567bcc32f61fc8084fde6e
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86226127"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463179"
 ---
 # <a name="iot-hub-high-availability-and-disaster-recovery"></a>IoT 中心高可用性和灾难恢复
 
@@ -56,12 +56,14 @@ IoT 中心服务通过在几乎所有服务层中实现冗余来提供区域内�
 
 <sup>1</sup>手动故障转移期间无法恢复云到设备的消息和父作业。
 
-完成 IoT 中心的故障转移操作后，来自设备和后端应用程序的所有操作预期可继续进行，无需人工干预。 这意味着，设备到云的消息应会继续正常工作，并且整个设备注册表会保持不变。 可以借助前面配置的相同订阅来使用通过事件网格发出的事件，前提是这些事件网格订阅仍然可用。
+完成 IoT 中心的故障转移操作后，来自设备和后端应用程序的所有操作预期可继续进行，无需人工干预。 这意味着，设备到云的消息应会继续正常工作，并且整个设备注册表会保持不变。 可以借助前面配置的相同订阅来使用通过事件网格发出的事件，前提是这些事件网格订阅仍然可用。 自定义终结点无需进行其他处理。
 
 > [!CAUTION]
-> - 故障转移后，IoT 中心内置事件终结点的事件中心兼容名称和终结点会发生变化。 使用事件中心客户端或事件处理程序主机从内置终结点接收遥测消息时，应[使用 IoT 中心连接字符串](iot-hub-devguide-messages-read-builtin.md#read-from-the-built-in-endpoint)建立连接。 这可以确保在故障转移后，后端应用程序可继续工作，而无需人工干预。 如果在应用程序中直接使用事件中心兼容的名称和终结点，则需在故障转移后[提取新的事件中心兼容终结点](iot-hub-devguide-messages-read-builtin.md#read-from-the-built-in-endpoint)，这样才能继续操作。 如果使用 Azure Functions 或 Azure 流分析来连接内置终结点，则可能需要执行重启操作。
+> - 故障转移后，IoT 中心内置事件终结点的事件中心兼容名称和终结点会发生变化。 使用事件中心客户端或事件处理程序主机从内置终结点接收遥测消息时，应[使用 IoT 中心连接字符串](iot-hub-devguide-messages-read-builtin.md#read-from-the-built-in-endpoint)建立连接。 这可以确保在故障转移后，后端应用程序可继续工作，而无需人工干预。 如果在应用程序中直接使用事件中心兼容的名称和终结点，则需在故障转移后[提取新的事件中心兼容终结点](iot-hub-devguide-messages-read-builtin.md#read-from-the-built-in-endpoint)，这样才能继续操作。 
 >
-> - 路由到存储时，我们建议列出 blob 或文件，然后循环访问它们，以确保在不进行分区的情况下读取所有 blob 或文件。 在 Microsoft 发起的故障转移或手动故障转移期间，分区范围可能发生变化。 可以使用 [List Blobs API](https://docs.microsoft.com/rest/api/storageservices/list-blobs) 枚举 blob 列表，或使用 [List ADLS Gen2 API](https://docs.microsoft.com/rest/api/storageservices/datalakestoragegen2/path/list) 枚举文件列表。 
+> - 如果使用 Azure Functions 或 Azure 流分析来连接内置事件终结点，则可能需要执行重启操作。 这是因为在故障转移过程中，上一个偏移量不再有效。
+>
+> - 路由到存储时，我们建议列出 blob 或文件，然后循环访问它们，以确保在不进行分区的情况下读取所有 blob 或文件。 在 Microsoft 发起的故障转移或手动故障转移期间，分区范围可能发生变化。 可以使用 [List Blobs API](https://docs.microsoft.com/rest/api/storageservices/list-blobs) 枚举 blob 列表，或使用 [List ADLS Gen2 API](https://docs.microsoft.com/rest/api/storageservices/datalakestoragegen2/path/list) 枚举文件列表。 若要了解详细信息，请查看 [Azure 存储作为路由终结点](iot-hub-devguide-messages-d2c.md#azure-storage-as-a-routing-endpoint)。
 
 ## <a name="microsoft-initiated-failover"></a>Microsoft 发起的故障转移
 
@@ -74,6 +76,8 @@ RTO 较高的原因是，Microsoft 必须代表该区域中所有受影响的客
 如果 Microsoft 发起的故障转移提供的 RTO 无法满足企业的正常运行时间目标，请考虑使用手动故障转移来自行触发故障转移过程。 此选项的 RTO 大致在 10 分钟到几个小时。 目前，RTO 取决于针对故障转移的 IoT 中心实例注册的设备数。 托管大约 100,000 台设备的中心的 RTO 大致是 15 分钟。 “恢复时间”部分介绍了触发此过程后，使运行时操作完全正常所需的总时间。
 
 不管主要区域是否遇到停机，手动故障转移选项始终可用。 因此，用户可能会使用此选项来执行计划内故障转移。 计划内故障转移的一个示例用途是执行定期的故障转移演练。 需要注意的是，计划内故障转移操作会导致中心在此选项的 RTO 定义的时间段内停机，同时会导致数据丢失（由上面的 RPO 表定义）。 可以考虑设置一个测试 IoT 中心实例来定期执行计划内故障转移选项，以便在发生实际灾难时，自信地让端到端解决方案正常运行。
+
+对于 2017 年 5 月 18 日之后创建的 IoT 中心，用户无需额外付费便可使用手动故障转移功能。
 
 有关分步说明，请参阅[教程：为 IoT 中心执行手动故障转移](tutorial-manual-failover.md)
 

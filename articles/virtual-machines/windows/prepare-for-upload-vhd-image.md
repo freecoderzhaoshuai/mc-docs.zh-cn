@@ -1,22 +1,22 @@
 ---
 title: 准备好要上传到 Azure 的 Windows VHD
 description: 了解如何准备要上传到 Azure 的 Windows VHD 或 VHDX
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
 ms.topic: troubleshooting
 origin.date: 04/28/2020
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: yes
-ms.testdate: 07/27/2020
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: cd16bbde7268de41513ae1e6a020db221f8bd23a
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: b4de784828b19105343537023d6e96fb802c9b2f
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244268"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463078"
 ---
 # <a name="prepare-a-windows-vhd-or-vhdx-to-upload-to-azure"></a>准备好要上传到 Azure 的 Windows VHD 或 VHDX
 
@@ -77,7 +77,9 @@ Convert-VHD -Path C:\test\MyVM.vhdx -DestinationPath C:\test\MyNewVM.vhd -VHDTyp
 
 ### <a name="convert-from-vmware-vmdk-disk-format"></a>从 VMware VMDK 磁盘格式转换
 
-如果你的 Windows VM 映像采用 [VMDK 文件格式](https://en.wikipedia.org/wiki/VMDK)，请使用 [Microsoft 虚拟机转换器](https://www.microsoft.com/download/details.aspx?id=42497)将其转换为 VHD 格式。 有关详细信息，请参阅[如何将 VMware VMDK 转换为 Hyper-V VHD](https://docs.microsoft.com/archive/blogs/timomta/how-to-convert-a-vmware-vmdk-to-hyper-v-vhd)。
+<!--Not Available on [VMDK file format](https://en.wikipedia.org/wiki/VMDK)-->
+
+如果你的 Windows VM 映像采用 VMDK 文件格式，请使用 [Microsoft 虚拟机转换器](https://www.microsoft.com/download/details.aspx?id=42497)将其转换为 VHD 格式。 有关详细信息，请参阅[如何将 VMware VMDK 转换为 Hyper-V VHD](https://docs.microsoft.com/archive/blogs/timomta/how-to-convert-a-vmware-vmdk-to-hyper-v-vhd)。
 
 ### <a name="use-hyper-v-manager-to-resize-the-disk"></a>使用 Hyper-V 管理器调整磁盘大小
 
@@ -141,7 +143,7 @@ Windows Resource Protection did not find any integrity violations.
     netsh.exe winhttp reset proxy
     ```
 
-    如果 VM 需要使用特定代理，请为 Azure IP 地址 ([168.63.129.16](/virtual-network/what-is-ip-address-168-63-129-16)) 添加代理例外，使 VM 能够连接到 Azure：
+    如果 VM 需要使用特定代理，请为 Azure IP 地址 ([168.63.129.16](../../virtual-network/what-is-ip-address-168-63-129-16.md)) 添加代理例外，使 VM 能够连接到 Azure：
 
     ```
     $proxyAddress='<your proxy server>'
@@ -474,7 +476,7 @@ Sysprep 会删除所有个人数据并重置多个组件，从而为你提供“
 若要只从一个磁盘创建一个 VM，则不需使用 Sysprep。 可以从专用化映像创建 VM。 有关如何从专用化磁盘创建 VM 的信息，请参阅：
 
 - [从专用磁盘创建 VM](create-vm-specialized.md)
-- [Create a VM from a specialized VHD disk](/virtual-machines/windows/create-vm-specialized-portal)（从专用 VHD 磁盘创建 VM）
+- [Create a VM from a specialized VHD disk](./create-vm-specialized-portal.md)（从专用 VHD 磁盘创建 VM）
 
 若要创建通用化映像，则需运行 Sysprep。 有关详细信息，请参阅[如何使用 Sysprep：简介](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-xp/bb457073(v=technet.10))。
 
@@ -489,10 +491,11 @@ Sysprep 会删除所有个人数据并重置多个组件，从而为你提供“
 
 1. 登录到 Windows VM。
 1. 以管理员身份运行 PowerShell 会话。
+1. 删除 panther 目录 (C:\Windows\Panther)。
 1. 将目录切换到 `%windir%\system32\sysprep`。 然后运行 `sysprep.exe`。
 1. 在“系统准备工具”对话框中，选择“进入系统全新体验 (OOBE)”，确保已选中“通用化”复选框  。
 
-    ![系统准备工具](media/prepare-for-upload-vhd-image/syspre.png)
+    :::image type="content" source="media/prepare-for-upload-vhd-image/syspre.png" alt-text="系统准备工具":::
 1. 在“关机选项”中选择“关机”。
 1. 选择“确定” 。
 1. 当 Sysprep 完成后，关闭 VM。 请勿使用“重启”来关闭 VM。
@@ -520,6 +523,6 @@ Sysprep 会删除所有个人数据并重置多个组件，从而为你提供“
 ## <a name="next-steps"></a>后续步骤
 
 - [将 Windows VM 映像上传到 Azure 以进行 Resource Manager 部署](upload-generalized-managed.md)
-- [排查 Azure Windows VM 激活问题](troubleshoot-activation-problems.md)
+- [排查 Azure Windows VM 激活问题](../troubleshooting/troubleshoot-activation-problems.md)
 
 <!-- Update_Description: update meta properties, wording update, update link -->

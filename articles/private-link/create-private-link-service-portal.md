@@ -3,19 +3,22 @@ title: 快速入门 - 使用 Azure 门户创建专用链接服务
 titlesuffix: Azure Private Link
 description: 在本快速入门中了解如何使用 Azure 门户创建专用链接服务
 services: private-link
-author: rockboyfor
 ms.service: private-link
 ms.topic: quickstart
 origin.date: 02/03/2020
-ms.date: 06/15/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: 06/15/2020
 ms.author: v-yeche
-ms.openlocfilehash: 065f8da216ea0654d5110782b35498ba3baf7e36
-ms.sourcegitcommit: 3de7d92ac955272fd140ec47b3a0a7b1e287ca14
+ms.openlocfilehash: 33f51b0d7c48cf0e0c6b856bcd89016011649481
+ms.sourcegitcommit: 6e88e0e41b35d160a09f7a906ca3b7e837f51803
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84723336"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89412119"
 ---
+<!--Verified successfully-->
 # <a name="quickstart-create-a-private-link-service-by-using-the-azure-portal"></a>快速入门：使用 Azure 门户创建专用链接服务
 
 Azure 专用链接服务是指你自己的、由专用链接管理的服务。 可以向专用链接授予对 Azure 标准负载均衡器后面运行的服务或资源的访问权限。 服务的使用者可从其自己的虚拟网络以私密方式访问该服务。 本快速入门介绍如何使用 Azure 门户创建专用链接服务。
@@ -41,9 +44,9 @@ Azure 专用链接服务是指你自己的、由专用链接管理的服务。 �
 | **\<resource-group-name>** | myResourceGroupLB |
 | **\<virtual-network-name>** | myVNet          |
 | **\<region-name>** | 中国东部 2      |
-| **\<IPv4-address-space>** | 10.3.0.0\16          |
+| **\<IPv4-address-space>** | 10.3.0.0/16          |
 | **\<subnet-name>** | myBackendSubnet        |
-| **\<subnet-address-range>** | 10.3.0.0\24          |
+| **\<subnet-address-range>** | 10.3.0.0/24          |
 
 [!INCLUDE [virtual-networks-create-new](../../includes/virtual-networks-create-new.md)]
 
@@ -134,11 +137,15 @@ Azure 专用链接服务是指你自己的、由专用链接管理的服务。 �
 
 ## <a name="create-a-private-link-service"></a>创建专用链接服务
 
-在本部分，你将在标准负载均衡器后面创建专用链接服务。
+在本部分，你将在标准负载均衡器后方创建专用链接服务。
 
-1. 在 Azure 门户中页面的左上部分，选择“创建资源” > “网络” > “专用链接中心(预览版)”。   也可以使用门户的搜索框来搜索“专用链接”。
+<!--MOONCAKE CUSTOMIZE on 09/02/2020-->
 
-1. 在“专用链接中心 - 概述” > “公开自己的服务，使其他人能够连接”中，选择“启动”。  
+1. 在 Azure 门户的页面顶部的搜索框中，键入 `Private Link`，在服务列表中选择 `Private Link`。
+
+1. 在“专用链接中心 - 概述”中，选择“创建专用链接服务” 。
+
+    <!--MOONCAKE CUSTOMIZE on 09/02/2020-->
 
 1. 在“创建专用链接服务 - 基本信息”下，输入或选择以下信息：
 
@@ -185,5 +192,4 @@ Azure 专用链接服务是指你自己的、由专用链接管理的服务。 �
 
 在本快速入门中，你已创建内部 Azure 负载均衡器和专用链接服务。 还可以了解如何[使用 Azure 门户创建专用终结点](/private-link/create-private-endpoint-portal)。
 
-<!-- Update_Description: new article about create private link service portal -->
-<!--NEW.date: 02/24/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

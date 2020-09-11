@@ -1,10 +1,9 @@
 ---
-title: 适用于 Windows 的虚拟机扩展和功能
+title: 适用于 Windows 的 Azure VM 扩展和功能
 description: 了解可为 Azure 虚拟机提供的扩展，这些虚拟机扩展按它们提供或改进的功能进行分组。
 services: virtual-machines-windows
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 editor: ''
 tags: azure-service-management,azure-resource-manager
 ms.assetid: 999d63ee-890e-432e-9391-25b3fc6cde28
@@ -13,15 +12,18 @@ ms.topic: article
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure-services
 origin.date: 03/30/2018
-ms.date: 04/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 11201ced66f3c070f36b433d5f7872b082fcb157
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: a5dcdc5ba1721c2d0eed3e77ba7663b3f901bd17
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596343"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413715"
 ---
 # <a name="virtual-machine-extensions-and-features-for-windows"></a>适用于 Windows 的虚拟机扩展和功能
 
@@ -34,9 +36,13 @@ Azure 虚拟机 (VM) 扩展是小型应用程序，可在 Azure VM 上提供部�
 有许多不同的 Azure VM 扩展可用，每个都有特定用例。 示例包括：
 
 - 使用适用于 Windows 的 DSC 扩展将 PowerShell 所需状态配置应用到 VM。 有关详细信息，请参阅 [Azure Desired State configuration extension](dsc-overview.md)（Azure Desired State Configuration 扩展）。
-- 使用 Log Analytics 代理 VM 扩展配置 VM 监视功能。 有关详细信息，请参阅[将 Azure VM 连接到 Azure Monitor 日志](https://docs.azure.cn/azure-monitor/learn/quick-collect-azurevm)。
-- 使用 Chef 配置 Azure VM。 有关详细信息，请参阅[使用 Chef 自动执行 Azure VM 部署](../windows/chef-automation.md)。
+- 使用 Log Analytics 代理 VM 扩展配置 VM 监视功能。 有关详细信息，请参阅[将 Azure VM 连接到 Azure Monitor 日志](../../azure-monitor/learn/quick-collect-azurevm.md)。
+- 使用 Chef 配置 Azure VM。
 - 使用 Datadog 扩展配置 Azure 基础结构监视功能。 有关详细信息，请参阅 [Datadog 博客](https://www.datadoghq.com/blog/introducing-azure-monitoring-with-one-click-datadog-deployment/)。
+
+    <!--[Automating Azure VM deployment with Chef](../windows/chef-automation.md) to be deleteed-->
+    <!--Develpoer/chef is not available-->
+    <!--Delete the linke when ../windows/chef-automation.md is deleted-->
 
 除了进程特定的扩展外，自定义脚本扩展也可用于 Windows 和 Linux 虚拟机。 适用于 Windows 的自定义脚本扩展允许在 VM 上运行任何 PowerShell 脚本。 在设计需要本机 Azure 工具无法提供的配置的 Azure 部署时，自定义脚本很有用。 有关详细信息，请参阅 [Windows VM 自定义脚本扩展](custom-script-windows.md)。
 
@@ -62,12 +68,12 @@ Windows 来宾代理在多个 OS 上运行，但是，扩展框架对扩展的 O
 
 #### <a name="network-access"></a>网络访问
 
-从 Azure 存储扩展存储库下载扩展包，将扩展状态上传内容发布到 Azure 存储。 如果使用[受支持](https://support.microsoft.com/help/4049215/extensions-and-virtual-machine-agent-minimum-version-support)版本的代理，则不需要允许访问 VM 区域中的 Azure 存储，因为可以使用代理将通信重定向到 Azure 结构控制器以进行代理通信（HostGAPlugin 功能通过专用 IP [168.63.129.16](/virtual-network/what-is-ip-address-168-63-129-16) 上的特权通道工作）。 如果使用不受支持的代理版本，则需要允许从 VM 对该区域中 Azure 存储的出站访问。
+从 Azure 存储扩展存储库下载扩展包，将扩展状态上传内容发布到 Azure 存储。 如果使用[受支持](https://support.microsoft.com/help/4049215/extensions-and-virtual-machine-agent-minimum-version-support)版本的代理，则不需要允许访问 VM 区域中的 Azure 存储，因为可以使用代理将通信重定向到 Azure 结构控制器以进行代理通信（HostGAPlugin 功能通过专用 IP [168.63.129.16](../../virtual-network/what-is-ip-address-168-63-129-16.md) 上的特权通道工作）。 如果使用不受支持的代理版本，则需要允许从 VM 对该区域中 Azure 存储的出站访问。
 
 > [!IMPORTANT]
 > 如果已使用来宾防火墙或代理阻止对 168.63.129.16 的访问，则不管采用上述哪种方法，扩展都会失败  。 需要端口 80、443 和 32526。
 
-代理只可用于下载扩展包和报告状态。 例如，如果扩展安装需要从 GitHub 下载脚本（自定义脚本），或需要访问 Azure 存储（Azure 备份），则需要打开其他防火墙/网络安全组端口。 不同的扩展具有不同的要求，因为它们本身就是应用程序。 对于需要访问 Azure 存储或 Azure Active Directory 的扩展，可以使用 [Azure NSG 服务标记](/virtual-network/security-overview#service-tags)允许访问存储或 AzureActiveDirectory。
+代理只可用于下载扩展包和报告状态。 例如，如果扩展安装需要从 GitHub 下载脚本（自定义脚本），或需要访问 Azure 存储（Azure 备份），则需要打开其他防火墙/网络安全组端口。 不同的扩展具有不同的要求，因为它们本身就是应用程序。 对于需要访问 Azure 存储或 Azure Active Directory 的扩展，可以使用 [Azure NSG 服务标记](../../virtual-network/security-overview.md#service-tags)允许访问存储或 AzureActiveDirectory。
 
 Windows 来宾代理不支持通过代理服务器重定向代理流量请求，这意味着 Windows 来宾代理将依赖自定义代理（如果有）通过 IP 168.63.129.16 访问 Internet 或主机上的资源。
 
@@ -97,7 +103,7 @@ Get-Command Set-Az*Extension* -Module Az.Compute
 
 此命令的输出如下所示：
 
-<!--MOONCAKE: CORRECT ON 2.6.0 the latested Version -->
+<!--MOONCAKE: CORRECT ON 4.2.1 the latested Version -->
 
 ```powershell
 CommandType     Name                                          Version    Source
@@ -117,7 +123,8 @@ Cmdlet          Set-AzVMSqlServerExtension                    4.5.0      Az.Comp
 Cmdlet          Set-AzVmssDiskEncryptionExtension             4.5.0      Az.Compute
 ```
 
-<!--MOONCAKE: CORRECT ON 2.6.0 the latest Version -->
+<!--MOONCAKE: CORRECT ON 4.2.1 the latest Version -->
+<!--The version checked is 4.2.1 by 08/24/2020-->
 
 以下示例使用自定义脚本扩展从 GitHub 存储库将脚本下载到目标虚拟机上，并运行该脚本。 有关自定义脚本扩展的详细信息，请参阅[自定义脚本扩展概述](custom-script-windows.md)。
 
@@ -128,7 +135,7 @@ Set-AzVMCustomScriptExtension -ResourceGroupName "myResourceGroup" `
     -Run "Create-File.ps1" -Location "China North"
 ```
 
-在以下示例中，VM 访问扩展用于将 Windows VM 的管理密码重置为临时密码。 有关 VM 访问扩展的详细信息，请参阅[重置 Windows VM 中的远程桌面服务](../windows/reset-rdp.md)。 运行此扩展后，应重置首次登录密码：
+在以下示例中，VM 访问扩展用于将 Windows VM 的管理密码重置为临时密码。 有关 VM 访问扩展的详细信息，请参阅[重置 Windows VM 中的远程桌面服务](../troubleshooting/reset-rdp.md)。 运行此扩展后，应重置首次登录密码：
 
 ```powershell
 $cred=Get-Credential
@@ -148,7 +155,7 @@ Set-AzVMAccessExtension -ResourceGroupName "myResourceGroup" -VMName "myVM" -Nam
 
 以下示例演示如何从 Azure 门户安装 Microsoft 反恶意软件扩展。
 
-![安装反恶意软件扩展](./media/features-windows/installantimalwareextension.png)
+:::image type="content" source="./media/features-windows/installantimalwareextension.png" alt-text="安装反恶意软件扩展":::
 
 ### <a name="azure-resource-manager-templates"></a>Azure Resource Manager 模板
 
@@ -299,16 +306,16 @@ Windows 来宾代理仅包含扩展处理代码，Windows 预配代码需要单�
 有扩展更新可用时，Windows 来宾代理会下载并升级扩展。 自动扩展更新以次要版本或修补程序的形式提供   。 预配扩展时，可以选择安装或不安装扩展的次要版本更新  。 以下示例演示如何在资源管理器模板中使用 autoUpgradeMinorVersion": true,' 自动升级次要版本  ：
 
 ```json
-"properties": {
-"publisher": "Microsoft.Compute",
-"type": "CustomScriptExtension",
-"typeHandlerVersion": "1.9",
-"autoUpgradeMinorVersion": true,
-"settings": {
-    "fileUris": [
-    "https://raw.githubusercontent.com/Microsoft/dotnet-core-sample-templates/master/dotnet-core-music-windows/scripts/configure-music-app.ps1"
-    ]
-},
+    "properties": {
+    "publisher": "Microsoft.Compute",
+    "type": "CustomScriptExtension",
+    "typeHandlerVersion": "1.9",
+    "autoUpgradeMinorVersion": true,
+    "settings": {
+        "fileUris": [
+        "https://raw.githubusercontent.com/Microsoft/dotnet-core-sample-templates/master/dotnet-core-music-windows/scripts/configure-music-app.ps1"
+        ]
+    },
 ```
 
 若要获取最新的次要版本 bug 修复，我们强烈建议始终在扩展部署中选择自动更新。 无法选择不安装包含安全或关键 bug 修复的修补程序更新。
@@ -409,7 +416,7 @@ Extensions[0]           :
 
 ### <a name="rerun-vm-extensions"></a>重新运行 VM 扩展
 
-在某些情况下，可能需要重新运行 VM 扩展。 如果要重新运行扩展，可以先删除扩展，然后使用所选执行方法重新运行扩展。 若要删除扩展，请使用 [Remove-AzVMExtension](https://docs.microsoft.com/powershell/module/az.compute/Remove-AzVMExtension)，如下所示：
+在某些情况下，可能需要重新运行 VM 扩展。 如果要重新运行扩展，可以先删除扩展，然后使用所选执行方法重新运行扩展。 若要删除扩展，请使用 [Remove-AzVMExtension](https://docs.microsoft.com/powershell/module/az.compute/remove-azvmextension)，如下所示：
 
 ```powershell
 Remove-AzVMExtension -ResourceGroupName "myResourceGroup" -VMName "myVM" -Name "myExtensionName"
@@ -434,4 +441,4 @@ Remove-AzVMExtension -ResourceGroupName "myResourceGroup" -VMName "myVM" -Name "
 
 有关 VM 扩展的详细信息，请参阅 [Azure 虚拟机扩展和功能概述](overview.md)。
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

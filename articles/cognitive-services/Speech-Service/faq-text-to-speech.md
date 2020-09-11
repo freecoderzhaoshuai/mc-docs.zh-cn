@@ -8,15 +8,15 @@ manager: nitinme
 ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: conceptual
-origin.date: 07/05/2019
-ms.date: 07/28/2020
+origin.date: 08/20/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: 5e524d9c1311724e781467512374ccf25d55e022
-ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
+ms.openlocfilehash: 3cee9c82ee7deb40517911dcc79818b8978a1b55
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87516106"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317436"
 ---
 # <a name="text-to-speech-frequently-asked-questions"></a>文本转语音常见问题
 
@@ -60,7 +60,7 @@ ms.locfileid: "87516106"
 
 **问：我的请求是否受到限制？**
 
-**答**：REST API 将标准订阅的请求数限制为每 5 秒 25 个。 免费层 (F0) 限制为每分钟 20 个请求。
+**答**：请参阅[语音服务配额和限制](speech-services-quotas-and-limits.md)。
 
 ## <a name="next-steps"></a>后续步骤
 

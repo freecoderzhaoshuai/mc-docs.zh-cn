@@ -12,14 +12,15 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/14/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 137691438a57e5726eb6ac21967a828ace2b6f1d
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: af5ff4d36e7814488a7bdcc8ca93b015976e8ae2
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71125504"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413528"
 ---
 # <a name="managing-media-services-assets-across-multiple-storage-accounts"></a>跨多个存储帐户管理媒体服务资产  
 
@@ -28,7 +29,7 @@ ms.locfileid: "71125504"
 * 使多个存储帐户之间的资产实现负载均衡。
 * 缩放媒体服务以处理大量内容（目前，单个存储帐户的上限为 500 TB）。 
 
-本文演示了如何使用 [Azure 资源管理器 API](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference) 和 [Powershell](https://docs.microsoft.com/powershell/module/az.media) 将多个存储帐户附加到媒体服务帐户。 此外还说明如何在使用媒体服务 SDK 创建资产时指定不同的存储帐户。 
+本文演示了如何使用 [Azure 资源管理器 API](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference) 和 [PowerShell](https://docs.microsoft.com/powershell/module/az.media) 将多个存储帐户附加到媒体服务帐户。 此外还说明如何在使用媒体服务 SDK 创建资产时指定不同的存储帐户。 
 
 [!INCLUDE [updated-for-az](../../../includes/updated-for-az.md)]
 
@@ -43,29 +44,31 @@ ms.locfileid: "71125504"
 
 其他注意事项：
 
-构建数据流内容的 URL 时，媒体服务会使用 IAssetFile.Name  属性的值（如 http://{WAMSAccount}.origin.mediaservices.chinacloudapi.cn/{GUID}/{IAssetFile.Name}/streamingParameters。）出于这个原因，不允许使用百分号编码。 Name 属性的值不能含有任何以下[百分号编码保留字符](https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters)：!*'();:@&=+$,/?%#[]"。 此外，只能有一个“.” 此外，文件扩展名中只能含有一个“.”。
+构建数据流内容的 URL 时，媒体服务会使用 IAssetFile.Name  属性的值（如 http://{WAMSAccount}.origin.mediaservices.chinacloudapi.cn/{GUID}/{IAssetFile.Name}/streamingParameters。）出于这个原因，不允许使用百分号编码。 Name 属性的值不能含有任何以下[百分号编码保留字符](https://en.wikipedia.org/wiki/Percent-encoding#Percent-encoding_reserved_characters)：!*'();:@&=+$,/?%#[]"。 此外，文件扩展名中只能含有一个“.”。
 
 ## <a name="to-attach-storage-accounts"></a>附加存储帐户  
 
-要将存储帐户附加到 AMS 帐户，请使用 [Azure 资源管理器 API](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference) 和 [Powershell](https://docs.microsoft.com/powershell/module/az.media)，如以下示例所示：
+若要将存储帐户附加到 AMS 帐户，请使用 [Azure 资源管理器 API](https://docs.microsoft.com/rest/api/media/operations/azure-media-services-rest-api-reference) 和 [PowerShell](https://docs.microsoft.com/powershell/module/az.media)，如以下示例所示：
 
-    $regionName = "China East 2"
-    $subscriptionId = " xxxxxxxx-xxxx-xxxx-xxxx- xxxxxxxxxxxx "
-    $resourceGroupName = "SkyMedia-ChinaEast2-App"
-    $mediaAccountName = "sky"
-    $storageAccount1Name = "skystorage1"
-    $storageAccount2Name = "skystorage2"
-    $storageAccount1Id = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageAccount1Name"
-    $storageAccount2Id = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageAccount2Name"
-    $storageAccount1 = New-AzMediaServiceStorageConfig -StorageAccountId $storageAccount1Id -IsPrimary
-    $storageAccount2 = New-AzMediaServiceStorageConfig -StorageAccountId $storageAccount2Id
-    $storageAccounts = @($storageAccount1, $storageAccount2)
+```azurepowershell
+$regionName = "China East 2"
+$subscriptionId = " xxxxxxxx-xxxx-xxxx-xxxx- xxxxxxxxxxxx "
+$resourceGroupName = "SkyMedia-ChinaEast2-App"
+$mediaAccountName = "sky"
+$storageAccount1Name = "skystorage1"
+$storageAccount2Name = "skystorage2"
+$storageAccount1Id = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageAccount1Name"
+$storageAccount2Id = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageAccount2Name"
+$storageAccount1 = New-AzMediaServiceStorageConfig -StorageAccountId $storageAccount1Id -IsPrimary
+$storageAccount2 = New-AzMediaServiceStorageConfig -StorageAccountId $storageAccount2Id
+$storageAccounts = @($storageAccount1, $storageAccount2)
     
-    Set-AzMediaService -ResourceGroupName $resourceGroupName -AccountName $mediaAccountName -StorageAccounts $storageAccounts
+Set-AzMediaService -ResourceGroupName $resourceGroupName -AccountName $mediaAccountName -StorageAccounts $storageAccounts
+```
 
 ### <a name="support-for-cool-storage"></a>支持冷存储
 
-目前，如果需要将冷存储帐户添加到 AMS 帐户，该存储帐户必须为 Blob 类型且设置为“非主”。
+目前，如果需要将冷存储帐户添加到 AMS 帐户，该存储帐户必须为 Blob 类型，且必须设置为非主帐户。
 
 ## <a name="to-manage-media-services-assets-across-multiple-storage-accounts"></a>跨多个存储帐户管理媒体服务资产
 以下代码使用最新的媒体服务 SDK 执行下列任务：

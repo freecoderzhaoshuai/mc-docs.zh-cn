@@ -1,32 +1,34 @@
 ---
-title: 由于 netvsc.sys，无法在 Azure 中远程连接到 Windows 10 或 Windows Server 2016 VM | Azure
-description: 了解在 Azure 中连接到 Windows 10 或 Windows Server 2016 VM 时如何对与 netsvc.sys 相关的 RDP 问题进行故障排除。
+title: 在 Azure 中远程连接到 Windows 10 或 Windows Server 2016 数据中心时，对 netvsc.sys 问题进行故障排除 | Azure
+description: 了解在 Azure 中连接到 Windows 10 或 Windows Server 2016 数据中心时如何对与 netsvc.sys 相关的 RDP 问题进行故障排除。
 services: virtual-machines-windows
 documentationCenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: v-jesits
 ms.service: virtual-machines-windows
 ms.topic: troubleshooting
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 11/19/2018
-ms.date: 11/11/2019
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 4ba4da4082e20252b9ee4a9be0df517aa26e573c
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: fc6ccb2c0f6294b1f2de8e209146c4cd8898b87e
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74116886"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456773"
 ---
-# <a name="cannot-connect-remotely-to-a-windows-10-or-windows-server-2016-vm-in-azure-because-of-netvscsys"></a>由于 netvsc.sys，无法在 Azure 中远程连接到 Windows 10 或 Windows Server 2016 VM
+# <a name="cannot-connect-remotely-to-a-windows-10-or-windows-server-2016-datacenter-in-azure-because-of-netvscsys"></a>由于 netvsc.sys，无法在 Azure 中远程连接到 Windows 10 或 Windows Server 2016 数据中心
 
 本文介绍如何解决在连接到 Hyper-V Server 2016 主机上的 Windows 10 或 Windows Server 2016 Datacenter 虚拟机 (VM) 时没有网络连接的问题。
 
 ## <a name="symptoms"></a>症状
 
-无法使用远程桌面协议 (RDP) 连接到 Azure Windows 10 或 Windows Server 2016 VM。 在[启动诊断](boot-diagnostics.md)中，屏幕在网络接口卡 (NIC) 处显示一个红叉。 这表示操作系统完全加载后 VM 没有连接。
+无法使用远程桌面协议 (RDP) 连接到 Azure Windows 10 或 Windows Server 2016 数据中心。 在[启动诊断](boot-diagnostics.md)中，屏幕在网络接口卡 (NIC) 处显示一个红叉。 这表示操作系统完全加载后 VM 没有连接。
 
 通常，此问题发生在 Windows [内部版本 14393](https://support.microsoft.com/help/4093120/) 和[内部版本 15063](https://support.microsoft.com/help/4015583/) 中。 如果操作系统版本低于这些版本，则本文不适用于你的方案。 
 
@@ -44,7 +46,7 @@ ms.locfileid: "74116886"
 <!-- Not Available on ### Use the Serial Console-->
 ### <a name="repair-the-vm-offline"></a>修复 VM 脱机
 
-1. [将系统磁盘附加到恢复 VM](../windows/troubleshoot-recovery-disks-portal.md)。
+1. [将系统磁盘附加到恢复 VM](./troubleshoot-recovery-disks-portal-windows.md)。
 
 2. 开始与恢复 VM 建立远程桌面连接。
 
@@ -89,10 +91,10 @@ ms.locfileid: "74116886"
     reg unload HKLM\BROKENSYSTEM
     ```
 
-16. [拆离系统磁盘并重新创建 VM](../windows/troubleshoot-recovery-disks-portal.md)。
+16. [拆离系统磁盘并重新创建 VM](./troubleshoot-recovery-disks-portal-windows.md)。
 
 ## <a name="need-help-contact-support"></a>需要帮助？ 联系支持人员
 
 如果仍需帮助，请[联系 Azure 支持人员](https://support.azure.cn/support/support-azure/)以快速解决问题。
 
-<!-- Update_Description: wording update-->
+<!-- Update_Description: update meta properties, wording update, update link -->

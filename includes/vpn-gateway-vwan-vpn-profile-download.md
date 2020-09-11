@@ -5,16 +5,16 @@ services: vpn-gateway
 author: WenJason
 ms.service: vpn-gateway
 ms.topic: include
-origin.date: 03/17/2020
-ms.date: 04/06/2020
+origin.date: 07/31/2020
+ms.date: 09/07/2020
 ms.author: v-jay
 ms.custom: include file
-ms.openlocfilehash: afde749af9af66cb84e224f7ea68306bbf934242
-ms.sourcegitcommit: 7ea2d04481512e185a60fa3b0f7b0761e3ed7b59
+ms.openlocfilehash: bda489afcdabddb317ce0eb7ffd9c5ccee8a9069
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85845900"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89464244"
 ---
 ## <a name="1-download-the-file"></a>1.下载文件
 
@@ -32,7 +32,7 @@ $PROFILE.VpnProfileSASUrl
 
 * AzureVPN
 * 泛型
-* OpenVPN（如果已在网关上启用 OpenVPN 和 Azure AD 身份验证设置）。 对于 VPN 网关，请参阅[创建租户](../articles/vpn-gateway/openvpn-azure-ad-tenant.md)。 对于虚拟 WAN，请参阅[创建租户 - VWAN](../articles/virtual-wan/openvpn-azure-ad-tenant.md)。
+* OpenVPN（如果已在网关上启用 OpenVPN 和 Azure 证书或 RADIUS 身份验证设置） 。 对于 VPN 网关，请参阅[创建租户](../articles/vpn-gateway/openvpn-azure-ad-tenant.md)。 对于虚拟 WAN，请参阅[创建租户 - VWAN](../articles/virtual-wan/openvpn-azure-ad-tenant.md)。
 
 ## <a name="3-retrieve-information"></a>3.检索信息
 

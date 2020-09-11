@@ -1,21 +1,23 @@
 ---
-title: 教程 - 在 Azure 中使用 Key Vault 中存储的 TLS/SSL 证书保护 Windows 虚拟机上的 Web 服务器
+title: 教程 - 在 Azure 中使用 TLS/SSL 证书保护 Windows Web 服务器
 description: 本教程介绍如何通过 Azure PowerShell 使用 Azure Key Vault 中存储的 TLS/SSL 证书来保护运行 IIS Web 服务器的 Windows 虚拟机。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.subservice: security
 ms.topic: tutorial
 ms.workload: infrastructure
 origin.date: 02/09/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: 7112b37404499d078d88610b0dd5561699600034
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 345f22139a4ca9bfea90640b2731bf0dbfab5b68
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945847"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463170"
 ---
 # <a name="tutorial-secure-a-web-server-on-a-windows-virtual-machine-in-azure-with-tlsssl-certificates-stored-in-key-vault"></a>教程：在 Azure 中使用 Key Vault 中存储的 TLS/SSL 证书保护 Windows 虚拟机上的 Web 服务器
 
@@ -30,7 +32,7 @@ ms.locfileid: "85945847"
 > * 创建 VM 并安装 IIS Web 服务器
 > * 将证书注入 VM 中并为 IIS 配置 TLS 绑定
 
-## <a name="launch-azure-local-powershell"></a>启动 Azure 本地 PowerShell
+## <a name="launch-azure-local-shell"></a>启动 Azure 本地 Shell
 
 打开 Azure Powershell 控制台，以管理员权限运行下面列出的脚本。
 
@@ -80,7 +82,7 @@ Add-AzKeyVaultCertificate `
 ```
 
 ## <a name="create-a-virtual-machine"></a>创建虚拟机
-使用 [Get-Credential](https://msdn.microsoft.com/powershell/reference/5.1/microsoft.powershell.security/Get-Credential) 设置 VM 的管理员用户名和密码：
+使用 [Get-Credential](https://docs.microsoft.com/powershell/module/microsoft.powershell.security/get-credential?view=powershell-5.1) 设置 VM 的管理员用户名和密码：
 
 ```powershell
 $cred = Get-Credential
@@ -155,16 +157,16 @@ Set-AzVMExtension -ResourceGroupName $resourceGroup `
 Get-AzPublicIPAddress -ResourceGroupName $resourceGroup -Name "myPublicIPAddress" | select "IpAddress"
 ```
 
-现可打开 Web 浏览器，并在地址栏中输入 `https://<myPublicIP>` 。 若要接受有关使用自签名证书的安全警告，请依次选择“详细信息”和“继续转到网页”： 
+现可打开 Web 浏览器，并在地址栏中输入 `https://<myPublicIP>`。 若要接受有关使用自签名证书的安全警告，请依次选择“详细信息”和“继续转到网页”： 
 
-![接受 Web 浏览器安全警告](./media/tutorial-secure-web-server/browser-warning.png)
+:::image type="content" source="./media/tutorial-secure-web-server/browser-warning.png" alt-text="接受 Web 浏览器安全警告":::
 
 随即显示受保护的 IIS 网站，如下例所示：
 
-![查看运行中的安全 IIS 站点](./media/tutorial-secure-web-server/secured-iis.png)
+:::image type="content" source="./media/tutorial-secure-web-server/secured-iis.png" alt-text="查看运行中的安全 IIS 站点":::
 
 ## <a name="next-steps"></a>后续步骤
-本教程已介绍如何使用 Azure Key Vault 中存储的 TLS/SSL 证书保护 IIS Web 服务器。 你已了解如何：
+本教程已介绍如何使用 Azure Key Vault 中存储的 TLS/SSL 证书保护 IIS Web 服务器。 你已了解如何执行以下操作：
 
 > [!div class="checklist"]
 > * 创建 Azure Key Vault
@@ -177,4 +179,4 @@ Get-AzPublicIPAddress -ResourceGroupName $resourceGroup -Name "myPublicIPAddress
 > [!div class="nextstepaction"]
 > [Windows 虚拟机脚本示例](./powershell-samples.md)
 
-<!-- Update_Description: update meta properties, wording update  -->
+<!-- Update_Description: update meta properties, wording update, update link -->

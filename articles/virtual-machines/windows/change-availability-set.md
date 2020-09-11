@@ -1,18 +1,20 @@
 ---
-title: 更改 VM 的可用性集
+title: 更改 VM 可用性集
 description: 了解如何使用 Azure PowerShell 更改虚拟机的可用性集。
 ms.service: virtual-machines
-author: rockboyfor
-ms.topic: article
+ms.topic: how-to
 origin.date: 01/31/2020
-ms.date: 02/10/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: fb4b82e1c18d0cd67e40d6a029287825f242c54f
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 11ca7208b7e35162155136bfe5bdbd3733855fec
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77428893"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462990"
 ---
 # <a name="change-the-availability-set-for-a-vm"></a>更改 VM 的可用性集
 以下步骤说明如何使用 Azure PowerShell 来更改 VM 的可用性集。 只能在创建 VM 时将 VM 添加到可用性集。 若要更改可用性集，必须将虚拟机删除，然后重新创建虚拟机。 
@@ -22,6 +24,8 @@ ms.locfileid: "77428893"
 本文最后一次使用 [Az PowerShell 模块](https://docs.microsoft.com/powershell/azure/install-az-ps)版本 1.2.0 在 2019 年 2 月 12 日进行了测试。
 
 <!--Not Available on Azure Cloud Shell-->
+
+本示例不检查 VM 是否已连接到负载均衡器。 如果 VM 已连接到负载均衡器，则需要更新脚本以处理这种情况。 
 
 ## <a name="change-the-availability-set"></a>更改可用性集 
 
@@ -108,4 +112,4 @@ ms.locfileid: "77428893"
 
 通过添加附加[数据磁盘](attach-managed-disk-portal.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)，向 VM 添加附加存储。
 
-<!--Update_Description: update meta properties, update cmdlet -->
+<!-- Update_Description: update meta properties, wording update, update link -->

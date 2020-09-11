@@ -1,20 +1,20 @@
 ---
 title: 快速入门：使用 PowerShell 定向 Web 流量
 titleSuffix: Azure Application Gateway
-description: 了解如何使用 Azure PowerShell 创建 Azure 应用程序网关，以便将 Web 流量重定向到后端池中的虚拟机。
+description: 本快速入门介绍如何使用 Azure PowerShell 创建 Azure 应用程序网关，以便将 Web 流量重定向到后端池中的虚拟机。
 services: application-gateway
 author: vhorne
 ms.service: application-gateway
 ms.topic: quickstart
-ms.date: 04/26/2020
+ms.date: 09/01/2020
 ms.author: v-junlch
 ms.custom: mvc
-ms.openlocfilehash: e0e86966c59b1c7d15282a43c511e150d8f82290
-ms.sourcegitcommit: e3512c5c2bbe61704d5c8cbba74efd56bfe91927
+ms.openlocfilehash: c7c3723d2d364313ae565b77282934ffcdac2466
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82267691"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413500"
 ---
 # <a name="quickstart-direct-web-traffic-with-azure-application-gateway-using-azure-powershell"></a>快速入门：通过 Azure PowerShell 使用 Azure 应用程序网关定向 Web 流量
 
@@ -24,12 +24,12 @@ ms.locfileid: "82267691"
 
 还可以使用 [Azure CLI](quick-create-cli.md) 或 [Azure 门户](quick-create-portal.md)完成本快速入门。
 
-[!INCLUDE [updated-for-az](../../includes/updated-for-az.md)]
-
 ## <a name="prerequisites"></a>先决条件
 
 - 具有活动订阅的 Azure 帐户。 [创建帐户](https://www.azure.cn/pricing/1rmb-trial)。
 - [Azure PowerShell 1.0.0 或更高版本](https://docs.microsoft.com/powershell/azure/install-az-ps)（如果在本地运行 Azure PowerShell）。
+
+[!INCLUDE [updated-for-az](../../includes/updated-for-az.md)]
 
 ## <a name="connect-to-azure"></a>连接到 Azure
 
@@ -46,7 +46,7 @@ New-AzResourceGroup -Name myResourceGroupAG -Location chinanorth2
 ```
 ## <a name="create-network-resources"></a>创建网络资源
 
-Azure 需要一个虚拟网络才能在创建的资源之间通信。  应用程序网关子网只能包含应用程序网关。 不允许其他资源。  可为应用程序网关创建新的子网，或者使用现有的子网。 本示例将创建两个子网：一个用于应用程序网关，另一个用于后端服务器。 可根据用例将应用程序网关的前端 IP 配置为公共或专用 IP。 本示例将选择公共前端 IP。
+Azure 需要一个虚拟网络才能在创建的资源之间通信。  应用程序网关子网只能包含应用程序网关。 不允许其他资源。  可为应用程序网关创建新的子网，或者使用现有的子网。 本示例将创建两个子网：一个用于应用程序网关，另一个用于后端服务器。 可以根据用例将应用程序网关的前端 IP 配置为公共或专用。 本示例将选择公共前端 IP。
 
 1. 使用 `New-AzVirtualNetworkSubnetConfig` 创建子网配置。
 2. 使用 `New-AzVirtualNetwork` 创建使用这些子网配置的虚拟网络。 

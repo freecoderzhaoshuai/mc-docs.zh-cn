@@ -1,6 +1,6 @@
 ---
 title: 使用 Azure Media Player 进行播放 - Azure | Microsoft Docs
-description: 本主题提供了 Azure Media Player 的概述。
+description: Azure Media Player 是一种 Web 视频播放器，用于在各种浏览器和设备上播放来自 Azure 媒体服务的媒体内容。
 services: media-services
 documentationcenter: ''
 author: WenJason
@@ -10,16 +10,16 @@ ms.service: media-services
 ms.workload: ''
 ms.topic: article
 origin.date: 07/17/2019
-ms.date: 03/04/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 06339391fa74aa953b1c2adc101c7e5d35866da7
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: c142bbbe12025e0b973eefb45bfcd482a30fc3d5
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78412502"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413183"
 ---
-# <a name="azure-media-player-overview"></a>Azure Media Player 概述
+# <a name="playback-with-azure-media-player"></a>使用 Azure Media Player 来播放
 
 > [!NOTE]
 > Google Widevine 内容保护服务目前在 Azure 中国区域不可用。
@@ -44,15 +44,11 @@ Azure 媒体服务允许播放使用 HLS、DASH、平滑流式处理流格式提
 
 ### <a name="monitor-diagnostics-of-a-video-stream"></a>监视视频流的诊断
 
-可以使用 [Azure Media Player 演示页](https://aka.ms/azuremediaplayer)监视视频流的诊断。 
+可以使用 [Azure Media Player 演示页](https://aka.ms/azuremediaplayer)监视视频流的诊断。
 
 ![Azure Media Player 诊断](./media/azure-media-player/diagnostics.png)
 
 ## <a name="set-up-azure-media-player-in-your-html"></a>在 HTML 中设置 Azure Media Player
 
-Azure Media Player 易于设置。 只需要片刻时间便可实现媒体服务帐户中的媒体内容的基本播放。 请参阅 [Azure Media Player 文档](https://aka.ms/ampdocs)来了解有关如何设置和配置 Azure Media Player 的详细信息。 
+Azure Media Player 易于设置。 只需要片刻时间便可实现媒体服务帐户中的媒体内容的基本播放。
 
-## <a name="next-steps"></a>后续步骤
-
-- [Azure Media Player 文档](https://aka.ms/ampdocs)
-- [Azure Media Player 示例](https://aka.ms/ampsamples)

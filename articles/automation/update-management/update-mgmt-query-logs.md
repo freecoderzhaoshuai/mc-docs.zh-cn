@@ -4,14 +4,14 @@ description: 本文介绍如何在 Log Analytics 工作区中查询更新管理�
 services: automation
 ms.subservice: update-management
 origin.date: 07/28/2020
-ms.date: 08/10/2020
+ms.date: 09/07/2020
 ms.topic: conceptual
-ms.openlocfilehash: 3798ec581b3030095dea58fbf42b2e902d24e1b1
-ms.sourcegitcommit: e6b216b180734783219378410e13192e314a4497
+ms.openlocfilehash: efe2ccabd6dd1abc96a08e95ce6cdb24e00760d2
+ms.sourcegitcommit: f837837326a4856b06d1924d17521a0a7e892850
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87790516"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89449787"
 ---
 # <a name="query-update-management-logs"></a>查询更新管理日志
 
@@ -31,7 +31,7 @@ ms.locfileid: "87790516"
 |----------|-------------|
 | Computer | 报告计算机的完全限定域名。 |
 | KBID | Windows 更新的知识库文章 ID。 |
-| ManagementGroupName | Operations Manager 管理组或 Log Analytics 工作区的名称。 |
+| ManagementGroupName | Log Analytics 工作区的名称。 |
 | 产品 | 该更新所适用的产品。 |
 | PublishDate | 该更新可供从 Windows 更新下载和安装的日期。 |
 | 服务器 | | 
@@ -39,7 +39,7 @@ ms.locfileid: "87790516"
 | SourceSystem | *OperationsManager* |
 | TenantId | 表示组织的 Azure Active Directory 实例的唯一标识符。 |
 | TimeGenerated | 创建记录的日期和时间。 |
-| 类型 | *更新* |
+| 类型 | *Update* |
 | UpdateClassification | 指示可应用的更新类型。 对于 Windows：<br> 关键更新<br> *安全更新*<br> 更新汇总<br> 功能包<br> 服务包<br> 定义更新<br> *工具*<br> 更新。 对于 Linux：<br> 关键和安全更新<br> *其他* |
 | UpdateSeverity | 漏洞的严重性分级。 值为：<br> *严重*<br> 重要说明<br> 中<br> *低* |
 | UpdateTitle | 更新的标题。|
@@ -58,7 +58,7 @@ ms.locfileid: "87790516"
 | MSRCBulletinID | 安全公告 ID 号。 |
 | MSRCSeverity | 漏洞的严重性分级。 值为：<br> 严重<br> 重要<br> 中等<br> 低 |  
 | KBID | Windows 更新的知识库文章 ID。 |
-| ManagementGroupName | Operations Manager 管理组或 Log Analytics 工作区的名称。 |
+| ManagementGroupName | Log Analytics 工作区的名称。 |
 | UpdateID | 软件更新的唯一标识符。 |
 | RevisionNumber | 特定更新修订版的修订号。 |
 | 可选 | 如果记录是可选的，则为 True，否则为 False。 |
@@ -91,7 +91,7 @@ ms.locfileid: "87790516"
 | AutomaticUpdateEnabled | |
 | Computer | 报告计算机的完全限定域名。 |
 | DaySinceLastUpdateBucket | |
-| ManagementGroupName | Operations Manager 管理组或 Log Analytics 工作区的名称。 |
+| ManagementGroupName | Log Analytics 工作区的名称。 |
 | OSVersion | 操作系统的版本。 |
 | 服务器 | |
 | SourceHealthServiceId | 表示 Log Analytics Windows 代理 ID 的唯一标识符。 |
@@ -115,7 +115,7 @@ ms.locfileid: "87790516"
 | ErrorResult | 无法安装更新时生成的 Windows 更新错误代码。 |
 | InstallationStatus | 客户端计算机上可能的更新安装状态：<br> `NotStarted` - 作业尚未触发。<br> `FailedToStart` - 无法在计算机上启动作业。<br> `Failed` - 作业已启动，但失败并发生异常。<br> `InProgress` - 作业正在进行。<br> `MaintenanceWindowExceeded` - 执行尚未完成，但已达到维护时段间隔。<br> `Succeeded` - 作业成功。<br> `InstallFailed` - 无法成功安装更新。<br> `NotIncluded`<br> `Excluded` |
 | KBID | Windows 更新的知识库文章 ID。 |
-| ManagementGroupName | Operations Manager 管理组或 Log Analytics 工作区的名称。 |
+| ManagementGroupName | Log Analytics 工作区的名称。 |
 | OSType | 操作系统的类型。 值为 Windows 或 Linux。 |
 | 产品 | 该更新所适用的产品。 |
 | 资源 | 资源的名称。 |
@@ -143,7 +143,7 @@ ms.locfileid: "87790516"
 | Computer | 报告计算机的完全限定域名。 |
 | ComputerEnvironment | 环境。 值为 Azure 或 Non-Azure。 |
 | CriticalUpdatesMissing | 缺少的适用关键更新数。 |
-| ManagementGroupName | Operations Manager 管理组或 Log Analytics 工作区的名称。 |
+| ManagementGroupName | Log Analytics 工作区的名称。 |
 | NETRuntimeVersion | 在 Windows 计算机上安装的 .NET Framework 版本。 |
 | OldestMissingSecurityUpdateBucket | 最早的缺失安全桶的说明符。 值为：<br> 值小于 30 天表示最近<br> 30 天前<br> 60 天前<br> 90 天前<br> 120 天前<br> 150 天前<br> 180 天前<br> 值大于 180 天表示较早。 |
 | OldestMissingSecurityUpdateInDays | 检测为适用更新的最早更新的未安装总天数。 |
@@ -205,8 +205,6 @@ Heartbeat
 > `sudo chmod 644 /etc/opt/microsoft/omsagent/proxy.conf`
 
 执行评估后，新添加的 Linux 代理会显示状态“已更新”。 此过程可能需要长达 6 小时的时间。
-
-若要确认 Operations Manager 管理组是否正在与 Azure Monitor 日志通信，请参阅[验证 Operations Manager 与 Azure Monitor 日志的集成](../../azure-monitor/platform/om-agents.md#validate-operations-manager-integration-with-azure-monitor)。
 
 ### <a name="single-azure-vm-assessment-queries-windows"></a>单个 Azure VM 评估查询 (Windows)
 

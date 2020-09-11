@@ -7,14 +7,14 @@ Customer intent: As someone with a basic network background, but is new to Azure
 ms.service: vpn-gateway
 ms.topic: article
 origin.date: 06/01/2020
-ms.date: 07/06/2020
+ms.date: 09/06/2020
 ms.author: v-jay
-ms.openlocfilehash: a7413b353746eb4eae3593f2460749d6092b0691
-ms.sourcegitcommit: 7ea2d04481512e185a60fa3b0f7b0761e3ed7b59
+ms.openlocfilehash: f8a8a63e5a8baa9efbcc2c4c9f44b39378bffbb8
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85845950"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462999"
 ---
 # <a name="vpn-gateway-design"></a>VPN 网关设计
 
@@ -27,6 +27,8 @@ ms.locfileid: "85845950"
 站点到站点 (S2S) VPN 网关连接是通过 IPsec/IKE（IKEv1 或 IKEv2）VPN 隧道建立的连接。 S2S 连接可用于跨界和混合配置。 S2S 连接要求位于本地的 VPN 设备分配有一个公共 IP 地址。 若要了解如何选择 VPN 设备，请参阅 [VPN 网关常见问题解答 - VPN 设备](vpn-gateway-vpn-faq.md#s2s)。
 
 ![Azure VPN 网关站点到站点连接示例](./media/design/vpngateway-site-to-site-connection-diagram.png)
+
+VPN 网关可使用一个公共 IP 以主动-备用模式配置，也可使用两个公共 IP 以主动-主动模式配置。 在主动-备用模式下，一个 IPsec 隧道处于活动状态，另一个处于备用状态。 在此设置中，流量流经活动隧道，如果此隧道出现问题，则流量将切换到备用隧道。 建议在主动-主动模式下设置 VPN 网关，此时两个 IPsec 隧道都处于活动状态，数据同时流经这两个隧道。 主动-主动模式的另一优点是，客户可处理更高的吞吐量。
 
 ### <a name="multi-site"></a><a name="Multi"></a>多站点
 

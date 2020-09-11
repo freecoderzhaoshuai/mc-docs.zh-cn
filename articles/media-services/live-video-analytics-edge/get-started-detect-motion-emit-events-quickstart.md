@@ -3,13 +3,13 @@ title: IoT Edge 上的实时视频分析入门 - Azure
 description: 本快速入门演示如何开始使用 IoT Edge 上的实时视频分析。 了解如何检测实时视频流中的运动。
 ms.topic: quickstart
 origin.date: 04/27/2020
-ms.date: 07/27/2020
-ms.openlocfilehash: 865185a23210fe04f4fe82bf117710d037d55514
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.date: 09/07/2020
+ms.openlocfilehash: 7e12d3f1c2b8b715ae95e49314ab37029603902a
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162812"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413391"
 ---
 # <a name="quickstart-get-started---live-video-analytics-on-iot-edge"></a>快速入门：入门 - IoT Edge 上的实时视频分析
 
@@ -35,17 +35,11 @@ ms.locfileid: "87162812"
 * IoT 中心
 * 存储帐户
 * Azure 媒体服务帐户
-* Azure 中的 Linux VM，已安装 [IoT Edge 运行时](/iot-edge/how-to-install-iot-edge-linux)
+* Azure 中的 Linux VM，已安装 [IoT Edge 运行时](../../iot-edge/how-to-install-iot-edge-linux.md)
 
 在本快速入门中，我们建议你使用[实时视频分析资源设置脚本](https://github.com/Azure/live-video-analytics/tree/master/edge/setup)在 Azure 订阅中部署所需资源。 为此，请执行下列步骤：
 
-1. 转到 [Azure Cloud Shell](https://shell.azure.com)。
-1. 如果你是第一次使用 Cloud Shell，系统会提示你选择一个订阅以创建存储帐户和 Azure 文件存储共享。 选择“创建存储”，创建用于存储 Cloud Shell 会话信息的存储帐户。 此存储帐户不同于脚本将要创建的与 Azure 媒体服务帐户配合使用的帐户。
-1. 在 Cloud Shell 窗口左侧的下拉菜单中，选择“Bash”作为环境。
-
-    ![环境选择器](./media/quickstarts/env-selector.png)
-
-1. 运行以下命令。
+1. 运行以下 Bash 命令。
 
     ```
     bash -c "$(curl -sL https://aka.ms/lva-edge/setup-resources-for-samples)"
@@ -53,14 +47,14 @@ ms.locfileid: "87162812"
     
 如果脚本成功完成，你应该可在订阅中看到所有所需资源。 在脚本输出中，资源表会列出 IoT 中心名称。 查找资源类型 `Microsoft.Devices/IotHubs`，并记下名称。 下一步骤需要用到此名称。 
 
-该脚本还会在 ~/clouddrive/lva-sample/ 目录中生成一些配置文件。 稍后在快速入门中需要用到这些文件。
+该脚本也会生成一些配置文件。 稍后在快速入门中需要用到这些文件。
 
 ## <a name="deploy-modules-on-your-edge-device"></a>在边缘设备上部署模块
 
-在 Cloud Shell 中运行以下命令。
+运行以下命令。
 
 ```
-az iot edge set-modules --hub-name <iot-hub-name> --device-id lva-sample-device --content ~/clouddrive/lva-sample/edge-deployment/deployment.amd64.json
+az iot edge set-modules --hub-name <iot-hub-name> --device-id lva-sample-device --content edge-deployment/deployment.amd64.json
 ```
 
 此命令会将以下模块部署到边缘设备（在此例中为 Linux VM）。
@@ -79,13 +73,13 @@ RTSP 模拟器模块使用视频文件模拟实时视频流，该文件已在运
 1. 在 Visual Studio Code 中选择“视图” > “资源管理器”。 或是选择 Ctrl+Shift+E。
 1. 在“资源管理器”选项卡的左下角，选择“Azure IoT 中心”。
 1. 选择“更多选项”图标以查看上下文菜单。 然后选择“设置 IoT 中心连接字符串”。
-1. 输入框出现时，在其中输入 IoT 中心连接字符串。 在 Cloud Shell 中，可以从 ~/clouddrive/lva-sample/appsettings.json 获取连接字符串。
+1. 输入框出现时，在其中输入 IoT 中心连接字符串。 可以从 appsettings.json 中获取连接字符串。
 
 如果连接成功，边缘设备列表随即显示。 应该会看到至少一个设备，名为 lva-sample-device。 现在你可以管理 IoT Edge 设备，并通过上下文菜单与 Azure IoT 中心进行交互。 若有查看部署在边缘设备上的模块，请在“lva-sample-device”下，展开“模块”节点。
 
 ![lva-sample-device 节点](./media/quickstarts/lva-sample-device-node.png)
 
-## <a name="use-direct-methods"></a>使用直接方法
+## <a name="use-direct-method-calls"></a>使用直接方法调用
 
 可以通过调用直接方法来使用该模块分析实时视频流。 有关详细信息，请参阅 [IoT Edge上的实时视频分析的直接方法](direct-methods.md)。 
 
@@ -562,7 +556,7 @@ RTSP 模拟器模块使用视频文件模拟实时视频流，该文件已在运
 
 请注意以下详细信息：
 
-* 该消息包含 `body` 部分和 `applicationProperties` 部分。 有关详细信息，请参阅[创建和读取 IoT 中心消息](/iot-hub/iot-hub-devguide-messages-construct)。
+* 该消息包含 `body` 部分和 `applicationProperties` 部分。 有关详细信息，请参阅[创建和读取 IoT 中心消息](../../iot-hub/iot-hub-devguide-messages-construct.md)。
 * 在 `applicationProperties` 中，`subject` 引用生成消息的 `MediaGraph` 中的节点。 在本例中，该消息来自运动检测处理器。
 * `applicationProperties` 中的 `eventType` 指示此事件是分析事件。
 * `eventTime` 值为事件发生的时间。

@@ -8,13 +8,13 @@ ms.workload: big-data
 ms.service: time-series-insights
 services: time-series-insights
 ms.topic: conceptual
-ms.date: 08/04/2020
-ms.openlocfilehash: c581b8388c1076114e26de29663e0b41c0c8500d
-ms.sourcegitcommit: 36e7f37481969f92138bfe70192b1f4a2414caf7
+ms.date: 09/01/2020
+ms.openlocfilehash: 61c015eec5198456ee8a02ddb45f121c070fb8e7
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87801825"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413252"
 ---
 # <a name="ingestion-rules"></a>引入规则
 ### <a name="json-flattening-escaping-and-array-handling"></a>JSON 平展、转义和数组处理
@@ -25,17 +25,17 @@ Azure 时序见解第 2 代环境将按照一组特定的命名约定动态创�
 >
 > * 在选择[时序 ID 属性](time-series-insights-update-how-to-id.md)和/或事件源[时间戳属性](concepts-streaming-ingestion-event-sources.md#event-source-timestamp)之前，请查看以下规则。 如果你的 TS ID 或时间戳位于嵌套对象内或具有下述一个或多个特殊字符，请务必确保你提供的属性名称与应用引入规则后的列名称相匹配。 请参阅下面的示例 [B](concepts-json-flattening-escaping-rules.md#example-b)。
 
-| 规则 | 示例 JSON |存储中的列名称 |
-|---|---|---|
-| Azure 时序见解第 2 代数据类型将以“_\<dataType\>”形式追加到列名称的末尾 | ```"type": "Accumulated Heat"``` | type_string |
-| 在 Azure 时序见解第 2 代中，事件源[时间戳属性](concepts-streaming-ingestion-event-sources.md#event-source-timestamp)将作为“时间戳”保存在存储中，并且值以 UTC 格式存储。 你可以自定义事件源时间戳属性来满足你的解决方案的需求，但暖存储和冷存储中的列名称为“时间戳”。 不是事件源时间戳的其他日期/时间 JSON 属性在保存时列名称中将带有“_datetime”，如上面的规则中所述。  | ```"ts": "2020-03-19 14:40:38.318"``` | timestamp |
-| 如果 JSON 属性名称包含特殊字符 .、 [ 、\、和 '，将使用 [' 和 '] 对属性名称进行转义  |  ```"id.wasp": "6A3090FD337DE6B"``` | ['id.wasp']_string |
-| 在 [' 和 '] 中，额外转义单引号和反斜杠。 单引号将写为 \’，反斜杠将写为 \\\ | ```"Foo's Law Value": "17.139999389648"``` | ['Foo\'s Law Value']_double |
-| 嵌套的 JSON 对象将以句点作为分隔符进行平展。 最多支持嵌套 10 层。 |  ```"series": {"value" : 316 }``` | series.value_long |
-| 基元类型的数组存储为 Dynamic 类型 |  ```"values": [154, 149, 147]``` | values_dynamic |
+| 规则 | 示例 JSON | [时序表达式语法](https://docs.microsoft.com/rest/api/time-series-insights/reference-time-series-expression-syntax) | Parquet 中的属性列名称
+|---|---|---|---|
+| Azure 时序见解第 2 代数据类型将以“_\<dataType\>”形式追加到列名称的末尾 | ```"type": "Accumulated Heat"``` | `$event.type.String` |`type_string` |
+| 在 Azure 时序见解第 2 代中，事件源[时间戳属性](concepts-streaming-ingestion-event-sources.md#event-source-timestamp)将作为“时间戳”保存在存储中，并且值以 UTC 格式存储。 你可以自定义事件源时间戳属性来满足你的解决方案的需求，但暖存储和冷存储中的列名称为“时间戳”。 不是事件源时间戳的其他日期/时间 JSON 属性在保存时列名称中将带有“_datetime”，如上面的规则中所述。  | ```"ts": "2020-03-19 14:40:38.318"``` |  `$event.$ts` | `timestamp` |
+| 如果 JSON 属性名称包含特殊字符 .、 [ 、\、和 '，将使用 [' 和 '] 对属性名称进行转义  |  ```"id.wasp": "6A3090FD337DE6B"``` |  `$event['id.wasp'].String` | `['id.wasp']_string` |
+| 在 [' 和 '] 中，额外转义单引号和反斜杠。 单引号将写为 \’，反斜杠将写为 \\\ | ```"Foo's Law Value": "17.139999389648"``` | `$event['Foo\'s Law Value'].Double` | `['Foo\'s Law Value']_double` |
+| 嵌套的 JSON 对象将以句点作为分隔符进行平展。 最多支持嵌套 10 层。 |  ```"series": {"value" : 316 }``` | `$event.series.value.Long`、`$event['series']['value'].Long` 或 `$event.series['value'].Long` |  `series.value_long` |
+| 基元类型的数组存储为 Dynamic 类型 |  ```"values": [154, 149, 147]``` | 动态类型只能通过 [GetEvents](https://docs.microsoft.com/rest/api/time-series-insights/dataaccessgen2/query/execute#getevents) API 进行检索 | `values_dynamic` |
 | 包含对象的数组有两种行为，具体取决于对象内容：如果数组中的对象内有 TS ID 或时间戳属性，则数组会展开，以便初始 JSON 有效负载产生多个事件。 这使你能够将多个事件成批转换为一个 JSON 结构。 与数组对等的所有顶级属性都会随每个展开的对象一起保存。 如果数组中没有 TS ID 和时间戳，则它会整体另存为 Dynamic 类型。 | 请参阅下面的示例 [A](concepts-json-flattening-escaping-rules.md#example-a)、[B](concepts-json-flattening-escaping-rules.md#example-b) 和 [C](concepts-json-flattening-escaping-rules.md#example-c)
-| 包含混合元素的数组不会平展。 |  ```"values": ["foo", {"bar" : 149}, 147]``` | values_dynamic |
-| 512 个字符是 JSON 属性名称的长度上限。 如果名称超过 512 个字符，则会将其截断为 512 个字符，并追加“_<'hashCode'>”。 **注意**，这也适用于从平展的对象连接的属性名称（表示嵌套的对象路径）。 |``"data.items.datapoints.values.telemetry<...continuing to over 512 chars>" : 12.3440495`` | data.items.datapoints.values.telemetry<...最多 512 个字符>_912ec803b2ce49e4a541068d495ab570_double |
+| 包含混合元素的数组不会平展。 |  ```"values": ["foo", {"bar" : 149}, 147]``` | 动态类型只能通过 [GetEvents](https://docs.microsoft.com/rest/api/time-series-insights/dataaccessgen2/query/execute#getevents) API 进行检索 | `values_dynamic` |
+| 512 个字符是 JSON 属性名称的长度上限。 如果名称超过 512 个字符，则会将其截断为 512 个字符，并追加“_<'hashCode'>”。 **注意**，这也适用于从平展的对象连接的属性名称（表示嵌套的对象路径）。 |``"data.items.datapoints.values.telemetry<...continuing to over 512 chars>" : 12.3440495`` |`"$event.data.items.datapoints.values.telemetry<...continuing to include all chars>.Double"` | `data.items.datapoints.values.telemetry<...continuing to 512 chars>_912ec803b2ce49e4a541068d495ab570_double` |
 
 ## <a name="understanding-the-dual-behavior-for-arrays"></a>了解数组的双重行为
 

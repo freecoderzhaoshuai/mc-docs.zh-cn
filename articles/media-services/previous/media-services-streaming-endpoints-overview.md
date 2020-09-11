@@ -1,6 +1,6 @@
 ---
 title: Azure 媒体服务流式处理终结点概述 | Microsoft 文档
-description: 本主题提供 Azure 媒体服务流式处理终结点的概述。
+description: 本文概述了 Azure 媒体服务流式处理终结点。
 services: media-services
 documentationcenter: ''
 author: WenJason
@@ -13,19 +13,19 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/20/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: e946367e4cc29691ecc2a788fd4fe2dbf7a9af80
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: fb11e42f6e6bb7ddc2dc712315fdc9e31e6124c1
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78850627"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413961"
 ---
 # <a name="streaming-endpoints-overview"></a>流式处理终结点概述  
 
 > [!NOTE]
-> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](/media-services/latest/)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
+> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](../latest/index.yml)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
 
 在 Azure 媒体服务 (AMS) 中，**流式处理终结点**代表一个流服务，它可以直接将内容分发给客户端播放器应用程序。 StreamingEndpoint 服务的出站流可以是实时流、视频点播，也可以是媒体服务帐户中进行的渐进式资产下载。 每个 Azure 媒体服务帐户包括一个默认的 StreamingEndpoint。 可以在该帐户下创建其他 StreamingEndpoint。 StreamingEndpoint 有两个版本：1.0 和 2.0。 从 2017 年 1 月 10 日开始，任何新创建的 AMS 帐户都会包括 2.0 版的 **默认** StreamingEndpoint。 添加到该帐户的其他流式处理终结点也会是 2.0 版。 此更改不会影响现有帐户；现有的 StreamingEndpoint 会是 1.0 版，但可以升级到 2.0 版。 此更改将导致行为、计费和功能更改（有关详细信息，请参阅下面所述的**流式处理类型和版本**部分）。
 

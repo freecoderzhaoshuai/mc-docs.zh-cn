@@ -9,18 +9,18 @@ ms.service: active-directory
 ms.subservice: domain-services
 ms.workload: identity
 ms.topic: how-to
-ms.date: 08/07/2020
+ms.date: 09/01/2020
 ms.author: v-junlch
-ms.openlocfilehash: ed527ddf4bff5201dd033e60b9b065941b672192
-ms.sourcegitcommit: a5eb9a47feefb053ddbaab4b15c395972c372339
+ms.openlocfilehash: 3751f936aac987e84bc71fb519841ac20ca3d971
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88028558"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413302"
 ---
 # <a name="configure-azure-active-directory-domain-services-to-support-user-profile-synchronization-for-sharepoint-server"></a>配置 Azure Active Directory 域服务以支持 SharePoint Server 的用户配置文件同步
 
-SharePoint Server 包括同步用户配置文件的服务。 此功能允许将用户配置文件存储在一个中心位置，并跨多个 SharePoint 站点和场访问它们。 若要配置 SharePoint Server 用户配置文件服务，必须在 Azure Active Directory 域服务 (Azure AD DS) 托管域中授予适当的权限。 有关更多详细信息，请参阅 [SharePoint Server 中的用户配置文件同步](https://technet.microsoft.com/library/hh296982.aspx)。
+SharePoint Server 包括同步用户配置文件的服务。 此功能允许将用户配置文件存储在一个中心位置，并跨多个 SharePoint 站点和场访问它们。 若要配置 SharePoint Server 用户配置文件服务，必须在 Azure Active Directory 域服务 (Azure AD DS) 托管域中授予适当的权限。 有关更多详细信息，请参阅 [SharePoint Server 中的用户配置文件同步](https://docs.microsoft.com/SharePoint/administration/user-profile-service-administration)。
 
 本文介绍如何配置 Azure AD DS 以允许 SharePoint Server 用户配置文件同步服务。
 
@@ -71,7 +71,7 @@ SharePoint Server 的服务帐户需要足够的特权，才能将更改复制�
 
 ## <a name="next-steps"></a>后续步骤
 
-有关更多详细信息，请参阅[在 SharePoint Server 中授予 Active Directory 域服务权限以实现配置文件同步](https://technet.microsoft.com/library/hh296982.aspx)
+有关详细信息，请参阅[在 SharePoint Server 中管理用户配置文件同步](https://docs.microsoft.com/SharePoint/administration/manage-profile-synchronization)。
 
 <!-- INTERNAL LINKS -->
 [create-azure-ad-tenant]: ../active-directory/fundamentals/sign-up-organization.md
@@ -80,5 +80,5 @@ SharePoint Server 的服务帐户需要足够的特权，才能将更改复制�
 [tutorial-create-management-vm]: tutorial-create-management-vm.md
 
 <!-- EXTERNAL LINKS -->
-[sharepoint-service-account]: http://docs.microsoft.com/sharepoint/security-for-sharepoint-server/plan-for-administrative-and-service-accounts
+[sharepoint-service-account]: https://docs.microsoft.com/sharepoint/security-for-sharepoint-server/plan-for-administrative-and-service-accounts
 

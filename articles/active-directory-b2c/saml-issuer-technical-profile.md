@@ -8,15 +8,15 @@ manager: celestedg
 ms.service: active-directory
 ms.workload: identity
 ms.topic: reference
-ms.date: 07/27/2020
+ms.date: 09/02/2020
 ms.author: v-junlch
 ms.subservice: B2C
-ms.openlocfilehash: 0af258fce7d406e7d2daf8c47a9f49aa0a87f37d
-ms.sourcegitcommit: dd2bc914f6fc2309f122b1c7109e258ceaa7c868
+ms.openlocfilehash: 5a4c5a84b8b19fb084559dff76071351cd745d53
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87297717"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413349"
 ---
 # <a name="define-a-technical-profile-for-a-saml-token-issuer-in-an-azure-active-directory-b2c-custom-policy"></a>在 Azure Active Directory B2C 自定义策略中定义 SAML 令牌颁发者的技术配置文件
 
@@ -57,12 +57,13 @@ Azure Active Directory B2C (Azure AD B2C) 在处理每个身份验证流时颁�
 | Attribute | 必选 | 说明 |
 | --------- | -------- | ----------- |
 | IssuerUri | 否 | SAML 响应中出现的颁发者名称。 该值应与信赖方应用中配置的名称相同。 |
+| XmlSignatureAlgorithm | 否 | Azure AD B2C 用于对 SAML 断言请求进行签名的方法。 可能的值：`Sha256`、`Sha384`、`Sha512` 或 `Sha1`。 确保在两端配置具有相同值的签名算法。 仅使用证书支持的算法。 若要配置 SAML 响应，请参阅 [信赖方 SAML 元数据](relyingparty.md#metadata)|
 
 ## <a name="cryptographic-keys"></a>加密密钥
 
 CryptographicKeys 元素包含以下属性：
 
-| Attribute | 必选 | 说明 |
+| Attribute | 必须 | 说明 |
 | --------- | -------- | ----------- |
 | MetadataSigning | 是 | X509 证书（RSA 密钥集），用于对 SAML 元数据进行签名。 Azure AD B2C 使用此密钥对元数据进行签名。 |
 | SamlMessageSigning| 是| 指定 X509 证书（RSA 密钥集），用于对 SAML 消息进行签名。 Azure AD B2C 使用此密钥对发送到信赖方的响应 `<samlp:Response>` 进行签名。|

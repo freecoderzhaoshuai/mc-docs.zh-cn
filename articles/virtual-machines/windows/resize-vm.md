@@ -1,24 +1,26 @@
 ---
-title: 调整 Windows VM 的大小
+title: 调整 Azure 中 Windows VM 的大小
 description: 更改用于 Azure 虚拟机的 VM 大小。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.subservice: sizes
 ms.workload: infrastructure
-ms.topic: article
+ms.topic: how-to
 origin.date: 01/13/2020
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 5ae45d9c70256acf935f132921e0206b7c9de60d
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 7867b7b72897cc7100f6ba2fedd06daca4c52669
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945746"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463165"
 ---
 # <a name="resize-a-windows-vm"></a>调整 Windows VM 的大小
 
-本文介绍如何将 VM 切换到不同的 [VM 大小](sizes.md)。
+本文介绍如何将 VM 切换到不同的 [VM 大小](../sizes.md)。
 
 完成创建虚拟机 (VM) 后，可以通过更改 VM 大小来扩大或缩小 VM。 在某些情况下，必须先解除分配 VM。 如果新大小在当前托管 VM 的硬件群集上不可用，则可能会出现这种情况。
 
@@ -99,33 +101,26 @@ Update-AzVM -VM $vm -ResourceGroupName $resourceGroup
 停止可用性集中的所有 VM。
 
 ```powershell
-$as = Get-AzAvailabilitySet -ResourceGroupName $resourceGroup
-$vmIds = $as.VirtualMachinesReferences
-foreach ($vmId in $vmIDs){
-    $string = $vmID.Id.Split("/")
-    $vmName = $string[8]
-    Stop-AzVM -ResourceGroupName $resourceGroup -Name $vmName -Force
-    } 
+$availabilitySetName = "<availabilitySetName>"
+$as = Get-AzAvailabilitySet -ResourceGroupName $resourceGroup -Name $availabilitySetName
+$virtualMachines = $as.VirtualMachinesReferences |  Get-AzResource | Get-AzVM
+$virtualMachines |  Stop-AzVM -Force -NoWait  
 ```
 
 调整可用性集中 VM 的大小并重新启动 VM。
 
 ```powershell
+$availabilitySetName = "<availabilitySetName>"
 $newSize = "<newVmSize>"
-$as = Get-AzAvailabilitySet -ResourceGroupName $resourceGroup
-$vmIds = $as.VirtualMachinesReferences
-  foreach ($vmId in $vmIDs){
-    $string = $vmID.Id.Split("/")
-    $vmName = $string[8]
-    $vm = Get-AzVM -ResourceGroupName $resourceGroup -Name $vmName
-    $vm.HardwareProfile.VmSize = $newSize
-    Update-AzVM -ResourceGroupName $resourceGroup -VM $vm
-    Start-AzVM -ResourceGroupName $resourceGroup -Name $vmName
-    }
+$as = Get-AzAvailabilitySet -ResourceGroupName $resourceGroup -Name $availabilitySetName
+$virtualMachines = $as.VirtualMachinesReferences |  Get-AzResource | Get-AzVM
+$virtualMachines | Foreach-Object { $_.HardwareProfile.VmSize = $newSize }
+$virtualMachines | Update-AzVM
+$virtualMachines | Start-AzVM
 ```
 
 ## <a name="next-steps"></a>后续步骤
 
-若要提高可伸缩性，请运行多个 VM 实例并进行横向扩展。有关详细信息，请参阅 [自动缩放虚拟机规模集中的 Windows 计算机](../../virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-powershell.md)。
+若要提高可伸缩性，请运行多个 VM 实例并进行横向扩展。有关详细信息，请参阅 [自动缩放虚拟机规模集中的 Windows 计算机](../../virtual-machine-scale-sets/tutorial-autoscale-powershell.md)。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

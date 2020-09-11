@@ -10,14 +10,14 @@ ms.service: media-services
 ms.workload: ''
 ms.topic: article
 origin.date: 04/07/2020
-ms.date: 07/27/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 0c210629b65cc5b37ada0b00c04c6c73d479757a
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.openlocfilehash: 87866c2b130e7c7e994ce26952d3663c4340037c
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162215"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414004"
 ---
 # <a name="media-services-v3-frequently-asked-questions"></a>媒体服务 v3 常见问题解答
 
@@ -67,6 +67,23 @@ ms.locfileid: "87162215"
 有关详细信息，请参阅[在订阅之间移动媒体服务帐户](media-services-account-concept.md)。
 
 ## <a name="live-streaming"></a>实时传送视频流 
+
+### <a name="how-do-i-stop-the-live-stream-after-the-broadcast-is-done"></a>广播完成后如何停止实时传送流？
+
+你可以从客户端或服务器端来实现。
+
+#### <a name="client-side"></a>客户端
+
+当用户关闭浏览器时，Web 应用程序应该提示用户是否要结束广播。 这是 Web 应用程序可以处理的浏览器事件。
+
+#### <a name="server-side"></a>服务器端
+
+可通过订阅 Azure 事件网格事件来监视实时事件。 有关详细信息，请参阅 [EventGrid 事件架构](media-services-event-schemas.md#live-event-types)。
+
+可以：
+
+* [订阅](reacting-to-media-services-events.md)流式传输级别 [Microsoft.Media.LiveEventEncoderDisconnected](media-services-event-schemas.md#liveeventencoderdisconnected) 事件，并监视一段时间内没有重新连接来停止和删除实时事件。
+* [订阅](reacting-to-media-services-events.md)跟踪级别[检测信号](media-services-event-schemas.md#liveeventingestheartbeat)事件。 如果所有跟踪的传入比特率下降到 0，或者最后时间戳不再增大，则可以安全地关闭实时事件。 每个跟踪每隔 20 秒出现一次检测信号事件，因此可能有点冗长。
 
 ###  <a name="how-do-i-insert-breaksvideos-and-image-slates-during-a-live-stream"></a>如何在实时传送流过程中插入中断/视频和图像盖板？
 
@@ -141,7 +158,7 @@ ms.locfileid: "87162215"
 
 * 在媒体服务 v3 中管理[实时事件](live-events-outputs-concept.md)。 
 * 查看（而不是管理）v3 [资产](assets-concept.md)。 
-* [获取有关访问 API 的信息](access-api-portal.md)。 
+* [获取有关访问 API 的信息](./access-api-howto.md)。 
 
 对于其他所有管理任务（例如，[转换和作业](transforms-jobs-concept.md)和[内容保护](content-protection-overview.md)），请使用 [REST API](https://docs.microsoft.com/rest/api/media/)、[Azure CLI](https://aka.ms/ams-v3-cli-ref) 或某个受支持的 [SDK](media-services-apis-overview.md#sdks)。
 
@@ -153,7 +170,7 @@ ms.locfileid: "87162215"
 
 ### <a name="where-did-client-side-storage-encryption-go"></a>客户端存储加密在哪里进行？
 
-现在建议使用服务器端存储加密（在默认情况下为打开状态）。 有关详细信息，请参阅[静态数据的 Azure 存储服务加密](/storage/common/storage-service-encryption)。
+现在建议使用服务器端存储加密（在默认情况下为打开状态）。 有关详细信息，请参阅[静态数据的 Azure 存储服务加密](../../storage/common/storage-service-encryption.md)。
 
 ## <a name="offline-streaming"></a>脱机流式处理
 

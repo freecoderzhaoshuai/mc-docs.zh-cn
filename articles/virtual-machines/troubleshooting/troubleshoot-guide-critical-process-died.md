@@ -1,10 +1,8 @@
 ---
 title: Windows 停止错误 -
-description: ''
+description: Windows 停止错误
 services: virtual-machines-windows
-documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: azure-resource-manager
 ms.assetid: 5b3ed56a-5a11-4ff9-9ee8-76aea4a5689b
@@ -13,14 +11,17 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.topic: troubleshooting
 origin.date: 03/26/2020
-ms.date: 05/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 43498f97b8961d839c912a596e4fd95a87c18371
-ms.sourcegitcommit: 81241aa44adbcac0764e2b5eb865b96ae56da6b7
+ms.openlocfilehash: 3700806657130fc6484206d651d46d643f494507
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/09/2020
-ms.locfileid: "83002089"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456789"
 ---
 <!--Verified successfully (Not Azure enable serial console-->
 # <a name="windows-stop-error---0x000000ef-critical-process-died"></a>Windows 停止错误 - #0x000000EF“关键进程已终止”
@@ -29,7 +30,7 @@ ms.locfileid: "83002089"
 
 ## <a name="symptom"></a>症状
 
-使用[启动诊断](/virtual-machines/troubleshooting/boot-diagnostics)查看 VM 的屏幕截图时，看到屏幕截图中显示了错误“#0x000000EF”和消息“关键进程已终止”   。
+使用[启动诊断](./boot-diagnostics.md)查看 VM 的屏幕截图时，看到屏幕截图中显示了错误“#0x000000EF”和消息“关键进程已终止”   。
 
 ![“你的电脑遇到问题，需要重启。 我们将收集一些错误信息，然后你就可以重启。 (已完成 ##%)如果想了解更多信息，可以稍后联机搜索以下错误:0x000000EF”](media/troubleshoot-guide-critical-process-died/1.jpg)
 
@@ -51,7 +52,7 @@ ms.locfileid: "83002089"
 
 ### <a name="create-and-access-a-repair-vm"></a>创建并访问修复 VM
 
-1. 使用 [VM 修复命令的步骤 1-3](/virtual-machines/troubleshooting/repair-windows-vm-using-azure-virtual-machine-repair-commands) 来准备一个修复 VM。
+1. 使用 [VM 修复命令的步骤 1-3](./repair-windows-vm-using-azure-virtual-machine-repair-commands.md) 来准备一个修复 VM。
 2. 使用远程桌面连接来连接到修复 VM。
 
 ### <a name="fix-any-os-corruption"></a>修复任何 OS 损坏情况
@@ -63,7 +64,7 @@ ms.locfileid: "83002089"
 
     * 其中，< BOOT DISK DRIVE > 是修复 VM 的启动卷（通常为“C:”），< BROKEN DISK DRIVE > 是已损坏 VM 中的附加磁盘的驱动器号。 请将大于号/小于号及其包含的文本（例如“< text here >”）替换为相应的驱动器号。
 
-3. 接下来，使用 [VM 修复命令的步骤 5](/virtual-machines/troubleshooting/repair-windows-vm-using-azure-virtual-machine-repair-commands#repair-process-example) 重新装配 VM，并查看它是否可启动。
+3. 接下来，使用 [VM 修复命令的步骤 5](./repair-windows-vm-using-azure-virtual-machine-repair-commands.md#repair-process-example) 重新装配 VM，并查看它是否可启动。
 4. 如果 VM 仍然不能启动，请继续收集内存转储文件。
 
 ### <a name="collect-the-memory-dump-file"></a>收集内存转储文件
@@ -72,7 +73,7 @@ ms.locfileid: "83002089"
 
 ### <a name="attach-the-os-disk-to-a-new-repair-vm"></a>将 OS 磁盘附加到新的修复 VM
 
-1. 使用 [VM 修复命令的步骤 1-3](/virtual-machines/troubleshooting/repair-windows-vm-using-azure-virtual-machine-repair-commands) 来准备一个新的修复 VM。
+1. 使用 [VM 修复命令的步骤 1-3](./repair-windows-vm-using-azure-virtual-machine-repair-commands.md) 来准备一个新的修复 VM。
 2. 使用远程桌面连接来连接到修复 VM。
 
 ### <a name="locate-the-dump-file-and-submit-a-support-ticket"></a>找到转储文件并提交支持票证
@@ -100,11 +101,11 @@ ms.locfileid: "83002089"
 
 3. 验证 OS 磁盘上的可用空间是否与 VM 上的内存大小 (RAM) 相当。
 
-如果 OS 磁盘上没有足够的空间，则应更改内存转储文件的创建位置，并将该位置引用到具有足够可用空间的 VM 上附加的任何数据磁盘。 若要更改位置，请将以下命令中的“%SystemRoot%”替换为数据磁盘的驱动器号（例如“F:”）。
+如果 OS 磁盘上没有足够的空间，则应更改内存转储文件的创建位置，将其指向任何已附加到 VM 且具有足够可用空间的数据磁盘。 若要更改位置，请将以下命令中的“%SystemRoot%”替换为数据磁盘的驱动器号（例如“F:”）。
 
-#### <a name="suggested-configuration-to-enable-os-dump"></a>启用 OS 转储的建议配置
+#### <a name="suggested-configuration-to-enable-os-dump"></a>用于启用 OS 转储的建议配置
 
-**加载损坏的 OS 磁盘：**
+**加载损坏的 OS 磁盘**：
 
 `REG LOAD HKLM\BROKENSYSTEM <VOLUME LETTER OF BROKEN OS DISK>:\windows\system32\config\SYSTEM`
 
@@ -130,7 +131,6 @@ ms.locfileid: "83002089"
 
 ### <a name="rebuild-the-original-vm"></a>重建原始 VM
 
-使用 [VM 修复命令的步骤 5](/virtual-machines/troubleshooting/repair-windows-vm-using-azure-virtual-machine-repair-commands#repair-process-example) 重新装配 VM。
+使用 [VM 修复命令的步骤 5](./repair-windows-vm-using-azure-virtual-machine-repair-commands.md#repair-process-example) 重新装配 VM。
 
-<!-- Update_Description: new article about troubleshoot guide critical process died -->
-<!--NEW.date: 04/30/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

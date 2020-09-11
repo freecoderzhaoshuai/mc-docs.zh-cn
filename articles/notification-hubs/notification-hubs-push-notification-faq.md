@@ -1,5 +1,5 @@
 ---
-title: Azure 通知中心常见问题解答 (FAQ) | Azure
+title: Azure 通知中心常见问题解答 (FAQ) | Microsoft Docs
 description: 有关设计和实现 Azure 通知中心相关解决方案的常见问题解答。
 services: notification-hubs
 documentationcenter: mobile
@@ -12,16 +12,16 @@ ms.tgt_pltfrm: mobile-multiple
 ms.devlang: multiple
 ms.topic: article
 origin.date: 11/13/2019
-ms.date: 07/21/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.reviewer: jowargo
 ms.lastreviewed: 11/13/2019
-ms.openlocfilehash: 27563b73aa1bae5f77b8cdb1baa2cc31092f545c
-ms.sourcegitcommit: 5656c18d7d2faa09329b1a15e352d1622e252d5f
+ms.openlocfilehash: 994b7937a4eeb00ad3fe910c7d441a04b986f563
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86862826"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317495"
 ---
 # <a name="push-notifications-with-azure-notification-hubs-frequently-asked-questions"></a>使用 Azure 通知中心推送通知：常见问题
 
@@ -68,7 +68,7 @@ Azure 通知中心有两个资源级别：中心和命名空间。 中心是单�
 
 ### <a name="which-client-platforms-do-you-support"></a>支持哪些客户端平台？
 
-[iOS](ios-sdk-get-started.md)、[Windows Universal](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md)、[Windows Phone](notification-hubs-windows-mobile-push-notifications-mpns.md)、[Android China（通过百度）](notification-hubs-baidu-china-android-notifications-get-started.md)、Xamarin [iOS](xamarin-notification-hubs-ios-push-notification-apns-get-started.md) 和 [Safari](https://github.com/Azure/azure-notificationhubs-samples/tree/master/PushToSafari) 支持推送通知。 有关详细信息，请参阅[通知中心入门教程](ios-sdk-get-started.md)页。
+[iOS](ios-sdk-get-started.md)、[Android](notification-hubs-baidu-china-android-notifications-get-started.md)、[Windows Universal](notification-hubs-windows-store-dotnet-get-started-wns-push-notification.md)、[Windows Phone](notification-hubs-windows-mobile-push-notifications-mpns.md)、[Android China（通过百度）](notification-hubs-baidu-china-android-notifications-get-started.md)、Xamarin [iOS](xamarin-notification-hubs-ios-push-notification-apns-get-started.md) 和 [Safari](https://github.com/Azure/azure-notificationhubs-samples/tree/master/PushToSafari) 支持推送通知。 有关详细信息，请参阅[通知中心入门教程](ios-sdk-get-started.md)页。
 
 ### <a name="do-you-support-text-message-email-or-web-notifications"></a>是否支持短信、电子邮件或 Web 通知？
 
@@ -139,7 +139,7 @@ PNS 对于传递通知不提供任何 SLA 保证。 但是，大多数推送通�
 
 ### <a name="what-is-the-push-notification-delivery-security-model"></a>什么是推送通知传递安全模型？
 
-Azure 通知中心使用基于[共享访问签名](../storage/common/storage-dotnet-shared-access-signature-part-1.md)的安全模型。 可以在根命名空间级别或细粒度通知中心级别使用共享访问签名令牌。 可以使用不同的授权规则（例如，发送消息权限，或侦听通知权限）设置共享访问签名令牌。 有关详细信息，请参阅[通知中心安全模型]文档。
+Azure 通知中心使用基于[共享访问签名](../storage/common/storage-sas-overview.md)的安全模型。 可以在根命名空间级别或细粒度通知中心级别使用共享访问签名令牌。 可以使用不同的授权规则（例如，发送消息权限，或侦听通知权限）设置共享访问签名令牌。 有关详细信息，请参阅[通知中心安全模型]文档。
 
 ### <a name="how-should-i-handle-sensitive-payload-in-push-notifications"></a>如何处理推送通知中的敏感有效负载？
 
@@ -204,15 +204,15 @@ Azure 通知中心允许在 [Azure 门户]中查看遥测数据。 可以在[通
 [Azure 门户]: https://portal.azure.cn
 [通知中心定价]: https://www.azure.cn/pricing/details/notification-hubs/
 [Notification Hubs SLA]: https://www.azure.cn/support/legal/sla/
-[通知中心 REST API]: https://msdn.microsoft.com/library/azure/dn530746.aspx
+[通知中心 REST API]: https://docs.microsoft.com/previous-versions/azure/reference/dn530746(v=azure.100)
 [Mobile Services Pricing]: https://www.azure.cn/pricing/details/mobile-services/
-[后端注册指南]: https://msdn.microsoft.com/library/azure/dn743807.aspx
-[后端注册指南 2]: https://msdn.microsoft.com/library/azure/dn530747.aspx
-[通知中心安全模型]: https://msdn.microsoft.com/library/azure/dn495373.aspx
+[后端注册指南]: https://docs.microsoft.com/previous-versions/azure/azure-services/dn743807(v=azure.100)
+[后端注册指南 2]: https://docs.microsoft.com/previous-versions/azure/azure-services/dn530747(v=azure.100)
+[通知中心安全模型]: https://docs.microsoft.com/previous-versions/azure/azure-services/dn495373(v=azure.100)
 [通知中心安全推送教程]: ./notification-hubs-aspnet-backend-ios-push-apple-apns-secure-notification.md
 [通知中心故障排除]: ./notification-hubs-push-notification-fixer.md
 [通知中心指标]: ../azure-monitor/platform/metrics-supported.md#microsoftnotificationhubsnamespacesnotificationhubs
-[注册信息导出/导入]: https://docs.azure.cn/notification-hubs/export-modify-registrations-bulk
+[注册信息导出/导入]: ./export-modify-registrations-bulk.md
 [Azure 门户]: https://portal.azure.cn
 [complete samples]: https://github.com/Azure/azure-notificationhubs-samples
 [App Service Pricing]: https://www.azure.cn/pricing/details/app-service/

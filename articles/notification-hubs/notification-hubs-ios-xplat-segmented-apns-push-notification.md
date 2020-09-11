@@ -1,5 +1,5 @@
 ---
-title: 使用 Azure 通知中心向特定 iOS 设备发送推送通知 | Azure
+title: 使用 Azure 通知中心向特定 iOS 设备发送推送通知 | Microsoft Docs
 description: 在本教程中，将了解如何使用 Azure 通知中心向特定 iOS 设备推送通知。
 services: notification-hubs
 documentationcenter: ios
@@ -11,16 +11,16 @@ ms.tgt_pltfrm: mobile-ios
 ms.devlang: objective-c
 ms.topic: article
 origin.date: 11/07/2019
-ms.date: 07/21/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.reviewer: jowargo
 ms.lastreviewed: 11/07/2019
-ms.openlocfilehash: 5c80d4275cc2b9e8ee227f8a038dc57d7a3a2d5a
-ms.sourcegitcommit: 5656c18d7d2faa09329b1a15e352d1622e252d5f
+ms.openlocfilehash: 46aff73c6ed6240c6003a682edaceb873f578253
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86862828"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316467"
 ---
 # <a name="tutorial-send-push-notifications-to-specific-ios-devices-using-azure-notification-hubs"></a>教程：使用 Azure 通知中心向特定 iOS 设备发送推送通知
 
@@ -363,11 +363,11 @@ ms.locfileid: "86862828"
 [3]: ./media/notification-hubs-ios-send-breaking-news/notification-hub-breakingnews-ios2.png
 
 <!-- URLs. -->
-[How To: Service Bus Notification Hubs (iOS Apps)]: https://msdn.microsoft.com/library/jj927168.aspx
+[How To: Service Bus Notification Hubs (iOS Apps)]: https://docs.microsoft.com/previous-versions/azure/azure-services/jj927170(v=azure.100)
 [Use Notification Hubs to broadcast localized breaking news]: notification-hubs-ios-xplat-localized-apns-push-notification.md
 [Mobile Service]: /develop/mobile/tutorials/get-started
 [Notify users with Notification Hubs]: notification-hubs-aspnet-backend-ios-notify-users.md
-[Notification Hubs Guidance]: https://msdn.microsoft.com/library/dn530749.aspx
-[Notification Hubs How-To for iOS]: https://msdn.microsoft.com/library/jj927168.aspx
+[Notification Hubs Guidance]: https://docs.microsoft.com/previous-versions/azure/azure-services/dn530749(v=azure.100)
+[Notification Hubs How-To for iOS]: https://docs.microsoft.com/previous-versions/azure/azure-services/jj927170(v=azure.100)
 [get-started]: ios-sdk-get-started.md
 [Azure 门户]: https://portal.azure.cn

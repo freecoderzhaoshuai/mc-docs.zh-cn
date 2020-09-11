@@ -5,14 +5,14 @@ ms.subservice: logs
 ms.topic: conceptual
 author: Johnnytechn
 ms.author: v-johya
-ms.date: 07/17/2020
+ms.date: 08/20/2020
 origin.date: 02/03/2020
-ms.openlocfilehash: 3d8a10e74c8ea87d1ceec0b68c8a90367c25c8be
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.openlocfilehash: 22d75ec4ca483723f3484ce7cae59785893f64b5
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508468"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457258"
 ---
 # <a name="azure-monitor-logs-for-service-providers"></a>面向服务提供商的 Azure Monitor 日志
 
@@ -35,12 +35,12 @@ Azure Monitor 中的 Log Analytics 工作区可以帮助托管服务提供商 (M
 
 服务提供商管理员可通过两种方式访问客户租户中的 Log Analytics 工作区：
 
-- 客户可将服务提供商的个人用户添加为 [Azure Active Directory 来宾用户 (B2B)](/active-directory/b2b/what-is-b2b)。 服务提供商管理员必须在 Azure 门户中登录到每个客户的目录才能访问这些工作区。 这还需要客户管理每个服务提供商管理员的个人访问权限。
+- 客户可将服务提供商的个人用户添加为 [Azure Active Directory 来宾用户 (B2B)](../../active-directory/b2b/what-is-b2b.md)。 服务提供商管理员必须在 Azure 门户中登录到每个客户的目录才能访问这些工作区。 这还需要客户管理每个服务提供商管理员的个人访问权限。
 <!--Not available in MC: Azure Lighthouse-->
 
 分布式体系结构的优势是：
 
-* 可以使用自己的[基于角色的访问权限](/role-based-access-control/overview)来管理对日志的访问。
+* 客户可以使用自己的 [Azure 基于角色的访问控制 (Azure RBAC)](../../role-based-access-control/overview.md) 来管理对日志的访问。
 * 可从所有类型的资源中收集日志，而不仅仅是从基于代理的 VM 数据收集。 例如，Azure 审核日志。
 * 每个客户都可以为其工作区设置不同的设置，例如保留期和数据上限。
 * 在客户之间进行隔离以遵守监管和合规要求。
@@ -75,18 +75,18 @@ Azure Monitor 中的 Log Analytics 工作区可以帮助托管服务提供商 (M
 
 在中心位置实现日志有两种选择：
 
-1. 中心工作区：服务提供商可以在其租户中创建工作区，并使用利用[查询 API](https://dev.loganalytics.io/) 和[数据收集 API](../../azure-monitor/platform/data-collector-api.md) 的脚本将来自各个工作区的数据提取到此中心位置。 脚本之外的另一种选择是使用 [Azure 逻辑应用](/logic-apps/logic-apps-overview)。
+1. 中心工作区：服务提供商可以在其租户中创建工作区，并使用利用[查询 API](https://dev.loganalytics.io/) 和[数据收集 API](./data-collector-api.md) 的脚本将来自各个工作区的数据提取到此中心位置。 脚本之外的另一种选择是使用 [Azure 逻辑应用](../../logic-apps/logic-apps-overview.md)。
 
-2. 使用 Power BI 作为中心位置：当各个工作区利用 Log Analytics 工作区和 [Power BI](../../azure-monitor/platform/powerbi.md) 之间的集成将数据导出到 Power BI 时，Power BI 可以充当中心位置。
+2. 使用 Power BI 作为中心位置：当各个工作区利用 Log Analytics 工作区和 [Power BI](./powerbi.md) 之间的集成将数据导出到 Power BI 时，Power BI 可以充当中心位置。
 
 ## <a name="next-steps"></a>后续步骤
 
 * 使用[Resource Manager 模板](template-workspace-configuration.md)自动执行创建和配置工作区
 
-* 使用 [PowerShell](../../azure-monitor/platform/powershell-workspace-configuration.md) 自动创建工作区
+* 使用 [PowerShell](./powershell-workspace-configuration.md) 自动创建工作区
 
-* 使用[警报](../../azure-monitor/platform/alerts-overview.md)以便与现有系统集成
+* 使用[警报](./alerts-overview.md)以便与现有系统集成
 
-* 使用 [Power BI](../../azure-monitor/platform/powerbi.md) 生成摘要报告
+* 使用 [Power BI](./powerbi.md) 生成摘要报告
 <!--Not available in MC: Azure Lighthouse-->
 

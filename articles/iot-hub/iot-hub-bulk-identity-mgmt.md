@@ -9,12 +9,12 @@ ms.topic: conceptual
 origin.date: 10/02/2019
 ms.author: v-yiso
 ms.date: 04/06/2020
-ms.openlocfilehash: 5874bbea9ce88e868e0f85d7af4aa766f924fcd6
-ms.sourcegitcommit: 9bc3e55f01e0999f05e7b4ebaea95f3ac91d32eb
+ms.openlocfilehash: b375800aa3fbd91111ea71f656e3536a743ca066
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86226116"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463000"
 ---
 # <a name="import-and-export-iot-hub-device-identities-in-bulk"></a>批量导入和导出 IoT 中心设备标识
 
@@ -26,8 +26,6 @@ ms.locfileid: "86226116"
 **RegistryManager** 类包括使用**作业**框架的 **ExportDevicesAsync** 和 **ImportDevicesAsync** 方法。 这些方法可以导出、导入和同步整个 IoT 中心标识注册表。
 
 本主题讨论如何使用 RegistryManager 类和作业系统执行设备到 IoT 中心的标识注册表的批量导入，以及从 IoT 中心的标识注册表到设备的批量导出。 还可以使用 Azure IoT 中心设备预配服务实现无需人工干预，零接触实时预配到一个或多个 IoT 中心。 若要了解详细信息，请参阅[预配服务文档](/iot-dps)。
-
-[!INCLUDE [iot-hub-basic](../../includes/iot-hub-basic-whole.md)]
 
 ## <a name="what-are-jobs"></a>什么是作业？
 
@@ -252,13 +250,13 @@ JobProperties importJob = await registryManager.ImportDevicesAsync(containerSasU
 
 | importMode |  说明 |
 | --- | --- |
-| **createOrUpdate** |如果不存在具有指定 **ID**的设备，则表示是新注册的设备。 <br/>如果设备已存在，则以所提供的输入数据覆盖现有信息，而不管 **ETag** 值为何。 <br> 用户可以选择在指定设备数据的同时指定孪生数据。 如果指定了孪生的 etag，它的处理独立于设备 etag 的处理。 如果与现有孪生的 etag 不匹配，则会将错误写入日志文件。 |
-| **create** |如果不存在具有指定 **ID**的设备，则表示是新注册的设备。 <br/>如果设备已存在，则在日志文件中写入错误。 <br> 用户可以选择在指定设备数据的同时指定孪生数据。 如果指定了孪生的 etag，它的处理独立于设备 etag 的处理。 如果与现有孪生的 etag 不匹配，则会将错误写入日志文件。 |
-| **update** |如果具有指定 **id** 的设备已存在，则使用提供的输入数据覆盖现有信息，与 **ETag** 值无关。 <br/>如果设备不存在，则在日志文件中写入错误。 |
-| **updateIfMatchETag** |如果具有指定 **id** 的设备已存在，则只有当 **ETag** 匹配时，才使用提供的输入数据覆盖现有信息。 <br/>如果设备不存在，则在日志文件中写入错误。 <br/>如果 **ETag** 不匹配，则在日志文件中写入错误。 |
-| **createOrUpdateIfMatchETag** |如果不存在具有指定 **ID**的设备，则表示是新注册的设备。 <br/>如果设备已存在，则仅当 **ETag** 匹配时，才以提供的输入数据覆盖现有信息。 <br/>如果 **ETag** 不匹配，则在日志文件中写入错误。 <br> 用户可以选择在指定设备数据的同时指定孪生数据。 如果指定了孪生的 etag，它的处理独立于设备 etag 的处理。 如果与现有孪生的 etag 不匹配，则会将错误写入日志文件。 |
-| **delete** |如果具有指定 **id** 的设备已存在，则删除该设备，与 **ETag** 值无关。 <br/>如果设备不存在，则在日志文件中写入错误。 |
-| **deleteIfMatchETag** |如果具有指定 **id** 的设备已存在，则只有当 **ETag** 匹配时才删除该设备。 如果设备不存在，则在日志文件中写入错误。 <br/>如果 ETag 不匹配，则将错误写入日志文件。 |
+| **createOrUpdate** |如果不存在具有指定 ID 的设备，则表示是新注册的设备。 <br/>如果设备已存在，则以所提供的输入数据覆盖现有信息，而不管 **ETag** 值为何。 <br> 用户可以选择在指定设备数据的同时指定孪生数据。 如果指定了孪生的 ETag，它的处理独立于设备 ETag 的处理。 如果与现有孪生的 ETag 不匹配，则会将错误写入日志文件。 |
+| **create** |如果不存在具有指定 ID 的设备，则表示是新注册的设备。 <br/>如果设备已存在，则在日志文件中写入错误。 <br> 用户可以选择在指定设备数据的同时指定孪生数据。 如果指定了孪生的 ETag，它的处理独立于设备 ETag 的处理。 如果与现有孪生的 ETag 不匹配，则会将错误写入日志文件。 |
+| **update** |如果具有指定 ID 的设备已存在，则使用提供的输入数据覆盖现有信息，与 ETag 值无关 。 <br/>如果设备不存在，则在日志文件中写入错误。 |
+| **updateIfMatchETag** |如果具有指定 ID 的设备已存在，则只有当 ETag 下匹配时，才使用提供的输入数据覆盖现有信息 。 <br/>如果设备不存在，则在日志文件中写入错误。 <br/>如果 **ETag** 不匹配，则在日志文件中写入错误。 |
+| **createOrUpdateIfMatchETag** |如果不存在具有指定 ID 的设备，则表示是新注册的设备。 <br/>如果设备已存在，则仅当 **ETag** 匹配时，才以提供的输入数据覆盖现有信息。 <br/>如果 **ETag** 不匹配，则在日志文件中写入错误。 <br> 用户可以选择在指定设备数据的同时指定孪生数据。 如果指定了孪生的 ETag，它的处理独立于设备 ETag 的处理。 如果与现有孪生的 ETag 不匹配，则会将错误写入日志文件。 |
+| **delete** |如果具有指定 ID 的设备已存在，则删除该设备，与 ETag 值无关 。 <br/>如果设备不存在，则在日志文件中写入错误。 |
+| **deleteIfMatchETag** |如果具有指定 ID 的设备已存在，则只有当 ETag 匹配时才删除该设备 。 如果设备不存在，则在日志文件中写入错误。 <br/>如果 ETag 不匹配，则将错误写入日志文件。 |
 
 > [!NOTE]
 > 如果序列化数据未显式定义设备的 **importMode** 标志，则该标志在导入操作过程中默认为 **createOrUpdate**。

@@ -10,14 +10,14 @@ ms.service: media-services
 ms.workload: ''
 ms.topic: article
 origin.date: 04/01/2020
-ms.date: 06/08/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: dd61ea923b1b8536f62792866aeedaddd73a13cb
-ms.sourcegitcommit: 79c99a9ea013b3c74706a1038a505f4eea2aaac4
+ms.openlocfilehash: 664bc6b99d6b980887c6f0c756320807658f7dcb
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84439522"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413317"
 ---
 <!-- If you update limits in this topic, make sure to also update https://docs.azure.cn/azure-resource-manager/management/azure-subscription-service-limits#media-services-limits -->
 # <a name="azure-media-services-quotas-and-limits"></a>Azure 媒体服务的配额和限制
@@ -29,14 +29,14 @@ ms.locfileid: "84439522"
 
 ## <a name="account-limits"></a>帐户限制
 
-| 资源 | 默认限制 | 
-| --- | --- | 
+| 资源 | 默认限制 |
+| --- | --- |
 | 单个订阅中的[媒体服务帐户数](media-services-account-concept.md) | 25（固定） |
 
 ## <a name="asset-limits"></a>资产限制
 
-| 资源 | 默认限制 | 
-| --- | --- | 
+| 资源 | 默认限制 |
+| --- | --- |
 | 每个媒体服务帐户的[资产数](assets-concept.md) | 1,000,000|
 
 ## <a name="storage-limits"></a>存储限制
@@ -87,9 +87,10 @@ ms.locfileid: "84439522"
 
 ## <a name="packaging--delivery-limits"></a>打包和传送限制
 
-| 资源 | 默认限制 | 
-| --- | --- | 
+| 资源 | 默认限制 |
+| --- | --- |
 | 每个媒体服务帐户的[流式处理终结点数](streaming-endpoint-concept.md)（“已停止的”或“正在运行的”）|2 |
+| 高级流式处理单元 | 10 |
 | [动态清单筛选器数](filters-dynamic-manifest-overview.md)|100|
 | [流式处理策略](streaming-policy-concept.md) | 100 <sup>(6)</sup> |
 | 一次与一个资产关联的唯一[流式处理定位符数](streaming-locators-concept.md) | 100<sup>(7)</sup>（固定） |

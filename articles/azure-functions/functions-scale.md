@@ -3,14 +3,14 @@ title: Azure Functions 的缩放和托管
 description: 了解如何在 Azure Functions 消耗计划之间进行选择。
 ms.assetid: 5b63649c-ec7f-4564-b168-e0a74cb7e0f3
 ms.topic: conceptual
-ms.date: 08/12/2020
+ms.date: 09/03/2020
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 608082db78c4cf5ddbfa8939817efc505862d0e7
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: 352f69a0116a2282d598018d728d016382f328d9
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223157"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413448"
 ---
 # <a name="azure-functions-scale-and-hosting"></a>Azure Functions 的缩放和托管
 
@@ -119,11 +119,19 @@ Azure Functions 的缩放单位为函数应用。 横向扩展函数应用时，
 
 缩放可根据多种因素而异，可根据选定的触发器和语言以不同的方式缩放。 需要注意缩放行为的以下几个细节：
 
-* 单个函数应用最多只能横向扩展到 200 个实例。 不过，单个实例每次可以处理多个消息或请求，因此，对并发执行数没有规定的限制。
+* 单个函数应用最多只能横向扩展到 200 个实例。 不过，单个实例每次可以处理多个消息或请求，因此，对并发执行数没有规定的限制。  可根据需要[指定一个较低的最大值](#limit-scale-out)来限制缩放。
 * 对于 HTTP 触发器，将最多每隔 1 秒分配一次新实例。
 * 对于非 HTTP 触发器，将最多每隔 30 秒分配一次新实例。
 * 对于服务总线触发器，请使用资源的_管理_权限，以实现最有效的缩放。 使用_侦听_权限时，由于队列长度不能用于通知缩放决策，缩放不够准确。 若要详细了解如何在服务总线访问策略中设置权限，请参阅[共享访问授权策略](../service-bus-messaging/service-bus-sas.md#shared-access-authorization-policies)。
 * 有关事件中心触发器，请参阅参考文章中的[缩放指南](functions-bindings-event-hubs-trigger.md#scaling)。 
+
+### <a name="limit-scale-out"></a>限制横向扩展
+
+建议限制应用可横向扩展的实例数。  最常见的情况是下游组件（如数据库）的吞吐量有限。  默认情况下，消耗计划函数最多可横向扩展到 200 个实例。  可修改 `functionAppScaleLimit` 值来指定特定应用的较低最大值。  若要不受限制，可将 `functionAppScaleLimit` 设置为 0 或 null，或介于 1 和应用最大值之间的有效值。
+
+```azurecli
+az resource update --resource-type Microsoft.Web/sites -g <resource_group> -n <function_app_name>/config/web --set properties.functionAppScaleLimit=<scale_limit>
+```
 
 ### <a name="best-practices-and-patterns-for-scalable-apps"></a>可缩放应用的最佳做法和模式
 

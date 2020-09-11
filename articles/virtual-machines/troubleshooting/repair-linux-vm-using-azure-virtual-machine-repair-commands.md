@@ -1,10 +1,9 @@
 ---
-title: 使用 Azure 虚拟机修复命令修复 Linux VM
+title: 使用 Azure 虚拟机修复命令修复 Linux VM | Azure
 description: 本文详细介绍如何使用 Azure 虚拟机修复命令将磁盘连接到另一个 Linux VM 来修复所有错误，然后重新生成原始 VM。
 services: virtual-machines-linux
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: virtual-machines
 ms.service: virtual-machines
@@ -13,23 +12,24 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: azurecli
 origin.date: 09/10/2019
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: yes
-ms.testdate: 07/27/2020
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 7a25977cc6f043c0c93988d90b2734b4889a1120
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: fe5c8bedd4f2823c76382f3086cc6b3688dd73c3
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244472"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456835"
 ---
 # <a name="repair-a-linux-vm-by-using-the-azure-virtual-machine-repair-commands"></a>使用 Azure 虚拟机修复命令修复 Linux VM
 
 如果 Linux 虚拟机 (VM) 在 Azure 中遇到启动或磁盘错误，可能需要对磁盘本身执行缓解操作。 一个常见示例是应用程序更新失败，使 VM 无法成功启动。 本文详细介绍如何使用 Azure 虚拟机修复命令将磁盘连接到另一个 Linux VM 来修复所有错误，然后重新生成原始 VM。
 
 > [!IMPORTANT]
-> * 本文中的脚本仅适用于使用 [Azure 资源管理器](/azure-resource-manager/resource-group-overview)的 VM。
+> * 本文中的脚本仅适用于使用 [Azure 资源管理器](../../azure-resource-manager/management/overview.md)的 VM。
 > * 运行脚本需要 VM 的出站连接（端口 443）。
 > * 一次只能运行一个脚本。
 > * 无法取消正在运行的脚本。
@@ -58,7 +58,7 @@ ms.locfileid: "87244472"
     <!--Not Available on select **Try it** from the upper-right corner of a code block.-->
     <!--Not Available on Select **Copy** to copy the blocks of code, then paste the code into the local Shell, and select **Enter** to run it.-->
 
-    如果希望在本地安装并使用 CLI，则本快速入门需要 Azure CLI version 2.0.30 或更高版本。 运行 ``az --version`` 即可查找版本。 如果需要安装或升级 Azure CLI，请参阅[安装 Azure CLI](https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest)。
+    如果希望在本地安装并使用 CLI，则本快速入门需要 Azure CLI 2.0.30 版或更高版本。 运行 ``az --version`` 即可查找版本。 如果需要安装或升级 Azure CLI，请参阅[安装 Azure CLI](https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest)。
 
     如果需要使用与当前登录 Azure 门户不同的帐户进行登录，可使用 ``az login`` [az login reference](https://docs.azure.cn/cli/reference-index?view=azure-cli-latest#az-login)。  若要在与你的帐户关联的订阅之间切换，可使用 ``az account set --subscription`` [az account set reference](https://docs.azure.cn/cli/account?view=azure-cli-latest#az-account-set)。
 
@@ -102,8 +102,8 @@ az vm boot-diagnostics enable --name myVMDeployed --resource-group myResourceGro
 
 ## <a name="next-steps"></a>后续步骤
 
-* 如果在连接到 VM 时遇到问题，请参阅[对 Azure 虚拟机的 RDP 连接进行故障排除](/virtual-machines/troubleshooting/troubleshoot-rdp-connection)。
-* 如果在访问 VM 上运行的应用程序时遇到问题，请参阅[排查 Azure 中虚拟机上的应用程序连接问题](/virtual-machines/troubleshooting/troubleshoot-app-connection)。
-* 有关使用 Resource Manager 的详细信息，请参阅 [Azure Resource Manager 概述](/azure-resource-manager/resource-group-overview)。
+* 如果在连接到 VM 时遇到问题，请参阅[对 Azure 虚拟机的 RDP 连接进行故障排除](./troubleshoot-rdp-connection.md)。
+* 如果在访问 VM 上运行的应用程序时遇到问题，请参阅[排查 Azure 中虚拟机上的应用程序连接问题](./troubleshoot-app-connection.md)。
+* 有关使用 Resource Manager 的详细信息，请参阅 [Azure Resource Manager 概述](../../azure-resource-manager/management/overview.md)。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

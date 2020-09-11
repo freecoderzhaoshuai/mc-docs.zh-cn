@@ -6,13 +6,13 @@ ms.subservice: logs
 ms.topic: conceptual
 origin.date: 12/24/2019
 ms.author: v-johya
-ms.date: 07/17/2020
-ms.openlocfilehash: d4402c62ddc196682ce90616e71634693f3abcd8
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.date: 08/20/2020
+ms.openlocfilehash: 451ec9eb175295518af04f2e24dd412b088346b6
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508411"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457397"
 ---
 # <a name="log-analytics-agent-overview"></a>Log Analytics 代理概述
 Azure Log Analytics 代理用于跨任意云中的虚拟机和本地计算机进行全面的管理。 Windows 和 Linux 代理将收集的数据从不同来源发送到 Azure Monitor 中的 Log Analytics 工作区，以及监视解决方案中定义的任何唯一日志或指标。 Log Analytics 代理还支持 Azure Monitor 中的见解和其他服务，例如 [Azure 安全中心](/security-center/)和 [Azure 自动化](../../automation/automation-intro.md)。
@@ -32,7 +32,7 @@ Azure Monitor 中的 [Azure 诊断扩展](diagnostics-extension-overview.md)也�
 
 - Azure 诊断扩展只能在 Azure 中的虚拟机中使用。 Log Analytics 代理可在 Azure、其他云和本地中的虚拟机中使用。
 - Azure 诊断扩展将数据发送到 Azure 存储、[Azure Monitor 指标](data-platform-metrics.md)（仅限 Windows）和事件中心。 Log Analytics 代理将数据收集到 [Azure Monitor 日志](data-platform-logs.md)中。
-- [解决方案](../monitor-reference.md#insights-and-core-solutions)和其他服务（如 [Azure 安全中心](/security-center/)）需要 Log Analytics 代理。
+- [解决方案](../monitor-reference.md#insights-and-core-solutions)和其他服务（如 [Azure 安全中心](../../security-center/index.yml)）需要 Log Analytics 代理。
 <!-- Not available in MC: vminsights-overview.md -->
 
 ## <a name="costs"></a>成本
@@ -53,7 +53,7 @@ Log Analytics 代理不收取任何费用，但引入的数据可能产生费用
 Log Analytics 代理将数据发送到 Azure Monitor 中的 Log Analytics 工作区。 Windows 代理可以是多宿主的，将数据发送到多个工作区和 System Center Operations Manager 管理组。 Linux 代理只能发送到单个目标。
 
 ## <a name="other-services"></a>其他服务
-适用于 Linux 和 Windows 的代理不仅可连接到 Azure Monitor，还支持使用 Azure 自动化来托管混合 Runbook 辅助角色和其他服务（例如[更新管理](../../automation/automation-update-management.md)和 [Azure 安全中心](../../security-center/security-center-intro.md)）。 有关混合 Runbook 辅助角色的详细信息，请参阅 [Azure 自动化混合 Runbook 辅助角色](../../automation/automation-hybrid-runbook-worker.md)。  
+适用于 Linux 和 Windows 的代理不仅可连接到 Azure Monitor，还支持使用 Azure 自动化来托管混合 Runbook 辅助角色和其他服务（例如[更新管理](../../automation/update-management/update-mgmt-overview.md)和 [Azure 安全中心](../../security-center/security-center-intro.md)）。 有关混合 Runbook 辅助角色的详细信息，请参阅 [Azure 自动化混合 Runbook 辅助角色](../../automation/automation-hybrid-runbook-worker.md)。  
 <!-- Not available in MC: automation/change-tracking.md -->
 
 ## <a name="installation-and-configuration"></a>安装和配置
@@ -70,7 +70,7 @@ Log Analytics 代理将数据发送到 Azure Monitor 中的 Log Analytics 工作
 
 |Source | 方法 | 说明|
 |-------|-------------|-------------|
-|Azure VM| [通过 Azure 门户手动安装](../../azure-monitor/learn/quick-collect-azurevm.md?toc=/azure/azure-monitor/toc.json) | 指定要从 Log Analytics 工作区部署的 VM。 |
+|Azure VM| [通过 Azure 门户手动安装](../learn/quick-collect-azurevm.md?toc=%2fazure-monitor%2ftoc.json) | 指定要从 Log Analytics 工作区部署的 VM。 |
 | | 使用 Azure CLI 或 Azure 资源管理器模板通过适用于 [Windows](../../virtual-machines/extensions/oms-windows.md) 或 [Linux](../../virtual-machines/extensions/oms-linux.md) 的 Log Analytics VM 扩展进行安装 | 该扩展在 Azure 虚拟机上安装 Log Analytics 代理，并将虚拟机注册到现有的 Azure Monitor 工作区中。 |
 | | [Azure 安全中心自动预配](../../security-center/security-center-enable-data-collection.md) | Azure 安全中心可在所有受支持的 Azure VM 以及任何新建的 Azure VM 中预配 Log Analytics 代理（如果支持），以监视安全漏洞和威胁。 如果启用，将预配任何没有安装代理的新的或现有 VM。 |
 | 混合 Windows 计算机| [手动安装](agent-windows.md) | 从命令行安装 Microsoft Monitoring Agent. |
@@ -118,11 +118,19 @@ Windows 代理官方支持以下版本的 Windows 操作系统：
  - Ubuntu、Debian：`apt-get install -y python2`
  - SUSE: `zypper install -y python2`
 
-Python2 可执行文件必须使用以下命令将“python”设置为别名：
+Python2 可执行文件必须使用以下过程将“python”设置为别名：
 
-```
-alternatives --set python /usr/sbin/python2
-```
+1. 运行以下命令以查看任何当前的 python 别名（如果有别名存在）。 如果确实有别名存在，请记下下一步的优先级。
+ 
+    ```
+    sudo update-alternatives --display python
+    ```
+
+2. 运行以下命令。 将 \<priority\> 替换为大于任何现有链接优先级的数字；如果当前不存在任何链接，则替换为 1。
+
+    ```
+    sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 <priority>
+    ```
 
 ### <a name="supported-distros"></a>支持的发行版
 
@@ -149,6 +157,7 @@ Linux 代理官方支持以下版本的 Linux 操作系统：
 |Glibc |    GNU C 库 | 2.5-12 
 |Openssl    | OpenSSL 库 | 1.0.x 或 1.1.x |
 |Curl | cURL Web 客户端 | 7.15.5 |
+|Python | | 2.6+ 或 3.3+
 |Python-ctype | | 
 |PAM | 可插入验证模块 | | 
 
@@ -161,7 +170,7 @@ Linux 代理官方支持以下版本的 Linux 操作系统：
 
 
 ## <a name="sha-2-code-signing-support-requirement-for-windows"></a>适用于 Windows 的 SHA-2 代码签名支持要求
-Windows 代理将于 2020 年 8 月 17 日开始以独占方式使用 SHA-2 签名。 此更改将影响使用旧版 OS 上的 Log Analytics 代理作为任何 Azure 服务（Azure Monitor、Azure 自动化、Azure 更新管理、Azure 更改跟踪、Azure 安全中心、Azure Sentinel、Windows Defender ATP）一部分的客户。 除非你在旧版 OS 版本（Windows 7、Windows Server 2008 R2 和 Windows Server 2008）上运行代理，否则更改不需要任何客户操作。 在 2020 年 8 月 17 日之前，在旧版 OS 版本上运行的客户必须在其计算机上执行以下操作，否则其代理会停止将数据发送到其 Log Analytics 工作区：
+Windows 代理将于 2020 年 11 月 2 日开始以独占方式使用 SHA-2 签名。 此更改将影响使用旧版 OS 上的 Log Analytics 代理作为任何 Azure 服务（Azure Monitor、Azure 自动化、Azure 更新管理、Azure 更改跟踪、Azure 安全中心、Azure Sentinel、Windows Defender ATP）一部分的客户。 除非你在旧版 OS 版本（Windows 7、Windows Server 2008 R2 和 Windows Server 2008）上运行代理，否则更改不需要任何客户操作。 在旧版操作系统上运行的客户需要在 2020 年 11 月 2 日之前在其计算机上执行以下操作，否则其代理将停止向其 Log Analytics 工作区发送数据：
 
 1. 为 OS 安装最新服务器包。 必需的服务包版本包括：
     - Windows 7 SP1
@@ -224,4 +233,5 @@ Windows 和 Linux 代理支持使用 HTTPS 协议通过代理服务器或 Log An
 * 查看[数据源](agent-data-sources.md)，了解可用于从 Windows 或 Linux 系统收集数据的数据源。 
 * 了解[日志查询](../log-query/log-query-overview.md)以便分析从数据源和解决方案中收集的数据。 
 * 了解[监视解决方案](../insights/solutions.md)如何将功能添加到 Azure Monitor，以及如何将数据收集到 Log Analytics 工作区中。
+
 

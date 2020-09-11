@@ -1,6 +1,6 @@
 ---
 title: Azure 点播媒体编码器概述 | Microsoft Docs
-description: 本主题简要介绍 Azure 点播媒体编码器。
+description: Azure 媒体服务提供了多个用于在云中对媒体进行编码的选项。 本文简要介绍 Azure 点播媒体编码器。
 services: media-services
 documentationcenter: ''
 author: WenJason
@@ -12,28 +12,28 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 06/25/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 919c1c26a8ffe8f18a0f21161e909d9567cd584c
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 2c98088a2c6189f770667413fec9880bfb0589f4
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291623"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413182"
 ---
 # <a name="overview-of-azure-on-demand-media-encoders"></a>Azure 点播媒体编码器概述 
 
 > [!NOTE]
-> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](/media-services/latest/)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
+> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](../latest/index.yml)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
 
 Azure 媒体服务提供了多个用于在云中对媒体进行编码的选项。
 
-一开始使用媒体服务时，了解编解码器与文件格式之间的区别很重要。
+开始使用媒体服务时，了解编解码器与文件格式之间的区别很重要。
 编解码器是实现压缩/解压缩算法的软件，而文件格式是用于保存压缩视频的容器。
 
-媒体服务所提供的动态打包，允许以媒体服务支持的流格式（MPEG DASH、HLS、平滑流式处理）传送自适应比特率 MP4 或平滑流式处理编码内容，而无须重新打包成这些流格式。
+媒体服务所提供的动态打包允许以媒体服务支持的流格式（MPEG DASH、HLS、平滑流式处理）传送自适应比特率 MP4 或平滑流式处理编码内容，而无须重新打包成这些流格式。
 
-创建媒体服务帐户后，会将一个处于“已停止”状态的**默认**流式处理终结点添加到帐户。  若要开始流式传输内容并利用动态打包和动态加密，要从中流式传输内容的流式处理终结点必须处于“正在运行”状态。  每当流式处理终结点处于“正在运行”  状态时，就会对该终结点进行计费。
+创建媒体服务帐户后，会将一个处于“已停止”状态的**默认**流式处理终结点添加到帐户。 若要开始对内容进行流式处理并利用动态打包和动态加密功能，必须确保要从其流式获取内容的流式处理终结点处于“正在运行”状态。 每当流式处理终结点处于“正在运行”**** 状态时，就会对该终结点进行计费。
 
 媒体服务支持会在本文中介绍的以下按需编码器：
 
@@ -44,7 +44,7 @@ Azure 媒体服务提供了多个用于在云中对媒体进行编码的选项�
 
 默认情况下每个媒体服务帐户同时只能有一个活动的编码任务。 可以预留编码单元，使用它们可以同时运行多个编码任务，购买的每个编码预留单位对应一个任务。 有关信息，请参阅[缩放编码单位](media-services-scale-media-processing-overview.md)。
 
-## <a name="media-encoder-standard"></a>媒体编码器标准版
+## <a name="media-encoder-standard"></a>Media Encoder Standard
 
 ### <a name="how-to-use"></a>如何使用
 [如何使用 Media Encoder Standard 进行编码](media-services-dotnet-encode-with-media-encoder-standard.md)

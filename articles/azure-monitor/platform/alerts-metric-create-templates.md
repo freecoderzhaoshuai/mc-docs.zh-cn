@@ -1,34 +1,34 @@
 ---
-title: 使用 Resource Manager 模板创建指标警报
+title: 使用 Azure 资源管理器模板创建更新的指标警报
 description: 了解如何使用资源管理器模板创建指标警报。
 author: Johnnytechn
 ms.author: v-johya
 services: azure-monitor
 ms.topic: conceptual
 origin.date: 2/24/2020
-ms.date: 07/17/2020
+ms.date: 08/20/2020
 ms.subservice: alerts
-ms.openlocfilehash: 77f6f02c52ae1e48a30d80f212b818c4a7265876
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.openlocfilehash: e4d0c8340798b6decd212c88b0ba43576a82df7e
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508478"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457330"
 ---
 # <a name="create-a-metric-alert-with-a-resource-manager-template"></a>使用 Resource Manager 模板创建指标警报
 
 [!INCLUDE [updated-for-az](../../../includes/updated-for-az.md)]
 
-本文介绍如何在 Azure Monitor 中使用 [Azure 资源管理器模板](../../azure-resource-manager/templates/template-syntax.md)配置[较新的指标警报](../../azure-monitor/platform/alerts-metric-near-real-time.md)。 使用资源管理器模板可以通过编程方式在多个环境中设置一致且可重现的警报。 较新的指标警报当前适用于[这套资源类型](../../azure-monitor/platform/alerts-metric-near-real-time.md#metrics-and-dimensions-supported)。
+本文介绍如何在 Azure Monitor 中使用 [Azure 资源管理器模板](../../azure-resource-manager/templates/template-syntax.md)配置[较新的指标警报](./alerts-metric-near-real-time.md)。 使用资源管理器模板可以通过编程方式在多个环境中设置一致且可重现的警报。 较新的指标警报当前适用于[这套资源类型](./alerts-metric-near-real-time.md#metrics-and-dimensions-supported)。
 
 > [!IMPORTANT]
-> 用于针对资源类型创建指标警报的资源模板：Azure Log Analytics 工作区（即 `Microsoft.OperationalInsights/workspaces`）需要执行其他步骤。 有关详细信息，请参阅有关[日志指标警报 - 资源模板](../../azure-monitor/platform/alerts-metric-logs.md#resource-template-for-metric-alerts-for-logs)的文章。
+> 用于针对资源类型创建指标警报的资源模板：Azure Log Analytics 工作区（即 `Microsoft.OperationalInsights/workspaces`）需要执行其他步骤。 有关详细信息，请参阅有关[日志指标警报 - 资源模板](./alerts-metric-logs.md#resource-template-for-metric-alerts-for-logs)的文章。
 
 基本步骤如下所示：
 
 1. 将以下某个模板用作描述如何创建警报的 JSON 文件。
 2. 编辑相应的参数文件并将其用作 JSON 来自定义警报。
-3. 有关 `metricName` 参数，请参阅 [Azure Monitor 支持的指标](/azure-monitor/platform/metrics-supported)中提供的指标。
+3. 有关 `metricName` 参数，请参阅 [Azure Monitor 支持的指标](./metrics-supported.md)中提供的指标。
 4. 使用[任意部署方法](../../azure-resource-manager/templates/deploy-powershell.md)部署模板。
 
 ## <a name="template-for-a-simple-static-threshold-metric-alert"></a>用于简单静态阈值指标警报的模板
@@ -1518,7 +1518,9 @@ az group deployment create \
 
 > [!NOTE]
 >
-> 在监视多个资源的指标警报规则中，仅允许包含一个条件。
+> 在监视多个资源的指标警报规则中，以下限制适用：
+> - 警报规则的范围必须至少包含所选资源类型的一个资源。
+> - 警报规则只能包含一个条件。
 
 ### <a name="static-threshold-alert-on-all-virtual-machines-in-one-or-more-resource-groups"></a>一个或多个资源组中所有虚拟机上的静态阈值警报
 
@@ -1576,52 +1578,10 @@ az group deployment create \
         "targetResourceRegion":{
             "type": "string",
             "allowedValues": [
-                "EastUS",
-                "EastUS2",
-                "CentralUS",
-                "NorthCentralUS",
-                "SouthCentralUS",
-                "WestCentralUS",
-                "WestUS",
-                "WestUS2",
-                "CanadaEast",
-                "CanadaCentral",
-                "BrazilSouth",
-                "NorthEurope",
-                "WestEurope",
-                "FranceCentral",
-                "FranceSouth",
-                "UKWest",
-                "UKSouth",
-                "GermanyCentral",
-                "GermanyNortheast",
-                "GermanyNorth",
-                "GermanyWestCentral",
-                "SwitzerlandNorth",
-                "SwitzerlandWest",
-                "NorwayEast",
-                "NorwayWest",
-                "SoutheastAsia",
-                "EastAsia",
-                "AustraliaEast",
-                "AustraliaSoutheast",
-                "AustraliaCentral",
-                "AustraliaCentral2",
                 "ChinaEast",
                 "ChinaNorth",
                 "ChinaEast2",
-                "ChinaNorth2",
-                "CentralIndia",
-                "WestIndia",
-                "SouthIndia",
-                "JapanEast",
-                "JapanWest",
-                "KoreaCentral",
-                "KoreaSouth",
-                "SouthAfricaWest",
-                "SouthAfricaNorth",
-                "UAECentral",
-                "UAENorth"
+                "ChinaNorth2"
             ],
             "metadata": {
                 "description": "Azure region in which target resources to be monitored are in (without spaces). For example: ChinaEast"
@@ -1889,52 +1849,10 @@ az group deployment create \
         "targetResourceRegion":{
             "type": "string",
             "allowedValues": [
-                "EastUS",
-                "EastUS2",
-                "CentralUS",
-                "NorthCentralUS",
-                "SouthCentralUS",
-                "WestCentralUS",
-                "WestUS",
-                "WestUS2",
-                "CanadaEast",
-                "CanadaCentral",
-                "BrazilSouth",
-                "NorthEurope",
-                "WestEurope",
-                "FranceCentral",
-                "FranceSouth",
-                "UKWest",
-                "UKSouth",
-                "GermanyCentral",
-                "GermanyNortheast",
-                "GermanyNorth",
-                "GermanyWestCentral",
-                "SwitzerlandNorth",
-                "SwitzerlandWest",
-                "NorwayEast",
-                "NorwayWest",
-                "SoutheastAsia",
-                "EastAsia",
-                "AustraliaEast",
-                "AustraliaSoutheast",
-                "AustraliaCentral",
-                "AustraliaCentral2",
                 "ChinaEast",
                 "ChinaNorth",
                 "ChinaEast2",
-                "ChinaNorth2",
-                "CentralIndia",
-                "WestIndia",
-                "SouthIndia",
-                "JapanEast",
-                "JapanWest",
-                "KoreaCentral",
-                "KoreaSouth",
-                "SouthAfricaWest",
-                "SouthAfricaNorth",
-                "UAECentral",
-                "UAENorth"
+                "ChinaNorth2"
             ],
             "metadata": {
                 "description": "Azure region in which target resources to be monitored are in (without spaces). For example: ChinaEast"
@@ -2224,52 +2142,10 @@ az group deployment create \
         "targetResourceRegion":{
             "type": "string",
             "allowedValues": [
-                "EastUS",
-                "EastUS2",
-                "CentralUS",
-                "NorthCentralUS",
-                "SouthCentralUS",
-                "WestCentralUS",
-                "WestUS",
-                "WestUS2",
-                "CanadaEast",
-                "CanadaCentral",
-                "BrazilSouth",
-                "NorthEurope",
-                "WestEurope",
-                "FranceCentral",
-                "FranceSouth",
-                "UKWest",
-                "UKSouth",
-                "GermanyCentral",
-                "GermanyNortheast",
-                "GermanyNorth",
-                "GermanyWestCentral",
-                "SwitzerlandNorth",
-                "SwitzerlandWest",
-                "NorwayEast",
-                "NorwayWest",
-                "SoutheastAsia",
-                "EastAsia",
-                "AustraliaEast",
-                "AustraliaSoutheast",
-                "AustraliaCentral",
-                "AustraliaCentral2",
                 "ChinaEast",
                 "ChinaNorth",
                 "ChinaEast2",
-                "ChinaNorth2",
-                "CentralIndia",
-                "WestIndia",
-                "SouthIndia",
-                "JapanEast",
-                "JapanWest",
-                "KoreaCentral",
-                "KoreaSouth",
-                "SouthAfricaWest",
-                "SouthAfricaNorth",
-                "UAECentral",
-                "UAENorth"
+                "ChinaNorth2"
             ],
             "metadata": {
                 "description": "Azure region in which target resources to be monitored are in (without spaces). For example: ChinaEast"
@@ -2534,52 +2410,10 @@ az group deployment create \
         "targetResourceRegion":{
             "type": "string",
             "allowedValues": [
-                "EastUS",
-                "EastUS2",
-                "CentralUS",
-                "NorthCentralUS",
-                "SouthCentralUS",
-                "WestCentralUS",
-                "WestUS",
-                "WestUS2",
-                "CanadaEast",
-                "CanadaCentral",
-                "BrazilSouth",
-                "NorthEurope",
-                "WestEurope",
-                "FranceCentral",
-                "FranceSouth",
-                "UKWest",
-                "UKSouth",
-                "GermanyCentral",
-                "GermanyNortheast",
-                "GermanyNorth",
-                "GermanyWestCentral",
-                "SwitzerlandNorth",
-                "SwitzerlandWest",
-                "NorwayEast",
-                "NorwayWest",
-                "SoutheastAsia",
-                "EastAsia",
-                "AustraliaEast",
-                "AustraliaSoutheast",
-                "AustraliaCentral",
-                "AustraliaCentral2",
                 "ChinaEast",
                 "ChinaNorth",
                 "ChinaEast2",
-                "ChinaNorth2",
-                "CentralIndia",
-                "WestIndia",
-                "SouthIndia",
-                "JapanEast",
-                "JapanWest",
-                "KoreaCentral",
-                "KoreaSouth",
-                "SouthAfricaWest",
-                "SouthAfricaNorth",
-                "UAECentral",
-                "UAENorth"
+                "ChinaNorth2"
             ],
             "metadata": {
                 "description": "Azure region in which target resources to be monitored are in (without spaces). For example: ChinaNorth"
@@ -2866,52 +2700,10 @@ az group deployment create \
         "targetResourceRegion":{
             "type": "string",
             "allowedValues": [
-                "EastUS",
-                "EastUS2",
-                "CentralUS",
-                "NorthCentralUS",
-                "SouthCentralUS",
-                "WestCentralUS",
-                "WestUS",
-                "WestUS2",
-                "CanadaEast",
-                "CanadaCentral",
-                "BrazilSouth",
-                "NorthEurope",
-                "WestEurope",
-                "FranceCentral",
-                "FranceSouth",
-                "UKWest",
-                "UKSouth",
-                "GermanyCentral",
-                "GermanyNortheast",
-                "GermanyNorth",
-                "GermanyWestCentral",
-                "SwitzerlandNorth",
-                "SwitzerlandWest",
-                "NorwayEast",
-                "NorwayWest",
-                "SoutheastAsia",
-                "EastAsia",
-                "AustraliaEast",
-                "AustraliaSoutheast",
-                "AustraliaCentral",
-                "AustraliaCentral2",
                 "ChinaEast",
                 "ChinaNorth",
                 "ChinaEast2",
-                "ChinaNorth2",
-                "CentralIndia",
-                "WestIndia",
-                "SouthIndia",
-                "JapanEast",
-                "JapanWest",
-                "KoreaCentral",
-                "KoreaSouth",
-                "SouthAfricaWest",
-                "SouthAfricaNorth",
-                "UAECentral",
-                "UAENorth"
+                "ChinaNorth2"
             ],
             "metadata": {
                 "description": "Azure region in which target resources to be monitored are in (without spaces). For example: ChinaEast"
@@ -3179,52 +2971,10 @@ az group deployment create \
         "targetResourceRegion":{
             "type": "string",
             "allowedValues": [
-                "EastUS",
-                "EastUS2",
-                "CentralUS",
-                "NorthCentralUS",
-                "SouthCentralUS",
-                "WestCentralUS",
-                "WestUS",
-                "WestUS2",
-                "CanadaEast",
-                "CanadaCentral",
-                "BrazilSouth",
-                "NorthEurope",
-                "WestEurope",
-                "FranceCentral",
-                "FranceSouth",
-                "UKWest",
-                "UKSouth",
-                "GermanyCentral",
-                "GermanyNortheast",
-                "GermanyNorth",
-                "GermanyWestCentral",
-                "SwitzerlandNorth",
-                "SwitzerlandWest",
-                "NorwayEast",
-                "NorwayWest",
-                "SoutheastAsia",
-                "EastAsia",
-                "AustraliaEast",
-                "AustraliaSoutheast",
-                "AustraliaCentral",
-                "AustraliaCentral2",
                 "ChinaEast",
                 "ChinaNorth",
                 "ChinaEast2",
-                "ChinaNorth2",
-                "CentralIndia",
-                "WestIndia",
-                "SouthIndia",
-                "JapanEast",
-                "JapanWest",
-                "KoreaCentral",
-                "KoreaSouth",
-                "SouthAfricaWest",
-                "SouthAfricaNorth",
-                "UAECentral",
-                "UAENorth"
+                "ChinaNorth2"
             ],
             "metadata": {
                 "description": "Azure region in which target resources to be monitored are in (without spaces). For example: ChinaEast"
@@ -3460,7 +3210,7 @@ az group deployment create \
 
 ## <a name="template-for-an-availability-test-along-with-a-metric-alert"></a>可用性测试以及指标警报的模板
 
-[Application Insights 可用性测试](../../azure-monitor/app/monitor-web-app-availability.md)可帮助你从全球各地监视网站/应用程序的可用性。 当可用性测试在一定数量的位置失败时，可用性测试警报会通知你。
+[Application Insights 可用性测试](../app/monitor-web-app-availability.md)可帮助你从全球各地监视网站/应用程序的可用性。 当可用性测试在一定数量的位置失败时，可用性测试警报会通知你。
 与指标警报 (Microsoft.Insights/metricAlerts) 的资源类型相同的可用性测试警报。 以下示例 Azure 资源管理器模板可用于设置简单的可用性测试和关联警报。
 
 为进行本次演练，请将下面的 json 保存为 availabilityalert.json。
@@ -3624,4 +3374,5 @@ az group deployment create \
 - 详细了解 [Azure 中的警报](alerts-overview.md)
 - 了解如何[使用资源管理器模板创建操作组](action-groups-create-resource-manager-template.md)
 - 有关 JSON 语法和属性，请参阅 [Microsoft.Insights/metricAlerts](https://docs.microsoft.com/azure/templates/microsoft.insights/metricalerts) 模板参考。
+
 

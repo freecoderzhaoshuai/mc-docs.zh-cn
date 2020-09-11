@@ -9,16 +9,16 @@ ms.topic: conceptual
 origin.date: 10/29/2018
 ms.author: v-yiso
 ms.date: 06/08/2019
-ms.openlocfilehash: a548d484124ecac24cd833c858e15b5b8064900f
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: 277e7166b5249d4813a7cba50fea0818a444132e
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186926"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462800"
 ---
 # <a name="iot-hub-query-language-for-device-and-module-twins-jobs-and-message-routing"></a>用于设备和模块孪生、作业和消息路由的 IoT 中心查询语言
 
-IoT 中心提供类似于 SQL 的强大语言，用于检索有关[设备孪生](iot-hub-devguide-device-twins.md)、[作业](iot-hub-devguide-jobs.md)和[消息路由](iot-hub-devguide-messages-d2c.md)的信息。 本文内容：
+IoT 中心提供类似于 SQL 的强大语言，用于检索有关[设备孪生](iot-hub-devguide-device-twins.md)、[模块孪生](iot-hub-devguide-module-twins.md)、[作业](iot-hub-devguide-jobs.md)和[消息路由](iot-hub-devguide-messages-d2c.md)的信息。 本文内容：
 
 * IoT 中心查询语言的主要功能简介，以及
 * 语言的详细说明。 有关用于消息路由的查询语言的详细信息，请参阅[消息路由中的查询](../iot-hub/iot-hub-devguide-routing-query-syntax.md)。

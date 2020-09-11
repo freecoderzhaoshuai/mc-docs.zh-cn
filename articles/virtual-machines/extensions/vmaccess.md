@@ -1,10 +1,9 @@
 ---
-title: 配合使用 VMAccess 扩展和 Azure CLI 管理管理用户、SSH，并检查或修复 Linux VM 上的磁盘 | Azure
+title: 重置对 Azure Linux VM 的访问权限
 description: 如何使用 VMAccess 扩展和 Azure CLI 在 Linux VM 上管理管理员用户和重置访问权限
 services: virtual-machines-linux
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 editor: ''
 tags: azure-resource-manager
 ms.assetid: 261a9646-1f93-407e-951e-0be7226b3064
@@ -14,20 +13,23 @@ ms.tgt_pltfrm: vm-linux
 ms.devlang: azurecli
 ms.topic: article
 origin.date: 05/10/2018
-ms.date: 11/11/2019
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: e7a7bb9a54975ddcb1e5245b2981e4359b5803ff
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: e287ada06260b5d00f72892275a5fe4f7e55a00d
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79292802"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413644"
 ---
 # <a name="manage-administrative-users-ssh-and-check-or-repair-disks-on-linux-vms-using-the-vmaccess-extension-with-the-azure-cli"></a>配合使用 VMAccess 扩展和 Azure CLI 管理管理用户、SSH，并检查或修复 Linux VM 上的磁盘
 ## <a name="overview"></a>概述
 Linux VM 上的磁盘显示错误。 不知道怎样重置 Linux VM 的 root 密码，或者不小心删除了 SSH 私钥。 如果在数据中心的时代发生这种情况，则需要开车到那里，并打开 KVM 访问服务器控制台。 请将 Azure VMAccess 扩展想像成该 KVM 交换机，它允许访问控制台以重置 Linux 访问或执行磁盘级维护。
 
-本文介绍：如何在 Azure VMAccess Extension 作为 Azure Resource Manager 虚拟机运行时，检查或修复磁盘、重置用户访问权限、管理行政性用户帐户，或更新 Linux 上的 SSH 配置。 如果你需要管理经典虚拟机，可以按照[经典 VM 文档](../linux/classic/reset-access-classic.md)中的说明进行操作。 
+本文介绍：如何在 Azure VMAccess Extension 作为 Azure Resource Manager 虚拟机运行时，检查或修复磁盘、重置用户访问权限、管理行政性用户帐户，或更新 Linux 上的 SSH 配置。 如果你需要管理经典虚拟机，可以按照[经典 VM 文档](https://docs.microsoft.com/previous-versions/azure/virtual-machines/linux/classic/reset-access-classic)中的说明进行操作。 
 
 > [!NOTE]
 > 如果在安装 AAD 登录扩展后使用 VMAccess 扩展来重置 VM 的密码，则需要重新运行 AAD 登录扩展以重新启用计算机的 AAD 登录。
@@ -261,4 +263,4 @@ az vm extension list --resource-group myResourceGroup --vm-name myVM -o table
 
 如果对本文中的任何观点存在疑问，可以联系 [Azure 支持](https://support.azure.cn/support/contact/)上的 Azure 专家。 或者，你也可以提出 Azure 支持事件。 请转到 [Azure 支持站点](https://support.azure.cn/support/support-azure/)提交请求。 有关使用 Azure 支持的信息，请阅读 [Azure 支持常见问题](https://www.azure.cn/support/faq/)。
 
-<!-- Update_Description: wording update, update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

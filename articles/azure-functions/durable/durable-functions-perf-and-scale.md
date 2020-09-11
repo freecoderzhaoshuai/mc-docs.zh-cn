@@ -3,14 +3,14 @@ title: Durable Functions 中的性能和缩放 - Azure
 description: Azure Functions 的 Durable Functions 扩展简介。
 author: cgillum
 ms.topic: conceptual
-ms.date: 07/02/2020
+ms.date: 09/03/2020
 ms.author: v-junlch
-ms.openlocfilehash: e826ad9fabdcd7c4c73e7d35fb26d5022b544adb
-ms.sourcegitcommit: 1008ad28745709e8d666f07a90e02a79dbbe2be5
+ms.openlocfilehash: 23c33ca612e0b5369d0058e6ccd541583efae7ca
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945250"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413966"
 ---
 # <a name="performance-and-scale-in-durable-functions-azure-functions"></a>Durable Functions 中的性能和缩放 (Azure Functions)
 
@@ -221,6 +221,10 @@ Azure Functions 支持在单个应用实例中并发执行多个函数。 这种
 例如，如果 `durableTask/extendedSessionIdleTimeoutInSeconds` 设置为 30 秒，则执行时间不超过 1 秒的、生存期较短的业务流程协调程序或实体函数周期仍会占用内存 30 秒。 这种消耗还会计入前面所述的 `durableTask/maxConcurrentOrchestratorFunctions` 配额，从而可能导致其他业务流程协调程序或实体函数无法运行。
 
 后续部分将描述扩展会话对业务流程协调程序和实体函数的具体影响。
+
+> [!NOTE]
+> 当前仅在 .NET 语言（如 C# 或 F#）中支持扩展会话。 为其他平台将 `extendedSessionsEnabled` 设置为 `true` 可能会导致运行时问题，例如在执行活动和业务流程触发的功能失败时无提示。
+
 
 ### <a name="orchestrator-function-replay"></a>业务流程协调程序函数重播
 

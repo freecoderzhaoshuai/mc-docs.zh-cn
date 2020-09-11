@@ -14,12 +14,12 @@ ms.topic: article
 origin.date: 12/19/2019
 ms.author: v-yiso
 ms.date: 01/13/2020
-ms.openlocfilehash: 188768448de7bd6a95d90a51288f89b97e090b33
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 5f7760617770118f2de61701970c5f8f632f3f92
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75631108"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463099"
 ---
 # <a name="set-up-backup-and-replication-for-apache-hbase-and-apache-phoenix-on-hdinsight"></a>在 HDInsight 上为 Apache HBase 和 Apache Phoenix 设置备份与复制
 
@@ -70,13 +70,17 @@ HDInsight 中的 HBase 使用创建群集时选择的默认存储：Azure 存储
 
 若要导出表数据，请先通过 SSH 连接到源 HDInsight 群集的头节点，然后运行以下 `hbase` 命令：
 
-    hbase org.apache.hadoop.hbase.mapreduce.Export "<tableName>" "/<path>/<to>/<export>"
+```console
+hbase org.apache.hadoop.hbase.mapreduce.Export "<tableName>" "/<path>/<to>/<export>"
+```
 
 导出目录不能已存在。 表名称区分大小写。
 
 若要导入表数据，请通过 SSH 连接到目标 HDInsight 群集的头节点，然后运行以下 `hbase` 命令：
 
-    hbase org.apache.hadoop.hbase.mapreduce.Import "<tableName>" "/<path>/<to>/<export>"
+```console
+hbase org.apache.hadoop.hbase.mapreduce.Import "<tableName>" "/<path>/<to>/<export>"
+```
 
 该表必须已存在。
 
@@ -97,15 +101,19 @@ HDInsight 中的 HBase 使用创建群集时选择的默认存储：Azure 存储
 
 ## <a name="copy-tables"></a>复制表
 
-CopyTable 实用工具将数据从源表逐行复制到架构与源相同的现有目标表。 目标表可以位于相同的群集中，或不同的 HBase 群集中。
+[CopyTable 实用工具](https://hbase.apache.org/book.html#copy.table)将数据从源表逐行复制到架构与源相同的现有目标表。 目标表可以位于相同的群集中，或不同的 HBase 群集中。 表名称区分大小写。
 
 若要在群集中使用 CopyTable，请通过 SSH 连接到源 HDInsight 群集的头节点，然后运行以下 `hbase` 命令：
 
-    hbase org.apache.hadoop.hbase.mapreduce.CopyTable --new.name=<destTableName> <srcTableName>
+```console
+hbase org.apache.hadoop.hbase.mapreduce.CopyTable --new.name=<destTableName> <srcTableName>
+```
 
 若要使用 CopyTable 复制不同群集中的表，请添加 `peer` 开关和目标群集的地址：
 
-    hbase org.apache.hadoop.hbase.mapreduce.CopyTable --new.name=<destTableName> --peer.adr=<destinationAddress> <srcTableName>
+```console
+hbase org.apache.hadoop.hbase.mapreduce.CopyTable --new.name=<destTableName> --peer.adr=<destinationAddress> <srcTableName>
+```
 
 目标地址由以下三个部分组成：
 
@@ -123,7 +131,9 @@ CopyTable 实用工具将数据从源表逐行复制到架构与源相同的现�
 
 CopyTable 实用工具还支持使用参数来指定要复制的行的时间范围，以及指定要复制的表中的列系列子集。 若要查看 CopyTable 支持的参数的完整列表，请运行不带任何参数的 CopyTable：
 
-    hbase org.apache.hadoop.hbase.mapreduce.CopyTable
+```console
+hbase org.apache.hadoop.hbase.mapreduce.CopyTable
+```
 
 CopyTable 将会扫描要复制到目标表的整个源表内容。 因此，在 CopyTable 执行时，这可能会降低 HBase 群集的性能。
 
@@ -136,67 +146,91 @@ CopyTable 将会扫描要复制到目标表的整个源表内容。 因此，在
 
 若要获取仲裁主机名，请运行以下 curl 命令：
 
+```console
     curl -u admin:<password> -X GET -H "X-Requested-By: ambari" "https://<clusterName>.azurehdinsight.cn/api/v1/clusters/<clusterName>/configurations?type=hbase-site&tag=TOPOLOGY_RESOLVED" | grep "hbase.zookeeper.quorum"
+```
 
 该 curl 命令检索包含 HBase 配置信息的 JSON 文档，而 grep 命令只返回“hbase.zookeeper.quorum”条目，例如：
 
+```output
     "hbase.zookeeper.quorum" : "zk0-hdizc2.54o2oqawzlwevlfxgay2500xtg.dx.internal.chinacloudapp.cn,zk4-hdizc2.54o2oqawzlwevlfxgay2500xtg.dx.internal.chinacloudapp.cn,zk3-hdizc2.54o2oqawzlwevlfxgay2500xtg.dx.internal.chinacloudapp.cn"
+```
 
 仲裁主机名称值为冒号右侧的整个字符串。
 
 若要检索这些主机的 IP 地址，请针对上述列表中的每个主机使用以下 curl 命令：
 
+```console
     curl -u admin:<password> -X GET -H "X-Requested-By: ambari" "https://<clusterName>.azurehdinsight.cn/api/v1/clusters/<clusterName>/hosts/<zookeeperHostFullName>" | grep "ip"
+```
 
 在此 curl 命令中，`<zookeeperHostFullName>` 是 ZooKeeper 主机的完整 DNS 名称，例如 `zk0-hdizc2.54o2oqawzlwevlfxgay2500xtg.dx.internal.chinacloudapp.cn`。 该命令的输出包含指定主机的 IP 地址，例如：
 
-    100    "ip" : "10.0.0.9",
+`100    "ip" : "10.0.0.9",`
 
 收集仲裁中所有 ZooKeeper 节点的 IP 地址后，重新生成目标地址：
 
-    <destinationAddress>  = <Host_1_IP>,<Host_2_IP>,<Host_3_IP>:<Port>:<ZnodeParent>
+`<destinationAddress>  = <Host_1_IP>,<Host_2_IP>,<Host_3_IP>:<Port>:<ZnodeParent>`
 
-在示例中：
+在我们的示例中：
 
-    <destinationAddress> = 10.0.0.9,10.0.0.8,10.0.0.12:2181:/hbase-unsecure
+`<destinationAddress> = 10.0.0.9,10.0.0.8,10.0.0.12:2181:/hbase-unsecure`
 
 ## <a name="snapshots"></a>快照
 
-使用快照可为 HBase 数据存储中的数据创建时间点备份。 快照的开销极小，并且在数秒内即可完成，因为快照操作实际上是一种元数据操作，只捕获该时刻存储中所有文件的名称。 创建快照时，不会复制实际数据。 快照依赖于 HDFS 中存储的数据不可变性质，其中的更新、删除和插入都以新数据表示。 可以在同一群集上还原（克隆）快照，或者将快照导出到另一个群集。 
+使用[快照](https://hbase.apache.org/book.html#ops.snapshots)可为 HBase 数据存储中的数据创建时间点备份。 快照的开销极小，并且在数秒内即可完成，因为快照操作实际上是一种元数据操作，只捕获该时刻存储中所有文件的名称。 创建快照时，不会复制实际数据。 快照依赖于 HDFS 中存储的数据不可变性质，其中的更新、删除和插入都以新数据表示。 可以在同一群集上还原（克隆）快照，或者将快照导出到另一个群集。**
 
 若要创建快照，请通过 SSH 连接到 HDInsight HBase 群集的头节点，然后启动 `hbase` shell：
 
-    hbase shell
+```console
+hbase shell
+```
 
 在 hbase shell 中，结合表和此快照的名称使用 snapshot 命令：
 
-    snapshot '<tableName>', '<snapshotName>'
+```console
+snapshot '<tableName>', '<snapshotName>'
+```
 
 若要在 `hbase` shell 中按名称还原快照，请先禁用表，然后还原快照并重新启用表：
 
-    disable '<tableName>'
-    restore_snapshot '<snapshotName>'
-    enable '<tableName>'
+```console
+disable '<tableName>'
+restore_snapshot '<snapshotName>'
+enable '<tableName>'
+```
 
 若要将快照还原到新表，请使用 clone_snapshot：
 
-    clone_snapshot '<snapshotName>', '<newTableName>'
+```console
+clone_snapshot '<snapshotName>', '<newTableName>'
+```
 
 若要将某个快照导出到 HDFS 供另一个群集使用，请先根据前面所述创建该快照，然后使用 ExportSnapshot 实用工具。 请在与头节点建立的 SSH 会话中，而不是在 `hbase` shell 中运行此实用工具：
 
-     hbase org.apache.hadoop.hbase.snapshot.ExportSnapshot -snapshot <snapshotName> -copy-to <hdfsHBaseLocation>
+```console
+hbase org.apache.hadoop.hbase.snapshot.ExportSnapshot -snapshot <snapshotName> -copy-to <hdfsHBaseLocation>
+```
 
 `<hdfsHBaseLocation>` 可以是源群集可访问的任何存储位置，应该指向目标群集所用的 hbase 文件夹。 例如，如果已将某个辅助 Azure 存储帐户附加到了源群集，并且使用该帐户可以访问目标群集的默认存储所用的容器，则可以使用以下命令：
 
+```console
     hbase org.apache.hadoop.hbase.snapshot.ExportSnapshot -snapshot 'Snapshot1' -copy-to 'wasbs://secondcluster@myaccount.blob.core.chinacloudapi.cn/hbase'
+```
 
-导出快照后，通过 SSH 连接到目标群集的头节点，然后根据前面所述使用 restore_snapshot 命令还原快照。
+如果没有将辅助 Azure 存储帐户附加到源群集，或者源群集是本地群集（或非 HDI 群集），则在尝试访问 HDI 群集的存储帐户时，可能会遇到授权问题。 若要解决此问题，请将存储帐户的密钥指定为命令行参数，如以下示例所示。 可以在 Azure 门户中获取存储帐户的密钥。
+
+```console
+hbase org.apache.hadoop.hbase.snapshot.ExportSnapshot -Dfs.azure.account.key.myaccount.blob.core.chinacloudapi.cn=mykey -snapshot 'Snapshot1' -copy-to 'wasbs://secondcluster@myaccount.blob.core.windows.net/hbase'
+```
+
+导出快照后，通过 SSH 连接到目标群集的头节点，然后根据前面所述使用 `restore_snapshot` 命令还原快照。
 
 快照提供执行 `snapshot` 命令时的表的完整备份。 快照不提供按时间范围执行增量快照的功能，也不允许指定要包含在快照中的列系列子集。
 
 ## <a name="replication"></a>复制
 
-HBase 复制使用异步机制自动将事务从源群集推送到目标群集，并且只会在源群集上产生极少的开销。 在 HDInsight 中，可以在群集之间设置复制，其中：
+[HBase 复制](https://hbase.apache.org/book.html#_cluster_replication)使用异步机制自动将事务从源群集推送到目标群集，并且只会在源群集上产生极少的开销。 在 HDInsight 中，可以在群集之间设置复制，其中：
 
 * 源群集和目标群集位于同一虚拟网络中。
 * 源群集和目标群集位于通过 VPN 网关连接的不同虚拟网络中，但两个群集位于相同的地理位置。
@@ -216,3 +250,4 @@ HBase 复制使用异步机制自动将事务从源群集推送到目标群集�
 ## <a name="next-steps"></a>后续步骤
 
 * [配置 Apache HBase 复制](apache-hbase-replication.md)
+* [使用 HBase 导入和导出实用工具](https://blogs.msdn.microsoft.com/data_otaku/2016/12/21/working-with-the-hbase-import-and-export-utility/)

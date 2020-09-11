@@ -3,14 +3,14 @@ author: trevorbye
 ms.service: cognitive-services
 ms.topic: include
 origin.date: 04/13/2020
-ms.date: 04/20/2020
+ms.date: 08/03/2020
 ms.author: v-tawe
-ms.openlocfilehash: 8c4b582f76debacb79318af37a40f1bc7a957bf1
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.openlocfilehash: 04e63243d69e10bdabd447e365ddf88e78de265d
+ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82127227"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "89323277"
 ---
 ## <a name="prerequisites"></a>先决条件
 
@@ -31,9 +31,7 @@ import azure.cognitiveservices.speech as speechsdk
 
 ## <a name="sensitive-data-and-environment-variables"></a>敏感数据和环境变量
 
-本文中的示例源代码依赖于用于存储敏感数据的环境变量，如语音资源订阅密钥和区域。 python 代码文件包含从主机环境变量（即 `SPEECH__SUBSCRIPTION__KEY` 和 `SPEECH__SERVICE__REGION`）分配的两个值。 这两个变量都位于全局范围内，因此可以在代码文件的函数定义内访问它们。
-
-<!-- For more information on environment variables, see [environment variables and application configuration](../../../../cognitive-services-security.md#environment-variables-and-application-configuration). -->
+本文中的示例源代码依赖于用于存储敏感数据的环境变量，如语音资源订阅密钥和区域。 python 代码文件包含从主机环境变量（即 `SPEECH__SUBSCRIPTION__KEY` 和 `SPEECH__SERVICE__REGION`）分配的两个值。 这两个变量都位于全局范围内，因此可以在代码文件的函数定义内访问它们。 有关环境变量的详细信息，请参阅[环境变量和应用程序配置](../../../../cognitive-services-security.md#environment-variables-and-application-configuration)。
 
 ```python
 speech_key, service_region = os.environ['SPEECH__SUBSCRIPTION__KEY'], os.environ['SPEECH__SERVICE__REGION']
@@ -41,10 +39,10 @@ speech_key, service_region = os.environ['SPEECH__SUBSCRIPTION__KEY'], os.environ
 
 ## <a name="create-a-speech-translation-configuration"></a>创建语音翻译配置
 
-若要使用语音 SDK 调用语音服务，需要创建 [`SpeechTranslationConfig`][config]。 此类包含有关订阅的信息，例如密钥和关联的区域、终结点、主机或授权令牌。
+若要使用语音 SDK 调用语音服务，需要创建 [`SpeechTranslationConfig`][config]。 此类包含有关你的订阅的信息，例如你的密钥和关联的区域、终结点、主机或授权令牌。
 
 > [!TIP]
-> 无论是要执行语音识别、语音合成、翻译还是意向识别，都需要创建一个配置。
+> 无论你是要执行语音识别、语音合成、翻译，还是意向识别，都需要创建一个配置。
 
 可以通过以下几种方法初始化 [`SpeechTranslationConfig`][config]：
 
@@ -80,7 +78,7 @@ def translate_speech_to_text():
 
 ## <a name="add-translation-language"></a>添加翻译语言
 
-语音翻译的另一项常见任务是指定目标翻译语言，至少需要一种语言，但支持多种语言。 在以下代码片段中，法语和德语都作为目标翻译语言。
+语音翻译的另一项常见任务是指定目标翻译语言，至少需要一种语言，但支持多种语言。 以下代码片段将法语和德语设置成了目标翻译语言。
 
 ```python
 def translate_speech_to_text():
@@ -217,7 +215,7 @@ def translate_speech_to_text():
     translation_config.speech_recognition_language = from_language
     translation_config.add_target_language(to_language)
 
-    # See: https://aka.ms/speech/sdkregion#standard-and-neural-voices
+    # See: https://docs.azure.cn/cognitive-services/speech-service/regions#standard-and-neural-voices
     translation_config.voice_name = "de-DE-Hedda"
 
     recognizer = speechsdk.translation.TranslationRecognizer(

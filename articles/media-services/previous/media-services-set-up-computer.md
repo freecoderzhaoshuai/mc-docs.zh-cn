@@ -1,6 +1,6 @@
 ---
 title: 设置 Azure 媒体服务开发环境 | Microsoft 文档
-description: 设置环境以使用 Azure 媒体服务进行开发。
+description: 本文介绍如何设置环境以使用 Azure 媒体服务进行开发。
 services: media-services
 documentationcenter: ''
 author: WenJason
@@ -13,19 +13,19 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: conceptual
 origin.date: 04/01/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: d2b268df1bcf7921173ae8264b36381b0d2efd5c
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: a78a0b5169d49d938f8efa711a8d8c29dc0b4b37
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71124666"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413962"
 ---
 # <a name="set-up-your-media-services-development-environment"></a>设置媒体服务开发环境  
 
 > [!NOTE]
-> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](/media-services/latest/)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
+> 不会向媒体服务 v2 添加任何新特性或新功能。 <br/>查看最新版本：[媒体服务 v3](../latest/index.yml)。 另请参阅[从 v2 到 v3 的迁移指南](../latest/migrate-from-v2-to-v3.md)
 
 以下步骤描述使用 Azure 媒体服务进行开发所要满足的先决条件。
 

@@ -1,25 +1,29 @@
 ---
-title: 在 Azure 门户中为 Windows VM 创建完全限定的域名
+title: 在 Azure 门户中为 Windows VM 创建 FQDN
 description: 了解如何在 Azure 门户中为基于 Resource Manager 的虚拟机创建完全限定域名或 FQDN。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.subservice: networking
-ms.topic: article
+ms.topic: how-to
 ms.workload: infrastructure-services
 origin.date: 08/15/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: a9eab304498a12dc043d367403fdba12152789e2
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: de8ac9fd0bc75b1d13ee6e617281ebd38f0f6b6e
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945813"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462998"
 ---
 # <a name="create-a-fully-qualified-domain-name-in-the-azure-portal-for-a-windows-vm"></a>在 Azure 门户中为 Windows VM 创建完全限定的域名
 
-在 [Azure 门户](https://portal.azure.cn)中创建虚拟机 (VM) 时，此门户会自动为虚拟机创建公共 IP 资源。 可以使用此 IP 地址远程访问 VM。 虽然门户不会创建[完全限定的域名](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)（简称 FQDN），但可以在创建 VM 后创建一个完全限定的域名。 本文演示了创建 DNS 名称或 FQDN 的步骤。
+在 [Azure 门户](https://portal.azure.cn)中创建虚拟机 (VM) 时，此门户会自动为虚拟机创建公共 IP 资源。 可以使用此 IP 地址远程访问 VM。 虽然门户不会创建完全限定的域名（简称 FQDN），但可以在创建 VM 后创建一个完全限定的域名。 本文演示了创建 DNS 名称或 FQDN 的步骤。
+
+<!--Not Available om [fully qualified domain name](https://en.wikipedia.org/wiki/Fully_qualified_domain_name)-->
 
 ## <a name="create-a-fqdn"></a>创建 FQDN
 阅读本文的前提是已创建 VM。 如果需要，可以[在门户中创建 VM](quick-create-portal.md) 或[通过 Azure PowerShell 创建 VM](quick-create-powershell.md)。 在 VM 正常运行后，请按照以下步骤操作：

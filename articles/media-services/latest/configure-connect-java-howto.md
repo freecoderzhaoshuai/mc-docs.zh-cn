@@ -1,6 +1,6 @@
 ---
 title: 连接到 Azure 媒体服务 v3 API - Java
-description: 了解如何使用 Java 连接到媒体服务 v3 API。
+description: 本文介绍如何使用 Java 连接到 Azure 媒体服务 v3 API。
 services: media-services
 documentationcenter: ''
 author: WenJason
@@ -12,14 +12,15 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 09/18/2019
-ms.date: 11/04/2019
+ms.date: 09/07/2020
+ms.custom: devx-track-java
 ms.author: v-jay
-ms.openlocfilehash: c5a17f6a93e0058646d6b6dd54cf556fa462bc48
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 2e341de69700b9a312abbc20a0d6851ee5c87b9e
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "73416268"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413366"
 ---
 # <a name="connect-to-media-services-v3-api---java"></a>连接到媒体服务 v3 API - Java
 
@@ -35,8 +36,8 @@ ms.locfileid: "73416268"
    - Apache Maven
    - Java 扩展包
 - 请确保设置 `JAVA_HOME` 和 `PATH` 环境变量。
-- [创建媒体服务帐户](create-account-cli-how-to.md)。 请务必记住资源组名称和媒体服务帐户名称。
-- 按照[访问 API](access-api-cli-how-to.md) 主题中的步骤进行操作。 记下订阅 ID、应用程序 ID（客户端 ID）、身份验证密钥（机密）和租户 ID，以便在后面的步骤中使用。
+- [创建媒体服务帐户](./create-account-howto.md)。 请务必记住资源组名称和媒体服务帐户名称。
+- 按照[访问 API](./access-api-howto.md) 主题中的步骤进行操作。 记下订阅 ID、应用程序 ID（客户端 ID）、身份验证密钥（机密）和租户 ID，以便在后面的步骤中使用。
 
 另请参阅：
 
@@ -95,7 +96,7 @@ mvn archetype:generate -DgroupId=com.azure.ams -DartifactId=testAzureApp -Darche
    import com.microsoft.azure.management.mediaservices.v2018_07_01.implementation.MediaManager;
    import com.microsoft.rest.LogLevel;
    ```
-1. 若要创建发出请求所需的 Active Directory 凭据，请将以下代码添加到 App 类的 main 方法，然后设置从[访问 API](access-api-cli-how-to.md) 获取的值：
+1. 若要创建发出请求所需的 Active Directory 凭据，请将以下代码添加到 App 类的 main 方法，然后设置从[访问 API](./access-api-howto.md) 获取的值：
    
    ```java
    final String clientId = "00000000-0000-0000-0000-000000000000";

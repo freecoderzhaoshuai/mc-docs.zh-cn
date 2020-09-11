@@ -8,18 +8,22 @@ ms.workload: big-data
 ms.service: time-series-insights
 services: time-series-insights
 ms.topic: conceptual
-ms.date: 08/20/2020
+ms.date: 09/01/2020
 ms.custom: seodec18
-ms.openlocfilehash: 93ab23f29ff80b8751e36dc06e87b72f3f62ad73
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: f348c9bfa967fcd59cb152ad02e961d4da1ca80c
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715277"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413955"
 ---
 # <a name="time-series-model-in-azure-time-series-insights-gen2"></a>Azure 时序见解第 2 代中的时序模型
 
 本文介绍时序模型及其功能，以及如何在 Azure 时序见解第 2 代环境中开始生成和更新自己的模型。
+
+> [!TIP]
+>
+> * 通过 Azure 时序见解 TSI 资源管理器了解[如何使用时序模型](/time-series-insights/how-to-edit-your-model)。
 
 ## <a name="summary"></a>摘要
 
@@ -70,7 +74,7 @@ ms.locfileid: "88715277"
 
 [![时序模型概述图表](./media/v2-update-tsm/time-series-model-overview.png)](./media/v2-update-tsm/time-series-model-overview.png#lightbox)
 
-可以通过[模型设置 API](https://docs.microsoft.com/rest/api/time-series-insights/reference-model-apis) 来管理时序模型设置。
+可以通过 [Azure 时序见解 TSI 资源管理器](/time-series-insights/concepts-model-overview)来创建和管理时序模型。 可以通过[模型设置 API](https://docs.microsoft.com/rest/api/time-series-insights/reference-model-apis) 来管理时序模型设置。
 
 ## <a name="time-series-model-instances"></a>时序模型实例
 
@@ -82,9 +86,7 @@ ms.locfileid: "88715277"
 
 实例字段是描述性信息的集合，可包含层次结构级别的值，以及制造商、运营商等信息。
 
-为 Azure 时序见解第 2 代环境配置事件源后，会在时序模型中自动发现和创建实例。 
-
-[Contoso 风力发电厂演示](https://insights.timeseries.azure.cn/preview/samples)提供了多个实时实例示例。
+为 Azure 时序见解第 2 代环境配置事件源后，会在时序模型中自动发现和创建实例。 可以使用时序模型查询通过 Azure 时序见解 TSI 资源管理器来创建或更新实例。
 
 [![时序模型实例示例](./media/v2-update-tsm/time-series-model-instance.png)](./media/v2-update-tsm/time-series-model-instance.png#lightbox)
 
@@ -131,8 +133,6 @@ ms.locfileid: "88715277"
 时序模型层次结构通过指定属性名称及其关系来组织实例。
 
 可以在给定的 Azure 时序见解第 2 代环境中配置多个层次结构。 一个时序模型实例可以映射到一个或多个层次结构（多对多的关系）。
-
-[Contoso 风力发电厂演示](https://insights.timeseries.azure.cn/preview/samples)显示了标准实例和类型层次结构。
 
 [![时序模型层次结构示例](./media/v2-update-tsm/time-series-model-hierarchies.png)](./media/v2-update-tsm/time-series-model-hierarchies.png#lightbox)
 
@@ -211,15 +211,15 @@ ms.locfileid: "88715277"
 | ID4 | "building" = "1000", "floor" = "10"  |
 | ID5 | “building”、“floor”和“room”均未设置。 |
 
-时序分类到“无父实例”下，因为它们不符合指定的数据层次结构。
+时序 ID1 和 ID4 在 Azure 时序见解 TSI 资源管理器中显示为层次结构 H1 的一部分，因为它们包含已完全定义且正确排序的 building、floor 和 room 参数    。
+
+其他 ID 分类到“无父实例”下，因为它们不符合指定的数据层次结构。
 
 ## <a name="time-series-model-types"></a>时序模型类型
 
 时序模型类型可帮助你定义用于执行计算的变量或公式。 类型与某个特定实例关联。
 
 一个类型可以包含一个或多个变量。 例如，某个时序模型实例的类型为“温度传感器”，其中包括变量“平均温度”、“最小温度”和“最大温度”。   
-
-[Contoso 风力发电厂演示](https://insights.timeseries.azure.cn/preview/samples)可视化了与相应实例关联的多个时序模型类型。
 
 [![时序模型类型示例](./media/v2-update-tsm/time-series-model-types.png)](./media/v2-update-tsm/time-series-model-types.png#lightbox)
 

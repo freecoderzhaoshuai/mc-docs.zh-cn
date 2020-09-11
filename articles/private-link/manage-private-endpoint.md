@@ -2,23 +2,26 @@
 title: 管理 Azure 中的专用终结点连接
 description: 了解如何管理 Azure 中的专用终结点连接
 services: private-link
-author: rockboyfor
 ms.service: private-link
-ms.topic: article
+ms.topic: how-to
 origin.date: 09/16/2019
-ms.date: 06/15/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: 06/15/2020
 ms.author: v-yeche
-ms.openlocfilehash: 7ec5a632ec32248291c28c5426ddae6b5c8af2eb
-ms.sourcegitcommit: 3de7d92ac955272fd140ec47b3a0a7b1e287ca14
+ms.openlocfilehash: 4627e459c1585fbfb383e240e9e27aad15c39843
+ms.sourcegitcommit: 6e88e0e41b35d160a09f7a906ca3b7e837f51803
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84723321"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89412118"
 ---
+<!--Verified successfully-->
 # <a name="manage-a-private-endpoint-connection"></a>管理专用终结点连接
 Azure 专用链接基于一个审批调用流模型工作，其中，专用链接服务使用者可以请求连接到服务提供商以使用该服务。 然后，服务提供商可以决定是否允许使用者进行连接。 通过 Azure 专用链接，服务提供商可以管理其资源上的专用终结点连接。 本文提供了有关如何管理专用终结点连接的说明。
 
-![管理专用终结点](media/manage-private-endpoint/manage-private-endpoint.png)
+:::image type="content" source="media/manage-private-endpoint/manage-private-endpoint.png" alt-text="管理专用终结点":::
 
 专用链接服务使用者可以从两种连接审批方法中进行选择：
 - **自动**：如果服务使用者对服务提供商资源具有 RBAC 权限，则使用者可以选择自动审批方法。 在这种情况下，当请求到达服务提供商资源时，不需要服务提供商执行任何操作，并且将自动批准连接。 
@@ -37,7 +40,7 @@ Azure 专用链接基于一个审批调用流模型工作，其中，专用链�
 ## <a name="manage-private-endpoint-connections-on-azure-paas-resources"></a>管理 Azure PaaS 资源上的专用终结点连接
 门户是用于管理 Azure PaaS 资源上的专用终结点连接的首选方法。 目前，我们不支持使用 PowerShell/CLI 来管理 Azure PaaS 资源上的连接。
 1. 通过 https://portal.azure.cn 登录到 Azure 门户。
-2. 导航到“专用链接中心”。
+2. 在服务列表中键入“专用链接` in top seach box and select `专用链接”，然后导航到“专用链接中心”。
 3. 在“资源”  下，选择要管理专用终结点连接的资源类型。
 4. 对于每种资源类型，可以查看与其关联的专用终结点连接数。 你可以根据需要筛选资源。
 5. 选择专用终结点连接。  在列出的连接下，选择要管理的连接。 
@@ -87,5 +90,4 @@ az network private-link-service connection update -g myResourceGroup -n myPrivat
 ## <a name="next-steps"></a>后续步骤
 - [了解专用终结点](private-endpoint-overview.md)
 
-<!-- Update_Description: new article about manage private endpoint -->
-<!--NEW.date: 01/06/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

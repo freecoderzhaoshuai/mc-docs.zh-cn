@@ -1,20 +1,22 @@
 ---
-title: 快速入门 - 使用 Azure CLI 创建 Windows 虚拟机 | Azure
+title: 快速入门 - 使用 Azure CLI 创建 Windows VM
 description: 本快速入门介绍如何使用 Azure CLI 创建 Windows 虚拟机
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.topic: quickstart
 ms.workload: infrastructure
 origin.date: 07/02/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.custom: mvc
-ms.openlocfilehash: d3932ec80d61275b9f5dbbfe43556c890722627c
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.custom: mvc, devx-track-azurecli
+ms.openlocfilehash: c3ee085637cfe1e027ed2b7c5b1346d3164ee3f2
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946074"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462874"
 ---
 # <a name="quickstart-create-a-windows-virtual-machine-with-the-azure-cli"></a>快速入门：使用 Azure CLI 创建 Windows 虚拟机
 
@@ -26,12 +28,13 @@ Azure CLI 用于从命令行或脚本创建和管理 Azure 资源。 本快速�
 
 <!--MOONCAKE: az cli 2.0 is put next paragrapgh-->
 
-打开 Azure 本地 CLI 或 PowerShell 控制台，以运行以下脚本。
+可以启动 Azure 本地 CLI 控制台以运行以下脚本。
+
 [!INCLUDE [azure-cli-2-azurechinacloud-environment-parameter](../../../includes/azure-cli-2-azurechinacloud-environment-parameter.md)]
 
 ## <a name="create-a-resource-group"></a>创建资源组
 
-使用 [az group create](https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-create) 命令创建资源组。 Azure 资源组是在其中部署和管理 Azure 资源的逻辑容器。 以下示例在“chinaeast”位置创建名为“myResourceGroup”的资源组：
+使用“[az group create](https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-create)”命令创建资源组。 Azure 资源组是在其中部署和管理 Azure 资源的逻辑容器。 以下示例在“chinaeast”  位置创建名为“myResourceGroup”  的资源组：
 
 ```azurecli
 az group create --name myResourceGroup --location chinaeast
@@ -41,7 +44,7 @@ az group create --name myResourceGroup --location chinaeast
 
 使用 [az vm create](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-create) 创建 VM。 以下示例创建一个名为 myVM 的 VM。 此示例使用 azureuser 作为管理用户名。 
 
-你将需要提供符合 [Azure VM 密码要求](/virtual-machines/windows/faq#what-are-the-password-requirements-when-creating-a-vm
+你将需要提供符合 [Azure VM 密码要求](./faq.md#what-are-the-password-requirements-when-creating-a-vm
 )的密码。 使用以下示例时，系统将提示你在命令行中输入密码。 你还可以在 `--admin-password` 参数中添加密码值。 用户名和密码将在以后连接到 VM 时使用。
 
 ```azurecli
@@ -99,7 +102,7 @@ Install-WindowsFeature -name Web-Server -IncludeManagementTools
 
 如果 IIS 已安装，并且 VM 上的端口 80 已对 Internet 开放， 则可以使用所选的 Web 浏览器查看默认的 IIS 欢迎页。 使用上一步中获取的 VM 的公共 IP 地址。 以下示例展示了默认 IIS 网站：
 
-![IIS 默认站点](./media/quick-create-powershell/default-iis-website.png)
+:::image type="content" source="./media/quick-create-powershell/default-iis-website.png" alt-text="IIS 默认站点":::
 
 ## <a name="clean-up-resources"></a>清理资源
 

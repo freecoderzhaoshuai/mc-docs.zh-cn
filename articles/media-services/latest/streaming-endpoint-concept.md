@@ -11,14 +11,14 @@ ms.service: media-services
 ms.workload: ''
 ms.topic: article
 origin.date: 02/13/2020
-ms.date: 05/11/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: 965dc08af15b44e2cf0ec47a0bf4c467425d928a
-ms.sourcegitcommit: 95efd248f5ee3701f671dbd5cfe0aec9c9959a24
+ms.openlocfilehash: cbeb8f01bf5ba4275012bae5bf405b90e0ecaacd
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82507609"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413986"
 ---
 # <a name="streaming-endpoints-origin-in-azure-media-services"></a>Azure 媒体服务中的流式处理终结点（来源）
 
@@ -48,6 +48,8 @@ ms.locfileid: "82507609"
 
 有两种类型的**流式处理终结点**：**标准**（预览版）和**高级**。 类型由用户为流式处理终结点分配的缩放单元（`scaleUnits`）数定义。
 
+最大流单元限制通常为 10。
+
 下表描述了类型：
 
 |类型|缩放单元|说明|
@@ -75,7 +77,7 @@ IP 筛选/G20/自定义主机 |是|是
 本部分提供有关某些流式处理终结点属性的详细信息。 有关如何创建新流式处理终结点和所有属性描述的示例，请参阅[流式处理终结点](https://docs.microsoft.com/rest/api/media/streamingendpoints/create)。
 
 - `accessControl`：用于为此流式处理终结点配置以下安全设置：Akamai 签名标头身份验证密钥和允许连接到此终结点的 IP 地址。
-- `crossSiteAccessPolicies`：用于为各种客户端指定跨站点访问策略。 有关详细信息，请参阅[跨域策略文件规范](https://www.adobe.com/devnet/articles/crossdomain_policy_file_spec.html)和[提供跨域边界的服务](https://msdn.microsoft.com/library/cc197955\(v=vs.95\).aspx)。 这些设置仅适用于平滑流式处理。
+- `crossSiteAccessPolicies`：用于为各种客户端指定跨站点访问策略。 有关详细信息，请参阅[跨域策略文件规范](https://www.adobe.com/devnet/articles/crossdomain_policy_file_spec.html)和[提供跨域边界的服务](https://docs.microsoft.com/previous-versions/azure/azure-services/gg185950(v=azure.100))。 这些设置仅适用于平滑流式处理。
 - `customHostNames`：用于配置流式处理终结点以接受定向到自定义主机名的流量。 此属性对“标准”和“高级”流式处理终结点有效。
 
     域名的所有权必须由媒体服务确认。 媒体服务通过要求将包含媒体服务帐户 ID 的 `CName` 记录作为组件添加到正在使用的域来验证域名所有权。 例如，要将“sports.contoso.com”用作流式处理终结点的自定义主机名，则必须将 `<accountId>.contoso.com` 的记录配置为指向其中一个媒体服务验证主机名。 验证主机名由 verifydns.\<mediaservices-dns-zone> 组成。

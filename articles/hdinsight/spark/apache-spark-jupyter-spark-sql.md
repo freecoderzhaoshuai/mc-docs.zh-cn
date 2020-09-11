@@ -6,30 +6,35 @@ author: hrasheed-msft
 ms.reviewer: jasonh
 ms.service: hdinsight
 ms.topic: quickstart
-origin.date: 06/12/2019
-ms.date: 03/02/2020
+origin.date: 03/13/2020
+ms.date: 09/14/2020
 ms.author: v-yiso
-ms.openlocfilehash: 7200794b021eadc211169a366c5a86dd6bad94d4
-ms.sourcegitcommit: 3a8a7d65d0791cdb6695fe6c2222a1971a19f745
+ms.openlocfilehash: d3b33e7697d03650002a9a869b79f6abcb8e26a2
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2020
-ms.locfileid: "85516596"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463191"
 ---
-# <a name="quickstart-create-apache-spark-cluster-in-azure-hdinsight-using-resource-manager-template"></a>快速入门：使用资源管理器模板在 Azure HDInsight 中创建 Apache Spark 群集
+# <a name="quickstart-create-apache-spark-cluster-in-azure-hdinsight-using-arm-template"></a>快速入门：使用 ARM 模板在 Azure HDInsight 中创建 Apache Spark 群集
 
-在本快速入门中，我们使用 Azure 资源管理器模板在 Azure HDInsight 中创建一个 [Apache Spark](./apache-spark-overview.md) 群集。 然后，我们创建一个 Jupyter 笔记本，并使用它针对 Apache Hive 表运行 Spark SQL 查询。 Azure HDInsight 是适用于企业的分析服务，具有托管、全面且开源的特点。 用于 HDInsight 的 Apache Spark 框架使用内存中处理功能实现快速数据分析和群集计算。 使用 Jupyter 笔记本，可以与数据进行交互、将代码和 Markdown 文本结合使用，以及进行简单的可视化。
+本快速入门将使用 Azure 资源管理器模板（ARM 模板）在 Azure HDInsight 中创建一个 [Apache Spark](./apache-spark-overview.md) 群集。 然后，我们创建一个 Jupyter 笔记本，并使用它针对 Apache Hive 表运行 Spark SQL 查询。 Azure HDInsight 是适用于企业的分析服务，具有托管、全面且开源的特点。 用于 HDInsight 的 Apache Spark 框架使用内存中处理功能实现快速数据分析和群集计算。 使用 Jupyter 笔记本，可以与数据进行交互、将代码和 Markdown 文本结合使用，以及进行简单的可视化。
+
+如果将多个群集一起使用，则需创建一个虚拟网络；如果使用的是 Spark 群集，则还需使用 Hive Warehouse Connector。 有关详细信息，请参阅[为 Azure HDInsight 规划虚拟网络](../hdinsight-plan-virtual-network-deployment.md)和[将 Apache Spark 和 Apache Hive 与 Hive Warehouse Connector 集成](../interactive-query/apache-hive-warehouse-connector.md)。
 
 [!INCLUDE [About Azure Resource Manager](../../../includes/resource-manager-quickstart-introduction.md)]
 
-- 具有活动订阅的 Azure 帐户。 [创建试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
+如果你的环境满足先决条件，并且你熟悉如何使用 ARM 模板，请选择“部署到 Azure”按钮。 Azure 门户中会打开模板。
 
-## <a name="create-an-apache-spark-cluster"></a>创建 Apache Spark 群集
+[![部署到 Azure](../../media/template-deployments/deploy-to-azure.svg)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-spark-linux%2Fazuredeploy.json)
 
-### <a name="review-the-template"></a>查看模板
+## <a name="prerequisites"></a>先决条件
 
-本快速入门中使用的模板来自 [Azure 快速入门模板](https://github.com/Azure/azure-quickstart-templates/tree/master/101-hdinsight-spark-linux)。
+如果没有 Azure 订阅，可在开始前创建一个 [创建试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
 
+## <a name="review-the-template"></a>查看模板
+
+本快速入门中使用的模板来自 [Azure 快速启动模板](https://azure.microsoft.com/resources/templates/101-hdinsight-spark-linux)。
 ```Json
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
@@ -185,11 +190,11 @@ ms.locfileid: "85516596"
 
 1. 选择下面的“部署到 Azure”按钮以登录到 Azure，并打开资源管理器模板。
 
-    [![“部署到 Azure”](../../media/template-deployments/deploy-to-azure.svg)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-spark-linux%2Fazuredeploy.json)
+    [![部署到 Azure](../../media/template-deployments/deploy-to-azure.svg)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-hdinsight-spark-linux%2Fazuredeploy.json)
 
 1. 输入或选择下列值：
 
-    |属性 |说明 |
+    |properties |说明 |
     |---|---|
     |订阅|从下拉列表中选择用于此群集的 Azure 订阅。|
     |资源组|从下拉列表中选择现有资源组，或选择“新建”。|
@@ -208,7 +213,7 @@ ms.locfileid: "85516596"
 
 ## <a name="review-deployed-resources"></a>查看已部署的资源
 
-创建群集后，你将收到“部署成功”通知，其中包含“转到资源”链接。 “资源组”页将列出新的 HDInsight 群集以及与此群集关联的默认存储。 每个群集都有一个 [Azure 存储](../hdinsight-hadoop-use-blob-storage.md)帐户依赖项。 该帐户称为默认存储帐户。 HDInsight 群集及其默认存储帐户必须共存于同一个 Azure 区域中。 删除群集不会删除存储帐户。
+创建群集后，你会收到“部署成功”通知，通知中附有“转到资源”链接 。 “资源组”页会列出新的 HDInsight 群集以及与该群集关联的默认存储。 每个群集都有一个 [Azure 存储](../hdinsight-hadoop-use-blob-storage.md)帐户依赖项。 该帐户称为默认存储帐户。 HDInsight 群集及其默认存储帐户必须共存于同一个 Azure 区域中。 删除群集不会删除存储帐户。
 
 ## <a name="create-a-jupyter-notebook"></a>创建 Jupyter 笔记本
 
@@ -227,7 +232,7 @@ ms.locfileid: "85516596"
 
    ![创建 Jupyter Notebook 以运行交互式 Spark SQL 查询](./media/apache-spark-jupyter-spark-sql/hdinsight-spark-create-jupyter-interactive-spark-sql-query.png "创建 Jupyter Notebook 以运行交互式 Spark SQL 查询")
 
-   新 Notebook 随即会创建，并以 Untitled(Untitled.pynb) 名称打开。
+   新笔记本随即已创建，并以 Untitled(Untitled.pynb) 名称打开。
 
 ## <a name="run-apache-spark-sql-statements"></a>运行 Apache Spark SQL 语句
 

@@ -3,13 +3,13 @@ title: 将视频连续录制到云中并从云中播放教程 - Azure
 description: 在本教程中，你将了解如何使用 Azure IoT Edge 上的 Azure 实时视频分析将视频连续录制到云中并使用 Azure 媒体服务流式传输该视频的任何部分。
 ms.topic: tutorial
 origin.date: 05/27/2020
-ms.date: 07/27/2020
-ms.openlocfilehash: 554ed418fc2ddeb7a43b1a71ebb0439050093cfd
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.date: 09/07/2020
+ms.openlocfilehash: 2198637cd5e9e2932c61a3470d71da2c14121f4b
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162829"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414018"
 ---
 # <a name="tutorial-continuous-video-recording-to-the-cloud-and-playback-from-the-cloud"></a>教程：将视频连续录制到云中并从云中播放
 
@@ -50,7 +50,7 @@ ms.locfileid: "87162829"
 * Azure IoT 中心
 * Azure 存储帐户
 * Azure 媒体服务帐户
-* Azure 中的 Linux VM，已安装 [IoT Edge 运行时](/iot-edge/how-to-install-iot-edge-linux)
+* Azure 中的 Linux VM，已安装 [IoT Edge 运行时](../../iot-edge/how-to-install-iot-edge-linux.md)
 
 ## <a name="concepts"></a>概念
 
@@ -68,21 +68,21 @@ ms.locfileid: "87162829"
 
 ## <a name="set-up-your-development-environment"></a>设置开发环境
 
-在开始之前，请检查是否满足[先决条件](#prerequisites)中的第三条。 资源设置脚本完成后，选择大括号，公开文件夹结构。 你将看到在 ~/clouddrive/lva-sample 目录下创建的几个文件。
+在开始之前，请检查是否满足[先决条件](#prerequisites)中的第三条。 资源设置脚本完成后，选择大括号，公开文件夹结构。 你将看到一些创建的文件。
 
 ![应用设置](./media/quickstarts/clouddrive.png)
 
 本教程中涉及以下文件：
 
-* ~/clouddrive/lva-sample/edge-deployment/.env：包含 Visual Studio Code 用来将模块部署到边缘设备的属性。
-* ~/clouddrive/lva-sample/appsettings.json：由 Visual Studio Code 用于运行示例代码。
+* **edge-deployment/.env**：包含 Visual Studio Code 用来将模块部署到边缘设备的属性。
+* appsettings.json：由 Visual Studio Code 用于运行示例代码。
 
 以下步骤将需要这些文件：
 
 1. 从 GitHub 链接 https://github.com/Azure-Samples/live-video-analytics-iot-edge-csharp 克隆存储库。
 1. 启动 Visual Studio Code，然后打开将存储库下载到的文件夹。
 1. 在 Visual Studio Code 中，浏览到 src/cloud-to-device-console-app 文件夹，然后创建一个名为 appsettings.json 的文件。 该文件包含运行程序所需的设置。
-1. 复制 ~/clouddrive/lva-sample/appsettings.json 文件中的内容。 文本应如下所示：
+1. 从 appsettings.json 文件复制内容。 文本应如下所示：
     ```
     {  
         "IoThubConnectionString" : "HostName=xxx.azure-devices.cn;SharedAccessKeyName=iothubowner;SharedAccessKey=XXX",  
@@ -93,7 +93,7 @@ ms.locfileid: "87162829"
     借助 IoT 中心连接字符串，可以使用 Visual Studio Code 通过 Azure IoT 中心将命令发送到 Edge 模块。
     
 1. 接下来，浏览到 src/edge 文件夹并创建一个名为 .env 的文件。
-1. 复制 ~/clouddrive/lva-sample/.env 文件中的内容。 文本应如下所示：
+1. 从 .env 文件复制内容。 文本应如下所示：
 
     ```
     SUBSCRIPTION_ID="<Subscription ID>"  
@@ -232,7 +232,7 @@ ms.locfileid: "87162829"
 
 ## <a name="interpret-the-results"></a>解释结果 
 
-运行媒体图时，IoT Edge 上的实时视频分析模块会将某些诊断和操作事件发送到 IoT Edge 中心。 这些事件即你在 Visual Studio Code 的“输出”窗口中看到的消息。 这些消息包含 body 部分和 applicationProperties 部分。 要了解这些部分表示的内容，请参阅[创建和读取 IoT 中心消息](/iot-hub/iot-hub-devguide-messages-construct)。
+运行媒体图时，IoT Edge 上的实时视频分析模块会将某些诊断和操作事件发送到 IoT Edge 中心。 这些事件即你在 Visual Studio Code 的“输出”窗口中看到的消息。 这些消息包含 body 部分和 applicationProperties 部分。 要了解这些部分表示的内容，请参阅[创建和读取 IoT 中心消息](../../iot-hub/iot-hub-devguide-messages-construct.md)。
 
 在下面的消息中，实时视频分析模块定义了应用程序属性和正文内容。
 
@@ -376,4 +376,4 @@ applicationProperties 中的 subject 部分引用图形中的 AssetSink 节点�
 ## <a name="next-steps"></a>后续步骤
 
 * 使用支持 RTSP 的 [IP 相机](https://en.wikipedia.org/wiki/IP_camera)，而不是使用 RTSP 模拟器。 可以在 [ONVIF 一致性产品页](https://www.onvif.org/conformant-products/)上查找符合配置文件 G、S 或 T 的设备来搜索支持 RTSP 的 IP 照相机。
-* 使用 AMD64 或 X64 Linux 设备（与使用 Azure Linux VM 相比）。 此设备必须与 IP 相机位于同一网络中。 按照[在 Linux 上安装 Azure IoT Edge 运行时](/iot-edge/how-to-install-iot-edge-linux)中的说明进行操作。 然后按照[将首个 IoT Edge 模块部署到虚拟 Linux 设备](/iot-edge/quickstart-linux)快速入门中的说明进行操作，将设备注册到 Azure IoT 中心。
+* 使用 AMD64 或 X64 Linux 设备（与使用 Azure Linux VM 相比）。 此设备必须与 IP 相机位于同一网络中。 按照[在 Linux 上安装 Azure IoT Edge 运行时](../../iot-edge/how-to-install-iot-edge-linux.md)中的说明进行操作。 然后按照[将首个 IoT Edge 模块部署到虚拟 Linux 设备](../../iot-edge/quickstart-linux.md)快速入门中的说明进行操作，将设备注册到 Azure IoT 中心。

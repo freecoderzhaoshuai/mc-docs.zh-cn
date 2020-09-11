@@ -1,17 +1,18 @@
 ---
 title: 在 .NET Azure Functions 中使用依赖项注入
 description: 了解如何在 .NET 函数中使用依赖项注入来注册和使用服务
-author: craigshoemaker
+author: ggailey777
 ms.topic: conceptual
-ms.date: 08/12/2020
+ms.custom: devx-track-csharp
+ms.date: 09/02/2020
 ms.author: v-junlch
 ms.reviewer: jehollan
-ms.openlocfilehash: ec9070194d97d58e13535bb4bf2a46964e5abed1
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: 185904a340f8a309c0d764a709b74c8668c623f0
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222668"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413456"
 ---
 # <a name="use-dependency-injection-in-net-azure-functions"></a>在 .NET Azure Functions 中使用依赖项注入
 
@@ -225,10 +226,10 @@ public class MyOptions
 
 ```csharp
 builder.Services.AddOptions<MyOptions>()
-                .Configure<IConfiguration>((settings, configuration) =>
-                                           {
-                                                configuration.GetSection("MyOptions").Bind(settings);
-                                           });
+    .Configure<IConfiguration>((settings, configuration) =>
+    {
+        configuration.GetSection("MyOptions").Bind(settings);
+    });
 ```
 
 调用 `Bind` 可以将那些与属性名匹配的值从配置复制到自定义实例中。 IoC 容器中现在提供可以注入到函数中的选项实例。
@@ -252,8 +253,57 @@ public class HttpTrigger
 
 有关使用选项的更多详细信息，请参阅 [ASP.NET Core 中的选项模式](https://docs.microsoft.com/aspnet/core/fundamentals/configuration/options)。
 
-> [!WARNING]
-> 请避免尝试从有关消耗计划的 local.settings.json 或 appsettings.{environment}.json 等文件中读取值。 从与触发器连接相关的这些文件中读取的值在应用缩放时不可用，因为规模控制器创建应用的新实例时托管基础结构无法访问配置信息。
+### <a name="customizing-configuration-sources"></a>自定义配置源
+
+> [!NOTE]
+> 从 Azure Functions 主机版本 2.0.14192.0 和 3.0.14191.0 开始，可以使用配置源自定义。
+
+若要指定其他配置源，请替代函数应用的 `StartUp` 类中的 `ConfigureAppConfiguration` 方法。
+
+以下示例从基础映像和可选的特定于环境的应用设置文件中添加配置值。
+
+```csharp
+using System.IO;
+using Microsoft.Azure.Functions.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
+[assembly: FunctionsStartup(typeof(MyNamespace.Startup))]
+
+namespace MyNamespace
+{
+    public class Startup : FunctionsStartup
+    {
+        public override void ConfigureAppConfiguration(IFunctionsConfigurationBuilder builder)
+        {
+            FunctionsHostBuilderContext context = builder.GetContext();
+
+            builder.ConfigurationBuilder
+                .AddJsonFile(Path.Combine(context.ApplicationRootPath, "appsettings.json"), optional: true, reloadOnChange: false)
+                .AddJsonFile(Path.Combine(context.ApplicationRootPath, $"appsettings.{context.EnvironmentName}.json"), optional: true, reloadOnChange: false);
+        }
+    }
+}
+```
+
+将配置提供程序添加到 `IFunctionsConfigurationBuilder` 的 `ConfigurationBuilder` 属性。 有关使用配置提供程序的详细信息，请参阅 [ASP.NET Core 中的配置](https://docs.microsoft.com/aspnet/core/fundamentals/configuration/?view=aspnetcore-3.1#configuration-providers)。
+
+`FunctionsHostBuilderContext` 是从 `IFunctionsConfigurationBuilder.GetContext()` 中获取的。 使用此上下文检索当前环境名称，并解析函数应用文件夹中配置文件的位置。
+
+默认情况下，不会自动将配置文件（如 appsettings.json）复制到函数应用的输出文件夹。 更新 .csproj 文件以匹配以下示例，从而确保文件已复制。
+
+```xml
+<None Update="appsettings.json">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>      
+</None>
+<None Update="appsettings.Development.json">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+</None>
+```
+
+> [!IMPORTANT]
+> 对于在消耗计划中运行的函数应用，对在触发器中使用的配置值所做的修改可能导致缩放错误。 由 `FunctionsStartup` 类对这些属性所做的任何更改都会导致函数应用启动错误。
 
 ## <a name="next-steps"></a>后续步骤
 

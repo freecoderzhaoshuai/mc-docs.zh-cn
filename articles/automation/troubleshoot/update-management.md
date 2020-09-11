@@ -3,22 +3,19 @@ title: 排查 Azure 自动化更新管理问题
 description: 本文介绍如何排查和解决 Azure 自动化更新管理的问题。
 services: automation
 origin.date: 06/30/2020
-ms.date: 08/10/2020
+ms.date: 09/07/2020
 ms.topic: conceptual
 ms.service: automation
-ms.openlocfilehash: a23d5d02dd546125b9d49c12ea3ca092e8b370ed
-ms.sourcegitcommit: e6b216b180734783219378410e13192e314a4497
+ms.openlocfilehash: 742e4d0a4b02dc4cdd068cc89bf95339054b60d9
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87788297"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462796"
 ---
 # <a name="troubleshoot-update-management-issues"></a>排查“更新管理”问题
 
 本文讨论在计算机上部署更新管理功能时可能遇到的问题。 对于混合 Runbook 辅助角色代理，可使用代理故障排除程序来确定底层问题。 若要了解有关故障排除程序的详细信息，请参阅[排查 Windows 更新代理问题](update-agent-issues.md)和[排查 Linux 更新代理问题](update-agent-issues-linux.md)。 有关其他功能部署问题，请参阅[排查功能部署问题](onboarding.md)。
-
->[!NOTE]
->如果在 Windows 计算机上部署更新管理功能时遇到问题，请打开 Windows 事件查看器，查看本地计算机上“应用程序和服务日志”下的 Operations Manager 事件日志 。 查找事件 ID 为 4502 的事件和包含 `Microsoft.EnterpriseManagement.HealthService.AzureAutomation.HybridAgent` 的事件详细信息。
 
 ## <a name="scenario-you-receive-the-error-failed-to-enable-the-update-solution"></a><a name="failed-to-enable-error"></a>场景：收到“无法启用更新解决方案”错误
 
@@ -104,7 +101,7 @@ Error details: Failed to enable the Update solution
 
 1. 根据操作系统，运行适用于 [Windows](update-agent-issues.md#troubleshoot-offline) 或 [Linux](update-agent-issues-linux.md#troubleshoot-offline) 的故障排除程序。
 
-2. 请确保你的计算机向正确的工作区报告。 有关如何验证此方面的指南，请参阅[验证代理与 Log Analytics 的连接](../../azure-monitor/platform/agent-windows.md#verify-agent-connectivity-to-log-analytics)。 此外，请确保此工作区已链接到 Azure 自动化帐户。 若要进行验证，请转到自动化帐户，选择“相关资源”下的“链接的工作区” 。
+2. 请确保你的计算机向正确的工作区报告。 有关如何进行这方面验证的指导，请参阅[验证代理与 Azure Monitor 的连接](../../azure-monitor/platform/agent-windows.md#verify-agent-connectivity-to-log-analytics)。 此外，请确保此工作区已链接到 Azure 自动化帐户。 若要进行验证，请转到自动化帐户，选择“相关资源”下的“链接的工作区” 。
 
 3. 确保链接到自动化帐户的 Log Analytics 工作区中显示计算机。 在 Log Analytics 工作区中运行以下查询。
 

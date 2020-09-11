@@ -1,19 +1,21 @@
 ---
-title: 并置 Windows Azure VM
+title: 并置 VM 以缩短延迟
 description: 了解并置 Azure VM 资源如何改善延迟。
-author: rockboyfor
 ms.service: virtual-machines
-ms.topic: article
+ms.topic: conceptual
 ms.workload: infrastructure-services
 origin.date: 10/30/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: c00039acc7afc0a3134850551167e025a143e643
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 4751271be39925c031e277556e0b32d0acf95cd8
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946058"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463178"
 ---
 <!--Verified successfully-->
 # <a name="co-locate-resource-for-improved-latency"></a>并置资源以改善延迟
@@ -30,7 +32,7 @@ ms.locfileid: "85946058"
 
 了解如何[测试网络延迟](https://docs.azure.cn/virtual-network/virtual-network-test-latency?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。
 
-了解如何[优化网络吞吐量](/virtual-network/virtual-network-optimize-network-bandwidth?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。  
+了解如何[优化网络吞吐量](../../virtual-network/virtual-network-optimize-network-bandwidth.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。  
 
 <!--Not Available on [use proximity placement groups with SAP applications](/virtual-machines/workloads/sap/sap-proximity-placement-scenarios?toc=%2fvirtual-machines%2fwindows%2ftoc.json)-->
 

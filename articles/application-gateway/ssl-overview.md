@@ -2,17 +2,17 @@
 title: 在 Azure 应用程序网关上启用端到端 TLS
 description: 本文概述应用程序网关的端到端 TLS 支持。
 services: application-gateway
-author: amsriva
+author: surajmb
 ms.service: application-gateway
 ms.topic: conceptual
-ms.date: 07/10/2020
+ms.date: 09/01/2020
 ms.author: v-junlch
-ms.openlocfilehash: 88d5c8b7cce01ffed0c94d6d8d1a76a581b9b80e
-ms.sourcegitcommit: 65a7360bb14b0373e18ec8eaa288ed3ac7b24ef4
+ms.openlocfilehash: f6d3cce48c32583ee5e091cd40c89ccc47e8e5e4
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86219697"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413412"
 ---
 # <a name="overview-of-tls-termination-and-end-to-end-tls-with-application-gateway"></a>应用程序网关的 TLS 终止和端到端 TLS 概述
 
@@ -30,7 +30,7 @@ ms.locfileid: "86219697"
 若要配置 TLS 终止，需将一个 TLS/SSL 证书添加到侦听器，使应用程序网关能够根据 TLS/SSL 协议规范派生对称密钥。 然后，可以使用该对称密钥来加密和解密发送到网关的流量。 TLS/SSL 证书需采用个人信息交换 (PFX) 格式。 此文件格式适用于导出私钥，后者是应用程序网关对流量进行加解密所必需的。
 
 > [!IMPORTANT] 
-> 请注意，侦听器上的证书要求上传整个证书链。 
+> 侦听器上的证书要求上传整个证书链（来自 CA 的根证书、中间证书和叶证书）以建立信任链。 
 
 
 > [!NOTE] 

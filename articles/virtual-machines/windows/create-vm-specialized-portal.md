@@ -1,19 +1,21 @@
 ---
-title: 使用 Azure 门户基于 VHD 创建 VM | Azure
+title: 在 Azure 门户中通过专用 VHD 创建 Windows VM
 description: 在 Azure 门户的 VHD 中创建新的 Windows VM。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
-ms.topic: article
+ms.topic: how-to
 origin.date: 01/18/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 532a68f9036057cf965e63249176b15c3acb0912
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: dcc6a7cd5caf0ef034f007a69cdd556ade576aef
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946021"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462898"
 ---
 # <a name="create-a-vm-from-a-vhd-by-using-the-azure-portal"></a>使用 Azure 门户在 VHD 中创建 VM
 
@@ -75,4 +77,4 @@ ms.locfileid: "85946021"
 
 也可使用 PowerShell [将 VHD 上传到 Azure 并创建专用 VM](create-vm-specialized.md)。
 
-<!--Update_Description: update meta properties, wording update, update link -->
+<!-- Update_Description: update meta properties, wording update, update link -->

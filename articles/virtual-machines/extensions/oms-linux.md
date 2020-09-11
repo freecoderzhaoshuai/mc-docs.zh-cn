@@ -3,8 +3,7 @@ title: 适用于 Linux 的 Log Analytics 虚拟机扩展
 description: 使用虚拟机扩展在 Linux 虚拟机上部署 Log Analytics 代理。
 services: virtual-machines-linux
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 editor: ''
 tags: azure-resource-manager
 ms.assetid: c7bbf210-7d71-4a37-ba47-9c74567a9ea6
@@ -13,14 +12,17 @@ ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 origin.date: 02/18/2020
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 54d2754b03e5aa69d4880f2c405b6bb5c5cabca3
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 0b09d759cfcdfd3ecbd3b3649543c0d721f4fef4
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945980"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413661"
 ---
 # <a name="log-analytics-virtual-machine-extension-for-linux"></a>适用于 Linux 的 Log Analytics 虚拟机扩展
 
@@ -41,7 +43,7 @@ Azure Monitor 日志提供跨云和本地资产的监视、警报和警报修正
 
 ### <a name="operating-system"></a>操作系统
 
-有关支持的 Linux 发行版的详细信息，请参阅 [Log Analytics 代理概述](../../azure-monitor/platform/log-analytics-agent.md#supported-linux-operating-systems)一文。
+有关支持的 Linux 发行版的详细信息，请参阅 [Azure Monitor 代理的概述](../../azure-monitor/platform/agents-overview.md#supported-operating-systems)一文。
 
 <!--Not Available on version 5 of Red Hat Enterprise Linux-->
 <!--Not Avaialble on , and Oracle Linux version-->
@@ -191,6 +193,8 @@ az vm extension set \
   --settings '{"workspaceId":"myWorkspaceId"}'
 ```
 
+<!--MOONCAKE CUSTOMIZATION ON: Kepping the note module-->
+
 > [!NOTE]
 > 当我们在 Microsoft PowrShell 环境中运行 Azure CLI 时，应在相应的脚本中替换以下格式：
 > 1. 将 `\` 的串联替换为 ```。
@@ -198,6 +202,7 @@ az vm extension set \
 >     `--protected-settings "{'workspaceKey':'myWorkspaceKey'}"`
 >     `--settings "{'workspaceId':'myWorkspaceId'}"`
 
+<!--MOONCAKE CUSTOMIZATION ON: Kepping the note module-->
 
 ## <a name="troubleshoot-and-support"></a>故障排除和支持
 
@@ -219,7 +224,7 @@ az vm extension list --resource-group myResourceGroup --vm-name myVM -o table
 
 | 错误代码 | 含义 | 可能的操作 |
 | :---: | --- | --- |
-| 9 | 过早调用 enable | 将 [Azure Linux 代理](/virtual-machines/linux/update-agent)更新为可用的最新版本。 |
+| 9 | 过早调用 enable | 将 [Azure Linux 代理](./update-linux-agent.md)更新为可用的最新版本。 |
 | 10 个 | VM 已连接至 Log Analytics 工作区 | 要将 VM 连接到扩展架构中指定的工作区，请在公共设置中将“stopOnMultipleConnections”设置为 false，或删除该属性。 连接到工作区后，此 VM 立即开始计费。 |
 | 11 | 提供给扩展的无效配置 | 按上述示例设置部署所需的所有属性值。 |
 | 17 | Log Analytics 包安装失败 | 

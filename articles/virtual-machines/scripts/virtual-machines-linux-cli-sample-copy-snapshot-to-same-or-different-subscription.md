@@ -1,5 +1,5 @@
 ---
-title: Azure CLI 脚本示例 - 使用 CLI 将托管磁盘的快照复制到同一订阅或不同订阅
+title: 将托管磁盘快照复制到订阅 - CLI 示例
 description: Azure CLI 脚本示例 - 使用 CLI 将托管磁盘的快照复制（或移动）到同一订阅或不同订阅
 services: virtual-machines-linux
 documentationcenter: storage
@@ -13,22 +13,26 @@ ms.topic: sample
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
 origin.date: 05/19/2017
-ms.date: 04/27/2020
+ms.date: 08/31/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: be83a5481b7c2569e5238e9ce3b643ecc0e8f0cb
-ms.sourcegitcommit: b469d275694fb86bbe37a21227e24019043b9e88
+ms.openlocfilehash: d32993d756e8ad2d39d3d7d61c0e6ac2e42f04fd
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82596410"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413761"
 ---
 # <a name="copy-snapshot-of-a-managed-disk-to-same-or-different-subscription-with-cli"></a>使用 CLI 将托管磁盘的快照复制到相同或不同的订阅
 
 此脚本会将托管磁盘的快照复制到相同或不同的订阅。 将此脚本用于以下方案：
 
-1. 将高级存储 (Premium_LRS) 中的快照迁移到标准存储（Standard_LRS 或 Standard_ZRS）以降低成本。
-1. 将快照从本地冗余存储（Premium_LRS、Standard_LRS）迁移到区域冗余存储（Standard_ZRS），以从 ZRS 存储的更高可靠性中受益。
+1. 将高级存储 (Premium_LRS) 中的快照迁移到标准存储 (Standard_LRS) 以降低成本。
+
+    <!--Not Available on Standard_ZRS-->
+
 1. 将快照移到同一区域中的不同订阅，以延长保留时间。
 
 [!INCLUDE [sample-cli-install](../../../includes/sample-cli-install.md)]
@@ -68,18 +72,19 @@ targetResourceGroupName=mytargetResourceGroupName
 az account set --subscription $targetSubscriptionId
 
 #Copy snapshot to different subscription using the snapshot Id
-#We recommend you to store your snapshots in Standard storage to reduce cost. Please use Standard_ZRS in regions where zone redundant storage (ZRS) is available, otherwise use Standard_LRS
+#We recommend you to store your snapshots in Standard storage to reduce cost. Please use Standard_LRS in regions
 az snapshot create --resource-group $targetResourceGroupName --name $snapshotName --source $snapshotId --sku Standard_LRS
 
 ```
 
 <!--Not Available on #We recommend on Standard_ZRS-->
+<!--nOT Available on #Please check out the availability of ZRS here: https://docs.azure.cn/storage/common/storage-redundancy-zrs#support-coverage-and-regional-availability-->
 
 ## <a name="script-explanation"></a>脚本说明
 
 此脚本使用以下命令，通过源快照的 ID 在目标订阅中创建快照。 表中的每条命令均链接到特定于命令的文档。
 
-| 命令 | 注释 |
+| 命令 | 说明 |
 |---|---|
 | [az snapshot show](https://docs.azure.cn/cli/snapshot?view=azure-cli-latest#az-snapshot-show) | 使用快照的名称和资源组属性获取该快照的所有属性。 使用 ID 属性将快照复制到其他订阅。  |
 | [az snapshot create](https://docs.azure.cn/cli/snapshot?view=azure-cli-latest#az-snapshot-create) | 通过使用父快照的 ID 和名称在不同订阅中创建快照来复制快照。  |
@@ -92,4 +97,4 @@ az snapshot create --resource-group $targetResourceGroupName --name $snapshotNam
 
 可以在 [Azure Linux VM 文档](../linux/cli-samples.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)中找到其他虚拟机和托管磁盘 CLI 脚本示例。
 
-<!--Update_Description: update meta properties, update link -->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -1,23 +1,23 @@
 ---
-title: 在 Azure 中创建通用 VM 的托管映像
+title: 在 Azure 中创建托管映像
 description: 在 Azure 中创建通用 VM 或 VHD 的托管映像。 映像可用于创建多个使用托管磁盘的 VM。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.subservice: imaging
 ms.workload: infrastructure-services
-ms.topic: article
+ms.topic: how-to
 origin.date: 09/27/2018
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: yes
-ms.testdate: 07/27/2020
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: legacy
-ms.openlocfilehash: ed6335465c79a57008d3fdd2e31bd84fc0ffef10
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: 854ac7e850bb61edbc68435d9db48321271e0ccb
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244899"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463098"
 ---
 # <a name="create-a-managed-image-of-a-generalized-vm-in-azure"></a>在 Azure 中创建通用 VM 的托管映像
 
@@ -29,10 +29,12 @@ ms.locfileid: "87244899"
 
 Sysprep 将删除所有个人帐户和安全信息，并准备好要用作映像的计算机。 有关 Sysprep 的信息，请参阅 [Sysprep 概述](https://docs.microsoft.com/windows-hardware/manufacture/desktop/sysprep--system-preparation--overview)。
 
-确保 Sysprep 支持计算机上运行的服务器角色。 有关详细信息，请参阅 [Sysprep 对服务器角色的支持](https://docs.microsoft.com/windows-hardware/manufacture/desktop/sysprep-support-for-server-roles)和[不支持的方案](https://docs.microsoft.com/windows-hardware/manufacture/desktop/sysprep--system-preparation--overview#unsupported-scenarios)。 Sysprep 要求在执行之前完全解密驱动器。 如果在 VM 上启用了加密，请在运行 Sysprep 之前将其禁用。
+确保 Sysprep 支持计算机上运行的服务器角色。 有关详细信息，请参阅 [Sysprep 对服务器角色的支持](https://docs.microsoft.com/windows-hardware/manufacture/desktop/sysprep-support-for-server-roles)和[不支持的方案](https://docs.microsoft.com/windows-hardware/manufacture/desktop/sysprep--system-preparation--overview#unsupported-scenarios)。 
 
 > [!IMPORTANT]
 > 在 VM 上运行 Sysprep 后，该 VM 将被视为已通用化而无法重启。 通用化 VM 的过程是不可逆的。 如果需要保持原始 VM 正常运行，请创建 [VM 的副本](create-vm-specialized.md#option-3-copy-an-existing-azure-vm)并将其副本通用化。 
+>
+>Sysprep 要求对驱动器进行完全解密。 如果在 VM 上启用了加密，请在运行 Sysprep 之前将其禁用。
 >
 > 如果计划在首次将虚拟硬盘 (VHD) 上传到 Azure 之前运行 Sysprep，请确保先[准备好 VM](prepare-for-upload-vhd-image.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。  
 > 
@@ -42,15 +44,17 @@ Sysprep 将删除所有个人帐户和安全信息，并准备好要用作映像
 
 1. 登录到 Windows VM。
 
-2. 以管理员身份打开“命令提示符”窗口。 将目录切换到 %windir%\system32\sysprep，然后运行 `sysprep.exe`。
+2. 以管理员身份打开“命令提示符”窗口。 
 
-3. 在“系统准备工具”对话框中，选择“进入系统全新体验(OOBE)”，并选中“通用”复选框。
+3. 删除 panther 目录 (C:\Windows\Panther)。 然后将目录切换到 %windir%\system32\sysprep，然后运行 `sysprep.exe`。
 
-4. 在“关机选项”中选择“关机”。
+4. 在“系统准备工具”对话框中，选择“进入系统全新体验(OOBE)”，并选中“通用”复选框。
 
-5. 选择“确定”。
+5. 在“关机选项”中选择“关机”。
 
-    ![启动 Sysprep](./media/upload-generalized-managed/sysprepgeneral.png)
+6. 选择“确定”。
+
+    :::image type="content" source="./media/upload-generalized-managed/sysprepgeneral.png" alt-text="启动 Sysprep":::
 
 6. Sysprep 在完成运行后会关闭 VM。 不要重新启动 VM。
 

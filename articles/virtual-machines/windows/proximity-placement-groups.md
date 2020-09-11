@@ -1,20 +1,23 @@
 ---
-title: 使用 PowerShell 将 VM 部署到邻近放置组
+title: PowerShell - 使用邻近放置组
 description: 了解如何通过 Azure PowerShell 创建和使用邻近放置组。
 services: virtual-machines
 ms.service: virtual-machines
 ms.topic: how-to
 ms.workload: infrastructure-services
 origin.date: 01/27/2020
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.reviewer: zivr
-ms.openlocfilehash: bb841b851058baf64b1080e38f38b14f59969c33
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: fdf7763012d0850c29a9da69e19c7a6e04da23d1
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945985"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463085"
 ---
 <!--Verified successfully-->
 # <a name="deploy-vms-to-proximity-placement-groups-using-powershell"></a>使用 PowerShell 将 VM 部署到邻近放置组

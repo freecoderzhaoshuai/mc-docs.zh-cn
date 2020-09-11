@@ -8,14 +8,14 @@ ms.workload: big-data
 ms.service: time-series-insights
 services: time-series-insights
 ms.topic: conceptual
-ms.date: 08/20/2020
+ms.date: 09/01/2020
 ms.custom: seodec18
-ms.openlocfilehash: 0fa0676760263eba7114c6edb8673f72158b0f5e
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 948da6a2209f53ff46a22b3f4a2bf5dc3f272128
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715276"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413974"
 ---
 # <a name="querying-data-from-azure-time-series-insights-gen2"></a>查询来自 Azure 时序见解第 2 代的数据
 

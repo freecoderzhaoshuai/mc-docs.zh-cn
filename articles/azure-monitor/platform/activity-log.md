@@ -4,27 +4,30 @@ description: 查看 Azure 活动日志，并将其发送到 Azure Monitor 日志
 author: Johnnytechn
 services: azure-monitor
 ms.topic: conceptual
-ms.date: 07/15/2020
+ms.date: 08/20/2020
 ms.author: v-johya
 ms.subservice: logs
-ms.openlocfilehash: 7c1c69c2f664371b2ca16a8b5e584dc97069a5f0
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.openlocfilehash: 0b42d60e163391c4e93c4b87f9e00b42e8078a36
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440555"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457461"
 ---
 # <a name="azure-activity-log"></a>Azure 活动日志
 活动日志是 Azure 中的一种[平台日志](platform-logs-overview.md)，可用于深入了解订阅级别事件。 这包括何时修改了资源或何时启动了虚拟机等信息。 可以在 Azure 门户中查看活动日志，或在 PowerShell 和 CLI 中检索条目。 若要获得其他功能，应当创建诊断设置，以便将活动日志发送到 [Azure Monitor 日志](data-platform-logs.md)，发送到 Azure 事件中心以转发到 Azure 外部，或发送到 Azure 存储进行存档。 本文详细介绍了如何查看活动日志，以及如何将其发送到不同的目标。
 
 有关创建诊断设置的详细信息，请参阅[创建诊断设置以将平台日志和指标发送到不同的目标](diagnostic-settings.md)。
 
+> [!NOTE]
+> 活动日志中的条目是系统生成的，无法更改或删除。
+
 ## <a name="view-the-activity-log"></a>查看活动日志
 可以从 Azure 门户中的大多数菜单访问活动日志。 你从中打开它的菜单确定了它的初始筛选器。 如果从“监视器”菜单打开它，则唯一的筛选器将基于订阅。 如果从某个资源的菜单打开它，则筛选器将设置为该资源。 你始终可以更改筛选器来查看所有其他条目。 单击“添加筛选器”可向筛选器添加其他属性。
 
 ![查看活动日志](./media/activity-logs-overview/view-activity-log.png)
 
-有关活动日志类别的说明，请参阅 [Azure 活动日志事件架构](activity-log-schema.md)。
+有关活动日志类别的说明，请参阅 [Azure 活动日志事件架构](activity-log-schema.md#categories)。
 
 <!--Not available in MC: ### View change history-->
 ### <a name="other-methods-to-retrieve-activity-log-events"></a>检索活动日志事件的其他方法

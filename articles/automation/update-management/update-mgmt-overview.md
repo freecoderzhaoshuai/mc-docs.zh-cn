@@ -4,14 +4,14 @@ description: 本文概述了为 Windows 和 Linux 计算机实现更新的更新
 services: automation
 ms.subservice: update-management
 origin.date: 07/28/2020
-ms.date: 08/10/2020
+ms.date: 09/07/2020
 ms.topic: conceptual
-ms.openlocfilehash: 52bb970564b145d0e31f8cab94be1736f999ec01
-ms.sourcegitcommit: e6b216b180734783219378410e13192e314a4497
+ms.openlocfilehash: e70c5665c47df4c95b1917bf9c5aa5ef6881001c
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87790515"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462826"
 ---
 # <a name="update-management-overview"></a>更新管理概述
 
@@ -24,9 +24,9 @@ ms.locfileid: "87790515"
 * 对于单个 Azure VM，通过 Azure 门户中的“虚拟机”页启用。 
 
 > [!NOTE]
-> 更新管理要求将 Log Analytics 工作区链接到自动化帐户。
+> 更新管理要求将 Log Analytics 工作区链接到自动化帐户。 有关受支持区域的明确列表，请参阅 [Azure 工作区映射](../how-to/region-mappings.md)。 区域映射不会影响在单独的区域中管理自动化帐户内 VM 的功能。
 
-[Azure 资源管理器模板](update-mgmt-enable-template.md)可帮助你将更新管理部署到订阅中新的或现有的自动化帐户和 Log Analytics 工作区。
+[Azure 资源管理器模板](update-mgmt-enable-template.md)可帮助将更新管理部署到新的或现有的自动化帐户以及订阅中的 Log Analytics 工作区。
 
 > [!NOTE]
 > 不能使用配置了更新管理功能的计算机从 Azure 自动化运行自定义脚本。 此计算机只能运行 Microsoft 签名的更新脚本。
@@ -142,22 +142,6 @@ Windows 代理必须配置为与 WSUS 服务器通信或需要有权访问 Micro
 
 如果为更新管理和混合 Runbook 辅助角色组成员身份使用同一帐户，则可以将 Windows 计算机添加到自动化帐户中的混合 Runbook 辅助角色组来为自动化 Runbook 提供支持。 此功能是在 7.2.12024.0 版本的混合 Runbook 辅助角色中添加的。
 
-### <a name="management-packs"></a>管理包
-
-如果 Operations Manager 管理组[已连接到 Log Analytics 工作区](../../azure-monitor/platform/om-agents.md)，则会在 Operations Manager 中安装以下管理包。 对于直接连接的 Windows 计算机上的更新管理，也会安装这些管理包。 你不需要对这些管理包进行配置或管理。
-
-* Microsoft System Center Advisor Update Assessment Intelligence Pack (Microsoft.IntelligencePacks.UpdateAssessment)
-* Microsoft.IntelligencePack.UpdateAssessment.Configuration (Microsoft.IntelligencePack.UpdateAssessment.Configuration)
-* 更新部署 MP
-
-> [!NOTE]
-> 如果已将 Operations Manager 1807 或 2019 管理组连接到 Log Analytics 工作区并且在管理组中将代理配置为收集日志数据，则需要重写参数 `IsAutoRegistrationEnabled` 并在 Microsoft.IntelligencePacks.AzureAutomation.HybridAgent.Init 规则中将其设置为 True。
-
-有关管理包更新内容的详细信息，请参阅[将 Operations Manager 连接到 Azure Monitor 日志](../../azure-monitor/platform/om-agents.md)。
-
-> [!NOTE]
-> 若要更新管理通过 Log Analytics 代理完全管理计算机，必须更新为适用于 Windows 的 Log Analytics 代理或适用于 Linux 的 Log Analytics 代理。 若要了解如何更新代理，请参阅[如何升级 Operations Manager 代理](https://docs.microsoft.com/system-center/scom/deploy-upgrade-agents)。 在使用 Operations Manager 的环境中，必须运行 System Center Operations Manager 2012 R2 UR 14 或更高版本。
-
 ## <a name="data-collection"></a>数据收集
 
 ### <a name="supported-sources"></a>受支持的源
@@ -168,7 +152,6 @@ Windows 代理必须配置为与 WSUS 服务器通信或需要有权访问 Micro
 | --- | --- | --- |
 | Windows 代理 |是 |更新管理从 Windows 代理收集有关系统更新的信息，然后开始安装必需的更新。 |
 | Linux 代理 |是 |更新管理从 Linux 代理收集有关系统更新的信息，然后开始在受支持的发行版上安装必需的更新。 |
-| Operations Manager 管理组 |是 |“更新管理”从已连接的管理组中的代理收集有关系统更新的信息。<br/><br/>从 Operations Manager 代理到 Azure Monitor 日志的直接连接不是必需的。 数据将从管理组转发到 Log Analytics 工作区。 |
 
 ### <a name="collection-frequency"></a>收集频率
 
@@ -178,7 +161,7 @@ Windows 代理必须配置为与 WSUS 服务器通信或需要有权访问 Micro
 
 * 每个 Linux 计算机 - 更新管理每小时执行一次扫描。
 
-使用更新管理的计算机的每月平均 Azure Monitor 日志数据使用情况大约为 25 MB。 此值仅为近似值，且随时可能基于环境而更改。 建议监视环境，以跟踪实际使用情况。 有关分析数据使用情况的详细信息，请参阅[管理使用情况和成本](../../azure-monitor/platform/manage-cost-storage.md)。
+使用更新管理的计算机的每月平均 Azure Monitor 日志数据使用情况大约为 25 MB。 此值仅为近似值，且随时可能基于环境而更改。 建议监视环境，以跟踪实际使用情况。 有关分析 Azure Monitor 日志数据使用情况的详细信息，请参阅[管理使用情况和成本](../../azure-monitor/platform/manage-cost-storage.md)。
 
 ## <a name="network-planning"></a><a name="ports"></a>网络规划
 

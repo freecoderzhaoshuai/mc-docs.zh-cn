@@ -1,10 +1,9 @@
 ---
-title: 适用于 Linux 的虚拟机扩展和功能 | Azure
+title: 适用于 Linux 的 Azure VM 扩展和功能
 description: 了解可为 Azure 虚拟机提供哪些扩展，这些虚拟机扩展按它们提供或改进的功能进行分组。
 services: virtual-machines-linux
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 editor: ''
 tags: azure-service-management,azure-resource-manager
 ms.assetid: 52f5d0ec-8f75-49e7-9e15-88d46b420e63
@@ -13,14 +12,17 @@ ms.topic: article
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
 origin.date: 03/30/2018
-ms.date: 11/11/2019
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: bb0a732cf26444b11ca5d4aabcb62da6291c38a3
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 12f8c90017c035f3485e553da25915c861250f99
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "73831405"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413717"
 ---
 # <a name="virtual-machine-extensions-and-features-for-linux"></a>适用于 Linux 的虚拟机扩展和功能
 
@@ -33,7 +35,7 @@ Azure 虚拟机 (VM) 扩展是小型应用程序，可在 Azure VM 上提供部�
 有许多不同的 Azure VM 扩展可用，每个都有特定用例。 示例包括：
 
 - 使用适用于 Linux 的 DSC 扩展将 PowerShell 所需状态配置应用到 VM。 有关详细信息，请参阅 [Azure 所需状态配置扩展](https://github.com/Azure/azure-linux-extensions/tree/master/DSC)。
-- 使用 Azure Monitoring Agent VM 扩展配置 VM 监视功能。 有关详细信息，请参阅[如何监视 Linux VM](../linux/tutorial-monitoring.md)。
+- 使用 Azure Monitoring Agent VM 扩展配置 VM 监视功能。 有关详细信息，请参阅[如何监视 Linux VM](../linux/tutorial-monitor.md)。
 - 使用 Chef 或 Datadog 扩展配置 Azure 基础结构监视功能。 有关详细信息，请参阅 [Chef 文档](https://docs.chef.io/azure_portal.html)或 [Datadog 博客](https://www.datadoghq.com/blog/introducing-azure-monitoring-with-one-click-datadog-deployment/)。
 
 除了进程特定的扩展外，“自定义脚本”扩展也可用于 Windows 和 Linux 虚拟机。 适用于 Linux 的“自定义脚本”扩展允许在 VM 上运行任何 Bash 脚本。 在设计需要本机 Azure 工具无法提供的配置的 Azure 部署时，自定义脚本很有用。 有关详细信息，请参阅 [Linux VM Custom Script extension](custom-script-linux.md)（Linux VM“自定义脚本”扩展）。
@@ -65,7 +67,7 @@ Linux 代理在多个 OS 上运行，但是，扩展框架对扩展的 OS 施加
 > [!IMPORTANT]
 > 如果已使用来宾防火墙阻止对 168.63.129.16 的访问，则不管采用上述哪种方法，扩展都会失败  。
 
-代理只可用于下载扩展包和报告状态。 例如，如果扩展安装需要从 GitHub 下载脚本（自定义脚本），或需要访问 Azure 存储（Azure 备份），则需要打开其他防火墙/网络安全组端口。 不同的扩展具有不同的要求，因为它们本身就是应用程序。 对于需要访问 Azure 存储的扩展，可以使用[存储](/virtual-network/security-overview#service-tags)的 Azure NSG 服务标记来允许访问。
+代理只可用于下载扩展包和报告状态。 例如，如果扩展安装需要从 GitHub 下载脚本（自定义脚本），或需要访问 Azure 存储（Azure 备份），则需要打开其他防火墙/网络安全组端口。 不同的扩展具有不同的要求，因为它们本身就是应用程序。 对于需要访问 Azure 存储的扩展，可以使用[存储](../../virtual-network/security-overview.md#service-tags)的 Azure NSG 服务标记来允许访问。
 
 为了重定向代理流量请求，Linux 代理有代理服务器支持。 但是，此代理服务器支持不应用扩展。 必须配置每个单独的扩展来使用代理。
 
@@ -105,11 +107,17 @@ info:    Executing command vm extension set
 info:    vm extension set command OK
 ```
 
-<!-- Not Available on ### Azure portal -->
+### <a name="azure-portal"></a>Azure 门户
 
-### <a name="azure-resource-manager-templates"></a>Azure 资源管理器模板
+可通过 Azure 门户将 VM 扩展应用到现有 VM。 在门户中，依次选择该 VM、“扩展”、“添加”   。 从可用扩展的列表中选择所需扩展，并按向导中的说明操作。
 
-VM 扩展可添加到 Azure 资源管理器模板，并在部署模板的过程中执行。 使用模板部署扩展时，可以创建完全配置的 Azure 部署。 例如，以下 JSON 取自一个资源管理器模板，该模板会在每个 VM 上部署一组负载均衡的 VM、一个 Azure SQL 数据库，然后安装一个 .NET Core 应用程序。 VM 扩展负责安装软件。
+下图展示了如何从 Azure 门户安装 Linux 自定义脚本扩展：
+
+:::image type="content" source="./media/features-linux/installscriptextensionlinux.png" alt-text="安装自定义脚本扩展":::
+
+### <a name="azure-resource-manager-templates"></a>Azure Resource Manager 模板
+
+VM 扩展可添加到 Azure Resource Manager 模板，并在部署模板的过程中执行。 使用模板部署扩展时，可以创建完全配置的 Azure 部署。 例如，以下 JSON 取自一个资源管理器模板，该模板会在每个 VM 上部署一组负载均衡的 VM、一个 Azure SQL 数据库，然后安装一个 .NET Core 应用程序。 VM 扩展负责安装软件。
 
 有关详细信息，请参阅完整的 [Resource Manager 模板](https://github.com/Microsoft/dotnet-core-sample-templates/tree/master/dotnet-core-music-linux)。
 
@@ -146,7 +154,7 @@ VM 扩展可添加到 Azure 资源管理器模板，并在部署模板的过程�
 
 ## <a name="secure-vm-extension-data"></a>保护 VM 扩展数据
 
-运行 VM 扩展时，可能需要包括敏感信息，例如凭据、存储帐户名称和存储帐户访问密钥。 许多 VM 扩展包括受保护的配置，该配置对数据进行加密并且仅在目标 VM 内才对数据进行解密。 每个扩展都有一个特定的受保护的配置架构，扩展特定的文档中详述了各个架构。
+运行 VM 扩展时，可能需要包括敏感信息，例如凭据、存储帐户名称和存储帐户访问密钥。 许多 VM 扩展包括受保护的配置，该配置对数据进行加密并且仅在目标 VM 内才对数据进行解密。 每个扩展都有特定的受保护配置架构，会在特定于扩展的文档中详细介绍每个配置架构。
 
 以下示例显示了适用于 Linux 的自定义脚本扩展的一个实例。 要执行的命令包含一组凭据。 在此示例中，不会加密要执行的命令：
 
@@ -225,9 +233,9 @@ VM 扩展可添加到 Azure 资源管理器模板，并在部署模板的过程�
 
 #### <a name="agent-updates"></a>代理更新
 
-Linux VM 代理将预配代理代码和扩展处理代码包含在一个包中，不能分开   。 如果要使用 cloud-init 在 Azure 上预配，可以禁用预配代理  。 若要执行此操作，请参阅[使用 cloud-init](../linux/using-cloud-init.md)。
+Linux VM 代理将预配代理代码和扩展处理代码包含在一个包中，不能分开 。 如果要使用 cloud-init 在 Azure 上预配，可以禁用预配代理**。 若要执行此操作，请参阅[使用 cloud-init](../linux/using-cloud-init.md)。
 
-代理的受支持版本可以使用自动更新。 唯一可以更新的代码是扩展处理代码，不是预配代码  。 预配代理代码是一次性运行的代码  。
+代理的受支持版本可以使用自动更新。 唯一可以更新的代码是扩展处理代码，不是预配代码**。 预配代理代码是一次性运行的代码**。
 
 扩展处理代码负责与 Azure 结构通信，并处理各种 VM 扩展操作，例如安装、报告状态、更新单个扩展，以及删除扩展  。 更新包含扩展处理代码的安全修复程序、bug 修复程序和增强功能  。
 
@@ -249,11 +257,11 @@ Python: 3.5.2
 Goal state agent: 2.2.18
 ```
 
-在前面的示例输出中，父级或“部署包的版本”是 WALinuxAgent-2.2.17 
+在前面的示例输出中，父级或“部署包的版本”是 WALinuxAgent-2.2.17**
 
 “目标状态代理”是自动更新版本。
 
-强烈建议始终自动更新代理，[AutoUpdate.Enabled=y](/virtual-machines/linux/update-agent)。 如果不启用它，则需要始终手动更新代理，且不会获得 bug 和安全修补程序。
+强烈建议始终自动更新代理，[AutoUpdate.Enabled=y](./update-linux-agent.md)。 如果不启用它，则需要始终手动更新代理，且不会获得 bug 和安全修补程序。
 
 #### <a name="extension-updates"></a>扩展更新
 
@@ -295,9 +303,9 @@ az vm show --resource-group myResourceGroup --name myVM
 
 #### <a name="identifying-when-an-autoupgrademinorversion-occurred"></a>识别何时执行了 autoUpgradeMinorVersion
 
-若要查看何时对扩展执行了更新，请查看 VM 上的代理日志，路径为 /var/log/waagent.log  。
+若要查看何时对扩展执行了更新，请查看 VM 上的代理日志，路径为 /var/log/waagent.log**。
 
-在下面的示例中，VM 安装 Microsoft.OSTCExtensions.LinuxDiagnostic-2.3.9025  。 修补程序适用于 Microsoft.OSTCExtensions.LinuxDiagnostic-2.3.9027  ：
+在下面的示例中，VM 安装 Microsoft.OSTCExtensions.LinuxDiagnostic-2.3.9025**。 修补程序适用于 Microsoft.OSTCExtensions.LinuxDiagnostic-2.3.9027**：
 
 ```bash
 INFO [Microsoft.OSTCExtensions.LinuxDiagnostic-2.3.9027] Expected handler state: enabled
@@ -320,7 +328,7 @@ INFO [Microsoft.OSTCExtensions.LinuxDiagnostic-2.3.9027] Launch command:diagnost
 
 ## <a name="agent-permissions"></a>代理权限
 
-若要执行任务，代理需要作为根运行  。
+若要执行任务，代理需要作为根运行**。
 
 ## <a name="troubleshoot-vm-extensions"></a>排查 VM 扩展的问题
 
@@ -328,9 +336,9 @@ INFO [Microsoft.OSTCExtensions.LinuxDiagnostic-2.3.9027] Launch command:diagnost
 
 以下故障排除步骤适用于所有 VM 扩展。
 
-1. 若要查看 Linux 代理日志，请在 /var/log/waagent.log 中查看预配扩展时的活动 
+1. 若要查看 Linux 代理日志，请在 /var/log/waagent.log 中查看预配扩展时的活动**
 
-2. 在 */var/log/azure/\<extensionName>* 中查看实际扩展日志，以便获取详细信息
+2. 在 /var/log/azure/\<extensionName> 中查看实际扩展日志，以便获取详细信息**
 
 3. 查看特定扩展文档中有关错误代码和已知问题等的故障排除部分。
 
@@ -379,7 +387,7 @@ az vm get-instance-view \
 
 ### <a name="rerun-a-vm-extension"></a>重新运行 VM 扩展
 
-在某些情况下，可能需要重新运行 VM 扩展。 要重新运行扩展，可以先删除扩展，然后使用所选执行方法重新运行扩展。 若要删除扩展，请使用 [az vm extension delete](https://docs.azure.cn/cli/vm/extension?view=azure-cli-latest#az-vm-extension-delete)，如下所示：
+在某些情况下，可能需要重新运行 VM 扩展。 如果要重新运行扩展，可以先删除扩展，然后使用所选执行方法重新运行扩展。 若要删除扩展，请使用 [az vm extension delete](https://docs.azure.cn/cli/vm/extension?view=azure-cli-latest#az-vm-extension-delete)，如下所示：
 
 ```azurecli
 az vm extension delete \
@@ -391,9 +399,9 @@ az vm extension delete \
 也可以在 Azure 门户中删除扩展，如下所示：
 
 1. 选择 VM。
-2. 选择“扩展”。 
+2. 选择“扩展”  。
 3. 选择所需的扩展。
-4. 选择“卸载”。 
+4. 选择“卸载”  。
 
 ## <a name="common-vm-extension-reference"></a>常见 VM 扩展参考
 
@@ -408,4 +416,4 @@ az vm extension delete \
 
 有关 VM 扩展的详细信息，请参阅 [Azure 虚拟机扩展和功能概述](overview.md)。
 
-<!-- Update_Description: wording update, update meta propeties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

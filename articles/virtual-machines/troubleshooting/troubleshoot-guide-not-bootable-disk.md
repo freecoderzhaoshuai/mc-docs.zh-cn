@@ -1,10 +1,9 @@
 ---
-title: 启动错误 - 这不是可启动磁盘
+title: 启动错误 -“这不是可启动磁盘”
 description: 本文提供的步骤用于解决无法在 Azure 虚拟机中启动磁盘的问题
 services: virtual-machines-windows
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: azure-resource-manager
 ms.assetid: 5d6db4e3-c2f5-40c7-afea-54edf745f5eb
@@ -13,14 +12,17 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.topic: troubleshooting
 origin.date: 03/25/2020
-ms.date: 05/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: f45e8888f5d205ac954c972cd2d6b4ec1b6896c2
-ms.sourcegitcommit: 81241aa44adbcac0764e2b5eb865b96ae56da6b7
+ms.openlocfilehash: cdcf4bf141d882f14b3df2c2d6ffdd7892063477
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/09/2020
-ms.locfileid: "83002060"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456795"
 ---
 <!--Verified successfully-->
 # <a name="boot-error---this-is-not-a-bootable-disk"></a>启动错误 - 这不是可启动磁盘
@@ -29,7 +31,7 @@ ms.locfileid: "83002060"
 
 ## <a name="symptoms"></a>症状
 
-使用[启动诊断](/virtual-machines/troubleshooting/boot-diagnostics)查看 VM 的屏幕截图时，会看到屏幕截图显示一个提示，其消息为“这不是可启动磁盘。 请插入可启动软盘并按任意键重试…”。
+使用[启动诊断](./boot-diagnostics.md)查看 VM 的屏幕截图时，会看到屏幕截图显示一个提示，其消息为“这不是可启动磁盘。 请插入可启动软盘并按任意键重试…”。
 
    图 1
 
@@ -54,7 +56,7 @@ ms.locfileid: "83002060"
 
 ### <a name="create-and-access-a-repair-vm"></a>创建并访问修复 VM
 
-1. 使用 [VM 修复命令](/virtual-machines/troubleshooting/repair-windows-vm-using-azure-virtual-machine-repair-commands)的步骤 1-3 来准备一个修复 VM。
+1. 使用 [VM 修复命令](./repair-windows-vm-using-azure-virtual-machine-repair-commands.md)的步骤 1-3 来准备一个修复 VM。
 2. 使用远程桌面连接来连接到修复 VM。
 
 ### <a name="set-partition-status-to-active"></a>将“分区状态”设置为“活动”
@@ -150,7 +152,6 @@ ms.locfileid: "83002060"
 
 ### <a name="rebuild-the-original-vm"></a>重建原始 VM
 
-使用 [VM 修复命令的步骤 5](/virtual-machines/troubleshooting/repair-windows-vm-using-azure-virtual-machine-repair-commands#repair-process-example) 重新装配 VM。
+使用 [VM 修复命令的步骤 5](./repair-windows-vm-using-azure-virtual-machine-repair-commands.md#repair-process-example) 重新装配 VM。
 
-<!-- Update_Description: new article about troubleshoot guide not bootable disk -->
-<!--NEW.date: 04/30/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

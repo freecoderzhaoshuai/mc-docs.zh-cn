@@ -1,5 +1,5 @@
 ---
-title: 通过百度开始使用 Azure 通知中心 | Azure
+title: 通过百度开始使用 Azure 通知中心 | Microsoft Docs
 description: 在本教程中，将了解如何通过百度使用 Azure 通知中心将通知推送到 Android 设备。
 services: notification-hubs
 documentationcenter: android
@@ -11,16 +11,17 @@ ms.topic: conceptual
 ms.tgt_pltfrm: mobile-baidu
 ms.workload: mobile
 origin.date: 03/18/2020
-ms.date: 04/20/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.reviewer: jowargo
 ms.lastreviewed: 06/19/2019
-ms.openlocfilehash: 40e71116d6fc4cba30dabcde9a05f74609b0d362
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.custom: devx-track-java, devx-track-csharp
+ms.openlocfilehash: 4d97b47a17bcf73511a7bcaf15967a3c74434697
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588727"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316478"
 ---
 # <a name="get-started-with-notification-hubs-using-baidu"></a>通过百度开始使用通知中心
 
@@ -418,8 +419,8 @@ ms.locfileid: "82588727"
 
 可以在 [Azure 门户]中快速测试通知接收情况：使用通知中心配置屏幕中的“发送”  按钮，如以下屏幕所示：
 
-![](./media/notification-hubs-baidu-get-started/BaiduTestSendButton.png)
-![](./media/notification-hubs-baidu-get-started/BaiduTestSend.png)
+![Azure 门户的屏幕截图，其中“测试发送”选项以红色框标出，并有一个红色箭头指向它。](./media/notification-hubs-baidu-get-started/BaiduTestSendButton.png)
+![Azure 门户中百度“测试发送”页的屏幕截图。](./media/notification-hubs-baidu-get-started/BaiduTestSend.png)
 
 通常，推送通知是在后端服务（例如，移动服务，或者使用兼容库的 ASP.NET）中发送的。 如果后端没有可用的库，则可直接使用 REST API 发送通知消息。
 
@@ -439,7 +440,7 @@ ms.locfileid: "82588727"
 
 1. 创建新的 Visual C# 控制台应用程序：
 
-    ![](./media/notification-hubs-baidu-get-started/ConsoleProject.png)
+    ![“新建项目”对话框的屏幕截图，其中突出显示了控制台应用程序 Visual C# 选项。](./media/notification-hubs-baidu-get-started/ConsoleProject.png)
 
 2. 在“包管理器控制台”窗口中，将“默认项目”设置为新的控制台应用程序项目，并在控制台窗口中执行以下命令： 
 
@@ -449,7 +450,7 @@ ms.locfileid: "82588727"
 
     此指令会使用 [Microsoft.Azure.Notification Hubs NuGet 包](https://www.nuget.org/packages/Microsoft.Azure.NotificationHubs/)添加对 Azure 通知中心 SDK 的引用。
 
-    ![](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-package-manager.png)
+    ![“包管理器控制台”对话框的屏幕截图，其中“发送到通知中心”选项用红圈圈出。](./media/notification-hubs-windows-store-dotnet-get-started/notification-hub-package-manager.png)
 
 3. 打开 `Program.cs` 文件并添加以下 using 语句：
 

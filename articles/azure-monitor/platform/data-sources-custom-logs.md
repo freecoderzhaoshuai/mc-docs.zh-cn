@@ -1,24 +1,24 @@
 ---
 title: 在 Azure Monitor 中收集自定义日志 | Azure Docs
 description: Azure Monitor 可以从 Windows 和 Linux 计算机上的文本文件中收集事件。  本文介绍如何定义新的自定义日志，以及这些日志在 Azure Monitor 中创建的记录的详细信息。
-author: lingliw
-manager: digimobile
 ms.subservice: logs
 ms.topic: conceptual
+author: Johnnytechn
+ms.author: v-johya
+ms.date: 08/20/2020
 origin.date: 09/26/2019
-ms.date: 11/04/2019
-ms.author: v-lingwu
-ms.openlocfilehash: 1154977d46290f6aee88cce7341b23599926e52c
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: e41b4161668c3c84a3376290f637e3613ec74bbb
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79452535"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457451"
 ---
 # <a name="custom-logs-in-azure-monitor"></a>Azure Monitor 中的自定义日志
+
 Azure Monitor 中的自定义日志数据源可以从 Windows 和 Linux 计算机上的文本文件中收集事件。 许多应用程序将信息记录到文本文件，而不是标准日志记录服务（例如 Windows 事件日志或 Syslog）。 在收集后，可以将数据分析到查询中的各个字段，或者在收集期间将数据提取到各个字段。
 
-![自定义日志收集](media/data-sources-custom-logs/overview.png)
+![自定义日志收集](./media/data-sources-custom-logs/overview.png)
 
 要收集的日志文件必须符合以下条件。
 
@@ -121,39 +121,41 @@ Azure Monitor 大概每隔 5 分钟就会从每个自定义日志中收集新条
 | properties | 说明 |
 |:--- |:--- |
 | TimeGenerated |Azure Monitor 收集该记录时的日期和时间。  如果日志使用基于时间的分隔符，则此时间是从条目中收集的时间。 |
-| SourceSystem |从中收集记录的代理类型。 <br> OpsManager – Windows 代理，直接连接或 System Center Operations Manager <br> Linux - 所有 Linux 代理 |
+| SourceSystem |从中收集记录的代理类型。 <br> OpsManager - Windows 代理，直接连接或 System Center Operations Manager <br> Linux - 所有 Linux 代理 |
 | RawData |收集的条目的完整文本。 你很可能希望[将此数据分析到各个属性中](../log-query/parse-text.md)。 |
-| ManagementGroupName |System Center Operations Manager 代理的管理组名称。  对于其他代理，这是 AOI-\<工作区 ID\> |
+| ManagementGroupName |System Center Operations Manager 代理的管理组名称。  对于其他代理，这是 AOI-\<workspace ID\> |
 
 
 ## <a name="sample-walkthrough-of-adding-a-custom-log"></a>添加自定义日志的演示示例
 以下部分是创建自定义日志的演示示例。  收集的示例日志在每行有单个条目，以日期和时间开头，然后是逗号分隔的代码、状态和消息字段。  几个示例条目如下所示。
 
-    2019-08-27 01:34:36 207,Success,Client 05a26a97-272a-4bc9-8f64-269d154b0e39 connected
-    2019-08-27 01:33:33 208,Warning,Client ec53d95c-1c88-41ae-8174-92104212de5d disconnected
-    2019-08-27 01:35:44 209,Success,Transaction 10d65890-b003-48f8-9cfc-9c74b51189c8 succeeded
-    2019-08-27 01:38:22 302,Error,Application could not connect to database
-    2019-08-27 01:31:34 303,Error,Application lost connection to database
+```output
+2019-08-27 01:34:36 207,Success,Client 05a26a97-272a-4bc9-8f64-269d154b0e39 connected
+2019-08-27 01:33:33 208,Warning,Client ec53d95c-1c88-41ae-8174-92104212de5d disconnected
+2019-08-27 01:35:44 209,Success,Transaction 10d65890-b003-48f8-9cfc-9c74b51189c8 succeeded
+2019-08-27 01:38:22 302,Error,Application could not connect to database
+2019-08-27 01:31:34 303,Error,Application lost connection to database
+```
 
 ### <a name="upload-and-parse-a-sample-log"></a>上载和分析示例日志
 我们提供其中一个日志文件，然后可以看到它将收集的事件。  在这种情况下，换行是有效的分隔符。  如果日志中的单个条目跨过多行，则需要使用时间戳分隔符。
 
-![上载和分析示例日志](media/data-sources-custom-logs/delimiter.png)
+![上载和分析示例日志](./media/data-sources-custom-logs/delimiter.png)
 
 ### <a name="add-log-collection-paths"></a>添加日志集合路径
 日志文件位于 *C:\MyApp\Logs*。  每天将创建一个新文件，名称为包括日期的 *appYYYYMMDD.log* 模式。  此日志的有效模式是 *C:\MyApp\Logs\\\*.log*。
 
-![日志集合路径](media/data-sources-custom-logs/collection-path.png)
+![日志集合路径](./media/data-sources-custom-logs/collection-path.png)
 
 ### <a name="provide-a-name-and-description-for-the-log"></a>提供日志名称及描述
 我们使用  名称“MyApp_CL”，然后键入“说明”  。
 
-![日志名称](media/data-sources-custom-logs/log-name.png)
+![日志名称](./media/data-sources-custom-logs/log-name.png)
 
 ### <a name="validate-that-the-custom-logs-are-being-collected"></a>验证是否正在收集自定义日志
 我们使用简单的查询 *MyApp_CL* 来从收集的日志中返回所有记录。
 
-![没有自定义字段的日志查询](media/data-sources-custom-logs/query-01.png)
+![没有自定义字段的日志查询](./media/data-sources-custom-logs/query-01.png)
 
 
 ## <a name="alternatives-to-custom-logs"></a>自定义日志的替代方法
@@ -171,3 +173,4 @@ Azure Monitor 大概每隔 5 分钟就会从每个自定义日志中收集新条
 ## <a name="next-steps"></a>后续步骤
 * 请参阅[在 Azure Monitor 中分析文本数据](../log-query/parse-text.md)来了解用于将每个导入的日志条目分析到多个属性中的方法。
 * 了解[日志查询](../log-query/log-query-overview.md)以便分析从数据源和解决方案中收集的数据。
+

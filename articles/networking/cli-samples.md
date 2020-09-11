@@ -1,6 +1,6 @@
 ---
 title: Azure CLI 示例 - 网络
-description: Azure CLI 示例
+description: 了解用于网络的 Azure CLI 示例，包括用于 Azure 资源之间的连接的示例以及用于负载均衡和流量方向的示例。
 services: virtual-network
 documentationcenter: virtual-network
 author: KumudD
@@ -13,20 +13,21 @@ ms.topic: article
 ms.tgt_pltfrm: ''
 ms.workload: infrastructure
 origin.date: 04/25/2017
-ms.date: 04/20/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: 35aacdf02bfd08e309d546a973c634ba5bfaf78a
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: a04456595aef60eb9d57870e8fbf0dc26ce3b195
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588787"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316508"
 ---
 # <a name="azure-cli-samples-for-networking"></a>用于网络的 Azure CLI 示例
 
 下表包含指向使用 Azure CLI 生成的 bash 脚本的链接。
 
-| | |
+| Script | 说明 |
 |-|-|
 |Azure 资源之间的连接 ||
 | [为多层应用程序创建虚拟网络](./scripts/virtual-network-cli-sample-multi-tier-application.md?toc=%2fnetworking%2ftoc.json) | 创建包含前端和后端子网的虚拟网络。 传入前端子网的流量仅限 HTTP 和 SSH，而传入后端子网的流量限于 MySQL、端口 3306。 |

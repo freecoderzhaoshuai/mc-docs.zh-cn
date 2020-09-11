@@ -1,24 +1,24 @@
 ---
 title: Azure 指标资源管理器入门
 description: 了解如何使用 Azure 指标资源管理器创建第一个指标图表。
-author: lingliw
+author: Johnnytechn
 services: azure-monitor
-ms.topic: conceptual
 origin.date: 02/25/2019
-ms.date: 6/4/2019
-ms.author: v-lingwu
+ms.topic: conceptual
+ms.date: 08/20/2020
+ms.author: v-johya
 ms.subservice: metrics
-ms.openlocfilehash: 66cc331b6fcd915ca07b42210e194680408a9bdf
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: d49a2dca84e5ed5612855218cb46762172b1c090
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79452400"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457335"
 ---
 # <a name="getting-started-with-azure-metrics-explorer"></a>Azure 指标资源管理器入门
 
 ## <a name="where-do-i-start"></a>从哪里开始
-Azure Monitor 指标资源管理器是 Microsoft Azure 门户的一个组件，通过它可以绘制图表、以直观的形式关联趋势及研究指标值的上升和下降。 使用指标资源管理器调查资源的运行状况和利用率。 请按以下顺序开始：
+Azure Monitor 指标资源管理器是 Azure 门户的一个组件，通过它可以绘制图表、以直观的形式关联趋势及研究指标值的上升和下降。 使用指标资源管理器调查资源的运行状况和利用率。 请按以下顺序开始：
 
 1. [选取资源和指标](#create-your-first-metric-chart)并查看基本图表。 然后选择与调查相关的[时间范围](#select-a-time-range)。
 
@@ -40,7 +40,7 @@ Azure Monitor 指标资源管理器是 Microsoft Azure 门户的一个组件，�
 
     > ![选择指标](./media/metrics-getting-started/metric-picker.png)
 
-4. （可选）可以更改指标聚合。 例如，你可能希望图表显示指标的最小值、最大值或平均值。
+4. （可选）可以[更改指标聚合](metrics-charts.md#changing-aggregation)。 例如，你可能希望图表显示指标的最小值、最大值或平均值。
 
 > [!NOTE]
 > 如果要查看在同一图表中绘制的多个指标，请使用“添加指标”按钮，并重复这些步骤  。 若要在一个视图中添加多个图表，请选择顶部的“添加图表”按钮。 
@@ -74,3 +74,4 @@ Azure Monitor 指标资源管理器是 Microsoft Azure 门户的一个组件，�
 * [对指标资源管理器进行故障排除](metrics-troubleshoot.md)
 * [查看 Azure 服务的可用指标列表](metrics-supported.md)
 * [查看已配置图表的示例](metric-chart-samples.md)
+

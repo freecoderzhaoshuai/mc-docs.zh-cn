@@ -3,14 +3,14 @@ title: Durable Functions 中的诊断 - Azure
 description: 了解如何使用 Azure Functions 的 Durable Functions 扩展诊断问题。
 author: cgillum
 ms.topic: conceptual
-ms.date: 08/11/2020
+ms.date: 09/03/2020
 ms.author: v-junlch
-ms.openlocfilehash: 3be1b715fe7d6b18842eaca8db04f6b745229d7a
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: 2527121ce98da4c84f1d36a8b44f22afcb2ced30
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223526"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413264"
 ---
 # <a name="diagnostics-in-durable-functions-in-azure"></a>Azure Durable Functions 中的诊断
 
@@ -28,7 +28,7 @@ Azure Functions Durable 扩展还会发出跟踪事件，用于跟踪业务流�
 
 * **hubName**：运行业务流程的任务中心的名称。
 * **appName**：函数应用的名称。 当有多个函数应用共享同一个 Application Insights 实例时，此字段非常有用。
-* **slotName**：运行当前函数应用的[部署槽位](../functions-deployment-slots.md)。 利用部署槽位控制业务流程的版本时，此字段非常有用。
+* **slotName**：运行当前函数应用的[部署槽位](../functions-deployment-slots.md)。 使用部署槽位控制业务流程的版本时，此字段非常有用。
 * **functionName**：业务流程协调程序或活动函数的名称。
 * **functionType**：函数的类型，例如“业务流程协调程序”或“活动”。********
 * **instanceId**：业务流程实例的唯一 ID。
@@ -88,7 +88,7 @@ Azure Functions Durable 扩展还会发出跟踪事件，用于跟踪业务流�
 
 #### <a name="functions-20"></a>Functions 2.0
 
-```javascript
+```json
 {
     "extensions": {
         "durableTask": {
@@ -103,9 +103,9 @@ Azure Functions Durable 扩展还会发出跟踪事件，用于跟踪业务流�
 
 ### <a name="single-instance-query"></a>单实例查询
 
-以下查询显示 [Hello Sequence](durable-functions-sequence.md) 函数业务流程的单个实例的历史跟踪数据。 该查询是使用 [Application Insights 查询语言 (AIQL)](https://aka.ms/LogAnalyticsLanguageReference) 编写的。 它会筛选出重播执行，以便仅显示逻辑执行路径。** 可以通过按 `timestamp` 和 `sequenceNumber` 排序来安排事件顺序，如以下查询中所示：
+以下查询显示 [Hello Sequence](durable-functions-sequence.md) 函数业务流程的单个实例的历史跟踪数据。 它是使用 [Kusto 查询语言](/data-explorer/kusto/query/)编写的。 它会筛选出重播执行，以便仅显示逻辑执行路径。** 可以通过按 `timestamp` 和 `sequenceNumber` 排序来安排事件顺序，如以下查询中所示：
 
-```AIQL
+```kusto
 let targetInstanceId = "ddd1aaa685034059b545eb004b15d4eb";
 let start = datetime(2018-03-25T09:20:00);
 traces
@@ -124,13 +124,13 @@ traces
 
 结果是显示业务流程执行路径的跟踪事件的列表，包括所有活动函数，按执行时间以升序排序。
 
-![Application Insights 查询](./media/durable-functions-diagnostics/app-insights-single-instance-ordered-query.png)
+![Application Insights 单实例已排序的查询](./media/durable-functions-diagnostics/app-insights-single-instance-ordered-query.png)
 
 ### <a name="instance-summary-query"></a>实例摘要查询
 
 以下查询显示在指定时间范围中运行的所有业务流程实例的状态。
 
-```AIQL
+```kusto
 let start = datetime(2017-09-30T04:30:00);
 traces
 | where timestamp > start and timestamp < start + 1h
@@ -148,13 +148,61 @@ traces
 
 结果是实例 ID 的列表及其当前运行时状态。
 
-![Application Insights 查询](./media/durable-functions-diagnostics/app-insights-single-summary-query.png)
+![Application Insights 单实例查询](./media/durable-functions-diagnostics/app-insights-single-summary-query.png)
 
-## <a name="logging"></a>Logging
+## <a name="durable-task-framework-logging"></a>Durable Task Framework 日志记录
+
+Durable 扩展日志对于了解业务流程逻辑的行为很有帮助。 但这些日志并非始终包含足够的信息来调试框架级别的性能和可靠性问题。 从 Durable 扩展 v2.3.0 开始，由基础 Durable Task Framework (DTFx) 发出的日志也可用于集合。
+
+查看 DTFx 发出的日志时，请务必了解 DTFx 引擎由两个组件组成：核心调度引擎 (`DurableTask.Core`) 和众多受支持的存储提供程序之一（Durable Functions 默认使用 `DurableTask.AzureStorage`）。
+
+* **DurableTask**：包含有关业务流程执行和低级别计划的信息。
+* **DurableTask.AzureStorage**：包含与 Azure 存储项目交互相关的信息，其中包括用于存储和提取内部业务流程状态的内部队列、blob 和存储表。
+
+可通过更新函数应用的 host.json 文件的 `logging/logLevel` 部分来启用这些日志。 下面的示例演示如何从 `DurableTask.Core` 和 `DurableTask.AzureStorage` 启用警告和错误日志：
+
+```json
+{
+  "version": "2.0",
+  "logging": {
+    "logLevel": {
+      "DurableTask.AzureStorage": "Warning",
+      "DurableTask.Core": "Warning"
+    }
+  }
+}
+```
+
+如果已启用 Application Insights，这些日志会自动添加到 `trace` 集合。 可使用 Kusto 查询像搜索其他 `trace` 日志一样搜索它们。
+
+> [!NOTE]
+> 对于生产应用程序，建议使用 `"Warning"` 筛选器启用 `DurableTask.Core` 和 `DurableTask.AzureStorage` 日志。 较高详细程度筛选器（如 `"Information"`）对于调试性能问题非常有用。 但这些日志事件会占用很大容量，可能会大大增加 Application Insights 数据存储费用。
+
+以下 Kusto 查询演示了如何查询 DTFx 日志。 查询最重要的部分是 `where customerDimensions.Category startswith "DurableTask"`，因为它将结果筛选到 `DurableTask.Core` 和 `DurableTask.AzureStorage` 类别中的日志。
+
+```kusto
+traces
+| where customDimensions.Category startswith "DurableTask"
+| project
+    timestamp,
+    severityLevel,
+    Category = customDimensions.Category,
+    EventId = customDimensions.EventId,
+    message,
+    customDimensions
+| order by timestamp asc 
+```
+结果为 Durable Task Framework 日志提供程序编写的一组日志。
+
+![Application Insights DTFx 查询结果](./media/durable-functions-diagnostics/app-insights-dtfx.png)
+
+有关可用日志事件的详细信息，请参阅 [GitHub 上的 Durable Task Framework 结构化日志记录文档](https://github.com/Azure/durabletask/tree/master/src/DurableTask.Core/Logging#durabletaskcore-logging)。
+
+## <a name="app-logging"></a>应用日志记录
 
 直接从业务流程协调程序函数写入日志时，必须注意业务流程协调程序的重播行为。 例如，考虑以下业务流程协调程序函数：
 
-### <a name="precompiled-c"></a>预编译 C#
+# <a name="c"></a>[C#](#tab/csharp)
 
 ```csharp
 [FunctionName("FunctionChain")]
@@ -172,24 +220,7 @@ public static async Task Run(
 }
 ```
 
-### <a name="c-script"></a>C# 脚本
-
-```csharp
-public static async Task Run(
-    IDurableOrchestrationContext context,
-    ILogger log)
-{
-    log.LogInformation("Calling F1.");
-    await context.CallActivityAsync("F1");
-    log.LogInformation("Calling F2.");
-    await context.CallActivityAsync("F2");
-    log.LogInformation("Calling F3");
-    await context.CallActivityAsync("F3");
-    log.LogInformation("Done!");
-}
-```
-
-### <a name="javascript-functions-20-only"></a>JavaScript（仅限 Functions 2.0）
+# <a name="javascript"></a>[JavaScript](#tab/javascript)
 
 ```javascript
 const df = require("durable-functions");
@@ -223,9 +254,9 @@ Done!
 > [!NOTE]
 > 请记住，尽管日志声明要调用 F1、F2 和 F3，但实际上仅在首次遇到这些函数时才调用这些函数。** 在重播期间发生的后续调用将被跳过，输出将重播到业务流程协调程序逻辑。
 
-如果只想针对非重播执行记录日志，可以编写一个条件表达式，规定仅当 `IsReplaying` 为 `false` 时才记录日志。 沿用上面的示例，不过这一次要执行重播检查。
+如果只想针对非重播执行编写日志，可以编写一个条件表达式，规定仅当“is replaying”标志为 `false` 时才记录日志。 沿用上面的示例，不过这一次要执行重播检查。
 
-#### <a name="precompiled-c"></a>预编译 C#
+# <a name="c"></a>[C#](#tab/csharp)
 
 ```csharp
 [FunctionName("FunctionChain")]
@@ -243,40 +274,7 @@ public static async Task Run(
 }
 ```
 
-#### <a name="c"></a>C#
-
-```cs
-public static async Task Run(
-    IDurableOrchestrationContext context,
-    ILogger log)
-{
-    if (!context.IsReplaying) log.LogInformation("Calling F1.");
-    await context.CallActivityAsync("F1");
-    if (!context.IsReplaying) log.LogInformation("Calling F2.");
-    await context.CallActivityAsync("F2");
-    if (!context.IsReplaying) log.LogInformation("Calling F3");
-    await context.CallActivityAsync("F3");
-    log.LogInformation("Done!");
-}
-```
-
-#### <a name="javascript-functions-20-only"></a>JavaScript（仅限 Functions 2.0）
-
-```javascript
-const df = require("durable-functions");
-
-module.exports = df.orchestrator(function*(context){
-    if (!context.df.isReplaying) context.log("Calling F1.");
-    yield context.df.callActivity("F1");
-    if (!context.df.isReplaying) context.log("Calling F2.");
-    yield context.df.callActivity("F2");
-    if (!context.df.isReplaying) context.log("Calling F3.");
-    yield context.df.callActivity("F3");
-    context.log("Done!");
-});
-```
-
-从 Durable Functions 2.0 开始，.NET 业务流程协调程序函数还可以选择创建在重播期间自动筛选掉日志语句的 `ILogger`。 此自动筛选使用 `IDurableOrchestrationContext.CreateReplaySafeLogger(ILogger)` API 完成。
+从 Durable Functions 2.0 开始，.NET 业务流程协调程序函数还可以选择创建在重播期间自动筛选掉日志语句的 `ILogger`。 这种自动筛选是使用 [IDurableOrchestrationContext.CreateReplaySafeLogger(ILogger)](https://docs.microsoft.com/dotnet/api/microsoft.azure.webjobs.extensions.durabletask.durablecontextextensions.createreplaysafelogger) API 完成的。
 
 ```csharp
 [FunctionName("FunctionChain")]
@@ -295,6 +293,25 @@ public static async Task Run(
 }
 ```
 
+> [!NOTE]
+> 前面的 C# 示例适用于 Durable Functions 2.x。 对于 Durable Functions 1.x，必须使用 `DurableOrchestrationContext` 而不是 `IDurableOrchestrationContext`。 有关版本之间差异的详细信息，请参阅 [Durable Functions 版本](durable-functions-versions.md)一文。
+
+# <a name="javascript"></a>[JavaScript](#tab/javascript)
+
+```javascript
+const df = require("durable-functions");
+
+module.exports = df.orchestrator(function*(context){
+    if (!context.df.isReplaying) context.log("Calling F1.");
+    yield context.df.callActivity("F1");
+    if (!context.df.isReplaying) context.log("Calling F2.");
+    yield context.df.callActivity("F2");
+    if (!context.df.isReplaying) context.log("Calling F3.");
+    yield context.df.callActivity("F3");
+    context.log("Done!");
+});
+```
+
 经过之前提到的更改，日志输出如下：
 
 ```txt
@@ -304,14 +321,11 @@ Calling F3.
 Done!
 ```
 
-> [!NOTE]
-> 前面的 C# 示例适用于 Durable Functions 2.x。 对于 Durable Functions 1.x，必须使用 `DurableOrchestrationContext` 而不是 `IDurableOrchestrationContext`。 有关版本之间差异的详细信息，请参阅 [Durable Functions 版本](durable-functions-versions.md)一文。
-
 ## <a name="custom-status"></a>自定义状态
 
-使用自定义业务流程状态，可以为业务流程协调程序函数设置自定义状态值。 此状态是通过 HTTP 状态查询 API 或 `IDurableOrchestrationClient.GetStatusAsync` API 提供的。 自定义业务流程状态为业务流程协调程序函数实现了更丰富的监视。 例如，业务流程协调程序函数代码可以包括 `IDurableOrchestrationContext.SetCustomStatus` 调用来更新长时间运行的操作的进度。 然后，客户端（例如网页或其他外部系统）可以定期查询 HTTP 状态查询 API 以获得更丰富的进度信息。 下面提供了使用 `IDurableOrchestrationContext.SetCustomStatus` 的示例：
+使用自定义业务流程状态，可以为业务流程协调程序函数设置自定义状态值。 然后可通过 [HTTP 状态查询 API](durable-functions-http-api.md#get-instance-status) 或通过特定于语言的 API 调用，对外部客户端显示此自定义状态。 自定义业务流程状态为业务流程协调程序函数实现了更丰富的监视。 例如，业务流程协调程序函数代码可以调用“set custom status”API 来更新长时间运行的操作的进度。 然后，客户端（例如网页或其他外部系统）可以定期查询 HTTP 状态查询 API 以获得更丰富的进度信息。 下面提供用于在业务流程协调程序函数中设置自定义状态值的示例代码：
 
-### <a name="precompiled-c"></a>预编译 C#
+# <a name="c"></a>[C#](#tab/csharp)
 
 ```csharp
 [FunctionName("SetStatusTest")]
@@ -330,7 +344,7 @@ public static async Task SetStatusTest([OrchestrationTrigger] IDurableOrchestrat
 > [!NOTE]
 > 前面的 C# 示例适用于 Durable Functions 2.x。 对于 Durable Functions 1.x，必须使用 `DurableOrchestrationContext` 而不是 `IDurableOrchestrationContext`。 有关版本之间差异的详细信息，请参阅 [Durable Functions 版本](durable-functions-versions.md)一文。
 
-### <a name="javascript-functions-20-only"></a>JavaScript（仅限 Functions 2.0）
+# <a name="javascript"></a>[JavaScript](#tab/javascript)
 
 ```javascript
 const df = require("durable-functions");
@@ -349,7 +363,7 @@ module.exports = df.orchestrator(function*(context) {
 在业务流程正在运行时，外部客户端可以提取此自定义状态：
 
 ```http
-GET /admin/extensions/DurableTaskExtension/instances/instance123
+GET /runtime/webhooks/durabletask/instances/instance123?code=XYZ
 
 ```
 
@@ -379,7 +393,7 @@ Azure Functions 支持直接调试函数代码，Durable Functions 承袭了这�
 * **停止和启动**：Durable Functions 中的消息在调试会话之间保持不变。 如果在执行持久函数时停止调试并终止本地主机进程，则该函数可能会在将来的调试会话中自动重新执行。 如果不需要，则此行为可能会造成混淆。 清除调试会话之间的[内部存储队列](durable-functions-perf-and-scale.md#internal-queue-triggers)中的所有消息可避免此行为。
 
 > [!TIP]
-> 在业务流程协调程序函数中设置断点时，如果只想中断非重播执行，可以设置一个条件断点，规定仅当 `IsReplaying` 为 `false` 时才中断。
+> 在业务流程协调程序函数中设置断点时，如果只想中断非重播执行，可以设置一个条件断点，规定仅当“is replaying”为 `false` 时才中断。
 
 ## <a name="storage"></a>存储
 

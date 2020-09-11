@@ -4,15 +4,15 @@ description: 适用于 Azure 应用程序网关的 Azure 安全基线
 author: msmbaldwin
 ms.service: security
 ms.topic: conceptual
-ms.date: 06/23/2020
+ms.date: 09/01/2020
 ms.author: v-junlch
 ms.custom: security-benchmark
-ms.openlocfilehash: 60d5094f5c9833a9f28ecdee6c2161a7d687c48b
-ms.sourcegitcommit: 3a8a7d65d0791cdb6695fe6c2222a1971a19f745
+ms.openlocfilehash: 6185bfeba744d0506264df16a4d3b2d4dfebb767
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2020
-ms.locfileid: "85516790"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413441"
 ---
 # <a name="azure-security-baseline-for-azure-application-gateway"></a>适用于 Azure 应用程序网关的 Azure 安全基线
 
@@ -150,7 +150,7 @@ Azure 应用程序网关的 Azure 安全基线包含可帮助你改善部署安�
 
 **指导**：定义并实现与 Azure 应用程序网关部署相关的网络设置的标准安全配置。 在“Microsoft.Network”命名空间中使用 Azure Policy 别名创建自定义策略，以审核或强制实施 Azure 应用程序网关、Azure 虚拟网络和网络安全组的网络配置。 还可以利用内置策略定义。
 
-还可以使用 Azure 蓝图，通过在单个蓝图定义中打包关键环境项目（例如 Azure 资源管理器模板、基于角色的访问控制 (RBAC)和策略），来简化大规模的 Azure 部署。 可以轻松将蓝图应用到新的订阅和环境，并通过版本控制来微调控制措施和管理。
+还可以使用 Azure 蓝图，通过在单个蓝图定义中打包关键环境项目（例如 Azure 资源管理器模板、Azure 基于角色的访问控制 (Azure RBAC) 和策略）来简化大规模的 Azure 部署。 可以轻松将蓝图应用到新的订阅和环境，并通过版本控制来微调控制措施和管理。
 
 * [如何配置和管理 Azure Policy](/governance/policy/tutorials/create-and-manage)
 
@@ -451,6 +451,8 @@ Azure 应用程序网关还提供与 Azure Application Insights 的内置集成�
 
 可以通过为 Azure Active Directory 用户帐户创建诊断设置，并将审核日志和登录日志发送到 Log Analytics 工作区，来简化此过程。 你可以在 Log Analytics 工作区中配置所需的警报。
 
+* [如何将 Azure 活动日志集成到 Azure Monitor](../active-directory/reports-monitoring/howto-integrate-activity-logs-with-log-analytics.md)
+
 **Azure 安全中心监视**：目前不可用
 
 **责任**：客户
@@ -535,11 +537,11 @@ Microsoft 会管理 Azure 应用程序网关的底层基础结构，并实现了
 
 **责任**：不适用
 
-### <a name="46-use-role-based-access-control-to-control-access-to-resources"></a>4.6：使用基于角色的访问控制来控制对资源的访问
+### <a name="46-use-azure-rbac-to-control-access-to-resources"></a>4.6：使用 Azure RBAC 控制对资源的访问
 
-**指导**：使用 Azure Active Directory (AD) 基于角色的访问控制 (RBAC) 来控制对 Azure 应用程序网关控制平面（Azure 门户）的访问。
+**指导**：使用 Azure 基于角色的访问控制 (Azure RBAC) 来控制对 Azure 应用程序网关控制平面（Azure 门户）的访问。
 
-* [如何在 Azure 中配置 RBAC](/role-based-access-control/role-assignments-portal)
+* [如何配置 Azure RBAC](/role-based-access-control/role-assignments-portal)
 
 **Azure 安全中心监视**：目前不可用
 
@@ -635,7 +637,7 @@ Microsoft 对基础平台进行了扫描和修补。 查看 Azure 应用程序�
 
 **指导**：使用 Azure Resource Graph 查询/发现订阅中的所有资源（例如计算、存储、网络、端口和协议等）。 确保租户中具有适当的（读取）权限，并枚举所有 Azure 订阅以及订阅中的资源。
 
-虽然可以通过 Resource Graph 发现经典的 Azure 资源，但强烈建议创建和使用 Azure 资源管理器资源以供后续使用。
+尽管可以通过 Resource Graph 发现经典 Azure 资源，但我们强烈建议你今后还是创建并使用 Azure 资源管理器资源。
 
 * [如何使用 Azure Resource Graph 创建查询](/governance/resource-graph/first-query-portal)
 
@@ -659,7 +661,7 @@ Microsoft 对基础平台进行了扫描和修补。 查看 Azure 应用程序�
 
 ### <a name="63-delete-unauthorized-azure-resources"></a>6.3：删除未经授权的 Azure 资源
 
-**指南**：在适用的情况下，请使用标记、管理组和单独的订阅来组织和跟踪 Azure 资产。 定期协调清单，并确保及时从订阅中删除未经授权的资源。
+**指南**：在适用的情况下，请使用标记、管理组和单独的订阅来组织和跟踪 Azure 资产。 定期核对清单，确保及时地从订阅中删除未经授权的资源。
 
 此外，在 Azure Policy 中使用以下内置策略定义，对可以在客户订阅中创建的资源类型施加限制：
 - 不允许的资源类型
@@ -685,7 +687,7 @@ Microsoft 对基础平台进行了扫描和修补。 查看 Azure 应用程序�
 
 **指导**：使用 Azure Policy 对可以在订阅中创建的资源类型施加限制。
 
-使用 Azure Resource Graph 查询/发现订阅中的资源。 确保环境中的所有 Azure 资源均已获得批准。
+使用 Azure Resource Graph 查询/发现订阅中的资源。 确保环境中存在的所有 Azure 资源已获得批准。
 
 * [如何配置和管理 Azure Policy](/governance/policy/tutorials/create-and-manage)
 
@@ -897,9 +899,8 @@ Microsoft 对基础平台进行了扫描和修补。 查看 Azure 应用程序�
 
 ### <a name="713-eliminate-unintended-credential-exposure"></a>7.13：消除意外的凭据透露
 
-**指南**：实施凭据扫描程序来识别代码中的凭据。 凭据扫描程序还会建议将发现的凭据移动到更安全的位置，例如 Azure Key Vault。
+**指南**：实施凭据扫描程序来识别代码中的凭据。 凭据扫描程序还会建议将发现的凭据转移到更安全的位置，例如 Azure Key Vault。
 
-* [如何设置凭据扫描程序](https://secdevtools.chinacloudsites.cn/helpcredscan.html)
 
 **Azure 安全中心监视**：不适用
 
@@ -987,11 +988,11 @@ Microsoft 对基础平台进行了扫描和修补。 查看 Azure 应用程序�
 
 ### <a name="101-create-an-incident-response-guide"></a>10.1：创建事件响应指导
 
-**指南**：为组织制定事件响应指南。 确保制定书面事件响应计划，其中定义了人员的所有角色，以及从检测到事件后审查的事件处理/管理阶段。
+**指南**：为组织制定事件响应指南。 确保在书面的事件响应计划中定义人员职责，以及事件处理/管理从检测到事件后审查的各个阶段。
 
 * [如何在 Azure 安全中心配置工作流自动化](/security-center/security-center-planning-and-operations-guide)
 
-* [有关如何生成自己的安全事件响应过程的指南](https://msrc-blog.microsoft.com/2019/07/01/inside-the-msrc-building-your-own-security-incident-response-process/)
+* [关于建立自己的安全事件响应流程的指南](https://msrc-blog.microsoft.com/2019/07/01/inside-the-msrc-building-your-own-security-incident-response-process/)
 
 * [Microsoft 安全响应中心事件分析](https://msrc-blog.microsoft.com/2019/07/01/inside-the-msrc-building-your-own-security-incident-response-process/)
 
@@ -1003,9 +1004,9 @@ Microsoft 对基础平台进行了扫描和修补。 查看 Azure 应用程序�
 
 ### <a name="102-create-an-incident-scoring-and-prioritization-procedure"></a>10.2：创建事件评分和优先级设定过程
 
-**指南**：安全中心向每个警报分配一个严重性，帮助你优先处理应首先调查的警报。 严重性取决于安全中心对用于发出警报的调查结果或分析的置信度，以及导致警报的活动背后存在恶意意图的可信度。
+**指南**：安全中心向每个警报分配一个严重性，帮助你优先处理应首先调查的警报。 严重性取决于安全中心在发出警报时所依据的检测结果和分析结果的置信度，以及导致发出警报的活动的恶意企图的置信度。
 
-此外，应清楚地标记订阅（例如 生产、非生产），并创建命名系统来对 Azure 资源进行明确标识和分类。
+此外，请明确标记订阅（例如 生产、非生产），并创建命名系统来对 Azure 资源进行明确标识和分类。
 
 **Azure 安全中心监视**：是
 
@@ -1013,7 +1014,7 @@ Microsoft 对基础平台进行了扫描和修补。 查看 Azure 应用程序�
 
 ### <a name="103-test-security-response-procedures"></a>10.3：测试安全响应过程
 
-**指导**：定期练习以测试系统的事件响应能力。 明确薄弱点和差距，并根据需要修订计划。
+**指导**：定期练习以测试系统的事件响应能力。 识别弱点和差距，并根据需要修改计划。
 
 * [请参阅 NIST 的刊物：Guide to Test, Training, and Exercise Programs for IT Plans and Capabilities](https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-84.pdf)（IT 规划和功能的测试、培训与演练计划指南）
 

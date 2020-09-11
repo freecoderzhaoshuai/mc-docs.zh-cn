@@ -4,14 +4,14 @@ description: 了解如何使用 Azure PowerShell 对 Azure Redis 缓存执行管
 author: yegu-ms
 ms.service: cache
 ms.topic: conceptual
-ms.date: 08/24/2020
+ms.date: 08/31/2020
 ms.author: v-junlch
-ms.openlocfilehash: 78701ffe47dcace7256a34d99ddf082362e7b9a2
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 905ebf74e35ebba160613a040946b20e9dd6b554
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88946924"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413807"
 ---
 # <a name="manage-azure-cache-for-redis-with-azure-powershell"></a>使用 Azure PowerShell 管理 Azure Redis 缓存
 > [!div class="op_single_selector"]
@@ -57,7 +57,7 @@ ms.locfileid: "88946924"
 
 在可以将 Windows PowerShell 与 Azure Resource Manager 一起使用之前，需要具备以下项：
 
-* Windows PowerShell 3.0 版或 4.0 版。 若要查找 Windows PowerShell 的版本，请键入：`$PSVersionTable` 并验证 `PSVersion` 的值是否为 3.0 或 4.0。 若要安装兼容版本，请参阅 [Windows Management Framework 3.0](https://www.microsoft.com/download/details.aspx?id=34595) 或 [Windows Management Framework 4.0](https://www.microsoft.com/download/details.aspx?id=40855)。
+* Windows PowerShell 3.0 版或 4.0 版。 若要查找 Windows PowerShell 的版本，请键入：`$PSVersionTable` 并验证 `PSVersion` 的值是否为 3.0 或 4.0。 若要安装兼容版本，请参阅 [Windows Management Framework 3.0](https://www.microsoft.com/download/details.aspx?id=34595)。
 
 要获取你在本教程中看到的任何 cmdlet 的详细帮助，请使用 Get-Help cmdlet。
 

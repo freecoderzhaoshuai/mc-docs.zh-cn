@@ -3,14 +3,14 @@ title: Durable Functions 版本概述 - Azure Functions
 description: 了解 Durable Functions 版本。
 author: cgillum
 ms.topic: conceptual
-ms.date: 08/12/2020
+ms.date: 09/03/2020
 ms.author: v-junlch
-ms.openlocfilehash: 5665c42e3b2940912972da9876fda41be826d333
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: cd9878a21c670c2f6756a6838806dea38e1ad94c
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222600"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413794"
 ---
 # <a name="durable-functions-versions-overview"></a>Durable Functions 版本概述
 
@@ -44,7 +44,29 @@ Durable Functions 是 [Azure Functions](../functions-overview.md) 和 [Azure Web
 
 ### <a name="upgrade-the-extension"></a>升级扩展
 
-在项目中安装 2.x 版 [Durable Functions 绑定扩展](https://www.nuget.org/packages/Microsoft.Azure.WebJobs.Extensions.DurableTask)。 有关详细信息，请参阅[注册 Azure Functions 绑定扩展](../functions-bindings-register.md)。
+在项目中安装最新的 2.x 版 Durable Functions 绑定扩展。
+
+#### <a name="javascript-and-powershell"></a>JavaScript 和 PowerShell
+
+Durable Functions 2.x 在 [Azure Functions 扩展包](../functions-bindings-register.md#extension-bundles)的版本 2.x 中可用。
+
+若要更新项目中的扩展包版本，请打开 host.json 并更新 `extensionBundle` 部分以使用版本 2.x (`[2.*, 3.0.0)`)。
+
+```json
+{
+    "version": "2.0",
+    "extensionBundle": {
+        "id": "Microsoft.Azure.Functions.ExtensionBundle",
+        "version": "[2.*, 3.0.0)"
+    }
+}
+```
+
+#### <a name="net"></a>.NET
+
+更新 .NET 项目以使用最新版本的 [Durable Functions 绑定扩展](https://www.nuget.org/packages/Microsoft.Azure.WebJobs.Extensions.DurableTask)。
+
+有关详细信息，请参阅[注册 Azure Functions 绑定扩展](../functions-bindings-register.md#local-csharp)。
 
 ### <a name="update-your-code"></a>更新代码
 

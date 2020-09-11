@@ -1,10 +1,9 @@
 ---
-title: 排查 Windows 启动管理器错误 - 0xC0000225 找不到状态
+title: 排查 Windows 启动管理器错误 - 0xC0000225“找不到状态”
 description: 解决在 Azure VM 中出现错误代码 0xC0000225 的问题的步骤。
 services: virtual-machines-windows, azure-resource-manager
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: azure-resource-manager
 ms.assetid: c17899a4-b270-4725-9530-0dcd829b178c
@@ -13,14 +12,17 @@ ms.workload: na
 ms.tgt_pltfrm: vm-windows
 ms.topic: troubleshooting
 origin.date: 05/11/2020
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: b70447a2cf1dac81e5edb2f5b716d8080e76f9be
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: e14a7b79e259a241bf39d4c5578d0e096cbbb0b5
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946279"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456876"
 ---
 <!--Verified successfully-->
 # <a name="troubleshoot-windows-boot-manager-error----0xc0000225-status-not-found"></a>排查 Windows 启动管理器错误 - 0xC0000225“找不到状态”
@@ -29,7 +31,7 @@ ms.locfileid: "85946279"
 
 ## <a name="symptoms"></a>症状
 
-使用[启动诊断](/virtual-machines/troubleshooting/boot-diagnostics)查看 VM 的屏幕截图时，将看到屏幕截图显示 Windows 无法启动错误，状态代码为 0xc0000225。
+使用[启动诊断](./boot-diagnostics.md)查看 VM 的屏幕截图时，将看到屏幕截图显示 Windows 无法启动错误，状态代码为 0xc0000225。
 
 与此错误代码关联的文件将通知你采取哪些步骤来解决问题。 找到“文件:”部分的文本，以确定相应的操作方法。
 
@@ -92,7 +94,7 @@ ms.locfileid: "85946279"
 
 ### <a name="create-and-access-a-repair-vm"></a>创建并访问修复 VM
 
-1. 使用 [VM 修复命令](/virtual-machines/troubleshooting/repair-windows-vm-using-azure-virtual-machine-repair-commands) 的步骤 1-3 准备一个修复 VM。
+1. 使用 [VM 修复命令](./repair-windows-vm-using-azure-virtual-machine-repair-commands.md) 的步骤 1-3 准备一个修复 VM。
 1. 使用远程桌面连接来连接到修复 VM。
 
 ### <a name="select-a-solution"></a>选择解决方案
@@ -110,7 +112,7 @@ ms.locfileid: "85946279"
 1. 右键单击该文件，选择“属性”，然后选择“详细信息”选项卡以查看文件信息。
     1. 请注意文件版本，如下图所示：
 
-        ![“cng.sys”文件的属性窗口，突出显示了文件版本。](./media/troubleshoot-boot-error-status-not-found/5.png)
+        :::image type="content" source="./media/troubleshoot-boot-error-status-not-found/5.png" alt-text="“cng.sys”文件的属性窗口，突出显示了文件版本。":::
 
 1. 将该文件重命名为 < BINARY.SYS >.old，并将 < BINARY.SYS > 替换为该文件的名称。
 
@@ -160,7 +162,7 @@ ms.locfileid: "85946279"
 
     此图显示了第 1 代 VM 中的 Windows 启动加载程序，并突出显示了标识符属性。 突出显示的标识符属性显示了唯一的字母数字字符串。
 
-    ![Windows 启动加载程序显示在第 1 代 VM 中，并突出显示了标识符属性。 突出显示的标识符属性显示了唯一的字母数字字符串。](./media/troubleshoot-boot-error-status-not-found/7.png)
+    :::image type="content" source="./media/troubleshoot-boot-error-status-not-found/7.png" alt-text="Windows 启动加载程序显示在第 1 代 VM 中，并突出显示了标识符属性。突出显示的标识符属性显示了唯一的字母数字字符串。":::
 
     记下 Windows 启动加载程序的标识符，其路径为 \windows\system32\winload.exe。
 
@@ -169,7 +171,7 @@ ms.locfileid: "85946279"
 
         在下图中，磁盘 2 是附加到修复 VM 的磁盘号。 该图还显示了磁盘 2 上的 EFI 系统分区，该分区的大小为 100MB，并且未分配盘符。
 
-        ![磁盘 2 显示为附加到修复 VM 的磁盘号。 它还显示了磁盘 2 上的 EFI 系统分区，该分区为 100MB，并且未分配盘符。](./media/troubleshoot-boot-error-status-not-found/8.png)
+        :::image type="content" source="./media/troubleshoot-boot-error-status-not-found/8.png" alt-text="磁盘 2 显示为附加到修复 VM 的磁盘号。它还显示了磁盘 2 上的 EFI 系统分区，该分区为 100MB，并且未分配盘符。":::
 
     1. 以管理员身份打开权限提升的命令提示符，然后输入以下命令：
         1. 使用 `diskpart` 命令打开 DISKPART TOOL。
@@ -180,9 +182,9 @@ ms.locfileid: "85946279"
             sel disk <DISK #>
             ```
 
-            下图显示了列出和选择磁盘的结果。 列出了 Disk 0 (127 GB | Online)、Disk 1 (32 GB | Online) 和 Disk 2 (127 GB | Online)，并使用 `sel disk 2` 命令选择了 Disk 2。
+            下图显示了列出和选择磁盘的结果。 列出了 Disk 0 (127 GB / Online)、Disk 1 (32 GB / Online) 和 Disk 2 (127 GB / Online)，并使用 `sel disk 2` 命令选择了 Disk 2。
 
-            ![列出并选择磁盘的结果。 列出了 Disk 0 (127 GB | Online)、Disk 1 (32 GB | Online) 和 Disk 2 (127 GB | Online)，并选择了 Disk 2。](./media/troubleshoot-boot-error-status-not-found/9.png)
+            :::image type="content" source="./media/troubleshoot-boot-error-status-not-found/9.png" alt-text="列出并选择磁盘的结果。列出了 Disk 0 (127 GB | Online)、Disk 1 (32 GB | Online) 和 Disk 2 (127 GB | Online)，并选择了 Disk 2。":::
 
         1. 列出分区，并选择上一步中标识的 EFI 系统分区：
 
@@ -191,15 +193,15 @@ ms.locfileid: "85946279"
             sel partition <PARTITION #>
             ```
 
-            下图显示了列出和选择分区的结果。 列出了 Partition 1 (Reserved | 16MB)、Partition 2 (System | 100MB) 和 Partition 3 (Primary | 126 GB)，并使用 `sel part 2` 命令选择了 Partition 2。
+            下图显示了列出和选择分区的结果。 列出了 Partition 1 (Reserved / 16MB)、Partition 2 (System / 100MB) 和 Partition 3 (Primary / 126 GB)，并使用 `sel part 2` 命令选择了 Partition 2。
 
-            ![列出并选择分区的结果。 列出了 Partition 1 (Reserved | 16MB)、Partition 2 (System | 100MB) 和 Partition 3 (Primary | 126 GB)，并选择了 Partition 2。](./media/troubleshoot-boot-error-status-not-found/10.png)
+            :::image type="content" source="./media/troubleshoot-boot-error-status-not-found/10.png" alt-text="列出并选择分区的结果。列出了 Partition 1 (Reserved | 16MB)、Partition 2 (System | 100MB) 和 Partition 3 (Primary | 126 GB)，并选择了 Partition 2。":::
 
         1. 使用 `assign` 命令向 EFI 分区分配一个盘符。
 
             在下图中，可以在文件资源管理器中看到 `assign` 命令和新驱动器 SYSTEM (F:)。
 
-            ![可以在文件资源管理器中看到 assign 命令和新驱动器 SYSTEM (F:)。](./media/troubleshoot-boot-error-status-not-found/11.png)
+            :::image type="content" source="./media/troubleshoot-boot-error-status-not-found/11.png" alt-text="可以在文件资源管理器中看到 assign 命令和新驱动器 SYSTEM (F:)。":::
 
         1. 使用以下命令列出 BCD 存储数据：
 
@@ -207,13 +209,13 @@ ms.locfileid: "85946279"
 
             在下图中，Windows 启动加载程序位于第 2 代 VM 中，并突出显示了标识符属性。 突出显示的标识符属性的值为 {default}。
 
-            ![Windows 启动加载程序显示在第 2 代 VM 中，并突出显示了标识符属性。 突出显示的标识符属性将 default 显示为其值。](./media/troubleshoot-boot-error-status-not-found/12.png)
+            :::image type="content" source="./media/troubleshoot-boot-error-status-not-found/12.png" alt-text="Windows 启动加载程序显示在第 2 代 VM 中，并突出显示了标识符属性。突出显示的标识符属性将 default 显示为其值。":::
 
             记下 Windows 启动加载程序的标识符，其路径为 \windows\system32\winload.efi。
 
 1. 请注意，活动分区上缺少 OSDEVICE 变量：
 
-    ![命令提示符中列出了 Windows 启动管理器和 Windows 启动加载程序的属性，其中缺少 OSDEVICE 属性。](./media/troubleshoot-boot-error-status-not-found/13.png)
+    :::image type="content" source="./media/troubleshoot-boot-error-status-not-found/13.png" alt-text="命令提示符中列出了 Windows 启动管理器和 Windows 启动加载程序的属性，其中缺少 OSDEVICE 属性。":::
 
     在此图中，命令提示符中列出了 Windows 启动管理器和 Windows 启动加载程序的属性，但缺少 OSDEVICE 属性。
 
@@ -305,7 +307,6 @@ ms.locfileid: "85946279"
 
 ### <a name="rebuild-the-vm"></a>重新生成 VM
 
-使用 [VM 修复命令的步骤 5](/virtual-machines/troubleshooting/repair-windows-vm-using-azure-virtual-machine-repair-commands#repair-process-example) 重新生成 VM。
+使用 [VM 修复命令的步骤 5](./repair-windows-vm-using-azure-virtual-machine-repair-commands.md#repair-process-example) 重新生成 VM。
 
-<!-- Update_Description: new article about boot error status not found -->
-<!--NEW.date: 07/06/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -1,25 +1,29 @@
 ---
-title: 通过 Resource Manager 模板创建 Windows 虚拟机
+title: 在 Azure 中使用模板创建 Windows VM
 description: 将 Resource Manager 模板与 PowerShell 配合使用，轻松创建新的 Windows VM。
-author: rockboyfor
 ms.service: virtual-machines-windows
-ms.topic: article
+ms.topic: how-to
 origin.date: 03/22/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: 172042e6281f6767372cd2393b859e868c073645
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: b72818b8b764aaf11d5ade66fc69d536d2210c34
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945801"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463194"
 ---
 # <a name="create-a-windows-virtual-machine-from-a-resource-manager-template"></a>通过 Resource Manager 模板创建 Windows 虚拟机
 
 了解如何使用 Azure 资源管理器模板和 Azure PowerShell 创建 Windows 虚拟机。 本文中使用的模板会在包含单个子网的新虚拟网络上部署运行 Windows Server 的单个虚拟机。 若要创建 Linux 虚拟机，请参阅[如何使用 Azure 资源管理器模板创建 Linux 虚拟机](../linux/create-ssh-secured-vm-from-template.md)。
 
-<!--Not Available on from the Azure Cloud shell-->
+一种替代方法是从 Azure 门户部署模板。 若要在门户中打开该模板，请选择“部署到 Azure”按钮。
+
+[:::image type="content" source="../../media/template-deployments/deploy-to-azure.svg" alt-text="部署到 Azure":::](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-vm-simple-windows%2Fazuredeploy.json)
 
 ## <a name="create-a-virtual-machine"></a>创建虚拟机
 
@@ -260,7 +264,7 @@ ms.locfileid: "85945801"
 
 ```
 
-在 Azure 本地 Powershell 控制台上以管理员权限运行 PowerShell 脚本。
+若要在 Azure 本地 PowerShell 控制台上以管理员权限运行以下 PowerShell 脚本，请执行以下操作。
 
 <!--Not Avaialble on instead of from the Azure Cloud shell-->
 
@@ -291,11 +295,11 @@ New-AzResourceGroupDeployment `
 
 下面是一些其他资源：
 
-- 若要了解如何开发资源管理器模板，请参阅 [Azure 资源管理器文档](/azure-resource-manager/)。
+- 若要了解如何开发资源管理器模板，请参阅 [Azure 资源管理器文档](../../azure-resource-manager/index.yml)。
     
     <!--Not Available on  [Azure template reference](https://docs.microsoft.com/azure/templates/microsoft.compute/allversions)-->
 
-- 若要查看更多的虚拟机模板示例，请参阅 [Azure 快速入门模板](https://github.com/Azure/azure-quickstart-templates/?resourceType=Microsoft.Compute&pageNumber=1&sort=Popular)。
+- 若要查看更多的虚拟机模板示例，请参阅 [Azure 快速入门模板](https://azure.microsoft.com/resources/templates/?resourceType=Microsoft.Compute&pageNumber=1&sort=Popular)。
 
 ## <a name="connect-to-the-virtual-machine"></a>连接到虚拟机
 
@@ -303,8 +307,8 @@ New-AzResourceGroupDeployment `
 
 ## <a name="next-steps"></a>后续步骤
 
-- 如果部署出现问题，可以参阅[排查使用 Azure 资源管理器时的常见 Azure 部署错误](../../resource-manager-common-deployment-errors.md)。
+- 如果部署出现问题，可以参阅[排查使用 Azure 资源管理器时的常见 Azure 部署错误](../../azure-resource-manager/templates/common-deployment-errors.md)。
 - 通过查看[使用 Azure PowerShell 模块创建和管理 Windows VM](tutorial-manage-vm.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)，了解如何创建和管理虚拟机。
 
 <!--Not Avaialble on Microsoft templates-->
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

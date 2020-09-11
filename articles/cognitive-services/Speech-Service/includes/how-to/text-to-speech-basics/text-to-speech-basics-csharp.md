@@ -3,14 +3,15 @@ author: trevorbye
 ms.service: cognitive-services
 ms.topic: include
 origin.date: 03/25/2020
-ms.date: 04/20/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: 77452c247c63bb209246e86861b141e292104481
-ms.sourcegitcommit: 304d3ef3c9e65c3e85977b3afb9985fbc0f908d6
+ms.custom: devx-track-csharp
+ms.openlocfilehash: e53401ae5a252439ce9a51e0109d8113fdecaa67
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85098086"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89323283"
 ---
 ## <a name="prerequisites"></a>先决条件
 
@@ -221,8 +222,8 @@ public static async Task SynthesizeAudioAsync()
 
 若要切换到某种神经语音，请将 `name` 更改为[神经语音选项](https://docs.azure.cn/cognitive-services/speech-service/language-support#neural-voices)之一。 然后，为 `mstts` 添加 XML 命名空间，并在 `<mstts:express-as>` 标记中包装文本。 使用 `style` 参数自定义讲话风格。 此示例使用 `cheerful`，但请尝试将其设置为 `customerservice` 或 `chat`，以了解讲话风格的差别。
 
-<!-- > [!IMPORTANT]
-> Neural voices are **only** supported for Speech resources created in *East US*, *South East Asia*, and *West Europe* regions. -->
+> [!IMPORTANT]
+> 只有“中国东部 2”区域中创建的语音资源才支持神经网络语音。
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US">

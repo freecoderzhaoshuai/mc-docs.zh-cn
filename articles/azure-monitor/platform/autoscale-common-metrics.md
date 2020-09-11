@@ -1,18 +1,17 @@
 ---
 title: 自动缩放的常用指标
 description: 了解自动缩放云服务、虚拟机和 Web 应用时常用的指标。
-author: lingliw
 ms.topic: conceptual
-origin.date: 12/6/2016
-ms.date: 02/19/2020
-ms.author: v-lingwu
+author: Johnnytechn
+ms.date: 08/20/2020
 ms.subservice: autoscale
-ms.openlocfilehash: ed5364c3b3d50b9e071c09d5aa11dd6f68f5fb00
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+origin.date: 12/6/2016
+ms.openlocfilehash: ff38f3ee290290ef0c832af38b368b8c8111af2b
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77497604"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457227"
 ---
 # <a name="azure-monitor-autoscaling-common-metrics"></a>Azure Monitor 自动缩放常用指标
 
@@ -36,8 +35,8 @@ Azure Monitor 自动缩放仅适用于[虚拟机规模集](/virtual-machine-scal
 ### <a name="host-metrics-for-resource-manager-based-windows-and-linux-vms"></a>基于 Resource Manager 的 Windows 和 Linux VM 的主机指标
 默认情况下，将向 Windows 和 Linux 实例中的 Azure VM 和 VMSS 发出以下主机级指标。 这些指标可描述 Azure VM，但这些指标是从 Azure VM 主机而不是通过来宾 VM 上安装的代理收集的。 可在自动缩放规则中使用这些指标。
 
-- [基于 Resource Manager 的 Windows 和 Linux VM 的主机指标](../../azure-monitor/platform/metrics-supported.md#microsoftcomputevirtualmachines)
-- [基于 Resource Manager 的 Windows 和 Linux VM 规模集的主机指标](../../azure-monitor/platform/metrics-supported.md#microsoftcomputevirtualmachinescalesets)
+- [基于 Resource Manager 的 Windows 和 Linux VM 的主机指标](./metrics-supported.md#microsoftcomputevirtualmachines)
+- [基于 Resource Manager 的 Windows 和 Linux VM 规模集的主机指标](./metrics-supported.md#microsoftcomputevirtualmachinescalesets)
 
 ### <a name="guest-os-metrics-for-resource-manager-based-windows-vms"></a>基于资源管理器的 Windows VM 的来宾 OS 指标
 在 Azure 中创建 VM 时，使用诊断扩展会启用诊断。 诊断扩展会发出一组从 VM 内部获取的指标。 这意味着可以自动缩放不是默认发出的指标。
@@ -186,6 +185,6 @@ Get-AzMetricDefinition -ResourceId <resource_id> | Format-Table -Property Name,U
 ```
 
 > [!NOTE]
-> 若使用服务总线，则不存在资源组这一概念，但 Azure Resource Manager 会为每个区域创建一个默认资源组。 此资源组通常采用“Default-ServiceBus-[region]”的格式。 例如，“Default-ServiceBus-Chinanorth”、“Default-ServiceBus-Chinaeast”等。
+> 若使用服务总线，则不存在资源组这一概念，但 Azure Resource Manager 会为每个区域创建一个默认资源组。 此资源组通常采用“Default-ServiceBus-[region]”的格式。 例如“Default-ServiceBus-ChinaNorth”、“Default-ServiceBus-ChinaEast”等。
 >
 >

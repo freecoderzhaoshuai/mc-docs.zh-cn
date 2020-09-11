@@ -3,13 +3,13 @@ title: Azure Functions 中的部署技术
 description: 了解将代码部署到 Azure Functions 的不同方式。
 ms.custom: vs-azure
 ms.topic: conceptual
-ms.date: 08/24/2020
-ms.openlocfilehash: 77df1bad2042f3fdd73c060e40cd5932035e6915
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.date: 09/02/2020
+ms.openlocfilehash: 2ee91b38fa678bae792993e84e33f8f287c956b9
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947134"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413641"
 ---
 # <a name="deployment-technologies-in-azure-functions"></a>Azure Functions 中的部署技术
 
@@ -186,6 +186,12 @@ Web 部署可打包 Windows 应用程序（包括 Azure 中的 Windows 上运行
 | TypeScript (Node.js) | | | |  |
 
 <sup>*</sup> 仅对使用专用计划的 Linux 上的 Functions 的 HTTP 和计时器触发器启用门户编辑。
+
+## <a name="deployment-behaviors"></a>部署行为
+
+在进行部署时，允许所有现有执行完成或超时，然后加载新代码以开始处理请求。
+
+如果需要对此转换进行更多控制，则应使用部署槽。
 
 ## <a name="deployment-slots"></a>部署槽
 

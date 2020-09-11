@@ -3,8 +3,7 @@ title: 排查 Azure 中的 Windows 虚拟机部署问题 | Azure
 description: 排查在 Azure 资源管理器部署模型中部署 Windows 虚拟机时遇到的问题。
 services: virtual-machines-windows
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 tags: azure-resource-manager
 ms.assetid: 4e383427-4aff-4bf3-a0f4-dbff5c6f0c81
@@ -13,14 +12,17 @@ ms.workload: infrastructure-services
 ms.tgt_pltfrm: na
 ms.topic: troubleshooting
 origin.date: 11/01/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 47aca0661b7fbfc388e4c318e1ce6eb44ed726ed
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: e43670bd2fceeb2c9a8270cf2d7884563872fd63
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945644"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456804"
 ---
 # <a name="troubleshoot-deploying-windows-virtual-machine-issues-in-azure"></a>排查 Azure 中的 Windows 虚拟机部署问题
 
@@ -56,10 +58,9 @@ productPesIds="1234, 5678"
 
 ## <a name="how-can-i-use-and-deploy-a-windows-client-image-into-azure"></a>如何使用 Windows 客户端映像并将其部署到 Azure？
 
-如果有相应的 Visual Studio（以前为 MSDN）订阅，可以在 Azure 中使用 Windows 10 开发/测试方案。  [本文](../windows/client-images.md)概述在 Azure 中运行 Windows 客户端和使用 Azure 库映像所要满足的条件。
+如果你有相应的 Visual Studio（以前为 MSDN）订阅，可以在 Azure 中使用 Windows 7 或 Windows 10 开展开发/测试方案。 [本文](../windows/client-images.md)概述在 Azure 中运行 Windows 客户端和使用 Azure 库映像所要满足的条件。
 
-<!--Not Available on Windows 7, Windows 8, or-->
-<!--Not Available on [article](../windows/client-images.md)-->
+<!--Not Available on Windows 8-->
 
 ## <a name="how-can-i-deploy-a-virtual-machine-using-the-hybrid-use-benefit-hub"></a>如何使用混合使用权益 (HUB) 部署虚拟机？
 
@@ -75,13 +76,13 @@ productPesIds="1234, 5678"
 
 有关详细信息，请参阅以下资源：
 
- - [Azure 混合使用权益概述](https://www.azure.cn/pricing/hybrid-benefit/)
+ - [Azure 混合使用权益概述](https://www.azure.cn/pricing/hybrid-benefit//)
 
  - [可下载的常见问题解答](https://download.microsoft.com/download/4/2/1/4211AC94-D607-4A45-B472-4B30EDF437DE/Windows_Server_Azure_Hybrid_Use_FAQ_EN_US.pdf)
 
  - [适用于 Windows Server 和 Windows 客户端的 Azure 混合使用权益](../windows/hybrid-use-benefit-licensing.md)。
 
- - [如何在 Azure 中使用混合使用权益](https://blogs.msdn.microsoft.com/azureedu/2016/04/13/how-can-i-use-the-hybrid-use-benefit-in-azure)
+ - [如何在 Azure 中使用混合使用权益](https://docs.microsoft.com/archive/blogs/azureedu/how-can-i-use-the-hybrid-use-benefit-in-azure)
 
 <!--Not Available ## How do I activate my monthly credit for Visual studio Enterprise (BizSpark)-->
 <!--Not Available ## How to add Enterprise Dev/Test to my Enterprise Agreement (EA) to get access to Window client images?-->
@@ -95,16 +96,16 @@ productPesIds="1234, 5678"
 
 ## <a name="are-n-series-vms-available-in-my-region"></a>我所在的区域是否提供 N 系列 VM？
 
-可以从[可用产品(按区域)](https://azure.microsoft.com/global-infrastructure/services/?products=virtual-machines&regions=,china-non-regional,china-east,china-east-2,china-north,china-north-2,) 以及[此处](https://www.azure.cn/pricing/details/virtual-machines/)的定价来查看可用性。
+可以从[可用产品(按区域)](https://azure.microsoft.com/regions/services) 以及[此处](https://www.azure.cn/pricing/details/virtual-machines)的定价来查看可用性。
 
 ## <a name="what-client-images-can-i-use-and-deploy-in-azure-and-how-to-i-get-them"></a>可以在 Azure 中使用和部署哪些客户端映像，以及如何获取它们？
 
-如果有相应的 Visual Studio（以前为 MSDN）订阅，可以在 Azure 中使用 Windows 10 开发/测试方案。 
+只要你有相应的 Visual Studio（以前为 MSDN）订阅，就可以在 Azure 中使用 Windows 7 或 Windows 10 开展开发/测试方案。 
 
 - Azure 库的[符合条件的开发/测试产品/服务](../windows/client-images.md#eligible-offers)中提供了 Windows 10 映像。 
-- 任一产品类型的 Visual Studio 订户也可以[适当地准备和创建](../windows/prepare-for-upload-vhd-image.md) 64 位 Windows 10 映像，并[将其上传到 Azure](../windows/upload-generalized-managed.md)。 仅限有效的 Visual Studio 订户用于开发/测试目的。
+- 任一产品类型的 Visual Studio 订阅者也可以[适当地准备和创建](../windows/prepare-for-upload-vhd-image.md) 64 位 Windows 7 或 Windows 10 映像，并[将其上载到 Azure](../windows/upload-generalized-managed.md)。 仅限有效的 Visual Studio 订户用于开发/测试目的。
 
-<!--Not Available on Windows 7, Windows 8, or-->
+<!--Not Available on Windows 8-->
 
 [本文](../windows/client-images.md)概述在 Azure 中运行 Windows 客户端和使用 Azure 库映像所要满足的条件。
 

@@ -1,7 +1,7 @@
 ---
 title: 文本转语音 - 语音服务
 titleSuffix: Azure Cognitive Services
-description: 语音服务中的文本转语音功能可让应用程序、工具或设备将文本转换为类似于人类的自然合成语音。
+description: 语音服务中的文本转语音功能可让应用程序、工具或设备将文本转换为类似于人类的自然合成语音。 选择预设语音或创建自己的自定义语音。
 services: cognitive-services
 author: trevorbye
 manager: nitinme
@@ -9,14 +9,14 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: conceptual
 origin.date: 03/23/2020
-ms.date: 04/20/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: 3e31a867d136cfab63b943fdc02c3f2cbde6e5f2
-ms.sourcegitcommit: 5d167ad5411b018522a0fac9f5435a48f4ceb3a6
+ms.openlocfilehash: 2d73749f96a74a209007c6939a7f6910f4530161
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/29/2020
-ms.locfileid: "87378164"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317481"
 ---
 # <a name="what-is-text-to-speech"></a>什么是文本转语音？
 
@@ -28,7 +28,7 @@ ms.locfileid: "87378164"
 <!-- > Bing Speech was decommissioned on October 15, 2019. If your applications, tools, or products are using the Bing Speech APIs or Custom Speech, we've created guides to help you migrate to the Speech service. -->
 <!-- > - [Migrate from Bing Speech to the Speech service](how-to-migrate-from-bing-speech.md) -->
 
-## <a name="core-features"></a>核心功能 
+## <a name="core-features"></a>核心功能
 
 * 语音合成 - 使用[语音 SDK](quickstarts/text-to-speech-audio-file.md) 或 [REST API](rest-text-to-speech.md) 通过标准语音和神经语音将文本转换为语音。
 
@@ -42,13 +42,7 @@ ms.locfileid: "87378164"
 
 ## <a name="get-started"></a>入门
 
-文本转语音服务通过[语音 SDK](speech-sdk.md) 提供。 有几种常见方案可作为快速入门，以各种语言和平台提供：
-
-* [将语音合成为音频文件](quickstarts/text-to-speech-audio-file.md)
-* [将语音合成到扬声器](quickstarts/text-to-speech.md)
-* [异步合成长格式音频](quickstarts/text-to-speech/async-synthesis-long-form-audio.md)
-
-如果你愿意，可以通过 [REST](rest-text-to-speech.md) 来访问文本转语音服务。
+请参阅[快速入门](get-started-text-to-speech.md)以开始使用文本转语音。 文本转语音服务通过[语音 SDK](speech-sdk.md)、[REST API](rest-text-to-speech.md) 和[语音 CLI](spx-overview.md) 提供
 
 ## <a name="sample-code"></a>代码示例
 

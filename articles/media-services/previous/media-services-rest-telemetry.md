@@ -13,14 +13,14 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/20/2019
-ms.date: 02/24/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: ef910e1af7dfdefef9f156c783d5a2db1ff49bbe
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: fc16ed992260768ca56cf2d950bec07869820109
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77494211"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413559"
 ---
 # <a name="configuring-azure-media-services-telemetry-with-rest"></a>使用 REST 配置 Azure 媒体服务遥测
 
@@ -35,7 +35,7 @@ ms.locfileid: "77494211"
 - 获取通知终结点
 - 创建用于监视的通知终结点。 
 
-    若要创建通知终结点，请将 EndPointType 设置为 AzureTable (2) 并将 endPontAddress 设置为存储表（例如 https://telemetryvalidationstore.table.core.chinacloudapi.cn/) ）。
+    若要创建通知终结点，请将 EndPointType 设置为 AzureTable (2) 并将 endPontAddress 设置为存储表（例如 https:\//telemetryvalidationstore.table.core.chinacloudapi.cn/）。
   
 - 获取监视配置
 
@@ -49,190 +49,211 @@ ms.locfileid: "77494211"
 
 ### <a name="request"></a>请求
 
-    GET https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/StorageAccounts HTTP/1.1
-    x-ms-version: 2.19
-    DataServiceVersion: 3.0
-    MaxDataServiceVersion: 3.0
-    Accept: application/json; odata=verbose
-    Authorization: (redacted)
-    Host: wamsbnp1clus001rest-hs.chinacloudapp.cn
-    Response
-    HTTP/1.1 200 OK
-    Cache-Control: no-cache
-    Content-Length: 370
-    Content-Type: application/json;odata=verbose;charset=utf-8
-    Server: Microsoft-IIS/8.5
-    request-id: 8206e222-2a59-482c-a6a9-de6b8bda57fb
-    x-ms-request-id: 8206e222-2a59-482c-a6a9-de6b8bda57fb
-    X-Content-Type-Options: nosniff
-    DataServiceVersion: 2.0;
-    access-control-expose-headers: request-id, x-ms-request-id
-    X-Powered-By: ASP.NET
-    Strict-Transport-Security: max-age=31536000; includeSubDomains
-    Date: Wed, 02 Dec 2015 05:10:40 GMT
+```console
+GET https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/StorageAccounts HTTP/1.1
+x-ms-version: 2.19
+DataServiceVersion: 3.0
+MaxDataServiceVersion: 3.0
+Accept: application/json; odata=verbose
+Authorization: (redacted)
+Host: wamsbnp1clus001rest-hs.chinacloudapp.cn
+Response
+HTTP/1.1 200 OK
+Cache-Control: no-cache
+Content-Length: 370
+Content-Type: application/json;odata=verbose;charset=utf-8
+Server: Microsoft-IIS/8.5
+request-id: 8206e222-2a59-482c-a6a9-de6b8bda57fb
+x-ms-request-id: 8206e222-2a59-482c-a6a9-de6b8bda57fb
+X-Content-Type-Options: nosniff
+DataServiceVersion: 2.0;
+access-control-expose-headers: request-id, x-ms-request-id
+X-Powered-By: ASP.NET
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Date: Wed, 02 Dec 2015 05:10:40 GMT
     
-    {"d":{"results":[{"__metadata":{"id":"https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/StorageAccounts('telemetryvalidationstore')","uri":"https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/StorageAccounts('telemetryvalidationstore')","type":"Microsoft.Cloud.Media.Vod.Rest.Data.Models.StorageAccount"},"Name":"telemetryvalidationstore","IsDefault":true,"BytesUsed":null}]}}
+{"d":{"results":[{"__metadata":{"id":"https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/StorageAccounts('telemetryvalidationstore')","uri":"https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/StorageAccounts('telemetryvalidationstore')","type":"Microsoft.Cloud.Media.Vod.Rest.Data.Models.StorageAccount"},"Name":"telemetryvalidationstore","IsDefault":true,"BytesUsed":null}]}}
+```
 
 ## <a name="get-the-notification-endpoints"></a>获取通知终结点
 
 ### <a name="request"></a>请求
 
-    GET https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/NotificationEndPoints HTTP/1.1
-    x-ms-version: 2.19
-    DataServiceVersion: 3.0
-    MaxDataServiceVersion: 3.0
-    Accept: application/json; odata=verbose
-    Authorization: (redacted)
-    Host: wamsbnp1clus001rest-hs.chinacloudapp.cn
-    
+```console
+GET https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/NotificationEndPoints HTTP/1.1
+x-ms-version: 2.19
+DataServiceVersion: 3.0
+MaxDataServiceVersion: 3.0
+Accept: application/json; odata=verbose
+Authorization: (redacted)
+Host: wamsbnp1clus001rest-hs.chinacloudapp.cn
+```
+
 ### <a name="response"></a>响应
-    HTTP/1.1 200 OK
-    Cache-Control: no-cache
-    Content-Length: 20
-    Content-Type: application/json;odata=verbose;charset=utf-8
-    Server: Microsoft-IIS/8.5
-    request-id: c68de2b3-0be1-4823-b622-6ca6f94a96b5
-    x-ms-request-id: c68de2b3-0be1-4823-b622-6ca6f94a96b5
-    X-Content-Type-Options: nosniff
-    DataServiceVersion: 2.0;
-    access-control-expose-headers: request-id, x-ms-request-id
-    X-Powered-By: ASP.NET
-    Strict-Transport-Security: max-age=31536000; includeSubDomains
-    Date: Wed, 02 Dec 2015 05:10:40 GMT
+
+```console
+HTTP/1.1 200 OK
+Cache-Control: no-cache
+Content-Length: 20
+Content-Type: application/json;odata=verbose;charset=utf-8
+Server: Microsoft-IIS/8.5
+request-id: c68de2b3-0be1-4823-b622-6ca6f94a96b5
+x-ms-request-id: c68de2b3-0be1-4823-b622-6ca6f94a96b5
+X-Content-Type-Options: nosniff
+DataServiceVersion: 2.0;
+access-control-expose-headers: request-id, x-ms-request-id
+X-Powered-By: ASP.NET
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Date: Wed, 02 Dec 2015 05:10:40 GMT
     
-    {  
-        "d":{  
-            "results":[]
-        }
+{  
+    "d":{  
+        "results":[]
     }
- 
+}
+ ```
+
 ## <a name="create-a-notification-endpoint-for-monitoring"></a>创建用于监视的通知终结点
 
 ### <a name="request"></a>请求
 
-    POST https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/NotificationEndPoints HTTP/1.1
-    x-ms-version: 2.19
-    DataServiceVersion: 3.0
-    MaxDataServiceVersion: 3.0
-    Accept: application/json; odata=verbose
-    Authorization: (redacted)
-    Content-Type: application/json; charset=utf-8
-    Host: wamsbnp1clus001rest-hs.chinacloudapp.cn
-    Content-Length: 115
-    
-    {  
-        "Name":"monitoring",
-        "EndPointAddress":"https://telemetryvalidationstore.table.core.chinacloudapi.cn/",
-        "EndPointType":2
-    }
+```console
+POST https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/NotificationEndPoints HTTP/1.1
+x-ms-version: 2.19
+DataServiceVersion: 3.0
+MaxDataServiceVersion: 3.0
+Accept: application/json; odata=verbose
+Authorization: (redacted)
+Content-Type: application/json; charset=utf-8
+Host: wamsbnp1clus001rest-hs.chinacloudapp.cn
+Content-Length: 115
+
+{  
+    "Name":"monitoring",
+    "EndPointAddress":"https:\//telemetryvalidationstore.table.core.chinacloudapi.cn/",
+    "EndPointType":2
+}
+```
 
 > [!NOTE]
-> 不要忘记将“<https://telemetryvalidationstore.table.core.chinacloudapi.cn>”值更改为自己的存储帐户。
+> 请务必将“https:\//telemetryvalidationstore.table.core.chinacloudapi.cn”值更改为存储帐户。
 
 ### <a name="response"></a>响应
 
-    HTTP/1.1 201 Created
-    Cache-Control: no-cache
-    Content-Length: 578
-    Content-Type: application/json;odata=verbose;charset=utf-8
-    Location: https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/NotificationEndPoints('nb%3Anepid%3AUUID%3A76bb4faf-ea29-4815-840a-9a8e20102fc4')
-    Server: Microsoft-IIS/8.5
-    request-id: e8fa5a60-7d8b-4b00-a7ee-9b0f162fe0a9
-    x-ms-request-id: e8fa5a60-7d8b-4b00-a7ee-9b0f162fe0a9
-    X-Content-Type-Options: nosniff
-    DataServiceVersion: 1.0;
-    access-control-expose-headers: request-id, x-ms-request-id
-    X-Powered-By: ASP.NET
-    Strict-Transport-Security: max-age=31536000; includeSubDomains
-    Date: Wed, 02 Dec 2015 05:10:42 GMT
+```console
+HTTP/1.1 201 Created
+Cache-Control: no-cache
+Content-Length: 578
+Content-Type: application/json;odata=verbose;charset=utf-8
+Location: https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/NotificationEndPoints('nb%3Anepid%3AUUID%3A76bb4faf-ea29-4815-840a-9a8e20102fc4')
+Server: Microsoft-IIS/8.5
+request-id: e8fa5a60-7d8b-4b00-a7ee-9b0f162fe0a9
+x-ms-request-id: e8fa5a60-7d8b-4b00-a7ee-9b0f162fe0a9
+X-Content-Type-Options: nosniff
+DataServiceVersion: 1.0;
+access-control-expose-headers: request-id, x-ms-request-id
+X-Powered-By: ASP.NET
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Date: Wed, 02 Dec 2015 05:10:42 GMT
     
-    {"d":{"__metadata":{"id":"https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/NotificationEndPoints('nb%3Anepid%3AUUID%3A76bb4faf-ea29-4815-840a-9a8e20102fc4')","uri":"https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/NotificationEndPoints('nb%3Anepid%3AUUID%3A76bb4faf-ea29-4815-840a-9a8e20102fc4')","type":"Microsoft.Cloud.Media.Vod.Rest.Data.Models.NotificationEndPoint"},"Id":"nb:nepid:UUID:76bb4faf-ea29-4815-840a-9a8e20102fc4","Name":"monitoring","Created":"\/Date(1449033042667)\/","EndPointAddress":"https://telemetryvalidationstore.table.core.chinacloudapi.cn/","EndPointType":2}}
- 
+{"d":{"__metadata":{"id":"https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/NotificationEndPoints('nb%3Anepid%3AUUID%3A76bb4faf-ea29-4815-840a-9a8e20102fc4')","uri":"https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/NotificationEndPoints('nb%3Anepid%3AUUID%3A76bb4faf-ea29-4815-840a-9a8e20102fc4')","type":"Microsoft.Cloud.Media.Vod.Rest.Data.Models.NotificationEndPoint"},"Id":"nb:nepid:UUID:76bb4faf-ea29-4815-840a-9a8e20102fc4","Name":"monitoring","Created":"\/Date(1449033042667)\/","EndPointAddress":"https://telemetryvalidationstore.table.core.chinacloudapi.cn/","EndPointType":2}}
+ ```
+
 ## <a name="get-the-monitoring-configurations"></a>获取监视配置
 
 ### <a name="request"></a>请求
 
-    GET https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/MonitoringConfigurations HTTP/1.1
-    x-ms-version: 2.19
-    DataServiceVersion: 3.0
-    MaxDataServiceVersion: 3.0
-    Accept: application/json; odata=verbose
-    Authorization: (redacted)
-    Host: wamsbnp1clus001rest-hs.chinacloudapp.cn
+```console
+GET https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/MonitoringConfigurations HTTP/1.1
+x-ms-version: 2.19
+DataServiceVersion: 3.0
+MaxDataServiceVersion: 3.0
+Accept: application/json; odata=verbose
+Authorization: (redacted)
+Host: wamsbnp1clus001rest-hs.chinacloudapp.cn
+```
 
 ### <a name="response"></a>响应
+
+```console  
+HTTP/1.1 200 OK
+Cache-Control: no-cache
+Content-Length: 20
+Content-Type: application/json;odata=verbose;charset=utf-8
+Server: Microsoft-IIS/8.5
+request-id: 00a3ee37-bb19-4fca-b5c7-a92b629d4416
+x-ms-request-id: 00a3ee37-bb19-4fca-b5c7-a92b629d4416
+X-Content-Type-Options: nosniff
+DataServiceVersion: 3.0;
+access-control-expose-headers: request-id, x-ms-request-id
+X-Powered-By: ASP.NET
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Date: Wed, 02 Dec 2015 05:10:42 GMT
     
-    HTTP/1.1 200 OK
-    Cache-Control: no-cache
-    Content-Length: 20
-    Content-Type: application/json;odata=verbose;charset=utf-8
-    Server: Microsoft-IIS/8.5
-    request-id: 00a3ee37-bb19-4fca-b5c7-a92b629d4416
-    x-ms-request-id: 00a3ee37-bb19-4fca-b5c7-a92b629d4416
-    X-Content-Type-Options: nosniff
-    DataServiceVersion: 3.0;
-    access-control-expose-headers: request-id, x-ms-request-id
-    X-Powered-By: ASP.NET
-    Strict-Transport-Security: max-age=31536000; includeSubDomains
-    Date: Wed, 02 Dec 2015 05:10:42 GMT
-    
-    {"d":{"results":[]}}
+{"d":{"results":[]}}
+```
 
 ## <a name="add-a-monitoring-configuration"></a>添加监视配置
 
 ### <a name="request"></a>请求
 
-    POST https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/MonitoringConfigurations HTTP/1.1
-    x-ms-version: 2.19
-    DataServiceVersion: 3.0
-    MaxDataServiceVersion: 3.0
-    Accept: application/json; odata=verbose
-    Authorization: (redacted)
-    Content-Type: application/json; charset=utf-8
-    Host: wamsbnp1clus001rest-hs.chinacloudapp.cn
-    Content-Length: 133
+```console
+POST https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/MonitoringConfigurations HTTP/1.1
+x-ms-version: 2.19
+DataServiceVersion: 3.0
+MaxDataServiceVersion: 3.0
+Accept: application/json; odata=verbose
+Authorization: (redacted)
+Content-Type: application/json; charset=utf-8
+Host: wamsbnp1clus001rest-hs.chinacloudapp.cn
+Content-Length: 133
     
-    {  
-       "NotificationEndPointId":"nb:nepid:UUID:76bb4faf-ea29-4815-840a-9a8e20102fc4",
-       "Settings":[  
-          {  
-         "Component":"Channel",
-         "Level":"Normal"
-          }
-       ]
-    }
+{  
+   "NotificationEndPointId":"nb:nepid:UUID:76bb4faf-ea29-4815-840a-9a8e20102fc4",
+   "Settings":[  
+      {  
+     "Component":"Channel",
+     "Level":"Normal"
+      }
+   ]
+}
+```
 
 ### <a name="response"></a>响应
 
-    HTTP/1.1 201 Created
-    Cache-Control: no-cache
-    Content-Length: 825
-    Content-Type: application/json;odata=verbose;charset=utf-8
-    Location: https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/MonitoringConfigurations('nb%3Amcid%3AUUID%3A1a8931ae-799f-45fd-8aeb-9641740295c2')
-    Server: Microsoft-IIS/8.5
-    request-id: daede9cb-8684-41b0-a921-a3af66430cbe
-    x-ms-request-id: daede9cb-8684-41b0-a921-a3af66430cbe
-    X-Content-Type-Options: nosniff
-    DataServiceVersion: 3.0;
-    access-control-expose-headers: request-id, x-ms-request-id
-    X-Powered-By: ASP.NET
-    Strict-Transport-Security: max-age=31536000; includeSubDomains
-    Date: Wed, 02 Dec 2015 05:10:43 GMT
+```console
+HTTP/1.1 201 Created
+Cache-Control: no-cache
+Content-Length: 825
+Content-Type: application/json;odata=verbose;charset=utf-8
+Location: https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/MonitoringConfigurations('nb%3Amcid%3AUUID%3A1a8931ae-799f-45fd-8aeb-9641740295c2')
+Server: Microsoft-IIS/8.5
+request-id: daede9cb-8684-41b0-a921-a3af66430cbe
+x-ms-request-id: daede9cb-8684-41b0-a921-a3af66430cbe
+X-Content-Type-Options: nosniff
+DataServiceVersion: 3.0;
+access-control-expose-headers: request-id, x-ms-request-id
+X-Powered-By: ASP.NET
+Strict-Transport-Security: max-age=31536000; includeSubDomains
+Date: Wed, 02 Dec 2015 05:10:43 GMT
     
-    {"d":{"__metadata":{"id":"https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/MonitoringConfigurations('nb%3Amcid%3AUUID%3A1a8931ae-799f-45fd-8aeb-9641740295c2')","uri":"https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/MonitoringConfigurations('nb%3Amcid%3AUUID%3A1a8931ae-799f-45fd-8aeb-9641740295c2')","type":"Microsoft.Cloud.Media.Vod.Rest.Data.Models.MonitoringConfiguration"},"Id":"nb:mcid:UUID:1a8931ae-799f-45fd-8aeb-9641740295c2","NotificationEndPointId":"nb:nepid:UUID:76bb4faf-ea29-4815-840a-9a8e20102fc4","Created":"2015-12-02T05:10:43.7680396Z","LastModified":"2015-12-02T05:10:43.7680396Z","Settings":{"__metadata":{"type":"Collection(Microsoft.Cloud.Media.Vod.Rest.Data.Models.ComponentMonitoringSettings)"},"results":[{"Component":"Channel","Level":"Normal"},{"Component":"StreamingEndpoint","Level":"Disabled"}]}}}
+{"d":{"__metadata":{"id":"https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/MonitoringConfigurations('nb%3Amcid%3AUUID%3A1a8931ae-799f-45fd-8aeb-9641740295c2')","uri":"https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/MonitoringConfigurations('nb%3Amcid%3AUUID%3A1a8931ae-799f-45fd-8aeb-9641740295c2')","type":"Microsoft.Cloud.Media.Vod.Rest.Data.Models.MonitoringConfiguration"},"Id":"nb:mcid:UUID:1a8931ae-799f-45fd-8aeb-9641740295c2","NotificationEndPointId":"nb:nepid:UUID:76bb4faf-ea29-4815-840a-9a8e20102fc4","Created":"2015-12-02T05:10:43.7680396Z","LastModified":"2015-12-02T05:10:43.7680396Z","Settings":{"__metadata":{"type":"Collection(Microsoft.Cloud.Media.Vod.Rest.Data.Models.ComponentMonitoringSettings)"},"results":[{"Component":"Channel","Level":"Normal"},{"Component":"StreamingEndpoint","Level":"Disabled"}]}}}
+```
 
 ## <a name="stop-telemetry"></a>停止遥测
 
 ### <a name="request"></a>请求
 
-    DELETE https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/MonitoringConfigurations('nb%3Amcid%3AUUID%3A1a8931ae-799f-45fd-8aeb-9641740295c2')
-    x-ms-version: 2.19
-    DataServiceVersion: 3.0
-    MaxDataServiceVersion: 3.0
-    Accept: application/json; odata=verbose
-    Authorization: (redacted)
-    Content-Type: application/json; charset=utf-8
-    Host: wamsbnp1clus001rest-hs.chinacloudapp.cn
+```console
+DELETE https://wamsbnp1clus001rest-hs.chinacloudapp.cn/api/MonitoringConfigurations('nb%3Amcid%3AUUID%3A1a8931ae-799f-45fd-8aeb-9641740295c2')
+x-ms-version: 2.19
+DataServiceVersion: 3.0
+MaxDataServiceVersion: 3.0
+Accept: application/json; odata=verbose
+Authorization: (redacted)
+Content-Type: application/json; charset=utf-8
+Host: wamsbnp1clus001rest-hs.chinacloudapp.cn
+```
 
 ## <a name="consuming-telemetry-information"></a>使用遥测信息
 

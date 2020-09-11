@@ -1,25 +1,27 @@
 ---
-title: 将 Windows VM 从 Amazon Web Services (AWS) 移到 Azure 虚拟机 | Azure
+title: 将 Windows AWS EC2 实例移动到 Azure
 description: 将 Amazon Web Services (AWS) EC2 Windows 实例移到 Azure 虚拟机。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.workload: infrastructure-services
-ms.topic: article
+ms.topic: how-to
 origin.date: 06/01/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 4d9861d68a9b7f7842fc807c1c4c2bf47ae3ba7b
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 7cbc49ea08f65479a93db27fc44ea10f212d1573
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945618"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462876"
 ---
 # <a name="move-a-windows-vm-from-amazon-web-services-aws-to-an-azure-virtual-machine"></a>将 Windows VM 从 Amazon Web Services (AWS) 移到 Azure 虚拟机
 
 如果你正在评估是否要使用 Azure 虚拟机托管工作负荷，可以导出现有的 Amazon Web Services (AWS) EC2 Windows VM 实例，然后将虚拟硬盘 (VHD) 上传到 Azure。 上传 VHD 后，可以通过该 VHD 在 Azure 中创建新的 VM。 
 
-本文介绍如何将单个 VM 从 AWS 移至 Azure。 如果想要将 VM 从 AWS 批量迁移到 Azure，请参阅[使用 Azure Site Recovery 将 Amazon Web Services (AWS) 中的虚拟机迁移到 Azure](../../site-recovery/site-recovery-migrate-aws-to-azure.md)。
+本文介绍如何将单个 VM 从 AWS 移至 Azure。 如果想要将 VM 从 AWS 批量迁移到 Azure，请参阅[使用 Azure Site Recovery 将 Amazon Web Services (AWS) 中的虚拟机迁移到 Azure](../../site-recovery/migrate-tutorial-aws-azure.md)。
 
 ## <a name="prepare-the-vm"></a>准备 VM 
 
@@ -44,7 +46,7 @@ ms.locfileid: "85945618"
 <!--MOONCAKE: --target-environment invlove vmware|citrix|microsoft-->
 
 ```
-aws ec2 create-instance-export-task --instance-id <instanceID> --target-environment Microsoft \
+aws ec2 create-instance-export-task --instance-id <instanceID> --target-environment microsoft \
   --export-to-s3-task DiskImageFormat=VHD,ContainerFormat=ova,S3Bucket=<bucket>,S3Prefix=<prefix>
 ```
 
@@ -62,4 +64,4 @@ aws ec2 create-instance-export-task --instance-id <instanceID> --target-environm
 - 如果导出之前在源上运行了 Sysprep 来将它**通用化**，请参阅[上传已通用化的 VHD 并在 Azure 中使用它来创建新的 VM](upload-generalized-managed.md)
 - 如果导出之前未运行 Sysprep，VHD 将被视为**已专用化**。请参阅[将已专用的 VHD 上传到 Azure 并创建新的 VM](create-vm-specialized.md)
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

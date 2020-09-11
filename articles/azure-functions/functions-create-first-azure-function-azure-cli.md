@@ -1,16 +1,16 @@
 ---
 title: 在 Azure 中创建用于响应 HTTP 请求的函数
 description: 了解如何通过命令行创建函数，然后将本地项目发布到 Azure Functions 中托管的无服务器实例。
-ms.date: 08/11/2020
+ms.date: 09/02/2020
 ms.topic: quickstart
-ms.custom: devx-track-azurecli
+ms.custom: devx-track-csharp, devx-track-azurecli, devx-track-azurepowershell
 zone_pivot_groups: programming-languages-set-functions
-ms.openlocfilehash: aa82e5169b5dd4c3dc89dc9b4f485e6fab8ad434
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: ed250e0bbd5bb9104d97705aba0c14b7138f6160
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222595"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413922"
 ---
 # <a name="quickstart-create-a-function-in-azure-that-responds-to-http-requests"></a>快速入门：在 Azure 中创建用于响应 HTTP 请求的函数
 
@@ -74,19 +74,19 @@ func init LocalFunctionProj --powershell
 ```
 ::: zone-end    
 ::: zone pivot="programming-language-java"  
-在空的文件夹中，运行以下命令以从 [Maven archetype](https://maven.apache.org/guides/introduction/introduction-to-archetypes.html) 生成 Functions 项目。
+在空的文件夹中，运行以下命令以从 [Maven archetype](https://maven.apache.org/guides/introduction/introduction-to-archetypes.html) 生成 Functions 项目。 如果希望函数在 Java 11 上运行，请使用 `-DjavaVersion=11`。 若要了解详细信息，请参阅 [Java 版本](functions-reference-java.md#java-versions)。 
 
 # <a name="bash"></a>[bash](#tab/bash)
 ```bash
-mvn archetype:generate -DarchetypeGroupId=com.microsoft.azure -DarchetypeArtifactId=azure-functions-archetype 
+mvn archetype:generate -DarchetypeGroupId=com.microsoft.azure -DarchetypeArtifactId=azure-functions-archetype -DjavaVersion=8
 ```
 # <a name="powershell"></a>[PowerShell](#tab/powershell)
 ```powershell
-mvn archetype:generate "-DarchetypeGroupId=com.microsoft.azure" "-DarchetypeArtifactId=azure-functions-archetype" 
+mvn archetype:generate "-DarchetypeGroupId=com.microsoft.azure" "-DarchetypeArtifactId=azure-functions-archetype" "-DjavaVersion=8" 
 ```
 # <a name="cmd"></a>[Cmd](#tab/cmd)
 ```cmd
-mvn archetype:generate "-DarchetypeGroupId=com.microsoft.azure" "-DarchetypeArtifactId=azure-functions-archetype" 
+mvn archetype:generate "-DarchetypeGroupId=com.microsoft.azure" "-DarchetypeArtifactId=azure-functions-archetype" "-DjavaVersion=8"
 ```
 ---
 
@@ -103,8 +103,6 @@ Maven 会请求你提供所需的值，以在部署上完成项目的生成。
 键入 `Y` 或按 Enter 进行确认。
 
 Maven 在名为 artifactId 的新文件夹（在此示例中为 `fabrikam-functions`）中创建项目文件。 
-
-若要在 Azure 中的 Java 11 上运行，必须修改 pom.xml 文件中的值。 若要了解详细信息，请参阅 [Java 版本](functions-reference-java.md#java-versions)。 
 
 ::: zone-end  
 导航到项目文件夹：

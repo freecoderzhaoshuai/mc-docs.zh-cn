@@ -1,6 +1,6 @@
 ---
 title: 连接到 Azure 媒体服务 v3 API - Node.js
-description: 了解如何使用 Node.js 连接到媒体服务 v3 API。
+description: 本文演示如何使用 Node.js 连接到媒体服务 v3 API。
 services: media-services
 documentationcenter: ''
 author: WenJason
@@ -12,14 +12,15 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 03/25/2019
-ms.date: 12/09/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: e816fc702ba0801eb07f3a6a7a8aad5194403b5f
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-javascript
+ms.openlocfilehash: bcc836d3a105f60a14d81892551ac27cc1623aa1
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74807636"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413364"
 ---
 # <a name="connect-to-media-services-v3-api---nodejs"></a>连接到媒体服务 v3 API - Node.js
 
@@ -28,7 +29,7 @@ ms.locfileid: "74807636"
 ## <a name="prerequisites"></a>必备条件
 
 - 安装 [Node.js](https://nodejs.org/en/download/)。
-- [创建媒体服务帐户](create-account-cli-how-to.md)。 请务必记住资源组名称和媒体服务帐户名称。
+- [创建媒体服务帐户](./create-account-howto.md)。 请务必记住资源组名称和媒体服务帐户名称。
 
 > [!IMPORTANT]
 > 查看[命名约定](media-services-apis-overview.md#naming-conventions)。
@@ -71,7 +72,7 @@ npm install azure-arm-mediaservices
 
 1. 使用偏好的编辑器创建一个 .js 文件。
 1. 打开该文件并粘贴以下代码。
-1. 将“终结点配置”部分中的值设置为从[访问 API](access-api-cli-how-to.md) 获得的值。
+1. 将“终结点配置”部分中的值设置为从[访问 API](./access-api-howto.md) 获得的值。
 
 ```js
 'use strict';
@@ -132,4 +133,3 @@ node index.js
 ## <a name="next-steps"></a>后续步骤
 
 浏览媒体服务 [Node.js 参考](https://docs.microsoft.com/javascript/api/overview/azure/mediaservices/management)文档并查看[示例](https://github.com/Azure-Samples/media-services-v3-node-tutorials)，了解如何将媒体服务 API 与 Node.js 配合使用。
-

@@ -6,15 +6,15 @@ author: sethmanheim
 ms.service: notification-hubs
 ms.topic: include
 origin.date: 02/10/2020
-ms.date: 04/20/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
 ms.custom: include file
-ms.openlocfilehash: c92f798baa21c7ba9f97d00735d300dac090a355
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.openlocfilehash: a585457fcb137203e2baf7717099fb06ac731ff2
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588525"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316443"
 ---
 ## <a name="generate-the-certificate-signing-request-file"></a>生成证书签名请求文件
 
@@ -63,7 +63,7 @@ Apple Push Notification 服务 (APNs) 使用证书对推送通知进行身份验
 
       ![iOS 预配门户“注册应用 ID”页](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-new-appid-bundle.png)
 
-   * **Push Notifications**（推送通知）：在“Capabilities”（功能）部分选中“Push Notifications”（推送通知）选项   。
+   * **推送通知**：在“Capabilities”（功能）部分选中“Push Notifications”（推送通知）选项   。
 
       ![用于注册新应用 ID 的窗体](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-new-appid-push.png)
 
@@ -96,7 +96,7 @@ Apple Push Notification 服务 (APNs) 使用证书对推送通知进行身份验
     此时将显示“Create a new Certificate”（创建新证书）  屏幕。
 
     > [!NOTE]
-    > 本教程使用开发证书。 注册生产证书时使用相同的过程。 只需确保在发送通知时使用相同的证书类型。
+    > 本教程使用开发证书，应用使用该证书生成唯一的设备令牌。 注册生产证书时使用相同的过程。 只需确保在发送通知时使用相同的证书类型。
 
 3. 选择“Choose File”（选择文件），浏览到在第一个任务中保存 CSR 文件的位置，然后双击证书名以加载该证书。  然后选择“继续”。 
 
@@ -118,7 +118,7 @@ Apple Push Notification 服务 (APNs) 使用证书对推送通知进行身份验
     > [!NOTE]
     > 证书中的名称可能会不同，但会以 **Apple Development iOS Push Services** 作为前缀。
 
-6. 在 Keychain Access 中，右键单击在“Certificates”（证书）类别中创建的新推送证书  。 选择“Export”（导出），为文件命名，选择“.p12”格式，并选择“Save”（保存）。   
+6. 在 Keychain Access 中，右键单击在“Certificates”（证书）类别中创建的新推送证书。  选择“Export”（导出），为文件命名，选择“.p12”格式，并选择“Save”（保存）。   
 
     ![将证书作为 p12 格式导出](./media/notification-hubs-enable-apple-push-notifications/notification-hubs-export-cert-p12.png)
 
@@ -203,7 +203,7 @@ Apple Push Notification 服务 (APNs) 使用证书对推送通知进行身份验
 
 ## <a name="create-a-notification-hub"></a>创建通知中心
 
-在本部分，我们创建一个通知中心，并使用以前创建的 .p12 推送证书配置 APNs 身份验证。 如果想要使用已创建的通知中心，可以跳到步骤 5。
+在本部分将创建一个通知中心，并使用 .p12 推送证书或基于令牌的身份验证来配置 APNs 身份验证。 如果想要使用已创建的通知中心，可以跳到步骤 5。
 
 [!INCLUDE [notification-hubs-portal-create-new-hub](notification-hubs-portal-create-new-hub.md)]
 
@@ -212,11 +212,11 @@ Apple Push Notification 服务 (APNs) 使用证书对推送通知进行身份验
 在“Notification Services”  下，选择“Apple (APNS)”  ，然后根据以前在[为通知中心创建证书](#creating-a-certificate-for-notification-hubs)部分中选择的方法，执行相应的步骤。  
 
 > [!NOTE]
-> 仅当希望将推送通知发送给已从应用商店购买应用的用户时，才应当对“应用程序模式”使用“生产”。  
+> 如果使用 App Store 或即席分发配置文件构建应用，请使用“生产”作为“应用程序模式” 。 这将允许设备向从应用商店购买了应用的用户发送推送通知。
 
 ### <a name="option-1-using-a-p12-push-certificate"></a>选项 1：使用 .p12 推送证书
 
-1. 选择“证书”。 
+1. 选择“证书”。
 
 1. 选择文件图标。
 
@@ -232,12 +232,12 @@ Apple Push Notification 服务 (APNs) 使用证书对推送通知进行身份验
 
 ### <a name="option-2-using-token-based-authentication"></a>选项 2：使用基于令牌的身份验证
 
-1. 选择“令牌”  。
+1. 选择“令牌”。
 1. 输入前面获取的以下值：
 
-    - 密钥 ID 
-    - 捆绑包 ID 
-    - 团队 ID 
+    - 密钥 ID
+    - 捆绑包 ID
+    - 团队 ID
     - 令牌  
 
 1. 选择“沙盒” 

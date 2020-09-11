@@ -2,19 +2,24 @@
 title: 使用 Azure 专用终结点以私密方式连接到存储帐户
 description: 了解如何使用专用终结点以私密方式连接到存储帐户。
 services: private-link
-author: rockboyfor
 ms.service: private-link
-ms.topic: article
+ms.topic: how-to
 origin.date: 09/16/2019
-ms.date: 06/15/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: 06/15/2020
 ms.author: v-yeche
-ms.openlocfilehash: d7b106c5b5d302561ff06bb0b0076a527077467a
-ms.sourcegitcommit: 3de7d92ac955272fd140ec47b3a0a7b1e287ca14
+ms.openlocfilehash: 3b86b7893457bcaa74a711ec613825fbc483397e
+ms.sourcegitcommit: 6e88e0e41b35d160a09f7a906ca3b7e837f51803
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84723707"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89412121"
 ---
+<!--NOT AVAIALBLE ON MOONCAKE-->
+<!--THERE IS NO PRIVATE ENDPOINT OPTION IN NETWORKING TAB OF CREATING STORAGE PAGE-->
+<!--RELEASE CAREFULLY-->
 # <a name="connect-privately-to-a-storage-account-using-azure-private-endpoint"></a>使用 Azure 专用终结点以私密方式连接到存储帐户
 Azure 专用终结点是 Azure 中专用链接的构建基块。 它使 Azure 资源（例如虚拟机 (VM)）能够以私密方式来与专用链接资源通信。
 
@@ -55,7 +60,9 @@ Azure 专用终结点是 Azure 中专用链接的构建基块。 它使 Azure �
     <!-- MOONCAKE: CUSTOMIZATION-->
 
 1. 在“创建虚拟机 - 基本信息”中，输入或选择以下信息：
-
+    
+    <!--CORRECT ON Windows Server 2019 Datacenter - Gen 1-->
+    
     | 设置 | Value |
     | ------- | ----- |
     | **项目详细信息** | |
@@ -65,7 +72,7 @@ Azure 专用终结点是 Azure 中专用链接的构建基块。 它使 Azure �
     | 虚拟机名称 | 输入 *myVm*。 |
     | 区域 | 选择“中国东部 2”。 |
     | 可用性选项 | 保留默认值“不需要基础结构冗余”。 |
-    | 映像 | 选择“Windows Server 2019 Datacenter”。 |
+    | 映像 | 选择“Windows Server 2019 Datacenter - Gen 1”。 |
     | 大小 | 保留默认值“标准 DS1 v2”。 |
     | **管理员帐户** |  |
     | 用户名 | 输入所选用户名。 |
@@ -186,7 +193,7 @@ Azure 专用终结点是 Azure 中专用链接的构建基块。 它使 Azure �
     Aliases:  mystorageaccount.blob.core.chinacloudapi.cn
     ```
     
-3. 安装 [Azure 存储资源管理器](/vs-azure-tools-storage-manage-with-storage-explorer?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&tabs=windows)。
+3. 安装 [Azure 存储资源管理器](/vs-azure-tools-storage-manage-with-storage-explorer?toc=%2Fstorage%2Fblobs%2Ftoc.json&tabs=windows)。
 4. 通过右键单击选择“存储帐户”。
 5. 选择“连接到 Azure 存储”。
 6. 选择“使用连接字符串”。

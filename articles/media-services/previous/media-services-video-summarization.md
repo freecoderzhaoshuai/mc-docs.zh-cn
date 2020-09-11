@@ -13,15 +13,16 @@ ms.tgt_pltfrm: na
 ms.devlang: dotnet
 ms.topic: article
 origin.date: 03/20/2019
-ms.date: 04/06/2020
+ms.date: 09/07/2020
 ms.author: v-jay
 ms.reviewer: milanga
-ms.openlocfilehash: 106f9b89f330c57bc1d2272ab0af5d57e5fe2766
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: f391157d8425fbd0827975f7ed4a16952c4a5251
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80625707"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413953"
 ---
 # <a name="use-azure-media-video-thumbnails-to-create-a-video-summarization"></a>使用 Azure 媒体视频缩略图创建视频摘要  
 
@@ -68,10 +69,10 @@ ms.locfileid: "80625707"
 
 下表描述了未使用 **maxMotionThumbnailInSecs** 时的默认持续时间。
 
-|  |  |  |
+|  | 小型 | 较大 |
 | --- | --- | --- |
-| 视频持续时间 |d < 3 分钟 |3 分钟 < d < 15 分钟 |
-| 缩略图持续时间 |15 秒（2-3 个场景） |30 秒（3-5 个场景） |
+| **视频持续时间** |d < 3 分钟 |3 分钟 < d < 15 分钟 |
+| **缩略图持续时间** |15 秒（2-3 个场景） |30 秒（3-5 个场景） |
 
 下面的 JSON 设置可用的参数。
 
@@ -108,7 +109,7 @@ ms.locfileid: "80625707"
 
 #### <a name="create-and-configure-a-visual-studio-project"></a>创建和配置 Visual Studio 项目
 
-设置开发环境，并根据[使用 .NET 进行媒体服务开发](media-services-dotnet-how-to-use.md)中所述，在 app.config 文件中填充连接信息。 
+设置开发环境，并在 app.config 文件中填充连接信息，如[使用 .NET 进行媒体服务开发](media-services-dotnet-how-to-use.md)中所述。 
 
 #### <a name="example"></a>示例
 

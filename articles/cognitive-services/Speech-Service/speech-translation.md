@@ -9,14 +9,15 @@ ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: conceptual
 origin.date: 03/11/2020
-ms.date: 04/20/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: 586991f6dbb7b4850063131230a5b67513e3f427
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.custom: devx-track-csharp
+ms.openlocfilehash: cda5579c0a8b1c374f00254b02d2eeff920d7eb2
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82127022"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317570"
 ---
 # <a name="what-is-speech-translation"></a>什么是语音翻译？
 
@@ -30,25 +31,14 @@ Microsoft 翻译引擎有两种不同的支持方法：统计机器翻译 (SMT) 
 
 ## <a name="core-features"></a>核心功能
 
-下面是可以通过语音 SDK 和 REST API 获得的功能：
+* 包含识别结果的语音转文本翻译。
+* 语音转语音翻译。
+* 支持翻译为多种目标语言。
+* 过渡性识别和翻译结果。
 
-| 使用案例 | SDK | REST |
-|----------|-----|------|
-| 包含识别结果的语音转文本翻译。 | 是 | 否 |
-| 语音转语音翻译。 | 是 | 否 |
-| 过渡性识别和翻译结果。 | 是 | 否 |
+## <a name="get-started"></a>入门 
 
-## <a name="get-started-with-speech-translation"></a>语音翻译入门
-
-我们专门提供了快速入门来帮助你在 10 分钟内运行代码。 下表按语言列出了语音翻译快速入门。
-
-| 快速入门 | 平台 | API 参考 |
-|------------|----------|---------------|
-| [C#、.NET Core](~/articles/cognitive-services/Speech-Service/quickstarts/translate-speech-to-text.md?pivots=programming-language-csharp&tabs=dotnetcore) | Windows | [“浏览”](https://docs.microsoft.com/dotnet/api/microsoft.cognitiveservices.speech?view=azure-dotnet) |
-| [C#、.NET Framework](~/articles/cognitive-services/Speech-Service/quickstarts/translate-speech-to-text.md?pivots=programming-language-csharp&tabs=dotnet) | Windows | [“浏览”](https://docs.microsoft.com/dotnet/api/microsoft.cognitiveservices.speech?view=azure-dotnet) |
-| [C#、UWP](~/articles/cognitive-services/Speech-Service/quickstarts/translate-speech-to-text.md?pivots=programming-language-csharp&tabs=uwp) | Windows | [“浏览”](https://docs.microsoft.com/dotnet/api/microsoft.cognitiveservices.speech?view=azure-dotnet) |
-| [C++](~/articles/cognitive-services/Speech-Service/quickstarts/translate-speech-to-text.md?pivots=programming-language-cpp&tabs=windows) | Windows | [“浏览”](https://docs.microsoft.com/cpp/cognitive-services/speech/index)|
-| [Java](~/articles/cognitive-services/Speech-Service/quickstarts/translate-speech-to-text.md?pivots=programming-language-java&tabs=jre) | Windows、Linux、macOS | [“浏览”](https://docs.microsoft.com/java/api/com.microsoft.cognitiveservices.speech?view=azure-java-stable) |
+请参阅[快速入门](get-started-speech-translation.md)以开始使用语音翻译。 语音翻译服务通过[语音 SDK](speech-sdk.md) 和[语音 CLI](spx-overview.md) 提供。
 
 ## <a name="sample-code"></a>代码示例
 
@@ -72,5 +62,6 @@ GitHub 上提供了语音 SDK 的示例代码。 这些示例涵盖了常见方�
 
 ## <a name="next-steps"></a>后续步骤
 
+* 完成语音翻译[快速入门](get-started-speech-translation.md)
 * [免费获取语音服务订阅密钥](get-started.md)
 * [获取语音 SDK](speech-sdk.md)

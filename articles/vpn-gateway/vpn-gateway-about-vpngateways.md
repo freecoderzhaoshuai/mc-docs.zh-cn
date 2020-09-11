@@ -1,20 +1,21 @@
 ---
 title: 关于 Azure VPN 网关
-description: 了解什么是 VPN 网关，以及可以通过什么方式将 VPN 网关用于连接到 Azure 虚拟网络。 包括 IPsec/IKE 站点到站点跨界解决方案和 VNet 到 VNet 解决方案，以及点到站点 VPN。
+description: 了解 VPN 网关的定义，以及如何使用 VPN 网关连接到 IPsec IKE 站点到站点、VNet 到 V-VNet 以及点到点 VPN 虚拟网络。
 services: vpn-gateway
 author: WenJason
 Customer intent: As someone with a basic network background, but is new to Azure, I want to understand the capabilities of Azure VPN Gateway so that I can securely connect to my Azure virtual networks.
 ms.service: vpn-gateway
 ms.topic: overview
-origin.date: 06/01/2020
-ms.date: 07/06/2020
+origin.date: 08/27/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: ade34aa2a0a7df84852914f87ef04a91053ee2be
-ms.sourcegitcommit: 7ea2d04481512e185a60fa3b0f7b0761e3ed7b59
+ms.custom: contperfq1
+ms.openlocfilehash: 7af4ce627b6c601889bc757f570cebaf4b3efaff
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85845897"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463030"
 ---
 # <a name="what-is-vpn-gateway"></a>什么是 VPN 网关？
 
@@ -32,9 +33,15 @@ VPN 网关是特定类型的虚拟网关，用于跨公共 Internet 在 Azure �
 
 VPN 网关连接依赖于使用特定设置配置的多个资源。 大多数资源可以单独配置，虽然某些资源必须按特定顺序配置。
 
-### <a name="design-connection-topology-diagrams"></a><a name="diagrams"></a>设计：连接拓扑示意图
+### <a name="design"></a><a name="diagrams"></a>设计
 
-必须知道，VPN 网关连接可以使用不同的配置。 必须确定哪种配置最适合自己的需要。 例如，点到站点、站点到站点以及共存的 ExpressRoute/站点到站点连接都有不同的说明和配置要求。 有关设计和连接拓扑图的信息，请参阅[设计](design.md)。
+必须知道，VPN 网关连接可以使用不同的配置。 必须确定哪种配置最适合自己的需要。 例如，点到站点、站点到站点以及共存的 ExpressRoute/站点到站点连接都有不同的说明和配置要求。 要了解设计和查看连接拓扑图，请参阅[设计](design.md)。
+
+### <a name="planning-table"></a><a name="planningtable"></a>规划表
+
+下表可帮助选择最适合解决方案的连接选项。
+
+[!INCLUDE [cross-premises](../../includes/vpn-gateway-cross-premises-include.md)]
 
 ### <a name="settings"></a><a name="settings"></a>设置
 
@@ -43,12 +50,6 @@ VPN 网关连接依赖于使用特定设置配置的多个资源。 大多数资
 ### <a name="deployment-tools"></a><a name="tools"></a>部署工具
 
 开始时可以使用一个配置工具（如 Azure 门户）创建和配置资源。 可在以后切换到另一个工具（如 PowerShell）来配置其他资源或修改现有资源（如果适用）。 目前，无法在 Azure 门户中配置每个资源和资源设置。 每个连接拓扑的文章中的说明指定了何时需要特定配置工具。
-
-### <a name="planning-table"></a><a name="planningtable"></a>规划表
-
-下表可帮助选择最适合解决方案的连接选项。
-
-[!INCLUDE [cross-premises](../../includes/vpn-gateway-cross-premises-include.md)]
 
 ## <a name="gateway-skus"></a><a name="gwsku"></a>网关 SKU
 

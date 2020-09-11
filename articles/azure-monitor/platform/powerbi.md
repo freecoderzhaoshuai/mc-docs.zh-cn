@@ -5,13 +5,13 @@ ms.subservice: logs
 ms.topic: conceptual
 author: Johnnytechn
 ms.author: v-johya
-ms.date: 05/20/2020
-ms.openlocfilehash: f0714483140e5ada0e3e02632833f62f325732e8
-ms.sourcegitcommit: a04b0b1009b0c62f2deb7c7acee75a1304d98f87
+ms.date: 08/20/2020
+ms.openlocfilehash: 9738df89b93689723278abeb8ef568e9c3ae2235
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/22/2020
-ms.locfileid: "83796927"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457267"
 ---
 # <a name="import-azure-monitor-log-data-into-power-bi"></a>将 Azure Monitor 日志数据导入到 Power BI 中
 
@@ -29,7 +29,7 @@ ms.locfileid: "83796927"
 首先创建一个[日志查询](../log-query/log-query-overview.md)，该查询返回要填充 Power BI 数据集的数据。  随后将该查询导出为 Power BI Desktop 可以使用的 [Power Query (M) 语言](https://docs.microsoft.com/powerquery-m/power-query-m-language-specification)。
 
 1. [在 Log Analytics 中创建日志查询](../log-query/get-started-portal.md)以提取数据集的数据。
-2. 选择“导出” > “Power BI 查询(M)”。  这会将查询导出到名为 **PowerBIQuery.txt** 的文本文件中。 
+2. 选择“导出” > “导出到 Power BI (M 查询)” 。  这会将查询导出到名为 **PowerBIQuery.txt** 的文本文件中。 
 
     ![导出日志搜索](./media/powerbi/export-analytics.png)
 

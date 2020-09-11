@@ -2,13 +2,13 @@
 title: Azure Functions 的应用设置参考
 description: 有关 Azure Functions 应用设置或环境变量的参考文档。
 ms.topic: conceptual
-ms.date: 08/10/2020
-ms.openlocfilehash: b4b425781021fac38d85e405984fe648e77775c5
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.date: 09/02/2020
+ms.openlocfilehash: 44f5a764c79dde2312d8bfd16f4daa947ac90523
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223038"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413805"
 ---
 # <a name="app-settings-reference-for-azure-functions"></a>Azure Functions 的应用设置参考
 
@@ -190,6 +190,20 @@ Azure Functions 运行时针对除 HTTP 触发的函数以外的其他所有函�
 |---|------------|
 |FUNCTIONS\_WORKER\_RUNTIME|dotnet|
 
+## <a name="scale_controller_logging_enable"></a>SCALE\_CONTROLLER\_LOGGING\_ENABLE
+
+_此设置当前处于预览状态。_  
+
+此设置控制 Azure Functions 缩放控制器中的日志记录。 有关详细信息，请参阅[缩放控制器日志](functions-monitoring.md#scale-controller-logs-preview)。
+
+|键|示例值|
+|-|-|
+|SCALE_CONTROLLER_LOGGING_ENABLE|AppInsights:Verbose|
+
+此键的值以 `<DESTINATION>:<VERBOSITY>` 格式提供，其定义如下：
+
+[!INCLUDE [functions-scale-controller-logging](../../includes/functions-scale-controller-logging.md)]
+
 ## <a name="website_contentazurefileconnectionstring"></a>WEBSITE\_CONTENTAZUREFILECONNECTIONSTRING
 
 仅用于消耗计划。 存储函数应用代码和配置的存储帐户的连接字符串。 请参阅[创建函数应用](functions-infrastructure-as-code.md#create-a-function-app)。
@@ -210,8 +224,8 @@ Azure Functions 运行时针对除 HTTP 触发的函数以外的其他所有函�
 
 函数应用可以横向扩展到的最大实例数。 默认值为无限制。
 
-> [!NOTE]
-> 此设置是预览功能 - 仅在设置的值 <= 5 时才可靠
+> [!IMPORTANT]
+> 此设置处于预览状态。  添加了一个[函数应用横向扩展上限属性](./functions-scale.md#limit-scale-out)，建议使用此方法限制横向扩展。
 
 |键|示例值|
 |---|------------|

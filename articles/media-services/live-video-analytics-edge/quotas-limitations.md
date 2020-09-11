@@ -3,13 +3,13 @@ title: IoT Edge 上的实时视频分析配额 - Azure
 description: 本文介绍 IoT Edge 上的实时视频分析配额和限制。
 ms.topic: conceptual
 origin.date: 05/22/2020
-ms.date: 07/27/2020
-ms.openlocfilehash: 556d79d1853d3845eb375caf4ad26edb6d174f94
-ms.sourcegitcommit: 091c672fa448b556f4c2c3979e006102d423e9d7
+ms.date: 09/07/2020
+ms.openlocfilehash: 3f5a664e1db3e732fe0bd5db8ab194564a53a88f
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87162769"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413584"
 ---
 # <a name="quotas-and-limitations"></a>配额和限制
 
@@ -37,24 +37,23 @@ ms.locfileid: "87162769"
    * 每个图形拓扑仅允许有一个 RTSP 源。
 * 帧速率筛选器处理器
    * 必须立即成为 RTSP 源或运动检测处理器中的下游。
-   * 不能是 HTTP 扩展处理器使用的下游。
+   * 不能是 HTTP 或 gRPC 扩展处理器使用的下游。
    * 不能是运动检测处理器中的上游。
 * HTTP 扩展处理器
+   * 每个图形拓扑最多可以有一个此类处理器。
+* gRPC 扩展处理器
    * 每个图形拓扑最多可以有一个此类处理器。
 * 运动检测处理器
    * 必须立即成为 RTSP 源中的下游。
    * 每个图形拓扑最多可以有一个此类处理器。
-   * 不能是 HTTP 扩展处理器使用的下游。
+   * 不能是 HTTP 或 gRPC 扩展处理器使用的下游。
 * 信号门处理器
    * 必须立即成为 RTSP 源中的下游。
 * 资产接收器 
-   * 每个图形拓扑最多可以有一个此类节点。
-      * 如果使用了资产接收器，则不能有文件接收器，反之亦然。
    * 必须立即成为 RTSP 源或信号门处理器中的下游。
 * 文件接收器
-   * 每个图形拓扑最多可以有一个此类节点（请参阅上面有关资产接收器的说明）。
    * 必须立即成为信号门处理器中的下游。
-   * 不能立即成为 HTTP 扩展处理器或运动检测处理器的下游
+   * 不能立即成为 HTTP 或 gRPC 扩展处理器或运动检测处理器的下游
 * IoT 中心接收器
    * 不能立即成为 IoT 中心源的下游。
 

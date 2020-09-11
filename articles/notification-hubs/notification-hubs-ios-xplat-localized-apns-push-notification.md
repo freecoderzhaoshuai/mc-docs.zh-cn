@@ -1,5 +1,5 @@
 ---
-title: 使用 Azure 通知中心向 iOS 发送本地化推送通知 | Azure
+title: 使用 Azure 通知中心向 iOS 发送本地化推送通知 | Microsoft Docs
 description: 了解如何使用 Azure 通知中心向 iOS 设备推送本地化通知。
 services: notification-hubs
 documentationcenter: ios
@@ -13,16 +13,16 @@ ms.tgt_pltfrm: ios
 ms.devlang: objective-c
 ms.topic: article
 origin.date: 01/04/2019
-ms.date: 12/09/2019
+ms.date: 03/02/2020
 ms.author: v-tawe
 ms.reviewer: jowargo
 ms.lastreviewed: 01/04/2019
-ms.openlocfilehash: dfbb59da8ef6b973305ab851145cb1723f4c51c8
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 6fcd3ffadc645366f5693d4e421a7f756aa5155e
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74884948"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316466"
 ---
 # <a name="tutorial-send-localized-push-notifications-to-ios-using-azure-notification-hubs"></a>教程：使用 Azure 通知中心向 iOS 发送本地化推送通知
 
@@ -293,5 +293,5 @@ ms.locfileid: "74884948"
 [Notify users with Notification Hubs: Mobile Services]: notification-hubs-aspnet-backend-windows-dotnet-wns-notification.md
 [My Applications]: https://go.microsoft.com/fwlink/p/?LinkId=262039
 [wns object]: https://go.microsoft.com/fwlink/p/?LinkId=260591
-[Notification Hubs Guidance]: https://msdn.microsoft.com/library/jj927170.aspx
-[Notification Hubs How-To for iOS]: https://msdn.microsoft.com/library/jj927168.aspx
+[Notification Hubs Guidance]: https://docs.microsoft.com/previous-versions/azure/azure-services/jj927170(v=azure.100)
+[Notification Hubs How-To for iOS]: https://docs.microsoft.com/previous-versions/azure/reference/dn223264(v=azure.100)

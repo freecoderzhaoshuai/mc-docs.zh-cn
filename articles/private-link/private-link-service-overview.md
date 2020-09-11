@@ -2,26 +2,34 @@
 title: 什么是 Azure 专用链接服务？
 description: 了解 Azure 专用链接服务。
 services: private-link
-author: rockboyfor
 ms.service: private-link
 ms.topic: conceptual
 origin.date: 09/16/2019
-ms.date: 06/15/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: no
+ms.testdate: 06/15/2020
 ms.author: v-yeche
-ms.openlocfilehash: bfc0a0cb6e8fde2dad0b07bd796a16aabdf08d69
-ms.sourcegitcommit: 3de7d92ac955272fd140ec47b3a0a7b1e287ca14
+ms.openlocfilehash: 9b85a8b3d75153349037c46cfa2ee40cefc864bc
+ms.sourcegitcommit: 6e88e0e41b35d160a09f7a906ca3b7e837f51803
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84723744"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89412099"
 ---
 # <a name="what-is-azure-private-link-service"></a>什么是 Azure 专用链接服务？
 
 Azure 专用链接服务是对你自己的、由 Azure 专用链接驱动的服务的引用。 可为 [Azure 标准负载均衡器](../load-balancer/load-balancer-standard-overview.md)后面运行的服务启用专用链接访问，使该服务的使用者能够从其自己的 VNet 以私密方式访问该服务。 你的客户可在其 VNet 中创建专用终结点，然后将此终结点映射到此服务。 本文解释与服务提供商一方相关的概念。 
 
+:::image type="content" source="./media/private-link-service-overview/consumer-provider-endpoint.png" alt-text="专用链接服务工作流" border="true":::
+
+*图：Azure 专用链接服务。*
+
 ## <a name="workflow"></a>工作流
 
-![专用链接服务工作流](media/private-link-service-overview/private-link-service-workflow.png)
+:::image type="content" source="media/private-link-service-overview/private-link-service-workflow.png" alt-text="专用链接服务工作流":::
+
+*图：Azure 专用链接服务工作流。*
 
 ### <a name="create-your-private-link-service"></a>创建专用链接服务
 
@@ -61,7 +69,7 @@ Azure 专用链接服务是对你自己的、由 Azure 专用链接驱动的服�
 
 ### <a name="details"></a>详细信息
 
-- 可以从同一区域中已批准的专用终结点访问专用链接服务。 可以使用专用 VPN 或 ExpressRoute 连接，从同一个虚拟网络、区域对等互连的 VNet、全球对等互连的 VNet 和本地访问专用终结点。 
+- 可以从 `China East 2` 和 `China North 2` 区域中已批准的专用终结点访问专用链接服务。 可以使用专用 VPN 或 ExpressRoute 连接，从同一个虚拟网络、区域对等互连的 VNet、全球对等互连的 VNet 和本地访问专用终结点。 
 
 - 创建专用链接服务时，将为资源的生命周期创建一个网络接口。 此接口不可由客户管理。
 
@@ -124,5 +132,4 @@ Azure 专用链接服务是对你自己的、由 Azure 专用链接驱动的服�
 - [使用 Azure PowerShell 创建专用链接服务](create-private-link-service-powershell.md)
 - [使用 Azure CLI 创建专用链接服务](create-private-link-service-cli.md)
 
-<!-- Update_Description: new article about private link service overview -->
-<!--NEW.date: 01/06/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

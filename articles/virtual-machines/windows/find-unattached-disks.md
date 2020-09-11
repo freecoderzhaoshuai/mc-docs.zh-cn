@@ -1,19 +1,21 @@
 ---
 title: 查找并删除未连接的 Azure 托管和非托管磁盘
 description: 如何使用 Azure PowerShell 查找并删除未连接的 Azure 托管和非托管（VHD/页 blob）磁盘。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.topic: how-to
 origin.date: 02/22/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.subservice: disks
-ms.openlocfilehash: a4b5bfa3f4239455060c16f8d67a8e608a6536bd
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 1347f077c58b0288f4371059fcd9c37328285981
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945877"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463208"
 ---
 # <a name="find-and-delete-unattached-azure-managed-and-unmanaged-disks"></a>查找并删除未连接的 Azure 托管和非托管磁盘
 
@@ -53,16 +55,17 @@ foreach ($md in $managedDisks) {
 非托管磁盘是指以[页 blob](https://docs.microsoft.com/rest/api/storageservices/understanding-block-blobs--append-blobs--and-page-blobs#about-page-blobs) 形式存储在 [Azure 存储帐户](../../storage/common/storage-account-overview.md)中的 VHD 文件。 以下脚本通过检查 LeaseStatus**** 属性的值，查找未附加的非托管磁盘（页 blob）。 如果非托管磁盘附加到 VM，则 LeaseStatus**** 属性设置为“已锁定”****。 如果非托管磁盘未附加，则 LeaseStatus**** 属性设置为“未锁定”****。 脚本会检查 Azure 订阅中所有 Azure 存储帐户中的所有非托管磁盘。 当脚本找到一个 LeaseStatus 属性设置为“未锁定”的托管磁盘时，脚本将确定该磁盘为未附加**** ****。
 
 >[!IMPORTANT]
->首先，通过将 deleteUnattachedVHDs**** 变量设置为 0 来运行脚本。 通过此操作可查找并查看所有未附加的非托管 VHD。
+>首先，通过将 deleteUnattachedVHDs 变量设置为 `$false` 来运行脚本。 通过此操作可查找并查看所有未附加的非托管 VHD。
 >
->在检查所有未附加磁盘后，再次运行脚本并将 deleteUnattachedVHDs**** 变量设置为 1。 通过此操作可删除所有未附加的非托管 VHD。
+>在检查所有未附加磁盘后，再次运行脚本并将 deleteUnattachedVHDs 变量设置为 `$true`。 通过此操作可删除所有未附加的非托管 VHD。
 
 ```powershell
 # Sign in the Azure China Cloud
 Connect-AzAccount -Environment AzureChinaCloud
-# Set deleteUnattachedVHDs=1 if you want to delete unattached VHDs
-# Set deleteUnattachedVHDs=0 if you want to see the Uri of the unattached VHDs
-$deleteUnattachedVHDs=0
+
+# Set deleteUnattachedVHDs=$true if you want to delete unattached VHDs
+# Set deleteUnattachedVHDs=$false if you want to see the Uri of the unattached VHDs
+$deleteUnattachedVHDs=$false
 $storageAccounts = Get-AzStorageAccount
 foreach($storageAccount in $storageAccounts){
     $storageKey = (Get-AzStorageAccountKey -ResourceGroupName $storageAccount.ResourceGroupName -Name $storageAccount.StorageAccountName)[0].Value
@@ -74,7 +77,7 @@ foreach($storageAccount in $storageAccounts){
         $blobs | Where-Object {$_.BlobType -eq 'PageBlob' -and $_.Name.EndsWith('.vhd')} | ForEach-Object { 
             #If a Page blob is not attached as disk then LeaseStatus will be unlocked
             if($_.ICloudBlob.Properties.LeaseStatus -eq 'Unlocked'){
-                    if($deleteUnattachedVHDs -eq 1){
+                    if($deleteUnattachedVHDs){
                         Write-Host "Deleting unattached VHD with Uri: $($_.ICloudBlob.Uri.AbsoluteUri)"
                         $_ | Remove-AzStorageBlob -Force
                         Write-Host "Deleted unattached VHD with Uri: $($_.ICloudBlob.Uri.AbsoluteUri)"
@@ -90,6 +93,6 @@ foreach($storageAccount in $storageAccounts){
 
 ## <a name="next-steps"></a>后续步骤
 
-有关详细信息，请参阅[删除存储帐户](../../storage/common/storage-account-create.md#delete-a-storage-account)和[使用 PowerShell 标识孤立磁盘](https://blogs.technet.microsoft.com/ukplatforms/2018/02/21/azure-cost-optimisation-series-identify-orphaned-disks-using-powershell/)
+有关详细信息，请参阅[删除存储帐户](../../storage/common/storage-account-create.md#delete-a-storage-account)和[使用 PowerShell 标识孤立磁盘](https://docs.microsoft.com/archive/blogs/ukplatforms/azure-cost-optimisation-series-identify-orphaned-disks-using-powershell)
 
 <!-- Update_Description: update meta properties, wording update, update link -->

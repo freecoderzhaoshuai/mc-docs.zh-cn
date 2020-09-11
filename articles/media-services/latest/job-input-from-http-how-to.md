@@ -1,6 +1,6 @@
 ---
 title: 从 HTTPS URL 创建 Azure 媒体服务作业输入 | Microsoft Docs
-description: 本主题介绍如何从 HTTP URL 创建作业输入。
+description: 本主题演示如何从 HTTPS URL 创建 Azure 媒体服务作业输入。
 services: media-services
 documentationcenter: ''
 author: WenJason
@@ -12,12 +12,12 @@ ms.topic: article
 origin.date: 02/13/2019
 ms.date: 09/23/2019
 ms.author: juliako
-ms.openlocfilehash: e5adca3a5ec36bd266d309648b3147e702bbe72b
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 9c6bd02ab1ad4a9f46a4f5b957afaabf7cbc0d3d
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71124685"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413324"
 ---
 # <a name="create-a-job-input-from-an-https-url"></a>从 HTTPS URL 创建作业输入
 

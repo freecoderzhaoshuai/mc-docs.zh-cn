@@ -6,22 +6,20 @@ author: WenJason
 ms.service: vpn-gateway
 ms.topic: include
 origin.date: 08/14/2019
-ms.date: 09/02/2019
+ms.date: 09/07/2020
 ms.author: v-jay
 ms.custom: include file
-ms.openlocfilehash: 3a2cd01b724d6f9acaa19dc71f5d80e5ab74a2ec
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 061e5bad2fd0f0c7de277116d316204e05cca4d7
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "70131686"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89464251"
 ---
 以下配置用于执行下面的步骤：
 
-  | | |
-  |---|---|
-  |Computer| Ubuntu Server 18.04|
-  |依赖项| strongSwan |
+- 计算机：Ubuntu Server 18.04
+- 依赖项：strongSwan
 
 
 使用以下命令安装所需的 strongSwan 配置：

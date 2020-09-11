@@ -10,12 +10,12 @@ origin.date: 03/25/2019
 ms.date: 11/18/2019
 ms.author: v-yiso
 ms.custom: mvc
-ms.openlocfilehash: 5c27ff5a7ae29cc2ed24256817aaf6f576e056c1
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: 682b1a0f922ed3e83ad819bc248e91e284ec892c
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186608"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463189"
 ---
 # <a name="tutorial-use-azure-powershell-to-configure-iot-hub-message-routing"></a>教程：使用 Azure PowerShell 配置 IoT 中心消息路由
 
@@ -35,13 +35,13 @@ ms.locfileid: "84186608"
 
 ### <a name="use-powershell-to-create-your-base-resources"></a>使用 PowerShell 创建基本资源
 
+复制并粘贴以下脚本，然后按 Enter。 系统每次运行脚本中的一行。 该脚本的第一节将创建本教程所需的基本资源，包括存储帐户、IoT 中心、服务总线命名空间和服务总线队列。 在学习本教程的过程中，请复制并粘贴每个脚本块，以运行该块。
+
 有几个资源名称必须全局唯一，例如 IoT 中心名称和存储帐户名称。 为方便进行标识，这些资源名称的后面追加了名为 *randomValue* 的随机字母数字值。 randomValue 在脚本的顶部生成一次，并根据需要追加到整个脚本中的资源名称。 如果不想要使用随机后缀，可将其设置为空字符串或特定值。 
 
 > [!IMPORTANT]
 > 路由脚本也会使用初始脚本中设置的变量，因此，请在同一 Cloud Shell 会话中运行所有脚本。 如果打开新的会话来运行用于设置路由的脚本，则多个变量将会缺少值。 
 >
-
-复制以下脚本并将其粘贴到 Cloud Shell，然后按 Enter。 系统每次运行脚本中的一行。 该脚本的第一节将创建本教程所需的基本资源，包括存储帐户、IoT 中心、服务总线命名空间和服务总线队列。 在学习本教程的过程中，请复制每个脚本块并将其粘贴到 Cloud Shell，以运行该块。
 
 ```azurepowershell-interactive
 # This command retrieves the subscription id of the current Azure account.

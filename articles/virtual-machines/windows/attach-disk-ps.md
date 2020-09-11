@@ -1,19 +1,21 @@
 ---
-title: 使用 PowerShell 将数据磁盘附加到 Windows VM | Azure
+title: 使用 PowerShell 将数据磁盘附加到 Azure 中的 Windows VM
 description: 如何配合使用 PowerShell 和 Resource Manager 部署模型将新磁盘或现有数据磁盘附加到 Windows VM。
-author: rockboyfor
 ms.service: virtual-machines-windows
 ms.topic: how-to
 origin.date: 10/16/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.subservice: disks
-ms.openlocfilehash: 6d272a4e9ebda2bec1e34f7ad1e01e16da53629b
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 62cbed3882d577e387846fe977c84e23467954b5
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945648"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463134"
 ---
 # <a name="attach-a-data-disk-to-a-windows-vm-with-powershell"></a>使用 PowerShell 将数据磁盘附加到 Windows VM
 
@@ -21,14 +23,12 @@ ms.locfileid: "85945648"
 
 首先，查看以下提示：
 
-* 虚拟机的大小决定了可以附加多少个磁盘。 有关详细信息，请参阅[虚拟机的大小](sizes.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。
-* 若要使用高级 SSD，需要[支持高级存储的 VM 类型](sizes-memory.md)，如 DS 系列虚拟机。
+* 虚拟机的大小决定了可以附加多少个磁盘。 有关详细信息，请参阅[虚拟机的大小](../sizes.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)。
+* 若要使用高级 SSD，需要[支持高级存储的 VM 类型](../sizes-memory.md)，如 DS 系列虚拟机。
 
 <!-- Not Available on GS-series -->
 
-[!INCLUDE [updated-for-az.md](../../../includes/updated-for-az.md)]
-
-<!--Not Available [!INCLUDE [cloud-shell-powershell](../../../includes/cloud-shell-powershell.md)-->
+<!--Not Available on [Azure Cloud Shell](../../cloud-shell/overview.md)-->
 
 ## <a name="add-an-empty-data-disk-to-a-virtual-machine"></a>将空数据磁盘添加到虚拟机
 
@@ -105,4 +105,4 @@ Update-AzVM -VM $vm -ResourceGroupName $rgName
 
 还可以使用模板部署托管磁盘。 有关详细信息，请参阅[使用 Azure 资源管理器模板中的托管磁盘](using-managed-disks-template-deployments.md)或[快速入门模板](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-multiple-data-disk)以部署多个数据磁盘。
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

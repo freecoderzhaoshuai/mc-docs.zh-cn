@@ -1,6 +1,6 @@
 ---
 title: Azure 网络服务概述
-description: 了解 Azure 中的网络服务及其功能 - 连接服务、应用程序保护服务、应用程序交付服务和网络监视。
+description: 了解 Azure 中的网络服务，包括连接、应用程序保护、应用程序交付和网络监视服务。
 services: networking
 documentationcenter: na
 author: KumudD
@@ -9,14 +9,14 @@ ms.devlang: na
 ms.topic: article
 ms.workload: infrastructure-services
 origin.date: 03/12/2020
-ms.date: 07/22/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: 4980598d234dc365347e4b76353f30ab0a03a7ee
-ms.sourcegitcommit: 4d9846bb03ac24bd98b0c9a781bb8912ff6d2f61
+ms.openlocfilehash: 9a9d74d5ea8bcee669afce9893d60b96cf0df994
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "86926755"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316342"
 ---
 # <a name="azure-networking-services-overview"></a>Azure 网络服务概述
 

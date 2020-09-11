@@ -5,15 +5,15 @@ author: Johnnytechn
 services: azure-monitor
 ms.topic: conceptual
 origin.date: 01/29/2019
-ms.date: 05/28/2020
+ms.date: 08/20/2020
 ms.author: v-johya
 ms.subservice: metrics
-ms.openlocfilehash: 2c1e50b0969a2af31cd028750de3ad23f7e7e4c1
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: 1f02069772f30532d03ee950bee1180800b487f0
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440672"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457401"
 ---
 # <a name="advanced-features-of-azure-metrics-explorer"></a>Azure 指标资源管理器的高级功能
 
@@ -22,7 +22,7 @@ ms.locfileid: "84440672"
 
 ## <a name="metrics-in-azure"></a>Azure 中的指标
 
-[Azure Monitor 中的指标](data-platform-metrics.md)是随着时间的推移收集和存储的一系列测量值和计数。 有标准（或“平台”）指标和自定义指标。 标准指标由 Azure 平台本身提供。 标准指标反映 Azure 资源的运行状况和使用情况统计信息。 而自定义指标是由应用程序通过[用于自定义事件和指标的 Application Insights API](/azure-monitor/app/api-custom-events-metrics)、[Windows Azure 诊断 (WAD) 扩展](/azure-monitor/platform/diagnostics-extension-overview)或 [Azure Monitor REST API](/azure-monitor/platform/metrics-store-custom-rest-api) 发送给 Azure 的。
+[Azure Monitor 中的指标](data-platform-metrics.md)是随着时间的推移收集和存储的一系列测量值和计数。 有标准（或“平台”）指标和自定义指标。 标准指标由 Azure 平台本身提供。 标准指标反映 Azure 资源的运行状况和使用情况统计信息。 而自定义指标是由应用程序通过[用于自定义事件和指标的 Application Insights API](../app/api-custom-events-metrics.md)、[Azure 诊断 (WAD) 扩展](./diagnostics-extension-overview.md)或 Azure Monitor REST API 发送给 Azure 的。
 
 ## <a name="create-views-with-multiple-metrics-and-charts"></a>使用多个指标和图表创建视图
 
@@ -124,7 +124,7 @@ ms.locfileid: "84440672"
 
 另一个示例是可用内存的波动，其中的值在技术上永远不会达到 0。 将范围固定到一个较高的值可以使可用内存的降低更容易被发现。 
 
-若要控制 y 轴范围，请使用 “…” 图表菜单，并选择“编辑图表”以访问高级图表设置。 修改“Y 轴范围”部分中的值，或者使用“自动”按钮恢复为默认值。
+若要控制 y 轴范围，请使用 “…” 图表菜单，并选择“图表设置”以访问高级图表设置。 修改“Y 轴范围”部分中的值，或者使用“自动”按钮恢复为默认值。
 
 ![图表上的](./media/metrics-charts/00014-manually-set-granularity.png)
 
@@ -177,4 +177,5 @@ ms.locfileid: "84440672"
 
 ## <a name="next-steps"></a>后续步骤
 
-  请参阅[创建自定义 KPI 仪表板](/azure-monitor/learn/tutorial-app-dashboards)，了解使用指标创建可操作仪表板的最佳实践。
+  请参阅[创建自定义 KPI 仪表板](../learn/tutorial-app-dashboards.md)，了解使用指标创建可操作仪表板的最佳实践。
+

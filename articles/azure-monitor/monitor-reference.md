@@ -6,12 +6,12 @@ ms.topic: conceptual
 author: Johnnytechn
 ms.author: v-johya
 ms.date: 08/28/2020
-ms.openlocfilehash: f8c19ef30615d23de90363bbf82c1b686ae6b359
-ms.sourcegitcommit: 83c7dd0d35815586f5266ba660c4f136e20b2cc5
+ms.openlocfilehash: 6e57e717e2b5cce19fc2959d2616b815acad85f5
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/30/2020
-ms.locfileid: "89148696"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457413"
 ---
 # <a name="what-is-monitored-by-azure-monitor"></a>Azure Monitor 监视哪些内容？
 本文介绍了由 Azure Monitor 监视的不同应用程序和服务。 
@@ -38,10 +38,6 @@ ms.locfileid: "89148696"
 
 解决方案基于为特定应用程序或服务自定义的日志查询和视图。 它们只收集和分析日志，并随着时间推移而不再被使用，取而代之的是见解。
 
-| 解决方案 | 说明 |
-|:---|:---|
-| [警报管理](platform/alert-management-solution.md) | 分析从 System Center Operations Manager、Nagios 或 Zabbix 收集的警报。 |
-
 
 
 ## <a name="azure-services"></a>Azure 服务
@@ -54,9 +50,9 @@ ms.locfileid: "89148696"
 | 服务 | 指标 | 日志 | 见解 | 说明 |
 |:---|:---|:---|:---|:---|
 |Active Directory B2C | 否 | 否 | 否 |  |
-|Active Directory 域服务 | 否 | 是 | No |  |
+|Active Directory 域服务 | 否 | 是 | 否 |  |
 |活动日志 | 否 | 是 | No | |
-|高级威胁防护 | 否 | 否 | 否 |  |
+|高级威胁防护 | 否 | 否 | No |  |
 |顾问 | 否 | 否 | 否 |  |
 |AI Builder | 否 | 否 | 否 |  |
 |Analysis Services | 是 | 是 | 否 |  |
@@ -158,7 +154,7 @@ ms.locfileid: "89148696"
 |通用打印 | 否 | 否 | 否 |  |
 |虚拟网络 | 是 | 是 | [是](insights/network-insights-overview.md) |  |
 |虚拟网络 - NSG 流日志 | 否 | 是 | 否 |  |
-|VPN 网关 | “是” | 是 | 否 |  |
+|VPN 网关 | 是 | 是 | 否 |  |
 |Windows 虚拟桌面 | 否 | 否 | 否 |  |
 
 
@@ -170,7 +166,7 @@ ms.locfileid: "89148696"
 | [Azure 自动化](../automation/index.yml) |[更新管理](../automation/update-management/update-mgmt-overview.md)。 |
 | [Azure 安全中心](../security-center/index.yml) | 收集和分析安全事件并执行威胁分析。 请参阅 [Azure 安全中心中的数据收集](../security-center/security-center-enable-data-collection.md) |
 | [Microsoft Intune](https://docs.microsoft.com/intune/) | 创建诊断设置以将日志发送到 Azure Monitor。 请参阅[将日志数据发送到 Intune 中的存储、事件中心或日志分析（预览版）](https://docs.microsoft.com/intune/fundamentals/review-logs-using-azure-monitor)。  |
-| 网络  | [网络性能监视器](insights/network-performance-monitor.md) - 监视与服务和应用程序终结点的网络连接和其性能。<br>[Azure 应用程序网关](insights/azure-networking-analytics.md#azure-application-gateway-analytics-solution-in-azure-monitor) - 分析来自 Azure 应用程序网关的日志和指标。<br>[流量分析](../network-watcher/traffic-analytics.md) - 可以分析网络观察程序网络安全组 (NSG) 流日志，帮助洞察 Azure 云中的流量流。 |
+| 网络  | [网络性能监视器](insights/network-performance-monitor.md) - 监视与服务和应用程序终结点的网络连接和其性能。<br>[流量分析](../network-watcher/traffic-analytics.md) - 可以分析网络观察程序网络安全组 (NSG) 流日志，帮助洞察 Azure 云中的流量流。 |
 | [Surface Hub](insights/surface-hubs.md) | 跟踪 Surface Hub 设备的运行状况和使用情况。 |
 | [Microsoft 团队聊天室](https://docs.microsoft.com/microsoftteams/room-systems/azure-monitor-deploy) | Microsoft 团队聊天室设备的集成、端到端管理。 |
 | [Visual Studio App Center](https://docs.microsoft.com/appcenter/) | 构建、测试和分发应用程序，然后监视它们的状态和使用情况。 请参阅[开始使用 App Center 和 Application Insights 分析移动应用](learn/mobile-center-quickstart.md)。 |
@@ -184,7 +180,6 @@ ms.locfileid: "89148696"
 
 | 解决方案 | 说明 |
 |:---|:---|
-| [Active Directory 运行状况检查](insights/ad-assessment.md) | 评估 Active Directory 环境的风险和运行状况。 |
 | [活动日志分析](platform/activity-log.md#activity-log-analytics-monitoring-solution) | 查看活动日志条目。 |
 | [容器](insights/containers.md) | 查看和管理 Docker 和 Windows 容器主机。 |
 | [按需评估](https://docs.microsoft.com/services-hub/health/getting_started_with_on_demand_assessments) | 评估和优化本地、混合和云 Microsoft 技术环境的可用性、安全性和性能。 |
@@ -197,7 +192,7 @@ Azure Monitor 可以使用下表中列出的方法从 Azure 以外的资源收�
 |:---|:---|
 | 应用程序 | 使用 Application Insights 监视 Azure 以外的 web 应用程序。 请参阅[什么是 Application Insights？](./app/app-insights-overview.md)。 |
 | 虚拟机 | 使用代理从其他云环境中的或本地的虚拟机的来宾操作系统收集数据。 请参阅 [Azure Monitor 代理概述](platform/agents-overview.md)。 |
-| REST API 客户端 | 可使用单独的 API 将数据从任何 REST API 客户端写入 Azure Monitor 日志和指标。 请参阅[使用 HTTP 数据收集器 API 将日志数据发送到 Azure Monitor](platform/data-collector-api.md)，以及[使用 REST API 将 Azure 资源的自定义指标发送到 Azure Monitor 指标存储](platform/metrics-store-custom-rest-api.md)。 |
+| REST API 客户端 | 可使用单独的 API 将数据从任何 REST API 客户端写入 Azure Monitor 日志和指标。 请参阅[使用 HTTP 数据收集器 API 将日志数据发送到 Azure Monitor](platform/data-collector-api.md) 以获取日志。 |
 
 
 

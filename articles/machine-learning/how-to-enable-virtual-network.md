@@ -11,12 +11,12 @@ author: aashishb
 ms.date: 07/07/2020
 ms.topic: conceptual
 ms.custom: how-to, contperfq4, tracking-python
-ms.openlocfilehash: 3bc070b568ebf844089e923bd6140ec50a08fea8
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 60c038566d212ebca5c9e71c5eada7d7bd9d9401
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947153"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462954"
 ---
 # <a name="network-isolation-during-training--inference-with-private-virtual-networks"></a>使用专用虚拟网络进行训练和推理期间的网络隔离
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -331,11 +331,11 @@ Batch 服务在附加到 VM 的网络接口 (NIC) 级别添加网络安全组 (N
     
     添加 UDR 时，请为每个相关的 Batch IP 地址前缀定义路由，并将“下一跃点类型”设置为“Internet”。  下图显示了 Azure 门户中此 UDR 的示例：
 
-![地址前缀的 UDR 示例](./media/how-to-enable-virtual-network/user-defined-route.png)
+    ![地址前缀的 UDR 示例](./media/how-to-enable-virtual-network/user-defined-route.png)
 
-    In addition to any UDRs that you define, outbound traffic to Azure Storage must be allowed through your on-premises network appliance. Specifically, the URLs for this traffic are in the following forms: `<account>.table.core.windows.net`, `<account>.queue.core.windows.net`, and `<account>.blob.core.windows.net`. 
+    除了定义的任何 UDR，还必须通过本地网络设备允许流向 Azure 存储的出站流量。 具体而言，此流量的 URL 采用以下格式：`<account>.table.core.windows.net`、`<account>.queue.core.windows.net` 和 `<account>.blob.core.windows.net`。 
 
-    For more information, see [Create an Azure Batch pool in a virtual network](../batch/batch-virtual-network.md#user-defined-routes-for-forced-tunneling).
+    有关详细信息，请参阅[在虚拟网络中创建 Azure Batch 池](../batch/batch-virtual-network.md#user-defined-routes-for-forced-tunneling)。
 
 
 ### <a name="create-a-compute-cluster-in-a-virtual-network"></a>在虚拟网络中创建计算群集

@@ -1,35 +1,35 @@
 ---
-title: Azure VM 上的 BitLocker 启动错误
+title: 排查 Azure VM 上的 BitLocker 启动错误 | Azure
 description: 了解如何排查 Azure VM 中的 BitLocker 启动错误
 services: virtual-machines-windows
 documentationCenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: v-jesits
 ms.service: virtual-machines-windows
 ms.topic: troubleshooting
 ms.tgt_pltfrm: vm-windows
 ms.workload: infrastructure
 origin.date: 08/23/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: has-adal-ref
-ms.openlocfilehash: 13fce9dfe2139bdc32027ea50b39df7d98704d58
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: c9960612c8626f782624ce53373f03a935975a0a
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946079"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456816"
 ---
 # <a name="bitlocker-boot-errors-on-an-azure-vm"></a>Azure VM 上的 BitLocker 启动错误
 
  本文介绍在 Azure 中启动 Windows 虚拟机 (VM) 时可能遇到的 BitLocker 错误。
 
-[!INCLUDE [updated-for-az.md](../../../includes/updated-for-az.md)]
-
 ## <a name="symptom"></a>症状
 
-Windows VM 不启动。 检查[启动诊断](../windows/boot-diagnostics.md)窗口中的屏幕截图时，看到以下错误消息之一：
+ Windows VM 不启动。 检查[启动诊断](./boot-diagnostics.md)窗口中的屏幕截图时，看到以下错误消息之一：
 
 - 插入含 BitLocker 密钥的 USB 驱动程序
 
@@ -70,10 +70,9 @@ Windows VM 不启动。 检查[启动诊断](../windows/boot-diagnostics.md)窗�
 
     Update-AzVM -VM $vm -ResourceGroupName $recoveryVMRG
     ```
-    
     不能将托管磁盘附加到从 Blob 映像还原的 VM。
 
-3. 附加磁盘后，对恢复 VM 进行远程桌面连接，以便可以运行某些 Azure PowerShell 脚本。 确保已在恢复 VM 上安装[最新版本的 Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview)。
+3. 附加磁盘后，对恢复 VM 进行远程桌面连接，以便可以运行某些 Azure PowerShell 脚本。 确保已在恢复 VM 上安装[最新版本的 Azure PowerShell](https://docs.microsoft.com/powershell/azure/)。
 
 4. 打开提升的 Azure PowerShell 会话（以管理员身份运行）。 运行以下命令来登录到 Azure 订阅：
 
@@ -139,13 +138,13 @@ Windows VM 不启动。 检查[启动诊断](../windows/boot-diagnostics.md)窗�
 
     - 暂停保护，以便运行以下命令，暂时关闭 BitLocker：
         
-        ```
+        ```console
             manage-bde -protectors -disable F: -rc 0
         ```
 
     - 完全解密该驱动器。 为此，请运行以下命令：
         
-        ```
+        ```console
             manage-bde -off F:
         ```
 
@@ -244,20 +243,17 @@ Windows VM 不启动。 检查[启动诊断](../windows/boot-diagnostics.md)窗�
 3. 设置参数。 该脚本处理 KEK 机密以创建 BEK 密钥，然后将其保存到恢复 VM 上的本地文件夹中。 如果在运行脚本时收到错误，请参阅[脚本故障排除](#script-troubleshooting)部分。
 
 4. 脚本开始时，将看到以下输出：
-    
-    ```
-        GAC    Version        Location                                                                              
-        ---    -------        --------                                                                              
-        False  v4.0.30319     C:\Program Files\WindowsPowerShell\Modules\Az.Accounts\...
-        False  v4.0.30319     C:\Program Files\WindowsPowerShell\Modules\Az.Accounts\...
-    ```
+
+    GAC    版本        位置                                                                              
+    --- -------        --------                                                                              
+    False  v4.0.30319     C:\Program Files\WindowsPowerShell\Modules\Az.Accounts\...False  v4.0.30319     C:\Program Files\WindowsPowerShell\Modules\Az.Accounts\...
 
     脚本完成后，将看到以下输出：
-    
-    ```
-        VERBOSE: POST https://myvault.vault.azure.cn/keys/rondomkey/<KEY-ID>/unwrapkey?api-
-        version=2015-06-01 with -1-byte payload
-        VERBOSE: received 360-byte response of content type application/json; charset=utf-8
+
+    ```output
+    VERBOSE: POST https://myvault.vault.azure.cn/keys/rondomkey/<KEY-ID>/unwrapkey?api-
+    version=2015-06-01 with -1-byte payload
+    VERBOSE: received 360-byte response of content type application/json; charset=utf-8
     ```
 
 5. 若要使用 BEK 文件解锁附加磁盘，请运行以下命令：
@@ -275,16 +271,17 @@ Windows VM 不启动。 检查[启动诊断](../windows/boot-diagnostics.md)窗�
 7. 如果新的 VM 仍然不能正常启动，请在解锁设备后尝试下述步骤之一：
 
     - 暂停保护，以便运行以下命令，暂时关闭 BitLocker：
-        
-        ```
-            manage-bde -protectors -disable F: -rc 0
-        ```
+
+    ```console
+    manage-bde -protectors -disable F: -rc 0
+    ```
 
     - 完全解密该驱动器。 为此，请运行以下命令：
-        
-        ```
-            manage-bde -off F:
-        ```
+
+    ```console
+    manage-bde -off F:
+    ```
+
 ## <a name="script-troubleshooting"></a>脚本故障排除
 
 **错误：无法加载文件或程序集**
@@ -307,4 +304,4 @@ Windows VM 不启动。 检查[启动诊断](../windows/boot-diagnostics.md)窗�
 |$bekFilePath   |c:\bek\7EB4F531-5FBA-4970-8E2D-C11FD6B0C69D.BEK |用于写入 BEK 文件的路径。|
 |$adTenant  |contoso.partner.onmschina.cn   | 用于托管密钥保管库的 Azure Active Directory 的 FQDN 或 GUID |
 
-<!-- Update_Description: wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

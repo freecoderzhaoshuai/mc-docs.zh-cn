@@ -1,26 +1,19 @@
 ---
-title: 排查 Azure 站点到站点 VPN 连接无法建立连接的问题 | Microsoft Docs
+title: 排查 Azure 站点到站点 VPN 连接无法建立连接的问题Azure VPN 网关
 description: 了解如何排查站点到站点 VPN 连接突然停止工作，不能重新建立连接的问题。
 services: vpn-gateway
-documentationcenter: na
 author: WenJason
-manager: digimobile
-editor: ''
-tags: ''
 ms.service: vpn-gateway
-ms.devlang: na
 ms.topic: troubleshooting
-ms.tgt_pltfrm: na
-ms.workload: infrastructure-services
-origin.date: 10/30/2018
-ms.date: 05/27/2019
+origin.date: 09/16/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: cedc705bbf50fd112b9ded11ed1adc5f5cd6b89b
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 81150be7977d092a4855c8ca6e04ebc012b60588
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "66195029"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462967"
 ---
 # <a name="troubleshooting-an-azure-site-to-site-vpn-connection-cannot-connect-and-stops-working"></a>故障排除：Azure 站点到站点 VPN 连接无法建立连接并停止工作
 
@@ -68,11 +61,15 @@ ms.locfileid: "66195029"
 
 对于 Azure 资源管理器部署模型：
 
-    Get-AzVirtualNetworkGatewayConnectionSharedKey -Name <Connection name> -ResourceGroupName <Resource group name>
+```azurepowershell
+Get-AzVirtualNetworkGatewayConnectionSharedKey -Name <Connection name> -ResourceGroupName <Resource group name>
+```
 
 对于经典部署模型：
 
-    Get-AzureVNetGatewayKey -VNetName -LocalNetworkSiteName
+```azurepowershell
+Get-AzureVNetGatewayKey -VNetName -LocalNetworkSiteName
+```
 
 ### <a name="step-3-verify-the-vpn-peer-ips"></a>步骤 3. 验证 VPN 对等 IP
 

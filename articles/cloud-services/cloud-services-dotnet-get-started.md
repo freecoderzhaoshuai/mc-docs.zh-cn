@@ -7,15 +7,16 @@ author: tgore03
 manager: carmonm
 ms.service: cloud-services
 ms.devlang: dotnet
+ms.custom: devx-track-csharp
 ms.topic: conceptual
-ms.date: 07/20/2020
+ms.date: 08/31/2020
 ms.author: v-junlch
-ms.openlocfilehash: a8900297ed47ec72b1db5d5be92bb9377ffa6d39
-ms.sourcegitcommit: d32699135151e98471daebe6d3f5b650f64f826e
+ms.openlocfilehash: 12c09477e6160cec49bc8a835bb64dccc33a2256
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/24/2020
-ms.locfileid: "87160381"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413840"
 ---
 # <a name="get-started-with-azure-cloud-services-and-aspnet"></a>Azure 云服务和 ASP.NET 入门
 
@@ -32,12 +33,12 @@ ms.locfileid: "87160381"
 应用程序使用 [以队列为中心的工作模式](https://www.asp.net/aspnet/overview/developing-apps-with-windows-azure/building-real-world-cloud-apps-with-windows-azure/queue-centric-work-pattern) 来减轻创建缩略图到后端进程的 CPU 密集型工作。
 
 ## <a name="alternative-architecture-app-service-and-webjobs"></a>替代体系结构：应用服务和 WebJobs
-本教程演示如何在 Azure 云服务中运行前端和后端。 一种替代方法是在 [Azure 应用服务](/app-service/)中运行前端，并对后端使用 `WebJobs` 功能。 有关如何使用 WebJobs 的教程，请参阅 [Azure WebJobs SDK 入门](https://github.com/Azure/azure-webjobs-sdk/wiki)。 
+本教程演示如何在 Azure 云服务中运行前端和后端。 一种替代方法是在 [Azure 应用服务](/app-service/)中运行前端，并对后端使用 `WebJobs` 功能。 有关如何使用 WebJobs 的教程，请参阅 [Azure WebJobs SDK 入门](https://github.com/Azure/azure-webjobs-sdk/wiki)。
 
 ## <a name="what-youll-learn"></a>学习内容
 * 如何在计算机上安装 Azure SDK 以进行 Azure 开发。
 * 如何通过 ASP.NET MVC web 角色和辅助角色创建一个 Visual Studio 云服务项目。
-* 如何使用 Azure 存储仿真程序测试本地云服务项目。
+* 如何使用 Azure 存储模拟器在本地测试云服务项目。
 * 如何将云项目发布到 Azure 云服务并使用 Azure 存储帐户测试。
 * 如何上传文件并将其存储在 Azure Blob 服务中。
 * 如何将 Azure 队列服务用于各层之间的通信。

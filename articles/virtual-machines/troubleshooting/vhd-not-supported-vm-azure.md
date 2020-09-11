@@ -3,8 +3,7 @@ title: 在 Azure 中创建虚拟机时不支持 VHD | Azure
 description: 本文有助于在 Azure 中运行虚拟机时更正 VHD 错误。
 services: virtual-machines
 documentationCenter: ''
-author: rockboyfor
-manager: digimobile
+manager: dcscontentpm
 editor: ''
 ms.service: virtual-machines
 ms.assetid: 5488aba9-c3da-435d-b4a5-63470f455b07
@@ -12,16 +11,17 @@ ms.topic: troubleshooting
 ms.tgt_pltfrm: na
 ms.workload: infrastructure
 origin.date: 06/29/2020
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: c0380b68f908b2b92d8ee92852158c96085174ff
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: e83550dba80305d3f42fb2400ed22895d0d7d226
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87254849"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456755"
 ---
 # <a name="vhd-is-not-supported-when-you-create-a-virtual-machine-in-azure"></a>在 Azure 中创建虚拟机时不支持 VHD
 
@@ -54,21 +54,19 @@ ErrorMessage: The specified cookie value in VHD footer indicates that disk 'disk
 - 若要解决 Windows 中的问题，请使用 [Resize-VHD PowerShell cmdlet](https://docs.microsoft.com/powershell/module/hyper-v/resize-vhd)。 请注意，Resize VHD 不是 Azure PowerShell cmdlet。
 
     1. [在 Windows Server 上安装 Hyper-V 角色](https://docs.microsoft.com/windows-server/virtualization/hyper-v/get-started/install-the-hyper-v-role-on-windows-server)
-    1. [将虚拟磁盘转换为固定大小的 VHD](/virtual-machines/windows/prepare-for-upload-vhd-image#convert-the-virtual-disk-to-a-fixed-size-vhd)
+    1. [将虚拟磁盘转换为固定大小的 VHD](../windows/prepare-for-upload-vhd-image.md#convert-the-virtual-disk-to-a-fixed-size-vhd)
 
-- 若要解决 Linux 中的问题，请使用 [qemu img 命令](/virtual-machines/linux/create-upload-generic)。
+- 若要解决 Linux 中的问题，请使用 [qemu img 命令](../linux/create-upload-generic.md)。
 
 有关如何创建和上传 VHD 以创建 Azure VM 的更多信息，请参阅以下文章：
 
-- [使用 Azure CLI 1.0 上传自定义磁盘映像并从其创建 Linux VM](/virtual-machines/linux/upload-vhd)
-- [创建 Windows Server VHD 并将其上传到 Azure](/virtual-machines/windows/upload-generalized-managed)
+- [使用 Azure CLI 1.0 上传自定义磁盘映像并从其创建 Linux VM](../linux/upload-vhd.md)
+- [创建 Windows Server VHD 并将其上传到 Azure](../windows/upload-generalized-managed.md)
 
 持续出现的问题可能表明 VHD 已损坏。 在这种情况下，我们建议你从头开始重新生成 VHD。
 
 有关详细信息，请参阅以下文章：
 
-- [关于 Windows VHD](/virtual-machines/windows/about-disks-and-vhds#about-vhds)
-- [关于 Linux VHD](/virtual-machines/linux/about-disks-and-vhds#about-vhds)
+- [关于 VHD](../managed-disks-overview.md)
 
-<!-- Update_Description: new article about vhd not supported vm azure -->
-<!--NEW.date: 07/27/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

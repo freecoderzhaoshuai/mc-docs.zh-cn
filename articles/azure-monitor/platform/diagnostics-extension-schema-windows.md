@@ -6,13 +6,13 @@ ms.topic: reference
 author: Johnnytechn
 ms.author: v-johya
 origin.date: 01/20/2020
-ms.date: 05/28/2020
-ms.openlocfilehash: f19cacf20f409627ebbaa4ff0bd3121011ad05e6
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.date: 08/20/2020
+ms.openlocfilehash: cb9bd9a1cd839b040326e7c18a0733b497440a48
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440503"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457246"
 ---
 # <a name="windows-diagnostics-extension-schema"></a>Windows 诊断扩展架构
 Azure 诊断扩展是 Azure Monitor 中的一个代理，用于从 Azure 计算资源的来宾操作系统和工作负荷中收集监视数据。 本文详细介绍了用于在 Windows 虚拟机和其他计算资源上配置诊断扩展的架构。
@@ -77,7 +77,7 @@ Azure 诊断扩展是 Azure Monitor 中的一个代理，用于从 Azure 计算�
 |----------------|-----------------|  
 | **overallQuotaInMB** | 由 Azure 诊断收集的各类诊断数据使用的最大本地磁盘空间量。 默认设置是 4096 MB。<br />
 |**useProxyServer** | 将 Azure 诊断配置为使用在 IE 设置中设置的代理服务器设置。|
-|**sinks** | 在 1.5 中添加。 可选。 指向接收器位置以同时发送支持接收器的所有子元素的诊断数据。 接收器示例是 Application Insights 或事件中心。|  
+|**sinks** | 在 1.5 中添加。 可选。 指向接收器位置以同时发送支持接收器的所有子元素的诊断数据。 接收器示例是 Application Insights 或事件中心。 注意，如果希望上传到事件中心的事件具有资源 ID，则需要在“指标”元素下添加 resourceId 属性 。 |  
 
 
 <br /> <br />
@@ -158,7 +158,7 @@ Azure 诊断扩展是 Azure Monitor 中的一个代理，用于从 Azure 计算�
 
 |子元素|说明|  
 |--------------------|-----------------|  
-|**EtwEventSourceProviderConfiguration**|配置收集从 [EventSource 类](https://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource\(v=vs.110\).aspx)生成的事件。 必需属性：<br /><br /> **provider** - EventSource 事件的类名称。<br /><br /> 可选属性：<br /><br /> - **scheduledTransferLogLevelFilter** - 要传输到存储帐户的最低严重级别。<br /><br /> - **scheduledTransferPeriod** - 到存储空间的计划传输之间的时间间隔，向上舍入为最接近的分钟数。 值是 [XML“持续时间数据类型。”](https://www.w3schools.com/xml/schema_dtypes_date.asp) |  
+|**EtwEventSourceProviderConfiguration**|配置收集从 [EventSource 类](https://msdn.microsoft.com/dotnet/api/system.diagnostics.tracing.eventsource?view=netcore-3.1)生成的事件。 必需属性：<br /><br /> **provider** - EventSource 事件的类名称。<br /><br /> 可选属性：<br /><br /> - **scheduledTransferLogLevelFilter** - 要传输到存储帐户的最低严重级别。<br /><br /> - **scheduledTransferPeriod** - 到存储空间的计划传输之间的时间间隔，向上舍入为最接近的分钟数。 值是 [XML“持续时间数据类型。”](https://www.w3schools.com/xml/schema_dtypes_date.asp) |  
 |**EtwManifestProviderConfiguration**|必需属性：<br /><br /> **provider** - 事件提供程序的 GUID<br /><br /> 可选属性：<br /><br /> - **scheduledTransferLogLevelFilter** - 要传输到存储帐户的最低严重级别。<br /><br /> - **scheduledTransferPeriod** - 到存储空间的计划传输之间的时间间隔，向上舍入为最接近的分钟数。 值是 [XML“持续时间数据类型。”](https://www.w3schools.com/xml/schema_dtypes_date.asp) |  
 
 
@@ -166,7 +166,7 @@ Azure 诊断扩展是 Azure Monitor 中的一个代理，用于从 Azure 计算�
 ## <a name="etweventsourceproviderconfiguration-element"></a>EtwEventSourceProviderConfiguration 元素  
  *树：根 - DiagnosticsConfiguration - PublicConfig - WadCFG - DiagnosticMonitorConfiguration - EtwProviders- EtwEventSourceProviderConfiguration*
 
- 配置收集从 [EventSource 类](https://msdn.microsoft.com/library/system.diagnostics.tracing.eventsource\(v=vs.110\).aspx)生成的事件。  
+ 配置收集从 [EventSource 类](https://msdn.microsoft.com/dotnet/api/system.diagnostics.tracing.eventsource?view=netcore-3.1)生成的事件。  
 
 |子元素|说明|  
 |--------------------|-----------------|  
@@ -190,7 +190,7 @@ Azure 诊断扩展是 Azure Monitor 中的一个代理，用于从 Azure 计算�
 
  可以生成针对快速查询进行优化的性能计数器表。 在 **PerformanceCounters** 元素中定义的每个性能计数器除存储在性能计数器表内外，还存储在度量值表中。  
 
- 必需 **resourceId** 属性。  要在其中部署 Azure 诊断的虚拟机或虚拟机规模集的资源 ID。 从 [Azure 门户](https://portal.azure.cn)获取 **resourceID**。 选择“浏览” -> “资源组” -> “<名称\>”。 单击“属性”磁贴，并从“ID”字段复制值。  
+ 必需 **resourceId** 属性。  要在其中部署 Azure 诊断的虚拟机或虚拟机规模集的资源 ID。 从 [Azure 门户](https://portal.azure.cn)获取 **resourceID**。 选择“浏览” -> “资源组” -> “<名称\>”。 单击“属性”磁贴，并从“ID”字段复制值。  此 resourceID 属性既用于发送自定义指标，又用于为发送到事件中心的数据添加 resourceID 属性。 注意，如果希望上传到事件中心的事件具有资源 ID，则需要在“指标”元素下添加 resourceId 属性 。
 
 |子元素|说明|  
 |--------------------|-----------------|  
@@ -240,7 +240,7 @@ Azure 诊断扩展是 Azure Monitor 中的一个代理，用于从 Azure 计算�
 |**bufferQuotaInMB**|**unsignedInt**|可选。 指定可用于存储指定数据的文件系统存储最大容量。<br /><br /> 默认值为 0。|  
 |**scheduledTransferLogLevelFilter**|**string**|可选。 指定传输的日志条目的最低严重级别。 默认值是“未定义”，这会传输所有日志。 其他可能的值是（按信息严重级别从高到低排序）“详细”、“信息”、“警告”、“错误”和“严重”。|  
 |**scheduledTransferPeriod**|**duration**|可选。 指定计划的数据传输之间的时间间隔，向上舍入为最接近的分钟数。<br /><br /> 默认是 PT0S。|  
-|**sinks** |**string**| 在 1.5 中添加。 可选。 指向同时要发送诊断数据的接收器位置。 例如，Application Insights 或事件中心。|  
+|**sinks** |**string**| 在 1.5 中添加。 可选。 指向同时要发送诊断数据的接收器位置。 例如，Application Insights 或事件中心。 注意，如果希望上传到事件中心的事件具有资源 ID，则需要在“指标”元素下添加 resourceId 属性 。|  
 
 ## <a name="dockersources"></a>DockerSources
  *树：根 - DiagnosticsConfiguration - PublicConfig - WadCFG - DiagnosticMonitorConfiguration - DockerSources*
@@ -269,7 +269,7 @@ Azure 诊断扩展是 Azure Monitor 中的一个代理，用于从 Azure 计算�
 
 |属性|类型|说明|  
 |---------------|----------|-----------------|  
-|**name**|string|标识 sinkname 的字符串。|  
+|name |string|标识 sinkname 的字符串。|  
 
 |元素|类型|说明|  
 |-------------|----------|-----------------|  
@@ -328,7 +328,7 @@ Azure 诊断扩展是 Azure Monitor 中的一个代理，用于从 Azure 计算�
 PublicConfig 和 PrivateConfig 是分开的，因为在大多数 JSON 用例中，它们作为不同的变量传递。 这些用例包括资源管理器模板、PowerShell 和 Visual Studio。
 
 > [!NOTE]
-> 公共配置 Azure Monitor 接收器定义有两个属性：resourceId 和 region。 这些属性仅是经典 VM 和经典云服务所必需的。 这些属性不应用于其他资源。
+> 公共配置 Azure Monitor 接收器定义有两个属性：resourceId 和 region。 这些属性仅是经典 VM 和经典云服务所必需的。 region 属性不应用于其他资源，在 ARM VM 上使用 resourceId 属性以将 resourceID 字段填充到上传到事件中心的日志中 。
 
 ```json
 "PublicConfig" {

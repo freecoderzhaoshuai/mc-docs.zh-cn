@@ -2,13 +2,13 @@
 title: 通过 Azure 资源运行状况支持的资源类型 | Microsoft Docs
 description: 通过 Azure 资源运行状况支持的资源类型
 ms.topic: conceptual
-ms.date: 08/10/2020
-ms.openlocfilehash: 7f1b3cbfb5e198d4e57cb02dbb621e611b666eb9
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.date: 08/31/2020
+ms.openlocfilehash: d83e2f72ce76d32dfefbd264d9138e9e67d5ac80
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223192"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413957"
 ---
 # <a name="resource-types-and-health-checks-in-azure-resource-health"></a>Azure 资源运行状况中的资源类型和运行状况检查
 下面是通过资源运行状况执行的所有检查（按资源类型）的完整列表。
@@ -43,6 +43,11 @@ ms.locfileid: "88223192"
 |---|
 |<ul><li>主机服务器是否已启动并正在运行？</li><li>主机 OS 启动是否已完成？</li><li>是否已配置并启动虚拟机容器？</li><li>主机和存储帐户之间是否有网络连接？</li><li>来宾 OS 启动是否已完成？</li><li>是否存在持续的计划内维护？</li><li>主机硬件是否已降级并预计很快会发生故障？</li></ul>|
 
+## <a name="microsoftclassiccomputedomainnames"></a>Microsoft.classiccompute/domainnames
+|执行的检查|
+|---|
+|<ul><li>所有角色实例的生产槽部署是否正常运行？</li><li>所有角色的 VM 实例上的角色是否正常运行？</li><li>云服务角色中每个 VM 的运行状况如何？</li><li>VM 状态是否因平台或客户发起的操作而改变？</li><li>来宾 OS 启动是否已完成？</li><li>是否存在持续的计划内维护？</li><li>主机硬件是否已降级并预计很快会发生故障？</li></ul>|
+
 ## <a name="microsoftcognitiveservicesaccounts"></a>Microsoft.cognitiveservices/accounts
 |执行的检查|
 |---|
@@ -62,6 +67,17 @@ ms.locfileid: "88223192"
 |执行的检查|
 |---|
 |<ul><li>是否有管道运行失败？</li><li>托管数据工厂的群集是否正常？</li></ul>|
+
+## <a name="microsoftdatalakeanalyticsaccounts"></a>Microsoft.datalakeanalytics/accounts
+|执行的检查|
+|---|
+|<ul><li>是否有用户无法提交或列出 Data Lake Analytics 作业？</li><li>是否因系统错误而无法完成 Data Lake Analytics 作业？</li></ul>|
+
+
+## <a name="microsoftdatalakestoreaccounts"></a>Microsoft.datalakestore/accounts
+|执行的检查|
+|---|
+|<ul><li>是否有用户无法将数据上传到 Data Lake Store？</li><li>是否有用户无法从 Data Lake Store 下载数据？</li></ul>|
 
 ## <a name="microsoftdatamigrationservices"></a>Microsoft.datamigration/services
 |执行的检查|

@@ -3,15 +3,15 @@ title: 适用于 Azure Functions 的 Azure 队列存储触发器
 description: 了解如何在 Azure 队列存储数据更改时运行 Azure Function。
 author: craigshoemaker
 ms.topic: reference
-ms.date: 08/24/2020
+ms.date: 09/02/2020
 ms.author: v-junlch
 ms.custom: devx-track-csharp, cc996988-fb4f-47
-ms.openlocfilehash: 9abd3c06caa7b6597e7218ce48375f0cf7ca6885
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 042b690e3fe888c10e7abaa77e58a115847e24d8
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947135"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413808"
 ---
 # <a name="azure-queue-storage-trigger-for-azure-functions"></a>适用于 Azure Functions 的 Azure 队列存储触发器
 
@@ -344,7 +344,7 @@ public class QueueTriggerDemo {
 
 可以在 [host.json 文件](functions-host-json.md#queues)中配置用于获取新批的批大小和阈值。 如果希望在函数应用中最大程度地降低查询触发的函数的并行执行，可以将批大小设置为 1。 只有当函数在单个虚拟机 (VM) 上运行时，此设置才可消除并发。 
 
-队列触发器会自动阻止函数多次处理队列消息；无需将函数编写为幂等函数。
+队列触发器会自动阻止函数同时多次处理队列消息。
 
 ## <a name="hostjson-properties"></a>host.json 属性
 
@@ -352,7 +352,7 @@ public class QueueTriggerDemo {
 
 ## <a name="next-steps"></a>后续步骤
 
-- [向队列存储写入消息（输出绑定）](./functions-bindings-storage-blob-output.md)
+- [写入 Blob 存储消息（输出绑定）](./functions-bindings-storage-blob-output.md)
 
 <!-- LINKS -->
 

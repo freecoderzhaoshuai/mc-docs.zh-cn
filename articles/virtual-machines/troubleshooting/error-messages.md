@@ -1,24 +1,26 @@
 ---
-title: 了解在 Azure 中管理虚拟机时遇到的常见错误消息
+title: Azure 中的常见 VM 错误代码 | Azure
 description: 了解在 Azure 中预配和管理虚拟机时遇到的一些常见错误代码
 services: virtual-machines
 documentationcenter: ''
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 editor: ''
 tags: azure-resource-manager
 ms.service: virtual-machines
 ms.topic: troubleshooting
 ms.workload: infrastructure
 origin.date: 05/22/2017
-ms.date: 02/10/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: f963d4e3cb2635adeb3f9bf0a6439e4fff7c86a5
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 25bdf6f98a76ce14366cb8fb20461040e74fcc6b
+ms.sourcegitcommit: 42d0775781f419490ceadb9f00fb041987b6b16d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77428775"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89456869"
 ---
 # <a name="understand-common-error-messages-when-you-manage-virtual-machines-in-azure"></a>了解在 Azure 中管理虚拟机时遇到的常见错误消息
 
@@ -30,7 +32,7 @@ ms.locfileid: "77428775"
 <!--Not Available on on this page for feedback or-->
 
 ## <a name="error-response-format"></a>错误响应格式 
-Azure VM 使用以下 JSON 格式提供错误响应：
+Azure VM 使用以下 JSON 格式进行错误响应：
 
 ```json
 {
@@ -54,6 +56,11 @@ Azure VM 使用以下 JSON 格式提供错误响应：
 
 本部分列出管理 VM 时可能遇到的常见错误消息：
 
+<!--MOONCAKE: CHANGE id(s) to ID(s), VM Scale Set to (V|v)irutal machines scale set-->
+<!--MOONCAKE: CHANGE  VMExtension(s) to VM Extension(s), availabilityset to availability set-->
+<!--MOONCAKE: CHANGE  Ssh public key to SSH public key, OSProfile to OS profile-->
+<!--CORRECT OT MEET SCORECARD REQUIREMENT-->
+
 |  错误代码  |  错误消息  |  
 |  :------| :-------------|  
 |  AcquireDiskLeaseFailed  |  使用 URI 为 {1} 的 Blob 创建磁盘“{0}”时无法获取租约。 Blob 已在使用中。  |  
@@ -63,11 +70,11 @@ Azure VM 使用以下 JSON 格式提供错误响应：
 |  ArtifactNotFound  |  在扩展存储库中找不到发布者为“{0}”、类型为“{1}”且类型处理程序版本为“{2}”的扩展。  |
 |  ArtifactVersionNotFound  |  在项目存储库中找不到满足所请求的版本“{0}”的版本。  |
 |  ArtifactVersionNotFound  |  在项目存储库中找不到满足所请求的 VM 扩展的版本“{0}”的版本，其发布者为“{1}”，类型为“{2}”。  |
-|  AttachDiskWhileBeingDetached  |  无法将数据磁盘“{0}”附加到 VM“{1}”，因为当前正在分离磁盘。 请等到磁盘完全分离后重试。  |
+|  AttachDiskWhileBeingDetached  |  无法将数据磁盘“{0}”附加到 VM“{1}”，因为当前正在分离磁盘。 请等到磁盘完全分离，然后重试。  |
 |  BadRequest  |  此区域尚不支持“对齐”可用性集。  |
 |  BadRequest  |  不支持向非托管可用性集添加具有托管磁盘的 VM 或向托管可用性集添加具有基于 Blob 磁盘的 VM。 请创建具有“托管”属性集的可用性集，以便向其中添加具有托管磁盘的 VM。  |
 |  BadRequest  |  此区域不支持托管磁盘。  |
-|  BadRequest  |  OS 类型“{0}”不支持每个处理程序有多个 VMExtension。 已在输入中添加或指定了 VMExtension“{1}”与处理程序“{2}”。  |
+|  BadRequest  |  OS 类型“{0}”不支持每个处理程序多个 VM 扩展。 已在输入中添加或指定了 VM 扩展“{1}”与处理程序“{2}”。  |
 |  BadRequest  |  操作“{0}”在包含托管磁盘的资源“{1}”上不受支持。  |
 |  CertificateImproperlyFormatted  |  检索自 {0} 的机密的 JSON 表示形式中的数据字段可能是格式错误的 PFX 文件，或者所提供的密码无法正确解码 PFX 文件。  |
 |  CertificateImproperlyFormatted  |  检索自 {0} 的数据不可反序列化为 JSON。  |
@@ -76,7 +83,7 @@ Azure VM 使用以下 JSON 格式提供错误响应：
 |  ConflictingUserInput  |  源和目标资源组相同。  |
 |  ConflictingUserInput  |  磁盘 {0} 的源存储帐户和目标存储帐户不同。  |
 |  ContainerAlreadyOnLease  |  已有针对保留 URI 为 {0} 的 blob 的存储容器的租约。  |
-|  CrossSubscriptionMoveWithKeyVaultResources  |  移动资源请求包含由请求中一个或多个 {0} 引用的 KeyVault 资源。 跨订阅移动中当前不支持此操作。 请查看 KeyVault 资源 ID 的错误详细信息。  |
+|  CrossSubscriptionMoveWithKeyVaultResources  |  移动资源请求包含由请求中一个或多个 {0} 引用的 KeyVault 资源。 跨订阅移动中当前不支持此操作。 请检查错误详情，了解 KeyVault 资源 ID。  |
 |  DiagnosticsOperationInternalError  |  处理 VM {0} 的诊断配置文件时出现内部错误。  |
 |  DiskBlobAlreadyInUseByAnotherDisk  |  属于 VM“{1}”的其他磁盘正在使用 Blob {0}。 可以检查 Blob 元数据以了解磁盘引用信息。  |
 |  DiskBlobNotFound  |  找不到磁盘“{1}”的 URI 为 {0} 的 VHD Blob。  |
@@ -110,25 +117,25 @@ Azure VM 使用以下 JSON 格式提供错误响应：
 |  InvalidParameter  |  无法为已在指定映像引用中定义的磁盘指定用户映像替代。  |
 |  InvalidParameter  |  名为“{0}”的磁盘已在使用相同的 VHD URL: {1}。  |
 |  InvalidParameter  |  指定的容错域计数 {0} 必须在 {1} 到 {2} 的范围内。  |
-|  InvalidParameter  |  许可证类型 {0} 无效。 有效的许可证类型为：Windows_Client 或 Windows_Server（区分大小写）。  |
+|  InvalidParameter  |  许可证类型 {0} 无效。 有效的许可证类型为: Windows_Client 或 Windows_Server，区分大小写。  |
 |  InvalidParameter  |  Linux 主机名长度不能超过 {0} 个字符，也不能包含以下字符: {1}。  |
-|  InvalidParameter  |  因为 Linux 预配代理中的一个已知问题，SSH 公钥的目标路径当前限制为其默认值 {0}。  |
+|  InvalidParameter  |  由于 Linux 预配代理中的一个已知问题，SSH 公钥的目标路径当前限制为其默认值 {0}。  |
 |  InvalidParameter  |  LUN {0} 处已存在磁盘。  |
 |  InvalidParameter  |  请求的订阅 {0} 必须与托管磁盘 ID 中包含的订阅 {1} 匹配。  |
-|  InvalidParameter  |  OSProfile 中的自定义数据必须采用 Base64 编码，且最大长度为 {0} 个字符。  |
+|  InvalidParameter  |  OS 配置文件中的自定义数据必须采用 Base64 编码，且最大长度为 {0} 个字符。  |
 |  InvalidParameter  |  URL {0} 中的 blob 名称必须以“{1}”扩展结尾。  |
 |  InvalidParameter  |  “{0}”不是有效的已捕获 VHD Blob 名称前缀。 有效的前缀与正则表达式“{1}”匹配。  |
 |  InvalidParameter  |  如果未预配 VM 代理，则无法将证书添加到 VM。  |
 |  InvalidParameter  |  LUN {0} 处已存在磁盘。  |
 |  InvalidParameter  |  无法创建 VM，因为请求的大小 {0} 不可用于当前分配有可用性集的群集。 可用的大小为: {1}。 访问 https://aka.ms/azure-resizevm 详细了解重设 VM 大小的策略。  |
-|  InvalidParameter  |  请求的 VM 大小 {0} 不可用于当前区域。 可用于当前区域的大小为: {1}。 访问 https://status.azure.com/status/ 详细了解每个区域可用的 VM 大小。  |
-|  InvalidParameter  |  请求的 VM 大小 {0} 不可用于当前区域。 访问 https://status.azure.com/status/ 详细了解每个区域可用的 VM 大小。  |
+|  InvalidParameter  |  请求的 VM 大小 {0} 不可用于当前区域。 可用于当前区域的大小为: {1}。 访问 https://status.azure.com/status 详细了解每个区域可用的 VM 大小。  |
+|  InvalidParameter  |  请求的 VM 大小 {0} 不可用于当前区域。 访问 https://status.azure.com/status 详细了解每个区域可用的 VM 大小。  |
 |  InvalidParameter  |  Windows 管理员用户名的长度不能超过 {0} 个字符，并且不能以句点(.)结束或包含以下字符: {1}。  |
 |  InvalidParameter  |  Windows 计算机名的长度不能超过 {0} 个字符，并且不能全部都是数字或包含以下字符: {1}。  |
-|  MissingMoveDependentResources  |  移动资源请求不包含所有从属资源。 请查看详细信息了解缺少的资源 ID。  |
-|  MoveResourcesHaveInvalidState  |  移动资源请求包含的 VM 与无效的存储帐户相关。 请查看详细信息获取这些资源 ID 以及所引用的存储帐户名。  |
-|  MoveResourcesHavePendingOperations  |  移动资源请求包含操作处于挂起状态的资源。 请查看详情获取这些资源 ID。 请在挂起操作完成后重试操作。  |
-|  MoveResourcesNotFound  |  移动资源请求包含无法找到的资源。 请查看详情获取这些资源 ID。  |
+|  MissingMoveDependentResources  |  移动资源请求不包含所有从属资源。 请检查错误详情，了解缺少的资源 ID。  |
+|  MoveResourcesHaveInvalidState  |  移动资源请求包含的 VM 与无效的存储帐户相关。 请查看详细信息，获取这些资源 ID 以及所引用的存储帐户名。  |
+|  MoveResourcesHavePendingOperations  |  移动资源请求包含操作处于挂起状态的资源。 请查看详情，获取这些资源 ID。 请在挂起操作完成后重试操作。  |
+|  MoveResourcesNotFound  |  移动资源请求包含无法找到的资源。 请查看详情，获取这些资源 ID。  |
 |  NetworkingInternalOperationError  |  未知网络分配错误。  |
 |  NetworkingInternalOperationError  |  未知网络分配错误  |
 |  NetworkingInternalOperationError  |  处理 VM 的网络配置文件时出现内部错误。  |
@@ -161,10 +168,10 @@ Azure VM 使用以下 JSON 格式提供错误响应：
 |  OperationNotAllowed  |  操作“{0}”需要通用化虚拟机“{1}”。  |
 |  OperationNotAllowed  |  该操作要求 VM 处于运行状态(或设置为运行)。  |
 |  OperationNotAllowed  |  不允许使用大小为 {0}GB 的磁盘，它小于映像中对应磁盘的大小({1}GB)。  |
-|  OperationNotAllowed  |  只有在创建 VM 规模集时才可添加处理程序“{0}”的 VM 规模集扩展。  |
-|  OperationNotAllowed  |  只有在删除 VM 规模集时才可删除处理程序“{0}”的 VM 规模集扩展。  |
+|  OperationNotAllowed  |  只有在创建虚拟机规模集时才可添加处理程序“{0}”的虚拟机规模集扩展。  |
+|  OperationNotAllowed  |  只有在删除虚拟机规模集时才可删除处理程序“{0}”的虚拟机规模集扩展。  |
 |  OperationNotAllowed  |  VM“{0}”已在使用托管磁盘。  |
-|  OperationNotAllowed  |  VM“{0}”属于 'Classic' 可用性集“{1}”。 请将可用性集更新为使用 'Aligned' SKU，并重试转换。  |
+|  OperationNotAllowed  |  VM“{0}”属于 'Classic' 可用性集“{1}”。 请将可用性集更新为使用 'Aligned' SKU，然后重试转换。  |
 |  OperationNotAllowed  |  从映像创建的 VM 不能具有基于 Blob 的磁盘。 所有磁盘都必须是托管磁盘。  |
 |  OperationNotAllowed  |  捕获操作无法完成，因为 VM 未通用化。  |
 |  OperationNotAllowed  |  不允许在 VM“{0}”上执行管理操作，因 VM 磁盘会被转换为托管磁盘。  |
@@ -178,10 +185,10 @@ Azure VM 使用以下 JSON 格式提供错误响应：
 |  OSProvisioningClientError  |  为 VM 指定的用户名对于此 Linux 分发版无效。 错误详细信息: {0}。  |
 |  OSProvisioningInternalError  |  VM“{0}”的 OS 预配因内部错误而失败。  |
 |  OSProvisioningTimedOut  |  VM“{0}”的 OS 预配未在分配的时间内完成。 该 VM 仍可能成功完成预配。 请于稍后检查预配状态。  |
-|  OSProvisioningTimedOut  |  VM“{0}”的 OS 预配未在分配的时间内完成。 该 VM 仍可能成功完成预配。 请于稍后检查预配状态。 此外，请确保已正确准备(通用化)映像。   <ul><li>适用于 Windows 的说明: https://docs.azure.cn/virtual-machines/virtual-machines-windows-upload-image/ </li><li> 适用于 Linux 的说明: https://docs.azure.cn/virtual-machines/virtual-machines-linux-capture-image/</li></ul>  |
+|  OSProvisioningTimedOut  |  VM“{0}”的 OS 预配未在分配的时间内完成。 该 VM 仍可能成功完成预配。 请于稍后检查预配状态。 此外，请确保已正确准备(通用化)映像。   <ul><li>适用于 [Windows]( ../windows/upload-generalized-managed.md) 的说明。</li><li> 适用于 [Linux](../linux/capture-image.md) 的说明</li></ul>  |
 |  OSProvisioningTimedOut  |  VM“{0}”的 OS 预配未在分配的时间内完成。 但是检测到 VM 来宾代理正在运行。 这表示来宾 OS 尚未准备好用作 VM 映像(其中 CreateOption=FromImage)。 若要解决此问题，可以按原样使用 VHD 并使 CreateOption=Attach，或者对其进行适当准备使其可用作映像:   <ul><li>适用于 Windows 的说明: https://docs.azure.cn/virtual-machines/virtual-machines-windows-upload-image/ </li><li> 适用于 Linux 的说明: https://docs.azure.cn/virtual-machines/virtual-machines-linux-capture-image/</li></ul>  |
 |  OverConstrainedAllocationRequest  |  所需的 VM 大小当前在所选位置中不可用。  |
-|  ResourceUpdateBlockedOnPlatformUpdate  |  此时无法更新资源，因为正在更新平台。 请稍后重试。  |
+|  ResourceUpdateBlockedOnPlatformUpdate  |  此时无法更新资源，因为正在更新平台。 请稍后再试。  |
 |  StorageAccountLimitation  |  存储帐户“{0}”不支持创建磁盘所需的页 Blob。  |
 |  StorageAccountLimitation  |  存储帐户“{0}”已超出向其分配的配额。  |
 |  StorageAccountLocationMismatch  |  无法解析存储帐户 {0}。 请确保通过与计算资源位于相同位置的存储资源提供程序创建该帐户。  |
@@ -215,6 +222,10 @@ Azure VM 使用以下 JSON 格式提供错误响应：
 |  VMRedeploymentFailed  |  VM“{0}”的重新部署因内部错误而失败。 请稍后重试。  |
 |  VMRedeploymentTimedOut  |  VM“{0}”的重新部署未在分配的时间内完成。 不久即可成功完成。 否则，可以重试该请求。  |
 |  VMStartTimedOut  |  VM“{0}”未在分配的时间内启动。 该 VM 仍可能成功启动。 请于稍后检查电源状态。  |
+
+<!--MOONCAKE: CHANGE id(s) to ID(s), VM Scale Set to (V|v)irutal machines scale set-->
+<!--MOONCAKE: CHANGE  VMExtension(s) to VM Extension(s), availabilityset to availability set-->
+<!--CORRECT OT MEET SCORECARD REQUIREMENT-->
 
 ## <a name="next-steps"></a>后续步骤
 如果需要更多帮助，可以联系 [Azure 支持](https://support.azure.cn/support/contact/)上的 Azure 专家。 或者，也可以提出 Azure 支持事件。 请转到 [Azure 支持站点](https://support.azure.cn/support/support-azure/)提交请求。

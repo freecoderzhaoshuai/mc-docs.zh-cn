@@ -5,14 +5,14 @@ author: Johnnytechn
 ms.author: v-johya
 ms.topic: conceptual
 origin.date: 4/27/2018
-ms.date: 07/17/2020
+ms.date: 08/20/2020
 ms.subservice: alerts
-ms.openlocfilehash: 232b4c68a391190bcc2bc45da1d727a36667d725
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.openlocfilehash: f8eda207369ff79f6b4b0f4f1d622795e85b632c
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508479"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457253"
 ---
 # <a name="create-view-and-manage-log-alerts-using-azure-monitor"></a>使用 Azure Monitor 创建、查看和管理日志警报
 
@@ -22,11 +22,10 @@ ms.locfileid: "87508479"
 - 条件：要计算真假的条件或逻辑。 如果为 true，则触发警报。  
 - 操作：发送到通知接收方 - 电子邮件、短信、Webhook 等的特定调用。
 
-“日志警报”这一术语描述计算 [Log Analytics 工作区](../log-query/get-started-portal.md) 或 [Application Insights](../app/analytics.md) 中的日志查询的警报，并在结果为 true 时触发警报。 从[日志警报 - 概述](alerts-unified-log.md)中详细了解功能、术语和类型。
+“日志警报”这一术语描述计算 [Log Analytics 工作区](../log-query/get-started-portal.md) 或 [Application Insights](../log-query/log-query-overview.md) 中的日志查询的警报，并在结果为 true 时触发警报。 从[日志警报 - 概述](alerts-unified-log.md)中详细了解功能、术语和类型。
 
 > [!NOTE]
-> 还可以将 [Log Analytics 工作区](../../azure-monitor/log-query/get-started-portal.md)的日志数据路由到 Azure Monitor 指标数据库。 指标警报具有[不同的行为](alerts-metric-overview.md)，该行为可能更可取，具体取决于你要使用的数据。   要了解如何将日志路由到指标，请参阅[日志的指标警报](alerts-metric-logs.md)。
-<!--Correct in MC: ../../azure-monitor/log-query/get-started-portal.md-->
+> 还可以将 [Log Analytics 工作区](../log-query/get-started-portal.md)的日志数据路由到 Azure Monitor 指标数据库。 指标警报具有[不同的行为](alerts-metric-overview.md)，该行为可能更可取，具体取决于你要使用的数据。   要了解如何将日志路由到指标，请参阅[日志的指标警报](alerts-metric-logs.md)。
 
 ## <a name="create-a-log-alert-rule-with-the-azure-portal"></a>使用 Azure 门户创建日志警报规则
 
@@ -79,8 +78,8 @@ ms.locfileid: "87508479"
 1. 在“频率”中选择警报运行的频率。 
 
     日志警报可以基于：
-    - [记录数目](../../azure-monitor/platform/alerts-unified-log.md#number-of-results-alert-rules)：如果查询返回的记录计数大于或小于提供的值，则创建警报。
-    - [指标度量](../../azure-monitor/platform/alerts-unified-log.md#metric-measurement-alert-rules)：如果结果中的每个聚合值超过提供的阈值并且是“分组依据”选定值，则创建警报 。 警报违规数是在选定时间段内超过阈值的次数。 可以为结果集中的任何违规组合指定总违规数，或指定连续违规数以要求违规必须在连续采样时发生。
+    - [记录数目](./alerts-unified-log.md#number-of-results-alert-rules)：如果查询返回的记录计数大于或小于提供的值，则创建警报。
+    - [指标度量](./alerts-unified-log.md#metric-measurement-alert-rules)：如果结果中的每个聚合值超过提供的阈值并且是“分组依据”选定值，则创建警报 。 警报违规数是在选定时间段内超过阈值的次数。 可以为结果集中的任何违规组合指定总违规数，或指定连续违规数以要求违规必须在连续采样时发生。
 
 
 1. 单击“Done”（完成） 。 
@@ -102,7 +101,7 @@ ms.locfileid: "87508479"
     提供了一些附加功能用于替代默认操作：
 
     - **电子邮件通知**：替代通过操作组发送的电子邮件中的电子邮件主题。 无法修改邮件正文，并且该字段不能用于电子邮件地址。
-    - **包含自定义 JSON 有效负载**：假定操作组包含 Webhook 类型，则替代操作组使用的 Webhook JSON。 有关 Webhook 格式的详细信息，请参阅[针对日志警报的 Webhook 操作](../../azure-monitor/platform/alerts-log-webhook.md)。 提供了“查看 Webhook”选项来使用示例 JSON 数据检查格式。
+    - **包含自定义 JSON 有效负载**：假定操作组包含 Webhook 类型，则替代操作组使用的 Webhook JSON。 有关 Webhook 格式的详细信息，请参阅[针对日志警报的 Webhook 操作](./alerts-log-webhook.md)。 提供了“查看 Webhook”选项来使用示例 JSON 数据检查格式。
 
         ![日志警报的操作替代](./media/alerts-log/AlertsPreviewOverrideLog.png)
 
@@ -113,7 +112,7 @@ ms.locfileid: "87508479"
 
      在几分钟后，警报将如前所述激活并触发。
 
-用户还可以在 [Log Analytics](../log-query/portals.md) 中完成其分析查询，然后推送该查询，以通过“设置警报”按钮，遵循以上教程中从步骤 6 开始往后的说明创建警报。
+用户还可以在 [Log Analytics](../log-query/log-query-overview.md) 中完成其分析查询，然后推送该查询，以通过“设置警报”按钮，遵循以上教程中从步骤 6 开始往后的说明创建警报。
 
  ![Log Analytics - 设置警报](./media/alerts-log/AlertsAnalyticsCreate.png)
 
@@ -133,7 +132,7 @@ ms.locfileid: "87508479"
 Azure Monitor 中的日志警报与资源类型 `Microsoft.Insights/scheduledQueryRules/` 相关联。 有关此资源类型的详细信息，请参阅 [Azure Monitor - 计划查询规则 API 参考](https://docs.microsoft.com/rest/api/monitor/scheduledqueryrules/)。 可以使用[计划查询规则 API](https://docs.microsoft.com/rest/api/monitor/scheduledqueryrules/) 为 Application Insights 或 Log Analytics 创建日志警报。
 
 > [!NOTE]
-> 还可以使用旧式 [Log Analytics 警报 API](api-alerts.md) 以及 [Log Analytics 保存的搜索和警报](../insights/solutions-resources-searches-alerts.md)的旧式模板管理 Log Analytics 的日志警报。
+> 还可以使用旧式 [Log Analytics 警报 API](api-alerts.md) 以及 [Log Analytics 保存的搜索和警报](../insights/solutions.md)的旧式模板管理 Log Analytics 的日志警报。
 <!--Currently is not available in MC: alerts-log-api-switch.md-->
 
 
@@ -215,7 +214,7 @@ Azure Monitor 中的日志警报与资源类型 `Microsoft.Insights/scheduledQue
 
 ### <a name="log-alert-with-cross-resource-query-using-azure-resource-template"></a>使用 Azure 资源模板进行跨资源查询的日志警报
 
-以下是基于资源模板的[计划查询规则创建](https://docs.microsoft.com/rest/api/monitor/scheduledqueryrules/createorupdate)结构，它使用[指标度量值类型日志警报](../../azure-monitor/platform/alerts-unified-log.md#metric-measurement-alert-rules)的[跨资源日志搜索查询](../../azure-monitor/log-query/cross-workspace-query.md)，其中示例数据集作为变量。
+以下是基于资源模板的[计划查询规则创建](https://docs.microsoft.com/rest/api/monitor/scheduledqueryrules/createorupdate)结构，它使用[指标度量值类型日志警报](./alerts-unified-log.md#metric-measurement-alert-rules)的[跨资源日志搜索查询](../log-query/cross-workspace-query.md)，其中示例数据集作为变量。
 
 ```json
 
@@ -318,11 +317,11 @@ Azure Monitor - [计划查询规则 API](https://docs.microsoft.com/rest/api/mon
 - [New-AzScheduledQueryRule](https://docs.microsoft.com/powershell/module/az.monitor/new-azscheduledqueryrule)：用于新建日志警报规则的 PowerShell cmdlet。
 - [Set-AzScheduledQueryRule](https://docs.microsoft.com/powershell/module/az.monitor/set-azscheduledqueryrule)：用于更新现有日志警报规则的 PowerShell cmdlet。
 - [New-AzScheduledQueryRuleSource](https://docs.microsoft.com/powershell/module/az.monitor/new-azscheduledqueryrulesource)：用于创建或更新对象的 PowerShell cmdlet，该对象为日志警报指定源参数。 由 [New-AzScheduledQueryRule](https://docs.microsoft.com/powershell/module/az.monitor/new-azscheduledqueryrule) 和 [Set-AzScheduledQueryRule](https://docs.microsoft.com/powershell/module/az.monitor/set-azscheduledqueryrule) cmdlet 用作输入。
-- [New-AzScheduledQueryRuleSchedule](https://docs.microsoft.com/powershell/module/az.monitor/New-AzScheduledQueryRuleSchedule)：用于创建或更新对象的 PowerShell cmdlet，该对象为日志警报指定计划参数。 由 [New-AzScheduledQueryRule](https://docs.microsoft.com/powershell/module/az.monitor/new-azscheduledqueryrule) 和 [Set-AzScheduledQueryRule](https://docs.microsoft.com/powershell/module/az.monitor/set-azscheduledqueryrule) cmdlet 用作输入。
-- [New-AzScheduledQueryRuleAlertingAction](https://docs.microsoft.com/powershell/module/az.monitor/New-AzScheduledQueryRuleAlertingAction)：用于创建或更新对象的 PowerShell cmdlet，该对象为日志警报指定操作参数。 由 [New-AzScheduledQueryRule](https://docs.microsoft.com/powershell/module/az.monitor/new-azscheduledqueryrule) 和 [Set-AzScheduledQueryRule](https://docs.microsoft.com/powershell/module/az.monitor/set-azscheduledqueryrule) cmdlet 用作输入。
-- [New-AzScheduledQueryRuleAznsActionGroup](https://docs.microsoft.com/powershell/module/az.monitor/new-azscheduledqueryruleaznsactiongroup)：用于创建或更新对象的 PowerShell cmdlet，该对象为日志警报指定操作组参数。 由 [New-AzScheduledQueryRuleAlertingAction](https://docs.microsoft.com/powershell/module/az.monitor/New-AzScheduledQueryRuleAlertingAction) cmdlet 用作输入。
-- [New-AzScheduledQueryRuleTriggerCondition](https://docs.microsoft.com/powershell/module/az.monitor/new-azscheduledqueryruletriggercondition)：用于创建或更新对象的 PowerShell cmdlet，该对象为日志警报指定触发器条件参数。 由 [New-AzScheduledQueryRuleAlertingAction](https://docs.microsoft.com/powershell/module/az.monitor/New-AzScheduledQueryRuleAlertingAction) cmdlet 用作输入。
-- [New-AzScheduledQueryRuleLogMetricTrigger](https://docs.microsoft.com/powershell/module/az.monitor/new-azscheduledqueryrulelogmetrictrigger)：用于创建或更新对象的 PowerShell cmdlet，该对象为[指标度量值类型日志警报](../../azure-monitor/platform/alerts-unified-log.md#metric-measurement-alert-rules)指定触发器条件参数。 由 [New-AzScheduledQueryRuleTriggerCondition](https://docs.microsoft.com/powershell/module/az.monitor/new-azscheduledqueryruletriggercondition) cmdlet 用作输入。
+- [New-AzScheduledQueryRuleSchedule](https://docs.microsoft.com/powershell/module/az.monitor/new-azscheduledqueryruleschedule)：用于创建或更新对象的 PowerShell cmdlet，该对象为日志警报指定计划参数。 由 [New-AzScheduledQueryRule](https://docs.microsoft.com/powershell/module/az.monitor/new-azscheduledqueryrule) 和 [Set-AzScheduledQueryRule](https://docs.microsoft.com/powershell/module/az.monitor/set-azscheduledqueryrule) cmdlet 用作输入。
+- [New-AzScheduledQueryRuleAlertingAction](https://docs.microsoft.com/powershell/module/az.monitor/new-azscheduledqueryrulealertingaction)：用于创建或更新对象的 PowerShell cmdlet，该对象为日志警报指定操作参数。 由 [New-AzScheduledQueryRule](https://docs.microsoft.com/powershell/module/az.monitor/new-azscheduledqueryrule) 和 [Set-AzScheduledQueryRule](https://docs.microsoft.com/powershell/module/az.monitor/set-azscheduledqueryrule) cmdlet 用作输入。
+- [New-AzScheduledQueryRuleAznsActionGroup](https://docs.microsoft.com/powershell/module/az.monitor/new-azscheduledqueryruleaznsactiongroup)：用于创建或更新对象的 PowerShell cmdlet，该对象为日志警报指定操作组参数。 由 [New-AzScheduledQueryRuleAlertingAction](https://docs.microsoft.com/powershell/module/az.monitor/new-azscheduledqueryrulealertingaction) cmdlet 用作输入。
+- [New-AzScheduledQueryRuleTriggerCondition](https://docs.microsoft.com/powershell/module/az.monitor/new-azscheduledqueryruletriggercondition)：用于创建或更新对象的 PowerShell cmdlet，该对象为日志警报指定触发器条件参数。 由 [New-AzScheduledQueryRuleAlertingAction](https://docs.microsoft.com/powershell/module/az.monitor/new-azscheduledqueryrulealertingaction) cmdlet 用作输入。
+- [New-AzScheduledQueryRuleLogMetricTrigger](https://docs.microsoft.com/powershell/module/az.monitor/new-azscheduledqueryrulelogmetrictrigger)：用于创建或更新对象的 PowerShell cmdlet，该对象为[指标度量值类型日志警报](./alerts-unified-log.md#metric-measurement-alert-rules)指定触发器条件参数。 由 [New-AzScheduledQueryRuleTriggerCondition](https://docs.microsoft.com/powershell/module/az.monitor/new-azscheduledqueryruletriggercondition) cmdlet 用作输入。
 - [Get-AzScheduledQueryRule](https://docs.microsoft.com/powershell/module/az.monitor/get-azscheduledqueryrule)：用于列出现有日志警报规则或指定日志警报规则的 PowerShell cmdlet
 - [Update-AzScheduledQueryRule](https://docs.microsoft.com/powershell/module/az.monitor/update-azscheduledqueryrule)：用于启用或禁用日志警报规则的 PowerShell cmdlet
 - [Remove-AzScheduledQueryRule](https://docs.microsoft.com/powershell/module/az.monitor/remove-azscheduledqueryrule)：用于删除现有日志警报规则的 PowerShell cmdlet
@@ -355,7 +354,7 @@ Azure Monitor - [计划查询规则 API](https://docs.microsoft.com/rest/api/mon
 
 
 > [!NOTE]
-> 还可以使用旧式 [Log Analytics 警报 API](api-alerts.md) 以及 [Log Analytics 保存的搜索和警报](../insights/solutions-resources-searches-alerts.md)的旧式模板管理 Log Analytics 的日志警报。
+> 还可以使用旧式 [Log Analytics 警报 API](api-alerts.md) 以及 [Log Analytics 保存的搜索和警报](../insights/solutions.md)的旧式模板管理 Log Analytics 的日志警报。
 <!--Currently is not available in MC: alerts-log-api-switch.md-->
 
 日志警报目前没有专用的 CLI 命令；但是如下所示，这些警报可通过用于“资源模板”部分前面显示的示例资源模板 (sampleScheduledQueryRule.json) 的 Azure 资源管理器 CLI 命令来使用：
@@ -368,8 +367,9 @@ az group deployment create --resource-group contosoRG --template-file sampleSche
 
 ## <a name="next-steps"></a>后续步骤
 
-* 了解 [Azure 警报中的日志警报](../../azure-monitor/platform/alerts-unified-log.md)
-* 了解[用于日志警报的 Webhook 操作](../../azure-monitor/platform/alerts-log-webhook.md)
-* 详细了解 [Application Insights](../../azure-monitor/log-query/log-query-overview.md)
+* 了解 [Azure 警报中的日志警报](./alerts-unified-log.md)
+* 了解[用于日志警报的 Webhook 操作](./alerts-log-webhook.md)
+* 详细了解 [Application Insights](../log-query/log-query-overview.md)
 * 了解有关[日志查询](../log-query/log-query-overview.md)的详细信息。
-<!--Correct in MC: ../../azure-monitor/log-query/log-query-overview.md-->
+
+

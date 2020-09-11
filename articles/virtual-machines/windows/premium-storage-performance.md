@@ -5,17 +5,17 @@ author: rockboyfor
 ms.service: virtual-machines-windows
 ms.topic: conceptual
 origin.date: 06/27/2017
-ms.date: 08/10/2020
+ms.date: 08/31/2020
 ms.testscope: no
-ms.testdate: 07/06/2020
+ms.testdate: ''
 ms.author: v-yeche
 ms.subservice: disks
-ms.openlocfilehash: 7e06da0d9a2d3207d5468e39601c95c6f91ec7da
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: d916029a8202cfa95d3bb1e68bc8f1d33bbd9ac5
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917184"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463154"
 ---
 # <a name="azure-premium-storage-design-for-high-performance"></a>Azure 高级存储：高性能设计
 

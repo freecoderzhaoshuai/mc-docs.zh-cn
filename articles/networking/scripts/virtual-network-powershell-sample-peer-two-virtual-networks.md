@@ -1,6 +1,6 @@
 ---
-title: Azure PowerShell 脚本示例 - 对等互连两个虚拟网络 | Azure
-description: Azure PowerShell 脚本示例 - 对等互连两个虚拟网络
+title: Azure PowerShell 脚本示例 - 对等互连两个虚拟网络 | Microsoft Docs
+description: 在同一区域中创建并连接两个虚拟网络。 使用两个对等虚拟网络的 Azure 脚本通过 Azure 来连接网络。
 services: virtual-network
 documentationcenter: virtual-network
 author: KumudD
@@ -11,20 +11,21 @@ ms.topic: article
 ms.tgt_pltfrm: ''
 ms.workload: infrastructure
 origin.date: 05/16/2017
-ms.date: 12/09/2019
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: 63afe883fa1299cc84b27a7c563846a9714fbc2a
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-azurepowershell
+ms.openlocfilehash: 8d15c026dec57d21f5802ccb0f2b227aa77349bb
+ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74884061"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89316392"
 ---
 # <a name="peer-two-virtual-networks"></a>对等互连两个虚拟网络
 
 此脚本通过 Azure 网络在同一区域创建并连接两个虚拟网络。 运行脚本后，会在两个虚拟网络之间创建对等互连。
 
-必要时，请使用 [Azure PowerShell 指南](https://docs.microsoft.com/powershell/azureps-cmdlets-docs/)中的说明安装 Azure PowerShell，并运行 `Connect-AzAccount` 创建与 Azure 的连接。
+必要时，请使用 [Azure PowerShell 指南](https://docs.microsoft.com/powershell/azure/)中的说明安装 Azure PowerShell，并运行 `Connect-AzAccount` 创建与 Azure 的连接。
 
 [!INCLUDE [quickstarts-free-trial-note](../../../includes/quickstarts-free-trial-note.md)]
 
@@ -65,7 +66,7 @@ Remove-AzResourceGroup -Name myResourceGroup
 
 此脚本使用以下命令创建资源组、虚拟机和所有相关资源。 表中的每条命令均链接到特定于命令的文档。
 
-| Command | 说明 |
+| 命令 | 说明 |
 |---|---|
 | [New-AzResourceGroup](https://docs.microsoft.com/powershell/module/az.resources/new-azresourcegroup) | 创建用于存储所有资源的资源组。 | 
 | [New-AzVirtualNetwork](https://docs.microsoft.com/powershell/module/az.network/new-azvirtualnetwork)| 创建 Azure 虚拟网络和子网。 |
@@ -74,6 +75,6 @@ Remove-AzResourceGroup -Name myResourceGroup
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 可在 [Azure 网络概述文档](../powershell-samples.md?toc=%2fnetworking%2ftoc.json)中找到其他网络 PowerShell 脚本示例。

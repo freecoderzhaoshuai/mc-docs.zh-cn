@@ -1,6 +1,6 @@
 ---
 title: 连接到 Azure 媒体服务 v3 API - Python
-description: 了解如何使用 Python 连接到媒体服务 v3 API。
+description: 本文演示如何使用 Python 连接到媒体服务 v3 API。
 services: media-services
 documentationcenter: ''
 author: WenJason
@@ -12,14 +12,15 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 04/15/2019
-ms.date: 09/23/2019
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: d15d0b0d064f0d42002c464a7f4d082061a82063
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-python
+ms.openlocfilehash: cf473727b6c057d20d6f001726b4de00fab521ce
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71125627"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413363"
 ---
 # <a name="connect-to-media-services-v3-api---python"></a>连接到媒体服务 v3 API - Python
 
@@ -29,8 +30,8 @@ ms.locfileid: "71125627"
 
 - 从 [python.org](https://www.python.org/downloads/) 下载 Python
 - 请确保设置 `PATH` 环境变量
-- [创建媒体服务帐户](create-account-cli-how-to.md)。 请务必记住资源组名称和媒体服务帐户名称。
-- 按照[访问 API](access-api-cli-how-to.md) 主题中的步骤进行操作。 记下订阅 ID、应用程序 ID（客户端 ID）、身份验证密钥（机密）和租户 ID，以便在后面的步骤中使用。
+- [创建媒体服务帐户](./create-account-howto.md)。 请务必记住资源组名称和媒体服务帐户名称。
+- 按照[访问 API](./access-api-howto.md) 主题中的步骤进行操作。 记下订阅 ID、应用程序 ID（客户端 ID）、身份验证密钥（机密）和租户 ID，以便在后面的步骤中使用。
 
 > [!IMPORTANT]
 > 查看[命名约定](media-services-apis-overview.md#naming-conventions)。
@@ -55,7 +56,7 @@ pip3 install azure-mgmt-media==1.1.1
 1. 在偏好的编辑器中打开该文件
 1. 将下面的代码添加到该文件。 此代码将导入所需的模块，并创建连接到媒体服务所需的 Active Directory 凭据对象。
 
-      将变量的值设置为从[访问 API](access-api-cli-how-to.md) 中获得的值
+      将变量的值设置为从[访问 API](./access-api-howto.md) 中获得的值
 
       ```
       import adal

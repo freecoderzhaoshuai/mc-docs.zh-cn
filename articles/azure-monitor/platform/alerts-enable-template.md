@@ -5,19 +5,19 @@ author: Johnnytechn
 ms.author: v-johya
 ms.topic: conceptual
 origin.date: 03/09/2020
-ms.date: 05/28/2020
+ms.date: 08/20/2020
 ms.subservice: alerts
-ms.openlocfilehash: 7a659c02958fd94288f16d33ae26634125632a91
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: e66474fb99e9e2da70d024a12f339dff4d94f586
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440655"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457429"
 ---
 # <a name="create-a-classic-metric-alert-with-a-resource-manager-template"></a>使用资源管理器模板创建经典指标警报
+
 > [!WARNING]
-> 
-> 本文介绍如何使用资源管理器模板创建经典指标警报。 经典警报已于 2019 年 8 月停用，并将于 2020 年 6 月完全弃用。 你不能在公共 Azure 上新建经典警报。 Azure 的某些区域版本可能仍然有这个选项，但我们建议你尽可能改用模板创建[较新的指标警报](../../azure-monitor/platform/alerts-metric-near-real-time.md)。 [此文](alerts-metric-create-templates.md)提供了详细信息。
+> 本文介绍了如何创建旧式经典指标警报。 Azure Monitor 现在支持[较新的近实时指标警报和新的警报体验](./alerts-overview.md)。 经典警报已停用，尽管尚不支持新警报的资源在使用方面仍存在限制。
 >
 
 本文说明如何使用 [Azure 资源管理器模板](../../azure-resource-manager/templates/template-syntax.md)配置 Azure 经典指标警报。 这样，便可以在创建资源时自动对资源设置警报，确保正确监视所有资源。
@@ -177,7 +177,7 @@ ms.locfileid: "84440655"
 }
 ```
 
-[此处提供](https://msdn.microsoft.com/library/azure/dn933805.aspx)了警报规则的架构和属性说明。
+[此处提供](https://docs.microsoft.com/rest/api/monitor/alertrules)了警报规则的架构和属性说明。
 
 ## <a name="resource-manager-template-for-a-resource-with-a-classic-metric-alert"></a>具有经典指标警报的资源的资源管理器模板
 在创建的资源过程中创建警报时，Resource Manager 模板上的警报通常很有用。 例如，可能想要确保每次部署虚拟机时均设置了“CPU % > 80”规则。 为此，请在 VM 模板的资源数组中将警报规则添加为资源，使用 `dependsOn` 属性将依赖项添加到 VM 资源 ID。 下面是创建 Windows VM 并在 CPU 利用率高于 80% 时添加警报以通知订阅管理员的完整示例。
@@ -401,7 +401,7 @@ ms.locfileid: "84440655"
 
 ## <a name="next-steps"></a>后续步骤
 * [详细了解警报](alerts-overview.md)
-* [将诊断设置添加](../../azure-monitor/platform/diagnostic-settings-template.md) 到 Resource Manager 模板
+* [将诊断设置添加](./diagnostic-settings-template.md) 到 Resource Manager 模板
 * 有关 JSON 语法和属性，请参阅 [Microsoft.Insights/alertrules](https://docs.microsoft.com/azure/templates/microsoft.insights/alertrules) 模板参考。
 
 

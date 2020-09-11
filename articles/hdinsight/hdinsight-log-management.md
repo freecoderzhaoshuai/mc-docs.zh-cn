@@ -10,12 +10,12 @@ ms.topic: conceptual
 origin.date: 02/05/2020
 ms.date: 03/02/2020
 ms.author: v-yiso
-ms.openlocfilehash: 97669525a3df19a0f31777bbe07e60ffe061c2e8
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: ec3891f21097d5226b90b4cb5ec4a85c38e9d6f1
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79292060"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463105"
 ---
 # <a name="manage-logs-for-an-hdinsight-cluster"></a>管理 HDInsight 群集的日志
 
@@ -69,9 +69,9 @@ HDInsight 日志管理的典型步骤如下：
 
 * 考虑如何从一个或多个群集收集日志并为其创建排序规则，以进行审核、监视、规划和警报等活动。 可能使用自定义解决方案定期访问和下载日志文件，然后对其进行合并和分析，以提供仪表板视图。 还可以添加其他功能用于发出安全警报或执行故障检测。 可以使用 PowerShell、HDInsight SDK 或可以访问 Azure 经典部署模型的代码生成这些实用工具。
 
-* 考虑监视解决方案或服务是否能够带来好处。 Microsoft System Center 提供了 [HDInsight 管理包](https://www.microsoft.com/download/details.aspx?id=42521)。 可以使用 Apache Chukwa 和 Ganglia 等第三方工具收集和集中处理日志。 许多公司提供用于监视基于 Hadoop 的大数据解决方案的服务，例如：Centerity、Compuware APM、Sematext SPM 和 Zettaset Orchestrator。
+* 考虑监视解决方案或服务是否能够带来好处。 Microsoft System Center 提供了 [HDInsight 管理包](https://systemcenter.wiki/?Get_ManagementPackBundle=Microsoft.HDInsight.mpb&FileMD5=10C7D975C6096FFAA22C84626D211259)。 可以使用 Apache Chukwa 和 Ganglia 等第三方工具收集和集中处理日志。 许多公司提供用于监视基于 Hadoop 的大数据解决方案的服务，例如：Centerity、Compuware APM、Sematext SPM 和 Zettaset Orchestrator。
 
-## <a name="step-2-manage-cluster-service-versions-and-view-script-action-logs"></a>步骤 2：管理群集服务版本和查看脚本操作日志
+## <a name="step-2-manage-cluster-service-versions-and-view-logs"></a>步骤 2：管理群集服务版本和查看日志
 
 典型的 HDInsight 群集使用多个服务和开源软件包（例如 Apache HBase、Apache Spark 等）。 对于某些工作负荷（例如生物信息学应用），除了作业执行日志以外，可能还需要保留服务配置日志历史记录。
 

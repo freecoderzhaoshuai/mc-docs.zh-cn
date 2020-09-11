@@ -3,16 +3,20 @@ title: Azure Functions 的 Microsoft Graph 绑定
 description: 了解如何在 Azure Functions 中使用 Microsoft Graph 触发器和绑定。
 author: craigshoemaker
 ms.topic: reference
-ms.date: 08/11/2020
+ms.custom: devx-track-csharp
+ms.date: 09/02/2020
 ms.author: v-junlch
-ms.openlocfilehash: 8cfa662b1d1f5705ad1364dba6d2a57ff20d1b35
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: ed76840bf234124baa15416d8101213c42c19eea
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223030"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413931"
 ---
 # <a name="microsoft-graph-bindings-for-azure-functions"></a>Azure Functions 的 Microsoft Graph 绑定
+
+> [!IMPORTANT]
+> Microsoft Graph 预览绑定现在已弃用。 如需了解如何使用 Microsoft Graph 构建 Azure Functions，请参阅[使用 Microsoft Graph 构建 Azure Functions](https://docs.microsoft.com/graph/tutorials/azure-functions) 教程。
 
 本文介绍如何在 Azure Functions 中配置和使用 Microsoft Graph 触发器和绑定。 借助它们，你可以使用 Azure Functions 处理 [Microsoft Graph](https://developer.microsoft.com/graph) 中的数据、见解和事件。
 
@@ -37,6 +41,9 @@ Microsoft Graph 扩展提供了以下绑定：
 [!INCLUDE [functions-package-v2](../../includes/functions-package-v2.md)]
 
 ## <a name="setting-up-the-extensions"></a>设置扩展
+
+> [!IMPORTANT]
+> Microsoft Graph 预览绑定现在已弃用。 如需了解如何使用 Microsoft Graph 构建 Azure Functions，请参阅[使用 Microsoft Graph 构建 Azure Functions](https://docs.microsoft.com/graph/tutorials/azure-functions) 教程。
 
 可通过绑定扩展获取 Microsoft Graph 绑定。 绑定扩展是 Azure Functions 运行时的可选组件。 本部分介绍如何设置 Microsoft Graph 扩展和身份验证令牌扩展。
 
@@ -70,6 +77,9 @@ Microsoft Graph 扩展提供了以下绑定：
 
 <a name="token-input"></a>
 ## <a name="auth-token"></a>身份验证令牌
+
+> [!IMPORTANT]
+> Microsoft Graph 预览绑定现在已弃用。 如需了解如何使用 Microsoft Graph 构建 Azure Functions，请参阅[使用 Microsoft Graph 构建 Azure Functions](https://docs.microsoft.com/graph/tutorials/azure-functions) 教程。
 
 身份验证令牌输入绑定将获取给定资源的 Azure AD 令牌，并将其作为字符串提供给你的代码。 该资源可以是此应用程序拥有访问权限的任何资源。 
 
@@ -228,6 +238,9 @@ module.exports = function (context, req) {
 
 <a name="excel-input"></a>
 ## <a name="excel-input"></a>Excel 输入
+
+> [!IMPORTANT]
+> Microsoft Graph 预览绑定现在已弃用。 如需了解如何使用 Microsoft Graph 构建 Azure Functions，请参阅[使用 Microsoft Graph 构建 Azure Functions](https://docs.microsoft.com/graph/tutorials/azure-functions) 教程。
 
 Excel 表输入绑定将读取 OneDrive 中存储的 Excel 表的内容。
 
@@ -537,6 +550,9 @@ module.exports = function (context, req) {
 <a name="onedrive-input"></a>
 ## <a name="file-input"></a>文件输入
 
+> [!IMPORTANT]
+> Microsoft Graph 预览绑定现在已弃用。 如需了解如何使用 Microsoft Graph 构建 Azure Functions，请参阅[使用 Microsoft Graph 构建 Azure Functions](https://docs.microsoft.com/graph/tutorials/azure-functions) 教程。
+
 OneDrive 文件输入绑定读取 OneDrive 中存储的文件的内容。
 
 本部分包含以下小节：
@@ -680,6 +696,9 @@ module.exports = function (context, req) {
 
 <a name="onedrive-output"></a>
 ## <a name="file-output"></a>文件输出
+
+> [!IMPORTANT]
+> Microsoft Graph 预览绑定现在已弃用。 如需了解如何使用 Microsoft Graph 构建 Azure Functions，请参阅[使用 Microsoft Graph 构建 Azure Functions](https://docs.microsoft.com/graph/tutorials/azure-functions) 教程。
 
 OneDrive 文件输出绑定修改 OneDrive 中存储的文件的内容。
 
@@ -827,6 +846,9 @@ module.exports = function (context, req) {
 
 <a name="outlook-output"></a>
 ## <a name="outlook-output"></a>Outlook 输出
+
+> [!IMPORTANT]
+> Microsoft Graph 预览绑定现在已弃用。 如需了解如何使用 Microsoft Graph 构建 Azure Functions，请参阅[使用 Microsoft Graph 构建 Azure Functions](https://docs.microsoft.com/graph/tutorials/azure-functions) 教程。
 
 Outlook 消息输出绑定通过 Outlook 发送电子邮件。
 
@@ -978,6 +1000,9 @@ module.exports = function (context, req) {
 
 ## <a name="webhooks"></a>Webhook
 
+> [!IMPORTANT]
+> Microsoft Graph 预览绑定现在已弃用。 如需了解如何使用 Microsoft Graph 构建 Azure Functions，请参阅[使用 Microsoft Graph 构建 Azure Functions](https://docs.microsoft.com/graph/tutorials/azure-functions) 教程。
+
 通过 Webhook，你可以响应 Microsoft Graph 中的事件。 若要支持 webhook，需要使用函数创建、刷新和响应 webhook 订阅。 完整的 webhook 解决方案需要组合以下绑定：
 - [Microsoft Graph webhook 触发器](#webhook-trigger)，使你可以响应传入的 webhook。
 - [Microsoft Graph webhook 订阅输入绑定](#webhook-input)，使你可以列出现有的订阅并选择性地更新这些订阅。
@@ -992,6 +1017,9 @@ module.exports = function (context, req) {
 
 
 ## <a name="webhook-trigger"></a>Webhook 触发器
+
+> [!IMPORTANT]
+> Microsoft Graph 预览绑定现在已弃用。 如需了解如何使用 Microsoft Graph 构建 Azure Functions，请参阅[使用 Microsoft Graph 构建 Azure Functions](https://docs.microsoft.com/graph/tutorials/azure-functions) 教程。
 
 Microsoft Graph webhook 触发器使函数可以响应从 Microsoft Graph 传入的 webhook。 此触发器的每个实例均可响应一个 Microsoft Graph 资源类型。
 
@@ -1111,6 +1139,9 @@ module.exports = function (context) {
 
 <a name="webhook-input"></a>
 ## <a name="webhook-input"></a>Webhook 输入
+
+> [!IMPORTANT]
+> Microsoft Graph 预览绑定现在已弃用。 如需了解如何使用 Microsoft Graph 构建 Azure Functions，请参阅[使用 Microsoft Graph 构建 Azure Functions](https://docs.microsoft.com/graph/tutorials/azure-functions) 教程。
 
 Microsoft Graph webhook 输入绑定使你可以检索此函数应用管理的订阅列表。 此绑定将读取函数应用存储中的信息，并且不会反映在此应用外部创建的其他订阅。
 
@@ -1263,6 +1294,9 @@ module.exports = function (context, req) {
 
 ## <a name="webhook-output"></a>Webhook 输出
 
+> [!IMPORTANT]
+> Microsoft Graph 预览绑定现在已弃用。 如需了解如何使用 Microsoft Graph 构建 Azure Functions，请参阅[使用 Microsoft Graph 构建 Azure Functions](https://docs.microsoft.com/graph/tutorials/azure-functions) 教程。
+
 webhook 订阅输出绑定使你可以在 Microsoft Graph 中创建、删除和刷新 webhook 订阅。
 
 本部分包含以下小节：
@@ -1406,6 +1440,9 @@ module.exports = function (context, req) {
 
 <a name="webhook-examples"></a>
 ## <a name="webhook-subscription-refresh"></a>Webhook 订阅刷新
+
+> [!IMPORTANT]
+> Microsoft Graph 预览绑定现在已弃用。 如需了解如何使用 Microsoft Graph 构建 Azure Functions，请参阅[使用 Microsoft Graph 构建 Azure Functions](https://docs.microsoft.com/graph/tutorials/azure-functions) 教程。
 
 有两种刷新订阅的方法：
 
@@ -1591,4 +1628,3 @@ public class UserSubscription {
 [HTTP 触发器]: functions-bindings-http-webhook.md
 [使用 Microsoft Graph 中的 webhook]: https://developer.microsoft.com/graph/docs/api-reference/v1.0/resources/webhooks
 
-<!-- Update_Description: wording update -->

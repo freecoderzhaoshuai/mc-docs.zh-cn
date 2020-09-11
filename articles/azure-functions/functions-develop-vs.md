@@ -1,15 +1,15 @@
 ---
 title: 使用 Visual Studio 开发 Azure Functions
 description: 了解如何使用用于 Visual Studio 2019 的 Azure Functions 工具开发和测试 Azure Functions。
-ms.custom: vs-azure
+ms.custom: vs-azure, devx-track-csharp
 ms.topic: conceptual
-ms.date: 07/02/2020
-ms.openlocfilehash: 7e6dfaf1c0910b7892402ddb6de48fd1e9dfd51f
-ms.sourcegitcommit: 1008ad28745709e8d666f07a90e02a79dbbe2be5
+ms.date: 09/02/2020
+ms.openlocfilehash: c8560d9febf5306e89ee860b38c2cf91b6bfefe2
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945257"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89413923"
 ---
 # <a name="develop-azure-functions-using-visual-studio"></a>使用 Visual Studio 开发 Azure Functions  
 
@@ -226,6 +226,14 @@ For an example of how to test a queue triggered function, see the [queue trigger
 * [使用 Azure 门户](functions-how-to-use-azure-function-app-settings.md#settings)。
 * [使用 Azure Functions Core Tools 中的 `--publish-local-settings` 发布选项](functions-run-local.md#publish)。
 * [使用 Azure CLI](/cli/functionapp/config/appsettings#az-functionapp-config-appsettings-set)。
+
+## <a name="monitoring-functions"></a>监视函数
+
+监视函数执行的建议方法是将函数应用与 Azure Application Insights 集成。 在 Azure 门户中创建函数应用时，默认情况下会为你完成此集成。 但是，在 Visual Studio 发布期间创建函数应用时，Azure 中的函数应用集成未完成。
+
+[!INCLUDE [functions-connect-new-app-insights.md](../../includes/functions-connect-new-app-insights.md)]
+
+若要了解详细信息，请参阅[监视 Azure Functions](functions-monitoring.md)。
 
 ## <a name="next-steps"></a>后续步骤
 

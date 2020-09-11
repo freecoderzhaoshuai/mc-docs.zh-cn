@@ -1,25 +1,26 @@
 ---
-title: 在 Azure 中选择 Windows VM 映像
+title: 查找并使用 Azure 市场映像
 description: 使用 Azure PowerSHell 来确定市场 VM 映像的发布者、产品/服务、SKU 和版本。
-author: rockboyfor
-ms.service: virtual-machines-windows
+ms.service: virtual-machines
 ms.subservice: imaging
-ms.topic: article
-ms.tgt_pltfrm: vm-windows
+ms.topic: how-to
 ms.workload: infrastructure
 origin.date: 01/25/2019
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 044dd58bb76384ed14e1318e48c38d51d1ff7832
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: c4d5d68d53e2563a1a6f3e22d7e64a422b9b635c
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945787"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462855"
 ---
-# <a name="find-windows-vm-images-in-the-azure-marketplace-with-azure-powershell"></a>使用 Azure PowerShell 在 Azure 市场中查找 Windows VM 映像
+# <a name="find-and-use-vm-images-in-the-azure-marketplace-with-azure-powershell"></a>使用 Azure PowerShell 在 Azure 市场中查找并使用 VM 映像
 
-本文介绍如何使用 Azure PowerShell 在 Azure 市场中查找 VM 映像。 然后，使用 PowerShell、资源管理器模板或其他工具以编程方式创建 VM 时，你可以指定市场映像。
+本文介绍如何使用 Azure PowerShell 在 Azure 市场中查找 VM 映像。 然后，可以在创建 VM 时指定市场映像。
 
 你还可以使用 [Azure 市场](https://market.azure.cn/marketplace/)店面、[Azure 门户](https://portal.azure.cn)或 [Azure CLI](../linux/cli-ps-findimage.md) 浏览可用的映像和产品/服务。 
 
@@ -99,22 +100,26 @@ Get-AzVMImagePublisher -Location $locName | Select PublisherName
 PublisherName
 -------------
 ...
+360-cn
 A10Networks
+a10networks-cn
+afajr-cn
+aibaby
+aigauss
+airdoc
+airdoc-cn
+alauda
 AllMobilize
 alteonva
 Antshares
+arcblock-cn
+arctron
 array_networks
+array_networks-cn
 AsiaInfo.DeepSecurity
+attittu-cn
 AzureChinaMarketplace
-baison
-BespinGlobal
-beyondsoft
-bjjzhj
-blacklake2
-BlueStoneEcommerceSolution
-bw-jx
-C3CRM
-Canonical
+AzureDatabricks
 ...
 ```
 
@@ -158,27 +163,38 @@ Skus
 2008-R2-SP1-smalldisk
 2008-R2-SP1-zhcn
 2012-Datacenter
+2012-datacenter-gensecond
 2012-Datacenter-smalldisk
+2012-datacenter-smalldisk-g2
 2012-Datacenter-zhcn
+2012-datacenter-zhcn-g2
 2012-R2-Datacenter
+2012-r2-datacenter-gensecond
 2012-R2-Datacenter-smalldisk
+2012-r2-datacenter-smalldisk-g2
 2012-R2-Datacenter-zhcn
+2012-r2-datacenter-zhcn-g2
 2016-Datacenter
+2016-datacenter-gensecond
+2016-datacenter-gs
 2016-Datacenter-Server-Core
+2016-datacenter-server-core-g2
 2016-Datacenter-Server-Core-smalldisk
+2016-datacenter-server-core-smalldisk-g2
 2016-Datacenter-smalldisk
+2016-datacenter-smalldisk-g2
 2016-Datacenter-with-Containers
+2016-datacenter-with-containers-g2
+2016-datacenter-with-containers-gs
 2016-Datacenter-zhcn
+2016-datacenter-zhcn-g2
 2016-Nano-Server
 2019-Datacenter
 2019-Datacenter-Core
+2019-datacenter-core-g2
 2019-Datacenter-Core-smalldisk
+2019-datacenter-core-smalldisk-g2
 2019-Datacenter-Core-with-Containers
-2019-Datacenter-Core-with-Containers-smalldisk
-2019-Datacenter-smalldisk
-2019-Datacenter-with-Containers
-2019-Datacenter-with-Containers-smalldisk
-2019-Datacenter-zhcn
 ...
 ```
 
@@ -240,6 +256,6 @@ DataDiskImages   : []
 
 若要使用基本映像信息通过 `New-AzVM` cmdlet 快速创建虚拟机，请参阅[使用 PowerShell 创建 Windows 虚拟机](quick-create-powershell.md)。
 
-参阅 PowerShell 脚本示例来[创建完全配置的虚拟机](../scripts/virtual-machines-windows-powershell-sample-create-vm.md)。
+有关使用 Azure 市场映像在共享映像库中创建自定义映像的更多信息，请参阅[在创建映像时提供 Azure 市场购买计划信息](../marketplace-images.md)。
 
-<!--Update_Description: update meta properties, wording update, update link -->
+<!-- Update_Description: update meta properties, wording update, update link -->

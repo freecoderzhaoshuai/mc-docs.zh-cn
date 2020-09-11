@@ -1,21 +1,21 @@
 ---
 title: Azure PowerShell - 使用 SSE 启用客户管理的密钥 - 托管磁盘
 description: 使用 Azure PowerShell 在托管磁盘上通过客户管理的密钥启用服务器端加密。
+origin.date: 08/24/2020
 author: rockboyfor
-origin.date: 07/09/2020
-ms.date: 08/10/2020
+ms.date: 09/07/2020
 ms.testscope: no
 ms.testdate: ''
 ms.topic: how-to
 ms.author: v-yeche
 ms.service: virtual-machines-windows
 ms.subservice: disks
-ms.openlocfilehash: 1bca7fb6dd062e3ba82cd6cc213ac2baa880da7c
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: e5b7c93a53e76d12ddaff006bc730a93ec34505d
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87919232"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463127"
 ---
 <!--Verified successfully-->
 <!--Partial content from verified article-->
@@ -49,11 +49,11 @@ Azure 磁盘存储使你能在对托管磁盘使用服务器端加密 (SSE) 时�
 ```powershell
 $VMLocalAdminUser = "yourVMLocalAdminUserName"
 $VMLocalAdminSecurePassword = ConvertTo-SecureString <password> -AsPlainText -Force
-$LocationName = "chinaeast"
+$LocationName = "yourRegion"
 $ResourceGroupName = "yourResourceGroupName"
 $ComputerName = "yourComputerName"
 $VMName = "yourVMName"
-$VMSize = "Standard_DS3_v2"
+$VMSize = "yourVMSize"
 $diskEncryptionSetName="yourdiskEncryptionSetName"
 
 $NetworkName = "yourNetworkName"
@@ -190,10 +190,6 @@ Update-AzDiskEncryptionSet -Name $diskEncryptionSetName -ResourceGroupName $Reso
 > [!IMPORTANT]
 > 客户托管密钥依赖于 Azure 资源的托管标识（Azure Active Directory (Azure AD) 的一项功能）。 配置客户托管密钥时，实际上会自动将托管标识分配给你的资源。 如果随后将订阅、资源组或托管磁盘从一个 Azure AD 目录移动到另一个目录，则与托管磁盘关联的托管标识不会转移到新租户，因此，客户托管密钥可能不再有效。 有关详细信息，请参阅[在 Azure AD 目录之间转移订阅](../../active-directory/managed-identities-azure-resources/known-issues.md#transferring-a-subscription-between-azure-ad-directories)。
 
-<!--MOONCAKE: *Disk Encryption Sets* FEATURE IS INVALID ON AZURE CHINA PORTAL-->
-<!--Not Avaiable on [!INCLUDE [virtual-machines-disks-encryption-portal](../../../includes/virtual-machines-disks-encryption-portal.md)]-->
-<!--Not Avaiable on  Customer-managed keys rely on managed identities for Azure resources-->
-
 ## <a name="next-steps"></a>后续步骤
 
 - [探索 Azure 资源管理器模板以使用客户管理密钥创建加密磁盘](https://github.com/ramankumarlive/manageddiskscmkpreview)
@@ -201,5 +197,4 @@ Update-AzDiskEncryptionSet -Name $diskEncryptionSetName -ResourceGroupName $Reso
 - [使用 PowerShell 设置 VMware VM 到 Azure 的灾难恢复](../../site-recovery/vmware-azure-disaster-recovery-powershell.md#replicate-vmware-vms)
 - [使用 PowerShell 和 Azure 资源管理器为 Hyper-V VM 设置到 Azure 的灾难恢复](../../site-recovery/hyper-v-azure-powershell-resource-manager.md#step-7-enable-vm-protection)
 
-<!-- Update_Description: new article about disks enable customer managed keys powershell -->
-<!--NEW.date: 08/10/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

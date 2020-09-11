@@ -9,12 +9,12 @@ ms.topic: conceptual
 origin.date: 05/15/2019
 ms.date: 04/06/2020
 ms.author: v-yiso
-ms.openlocfilehash: 4224b503a535e8894cc7fc3edd8f1b866104b6e1
-ms.sourcegitcommit: 9bc3e55f01e0999f05e7b4ebaea95f3ac91d32eb
+ms.openlocfilehash: d78bb8fc55981fe90cc97a3f085bac27522df327
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86225986"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463155"
 ---
 # <a name="use-iot-hub-message-routing-to-send-device-to-cloud-messages-to-different-endpoints"></a>使用 IoT 中心消息路由将设备到云消息发送到不同的终结点
 
@@ -46,15 +46,19 @@ IoT 中心目前支持以下终结点：
  - 服务总线队列和服务总线主题
  - 事件中心
 
-### <a name="built-in-endpoint"></a>内置终结点
+## <a name="built-in-endpoint-as-a-routing-endpoint"></a>内置终结点作为路由终结点
 
 可以使用标准[事件中心集成和 SDK](iot-hub-devguide-messages-read-builtin.md) 接收来自内置终结点（消息/事件）的设备到云的消息。 在创建一个路由后，数据将停止流向内置终结点，除非创建了到该终结点的路由。
 
-### <a name="azure-storage"></a>Azure 存储
+## <a name="azure-storage-as-a-routing-endpoint"></a>Azure 存储作为路由终结点
 
 IoT 中心可将消息路由到以下两个存储服务：[Azure Blob 存储](../storage/blobs/storage-blobs-introduction.md)和 [Azure Data Lake Storage Gen2](../storage/blobs/data-lake-storage-introduction.md) (ADLS Gen2) 帐户。 Azure Data Lake Storage 帐户是在 Blob 存储之上构建的启用[分层命名空间](../storage/blobs/data-lake-storage-namespace.md)的存储帐户。 这两个存储服务都使用 blob 作为其存储。
 
-IoT 中心支持将数据以 [Apache Avro](https://avro.apache.org/) 格式和 JSON 格式写入 Azure 存储。 默认值为 AVRO。 只有在配置 Blob 存储终结点时才能设置编码格式。 不能编辑现有终结点的格式。 使用 JSON 编码时，必须在消息[系统属性](iot-hub-devguide-routing-query-syntax.md#system-properties)中将 contentType 设置为 **application/json**，将 contentEncoding 设置为 **UTF-8**。 这两个值都不区分大小写。 如果未设置内容编码，则 IoT 中心将以 base 64 编码格式写入消息。 可以使用 IoT 中心的创建或更新 REST API（具体说来就是 [RoutingStorageContainerProperties](https://docs.microsoft.com/rest/api/iothub/iothubresource/createorupdate#routingstoragecontainerproperties)、Azure 门户、[Azure CLI](https://docs.microsoft.com/cli/azure/iot/hub/routing-endpoint?view=azure-cli-latest) 或 [Azure Powershell](https://docs.microsoft.com/powershell/module/az.iothub/add-aziothubroutingendpoint?view=azps-1.3.0)）选择编码格式。 下图说明如何在 Azure 门户中选择编码格式。
+IoT 中心支持将数据以 [Apache Avro](https://avro.apache.org/) 格式和 JSON 格式写入 Azure 存储。 默认值为 AVRO。 使用 JSON 编码时，必须在消息[系统属性](iot-hub-devguide-routing-query-syntax.md#system-properties)中将 contentType 设置为 **application/json**，将 contentEncoding 设置为 **UTF-8**。 这两个值都不区分大小写。 如果未设置内容编码，则 IoT 中心将以 base 64 编码格式写入消息。
+
+只有在配置 Blob 存储终结点时才能设置编码格式，不能编辑现有终结点的编码格式。 若要为现有终结点切换编码格式，则需要删除现有终结点并重新创建具有所需格式的自定义终结点。 一个有用的策略可能是创建具有所需编码格式的新自定义终结点，并将并行路由添加到该终结点。 通过这种方式，你可以在删除现有终结点之前验证数据。
+
+可以使用 IoT 中心的创建或更新 REST API（具体说来就是 [RoutingStorageContainerProperties](https://docs.microsoft.com/rest/api/iothub/iothubresource/createorupdate#routingstoragecontainerproperties)、Azure 门户、[Azure CLI](https://docs.microsoft.com/cli/azure/iot/hub/routing-endpoint?view=azure-cli-latest) 或 [Azure PowerShell](https://docs.microsoft.com/powershell/module/az.iothub/add-aziothubroutingendpoint)）选择编码格式。 下图说明如何在 Azure 门户中选择编码格式。
 
 ![Blob 存储终结点编码](./media/iot-hub-devguide-messages-d2c/blobencoding.png)
 
@@ -88,12 +92,11 @@ public void ListBlobsInContainer(string containerName, string iothub)
 
 ![选择 Azure Date Lake Gen2 存储](./media/iot-hub-devguide-messages-d2c/selectadls2storage.png)
 
-
-### <a name="service-bus-queues-and-service-bus-topics"></a>服务总线队列和服务总线主题
+## <a name="service-bus-queues-and-service-bus-topics-as-a-routing-endpoint"></a>服务总线队列和服务总线主题作为路由终结点
 
 用作 IoT 中心终结点的服务总线队列和主题不能启用“会话”或“重复项检测”。 如果启用了其中任一选项，该终结点将在 Azure 门户中显示为“无法访问”。
 
-### <a name="event-hubs"></a>事件中心
+## <a name="event-hubs-as-a-routing-endpoint"></a>事件中心作为路由终结点
 
 除了与事件中心兼容的内置终结点外，还可以将数据路由到事件中心类型的自定义终结点。 
 

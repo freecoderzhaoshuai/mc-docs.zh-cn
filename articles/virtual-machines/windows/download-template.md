@@ -1,20 +1,22 @@
 ---
-title: 下载 VM 模板
+title: 下载 Azure VM 模板
 description: 使用门户或 PowerShell 下载 VM 的模板。
-author: rockboyfor
-manager: digimobile
+manager: gwallace
 ms.service: virtual-machines
 ms.workload: infrastructure-services
-ms.topic: article
+ms.topic: how-to
 origin.date: 11/17/2017
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: f602c13cd3c7a8062289e447cc9e989ad2befdd7
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: eb9f276eb9e4be61ad203f12ebb109f2340ca685
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946072"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463121"
 ---
 # <a name="download-the-template-for-a-vm"></a>下载 VM 模板
 使用门户或 PowerShell 在 Azure 中创建 VM 时，系统会自动创建一个 Resource Manager 模板。 可以使用此模板快速复制部署。 该模板包含有关资源组中所有资源的信息。 对于虚拟机而言，这意味着该模板包含为在该资源组中支持该 VM 而创建的所有资源，包括网络资源。
@@ -40,6 +42,6 @@ Export-AzResourceGroup -ResourceGroupName "myResourceGroup" -Path "C:\users\publ
 ```
 
 ## <a name="next-steps"></a>后续步骤
-若要详细了解如何使用模板部署资源，请参阅 [Resource Manager 模板演练](../../azure-resource-manager/resource-manager-template-walkthrough.md)。
+若要详细了解如何使用模板部署资源，请参阅 [Resource Manager 模板演练](../../azure-resource-manager/templates/quickstart-create-templates-use-the-portal.md)。
 
-<!-- Update_Description: wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

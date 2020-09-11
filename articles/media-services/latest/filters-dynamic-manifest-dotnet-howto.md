@@ -1,5 +1,5 @@
 ---
-title: 使用 Azure 媒体服务 .NET SDK 创建筛选器
+title: 使用 Azure 媒体服务 v3 .NET SDK 创建筛选器
 description: 本主题介绍如何创建筛选器，以便客户端能够使用它们来流式传输流的特定部分。 媒体服务将创建动态清单来存档此选择性流。
 services: media-services
 documentationcenter: ''
@@ -11,15 +11,15 @@ ms.workload: media
 ms.tgt_pltfrm: na
 ms.devlang: ne
 ms.topic: article
-origin.date: 06/03/2019
-ms.date: 09/23/2019
+origin.date: 08/11/2020
+ms.date: 09/07/2020
 ms.author: v-jay
-ms.openlocfilehash: fddc0d88eeae86ccd08d01cef58333be6fafb6d1
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 1a1db7b82ffa1054c788bc37d58879b8b8e024f8
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71125600"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414019"
 ---
 # <a name="create-filters-with-media-services-net-sdk"></a>使用媒体服务 .NET SDK 创建筛选器
 
@@ -35,9 +35,9 @@ ms.locfileid: "71125600"
 ## <a name="prerequisites"></a>必备条件 
 
 - 查看[筛选器和动态清单](filters-dynamic-manifest-overview.md)。
-- [创建媒体服务帐户](create-account-cli-how-to.md)。 请务必记住资源组名称和媒体服务帐户名称。 
-- 获取[访问 API](access-api-cli-how-to.md) 所需的信息
-- 查看[使用 Azure 媒体服务进行上传、编码和流式传输](stream-files-tutorial-with-api.md)来了解如何[开始使用 .NET SDK](stream-files-tutorial-with-api.md#start_using_dotnet)
+- [创建媒体服务帐户](./create-account-howto.md)。 请务必记住资源组名称和媒体服务帐户名称。 
+- 获取[访问 API](./access-api-howto.md) 所需的信息
+- 查看[使用 Azure 媒体服务进行上传、编码和流式传输](stream-files-tutorial-with-api.md)来了解如何[开始使用 .NET SDK](stream-files-tutorial-with-api.md#start-using-media-services-apis-with-net-sdk)
 
 ## <a name="define-a-filter"></a>定义筛选器  
 
@@ -120,5 +120,3 @@ StreamingLocator locator = await client.StreamingLocators.CreateAsync(
 ## <a name="next-steps"></a>后续步骤
 
 [流视频](stream-files-tutorial-with-api.md) 
-
-

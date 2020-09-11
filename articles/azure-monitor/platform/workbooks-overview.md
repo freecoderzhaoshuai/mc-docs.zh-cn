@@ -6,14 +6,14 @@ manager: carmonm
 services: azure-monitor
 ms.tgt_pltfrm: ibiza
 ms.topic: conceptual
-ms.date: 07/17/2020
+ms.date: 08/20/2020
 ms.author: v-johya
-ms.openlocfilehash: ffd212ae8e38a88d28f4493a149822c8439ba61b
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.openlocfilehash: da2eb243181f60e45735a20e4e09986c453a7295
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508435"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457456"
 ---
 # <a name="azure-monitor-workbooks"></a>Azure Monitor 工作簿
 
@@ -52,9 +52,9 @@ ms.locfileid: "87508435"
 
 若要探索工作簿体验，请先导航到 Azure Monitor 服务。 为此，可以在 Azure 门户的搜索框中键入 **Monitor**。
 
-然后选择“工作簿(预览版)”。
+然后选择“工作簿”。
 
-![在红色框中突出显示的工作簿预览版按钮的屏幕截图](./media/workbooks-overview/workbooks-preview.png)
+![在红色框中突出显示的工作簿按钮的屏幕截图](./media/workbooks-overview/workbooks.png)
 
 ### <a name="gallery"></a>库
 

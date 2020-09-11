@@ -1,6 +1,6 @@
 ---
 title: Azure IoT 中心的手动故障转移 | Microsoft Docs
-description: 介绍如何为 Azure IoT 中心执行手动故障转移
+description: 了解如何对 IoT 中心手动执行到其他区域的故障转移并确认其正常运行，然后将其返回到原始区域并再次检查。
 author: robinsh
 manager: timlt
 ms.service: iot-hub
@@ -10,16 +10,16 @@ origin.date: 07/24/2019
 ms.date: 03/09/2020
 ms.author: v-yiso
 ms.custom: mvc
-ms.openlocfilehash: bd85564817ec7acf1266731ae90b99aaadbee026
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: a236186b06b20dcd569029e1c88d3a6677c0278b
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78154702"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463190"
 ---
 # <a name="tutorial-perform-manual-failover-for-an-iot-hub"></a>教程：为 IoT 中心执行手动故障转移
 
-手动故障转移是 IoT 中心服务的一项功能，允许客户将其中心的操作从主要区域[故障转移](https://en.wikipedia.org/wiki/Failover)到相应的 Azure 异地配对区域。 在出现区域性灾难或者服务中断时间延长的情况下，可以进行手动故障转移。 也可通过执行计划内故障转移来测试灾难恢复功能，虽然我们建议使用测试性 IoT 中心而不是在生产环境中运行的 IoT 中心。 提供给客户的手动故障转移功能不另外收费。
+手动故障转移是 IoT 中心服务的一项功能，允许客户将其中心的操作从主要区域[故障转移](https://en.wikipedia.org/wiki/Failover)到相应的 Azure 异地配对区域。 在出现区域性灾难或者服务中断时间延长的情况下，可以进行手动故障转移。 也可通过执行计划内故障转移来测试灾难恢复功能，虽然我们建议使用测试性 IoT 中心而不是在生产环境中运行的 IoT 中心。 对于 2017 年 5 月 18 日之后创建的 IoT 中心，提供给客户的手动故障转移功能不另外收费。
 
 将在本教程中执行以下任务：
 
@@ -29,6 +29,8 @@ ms.locfileid: "78154702"
 > * 查看在辅助位置运行的中心。
 > * 执行故障回复，让 IoT 中心的操作返回到主位置。 
 > * 确认中心在正确的位置正确运行。
+
+有关使用 IoT 中心的手动故障转移和 Microsoft 发起的故障转移的详细信息，请参阅[跨区域灾难恢复](iot-hub-ha-dr.md#cross-region-dr)。
 
 ## <a name="prerequisites"></a>先决条件
 
@@ -40,15 +42,15 @@ ms.locfileid: "78154702"
 
 1. 登录到 [Azure 门户](https://portal.azure.cn)。 
 
-2. 单击“+ 创建资源”，选择“物联网”，然后选择“IoT 中心”。   
+2. 单击“+ 创建资源”，选择“物联网”，然后选择“IoT 中心”。  
 
    ![显示正在创建 IoT 中心的屏幕截图](./media/tutorial-manual-failover/create-hub-01.png)
 
-3. 选择“基本信息”  选项卡。在以下字段中进行填充。
+3. 选择“基本信息”选项卡。在以下字段中进行填充。
 
     **订阅**：选择要使用的 Azure 订阅。
 
-    **资源组**：单击“新建”，指定“ManlFailRG”作为资源组名称。  
+    **资源组**：单击“新建”，指定“ManlFailRG”作为资源组名称。 
 
     **区域**：选择离你近的区域。 本教程使用 `chinaeast`。 只能在 Azure 异地配对区域之间执行故障转移。 与 chinaeast 异地配对的区域是 chinanorth。
     
@@ -56,9 +58,9 @@ ms.locfileid: "78154702"
 
    ![显示用于创建 IoT 中心的“基本信息”窗格的屏幕截图](./media/tutorial-manual-failover/create-hub-02-basics.png)
 
-   单击“查看 + 创建”  。 （它使用大小和规模的默认值。） 
+   单击“查看 + 创建”。 （它使用大小和规模的默认值。） 
 
-4. 查看信息，然后单击“创建”以创建 IoT 中心。  
+4. 查看信息，然后单击“创建”以创建 IoT 中心。 
 
    ![显示用于创建 IoT 中心的最后步骤的屏幕截图](./media/tutorial-manual-failover/create-hub-03-create.png)
 
@@ -66,19 +68,19 @@ ms.locfileid: "78154702"
 
 请注意，一个 IoT 中心每天的限制是两次故障转移和两次故障回复。
 
-1. 单击“资源组”，然后选择资源组“ManlFailRG”   。 在资源列表中单击你的中心。 
+1. 单击“资源组”，然后选择资源组“ManlFailRG” 。 在资源列表中单击你的中心。 
 
-1. 在 IoT Hub 窗格上的“设置”  下，单击“故障转移”  。
+1. 在 IoT Hub 窗格上的“设置”下，单击“故障转移”。
 
    ![显示 IoT 中心属性窗格的屏幕截图](./media/tutorial-manual-failover/trigger-failover-01.png)
 
-3. 在“手动故障转移”窗格上，可以看到**当前位置**和**故障转移位置**。 当前位置始终指示中心当前处于活动状态的位置。 故障转移位置是标准的 Azure 异地配对区域，与当前位置配对。 不能更改位置值。 在本教程中，当前位置为 `chinaeast`，故障转移位置为 `chinanorth`。
+1. 在“手动故障转移”窗格上，可以看到**当前位置**和**故障转移位置**。 当前位置始终指示中心当前处于活动状态的位置。 故障转移位置是标准的 [Azure 异地配对区域](../best-practices-availability-paired-regions.md)，与当前位置配对。 不能更改位置值。 在本教程中，当前位置为 `West US 2`，故障转移位置为 `West Central US`。
 
    ![显示“手动故障转移”窗格的屏幕截图](./media/tutorial-manual-failover/trigger-failover-02.png)
 
-1. 在“手动故障转移”窗格顶部单击“启动故障转移”。  
+1. 在“手动故障转移”窗格顶部单击“启动故障转移”。 
 
-1. 在“确认”窗格中填充 IoT 中心的名称，确认是它需要故障转移。 然后，若要启动故障转移，请单击“故障转移”  。
+1. 在“确认”窗格中填充 IoT 中心的名称，确认是它需要故障转移。 然后，若要启动故障转移，请单击“故障转移”。
 
    执行手动故障转移所需时间与中心的已注册设备数成正比。 例如，如果有 1 百万台设备，可能需要 15 分钟，但如果有 5 百万台设备，则可能需要 1 小时或更长的时间。
 
@@ -109,9 +111,9 @@ ms.locfileid: "78154702"
 
 1. 若要执行故障回复，请返回到 Iot 中心的“Iot 中心”窗格。
 
-2. 在 IoT Hub 窗格上的“设置”  下，单击“故障转移”  。 
+2. 在 IoT Hub 窗格上的“设置”下，单击“故障转移”。 
 
-3. 在“手动故障转移”窗格顶部单击“启动故障转移”。  
+3. 在“手动故障转移”窗格顶部单击“启动故障转移”。 
 
 4. 在“确认”窗格中填充 IoT 中心的名称，确认是它需要故障回复。 然后，若要启动故障回复，请单击“确定”。 
 
@@ -123,11 +125,11 @@ ms.locfileid: "78154702"
 
 若要删除为本教程创建的资源，请删除资源组。 此操作会一并删除组中包含的所有资源。 在本示例中，它会删除 IoT 中心和资源组本身。 
 
-1. 单击“资源组”。  
+1. 单击“资源组”。 
 
-2. 找到并选择资源组“ManlFailRG”。  单击可将其打开。 
+2. 找到并选择资源组“ManlFailRG”。 单击可将其打开。 
 
-3. 单击“删除资源组”。  系统提示时，请输入资源组的名称，然后单击“删除”进行确认  。 
+3. 单击“删除资源组”。 系统提示时，请输入资源组的名称，然后单击“删除”进行确认。 
 
 ## <a name="next-steps"></a>后续步骤
 

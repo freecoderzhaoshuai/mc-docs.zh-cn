@@ -1,35 +1,34 @@
 ---
-title: Azure 上的 Visual Studio 映像
+title: 在 Azure 虚拟机上使用 Visual Studio
 description: 在 Azure 虚拟机上使用 Visual Studio。
-author: rockboyfor
-manager: digimobile
+manager: cathys
 ms.service: virtual-machines-windows
 ms.custom: vs-azure
 ms.workload: azure-vs
 ms.topic: conceptual
 origin.date: 04/23/2020
-ms.date: 07/27/2020
-ms.testscope: no
-ms.testdate: ''
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 keywords: visualstudio
-ms.openlocfilehash: 2f0526471a2d3a7b9edf9dae7ff9246b6e7cad81
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: f3a17dc8fdffbadab95967dc73acdc0c04c2a9c8
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244460"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463167"
 ---
-<a name="top"></a>
 # <a name="visual-studio-images-on-azure"></a>Azure 上的 Visual Studio 映像
-使用预配置的 Azure 虚拟机 (VM) 中的 Visual Studio 是从无到启动并运行的开发环境的简单快捷方法。 具有不同 Visual Studio 配置的系统映像位于 [Azure 市场](https://market.azure.cn/marketplace/apps/filter?search=Visual%20Studio)。
+<a name="top"></a> 使用预配置的 Azure 虚拟机 (VM) 中的 Visual Studio 是从无到启动并运行的开发环境的简单快捷方法。 具有不同 Visual Studio 配置的系统映像位于 [Azure 市场](https://market.azure.cn/marketplace/apps/filter?search=Visual%20Studio)。
 
 <!-- Notice: URL is correct on https://market.azure.cn/marketplace/apps/filter?search=Visual%20Studio-->
 
 不熟悉 Azure？ [创建一个 Azure 试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
 
 > [!NOTE]
-> 并非所有订阅都可以部署 Windows 10 映像。 有关详细信息，请参阅[在 Azure 中使用 Windows 客户端实现开发/测试方案](/virtual-machines/windows/client-images)
+> 并非所有订阅都可以部署 Windows 10 映像。 有关详细信息，请参阅[在 Azure 中使用 Windows 客户端实现开发/测试方案](./client-images.md)
 
 ## <a name="what-configurations-and-versions-are-available"></a>提供了哪些配置和版本？
 在 Azure 市场中，可以找到最新主版本（Visual Studio 2019、Visual Studio 2017 和 Visual Studio 2015）的映像。  对于发布的每个主版本，都可以看到最初的“发布到 Web”(RTW) 版本和最新更新版本。  其中每个版本都提供 Visual Studio Enterprise 和 Visual Studio Community 版本。  这些映像至少每个月更新一次，以包括最新的 Visual Studio 和 Windows 更新。  尽管映像的名称保持不变，但每个映像的说明包括已安装的产品版本和映像的截止日期。
@@ -83,9 +82,9 @@ Azure 提供各种虚拟机大小。 由于 Visual Studio 是一个功能强大�
 * Standard_D2S_v2
 * Standard_D3_v2
 
-有关最新虚拟机大小的详细信息，请参阅 [Azure 中的 Windows 虚拟机大小](/virtual-machines/windows/sizes)。
+有关最新虚拟机大小的详细信息，请参阅 [Azure 中的 Windows 虚拟机大小](../sizes.md)。
 
-使用 Azure，可通过调整 VM 大小来重新平衡初始选择。 可为新的 VM 预配更合适的大小，也可调整现有 VM 的大小，使其适应不同的底层硬件。 有关详细信息，请参阅[调整 Windows VM 大小](/virtual-machines/windows/resize-vm)。
+使用 Azure，可通过调整 VM 大小来重新平衡初始选择。 可为新的 VM 预配更合适的大小，也可调整现有 VM 的大小，使其适应不同的底层硬件。 有关详细信息，请参阅[调整 Windows VM 大小](./resize-vm.md)。
 
 ## <a name="after-the-vm-is-running-whats-next"></a>VM 运行后，下一步是什么？
 Visual Studio 遵循 Azure 中的“自带许可”模式。 与专有硬件上的安装一样，第一步是授权 Visual Studio 安装。 若要解锁 Visual Studio，请执行以下任一操作：
@@ -102,7 +101,7 @@ Visual Studio 遵循 Azure 中的“自带许可”模式。 与专有硬件上�
 
 <img src="media/using-visual-studio-vm/capture-vm.png" alt="Capture an image through the Azure portal UI" style="border:3px solid Silver; display: block; margin: auto;"><center> *（图 1）通过 Azure 门户 UI 捕获映像。* </center>
 
-有关详细信息，请参阅[在 Azure 中创建通用 VM 的托管映像](/virtual-machines/windows/capture-image-resource)。
+有关详细信息，请参阅[在 Azure 中创建通用 VM 的托管映像](./capture-image-resource.md)。
 
 > [!IMPORTANT]
 > 不要忘记使用 Sysprep 来准备 VM。 如果缺少该步骤，Azure 无法从映像配置 VM。

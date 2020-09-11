@@ -1,6 +1,6 @@
 ---
 title: 通过 CLI 使用 Azure 媒体服务创建筛选器 | Microsoft Docs
-description: 本主题展示如何通过 CLI 使用媒体服务创建筛选器。
+description: 本文介绍如何通过 CLI 使用 Azure 媒体服务 v3 创建筛选器。
 services: media-services
 documentationcenter: ''
 author: WenJason
@@ -12,15 +12,15 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: article
 origin.date: 06/13/2019
-ms.date: 04/13/2020
+ms.date: 09/07/2020
 ms.author: v-jay
 ms.custom: seodec18
-ms.openlocfilehash: 7fac9609af0c13aeb65e99777b7b66c23e0e7db2
-ms.sourcegitcommit: 95efd248f5ee3701f671dbd5cfe0aec9c9959a24
+ms.openlocfilehash: 773711d817c6b9463a4d50c75262033b3d50a66b
+ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82507706"
+ms.lasthandoff: 09/03/2020
+ms.locfileid: "89414022"
 ---
 # <a name="creating-filters-with-cli"></a>使用 CLI 创建筛选器 
 
@@ -35,7 +35,7 @@ ms.locfileid: "82507706"
 
 ## <a name="prerequisites"></a>必备条件 
 
-- [创建媒体服务帐户](create-account-cli-how-to.md)。 请务必记住资源组名称和媒体服务帐户名称。 
+- [创建媒体服务帐户](./create-account-howto.md)。 请务必记住资源组名称和媒体服务帐户名称。 
 
 [!INCLUDE [media-services-cli-instructions](../../../includes/media-services-cli-instructions.md)]
 

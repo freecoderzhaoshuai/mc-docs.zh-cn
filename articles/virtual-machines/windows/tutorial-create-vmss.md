@@ -1,21 +1,23 @@
 ---
-title: 教程 - 使用 Azure PowerShell 在 Windows 上创建虚拟机规模集和部署高度可用的应用
+title: 教程 - 创建 Windows 虚拟机规模集
 description: 了解如何通过 Azure PowerShell 使用虚拟机规模集在 Windows VM 上创建和部署高度可用的应用程序
-author: rockboyfor
 ms.topic: tutorial
 ms.service: virtual-machine-scale-sets
 ms.subservice: windows
 origin.date: 11/30/2018
-ms.date: 07/06/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.reviewer: mimckitt
-ms.custom: mimckitt
-ms.openlocfilehash: 157999fb268c4d4f84175ae9663669a4ea1089ad
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.custom: mimckitt, devx-track-azurepowershell
+ms.openlocfilehash: 1a6a3b5c69138917aa47e55b7aeaba3cb6789e0f
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945862"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462871"
 ---
 # <a name="tutorial-create-a-virtual-machine-scale-set-and-deploy-a-highly-available-app-on-windows-with-azure-powershell"></a>教程：使用 Azure PowerShell 在 Windows 上创建虚拟机规模集和部署高度可用的应用
 利用虚拟机规模集，可以部署和管理一组相同的、自动缩放的虚拟机。 可以手动缩放规模集中的 VM 数。 也可以定义规则，以便根据 CPU、内存需求或网络流量等资源使用情况进行自动缩放。 在本教程中，请在 Azure 中部署虚拟机规模集，并了解如何执行以下操作：
@@ -27,16 +29,18 @@ ms.locfileid: "85945862"
 > * 增加或减少规模集中的实例数
 > * 创建自动缩放规则
 
-## <a name="launch-azure-local-powershell"></a>启动 Azure 本地 PowerShell
+## <a name="launch-azure-local-shell"></a>启动 Azure 本地 Shell
 
 打开 Azure Powershell 控制台，以管理员权限运行以下脚本。
+
+<!--Not Available on Azure Cloud Shell-->
 
 ## <a name="scale-set-overview"></a>规模集概述
 利用虚拟机规模集，可以部署和管理一组相同的、自动缩放的虚拟机。 规模集中的 VM 将分布在逻辑容错域和更新域的一个或多个*放置组*中。 放置组是配置类似的 VM 的组，与[可用性集](tutorial-availability-sets.md)相似。
 
 可以根据需要在规模集中创建 VM。 可以定义自动缩放规则来控制如何以及何时在规模集中添加或删除 VM。 这些规则可以根据 CPU 负载、内存用量或网络流量等指标触发。
 
-使用 Azure 平台映像时，规模集最多支持 1,000 个 VM。 对于有重要安装或 VM 自定义要求的工作负荷，可能需要[创建自定义 VM 映像](tutorial-custom-images.md)。 使用自定义映像时，在规模集中最多可以创建 300 个 VM。
+使用 Azure 平台映像时，规模集最多支持 1,000 个 VM。 对于有重要安装或 VM 自定义要求的工作负荷，可能需要[创建自定义 VM 映像](tutorial-custom-images.md)。 使用自定义映像时，在规模集中最多可以创建 600 个 VM。
 
 ## <a name="create-a-scale-set"></a>创建规模集
 使用 [New-AzVmss](https://docs.microsoft.com/powershell/module/az.compute/new-azvmss) 创建虚拟机规模集。 以下示例创建名为 *myScaleSet* 且使用 *Windows Server 2016 Datacenter* 平台映像的规模集。 虚拟网络、公共 IP 地址和负载均衡器的 Azure 网络资源均会自动创建。 出现提示时，可以针对规模集中的 VM 实例设置自己的管理凭据：
@@ -56,7 +60,7 @@ New-AzVmss `
 创建和配置所有的规模集资源和 VM 需要几分钟时间。
 
 ## <a name="deploy-sample-application"></a>部署示例应用程序
-若要测试规模集，请安装一个基本的 Web 应用程序。 使用 Azure 自定义脚本扩展下载并运行一个脚本，以便在 VM 实例上安装 IIS。 此扩展适用于部署后配置、软件安装或其他任何配置/管理任务。 有关详细信息，请参阅[自定义脚本扩展概述](extensions-customscript.md)。
+若要测试规模集，请安装一个基本的 Web 应用程序。 使用 Azure 自定义脚本扩展下载并运行一个脚本，以便在 VM 实例上安装 IIS。 此扩展适用于部署后配置、软件安装或其他任何配置/管理任务。 有关详细信息，请参阅[自定义脚本扩展概述](../extensions/custom-script-windows.md)。
 
 使用自定义脚本扩展安装基本的 IIS Web 服务器。 应用可安装 IIS 的自定义脚本扩展，如下所示：
 
@@ -148,7 +152,7 @@ Get-AzPublicIPAddress `
 
 将公共 IP 地址输入到 Web 浏览器中。 将显示 Web 应用，包括负载均衡器将流量分发到的 VM 的主机名：
 
-![运行 IIS 网站](./media/tutorial-create-vmss/running-iis-site.png)
+:::image type="content" source="./media/tutorial-create-vmss/running-iis-site.png" alt-text="运行 IIS 网站":::
 
 若要查看规模集的实际运行情况，可以强制刷新 Web 浏览器，以查看负载均衡器如何在运行应用的所有 VM 之间分发流量。
 
@@ -279,4 +283,4 @@ Add-AzAutoscaleSetting `
 > [!div class="nextstepaction"]
 > [对虚拟机进行负载均衡](tutorial-load-balancer.md)
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

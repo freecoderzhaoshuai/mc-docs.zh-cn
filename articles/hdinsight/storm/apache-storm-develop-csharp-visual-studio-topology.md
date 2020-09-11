@@ -17,12 +17,12 @@ ms.workload: big-data
 origin.date: 12/31/2019
 ms.date: 03/02/2020
 ms.author: v-yiso
-ms.openlocfilehash: c3bae8655cc8ca0a420c88e2d32ebf9926364984
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 3ba5f5343a08b8e4a790767f0df566d711847050
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77563490"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89462982"
 ---
 # <a name="develop-c-topologies-for-apache-storm-by-using-the-data-lake-tools-for-visual-studio"></a>使用针对 Visual Studio 的 Data Lake 工具开发 Apache Storm 的 C# 拓扑
 
@@ -149,9 +149,7 @@ HBase 读取器和写入器模板使用 HBase REST API（而不是 HBase Java AP
 
 * *Bolt.cs*：保留 Spout 所发出数字计数的示例 Bolt。
 
-     创建项目时，NuGet 会下载最新的 [SCP.NET 包](https://www.nuget.org/packages/Microsoft.SCP.Net.SDK/)。
-
-     [!INCLUDE [scp.net version important](../../../includes/hdinsight-storm-scpdotnet-version.md)]
+创建项目时，NuGet 会下载最新的 [SCP.NET 包](https://www.nuget.org/packages/Microsoft.SCP.Net.SDK/)。
 
 ### <a name="implement-the-spout"></a>实现 Spout
 
@@ -697,7 +695,7 @@ public static MyComponent Get(Context ctx, Dictionary<string, Object> parms)
 
 1. 保存更改，然后按 **F5**，或选择“调试”   > “开始调试”  以启动项目。 此时会出现一个控制台窗口，该窗口会在测试进行过程中记录状态。 显示 `Tests finished` 时，请按任意键以关闭窗口。
 
-1. 使用 Windows 资源管理器  找到包含项目的目录。 （例如：*C:\\Users\\\<用户名>\\source\\repos\\WordCount\\WordCount*。）在此目录中打开 *Bin*，然后选择“调试”  。 应可看到运行测试时生成的文本文件：*sentences.txt*、*counter.txt* 和 *splitter.txt*。 打开每个文本文件并检查数据。
+1. 使用 Windows 资源管理器  找到包含项目的目录。 （例如：*C:\\Users\\\<your_user_name>\\source\\repos\\WordCount\\WordCount*)在此目录中打开 *Bin*，然后选择“调试”。 应可看到运行测试时生成的文本文件：*sentences.txt*、*counter.txt* 和 *splitter.txt*。 打开每个文本文件并检查数据。
 
    > [!NOTE]  
    > 字符串数据在这些文件中持久保存为十进制值数组。 例如，**splitter.txt** 文件中的 `[[97,103,111]]` 代表单词 *ago*。

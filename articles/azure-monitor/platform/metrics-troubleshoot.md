@@ -1,19 +1,19 @@
 ---
 title: 排查 Azure Monitor 指标图表问题
 description: 排查创建、自定义或解释指标图表时出现的问题
-author: lingliw
+author: Johnnytechn
 services: azure-monitor
-ms.topic: conceptual
 origin.date: 04/23/2019
-ms.date: 06/20/2019
-ms.author: v-lingwu
+ms.topic: conceptual
+ms.date: 08/20/2020
+ms.author: v-johya
 ms.subservice: metrics
-ms.openlocfilehash: 4dbdfc0d6859eb373aab1c58d59bf13e24c84d49
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 2764c1f61de11523753ff45996bb41d46dfc76cd
+ms.sourcegitcommit: bd6a558e3d81f01c14dc670bc1cf844c6fb5f6dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79452429"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89457269"
 ---
 # <a name="troubleshooting-metrics-charts"></a>排查指标图表问题
 
@@ -43,7 +43,7 @@ ms.locfileid: "79452429"
 
 ### <a name="you-dont-have-sufficient-access-rights-to-your-resource"></a>你对资源没有足够的访问权限
 
-在 Azure 中，对指标的访问由[基于角色的访问控制 (RBAC)](../../role-based-access-control/overview.md) 控制。 只有[监视读取者](../../role-based-access-control/built-in-roles.md#monitoring-reader)、[监视参与者](../../role-based-access-control/built-in-roles.md#monitoring-contributor)或[参与者](../../role-based-access-control/built-in-roles.md#contributor)的成员才能浏览任何资源的指标。
+在 Azure 中，对指标的访问由 [Azure 基于角色的访问控制 (Azure RBAC)](../../role-based-access-control/overview.md) 控制。 只有[监视读取者](../../role-based-access-control/built-in-roles.md#monitoring-reader)、[监视参与者](../../role-based-access-control/built-in-roles.md#monitoring-contributor)或[参与者](../../role-based-access-control/built-in-roles.md#contributor)的成员才能浏览任何资源的指标。
 
 **解决方案：** 请确保你对要在其中浏览指标的资源拥有足够的权限。
 
@@ -69,7 +69,7 @@ ms.locfileid: "79452429"
 
 收集**来宾 OS** 指标需要配置 Azure 诊断扩展，或使用资源的“诊断设置”面板来启用该扩展。 
 
-**解决方案：** 如果 Azure 诊断扩展已启用，但你仍然无法看到指标，请遵循 [Azure 诊断扩展故障排除指南](diagnostics-extension-troubleshooting.md#metric-data-doesnt-appear-in-the-azure-portal)中所述的步骤。 另请参阅[无法选取来宾 OS 命名空间和指标](metrics-troubleshoot.md#cannot-pick-guest-os-namespace-and-metrics)的故障排除步骤
+**解决方案：** 如果 Azure 诊断扩展已启用，但你仍然无法看到指标，请遵循 [Azure 诊断扩展故障排除指南](diagnostics-extension-troubleshooting.md#metric-data-doesnt-appear-in-the-azure-portal)中所述的步骤。 另请参阅[无法选取来宾 OS 命名空间和指标](#cannot-pick-guest-os-namespace-and-metrics)的故障排除步骤
 
 ## <a name="error-retrieving-data-message-on-dashboard"></a>仪表板上显示“检索数据时出错”消息
 
@@ -107,14 +107,16 @@ Azure 指标图表使用虚线样式来指示两个已知时间粒度数据点�
     > [!WARNING]
     > 无法使用 [Log Analytics 代理](agents-overview.md#log-analytics-agent)（也称为 Microsoft Monitoring Agent 或“MMA”）将“来宾 OS”指标发送到存储帐户。 
 
-1. 请确保已[为订阅注册](metrics-troubleshoot.md#microsoftinsights-resource-provider-isnt-registered-for-your-subscription) Microsoft.Insights 资源提供程序  。
+1. 请确保已[为订阅注册](#microsoftinsights-resource-provider-isnt-registered-for-your-subscription) Microsoft.Insights 资源提供程序  。
 
 1. 验证存储帐户是否不受防火墙的保护。 Azure 门户需要对存储帐户的访问权限才能检索指标数据和绘制图表。
 
+1. 使用 [Azure 存储资源管理器](https://azure.microsoft.com/features/storage-explorer/)验证指标是否流入存储帐户。 如果未收集指标，请遵循 [Azure 诊断扩展故障排除指南](diagnostics-extension-troubleshooting.md#metric-data-doesnt-appear-in-the-azure-portal)进行操作。
 
 ## <a name="next-steps"></a>后续步骤
 
 * [了解如何开始使用指标资源管理器](metrics-getting-started.md)
 * [了解指标资源管理器的高级功能](metrics-charts.md)
 * [查看 Azure 服务的可用指标列表](metrics-supported.md)
-* [查看已配置的图表示例](metric-chart-samples.md)
+* [查看已配置图表的示例](metric-chart-samples.md)
+

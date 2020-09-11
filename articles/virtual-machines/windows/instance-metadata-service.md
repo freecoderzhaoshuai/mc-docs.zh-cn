@@ -2,34 +2,34 @@
 title: Azure 实例元数据服务
 description: 一个 RESTful 接口，用于获取有关 VM 计算、网络和即将发生的维护事件的信息。
 services: virtual-machines
-author: rockboyfor
-manager: digimobile
+manager: paulmey
 ms.service: virtual-machines
 ms.subservice: monitoring
 ms.topic: how-to
 ms.workload: infrastructure-services
 origin.date: 03/30/2020
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 09/07/2020
 ms.testscope: yes
 ms.testdate: 07/27/2020
 ms.author: v-yeche
 ms.reviewer: azmetadatadev
-ms.openlocfilehash: 8ed680e8ac98bb03995845442131ddb40d645d52
-ms.sourcegitcommit: 2b78a930265d5f0335a55f5d857643d265a0f3ba
+ms.openlocfilehash: 2cb8c8acfa349deb642af3e2ed120d9e6c304b00
+ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87244955"
+ms.lasthandoff: 09/04/2020
+ms.locfileid: "89463207"
 ---
 <!--Verified Successfully-->
 # <a name="azure-instance-metadata-service"></a>Azure 实例元数据服务
 
 Azure 实例元数据服务 (IMDS) 提供有关当前正在运行的虚拟机实例的信息，可用于管理和配置虚拟机。
 这些信息包括 SKU、存储、网络配置和即将发生的维护事件。 有关提供的数据的完整列表，请参阅[元数据 API](#metadata-apis)。
-实例元数据服务适用于 VM 和虚拟机规模集实例。 它仅可用于运行使用 [Azure 资源管理器](https://docs.microsoft.com/rest/api/resources/)创建/管理的 VM。
+实例元数据服务适用于运行虚拟机和虚拟机规模集实例。 所有 API 均支持使用 [Azure 资源管理器](https://docs.microsoft.com/rest/api/resources/)创建/管理的 VM。 只有证明和网络终结点才支持经典（非 ARM）VM，而证明终结点支持的范围有限。
 
 Azure 的 IMDS 是一个 REST 终结点，位于已知不可路由的 IP 地址 (`169.254.169.254`)，只能从 VM 中访问。 VM 与 IMDS 之间的通信绝不会离开主机。
-最佳做法是让 HTTP 客户端在查询 IMDS 时绕过 VM 中的 web 代理并同等对待 `169.254.169.254` 和 [`168.63.129.16`](/virtual-network/what-is-ip-address-168-63-129-16)。
+最佳做法是让 HTTP 客户端在查询 IMDS 时绕过 VM 中的 web 代理并同等对待 `169.254.169.254` 和 [`168.63.129.16`](../../virtual-network/what-is-ip-address-168-63-129-16.md)。
 
 ## <a name="security"></a>安全性
 
@@ -51,7 +51,7 @@ Azure 的 IMDS 是一个 REST 终结点，位于已知不可路由的 IP 地址 
 **请求**
 
 ```powershell
-Invoke-RestMethod -Headers @{"Metadata"="true"} -Method GET -NoProxy -Uri http://169.254.169.254/metadata/instance?api-version=2019-06-01
+Invoke-RestMethod -Headers @{"Metadata"="true"} -Method GET -NoProxy -Uri http://169.254.169.254/metadata/instance?api-version=2020-06-01
 ```
 
 <!--MOONCKE: CUSTOMIZATION-->
@@ -71,112 +71,97 @@ Invoke-RestMethod -Headers @{"Metadata"="true"} -Method GET -NoProxy -Uri http:/
 
 ```json
 {
-  "compute": {
-    "azEnvironment": "AzureChinaCloud",
-    "customData": "",
-    "location": "chinaeast",
-    "name": "negasonic",
-    "offer": "lampstack",
-    "osType": "Linux",
-    "placementGroupId": "",
-    "plan": {
-        "name": "5-6",
-        "product": "lampstack",
-        "publisher": "bitnami"
-    },
-    "platformFaultDomain": "0",
-    "platformUpdateDomain": "0",
-    "provider": "Microsoft.Compute",
-    "publicKeys": [],
-    "publisher": "bitnami",
-    "resourceGroupName": "myrg",
-    "resourceId": "/subscriptions/xxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx/resourceGroups/myrg/providers/Microsoft.Compute/virtualMachines/negasonic",
-    "sku": "5-6",
-    "storageProfile": {
-        "dataDisks": [
-          {
-            "caching": "None",
-            "createOption": "Empty",
-            "diskSizeGB": "1024",
-            "image": {
-              "uri": ""
+    "compute": {
+        "azEnvironment": "AzureChinaCloud",
+        "isHostCompatibilityLayerVm": "true",
+        "location": "chinanorth",
+        "name": "examplevmname",
+        "offer": "Windows",
+        "osType": "linux",
+        "placementGroupId": "f67c14ab-e92c-408c-ae2d-da15866ec79a",
+        "plan": {
+            "name": "planName",
+            "product": "planProduct",
+            "publisher": "planPublisher"
+        },
+        "platformFaultDomain": "36",
+        "platformUpdateDomain": "42",
+        "publicKeys": [{
+                "keyData": "ssh-rsa 0",
+                "path": "/home/user/.ssh/authorized_keys0"
             },
-            "lun": "0",
-            "managedDisk": {
-              "id": "/subscriptions/xxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx/resourceGroups/macikgo-test-may-23/providers/Microsoft.Compute/disks/exampledatadiskname",
-              "storageAccountType": "Standard_LRS"
-            },
-            "name": "exampledatadiskname",
-            "vhd": {
-              "uri": ""
-            },
-            "writeAcceleratorEnabled": "false"
-          }
+            {
+                "keyData": "ssh-rsa 1",
+                "path": "/home/user/.ssh/authorized_keys1"
+            }
         ],
-        "imageReference": {
-          "id": "",
-          "offer": "UbuntuServer",
-          "publisher": "Canonical",
-          "sku": "16.04.0-LTS",
-          "version": "latest"
+        "publisher": "RDFE-Test-Microsoft-Windows-Server-Group",
+        "resourceGroupName": "macikgo-test-may-23",
+        "resourceId": "/subscriptions/8d10da13-8125-4ba9-a717-bf7490507b3d/resourceGroups/macikgo-test-may-23/providers/Microsoft.Compute/virtualMachines/examplevmname",
+        "securityProfile": {
+            "secureBootEnabled": "true",
+            "virtualTpmEnabled": "false"
         },
-        "osDisk": {
-          "caching": "ReadWrite",
-          "createOption": "FromImage",
-          "diskSizeGB": "30",
-          "diffDiskSettings": {
-            "option": "Local"
-          },
-          "encryptionSettings": {
-            "enabled": "false"
-          },
-          "image": {
-            "uri": ""
-          },
-          "managedDisk": {
-            "id": "/subscriptions/xxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx/resourceGroups/macikgo-test-may-23/providers/Microsoft.Compute/disks/exampleosdiskname",
-            "storageAccountType": "Standard_LRS"
-          },
-          "name": "exampleosdiskname",
-          "osType": "Linux",
-          "vhd": {
-            "uri": ""
-          },
-          "writeAcceleratorEnabled": "false"
-        }
-    },
-    "subscriptionId": "xxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx",
-    "tags": "Department:IT;Environment:Prod;Role:WorkerRole",
-    "version": "7.1.1902271506",
-    "vmId": "13f56399-bd52-4150-9748-7190aae1ff21",
-    "vmScaleSetName": "",
-    "vmSize": "Standard_A1_v2",
-    "zone": "1"
-  },
-  "network": {
-    "interface": [
-      {
-        "ipv4": {
-          "ipAddress": [
-            {
-              "privateIpAddress": "10.1.2.5",
-              "publicIpAddress": "X.X.X.X"
+        "sku": "Windows-Server-2012-R2-Datacenter",
+        "storageProfile": {
+            "dataDisks": [{
+                "caching": "None",
+                "createOption": "Empty",
+                "diskSizeGB": "1024",
+                "image": {
+                    "uri": ""
+                },
+                "lun": "0",
+                "managedDisk": {
+                    "id": "/subscriptions/8d10da13-8125-4ba9-a717-bf7490507b3d/resourceGroups/macikgo-test-may-23/providers/Microsoft.Compute/disks/exampledatadiskname",
+                    "storageAccountType": "Standard_LRS"
+                },
+                "name": "exampledatadiskname",
+                "vhd": {
+                    "uri": ""
+                },
+                "writeAcceleratorEnabled": "false"
+            }],
+            "imageReference": {
+                "id": "",
+                "offer": "UbuntuServer",
+                "publisher": "Canonical",
+                "sku": "16.04.0-LTS",
+                "version": "latest"
+            },
+            "osDisk": {
+                "caching": "ReadWrite",
+                "createOption": "FromImage",
+                "diskSizeGB": "30",
+                "diffDiskSettings": {
+                    "option": "Local"
+                },
+                "encryptionSettings": {
+                    "enabled": "false"
+                },
+                "image": {
+                    "uri": ""
+                },
+                "managedDisk": {
+                    "id": "/subscriptions/8d10da13-8125-4ba9-a717-bf7490507b3d/resourceGroups/macikgo-test-may-23/providers/Microsoft.Compute/disks/exampleosdiskname",
+                    "storageAccountType": "Standard_LRS"
+                },
+                "name": "exampleosdiskname",
+                "osType": "Linux",
+                "vhd": {
+                    "uri": ""
+                },
+                "writeAcceleratorEnabled": "false"
             }
-          ],
-          "subnet": [
-            {
-              "address": "10.1.2.0",
-              "prefix": "24"
-            }
-          ]
         },
-        "ipv6": {
-          "ipAddress": []
-        },
-        "macAddress": "000D3A36DDED"
-      }
-    ]
-  }
+        "subscriptionId": "8d10da13-8125-4ba9-a717-bf7490507b3d",
+        "tags": "baz:bash;foo:bar",
+        "version": "15.05.22",
+        "vmId": "02aab8a4-74ef-476e-8182-f6d2ba4166a6",
+        "vmScaleSetName": "crpteste9vflji9",
+        "vmSize": "Standard_A3",
+        "zone": ""
+    }
 }
 ```
 
@@ -190,7 +175,7 @@ API | 默认数据格式 | 其他格式
 /attested | json | 无
 /identity | json | 无
 /instance | json | text
-/scheduledevents | json | none
+/scheduledevents | json | 无
 
 若要访问非默认响应格式，请在请求中将所请求的格式指定为查询字符串参数。 例如：
 
@@ -205,16 +190,33 @@ Invoke-RestMethod -Headers @{"Metadata"="true"} -Method GET -NoProxy -Uri "http:
 
 实例元数据服务进行了版本控制，因此，必须在 HTTP 请求中指定 API 版本。
 
-下面是支持的服务版本：2017-04-02、2017-08-01、2017-12-01、2018-02-01、2018-04-02、2018-10-01、2019-02-01、2019-03-11、2019-04-30、2019-06-01、2019-06-04、2019-08-01、2019-08-15。
+支持的 API 版本有： 
+- 2017-03-01
+- 2017-04-02
+- 2017-08-01 
+- 2017-10-01
+- 2017-12-01 
+- 2018-02-01
+- 2018-04-02
+- 2018-10-01
+- 2019-02-01
+- 2019-03-11
+- 2019-04-30
+- 2019-06-01
+- 2019-06-04
+- 2019-08-01
+- 2019-08-15
+- 2019-11-01
+- 2020-06-01
 
-请注意，新版本发布后，需要一段时间才能推广到所有区域。 版本 2019-11-01 当前仍处于部署阶段，可能并非在所有区域都提供。
+请注意，新版本发布后，需要一段时间才能推广到所有区域。
 
 在添加更新的版本时，早期版本仍可供访问以保持兼容性（如果脚本依赖于特定的数据格式）。
 
 如果未指定版本，则会返回错误并列出受支持的最新版本。
 
 > [!NOTE]
-> 响应为 JSON 字符串。 下例说明了未指定版本时出现的错误情况，为了便于阅读，响应显示非常清晰。
+> 此响应是 JSON 字符串。 下例说明了未指定版本时出现的错误情况，为了便于阅读，响应显示非常清晰。
 
 **请求**
 
@@ -254,6 +256,7 @@ API | 说明 | 引入的版本
 -----|-------------|-----------------------
 azEnvironment | VM 运行时所在的 Azure 环境 | 2018-10-01
 customData | 此功能目前已禁用。 当该功能可用时，我们将更新此文档 | 2019-02-01
+isHostCompatibilityLayerVm | 标识 VM 是否在主机兼容性层上运行 | 2020-06-01
 location | VM 在其中运行的 Azure 区域 | 2017-04-02
 name | VM 的名称 | 2017-04-02
 offer | 提供 VM 映像的信息，仅适用于从 Azure 映像库部署的映像 | 2017-04-02
@@ -267,14 +270,16 @@ publisher | VM 映像的发布者 | 2017-04-02
 resourceGroupName | 虚拟机的[资源组](../../azure-resource-manager/management/overview.md) | 2017-08-01
 ResourceId | 资源的[完全限定](https://docs.microsoft.com/rest/api/resources/resources/getbyid) ID | 2019-03-11
 sku | VM 映像的特定 SKU | 2017-04-02
+securityProfile.secureBootEnabled | 标识是否在 VM 上启用了 UEFI 安全启动 | 2020-06-01
+securityProfile.virtualTpmEnabled | 标识是否在 VM 上启用了虚拟受信任的平台模块 (TPM) | 2020-06-01
 storageProfile | 参阅[存储配置文件](#storage-metadata) | 2019-06-01
 subscriptionId | 虚拟机的 Azure 订阅 | 2017-08-01
-tags | 虚拟机的[标记](../../azure-resource-manager/management/tag-resources.md)  | 2017-08-01
+标记 | 虚拟机的[标记](../../azure-resource-manager/management/tag-resources.md)  | 2017-08-01
 tagsList | 格式化为 JSON 数组以方便编程分析的标记  | 2019-06-04
 版本 | VM 映像的版本 | 2017-04-02
 vmId | VM 的[唯一标识符](https://azure.microsoft.com/blog/accessing-and-using-azure-vm-unique-id/) | 2017-04-02
-vmScaleSetName | 虚拟机规模集的[虚拟机规模集名称](../../virtual-machine-scale-sets/virtual-machine-scale-sets-overview.md) | 2017-12-01
-vmSize | [VM 大小](sizes.md) | 2017-04-02
+vmScaleSetName | 虚拟机规模集的[虚拟机规模集名称](../../virtual-machine-scale-sets/overview.md) | 2017-12-01
+vmSize | [VM 大小](../sizes.md) | 2017-04-02
 
 <!--Not Availablle on placementGroupId | [Placement Group](../../virtual-machine-scale-sets/virtual-machine-scale-sets-placement-groups.md)-->
 <!--Not Availablle on zone | [Availability Zone](../../availability-zones/az-overview.md)-->
@@ -419,9 +424,9 @@ Invoke-RestMethod -Headers @{"Metadata"="true"} -Method GET -NoProxy -Uri http:/
 
 ### <a name="sample-4-getting-azure-environment-where-the-vm-is-running"></a>示例 4：获取 VM 所在的 Azure 环境
 
-<!--CORRECT ON [Azure China Cloud](https://azure.microsoft.com/global-infrastructure/china/)-->
+<!--CORRECT ON [Azure China Cloud](https://azure.microsoft.com/global-infrastructure/)-->
 
-Azure 具有各种主权云，如 [Azure 中国云](https://azure.microsoft.com/global-infrastructure/china/)。 有时你需要使用 Azure 环境来做出一些运行时决策。 以下示例显示了如何实现此行为。
+Azure 具有各种主权云，如 [Azure 中国云](https://azure.microsoft.com/global-infrastructure/)。 有时你需要使用 Azure 环境来做出一些运行时决策。 以下示例显示了如何实现此行为。
 
 **请求**
 
@@ -442,7 +447,7 @@ Azure 环境的云和值列在下面。
  云   | Azure 环境
 ---------|-----------------
 [全球所有公开上市的 Azure 区域](https://azure.microsoft.com/regions/)     | AzurePublicCloud
-[Azure 政府](https://azure.microsoft.com/overview/clouds/government/)              | AzureUSGovernmentCloud
+[Azure Government](https://azure.microsoft.com/overview/clouds/government/)              | AzureUSGovernmentCloud
 [Azure 中国世纪互联](https://azure.microsoft.com/global-infrastructure/china/)         | AzureChinaCloud
 [Azure 德国](https://azure.microsoft.com/overview/clouds/germany/)                    | AzureGermanCloud
 
@@ -536,12 +541,12 @@ caching | 缓存要求
 createOption | 有关 VM 创建方式的信息
 diffDiskSettings | 临时磁盘设置
 diskSizeGB | 磁盘大小 (GB)
-图像   | 源用户映像虚拟硬盘
+image   | 源用户映像虚拟硬盘
 lun     | 磁盘的逻辑单元号
 managedDisk | 托管磁盘参数
 name    | 磁盘名称
 vhd     | 虚拟硬盘
-writeAcceleratorEnabled | 磁盘是否启用了 writeAccelerator
+writeAcceleratorEnabled | 磁盘上是否启用了 writeAccelerator
 
 数据磁盘阵列包含附加到 VM 的数据磁盘列表。 每个数据磁盘对象包含以下信息：
 
@@ -552,7 +557,7 @@ createOption | 有关 VM 创建方式的信息
 diffDiskSettings | 临时磁盘设置
 diskSizeGB | 磁盘大小 (GB)
 encryptionSettings | 磁盘的加密设置
-图像   | 源用户映像虚拟硬盘
+image   | 源用户映像虚拟硬盘
 managedDisk | 托管磁盘参数
 name    | 磁盘名称
 osType  | 磁盘中包含的 OS 类型
@@ -704,7 +709,7 @@ Nonce 是一个可选的 10 位字符串。 如果未提供，IMDS 将在其所�
 }
 ```
 
-签名 Blob 是 [pkcs7](https://aka.ms/pkcs7) 签名的文档版本。 它包含用于签名的证书以及 VM 详情，如 vmId、sku、nonce、subscriptionId、文档创建和到期的时间戳，以及关于映像的计划信息。 该计划信息只针对 Azure 市场映像进行填充。 证书可从响应中提取，用于验证响应是否有效、是否来自 Azure。
+签名 Blob 是 [pkcs7](https://aka.ms/pkcs7) 签名的文档版本。 它包含用于签名的证书以及某些特定于 VM 的详细信息。 对于 ARM VM，这包括 vmId、sku、nonce、subscriptionId、文档创建和到期的时间戳以及关于映像的计划信息。 该计划信息只针对 Azure 市场映像进行填充。 对于经典（非 ARM）VM，只保证填充 vmId。 证书可从响应中提取，用于验证响应是否有效、是否来自 Azure。
 该文档包含以下字段：
 
 数据 | 说明
@@ -716,6 +721,9 @@ timestamp/expiresOn | 签名文档到期时的 UTC 时间戳
 vmId |  VM 的[唯一标识符](https://azure.microsoft.com/blog/accessing-and-using-azure-vm-unique-id/)
 subscriptionId | 虚拟机的 Azure 订阅，引入自 `2019-04-30`
 sku | `2019-11-01` 中介绍了 VM 映像的特定 SKU
+
+> [!NOTE]
+> 对于经典（非 ARM）VM，只保证填充 vmId。
 
 ### <a name="sample-2-validating-that-the-vm-is-running-in-azure"></a>示例 2：验证 VM 是否在 Azure 中运行
 
@@ -766,7 +774,7 @@ $json = $content | ConvertFrom-Json
 云 | 证书
 ------|------------
 [全球所有公开上市的 Azure 区域](https://azure.microsoft.com/regions/) | *.metadata.azure.com
-[Azure 政府](https://azure.microsoft.com/overview/clouds/government/)          | *.metadata.azure.us
+[Azure 美国政府版](https://azure.microsoft.com/overview/clouds/government/)          | *.metadata.azure.us
 [Azure 中国世纪互联](https://azure.microsoft.com/global-infrastructure/china/)     | *.metadata.azure.cn
 [Azure 德国](https://azure.microsoft.com/overview/clouds/germany/)                | *.metadata.microsoftazure.de
 
@@ -891,6 +899,7 @@ HTTP 状态代码 | 原因
    * 必须从分配给 VM 的主要网卡的主 IP 地址进行元数据调用。 此外，如果你更改了路由，则 VM 的本地路由表中必须存在 169.254.169.254/32 地址的路由。
    * <details>
         <summary>验证路由表</summary>
+
         1. 转储本地路由表并查找 IMDS 条目（例如）：
         
             ```console
@@ -915,6 +924,7 @@ HTTP 状态代码 | 原因
             > ipconfig /all
             ... (continues) ...
             Ethernet adapter Ethernet:
+
             Connection-specific DNS Suffix  . : xic3mnxjiefupcwr1mcs1rjiqa.cx.internal.chinacloudapp.cn
             Description . . . . . . . . . . . : Microsoft Hyper-V Network Adapter
             Physical Address. . . . . . . . . : 00-0D-3A-E5-1C-C0
@@ -927,6 +937,7 @@ HTTP 状态代码 | 原因
             ```
             
         1. 确认该接口对应于 VM 的主 NIC 和主 IP。 可以通过在 Azure 门户中查看网络配置，或[通过 Azure CLI](https://docs.azure.cn/cli/vm/nic?view=azure-cli-latest#az-vm-nic-show) 查找来找到主 NIC/IP。 记下公共和专用 IP（如果使用 cli，还要记下 MAC 地址）。 PowerShell CLI 示例：
+            
             ```powershell
             $ResourceGroup = '<Resource_Group>'
             $VmName = '<VM_Name>'

@@ -1,21 +1,21 @@
 ---
 title: 语音识别服务静态数据的加密
 titleSuffix: Azure Cognitive Services
-description: 语音识别服务静态数据的加密。
+description: Microsoft 提供了 Microsoft 托管的加密密钥，还可让你使用自己的密钥（称为客户管理的密钥 (CMK)）管理你的认知服务订阅。 本文介绍适用于语音服务的静态数据加密。
 author: erindormier
 manager: venkyv
 ms.service: cognitive-services
 ms.subservice: speech-service
 ms.topic: conceptual
-origin.date: 03/13/2020
-ms.date: 03/16/2020
+origin.date: 08/28/2020
+ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: 097da7ccda99f479e270eef60135a7b51fe4ac31
-ms.sourcegitcommit: d24e12d49708bbe78db450466eb4fccbc2eb5f99
+ms.openlocfilehash: 06dc4aa7aedd06db5c24914e7c2ac073ba407603
+ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85611874"
+ms.lasthandoff: 09/02/2020
+ms.locfileid: "89317595"
 ---
 # <a name="speech-service-encryption-of-data-at-rest"></a>语音识别服务静态数据的加密
 
@@ -44,14 +44,10 @@ To request access to bring your own storage, fill out and submit the [Speech s
 > [!IMPORTANT]
 > If you disable system assigned managed identities, access to the storage account will be removed. This will cause the parts of the Speech service that require access to the storage account to stop working.  
 
-## Regional availability
+The Speech service doesn't currently support Customer Lockbox. However, customer data can be stored using BYOS, allowing you to achieve similar data controls to [Customer Lockbox](../../security/fundamentals/customer-lockbox-overview.md). Keep in mind that Speech service data stays and is processed in the region where the Speech resource was created. This applies to any data at rest and data in transit. When using customization features, like Custom Speech and Custom Voice, all customer data is transferred, stored, and processed in the same region where your BYOS (if used) and Speech service resource reside.
 
-BYOS is currently available in these regions:
-
-* US South Central
-* China East 2 2
-* East US
-
+> [!IMPORTANT]
+> Microsoft **does not** use customer data to improve its Speech models. Additionally, if endpoint logging is disabled and no customizations are used, then no customer data is stored. 
 -->
 
 ## <a name="next-steps"></a>后续步骤
