@@ -27444,6 +27444,31 @@
             "source_path": "articles/hdinsight/domain-joined/apache-domain-joined-configure.md",
             "redirect_url": "/hdinsight/domain-joined/apache-domain-joined-configure-using-azure-adds",
             "redirect_document_id": false
+        },    
+        {
+            "source_path": "articles/machine-learning/studio/what-is-ml-studio.md",
+            "redirect_url": "/machine-learning/overview-what-is-machine-learning-studio#ml-studio-classic-vs-azure-machine-learning-studio",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/machine-learning/tutorial-resource-manager-workspace.md",
+            "redirect_url": "/machine-learning/how-to-create-workspace-template",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/machine-learning/compare-azure-ml-to-studio-classic.md",
+            "redirect_url": "/machine-learning/overview-what-is-machine-learning-studio#ml-studio-classic-vs-azure-machine-learning-studio",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/machine-learning/how-to-debug-pipelines-application-insights.md",
+            "redirect_url": "/machine-learning/how-to-log-pipelines-application-insights",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/machine-learning/service/how-to-enable-logging.md",
+            "redirect_url": "/machine-learning/how-to-enable-logging",
+            "redirect_document_id": false
         }
 
 
