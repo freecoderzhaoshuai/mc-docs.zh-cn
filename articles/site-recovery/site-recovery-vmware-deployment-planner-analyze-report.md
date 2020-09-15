@@ -1,19 +1,21 @@
 ---
 title: 分析部署规划器报表以使用 Azure Site Recovery 进行 VMware 灾难恢复
 description: 本文介绍如何分析 Azure Site Recovery 部署规划器生成的报表，以使用 Azure Site Recovery 从 VMware 灾难恢复到 Azure。
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 6f3962b0407af9c629d299615f851b48c5349897
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 422399fc8b4d7c60643e38675c4561ab56bd1e1e
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291131"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655435"
 ---
 # <a name="analyze-the-deployment-planner-report-for-vmware-disaster-recovery-to-azure"></a>分析部署规划器报表以从 VMware 灾难恢复到 Azure
 
@@ -21,7 +23,7 @@ ms.locfileid: "79291131"
 ## <a name="on-premises-summary"></a>本地摘要
 “本地摘要”工作表概述了分析的 VMware 环境。
 
-![VMware 环境的本地摘要](media/site-recovery-vmware-deployment-planner-analyze-report/on-premises-summary-v2a.png)
+:::image type="content" source="media/site-recovery-vmware-deployment-planner-analyze-report/on-premises-summary-v2a.png" alt-text="VMware 环境的本地摘要":::
 
 **开始日期**和**结束日期**：生成报告时要考虑的分析数据的开始和结束日期。 默认情况下，开始日期是开始分析的日期，结束日期是停止分析的日期。 如果结合这些参数生成报告，可以使用“StartDate”和“EndDate”值。
 
@@ -45,10 +47,10 @@ ms.locfileid: "79291131"
 
 VMware 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细信息：
 
-![适用于 VMware 到 Azure 报表的建议](media/site-recovery-vmware-deployment-planner-analyze-report/Recommendations-v2a.png)
+:::image type="content" source="media/site-recovery-vmware-deployment-planner-analyze-report/Recommendations-v2a.png" alt-text="适用于 VMware 到 Azure 报表的建议":::
 
 ### <a name="profiled-data"></a>分析的数据
-![Deployment Planner 中的已分析数据视图](media/site-recovery-vmware-deployment-planner-analyze-report/profiled-data-v2a.png)
+:::image type="content" source="media/site-recovery-vmware-deployment-planner-analyze-report/profiled-data-v2a.png" alt-text="Deployment Planner 中的分析数据视图":::
 
 **数据分析期**：在此期间运行了分析。 默认情况下，该工具使用所有分析数据进行计算，除非在生成报告期间使用 StartDate 和 EndDate 选项生成特定时间段的报告。
 
@@ -58,7 +60,7 @@ VMware 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细�
 
 ### <a name="profiling-overview"></a>分析概述
 
-![Deployment Planner 中的分析结果](media/site-recovery-vmware-deployment-planner-analyze-report/profiling-overview-v2a.png)
+:::image type="content" source="media/site-recovery-vmware-deployment-planner-analyze-report/profiling-overview-v2a.png" alt-text="Deployment Planner 中的分析结果":::
 
 **分析的虚拟机总数**：提供了其分析数据的 VM 总数。 如果 VMListFile 中包含未分析的任何 VM 的名称，则生成报告时不会考虑这些 VM，会将其从分析的 VM 总数中排除。
 
@@ -70,7 +72,7 @@ VMware 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细�
 
 ### <a name="required-network-bandwidth-mbps"></a>所需的网络带宽 (Mbps)
 
-![Deployment Planner 中所需的网络带宽](media/site-recovery-vmware-deployment-planner-analyze-report/required-network-bandwidth-v2a.png)
+:::image type="content" source="media/site-recovery-vmware-deployment-planner-analyze-report/required-network-bandwidth-v2a.png" alt-text="Deployment Planner 中的所需网络带宽":::
 
 **为了满足 100% 时间 RPO**：分配建议的以 Mbps 为单位的带宽，以便满足 100% 时间的所需 RPO。 这种带宽量必须专用于所有兼容 VM 的稳态增量复制，避免任何 RPO 违规。
 
@@ -95,23 +97,23 @@ VMware 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细�
 ### <a name="required-storage-accounts"></a>所需的存储帐户
 下图显示了保护所有兼容 VM 所需的存储帐户（标准和高级）总数。 若要了解适用于每个 VM 的存储帐户，请参阅“VM-存储位置”部分。 如果使用的是部署规划器 v2.5，则此建议仅显示复制所需的标准缓存存储帐户数，因为数据会直接写入到托管磁盘。
 
-![Deployment Planner 中所需的存储帐户](media/site-recovery-vmware-deployment-planner-analyze-report/required-storage-accounts-v2a.png)
+:::image type="content" source="media/site-recovery-vmware-deployment-planner-analyze-report/required-storage-accounts-v2a.png" alt-text="Deployment Planner 中的所需存储帐户":::
 
 ### <a name="required-number-of-azure-cores"></a>所需的 Azure 核心数
 此结果是在对所有兼容的 VM 进行故障转移或测试性故障转移之前需要设置的核心总数。 如果订阅中能够使用的核心太少，在执行测试性故障转移或故障转移时，Site Recovery 无法创建 VM。
 
-![Deployment Planner 中所需的 Azure 核心数](media/site-recovery-vmware-deployment-planner-analyze-report/required-cores-v2a.png)
+:::image type="content" source="media/site-recovery-vmware-deployment-planner-analyze-report/required-cores-v2a.png" alt-text="Deployment Planner 中的所需 Azure 核心数":::
 
 ### <a name="required-on-premises-infrastructure"></a>所需的本地基础结构
 下图是要配置的配置服务器和附加进程服务器的总数，该数目足以保护所有兼容 VM。 根据所支持的[配置服务器大小建议](https://aka.ms/asr-v2a-on-prem-components)，该工具可能会建议使用更多的服务器。 该建议取决于每日变动量和受保护 VM（假定每个 VM 平均有三个磁盘）的最大数目哪个更大，即在配置服务器或附加进程服务器上哪个最先达到。 在“本地摘要”部分可以找到每天总变动量和受保护磁盘总数的详细信息。
 
-![Deployment Planner 中所需的本地基础结构](media/site-recovery-vmware-deployment-planner-analyze-report/required-on-premises-components-v2a.png)
+:::image type="content" source="media/site-recovery-vmware-deployment-planner-analyze-report/required-on-premises-components-v2a.png" alt-text="Deployment Planner 中的所需本地基础结构":::
 
 ### <a name="what-if-analysis"></a>假设分析
 此项分析概述了如果设置较低的带宽，导致只能在 90% 的时间内满足所需 RPO，则在分析期间可能会发生多少项违规。 在任何给定的日期可能会发生一项或多项 RPO 违规。 下图显示了一天的峰值 RPO。
 基于此分析，可以确定在使用指定的较低带宽的条件下，是否可以接受所有日期的 RPO 违规数以及每天的峰值 RPO。 如果可以接受，则可为复制分配较低的带宽，否则，应根据建议分配更高的带宽来满足 100% 时间的所需 RPO。
 
-![Deployment Planner 中的假设分析](media/site-recovery-vmware-deployment-planner-analyze-report/what-if-analysis-v2a.png)
+:::image type="content" source="media/site-recovery-vmware-deployment-planner-analyze-report/what-if-analysis-v2a.png" alt-text="Deployment Planner 中的模拟分析":::
 
 ### <a name="recommended-vm-batch-size-for-initial-replication"></a>用于初始复制的建议 VM 批大小
 在本部分，我们提供了可以进行并行保护的 VM 数的建议，目的是在 72 小时内使用建议的带宽完成初始复制，该带宽满足所设置的 100% 时间的所需 RPO。 此值是可以配置的值。 若要在生成报告时对其进行更改，请使用“GoalToCompleteIR”  参数。
@@ -120,12 +122,12 @@ VMware 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细�
 
 在公共预览版中，报告不会指定应在批中包含的具体 VM。 可以使用“兼容的 VM”部分显示的磁盘大小找出每个 VM 的大小，为批选择 VM，也可以根据已知的工作负荷特征选择 VM。 初始复制的完成时间根据实际 VM 磁盘大小、已用磁盘空间和可用的网络吞吐量按比例变化。
 
-![建议的 VM 批大小](media/site-recovery-vmware-deployment-planner-analyze-report/ir-batching-v2a.png)
+:::image type="content" source="media/site-recovery-vmware-deployment-planner-analyze-report/ir-batching-v2a.png" alt-text="建议的 VM 批大小":::
 
 ### <a name="cost-estimation"></a>成本估算
 下图显示的摘要视图包含灾难恢复 (DR) 到所选目标区域的 Azure 时的总估算成本，以及生成报表时所用的指定货币。
 
-![成本估算摘要](media/site-recovery-vmware-deployment-planner-analyze-report/cost-estimation-summary-v2a.png)
+:::image type="content" source="media/site-recovery-vmware-deployment-planner-analyze-report/cost-estimation-summary-v2a.png" alt-text="成本估算摘要":::
 
 可以通过此摘要了解在使用 Azure Site Recovery 将所有兼容的 VM 转移到 Azure 进行保护时，需要支付的存储、计算、网络和许可证成本。 计算成本时，只针对兼容的 VM，不针对所有受分析的 VM。  
 
@@ -148,22 +150,22 @@ VMware 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细�
 ### <a name="growth-factor-and-percentile-values-used"></a>增长系数和使用的百分位值
 工作表底部的此部分显示用于已分析 VM 的所有性能计数器的百分位值（默认为第 95 百分位），以及所有计算中使用的增长系数（默认为 30%）。
 
-![增长系数和使用的百分位值](media/site-recovery-vmware-deployment-planner-analyze-report/growth-factor-v2a.png)
+:::image type="content" source="media/site-recovery-vmware-deployment-planner-analyze-report/growth-factor-v2a.png" alt-text="增长系数和使用的百分位值":::
 
 ## <a name="recommendations-with-available-bandwidth-as-input"></a>有关用作输入的可用带宽建议
 
-![有关用作输入的可用带宽建议](media/site-recovery-vmware-deployment-planner-analyze-report/profiling-overview-bandwidth-input-v2a.png)
+:::image type="content" source="media/site-recovery-vmware-deployment-planner-analyze-report/profiling-overview-bandwidth-input-v2a.png" alt-text="有关用作输入的可用带宽建议":::
 
 有时，知道无法为 Site Recovery 复制设置 x Mbps 以上的带宽。 在该工具中可以输入可用带宽（生成报告时使用 -Bandwidth 参数），在数分钟内就能获得可实现的 RPO。 使用这个可实现的 RPO 值，可以确定是需要设置额外的带宽，还是可以使用某个灾难恢复解决方案来实现此 RPO。
 
-![500 Mbps 带宽可实现的 RPO](media/site-recovery-vmware-deployment-planner-analyze-report/achievable-rpo-v2a.png)
+:::image type="content" source="media/site-recovery-vmware-deployment-planner-analyze-report/achievable-rpo-v2a.png" alt-text="500 Mbps 带宽的可实现 RPO":::
 
 ## <a name="vm-storage-placement"></a>VM-存储位置
 
 >[!Note]
 >部署规划器 v2.5 及更高版本建议将直接复制到托管磁盘的计算机的存储位置。
 
-![VM-存储位置](media/site-recovery-vmware-deployment-planner-analyze-report/vm-storage-placement-v2a.png)
+:::image type="content" source="media/site-recovery-vmware-deployment-planner-analyze-report/vm-storage-placement-v2a.png" alt-text="VM-粗糙年位置":::
 
 **复制存储类型**：标准或高级托管磁盘，用于复制“要放置的 VM”列中所述的所有相应 VM。 
 
@@ -178,11 +180,11 @@ VMware 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细�
 **要放置的虚拟机**：列出了为优化性能和使用而应放置在给定存储帐户中的所有 VM。
 
 ## <a name="compatible-vms"></a>兼容的 VM
-![兼容 VM 的 Excel 电子表格](media/site-recovery-vmware-deployment-planner-analyze-report/compatible-vms-v2a.png)
+:::image type="content" source="media/site-recovery-vmware-deployment-planner-analyze-report/compatible-vms-v2a.png" alt-text="包含兼容 VM 的 Excel 电子表格":::
 
 **VM 名称**：VM 名称或 IP 地址，生成报告时在 VMListFile 中使用。 此列还列出附加到 VM 的磁盘 (VMDK)。 为了区分使用重复名称或 IP 地址的 vCenter VM，这些名称包含 ESXi 主机名。 列出的 ESXi 主机是在其中放置了 VM 的主机，该 VM 是在分析期间通过工具发现后放置的。
 
-**VM 兼容性**：值为“是”和“是”。  **\*** “是\*”针对 VM 适用于[高级 SSD](../virtual-machines/windows/disks-types.md) 的情况  。 在这里，所分析的高变动量或 IOPS 磁盘适合 P20 或 P30 类别，但考虑到磁盘大小，因此将其归入较低的 P10 或 P20 类别。 存储帐户决定了根据大小对磁盘分类时，可将磁盘归入哪种高级存储磁盘类型。 例如：
+**VM 兼容性**：值为“是”和“是”。  **\*** “是\*”针对 VM 适用于[高级 SSD](../virtual-machines/disks-types.md) 的情况  。 在这里，所分析的高变动量或 IOPS 磁盘适合 P20 或 P30 类别，但考虑到磁盘大小，因此将其归入较低的 P10 或 P20 类别。 存储帐户决定了根据大小对磁盘分类时，可将磁盘归入哪种高级存储磁盘类型。 例如：
 * <128 GB 为 P10。
 * 128 GB 到 256 GB 为 P15
 * 256 GB 到 512 GB 为 P20。
@@ -218,8 +220,7 @@ VMware 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细�
 
 ## <a name="incompatible-vms"></a>不兼容的 VM
 
-![不兼容 VM 的 Excel 电子表格
-](media/site-recovery-vmware-deployment-planner-analyze-report/incompatible-vms-v2a.png)
+:::image type="content" source="media/site-recovery-vmware-deployment-planner-analyze-report/incompatible-vms-v2a.png" alt-text="包含不兼容 VM 的 Excel 电子表格":::
 
 **VM 名称**：VM 名称或 IP 地址，生成报告时在 VMListFile 中使用。 此列还列出附加到 VM 的 VMDK。 为了区分使用重复名称或 IP 地址的 vCenter VM，这些名称包含 ESXi 主机名。 列出的 ESXi 主机是在其中放置了 VM 的主机，该 VM 是在分析期间通过工具发现后放置的。
 

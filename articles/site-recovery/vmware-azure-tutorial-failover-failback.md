@@ -1,26 +1,29 @@
 ---
-title: 通过 Site Recovery 将 VMware VM 故障转移到 Azure
-description: 了解如何在 Azure Site Recovery 中将 VMware VM 故障转移到 Azure
+title: 使用 Site Recovery 将 VMware VM 故障转移到 Azure
+description: 了解如何使用 Azure Site Recovery 将 VMware VM 故障转移到 Azure
 ms.service: site-recovery
 ms.topic: tutorial
 origin.date: 12/16/2019
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
 ms.custom: MVC
-ms.openlocfilehash: 645d8e69b1f82346d58dbb50bf0a34a3dd1ebf10
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 80716ffe6e2db9efc7f3beb47bb0a5d80fcef111
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75776743"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655408"
 ---
-# <a name="fail-over-vmware-vms"></a>故障转移 VMware VM
+# <a name="fail-over--vmware-vms"></a>对 VMware VM 进行故障转移
 
 本文介绍如何使用 [Azure Site Recovery](site-recovery-overview.md) 将本地 VMware 虚拟机 (VM) 故障转移到 Azure。
 
 本文是系列教程的第四篇文章，介绍如何为本地计算机设置到 Azure 的灾难恢复。
 
-本教程介绍如何执行下列操作：
+在本教程中，你将了解如何执行以下操作：
 
 > [!div class="checklist"]
 > * 验证 VMware VM 属性是否符合 Azure 要求。
@@ -29,7 +32,7 @@ ms.locfileid: "75776743"
 > [!NOTE]
 > 教程介绍了某个方案的最简单部署路径。 它们尽可能地使用默认选项，并且不显示所有可能的设置和路径。 若要详细了解故障转移，请参阅[对 VM 和物理服务器进行故障转移](site-recovery-failover.md)。
 
-[了解](failover-failback-overview.md#types-of-failover)不同类型的故障转移。 如果要在恢复计划中故障转移多个 VM，请查看[本文](site-recovery-failover.md)。
+[了解](failover-failback-overview.md#types-of-failover)不同类型的故障转移。 如果要在恢复计划中对多个 VM 进行故障转移，请查看[本文](site-recovery-failover.md)。
 
 ## <a name="before-you-start"></a>开始之前
 
@@ -62,11 +65,11 @@ ms.locfileid: "75776743"
     * 故障转移后用于放置 Azure VM 的网络和子网。
     * 要分配给它的 IP 地址。
 
-5. 在“磁盘”  中，可以查看操作系统和 VM 上数据磁盘的相关信息。
+5. 在“磁盘”  中，可以看到关于 VM 上的操作系统和数据磁盘的信息。
 
 ## <a name="run-a-failover-to-azure"></a>运行到 Azure 的故障转移
 
-1. 在“受保护的项” > “复制的项”中选择要故障转移的 VM，然后选择“故障转移”    。
+1. 在“受保护的项” > “复制的项”中选择要故障转移的 VM，然后选择“故障转移”  。
 
     <!--MOONCAKE: CORRECT ON **Protected Items**-->
 
@@ -74,10 +77,10 @@ ms.locfileid: "75776743"
     
     * **最新**：此选项会首先处理发送到 Site Recovery 的所有数据。 它提供最低的恢复点目标 (RPO)，因为故障转移后创建的 Azure VM 具有触发故障转移时复制到 Site Recovery 的所有数据。
     * **最新处理**：此选项将 VM 故障转移到由 Site Recovery 处理的最新恢复点。 此选项提供较低的 RTO（恢复时间目标），因为无需费时处理未经处理的数据。
-    * **最新应用一致**：此选项将 VM 故障转移到由 Site Recovery 处理的最新应用一致恢复点。
+    * **最新的应用一致**：此选项将 VM 故障转移到由 Site Recovery 处理的最新应用一致恢复点。
     * **自定义**：使用此选项可以指定恢复点。
 
-3. 选择“在开始故障转移之前关闭计算机”，在触发故障转移之前尝试关闭源 VM  。 即使关机失败，故障转移也仍会继续。 可以在“作业”  页上跟踪故障转移进度。
+3. 选择“在开始故障转移之前关闭计算机”，在触发故障转移之前尝试关闭源 VM  。 即使关机失败，故障转移也仍会继续。 可以在“作业”页上跟踪故障转移进度。 
 
 在某些情况下，故障转移需要大约 8 到 10 分钟的时间完成其他进程。 对于以下情况，你可能会发现测试故障转移会持续较长时间：
 
@@ -89,7 +92,7 @@ ms.locfileid: "75776743"
 * VMware VM 不包含以下启动驱动程序：storvsc、vmbus、storflt、intelide、atapi。
 
 > [!WARNING]
-> 请勿取消正在进行的故障转移。 在故障转移开始前，VM 复制已停止。 如果取消正在进行的故障转移，故障转移会停止，但 VM 将不再进行复制。
+> 不会取消正在进行的故障转移。 在故障转移开始前，VM 复制已停止。 如果取消正在进行的故障转移，故障转移会停止，但 VM 将不再进行复制。
 
 ## <a name="connect-to-failed-over-vm"></a>连接到故障转移的 VM
 

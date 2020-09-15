@@ -25,10 +25,8 @@
   items:
     - name: 生成带身份验证的无服务器实时应用
       href: signalr-tutorial-authenticate-azure-functions.md
-    - name: 监视
-      items:
-        - name: 使用诊断日志监视 SignalR 服务
-          href: signalr-tutorial-diagnostic-logs.md
+    - name: 构建 Blazor Server 聊天应用
+      href: signalr-tutorial-build-blazor-server-chat-app.md
 - name: 示例
   items:
     - name: 代码示例
@@ -39,6 +37,8 @@
   items:
     - name: Azure SignalR 服务内部
       href: signalr-concept-internals.md
+    - name: 服务模式
+      href: concept-service-mode.md
     - name: 缩放 ASP.NET Core SignalR
       href: signalr-concept-scale-aspnet-core.md
     - name: 无服务器
@@ -49,6 +49,8 @@
           href: signalr-concept-serverless-development-config.md
         - name: Azure Functions 的 SignalR 服务绑定参考
           href: ../azure-functions/functions-bindings-signalr-service.md
+        - name: 上游设置
+          href: concept-upstream.md
     - name: 高可用性
       items:
         - name: 复原能力和灾难恢复
@@ -97,6 +99,9 @@
       href: 'https://docs.microsoft.com/aspnet/core/signalr'
     - name: Azure SignalR 服务协议
       href: 'https://github.com/Azure/azure-signalr/blob/dev/specs/ServiceProtocol.md'
+    - name: Azure Policy 内置策略定义
+      displayName: 'samples, policies, definitions'
+      href: ./policy-reference.md
 - name: 资源
   items:
     - name: 服务更新

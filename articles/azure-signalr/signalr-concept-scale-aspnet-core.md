@@ -4,15 +4,16 @@ description: 使用 Azure SignalR Service 缩放 ASP.NET Core SignalR 应用程�
 author: sffamily
 ms.service: signalr
 ms.topic: conceptual
+ms.custom: devx-track-dotnet
 origin.date: 03/01/2019
-ms.date: 11/25/2019
+ms.date: 09/14/2020
 ms.author: v-tawe
-ms.openlocfilehash: 5a771f22ec4babf78529e99aefd42360d348c61c
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 7d584de7dd257740f0201df1957efdcbc3c89883
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74179103"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063365"
 ---
 # <a name="scale-aspnet-core-signalr-applications-with-azure-signalr-service"></a>使用 Azure SignalR Service 缩放 ASP.NET Core SignalR 应用程序
 

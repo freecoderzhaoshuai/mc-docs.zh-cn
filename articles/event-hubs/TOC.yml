@@ -27,13 +27,13 @@
     - name: 发送和接收事件
       items:
         - name: .NET (Azure.Messaging.EventHubs)
-          href: get-started-dotnet-standard-send-v2.md
+          href: event-hubs-dotnet-standard-getstarted-send.md
         - name: Java (azure-messaging-eventhubs)
-          href: get-started-java-send-v2.md
+          href: event-hubs-java-get-started-send.md
         - name: Python（azure-eventhub 版本 5）
-          href: get-started-python-send-v2.md
+          href: event-hubs-python-get-started-send.md
         - name: JavaScript（azure/event-hubs 版本 5）
-          href: get-started-node-send-v2.md
+          href: event-hubs-node-get-started-send.md
         - name: Go
           href: event-hubs-go-get-started-send.md
         - name: C（仅发送）
@@ -43,13 +43,9 @@
     - name: 发送和接收事件（旧版本/包）
       items:
         - name: .NET (Microsoft.Azure.EventHubs)
-          href: event-hubs-dotnet-standard-getstarted-send.md
+          href: event-hubs-dotnet-standard-get-started-send-legacy.md
         - name: Java (azure-eventhubs)
-          href: event-hubs-java-get-started-send.md
-        - name: Python（azure-eventhub 版本 1）
-          href: event-hubs-python-get-started-send.md
-        - name: JavaScript（azure/event-hubs 版本 2）
-          href: event-hubs-node-get-started-send.md
+          href: event-hubs-java-get-started-send-legacy.md
         - name: .NET Framework (Microsoft.ServiceBus)
           href: event-hubs-dotnet-framework-getstarted-send.md
     - name: 捕获事件
@@ -58,15 +54,13 @@
           href: event-hubs-capture-enable-through-portal.md
         - name: 使用资源管理器模板启用事件中心捕获
           href: event-hubs-resource-manager-namespace-event-hub-enable-capture.md
-        - name: 使用 Python 读取捕获的数据（azure-eventhub 版本 5）
-          href: get-started-capture-python-v2.md
-        - name: 使用 Python 读取捕获的数据（azure-eventhub 版本 1）
+        - name: 使用 Python 读取捕获的数据
           href: event-hubs-capture-python.md
     - name: 流式传输到用于 Apache Kafka 的事件中心
       href: event-hubs-quickstart-kafka-enabled-event-hubs.md
 - name: 教程
   items:
-    - name: 将捕获的数据存储在 SQL 数据仓库中
+    - name: 将捕获的数据存储在 Azure Synapse Analytics 中
       href: store-captured-data-data-warehouse.md
     - name: 使用 Stream analytics 处理用于事件中心的 Apache Kafka 事件
       href: event-hubs-kafka-stream-analytics.md
@@ -74,9 +68,6 @@
   items:
     - name: 代码示例
       href: event-hubs-samples.md
-    - name: Azure Policy 内置策略定义
-      displayName: 'samples, policies, definitions'
-      href: ./policy-samples.md
 - name: 概念
   items:
     - name: 事件中心术语
@@ -116,8 +107,12 @@
       maintainContext: true
 - name: 操作指南
   items:
-    - name: 跨区域移动
-      href: move-across-regions.md
+    - name: 移动
+      items:
+        - name: 将命名空间移到另一个区域
+          href: move-across-regions.md
+        - name: 将专用群集移到另一个区域
+          href: move-cluster-across-regions.md
     - name: 动态添加分区
       href: dynamically-add-partitions.md
     - name: 使用 Blob 存储作为 Azure Stack Hub 上的检查点存储
@@ -190,7 +185,7 @@
       items:
         - name: 允许从特定 IP 地址访问
           href: event-hubs-ip-filtering.md
-    - name: 疑难解答
+    - name: 故障排除
       items:
         - name: 解决连接问题
           href: troubleshooting-guide.md
@@ -244,7 +239,7 @@
               href: 'https://docs.microsoft.com/python/api/azure-eventhub/?view=azure-python-previous'
         - name: 管理库
           href: /python/api/overview/azure/event-hub?view=azure-python
-    - name: JavaScript
+    - name: Javascript
       items:
         - name: 从 azure/eventhubs 版本 2 迁移到版本 5
           href: 'https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/eventhub/event-hubs/migrationguide.md'
@@ -270,9 +265,12 @@
       href: event-hubs-quotas.md
     - name: Apache Kafka 配置
       href: apache-kafka-configurations.md
+    - name: Azure Policy 内置策略定义
+      displayName: 'samples, policies, definitions'
+      href: ./policy-reference.md
 - name: 资源
   items:
-    - name: 常见问题解答
+    - name: 常见问题
       href: event-hubs-faq.md
     - name: 定价
       href: 'https://www.azure.cn/pricing/details/event-hubs/'

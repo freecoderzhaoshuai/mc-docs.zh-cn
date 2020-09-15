@@ -3,15 +3,15 @@ title: 创建启用了捕获的事件中心 - Azure 事件中心 | Microsoft Doc
 description: 使用 Azure 资源管理器模板创建包含一个事件中心的 Azure 事件中心命名空间并启用捕获
 ms.topic: conceptual
 origin.date: 06/23/2020
-ms.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: v-tawe
-ms.custom: devx-track-azurecli
-ms.openlocfilehash: 5a02d6550d680186b1de525e5ea98e5b7543436d
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.custom: devx-track-azurecli, devx-track-azurepowershell
+ms.openlocfilehash: ad7e077bc7479f9e056a1b3836f986c735e4a708
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715216"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063295"
 ---
 # <a name="create-a-namespace-with-event-hub-and-enable-capture-using-a-template"></a>使用模板通过事件中心创建一个命名空间并启用捕获
 

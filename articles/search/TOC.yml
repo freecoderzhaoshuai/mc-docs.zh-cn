@@ -70,20 +70,22 @@
           href: cognitive-search-tutorial-blob.md
         - name: Python
           href: cognitive-search-tutorial-blob-python.md
+    - name: 创建自定义分析器
+      href: tutorial-create-custom-analyzer.md
     - name: 从 Power Apps 查询
       href: search-howto-powerapps.md
 - name: 示例
   items:
     - name: C# 示例
-      href: 'https://docs.microsoft.com/samples/browse/?products=azure-cognitive-search&languages=csharp'
+      href: 'https://docs.microsoft.com/samples/browse/?languages=csharp&products=azure-cognitive-search'
     - name: Java 示例
-      href: 'https://docs.microsoft.com/samples/browse/?products=azure-cognitive-search&languages=java'
+      href: 'https://docs.microsoft.com/samples/browse/?languages=java&products=azure-cognitive-search'
     - name: JavaScript 示例
-      href: 'https://docs.microsoft.com/samples/browse/?products=azure-cognitive-search&languages=javascript'
+      href: 'https://docs.microsoft.com/samples/browse/?languages=javascript&products=azure-cognitive-search'
     - name: Python 示例
-      href: 'https://docs.microsoft.com/samples/browse/?products=azure-cognitive-search&languages=python'
+      href: 'https://docs.microsoft.com/samples/browse/?languages=python&products=azure-cognitive-search'
     - name: REST 示例
-      href: 'https://docs.microsoft.com/samples/browse/?languages=http&expanded=azure&products=azure-cognitive-search'
+      href: 'https://docs.microsoft.com/samples/browse/?expanded=azure&languages=http&products=azure-cognitive-search'
     - name: Azure Policy 内置策略定义
       displayName: 'samples, policies, definitions'
       href: ./policy-samples.md
@@ -104,14 +106,16 @@
           href: knowledge-store-projection-overview.md
         - name: 增量扩充
           href: cognitive-search-incremental-indexing-conceptual.md
+    - name: 安全性
+      items:
+        - name: 安全概述
+          href: search-security-overview.md
 - name: 操作指南
   items:
     - name: 创建索引和构造
       items:
-        - name: 创建基本索引
+        - name: 创建索引
           href: search-what-is-an-index.md
-        - name: 创建索引（门户）
-          href: search-create-index-portal.md
         - name: 创建多语言索引
           href: search-language-support.md
         - name: 分析器
@@ -144,7 +148,7 @@
           href: search-howto-large-index.md
         - name: 处理并发更新
           href: search-howto-concurrency.md
-    - name: 引入 Azure 数据
+    - name: 引入仅限 Azure 的数据
       items:
         - name: 配置索引器
           href: search-indexer-overview.md
@@ -182,7 +186,7 @@
               href: search-howto-connecting-azure-sql-mi-to-azure-search-using-indexers.md
             - name: SQL Server VM
               href: search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md
-    - name: 使用 AI 引入
+    - name: 使用技能 (AI)
       items:
         - name: 附加认知服务资源
           href: cognitive-search-attach-cognitive-services.md
@@ -194,7 +198,7 @@
               href: cognitive-search-concept-annotations-syntax.md
             - name: 映射到索引字段
               href: cognitive-search-output-field-mapping.md
-            - name: 提取图像中的信息
+            - name: 处理图像文件
               href: cognitive-search-concept-image-scenarios.md
             - name: 缓存（增量）扩充
               href: search-howto-incremental-index.md
@@ -244,7 +248,7 @@
               href: query-lucene-syntax.md
             - name: moreLikeThis（预览版）
               href: search-more-like-this.md
-    - name: “筛选器”
+    - name: 筛选器
       items:
         - name: 筛选器概述
           href: search-filters.md
@@ -287,9 +291,15 @@
         - name: 预览功能列表
           href: search-api-preview.md
         - name: 使用 .NET 进行开发
-          href: search-howto-dotnet-sdk.md
+          items:
+            - name: 使用 Microsoft.Azure.Search (v10)
+              href: search-howto-dotnet-sdk.md
+            - name: 开始使用 (v10)
+              href: search-get-started-dotnet-v10.md
         - name: 升级 SDK
           items:
+            - name: .NET SDK 11.0
+              href: search-dotnet-sdk-migration-version-11.md
             - name: .NET SDK 10.0
               href: search-dotnet-sdk-migration-version-10.md
             - name: .NET SDK 9.0
@@ -306,12 +316,12 @@
           href: search-api-migration.md
     - name: 安全性
       items:
-        - name: 概述
-          href: search-security-overview.md
         - name: 数据加密
           items:
             - name: 客户管理的密钥
               href: search-security-manage-encryption-keys.md
+            - name: 获取密钥信息
+              href: search-security-get-encryption-keys.md
         - name: 入站安全性
           items:
             - name: API 访问密钥
@@ -320,7 +330,7 @@
           items:
             - name: 安全筛选器
               href: search-security-trimming-for-azure-search.md
-            - name: AAD 标识筛选器
+            - name: 筛选用户标识
               href: search-security-trimming-for-azure-search-with-aad.md
     - name: 管理
       items:
@@ -340,7 +350,7 @@
           href: search-monitor-queries.md
         - name: 搜索流量分析
           href: search-traffic-analytics.md
-    - name: 疑难解答
+    - name: 故障排除
       items:
         - name: 索引器问题
           href: search-indexer-troubleshooting.md
@@ -354,24 +364,36 @@
       href: 'https://docs.microsoft.com/powershell/module/az.search'
     - name: 资源管理器模板
       href: 'https://docs.microsoft.com/azure/templates/microsoft.search/searchservices'
-    - name: .NET
-      items:
-        - name: microsoft.azure.search
-          href: 'https://docs.microsoft.com/dotnet/api/?term=microsoft.azure.search?view=azure-dotnet'
-        - name: microsoft.azure.management.search
-          href: 'https://docs.microsoft.com/dotnet/api/overview/azure/search/management?view=azure-dotnet'
     - name: REST
       items:
-        - name: 搜索 2019-05-06
+        - name: 搜索 2020-06-30
           href: 'https://docs.microsoft.com/rest/api/searchservice'
-        - name: 搜索 2019-05-06-Preview
-          href: 'https://docs.microsoft.com/rest/api/searchservice/index-2019-05-06-preview'
+        - name: 搜索 2020-06-30-Preview
+          href: 'https://docs.microsoft.com/rest/api/searchservice/index-preview'
         - name: 管理 2020-03-13
           href: 'https://docs.microsoft.com/rest/api/searchmanagement'
         - name: 管理 2019-10-01-Preview
           href: 'https://docs.microsoft.com/rest/api/searchmanagement/index-2019-10-01-preview'
+    - name: .NET
+      items:
+        - name: 搜索 API
+          href: 'https://docs.microsoft.com/dotnet/api/overview/azure/search.documents-readme?view=azure-dotnet'
+        - name: 管理 API
+          href: 'https://docs.microsoft.com/dotnet/api/overview/azure/search/management?view=azure-dotnet'
+    - name: Java
+      items:
+        - name: 管理 API
+          href: 'https://docs.microsoft.com/java/api/overview/azure/search/management?view=azure-java-stable'
+    - name: JavaScript
+      items:
+        - name: 搜索 API
+          href: 'https://docs.microsoft.com/javascript/api/overview/azure/search-documents-readme?view=azure-node-latest'
+        - name: 管理 API
+          href: 'https://docs.microsoft.com/javascript/api/overview/azure/search/management?view=azure-node-latest'
     - name: Python
       items:
+        - name: 搜索 API
+          href: 'https://docs.microsoft.com/python/api/overview/azure/search-documents-readme?view=azure-python'
         - name: 管理 API
           href: 'https://docs.microsoft.com/python/api/overview/azure/search?view=azure-python'
     - name: OData 语言参考
@@ -467,7 +489,7 @@
           href: 'https://www.pluralsight.com/courses/azure-adding-search-abilities-apps'
         - name: 开发人员课程 (Pluralsight)
           href: 'https://www.pluralsight.com/courses/microsoft-azure-textual-content-search-enabling'
-    - name: 常见问题解答
+    - name: 常见问题
       href: search-faq-frequently-asked-questions.md
     - name: 定价
       href: 'https://www.azure.cn/pricing/details/search/'

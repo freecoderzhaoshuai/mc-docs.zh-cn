@@ -4,13 +4,13 @@ description: 本文介绍有关 Azure 事件中心提供的 Apache Kafka 支持�
 ms.topic: article
 ms.author: v-tawe
 origin.date: 07/20/2020
-ms.date: 08/21/2020
-ms.openlocfilehash: 1081a121e6c3e84df254bb6629b680eb322d0882
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.date: 09/14/2020
+ms.openlocfilehash: 6efa63bd554bccf95d229db9f3615d218ddd54c0
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715235"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063348"
 ---
 # <a name="use-azure-event-hubs-from-apache-kafka-applications"></a>使用 Apache Kafka 应用程序中的 Azure 事件中心
 事件中心提供 Kafka 终结点，现有的基于 Kafka 的应用程序可将该终结点用作运行你自己的 Kafka 群集的替代方案。 事件中心支持 [Apache Kafka 协议 1.0 及更高版本](https://kafka.apache.org/documentation/)，并且可与现有 Kafka 应用程序（包括 MirrorMaker）配合使用。  

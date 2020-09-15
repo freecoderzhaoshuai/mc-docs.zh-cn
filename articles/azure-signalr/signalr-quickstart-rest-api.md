@@ -5,14 +5,14 @@ author: sffamily
 ms.service: signalr
 ms.topic: quickstart
 origin.date: 11/13/2019
-ms.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: v-tawe
-ms.openlocfilehash: c26fb69e1cf8b6ba52bfb3fbe6bb376e6ce22d93
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: e28bc37c5d768a37d90cceff681e9d70a3a56fc0
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715133"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063354"
 ---
 # <a name="quickstart-broadcast-real-time-messages-from-console-app"></a>快速入门：从控制台应用广播实时消息
 
@@ -29,11 +29,17 @@ Azure SignalR 服务提供了 [REST API](https://github.com/Azure/azure-signalr/
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsapi)
+
 ## <a name="sign-in-to-azure"></a>登录 Azure
 
 使用 Azure 帐户登录到 <https://portal.azure.cn/> 的 Azure 门户。
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsapi)
+
 [!INCLUDE [Create instance](includes/signalr-quickstart-create-instance.md)]
+
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsapi)
 
 ## <a name="clone-the-sample-application"></a>克隆示例应用程序
 
@@ -46,6 +52,7 @@ Azure SignalR 服务提供了 [REST API](https://github.com/Azure/azure-signalr/
     ```bash
     git clone https://github.com/aspnet/AzureSignalR-samples.git
     ```
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsapi)
 
 ## <a name="build-and-run-the-sample"></a>生成并运行示例
 
@@ -82,6 +89,8 @@ cd bin/Release/netcoreapp2.1/osx.10.13-x64/
 Serverless server -c "<ConnectionString>" -h <HubName>
 ```
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsapi)
+
 ## <a name="run-the-sample-without-publishing"></a>运行示例而不发布
 
 你还可以运行以下命令来启动服务器或客户端
@@ -98,6 +107,8 @@ dotnet run -- client <ClientName> -c "<ConnectionString>" -h <HubName>
 
 你可以运行示例的根目录中的 `dotnet user-secrets set Azure:SignalR:ConnectionString "<ConnectionString>"`。 之后，将不再需要选项 `-c "<ConnectionString>"`。
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsapi)
+
 ## <a name="usage"></a>使用情况
 
 在服务器启动后，使用以下命令发送消息：
@@ -112,6 +123,8 @@ broadcast
 
 可以启动具有不同客户端名称的多个客户端。
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsapi)
+
 ## <a name="integration-with-third-party-services"></a><a name="usage"> </a> 与第三方服务集成
 
 Azure SignalR 服务允许第三方服务与系统集成。
@@ -123,7 +136,7 @@ Azure SignalR 服务允许第三方服务与系统集成。
 版本 | API 状态 | 门 | 特定
 --- | --- | --- | ---
 `1.0-preview` | 可用 | 5002 | [Swagger](https://github.com/Azure/azure-signalr/tree/dev/docs/swagger/v1-preview.json)
-`1.0` | 可用 | Standard | [Swagger](https://github.com/Azure/azure-signalr/tree/dev/docs/swagger/v1.json)
+`1.0` | 可用 | 标准 | [Swagger](https://github.com/Azure/azure-signalr/tree/dev/docs/swagger/v1.json)
 
 适用于每个特定版本的 API 的列表在下表中提供。
 
@@ -245,7 +258,11 @@ API 版本 | API HTTP 方法 | 请求 URL
 `200` | 服务良好
 `5xx` | 服务错误
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsapi)
+
 [!INCLUDE [Cleanup](includes/signalr-quickstart-cleanup.md)]
+
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsapi)
 
 ## <a name="next-steps"></a>后续步骤
 
@@ -253,3 +270,5 @@ API 版本 | API HTTP 方法 | 请求 URL
 
 > [!div class="nextstepaction"]
 > [使用 Azure SignalR 服务绑定开发 Azure Functions](signalr-quickstart-azure-functions-csharp.md)
+
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsapi)

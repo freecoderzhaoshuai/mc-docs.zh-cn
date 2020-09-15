@@ -5,13 +5,13 @@ ms.topic: how-to
 author: abhirockzz
 ms.author: v-tawe
 origin.date: 08/11/2020
-ms.date: 08/21/2020
-ms.openlocfilehash: 94e1b0021f909e9a5f6510b1f5142edf6cf62b97
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.date: 09/14/2020
+ms.openlocfilehash: 5293e7290134d6cffbcdb4bda247f1deab21c6d9
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715676"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063343"
 ---
 # <a name="integrate-apache-kafka-connect-support-on-azure-event-hubs-preview-with-debezium-for-change-data-capture"></a>将 Azure 事件中心（预览版）上的 Apache Kafka Connect 支持与 Debezium 集成进行变更数据捕获
 

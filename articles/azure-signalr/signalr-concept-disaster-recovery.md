@@ -5,14 +5,14 @@ author: chenkennt
 ms.service: signalr
 ms.topic: conceptual
 origin.date: 03/01/2019
-ms.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: v-tawe
-ms.openlocfilehash: ba5b12c9a7bf98e927819446009fbe0943242b06
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 07a41b62b859ae127f76149987060c949c0f768c
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715283"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063317"
 ---
 # <a name="resiliency-and-disaster-recovery-in-azure-signalr-service"></a>Azure SignalR 服务中的复原能力和灾难恢复
 

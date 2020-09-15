@@ -6,15 +6,15 @@ ms.service: signalr
 ms.devlang: java
 ms.topic: quickstart
 origin.date: 03/04/2019
-ms.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: v-tawe
 ms.custom: devx-track-java
-ms.openlocfilehash: ee215cb1c79c9d09443f4af939aa347dd28acd95
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 088ddf5a1534c0afe01ebd415509c74a6c1eec2f
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715124"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063332"
 ---
 # <a name="quickstart-use-java-to-create-a-chat-room-with-azure-functions-and-signalr-service"></a>快速入门：通过 Java 使用 Azure Functions 和 SignalR 服务创建聊天室
 
@@ -38,13 +38,21 @@ Azure SignalR 服务可让你轻松地向应用程序添加实时功能，而 Az
 > [!NOTE]
 > 本快速入门可以在 macOS、Windows 或 Linux 上运行。
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsjava)
+
 ## <a name="log-in-to-azure"></a>登录 Azure
 
 使用 Azure 帐户登录到 <https://portal.azure.cn/> 的 Azure 门户。
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsjava)
+
 [!INCLUDE [Create instance](includes/signalr-quickstart-create-instance.md)]
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsjava)
+
 [!INCLUDE [Clone application](includes/signalr-quickstart-clone-application.md)]
+
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsjava)
 
 ## <a name="configure-and-run-the-azure-function-app"></a>配置和运行 Azure 函数应用
 
@@ -52,7 +60,7 @@ Azure SignalR 服务可让你轻松地向应用程序添加实时功能，而 Az
 
     ![搜索 SignalR 服务实例](media/signalr-quickstart-azure-functions-csharp/signalr-quickstart-search-instance.png)
 
-1. 选择“密钥”  以查看 SignalR 服务实例的连接字符串。
+1. 选择“密钥”**** 以查看 SignalR 服务实例的连接字符串。
 
 1. 选择并复制主连接字符串。
 
@@ -80,10 +88,15 @@ Azure SignalR 服务可让你轻松地向应用程序添加实时功能，而 Az
     ```bash
     mvn azure-functions:run
     ```
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsjava)
 
 [!INCLUDE [Run web application](includes/signalr-quickstart-run-web-application.md)]
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsjava)
+
 [!INCLUDE [Cleanup](includes/signalr-quickstart-cleanup.md)]
+
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsjava)
 
 ## <a name="next-steps"></a>后续步骤
 
@@ -91,3 +104,5 @@ Azure SignalR 服务可让你轻松地向应用程序添加实时功能，而 Az
 
 > [!div class="nextstepaction"]
 > [使用 Java 和 Maven 创建第一个函数](../azure-functions/functions-create-first-java-maven.md)
+
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsjava)

@@ -4,15 +4,16 @@ description: 在许多扩展方案中，客户往往需要预配多个实例，�
 author: sffamily
 ms.service: signalr
 ms.topic: conceptual
+ms.custom: devx-track-csharp
 origin.date: 03/27/2019
-ms.date: 12/16/2019
+ms.date: 09/14/2020
 ms.author: v-tawe
-ms.openlocfilehash: ed65ec9e818b77c36cb28339c467118d84e5dc5e
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 105e01fa3e7135dab397a62debb5235b3a63c1c1
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75334873"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063371"
 ---
 # <a name="how-to-scale-signalr-service-with-multiple-instances"></a>如何使用多个实例扩展 SignalR 服务？
 最新的 SignalR 服务 SDK 支持对 SignalR 服务实例使用多个终结点。 可以使用此功能来扩展并发连接，或将其用于跨区域的消息传送。
@@ -27,7 +28,7 @@ ms.locfileid: "75334873"
 
 可以使用以下 `dotnet` 命令添加多个实例连接字符串：
 
-```batch
+```cmd
 dotnet user-secrets set Azure:SignalR:ConnectionString:east-region-a <ConnectionString1>
 dotnet user-secrets set Azure:SignalR:ConnectionString:east-region-b:primary <ConnectionString2>
 dotnet user-secrets set Azure:SignalR:ConnectionString:backup:secondary <ConnectionString3>

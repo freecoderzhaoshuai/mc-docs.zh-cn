@@ -6,15 +6,15 @@ ms.service: signalr
 ms.devlang: javascript
 ms.topic: quickstart
 origin.date: 12/14/2019
-ms.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: v-tawe
 ms.custom: devx-track-javascript
-ms.openlocfilehash: 00224ca800f451c6d2fe75b8ac6dc9872130d2d0
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: df50e17b09aa1e676b9779666d899ba7a9c68d32
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715123"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063363"
 ---
 # <a name="quickstart-use-javascript-to-create-a-chat-room-with-azure-functions-and-signalr-service"></a>快速入门：通过 JavaScript 使用 Azure Functions 和 SignalR 服务创建聊天室
 
@@ -33,13 +33,21 @@ Azure SignalR 服务可让你轻松地向应用程序添加实时功能，而 Az
 > [!NOTE]
 > 本快速入门可以在 macOS、Windows 或 Linux 上运行。
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsjs)
+
 ## <a name="log-in-to-azure"></a>登录 Azure
 
 使用 Azure 帐户登录到 <https://portal.azure.cn/> 的 Azure 门户。
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsjs)
+
 [!INCLUDE [Create instance](includes/signalr-quickstart-create-instance.md)]
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsjs)
+
 [!INCLUDE [Clone application](includes/signalr-quickstart-clone-application.md)]
+
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsjs)
 
 ## <a name="configure-and-run-the-azure-function-app"></a>配置和运行 Azure 函数应用
 
@@ -47,7 +55,7 @@ Azure SignalR 服务可让你轻松地向应用程序添加实时功能，而 Az
 
     ![搜索 SignalR 服务实例](media/signalr-quickstart-azure-functions-csharp/signalr-quickstart-search-instance.png)
 
-1. 选择“密钥”  以查看 SignalR 服务实例的连接字符串。
+1. 选择“密钥”**** 以查看 SignalR 服务实例的连接字符串。
 
 1. 选择并复制主连接字符串。
 
@@ -72,13 +80,21 @@ Azure SignalR 服务可让你轻松地向应用程序添加实时功能，而 Az
 
     ![创建 SignalR 服务](media/signalr-quickstart-azure-functions-javascript/signalr-quickstart-run-application.png)
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsjs)
+
 [!INCLUDE [Run web application](includes/signalr-quickstart-run-web-application.md)]
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsjs)
+
 [!INCLUDE [Cleanup](includes/signalr-quickstart-cleanup.md)]
+
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsjs)
 
 ## <a name="next-steps"></a>后续步骤
 
 在本快速入门中，你在 VS Code 中生成并运行了一个实时无服务器应用程序。 接下来，详细了解如何从 VS Code 中部署 Azure Functions。
 
 > [!div class="nextstepaction"]
-> [使用 VS Code 部署 Azure Functions](https://docs.microsoft.com/azure/javascript/tutorial-vscode-serverless-node-01)
+> [使用 VS Code 部署 Azure Functions](https://docs.microsoft.com/azure/developer/javascript/tutorial-vscode-serverless-node-01)
+
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsjs)

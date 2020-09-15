@@ -4,15 +4,16 @@ description: 更好地了解使用 Azure SignalR 的典型用例方案，并了�
 author: sffamily
 ms.service: signalr
 ms.topic: overview
+ms.custom: devx-track-dotnet
 origin.date: 11/13/2019
-ms.date: 12/16/2019
+ms.date: 09/14/2020
 ms.author: v-tawe
-ms.openlocfilehash: 3c7756e677b5c5d76d802673e6f0462cdf8352da
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.openlocfilehash: 49b3bc39ee46ee7d3e0dc8c701bb7b7fcb934f31
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588748"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063325"
 ---
 # <a name="what-is-azure-signalr-service"></a>什么是 Azure SignalR 服务？
 

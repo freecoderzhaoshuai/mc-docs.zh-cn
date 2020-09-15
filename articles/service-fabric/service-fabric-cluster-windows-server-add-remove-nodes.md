@@ -1,17 +1,19 @@
 ---
 title: 在独立 Service Fabric 群集中添加或删除节点
 description: 了解如何向运行 Windows Server 的本地或任意云中物理计算机或虚拟机上的 Azure Service Fabric 群集添加节点。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 11/02/2017
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 0e8f09fb1f2cc92f315677c7d6d45101f0bb0743
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 09b93a8a18b1c4412b7d5b9c4311230980514f27
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540464"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655687"
 ---
 # <a name="add-or-remove-nodes-to-a-standalone-service-fabric-cluster-running-on-windows-server"></a>向在 Windows Server 上运行的独立 Service Fabric 群集添加或删除节点
 [在 Windows Server 计算机上创建独立 Service Fabric 群集](service-fabric-cluster-creation-for-windows-server.md)之后，（业务）需求可能发生变化，因此需要向群集添加或删除节点。 本文提供了实现此目标的详细步骤。 请注意，在本地开发群集中不支持添加/删除节点的功能。
@@ -22,7 +24,7 @@ ms.locfileid: "77540464"
 
 2. 确定要向哪些容错域和升级域添加此 VM/计算机。
 
-   如果使用证书来保护群集，则应将证书安装在本地证书存储中，为节点加入群集做准备。 使用其他形式的安全性时，模拟适用。
+    如果使用证书来保护群集，则应将证书安装在本地证书存储中，为节点加入群集做准备。 使用其他形式的安全性时，模拟适用。
 
 3. 通过远程桌面 (RDP) 方式进入需要向群集添加的 VM/计算机。
 
@@ -32,22 +34,22 @@ ms.locfileid: "77540464"
 
 6. 使用描述要添加的新节点的参数运行 AddNode.ps1  脚本。 以下示例将名为 VM5、类型为 NodeType0 且 IP 地址为 182.17.34.52 的新节点添加到 UD1 和 fd:/dc1/r0 中。 `ExistingClusterConnectionEndPoint` 是现有群集中已有节点的连接终结点，可以是群集中任意节点的 IP 地址。  
 
-   不安全（原型制作）：
+    不安全（原型制作）：
 
-   ```
-   .\AddNode.ps1 -NodeName VM5 -NodeType NodeType0 -NodeIPAddressorFQDN 182.17.34.52 -ExistingClientConnectionEndpoint 182.17.34.50:19000 -UpgradeDomain UD1 -FaultDomain fd:/dc1/r0 -AcceptEULA
-   ```
+    ```
+    .\AddNode.ps1 -NodeName VM5 -NodeType NodeType0 -NodeIPAddressorFQDN 182.17.34.52 -ExistingClientConnectionEndpoint 182.17.34.50:19000 -UpgradeDomain UD1 -FaultDomain fd:/dc1/r0 -AcceptEULA
+    ```
 
-   安全（基于证书）：
+    安全（基于证书）：
 
-   ```  
-   $CertThumbprint= "***********************"
+    ``` 
+    $CertThumbprint= "***********************"
 
-   .\AddNode.ps1 -NodeName VM5 -NodeType NodeType0 -NodeIPAddressorFQDN 182.17.34.52 -ExistingClientConnectionEndpoint 182.17.34.50:19000 -UpgradeDomain UD1 -FaultDomain fd:/dc1/r0 -X509Credential -ServerCertThumbprint $CertThumbprint  -AcceptEULA
+    .\AddNode.ps1 -NodeName VM5 -NodeType NodeType0 -NodeIPAddressorFQDN 182.17.34.52 -ExistingClientConnectionEndpoint 182.17.34.50:19000 -UpgradeDomain UD1 -FaultDomain fd:/dc1/r0 -X509Credential -ServerCertThumbprint $CertThumbprint  -AcceptEULA
 
-   ```
+    ```
 
-   运行完脚本后，可以通过运行 [Get-ServiceFabricNode](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricnode?view=azureservicefabricps) cmdlet 来检查是否已添加新节点。
+    运行完脚本后，可以通过运行 [Get-ServiceFabricNode](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricnode?view=azureservicefabricps) cmdlet 来检查是否已添加新节点。
 
 7. 要确保群集中不同节点的一致性，请务必启动配置升级。 运行 [Get ServiceFabricClusterConfiguration](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricclusterconfiguration?view=azureservicefabricps) 获取最新配置文件并将新添加的节点添加到“Nodes”节。 如果需要重新部署使用相同配置的群集，也建议始终使用最新的群集配置。
 
@@ -67,7 +69,8 @@ ms.locfileid: "77540464"
     Start-ServiceFabricClusterConfigurationUpgrade -ClusterConfigPath <Path to Configuration File>
 
     ```
-    可在 Service Fabric Explorer 中监视升级进度。 或者，也可运行 [Get-ServiceFabricClusterUpgrade](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps)
+
+    可在 Service Fabric Explorer 中监视升级进度。 或者，也可运行 [Get-ServiceFabricClusterUpgrade](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricclusterupgrade?view=azureservicefabricps)。
 
 ### <a name="add-nodes-to-clusters-configured-with-windows-security-using-gmsa"></a>将节点添加到使用 gMSA 配置 Windows 安全性的群集中。
 对于使用组托管服务帐户 (gMSA)(https://technet.microsoft.com/library/hh831782.aspx) 配置的群集，可以使用配置升级添加新的节点：
@@ -96,7 +99,7 @@ ms.locfileid: "77540464"
 可以采用以下方式通过配置升级将节点从群集中删除：
 
 1. 运行 [Get ServiceFabricClusterConfiguration](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricclusterconfiguration?view=azureservicefabricps) 获取最新配置文件，并将节点从“节点”部分删除  。
-将 "NodesToBeRemoved" 参数添加到 "FabricSettings" 中的“设置”部分。 “值”应当是一个逗号分隔列表，其中包含需要删除的节点的节点名称。
+    将 "NodesToBeRemoved" 参数添加到 "FabricSettings" 中的“设置”部分。 “值”应当是一个逗号分隔列表，其中包含需要删除的节点的节点名称。
 
     ```
     "fabricSettings": [
@@ -141,6 +144,6 @@ ms.locfileid: "77540464"
 ## <a name="next-steps"></a>后续步骤
 * [独立 Windows 群集的配置设置](service-fabric-cluster-manifest.md)
 * [使用 X509 证书保护 Windows 上的独立群集](service-fabric-windows-cluster-x509-security.md)
-* [使用运行 Windows 的 Azure VM 创建独立 Service Fabric 群集](service-fabric-cluster-creation-with-windows-azure-vms.md)
+* [使用运行 Windows 的 Azure VM 创建独立 Service Fabric 群集](./service-fabric-cluster-creation-via-arm.md)
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

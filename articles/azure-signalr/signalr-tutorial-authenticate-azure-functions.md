@@ -5,15 +5,15 @@ author: sffamily
 ms.service: signalr
 ms.topic: tutorial
 origin.date: 03/01/2019
-ms.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: v-tawe
 ms.custom: devx-track-javascript
-ms.openlocfilehash: b4afdb329b3dc872d10425f539dd93fd8e73d5f0
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 05f75302d6255920e5f0c9c80cd0d37046645107
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715115"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063370"
 ---
 # <a name="tutorial-azure-signalr-service-authentication-with-azure-functions"></a>教程：使用 Azure Functions 进行 Azure SignalR 服务身份验证
 
@@ -39,9 +39,13 @@ ms.locfileid: "88715115"
   * [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) - 在 VS Code 中使用 Azure Functions
   * [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) - 提供用于本地测试的网页
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsauth)
+
 ## <a name="sign-into-the-azure-portal"></a>登录到 Azure 门户
 
 转到 [Azure 门户](https://portal.azure.cn/)并使用自己的凭据登录。
+
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsauth)
 
 ## <a name="create-an-azure-signalr-service-instance"></a>创建 Azure SignalR 服务实例
 
@@ -67,7 +71,8 @@ ms.locfileid: "88715115"
 1. 部署该实例后，在门户中打开它并找到其“设置”页。 将服务模式设置更改为“无服务器”  。
 
     ![SignalR 服务模式](media/signalr-concept-azure-functions/signalr-service-mode.png)
-
+    
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsauth)
 
 ## <a name="initialize-the-function-app"></a>初始化函数应用
 
@@ -132,7 +137,7 @@ ms.locfileid: "88715115"
 
 1. 保存文件。
 
-    
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsauth)
 
 ## <a name="create-a-function-to-authenticate-users-to-signalr-service"></a>创建一个用于在 SignalR 服务中验证用户身份的函数
 
@@ -195,6 +200,8 @@ ms.locfileid: "88715115"
     ```
 
     此函数从输入绑定中提取 SignalR 连接信息，并在 HTTP 响应正文中将此信息返回给客户端。 SignalR 客户端会使用此信息连接到 SignalR 服务实例。
+
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsauth)
 
 ## <a name="create-a-function-to-send-chat-messages"></a>创建用于发送聊天消息的函数
 
@@ -277,6 +284,8 @@ Web 应用还需要使用一个 HTTP API 来发送聊天消息。 我们将创�
 
 1. 保存文件。
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsauth)
+
 ## <a name="create-and-run-the-chat-client-web-user-interface"></a>创建并运行聊天客户端 Web 用户界面
 
 聊天应用程序的 UI 是使用 Vue JavaScript 框架创建的简单单页应用程序 (SPA)。 该 UI 单独托管在函数应用中。 在本地，我们将使用 Live Server VS Code 扩展运行 Web 界面。
@@ -294,6 +303,8 @@ Web 应用还需要使用一个 HTTP API 来发送聊天消息。 我们将创�
 1. 打开 **index.html** 后，通过打开 VS Code 命令面板（Windows 快捷键为 `Ctrl-Shift-P`，macOS 快捷键为 `Cmd-Shift-P`）并选择“Live Server:  使用 Live Server 打开”来启动 Live Server。 Live Server 将在浏览器中打开该应用程序。
 
 1. 应用程序已打开。 在聊天框中输入一条消息并按 Enter。 刷新应用程序以查看新消息。 由于未配置身份验证，所有消息将以“匿名”方式发送。
+
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsauth)
 
 ## <a name="deploy-to-azure-and-enable-authentication"></a>部署到 Azure 并启用身份验证
 
@@ -319,7 +330,7 @@ Web 应用还需要使用一个 HTTP API 来发送聊天消息。 我们将创�
 
 1. 输入以下信息。
 
-    | 名称 | 值 |
+    | 名称 | “值” |
     |---|---|
     | 订阅 | 选择包含 SignalR 服务实例的订阅 |
     | 资源组 | 选择相同资源组 |
@@ -450,7 +461,7 @@ Web 应用还需要使用一个 HTTP API 来发送聊天消息。 我们将创�
 
 1. 输入以下值：
 
-    | 名称 | 值 |
+    | 名称 | “值” |
     |---|---|
     | 订阅 | 选择订阅 |
     | 存储帐户 | 选择前面创建的存储帐户 |
@@ -490,9 +501,13 @@ Web 应用还需要使用一个 HTTP API 来发送聊天消息。 我们将创�
 
 ![演示](media/signalr-tutorial-authenticate-azure-functions/signalr-serverless-chat.gif)
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsauth)
+
 ## <a name="clean-up-resources"></a>清理资源
 
 若要清理本教程创建的资源，请使用 Azure 门户删除相应的资源组。
+
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsauth)
 
 ## <a name="next-steps"></a>后续步骤
 
@@ -500,3 +515,6 @@ Web 应用还需要使用一个 HTTP API 来发送聊天消息。 我们将创�
 
 > [!div class="nextstepaction"]
 > [使用 Azure Functions 生成实时应用](signalr-concept-azure-functions.md)
+
+[存在问题？请告诉我们。](https://aka.ms/asrs/qsauth)
+

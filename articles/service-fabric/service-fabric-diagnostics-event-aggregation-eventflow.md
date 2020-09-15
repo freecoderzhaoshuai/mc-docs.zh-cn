@@ -1,17 +1,20 @@
 ---
 title: 使用 EventFlow 聚合 Azure Service Fabric 事件
 description: 了解通过使用 EventFlow 集合和收集事件来监视和诊断 Azure Service Fabric 群集。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 02/25/2019
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: b728659eee8460af04a66e5c1779038d4c472509
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 20859db69aef280c03edaae22d8fa89885eb7ad8
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742417"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655513"
 ---
 # <a name="event-aggregation-and-collection-using-eventflow"></a>使用 EventFlow 进行事件聚合和收集
 
@@ -21,7 +24,7 @@ ms.locfileid: "75742417"
 
 EventFlow 二进制文件都可用作一组 NuGet 包。 要将 EventFlow 添加到 Service Fabric 服务项目中，右键单击解决方案资源管理器中的项目，并选择“管理 NuGet 包”。 切换到“浏览”选项卡，搜索“`Diagnostics.EventFlow`”：
 
-![Visual Studio NuGet 包管理器 UI 中的 EventFlow NuGet 包](./media/service-fabric-diagnostics-event-aggregation-eventflow/eventflow-nuget.png)
+:::image type="content" source="./media/service-fabric-diagnostics-event-aggregation-eventflow/eventflow-nuget.png" alt-text="Visual Studio NuGet 包管理器 UI 中的 EventFlow NuGet 包":::
 
 将显示一个不同包的列表，带有“输入”和“输出”标记。 EventFlow 支持不同日志提供程序和分析器。 托管 EventFlow 的服务应包括相应的包，具体取决于应用程序日志的源和目标。 除核心 ServiceFabric 包外，至少还需配置一个输入和输出。 例如，可添加下列包将 EventSource 事件发送到 Application Insights：
 
@@ -146,10 +149,12 @@ servicefabric:/<section-name>/<setting-name>
 
 在 Visual Studio 中启动服务，并观察调试输出窗口。 该服务启动后，应开始看到服务正向已配置输出发送记录的证据。 导航到事件分析和可视化平台，并确认日志已开始显示（可能需要几分钟时间）。
 
-<!-- Not Available on ## Next steps-->
-<!-- Not Available on * * [Event Analysis and Visualization with Application Insights](service-fabric-diagnostics-event-analysis-appinsights.md) -->
+## <a name="next-steps"></a>后续步骤
+
+* [使用 Application Insights 进行事件分析和可视化](service-fabric-diagnostics-event-analysis-appinsights.md)
+
 <!-- Not Available on * [Event Analysis and Visualization with Log Analytics](service-fabric-diagnostics-event-analysis-oms.md)-->
 
 * [EventFlow 文档](https://github.com/Azure/diagnostics-eventflow)
 
-<!--Update_Description: update meta properties  -->
+<!-- Update_Description: update meta properties, wording update, update link -->

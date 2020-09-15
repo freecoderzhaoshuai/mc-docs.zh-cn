@@ -5,15 +5,16 @@ author: sffamily
 ms.service: signalr
 ms.devlang: dotnet
 ms.topic: quickstart
+ms.custom: devx-track-csharp
 origin.date: 03/04/2019
-ms.date: 11/25/2019
+ms.date: 09/14/2020
 ms.author: v-tawe
-ms.openlocfilehash: 7e7717b55f477c62881bed993a150fb8273d7bd7
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 699f30241e480890265a2bf545059257a523b3d2
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74179095"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063337"
 ---
 # <a name="quickstart-create-a-chat-room-with-azure-functions-and-signalr-service-using-c"></a>快速入门：使用 C\# 通过 Azure Functions 和 SignalR 服务创建聊天室
 
@@ -27,13 +28,21 @@ ms.locfileid: "74179095"
 
 [!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qscsharp)
+
 ## <a name="log-in-to-azure"></a>登录 Azure
 
 使用 Azure 帐户登录到 <https://portal.azure.cn/> 的 Azure 门户。
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qscsharp)
+
 [!INCLUDE [Create instance](includes/signalr-quickstart-create-instance.md)]
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qscsharp)
+
 [!INCLUDE [Clone application](includes/signalr-quickstart-clone-application.md)]
+
+[存在问题？请告诉我们。](https://aka.ms/asrs/qscsharp)
 
 ## <a name="configure-and-run-the-azure-function-app"></a>配置和运行 Azure 函数应用
 
@@ -43,7 +52,7 @@ ms.locfileid: "74179095"
 
     ![搜索 SignalR 服务实例](media/signalr-quickstart-azure-functions-csharp/signalr-quickstart-search-instance.png)
 
-1. 选择“密钥”  以查看 SignalR 服务实例的连接字符串。
+1. 选择“密钥”**** 以查看 SignalR 服务实例的连接字符串。
 
 1. 选择并复制主连接字符串。
 
@@ -58,7 +67,7 @@ ms.locfileid: "74179095"
 
 1. 使用以下选项之一在本地启动 Azure 函数应用。
 
-    - **Visual Studio**：在“调试”菜单中，选择“开始调试”以运行应用程序。  
+    - **Visual Studio**：在“调试”菜单中，选择“开始调试”以运行应用程序。 
 
         ![调试应用程序](media/signalr-quickstart-azure-functions-csharp/signalr-quickstart-debug-vs.png)
 
@@ -67,10 +76,15 @@ ms.locfileid: "74179095"
         ```bash
         func start
         ```
+[存在问题？请告诉我们。](https://aka.ms/asrs/qscsharp)
 
 [!INCLUDE [Run web application](includes/signalr-quickstart-run-web-application.md)]
 
+[存在问题？请告诉我们。](https://aka.ms/asrs/qscsharp)
+
 [!INCLUDE [Cleanup](includes/signalr-quickstart-cleanup.md)]
+
+[存在问题？请告诉我们。](https://aka.ms/asrs/qscsharp)
 
 ## <a name="next-steps"></a>后续步骤
 
@@ -78,3 +92,5 @@ ms.locfileid: "74179095"
 
 > [!div class="nextstepaction"]
 > [使用 Visual Studio 开发 Azure Functions](../azure-functions/functions-develop-vs.md)
+
+[存在问题？请告诉我们。](https://aka.ms/asrs/qscsharp)

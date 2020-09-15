@@ -5,14 +5,14 @@ author: v-tawe
 ms.service: signalr
 ms.topic: conceptual
 origin.date: 06/17/2020
-ms.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: jixin
-ms.openlocfilehash: feb1eb2e7f61f3c07e530e226d644d2cb4f82674
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 3f81e8120645f04d63966511be59ce0cdf3adb15
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715671"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063367"
 ---
 # <a name="audit-compliance-of-azure-signalr-service-resources-using-azure-policy"></a>使用 Azure Policy 审核 Azure SignalR 服务资源的合规性
 
@@ -26,7 +26,7 @@ ms.locfileid: "88715671"
 
 以下内置策略定义特定于 Azure SignalR 服务：
 
-[!INCLUDE [azure-policy-samples-policies-signalr](../../includes/policy/samples/bycat/policies-signalr.md)]
+[!INCLUDE [azure-policy-reference-policies-signalr](../../includes/policy/reference/bycat/policies-signalr.md)]
 
 ## <a name="assign-policy-definitions"></a>分配策略定义
 
