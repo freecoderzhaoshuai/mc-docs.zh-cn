@@ -1,6 +1,46 @@
 {
     "redirections": [
         {
+            "source_path": "articles/event-hubs/policy-samples.md",
+            "redirect_url": "/event-hubs/policy-reference",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/event-hubs/get-started-dotnet-standard-send-v2.md",
+            "redirect_url": "/event-hubs/event-hubs-dotnet-standard-getstarted-send",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/event-hubs/get-started-java-send-v2.md",
+            "redirect_url": "/event-hubs/event-hubs-java-get-started-send",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/event-hubs/get-started-node-send-v2.md",
+            "redirect_url": "/event-hubs/event-hubs-node-get-started-send",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/event-hubs/get-started-capture-python-v2.md",
+            "redirect_url": "/event-hubs/event-hubs-capture-python",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/event-hubs/get-started-python-send-v2.md",
+            "redirect_url": "/event-hubs/event-hubs-python-get-started-send",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/azure-signalr/signalr-tutorial-diagnostic-logs.md",
+            "redirect_url": "/azure-signalr/signalr-howto-diagnostic-logs",
+            "redirect_document_id": true
+        },
+        {
+            "source_path": "articles/azure-signalr/policy-samples.md",
+            "redirect_url": "/azure-signalr/policy-reference",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "articles/cognitive-services/Speech-Service/quickstarts/text-to-speech/async-synthesis-long-form-audio.md",
             "redirect_url": "/cognitive-services/speech-service/long-audio-api",
             "redirect_document_id": true
@@ -27441,7 +27481,31 @@
             "redirect_document_id": false
         },
         {
-            "source_path": "articles/hdinsight/domain-joined/apache-domain-joined-configure.md",
+            "source_path": "articles/log-analytics/log-analytics-quick-create-workspace.md",
+            "redirect_url": "/azure-monitor/learn/quick-create-workspace",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/log-analytics/query-language/get-started-queries.md",
+            "redirect_url": "/azure-monitor/log-query/get-started-queries",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/log-analytics/query-language/get-started-analytics-portal.md",
+            "redirect_url": "/azure-monitor/log-query/get-started-portal",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/azure-monitor/insights/solutions-inventory.md",
+            "redirect_url": "/azure-monitor/monitor-reference",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/virtual-machines/linux/generation-2.md",
+            "redirect_url": "/virtual-machines/generation-2",
+            "redirect_document_id": false
+        },
+        {   "source_path": "articles/hdinsight/domain-joined/apache-domain-joined-configure.md",
             "redirect_url": "/hdinsight/domain-joined/apache-domain-joined-configure-using-azure-adds",
             "redirect_document_id": false
         },    
