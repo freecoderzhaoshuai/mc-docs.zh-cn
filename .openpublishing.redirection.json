@@ -27533,11 +27533,6 @@
             "source_path": "articles/machine-learning/how-to-debug-pipelines-application-insights.md",
             "redirect_url": "/machine-learning/how-to-log-pipelines-application-insights",
             "redirect_document_id": false
-        },
-        {
-            "source_path": "articles/machine-learning/service/how-to-enable-logging.md",
-            "redirect_url": "/machine-learning/how-to-enable-logging",
-            "redirect_document_id": false
         }
 
 
