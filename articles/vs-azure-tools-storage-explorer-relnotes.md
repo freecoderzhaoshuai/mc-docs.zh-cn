@@ -13,14 +13,14 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 origin.date: 06/12/2018
-ms.date: 08/27/2020
+ms.date: 09/10/2020
 ms.author: v-tawe
-ms.openlocfilehash: d3078d5a3cd42eefa536aa77641e9c910df2c835
-ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
+ms.openlocfilehash: 3c93a78f1491533157fcc17227335fccc4756af9
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88951247"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021219"
 ---
 # <a name="azure-storage-explorer-release-notes"></a>Azure 存储资源管理器发行说明
 
@@ -1424,7 +1424,7 @@ ms.locfileid: "88951247"
 * 过去，如果尝试下载具有无效 Windows 文件名的 blob，则操作将失败。 现在，存储资源管理器将检测 blob 名称是否有效，并且会询问你是要对其进行编码还是跳过该 blob。 存储资源管理器还会检测文件名看起来是否已编码并且在上传前会询问是否要对其进行解码。
 * 在上传 blob 期间，目标 blob 容器的编辑器有时候不能正确刷新。 现在已修复此问题。
 * 支持多种形式的连接字符串和回归的 SAS URI。 我们已解决了所有已知问题，但是如果遇到了进一步的问题，请向我们发送反馈。
-* 在 0.9.0 版中，对于某些用户，更新通知损坏。 
+* 在 0.9.0 版中，对于某些用户，更新通知损坏。 此问题已修复，并且受此 bug 影响的用户可[从此处](https://azure.microsoft.com/features/storage-explorer/)手动下载最新版本的存储资源管理器。
 
 ### <a name="known-issues"></a>已知问题
 * 存储资源管理器不支持 ADFS 帐户。
@@ -1480,7 +1480,7 @@ ms.locfileid: "88951247"
 * 过去，如果尝试下载具有无效 Windows 文件名的 blob，则操作将失败。 现在，存储资源管理器将检测 blob 名称是否有效，并且会询问你是要对其进行编码还是跳过该 blob。 存储资源管理器还会检测文件名看起来是否已编码并且在上传前会询问是否要对其进行解码。
 * 在上传 blob 期间，目标 blob 容器的编辑器有时候不能正确刷新。 现在已修复此问题。
 * 支持多种形式的连接字符串和回归的 SAS URI。 我们已解决了所有已知问题，但是如果遇到了进一步的问题，请向我们发送反馈。
-* 在 0.9.0 版中，对于某些用户，更新通知损坏。 
+* 在 0.9.0 版中，对于某些用户，更新通知损坏。 此问题已修复，对于受此 bug 影响的那些用户，可以手动[从此处](https://azure.microsoft.com/features/storage-explorer/)下载最新版本的存储资源管理器。
 
 ### <a name="known-issues"></a>已知问题
 * 存储资源管理器不支持 ADFS 帐户。
@@ -1660,6 +1660,12 @@ ms.locfileid: "88951247"
 ### <a name="version-089-and-088"></a>版本 0.8.9 和 0.8.8
 2017/02/23
 
+<!--
+>[!VIDEO https://www.youtube.com/embed/R6gonK3cYAc?ecver=1]
+
+>[!VIDEO https://www.youtube.com/embed/SrRPCm94mfE?ecver=1]
+-->
+
 #### <a name="new"></a>新建
 
 * 存储资源管理器 0.8.9 自动下载最新版本进行更新。
@@ -1687,6 +1693,10 @@ ms.locfileid: "88951247"
 
 2016/12/16
 ### <a name="version-087"></a>版本 0.8.7
+
+<!--
+>[!VIDEO https://www.youtube.com/embed/Me4Y4jxoer8?ecver=1]
+-->
 
 #### <a name="new"></a>新建
 
@@ -1774,6 +1784,10 @@ ms.locfileid: "88951247"
 2016/09/12
 ### <a name="version-084"></a>版本 0.8.4
 
+<!--
+>[!VIDEO https://www.youtube.com/embed/cr5tOGyGrIQ?ecver=1]
+-->
+
 #### <a name="new"></a>新建
 
 * 生成指向存储帐户、容器、队列、表或文件共享的直接链接，以便共享和轻松访问资源 - Windows 和 Mac 操作系统支持
@@ -1792,6 +1806,10 @@ ms.locfileid: "88951247"
 
 2016/08/03
 ### <a name="version-083"></a>版本 0.8.3
+
+<!--
+>[!VIDEO https://www.youtube.com/embed/HeGW-jkSd9Y?ecver=1]
+-->
 
 #### <a name="new"></a>新建
 
@@ -1817,6 +1835,10 @@ ms.locfileid: "88951247"
 2016/07/07
 ### <a name="version-082"></a>版本 0.8.2
 
+<!-- 
+>[!VIDEO https://www.youtube.com/embed/nYgKbRUNYZA?ecver=1]
+-->
+
 #### <a name="new"></a>新建
 
 * 存储帐户按订阅分组；通过密钥或 SAS 附加的开发存储和资源显示在（本地和附加）节点下
@@ -1837,6 +1859,14 @@ ms.locfileid: "88951247"
 
 2016/06/15
 ### <a name="version-080"></a>版本 0.8.0
+
+<!-- 
+>[!VIDEO https://www.youtube.com/embed/ycfQhKztSIY?ecver=1]
+
+>[!VIDEO https://www.youtube.com/embed/k4_kOUCZ0WA?ecver=1]
+
+>[!VIDEO https://www.youtube.com/embed/3zEXJcGdl_k?ecver=1]
+-->
 
 #### <a name="new"></a>新建
 
@@ -1876,6 +1906,12 @@ ms.locfileid: "88951247"
 2016/03/31
 
 ### <a name="version-07201603250"></a>版本 0.7.20160325.0
+
+<!--
+>[!VIDEO https://www.youtube.com/embed/imbgBRHX65A?ecver=1]
+
+>[!VIDEO https://www.youtube.com/embed/ceX-P8XZ-s8?ecver=1]
+-->
 
 #### <a name="new"></a>新建
 
@@ -1972,5 +2008,3 @@ ms.locfileid: "88951247"
 
 [2]: https://support.microsoft.com/help/4021389/storage-explorer-troubleshooting-guide
 [3]: vs-azure-tools-storage-manage-with-storage-explorer.md
-
-<!--Update_Description: wording update -->

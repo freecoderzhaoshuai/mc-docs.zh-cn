@@ -1,19 +1,19 @@
 ---
 title: 使用系统运行状况报告进行故障排除
 description: 介绍了 Azure Service Fabric 组件发送的运行状况报告，以及如何使用这些报告来排查群集或应用程序问题
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 02/28/2018
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 01/13/2020
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 31e29bb17d1205ccee4b34b24481d192f3629fa2
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 2565bc897c1b7f12988be9f5ce4e003ce8ea7706
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426459"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655600"
 ---
 # <a name="use-system-health-reports-to-troubleshoot"></a>使用系统运行状况报告进行故障排除
 Azure Service Fabric 组件提供有关现成群集中所有实体的系统运行状况报告。 [运行状况存储](service-fabric-health-introduction.md#health-store)根据系统报告来创建和删除实体。 它还会将这些实体组织为层次结构以捕获实体交互。
@@ -57,7 +57,6 @@ Azure Service Fabric 组件提供有关现成群集中所有实体的系统运�
 如果出现上面任意一种情况，System.FM  或 System.FMM  将通过错误报表对其进行标记。 重新生成可能会卡滞在以下两个阶段之一：
 
 * **等待广播**：FM/FMM 等待其他节点的广播消息答复。
-
     * **后续步骤**：调查节点之间是否存在网络连接问题。
 * **等待节点**：FM/FMM 已收到来自其他节点的广播答复，正在等待特定节点的答复。 运行状况报告列出 FM/FMM 正在等待其响应的节点。
     * **后续步骤**：调查 FM/FMM 和所列出节点之间的网络连接。 调查每个列出的节点是否存在其他可能问题。
@@ -74,10 +73,12 @@ Azure Service Fabric 组件提供有关现成群集中所有实体的系统运�
 
 * **SourceID**：System.FM
 * **属性**：SeedNodeStatus
-* **后续步骤**：如果此警告显示在群集中，请按以下说明来修复它：对于运行 Service Fabric 6.5 或更高版本的群集：对于 Azure 上的 Service Fabric 群集，当种子节点发生故障后，Service Fabric 会尝试自动将其更改为非种子节点。 若要实现这一点，请确保主节点类型中的非种子节点数大于或等于“发生故障”的种子节点数。 如果需要，请将更多节点添加到主节点类型以实现这一目标。
+* **后续步骤**：如果此警告显示在群集中，请按以下说明来修复它：
+    
+    对于运行 Service Fabric 6.5 或更高版本的群集：对于 Azure 上的 Service Fabric 群集，当种子节点发生故障后，Service Fabric 会尝试自动将其更改为非种子节点。 若要实现这一点，请确保主节点类型中的非种子节点数大于或等于“发生故障”的种子节点数。 如果需要，请将更多节点添加到主节点类型以实现这一目标。
     根据群集状态，修复此问题可能需要一定的时间。 修复完以后，会自动清除警告报告。
 
-    对于 Service Fabric 独立群集来说，所有种子节点必须变得正常才能清除警告报告。 需要根据种子节点运行不正常的原因采取不同的操作：如果种子节点状态为“停机”，则用户需启动该种子节点；如果种子节点状态为“已删除”或“未知”，则[需从群集中删除](/service-fabric/service-fabric-cluster-windows-server-add-remove-nodes)该种子节点。
+    对于 Service Fabric 独立群集来说，所有种子节点必须变得正常才能清除警告报告。 需要根据种子节点运行不正常的原因采取不同的操作：如果种子节点状态为“停机”，则用户需启动该种子节点；如果种子节点状态为“已删除”或“未知”，则[需从群集中删除](./service-fabric-cluster-windows-server-add-remove-nodes.md)该种子节点。
     当所有种子节点变得正常以后，会自动清除警告报告。
 
     对于运行低于 6.5 版的 Service Fabric 的群集：在这种情况下，需手动清除警告报告。 **用户在清除报告之前，应确保所有种子节点变得正常**：如果种子节点状态为“停机”，则用户需启动该种子节点；如果种子节点状态为“已删除”或“未知”，则需从群集中删除该种子节点。

@@ -1,17 +1,19 @@
 ---
 title: Azure Service Fabric CLI- sfctl
 description: 了解 sfctl（Azure Service Fabric 命令行接口）。 包括一系列命令和子组。
-author: rockboyfor
 ms.topic: reference
 origin.date: 01/16/2020
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: aa08ae1341bacdfa633544f10159feadc0ac5968
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 5c670522501ca0a6be0166061cb0f175a3c8cece
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540572"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655623"
 ---
 # <a name="sfctl"></a>sfctl
 用于管理 Service Fabric 群集和实体的命令。 此版本与 Service Fabric 7.0 运行时兼容。
@@ -21,7 +23,7 @@ ms.locfileid: "77540572"
 ## <a name="subgroups"></a>子组
 |子组|说明|
 | --- | --- |
-| [application](service-fabric-sfctl-application.md) | 创建、删除和管理应用程序及应用程序类型。 |
+| [应用程序](service-fabric-sfctl-application.md) | 创建、删除和管理应用程序及应用程序类型。 |
 | [chaos](service-fabric-sfctl-chaos.md) | 启动、停止和报告混沌测试服务。 |
 | [cluster](service-fabric-sfctl-cluster.md) | 选择、管理和操作 Service Fabric 群集。 |
 | [compose](service-fabric-sfctl-compose.md) | 创建、删除和管理 Docker Compose 应用程序。 |
@@ -36,12 +38,12 @@ ms.locfileid: "77540572"
 | [sa-cluster](service-fabric-sfctl-sa-cluster.md) | 管理独立 Service Fabric 群集。 |
 | [服务](service-fabric-sfctl-service.md) | 创建、删除和管理服务、服务类型与服务包。 |
 | [设置](service-fabric-sfctl-settings.md) | 配置此 sfctl 实例的本地设置。 |
-| [store](service-fabric-sfctl-store.md) | 针对群集映像存储执行基本文件级别操作。 |
+| [存储](service-fabric-sfctl-store.md) | 针对群集映像存储执行基本文件级别操作。 |
 
 <!--Not Available on [mesh](service-fabric-sfctl-mesh.md)-->
 
 ## <a name="next-steps"></a>后续步骤
 - [安装](service-fabric-cli.md) Service Fabric CLI。
-- 了解如何通过[示例脚本](/service-fabric/scripts/sfctl-upgrade-application)使用 Service Fabric CLI。
+- 了解如何通过[示例脚本](./scripts/sfctl-upgrade-application.md)使用 Service Fabric CLI。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

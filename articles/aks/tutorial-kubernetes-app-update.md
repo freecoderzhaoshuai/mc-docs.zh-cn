@@ -7,12 +7,12 @@ origin.date: 12/19/2018
 ms.date: 03/09/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: 15e30b3cb391f790d3ee69b8232be567db5b14ca
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: cacd8ed9be7faa21d021bd74d9d5bd1aeafd82fc
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79290852"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021239"
 ---
 # <a name="tutorial-update-an-application-in-azure-kubernetes-service-aks"></a>教程：在 Azure Kubernetes 服务 (AKS) 中更新应用程序
 
@@ -72,7 +72,7 @@ docker-compose up --build -d
 
 ## <a name="tag-and-push-the-image"></a>标记并推送映像
 
-若要正确使用已更新的映像，请使用 ACR 注册表的登录服务器名称标记 *azure-vote-front* 映像。 运行 [az acr list](https://docs.azure.cn/cli/acr?view=azure-cli-latest#az-acr-list) 命令，获取登录服务器名称：
+若要正确使用已更新的映像，请使用 ACR 注册表的登录服务器名称标记 *azure-vote-front* 映像。 运行 [az acr list](https://docs.azure.cn/cli/acr#az-acr-list) 命令，获取登录服务器名称：
 
 ```azurecli
 az acr list --resource-group myResourceGroup --query "[].{acrLoginServer:loginServer}" --output table
@@ -176,7 +176,7 @@ kubectl get service azure-vote-front
 
 [aks-tutorial-prepare-app]: ./tutorial-kubernetes-prepare-app.md
 [aks-tutorial-upgrade]: ./tutorial-kubernetes-upgrade-cluster.md
-[az-acr-login]: https://docs.azure.cn/cli/acr?view=azure-cli-latest
-[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[az-acr-login]: https://docs.azure.cn/cli/acr
+[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli
 
 <!-- Update_Description: wording update, update link -->
