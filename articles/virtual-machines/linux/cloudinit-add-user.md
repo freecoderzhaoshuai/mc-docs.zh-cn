@@ -1,26 +1,18 @@
 ---
-title: 使用 cloud-init 将用户添加到 Azure 中的 Linux VM | Azure
+title: 使用 cloud-init 将用户添加到 Azure 上的 Linux VM | Azure
 description: 如何通过 Azure CLI 使用 cloud-init 在创建期间将用户添加到 Linux VM
-services: virtual-machines-linux
-documentationcenter: ''
-author: rockboyfor
-manager: digimobile
-editor: ''
-tags: azure-resource-manager
+author: Johnnytechn
 ms.service: virtual-machines-linux
-ms.workload: infrastructure-services
-ms.tgt_pltfrm: vm-linux
-ms.devlang: azurecli
-ms.topic: article
+ms.topic: how-to
+ms.date: 09/03/2020
+ms.author: v-johya
 origin.date: 11/29/2017
-ms.date: 08/12/2019
-ms.author: v-yeche
-ms.openlocfilehash: 0836050404a9e201aef14663a33c03f4e5bda8ad
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 3f46809bbfb507b68246be8a2cb85fef11cc4cc9
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "68912902"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057476"
 ---
 # <a name="use-cloud-init-to-add-a-user-to-a-linux-vm-in-azure"></a>使用 cloud-init 将用户添加到 Azure 中的 Linux VM
 本文介绍如何在 Azure 中使用 [cloud-init](https://cloudinit.readthedocs.io) 在预配时将用户添加到 Linux 虚拟机 (VM) 或虚拟机规模集 (VMSS)。 Azure 预配资源后，此 cloud-init 脚本将在首次启动时运行。 有关 cloud-init 如何在 Azure 以及受支持的 Linux 发行版中本机工作的详细信息，请参阅 [cloud-init 概述](using-cloud-init.md)。
@@ -87,7 +79,7 @@ myadminuser:x:1000:
 
 ## <a name="next-steps"></a>后续步骤
 有关配置更改的其他 cloud-init 示例，请参阅以下文章：
-
+ 
 - [向 VM 添加其他 Linux 用户](cloudinit-add-user.md)
 - [运行包管理器以在首次启动时更新现有包](cloudinit-update-vm.md)
 - [更改 VM 本地主机名](cloudinit-update-vm-hostname.md) 

@@ -13,14 +13,14 @@ ms.tgt_pltfrm: na
 ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 origin.date: 05/15/2018
-ms.date: 04/15/2019
+ms.date: 09/14/2019
 ms.author: v-jay
-ms.openlocfilehash: 6955f953d68f975722e07101f3e8a91f6c37d225
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: b90c2f6fb783b6e359eda9d199ada6d38bcd6172
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "63852656"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512848"
 ---
 # <a name="manage-dns-records-and-recordsets-in-azure-dns-using-the-azure-cli"></a>使用 Azure CLI 管理 Azure DNS 中的 DNS 记录和记录集
 

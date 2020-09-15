@@ -3,15 +3,18 @@ title: 删除 Azure 中的 Service Fabric 群集
 description: 在本教程中，你将了解如何删除 Azure 托管的 Service Fabric 群集及其所有资源。 可以删除包含群集的资源组，也可以有选择地删除资源。
 ms.topic: tutorial
 origin.date: 07/22/2019
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: 98eef620110f5293b3f03f24532d0c9d02772823
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: b4e73a649341d73ece1def590fca6faae4762380
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742050"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655053"
 ---
 # <a name="tutorial-remove-a-service-fabric-cluster-running-in-azure"></a>教程：删除在 Azure 中运行的 Service Fabric 群集
 
@@ -26,11 +29,10 @@ ms.locfileid: "75742050"
 在此系列教程中，你会学习如何：
 > [!div class="checklist"]
 > * 使用模板在 Azure 上创建安全 [Windows 群集](service-fabric-tutorial-create-vnet-and-windows-cluster.md)
+> * [监视群集](service-fabric-tutorial-monitor-cluster.md)
 > * [缩小或扩大群集](service-fabric-tutorial-scale-cluster.md)
 > * [升级群集的运行时](service-fabric-tutorial-upgrade-cluster.md)
 > * 删除群集
-
-<!--Not Available on > * [Monitor a cluster](service-fabric-tutorial-monitor-cluster.md)-->
 
 [!INCLUDE [updated-for-az](../../includes/updated-for-az.md)]
 
@@ -39,7 +41,7 @@ ms.locfileid: "75742050"
 在开始学习本教程之前：
 
 * 如果还没有 Azure 订阅，请创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)
-* 安装 [Azure Powershell](https://docs.microsoft.com/powershell/azure/install-Az-ps) 或 [Azure CLI](https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest)。
+* 安装 [Azure Powershell](https://docs.microsoft.com/powershell/azure/install-az-ps) 或 [Azure CLI](https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest)。
 * 在 Azure 上创建安全 [Windows 群集](service-fabric-tutorial-create-vnet-and-windows-cluster.md)
 
 ## <a name="delete-the-resource-group-containing-the-service-fabric-cluster"></a>删除包含 Service Fabric 群集的资源组
@@ -111,7 +113,6 @@ az resource delete --name "<name of the Resource>" --resource-type "Microsoft.Se
 现在你已完成了本教程，请尝试执行以下任务：
 * 了解如何使用 [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) 检查和管理 Service Fabric 群集。
 * 了解如何为群集节点[修补 Windows 操作系统](service-fabric-patch-orchestration-application.md)。
-* 了解如何为 [Windows 群集](service-fabric-diagnostics-event-aggregation-wad.md)聚合和收集事件以监视群集事件。
+* 了解如何为 [Windows 群集](service-fabric-diagnostics-event-aggregation-wad.md)聚合和收集事件以及如何[设置 Log Analytics](service-fabric-diagnostics-oms-setup.md) 来监视群集事件。
 
-<!--Not Availabel on and [setup Log Analytics](service-fabric-diagnostics-oms-setup.md)-->
-<!-- Update_Description: wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

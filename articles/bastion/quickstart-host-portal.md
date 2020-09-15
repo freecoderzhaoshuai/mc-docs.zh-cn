@@ -10,15 +10,14 @@ ms.date: 07/27/2020
 ms.testscope: yes
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: cee5faaf093c9ca1ddb38f09bcb71215b63f2632
-ms.sourcegitcommit: 4d9846bb03ac24bd98b0c9a781bb8912ff6d2f61
+ms.openlocfilehash: 737654a1edaade1800d4a1719ab4c6c462e7705d
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "86926996"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655140"
 ---
-<!--Verified Failed-->
-<!--RELEASE BEFORE CONFIRMATION-->
+<!--Verified successfully on 09/07/2020-->
 # <a name="quickstart-connect-to-a-virtual-machine-using-a-private-ip-address-and-azure-bastion"></a>快速入门：使用专用 IP 地址和 Azure Bastion 连接到虚拟机
 
 本快速入门文章介绍如何使用专用 IP 地址连接到虚拟机。 在通过 Bastion 连接时，虚拟机无需公共 IP 地址。 本文中的步骤可帮助你在门户中通过虚拟机将 Bastion 部署到虚拟网络。 预配服务后，RDP/SSH 体验即可用于同一虚拟网络中的所有虚拟机。
@@ -34,7 +33,7 @@ ms.locfileid: "86926996"
 |**名称** | **值** |
 | --- | --- |
 | 名称 |  VNet1Bastion |
-| 区域 | chinaeast2 |
+| 区域 | chinanorth2 |
 | 虚拟网络 |  VNet1 |
 | + 子网名称 | AzureBastionSubnet |
 | AzureBastionSubnet 地址 |  10.1.254.0/27 |

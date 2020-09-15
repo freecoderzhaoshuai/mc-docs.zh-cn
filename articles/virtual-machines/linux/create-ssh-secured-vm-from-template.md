@@ -7,16 +7,20 @@ ms.topic: article
 ms.date: 07/29/2020
 ms.author: v-johya
 origin.date: 03/22/2019
-ms.openlocfilehash: b1b0384b12cd929e2470f1dea2c50c772396f573
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.openlocfilehash: 8a1875e6004da7c39de424d3104cab6d7a2c98a1
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508373"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057708"
 ---
 # <a name="how-to-create-a-linux-virtual-machine-with-azure-resource-manager-templates"></a>如何使用 Azure Resource Manager 模板创建 Linux 虚拟机
 
 了解如何使用 Azure 资源管理器模板以及 Azure 本地 Shell 中的 Azure CLI 来创建 Linux 虚拟机 (VM)。 若要创建 Windows 虚拟机，请参阅[通过资源管理器模板创建 Windows 虚拟机](../windows/ps-template.md)。
+
+一种替代方法是从 Azure 门户部署模板。 若要在门户中打开该模板，请选择“部署到 Azure”按钮。
+
+[![部署到 Azure](../../media/template-deployments/deploy-to-azure.svg)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-vm-sshkey%2Fazuredeploy.json)
 
 ## <a name="templates-overview"></a>模板概述
 
@@ -273,10 +277,8 @@ az vm show --resource-group $resourceGroupName --name "$projectName-vm" --show-d
 
 下面是一些其他资源：
 
-- 若要了解如何开发资源管理器模板，请参阅 [Azure 资源管理器文档](/azure-resource-manager/)。
-    
+- 若要了解如何开发资源管理器模板，请参阅 [Azure 资源管理器文档](../../azure-resource-manager/index.yml)。
 - 若要查看 Azure 虚拟机架构，请参阅 [Azure 模板引用](https://docs.microsoft.com/azure/templates/microsoft.compute/allversions)。
-
 - 若要查看更多的虚拟机模板示例，请参阅 [Azure 快速入门模板](https://github.com/Azure/azure-quickstart-templates/?resourceType=Microsoft.Compute&pageNumber=1&sort=Popular)。
 
 ## <a name="connect-to-virtual-machine"></a>连接到虚拟机

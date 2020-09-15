@@ -10,14 +10,14 @@ ms.date: 07/27/2020
 ms.testscope: yes
 ms.testdate: 07/27/2020
 ms.author: v-yeche
-ms.openlocfilehash: 5d820e506fce407e1cc0b038815df8341cf0a3dc
-ms.sourcegitcommit: 4d9846bb03ac24bd98b0c9a781bb8912ff6d2f61
+ms.openlocfilehash: 375d33809848b97245b6e66ece057ed2be6a58ca
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "86927005"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89654983"
 ---
-<!--RELEASE BEFORE CONFIRMATION-->
+<!--Verifed successfully on 09/07/2020-->
 # <a name="connect-to-a-windows-virtual-machine-using-azure-bastion"></a>使用 Azure Bastion 连接到 Windows 虚拟机
 
 使用 Azure Bastion，可以直接在 Azure 门户中通过 SSL 安全无缝地连接到你的虚拟机。 使用 Azure Bastion 时，VM 不需要客户端、代理或其他软件。 本文说明如何连接到 Windows VM。 若要了解如何连接到 Linux VM，请参阅[使用 Azure Bastion 连接到 VM - Linux](bastion-connect-vm-ssh.md)。

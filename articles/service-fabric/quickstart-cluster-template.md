@@ -1,34 +1,38 @@
 ---
 title: 使用 Azure 资源管理器模板创建 Service Fabric 群集
 description: 在本快速入门中，你将使用 Azure 资源管理器模板创建 Azure Service Fabric 测试群集。
-author: rockboyfor
 ms.service: service-fabric
 ms.topic: quickstart
 ms.custom: subject-armqs
-origin.date: 04/24/2020
-ms.date: 08/03/2020
+origin.date: 07/29/2020
+author: rockboyfor
+ms.date: 09/07/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: f3e394ed416b327da0ed4b7c5c4827dd7a9686af
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 552f5a25ceb04f8c2c063ad38e631569dbe98611
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426406"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655228"
 ---
 <!--Verified successfully-->
-# <a name="quickstart-create-a-service-fabric-cluster-using-resource-manager-template"></a>快速入门：使用资源管理器模板创建 Service Fabric 群集
+# <a name="quickstart-create-a-service-fabric-cluster-using-arm-template"></a>快速入门：使用 ARM 模板创建 Service Fabric 群集
 
-Azure Service Fabric 是一款分布式系统平台，可方便用户轻松打包、部署和管理可缩放的可靠微服务和容器。 Service Fabric 群集是一组联网的虚拟机，可在其中部署和管理微服务。
+Azure Service Fabric 是一款分布式系统平台，可方便用户轻松打包、部署和管理可缩放的可靠微服务和容器。 Service Fabric 群集是一组联网的虚拟机，可在其中部署和管理微服务。 本文介绍如何使用 Azure 资源管理器模板（ARM 模板）在 Azure 中部署 Service Fabric 测试群集。
 
 [!INCLUDE [About Azure Resource Manager](../../includes/resource-manager-quickstart-introduction.md)]
 
-本文介绍如何使用资源管理器在 Azure 中部署 Service Fabric 测试群集。 此五节点 Windows 群集由一个自签名证书提供保护，因此仅适用于教学（不能用于生产工作负载）。
+此五节点 Windows 群集由一个自签名证书提供保护，因此仅适用于教学（不能用于生产工作负载）。 我们将使用 Azure PowerShell 来部署模板。 除了 Azure PowerShell，还可以使用 Azure 门户、Azure CLI 和 REST API。 若要了解其他部署方法，请参阅[部署模板](../azure-resource-manager/templates/deploy-portal.md)。
 
-我们将使用 Azure PowerShell 来部署模板。 除了 Azure PowerShell，还可以使用 Azure 门户、Azure CLI 和 REST API。 若要了解其他部署方法，请参阅[部署模板](../azure-resource-manager/templates/deploy-portal.md)。
+如果你的环境满足先决条件，并且你熟悉如何使用 ARM 模板，请选择“部署到 Azure”按钮。 Azure 门户中会打开模板。
 
-如果没有 Azure 订阅，请在开始之前创建一个[免费](https://www.azure.cn/pricing/1rmb-trial/)帐户。
+[:::image type="content" source="../media/template-deployments/deploy-to-azure.svg" alt-text="部署到 Azure":::](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fservice-fabric-secure-cluster-5-node-1-nodetype%2Fazuredeploy.json)
 
 ## <a name="prerequisites"></a>先决条件
+
+如果没有 Azure 订阅，请在开始之前创建一个[免费](https://www.azure.cn/pricing/1rmb-trial/)帐户。
 
 ### <a name="install-service-fabric-sdk-and-powershell-modules"></a>安装 Service Fabric SDK 和 PowerShell 模块
 
@@ -36,13 +40,13 @@ Azure Service Fabric 是一款分布式系统平台，可方便用户轻松打�
 
 * 安装 [Service Fabric SDK 和 PowerShell 模块](service-fabric-get-started.md)。
 
-* 安装 [Azure PowerShell](https://docs.microsoft.com/powershell/azure/install-Az-ps)。
+* 安装 [Azure PowerShell](https://docs.microsoft.com/powershell/azure/install-az-ps)。
 
 ### <a name="download-the-sample-template-and-certificate-helper-script"></a>下载示例模板和证书帮助程序脚本
 
 克隆或下载 [Azure 资源管理器快速入门模板](https://github.com/Azure/azure-quickstart-templates)存储库。 或者，在本地从 service-fabric-secure-cluster-5-node-1-nodetype 文件夹复制要使用的以下文件：
 
-* [New-ServiceFabricClusterCertificate.ps1](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/service-fabric-secure-cluster-5-node-1-nodetype/New-ServiceFabricClusterCertificate.ps1)
+* [New-ServiceFabricClusterCertificate.ps1](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/service-fabric-secure-cluster-5-node-1-nodetype/scripts/New-ServiceFabricClusterCertificate.ps1)
 * [azuredeploy.json](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/service-fabric-secure-cluster-5-node-1-nodetype/azuredeploy.json)
 * [azuredeploy.parameters.json](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/service-fabric-secure-cluster-5-node-1-nodetype/azuredeploy.parameters.json)
 
@@ -75,6 +79,8 @@ Connect-AzAccount -Environment AzureChinaCloud -SubscriptionId "<subscription ID
 
 Service Fabric 使用 X.509 证书来[保护群集](./service-fabric-cluster-security.md)并提供应用程序安全功能，它使用 [Key Vault](../key-vault/general/overview.md) 来管理那些证书。 若要成功创建群集，需要使用群集证书来实现节点到节点通信。 为了创建此快速入门测试群集，我们将创建一个用于群集身份验证的自签名证书。 生产工作负载需要多个使用正确配置的 Windows Server 证书服务创建的证书，或由已批准的证书颁发机构 (CA) 提供的证书。
 
+<!--MOONCAKE CORRECT-->
+
 ```powershell
 # Designate unique (within cloudapp.chinacloudapi.cn) names for your resources
 $resourceGroupName = "SFQuickstartRG"
@@ -87,8 +93,10 @@ New-AzResourceGroup -Name $resourceGroupName -Location chinaeast
 New-AzKeyVault -VaultName $KeyVaultName -ResourceGroupName $resourceGroupName -Location chinaeast -EnabledForDeployment
 
 # Generate a certificate and upload it to Key Vault
-.\New-ServiceFabricClusterCertificate.ps1
+.\scripts\New-ServiceFabricClusterCertificate.ps1
 ```
+
+<!--MOONCAKE CORRECT-->
 
 此脚本会提示你输入以下内容（请务必修改下面的示例值中的 CertDNSName 和 KeyVaultName）：
 
@@ -105,13 +113,13 @@ $certUrlValue = "<Certificate URL>"
 $certThumbprint = "<Certificate Thumbprint>"
 ```
 
-## <a name="create-a-service-fabric-cluster"></a>创建 Service Fabric 群集
+## <a name="review-the-template"></a>查看模板
 
-### <a name="review-the-template"></a>查看模板
-
-本快速入门中使用的模板来自 [Azure 快速入门模板](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype/)。 本文的模板太长，无法在此处显示。 若要查看模板，请参阅 [azuredeploy.json](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/service-fabric-secure-cluster-5-node-1-nodetype/azuredeploy.json) 文件。
+本快速入门中使用的模板来自 [Azure 快速启动模板](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype/)。 本文的模板太长，无法在此处显示。 若要查看模板，请参阅 [azuredeploy.json](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/service-fabric-secure-cluster-5-node-1-nodetype/azuredeploy.json) 文件。
 
 该模板中已定义了多个 Azure 资源：
+
+<!--Not Avaiablle on Global document link-->
 
 * Microsoft.Storage/storageAccounts
 * Microsoft.Network/virtualNetworks
@@ -120,16 +128,7 @@ $certThumbprint = "<Certificate Thumbprint>"
 * Microsoft.Compute/virtualMachineScaleSets
 * Microsoft.ServiceFabric/clusters
 
-<!--Not Available on [Microsoft.Storage/storageAccounts](https://docs.microsoft.com/azure/templates/microsoft.storage/storageaccounts)-->
-<!--Not Available on [Microsoft.Network/virtualNetworks](https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks)-->
-<!--Not Available on [Microsoft.Network/publicIPAddresses](https://docs.microsoft.com/azure/templates/microsoft.network/publicipaddresses)-->
-<!--Not Available on [Microsoft.Network/loadBalancers](https://docs.microsoft.com/azure/templates/microsoft.network/loadbalancers)-->
-<!--Not Available on [Microsoft.Compute/virtualMachineScaleSets](https://docs.microsoft.com/azure/templates/microsoft.compute/virtualmachinescalesets)-->
-<!--Not Available on [Microsoft.ServiceFabric/clusters](https://docs.microsoft.com/azure/templates/microsoft.servicefabric/clusters)-->
-
-若要查找与 Azure Service Fabric 相关的更多模板，请参阅 [Azure 快速入门模板](https://azure.microsoft.com/resources/templates/?sort=Popular&term=service+fabric)。
-
-<!--CORRECT ON [Azure quickstart Templates](https://azure.microsoft.com/resources/templates/?sort=Popular&term=service+fabric)-->
+若要查找与 Azure Service Fabric 相关的更多模板，请参阅 [Azure 快速入门模板](https://github.com/Azure/azure-quickstart-templates/?sort=Popular&term=service+fabric)。
 
 ### <a name="customize-the-parameters-file"></a>自定义参数文件
 
@@ -171,7 +170,7 @@ $certThumbprint = "<Certificate Thumbprint>"
 
 ## <a name="deploy-the-template"></a>部署模板
 
-将资源管理器模板和参数文件的路径存储在变量中，然后部署模板。
+将 ARM 模板和参数文件的路径存储在变量中，然后部署模板。
 
 ```powershell
 $templateFilePath = "<full path to azuredeploy.json>"
@@ -191,11 +190,11 @@ New-AzResourceGroupDeployment `
 
 部署完成后，在输出中找到 `managementEndpoint` 值，然后在 Web 浏览器中打开该地址，以便在 [Service Fabric Explorer](./service-fabric-visualizing-your-cluster.md) 中查看群集。
 
-![Service Fabric Explorer，其中显示了新群集](./media/quickstart-cluster-template/service-fabric-explorer.png)
+:::image type="content" source="./media/quickstart-cluster-template/service-fabric-explorer.png" alt-text="Service Fabric Explorer，其中显示了新群集":::
 
 在 Azure 门户中，还可以通过 Service Fabric 资源边栏选项卡找到 Service Fabric Explorer 终结点。
 
-![Service Fabric 资源边栏选项卡，其中显示了 Service Fabric Explorer 终结点](./media/quickstart-cluster-template/service-fabric-explorer-endpoint-azure-portal.png)
+:::image type="content" source="./media/quickstart-cluster-template/service-fabric-explorer-endpoint-azure-portal.png" alt-text="Service Fabric 资源边栏选项卡，其中显示了 Service Fabric Explorer 终结点":::
 
 ## <a name="clean-up-resources"></a>清理资源
 
@@ -205,6 +204,18 @@ New-AzResourceGroupDeployment `
 $resourceGroupName = Read-Host -Prompt "Enter the Resource Group name"
 Remove-AzResourceGroup -Name $resourceGroupName
 Write-Host "Press [ENTER] to continue..."
+```
+
+接下来，从本地存储中删除群集证书。 列出已安装的证书以查找群集的指纹：
+
+```powershell
+Get-ChildItem Cert:\CurrentUser\My\
+```
+
+然后删除证书：
+
+```powershell
+Get-ChildItem Cert:\CurrentUser\My\{THUMBPRINT} | Remove-Item
 ```
 
 ## <a name="next-steps"></a>后续步骤

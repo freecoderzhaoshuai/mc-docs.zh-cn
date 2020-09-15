@@ -11,12 +11,12 @@ ms.subservice: core
 ms.topic: how-to
 ms.date: 06/17/2020
 ms.custom: has-adal-ref
-ms.openlocfilehash: 9ada8375d7df8fe551c2570379e845b478f30f94
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: b95561dbe7aff466b9007ace7964c94d3ab9c6fb
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88946747"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021522"
 ---
 # <a name="set-up-authentication-for-azure-machine-learning-resources-and-workflows"></a>为 Azure 机器学习资源和工作流设置身份验证
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -114,7 +114,7 @@ ms.locfileid: "88946747"
         "clientSecret": "your-client-secret",
         "subscriptionId": "your-sub-id",
         "tenantId": "your-tenant-id",
-        "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
+        "activeDirectoryEndpointUrl": "https://login.chinacloudapi.cn",
         "resourceManagerEndpointUrl": "https://management.azure.com",
         "activeDirectoryGraphResourceId": "https://graph.windows.net",
         "sqlManagementEndpointUrl": "https://management.core.windows.net:5555",
@@ -206,12 +206,12 @@ ws.get_details()
 ```javascript
 const adal = require('adal-node').AuthenticationContext;
 
-const authorityHostUrl = 'https://login.microsoftonline.com/';
+const authorityHostUrl = 'https://login.chinacloudapi.cn/';
 const tenantId = 'your-tenant-id';
 const authorityUrl = authorityHostUrl + tenantId;
 const clientId = 'your-client-id';
 const clientSecret = 'your-client-secret';
-const resource = 'https://management.azure.com/';
+const resource = 'https://management.chinacloudapi.cn/';
 
 const context = new adal(authorityUrl);
 
@@ -236,11 +236,11 @@ context.acquireTokenWithClientCredentials(
     tokenType: 'Bearer',
     expiresIn: 3599,
     expiresOn: 2019-12-17T19:15:56.326Z,
-    resource: 'https://management.azure.com/',
+    resource: 'https://management.chinacloudapi.cn/',
     accessToken: "random-oauth-token",
     isMRRT: true,
     _clientId: 'your-client-id',
-    _authority: 'https://login.microsoftonline.com/your-tenant-id'
+    _authority: 'https://login.chinacloudapi.cn/your-tenant-id'
 }
 ```
 
@@ -255,12 +255,12 @@ from adal import AuthenticationContext
 
 client_id = "your-client-id"
 client_secret = "your-client-secret"
-resource_url = "https://login.microsoftonline.com"
+resource_url = "https://login.chinacloudapi.cn"
 tenant_id = "your-tenant-id"
 authority = "{}/{}".format(resource_url, tenant_id)
 
 auth_context = AuthenticationContext(authority)
-token_response = auth_context.acquire_token_with_client_credentials("https://management.azure.com/", client_id, client_secret)
+token_response = auth_context.acquire_token_with_client_credentials("https://management.chinacloudapi.cn/", client_id, client_secret)
 print(token_response)
 ```
 
@@ -271,11 +271,11 @@ print(token_response)
     'tokenType': 'Bearer',
     'expiresIn': 3599,
     'expiresOn': '2019-12-17 19:47:15.150205',
-    'resource': 'https://management.azure.com/',
+    'resource': 'https://management.chinacloudapi.cn/',
     'accessToken': 'random-oauth-token',
     'isMRRT': True,
     '_clientId': 'your-client-id',
-    '_authority': 'https://login.microsoftonline.com/your-tenant-id'
+    '_authority': 'https://login.chinacloudapi.cn/your-tenant-id'
 }
 ```
 

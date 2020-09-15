@@ -9,13 +9,14 @@ ms.service: cognitive-search
 ms.devlang: dotnet
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 07/17/2020
-ms.openlocfilehash: ca32660aedd5f6e732521acf2a70eeedf49795be
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.custom: devx-track-csharp
+ms.openlocfilehash: d7044c610caeb87d80d54784e159695ede2c29cc
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471893"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021437"
 ---
 # <a name="upgrade-to-azure-search-net-sdk-version-9"></a>升级到 Azure 搜索 .NET SDK 版本 9
 

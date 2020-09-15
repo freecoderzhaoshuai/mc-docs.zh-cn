@@ -1,17 +1,20 @@
 ---
 title: 使用 ASP.NET Core 与服务通信
 description: 了解如何在无状态和有状态 Azure Service Fabric Reliable Services 应用程序中使用 ASP.NET Core。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 10/12/2018
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 9514411a4f5c3a314a4ebb9249faf853824ca909
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 7f476988439e541a94b1c42f68892972d179fb95
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540145"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655678"
 ---
 # <a name="aspnet-core-in-azure-service-fabric-reliable-services"></a>Azure Service Fabric Reliable Services 中的 ASP.NET Core
 
@@ -95,7 +98,7 @@ Kestrel 和 HTTP.sys `ICommunicationListener` 实现以完全相同的方式使�
 ## <a name="httpsys-in-reliable-services"></a>Reliable Services 中的 HTTP.sys
 可以通过导入 **Microsoft.ServiceFabric.AspNetCore.HttpSys** NuGet 包来使用 Reliable Services 中的 HTTP.sys。 此包包含 `HttpSysCommunicationListener`（`ICommunicationListener` 的实现）。 `HttpSysCommunicationListener` 允许使用 HTTP.sys 作为 Web 服务器在 Reliable Service 内部创建 ASP.NET Core WebHost。
 
-在 [Windows HTTP Server API](https://msdn.microsoft.com/library/windows/desktop/aa364510(v=vs.85).aspx) 上生成 HTTP.sys。 此 API 使用 **HTTP.sys** 内核驱动程序处理 HTTP 请求，并将其路由到运行 Web 应用程序的进程。 这可允许同一物理计算机或虚拟机上的多个进程在同一端口上托管 Web 应用程序，通过唯一 URL 路径或主机名来消除歧义。 Service Fabric 在同一群集中托管多个网站时，这些功能非常有用。
+在 [Windows HTTP Server API](https://docs.microsoft.com/windows/win32/http/http-api-start-page) 上生成 HTTP.sys。 此 API 使用 **HTTP.sys** 内核驱动程序处理 HTTP 请求，并将其路由到运行 Web 应用程序的进程。 这可允许同一物理计算机或虚拟机上的多个进程在同一端口上托管 Web 应用程序，通过唯一 URL 路径或主机名来消除歧义。 Service Fabric 在同一群集中托管多个网站时，这些功能非常有用。
 
 >[!NOTE]
 >HTTP.sys 实现仅适用于 Windows 平台。
@@ -134,9 +137,9 @@ protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceLis
 
 ### <a name="endpoint-configuration"></a>终结点配置
 
-对于使用 Windows HTTP Server API 的 Web 服务器（包括 HTTP.sys），需要配置 `Endpoint`。 使用 Windows HTTP Server API 的 Web 服务器首先必须保留带有 HTTP.sys 的 URL（通常可使用 [netsh](https://msdn.microsoft.com/library/windows/desktop/cc307236(v=vs.85).aspx) 工具实现）。 
+对于使用 Windows HTTP Server API 的 Web 服务器（包括 HTTP.sys），需要配置 `Endpoint`。 使用 Windows HTTP Server API 的 Web 服务器首先必须保留带有 HTTP.sys 的 URL（通常可使用 [netsh](https://docs.microsoft.com/windows/win32/http/netsh-commands-for-http) 工具实现）。 
 
-此操作需要提升的权限，默认情况下服务不具备此权限。 用于 ServiceManifest.xml 中 `Endpoint` 配置的 `Protocol` 属性的“http”或“https”选项，可专门用于指示 Service Fabric 运行时代表你注册带有 HTTP.sys 的 URL。 它使用[*强通配符*](https://msdn.microsoft.com/library/windows/desktop/aa364698(v=vs.85).aspx) URL 前缀来提供此指示。
+此操作需要提升的权限，默认情况下服务不具备此权限。 用于 ServiceManifest.xml 中 `Endpoint` 配置的 `Protocol` 属性的“http”或“https”选项，可专门用于指示 Service Fabric 运行时代表你注册带有 HTTP.sys 的 URL。 它使用[*强通配符*](https://docs.microsoft.com/windows/win32/http/urlprefix-strings) URL 前缀来提供此指示。
 
 例如，若要保留服务的 `http://+:80`，请在 ServiceManifest.xml 中使用以下配置：
 
@@ -469,10 +472,10 @@ Service Fabric 配置提供程序还支持配置更新。 可以使用 ASP.NET C
 
 向 Internet 公开时，无状态服务应使用可通过负载均衡器到达的已知稳定终结点。 需将此 URL 提供给应用程序的用户。 建议使用以下配置：
 
-|  |  | **说明** |
-| --- | --- | --- |
+| 类型 | 建议 | 说明 |
+| ---- | -------------- | ----- |
 | Web 服务器 | Kestrel | Windows 和 Linux 都支持 Kestrel，因此它是首选的 Web 服务器。 |
-| 端口配置 | 静态 | 应在 ServiceManifest.xml 的 `Endpoints` 配置中配置已知静态端口，例如为 HTTP 配置 80 或为 HTTPS 配置 443。 |
+| 端口配置 | static | 应在 ServiceManifest.xml 的 `Endpoints` 配置中配置已知静态端口，例如为 HTTP 配置 80 或为 HTTPS 配置 443。 |
 | ServiceFabricIntegrationOptions | 无 | 配置 Service Fabric 集成中间件时应使用 `ServiceFabricIntegrationOptions.None` 选项，以使服务不会验证传入请求是否具有唯一标识符。 应用程序的外部用户不会知道中间件使用的唯一标识信息。 |
 | 实例计数 | -1 | 在典型用例中，应将实例计数设置设置为 *-1*。 这样，便可以在从负载均衡器接收流量的所有节点上使用某个实例。 |
 
@@ -494,18 +497,18 @@ Service Fabric 配置提供程序还支持配置更新。 可以使用 ASP.NET C
 ### <a name="internal-only-stateless-aspnet-core-service"></a>仅限内部的无状态 ASP.NET Core 服务
 仅从群集内部调用的无状态服务应使用唯一的 URL 和动态分配的端口，以确保多个服务之间的协作正常进行。 建议使用以下配置：
 
-|  |  | **说明** |
-| --- | --- | --- |
+| 类型 | 建议 | 说明 |
+| ---- | -------------- | ----- |
 | Web 服务器 | Kestrel | 尽管 HTTP.sys 可用于内部无状态服务，但 Kestrel 是最佳的服务器，它允许多个服务实例共享一台主机。  |
 | 端口配置 | 动态分配 | 有状态服务的多个副本可能会共享主机进程或主机操作系统，因此需要唯一端口。 |
 | ServiceFabricIntegrationOptions | UseUniqueServiceUrl | 通过动态端口分配，此设置可以防止前面所述的错误标识问题。 |
-| InstanceCount | 任意 | 可根据操作服务的需要将实例计数设置设置为任何值。 |
+| InstanceCount | any | 可根据操作服务的需要将实例计数设置设置为任何值。 |
 
 ### <a name="internal-only-stateful-aspnet-core-service"></a>仅限内部的有状态 ASP.NET Core 服务
 仅从群集内部调用的有状态服务应使用动态分配的端口，以确保多个服务之间的协作正常进行。 建议使用以下配置：
 
-|  |  | **说明** |
-| --- | --- | --- |
+| 类型 | 建议 | 说明 |
+| ---- | -------------- | ----- |
 | Web 服务器 | Kestrel | `HttpSysCommunicationListener` 不能用于副本在其中共享主机进程的有状态服务。 |
 | 端口配置 | 动态分配 | 有状态服务的多个副本可能会共享主机进程或主机操作系统，因此需要唯一端口。 |
 | ServiceFabricIntegrationOptions | UseUniqueServiceUrl | 通过动态端口分配，此设置可以防止前面所述的错误标识问题。 |
@@ -521,4 +524,4 @@ Service Fabric 配置提供程序还支持配置更新。 可以使用 ASP.NET C
 [3]:./media/service-fabric-reliable-services-communication-aspnetcore/httpsys.png
 [4]:./media/service-fabric-reliable-services-communication-aspnetcore/kestrel.png
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

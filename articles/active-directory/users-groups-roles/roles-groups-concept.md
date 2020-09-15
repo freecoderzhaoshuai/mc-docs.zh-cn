@@ -8,17 +8,17 @@ ms.service: active-directory
 ms.workload: identity
 ms.subservice: users-groups-roles
 ms.topic: article
-ms.date: 08/17/2020
+ms.date: 09/08/2020
 ms.author: v-junlch
 ms.reviewer: vincesm
 ms.custom: it-pro
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 435d5f4e15fc7519cf47d24121c01e8651e501f6
-ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
+ms.openlocfilehash: 4225dc9de9824cfb3a0e3f2ea0ccfa04f63891f6
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "88648126"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593765"
 ---
 # <a name="use-cloud-groups-to-manage-role-assignments-in-azure-active-directory-preview"></a>使用云组来管理 Azure Active Directory（预览版）中的角色分配
 
@@ -33,7 +33,7 @@ Azure Active Directory (Azure AD) 即将引入公共预览，可在其中向 Azu
 如果不希望组成员具有对角色的现有访问权限，则可以使用 Azure AD Privileged Identity Management。 将组分配为 Azure AD 角色的符合条件的成员。 然后，该组中的每个成员都有资格为分配给该组的角色激活其分配。 然后，他们可以在固定的时间内激活角色分配。
 
 > [!Note]
-> 必须使用 Privileged Identity Management 的更新版本才能通过 PIM 将组分配给 Azure AD 角色。 你可以使用旧版本的 PIM，因为你的 Azure AD 组织使用的是 Privileged Identity Management API。 请联系别名 pim_preview@microsoft.com 来移动你的组织并更新你的 API。 有关详细信息，请参阅 [PIM 中的 Azure AD 角色和功能](/active-directory/privileged-identity-management/azure-ad-roles-features)。
+> 必须使用 Privileged Identity Management 的更新版本才能通过 PIM 将组分配给 Azure AD 角色。 你可以使用旧版本的 PIM，因为你的 Azure AD 组织使用的是 Privileged Identity Management API。 请联系别名 pim_preview@microsoft.com 来移动你的组织并更新你的 API。 有关详细信息，请参阅 [PIM 中的 Azure AD 角色和功能](../privileged-identity-management/azure-ad-roles-features.md)。
 
 ## <a name="why-we-enforce-creation-of-a-special-group-for-assigning-it-to-a-role"></a>我们为何要强制创建特殊组来将其分配给角色
 

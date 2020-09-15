@@ -10,16 +10,16 @@ ms.reviewer: jmartens
 author: cartacioS
 ms.author: sacartac
 ms.date: 04/22/2020
-ms.openlocfilehash: 40d9279754ffab2183561c61ab3e948f4a2c3465
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 3a8e33d72dbec8d2e93b39ea136b52c93166df34
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228461"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021187"
 ---
 # <a name="what-is-automated-machine-learning-automl"></a>什么是自动化机器学习 (AutoML)？
 
-自动化机器学习也称为自动化 ML 或 AutoML，是将机器学习模型开发过程中耗时的反复性任务自动化的过程。 数据科学家、分析师和开发人员可以使用它来生成高度可缩放、高效且高产能的 ML 模型，同时保证模型的质量。 自动化 ML 基于 [Microsoft Research 部门](https://arxiv.org/abs/1705.05355)的突破性技术。
+自动化机器学习也称为自动化 ML 或 AutoML，是将机器学习模型开发过程中耗时的反复性任务自动化的过程。 数据科学家、分析师和开发人员可以使用它来生成高度可缩放、高效且高产能的 ML 模型，同时保证模型的质量。 自动化 ML 基于 [Microsoft Research 部门](https://www.microsoft.com/research/project/automl/)的突破性技术。
 
 传统的机器学习模型开发是资源密集型的，需要具备丰富的领域知识，并需要花费大量的时间来生成和比较数十个模型。 使用自动化机器学习可以缩减生成生产就绪型 ML 模型所需的时间，同时使工作变得更轻松高效。
 
@@ -76,7 +76,7 @@ ms.locfileid: "88228461"
 
 1. **选择是要使用 Python SDK 还是工作室 Web 体验**：了解 [Python SDK 与工作室 Web 体验](#parity)之间的搭配用法。
 
-   * 如果你的编程经验有限或者没有经验，请在 [https://ml.azure.com](https://ml.azure.com/) 上尝试使用 Azure 机器学习工作室 Web 体验  
+   * 如果你的编程经验有限或者没有经验，请在 [https://studio.ml.azure.cn](https://studio.ml.azure.cn/) 上尝试使用 Azure 机器学习工作室 Web 体验  
    * Python 开发人员请查看 [Azure 机器学习 Python SDK](how-to-configure-auto-train.md) 
 
     [!INCLUDE [aml-applies-to-enterprise-sku](../../includes/aml-applies-to-enterprise-sku-inline.md)]  
@@ -202,15 +202,13 @@ ms.locfileid: "88228461"
 * 对数百口油井进行预测性维护
 * 为个人用户定制体验。
 
-有关详细信息，请参阅 GitHub 上的[多模型解决方案加速器](https://aka.ms/many-models)。
-
 ## <a name="automl-in-azure-machine-learning"></a>Azure 机器学习中的 AutoML
 
 Azure 机器学习提供两个用于操作自动化 ML 的体验
 
 * 对于编码经验丰富的客户，可以使用 [Azure 机器学习 Python SDK](https://docs.microsoft.com/python/api/overview/azure/ml/intro?view=azure-ml-py) 
 
-* 编程经验有限/无经验的客户可以使用 [https://ml.azure.com](https://ml.azure.com/) 上的 Azure 机器学习工作室  
+* 编程经验有限/无经验的客户可以使用 [https://studio.ml.azure.cn](https://studio.ml.azure.cn/) 上的 Azure 机器学习工作室  
 
 <a name="parity"></a>
 

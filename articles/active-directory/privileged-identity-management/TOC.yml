@@ -71,6 +71,8 @@
       items:
         - name: 分配角色
           href: pim-resource-roles-assign-roles.md
+        - name: 邀请外部用户
+          href: pim-resource-roles-external-users.md
         - name: 审批请求
           href: pim-resource-roles-approval-workflow.md
         - name: 扩展或续订角色
@@ -122,7 +124,7 @@
 - name: 参考
   items:
     - name: 图形 API
-      href: 'https://developer.microsoft.com/graph/docs/api-reference/v1.0/resources/azure_ad_overview'
+      href: 'https://docs.microsoft.com/graph/api/resources/azure-ad-overview?view=graph-rest-1.0'
     - name: Azure AD CLI
       href: /cli/ad
     - name: 用于 Graph 的 Azure AD PowerShell

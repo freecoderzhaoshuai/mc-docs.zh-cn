@@ -3,7 +3,7 @@ title: 使用访问评审管理来宾访问权限 - Azure AD
 description: 使用 Azure Active Directory 访问评审管理属于组的成员或已分配到应用程序的来宾用户
 services: active-directory
 documentationcenter: ''
-author: msaburnley
+author: barclayn
 manager: daveba
 editor: markwahl-msft
 ms.service: active-directory
@@ -12,21 +12,21 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: conceptual
 ms.subservice: compliance
-ms.date: 05/29/2020
+ms.date: 09/08/2020
 ms.author: v-junlch
 ms.reviewer: mwahl
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 03739b39c23860f07471daf060d97780630b2680
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: 0d7cb69c8fc8038aace6def96639c01ad6126c97
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186996"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593616"
 ---
 # <a name="manage-guest-access-with-azure-ad-access-reviews"></a>使用 Azure AD 访问评审管理来宾访问权限
 
 
-使用 Azure Active Directory (Azure AD)，可以借助 [Azure AD B2B 功能](../b2b/what-is-b2b.md)轻松实现跨组织边界的协作。 [管理员](../b2b/add-users-administrator.md)或[其他用户](../b2b/what-is-b2b.md)可以邀请其他租户中的来宾用户。 此功能也适用于 Microsoft 帐户等社交标识。
+使用 Azure Active Directory (Azure AD)，可以借助 [Azure AD B2B 功能](../external-identities/what-is-b2b.md)轻松实现跨组织边界的协作。 [管理员](../external-identities/add-users-administrator.md)或[其他用户](../external-identities/what-is-b2b.md)可以邀请其他租户中的来宾用户。 此功能也适用于 Microsoft 帐户等社交标识。
 
 可以轻松确保来宾用户拥有适当的访问权限。 为此，可让来宾本人或决策人参与访问评审，鉴定（或“证明”）来宾的访问权限。 审阅者可基于 Azure AD 的建议，针对每个用户就继续访问的需求提供意见。 访问评审完成后，即可进行更改，并删除不再需要访问权限的来宾的访问权限。
 

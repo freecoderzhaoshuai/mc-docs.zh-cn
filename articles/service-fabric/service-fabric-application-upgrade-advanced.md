@@ -3,16 +3,17 @@ title: 高级应用程序升级主题
 description: 本文介绍有关升级 Service Fabric 应用程序的一些高级主题。
 ms.topic: conceptual
 origin.date: 03/11/2020
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 42748064b3a44e61c1235df0649a82a02ccae2a8
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 3042951a31764ce6ffc0215e2835e536b9310e52
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426445"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655119"
 ---
 # <a name="service-fabric-application-upgrade-advanced-topics"></a>Service Fabric 应用程序升级：高级主题
 
@@ -26,7 +27,7 @@ ms.locfileid: "87426445"
 
 对于计划内无状态实例停机（例如，应用程序/群集升级或节点停用），由于实例关闭后公开的终结点被删除，因此连接可能会断开，从而导致强制关闭连接。
 
-为了避免这种情况，请通过在服务配置中添加“实例关闭延迟持续时间”来配置 RequestDrain 功能，以允许来自群集内部的现有请求在公开的终结点上排出 。 这是通过在延迟开始之前删除无状态实例播发的终结点，然后再关闭实例实现的。 此延迟可使现有请求在实例实际关闭之前正常排空。 在开始延迟时，客户端通过回调函数获取有关终结点发生更改的通知，因此它们可以重新解析终结点，并避免向正在停止的实例发送新请求。 这些请求可能源自使用[反向代理](/service-fabric/service-fabric-reverseproxy)的客户端，或使用服务终结点解析 API 和通知模型 ([ServiceNotificationFilterDescription](https://docs.microsoft.com/dotnet/api/system.fabric.description.servicenotificationfilterdescription?view=azure-dotnet)) 来更新终结点的客户端。
+为了避免这种情况，请通过在服务配置中添加“实例关闭延迟持续时间”来配置 RequestDrain 功能，以允许来自群集内部的现有请求在公开的终结点上排出 。 这是通过在延迟开始之前删除无状态实例播发的终结点，然后再关闭实例实现的。 此延迟可使现有请求在实例实际关闭之前正常排空。 在开始延迟时，客户端通过回调函数获取有关终结点发生更改的通知，因此它们可以重新解析终结点，并避免向正在停止的实例发送新请求。 这些请求可能源自使用[反向代理](./service-fabric-reverseproxy.md)的客户端，或使用服务终结点解析 API 和通知模型 ([ServiceNotificationFilterDescription](https://docs.azure.cn/dotnet/api/system.fabric.description.servicenotificationfilterdescription?view=azure-dotnet)) 来更新终结点的客户端。
 
 ### <a name="service-configuration"></a>服务配置
 

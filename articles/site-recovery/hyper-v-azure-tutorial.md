@@ -1,20 +1,22 @@
 ---
 title: 使用 Azure Site Recovery 设置 Hyper-V 灾难恢复
 description: 了解如何使用 Site Recovery 为本地 Hyper-V VM（不包含 VMM）设置到 Azure 的灾难恢复。
-author: rockboyfor
-manager: digimobile
+manager: carmonm
 ms.service: site-recovery
 ms.topic: tutorial
 origin.date: 11/12/2019
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
 ms.custom: MVC
-ms.openlocfilehash: 41f4dff4f6acfd1aefd31b8f07743bdfa369086e
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: bd8f04040b3e0b0f10a7eac9d92b685b2d0903ad
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440572"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655004"
 ---
 # <a name="set-up-disaster-recovery-of-on-premises-hyper-v-vms-to-azure"></a>对 Azure 设置本地 Hyper-V VM 的灾难恢复
 
@@ -22,7 +24,7 @@ ms.locfileid: "84440572"
 
 此教程为系列教程中的第三个教程。 本教程演示如何设置本地 Hyper-V VM 到 Azure 的灾难恢复。 本教程适用于不由 Microsoft System Center Virtual Machine Manager (VMM) 托管的 Hyper-V VM。
 
-本教程介绍如何执行下列操作：
+在本教程中，你将了解如何执行以下操作：
 
 > [!div class="checklist"]
 > * 选择复制源和目标。
@@ -31,14 +33,14 @@ ms.locfileid: "84440572"
 > * 为 VM 启用复制。
 
 > [!NOTE]
-> 教程介绍了某个方案的最简单部署路径。 它们尽可能使用默认选项，并且不显示所有可能的设置和路径。 有关详细说明，请查看 [Site Recovery 文档](/site-recovery)的“操作指南”部分所列的文章。
+> 教程介绍了某个方案的最简单部署路径。 它们尽可能使用默认选项，并且不显示所有可能的设置和路径。 有关详细说明，请查看 [Site Recovery 文档](./index.yml)的“操作指南”部分所列的文章。
 
-## <a name="before-you-begin"></a>准备阶段
+## <a name="before-you-begin"></a>开始之前
 
 此教程为系列教程中的第三个教程。 本教程假设你已完成前面教程中的任务：
 
 1. [准备 Azure](tutorial-prepare-azure.md)
-2. [准备本地 Hyper-V](tutorial-prepare-on-premises-hyper-v.md)
+2. [准备本地 Hyper-V](./hyper-v-prepare-on-premises-tutorial.md)
 
 ## <a name="select-a-replication-goal"></a>选择复制目标
 
@@ -48,16 +50,16 @@ ms.locfileid: "84440572"
 4. 在“要将计算机复制到何处?”中，选择“复制到 Azure” 。
 5. 在“计算机是否已虚拟化?”中，选择“是，带有 Hyper-V” 。
 6. 在“是否要使用 System Center VMM 管理 Hyper-V 主机?”中，选择“否”。
-7. 选择“确定” 。
+7. 选择“确定”。
 
-    ![复制目标](./media/hyper-v-azure-tutorial/replication-goal.png)
+    :::image type="content" source="./media/hyper-v-azure-tutorial/replication-goal.png" alt-text="准备基础结构中的保护目标选项的屏幕截图。":::
 
 ## <a name="confirm-deployment-planning"></a>确认部署规划
 
 1. 在“部署规划”中，若要规划大型部署，请通过页面上的链接下载适用于 Hyper-V 的部署规划器。 [详细了解](hyper-v-deployment-planner-overview.md) Hyper-V 部署规划。
 2. 本教程不需要使用部署规划器。 在“是否已完成部署规划?”中选择“我将稍后进行”，然后选择“确定”。
 
-    ![部署规划](./media/hyper-v-azure-tutorial/deployment-planning.png)
+    :::image type="content" source="./media/hyper-v-azure-tutorial/deployment-planning.png" alt-text="准备基础结构中的部署规划选项的屏幕截图。":::
 
 ## <a name="set-up-the-source-environment"></a>设置源环境
 
@@ -67,17 +69,17 @@ ms.locfileid: "84440572"
 2. 在“准备源”中，选择“+ Hyper-V 站点” 。
 3. 在“创建 Hyper-V 站点”中，指定站点名称。 我们将使用 **ContosoHyperVSite**。
 
-    ![Hyper-V 站点](./media/hyper-v-azure-tutorial/hyperv-site.png)
+    :::image type="content" source="./media/hyper-v-azure-tutorial/hyperv-site.png" alt-text="准备基础结构中的 Hyper-V 站点选择屏幕截图。":::
 
 4. 创建站点后，在“准备源” > “步骤 1: 选择 Hyper-V 站点”中，选择创建的站点。
 5. 选择“+ Hyper-V 服务器”。
 
-    ![Hyper-V Server](./media/hyper-v-azure-tutorial/hyperv-server.png)
+    :::image type="content" source="./media/hyper-v-azure-tutorial/hyperv-server.png" alt-text="准备基础结构中的 Hyper-V 服务器选择屏幕截图。":::
 
 6. 下载 Azure Site Recovery 提供程序的安装程序。
 7. 下载保管库注册密钥。 需要使用此密钥来安装提供程序。 生成的密钥有效期为 5 天。
 
-    ![下载提供程序和注册密钥](./media/hyper-v-azure-tutorial/download.png)
+    :::image type="content" source="./media/hyper-v-azure-tutorial/download.png" alt-text="用于下载提供程序和注册密钥的选项的屏幕截图。":::
 
 ### <a name="install-the-provider"></a>安装提供程序
 
@@ -87,7 +89,7 @@ ms.locfileid: "84440572"
 2. 在“Azure Site Recovery 提供程序安装程序向导”>“Microsoft 更新”中，选择使用 Microsoft 更新检查提供程序更新。
 3. 在“安装”中接受提供程序和代理的默认安装位置，并选择“安装” 。
 4. 安装后，在“Azure Site Recovery 注册向导”>“保管库设置”中，选择“浏览”，然后在“密钥文件”中选择下载的保管库密钥文件  。
-5. 指定 Azure Site Recovery 订阅、保管库名称 (**ContosoVMVault**) 和 Hyper-V 服务器所属的 Hyper-V 站点 (**ContosoHyperVSite**)。
+5. 指定 Azure Site Recovery 订阅、保管库名称 (ContosoVMVault) 和 Hyper-V 服务器所属的 Hyper-V 站点 (ContosoHyperVSite) 。
 6. 在“代理设置”中，选择“在不使用代理的情况下直接连接到 Azure Site Recovery” 。
 7. 在保管库中注册服务器后，在“注册”中选择“完成” 。
 
@@ -119,7 +121,7 @@ Azure Site Recovery 将检索 Hyper-V 服务器中的元数据，该服务器显
 2. 选择在故障转移后要在其中创建 Azure VM 的订阅和资源组“ContosoRG”。
 3. 选择“资源管理器”部署模型。
 
-Site Recovery 检查是否有一个或多个兼容的 Azure 存储帐户和网络。
+Site Recovery 会检查是否有一个或多个兼容的 Azure 存储帐户和网络。
 
 ## <a name="set-up-a-replication-policy"></a>设置复制策略
 
@@ -132,7 +134,7 @@ Site Recovery 检查是否有一个或多个兼容的 Azure 存储帐户和网�
     - “初始复制开始时间”指示初始复制会立即开始。
 4. 创建策略后，选择“确定”。 当创建新策略时，该策略自动与指定的 Hyper-V 站点关联。 在本教程中为 ContosoHyperVSite。
 
-    ![复制策略](./media/hyper-v-azure-tutorial/replication-policy.png)
+    :::image type="content" source="./media/hyper-v-azure-tutorial/replication-policy.png" alt-text="复制策略":::
 
 ## <a name="enable-replication"></a>启用复制
 

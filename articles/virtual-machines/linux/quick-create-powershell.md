@@ -5,19 +5,19 @@ author: Johnnytechn
 ms.service: virtual-machines-linux
 ms.topic: quickstart
 ms.workload: infrastructure
-ms.date: 06/05/2020
+ms.date: 09/03/2020
 ms.author: v-johya
 ms.custom: mvc
-ms.openlocfilehash: fee442fd0be6d58ece2b58088ee0d57446164176
-ms.sourcegitcommit: 285649db9b21169f3136729c041e4d04d323229a
+ms.openlocfilehash: 345d8268090edb2e68a98759e814e03bb829c9a4
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84683850"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057678"
 ---
 # <a name="quickstart-create-a-linux-virtual-machine-in-azure-with-powershell"></a>快速入门：使用 PowerShell 在 Azure 中创建 Linux 虚拟机
 
-Azure PowerShell 模块用于从 PowerShell 命令行或脚本创建和管理 Azure 资源。 本快速入门展示了如何使用 Azure PowerShell 模块在 Azure 中部署 Linux 虚拟机 (VM)。 本快速入门使用 Canonical 提供的 Ubuntu 16.04 LTS 市场映像。 若要查看运行中的 VM，也可以通过 SSH 登录到该 VM 并安装 NGINX Web 服务器。
+Azure PowerShell 模块用于从 PowerShell 命令行或脚本创建和管理 Azure 资源。 本快速入门展示了如何使用 Azure PowerShell 模块在 Azure 中部署 Linux 虚拟机 (VM)。 本快速入门使用 Canonical 提供的 Ubuntu 18.04 LTS 市场映像。 若要查看运行中的 VM，也可以通过 SSH 登录到该 VM 并安装 NGINX Web 服务器。
 
 如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
 
@@ -27,18 +27,16 @@ Azure PowerShell 模块用于从 PowerShell 命令行或脚本创建和管理 Az
 
 ## <a name="create-ssh-key-pair"></a>创建 SSH 密钥对
 
-需要一个 SSH 密钥对才能完成本快速入门。 如果已有一个 SSH 密钥对，则可以跳过此步骤。
+使用 [ssh-keygen](https://www.ssh.com/ssh/keygen/) 创建 SSH 密钥对。 如果已有一个 SSH 密钥对，则可以跳过此步骤。
 
-打开 bash shell，使用 [ssh-keygen](https://www.ssh.com/ssh/keygen/) 创建一个 SSH 密钥对。
-
-<!-- Not Available on [Azure Cloud Shell](https://shell.azure.com/bash)--> 
 
 ```azurepowershell
-ssh-keygen -t rsa -b 2048
+ssh-keygen -m PEM -t rsa -b 4096
 ```
 
-有关如何创建 SSH 密钥对的更多详细信息，包括 PuTTy 的用法，请参阅[如何将 SSH 密钥与 Windows 配合使用](ssh-from-windows.md)。
+系统会提示为密钥对提供文件名，也可以点击 Enter 以使用 `/home/<username>/.ssh/id_rsa` 默认位置。 如果需要，还能够为密钥创建密码。
 
+有关如何创建 SSH 密钥对的更多详细信息，请参阅[如何将 SSH 密钥与 Windows 配合使用](ssh-from-windows.md)。
 <!--Not Available on If you create your SSH key pair using the Cloud Shell, it will be stored in a container image in a [storage account that is automatically created by Cloud Shell](/cloud-shell/persisting-shell-storage). Don't delete the storage account, or the files share within it, until after you have retrieved your keys or you will lose access to the VM. -->
 <!--Not Available on Cloud Shell-->
 
@@ -47,7 +45,7 @@ ssh-keygen -t rsa -b 2048
 使用 [New-AzResourceGroup](https://docs.microsoft.com/powershell/module/az.resources/new-azresourcegroup) 创建 Azure 资源组。 资源组是在其中部署和管理 Azure 资源的逻辑容器：
 
 ```azurepowershell
-New-AzResourceGroup -Name "myResourceGroup" -Location "ChinaEast"
+New-AzResourceGroup -Name "myResourceGroup" -Location "ChinaEast2"
 ```
 
 ## <a name="create-virtual-network-resources"></a>创建虚拟网络资源
@@ -63,7 +61,7 @@ $subnetConfig = New-AzVirtualNetworkSubnetConfig `
 # Create a virtual network
 $vnet = New-AzVirtualNetwork `
   -ResourceGroupName "myResourceGroup" `
-  -Location "ChinaEast" `
+  -Location "ChinaEast2" `
   -Name "myVNET" `
   -AddressPrefix 192.168.0.0/16 `
   -Subnet $subnetConfig
@@ -71,7 +69,7 @@ $vnet = New-AzVirtualNetwork `
 # Create a public IP address and specify a DNS name
 $pip = New-AzPublicIpAddress `
   -ResourceGroupName "myResourceGroup" `
-  -Location "ChinaEast" `
+  -Location "ChinaEast2" `
   -AllocationMethod Static `
   -IdleTimeoutInMinutes 4 `
   -Name "mypublicdns$(Get-Random)"
@@ -107,7 +105,7 @@ $nsgRuleWeb = New-AzNetworkSecurityRuleConfig `
 # Create a network security group
 $nsg = New-AzNetworkSecurityGroup `
   -ResourceGroupName "myResourceGroup" `
-  -Location "ChinaEast" `
+  -Location "ChinaEast2" `
   -Name "myNetworkSecurityGroup" `
   -SecurityRules $nsgRuleSSH,$nsgRuleWeb
 ```
@@ -119,7 +117,7 @@ $nsg = New-AzNetworkSecurityGroup `
 $nic = New-AzNetworkInterface `
   -Name "myNic" `
   -ResourceGroupName "myResourceGroup" `
-  -Location "ChinaEast" `
+  -Location "ChinaEast2" `
   -SubnetId $vnet.Subnets[0].Id `
   -PublicIpAddressId $pip.Id `
   -NetworkSecurityGroupId $nsg.Id
@@ -139,7 +137,7 @@ $cred = New-Object System.Management.Automation.PSCredential ("azureuser", $secu
 # Create a virtual machine configuration
 $vmConfig = New-AzVMConfig `
   -VMName "myVM" `
-  -VMSize "Standard_D1" | `
+  -VMSize "Standard_D1_v2" | `
 Set-AzVMOperatingSystem `
   -Linux `
   -ComputerName "myVM" `
@@ -148,7 +146,7 @@ Set-AzVMOperatingSystem `
 Set-AzVMSourceImage `
   -PublisherName "Canonical" `
   -Offer "UbuntuServer" `
-  -Skus "16.04-LTS" `
+  -Skus "18.04-LTS" `
   -Version "latest" | `
 Add-AzVMNetworkInterface `
   -Id $nic.Id
@@ -160,13 +158,14 @@ Add-AzVMSshPublicKey `
   -KeyData $sshPublicKey `
   -Path "/home/azureuser/.ssh/authorized_keys"
 ```
+<!--Correct in MC:-VMSize Standard_D1_v2 and -Location chinaeast2-->
 
 现在，组合前面的配置定义来使用 [New-AzVM](https://docs.microsoft.com/powershell/module/az.compute/new-azvm) 创建虚拟机：
 
 ```azurepowershell
 New-AzVM `
   -ResourceGroupName "myResourceGroup" `
-  -Location chinaeast -VM $vmConfig
+  -Location chinaeast2 -VM $vmConfig
 ```
 
 部署 VM 需要数分钟。 部署完成后，请转到下一部分。
@@ -179,9 +178,7 @@ New-AzVM `
 Get-AzPublicIpAddress -ResourceGroupName "myResourceGroup" | Select "IpAddress"
 ```
 
-使用创建 SSH 密钥对时使用过的 bash shell（例如本地 bash shell）将 SSH 连接命令粘贴到 shell 中，以便创建一个 SSH 会话。
-
-<!--Not Available on [Azure Cloud Shell](https://shell.azure.com/bash)-->
+使用用于创建 SSH 密钥对的相同 shell，将以下命令粘贴到 shell 中以创建 SSH 会话。 将 10.111.12.123 替换为 VM 的 IP 地址。
 
 ```bash
 ssh azureuser@10.111.12.123
@@ -218,7 +215,7 @@ Remove-AzResourceGroup -Name "myResourceGroup"
 
 ## <a name="next-steps"></a>后续步骤
 
-在本快速入门中，你部署了一台简单的虚拟机、创建了网络安全组及其规则，并安装了一台基本 Web 服务器。 若要详细了解 Azure 虚拟机，请继续学习 Linux VM 教程。
+在本快速入门中，你部署了一台简单的虚拟机、一条网络安全组规则组和规则，并安装了一台基本 Web 服务器。 若要详细了解 Azure 虚拟机，请继续学习 Linux VM 的教程。
 
 > [!div class="nextstepaction"]
 > [Azure Linux 虚拟机教程](./tutorial-manage-vm.md)

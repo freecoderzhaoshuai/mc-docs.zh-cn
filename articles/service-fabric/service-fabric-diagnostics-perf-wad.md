@@ -1,17 +1,19 @@
 ---
 title: 使用 Windows Azure 诊断监视性能
 description: 使用 Windows Azure 诊断来收集有关 Azure Service Fabric 群集的性能计数器。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 11/21/2018
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 3d1c6a10b35f1637132c50a8e540219ace07d90d
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 33ed8adfafa24e97ee41afa32d226939e2fc995c
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540680"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655514"
 ---
 # <a name="performance-monitoring-with-the-windows-azure-diagnostics-extension"></a>使用 Windows Azure 诊断扩展进行性能监视
 
@@ -195,7 +197,7 @@ ms.locfileid: "77540680"
 
 ## <a name="next-steps"></a>后续步骤
 * 收集群集的更多性能计数器。 有关应收集的计数器列表，请参阅[性能指标](service-fabric-diagnostics-event-generation-perf.md)。
-* [将监视和诊断与 Windows VM 和 Azure 资源管理器模板配合使用](../virtual-machines/windows/extensions-diagnostics-template.md)，以进一步修改 `WadCfg`，包括配置向其发送诊断数据的其他存储帐户。
+* [将监视和诊断与 Windows VM 和 Azure 资源管理器模板配合使用](../virtual-machines/extensions/diagnostics-template.md)，以进一步修改 `WadCfg`，包括配置向其发送诊断数据的其他存储帐户。
 * 访问 [WadCfg 生成器](https://azure.github.io/azure-diagnostics-tools/config-builder/)以从头开始生成模板，并确保语法正确。
 
     <!--Duplicate on (https://azure.github.io/azure-diagnostics-tools/config-builder/)-->

@@ -1,18 +1,20 @@
 ---
 title: 通过 Azure Site Recovery 管理配置服务器，以便进行灾难恢复
-author: rockboyfor
 manager: digimobile
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 04/15/2019
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 25f4852c9f73bd2b6ea83005a00aba54f2469a84
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: 9f1b5ac9b6f2e1770ad7ab460a09da673e7b7647
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440505"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655467"
 ---
 # <a name="manage-the-configuration-server-for-vmware-vmphysical-server-disaster-recovery"></a>管理配置服务器以便进行 VMware VM/物理服务器灾难恢复
 
@@ -41,7 +43,7 @@ ms.locfileid: "84440505"
 1. 若要更新用于连接到 VMware 服务器以便自动发现 VMware VM 的凭据，请在[登录](#access-configuration-server)后选择帐户并单击“编辑”。
 2. 输入新凭据，然后选择“确定”。
 
-    ![修改 VMware](./media/vmware-azure-manage-configuration-server/modify-vmware-server.png)
+    :::image type="content" source="./media/vmware-azure-manage-configuration-server/modify-vmware-server.png" alt-text="修改 VMware":::
 
 此外，还可以通过 CSPSConfigtool.exe 修改凭据。
 
@@ -57,7 +59,7 @@ ms.locfileid: "84440505"
 2. 选择要修改的帐户，单击“编辑”
 3. 输入新凭据，然后选择“确定”。
 
-    ![修改移动服务凭据](./media/vmware-azure-manage-configuration-server/modify-mobility-credentials.png)
+    :::image type="content" source="./media/vmware-azure-manage-configuration-server/modify-mobility-credentials.png" alt-text="修改移动服务凭据":::
 
 还可以通过 CSPSConfigtool.exe 修改凭据。
 
@@ -71,7 +73,7 @@ ms.locfileid: "84440505"
 
 1. 在[登录](#access-configuration-server)后，选择“管理虚拟机凭据”。
 2. 单击“添加虚拟机凭据”。
-    ![添加虚拟机凭据](media/vmware-azure-manage-configuration-server/add-mobility-credentials.png)
+    :::image type="content" source="media/vmware-azure-manage-configuration-server/add-mobility-credentials.png" alt-text="添加虚拟机凭据":::
 3. 输入新凭据，单击“添加”。
 
 还可以通过 CSPSConfigtool.exe 添加凭据。
@@ -178,16 +180,16 @@ ms.locfileid: "84440505"
 
 1. 在保管库中，转到“管理” > “Site Recovery 基础结构” > “配置服务器”。
 2. 如果有可用的更新，链接将显示在“代理版本”> 列中。
-    ![更新](./media/vmware-azure-manage-configuration-server/update2.png)
+    :::image type="content" source="./media/vmware-azure-manage-configuration-server/update2.png" alt-text="更新":::
 3. 将更新安装程序文件下载到配置服务器上。
 
-    ![更新](./media/vmware-azure-manage-configuration-server/update1.png)
+    :::image type="content" source="./media/vmware-azure-manage-configuration-server/update1.png" alt-text="更新":::
 
 4. 双击以运行安装程序。
 5. 安装程序检测计算机上运行的当前版本。 单击“是”开始升级。
 6. 升级完成时，验证服务器配置。
 
-    ![更新](./media/vmware-azure-manage-configuration-server/update3.png)
+    :::image type="content" source="./media/vmware-azure-manage-configuration-server/update3.png" alt-text="更新":::
 
 7. 单击“完成”关闭安装程序。
 8. 若要升级其余的 Site Recovery 组件，请参阅我们的[升级指南](../site-recovery/service-updates-how-to.md#between-an-on-premises-vmware-or-physical-site-to-azure)。
@@ -254,7 +256,7 @@ ProxyPassword="Password"
 4. 在保管库中，打开“Site Recovery 基础结构” > “配置服务器”。 
 5. 选择要删除的配置服务器。 然后，在“详细信息”页上，选择“删除”。
 
-    ![删除配置服务器](./media/vmware-azure-manage-configuration-server/delete-configuration-server.png)
+    :::image type="content" source="./media/vmware-azure-manage-configuration-server/delete-configuration-server.png" alt-text="删除配置服务器":::
 
 ### <a name="delete-with-powershell"></a>使用 PowerShell 进行删除
 
@@ -307,4 +309,4 @@ ProxyPassword="Password"
 
 查看有关设置 [VMware VM](vmware-azure-tutorial.md) 到 Azure 的灾难恢复的教程。
 
-<!--Update_Description: update meta properties, wording update, update link -->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -1,24 +1,26 @@
 ---
 title: 教程 - 在 Azure Service Fabric 上创建 Java 应用
 description: 本教程介绍如何创建一个包含前端的 Reliable Services Java 应用程序，并创建 Reliable Services 有状态后端，然后将该应用程序部署到群集。
-author: rockboyfor
 ms.topic: tutorial
 origin.date: 09/01/2018
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.custom: mvc, seo-java-july2019, seo-java-august2019, seo-java-september2019
-ms.openlocfilehash: 4ff98d99f65097c13d0b8e7612ccd6e6e9b78f4f
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.custom: mvc, seo-java-july2019, seo-java-august2019, seo-java-september2019, devx-track-java, devx-track-javascript
+ms.openlocfilehash: 81e1253ffbc3400b45026156aad28cdce0ff3781
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356283"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655163"
 ---
 # <a name="tutorial-create-an-application-with-a-java-api-front-end-service-and-a-stateful-back-end-service-on-azure-service-fabric"></a>教程：在 Azure Service Fabric 上创建包含 Java API 前端服务和有状态后端服务的应用程序
 
 本教程是一个系列中的第一部分。 完成后，将生成一个带 Java Web 前端的 Voting 应用程序，用于将投票结果保存到 Azure Service Fabric 的有状态后端服务中。 本教程系列要求你有一台工作的 Mac OSX 或 Linux 开发人员计算机。 如果不想手动创建投票应用程序，可以[下载已完成应用程序的源代码](https://github.com/Azure-Samples/service-fabric-java-quickstart)，跳到[大致了解投票示例应用程序](service-fabric-tutorial-create-java-app.md#walk-through-the-voting-sample-application)。 此外，请考虑以下 [Java 可靠服务快速入门](service-fabric-quickstart-java-reliable-services.md)。
 
-![Service Fabric 投票示例](./media/service-fabric-tutorial-create-java-app/service-fabric-java-voting-app-sample.png)
+:::image type="content" source="./media/service-fabric-tutorial-create-java-app/service-fabric-java-voting-app-sample.png" alt-text="Service Fabric 投票示例":::
 
 在此系列教程中，你将学习如何：
 > [!div class="checklist"]
@@ -52,11 +54,11 @@ ms.locfileid: "84356283"
 
 2. 通过单击“文件” > “新建” > “其他” > “Service Fabric” > “Service Fabric 项目”来创建项目。
 
-    ![Eclipse 中的新 Service Fabric 项目](./media/service-fabric-tutorial-create-java-app/service-fabric-project-wizard.png)
+    :::image type="content" source="./media/service-fabric-tutorial-create-java-app/service-fabric-project-wizard.png" alt-text="Eclipse 中的新 Service Fabric 项目":::
 
-3. 在“ServiceFabric 项目向导”对话框中，将项目命名为 Voting，然后选择“下一步”。  
+3. 在“ServiceFabric 项目向导”对话框中，将项目命名为 Voting，然后选择“下一步”。
 
-    ![在新建服务对话框中选择 Java 无状态服务](./media/service-fabric-tutorial-create-java-app/name-service-fabric-project-wizard.png) 
+    :::image type="content" source="./media/service-fabric-tutorial-create-java-app/name-service-fabric-project-wizard.png" alt-text="在新建服务对话框中选择 Java 无状态服务"::: 
 
 4. 在“添加服务”页中，选择“无状态服务”，然后将服务命名为“VotingWeb”  。 选择“完成”以创建该项目。
 
@@ -87,7 +89,7 @@ ms.locfileid: "84356283"
 
 3. 将文件夹命名为 *wwwroot* 并选择“完成”。
 
-    ![Eclipse 创建 wwwroot 文件夹](./media/service-fabric-tutorial-create-java-app/create-wwwroot-folder.png)
+    :::image type="content" source="./media/service-fabric-tutorial-create-java-app/create-wwwroot-folder.png" alt-text="Eclipse 创建 wwwroot 文件夹":::
 
 4. 将名为 **index.html** 的文件添加到 **wwwroot**，然后将以下内容粘贴到该文件夹中。
 
@@ -220,7 +222,7 @@ protected List<ServiceInstanceListener> createServiceInstanceListeners() {
 
 ### <a name="add-the-httpcommunicationlistenerjava-file"></a>添加 HTTPCommunicationListener.java 文件
 
-HTTP 通信侦听器充当一个控制器，可设置 HTTP 服务器并公开用于定义投票操作的 API。 右键单击 VotingWeb/src/statelessservice 文件夹中的 statelessservice 包，然后选择“新建” > “文件”。   将文件命名为 HttpCommunicationListener.java，然后选择“完成”。
+HTTP 通信侦听器充当一个控制器，可设置 HTTP 服务器并公开用于定义投票操作的 API。 右键单击 VotingWeb/src/statelessservice 文件夹中的 statelessservice 包，然后选择“新建” > “文件”。  将文件命名为 HttpCommunicationListener.java，然后选择“完成”。
 
 <!--MOONCAKE: CORRECT ON **NEW** > **FILE** -->
 
@@ -410,7 +412,7 @@ Service Fabric 允许使用 Reliable Collections 直接在服务内以一致、�
 
 3. Eclipse 会创建一个服务项目，并在包资源管理器中显示该项目。
 
-    ![Eclipse 项目资源管理器](./media/service-fabric-tutorial-create-java-app/service-fabric-package-explorer-java.png)
+    :::image type="content" source="./media/service-fabric-tutorial-create-java-app/service-fabric-package-explorer-java.png" alt-text="Eclipse 项目资源管理器":::
 
 ### <a name="add-the-votingdataservicejava-file"></a>添加 VotingDataService.java 文件
 
@@ -550,7 +552,7 @@ class VotingDataService extends StatefulService implements VotingRPC {
 
 1. 在包资源管理器中右键单击“Voting”项目，然后单击“新建” > “文件夹”  。 将文件夹命名为 **VotingRPC/src/rpcmethods**。
 
-    ![在 Eclipse 包资源管理器中创建 VotingRPC 包](./media/service-fabric-tutorial-create-java-app/create-voting-rpc-package-java.png)
+    :::image type="content" source="./media/service-fabric-tutorial-create-java-app/create-voting-rpc-package-java.png" alt-text="在 Eclipse 包资源管理器中创建 VotingRPC 包":::
 
 3. 在 *Voting/VotingRPC/src/rpcmethods* 下创建名为 *VotingRPC.java* 的文件，然后将以下内容粘贴到该 **VotingRPC.java** 文件中。 
 
@@ -713,7 +715,7 @@ class VotingDataService extends StatefulService implements VotingRPC {
 - Web 前端服务 (VotingWeb) - Java Web 前端服务，可提供网页服务，并公开用于与后端服务通信的 API。
 - 后端服务 (VotingDataService) - Java Web 服务，其定义的方法可以通过远程过程调用 (RPC) 来调用，以便保存投票结果。
 
-![投票示例关系图](./media/service-fabric-tutorial-create-java-app/walkthrough-java-voting.png)
+:::image type="content" source="./media/service-fabric-tutorial-create-java-app/walkthrough-java-voting.png" alt-text="投票示例关系图":::
 
 在应用程序中执行操作（添加项目、投票、删除项目）时，会发生以下事件：
 1. JavaScript 将相应的请求作为 HTTP 请求发送给 Web 前端服务中的 Web API。
@@ -884,7 +886,7 @@ class VotingDataService extends StatefulService implements VotingRPC {
 
 现在可以将应用程序部署到本地 Service Fabric 群集了。
 
-1. 在包资源管理器中右键单击“Voting”项目，然后选择“Service Fabric” > “生成应用程序”以生成应用程序。  
+1. 在包资源管理器中右键单击“Voting”项目，然后选择“Service Fabric” > “生成应用程序”以生成应用程序。
 
 2. 运行本地 Service Fabric 群集。 此步骤取决于开发环境（Mac 或 Linux）。
 
@@ -902,8 +904,8 @@ class VotingDataService extends StatefulService implements VotingRPC {
     ```
     请参阅 [Linux 设置指南](service-fabric-get-started-linux.md)中的更多详细说明。
 
-4. 在适用于 Eclipse 的包资源管理器中右键单击“Voting”项目，然后选择“Service Fabric” > “发布应用程序”   
-5. 在“发布应用程序”窗口的下拉列表中，选择“Local.json”并选择“发布”。  
+4. 在适用于 Eclipse 的包资源管理器中右键单击“Voting”项目，然后选择“Service Fabric” > “发布应用程序” 
+5. 在“发布应用程序”窗口的下拉列表中，选择“Local.json”并选择“发布”。
 6. 转到 Web 浏览器并访问 http:\//localhost:8080，以便查看在本地 Service Fabric 群集上运行的应用程序。 
 
 ## <a name="next-steps"></a>后续步骤

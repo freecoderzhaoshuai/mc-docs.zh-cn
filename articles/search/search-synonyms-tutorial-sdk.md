@@ -8,13 +8,14 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 07/20/2020
-ms.openlocfilehash: 153d1e16477cc8f52bab215be23b652b18127429
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 67ae46075dfe3de7761696012a7e42145f535d44
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471795"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021562"
 ---
 # <a name="example-add-synonyms-for-azure-cognitive-search-in-c"></a>示例：使用 C# 为 Azure 认知搜索添加同义词
 
@@ -40,7 +41,7 @@ ms.locfileid: "86471795"
 * [Visual Studio](https://www.visualstudio.com/downloads/)
 * [Azure 认知搜索服务](search-create-service-portal.md)
 * [Microsoft.Azure.Search .NET 库](https://docs.microsoft.com/dotnet/api/overview/azure/search)
-* [如何通过 .NET 应用程序使用 Azure 认知搜索](https://docs.azure.cn/search/search-howto-dotnet-sdk)
+* [如何通过 .NET 应用程序使用 Azure 认知搜索](./search-howto-dotnet-sdk.md)
 
 ## <a name="overview"></a>概述
 
@@ -78,7 +79,7 @@ ms.locfileid: "86471795"
       Console.ReadKey();
   }
 ```
-有关如何创建和填充示例索引的步骤，请参阅[如何使用 .NET 应用程序中的 Azure 认知搜索](https://docs.azure.cn/search/search-howto-dotnet-sdk)。
+有关如何创建和填充示例索引的步骤，请参阅[如何使用 .NET 应用程序中的 Azure 认知搜索](./search-howto-dotnet-sdk.md)。
 
 ## <a name="before-queries"></a>“启用前”查询
 

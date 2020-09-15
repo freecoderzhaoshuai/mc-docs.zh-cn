@@ -5,16 +5,17 @@ description: 了解如何使用 Azure 文件动态创建永久性卷，以便与
 services: container-service
 ms.topic: article
 origin.date: 07/01/2020
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
-ms.openlocfilehash: 7aa45cbf376d48247c42bb9b4b4c2a0e513484a5
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: c4a08a7c5fb68ac67da9e13d4cd332975d78ead0
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842652"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021551"
 ---
 # <a name="dynamically-create-and-use-a-persistent-volume-with-azure-files-in-azure-kubernetes-service-aks"></a>在 Azure Kubernetes 服务 (AKS) 中动态创建永久性卷并将其用于 Azure 文件
 
@@ -84,7 +85,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: azurefile
+  storageClassName: my-azurefile
   resources:
     requests:
       storage: 5Gi
@@ -216,18 +217,18 @@ parameters:
 
 <!-- LINKS - internal -->
 
-[az-group-create]: https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-create
-[az-group-list]: https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-list
-[az-resource-show]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-show
-[az-storage-account-create]: https://docs.azure.cn/cli/storage/account?view=azure-cli-latest#az-storage-account-create
-[az-storage-create]: https://docs.azure.cn/cli/storage/account?view=azure-cli-latest#az-storage-account-create
-[az-storage-key-list]: https://docs.azure.cn/cli/storage/account/keys?view=azure-cli-latest#az-storage-account-keys-list
-[az-storage-share-create]: https://docs.azure.cn/cli/storage/share?view=azure-cli-latest#az-storage-share-create
+[az-group-create]: https://docs.azure.cn/cli/group#az-group-create
+[az-group-list]: https://docs.azure.cn/cli/group#az-group-list
+[az-resource-show]: https://docs.microsoft.com/cli/azure/aks#az_aks_show
+[az-storage-account-create]: https://docs.azure.cn/cli/storage/account#az-storage-account-create
+[az-storage-create]: https://docs.azure.cn/cli/storage/account#az-storage-account-create
+[az-storage-key-list]: https://docs.azure.cn/cli/storage/account/keys#az-storage-account-keys-list
+[az-storage-share-create]: https://docs.azure.cn/cli/storage/share#az-storage-share-create
 [mount-options]: #mount-options
 [aks-quickstart-cli]: kubernetes-walkthrough.md
 [aks-quickstart-portal]: kubernetes-walkthrough-portal.md
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
-[az-aks-show]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-show
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
+[az-aks-show]: https://docs.microsoft.com/cli/azure/aks#az_aks_show
 [storage-skus]: ../storage/common/storage-redundancy.md
 [kubernetes-rbac]: concepts-identity.md#role-based-access-controls-rbac
 [operator-best-practices-storage]: operator-best-practices-storage.md

@@ -1,19 +1,21 @@
 ---
 title: 使用 Azure Site Recovery 设置 Active Directory/DNS 灾难恢复
 description: 本文介绍如何使用 Azure Site Recovery 实现 Active Directory 和 DNS 的灾难恢复解决方案。
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 04/01/2020
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: b40b8fcbb7bc41ef1d94e0f5a582e9ea76a4a462
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: 58a3373871bb042ae136d5b5bb4ec540a2cd99a9
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440546"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655491"
 ---
 # <a name="set-up-disaster-recovery-for-active-directory-and-dns"></a>为 Active Directory 和 DNS 设置灾难恢复
 
@@ -26,7 +28,7 @@ ms.locfileid: "84440546"
 ## <a name="prerequisites"></a>先决条件
 
 - 如果要复制到 Azure，请[准备 Azure 资源](tutorial-prepare-azure.md)，包括订阅、Azure 虚拟网络、存储帐户和恢复服务保管库。
-- 查看所有组件的[支持要求](site-recovery-support-matrix-to-azure.md)。
+- 查看所有组件的[支持要求](./vmware-physical-azure-support-matrix.md)。
 
 ## <a name="replicate-the-domain-controller"></a>复制域控制器
 

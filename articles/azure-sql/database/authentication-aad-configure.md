@@ -11,14 +11,14 @@ ms.topic: conceptual
 author: WenJason
 ms.author: v-jay
 ms.reviewer: vanto, carlrab
-origin.date: 07/27/2020
-ms.date: 08/17/2020
-ms.openlocfilehash: fcc7721cc6851bea619444d7f1fc4d6e04b677a7
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+origin.date: 08/17/2020
+ms.date: 09/14/2020
+ms.openlocfilehash: ee7b1b411a6e5950517c16d7086b44960989c767
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222576"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014363"
 ---
 # <a name="configure-and-manage-azure-ad-authentication-with-azure-sql"></a>使用 Azure SQL 配置和管理 Azure AD 身份验证
 
@@ -63,7 +63,7 @@ Azure 中的每个[服务器](logical-servers.md)（托管 SQL 数据库或 Azur
 ## <a name="provision-azure-ad-admin-sql-managed-instance"></a>预配 Azure AD 管理员（SQL 托管实例）
 
 > [!IMPORTANT]
-> 若要预配 Azure SQL 托管实例，则只执行以下步骤。 在 Azure AD 中，只能由全局/公司管理员或特权角色管理员执行此操作。 以下步骤介绍在目录中为具有不同权限的用户授予权限的过程。
+> 若要预配 Azure SQL 托管实例，则只执行以下步骤。 在 Azure AD 中，只能由全局/公司管理员或特权角色管理员执行此操作。
 
 SQL 托管实例需要权限来读取 Azure AD，以成功完成通过安全组成员资格验证用户身份或创建新用户等任务。 为此，需要授予 SQL 托管实例读取 Azure AD 的权限。 可以使用 Azure 门户或 PowerShell 执行此操作。
 

@@ -3,16 +3,16 @@ title: 使用 CLI 将 Linux VM 部署到专用主机
 description: 使用 Azure CLI 将 VM 部署到专用主机。
 author: Johnnytechn
 ms.service: virtual-machines-linux
-ms.topic: article
+ms.topic: how-to
 origin.date: 01/09/2020
-ms.date: 06/17/2020
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.openlocfilehash: f62d90dc5dcd06886abda2730a3572f39dd02a62
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: cdeb65b269312087df53ab0e26be0ba92e5c9b60
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097340"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057605"
 ---
 <!--Verified successfully-->
 # <a name="deploy-vms-to-dedicated-hosts-using-the-azure-cli"></a>使用 Azure CLI 将 VM 部署到专用主机
@@ -129,8 +129,8 @@ az vm host get-instance-view \
    --host-group myHostGroup \
    --name myHost
 ```
-输出与此类似：
-
+ 输出类似于以下内容：
+ 
 ```json
 {
   "autoReplaceOnFailure": true,
@@ -226,7 +226,7 @@ az vm host get-instance-view \
 }
 
 ```
-
+ 
 ## <a name="export-as-a-template"></a>作为模板导出 
 如果现在要使用相同参数创建额外的开发环境或与其匹配的生产环境，则可以导出模板。 Resource Manager 使用定义了所有环境参数的 JSON 模板。 通过引用此 JSON 模板构建出整个环境。 可以手动构建 JSON 模板，也可以通过导出现有环境来为自己创建 JSON 模板。 使用 [az group export](https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-export) 导出资源组。
 
@@ -235,7 +235,7 @@ az group export --name myDHResourceGroup > myDHResourceGroup.json
 ```
 
 此命令在当前工作目录中创建 `myDHResourceGroup.json` 文件。 从此模板创建环境时，系统会提示输入所有资源名称。 可以通过将 `--include-parameter-default-value` 参数添加到 `az group export` 命令在模板文件中填充这些名称。 请编辑 JSON 模板以指定资源名称，或创建 parameters.json 文件来指定资源名称。
-
+ 
 若要基于模板创建环境，请使用 [az group deployment create](https://docs.azure.cn/cli/group/deployment?view=azure-cli-latest#az-group-deployment-create)。
 
 ```bash
@@ -245,11 +245,11 @@ az group deployment create \
 ```
 
 
-## <a name="clean-up"></a>清除 
+## <a name="clean-up"></a>清理 
 
-即使没有部署虚拟机，你也需要为专用主机付费。 应删除当前未使用的任何主机以节省成本。  
+即使没有部署虚拟机，也会对专用主机收费。 你应删除当前未使用的任何主机以节省成本。  
 
-仅当不再有虚拟机使用主机时，才能删除该主机。 使用 [az vm delete](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-delete) 删除 VM。
+只有当不再有虚拟机使用主机时，才能删除该主机。 使用 [az vm delete](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-delete) 删除 VM。
 
 ```bash
 az vm delete -n myVM -g myDHResourceGroup
@@ -260,15 +260,15 @@ az vm delete -n myVM -g myDHResourceGroup
 ```bash
 az vm host delete -g myDHResourceGroup --host-group myHostGroup --name myHost 
 ```
-
+ 
 删除所有主机后，可以使用 [az vm host group delete](https://docs.microsoft.com/cli/azure/vm/host/group#az-vm-host-group-delete) 删除主机组。  
-
+ 
 ```bash
 az vm host group delete -g myDHResourceGroup --host-group myHostGroup  
 ```
-
+ 
 还可以在单个命令中删除整个资源组。 这会删除在组中创建的所有资源，包括所有 VM、主机和主机组。
-
+ 
 ```bash
 az group delete -n myDHResourceGroup 
 ```

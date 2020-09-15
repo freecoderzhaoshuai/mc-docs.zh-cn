@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 03/13/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: de209cfb5f9dea3e92cdf0cb7efcab6dec0714bd
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: de4bf414491ba46a5716c41d2d17813b11f834f6
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471835"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021094"
 ---
 # <a name="ranking-algorithm-in-azure-cognitive-search"></a>Azure 认知搜索中的排名算法
 
@@ -34,7 +34,7 @@ Azure 认知搜索正在使用 Okapi BM25 算法的官方 Lucene 实现 (BM25Sim
 创建新索引时，可以设置 similarity 属性来指定该算法。 可以使用 `api-version=2019-05-06-Preview`（如下所示）或 `api-version=2020-06-30`。
 
 ```
-PUT https://[search service name].search.azure.cn/indexes/[index name]?api-version=2020-06-30-Preview
+PUT https://[search service name].search.azure.cn/indexes/[index name]?api-version=2019-05-06-Preview
 ```
 
 ```json  

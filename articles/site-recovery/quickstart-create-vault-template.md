@@ -1,37 +1,37 @@
 ---
 title: 有关使用 Azure 资源管理器模板创建 Azure 恢复服务保管库的快速入门。
-description: 本快速入门介绍如何使用 Azure 资源管理器模板创建 Azure 恢复服务保管库。
+description: 本快速入门介绍如何使用 Azure 资源管理器模板（ARM 模板）创建 Azure 恢复服务保管库。
 ms.topic: quickstart
 ms.custom: subject-armqs
 origin.date: 04/29/2020
-ms.date: 08/03/2020
-ms.testscope: no
-ms.testdate: 06/08/2020
 author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: 1fb13a816c58ece636b538b50f31b6d3fc903149
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: ec9c2e6fd483289f775321bef9acbeb1ce2a2d9f
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426522"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655432"
 ---
 <!--Verified successfully-->
-# <a name="quickstart-create-a-recovery-services-vault-using-a-resource-manager-template"></a>快速入门：使用资源管理器模板创建恢复服务保管库
+# <a name="quickstart-create-a-recovery-services-vault-using-an-arm-template"></a>快速入门：使用 ARM 模板创建恢复服务保管库
 
-本快速入门介绍如何使用 Azure 资源管理器模板设置恢复服务保管库。 [Azure Site Recovery](site-recovery-overview.md) 服务有助于实施业务连续性和灾难恢复 (BCDR) 策略，以便在计划内和计划外中断期间使商业应用程序保持联机状态。 Site Recovery 管理本地计算机和 Azure 虚拟机 (VM) 的灾难恢复，包括复制、故障转移和恢复。
+本快速入门介绍如何使用 Azure 资源管理器模板（ARM 模板）设置恢复服务保管库。 [Azure Site Recovery](site-recovery-overview.md) 服务有助于实施业务连续性和灾难恢复 (BCDR) 策略，以便在计划内和计划外中断期间使商业应用程序保持联机状态。 Site Recovery 管理本地计算机和 Azure 虚拟机 (VM) 的灾难恢复，包括复制、故障转移和恢复。
 
 [!INCLUDE [About Azure Resource Manager](../../includes/resource-manager-quickstart-introduction.md)]
 
-如果没有有效的 Azure 订阅，可以在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
+如果你的环境满足先决条件，并且你熟悉如何使用 ARM 模板，请选择“部署到 Azure”按钮。 Azure 门户中会打开模板。
+
+[:::image type="content" source="../media/template-deployments/deploy-to-azure.svg" alt-text="部署到 Azure":::](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-recovery-services-vault-create%2Fazuredeploy.json)
 
 ## <a name="prerequisites"></a>先决条件
 
-无。
+如果没有有效的 Azure 订阅，可以在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
 
-## <a name="create-a-recovery-services-vault"></a>创建恢复服务保管库
-
-### <a name="review-the-template"></a>查看模板
+## <a name="review-the-template"></a>查看模板
 
 本快速入门中使用的模板来自 [Azure 快速启动模板](https://github.com/Azure/azure-quickstart-templates/tree/master/101-recovery-services-vault-create/)。
 
@@ -106,11 +106,11 @@ ms.locfileid: "87426522"
 
 该模板中定义了两个 Azure 资源：
 
+<!--Not Available on Global Template link-->
+
 - Microsoft.RecoveryServices 保管库：创建保管库。
 - Microsoft.RecoveryServices/vaults/backupstorageconfig：配置保管库的备份冗余设置。
 
-<!--Not Available on [Microsoft.RecoveryServices vaults](https://docs.microsoft.com/azure/templates/microsoft.recoveryservices/2016-06-01/vaults)-->
-<!--Not Available on [Microsoft.RecoveryServices/vaults/backupstorageconfig](https://docs.microsoft.com/rest/api/backup/backupresourcestorageconfigs)-->
 
 该模板包含保管库备份配置的可选参数。 存储冗余设置是本地冗余存储 (LRS) 或异地冗余存储 (GRS)。 有关详细信息，请参阅[设置存储冗余](../backup/backup-create-rs-vault.md#set-storage-redundancy)。
 
@@ -118,13 +118,13 @@ ms.locfileid: "87426522"
 
 <!--CORRECT ON [Azure Quickstart Templates](https://azure.microsoft.com/resources/templates/?resourceType=Microsoft.Recoveryservices&pageNumber=1&sort=Popular)-->
 
-### <a name="deploy-the-template"></a>部署模板
+## <a name="deploy-the-template"></a>部署模板
 
 若要部署模板，需要指定“订阅”、“资源组”和“保管库名称”  。
 
 1. 若要登录到 Azure 并打开模板，请选择“部署到 Azure”图像。
 
-    [![部署到 Azure](../media/template-deployments/deploy-to-azure.svg)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-recovery-services-vault-create%2Fazuredeploy.json)
+    [:::image type="content" source="../media/template-deployments/deploy-to-azure.svg" alt-text="部署到 Azure":::](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-recovery-services-vault-create%2Fazuredeploy.json)
 
 1. 选择或输入以下值：
 

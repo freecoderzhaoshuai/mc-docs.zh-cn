@@ -1,17 +1,20 @@
 ---
 title: 基于执行组件的 Azure Service Fabric 执行组件中的事件
 description: 了解 Service Fabric Reliable Actors 的事件，这些事件提供了执行组件与客户端之间进行通信的有效方法。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 10/06/2017
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: ecea90aad03b60664dc85a46749704d4a344b0a5
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 0ebc0264dd976e2432e25e30f509b6283a4043db
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540156"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655682"
 ---
 # <a name="actor-events"></a>执行组件事件
 执行组件事件提供了一种尽最大努力将通知从执行组件发送到客户端的方法。 执行组件事件设计用于从执行组件到客户端的通信，而不应用于从执行组件到执行组件的通信。
@@ -107,9 +110,9 @@ event.gameScoreUpdated(Id.getUUIDId(), score);
 ## <a name="next-steps"></a>后续步骤
 * [执行组件可重入性](service-fabric-reliable-actors-reentrancy.md)
 * [执行组件诊断和性能监视](service-fabric-reliable-actors-diagnostics.md)
-* [执行组件 API 参考文档](https://msdn.microsoft.com/library/azure/dn971626.aspx)
+* [执行组件 API 参考文档](https://docs.microsoft.com/previous-versions/azure/dn971626(v=azure.100))
 * [C# 代码示例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)
 * [C# .NET Core 示例代码](https://github.com/Azure-Samples/service-fabric-dotnet-core-getting-started)
 * [Java 代码示例](https://github.com/Azure-Samples/service-fabric-java-getting-started)
 
-<!--Update_Description: update meta properties-->
+<!-- Update_Description: update meta properties, wording update, update link -->

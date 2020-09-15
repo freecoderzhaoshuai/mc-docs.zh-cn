@@ -1,5 +1,5 @@
 ---
-title: 使用 PHP 进行连接 - Azure Database for MySQL
+title: 快速入门：使用 PHP 进行连接 - Azure Database for MySQL
 description: 本快速入门提供了多个 PHP 代码示例，你可以使用它来连接到 Azure Database for MySQL 并查询其中的数据。
 author: WenJason
 ms.author: v-jay
@@ -7,15 +7,15 @@ ms.service: mysql
 ms.custom: mvc
 ms.topic: quickstart
 origin.date: 5/26/2020
-ms.date: 06/29/2020
-ms.openlocfilehash: 9cd3be951e9dd519c5028cdb73b4bbde474241a1
-ms.sourcegitcommit: 3a8a7d65d0791cdb6695fe6c2222a1971a19f745
+ms.date: 09/14/2020
+ms.openlocfilehash: a1c4ebabe11d6a2bc148b008a8f9534b30853493
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2020
-ms.locfileid: "85516771"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512886"
 ---
-# <a name="azure-database-for-mysql-use-php-to-connect-and-query-data"></a>Azure Database for MySQL：使用 PHP 连接和查询数据
+# <a name="quickstart-use-php-to-connect-and-query-data-in-azure-database-for-mysql"></a>快速入门：使用 PHP 连接到 Azure Database for MySQL 并查询其中的数据
 
 > [!NOTE] 
 > 将要查看的是 Azure Database for MySQL 的新服务。 若要查看经典 MySQL Database for Azure 的文档，请访问[此页](https://docs.azure.cn/zh-cn/mysql-database-on-azure/)。

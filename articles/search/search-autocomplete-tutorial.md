@@ -8,13 +8,14 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 04/15/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: 4c420874a74263fba67a0f38acf09b8e0fc916de
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.custom: devx-track-javascript, devx-track-csharp
+ms.openlocfilehash: ca56c97b4ac0d1c863e27ab841e845d5e81f9285
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86472063"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020941"
 ---
 # <a name="add-autocomplete-and-suggestions-to-client-apps"></a>向客户端应用添加自动完成和建议
 
@@ -139,9 +140,9 @@ source: "/home/suggest?highlights=true&fuzzy=true&",
 
 ### <a name="suggest-function"></a>Suggest 函数
 
-如果使用 C# 和 MVC 应用程序，可以在 Controllers 目录下的 HomeController.cs 文件中为建议的结果创建类****。 在 .NET 中，Suggest 函数基于 [DocumentsOperationsExtensions.Suggest 方法](/dotnet/api/microsoft.azure.search.documentsoperationsextensions.suggest?view=azure-dotnet)。
+如果使用 C# 和 MVC 应用程序，可以在 Controllers 目录下的 HomeController.cs 文件中为建议的结果创建类****。 在 .NET 中，Suggest 函数基于 [DocumentsOperationsExtensions.Suggest 方法](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.documentsoperationsextensions.suggest?view=azure-dotnet)。
 
-`InitSearch` 方法在 Azure 认知搜索服务中创建经过身份验证的 HTTP 索引客户端。 有关 .NET SDK 的详细信息，请参阅[如何从 .NET 应用程序使用 Azure 认知搜索](https://docs.azure.cn/search/search-howto-dotnet-sdk)。
+`InitSearch` 方法在 Azure 认知搜索服务中创建经过身份验证的 HTTP 索引客户端。 有关 .NET SDK 的详细信息，请参阅[如何从 .NET 应用程序使用 Azure 认知搜索](./search-howto-dotnet-sdk.md)。
 
 ```csharp
 public ActionResult Suggest(bool highlights, bool fuzzy, string term)

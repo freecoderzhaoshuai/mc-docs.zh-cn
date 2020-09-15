@@ -7,18 +7,18 @@ author: HeidiSteen
 ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: overview
-origin.date: 01/06/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: dbae9e250a92bccf5805be7ba3dfff5ba1612c04
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+origin.date: 06/30/2020
+ms.date: 09/10/2020
+ms.openlocfilehash: fdf40fbaa861708d7505f1249f39d3814a8fc6e4
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471792"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021560"
 ---
 # <a name="what-is-azure-cognitive-search"></a>Azure 认知搜索是什么？
 
-Azure 认知搜索（[以前称为“Azure 搜索”](whats-new.md)）是一种搜索即服务云解决方案，它为开发人员提供 API 和工具，以便基于 Web、移动和企业应用程序中的专用异类内容添加丰富的搜索体验。 
+Azure 认知搜索（[以前称为“Azure 搜索”](whats-new.md#new-service-name)）是一种搜索即服务云解决方案，它为开发人员提供 API 和工具，以便基于 Web、移动和企业应用程序中的专用异类内容添加丰富的搜索体验。 
 
 在自定义解决方案中，搜索服务位于两个主要工作负载之间：内容引入和查询。 使用代码或工具定义架构，并调用数据引入（索引）以将索引加载到 Azure 认知搜索中。 或者，可以添加认知技能，以便在编制索引期间应用 AI 流程。 这样可以创建用于搜索和知识挖掘方案的新信息与结构。
 
@@ -26,7 +26,7 @@ Azure 认知搜索（[以前称为“Azure 搜索”](whats-new.md)）是一种�
 
 ![Azure 认知搜索体系结构](media/search-what-is-azure-search/azure-search-diagram.svg "Azure 认知搜索体系结构")
 
-功能通过简单的 [REST API](https://docs.microsoft.com/azure/rest/api/searchservice/) 或 [.NET SDK](search-howto-dotnet-sdk.md) 公开，消除了信息检索固有的复杂性。 除了 API，Azure 门户还通过原型制作和查询索引工具，提供管理和内容管理支持。 因为服务在云中运行，所以基础结构和可用性由 Microsoft 管理。
+功能通过简单的 [REST API](https://docs.microsoft.com/rest/api/searchservice/) 或 [.NET SDK](search-howto-dotnet-sdk.md) 公开，消除了信息检索固有的复杂性。 除了 API，Azure 门户还通过原型制作和查询索引工具，提供管理和内容管理支持。 因为服务在云中运行，所以基础结构和可用性由 Microsoft 管理。
 
 ## <a name="when-to-use-azure-cognitive-search"></a>何时使用 Azure 认知搜索
 
@@ -76,7 +76,7 @@ Azure 认知搜索非常适合以下应用方案：
 
 ## <a name="how-to-use-azure-cognitive-search"></a>如何使用 Azure 认知搜索
 ### <a name="step-1-provision-service"></a>步骤 1：预配服务
-可以通过 [Azure 门户](https://portal.azure.cn/)或 [Azure 资源管理 API](https://docs.microsoft.com/azure/rest/api/searchmanagement/) 预配 Azure 认知搜索服务。 可以选择与其他订阅者共享的免费服务，或者服务专用的资源[付费层](https://www.azure.cn/pricing/details/search/)。 对于付费层，可朝两个维度缩放服务： 
+可以通过 [Azure 门户](https://portal.azure.cn/)或 [Azure 资源管理 API](https://docs.microsoft.com/rest/api/searchmanagement/) 预配 Azure 认知搜索服务。 可以选择与其他订阅者共享的免费服务，或者服务专用的资源[付费层](https://www.azure.cn/pricing/details/search/)。 对于付费层，可朝两个维度缩放服务： 
 
 - 添加副本以增长容量来处理重型查询负载。   
 - 添加分区以便为更多文档增加存储。 
@@ -86,17 +86,17 @@ Azure 认知搜索非常适合以下应用方案：
 ### <a name="step-2-create-index"></a>步骤 2：创建索引
 上传可搜索的内容之前，必须先定义 Azure 认知搜索索引。 索引类似于用于保存数据的数据库表，可接受搜索查询。 定义要映射的索引架构，以反映要搜索的文档结构，这类似于数据库中的字段。
 
-架构可在 Azure 门户中创建，也可以[使用 .NET SDK](search-howto-dotnet-sdk.md) 或 [REST API](https://docs.microsoft.com/azure/rest/api/searchservice/) 以编程方式创建。
+架构可在 Azure 门户中创建，也可以[使用 .NET SDK](search-howto-dotnet-sdk.md) 或 [REST API](https://docs.microsoft.com/rest/api/searchservice/) 以编程方式创建。
 
 ### <a name="step-3-load-data"></a>步骤 3：加载数据
 定义索引后，便可以上传内容。 可以使用推送或提取模型。
 
-提取模型从外部数据源检索数据。 支持通过*索引器*检索数据。索引器可以简化和自动数据引入的方方面面，例如，连接、读取和序列化数据。 [索引器](https://docs.microsoft.com/azure/rest/api/searchservice/Indexer-operations)适用于 Azure Cosmos DB、Azure SQL 数据库、Azure Blob 存储，以及 Azure VM 中托管的 SQL Server。 可以针对按需刷新或计划的数据刷新配置索引器。
+提取模型从外部数据源检索数据。 支持通过*索引器*检索数据。索引器可以简化和自动数据引入的方方面面，例如，连接、读取和序列化数据。 [索引器](https://docs.microsoft.com/rest/api/searchservice/Indexer-operations)适用于 Azure Cosmos DB、Azure SQL 数据库、Azure Blob 存储，以及 Azure VM 中托管的 SQL Server。 可以针对按需刷新或计划的数据刷新配置索引器。
 
-推模型通过 SDK 或 REST API 进行提供，用于将更新的文档发送到索引。 可以从使用 JSON 格式的几乎任何数据集推送数据。 有关加载数据的指南，请参阅[添加、更新或删除文档](https://docs.microsoft.com/azure/rest/api/searchservice/addupdate-or-delete-documents)或[如何使用.NET SDK）](search-howto-dotnet-sdk.md)。
+推模型通过 SDK 或 REST API 进行提供，用于将更新的文档发送到索引。 可以从使用 JSON 格式的几乎任何数据集推送数据。 有关加载数据的指南，请参阅[添加、更新或删除文档](https://docs.microsoft.com/rest/api/searchservice/addupdate-or-delete-documents)或[如何使用.NET SDK）](search-howto-dotnet-sdk.md)。
 
 ### <a name="step-4-search"></a>步骤 4：搜索
-填充索引后，可以通过将简单的 HTTP 请求与 [REST API](https://docs.microsoft.com/azure/rest/api/searchservice/Search-Documents) 或 [.NET SDK](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.idocumentsoperations) 结合使用，向服务终结点[发出搜索查询](search-query-overview.md)。
+填充索引后，可以通过将简单的 HTTP 请求与 [REST API](https://docs.microsoft.com/rest/api/searchservice/Search-Documents) 或 [.NET SDK](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.idocumentsoperations) 结合使用，向服务终结点[发出搜索查询](search-query-overview.md)。
 
 逐步完成[创建第一个搜索应用](tutorial-csharp-create-first-app.md)以进行构建，然后扩展用于收集用户输入并处理结果的网页。 还可以使用 [Postman 进行交互式 REST](search-get-started-postman.md) 调用，或使用 Azure 门户中内置的[搜索浏览器](search-explorer.md)来查询现有索引。
 
@@ -106,7 +106,7 @@ Azure 认知搜索非常适合以下应用方案：
 
 | 比较对象 | 主要区别 |
 |-------------|-----------------|
-|数据库搜索 | 许多数据库平台都包含内置的搜索体验。 SQL Server 具有[全文搜索](https://docs.microsoft.com/sql/relational-databases/search/full-text-search)。 Cosmos DB 及类似技术具有可查询的索引。 在评估结合使用搜索和存储的产品时，确定要采用哪种方式可能颇具挑战性。 许多解决方案同时使用两种：使用 DBMS 进行存储，使用 Azure 认知搜索获取专业搜索功能。<br/><br/>与 DBMS 搜索相比，Azure 认知搜索存储来自不同来源的内容，并提供专用文本处理功能，例如 [56 种语言](https://docs.microsoft.com/rest/api/searchservice/language-support)中的语言感知文本处理（词干化、词元化、词形式）。 它还支持拼写错误单词的自动更正、[同义词](https://docs.microsoft.com/rest/api/searchservice/synonym-map-operations)、[建议](https://docs.microsoft.com/rest/api/searchservice/suggestions)、[评分控制](https://docs.microsoft.com/rest/api/searchservice/add-scoring-profiles-to-a-search-index)，[Facet](https://docs.azure.cn/search/search-filters-facets) 和[自定义词汇切分](https://docs.microsoft.com/rest/api/searchservice/custom-analyzers-in-azure-search)。 Azure 认知搜索中的[全文搜索引擎](search-lucene-query-architecture.md)基于 Apache Lucene，它是信息检索方面的行业标准。 尽管 Azure 认知搜索以倒排索引的形式持久存储数据，但它很少能替代真正的数据存储。 有关详细信息，请参阅此[论坛帖子](https://stackoverflow.com/questions/40101159/can-azure-search-be-used-as-a-primary-database-for-some-data)。 <br/><br/>资源利用是这个类别的另一个转折点。 索引和一些查询操作通常是计算密集型的。 将搜索从 DBMS 卸载到云中的专用解决方案可以节省用于事务处理的系统资源。 此外，通过将搜索外部化，可以根据查询量轻松调整规模。|
+|数据库搜索 | 许多数据库平台都包含内置的搜索体验。 SQL Server 具有[全文搜索](https://docs.microsoft.com/sql/relational-databases/search/full-text-search)。 Cosmos DB 及类似技术具有可查询的索引。 在评估结合使用搜索和存储的产品时，确定要采用哪种方式可能颇具挑战性。 许多解决方案同时使用两种：使用 DBMS 进行存储，使用 Azure 认知搜索获取专业搜索功能。<br/><br/>与 DBMS 搜索相比，Azure 认知搜索存储来自不同来源的内容，并提供专用文本处理功能，例如 [56 种语言](https://docs.microsoft.com/rest/api/searchservice/language-support)中的语言感知文本处理（词干化、词元化、词形式）。 它还支持拼写错误单词的自动更正、[同义词](https://docs.microsoft.com/rest/api/searchservice/synonym-map-operations)、[建议](https://docs.microsoft.com/rest/api/searchservice/suggestions)、[评分控制](https://docs.microsoft.com/rest/api/searchservice/add-scoring-profiles-to-a-search-index)，[Facet](./search-filters-facets.md) 和[自定义词汇切分](https://docs.microsoft.com/rest/api/searchservice/custom-analyzers-in-azure-search)。 Azure 认知搜索中的[全文搜索引擎](search-lucene-query-architecture.md)基于 Apache Lucene，它是信息检索方面的行业标准。 尽管 Azure 认知搜索以倒排索引的形式持久存储数据，但它很少能替代真正的数据存储。 有关详细信息，请参阅此[论坛帖子](https://stackoverflow.com/questions/40101159/can-azure-search-be-used-as-a-primary-database-for-some-data)。 <br/><br/>资源利用是这个类别的另一个转折点。 索引和一些查询操作通常是计算密集型的。 将搜索从 DBMS 卸载到云中的专用解决方案可以节省用于事务处理的系统资源。 此外，通过将搜索外部化，可以根据查询量轻松调整规模。|
 |专用搜索解决方案 | 假设已决定使用全频谱功能进行专用搜索，则需要在本地解决方案或云服务之间进行最终的分类比较。 许多搜索技术提供对索引和查询管道的控制、对更丰富查询和筛选语法的访问、对设置级别和相关性的控制以及自导智能搜索功能。 <br/><br/>如果想要获得一个开销和维护工作量极少且规模可调的统包解决方案，则云服务是适当的选择。 <br/><br/>在云的范式中，许多提供程序提供相当的基线功能，以及全文搜索、地理搜索，并且能够处理搜索输入中一定程度的模糊性。 通常，它是一项[专用功能](#feature-drilldown)，或者是 API、工具以及用于确定最匹配项的管理功能的易化和总体简化。 |
 
 在所有云提供程序中，对于主要依赖于信息检索搜索和内容导航的应用，Azure 认知搜索在处理 Azure 上的内容存储和数据库的全文搜索工作负荷方面最为强大。 
@@ -131,7 +131,7 @@ Azure 认知搜索非常适合以下应用方案：
 
 |平台 |说明 |
 |-----|------------|
-|[REST](https://docs.microsoft.com/azure/rest/api/searchservice/) | 任何编程平台和语言（包括 Java、Python 和 JavaScript）支持的 HTTP 命令|
+|[REST](https://docs.microsoft.com/rest/api/searchservice/) | 任何编程平台和语言（包括 Java、Python 和 JavaScript）支持的 HTTP 命令|
 |[.NET SDK](search-howto-dotnet-sdk.md) | REST API 的 .NET 包装器以 C# 和其他针对 .NET Framework 的托管代码语言提供了有效编码。 |
 
 ## <a name="free-trial"></a>免费试用

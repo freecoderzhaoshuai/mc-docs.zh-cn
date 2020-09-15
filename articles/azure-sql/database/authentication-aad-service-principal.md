@@ -8,14 +8,14 @@ ms.topic: conceptual
 author: WenJason
 ms.author: v-jay
 ms.reviewer: vanto
-origin.date: 07/27/2020
-ms.date: 08/17/2020
-ms.openlocfilehash: d11ffbafce977887f9ee322d88785a2b359d7741
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+origin.date: 08/17/2020
+ms.date: 09/14/2020
+ms.openlocfilehash: 934965ac45753b6feca9a0d57074c8b87996d8c7
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223539"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014344"
 ---
 # <a name="azure-active-directory-service-principal-with-azure-sql"></a>使用 Azure SQL 的 Azure Active Directory 服务主体
 

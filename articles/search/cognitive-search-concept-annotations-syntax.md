@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 03/16/2020
-ms.openlocfilehash: 1810b65a0672a3d9d1c60c8c3c5e87e150e121e7
-ms.sourcegitcommit: 5656c18d7d2faa09329b1a15e352d1622e252d5f
+ms.date: 09/10/2020
+ms.openlocfilehash: f5fdf4955ca3d2ada21a31f9b6f484d85aed8670
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86862819"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021606"
 ---
 # <a name="how-to-reference-annotations-in-an-azure-cognitive-search-skillset"></a>如何在 Azure 认知搜索技能组中引用注释
 

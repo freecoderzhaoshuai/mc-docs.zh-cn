@@ -11,12 +11,12 @@ ms.workload: big-data
 ms.topic: conceptual
 ms.date: 08/04/2020
 ms.custom: seodec18
-ms.openlocfilehash: 8bd3dd88e38e24a2a436fb12cf880efd3a87f890
-ms.sourcegitcommit: 36e7f37481969f92138bfe70192b1f4a2414caf7
+ms.openlocfilehash: 357025d8a9b2151829c79a0d0435d4301e7685fa
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87801835"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593850"
 ---
 # <a name="add-an-event-hub-event-source-to-your-azure-time-series-insights-environment"></a>将事件中心事件源添加到 Azure 时序见解环境
 
@@ -117,5 +117,5 @@ ms.locfileid: "87801835"
 
 * [发送事件](time-series-insights-send-events.md)到事件源。
 
-* 在 [Azure 时序见解资源管理器](https://insights.timeseries.azure.com)中访问环境。
+* 在 [Azure 时序见解资源管理器](https://insights.timeseries.azure.cn)中访问环境。
 

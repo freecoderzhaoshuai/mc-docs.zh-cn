@@ -8,12 +8,12 @@ ms.topic: quickstart
 ms.custom: subject-armqs
 ms.author: jrasnick
 ms.date: 06/09/2020
-ms.openlocfilehash: 98a9539138e458a63388263e9f7b27375d228602
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: c410abc8357f0a4689e6ad5a78f1d698b022824d
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426784"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014240"
 ---
 # <a name="quickstart-create-an-azure-synapse-analytics-sql-pool-by-using-an-arm-template"></a>快速入门：使用 ARM 模板创建 Azure Synapse Analytics SQL 池
 
@@ -143,7 +143,7 @@ ms.locfileid: "87426784"
 
 该模板定义一个资源：
 
-- [Microsoft.Sql/servers](/azure/templates/microsoft.sql/servers)
+- [Microsoft.Sql/servers](https://docs.microsoft.com/azure/templates/microsoft.sql/servers)
 
 ## <a name="deploy-the-template"></a>部署模板
 

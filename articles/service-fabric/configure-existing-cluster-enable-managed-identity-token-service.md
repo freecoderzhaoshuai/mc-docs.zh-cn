@@ -3,15 +3,18 @@ title: 在现有 Service Fabric 群集中配置托管标识支持
 description: 下面介绍如何在现有 Azure Service Fabric 群集中启用托管标识支持
 ms.topic: article
 origin.date: 03/11/2019
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
 ms.custom: sfrev
-ms.openlocfilehash: bbfd0aaf6c438f85115a9f84b9c3bf4d75ea98a3
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.openlocfilehash: 52393527613d753ee50658cdbdb5133e00308787
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356141"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655544"
 ---
 <!--Pending for Verify-->
 <!--Verify successfully with New Deployment-->
@@ -21,9 +24,9 @@ ms.locfileid: "84356141"
 
 > [!NOTE]
 > 若要启用**托管标识令牌服务**，必须使用 Service Fabric 运行时 6.5.658.9590 或更高版本。  
-> 
+>
 > 可以在 Azure 门户中查找 Service Fabric 版群集，方法是：打开群集资源，然后在“基本信息”部分查找“Service Fabric 版本”属性。 
-> 
+>
 > 如果群集处于“手动”升级模式，则需先将其升级到 6.5.658.9590 或更高版本。
 
 ## <a name="enable-managed-identity-token-service-in-an-existing-cluster"></a>在现有群集中启用“托管标识令牌服务”

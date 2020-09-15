@@ -5,16 +5,17 @@ description: 了解如何创建和使用 Azure Kubernetes 服务 (AKS) 群集中
 services: container-service
 ms.topic: article
 origin.date: 03/04/2019
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 5d97e95d319f84792a1c997f7c274e12d37c0846
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: a3fd565450b8eba6fe64bd1d68b5eb16a9ea2a92
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842593"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021540"
 ---
 # <a name="use-a-static-public-ip-address-for-egress-traffic-with-a-basic-sku-load-balancer-in-azure-kubernetes-service-aks"></a>将出口流量的静态公共 IP 地址与 Azure Kubernetes 服务 (AKS) 中的基本 SKU 负载均衡器配合使用
 
@@ -24,7 +25,7 @@ ms.locfileid: "87842593"
 
 ## <a name="before-you-begin"></a>准备阶段
 
-本文假定你使用的是 Azure 基本负载均衡器。  建议你使用 [Azure 标准负载均衡器](/load-balancer/load-balancer-standard-overview)。你可以使用更高级的功能来[控制 AKS 出口流量](/aks/limit-egress-traffic)。
+本文假定你使用的是 Azure 基本负载均衡器。  建议你使用 [Azure 标准负载均衡器](../load-balancer/load-balancer-overview.md)。你可以使用更高级的功能来[控制 AKS 出口流量](./limit-egress-traffic.md)。
 
 本文假定你拥有现有的 AKS 群集。 如果需要 AKS 群集，请参阅 AKS 快速入门[使用 Azure CLI][aks-quickstart-cli] 或[使用 Azure 门户][aks-quickstart-portal]。
 
@@ -134,16 +135,16 @@ $ curl -s checkip.dyndns.org
 
 <!-- LINKS - internal -->
 
-[az-network-public-ip-create]: https://docs.azure.cn/cli/network/public-ip?view=azure-cli-latest#az-network-public-ip-create
-[az-network-public-ip-list]: https://docs.azure.cn/cli/network/public-ip?view=azure-cli-latest#az-network-public-ip-list
-[az-aks-show]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-show
-[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[az-network-public-ip-create]: https://docs.azure.cn/cli/network/public-ip#az-network-public-ip-create
+[az-network-public-ip-list]: https://docs.azure.cn/cli/network/public-ip#az-network-public-ip-list
+[az-aks-show]: https://docs.microsoft.com/cli/azure/aks#az_aks_show
+[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli
 [ingress-aks-cluster]: ./ingress-basic.md
 [outbound-connections]: ../load-balancer/load-balancer-outbound-connections.md#scenarios
-[public-ip-create]: https://docs.azure.cn/cli/network/public-ip?view=azure-cli-latest#az-network-public-ip-create
+[public-ip-create]: https://docs.azure.cn/cli/network/public-ip#az-network-public-ip-create
 [aks-quickstart-cli]: kubernetes-walkthrough.md
 [aks-quickstart-portal]: kubernetes-walkthrough-portal.md
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
 [slb]: load-balancer-standard.md
 
 <!-- Update_Description: update meta properties, wording update, update link -->

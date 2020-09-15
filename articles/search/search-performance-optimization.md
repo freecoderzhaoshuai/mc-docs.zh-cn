@@ -9,13 +9,13 @@ ms.devlang: rest-api
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 02/14/2020
-ms.date: 03/02/2020
-ms.openlocfilehash: 65cf2ab5418bc6fe34a86b4c8eb8007e1258bde4
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.date: 09/10/2020
+ms.openlocfilehash: 39db72edd21b3cd9256b7faced065b79691c6e16
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77501339"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021405"
 ---
 # <a name="scale-for-performance-on-azure-cognitive-search"></a>Azure 认知搜索的性能缩放
 

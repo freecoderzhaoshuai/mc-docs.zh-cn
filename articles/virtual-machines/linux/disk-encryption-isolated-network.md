@@ -4,16 +4,16 @@ description: 本文提供适用于 Linux VM 的 Azure 磁盘加密的故障排�
 author: Johnnytechn
 ms.service: virtual-machines-linux
 ms.subservice: security
-ms.topic: article
+ms.topic: conceptual
 ms.author: v-johya
-ms.date: 04/20/2020
+ms.date: 09/03/2020
 ms.custom: seodec18
-ms.openlocfilehash: 523b148ba3d6a75159293a481715514f2443400a
-ms.sourcegitcommit: ebedf9e489f5218d4dda7468b669a601b3c02ae5
+ms.openlocfilehash: c44a2a4204c8c5ef8344791f7b632da099e5137f
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2020
-ms.locfileid: "82159056"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057670"
 ---
 # <a name="azure-disk-encryption-on-an-isolated-network"></a>隔离网络上的 Azure 磁盘加密
 
@@ -45,7 +45,7 @@ Azure 磁盘加密取决于多个组件，这些组件通常在启用 ADE 的过
 
 如果[对 Azure AD（以前的版本）使用 Azure 磁盘加密](disk-encryption-overview-aad.md)，则除了适用于此发行版的包（如[上面所列](#package-management)）外，还需为所有发行版手动安装 [Azure Active Directory 库](../../active-directory/azuread-dev/active-directory-authentication-libraries.md)。
 
-使用 [Azure AD 凭据](disk-encryption-linux-aad.md)启用加密时，目标 VM 必须允许连接到 Azure Active Directory 终结点和密钥保管库终结点。 当前 Azure Active Directory 身份验证终结点在 [Office 365 URL 和 IP 地址范围](https://docs.microsoft.com/office365/enterprise/urls-and-ip-address-ranges)文档中的第 56 和 59 节中进行维护。 在有关如何[访问防火墙保护下的 Azure 密钥保管库](../../key-vault/key-vault-access-behind-firewall.md)的文档中提供了密钥保管库说明。
+使用 [Azure AD 凭据](disk-encryption-linux-aad.md)启用加密时，目标 VM 必须允许连接到 Azure Active Directory 终结点和密钥保管库终结点。 当前 Azure Active Directory 身份验证终结点在 [Office 365 URL 和 IP 地址范围](https://docs.microsoft.com/office365/enterprise/urls-and-ip-address-ranges)文档中的第 56 和 59 节中进行维护。 在有关如何[访问防火墙保护下的 Azure 密钥保管库](../../key-vault/general/access-behind-firewall.md)的文档中提供了密钥保管库说明。
 
 ### <a name="azure-instance-metadata-service"></a>Azure 实例元数据服务 
 
@@ -54,8 +54,7 @@ Azure 磁盘加密取决于多个组件，这些组件通常在启用 ADE 的过
 ## <a name="next-steps"></a>后续步骤
 
 - 请查看用于 [Azure 磁盘加密故障排除](disk-encryption-troubleshooting.md)的更多步骤
-
-<!--Not Available on [Azure data encryption at rest](../../security/fundamentals/encryption-atrest.md)-->
+- [Azure 静态数据加密](../../security/fundamentals/encryption-atrest.md)
 
 <!-- Update_Description: new article about disk encryption isolated network -->
 <!--NEW.date: 03/09/2020-->

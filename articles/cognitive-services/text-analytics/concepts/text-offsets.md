@@ -12,12 +12,12 @@ ms.date: 06/24/2020
 origin.date: 03/09/2020
 ms.author: v-tawe
 ms.reviewer: jdesousa
-ms.openlocfilehash: 78b923f2bb04dcd267b00692868a2952ae4822a3
-ms.sourcegitcommit: f5484e21fa7c95305af535d5a9722b5ab416683f
+ms.openlocfilehash: 6cb5b5a841b35d5cbdf99e7fca395e719fd4d3d8
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/24/2020
-ms.locfileid: "85323643"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021215"
 ---
 # <a name="text-offsets-in-the-text-analytics-api-output"></a>文本分析 API 输出中的文本偏移量
 
@@ -37,7 +37,7 @@ ms.locfileid: "85323643"
 
 使用基于字符的子字符串方法（例如 .NET [substring()](https://docs.microsoft.com/dotnet/api/system.string.substring?view=netframework-4.8) 方法）时，偏移量可能会导致问题。 一个问题是，偏移量可能导致子字符串方法在多字符字形编码的中间而不是结尾处结束。
 
-在 .NET 中，考虑使用 [StringInfo](https://docs.microsoft.com/dotnet/api/system.globalization.stringinfo?view=netframework-4.8) 类，该类使你可以将字符串作为一系列文本元素（而不是单个字符对象）来处理。 也可以在首选软件环境中查找字形拆分器库。 
+在 .NET 中，考虑使用 [StringInfo](https://docs.microsoft.com/dotnet/api/system.globalization.stringinfo) 类，该类使你可以将字符串作为一系列文本元素（而不是单个字符对象）来处理。 也可以在首选软件环境中查找字形拆分器库。 
 
 为方便起见，文本分析 API 也会返回这些文本元素。
 

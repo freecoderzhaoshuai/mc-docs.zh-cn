@@ -1,17 +1,19 @@
 ---
 title: Azure Service Fabric 基础结构即代码最佳做法
 description: 以基础结构即代码方式管理 Azure Service Fabric 的最佳做法和设计注意事项。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 01/23/2019
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 4ac9bb4767a9bb6a3317f8c78f93a932cff4a1f5
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: f759aec1ca9c25b1db7b1f31d45ddd22e48214f5
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540212"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655112"
 ---
 <!--Verify successfully-->
 # <a name="infrastructure-as-code"></a>基础结构即代码
@@ -46,7 +48,6 @@ ms.locfileid: "77540212"
 ```azurecli
 ResourceGroupName="sfclustergroup"
 Location="chinanorth"
-DeploymentName="yourdeploymentname"
 
 az group create --name $ResourceGroupName --location $Location 
 az group deployment create --name $DeploymentName --resource-group $ResourceGroupName  --template-file azuredeploy.json --parameters @azuredeploy.parameters.json
@@ -61,7 +62,6 @@ $ResourceGroupName="sfclustergroup"
 $Location="chinanorth"
 $Template="azuredeploy.json"
 $Parameters="azuredeploy.parameters.json"
-$DeploymentName="<yourdeploymentname>"
 
 New-AzResourceGroup -Name $ResourceGroupName -Location $Location
 New-AzResourceGroupDeployment -Name $DeploymentName -ResourceGroupName $ResourceGroupName -TemplateFile $Template -TemplateParameterFile $Parameters
@@ -69,7 +69,7 @@ New-AzResourceGroupDeployment -Name $DeploymentName -ResourceGroupName $Resource
 
 ## <a name="azure-service-fabric-resources"></a>Azure Service Fabric 资源
 
-可以通过 Azure 资源管理器，将应用程序和服务部署到 Service Fabric 群集。 有关详细信息，请参阅[将应用程序和服务作为 Azure 资源管理器资源进行管理](/service-fabric/service-fabric-application-arm-resource)。 下面是要在资源管理器模板资源中包括的最佳做法 Service Fabric 应用程序特定资源。
+可以通过 Azure 资源管理器，将应用程序和服务部署到 Service Fabric 群集。 有关详细信息，请参阅[将应用程序和服务作为 Azure 资源管理器资源进行管理](./service-fabric-application-arm-resource.md)。 下面是要在资源管理器模板资源中包括的最佳做法 Service Fabric 应用程序特定资源。
 
 ```json
 {
@@ -98,7 +98,7 @@ New-AzResourceGroupDeployment -Name $DeploymentName -ResourceGroupName $Resource
 }
 ```
 
-若要使用 Azure 资源管理器部署应用程序，必须首先[创建一个 sfpkg](/service-fabric/service-fabric-package-apps#create-an-sfpkg) Service Fabric 应用程序包。 下面的 python 脚本是有关如何创建 sfpkg 的示例：
+若要使用 Azure 资源管理器部署应用程序，必须首先[创建一个 sfpkg](./service-fabric-package-apps.md#create-an-sfpkg) Service Fabric 应用程序包。 下面的 python 脚本是有关如何创建 sfpkg 的示例：
 
 ```python
 # Create SFPKG that needs to be uploaded to Azure Storage Blob Container
@@ -116,7 +116,7 @@ microservices_sfpkg.close()
 ```
 
 ## <a name="azure-virtual-machine-operating-system-automatic-upgrade-configuration"></a>Azure 虚拟机操作系统自动升级配置 
-升级虚拟机是用户启动的操作，建议使用[虚拟机规模集操作系统自动升级](/virtual-machine-scale-sets/virtual-machine-scale-sets-automatic-upgrade)进行 Azure Service Fabric 群集主机修补程序管理；修补业务流程应用程序是替代解决方案，适用于在 Azure 外部托管的情况。虽然 POA 可以在 Azure 中使用，但考虑到在 Azure 中托管 POA 的开销，通常会首选虚拟机操作系统自动升级而不是 POA。 下面是计算虚拟机规模集资源管理器模板属性，用于启用 OS 自动升级：
+升级虚拟机是用户启动的操作，建议使用[虚拟机规模集操作系统自动升级](../virtual-machine-scale-sets/virtual-machine-scale-sets-automatic-upgrade.md)进行 Azure Service Fabric 群集主机修补程序管理；修补业务流程应用程序是替代解决方案，适用于在 Azure 外部托管的情况。虽然 POA 可以在 Azure 中使用，但考虑到在 Azure 中托管 POA 的开销，通常会首选虚拟机操作系统自动升级而不是 POA。 下面是计算虚拟机规模集资源管理器模板属性，用于启用 OS 自动升级：
 
 ```json
 "upgradePolicy": {
@@ -162,4 +162,4 @@ Start-ServiceFabricClusterUpgrade -Code -CodePackageVersion <"msi_code_version">
 * 在运行 Linux 的 VM 或计算机上创建群集：[创建 Linux 群集](service-fabric-tutorial-create-vnet-and-linux-cluster.md)
 * 了解 [Service Fabric 支持选项](service-fabric-support.md)
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

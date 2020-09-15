@@ -9,15 +9,15 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 08/19/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 ms.custom: aaddev
-ms.openlocfilehash: e6d4c4bb278345fe6ddb374ca9e1c829ba11d5f9
-ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
+ms.openlocfilehash: 31351c6483da80fd193d99cf985ad168b79262a8
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "88647508"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593617"
 ---
 # <a name="a-web-api-that-calls-web-apis-code-configuration"></a>调用 Web API 的 Web API：代码配置
 
@@ -71,7 +71,7 @@ Microsoft.Identity.Web 提供了多种通过配置或代码描述证书的方法
 
 ## <a name="startupcs"></a>Startup.cs
 
-使用 Microsoft.Identity.Web 时，如果你希望使 Web API 调用下游 Web API，请在 `.AddMicrosoftWebApiAuthentication(Configuration)` 之后添加 `.AddMicrosoftWebApiCallsWebApi()` 行，然后在 Startup.cs 中选择令牌缓存实现，例如 `.AddInMemoryTokenCaches()`：
+使用 Microsoft.Identity.Web 时，如果你希望使 Web API 调用下游 Web API，请在 `.AddMicrosoftIdentityWebApi(Configuration)` 之后添加 `.EnableTokenAcquisitionToCallDownstreamApi()` 行，然后在 Startup.cs 中选择令牌缓存实现，例如 `.AddInMemoryTokenCaches()`：
 
 ```csharp
 using Microsoft.Identity.Web;
@@ -82,9 +82,10 @@ public class Startup
   public void ConfigureServices(IServiceCollection services)
   {
    // ...
-   services.AddMicrosoftWebApiAuthentication(Configuration)
-           .AddMicrosoftWebApiCallsWebApi(Configuration)
-           .AddInMemoryTokenCaches();
+    services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddMicrosoftIdentityWebApi(Configuration, "AzureAd")
+                .EnableTokenAcquisitionToCallDownstreamApi()
+                .AddInMemoryTokenCaches();
   // ...
   }
   // ...
@@ -92,8 +93,6 @@ public class Startup
 ```
 
 与 Web 应用一样，你可以选择各种令牌缓存实现。 有关详细信息，请参阅 GitHub 上的 [Microsoft 标识 Web wiki - 令牌缓存序列化](https://github.com/AzureAD/microsoft-identity-web/wiki/token-cache-serialization)。
-
-如果确定 Web API 需要特定范围，可以选择将其作为参数传递给 `AddMicrosoftWebApiCallsWebApi`。
 
 # <a name="java"></a>[Java](#tab/java)
 

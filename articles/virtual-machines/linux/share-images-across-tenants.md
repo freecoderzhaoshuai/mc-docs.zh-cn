@@ -1,24 +1,25 @@
 ---
 title: 在 Azure 的租户之间共享库映像
-description: 了解如何使用共享映像库在 Azure 租户之间共享 VM 映像。
+description: 了解如何使用共享映像库跨 Azure 租户共享 VM 映像。
 author: Johnnytechn
 ms.service: virtual-machines
 ms.subservice: imaging
 ms.workload: infrastructure-services
 ms.topic: how-to
-ms.date: 06/05/2020
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.reviewer: akjosh
-ms.openlocfilehash: 3b37a67763d754d7968152b1adf8f425abb5148a
-ms.sourcegitcommit: 285649db9b21169f3136729c041e4d04d323229a
+ms.reviewer: cynthn
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 5d01d03b7bd11b153145bbeebdf8618660b54b15
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84683946"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057658"
 ---
 # <a name="share-gallery-vm-images-across-azure-tenants"></a>跨 Azure 租户共享库 VM 映像
 
-共享映像库可让你使用 RBAC 共享映像。 可以使用 RBAC 在租户中共享映像，甚至可以与租户外部的个人共享映像。 有关此简单共享选项的详细信息，请参阅[共享库](/virtual-machines/linux/shared-images-portal#share-the-gallery)。
+共享映像库可让你使用 RBAC 共享映像。 可以使用 RBAC 在租户中共享映像，甚至可以与租户外部的个人共享映像。 有关此简单共享选项的详细信息，请参阅[共享库](./shared-images-portal.md#share-the-gallery)。
 
 [!INCLUDE [virtual-machines-share-images-across-tenants](../../../includes/virtual-machines-share-images-across-tenants.md)]
 

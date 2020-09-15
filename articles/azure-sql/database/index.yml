@@ -12,13 +12,13 @@ metadata:
   ms.author: v-jay
   ms.reviewer: carlrab
   origin.date: 05/27/2020
-  ms.date: 07/13/2020
-  ms.openlocfilehash: e7177cf13c406849c31d56d419de444398f96fdb
-  ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+  ms.date: 09/14/2020
+  ms.openlocfilehash: 6cceb96b5b740cbcb755a55e1d344ad348beb07b
+  ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 07/10/2020
-  ms.locfileid: "86227199"
+  ms.lasthandoff: 09/11/2020
+  ms.locfileid: "90014279"
 landingContent:
 - title: Azure SQL 数据库
   linkLists:
@@ -94,18 +94,14 @@ landingContent:
       url: elastic-pool-scale.md
 - title: 参考
   linkLists:
-  - linkListType: learn
-    links:
-    - text: SQL 教育资源
-      url: https://docs.microsoft.com/sql/sql-server/educational-sql-resources
   - linkListType: deploy
     links:
     - text: Azure CLI 示例
-      url: https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms
+      url: az-cli-script-samples-content-guide.md
     - text: PowerShell 示例
-      url: https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms
+      url: powershell-script-content-guide.md
     - text: ARM 模板示例
-      url: https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms
+      url: arm-templates-content-guide.md
   - linkListType: download
     links:
     - text: SQL Server Management Studio (SSMS)

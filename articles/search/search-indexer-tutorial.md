@@ -8,13 +8,14 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: tutorial
 origin.date: 06/23/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: f4fa5467dc69cd51e67e391aa6fc84a72ac0af5c
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.custom: devx-track-csharp
+ms.openlocfilehash: d0a16ebc46c6ad49b6b6c55ed52c3e7e132b1650
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471954"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021200"
 ---
 # <a name="tutorial-index-azure-sql-data-using-the-net-sdk"></a>教程：使用 .NET SDK 为 Azure SQL 数据编制索引
 

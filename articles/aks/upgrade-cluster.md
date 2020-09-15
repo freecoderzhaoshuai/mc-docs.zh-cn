@@ -8,12 +8,12 @@ ms.date: 08/10/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
-ms.openlocfilehash: c066f9bd14c7a7859d217e7134006f61fd234dbe
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 12289219f2c7a90131ca71942df7ea50e5e15e68
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842576"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021532"
 ---
 # <a name="upgrade-an-azure-kubernetes-service-aks-cluster"></a>升级 Azure Kubernetes 服务 (AKS) 群集
 
@@ -104,12 +104,12 @@ myAKSCluster  chinaeast2      myResourceGroup  1.13.10               Succeeded  
 <!-- LINKS - internal -->
 
 [aks-tutorial-prepare-app]: ./tutorial-kubernetes-prepare-app.md
-[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
-[az-aks-get-upgrades]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-get-upgrades
-[az-aks-upgrade]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-upgrade
-[az-aks-show]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-show
+[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli
+[az-aks-get-upgrades]: https://docs.microsoft.com/cli/azure/aks#az_aks_get_upgrades
+[az-aks-upgrade]: https://docs.microsoft.com/cli/azure/aks#az_aks_upgrade
+[az-aks-show]: https://docs.microsoft.com/cli/azure/aks#az_aks_show
 [nodepool-upgrade]: use-multiple-node-pools.md#upgrade-a-node-pool
-[az-extension-add]: https://docs.azure.cn/cli/extension?view=azure-cli-latest#az-extension-add
-[az-extension-update]: https://docs.azure.cn/cli/extension?view=azure-cli-latest#az-extension-update
+[az-extension-add]: https://docs.azure.cn/cli/extension#az-extension-add
+[az-extension-update]: https://docs.azure.cn/cli/extension#az-extension-update
 
 <!-- Update_Description: update meta properties, wording update, update link -->

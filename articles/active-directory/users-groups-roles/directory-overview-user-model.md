@@ -6,7 +6,7 @@ author: curtand
 manager: daveba
 ms.author: v-junlch
 ms.reviewer: vincesm
-ms.date: 08/26/2020
+ms.date: 09/08/2020
 ms.topic: overview
 ms.service: active-directory
 ms.subservice: users-groups-roles
@@ -14,16 +14,16 @@ ms.workload: identity
 services: active-directory
 ms.custom: it-pro;seo-update-azuread-jan
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 083854f04731ad24c3e3ff3895e1af3d57e86c25
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 45ab5cfcbd173ff434d5b6df5ec9f06bdaa6286b
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947171"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593830"
 ---
 # <a name="what-is-enterprise-user-management"></a>什么是企业用户管理？
 
-本文为 Azure AD 管理员介绍最重要标识管理任务在用户的组、许可证、已部署企业应用与管理员角色方面的关系。 随着组织的不断发展，可以使用 Azure AD 组和管理员角色来实现以下目的：
+本文为 Azure AD 管理员介绍最重要[标识管理](../fundamentals/active-directory-whatis.md)任务在用户的组、许可证、已部署企业应用与管理员角色方面的关系。 随着组织的不断发展，可以使用 Azure AD 组和管理员角色来实现以下目的：
 
 * 将许可证分配到组，而无需逐个分配
 * 委托权限，以将 Azure AD 管理工作分配给特权更低的角色
@@ -35,7 +35,7 @@ ms.locfileid: "88947171"
 
 ## <a name="assign-licenses-to-groups"></a>将许可证分配到组
 
-逐个地分配或删除用户的许可证可能非常耗费时间和精力。 如果[将许可证分配到组](/active-directory/fundamentals/license-users-groups)，则可以更轻松地完成大规模许可证管理。
+逐个地分配或删除用户的许可证可能非常耗费时间和精力。 如果[将许可证分配到组](../fundamentals/license-users-groups.md)，则可以更轻松地完成大规模许可证管理。
 
 在 Azure AD 中，当用户加入许可的组时，他们会自动获得相应的许可证。 当用户离开组时，Azure AD 会删除其许可证分配。 如果不使用 Azure AD 组，则必须编写 PowerShell 脚本或使用图形 API 才能批量添加或删除加入或离开组织的用户的用户许可证。
 
@@ -58,7 +58,7 @@ ms.locfileid: "88947171"
 
 ## <a name="assign-app-access"></a>分配应用访问权限
 
-可以使用 Azure AD 为组分配对 [Azure AD 组织中部署的企业应用](/active-directory/manage-apps/methods-for-assigning-users-and-groups?context=azure/active-directory/users-groups-roles/context/ugr-context)的访问权限。 
+可以使用 Azure AD 为组分配对 [Azure AD 组织中部署的企业应用](../manage-apps/assign-user-or-group-access-portal.md)的访问权限。
 
 在 Azure AD 中，还可以精细控制你有权访问的应用和组之间流动的数据。 在[企业应用程序](https://portal.azure.cn/#blade/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/AllApps)中打开一个应用，并选择“预配”以执行以下操作：
 
@@ -70,7 +70,7 @@ ms.locfileid: "88947171"
 
 ## <a name="next-steps"></a>后续步骤
 
-入门级的 Azure AD 管理员可在 [Azure Active Directory 基础知识](/active-directory/fundamentals/index)中获取基础知识。
+入门级的 Azure AD 管理员可在 [Azure Active Directory 基础知识](../fundamentals/index.yml)中获取基础知识。
 
-或者，可以开始[创建组](/active-directory/fundamentals/active-directory-groups-create-azure-portal?context=azure/active-directory/users-groups-roles/context/ugr-context)、[分配许可证](/active-directory/fundamentals/license-users-groups?context=azure/active-directory/users-groups-roles/context/ugr-context)、[分配应用访问权限](/active-directory/manage-apps/methods-for-assigning-users-and-groups?context=azure/active-directory/users-groups-roles/context/ugr-context)或[分配管理员角色](directory-assign-admin-roles.md)。
+或者，可以开始[创建组](../fundamentals/active-directory-groups-create-azure-portal.md)、[分配许可证](../fundamentals/license-users-groups.md)、[分配应用访问权限](../manage-apps/assign-user-or-group-access-portal.md)或[分配管理员角色](directory-assign-admin-roles.md)。
 

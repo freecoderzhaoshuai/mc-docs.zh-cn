@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 07/20/2020
-ms.openlocfilehash: 73b2810be67036139e1dc9f78502d31012f3f7d0
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: 63ac3a2a4af7f48b44fe14a115686b64c6d887db
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471949"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021465"
 ---
 # <a name="design-patterns-for-multitenant-saas-applications-and-azure-cognitive-search"></a>多租户 SaaS 应用程序与 Azure 认知搜索的设计模式
 
@@ -44,12 +44,12 @@ Azure 认知搜索中有一些不同的[定价层](https://www.azure.cn/pricing/
 
 |  | 基本 | 标准 1 | 标准 2 | 标准 3 | 标准 3 HD |
 | --- | --- | --- | --- | --- | --- |
-| 每个服务的副本数上限 |3 |12 |12 |12 |12 |
-| 每个服务的分区数上限 |1 |12 |12 |12 |3 |
-| 每个服务的搜索单位数上限（副本*分区） |3 |36 |36 |36 |36（最多 3 个分区） |
-| 每个服务的存储上限 |2 GB |300 GB |1.2 TB |2.4 TB |600 GB |
-| 每个分区的存储上限 |2 GB |25 GB |100 GB |200 GB |200 GB |
-| 每个服务的索引数上限 |5 |50 |200 |200 |3000（最多 1000 个索引/分区） |
+| **每个服务的副本数上限** |3 |12 |12 |12 |12 |
+| **每个服务的分区数上限** |1 |12 |12 |12 |3 |
+| **每个服务的搜索单位数上限（副本*分区）** |3 |36 |36 |36 |36（最多 3 个分区） |
+| **每个服务的存储上限** |2 GB |300 GB |1.2 TB |2.4 TB |600 GB |
+| **每个分区的存储上限** |2 GB |25 GB |100 GB |200 GB |200 GB |
+| **每个服务的索引数上限** |5 |50 |200 |200 |3000（最多 1000 个索引/分区） |
 
 #### <a name="s3-high-density"></a>S3 高密度
 在 Azure 认知搜索的 S3 定价层中，有一个专门为多租户方案设计的高密度 (HD) 模式的选项。 在许多情况下，都有必要支持单个服务下的大量较小租户，从而获得简洁性和成本效益带来的优势。
@@ -120,7 +120,7 @@ Azure 认知搜索允许各索引和索引总数的规模增加。 如果选择�
 
 如果每租户服务和每租户索引模型不是足够小的范围，则无法对索引建模以实现更精细的粒度。
 
-若要使单个索引的行为与其他客户端终结点有所不同，可以向索引添加字段，为每个可能的客户端指定某个值。 每次客户端调用 Azure 认知搜索查询或修改索引时，客户端应用程序的代码都在查询时使用 Azure 认知搜索的[筛选](https://msdn.microsoft.com/library/azure/dn798921.aspx)功能为该字段指定相应值。
+若要使单个索引的行为与其他客户端终结点有所不同，可以向索引添加字段，为每个可能的客户端指定某个值。 每次客户端调用 Azure 认知搜索查询或修改索引时，客户端应用程序的代码都在查询时使用 Azure 认知搜索的[筛选](./query-odata-filter-orderby-syntax.md)功能为该字段指定相应值。
 
 此方法可用于实现单独用户帐户的功能、分隔权限级别甚至完全分隔应用程序。
 
@@ -133,4 +133,3 @@ Azure 认知搜索允许各索引和索引总数的规模增加。 如果选择�
 对于许多应用程序而言，Azure 认知搜索是极具吸引力的选项。 评估多租户应用程序的各个设计模式时，请考虑[各个定价层](https://www.azure.cn/pricing/details/search/)和各自的[服务限制](search-limits-quotas-capacity.md)，定制最合适的 Azure 认知搜索以满足所有大小的应用程序工作负载和体系结构需求。
 
 有关 Azure 认知搜索和多租户方案的任何疑问都可发往 azuresearch_contact@microsoft.com。
-

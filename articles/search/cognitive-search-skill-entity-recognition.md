@@ -8,17 +8,17 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 06/17/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: 69b11230a4043200b62d32c36aa7c8259bb1c3d5
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: cc135872ca66206b20d218bc3b2ba982de9dc175
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471957"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021120"
 ---
 #    <a name="entity-recognition-cognitive-skill"></a>实体识别认知技能
 
-**实体识别**技能从文本中提取各种类型的实体。 此技能使用认知服务中的[文本分析](https://docs.azure.cn/cognitive-services/text-analytics/overview)提供的机器学习模型。
+**实体识别**技能从文本中提取各种类型的实体。 此技能使用认知服务中的[文本分析](../cognitive-services/text-analytics/overview.md)提供的机器学习模型。
 
 > [!NOTE]
 > 通过增大处理频率、添加更多文档或添加更多 AI 算法来扩大范围时，需要[附加可计费的认知服务资源](cognitive-search-attach-cognitive-services.md)。 调用认知服务中的 API 以及在 Azure 认知搜索中的文档破解阶段提取图像时，会产生费用。 提取文档中的文本不会产生费用。
@@ -54,7 +54,7 @@ Microsoft.Skills.Text.EntityRecognitionSkill
 ## <a name="skill-outputs"></a>技能输出
 
 > [!NOTE]
-> 并非所有实体类别都支持所有语言。 `"Person"`、`"Location"` 和 `"Organization"` 实体类别支持上面的完整语言列表。 只有 _de_、_en_、_es_、_fr_ 和 _zh-hans_ 支持 `"Quantity"`、`"Datetime"`、`"URL"` 和 `"Email"` 类型的提取。 有关详细信息，请参阅[文本分析 API 的语言和区域支持](https://docs.azure.cn/cognitive-services/text-analytics/language-support)。  
+> 并非所有实体类别都支持所有语言。 `"Person"`、`"Location"` 和 `"Organization"` 实体类别支持上面的完整语言列表。 只有 _de_、_en_、_es_、_fr_ 和 _zh-hans_ 支持 `"Quantity"`、`"Datetime"`、`"URL"` 和 `"Email"` 类型的提取。 有关详细信息，请参阅[文本分析 API 的语言和区域支持](../cognitive-services/text-analytics/language-support.md)。  
 
 | 输出名称      | 说明                   |
 |---------------|-------------------------------|
@@ -188,7 +188,7 @@ Microsoft.Skills.Text.EntityRecognitionSkill
 }
 ```
 
-请注意，在此技能的输出中，针对实体返回的偏移量是直接从[文本分析 API](https://docs.azure.cn/cognitive-services/text-analytics/overview) 返回的，这意味着如果使用这些偏移量为原始字符串编制索引，则应使用 .NET 中的 [StringInfo](https://docs.microsoft.com/dotnet/api/system.globalization.stringinfo?view=netframework-4.8) 类来提取正确的内容。
+请注意，在此技能的输出中，针对实体返回的偏移量是直接从[文本分析 API](https://docs.azure.cn/cognitive-services/text-analytics/overview) 返回的，这意味着如果使用这些偏移量为原始字符串编制索引，则应使用 .NET 中的 [StringInfo](https://docs.microsoft.com/dotnet/api/system.globalization.stringinfo) 类来提取正确的内容。
 
 ## <a name="error-cases"></a>错误案例
 如果文档的语言代码不受支持，则返回错误，并且不提取任何实体。

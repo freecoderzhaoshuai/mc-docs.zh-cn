@@ -10,12 +10,12 @@ ms.author: v-yiso
 author: jpe316
 origin.date: 03/05/2020
 ms.date: 03/09/2020
-ms.openlocfilehash: 453b6d52e99fc5e151407f0dd43f08192c54318d
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: f770c17a3663dbe011533607ec9e3fc533fff170
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80343219"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021344"
 ---
 # <a name="git-integration-for-azure-machine-learning"></a>Azure 机器学习的 Git 集成
 
@@ -117,4 +117,4 @@ az ml run list -e train-on-amlcompute --last 1 -w myworkspace -g myresourcegroup
 
 ## <a name="next-steps"></a>后续步骤
 
-* [设置并使用模型训练的计算目标](how-to-set-up-training-targets.md)
+* [使用模型训练的计算目标](how-to-set-up-training-targets.md)

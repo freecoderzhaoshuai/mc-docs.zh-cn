@@ -12,13 +12,13 @@ metadata:
   author: spelluru
   ms.author: v-tawe
   origin.date: 06/23/2020
-  ms.date: 08/21/2020
-  ms.openlocfilehash: ed76c9e4e2be626fb0744040d7ebdf7f889ff707
-  ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+  ms.date: 09/14/2020
+  ms.openlocfilehash: 284117336719381db5261dce5d96f4de63b6522c
+  ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 08/21/2020
-  ms.locfileid: "88715196"
+  ms.lasthandoff: 09/14/2020
+  ms.locfileid: "90063288"
 landingContent:
 - title: 关于事件中心
   linkLists:
@@ -81,13 +81,13 @@ landingContent:
   - linkListType: quickstart
     links:
     - text: .NET Core
-      url: get-started-dotnet-standard-send-v2.md
+      url: event-hubs-dotnet-standard-getstarted-send.md
     - text: Java
       url: event-hubs-java-get-started-send.md
     - text: Python
-      url: get-started-python-send-v2.md
-    - text: JavaScript
-      url: get-started-node-send-v2.md
+      url: event-hubs-python-get-started-send.md
+    - text: Javascript
+      url: event-hubs-node-get-started-send.md
     - text: Apache Kafka
       url: event-hubs-quickstart-kafka-enabled-event-hubs.md#send-and-receive-messages-with-kafka-in-event-hubs
     - text: Apache Storm（仅接收）
@@ -101,7 +101,7 @@ landingContent:
     - text: 概述
       url: /azure-stack/user/event-hubs-overview
     - text: 常用功能集
-      url: /azure-stack/user/event-hubs-overview
+      url: /azure-stack/user/event-hubs-overview#features
   - linkListType: how-to-guide
     links:
     - text: 容量计划
@@ -129,7 +129,7 @@ landingContent:
     - text: 使用 Resource Manager 模板
       url: event-hubs-resource-manager-namespace-event-hub-enable-capture.md
     - text: 从 Python 应用程序启用捕获
-      url: get-started-capture-python-v2.md
+      url: event-hubs-capture-python.md
 - title: 处理事件
   linkLists:
   - linkListType: tutorial

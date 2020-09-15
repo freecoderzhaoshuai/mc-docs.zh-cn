@@ -11,12 +11,12 @@ author: MayMSFT
 ms.reviewer: nibaccam
 ms.date: 07/22/2020
 ms.custom: how-to, seodec18, tracking-python
-ms.openlocfilehash: 1edffa0ba00cb14e3e26012c7b34ae2675745788
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: dcfea18d7a61ef2af14806f4ad54789ac098ab99
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947050"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021038"
 ---
 # <a name="connect-to-azure-storage-services"></a>连接到 Azure 存储服务
 [!INCLUDE [aml-applies-to-basic-enterprise-sku](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -36,7 +36,7 @@ ms.locfileid: "88947050"
 
 - 一个使用[支持的存储类型](#matrix)的 Azure 存储帐户。
 
-- [适用于 Python 的 Azure 机器学习 SDK](https://docs.microsoft.com/python/api/overview/azure/ml/intro?view=azure-ml-py)，或 [Azure 机器学习工作室](https://ml.azure.com/)的访问权限。
+- [适用于 Python 的 Azure 机器学习 SDK](https://docs.microsoft.com/python/api/overview/azure/ml/intro?view=azure-ml-py)，或 [Azure 机器学习工作室](https://studio.ml.azure.cn/)的访问权限。
 
 - Azure 机器学习工作区。
   
@@ -62,7 +62,7 @@ ms.locfileid: "88947050"
 
 数据存储目前支持将连接信息存储到下表中列出的存储服务。
 
-| 存储类型 | 身份验证类型 | [Azure 机器学习工作室](https://ml.azure.com/) | [Azure 机器学习 Python SDK](https://docs.microsoft.com/python/api/overview/azure/ml/intro?view=azure-ml-py) |  [Azure 机器学习 CLI](reference-azure-machine-learning-cli.md) | [Azure 机器学习 Rest API](https://docs.microsoft.com/rest/api/azureml/) | VS Code
+| 存储类型 | 身份验证类型 | [Azure 机器学习工作室](https://studio.ml.azure.cn/) | [Azure 机器学习 Python SDK](https://docs.microsoft.com/python/api/overview/azure/ml/intro?view=azure-ml-py) |  [Azure 机器学习 CLI](reference-azure-machine-learning-cli.md) | [Azure 机器学习 Rest API](https://docs.microsoft.com/rest/api/azureml/) | VS Code
 ---|---|---|---|---|---|---
 [Azure&nbsp;Blob&nbsp;存储](/storage/blobs/storage-blobs-overview)| 帐户密钥 <br> SAS 令牌 | ✓ | ✓ | ✓ |✓ |✓
 [Azure 文件共享](/storage/files/storage-files-introduction)| 帐户密钥 <br> SAS 令牌 | ✓ | ✓ | ✓ |✓|✓
@@ -209,7 +209,7 @@ adlsgen2_datastore = Datastore.register_azure_data_lake_gen2(workspace=ws,
 > [!IMPORTANT]
 > 如果数据存储帐户位于虚拟网络中，则需要执行其他配置步骤以确保工作室可以访问你的数据。 若要确保应用适当的配置步骤，请参阅[网络隔离和隐私] (how-to-enable-virtual-network.md#machine-learning-studio)。 
 
-1. 登录到 [Azure 机器学习工作室](https://ml.azure.com/)。
+1. 登录到 [Azure 机器学习工作室](https://studio.ml.azure.cn/)。
 1. 在左窗格中的“管理”下，选择“数据存储” 。
 1. 选择“+ 新建数据存储”。
 1. 填写新数据存储的表单。 该表单会根据你选择的 Azure 存储类型和身份验证类型智能地进行更新。 请参阅[存储访问和权限部分](#access-validation)，了解在哪里可以找到填充此窗体所需的身份验证凭据。

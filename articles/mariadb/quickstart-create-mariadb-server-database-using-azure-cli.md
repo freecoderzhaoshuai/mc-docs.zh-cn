@@ -7,16 +7,16 @@ ms.service: mariadb
 ms.devlang: azurecli
 ms.topic: quickstart
 origin.date: 3/18/2020
-ms.date: 08/17/2020
-ms.custom: mvc
-ms.openlocfilehash: e13bc6d24d6992d6da513b260d0397f72afd03ba
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.date: 09/14/2020
+ms.custom: mvc, devx-track-azurecli
+ms.openlocfilehash: da70bca23450d9ed06e30da46252c19a2103b5f0
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222949"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512950"
 ---
-# <a name="create-an-azure-database-for-mariadb-server-by-using-the-azure-cli"></a>使用 Azure CLI 创建 Azure Database for MariaDB 服务器
+# <a name="quickstart-create-an-azure-database-for-mariadb-server-by-using-the-azure-cli"></a>快速入门：使用 Azure CLI 创建 Azure Database for MariaDB 服务器
 
 Azure CLI 可用于从命令行或脚本创建和管理 Azure 资源。 本快速入门教程介绍如何使用 Azure CLI 在大约 5 分钟内在 Azure 资源组中创建 Azure Database for MariaDB 服务器。
 

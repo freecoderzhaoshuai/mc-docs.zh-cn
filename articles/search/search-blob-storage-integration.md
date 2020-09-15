@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 07/02/2020
-ms.openlocfilehash: 899ad98a76e15558ce6039bc6e082f2a673474ab
-ms.sourcegitcommit: 5afd7c4c3be9b80c4c67ec55f66fcf347aad74c6
+ms.date: 09/10/2020
+ms.openlocfilehash: 611cb0b5582c504b74ca5cacc70623c949270143
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85942590"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020938"
 ---
 # <a name="add-full-text-search-to-azure-blob-data-using-azure-cognitive-search"></a>使用 Azure 认知搜索将全文搜索添加到 Azure Blob 数据
 
@@ -78,5 +78,5 @@ Blob 索引器附带配置参数，如果基础数据提供足够的信息，则
 
 ## <a name="next-steps"></a>后续步骤
 
-+ [使用 Azure 门户上传、下载和列出 Blob（Azure Blob 存储）](https://docs.azure.cn/storage/blobs/storage-quickstart-blobs-portal)
-+ [设置 Blob 索引器（Azure 认知搜索）](search-howto-indexing-azure-blob-storage.md) 
++ [使用 Azure 门户上传、下载和列出 Blob（Azure Blob 存储）](../storage/blobs/storage-quickstart-blobs-portal.md)
++ [设置 Blob 索引器（Azure 认知搜索）](search-howto-indexing-azure-blob-storage.md)

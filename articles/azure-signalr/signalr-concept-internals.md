@@ -4,15 +4,16 @@ description: 了解 Azure SignalR 服务内部机制、体系结构、连接以�
 author: sffamily
 ms.service: signalr
 ms.topic: conceptual
+ms.custom: devx-track-dotnet
 origin.date: 11/13/2019
-ms.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: v-tawe
-ms.openlocfilehash: 1a11b6e662c738edb77f178df290954375a38fb1
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 7472362bbe8f03344e0d674890ac939faf89efe6
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715281"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063313"
 ---
 # <a name="azure-signalr-service-internals"></a>Azure SignalR 服务内部
 

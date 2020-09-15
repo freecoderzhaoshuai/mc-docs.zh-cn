@@ -5,15 +5,15 @@ author: Johnnytechn
 ms.service: virtual-machines-linux
 ms.subservice: security
 ms.workload: infrastructure-services
-ms.topic: article
-ms.date: 06/05/2020
+ms.topic: conceptual
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.openlocfilehash: aec521abe3a232e7ae77bdc82cb37f3afb220efa
-ms.sourcegitcommit: 285649db9b21169f3136729c041e4d04d323229a
+ms.openlocfilehash: f69629b2ebd8008e85515de48c57f0b788c82fbd
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84684017"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057544"
 ---
 # <a name="apply-policies-to-linux-vms-with-azure-resource-manager"></a>使用 Azure 资源管理器向 Linux VM 应用策略
 通过使用策略，组织可以在整个企业中强制实施各种约定和规则。 强制实施所需行为有助于消除风险，同时为组织的成功做出贡献。 本文介绍如何使用 Azure 资源管理器策略，为组织中的虚拟机定义所需的行为。
@@ -205,6 +205,6 @@ ms.locfileid: "84684017"
 ## <a name="next-steps"></a>后续步骤
 * 定义策略规则后（如上述示例所示），需要创建策略定义并将其分配给作用域。 作用域可以是订阅、资源组或资源。 若要分配策略，请参阅[使用 Azure 门户分配和管理资源策略](../../governance/policy/assign-policy-portal.md)、[使用 PowerShell 分配策略](../../governance/policy/assign-policy-powershell.md)或[使用 Azure CLI 分配策略](../../governance/policy/assign-policy-azurecli.md)。
 * 有关资源策略的简介，请参阅[什么是 Azure Policy？](../../governance/policy/overview.md)。
-* 有关企业可如何使用 Resource Manager 有效管理订阅的指南，请参阅 [Azure 企业基架 - 出于合规目的监管订阅](/azure/architecture/cloud-adoption-guide/subscription-governance)。
+* 有关企业可如何使用 Resource Manager 有效管理订阅的指南，请参阅 [Azure 企业基架 - 出于合规目的监管订阅](https://docs.microsoft.com/azure/architecture/cloud-adoption-guide/subscription-governance)。
 
 <!--Update_Description: update meta properties -->

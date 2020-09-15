@@ -205,7 +205,7 @@
               href: ./hdinsight-cluster-availability.md
             - name: 群集可用性 - Azure Monitor 日志
               href: ./cluster-availability-monitor-logs.md
-        - name: 疑难解答
+        - name: 故障排除
           items:
             - name: CPU 核心配额增加请求
               href: ./quota-increase-request.md
@@ -390,7 +390,7 @@
                   href: ../cosmos-db/lambda-architecture.md
                 - name: 使用 AutoML 运行 Azure ML 工作负荷
                   href: ./spark/apache-spark-run-machine-learning-automl.md
-        - name: 疑难解答
+        - name: 故障排除
           items:
             - name: 无法创建 Jupyter 笔记本
               href: ./spark/troubleshoot-jupyter-notebook-convert.md
@@ -616,7 +616,7 @@
               href: ./kafka/apache-kafka-log-analytics-operations-management.md
             - name: SSL 加密和身份验证
               href: ./kafka/apache-kafka-ssl-encryption-authentication.md
-        - name: 疑难解答
+        - name: 故障排除
           items:
             - name: 容错域不足
               href: ./kafka/kafka-troubleshoot-insufficient-domains.md
@@ -669,7 +669,7 @@
               href: ./hbase/apache-hbase-phoenix-performance.md
             - name: 在 Azure VNet 中创建 Apache HBase 群集
               href: ./hbase/apache-hbase-provision-vnet.md
-        - name: 疑难解答
+        - name: 故障排除
           items:
             - name: 排查 Apache HBase 性能问题
               href: ./hbase/troubleshoot-hbase-performance-issues.md
@@ -762,7 +762,7 @@
               href: ./interactive-query/apache-hive-migrate-workloads.md
             - name: 优化 Apache Hive 查询
               href: ./hdinsight-hadoop-optimize-hive-query.md
-        - name: 疑难解答
+        - name: 故障排除
           items:
             - name: 通过 Apache Hive 设置解决内存不足错误
               href: ./hdinsight-hadoop-hive-out-of-memory-error-oom.md
@@ -834,7 +834,81 @@
           items:
             - name: 监视拓扑
               href: ./storm/apache-storm-deploy-monitor-topology-linux.md
-        - name: 疑难解答
+        - name: 故障排除
           items:
             - name: Apache STORM 故障排除
               href: ./storm/apache-troubleshoot-storm.md
+- name: 企业就绪情况
+  items:
+    - name: 概述
+      items:
+        - name: 什么是 HDInsight 中的企业安全性？
+          href: ./domain-joined/hdinsight-security-overview.md
+    - name: 教程
+      items:
+        - name: 将 Apache HBase RBAC 与 Apache Ranger 配合使用
+          href: ./domain-joined/apache-domain-joined-run-hbase.md
+        - name: 将 Apache Hive RBAC 与 Apache Ranger 配合使用
+          href: ./domain-joined/apache-domain-joined-run-hive.md
+        - name: 将 Apache Kafka RBAC 与 Apache Ranger 配合使用
+          href: ./domain-joined/apache-domain-joined-run-kafka.md
+        - name: 在 ESP 群集中使用 Apache Oozie
+          href: ./domain-joined/hdinsight-use-oozie-domain-joined-clusters.md
+    - name: 概念
+      items:
+        - name: 安全基线
+          href: security-baseline.md
+        - name: 企业安全常规指南
+          href: ./domain-joined/general-guidelines.md
+        - name: ESP 群集的计划
+          href: ./domain-joined/apache-domain-joined-architecture.md
+        - name: HDInsight 虚拟网络体系结构
+          href: ./hdinsight-virtual-network-architecture.md
+        - name: 传输层安全性
+          href: ./transport-layer-security.md
+        - name: 为 HDInsight 计划 VNET
+          href: ./hdinsight-plan-virtual-network-deployment.md
+        - name: 控制网络流量
+          href: ./control-network-traffic.md
+        - name: NSG 和 UDR 所需的 IP 地址
+          href: ./hdinsight-management-ip-addresses.md
+        - name: 客户管理的密钥磁盘加密
+          href: ./disk-encryption.md
+        - name: Ranger 和 Apache Ambari 中的 LDAP 同步
+          href: ./domain-joined/ldap-sync.md
+        - name: 传输中的双重加密
+          href: ./domain-joined/encryption-in-transit.md
+    - name: 操作指南
+      items:
+        - name: 使用 ID 代理进行凭据管理
+          href: ./domain-joined/identity-broker.md
+        - name: 创建 ESP 群集并与本地同步
+          href: ./domain-joined/apache-domain-joined-create-configure-enterprise-security-cluster.md
+        - name: 为 HDInsight 创建 VNET
+          href: ./hdinsight-create-virtual-network.md
+        - name: 将 HDInsight 与本地网络相连
+          href: ./connect-on-premises-network.md
+        - name: 使用 Azure AD DS 配置 ESP 群集
+          href: ./domain-joined/apache-domain-joined-configure-using-azure-adds.md
+        - name: 将 Azure AD 用户同步到 HDInsight 群集
+          href: ./hdinsight-sync-aad-users-to-cluster.md
+        - name: 使用企业安全性管理群集
+          href: ./domain-joined/apache-domain-joined-manage.md
+        - name: 管理 SSH 访问权限
+          href: ./domain-joined/ssh-domain-accounts.md
+        - name: 保护数据
+          href: ./hdinsight-hadoop-create-linux-clusters-with-secure-transfer-storage.md
+        - name: 使用防火墙限制出站流量
+          href: ./hdinsight-restrict-outbound-traffic.md
+        - name: 创建服务终结点策略
+          href: ./service-endpoint-policies.md
+        - name: 配置网络虚拟设备
+          href: ./network-virtual-appliance.md
+        - name: Azure 防火墙的服务标记
+          href: ./hdinsight-service-tags.md
+        - name: 疑难解答
+          items:
+            - name: ESP 身份验证问题
+              href: ./domain-joined/domain-joined-authentication-issues.md
+            - name: 群集创建失败，出现 DomainNotFound
+              href: ./domain-joined/troubleshoot-domainnotfound.md

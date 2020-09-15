@@ -1,17 +1,19 @@
 ---
 title: 使用 Linux Azure 诊断聚合事件
 description: 了解有关聚合和使用 LAD 监视和诊断 Azure Service Fabric 群集的收集事件。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 02/25/2019
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 27008c0085ec66869448004cca51912e6fb0b26f
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 0da998c1edba946bf681b54e6ff0f4107188e414
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540445"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655655"
 ---
 # <a name="event-aggregation-and-collection-using-linux-azure-diagnostics"></a>使用 Linux Azure 诊断的事件聚合和集合
 > [!div class="op_single_selector"]
@@ -22,9 +24,8 @@ ms.locfileid: "77540445"
 
 当你运行 Azure Service Fabric 群集时，最好是从一个中心位置的所有节点中收集日志。 将日志放在中心位置可帮助分析和排查群集中的问题，或该群集中运行的应用程序与服务的问题。
 
-上传和收集日志的方式之一是使用 Linux Azure 诊断 (LAD) 扩展，它可将日志上传到 Azure 存储，并且还提供了将日志发送到事件中心的选项。
+上传和收集日志的方式之一是使用 Linux Azure 诊断 (LAD) 扩展，它可将日志上传到 Azure 存储，并且还提供了将日志发送到 Azure Application Insights 或事件中心的选项。 
 
-<!-- Not Available on Azure Application Insights -->
 <!--Not Available on [Log Analytics](../log-analytics/log-analytics-service-fabric.md)  -->
 
 ## <a name="log-and-event-sources"></a>日志和事件源
@@ -46,8 +47,8 @@ Service Fabric 通过 [LTTng](https://lttng.org) 发出几个现成可用的日�
 
 ## <a name="next-steps"></a>后续步骤
 
-1. 若要更详细了解在排查问题时应检查哪些事件，请参阅 [LTTng 文档](https://lttng.org/docs)和[使用 LAD](/virtual-machines/extensions/diagnostics-linux)。
+1. 若要更详细了解在排查问题时应检查哪些事件，请参阅 [LTTng 文档](https://lttng.org/docs)和[使用 LAD](../virtual-machines/extensions/diagnostics-linux.md)。
 
 <!--Not Available on  [Set up the Log Analytics agent](service-fabric-diagnostics-event-analysis-oms.md)-->
 
-<!--Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -1,21 +1,20 @@
 ---
-title: Azure Linux 虚拟机的安全控制
+title: Azure Linux 虚拟机的安全控制 - Linux
 description: 用于评估 Azure Linux 虚拟机的安全控制的清单
 services: virtual-machines
 ms.service: virtual-machines
 documentationcenter: ''
 author: Johnnytechn
-manager: digimobile
+manager: rkarlin
 ms.topic: conceptual
-origin.date: 09/04/2019
-ms.date: 04/13/2020
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.openlocfilehash: 9064bf44c03b0549e8accbf9585ff80ef9f5f758
-ms.sourcegitcommit: ebedf9e489f5218d4dda7468b669a601b3c02ae5
+ms.openlocfilehash: 9de353daf6bb9e76f70e1bd26543c966378462c9
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2020
-ms.locfileid: "82159040"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057576"
 ---
 # <a name="security-controls-for-linux-virtual-machines"></a>Linux 虚拟机的安全控制
 
@@ -30,13 +29,13 @@ ms.locfileid: "82159040"
 | 服务终结点支持| 是 | |
 | VNet 注入支持| 是 | |
 | 网络隔离和防火墙支持| 是 |  |
-| 强制隧道支持| 是 | 请参阅[使用 Azure 资源管理器部署模型配置强制隧道](/vpn-gateway/vpn-gateway-forced-tunneling-rm)。 |
+| 强制隧道支持| 是 | 请参阅[使用 Azure 资源管理器部署模型配置强制隧道](../../vpn-gateway/vpn-gateway-forced-tunneling-rm.md)。 |
 
 ## <a name="monitoring--logging"></a>监视和日志记录
 
 | 安全控制 | 是/否 | 注释|
 |---|---|--|
-| Azure 监视支持（Log Analytics、App Insights 等）| 是 | 请参阅[监视和更新 Azure 中的 Linux 虚拟机](/virtual-machines/linux/tutorial-monitoring)。 |
+| Azure 监视支持（Log Analytics、App Insights 等）| 是 | 请参阅[监视和更新 Azure 中的 Linux 虚拟机](./tutorial-monitor.md)。 |
 | 控制和管理平面日志记录和审核| 是 |  |
 | 数据平面日志记录和审核 | 否 |  |
 
@@ -52,8 +51,8 @@ ms.locfileid: "82159040"
 | 安全控制 | 是/否 | 注释 |
 |---|---|--|
 | 服务器端静态加密：Azure 托管的密钥 | 是 | 请参阅[适用于 Linux VM 的 Azure 磁盘加密](disk-encryption-overview.md)。 |
-| 传输中加密（例如 ExpressRoute 加密、VNet 中加密，以及 VNet-VNet 加密）| 是 | Azure 虚拟机支持 [ExpressRoute](/expressroute) 和 VNet 加密。 请参阅 [VM 中的传输中加密](/security/security-azure-encryption-overview#in-transit-encryption-in-vms)。 |
-| 服务器端静态加密：客户管理的密钥 (BYOK) | 是 | 客户托管密钥是受支持的 Azure 加密方案；请参阅 [Azure 加密概述](/security/security-azure-encryption-overview#in-transit-encryption-in-vms)。|
+| 传输中加密（例如 ExpressRoute 加密、VNet 中加密，以及 VNet-VNet 加密）| 是 | Azure 虚拟机支持 [ExpressRoute](../../expressroute/index.yml) 和 VNet 加密。 请参阅 [VM 中的传输中加密](../../security/fundamentals/encryption-overview.md#in-transit-encryption-in-vms)。 |
+| 服务器端静态加密：客户管理的密钥 (BYOK) | 是 | 客户托管密钥是受支持的 Azure 加密方案；请参阅 [Azure 加密概述](../../security/fundamentals/encryption-overview.md#in-transit-encryption-in-vms)。|
 | 列级加密（Azure 数据服务）| 不适用 | |
 | 加密的 API 调用| 是 | 通过 HTTPS 和 TLS。 |
 
@@ -63,8 +62,9 @@ ms.locfileid: "82159040"
 |---|---|--|
 | 配置管理支持（配置的版本控制等）| 是 |  | 
 
-<!--Not Available on ## Next steps-->
-<!--Not Available on [built-in security controls across Azure services](../../security/fundamentals/security-controls.md)-->
+## <a name="next-steps"></a>后续步骤
+
+- 详细了解[跨 Azure 服务的内置安全控制](../../security/fundamentals/security-controls.md)。
 
 <!-- Update_Description: new article about virtual machines linux security controls -->
 <!--NEW.date: 10/14/2019-->

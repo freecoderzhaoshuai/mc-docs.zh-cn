@@ -3,14 +3,14 @@ title: Azure 事件中心防火墙规则 | Microsoft Docs
 description: 使用防火墙规则允许从特定 IP 地址到 Azure 事件中心的链接。
 ms.topic: article
 origin.date: 07/16/2020
-ms.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: v-tawe
-ms.openlocfilehash: aa45645dbbd113ec405d5e54540bf49a54c21e3a
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 95747e0b6234898c448130fdfb59d432bcf4cfa5
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715311"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063296"
 ---
 # <a name="allow-access-to-azure-event-hubs-namespaces-from-specific-ip-addresses-or-ranges"></a>允许从特定 IP 地址或范围访问 Azure 事件中心命名空间
 默认情况下，只要请求附带有效的身份验证和授权，就可以从 Internet 访问事件中心命名空间。 使用 IP 防火墙，可以将其进一步限制为采用 CIDR（无类域间路由）表示法的一组 IPv4 地址或一个 IPv4 地址。

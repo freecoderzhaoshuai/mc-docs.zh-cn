@@ -3,16 +3,16 @@ title: 在 Azure 中创建和上传 Ubuntu Linux VHD
 description: 了解如何创建和上传包含 Ubuntu Linux 操作系统的 Azure 虚拟硬盘 (VHD)。
 author: Johnnytechn
 ms.service: virtual-machines-linux
-ms.topic: article
+ms.topic: how-to
 origin.date: 06/24/2019
-ms.date: 06/17/2020
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.openlocfilehash: a2bf43b395537158e86de855ec767cc0ff95c61b
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: 4d169cd208f985415c19b3d83489b9c519f42065
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097021"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057704"
 ---
 # <a name="prepare-an-ubuntu-virtual-machine-for-azure"></a>为 Azure 准备 Ubuntu 虚拟机
 
@@ -23,7 +23,7 @@ Ubuntu 现已发布正式 Azure VHD，可从 [https://cloud-images.ubuntu.com/](
 * Ubuntu 18.04/Bionic：[bionic-server-cloudimg-amd64.vmdk](https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.vmdk)
 
 ## <a name="prerequisites"></a>先决条件
-本文假设已在虚拟硬盘中安装 Ubuntu Linux 操作系统。 可使用多种工具创建 .vhd 文件，如 Hyper-V 等虚拟化解决方案。 有关说明，请参阅 [安装 Hyper-V 角色和配置虚拟机](https://technet.microsoft.com/library/hh846766.aspx)。
+本文假设已在虚拟硬盘中安装 Ubuntu Linux 操作系统。 可使用多种工具创建 .vhd 文件，如 Hyper-V 等虚拟化解决方案。 有关说明，请参阅 [安装 Hyper-V 角色和配置虚拟机](https://docs.microsoft.com//previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh846766(v=ws.11))。
 
 **Ubuntu 安装说明**
 
@@ -44,31 +44,36 @@ Ubuntu 现已发布正式 Azure VHD，可从 [https://cloud-images.ubuntu.com/](
 2. 单击“连接” **** 打开虚拟机窗口。
 
 3. 替换映像中的当前存储库，以使用 Ubuntu 的 Azure 存储库。
-   
+
     编辑 `/etc/apt/sources.list`前，建议进行备份：
-   
-        # sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+
+    ```console
+    # sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+    ```
 
     Ubuntu 16.04 和 Ubuntu 18.04：
-   
-        # sudo sed -i 's/http:\/\/archive\.ubuntu\.com\/ubuntu\//http:\/\/azure\.archive\.ubuntu\.com\/ubuntu\//g' /etc/apt/sources.list
-        # sudo sed -i 's/http:\/\/[a-z][a-z]\.archive\.ubuntu\.com\/ubuntu\//http:\/\/azure\.archive\.ubuntu\.com\/ubuntu\//g' /etc/apt/sources.list
-        # sudo apt-get update
 
+    ```console
+    # sudo sed -i 's/http:\/\/archive\.ubuntu\.com\/ubuntu\//http:\/\/azure\.archive\.ubuntu\.com\/ubuntu\//g' /etc/apt/sources.list
+    # sudo sed -i 's/http:\/\/[a-z][a-z]\.archive\.ubuntu\.com\/ubuntu\//http:\/\/azure\.archive\.ubuntu\.com\/ubuntu\//g' /etc/apt/sources.list
+    # sudo apt-get update
+    ```
 
 4. Ubuntu Azure 映像现在使用的是 [Azure 定制内核](https://ubuntu.com/blog/microsoft-and-canonical-increase-velocity-with-azure-tailored-kernel)。 运行以下命令，将操作系统更新为最新版 Azure 定制内核，并安装 Azure Linux 工具（包括 Hyper-V 依赖项）：
 
     Ubuntu 16.04 和 Ubuntu 18.04：
 
-        # sudo apt update
-        # sudo apt install linux-azure linux-image-azure linux-headers-azure linux-tools-common linux-cloud-tools-common linux-tools-azure linux-cloud-tools-azure
-        (recommended) # sudo apt full-upgrade
+    ```console
+    # sudo apt update
+    # sudo apt install linux-azure linux-image-azure linux-headers-azure linux-tools-common linux-cloud-tools-common linux-tools-azure linux-cloud-tools-azure
+    (recommended) # sudo apt full-upgrade
 
-        # sudo reboot
+    # sudo reboot
+    ```
 
 5. 修改 Grub 的内核引导行以使其包含 Azure 的其他内核参数。 为此，请在文本编辑器中打开 `/etc/default/grub`，找到名为 `GRUB_CMDLINE_LINUX_DEFAULT` 的变量（或根据需要添加它）并对它进行编辑，使其包含以下参数：
-   
-    ```
+
+    ```text
     GRUB_CMDLINE_LINUX_DEFAULT="console=tty1 console=ttyS0,115200n8 earlyprintk=ttyS0,115200 rootdelay=300 quiet splash"
     ```
 
@@ -78,21 +83,25 @@ Ubuntu 现已发布正式 Azure VHD，可从 [https://cloud-images.ubuntu.com/](
 
 7. 安装 cloud-init（预配代理）和 Azure Linux 代理（来宾扩展处理程序）。 Cloud init 在预配和之后的每次引导期间都会使用 netplan 配置系统网络配置。
 
-        # sudo apt update
-        # sudo apt install cloud-init netplan.io walinuxagent && systemctl stop walinuxagent
+    ```console
+    # sudo apt update
+    # sudo apt install cloud-init netplan.io walinuxagent && systemctl stop walinuxagent
+    ```
 
    > [!Note]
    >  安装 `walinuxagent` 包时会删除 `NetworkManager` 和 `NetworkManager-gnome` 包（如果已安装它们）。
 
 8. 删除 cloud-init 默认配置和多余的 netplan 项目，它们可能与 Azure 中的 cloud-init 设置产生冲突：
 
-        # rm -f /etc/cloud/cloud.cfg.d/50-curtin-networking.cfg /etc/cloud/cloud.cfg.d/curtin-preserve-sources.cfg
-        # rm -f /etc/cloud/ds-identify.cfg
-        # rm -f /etc/netplan/*.yaml
+    ```console
+    # rm -f /etc/cloud/cloud.cfg.d/50-curtin-networking.cfg /etc/cloud/cloud.cfg.d/curtin-preserve-sources.cfg
+    # rm -f /etc/cloud/ds-identify.cfg
+    # rm -f /etc/netplan/*.yaml
+    ```
 
 9. 将 cloud-init 配置为使用 Azure 数据源预配系统：
 
-    ```
+    ```console
     # cat > /etc/cloud/cloud.cfg.d/90_dpkg.cfg << EOF
     datasource_list: [ Azure ]
     EOF
@@ -125,27 +134,32 @@ Ubuntu 现已发布正式 Azure VHD，可从 [https://cloud-images.ubuntu.com/](
 
 10. 将 Azure Linux 代理配置为依赖 cloud-init 来执行预配。 有关这些选项的详细信息，请查看 [WALinuxAgent 项目](https://github.com/Azure/WALinuxAgent)。
 
-        sed -i 's/Provisioning.Enabled=y/Provisioning.Enabled=n/g' /etc/waagent.conf
-        sed -i 's/Provisioning.UseCloudInit=n/Provisioning.UseCloudInit=y/g' /etc/waagent.conf
-        sed -i 's/ResourceDisk.Format=y/ResourceDisk.Format=n/g' /etc/waagent.conf
-        sed -i 's/ResourceDisk.EnableSwap=y/ResourceDisk.EnableSwap=n/g' /etc/waagent.conf
+    ```console
+    sed -i 's/Provisioning.Enabled=y/Provisioning.Enabled=n/g' /etc/waagent.conf
+    sed -i 's/Provisioning.UseCloudInit=n/Provisioning.UseCloudInit=y/g' /etc/waagent.conf
+    sed -i 's/ResourceDisk.Format=y/ResourceDisk.Format=n/g' /etc/waagent.conf
+    sed -i 's/ResourceDisk.EnableSwap=y/ResourceDisk.EnableSwap=n/g' /etc/waagent.conf
 
-        cat >> /etc/waagent.conf << EOF
-        # For Azure Linux agent version >= 2.2.45, this is the option to configure,
-        # enable, or disable the provisioning behavior of the Linux agent.
-        # Accepted values are auto (default), waagent, cloud-init, or disabled.
-        # A value of auto means that the agent will rely on cloud-init to handle
-        # provisioning if it is installed and enabled, which in this case it will.
-        Provisioning.Agent=auto
-        EOF
+    cat >> /etc/waagent.conf << EOF
+    # For Azure Linux agent version >= 2.2.45, this is the option to configure,
+    # enable, or disable the provisioning behavior of the Linux agent.
+    # Accepted values are auto (default), waagent, cloud-init, or disabled.
+    # A value of auto means that the agent will rely on cloud-init to handle
+    # provisioning if it is installed and enabled, which in this case it will.
+    Provisioning.Agent=auto
+    EOF
+    ```
 
 11. 清除 cloud-init 和 Azure Linux 代理运行时项目和日志：
 
-        # sudo cloud-init clean --logs --seed
-        # sudo rm -rf /var/lib/cloud/
-        # sudo systemctl stop walinuxagent.service
-        # sudo rm -rf /var/lib/waagent/
-        # sudo rm -f /var/log/waagent.log
+    ```console
+    # sudo cloud-init clean --logs --seed
+    # sudo rm -rf /var/lib/cloud/
+    # sudo systemctl stop walinuxagent.service
+    # sudo rm -rf /var/lib/waagent/
+    # sudo rm -f /var/log/waagent.log
+    ```
+
 12. 运行以下命令可取消对虚拟机的预配并且对其进行准备以便在 Azure 上进行预配：
 
     > [!NOTE]
@@ -154,10 +168,12 @@ Ubuntu 现已发布正式 Azure VHD，可从 [https://cloud-images.ubuntu.com/](
     > [!WARNING]
     > 使用上述命令取消预配无法保证清除映像中的所有敏感信息且适用于分发版。
 
-        # sudo waagent -force -deprovision+user
-        # rm -f ~/.bash_history
-        # export HISTSIZE=0
-        # logout
+    ```console
+    # sudo waagent -force -deprovision+user
+    # rm -f ~/.bash_history
+    # export HISTSIZE=0
+    # logout
+    ```
 
 13. 在 Hyper-V 管理器中单击“操作”->“关闭”。****
 

@@ -2,18 +2,19 @@
 title: 在 Azure Kubernetes 服务中使用托管标识
 description: 了解如何在 Azure Kubernetes 服务 (AKS) 中使用托管标识
 services: container-service
-author: rockboyfor
 ms.topic: article
-ms.date: 08/10/2020
+origin.date: 07/17/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 07/13/2020
 ms.author: v-yeche
-ms.openlocfilehash: c9754c374d29a1677d13c36b6eabd724eae316d6
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 1ee0653502affa05f939317cb273025b24d143a9
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842573"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021531"
 ---
 <!--Verified successfully-->
 # <a name="use-managed-identities-in-azure-kubernetes-service"></a>在 Azure Kubernetes 服务中使用托管标识
@@ -39,21 +40,22 @@ ms.locfileid: "87842573"
 
 AKS 对内置服务和加载项使用多个托管标识。
 
-| 标识                       | 名称    | 使用案例 | 默认权限 | 自带标识
-|----------------------------|-----------|----------|
-| 控制面板 | 不可见 | 由 AKS 用于托管网络资源，包括入口负载均衡器和 AKS 托管公共 IP | 节点资源组的参与者角色 | 预览
-| Kubelet | AKS Cluster Name-agentpool | 向 Azure 容器注册表 (ACR) 进行身份验证 | 节点资源组的读取者角色 | 目前不支持
-| 加载项 | AzureNPM | 无需标识 | 不可用 | 否
-| 加载项 | AzureCNI 网络监视 | 无需标识 | 不可用 | 否
-| 加载项 | azurepolicy（网关守卫） | 无需标识 | 不可用 | 否
-| 加载项 | azurepolicy | 无需标识 | 不可用 | 否
-| 加载项 | Calico | 无需标识 | 不可用 | 否
-| 加载项 | 仪表板 | 无需标识 | 不可用 | 否
-| 加载项 | HTTPApplicationRouting | 管理所需的网络资源 | 节点资源组的读取者角色，DNS 区域的参与者角色 | 否
-| 加载项 | 入口应用程序网关 | 管理所需的网络资源| 节点资源组的参与者角色 | 否
-| 加载项 | omsagent | 用于将 AKS 指标发送到 Azure Monitor | “监视指标发布者”角色 | 否
-| 加载项 | Virtual-Node (ACIConnector) | 管理 Azure 容器实例 (ACI) 所需的网络资源 | 节点资源组的参与者角色 | 否
+<!--MOONCAKE: REMOVE `Bring your own identity` COLUMN DETAILS-->
 
+| 标识                       | 名称    | 使用案例 | 默认权限 |
+|----------------------------|-----------|----------|
+| 控制面板 | 不可见 | 由 AKS 用于托管网络资源，包括入口负载均衡器和 AKS 托管公共 IP | 节点资源组的参与者角色 |
+| Kubelet | AKS Cluster Name-agentpool | 向 Azure 容器注册表 (ACR) 进行身份验证 | 节点资源组的读取者角色 |
+| 加载项 | AzureNPM | 无需标识 | 不可用 |
+| 加载项 | AzureCNI 网络监视 | 无需标识 | 不可用 |
+| 加载项 | azurepolicy（网关守卫） | 无需标识 | 不可用 |
+| 加载项 | azurepolicy | 无需标识 | 不可用 |
+| 加载项 | Calico | 无需标识 | 不可用 |
+| 加载项 | 仪表板 | 无需标识 | 不可用 |
+| 加载项 | HTTPApplicationRouting | 管理所需的网络资源 | 节点资源组的读取者角色，DNS 区域的参与者角色 |
+| 加载项 | 入口应用程序网关 | 管理所需的网络资源| 节点资源组的参与者角色 |
+| 加载项 | omsagent | 用于将 AKS 指标发送到 Azure Monitor | “监视指标发布者”角色 |
+| 加载项 | Virtual-Node (ACIConnector) | 管理 Azure 容器实例 (ACI) 所需的网络资源 | 节点资源组的参与者角色 |
 
 ## <a name="create-an-aks-cluster-with-managed-identities"></a>创建具有托管标识的 AKS 群集
 
@@ -63,7 +65,7 @@ AKS 对内置服务和加载项使用多个托管标识。
 
 ```azurecli
 # Create an Azure resource group
-az group create --name myResourceGroup --location chinanorth2
+az group create --name myResourceGroup --location chinaeast2
 ```
 
 然后，创建 AKS 群集：
@@ -117,7 +119,7 @@ az aks get-credentials --resource-group myResourceGroup --name myManagedCluster
 
 <!--Not Available on [aks-arm-template]: https://docs.microsoft.com/azure/templates/microsoft.containerservice/managedclusters-->
 
-[az-identity-create]: https://docs.microsoft.com/cli/azure/identity?view=azure-cli-latest#az-identity-create
-[az-identity-list]: https://docs.microsoft.com/cli/azure/identity?view=azure-cli-latest#az-identity-list
+[az-identity-create]: https://docs.microsoft.com/cli/azure/identity#az-identity-create
+[az-identity-list]: https://docs.microsoft.com/cli/azure/identity#az-identity-list
 
 <!-- Update_Description: update meta properties, wording update, update link -->

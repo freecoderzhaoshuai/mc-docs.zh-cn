@@ -8,14 +8,14 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 01/15/2020
-ms.date: 07/02/2020
-ms.custom: tracking-python
-ms.openlocfilehash: 793055d0f9f1b6f02940312e93d775b7d0bbff65
-ms.sourcegitcommit: 5afd7c4c3be9b80c4c67ec55f66fcf347aad74c6
+ms.date: 09/10/2020
+ms.custom: devx-track-python
+ms.openlocfilehash: bfc6616c3f76d01ef7fd49d719bc6ce5892fd8de
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85942503"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021130"
 ---
 # <a name="example-create-a-custom-skill-using-python"></a>示例：使用 Python 创建自定义技能
 

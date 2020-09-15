@@ -1,22 +1,25 @@
 ---
 title: 在 Azure Service Fabric 上创建基于执行组件的服务
 description: 了解如何使用 Service Fabric Reliable Actors 在 C# 中创建、调试和部署第一个基于执行组件的服务。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 07/10/2019
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 0a2262f5fdaf5f1d458cc4d000c04915c65e0698
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 26c9cc9679c1ca3315987b80929b8610ab47312e
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742439"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655643"
 ---
 # <a name="getting-started-with-reliable-actors"></a>Reliable Actors 入门
 > [!div class="op_single_selector"]
 > * [Windows 上的 C#](service-fabric-reliable-actors-get-started.md)
-> * [Linux 上的 Java](service-fabric-reliable-actors-get-started-java.md)
+> * [Linux 上的 Java](./service-fabric-create-your-first-linux-application-with-java.md)
 
 本文演示在 Visual Studio 中创建和调试简单的 Reliable Actor 应用程序。 有关 Reliable Actors 的详细信息，请参阅 [Service Fabric Reliable Actors 简介](service-fabric-reliable-actors-introduction.md)。
 
@@ -162,4 +165,4 @@ internal class HelloWorld : Actor, IHelloWorld
 [8]: ./media/service-fabric-reliable-actors-get-started/build-props.png
 [9]: ./media/service-fabric-reliable-actors-get-started/app-output.png
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -6,20 +6,20 @@ ms.service: virtual-machines-linux
 ms.subservice: imaging
 ms.topic: tutorial
 ms.workload: infrastructure
-ms.date: 06/17/2020
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.custom: mvc
+ms.custom: mvc, devx-track-azurecli
 ms.reviewer: akjosh
-ms.openlocfilehash: 66b1be97702a2cf56e4dc36ce8d9f06e84bfb6d2
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: 727106d033ec429868729d34a33f225c3dd23b6a
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097410"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057685"
 ---
 # <a name="tutorial-create-a-custom-image-of-an-azure-vm-with-the-azure-cli"></a>教程：使用 Azure CLI 创建 Azure VM 的自定义映像
 
-自定义映像类似于市场映像，不同的是自定义映像的创建者是自己。 自定义映像可用于启动配置，例如预加载应用程序、应用程序配置和其他 OS 配置。 在本教程中，你将创建自己的 Azure 虚拟机自定义映像。 你将学习如何执行以下操作：
+自定义映像类似于市场映像，不同的是自定义映像的创建者是自己。 自定义映像可用于启动配置，例如预加载应用程序、应用程序配置和其他 OS 配置。 在本教程中，你将创建自己的 Azure 虚拟机自定义映像。 学习如何：
 
 > [!div class="checklist"]
 > * 创建共享映像库
@@ -81,15 +81,15 @@ az vm get-instance-view -g MyResourceGroup -n MyVm --query id
 
 ## <a name="create-an-image-definition"></a>创建映像定义
 
-映像定义为映像创建一个逻辑分组。 它们用于管理有关映像版本的信息，这些版本是在其中创建的。 
+映像定义为映像创建一个逻辑分组。 映像定义用于管理在其中创建的映像版本的相关信息。 
 
 映像定义名称可能包含大写或小写字母、数字、点、短划线和句点。 
 
-若要详细了解可为映像定义指定的值，请参阅[映像定义](/virtual-machines/linux/shared-image-galleries#image-definitions)。
+若要详细了解可为映像定义指定的值，请参阅[映像定义](./shared-image-galleries.md#image-definitions)。
 
 使用 [az sig image-definition create](https://docs.microsoft.com/cli/sig/image-definition#az-sig-image-definition-create) 在库中创建一个映像定义。 
 
-在此示例中，映像定义名为 myImageDefinition，适用于[专用化](/virtual-machines/linux/shared-image-galleries#generalized-and-specialized-images) Linux OS 映像**。 
+在此示例中，映像定义名为 myImageDefinition，适用于[专用化](./shared-image-galleries.md#generalized-and-specialized-images) Linux OS 映像。 
 
 ```azurecli 
 az sig image-definition create \
@@ -140,7 +140,7 @@ az sig image-version create \
 
 使用 `--image` 的映像定义 ID 从可用的最新映像版本创建 VM。 还可以通过为 `--image` 提供映像版本 ID 从特定版本创建 VM。 
 
-在此示例中，我们将从 myImageDefinition 映像的最新版本创建 VM**。
+在此示例中，我们将从 myImageDefinition 映像的最新版本创建 VM。
 
 ```azurecli
 az group create --name myResourceGroup --location chinanorth
@@ -172,12 +172,12 @@ az role assignment create \
    --scope <gallery ID>
 ```
 
-有关如何使用 RBAC 共享资源的详细信息，请参阅[使用 RBAC 和 Azure CLI 管理访问权限](/role-based-access-control/role-assignments-cli)。
+有关如何使用 RBAC 共享资源的详细信息，请参阅[使用 RBAC 和 Azure CLI 管理访问权限](../../role-based-access-control/role-assignments-cli.md)。
 
 <!--Not available in MC currently-->
 ## <a name="next-steps"></a>后续步骤
 
-在本教程中，你已创建了一个自定义 VM 映像。 你已了解如何：
+在本教程中，已创建自定义 VM 映像。 你已了解如何执行以下操作：
 
 > [!div class="checklist"]
 > * 创建共享映像库
@@ -190,5 +190,4 @@ az role assignment create \
 
 > [!div class="nextstepaction"]
 > [创建高度可用的 VM](tutorial-availability-sets.md)
-
 

@@ -7,14 +7,15 @@ author: dereklegenzoff
 ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: tutorial
-origin.date: 05/05/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: f9cc8e140c051509dff599d12995d158f223215c
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+origin.date: 08/21/2020
+ms.date: 09/10/2020
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 42cc5d20d5bcb9139e3dbfd01826621c599d67b3
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471919"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021455"
 ---
 # <a name="tutorial-optimize-indexing-with-the-push-api"></a>教程：使用推送 API 优化索引编制
 

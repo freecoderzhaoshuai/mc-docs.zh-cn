@@ -7,14 +7,14 @@ author: HeidiSteen
 ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
-origin.date: 11/04/2019
-ms.date: 07/02/2020
-ms.openlocfilehash: 81d7aeb6c9096ed16194eba9e717aa9355c94290
-ms.sourcegitcommit: 5afd7c4c3be9b80c4c67ec55f66fcf347aad74c6
+origin.date: 07/12/2020
+ms.date: 09/10/2020
+ms.openlocfilehash: b82eacb83eeba0c2f6a91dbecdbc91edfd176cd8
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85942589"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020886"
 ---
 # <a name="configure-a-connection-from-an-azure-cognitive-search-indexer-to-sql-server-on-an-azure-vm"></a>配置从 Azure 认知搜索索引器到 Azure VM 上 SQL Server 的连接
 
@@ -53,7 +53,7 @@ ms.locfileid: "85942589"
 ## <a name="configure-sql-server-connectivity-in-the-vm"></a>在 VM 中配置 SQL Server 连接
 设置 Azure 认知搜索所需的加密连接后，Azure VM 上的 SQL Server 内还有一些其他配置步骤。 如果尚未执行这些步骤，下一步是使用以下文章之一完成配置：
 
-* 有关 **Resource Manager** VM，请参阅[使用 Resource Manager 连接到 Azure 上的 SQL Server 虚拟机](../virtual-machines/windows/sql/virtual-machines-windows-sql-connect.md)。 
+* 有关 **Resource Manager** VM，请参阅[使用 Resource Manager 连接到 Azure 上的 SQL Server 虚拟机](../azure-sql/virtual-machines/windows/ways-to-connect-to-sql.md)。 
 * 有关**经典** VM，请参阅[连接到 Azure 上的 SQL Server 虚拟机（经典）](../virtual-machines/windows/classic/sql-connect.md)。
 
 具体而言，查看每个文章中的“通过 Internet 连接”部分。
@@ -74,11 +74,11 @@ ms.locfileid: "85942589"
 IP 寻址会产生一些挑战，如果了解问题和潜在解决方法，则可以轻松应对。 剩余部分提供了有关处理 ACL 中与 IP 地址相关的问题的建议。
 
 #### <a name="restrict-access-to-the-azure-cognitive-search"></a>限制对 Azure 认知搜索的访问
-强烈建议你在 ACL 中限制对搜索服务的 IP 地址及 `AzureCognitiveSearch` [服务标记](https://docs.azure.cn/virtual-network/service-tags-overview#available-service-tags)的 IP 地址范围的访问，而不是使 SQL Azure VM 对所有连接请求开放。
+强烈建议你在 ACL 中限制对搜索服务的 IP 地址及 `AzureCognitiveSearch` [服务标记](../virtual-network/service-tags-overview.md#available-service-tags)的 IP 地址范围的访问，而不是使 SQL Azure VM 对所有连接请求开放。
 
 通过对搜索服务的 FQDN（例如 `<your-search-service-name>.search.azure.cn`）进行 ping 操作，可找到 IP 地址。
 
-可以使用[可下载的 JSON 文件](https://docs.azure.cn/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files)或通过[服务标记发现 API](https://docs.azure.cn/virtual-network/service-tags-overview#use-the-service-tag-discovery-api-public-preview) 找到 `AzureCognitiveSearch` [服务标记](https://docs.azure.cn/virtual-network/service-tags-overview#available-service-tags)的 IP 地址范围。 IP 地址范围每周更新一次。
+可以使用[可下载的 JSON 文件](../virtual-network/service-tags-overview.md#discover-service-tags-by-using-downloadable-json-files)或通过[服务标记发现 API](../virtual-network/service-tags-overview.md#use-the-service-tag-discovery-api-public-preview) 找到 `AzureCognitiveSearch` [服务标记](../virtual-network/service-tags-overview.md#available-service-tags)的 IP 地址范围。 IP 地址范围每周更新一次。
 
 #### <a name="managing-ip-address-fluctuations"></a>管理 IP 地址波动
 如果搜索服务只有一个搜索单位（即一个副本和一个分区），IP 地址会在例程服务重新启动期间发生更改，这会导致搜索服务的 IP 地址的现有 ACL 无效。
@@ -94,4 +94,3 @@ IP 寻址会产生一些挑战，如果了解问题和潜在解决方法，则�
 
 ## <a name="next-steps"></a>后续步骤
 完成配置后，现在可以将 Azure VM 上的 SQL Server 指定为 Azure 认知搜索索引器的数据源。 有关详细信息，请参阅[使用索引器将 Azure SQL 数据库连接到 Azure 认知搜索](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)。
-

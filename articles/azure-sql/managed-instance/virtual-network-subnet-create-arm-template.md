@@ -12,13 +12,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: sstein, bonova, carlrab
 origin.date: 09/12/2019
-ms.date: 07/13/2020
-ms.openlocfilehash: 7a7e17f4b8325d25de5f5519f1d94e831f3dfc17
-ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+ms.date: 09/14/2020
+ms.openlocfilehash: 6bf2698a11bbdf54b5a41cf2a3d8389cf114c8a6
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86227883"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014360"
 ---
 # <a name="create-a-virtual-network-for-azure-sql-managed-instance"></a>为 Azure SQL 托管实例创建虚拟网络
 [!INCLUDE[appliesto-sqlmi](../includes/appliesto-sqlmi.md)]
@@ -48,7 +48,7 @@ Azure SQL 托管实例必须部署在 Azure [虚拟网络](../../virtual-network
 
 2. 选择“部署到 Azure”按钮：
 
-   <a target="_blank" href="https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-sql-managed-instance-azure-environment%2Fazuredeploy.json" rel="noopener" data-linktype="external"> <img src="http://azuredeploy.net/deploybutton.png" data-linktype="external"> </a>
+   [![图像显示标记为“部署到 Azure”的按钮。](https://azuredeploy.net/deploybutton.png)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-sql-managed-instance-azure-environment%2Fazuredeploy.json)
 
    单击此按钮会打开一个窗体，在其中可以配置用于部署 SQL 托管实例的网络环境。
 

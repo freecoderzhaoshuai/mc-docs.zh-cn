@@ -7,12 +7,12 @@ ms.author: laobri
 ms.service: machine-learning
 ms.topic: tutorial
 ms.date: 04/09/2020
-ms.openlocfilehash: 2cd55b13cea510462a2f25209596193dfbe9059d
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 5d907c981298fa7702b48fe70bf8ec378db59d42
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228279"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021155"
 ---
 # <a name="tag-images-in-a-labeling-project-preview"></a>在标记项目中标记图像（预览）
 
@@ -30,7 +30,7 @@ ms.locfileid: "88228279"
 
 ## <a name="sign-in-to-the-workspace"></a>登录到工作区
 
-1. 登录到 [Azure 机器学习工作室](https://ml.azure.com)。
+1. 登录到 [Azure 机器学习工作室](https://studio.ml.azure.cn)。
 
 1. 选择包含标签项目的订阅和工作区。  从项目管理员处获取此信息。
 

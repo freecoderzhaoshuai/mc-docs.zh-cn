@@ -8,7 +8,7 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 02/10/2020
-ms.date: 03/16/2020
+ms.date: 09/10/2020
 translation.priority.mt:
 - de-de
 - es-es
@@ -20,12 +20,12 @@ translation.priority.mt:
 - ru-ru
 - zh-cn
 - zh-tw
-ms.openlocfilehash: 87ef9d5719daae853725c0c7458d64eb1de3f32a
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.openlocfilehash: 348e83d5f06ee6f1649eedd8f7e824e6ee74f47b
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588410"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021478"
 ---
 # <a name="odata-language-overview-for-filter-orderby-and-select-in-azure-cognitive-search"></a>Azure 认知搜索中 `$filter`、`$orderby` 和 `$select` 的 OData 语言概述
 
@@ -84,7 +84,9 @@ identifier ::= [a-zA-Z_][a-zA-Z_0-9]*
 
 以字段路径 `Address/City` 为例。 在筛选器中，此字段路径引用当前文档的单个城市，例如“旧金山”。 相比之下，`Rooms/Type` 引用许多客房的 `Type` 子字段（例如，“标准”表示第一间客房，“豪华”表示第二间客房，等等）。 由于 `Rooms/Type` 不引用子字段 `Type` 的*单个实例*，因此不能直接在筛选器中使用。 若要根据客房类型进行筛选，请使用包含范围变量的 [Lambda 表达式](search-query-odata-collection-operators.md)，如下所示：
 
-    Rooms/any(room: room/Type eq 'deluxe')
+```odata
+Rooms/any(room: room/Type eq 'deluxe')
+```
 
 在此示例中，范围变量 `room` 显示在 `room/Type` 字段路径中。 于是，`room/Type` 引用当前文档中当前客房的类型。 这是 `Type` 子字段的单个实例，因此可以直接在筛选器中使用。
 

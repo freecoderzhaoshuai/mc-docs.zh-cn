@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 07/20/2020
-ms.openlocfilehash: 0c576faab7ead25b955bed0c3282c0571f99244b
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: e891d4ab8ea8ac4895eb41197049b184ec69243d
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471936"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021570"
 ---
 # <a name="create-a-simple-query-in-azure-cognitive-search"></a>在 Azure 认知搜索中创建简单的查询
 
@@ -148,7 +148,7 @@ https://azs-playground.search.azure.cn/indexes/nycjobs/docs?api-version=2020-06-
 https://azs-playground.search.azure.cn/indexes/nycjobs/docs?api-version=2020-06-30&$count=true&$select=job_id,business_title,agency&search=&$filter=search.ismatch('plan*', 'business_title', 'full', 'any')
 ```
 
-有关该函数的详细信息，请参阅[“筛选器示例”中的 search.ismatch](https://docs.azure.cn/search/search-query-odata-full-text-search-functions#examples)。
+有关该函数的详细信息，请参阅[“筛选器示例”中的 search.ismatch](./search-query-odata-full-text-search-functions.md#examples)。
 
 ## <a name="example-4-range-filters"></a>示例 4：范围筛选器
 
@@ -199,7 +199,7 @@ https://azs-playground.search.azure.cn/indexes/nycjobs/docs?api-version=2020-06-
 
 ## <a name="example-5-geo-search"></a>示例 5：地理搜索
 
-示例索引包含带有纬度和经度坐标的 geo_location 字段。 此示例使用 [geo.distance 函数](https://docs.azure.cn/search/search-query-odata-geo-spatial-functions#examples)来筛选从起点开始，直到所提供的任意距离（以公里为单位）圆周范围内的文档。 可以调整查询 (4) 中的最后一个值，以缩小或放大查询的表面积。
+示例索引包含带有纬度和经度坐标的 geo_location 字段。 此示例使用 [geo.distance 函数](./search-query-odata-geo-spatial-functions.md#examples)来筛选从起点开始，直到所提供的任意距离（以公里为单位）圆周范围内的文档。 可以调整查询 (4) 中的最后一个值，以缩小或放大查询的表面积。
 
 为方便阅读，以下示例采用 POST 格式：
 
@@ -289,8 +289,8 @@ https://azs-playground.search.azure.cn/indexes/nycjobs/docs?api-version=2020-06-
 ## <a name="next-steps"></a>后续步骤
 尝试在代码中指定查询。 以下链接介绍如何使用默认的简单语法为 .NET 和 REST API 设置搜索查询。
 
-* [使用 .NET SDK 查询索引](search-query-dotnet.md)
-* [使用 REST API 查询索引](search-create-index-rest-api.md)
+* [使用 .NET SDK 查询索引](./search-get-started-dotnet.md)
+* [使用 REST API 查询索引](./search-get-started-powershell.md)
 
 可在以下链接找到其他语法参考、查询体系结构和示例：
 

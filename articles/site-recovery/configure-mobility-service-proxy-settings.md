@@ -2,19 +2,21 @@
 title: 配置 Azure 到 Azure 灾难恢复的移动服务代理设置 | Azure
 description: 详细介绍了当客户在其源环境中使用代理时如何配置移动服务。
 services: site-recovery
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.service: site-recovery
 ms.topic: article
 origin.date: 03/18/2020
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: 830696cd7d3987a620f84945f1a1f24be6437236
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: d592f1ca5fa2abced9d65b62c7a9e90052b80996
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440441"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655315"
 ---
 # <a name="configure-mobility-service-proxy-settings-for-azure-to-azure-disaster-recovery"></a>配置 Azure 到 Azure 灾难恢复的移动服务代理设置
 
@@ -54,7 +56,7 @@ ms.locfileid: "84440441"
 ProxyInfo.conf 包含以下模板：[proxy] Address=http://1.2.3.4 Port=5678 BypassList=hypervrecoverymanager.windowsazure.cn,login.chinacloudapi.cn,blob.core.chinacloudapi.cn。 BypassList 不支持通配符（例如“*.chinacloudapi.cn”），但提供 chinacloudapi.cn 就足以跳过了。 
 
 ## <a name="next-steps"></a>后续步骤：
-- 请参阅有关复制 Azure VM 复制的[网络指南](site-recovery-azure-to-azure-networking-guidance.md)。
-- 通过[复制 Azure VM](site-recovery-azure-to-azure.md) 来部署灾难恢复。
+- 请参阅有关复制 Azure VM 复制的[网络指南](./azure-to-azure-about-networking.md)。
+- 通过[复制 Azure VM](./azure-to-azure-quickstart.md) 来部署灾难恢复。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

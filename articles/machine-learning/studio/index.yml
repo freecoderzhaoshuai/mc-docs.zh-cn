@@ -11,20 +11,20 @@ metadata:
   ms.collection: collection
   author: j-martens
   ms.author: jmartens
-  ms.date: 09/04/2019
-  ms.openlocfilehash: f5f27470dc63a4b36726f7cfbdae13ba021d6c27
-  ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+  ms.date: 03/05/2020
+  ms.openlocfilehash: 54d0c9d5bf92daaba9e2414f6bcd8eab32fbe17c
+  ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 04/17/2020
-  ms.locfileid: "75598625"
+  ms.lasthandoff: 09/11/2020
+  ms.locfileid: "90021480"
 landingContent:
 - title: 工作室（经典）入门
   linkLists:
   - linkListType: get-started
     links:
     - text: 什么是工作室（经典）？
-      url: what-is-ml-studio.md
+      url: studio-classic-overview.md
     - text: 创建第一个 ML 试验
       url: create-experiment.md
     - text: 创建预测解决方案

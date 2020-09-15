@@ -1,17 +1,19 @@
 ---
 title: Azure Service Fabric 映像存储区连接字符串
 description: 了解映像存储连接字符串，包括其用途和对 Service Fabric 群集的应用。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 02/27/2018
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 2897dda8ba41fd5d893295b9ca1b13a786da7709
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 745cecdbc1b16acf9211965bd775c29760633cbb
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77539969"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655652"
 ---
 # <a name="understand-the-imagestoreconnectionstring-setting"></a>了解 ImageStoreConnectionString 设置
 
@@ -42,7 +44,7 @@ Service Fabric 一开始被许多不同的团队用作 Azure 内部消耗平台�
 
 此外，文件系统提供程序或 Azure 存储提供程序都不应用作在多个群集之间共享映像存储的方法 - 这会导致群集配置数据损坏，因为每个群集都可将冲突数据写入到映像存储。 若要在多个群集之间共享预配的应用程序包，请改用 [sfpkg][12] 文件，可以使用下载 URI 将这些文件上传到任何外部存储。
 
-因此虽然可配置 ImageStoreConnectionString，但只需使用默认设置。 通过 Visual Studio 发布到 Azure 时，该参数会相应地自动设置。 对于 Azure 中托管的群集的编程部署，连接字符串始终为“fabric: ImageStore”。 有疑问时，始终可通过 [PowerShell](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricclustermanifest)、[.NET](https://msdn.microsoft.com/library/azure/mt161375.aspx) 或 [REST](https://docs.microsoft.com/rest/api/servicefabric/get-a-cluster-manifest) 检索群集清单验证其值。 同样，本地测试和生产群集应始终配置为使用映像存储区服务提供程序。
+因此虽然可配置 ImageStoreConnectionString，但只需使用默认设置。 通过 Visual Studio 发布到 Azure 时，该参数会相应地自动设置。 对于 Azure 中托管的群集的编程部署，连接字符串始终为“fabric: ImageStore”。 有疑问时，始终可通过 [PowerShell](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricclustermanifest)、[.NET](https://docs.microsoft.com/previous-versions/azure/reference/mt161375(v=azure.100)) 或 [REST](https://docs.microsoft.com/rest/api/servicefabric/get-a-cluster-manifest) 检索群集清单验证其值。 同样，本地测试和生产群集应始终配置为使用映像存储区服务提供程序。
 
 ### <a name="next-steps"></a>后续步骤
 [使用 PowerShell 部署和删除应用程序][10]
@@ -56,4 +58,4 @@ Service Fabric 一开始被许多不同的团队用作 Azure 内部消耗平台�
 [11]: service-fabric-cluster-creation-via-portal.md
 [12]: service-fabric-package-apps.md#create-an-sfpkg
 
-<!--Update_Description: update meta properties, wording update  -->
+<!-- Update_Description: update meta properties, wording update, update link -->

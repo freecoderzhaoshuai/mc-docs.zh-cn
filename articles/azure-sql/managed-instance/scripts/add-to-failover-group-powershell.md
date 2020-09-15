@@ -12,13 +12,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: carlrab
 origin.date: 07/16/2019
-ms.date: 08/17/2020
-ms.openlocfilehash: ade8419e8a2ab8972db30a17da16c5bef10b832c
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.date: 09/14/2020
+ms.openlocfilehash: cf26c38230cdf5eacad5c20f326fa8f1830cc9fc
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223274"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014173"
 ---
 # <a name="use-powershell-to-add-a-managed-instance-to-a-failover-group"></a>使用 PowerShell 将托管实例添加到故障转移组 
 
@@ -741,6 +741,6 @@ Remove-AzResourceGroup -ResourceGroupName $resourceGroupName
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 SQL 托管实例的其他 PowerShell 脚本示例可在[ Azure SQL 托管实例 PowerShell 脚本](../../database/powershell-script-content-guide.md)中找到。

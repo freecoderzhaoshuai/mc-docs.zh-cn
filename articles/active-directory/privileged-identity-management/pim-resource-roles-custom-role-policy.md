@@ -11,15 +11,15 @@ ms.topic: how-to
 ms.tgt_pltfrm: na
 ms.workload: identity
 ms.subservice: pim
-ms.date: 08/27/2020
+ms.date: 09/08/2020
 ms.author: v-junlch
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 95afe892e4ea1e91557d44bbb8fa3a72804144d7
-ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
+ms.openlocfilehash: 169d5796c868896dfb444bb33f8a58cf21c27aaf
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89046411"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593823"
 ---
 # <a name="use-azure-custom-roles-in-privileged-identity-management"></a>在 Privileged Identity Management 中使用 Azure 自定义角色
 
@@ -31,7 +31,7 @@ ms.locfileid: "89046411"
 
 ## <a name="create-the-custom-role"></a>创建自定义角色
 
-若要为资源创建自定义角色，请按照 [Azure 自定义角色](../role-based-access-control-custom-roles.md)中所述的步骤操作。
+若要为资源创建自定义角色，请按照 [Azure 自定义角色](../../role-based-access-control/custom-roles.md)中所述的步骤操作。
 
 创建自定义角色后，请提供一个描述性名称，以便可以轻松记住你打算复制的内置角色。
 

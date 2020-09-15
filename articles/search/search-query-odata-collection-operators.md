@@ -8,7 +8,7 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 12/16/2019
+ms.date: 09/10/2020
 translation.priority.mt:
 - de-de
 - es-es
@@ -20,12 +20,12 @@ translation.priority.mt:
 - ru-ru
 - zh-cn
 - zh-tw
-ms.openlocfilehash: 00140e546f7ef9ef61590f328440e7c8031de682
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.openlocfilehash: e95832ff64f347242c9d21ce8b56f42bb76927af
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588714"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021071"
 ---
 # <a name="odata-collection-operators-in-azure-cognitive-search---any-and-all"></a>Azure 认知搜索中的 OData 集合运算符 - `any` 和 `all`
 
@@ -67,23 +67,33 @@ lambda_expression ::= identifier ':' boolean_expression
 
 匹配 `tags` 字段恰好包含字符串“wifi”的文档：
 
-    tags/any(t: t eq 'wifi')
+```text
+tags/any(t: t eq 'wifi')
+```
 
 匹配其中 `ratings` 字段的每个元素介于 3 和 5 之间（包括 3 和 5）的文档：
 
-    ratings/all(r: r ge 3 and r le 5)
+```text
+ratings/all(r: r ge 3 and r le 5)
+```
 
 匹配其中 `locations` 字段中任何地理坐标在给定多边形内的文档：
 
-    locations/any(loc: geo.intersects(loc, geography'POLYGON((-122.031577 47.578581, -122.031577 47.678581, -122.131577 47.678581, -122.031577 47.578581))'))
+```text
+locations/any(loc: geo.intersects(loc, geography'POLYGON((-122.031577 47.578581, -122.031577 47.678581, -122.131577 47.678581, -122.031577 47.578581))'))
+```
 
 匹配其中 `rooms` 字段为空的文档：
 
-    not rooms/any()
+```text
+not rooms/any()
+```
 
 匹配对于所有房间 `rooms/amenities` 字段包含“tv”且 `rooms/baseRate` 小于 100 的文档：
 
-    rooms/all(room: room/amenities/any(a: a eq 'tv') and room/baseRate lt 100.0)
+```text
+rooms/all(room: room/amenities/any(a: a eq 'tv') and room/baseRate lt 100.0)
+```
 
 ## <a name="limitations"></a>限制
 

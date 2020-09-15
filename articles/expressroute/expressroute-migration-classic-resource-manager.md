@@ -8,12 +8,12 @@ ms.topic: conceptual
 origin.date: 02/06/2020
 ms.author: v-yiso
 ms.date: ''
-ms.openlocfilehash: 40719cacb28769597b33637e146462811da5b1d0
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 5efd2a9db001199b039000cc75ba086e275e415b
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78154659"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021376"
 ---
 # <a name="migrate-expressroute-associated-virtual-networks-from-classic-to-resource-manager"></a>将 ExpressRoute 关联的虚拟网络从经典部署模型迁移到 Resource Manager 部署模型
 
@@ -31,9 +31,9 @@ ms.locfileid: "78154659"
 * 确保拥有一个在 Resource Manager 部署模型中创建的资源组。
 * 查看以下资源迁移文档：
 
-    * [平台支持的从经典部署模型到 Azure Resource Manager 的 IaaS 资源迁移](../virtual-machines/virtual-machines-windows-migration-classic-resource-manager.md)
-    * [有关平台支持的从经典部署模型到 Azure Resource Manager 部署模型的迁移的技术深入探讨](../virtual-machines/virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
-    * [常见问题解答：平台支持的从经典部署模型到 Azure 资源管理器的 IaaS 资源迁移](../virtual-machines/virtual-machines-windows-migration-classic-resource-manager.md)
+    * [平台支持的从经典部署模型到 Azure Resource Manager 的 IaaS 资源迁移](../virtual-machines/windows/migration-classic-resource-manager-overview.md)
+    * [有关平台支持的从经典部署模型到 Azure Resource Manager 部署模型的迁移的技术深入探讨](../virtual-machines/migration-classic-resource-manager-deep-dive.md)
+    * [常见问题解答：平台支持的从经典部署模型到 Azure 资源管理器的 IaaS 资源迁移](../virtual-machines/migration-classic-resource-manager-faq.md)
     * [查看最常见的迁移错误和缓解措施](../virtual-machines/windows/migration-classic-resource-manager-errors.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 ## <a name="supported-and-unsupported-scenarios"></a>支持的和不支持的方案
@@ -84,9 +84,9 @@ ms.locfileid: "78154659"
    ```
 
 ## <a name="next-steps"></a>后续步骤
-* [平台支持的从经典部署模型到 Azure Resource Manager 的 IaaS 资源迁移](../virtual-machines/virtual-machines-windows-migration-classic-resource-manager.md)
-* [有关平台支持的从经典部署模型到 Azure Resource Manager 部署模型的迁移的技术深入探讨](../virtual-machines/virtual-machines-windows-migration-classic-resource-manager-deep-dive.md)
-* [常见问题解答：平台支持的从经典部署模型到 Azure 资源管理器的 IaaS 资源迁移](../virtual-machines/virtual-machines-windows-migration-classic-resource-manager.md)
+* [平台支持的从经典部署模型到 Azure Resource Manager 的 IaaS 资源迁移](../virtual-machines/windows/migration-classic-resource-manager-overview.md)
+* [有关平台支持的从经典部署模型到 Azure Resource Manager 部署模型的迁移的技术深入探讨](../virtual-machines/migration-classic-resource-manager-deep-dive.md)
+* [常见问题解答：平台支持的从经典部署模型到 Azure 资源管理器的 IaaS 资源迁移](../virtual-machines/migration-classic-resource-manager-faq.md)
 * [查看最常见的迁移错误和缓解措施](../virtual-machines/windows/migration-classic-resource-manager-errors.md?toc=%2fazure%2fvirtual-machines%2fwindows%2ftoc.json)
 
 

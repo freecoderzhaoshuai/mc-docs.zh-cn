@@ -4,16 +4,18 @@ description: 了解如何在 Azure Kubernetes 服务 (AKS) 中创建和管理系
 services: container-service
 ms.topic: article
 origin.date: 06/18/2020
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 07/13/2020
 ms.author: v-yeche
-ms.openlocfilehash: ec078ac8388e91b69c1a7fec19f42dff7caa8e71
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.custom: fasttrack-edit
+ms.openlocfilehash: ecf432b5d70b77e0404bb08681861a758e4ecb9d
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842643"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021526"
 ---
 <!--Verified successfully-->
 <!--Verified on Portal-->
@@ -94,7 +96,7 @@ az aks nodepool add \
     --name systempool \
     --node-count 3 \
     --node-taints CriticalAddonsOnly=true:NoSchedule \
-    --mode system
+    --mode System
 ```
 ## <a name="show-details-for-your-node-pool"></a>显示节点池的详细信息
 
@@ -198,27 +200,27 @@ az group delete --name myResourceGroup --yes --no-wait
 
 [aks-taints]: use-multiple-node-pools.md#schedule-pods-using-taints-and-tolerations
 [aks-windows]: windows-container-cli.md
-[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-get-credentials
-[az-aks-create]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-create
-[az-aks-nodepool-add]: https://docs.microsoft.com/cli/azure/aks/nodepool?view=azure-cli-latest#az-aks-nodepool-add
-[az-aks-nodepool-list]: https://docs.microsoft.com/cli/azure/aks/nodepool?view=azure-cli-latest#az-aks-nodepool-list
-[az-aks-nodepool-update]: https://docs.microsoft.com/cli/azure/aks/nodepool?view=azure-cli-latest#az-aks-nodepool-update
-[az-aks-nodepool-upgrade]: https://docs.microsoft.com/cli/azure/aks/nodepool?view=azure-cli-latest#az-aks-nodepool-upgrade
-[az-aks-nodepool-scale]: https://docs.microsoft.com/cli/azure/aks/nodepool?view=azure-cli-latest#az-aks-nodepool-scale
-[az-aks-nodepool-delete]: https://docs.microsoft.com/cli/azure/aks/nodepool?view=azure-cli-latest#az-aks-nodepool-delete
-[az-extension-add]: https://docs.azure.cn/cli/extension?view=azure-cli-latest#az-extension-add
-[az-extension-update]: https://docs.azure.cn/cli/extension?view=azure-cli-latest#az-extension-update
-[az-group-create]: https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-create
-[az-group-delete]: https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-delete
-[az-group-deployment-create]: https://docs.azure.cn/cli/group/deployment?view=azure-cli-latest#az-group-deployment-create
+[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks#az_aks_get_credentials
+[az-aks-create]: https://docs.microsoft.com/cli/azure/aks#az_aks_create
+[az-aks-nodepool-add]: https://docs.microsoft.com/cli/azure/aks/nodepool#az_aks_nodepool_add
+[az-aks-nodepool-list]: https://docs.microsoft.com/cli/azure/aks/nodepool#az_aks_nodepool_list
+[az-aks-nodepool-update]: https://docs.microsoft.com/cli/azure/aks/nodepool#az_aks_nodepool_update
+[az-aks-nodepool-upgrade]: https://docs.microsoft.com/cli/azure/aks/nodepool#az_aks_nodepool_upgrade
+[az-aks-nodepool-scale]: https://docs.microsoft.com/cli/azure/aks/nodepool#az_aks_nodepool_scale
+[az-aks-nodepool-delete]: https://docs.microsoft.com/cli/azure/aks/nodepool#az_aks_nodepool_delete
+[az-extension-add]: https://docs.azure.cn/cli/extension#az-extension-add
+[az-extension-update]: https://docs.azure.cn/cli/extension#az-extension-update
+[az-group-create]: https://docs.azure.cn/cli/group#az-group-create
+[az-group-delete]: https://docs.azure.cn/cli/group#az-group-delete
+[az-group-deployment-create]: https://docs.azure.cn/cli/group/deployment#az-group-deployment-create
 [gpu-cluster]: gpu-cluster.md
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
 [operator-best-practices-advanced-scheduler]: operator-best-practices-advanced-scheduler.md
 [quotas-skus-regions]: quotas-skus-regions.md
 [supported-versions]: supported-kubernetes-versions.md
 [tag-limitation]: ../azure-resource-manager/management/tag-resources.md
 [taints-tolerations]: operator-best-practices-advanced-scheduler.md#provide-dedicated-nodes-using-taints-and-tolerations
-[vm-sizes]: ../virtual-machines/linux/sizes.md
+[vm-sizes]: ../virtual-machines/sizes.md
 [use-multiple-node-pools]: use-multiple-node-pools.md
 [maximum-pods]: configure-azure-cni.md#maximum-pods-per-node
 

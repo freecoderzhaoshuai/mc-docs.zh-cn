@@ -1,20 +1,22 @@
 ---
 title: 使用 Azure Site Recovery 保护文件服务器
 description: 本文介绍如何使用 Azure Site Recovery 保护文件服务器
-author: rockboyfor
-manager: digimobile
+manager: gauravd
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 07/31/2019
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: 9abd848c212f4a89c09edd957a8e4d14be1b48b9
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: ba6c3e3fade55bce2c4dab891c821e738f565c4e
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440424"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655319"
 ---
 # <a name="protect-a-file-server-by-using-azure-site-recovery"></a>使用 Azure Site Recovery 保护文件服务器 
 
@@ -50,14 +52,14 @@ DFSR 使用称为远程差分压缩 (RDC) 的压缩算法，该算法可用于�
 
 下图可帮助你决定要对文件服务器环境使用哪种策略。
 
-![决策树](media/site-recovery-file-server/decisiontree.png)
+:::image type="content" source="media/site-recovery-file-server/decisiontree.png" alt-text="决策树":::
 
 ### <a name="factors-to-consider-in-your-decisions-about-disaster-recovery-to-azure"></a>做出灾难恢复到 Azure 的决策时要考虑的因素
 
 |环境  |建议  |考虑的要点 |
 |---------|---------|---------|
 |带有或不带 DFSR 的文件服务器环境|   [使用 Site Recovery 进行复制](#replicate-an-on-premises-file-server-by-using-site-recovery)   |    Site Recovery 不支持共享磁盘群集或网络附加存储 (NAS)。 如果环境使用上述任何配置，请相应地使用其他任何方法。 <br /> Site Recovery 不支持 SMB 3.0。 仅当已在文件原始位置更新了对文件所做的更改时，复制的 VM 才会合并更改。<br />  Site Recovery 提供了近乎同步的数据复制过程，因此在发生计划外故障转移情况时，可能会丢失数据，并且可能会产生 USN 不匹配问题。
-|带有 DFSR 的文件服务器环境     |  [将 DFSR 扩展到 Azure IaaS 虚拟机](#extend-dfsr-to-an-azure-iaas-virtual-machine)  |      DFSR 可在带宽严重不足的环境中正常工作。 此方法要求一直保持运行某个 Azure VM。 需要在规划中考虑该 VM 的成本。         |
+|带有 DFSR 的文件服务器环境     |  [将 DFSR 扩展到 Azure IaaS 虚拟机](#extend-dfsr-to-an-azure-iaas-virtual-machine)  |    DFSR 可在带宽严重不足的环境中正常工作。 此方法要求一直保持运行某个 Azure VM。 需要在规划中考虑该 VM 的成本。         |
 
 <!-- Not Available on [File Sync ](#use-azure-file-sync-service-to-replicate-your-files)-->
 <!-- URL should be replicate-an-onpremises-file-server without servers  -->
@@ -75,22 +77,19 @@ DFSR 使用称为远程差分压缩 (RDC) 的压缩算法，该算法可用于�
 > [!IMPORTANT]
 > 在继续使用以下三种方法中的任何一种之前，请确保已处理好这些依赖项。
 
-**站点到站点连接**：必须在本地站点与 Azure 网络之间建立直接连接，以便能够在服务器之间通信。 与用作灾难恢复站点的 Azure 虚拟网络建立安全的站点到站点 VPN 连接。 有关详细信息，请参阅[在本地站点与 Azure 虚拟网络之间建立站点到站点 VPN 连接](/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal)。
+**站点到站点连接**：必须在本地站点与 Azure 网络之间建立直接连接，以便能够在服务器之间通信。 与用作灾难恢复站点的 Azure 虚拟网络建立安全的站点到站点 VPN 连接。 有关详细信息，请参阅[在本地站点与 Azure 虚拟网络之间建立站点到站点 VPN 连接](../vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-portal.md)。
 
-**Active Directory**：DFSR 依赖于 Active Directory。 这意味着，具有本地域控制器的 Active Directory 林将扩展到 Azure 中的灾难恢复站点。 即使未使用 DFSR，但如果需要授予/验证目标用户的访问权限，则也要执行这些步骤。 有关详细信息，请参阅[将本地 Active Directory 扩展到 Azure](/site-recovery/site-recovery-active-directory)。
+**Active Directory**：DFSR 依赖于 Active Directory。 这意味着，具有本地域控制器的 Active Directory 林将扩展到 Azure 中的灾难恢复站点。 即使未使用 DFSR，但如果需要授予/验证目标用户的访问权限，则也要执行这些步骤。 有关详细信息，请参阅[将本地 Active Directory 扩展到 Azure](./site-recovery-active-directory.md)。
 
 ## <a name="disaster-recovery-recommendation-for-azure-iaas-virtual-machines"></a>Azure IaaS 虚拟机的灾难恢复建议
 
-若要配置和管理托管在 Azure IaaS VM 上的文件服务器的灾难恢复，可以根据是否要转移到 [Azure 文件](/storage/files/storage-files-introduction)，在两个选项之间做出选择。
+若要配置和管理托管在 Azure IaaS VM 上的文件服务器的灾难恢复，可以根据是否要转移到 [Azure 文件](../storage/files/storage-files-introduction.md)，在两个选项之间做出选择。
 
 <!-- Not Available on * [Use File Sync](#use-file-sync-to-replicate-files-hosted-on-an-iaas-virtual-machine) -->
 
 * [使用 Site Recovery](#replicate-an-iaas-file-server-virtual-machine-by-using-site-recovery)
 
-
-<!-- Not Available on ## Use File Sync to replicate files hosted on an IaaS virtual machine -->
-
-
+<!-- Not Available on## Use File Sync to replicate files hosted on an IaaS virtual machine-->
 
 ### <a name="replicate-an-iaas-file-server-virtual-machine-by-using-site-recovery"></a>使用 Site Recovery 复制 IaaS 文件服务器虚拟机
 
@@ -100,24 +99,24 @@ DFSR 使用称为远程差分压缩 (RDC) 的压缩算法，该算法可用于�
 2. 扩展本地 Active Directory。
 3. 将 IaaS 文件服务器计算机[设置为灾难恢复到次要区域](azure-to-azure-tutorial-enable-replication.md)。
 
-有关灾难恢复到次要区域的详细信息，请参阅[此文](concepts-azure-to-azure-architecture.md)。
+有关灾难恢复到次要区域的详细信息，请参阅[此文](./azure-to-azure-architecture.md)。
 
 <a name="replicate-an-onpremises-file-server-using-azure-site-recovery"></a>
 ## <a name="replicate-an-on-premises-file-server-by-using-site-recovery"></a>使用 Site Recovery 复制本地文件服务器
 
-以下步骤说明 VMware VM 的复制。 有关复制 Hyper-V VM 的步骤，请参阅[此教程](tutorial-hyper-v-to-azure.md)。
+以下步骤说明 VMware VM 的复制。 有关复制 Hyper-V VM 的步骤，请参阅[此教程](./hyper-v-azure-tutorial.md)。
 
 1. [准备 Azure 资源](tutorial-prepare-azure.md)以复制本地计算机。
 2. 在本地站点与 Azure 网络之间建立站点到站点 VPN 连接。 
 3. 扩展本地 Active Directory。
-4. [准备本地 VMware 服务器](tutorial-prepare-on-premises-vmware.md)。
-5. 将本地 VM [设置为灾难恢复到 Azure](tutorial-vmware-to-azure.md)。
+4. [准备本地 VMware 服务器](./vmware-azure-tutorial-prepare-on-premises.md)。
+5. 将本地 VM [设置为灾难恢复到 Azure](./vmware-azure-tutorial.md)。
 
 ## <a name="extend-dfsr-to-an-azure-iaas-virtual-machine"></a>将 DFSR 扩展到 Azure IaaS 虚拟机
 
 1. 在本地站点与 Azure 网络之间建立站点到站点 VPN 连接。 
 2. 扩展本地 Active Directory。
-3. 在 Azure 虚拟网络中[创建并预配文件服务器 VM](/virtual-machines/windows/quick-create-portal?toc=%2Fazure%2Fvirtual-machines%2Fwindows%2Ftoc.json)。
+3. 在 Azure 虚拟网络中[创建并预配文件服务器 VM](../virtual-machines/windows/quick-create-portal.md?toc=%2Fvirtual-machines%2Fwindows%2Ftoc.json)。
 确保将虚拟机添加到已与本地环境建立交叉连接的同一个 Azure 虚拟网络。 
 4. 在 Windows Server 上安装并[配置 DFSR](https://techcommunity.microsoft.com/t5/storage-at-microsoft/dfs-replication-initial-sync-in-windows-server-2012-r2-attack-of/ba-p/424877)。
 5. [实现 DFS 命名空间](https://docs.microsoft.com/windows-server/storage/dfs-namespaces/deploying-dfs-namespaces)。

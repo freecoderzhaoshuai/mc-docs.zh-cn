@@ -2,7 +2,7 @@
 title: 使用智能见解排查性能问题
 description: 智能见解可以帮助排查 Azure SQL 数据库和 Azure SQL 托管实例的性能问题。
 services: sql-database
-ms.service: sql-database
+ms.service: sql-db-mi
 ms.subservice: performance
 ms.custom: sqldbrb=2
 ms.devlang: ''
@@ -11,13 +11,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: jrasnik, carlrab
 origin.date: 06/12/2020
-ms.date: 07/13/2020
-ms.openlocfilehash: 5b15d1644d14f721dc4c0a0cd579f9bc932712a4
-ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+ms.date: 09/14/2020
+ms.openlocfilehash: f3f6aa739bdcb6bdfd5222adf5314c9f71370a75
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86228152"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014176"
 ---
 # <a name="troubleshoot-azure-sql-database-and-azure-sql-managed-instance-performance-issues-with-intelligent-insights"></a>使用智能见解排查 Azure SQL 数据库和 Azure SQL 托管实例的性能问题
 [!INCLUDE[appliesto-sqldb-sqlmi](../includes/appliesto-sqldb-sqlmi.md)]
@@ -164,7 +164,7 @@ MAXDOP 服务器配置选项用于控制并行执行同一查询时可以使用�
 
 处理闩锁争用的一个方法是将有序索引键替换为无序键，以便在索引范围内均匀分配插入内容。 通常情况下，索引中的前导列可按比例分配工作负荷。 可考虑的另一种方法是表分区。 在分区表中创建一个包含计算列的哈希分区方案，是缓解过度闩锁争用的常用方法。 如果发生 Pagelatch IO 争用，可以引入索引来缓解此性能问题。
 
-有关详细信息，请参阅 [Diagnose and resolve latch contention on SQL Server](https://download.microsoft.com/download/B/9/E/B9EDF2CD-1DBF-4954-B81E-82522880A2DC/SQLServerLatchContention.pdf)（诊断和解决 SQL Server 上的闩锁争用）（PDF 下载）。
+有关详细信息，请参阅 [Diagnose and resolve latch contention on SQL Server](http://databaser.net/moniwiki/pds/PerformanceTuning/SQLServerLatchContention.pdf)（诊断和解决 SQL Server 上的闩锁争用）（PDF 下载）。
 
 ## <a name="missing-index"></a>缺少索引
 

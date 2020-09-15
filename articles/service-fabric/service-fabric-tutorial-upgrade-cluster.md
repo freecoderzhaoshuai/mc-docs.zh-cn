@@ -3,15 +3,18 @@ title: 在 Azure 中升级 Service Fabric 运行时
 description: 本教程介绍如何使用 PowerShell 升级 Azure 托管的 Service Fabric 群集的运行时。
 ms.topic: tutorial
 origin.date: 07/22/2019
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: 09f9f6a984049fe1405115a9e20d5cb5492c90c6
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.openlocfilehash: a571a78e0d3d25355b268fed6779039e56f282c8
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356200"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655334"
 ---
 # <a name="tutorial-upgrade-the-runtime-of-a-service-fabric-cluster-in-azure"></a>教程：升级 Azure 中 Service Fabric 群集的运行时
 
@@ -22,13 +25,13 @@ ms.locfileid: "84356200"
 
 如果群集已在运行最新的 Service Fabric 运行时，则不需要执行此步骤。 但是，可以参考本文在 Azure Service Fabric 群集上安装任何受支持的运行时。
 
-本教程介绍如何执行下列操作：
+在本教程中，你将了解如何执行以下操作：
 
 > [!div class="checklist"]
 > * 读取群集版本
 > * 设置群集版本
 
-在此系列教程中，你将学习如何：
+在此系列教程中，你会学习如何：
 > [!div class="checklist"]
 > * 使用模板在 Azure 上创建安全 [Windows 群集](service-fabric-tutorial-create-vnet-and-windows-cluster.md)
 > * [监视群集](service-fabric-tutorial-monitor-cluster.md)
@@ -43,7 +46,7 @@ ms.locfileid: "84356200"
 在开始学习本教程之前：
 
 * 如果还没有 Azure 订阅，请创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)
-* 安装 [Azure PowerShell](https://docs.microsoft.com/powershell/azure/install-Az-ps) 或 [Azure CLI](https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest)。
+* 安装 [Azure PowerShell](https://docs.microsoft.com/powershell/azure/install-az-ps) 或 [Azure CLI](https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest)。
 * 在 Azure 上创建安全 [Windows 群集](service-fabric-tutorial-create-vnet-and-windows-cluster.md)
 * 设置 Windows 开发环境。 安装 [Visual Studio 2019](https://www.visualstudio.com) 和 **Azure 开发**、**ASP.NET 和 Web 开发**以及 **.NET Core 跨平台开发**工作负荷。  然后设置 [.NET 开发环境](service-fabric-get-started.md)。
 
@@ -190,14 +193,14 @@ sfctl cluster upgrade-status
 
 ## <a name="next-steps"></a>后续步骤
 
-在本教程中，你已学习了如何执行以下操作：
+在本教程中，你了解了如何执行以下操作：
 
 > [!div class="checklist"]
 > * 获取群集运行时的版本
 > * 升级群集运行时
 > * 监视升级
 
-进入下一教程：
+转到下一教程：
 
 > [!div class="nextstepaction"]
 > [删除群集](service-fabric-tutorial-delete-cluster.md)

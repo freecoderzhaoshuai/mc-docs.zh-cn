@@ -5,18 +5,18 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: devices
 ms.topic: tutorial
-ms.date: 08/26/2020
+ms.date: 09/09/2020
 ms.author: v-junlch
 author: MarkusVi
 manager: daveba
 ms.reviewer: sandeo
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: a0657512e1624864141451815787a90b3aea8ea4
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 482972d4d225412f63460fa9fe73db2c0f057e02
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947263"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593812"
 ---
 # <a name="tutorial-configure-the-log-analytics-wizard"></a>教程：配置 Log Analytics 向导
 
@@ -152,7 +152,7 @@ ms.locfileid: "88947263"
 
 计算已有多少次成功
 
-`SigninLogs | where ConditionalAccessStatus == "success" | project UserDisplayName, ConditionalAccessStatus | count'
+`SigninLogs | where ConditionalAccessStatus == "success" | project UserDisplayName, ConditionalAccessStatus | count`
 
 
 用户按天累计的成功登录次数：

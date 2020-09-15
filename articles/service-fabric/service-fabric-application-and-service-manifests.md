@@ -3,14 +3,17 @@ title: 描述 Azure Service Fabric 应用和服务
 description: 介绍如何使用清单来描述 Service Fabric 应用程序和服务。
 ms.topic: conceptual
 origin.date: 08/12/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.date: 01/06/2020
-ms.openlocfilehash: 655a3c3763463979e5683a1719cc3832afc7118d
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 716e0af41af12a1b477bba790ff708e872d0b537
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75741892"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655388"
 ---
 # <a name="service-fabric-application-and-service-manifests"></a>Service Fabric 应用程序和服务清单
 本文介绍如何使用 ApplicationManifest.xml 和 ServiceManifest.xml 文件定义 Service Fabric 应用程序和服务并对其进行版本控制。  有关更多详细示例，请参阅[应用程序和服务清单示例](service-fabric-manifest-examples.md)。  这些清单文件的 XML 架构记录在 [ServiceFabricServiceModel.xsd 架构文档](service-fabric-service-model-schema.md)中。
@@ -164,7 +167,7 @@ For more information about other features supported by service manifests, refer 
 
 **Certificates**（上一示例中未设置），声明用于[设置 HTTPS 终结点](service-fabric-service-manifest-resources.md#example-specifying-an-https-endpoint-for-your-service)或用于[加密应用程序清单中的机密](service-fabric-application-secret-management.md)的证书。
 
-**放置约束**是定义服务运行位置的语句。 这些语句将附加到你为一个或多个节点属性选择的各个服务。 有关详细信息，请参阅[放置约束和节点属性语法](/service-fabric/service-fabric-cluster-resource-manager-cluster-description#placement-constraints-and-node-property-syntax)
+**放置约束**是定义服务运行位置的语句。 这些语句将附加到你为一个或多个节点属性选择的各个服务。 有关详细信息，请参阅[放置约束和节点属性语法](./service-fabric-cluster-resource-manager-cluster-description.md#placement-constraints-and-node-property-syntax)
 
 **Policies**（在前面的示例中未设置）描述要在应用程序级别设置的日志收集、[默认运行方式帐户](service-fabric-application-runas-security.md)、[运行状况](service-fabric-health-introduction.md#health-policies)和[安全访问](service-fabric-application-runas-security.md)策略，包括服务是否可以访问 Service Fabric 运行时。
 
@@ -195,4 +198,4 @@ For more information about other features supported by application manifests, re
 [cluster-imagestore-apptypes]: ./media/service-fabric-application-model/cluster-imagestore-apptypes.png
 [cluster-application-instances]: media/service-fabric-application-model/cluster-application-instances.png
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -11,13 +11,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: carlrab
 origin.date: 03/12/2019
-ms.date: 07/13/2019
-ms.openlocfilehash: e4b6c1d004727f665f3e51d22cbe392c07da679a
-ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+ms.date: 09/14/2020
+ms.openlocfilehash: ded6c255992dea8cf5856700ec84c27b6fac6835
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86227908"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014306"
 ---
 # <a name="use-powershell-to-copy-a-database-to-a-new-server"></a>使用 PowerShell 将数据库复制到新服务器
 [!INCLUDE[appliesto-sqldb](../../includes/appliesto-sqldb.md)]
@@ -123,6 +123,6 @@ Remove-AzResourceGroup -ResourceGroupName $targetresourcegroupname
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 可以在 [Azure SQL 数据库 PowerShell 脚本](../powershell-script-content-guide.md)中找到更多 SQL 数据库 PowerShell 脚本示例。

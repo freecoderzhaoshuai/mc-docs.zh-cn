@@ -1,5 +1,5 @@
 ---
-title: 使用 C++ 进行连接 - Azure Database for MySQL
+title: 快速入门：使用 C++ 进行连接 - Azure Database for MySQL
 description: 本快速入门提供一个 C++ 代码示例，使用该示例可连接到 Azure Database for MySQL 并查询其中的数据。
 author: WenJason
 ms.author: v-jay
@@ -8,15 +8,15 @@ ms.custom: mvc
 ms.devlang: cpp
 ms.topic: quickstart
 origin.date: 5/26/2020
-ms.date: 06/29/2020
-ms.openlocfilehash: 4ecbde1c0df4e87a352fd2d4a3e70de0c3401c49
-ms.sourcegitcommit: 3a8a7d65d0791cdb6695fe6c2222a1971a19f745
+ms.date: 09/14/2020
+ms.openlocfilehash: c2dea89e3f91151c5e5b59994114d7ec78b7dee2
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2020
-ms.locfileid: "85516776"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512934"
 ---
-# <a name="azure-database-for-mysql-use-connectorc-to-connect-and-query-data"></a>Azure Database for MySQL：使用 Connector/C++ 连接和查询数据
+# <a name="quickstart-use-connectorc-to-connect-and-query-data-in-azure-database-for-mysql"></a>快速入门：使用 Connector/C++ 在 Azure Database for MySQL 中进行连接并查询数据
 
 > [!NOTE]
 > 将要查看的是 Azure Database for MySQL 的新服务。 若要查看经典 MySQL Database for Azure 的文档，请访问[此页](https://docs.azure.cn/zh-cn/mysql-database-on-azure/)。
@@ -24,6 +24,7 @@ ms.locfileid: "85516776"
 本快速入门演示如何使用 C++ 应用程序连接到 Azure Database for MySQL。 同时还介绍了如何使用 SQL 语句在数据库中查询、插入、更新和删除数据。 本主题假设你熟悉如何使用 C++ 进行开发，但不太熟悉 Azure Database for MySQL 的用法。
 
 ## <a name="prerequisites"></a>先决条件
+
 此快速入门使用以下任意指南中创建的资源作为起点：
 - [使用 Azure 门户创建用于 MySQL 服务器的 Azure 数据库](./quickstart-create-mysql-server-database-using-azure-portal.md)
 - [使用 Azure CLI 创建用于 MySQL 服务器的 Azure 数据库](./quickstart-create-mysql-server-database-using-azure-cli.md)
@@ -56,7 +57,7 @@ ms.locfileid: "85516776"
 ## <a name="get-connection-information"></a>获取连接信息
 获取连接到 Azure Database for MySQL 所需的连接信息。 需要完全限定的服务器名称和登录凭据。
 
-1. 登录到 [Azure 门户](https://portal.azure.cn/)。
+1. 登录 [Azure 门户](https://portal.azure.cn/)。
 2. 在 Azure 门户的左侧菜单中，单击“所有资源”，然后搜索已创建的服务器（例如 mydemoserver）。
 3. 单击服务器名称。
 4. 从服务器的“概览”面板中记下“服务器名称”和“服务器管理员登录名”。   如果忘记了密码，也可通过此面板来重置密码。

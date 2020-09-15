@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 07/17/2020
-ms.openlocfilehash: fb362545e4d4c56ad142b9ed32300a4ed61847e3
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: 542e45fbc5a6bdc85fc9b05336fbaf9029b2f22c
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86472007"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021112"
 ---
 #    <a name="named-entity-recognition-cognitive-skill"></a>命名实体识别认知技能
 

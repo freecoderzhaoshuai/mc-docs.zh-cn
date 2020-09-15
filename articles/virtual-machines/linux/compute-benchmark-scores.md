@@ -2,21 +2,25 @@
 title: Azure Linux VM 的计算基准测试分数
 description: 比较运行 Linux 的 Azure VM 的 CoreMark 计算基准测试分数。
 ms.service: virtual-machines-linux
-ms.topic: article
+ms.topic: conceptual
 author: Johnnytechn
 origin.date: 04/09/2018
-ms.date: 06/05/2020
+ms.date: 09/03/2020
 ms.author: v-johya
 ms.reviewer: davberg
-ms.openlocfilehash: 841cfbd98eb8686647bb09e6979d1c714e3662a3
-ms.sourcegitcommit: 285649db9b21169f3136729c041e4d04d323229a
+ms.openlocfilehash: 731d9418b674a64e9d3db3ddcf9f7dea5a5a8730
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84683905"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057676"
 ---
 # <a name="compute-benchmark-scores-for-linux-vms"></a>Linux VM 的计算基准测试分数
 以下 CoreMark 基准测试分数显示运行 Ubuntu 的 Azure 高性能 VM 产品阵容的计算性能。 此外，还提供了 [Windows VM](../windows/compute-benchmark-scores.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)的计算基准测试分数。
+<!--Not available in MC: Standard_Das_v4-->
+<!--Not available in MC: Standard_Da_v4-->
+<!--Not available in MC: Standard_Eas_v4-->
+<!--Not available in MC: Standard_Ea_v4-->
 
 ## <a name="av2---general-compute"></a>Av2 - 常规计算
 (3/15/2019 12:06:55 AM pbi 3897709)
@@ -69,8 +73,8 @@ ms.locfileid: "84683905"
 | Standard_B12ms | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 12 | 1 | 47.1 | 166,676 | 1,368 | 0.82% | 70 |
 | Standard_B16ms | Intel(R) Xeon(R) CPU E5-2673 v3 @ 2.40GHz | 16 | 1 | 62.9 | 208,373 | 30,383 | 14.58% | 63 |
 | Standard_B16ms | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 16 | 1 | 62.9 | 223,203 | 1,232 | 0.55% | 70 |
-| Standard_B20ms | Intel(R) Xeon(R) CPU E5-2673 v3 @ 2.40GHz | 20 个 | 1 | 78.6 | 269,561 | 25,095 | 9.31% | 77 |
-| Standard_B20ms | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 20 个 | 1 | 78.6 | 274,007 | 3,669 | 1.34% | 70 |
+| Standard_B20ms | Intel(R) Xeon(R) CPU E5-2673 v3 @ 2.40GHz | 20 | 1 | 78.6 | 269,561 | 25,095 | 9.31% | 77 |
+| Standard_B20ms | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 20 | 1 | 78.6 | 274,007 | 3,669 | 1.34% | 70 |
 
 
 > [!NOTE]
@@ -150,7 +154,7 @@ ms.locfileid: "84683905"
 | Standard_DS14-4_v2 | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 4 | 1 | 110.2 | 59,651 | 2,560 | 4.29% | 518 |
 | Standard_DS14-8_v2 | Intel(R) Xeon(R) CPU E5-2673 v3 @ 2.40GHz | 8 | 2 | 110.2 | 112,280 | 4,430 | 3.95% | 196 |
 | Standard_DS14-8_v2 | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 8 | 1 | 110.2 | 113,375 | 1,442 | 1.27% | 511 |
-| Standard_DS15_v2 | Intel(R) Xeon(R) CPU E5-2673 v3 @ 2.40GHz | 20 个 | 2 | 137.7 | 279,359 | 4,032 | 1.44% | 665 |
+| Standard_DS15_v2 | Intel(R) Xeon(R) CPU E5-2673 v3 @ 2.40GHz | 20 | 2 | 137.7 | 279,359 | 4,032 | 1.44% | 665 |
 
 ## <a name="dv2---general-compute"></a>Dv2 - 常规计算
 (3/12/2019 6:53:48 PM pbi 3897709)
@@ -176,7 +180,7 @@ ms.locfileid: "84683905"
 | Standard_D13_v2 | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 8 | 1 | 55.0 | 114,344 | 3,307 | 2.89% | 378 |
 | Standard_D14_v2 | Intel(R) Xeon(R) CPU E5-2673 v3 @ 2.40GHz | 16 | 2 | 110.2 | 224,348 | 5,477 | 2.44% | 280 |
 | Standard_D14_v2 | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 16 | 1 | 110.2 | 228,221 | 2,733 | 1.20% | 427 |
-| Standard_D15_v2 | Intel(R) Xeon(R) CPU E5-2673 v3 @ 2.40GHz | 20 个 | 2 | 137.7 | 281,494 | 7,976 | 2.83% | 672 |
+| Standard_D15_v2 | Intel(R) Xeon(R) CPU E5-2673 v3 @ 2.40GHz | 20 | 2 | 137.7 | 281,494 | 7,976 | 2.83% | 672 |
 
 ## <a name="esv3---memory-optimized--premium-storage"></a>Esv3 - 内存优化 + 高级存储
 (3/12/2019 7:17:33 PM pbi 3897709)
@@ -192,7 +196,7 @@ ms.locfileid: "84683905"
 | Standard_E16s_v3 | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 16 | 1 | 125.9 | 156,137 | 2,160 | 1.38% | 672 |
 | Standard_E16-4s_v3 | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 4 | 1 | 125.9 | 41,950 | 2,309 | 5.50% | 637 |
 | Standard_E16-8s_v3 | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 8 | 1 | 125.9 | 81,196 | 3,179 | 3.91% | 658 |
-| Standard_E20s_v3 | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 20 个 | 1 | 157.4 | 196,619 | 1,325 | 0.67% | 672 |
+| Standard_E20s_v3 | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 20 | 1 | 157.4 | 196,619 | 1,325 | 0.67% | 672 |
 | Standard_E32s_v3 | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 32 | 2 | 251.9 | 304,707 | 5,719 | 1.88% | 672 |
 | Standard_E32-8s_v3 | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 8 | 2 | 251.9 | 83,576 | 3,693 | 4.42% | 672 |
 | Standard_E32-16s_v3 | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 16 | 2 | 251.9 | 158,023 | 4,317 | 2.73% | 672 |
@@ -216,7 +220,7 @@ ms.locfileid: "84683905"
 | Standard_E4_v3 | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 4 | 1 | 31.4 | 41,181 | 3,148 | 7.64% | 700 |
 | Standard_E8_v3 | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 8 | 1 | 62.9 | 81,211 | 5,055 | 6.22% | 700 |
 | Standard_E16_v3 | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 16 | 1 | 125.9 | 158,152 | 4,033 | 2.55% | 700 |
-| Standard_E20_v3 | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 20 个 | 1 | 157.4 | 197,739 | 2,731 | 1.38% | 693 |
+| Standard_E20_v3 | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 20 | 1 | 157.4 | 197,739 | 2,731 | 1.38% | 693 |
 | Standard_E32_v3 | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 32 | 2 | 251.9 | 307,286 | 8,353 | 2.72% | 700 |
 | Standard_E64_v3 | Intel(R) Xeon(R) CPU E5-2673 v4 @ 2.30GHz | 64 | 2 | 425.2 | 628,451 | 9,235 | 1.47% | 707 |
 
@@ -331,7 +335,7 @@ ms.locfileid: "84683905"
 Linux 分数是通过在 Ubuntu 上运行 [CoreMark](https://www.eembc.org/coremark/faq.php) 计算得出的。 CoreMark 中配置的线程数设置为虚拟 CPU 的数目，并发性设置为 PThreads。 目标迭代次数已根据预期性能进行调整，提供至少 20 秒（通常更长）的运行时。 最终分数表示已完成迭代次数除以运行测试所花费的秒数。 每项测试在每个 VM 上至少运行了七次。 测试运行日期如上所示。 于当天在支持 VM 的每个 Azure 公共区域中的多个 VM 上执行测试运行。 基本 A 和 B (Burstable) 系列未显示，因为其性能不稳定。 N 系列未显示，因为它们以 GPU 为中心，并且 Coremark 不测量 GPU 性能。
 
 ## <a name="next-steps"></a>后续步骤
-* 有关存储容量、磁盘详细信息以及选择 VM 大小的注意事项，请参阅[虚拟机的大小](sizes.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)。
+* 有关存储容量、磁盘详细信息以及选择 VM 大小的注意事项，请参阅[虚拟机的大小](../sizes.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)。
 * 若要在 Linux VM 上运行 CoreMark 脚本，请下载 [CoreMark 脚本包](https://download.microsoft.com/download/3/0/5/305A3707-4D3A-4599-9670-AAEB423B4663/AzureCoreMarkScriptPack.zip)。
 
 <!--Update_Description: update meta properties, wording update-->

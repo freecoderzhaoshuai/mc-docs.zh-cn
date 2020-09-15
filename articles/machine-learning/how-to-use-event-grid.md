@@ -10,12 +10,12 @@ ms.author: shipatel
 author: shivp950
 ms.reviewer: larryfr
 ms.date: 05/11/2020
-ms.openlocfilehash: 594a1abebfc9c345952c32bdc74b275c95ba242e
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 0b9749bc79579bc9a4d866d80f2529315ffc0697
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228399"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021331"
 ---
 # <a name="trigger-applications-processes-or-cicd-workflows-based-on-azure-machine-learning-events-preview"></a>基于 Azure 机器学习事件触发应用程序、进程或 CI/CD 工作流（预览）
 
@@ -198,7 +198,7 @@ az eventgrid event-subscription create --name {eventGridFilterName} \
 
 在开始之前，请执行以下操作：
 
-* 设置数据集监视器以[检测工作区中的数据偏移]( https://aka.ms/datadrift)
+* 设置数据集监视器以[检测工作区中的数据偏移](how-to-monitor-datasets.md)
 * 创建已发布的 [Azure 数据工厂管道](https://docs.microsoft.com/azure/data-factory/)。
 
 此示例中使用的是简单的数据工厂管道，用于将文件复制到 blob 存储区，并运行已发布的机器学习管道。 有关此方案的详细信息，请参阅如何设置 [Azure 数据工厂中的机器学习步骤](https://docs.microsoft.com/azure/data-factory/transform-data-machine-learning-service)
@@ -233,7 +233,7 @@ az eventgrid event-subscription create --name {eventGridFilterName} \
 
     ![show-logic-app-webhook](./media/how-to-use-event-grid/show-logic-app-webhook.png)
 
-现在，只要发生偏移，就会触发数据工厂管道。 在[新的工作区门户](https://ml.azure.com)上查看数据偏移运行和机器学习管道的详细信息。 
+现在，只要发生偏移，就会触发数据工厂管道。 在[新的工作区门户](https://studio.ml.azure.cn)上查看数据偏移运行和机器学习管道的详细信息。 
 
 ![view-in-workspace](./media/how-to-use-event-grid/view-in-workspace.png)
 

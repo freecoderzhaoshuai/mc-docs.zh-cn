@@ -9,17 +9,17 @@ ms.service: active-directory
 ms.subservice: develop
 ms.workload: identity
 ms.topic: conceptual
-ms.date: 08/18/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 ms.reviewer: hirsin
 ms.custom: aaddev, identityplatformtop40
 ms:custom: fasttrack-edit
-ms.openlocfilehash: 0c84cf948290532f88f538c206c8c1c7d7349a10
-ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
+ms.openlocfilehash: a124d0ce96eacd0e93d2b65aa422b87a1d1805fa
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "88647474"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593653"
 ---
 # <a name="microsoft-identity-platform-id-tokens"></a>Microsoft 标识平台 ID 令牌
 
@@ -80,7 +80,7 @@ eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjFMVE16YWtpaGlSbGFfOHoyQkVKVlhlV01x
 |`oid` | 字符串，GUID | 在 Microsoft 标识系统中，对象的不可变标识符在这种情况下是用户帐户。 此 ID 唯一标识应用程序中的用户 - 同一个用户登录两个不同的应用程序会在 `oid` 声明中收到相同值。 Microsoft Graph 将返回此 ID 作为给定用户帐户的 `id` 属性。 因为 `oid` 允许多个应用关联用户，需要 `profile` 作用域才能收到此声明。 请注意，如果单个用户存在于多个租户中，该用户将包含每个租户中的不同对象 ID - 它们将视为不同帐户，即使用户使用相同的凭据登录到每个帐户，也是如此。 `oid` 声明是一个 GUID，不能重复使用。 |
 |`roles`| 字符串数组 | 分配给已登录用户的角色集。 |
 |`rh` | 不透明字符串 |Azure 用来重新验证令牌的内部声明。 应忽略。 |
-|`sub` | 字符串，GUID | 令牌针对其断言信息的主体，例如应用的用户。 此值固定不变，无法重新分配或重复使用。 使用者是成对标识符 - 它对特定应用程序 ID 是唯一的。 如果单个用户使用两个不同的客户端 ID 登录到两个不同的应用，这些应用将收到两个不同的使用者声明值。 这不一定是所需的，具体取决于体系结构和隐私要求。 |
+|`sub` | String | 令牌针对其断言信息的主体，例如应用的用户。 此值固定不变，无法重新分配或重复使用。 使用者是成对标识符 - 它对特定应用程序 ID 是唯一的。 如果单个用户使用两个不同的客户端 ID 登录到两个不同的应用，这些应用将收到两个不同的使用者声明值。 这不一定是所需的，具体取决于体系结构和隐私要求。 |
 |`tid` | 字符串，GUID | 表示用户所属的 Azure AD 租户的 GUID。 对于工作和学校帐户，该 GUID 就是用户所属组织的不可变租户 ID。 需要 `profile` 作用域才能接收此声明。 |
 |`unique_name` | String | 提供一个用户可读值，用于标识令牌使用者。 此值在任何给定时间点都是唯一的，但随着电子邮件和其他标识符的重复使用，此值可能会重新出现在其他帐户上，因此只应该用于显示目的。 仅在 v1.0 `id_tokens` 中颁发。 |
 |`uti` | 不透明字符串 | Azure 用来重新验证令牌的内部声明。 应忽略。 |

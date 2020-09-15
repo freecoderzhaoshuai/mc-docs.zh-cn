@@ -10,22 +10,22 @@ ms.service: active-directory
 ms.workload: identity
 ms.subservice: pim
 ms.topic: how-to
-ms.date: 07/03/2020
+ms.date: 09/08/2020
 ms.author: v-junlch
 ms.custom: pim
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: b7181abbb8db07df3549573fd69bde6ba3bdfb59
-ms.sourcegitcommit: 1008ad28745709e8d666f07a90e02a79dbbe2be5
+ms.openlocfilehash: cc1a8f59ecde99582b90eaba1587c1bfcd9e357f
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945279"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593828"
 ---
 # <a name="microsoft-graph-apis-for-privileged-identity-management-preview"></a>适用于 Privileged Identity Management 的 Microsoft Graph API（预览版）
 
-可以使用 Azure Active Directory 的 [Microsoft Graph API](https://developer.microsoft.com/graph/docs/concepts/overview) 执行 Privileged Identity Management 任务。 本文介绍使用适用于 Privileged Identity Management 的 Microsoft Graph API 的重要概念。
+可以使用 Azure Active Directory 的 [Microsoft Graph API](https://docs.microsoft.com/graph/overview) 执行 Privileged Identity Management 任务。 本文介绍使用适用于 Privileged Identity Management 的 Microsoft Graph API 的重要概念。
 
-有关 Microsoft Graph API 的详细信息，请查看 [Azure AD Privileged Identity Management API 参考](https://developer.microsoft.com/graph/docs/api-reference/beta/resources/privilegedidentitymanagement_root)。
+有关 Microsoft Graph API 的详细信息，请查看 [Azure AD Privileged Identity Management API 参考](https://docs.microsoft.com/graph/api/resources/privilegedidentitymanagement-root?view=graph-rest-beta)。
 
 > [!IMPORTANT]
 > Microsoft Graph 中 /beta 版本下的 API 为预览版，可能会进行更改。 不支持在生产应用程序中使用这些 API。
@@ -61,5 +61,5 @@ ms.locfileid: "85945279"
 
 ## <a name="next-steps"></a>后续步骤
 
-- [Azure AD Privileged Identity Management API 参考](https://developer.microsoft.com/graph/docs/api-reference/beta/resources/privilegedidentitymanagement_root)
+- [Azure AD Privileged Identity Management API 参考](https://docs.microsoft.com/graph/api/resources/privilegedidentitymanagement-root?view=graph-rest-beta)
 

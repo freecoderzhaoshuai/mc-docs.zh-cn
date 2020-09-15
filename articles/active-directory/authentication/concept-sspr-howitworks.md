@@ -5,18 +5,18 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: authentication
 ms.topic: conceptual
-ms.date: 08/28/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 author: iainfoulds
 manager: daveba
 ms.reviewer: rhicock
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: e51353846a69e69d2fe2d5d6990e126f7573123c
-ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
+ms.openlocfilehash: 5da4a6e104ff0a266c8b99ba20a94a1f62930402
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89046350"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593729"
 ---
 # <a name="how-it-works-azure-ad-self-service-password-reset"></a>工作原理：Azure AD 自助密码重置
 
@@ -58,7 +58,7 @@ Azure Active Directory (Azure AD) 自助式密码重置 (SSPR) 使用户能够�
   * 如果未部署 SSPR 写回且在本地管理用户密码，则要求用户联系其管理员重置其密码。
 
 如果前面的所有检查都已成功完成，则指导用户完成重置或更改其密码的过程。
-    
+
 若要开始使用 SSPR，请完成以下教程：
 
 > [!div class="nextstepaction"]
@@ -191,13 +191,13 @@ Azure AD 会检查当前的混合连接，并在 Azure 门户中提供以下消�
 * Azure AD 处于联机状态并连接到本地写回客户端。 但是，似乎 Azure AD Connect 的已安装版本已经过期了。 请考虑[更新 Azure AD Connect](../hybrid/how-to-upgrade-previous-version.md)，确保拥有最新连接功能和重要 bug 修复。
 * 很遗憾，因为 Azure AD Connect 的已安装版本已过期，我们无法查看你的本地写回客户端状态。 [更新 Azure AD Connect](../hybrid/how-to-upgrade-previous-version.md) 可查看连接状态。
 * 很遗憾，现在似乎无法连接到本地写回客户端。 [对 Azure AD Connect 进行故障排除](active-directory-passwords-troubleshoot.md#troubleshoot-password-writeback-connectivity)以还原连接。
-* 很遗憾，因为密码写回未正确配置，无法连接到本地写回客户端。 [配置密码写回](howto-sspr-writeback.md)以还原连接。
+* 很遗憾，因为密码写回未正确配置，无法连接到本地写回客户端。 [配置密码写回](./tutorial-enable-sspr-writeback.md)以还原连接。
 * 很遗憾，现在似乎无法连接到本地写回客户端。 这可能是因我们终端的临时问题导致。 如果问题仍然存在，[对 Azure AD Connect 进行故障排除](active-directory-passwords-troubleshoot.md#troubleshoot-password-writeback-connectivity)以还原连接。
 
 若要开始 SSPR 写回，请完成以下教程：
 
 > [!div class="nextstepaction"]
-> [教程：启用自助式密码重置 (SSPR) 写回](tutorial-enable-writeback.md)
+> [教程：启用自助式密码重置 (SSPR) 写回](./tutorial-enable-sspr-writeback.md)
 
 ### <a name="write-back-passwords-to-your-on-premises-directory"></a>将密码写回到本地目录
 
@@ -223,7 +223,7 @@ SSPR 在 Active Directory 中执行管理员发起的密码重置的等效操作
 
 * **已有 Azure AD 租户的合作伙伴组织中的用户**：如果与你合作的组织已有 Azure AD 租户，我们将遵守该租户中已启用的任何密码重置策略。 要使密码重置正常工作，合作伙伴组织只需确保启用 Azure AD SSPR。 对于 Office 365 客户，不会额外收费。
 * 通过自助注册**注册的用户**：如果与你合作的组织使用[自助注册](../users-groups-roles/directory-self-service-signup.md)功能来访问租户，我们会允许他们使用已注册的电子邮件来重置密码。
-* **B2B 用户**：使用新的 [Azure AD B2B 功能](../b2b/what-is-b2b.md)创建的任何新的 B2B 用户也可以使用他们在邀请过程中注册的电子邮件来重置其密码。
+* **B2B 用户**：使用新的 [Azure AD B2B 功能](../external-identities/what-is-b2b.md)创建的任何新的 B2B 用户也可以使用他们在邀请过程中注册的电子邮件来重置其密码。
 
 若要测试此方案，请通过这些合作伙伴用户之一转到 https://passwordreset.activedirectory.windowsazure.cn。 如果他们定义了备用电子邮件或身份验证电子邮件，则密码重置就能按预期方式工作。
 

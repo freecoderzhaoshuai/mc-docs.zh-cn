@@ -9,12 +9,12 @@ ms.date: 08/10/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
-ms.openlocfilehash: bef1636a5c252211ae47cde3fd8206fc3176a288
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 9245302ae2970140be60b0aff945dcc444fcb422
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842577"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021529"
 ---
 # <a name="secure-traffic-between-pods-using-network-policies-in-azure-kubernetes-service-aks"></a>在 Azure Kubernetes 服务 (AKS) 中使用网络策略保护 Pod 之间的流量
 
@@ -486,12 +486,12 @@ kubectl delete namespace development
 
 <!-- LINKS - internal -->
 
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
 [use-advanced-networking]: configure-azure-cni.md
-[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-get-credentials
+[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks#az_aks_get_credentials
 [concepts-network]: concepts-network.md
-[az-feature-register]: https://docs.azure.cn/cli/feature?view=azure-cli-latest#az-feature-register
-[az-feature-list]: https://docs.azure.cn/cli/feature?view=azure-cli-latest#az-feature-list
-[az-provider-register]: https://docs.azure.cn/cli/provider?view=azure-cli-latest#az-provider-register
+[az-feature-register]: https://docs.azure.cn/cli/feature#az-feature-register
+[az-feature-list]: https://docs.azure.cn/cli/feature#az-feature-list
+[az-provider-register]: https://docs.azure.cn/cli/provider#az-provider-register
 
 <!-- Update_Description: update meta properties, wording update, update link -->

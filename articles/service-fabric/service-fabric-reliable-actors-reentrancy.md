@@ -1,17 +1,20 @@
 ---
 title: Azure Service Fabric 执行组件中的可重入性
 description: 介绍 Service Fabric Reliable Actors 的可重入性（该方法可以基于调用上下文在逻辑上避免阻止）。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 11/02/2017
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: c7fff01599f0fef23077bb1da49995efed59e5ae
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: cdbc55328a111b2ea5d847936fbac97f9ca7ec9d
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540147"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655719"
 ---
 # <a name="reliable-actors-reentrancy"></a>Reliable Actors 可重入性
 默认情况下，Reliable Actors 运行时允许基于逻辑调用上下文的可重入性。 因此执行组件在处于相同调用上下文链中时，可进行重入操作。 例如，如果执行组件 A 将消息发送给执行组件 B，而后者将消息发送给执行组件 C。在处理消息的过程中，如果执行组件 C 调用执行组件 A，这样的消息重入是允许的。 如果消息属于不同调用上下文，则会在执行组件 A 处受阻，直到处理完现有消息为止。
@@ -102,6 +105,6 @@ static class Program
 ```
 
 ## <a name="next-steps"></a>后续步骤
-* 在[执行组件 API 参考文档](https://msdn.microsoft.com/library/azure/dn971626.aspx)中进一步了解可重入性
+* 在[执行组件 API 参考文档](https://docs.microsoft.com/previous-versions/azure/dn971626(v=azure.100))中进一步了解可重入性
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -10,12 +10,12 @@ ms.subservice: core
 ms.topic: how-to
 ms.date: 01/31/2020
 ms.custom: tracking-python
-ms.openlocfilehash: 179bafbe5105c6f2daceed6edc16fd71ed4e12d7
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 8278cbc91074a83440673dbe362b50959a95c7dd
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88227912"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021489"
 ---
 # <a name="create-run-and-delete-azure-ml-resources-using-rest"></a>使用 REST 创建、运行和删除 Azure ML 资源
 
@@ -58,7 +58,7 @@ ms.locfileid: "88227912"
 1. 运行命令
 
 ```bash
-curl -X POST https://login.microsoftonline.com/{your-tenant-id}/oauth2/token \
+curl -X POST https://login.chinacloudapi.cn/{your-tenant-id}/oauth2/token \
 -d "grant_type=client_credentials&resource=https%3A%2F%2Fmanagement.azure.com%2F&client_id={your-client-id}&client_secret={your-client-secret}" \
 ```
 
@@ -71,7 +71,7 @@ curl -X POST https://login.microsoftonline.com/{your-tenant-id}/oauth2/token \
     "ext_expires_in": "3599",
     "expires_on": "1578523094",
     "not_before": "1578519194",
-    "resource": "https://management.azure.com/",
+    "resource": "https://management.chinacloudapi.cn/",
     "access_token": "your-access-token"
 }
 ```
@@ -89,7 +89,7 @@ curl -h "Authentication: Bearer {your-access-token}" ...more args...
 若要检索与订阅关联的资源组列表，请运行：
 
 ```bash
-curl https://management.azure.com/subscriptions/{your-subscription-id}/resourceGroups?api-version=2019-11-01 -H "Authorization:Bearer {your-access-token}"
+curl https://management.chinacloudapi.cn/subscriptions/{your-subscription-id}/resourceGroups?api-version=2019-11-01 -H "Authorization:Bearer {your-access-token}"
 ```
 
 整个 Azure 上发布了许多的 REST API。 每家服务提供商会按照自己的步调更新其 API，但这样做不会破坏现有的程序。 服务提供商使用 `api-version` 参数来确保兼容性。 `api-version` 参数因服务而异。 例如，对于机器学习服务，当前的 API 版本是 `2019-11-01`。 对于存储帐户，当前版本是 `2019-06-01`。 对于 Key Vault，当前版本是 `2019-09-01`。 所有 REST 调用应将 `api-version` 参数设置为预期值。 尽管 API 在持续演进，但你仍可以依赖于指定版本的语法和语义。 如果在不使用 `api-version` 参数的情况下向提供商发送请求，则响应将包含可人工读取的受支持值列表。 
@@ -127,7 +127,7 @@ curl https://management.azure.com/subscriptions/{your-subscription-id}/resourceG
 若要检索资源组中的工作区集，请运行以下命令（请替换 `{your-subscription-id}`、`{your-resource-group}` 和 `{your-access-token}`）： 
 
 ```
-curl https://management.azure.com/subscriptions/{your-subscription-id}/resourceGroups/{your-resource-group}/providers/Microsoft.MachineLearningServices/workspaces/?api-version=2019-11-01 \
+curl https://management.chinacloudapi.cn/subscriptions/{your-subscription-id}/resourceGroups/{your-resource-group}/providers/Microsoft.MachineLearningServices/workspaces/?api-version=2019-11-01 \
 -H "Authorization:Bearer {your-access-token}"
 ```
 
@@ -138,7 +138,7 @@ curl https://management.azure.com/subscriptions/{your-subscription-id}/resourceG
     "id": "/subscriptions/12345abc-abbc-1b2b-1234-57ab575a5a5a/resourceGroups/DeepLearningResourceGroup/providers/Microsoft.MachineLearningServices/workspaces/my-workspace",
     "name": "my-workspace",
     "type": "Microsoft.MachineLearningServices/workspaces",
-    "location": "centralus",
+    "location": "chinaeast2",
     "tags": {},
     "etag": null,
     "properties": {
@@ -153,7 +153,7 @@ curl https://management.azure.com/subscriptions/{your-subscription-id}/resourceG
         "workspaceId": "cba12345-abab-abab-abab-ababab123456",
         "subscriptionState": null,
         "subscriptionStatusChangeTimeStampUtc": null,
-        "discoveryUrl": "https://centralus.experiments.azureml.net/discovery"
+        "discoveryUrl": "https://chinaeast2.experiments.ml.azure.cn/discovery"
     },
     "identity": {
         "type": "SystemAssigned",
@@ -173,11 +173,11 @@ curl https://management.azure.com/subscriptions/{your-subscription-id}/resourceG
 {
   "api": "https://centralus.api.azureml.ms",
   "catalog": "https://catalog.cortanaanalytics.com",
-  "experimentation": "https://centralus.experiments.azureml.net",
+  "experimentation": "https://centralus.experiments.ml.azure.cn",
   "gallery": "https://gallery.cortanaintelligence.com/project",
-  "history": "https://centralus.experiments.azureml.net",
-  "hyperdrive": "https://centralus.experiments.azureml.net",
-  "labeling": "https://centralus.experiments.azureml.net",
+  "history": "https://centralus.experiments.ml.azure.cn",
+  "hyperdrive": "https://centralus.experiments.ml.azure.cn",
+  "labeling": "https://centralus.experiments.ml.azure.cn",
   "modelmanagement": "https://centralus.modelmanagement.azureml.net",
   "pipelines": "https://centralus.aether.ms",
   "studiocoreservices": "https://centralus.studioservice.azureml.com"
@@ -231,7 +231,7 @@ providers/Microsoft.MachineLearningServices/workspaces/{your-workspace-name}/mod
 训练和运行 ML 模型需要计算资源。 可使用以下代码列出工作区的计算资源： 
 
 ```bash
-curl https://management.azure.com/subscriptions/{your-subscription-id}/resourceGroups/{your-resource-group}/\
+curl https://management.chinacloudapi.cn/subscriptions/{your-subscription-id}/resourceGroups/{your-resource-group}/\
 providers/Microsoft.MachineLearningServices/workspaces/{your-workspace-name}/computes?api-version=2019-11-01 \
 -H "Authorization:Bearer {your-access-token}"
 ```
@@ -240,7 +240,7 @@ providers/Microsoft.MachineLearningServices/workspaces/{your-workspace-name}/com
 
 ```bash
 curl -X PUT \
-  'https://management.azure.com/subscriptions/{your-subscription-id}/resourceGroups/{your-resource-group}/providers/Microsoft.MachineLearningServices/workspaces/{your-workspace-name}/computes/{your-compute-name}?api-version=2019-11-01' \
+  'https://management.chinacloudapi.cn/subscriptions/{your-subscription-id}/resourceGroups/{your-resource-group}/providers/Microsoft.MachineLearningServices/workspaces/{your-workspace-name}/computes/{your-compute-name}?api-version=2019-11-01' \
   -H 'Authorization:Bearer {your-access-token}' \
   -H 'Content-Type: application/json' \
   -d '{
@@ -377,7 +377,7 @@ curl 'https://{scoring-uri}' \
 
 ```bash
 curl -X PUT \
-  'https://management.azure.com/subscriptions/{your-subscription-id}/resourceGroups/{your-resource-group}\
+  'https://management.chinacloudapi.cn/subscriptions/{your-subscription-id}/resourceGroups/{your-resource-group}\
 /providers/Microsoft.MachineLearningServices/workspaces/{your-new-workspace-name}?api-version=2019-11-01' \
   -H 'Authorization: Bearer {your-access-token}' \
   -H 'Content-Type: application/json' \

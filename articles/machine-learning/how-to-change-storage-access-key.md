@@ -10,12 +10,12 @@ ms.author: aashishb
 author: aashishb
 ms.reviewer: larryfr
 ms.date: 11/06/2019
-ms.openlocfilehash: 83f0d51522f80edda06c8240f6f25e9234a7f302
-ms.sourcegitcommit: 2bd0be625b21c1422c65f20658fe9f9277f4fd7c
+ms.openlocfilehash: c848a7bd5f68eb0071de05da5306bdd799a33b8e
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440965"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021029"
 ---
 # <a name="regenerate-storage-account-access-keys"></a>重新生成存储帐户访问密钥
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -108,7 +108,7 @@ for name, ds in datastores.items():
 
         此命令自动为工作区使用的 Azure 存储帐户同步新密钥。
 
-1. 可以通过 SDK 或 [Azure 机器学习工作室](https://ml.azure.com)重新注册使用存储帐户的数据存储。
+1. 可以通过 SDK 或 [Azure 机器学习工作室](https://studio.ml.azure.cn)重新注册使用存储帐户的数据存储。
     1. 若要通过 Python SDK 重新注册数据存储，请在以下代码中使用[需要更新的内容](#whattoupdate)部分中的值以及步骤 1 中的密钥。 
     
         因为指定了 `overwrite=True`，所以此代码将覆盖现有注册，并对其进行更新以使用新密钥。

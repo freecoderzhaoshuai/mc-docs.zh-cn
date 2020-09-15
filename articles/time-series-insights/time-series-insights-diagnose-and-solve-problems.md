@@ -11,12 +11,12 @@ ms.workload: big-data
 ms.topic: troubleshooting
 ms.date: 08/05/2020
 ms.custom: seodec18
-ms.openlocfilehash: 7b299a44f1661b0c3dea89f8d11090561465e18c
-ms.sourcegitcommit: 36e7f37481969f92138bfe70192b1f4a2414caf7
+ms.openlocfilehash: f3c2cd12f1566f50770758dc804154adc7364d1e
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87796298"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593839"
 ---
 # <a name="diagnose-and-solve-issues-in-your-azure-time-series-insights-gen1-environment"></a>诊断和解决 Azure 时序见解 Gen1 环境中的问题
 
@@ -24,7 +24,7 @@ ms.locfileid: "87796298"
 
 ## <a name="problem-no-data-is-shown"></a>问题：不显示数据
 
-如果 [Azure 时序见解资源管理器](https://insights.timeseries.azure.com)中未显示数据，请考虑以下常见原因。
+如果 [Azure 时序见解资源管理器](https://insights.timeseries.azure.cn)中未显示数据，请考虑以下常见原因。
 
 ### <a name="cause-a-event-source-data-isnt-in-json-format"></a>原因 A：事件源数据不是 JSON 格式
 
@@ -90,7 +90,7 @@ Azure 时序见解仅支持 JSON 数据。 有关 JSON 示例，请参阅[支持
 
 解决滞后问题：
 
-1. 将 SKU 容量增大到允许的最大值（本例中为 10）。 增大容量后，流入进程很快就能开始赶上进度。 增加容量需要付费。 若要观察赶上进度的速度，可以查看 [Azure 时序见解资源管理器](https://insights.timeseries.azure.com)中的可用性图表。
+1. 将 SKU 容量增大到允许的最大值（本例中为 10）。 增大容量后，流入进程很快就能开始赶上进度。 增加容量需要付费。 若要观察赶上进度的速度，可以查看 [Azure 时序见解资源管理器](https://insights.timeseries.azure.cn)中的可用性图表。
 
 2. 消除滞后问题之后，将 SKU 容量降低至正常流入速率。
 

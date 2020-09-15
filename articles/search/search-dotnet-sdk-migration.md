@@ -9,13 +9,13 @@ ms.service: cognitive-search
 ms.devlang: dotnet
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 07/17/2020
-ms.openlocfilehash: 4f80e273acb21276bd404a7525b037dca7e7b91d
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: 813da4a40ae74f6d5923db7feaec79d28de118bc
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471887"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021431"
 ---
 # <a name="upgrade-to-azure-search-net-sdk-version-3"></a>升级到 Azure 搜索 .NET SDK 版本 3
 
@@ -58,7 +58,9 @@ the data source API will no longer return in the response of any REST operation,
 
 如果生成失败，应该会看到如下所示的生成错误：
 
-    Program.cs(31,45,31,86): error CS0266: Cannot implicitly convert type 'Microsoft.Azure.Search.ISearchIndexClient' to 'Microsoft.Azure.Search.SearchIndexClient'. An explicit conversion exists (are you missing a cast?)
+```output
+Program.cs(31,45,31,86): error CS0266: Cannot implicitly convert type 'Microsoft.Azure.Search.ISearchIndexClient' to 'Microsoft.Azure.Search.SearchIndexClient'. An explicit conversion exists (are you missing a cast?)
+```
 
 下一步是修复生成错误。 有关出错原因和修复方法的详细信息，请参阅[版本 3 中的重大更改](#ListOfChanges)。
 

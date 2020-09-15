@@ -9,14 +9,14 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: carlrab
 origin.date: 09/03/2019
-ms.date: 08/17/2020
+ms.date: 09/14/2020
 ms.custom: seoapril2019 sqldbrb=1
-ms.openlocfilehash: 0686433901693c709ef1ce8c0f694b60779b3b88
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: 4332df1b12928479bcae66f8398f9406b37846ab
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222879"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014275"
 ---
 # <a name="tutorial-secure-a-database-in-azure-sql-database"></a>教程：保护 Azure SQL 数据库中的数据库
 [!INCLUDE[appliesto-sqldb](../includes/appliesto-sqldb.md)]
@@ -147,7 +147,7 @@ SQL 数据库中的数据库受 Azure 中防火墙的保护。 默认情况下�
 - [将自己的域名添加到 Azure AD](../../active-directory/fundamentals/add-custom-domain.md)
 - [Azure 现在支持与 Windows Server AD 联合](https://azure.microsoft.com/blog/20../../windows-azure-now-supports-federation-with-windows-server-active-directory/)
 - [管理 Azure AD 目录](../../active-directory/fundamentals/active-directory-whatis.md)
-- [使用 PowerShell 管理 Azure AD](https://docs.microsoft.com/powershell/azure/overview?view=azureadps-2.0)
+- [使用 PowerShell 管理 Azure AD](https://docs.microsoft.com/powershell/azure/?view=azureadps-2.0)
 - [混合标识所需的端口和协议](../../active-directory/hybrid/reference-connect-ports.md)
 
 ## <a name="manage-database-access"></a>管理数据库访问

@@ -7,14 +7,14 @@ ms.service: storage
 ms.devlang: multiple
 ms.topic: article
 origin.date: 11/08/2019
-ms.date: 08/27/2020
+ms.date: 09/10/2020
 ms.author: v-tawe
-ms.openlocfilehash: f9e008cbcf1d6c5a7d05cdf853c7f700e4022172
-ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
+ms.openlocfilehash: 8e29c1b3942de3fca4d511f7c86c1de30fe68147
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88951252"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021285"
 ---
 # <a name="get-started-with-storage-explorer"></a>存储资源管理器入门
 
@@ -272,6 +272,8 @@ snap connect storage-explorer:password-manager-service :password-manager-service
 * [使用存储资源管理器管理 Azure Blob 存储资源](vs-azure-tools-storage-explorer-blobs.md)
 * [使用 Azure 存储资源管理器处理数据](./cosmos-db/storage-explorer.md)
 
+<!-- * [Manage Azure Data Lake Store resources with Storage Explorer](./data-lake-store/data-lake-store-in-storage-explorer.md) -->
+
 [0]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/Overview.png
 [1]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/ManageAccounts.png
 [2]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/connect-to-azure-storage-azure-environment.png
@@ -295,5 +297,3 @@ snap connect storage-explorer:password-manager-service :password-manager-service
 [21]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/connect-to-cosmos-db-by-connection-string.png
 [22]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/connection-string-for-cosmos-db.png
 [23]: ./media/vs-azure-tools-storage-manage-with-storage-explorer/storage-explorer-search-for-resource.png
-
-<!-- Update_Description: wording update -->

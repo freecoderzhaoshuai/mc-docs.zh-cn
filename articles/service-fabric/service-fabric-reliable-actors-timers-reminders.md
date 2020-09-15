@@ -3,14 +3,18 @@ title: Reliable Actors 计时器和提醒
 description: 介绍 Service Fabric Reliable Actors 的计时器和提醒，包括有关何时使用每项的指导。
 ms.topic: conceptual
 origin.date: 11/02/2017
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 8c90ede453ba3f4b19c9df6727e215520d68a7ec
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 9c5d156632024365dd4126b80f86254f5602cf1c
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356170"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655717"
 ---
 # <a name="actor-timers-and-reminders"></a>执行组件计时器和提醒
 执行组件可通过注册计时器或提醒来计划自身的定期工作。 本文演示如何使用计时器和提醒，并说明它们之间的差异。

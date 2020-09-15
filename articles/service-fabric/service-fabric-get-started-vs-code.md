@@ -1,17 +1,20 @@
 ---
 title: Azure Service Fabric 和 VS Code 入门
 description: 本文概述如何使用 Visual Studio Code 创建 Service Fabric 应用程序。
-author: rockboyfor
 ms.topic: article
 origin.date: 06/29/2018
-ms.date: 04/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: 98637989d09487358bb15b59ac25e3912888a60a
-ms.sourcegitcommit: 564739de7e63e19a172122856ebf1f2f7fb4bd2e
+ms.custom: devx-track-javascript
+ms.openlocfilehash: 53b962369b582c1a0b767564766954aa4a5e2d16
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82093450"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655728"
 ---
 # <a name="service-fabric-for-visual-studio-code"></a>Service Fabric for Visual Studio Code
 
@@ -29,7 +32,7 @@ ms.locfileid: "82093450"
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [Node.js](https://nodejs.org/)
 * [Git](https://git-scm.com/)
-* [Service Fabric SDK](/service-fabric/service-fabric-get-started)
+* [Service Fabric SDK](./service-fabric-get-started.md)
 * Yeoman 生成器 -- 为应用程序安装相应的生成器
 
     ```sh

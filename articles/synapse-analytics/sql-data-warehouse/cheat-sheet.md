@@ -6,17 +6,17 @@ author: WenJason
 manager: digimobile
 ms.service: synapse-analytics
 ms.topic: overview
-ms.subservice: ''
+ms.subservice: sql-dw
 origin.date: 11/04/2019
-ms.date: 05/11/2020
+ms.date: 09/14/2020
 ms.author: v-jay
 ms.reviewer: igorstan
-ms.openlocfilehash: 914994f020f9fcd85644e64f7fd35033df89ddad
-ms.sourcegitcommit: f8d6fa25642171d406a1a6ad6e72159810187933
+ms.openlocfilehash: 90e2a97ae17139e82e80ec95b8d24e15b9e90acf
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82198680"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014378"
 ---
 # <a name="cheat-sheet-for-azure-synapse-analytics-formerly-sql-dw"></a>Azure Synapse Analytics（以前称为 SQL DW）的速查表
 
@@ -110,7 +110,7 @@ ms.locfileid: "82198680"
 
 ## <a name="maintain-statistics"></a>维护统计信息
 
- 在自动统计信息功能推出正式版之前，要求手动维护统计信息。 对数据做*重大*更改时务必更新统计信息。 这有助于优化查询计划。 如果发现维护所有统计信息所需时间太长，请更谨慎地选择包含统计信息的列。
+对数据做*重大*更改时务必更新统计信息。 请参阅[更新统计信息](sql-data-warehouse-tables-statistics.md#update-statistics)，确定是否发生重大更改。 更新的统计信息可以优化查询计划。 如果发现维护所有统计信息所需时间太长，请更谨慎地选择包含统计信息的列。
 
 还可以定义更新频率。 例如，可能想要更新每天都要添加新值的日期列。 对涉及联接的列、WHERE 子句中使用的列、在 GROUP BY 中找到的列进行信息统计，可以获得最大效益。
 

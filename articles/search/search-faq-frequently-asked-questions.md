@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 04/10/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: 8f43e4f2337ac0e21b86e1d60710fc9b52ca0236
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: 8599f28071119781f484e17e1a75553e8c9baae0
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86472049"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021588"
 ---
 # <a name="azure-cognitive-search---frequently-asked-questions-faq"></a>Azure 认知搜索 - 常见问题解答 (FAQ)
 
@@ -54,7 +54,7 @@ Azure 门户目前不提供内置的索引提取、快照或备份/还原功能�
 
 作为替代方法，可以使用此 [Azure 认知搜索 .NET 示例存储库](https://github.com/Azure-Samples/azure-search-dotnet-samples)中的 **index-backup-restore** 示例代码，将索引定义和索引快照备份到一系列 JSON 文件。 以后，可以根据需要使用工具和文件来还原索引。  
 
-### <a name="can-i-index-from-sql-database-replicas-applies-to-azure-sql-database-indexers"></a>能否从 SQL 数据库副本（适用于 [Azure SQL 数据库索引器](https://docs.azure.cn/search/search-howto-connecting-azure-sql-database-to-azure-search-using-indexers)）进行索引？
+### <a name="can-i-index-from-sql-database-replicas-applies-to-azure-sql-database-indexers"></a>能否从 SQL 数据库副本（适用于 [Azure SQL 数据库索引器](./search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)）进行索引？
 
 从头开始创建索引时，对使用主要或次要副本作为数据源没有任何限制。 然而，使用增量更新（基于已更改的记录）刷新索引时需要主要副本。 此需求来自于 SQL 数据库，它仅确保主要副本上的更改跟踪。 如果尝试为索引刷新工作负荷使用次要副本，则无法保证获得所有数据。
 
@@ -66,13 +66,13 @@ Azure 门户目前不提供内置的索引提取、快照或备份/还原功能�
 
 ### <a name="can-i-restrict-search-index-access-by-user-identity"></a>能否根据用户身份限制搜索索引访问？
 
-可以使用 `search.in()` 筛选器实现[安全筛选器](https://docs.azure.cn/search/search-security-trimming-for-azure-search)。 使用 [Azure Active Directory(AAD) 等标识管理服务](https://docs.azure.cn/search/search-security-trimming-for-azure-search-with-aad)可很好地编写筛选器，并基于定义的用户组成员身份裁剪搜索结果。
+可以使用 `search.in()` 筛选器实现[安全筛选器](./search-security-trimming-for-azure-search.md)。 使用 [Azure Active Directory(AAD) 等标识管理服务](./search-security-trimming-for-azure-search-with-aad.md)可很好地编写筛选器，并基于定义的用户组成员身份裁剪搜索结果。
 
 ### <a name="why-are-there-zero-matches-on-terms-i-know-to-be-valid"></a>为什么确定有效的术语没有匹配项？
 
 最常见的情况是不了解每种查询类型支持不同的搜索行为和语言分析级别。 全文搜索是主要的工作负荷，包括将术语分解成词根形式的语言分析阶段。 查询分析的这种特性拓宽了可能的匹配范围，因为标记化的术语能够匹配更多变体。
 
-但是，通配符查询、模糊查询和正则表达式查询的分析方法与常规词或短语查询不同，并且当查询与单词在搜索索引中的分析形式不匹配时可能会导致再次调用性能不佳。 有关查询解析和分析的详细信息，请参阅[查询体系结构](https://docs.azure.cn/search/search-lucene-query-architecture)。
+但是，通配符查询、模糊查询和正则表达式查询的分析方法与常规词或短语查询不同，并且当查询与单词在搜索索引中的分析形式不匹配时可能会导致再次调用性能不佳。 有关查询解析和分析的详细信息，请参阅[查询体系结构](./search-lucene-query-architecture.md)。
 
 ### <a name="my-wildcard-searches-are-slow"></a>通配符搜索速度较慢。
 
@@ -96,7 +96,7 @@ Azure 门户目前不提供内置的索引提取、快照或备份/还原功能�
 
 ### <a name="what-is-the-best-approach-for-implementing-localized-search"></a>实现本地化搜索的最佳方法是什么？
 
-涉及到支持相同索引中的不同区域设置（语言）时，大多数客户会选择专用字段而非集合。 通过区域设置特定字段可分配适当的分析器。 例如，将 Microsoft 法语分析器分配给包含法语字符串的字段。 这样也简化了筛选过程。 如果已知在 fr-fr 页面上启动了一个查询，则可将搜索结果限制为该字段。 或者，创建一个[计分概要文件](https://docs.microsoft.com/rest/api/searchservice/add-scoring-profiles-to-a-search-index)以增加该字段的相关性。 Azure 认知搜索支持 [50 多种语言分析器](https://docs.azure.cn/search/search-language-support)，可从中进行选择。
+涉及到支持相同索引中的不同区域设置（语言）时，大多数客户会选择专用字段而非集合。 通过区域设置特定字段可分配适当的分析器。 例如，将 Microsoft 法语分析器分配给包含法语字符串的字段。 这样也简化了筛选过程。 如果已知在 fr-fr 页面上启动了一个查询，则可将搜索结果限制为该字段。 或者，创建一个[计分概要文件](https://docs.microsoft.com/rest/api/searchservice/add-scoring-profiles-to-a-search-index)以增加该字段的相关性。 Azure 认知搜索支持 [50 多种语言分析器](./search-language-support.md)，可从中进行选择。
 
 ## <a name="next-steps"></a>后续步骤
 

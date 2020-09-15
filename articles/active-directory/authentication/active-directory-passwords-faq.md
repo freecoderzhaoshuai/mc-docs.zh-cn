@@ -5,18 +5,18 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: authentication
 ms.topic: how-to
-ms.date: 08/28/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 author: iainfoulds
 manager: daveba
 ms.reviewer: rhicock
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: a49ca84dd5b4cd82931662a688122cd218f2e880
-ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
+ms.openlocfilehash: 6005ad34c0e41faa34901ea45c83423ea9145811
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89046285"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593736"
 ---
 # <a name="self-service-password-reset-frequently-asked-questions"></a>自助式密码重置常见问题解答
 
@@ -197,7 +197,7 @@ ms.locfileid: "89046285"
   >
 * **问：当用户的本地密码过期时，他们是否可以在 Office 门户中收到通知？**
 
-  > **答:** 可以。如果使用 Active Directory 联合身份验证服务 (AD FS)，这在目前是可以的。 如果使用 AD FS，请按 [Sending password policy claims with AD FS](https://technet.microsoft.com/windows-server-docs/identity/ad-fs/operations/configure-ad-fs-to-send-password-expiry-claims?f=255&MSPPError=-2147217396)（使用 AD FS 发送密码策略声明）一文中的说明操作。 如果使用密码哈希同步，这在目前是不可以的。 我们不从本地目录同步密码策略，因此无法将过期通知发布到云体验。 在任一情况下，都还可以[通过 PowerShell 向其密码即将过期的用户发送通知](https://social.technet.microsoft.com/wiki/contents/articles/23313.notify-active-directory-users-about-password-expiry-using-powershell.aspx)。
+  > **答:** 可以。如果使用 Active Directory 联合身份验证服务 (AD FS)，这在目前是可以的。 如果使用 AD FS，请按 [Sending password policy claims with AD FS](https://docs.microsoft.com/windows-server/identity/ad-fs/operations/configure-ad-fs-to-send-password-expiry-claims?f=255&MSPPError=-2147217396)（使用 AD FS 发送密码策略声明）一文中的说明操作。 如果使用密码哈希同步，这在目前是不可以的。 我们不从本地目录同步密码策略，因此无法将过期通知发布到云体验。 在任一情况下，都还可以[通过 PowerShell 向其密码即将过期的用户发送通知](https://social.technet.microsoft.com/wiki/contents/articles/23313.notify-active-directory-users-about-password-expiry-using-powershell.aspx)。
   >
   >
 * **问：可否阻止用户更改其密码？**
@@ -243,7 +243,7 @@ ms.locfileid: "89046285"
 
 * **问：密码写回如何在后台工作？**
 
-  > **答:** 请参阅[密码写回的工作原理](howto-sspr-writeback.md)一文，了解有关启用密码写回时发生的情况以及数据如何通过系统流回本地环境的说明。
+  > **答:** 请参阅[密码写回的工作原理](./tutorial-enable-sspr-writeback.md)一文，了解有关启用密码写回时发生的情况以及数据如何通过系统流回本地环境的说明。
   >
   >
 * **问：密码写回需要多长时间才工作？是否和使用密码哈希同步一样也存在同步延迟？**
@@ -273,7 +273,7 @@ ms.locfileid: "89046285"
   >
 * **问：密码写回是否安全？如何确保我不会受到黑客攻击？**
 
-  > **答:** 是的。密码写回具有很高的安全性。 若要阅读有关密码写回服务实施的多个安全层的详细信息，请查看[密码写回概述](howto-sspr-writeback.md)一文中的[密码写回安全性](concept-sspr-writeback.md#password-writeback-security)部分。
+  > **答:** 是的。密码写回具有很高的安全性。 若要阅读有关密码写回服务实施的多个安全层的详细信息，请查看[密码写回概述](./tutorial-enable-sspr-writeback.md)一文中的[密码写回安全性](concept-sspr-writeback.md#password-writeback-security)部分。
   >
   >
 
@@ -286,7 +286,7 @@ ms.locfileid: "89046285"
 * [SSPR 使用哪些数据？应为用户填充哪些数据？](howto-sspr-authenticationdata.md)
 * [哪些身份验证方法可供用户使用？](concept-sspr-howitworks.md#authentication-methods)
 * [SSPR 有哪些策略选项？](concept-sspr-policy.md)
-* [什么是密码写回？我为什么关心它？](howto-sspr-writeback.md)
+* [什么是密码写回？我为什么关心它？](./tutorial-enable-sspr-writeback.md)
 * [如何报告 SSPR 中的活动？](howto-sspr-reporting.md)
 * [SSPR 中的所有选项有哪些？它们有哪些含义？](concept-sspr-howitworks.md)
 * [我认为有些功能被破坏。如何对 SSPR 进行故障排除？](active-directory-passwords-troubleshoot.md)

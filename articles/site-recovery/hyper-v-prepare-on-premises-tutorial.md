@@ -1,19 +1,21 @@
 ---
-title: 为 Hyper-V VM 到 Azure 的灾难恢复准备本地 Hyper-V 服务器
-description: 了解如何使用 Azure Site Recovery 服务准备本地 Hyper-V VM 以进行到 Azure 的灾难恢复。
-author: rockboyfor
+title: 使用 Azure Site Recovery 为到 Azure 的 Hyper-V VM 的灾难恢复做准备
+description: 了解如何使用 Azure Site Recovery 准备本地 Hyper-V VM 以进行到 Azure 的灾难恢复。
 ms.service: site-recovery
 ms.topic: tutorial
-origin.date: 09/09/2019
-ms.date: 09/30/2019
+origin.date: 11/12/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
 ms.custom: MVC
-ms.openlocfilehash: 956c09dd6d678b618ee6f1b17ceb32c333c1ffbe
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: b4fcb95c8c0ad7eb2a19b859fb770e643faa95d2
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291366"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655671"
 ---
 # <a name="prepare-on-premises-hyper-v-servers-for-disaster-recovery-to-azure"></a>为 Hyper-V VM 到 Azure 的灾难恢复准备本地 Hyper-V 服务器
 
@@ -55,7 +57,7 @@ ms.locfileid: "79291366"
 
 ### <a name="prepare-vmm-for-network-mapping"></a>为网络映射准备 VMM
 
-如果使用 VMM，则[网络映射](site-recovery-network-mapping.md)在本地 VMM VM 网络和 Azure 虚拟网络之间进行映射。 映射将确保在故障转移后创建 Azure VM 时，将其连接到正确的网络。
+如果使用 VMM，则[网络映射](./hyper-v-vmm-network-mapping.md)在本地 VMM VM 网络和 Azure 虚拟网络之间进行映射。 映射将确保在故障转移后创建 Azure VM 时，将其连接到正确的网络。
 
 为网络映射准备 VMM，如下所示：
 
@@ -81,17 +83,17 @@ ms.locfileid: "79291366"
 
 若要在故障转移后使用 RDP 连接到 Windows VM，请按如下所示允许访问：
 
-1. 若要通过 Internet 访问，请在故障转移之前在本地 VM 上启用 RDP。 请确保已针对“公共”配置文件添加了 TCP 和 UDP 规则，并确保在“Windows 防火墙” > “允许的应用”中针对所有配置文件允许 RDP。
-2. 若要通过站点到站点 VPN 进行访问，请在本地计算机上启用 RDP。 应在“Windows 防火墙” -> “允许的应用和功能”中针对“域和专用”网络允许 RDP。
-   检查操作系统的 SAN 策略是否已设置为 OnlineAll  。 [了解详细信息](https://support.microsoft.com/kb/3031135)。 触发故障转移时，VM 上不应存在待处理的 Windows 更新。 如果存在，则在更新完成之前无法登录到虚拟机。
-3. 在 Windows Azure VM 上执行故障转移后，请选中“启动诊断”，查看 VM 的屏幕截图  。 如果无法连接，请检查 VM 是否正在运行，并查看这些[疑难解答提示](https://social.technet.microsoft.com/wiki/contents/articles/31666.troubleshooting-remote-desktop-connection-after-failover-using-asr.aspx)。
+1. 若要通过 Internet 访问，请在故障转移之前在本地 VM 上启用 RDP。 请确保已针对“公共”配置文件添加了 TCP 和 UDP 规则，并确保在“Windows 防火墙” > “允许的应用”中针对所有配置文件允许 RDP  。
+2. 若要通过站点到站点 VPN 进行访问，请在本地计算机上启用 RDP。 应在“Windows 防火墙” -> “允许的应用和功能”中针对“域和专用”网络允许 RDP  。
+   检查操作系统的 SAN 策略是否已设置为 OnlineAll。 [了解详细信息](https://support.microsoft.com/kb/3031135)。 触发故障转移时，VM 上不应存在待处理的 Windows 更新。 如果存在，则在更新完成之前无法登录到虚拟机。
+3. 在 Windows Azure VM 上执行故障转移后，请选中“启动诊断”，查看 VM 的屏幕截图。 如果无法连接，请检查 VM 是否正在运行，并查看这些[疑难解答提示](https://social.technet.microsoft.com/wiki/contents/articles/31666.troubleshooting-remote-desktop-connection-after-failover-using-asr.aspx)。
 
 故障转移后，可以使用与复制的本地 VM 相同的 IP 地址或不同的 IP 地址访问 Azure VM。 [详细了解](concepts-on-premises-to-azure-networking.md)如何为故障转移设置 IP 寻址。
 
 ## <a name="next-steps"></a>后续步骤
 
 > [!div class="nextstepaction"]
-> [为 Hyper-V VM 设置到 Azure 的灾难恢复](tutorial-hyper-v-to-azure.md)
-> [为 VMM 云中的 Hyper-V VM 设置到 Azure 的灾难恢复](tutorial-hyper-v-vmm-to-azure.md)
+> [为 Hyper-V VM 设置到 Azure 的灾难恢复](./hyper-v-azure-tutorial.md)
+> [为 VMM 云中的 Hyper-V VM 设置到 Azure 的灾难恢复](./hyper-v-vmm-azure-tutorial.md)
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -5,17 +5,17 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: authentication
 ms.topic: tutorial
-ms.date: 08/28/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 author: iainfoulds
 ms.reviewer: michmcla
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 8eb85a0856dad40f09e87b7a1c94a0f73cc0562e
-ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
+ms.openlocfilehash: 0585a8e1197298a692c32d7d4a95c1973b4366a9
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89046321"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593715"
 ---
 # <a name="tutorial-secure-user-sign-in-events-with-azure-multi-factor-authentication"></a>教程：使用 Azure 多重身份验证保护用户登录事件
 
@@ -133,5 +133,5 @@ ms.locfileid: "89046321"
 > * 以用户身份测试 MFA 过程
 
 > [!div class="nextstepaction"]
-> [为自助式密码重置 (SSPR) 启用密码写回](tutorial-enable-writeback.md)
+> [为自助式密码重置 (SSPR) 启用密码写回](./tutorial-enable-sspr-writeback.md)
 

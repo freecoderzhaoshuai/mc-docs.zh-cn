@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 06/08/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: 342ffd086a1fa089f4b4265d9e21137ba2755d54
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: b91f9bd7f5e8c36c15e86f0d7f161dbe5d88c25a
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471909"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021140"
 ---
 # <a name="tips-for-ai-enrichment-in-azure-cognitive-search"></a>Azure 认知搜索中的 AI 扩充提示
 
@@ -53,11 +53,11 @@ https://docs.azure.cn/search/search-howto-indexing-azure-blob-storage#how-to-spe
 > [!NOTE]
 > 最佳做法是，对于生产工作负载，将 maxFailedItems、maxFailedItemsPerBatch 设置为 0
 
-## <a name="tip-4-use-debug-sessions-to-identify-and-resolve-issues-with-your-skillset"></a>提示 4：使用“调试”会话来识别和解决技能组的问题 
+<!-- ## Tip 4: Use Debug sessions to identify and resolve issues with your skillset 
 
-调试会话是一个可视化编辑器，可与 Azure 门户中的现有技能组配合使用。 在调试会话中，可以识别和解决错误、验证更改，以及将更改提交到 AI 扩充管道中的生产技能组。 这是一项预览功能（请[阅读文档](https://docs.azure.cn/search/cognitive-search-debug-session)）。 有关概念和入门的详细信息，请参阅[调试会话](https://docs.azure.cn/search/cognitive-search-tutorial-debug-sessions)。
+Debug sessions is a visual editor that works with an existing skillset in the Azure portal. Within a debug session you can identify and resolve errors, validate changes, and commit changes to a production skillset in the AI enrichment pipeline. This is a preview feature [read the documentation](./cognitive-search-debug-session.md). For more information about concepts and getting started, see [Debug sessions](./cognitive-search-tutorial-debug-sessions.md).
 
-调试会话适用于单个文档，可让你以迭代方式生成更复杂的扩充管道。
+Debug sessions work on a single document are a great way for you to iteratively build more complex enrichment pipelines. -->
 
 ## <a name="tip-5-looking-at-enriched-documents-under-the-hood"></a>提示 5：深入了解扩充的文档 
 扩充的文档是在扩充期间创建但在完成处理后会删除的临时结构。

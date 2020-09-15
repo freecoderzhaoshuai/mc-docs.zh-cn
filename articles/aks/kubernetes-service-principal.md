@@ -8,12 +8,12 @@ ms.date: 07/13/2020
 ms.testscope: yes
 ms.testdate: 06/16/2020
 ms.author: v-yeche
-ms.openlocfilehash: df42c0e6ad62ce3ea1aa82fd436ae69fb56a83c5
-ms.sourcegitcommit: 6c9e5b3292ade56d812e7e214eeb66aeb9b8776e
+ms.openlocfilehash: b2c18336fce34956e3c3a5b38caa857fcd639622
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86218811"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020820"
 ---
 # <a name="service-principals-with-azure-kubernetes-service-aks"></a>使用 Azure Kubernetes 服务 (AKS) 的服务主体
 
@@ -178,19 +178,19 @@ ls -la $HOME/.azure/aksServicePrincipal.json
 
 [aad-service-principal]:../active-directory/develop/app-objects-and-service-principals.md
 [acr-intro]: ../container-registry/container-registry-intro.md
-[az-ad-sp-create]: https://docs.azure.cn/cli/ad/sp?view=azure-cli-latest#az-ad-sp-create-for-rbac
+[az-ad-sp-create]: https://docs.azure.cn/cli/ad/sp#az-ad-sp-create-for-rbac
 [azure-load-balancer-overview]: ../load-balancer/load-balancer-overview.md
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
 [service-principal]:../active-directory/develop/app-objects-and-service-principals.md
 [user-defined-routes]: ../load-balancer/load-balancer-overview.md
-[az-ad-app-list]: https://docs.azure.cn/cli/ad/app?view=azure-cli-latest#az-ad-app-list
-[az-ad-app-delete]: https://docs.azure.cn/cli/ad/app?view=azure-cli-latest#az-ad-app-delete
-[az-aks-create]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-create
-[az-aks-update]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-update
+[az-ad-app-list]: https://docs.azure.cn/cli/ad/app#az-ad-app-list
+[az-ad-app-delete]: https://docs.azure.cn/cli/ad/app#az-ad-app-delete
+[az-aks-create]: https://docs.microsoft.com/cli/azure/aks#az_aks_create
+[az-aks-update]: https://docs.microsoft.com/cli/azure/aks#az_aks_update
 [rbac-network-contributor]: ../role-based-access-control/built-in-roles.md#network-contributor
 [rbac-custom-role]: ../role-based-access-control/custom-roles.md
 [rbac-storage-contributor]: ../role-based-access-control/built-in-roles.md#storage-account-contributor
-[az-role-assignment-create]: https://docs.azure.cn/cli/role/assignment?view=azure-cli-latest#az-role-assignment-create
+[az-role-assignment-create]: https://docs.azure.cn/cli/role/assignment#az-role-assignment-create
 [aks-to-acr]: cluster-container-registry-integration.md
 [update-credentials]: update-credentials.md
 [azure-ad-permissions]: ../active-directory/fundamentals/users-default-permissions.md

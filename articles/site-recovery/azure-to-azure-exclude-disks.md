@@ -1,18 +1,20 @@
 ---
 title: 使用 Azure Site Recovery 和 Azure PowerShell 复制时排除 Azure VM 磁盘
 description: 了解如何使用 Azure PowerShell 在 Azure Site Recovery 过程中排除 Azure 虚拟机的磁盘。
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.topic: how-to
 origin.date: 02/18/2019
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: 514d68fff2fa33c7ad44f050d227f9a5d809f808
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 46eb7a53d0d80959efe67a616b46459a9a30568b
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77611239"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655034"
 ---
 # <a name="exclude-disks-from-powershell-replication-of-azure-vms"></a>对 Azure VM 进行 PowerShell 复制时排除磁盘
 
@@ -33,7 +35,7 @@ ms.locfileid: "77611239"
 ## <a name="why-exclude-disks-from-replication"></a>为什么要从复制中排除磁盘
 需要从复制中排除磁盘可能是因为：
 
-- 虚拟机已达到 [Azure Site Recovery 对数据更改复制速率的限制](/site-recovery/azure-to-azure-support-matrix)。
+- 虚拟机已达到 [Azure Site Recovery 对数据更改复制速率的限制](./azure-to-azure-support-matrix.md)。
 
 - 排除的磁盘上改动的数据不重要或不需要复制。
 
@@ -108,7 +110,7 @@ $datadiskId2  = $vm.StorageProfile.DataDisks[1].ManagedDisk.id
 $RecoveryReplicaDiskAccountType =  $vm.StorageProfile.DataDisks[1]. StorageAccountType
 $RecoveryTargetDiskAccountType = $vm.StorageProfile.DataDisks[1]. StorageAccountType
 
-$DataDisk2ReplicationConfig  = New-AzRecoveryServicesAsrAzureToAzureDiskReplicationConfig -ManagedDisk -LogStorageAccountId $CacheStorageAccount.Id `
+$DataDisk2ReplicationConfig  = New-AzRecoveryServicesAsrAzureToAzureDiskReplicationConfig -ManagedDisk -LogStorageAccountId $ChinaEastCacheStorageAccount.Id `
          -DiskId $datadiskId2 -RecoveryResourceGroupId  $RecoveryRG.ResourceId -RecoveryReplicaDiskAccountType  $RecoveryReplicaDiskAccountType `
          -RecoveryTargetDiskAccountType $RecoveryTargetDiskAccountType
 
@@ -118,7 +120,7 @@ $datadiskId3  = $vm.StorageProfile.DataDisks[2].ManagedDisk.id
 $RecoveryReplicaDiskAccountType =  $vm.StorageProfile.DataDisks[2]. StorageAccountType
 $RecoveryTargetDiskAccountType = $vm.StorageProfile.DataDisks[2]. StorageAccountType
 
-$DataDisk3ReplicationConfig  = New-AzRecoveryServicesAsrAzureToAzureDiskReplicationConfig -ManagedDisk -LogStorageAccountId $CacheStorageAccount.Id `
+$DataDisk3ReplicationConfig  = New-AzRecoveryServicesAsrAzureToAzureDiskReplicationConfig -ManagedDisk -LogStorageAccountId $ChinaEastCacheStorageAccount.Id `
          -DiskId $datadiskId3 -RecoveryResourceGroupId  $RecoveryRG.ResourceId -RecoveryReplicaDiskAccountType  $RecoveryReplicaDiskAccountType `
          -RecoveryTargetDiskAccountType $RecoveryTargetDiskAccountType
 
@@ -142,4 +144,4 @@ $TempASRJob = New-ASRReplicationProtectedItem -AzureToAzure -AzureVmId $VM.Id -N
 
 了解如何[运行测试性故障转移](site-recovery-test-failover-to-azure.md)。
 
-<!--Update_Description: wording update-->
+<!-- Update_Description: update meta properties, wording update, update link -->

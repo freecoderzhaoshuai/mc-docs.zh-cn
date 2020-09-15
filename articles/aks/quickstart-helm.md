@@ -9,12 +9,12 @@ ms.date: 08/10/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
-ms.openlocfilehash: 6eabdfd6938c90b425bb170f5441640c18260b5b
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 498f4387b6ce2a97d210e3a69a9832c957f0fdd6
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842654"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021258"
 ---
 # <a name="quickstart-develop-on-azure-kubernetes-service-aks-with-helm"></a>快速入门：使用 Helm 在 Azure Kubernetes 服务 (AKS) 上进行开发
 
@@ -25,7 +25,7 @@ ms.locfileid: "87842654"
 ## <a name="prerequisites"></a>先决条件
 
 * Azure 订阅。 如果你没有 Azure 订阅，可以创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
-* [已安装 Azure CLI](https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest)。
+* [已安装 Azure CLI](https://docs.azure.cn/cli/install-azure-cli)。
 * [已安装 Helm v3][helm-install]。
 
 ## <a name="create-an-azure-container-registry"></a>创建 Azure 容器注册表
@@ -208,11 +208,11 @@ az group delete --name MyResourceGroup --yes --no-wait
 > [!div class="nextstepaction"]
 > [Helm 文档][helm-documentation]
 
-[az-acr-create]: https://docs.azure.cn/cli/acr?view=azure-cli-latest#az-acr-create
-[az-acr-build]: https://docs.azure.cn/cli/acr?view=azure-cli-latest#az-acr-build
-[az-group-delete]: https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-delete
-[az aks get-credentials]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-get-credentials
-[az aks install-cli]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-install-cli
+[az-acr-create]: https://docs.azure.cn/cli/acr#az-acr-create
+[az-acr-build]: https://docs.azure.cn/cli/acr#az-acr-build
+[az-group-delete]: https://docs.azure.cn/cli/group#az-group-delete
+[az aks get-credentials]: https://docs.microsoft.com/cli/azure/aks#az_aks_get_credentials
+[az aks install-cli]: https://docs.microsoft.com/cli/azure/aks#az_aks_install_cli
 [example-nodejs]: https://github.com/Azure/dev-spaces/tree/master/samples/nodejs/getting-started/webfrontend
 [kubectl]: https://kubernetes.io/docs/user-guide/kubectl/
 [helm]: https://helm.sh/

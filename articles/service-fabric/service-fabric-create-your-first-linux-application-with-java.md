@@ -3,14 +3,18 @@ title: 在 Linux 上创建 Azure Service Fabric Reliable Actors Java 应用程�
 description: 了解如何在五分钟内创建并部署一个 Java Service Fabric Reliable Actors 应用程序。
 ms.topic: conceptual
 origin.date: 06/18/2018
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 1a4fe65cfe43143914c229b31ac2a306cfbcfbd6
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.custom: devx-track-java
+ms.openlocfilehash: fb426645147e0f7b7c7b1f47a197921d7c3efae0
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356274"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655105"
 ---
 # <a name="create-your-first-java-service-fabric-reliable-actors-application-on-linux"></a>在 Linux 上创建第一个 Java Service Fabric Reliable Actors 应用程序
 > [!div class="op_single_selector"]
@@ -352,4 +356,4 @@ Service Fabric Java 库已托管在 Maven 中。 可以在项目的 ``pom.xml`` 
 [sfx-primary]: ./media/service-fabric-create-your-first-linux-application-with-java/sfx-primary.png
 [sf-eclipse-templates]: ./media/service-fabric-create-your-first-linux-application-with-java/sf-eclipse-templates.png
 
-<!--Update_Description: update meta properties, update link-->
+<!-- Update_Description: update meta properties, wording update, update link -->

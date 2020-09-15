@@ -5,15 +5,15 @@ author: Johnnytechn
 ms.service: virtual-machines-linux
 ms.topic: how-to
 origin.date: 10/15/2018
-ms.date: 06/17/2020
+ms.date: 09/03/2020
 ms.author: v-johya
 ms.subservice: disks
-ms.openlocfilehash: a88bd8f785557b386948e40bd43be36ffb25206b
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: da163f3d9c237890d9d199403ff1a04b549fde7c
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097217"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057590"
 ---
 # <a name="expand-virtual-hard-disks-on-a-linux-vm-with-the-azure-cli"></a>使用 Azure CLI 扩展 Linux VM 上的虚拟硬盘
 
@@ -60,7 +60,7 @@ ms.locfileid: "85097217"
     ```
 
     > [!NOTE]
-    > 扩展托管磁盘时，更新的大小将向上舍入到最接近的托管磁盘大小。 有关可用托管磁盘大小和层的表，请参阅 [Azure 托管磁盘概述 - 定价和计费](../windows/managed-disks-overview.md)。
+    > 扩展托管磁盘时，更新的大小将向上舍入到最接近的托管磁盘大小。 有关可用托管磁盘大小和层的表，请参阅 [Azure 托管磁盘概述 - 定价和计费](../managed-disks-overview.md)。
 
 1. 使用 [az vm start](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-start) 启动 VM。 以下示例在名为 myResourceGroup 的资源组中启动名为 myVM 的 VM： 
 
@@ -75,7 +75,7 @@ ms.locfileid: "85097217"
 1. 使用相应的凭据通过 SSH 连接到 VM。 可以使用 [az vm show](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-show) 查看 VM 的 公共 IP 地址：
 
     ```azurecli
-    az vm show --resource-group myResourceGroup --name myVM -d --query [publicIps] --o tsv
+    az vm show --resource-group myResourceGroup --name myVM -d --query [publicIps] --output tsv
     ```
 
 1. 扩展基础分区和文件系统。
@@ -104,7 +104,7 @@ ms.locfileid: "85097217"
     Sector size (logical/physical): 512B/4096B
     Partition Table: loop
     Disk Flags:
-
+    
     Number  Start  End    Size   File system  Flags
         1      0.00B  107GB  107GB  ext4
     ```

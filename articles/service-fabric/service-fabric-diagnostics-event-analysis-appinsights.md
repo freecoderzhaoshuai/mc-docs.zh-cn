@@ -1,19 +1,19 @@
 ---
 title: 使用 Application Insights 进行 Azure Service Fabric 事件分析
 description: 了解通过使用 Application Insights 可视化和分析事件来监视和诊断 Azure Service Fabric 群集。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 11/21/2018
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 01/13/2020
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: 9fd8d2fce6f5508e3304a53f60b4cf530d115df3
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 0118e5168240f6d6fad2bad7aee06622975ae5e5
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426446"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655733"
 ---
 # <a name="event-analysis-and-visualization-with-application-insights"></a>使用 Application Insights 进行事件分析和可视化
 
@@ -31,17 +31,17 @@ ms.locfileid: "87426446"
 
 使用 Service Fabric 时，可以直接使用 Application Insights。 在概述页中，Application Insights 提供有关服务的重要信息，例如响应时间和处理的请求数。 单击顶部的“搜索”按钮可以看到应用程序中最近请求的列表。 此外，可在此处查看失败的请求数，以及诊断可能发生的错误。
 
-![Application Insights 概述](media/service-fabric-diagnostics-event-analysis-appinsights/ai-overview.png)
+:::image type="content" source="media/service-fabric-diagnostics-event-analysis-appinsights/ai-overview.png" alt-text="Application Insights 概述":::
 
 在上图的右侧面板上，列表中有两种主要类型的条目：请求和事件。 在本例中，请求是通过 HTTP 请求对应用 API 发出的调用，事件是自定义事件，充当可以添加到代码中任意位置的遥测数据。 可以在[用于处理自定义事件和指标的 Application Insights API](../azure-monitor/app/api-custom-events-metrics.md) 中进一步了解如何检测应用程序。 单击某个请求会显示下图所示的更多详细信息，包括 Application Insights Service Fabric Nuget 包中收集的、特定于 Service Fabric 的数据。 在排查和了解应用程序的状态时，此信息非常有用；所有这些信息都可以在 Application Insights 中搜索
 
-![Application Insights 请求详细信息](media/service-fabric-diagnostics-event-analysis-appinsights/ai-request-details.png)
+:::image type="content" source="media/service-fabric-diagnostics-event-analysis-appinsights/ai-request-details.png" alt-text="Application Insights 请求详细信息":::
 
 Application Insights 提供指定的视图用于查询所有传入的数据。 单击“概述”页顶部的“指标资源管理器”可导航到 Application Insights 门户。 在此处，可以使用 Kusto 查询语言，针对前面所述的自定义事件、请求、异常、性能计数器和其他指标运行查询。 以下示例演示过去 1 小时内的所有请求。
 
-![Application Insights 请求详细信息](media/service-fabric-diagnostics-event-analysis-appinsights/ai-metrics-explorer.png)
+:::image type="content" source="media/service-fabric-diagnostics-event-analysis-appinsights/ai-metrics-explorer.png" alt-text="Application Insights 请求详细信息":::
 
-若要进一步了解 Application Insights 门户的功能，请转到 [Application Insights 门户文档](../azure-monitor/app/app-insights-dashboards.md)。
+若要进一步了解 Application Insights 门户的功能，请转到 [Application Insights 门户文档](../azure-monitor/app/overview-dashboard.md)。
 
 ### <a name="configuring-application-insights-with-eventflow"></a>使用 EventFlow 配置 Application Insights
 
@@ -70,13 +70,13 @@ Application Insights 提供指定的视图用于查询所有传入的数据。 �
 
 配置 Application Insights 作为事件和日志输出的数分钟后，Application Insights 资源中应开始显示信息。 导航到 Application Insights 资源，此时会转到 Application Insights 资源仪表板。 单击 Application Insights 任务栏中的“搜索”，查看其最近收到的跟踪，并能够筛选它们。 
 
-指标资源管理器  是非常有用的工具，能够基于应用程序、服务和群集报告的指标创建自定义仪表板。 请参阅[了解 Application Insights 中的指标](../azure-monitor/app/metrics-explorer.md)，基于收集的数据为自身设置数个图表。
+指标资源管理器  是非常有用的工具，能够基于应用程序、服务和群集报告的指标创建自定义仪表板。 请参阅[了解 Application Insights 中的指标](../azure-monitor/platform/metrics-charts.md)，基于收集的数据为自身设置数个图表。
 
-单击“分析”会转到 Application Insights 分析门户，可在此处基于更广的范围和可选性查询事件和跟踪。  若要阅读详细信息，请转到 [Application Insights 中的分析](../azure-monitor/app/analytics.md)。
+单击“分析”会转到 Application Insights 分析门户，可在此处基于更广的范围和可选性查询事件和跟踪。  若要阅读详细信息，请转到 [Application Insights 中的分析](../azure-monitor/log-query/log-query-overview.md)。
 
 ## <a name="next-steps"></a>后续步骤
 
-* [在 AI 中设置警报](/azure-monitor/platform/alerts-log)以获取有关性能或使用情况的通知
+* [在 AI 中设置警报](../azure-monitor/platform/alerts-log.md)以获取有关性能或使用情况的通知
 * [Application Insights 中的智能检测](../azure-monitor/app/proactive-diagnostics.md)针对发送给 Application Insights 的遥测进行主动分析，向你警告潜在的性能问题
 
 <!-- Update_Description: update meta properties, wording update, update link -->

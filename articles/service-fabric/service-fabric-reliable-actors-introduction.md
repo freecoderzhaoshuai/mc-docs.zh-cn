@@ -1,24 +1,29 @@
 ---
 title: Service Fabric Reliable Actors 概述
 description: 介绍基于虚拟执行组件模式的 Service Fabric Reliable Actors 编程模型。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 11/01/2017
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: c2102d5d7b6b1ad09a2403bbe4583a18f5d6f6b5
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 36fae8bf4a15220b7488893892dfc47cf4778cb3
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540159"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655164"
 ---
 # <a name="introduction-to-service-fabric-reliable-actors"></a>Service Fabric Reliable Actors 简介
 Reliable Actors 是基于[虚拟执行组件](https://research.microsoft.com/projects/orleans/)模式的 Service Fabric 应用程序框架。 Reliable Actors API 提供单一线程编程模型，该模型是基于 Service Fabric 所提供的可扩展性和可靠性保证构建的。
 
 <a name="actors"></a>
 ## <a name="what-are-actors"></a>什么是执行组件？
-执行组件是一个使用单线程执行的计算和状态的独立单元。 [执行组件模式](https://en.wikipedia.org/wiki/Actor_model)是并发或分布式系统的计算模型。在此类系统中，大量执行组件可同时相互独立地运行。 执行组件可相互进行通信，并且它们可以创建更多执行组件。
+执行组件是一个使用单线程执行的计算和状态的独立单元。 执行组件模式是并发或分布式系统的计算模型。在此类系统中，大量执行组件可同时相互独立地运行。 执行组件可相互进行通信，并且它们可以创建更多执行组件。
+
+<!--Not Available on [actor pattern](https://en.wikipedia.org/wiki/Actor_model)-->
 
 ### <a name="when-to-use-reliable-actors"></a>何时使用 Reliable Actors
 Service Fabric Reliable Actors 是执行组件设计模式的实现。 与任何软件设计模式一样，决定是否使用特定的模式取决于遇到的软件设计问题是否适合用该模式解决。
@@ -138,7 +143,7 @@ Reliable Actors 运行时提供简单的基于轮次的访问模型用于访问�
 ## <a name="next-steps"></a>后续步骤
 从生成第一个 Reliable Actors 服务开始：
    * [.NET 上的 Reliable Actors 入门](service-fabric-reliable-actors-get-started.md)
-   * [Java 上的 Reliable Actors 入门](service-fabric-reliable-actors-get-started-java.md)
+   * [Java 上的 Reliable Actors 入门](./service-fabric-create-your-first-linux-application-with-java.md)
 
 <!--Image references-->
 
@@ -146,4 +151,4 @@ Reliable Actors 运行时提供简单的基于轮次的访问模型用于访问�
 [2]: ./media/service-fabric-reliable-actors-introduction/distribution.png
 [3]: ./media/service-fabric-reliable-actors-introduction/actor-communication.png
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

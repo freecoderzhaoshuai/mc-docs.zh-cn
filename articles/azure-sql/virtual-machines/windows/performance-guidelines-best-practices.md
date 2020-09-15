@@ -16,12 +16,12 @@ origin.date: 10/18/2019
 ms.date: 08/17/2020
 ms.author: v-jay
 ms.reviewer: jroth
-ms.openlocfilehash: 20ba10f08089decd220b46c3f3994b517295f00f
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: 2856e7eeb955f88c9721fe1dbb4bd8e4aac37a30
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222939"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014174"
 ---
 <!--Verified Redirect files-->
 # <a name="performance-guidelines-for-sql-server-on-azure-virtual-machines"></a>Azure 虚拟机上的 SQL Server 的性能准则
@@ -126,7 +126,7 @@ Azure 虚拟机上有三种主要磁盘类型：
     New-StoragePool -FriendlyName "DataFiles" -StorageSubsystemFriendlyName "Storage Spaces*" `
         -PhysicalDisks $PhysicalDisks | New- VirtualDisk -FriendlyName "DataFiles" `
         -Interleave 65536 -NumberOfColumns $PhysicalDisks .Count -ResiliencySettingName simple `
-        �UseMaximumSize |Initialize-Disk -PartitionStyle GPT -PassThru |New-Partition -AssignDriveLetter `
+        -UseMaximumSize |Initialize-Disk -PartitionStyle GPT -PassThru |New-Partition -AssignDriveLetter `
         -UseMaximumSize |Format-Volume -FileSystem NTFS -NewFileSystemLabel "DataDisks" `
         -AllocationUnitSize 65536 -Confirm:$false 
     ```

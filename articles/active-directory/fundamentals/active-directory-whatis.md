@@ -7,16 +7,16 @@ manager: daveba
 ms.service: active-directory
 ms.subservice: fundamentals
 ms.topic: overview
-ms.date: 08/27/2020
+ms.date: 09/08/2020
 ms.author: v-junlch
 ms.custom: it-pro, seodec18, seo-update-azuread-jan, contperfq4
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: bf3f33a7ce459d65706a6980afd840bf71149a28
-ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
+ms.openlocfilehash: 0d2ee1cc1135fde452cd4cf4548ef8b3e0cc8874
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89046480"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593781"
 ---
 # <a name="what-is-azure-active-directory"></a>什么是 Azure Active Directory？
 
@@ -26,7 +26,7 @@ Azure Active Directory (Azure AD) is Microsoft’s cloud-based identity and acce
 
 - 内部资源，例如公司网络和 Intranet 上的应用，以及由自己的组织开发的任何云应用。 有关为组织创建租户的详细信息，请参阅[快速入门：在 Azure Active Directory 中创建一个新租户](active-directory-access-create-new-tenant.md)。
 
-若要了解 Azure AD 和 Active Directory 域服务之间的差异，请参阅[比较 Active Directory 与 Azure Active Directory](active-directory-compare-azure-ad-to-ad.md)。 还可以通过各种[面向企业架构师的 Microsoft 云系列](https://docs.microsoft.com/office365/enterprise/microsoft-cloud-it-architecture-resources#identity)海报更好地了解 Azure、Azure AD 和 Office 365 中的核心标识服务。
+若要了解 Azure AD 和 Active Directory 域服务之间的差异，请参阅[比较 Active Directory 与 Azure Active Directory](active-directory-compare-azure-ad-to-ad.md)。 还可以通过各种[面向企业架构师的 Microsoft 云系列](https://docs.microsoft.com/microsoft-365/solutions/cloud-architecture-models?view=o365-worldwide)海报更好地了解 Azure、Azure AD 和 Office 365 中的核心标识服务。
 
 ## <a name="who-uses-azure-ad"></a>谁在使用 Azure AD？
 

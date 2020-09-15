@@ -9,12 +9,12 @@ ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: 475366a216f4c0c1e373959a08b0f86e864d9d77
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 9258840c8b98a70c4f4c01050f25079f806a63ee
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842633"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021253"
 ---
 # <a name="running-apache-spark-jobs-on-aks"></a>在 AKS 中运行 Apache Spark 作业
 
@@ -344,7 +344,7 @@ ENTRYPOINT [ "/opt/entrypoint.sh" ]
 
 [apache-spark]: https://spark.apache.org/
 [docker-hub]: https://docs.docker.com/docker-hub/
-[java-install]: https://docs.azure.cn/java/java-supported-jdk-runtime?view=azure-java-stable
+[java-install]: https://docs.azure.cn/java/java-supported-jdk-runtime
 [maven-install]: https://maven.apache.org/install.html
 [sbt-install]: https://www.scala-sbt.org/1.0/docs/Setup.html
 [spark-docs]: https://spark.apache.org/docs/latest/running-on-kubernetes.html
@@ -356,7 +356,7 @@ ENTRYPOINT [ "/opt/entrypoint.sh" ]
 [acr-aks]: cluster-container-registry-integration.md
 [acr-create]: ../container-registry/container-registry-get-started-azure-cli.md
 [aks-quickstart]: ./index.yml
-[azure-cli]: https://docs.azure.cn/cli/?view=azure-cli-latest?view=azure-cli-latest
+[azure-cli]: https://docs.azure.cn/cli/
 [storage-account]: ../storage/blobs/storage-quickstart-blobs-cli.md
 
 <!-- Update_Description: update meta properties, wording update, update link -->

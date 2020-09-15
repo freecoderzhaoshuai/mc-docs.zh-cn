@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: quickstart
 origin.date: 06/07/2020
-ms.date: 07/02/2020
-ms.openlocfilehash: 8927300c9649698c1af2e93cd9d48b7f9fb90b6c
-ms.sourcegitcommit: 5afd7c4c3be9b80c4c67ec55f66fcf347aad74c6
+ms.date: 09/10/2020
+ms.openlocfilehash: 4df3125e3aa941cd884d9c42fa302803bfa59a07
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85942524"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021143"
 ---
 # <a name="quickstart-create-an-azure-cognitive-search-cognitive-skillset-in-the-azure-portal"></a>快速入门：在 Azure 门户中创建 Azure 认知搜索认知技能集
 
@@ -30,7 +30,7 @@ ms.locfileid: "85942524"
 
 + Azure 认知搜索服务。 [创建服务](search-create-service-portal.md)或在当前订阅下[查找现有服务](https://portal.azure.cn/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices)。 可以使用本快速入门的免费服务。 
 
-+ 具有 [Blob 存储](https://docs.azure.cn/storage/blobs/)的 Azure 存储帐户。
++ 具有 [Blob 存储](../storage/blobs/index.yml)的 Azure 存储帐户。
 
 > [!NOTE]
 > 此快速入门还将 [Azure 认知服务](https://azure.microsoft.com/services/cognitive-services/)用于 AI。 由于工作负荷很小，因此，认知服务在幕后会抽调一部分算力来免费处理事务（最多 20 个）。 这意味着，无需创建其他认知服务资源即可完成此练习。
@@ -41,7 +41,7 @@ ms.locfileid: "85942524"
 
 1. [下载示例数据](https://1drv.ms/f/s!As7Oy81M_gVPa-LCb5lC_3hbS-4)，其中包括不同类型的小型文件集。 解压缩文件。
 
-1. [创建 Azure 存储帐户](https://docs.azure.cn/storage/common/storage-quickstart-create-account?tabs=azure-portal)或[查找现有帐户](https://portal.azure.cn/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Storage%2storageAccounts/)。 
+1. [创建 Azure 存储帐户](../storage/common/storage-account-create.md?tabs=azure-portal)或[查找现有帐户](https://portal.azure.cn/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Storage%2storageAccounts/)。 
 
    + 选择 Azure 认知搜索所在的同一区域，以避免带宽费用。 
 

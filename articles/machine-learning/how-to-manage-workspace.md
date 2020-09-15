@@ -10,12 +10,12 @@ ms.author: sgilley
 author: sdgilley
 ms.date: 12/27/2019
 ms.custom: seodec18
-ms.openlocfilehash: d98568e95b77c53fdcd9bfcb74c840cf5ba8900e
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: 60e8839d90a4360309497cfb20ce441f9092d074
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097507"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021491"
 ---
 # <a name="create-and-manage-azure-machine-learning-workspaces-in-the-azure-portal"></a>在 Azure 门户中创建并管理 Azure 机器学习工作区
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -74,7 +74,7 @@ ms.locfileid: "85097507"
 
 可以将工作区从基本版升级到企业版，以利用增强的功能，例如低代码体验和增强的安全功能。
 
-1. 登录到 [Azure 机器学习工作室](https://ml.azure.com)。
+1. 登录到 [Azure 机器学习工作室](https://studio.ml.azure.cn)。
 
 1. 选择希望升级的工作区。
 

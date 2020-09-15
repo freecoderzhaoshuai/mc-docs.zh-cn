@@ -137,7 +137,11 @@
         - name: 创建用户
           href: howto-create-users.md
         - name: 连接字符串
-          href: howto-connection-string.md
+          items:
+            - name: 连接应用程序
+              href: howto-connection-string.md
+            - name: Azure PowerShell
+              href: howto-connection-string-powershell.md
         - name: 配置 SSL
           href: howto-configure-ssl.md
         - name: 配置 TLS
@@ -214,7 +218,7 @@
       href: 'https://docs.microsoft.com/cli/azure/mariadb'
     - name: REST API
       href: 'https://docs.microsoft.com/rest/api/mariadb'
-    - name: Resource Manager 模板
+    - name: 资源管理器模板
       href: 'https://docs.microsoft.com/azure/templates/microsoft.dbformariadb/allversions'
     - name: 管理存储过程
       href: reference-stored-procedures.md
@@ -222,5 +226,7 @@
   items:
     - name: 定价
       href: 'https://azure.cn/pricing/details/mariadb/'
+    - name: 上市区域
+      href: 'https://azure.microsoft.com/global-infrastructure/services/?regions=china-non-regional,china-east,china-east-2,china-north,china-north-2&products=mariadb'
     - name: 支持选项
       href: 'https://support.azure.cn/zh-cn/support/contact/'

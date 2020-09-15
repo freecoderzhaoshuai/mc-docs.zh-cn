@@ -6,19 +6,20 @@ ms.service: virtual-machines-linux
 ms.topic: quickstart
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 06/05/2020
+ms.date: 09/03/2020
 ms.author: v-johya
 ms.custom:
 - mvc
 - seo-javascript-september2019
 - seo-javascript-october2019
 - seo-python-october2019
-ms.openlocfilehash: a532eb13181727ec7bc0a877b7d1313131d714dc
-ms.sourcegitcommit: 285649db9b21169f3136729c041e4d04d323229a
+- devx-track-azurecli
+ms.openlocfilehash: 87b0197a732e7a89839205be125e0b1de0eafbcc
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84683854"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057684"
 ---
 # <a name="quickstart-create-a-linux-virtual-machine-with-the-azure-cli"></a>快速入门：使用 Azure CLI 创建 Linux 虚拟机
 
@@ -35,7 +36,7 @@ ms.locfileid: "84683854"
 
 ## <a name="create-a-resource-group"></a>创建资源组
 
-使用 [az group create](https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-create) 命令创建资源组。 Azure 资源组是在其中部署和管理 Azure 资源的逻辑容器。 以下示例在“chinaeast”位置创建名为“myResourceGroup”的资源组：
+使用“[az group create](https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-create)”命令创建资源组。 Azure 资源组是在其中部署和管理 Azure 资源的逻辑容器。 以下示例在“chinaeast”  位置创建名为“myResourceGroup”  的资源组：
 
 ```azurecli
 az group create --name myResourceGroup --location chinaeast
@@ -116,7 +117,7 @@ az group delete --name myResourceGroup
 
 ## <a name="next-steps"></a>后续步骤
 
-在本快速入门中，你部署了简单的虚拟机，打开了 Web 流量的网络端口，并安装了一个基本 Web 服务器。 若要详细了解 Azure 虚拟机，请继续学习 Linux VM 教程。
+在本快速入门中，你部署了简单的虚拟机，打开了 Web 流量的网络端口，并安装了一个基本 Web 服务器。 若要详细了解 Azure 虚拟机，请继续学习 Linux VM 的教程。
 
 
 > [!div class="nextstepaction"]

@@ -11,13 +11,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: carlrab
 origin.date: 03/12/2019
-ms.date: 07/13/2020
-ms.openlocfilehash: dc4668782d91e63a285ed4b28ac9836519e0e87b
-ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+ms.date: 09/14/2020
+ms.openlocfilehash: 3a205a4ee9350d655c799b4433d7e771697a13ff
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86227194"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014289"
 ---
 # <a name="use-powershell-to-configure-active-geo-replication-for-a-pooled-database-in-azure-sql-database"></a>使用 PowerShell 为 Azure SQL 数据库中的共用数据库配置活动异地复制
 [!INCLUDE[appliesto-sqldb](../../includes/appliesto-sqldb.md)]
@@ -161,6 +161,6 @@ Remove-AzResourceGroup -ResourceGroupName $secondaryresourcegroupname
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 可以在 [Azure SQL 数据库 PowerShell 脚本](../powershell-script-content-guide.md)中找到更多 SQL 数据库 PowerShell 脚本示例。

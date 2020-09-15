@@ -1,5 +1,5 @@
 ---
-title: CLI 示例 - 备份 Azure SQL 数据库
+title: Azure CLI：在 Azure SQL 数据库中备份数据库
 description: 用于将 Azure SQL 单一数据库备份到 Azure 存储容器的 Azure CLI 示例脚本
 services: sql-database
 ms.service: sql-database
@@ -10,17 +10,17 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: carlrab
 origin.date: 03/27/2019
-ms.date: 04/27/2020
-ms.openlocfilehash: 0f1b4e920d8084dd749aaa035ebd7d55b9777077
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.date: 09/14/2020
+ms.openlocfilehash: d375f091f4fbb231247ca096e5abd5f03edcdf8c
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82127242"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014246"
 ---
 # <a name="use-cli-to-backup-an-azure-sql-single-database-to-an-azure-storage-container"></a>使用 CLI 将 Azure SQL 单一数据库备份到 Azure 存储容器
 
-此 Azure CLI 示例将 Azure SQL 数据库备份到 Azure 存储容器。  
+此 Azure CLI 示例将 SQL 数据库中的数据库备份到 Azure 存储容器。  
 
 本文要求运行 Azure CLI 2.0 或更高版本。 运行 `az --version` 即可查找版本。 如需进行安装或升级，请参阅[安装 Azure CLI](/cli/install-azure-cli)。
 
@@ -89,7 +89,7 @@ az group delete --name $resource
 
 此脚本使用以下命令。 表中的每条命令均链接到特定于命令的文档。
 
-| 命令 | 注释 |
+| Command | 说明 |
 |---|---|
 | [az sql server](/cli/sql/server) | 服务器命令。 |
 | [az sql db](/cli/sql/db) | 数据库命令。 |
@@ -98,4 +98,4 @@ az group delete --name $resource
 
 有关 Azure CLI 的详细信息，请参阅 [Azure CLI 文档](/cli/)。
 
-其他 SQL 数据库 CLI 脚本示例可以在 [Azure SQL 数据库文档](../sql-database-cli-samples.md)中找到。
+其他 SQL 数据库 CLI 脚本示例可以在 [Azure SQL 数据库文档](../../azure-sql/database/az-cli-script-samples-content-guide.md)中找到。

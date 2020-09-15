@@ -3,15 +3,18 @@ title: Azure PowerShell 示例 - Service Fabric
 description: 了解如何使用 Powershell 创建和管理 Azure Service Fabric 群集、应用和服务。
 ms.topic: sample
 origin.date: 11/29/2018
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: 2042ba41071bce4b0ae36797e45b97300fc0183b
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 348d272166f5e1e0feaa365c75c2ae3efec71636
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540987"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655507"
 ---
 # <a name="azure-service-fabric-powershell-samples"></a>Azure Service Fabric PowerShell 示例
 
@@ -19,7 +22,7 @@ ms.locfileid: "77540987"
 
 [!INCLUDE [links to azure CLI and service fabric CLI](../../includes/service-fabric-powershell.md)]
 
-| | |
+| Script | 说明 |
 |-|-|
 | **创建群集** ||
 | [创建群集 (Azure)](./scripts/service-fabric-powershell-create-secure-cluster-cert.md)| 创建 Azure Service Fabric 群集。 |
@@ -34,4 +37,4 @@ ms.locfileid: "77540987"
 | [升级应用程序](./scripts/service-fabric-powershell-upgrade-application.md)| 升级应用程序。|
 | [删除应用程序](./scripts/service-fabric-powershell-remove-application.md)| 从群集中删除应用程序。|
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

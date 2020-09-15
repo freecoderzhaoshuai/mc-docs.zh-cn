@@ -3,7 +3,7 @@ title: 配置多重身份验证
 titleSuffix: Azure SQL Database & SQL Managed Instance & Azure Synapse Analytics
 description: 了解如何将多重身份验证与 SSMS 结合使用，并用于 Azure SQL 数据库、Azure SQL 托管实例和 Azure Synapse Analytics。
 services: sql-database
-ms.service: sql-database
+ms.service: sql-db-mi
 ms.subservice: security
 ms.custom: has-adal-ref, sqldbrb=3
 ms.devlang: ''
@@ -12,13 +12,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: vanto
 origin.date: 08/27/2019
-ms.date: 07/13/2020
-ms.openlocfilehash: 9097547503e13ec8655152e0f26e63037bcadf03
-ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+ms.date: 09/14/2020
+ms.openlocfilehash: 626b53446c319710f517ac94b2ce83ac1e6dece5
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86227411"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014352"
 ---
 # <a name="configure-multi-factor-authentication-for-sql-server-management-studio-and-azure-ad"></a>为 SQL Server Management Studio 和 Azure AD 配置多重身份验证
 [!INCLUDE[appliesto-sqldb-sqlmi-asa](../includes/appliesto-sqldb-sqlmi-asa.md)]
@@ -56,7 +56,7 @@ ms.locfileid: "86227411"
 4. 选择“选项”并在“选项”对话框中指定数据库 。 （如果连接的用户是来宾用户 [如 joe@outlook.com]，则必须选中该框并在“选项”中添加当前 AD 域名或租户 ID。 请参阅[使用 SQL 数据库和 SQL 数据仓库（针对 MFA 的 SSMS 支持）进行通用身份验证](../database/authentication-mfa-ssms-overview.md)。 然后单击“连接”。  
 5. 显示“登录到帐户”  对话框时，提供 Azure Active Directory 标识的帐户和密码。 如果用户属于与 Azure AD 联合的域，则无需任何密码。
 
-   ![2mfa-sign-in](./media/authentication-mfa-ssms-configure/mfa-no-tenant-ssms.png)  
+   ![2mfa-sign-in](./media/authentication-mfa-ssms-configure/2mfa-sign-in.png)  
 
    > [!NOTE]
    > 如果使用不需要 MFA 的帐户进行通用身份验证，可以在此时连接。 对于需要 MFA 的用户，请继续执行以下步骤：
@@ -64,13 +64,14 @@ ms.locfileid: "86227411"
 
 6. 可能会显示两个 MFA 设置对话框。 这个一次性操作根据 MFA 管理员设置而定，因此可能是可选的。 对于已启用 MFA 的域，有时会预定义此步骤（例如，域会要求用户使用智能卡和 PIN 码）。
 
-   ![3mfa-setup](./media/authentication-mfa-ssms-configure/mfa-no-tenant-ssms.png)  
+   ![3mfa-setup](./media/authentication-mfa-ssms-configure/3mfa-setup.png)
+  
 7. 通过第二个可能出现的一次性对话框，可以选择身份验证方法的详细信息。 可能的选项由管理员配置。
 
-   ![4mfa-verify-1](./media/authentication-mfa-ssms-configure/mfa-no-tenant-ssms.png)  
+   ![4mfa-verify-1](./media/authentication-mfa-ssms-configure/4mfa-verify-1.png)  
 8. Azure Active Directory 向你发送确认信息。 收到验证码后，将其输入到“输入验证码”框中，然后单击“登录”。
 
-   ![5mfa-verify-2](./media/authentication-mfa-ssms-configure/mfa-no-tenant-ssms.png)  
+   ![5mfa-verify-2](./media/authentication-mfa-ssms-configure/5mfa-verify-2.png)  
 
 验证完成后，SSMS 便会正常连接（假设凭据和防火墙访问有效）。
 

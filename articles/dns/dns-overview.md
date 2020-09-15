@@ -5,14 +5,14 @@ author: WenJason
 ms.service: dns
 ms.topic: overview
 origin.date: 3/21/2019
-ms.date: 03/23/2020
+ms.date: 09/14/2020
 ms.author: v-jay
-ms.openlocfilehash: 48b260c688cdb7bdeb159e44bb25b755967ccdb0
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 9b7f5c92a6691c9d66424e3f1d7938d06ab7ed41
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80108513"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512844"
 ---
 # <a name="what-is-azure-dns"></a>什么是 Azure DNS？
 
@@ -30,7 +30,7 @@ Azure DNS 中的 DNS 域托管在 DNS 名称服务器的 Azure 全球网络上�
 
  Azure DNS 基于 Azure 资源管理器，后者提供以下功能：
 
-* [基于角色的访问控制](https://docs.azure.cn/azure-resource-manager/resource-group-overview)：控制谁有权访问针对组织的特定操作。
+* [Azure 基于角色的访问控制 (Azure RBAC)](https://docs.azure.cn/azure-resource-manager/resource-group-overview)：控制谁有权访问针对组织的特定操作。
 
 * [活动日志](https://docs.azure.cn/azure-resource-manager/resource-group-overview)：监视你的组织中的用户对资源进行了怎样的修改，或者在进行故障排除时查找错误。
 

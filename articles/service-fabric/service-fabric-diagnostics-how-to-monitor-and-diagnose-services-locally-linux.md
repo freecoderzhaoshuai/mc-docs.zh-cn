@@ -3,14 +3,18 @@ title: 在 Linux 中调试 Azure Service Fabric 应用
 description: 了解如何在本地 Linux 开发计算机上监视和诊断 Service Fabric 服务。
 ms.topic: conceptual
 origin.date: 02/23/2018
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 38c1d4d46d1de55b2835c364541b6ba0ea129188
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 024d747c26d18635550ef4774e72d8b92fa2f7b3
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356285"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655373"
 ---
 # <a name="monitor-and-diagnose-services-in-a-local-linux-machine-development-setup"></a>在本地 Linux 计算机开发设置中监视和诊断服务
 
@@ -24,7 +28,9 @@ ms.locfileid: "84356285"
 
 ## <a name="debugging-service-fabric-java-applications"></a>调试 Service Fabric Java 应用程序
 
-对于 Java 应用程序，可以使用 [多个日志记录框架](https://en.wikipedia.org/wiki/Java_logging_framework) 。 由于 `java.util.logging` 是 JRE 的默认选项，因此也适用于 [GitHub 中的代码示例](https://github.com/Azure-Samples/service-fabric-java-getting-started)。 以下内容说明如何配置 `java.util.logging` 框架。
+对于 Java 应用程序，可以使用 多个日志记录框架 。 由于 `java.util.logging` 是 JRE 的默认选项，因此也适用于 [GitHub 中的代码示例](https://github.com/Azure-Samples/service-fabric-java-getting-started)。 以下内容说明如何配置 `java.util.logging` 框架。
+
+<!--Not Available on [multiple logging frameworks](https://en.wikipedia.org/wiki/Java_logging_framework)-->
 
 使用 java.util.logging 可将应用程序日志重定向到内存、输出流、控制台文件或套接字。 对于其中的每个选项，框架中已提供默认处理程序。 可以创建 `app.properties` 文件来配置应用程序的文件处理程序，将所有日志重定向到本地文件。
 
@@ -61,7 +67,7 @@ java -Djava.library.path=$LD_LIBRARY_PATH -Djava.util.logging.config.file=<path 
 第一步是添加 System.Diagnostics.Tracing，以便可以将日志写入内存、输出流或控制台文件。  要使用 EventSource 进行日志记录，请将以下项目添加到 project.json：
 
 ```json
-"System.Diagnostics.StackTrace": "4.0.1"
+    "System.Diagnostics.StackTrace": "4.0.1"
 ```
 
 可以使用自定义 EventListener 侦听服务事件，并将它们相应地重定向到跟踪文件。 下面的代码片段展示使用 EventSource 和自定义 EventListener 进行日志记录的实现示例：
@@ -124,6 +130,6 @@ public static TextWriter Out = Console.Out;
 
 ## <a name="next-steps"></a>后续步骤
 添加到应用程序中的跟踪代码也可用于诊断 Azure 群集中的应用程序。 请查看以下文章，其中介绍了不同的工具选项，以及如何设置这些选项。
-* [如何使用 Azure 诊断收集日志](service-fabric-diagnostics-how-to-setup-lad.md)
+* [如何使用 Azure 诊断收集日志](./service-fabric-diagnostics-event-aggregation-lad.md)
 
 <!-- Update_Description: update meta properties, wording update, update link -->

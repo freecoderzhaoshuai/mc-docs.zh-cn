@@ -1,17 +1,20 @@
 ---
 title: Reliable Services WCF 通信堆栈
 description: Service Fabric 中的内置 WCF 通信堆栈为 Service Services 提供客户端到服务的 WCF 通信。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 06/07/2017
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 1200b76bd2c5f9fe2c70744391f3321156d66d48
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 8d3f28b58ca7300ce0f624799f09485ffeb1fd94
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742412"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655714"
 ---
 # <a name="wcf-based-communication-stack-for-reliable-services"></a>Reliable Services 基于 WCF 的通信堆栈
 Reliable services 框架使服务创作者能够选择他们要用于其服务的通信堆栈。 他们可以通过从 [CreateServiceReplicaListeners or CreateServiceInstanceListeners](service-fabric-reliable-services-communication.md) 方法返回的 **ICommunicationListener** 来插入所选的通信堆栈。 对于想要使用基于 Windows Communication Foundation (WCF) 的通信的服务创作者，该框架提供了基于 WCF 的通信堆栈实现。
@@ -117,7 +120,7 @@ var result = calculatorServiceCommunicationClient.InvokeWithRetryAsync(
 
 ## <a name="next-steps"></a>后续步骤
 * [使用 Reliable Services 远程控制执行远程过程调用](service-fabric-reliable-services-communication-remoting.md)
-* [Reliable Services 中使用 OWIN 的 Web API](service-fabric-reliable-services-communication-webapi.md)
+* [Reliable Services 中使用 OWIN 的 Web API](./service-fabric-reliable-services-communication-aspnetcore.md)
 * [确保 Reliable Services 的通信安全](service-fabric-reliable-services-secure-communication-wcf.md)
 
-<!-- Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

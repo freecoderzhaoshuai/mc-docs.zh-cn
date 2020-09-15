@@ -12,30 +12,30 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: how-to
 ms.subservice: compliance
-ms.date: 08/25/2020
+ms.date: 09/08/2020
 ms.author: v-junlch
 ms.reviewer: mwahl
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 307a825b9e584c7bcbd09a80102faa2b6990f0ef
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: c16a8099c95d0b5488abd30e5010795ea114e543
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947353"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593822"
 ---
 # <a name="govern-access-for-external-users-in-azure-ad-entitlement-management"></a>在 Azure AD 权利管理中管理外部用户的访问权限
 
-Azure AD 权利管理利用 [Azure AD 企业对企业 (B2B) 解决方案](../b2b/what-is-b2b.md)与另一目录中的组织外部人员协作。 使用 Azure AD B2B 解决方案时，外部用户会向其主目录进行身份验证，但在你的目录中会有一个表示形式。 可以通过你的目录中的该表示形式为用户分配资源访问权限。
+Azure AD 权利管理利用 [Azure AD 企业对企业 (B2B) 解决方案](../external-identities/what-is-b2b.md)与另一目录中的组织外部人员协作。 使用 Azure AD B2B 解决方案时，外部用户会向其主目录进行身份验证，但在你的目录中会有一个表示形式。 可以通过你的目录中的该表示形式为用户分配资源访问权限。
 
 本文介绍了可以指定哪些设置来管理外部用户的访问权限。
 
 ## <a name="how-entitlement-management-can-help"></a>权利管理的具体用途
 
-使用 [Azure AD B2B](../b2b/what-is-b2b.md) 邀请体验时，你必须已经知道要引入到资源目录中并与之合作的外部来宾用户的电子邮件地址。 如果你处理的项目较小或者期限较短，而且你已经知道所有参与者，这会非常有用；但如果你有很多要与之合作的用户，或者参与者会随着时间推移而变化，则较难管理这种情况。  例如，你可能在与另一组织合作，与该组织有一个联系点，但随着时间的推移，该组织中的其他用户也需要访问权限。
+使用 [Azure AD B2B](../external-identities/what-is-b2b.md) 邀请体验时，你必须已经知道要引入到资源目录中并与之合作的外部来宾用户的电子邮件地址。 如果你处理的项目较小或者期限较短，而且你已经知道所有参与者，这会非常有用；但如果你有很多要与之合作的用户，或者参与者会随着时间推移而变化，则较难管理这种情况。  例如，你可能在与另一组织合作，与该组织有一个联系点，但随着时间的推移，该组织中的其他用户也需要访问权限。
 
 使用权利管理，你可以定义一个策略，允许指定组织中的用户自行请求访问包。 你可以指定是否需要批准，还可以指定访问的到期日期。 如果需要批准，你还可以将外部组织中的一个或多个用户邀请到你的目录，将其指定为审批者，因为他们可能知道其组织中的哪些外部用户需要访问权限。 配置访问包后，可以将访问包的链接发送给外部组织的联系人（发起人）。 该联系人可以将其与外部组织中的其他用户共享，这些用户可以使用此链接来请求访问包。 该组织中已被邀请到你的目录的用户也可以使用该链接。
 
-批准请求后，权利管理会为用户预配必要的访问权限。如果用户尚未加入你的目录，则可能还需要邀请该用户。 Azure AD 会自动为其创建 B2B 来宾帐户。 请注意，管理员以前可能已通过设置 [B2B 允许或拒绝列表](../b2b/allow-deny-list.md)来允许或阻止邀请到其他组织，对允许哪些组织进行协作进行了限制。  如果允许或阻止列表不允许某个用户，则不会邀请该用户。
+批准请求后，权利管理会为用户预配必要的访问权限。如果用户尚未加入你的目录，则可能还需要邀请该用户。 Azure AD 会自动为其创建 B2B 来宾帐户。 请注意，管理员以前可能已通过设置 [B2B 允许或拒绝列表](../external-identities/allow-deny-list.md)来允许或阻止邀请到其他组织，对允许哪些组织进行协作进行了限制。  如果允许或阻止列表不允许某个用户，则不会邀请该用户。
 
 由于你不希望外部用户的访问权限永远有效，因此请在策略中指定一个过期日期，例如 180 天。 180 天后，如果其访问权限未延长，则权利管理会删除与该访问包关联的所有访问权限。 默认情况下，如果通过权利管理邀请的用户没有其他访问包分配，则当其失去最后一次分配时，系统会阻止其来宾帐户在 30 天内登录，随后会将其删除。 这可以防止不必要帐户的激增。 如以下部分所述，这些设置是可配置的。
 
@@ -57,7 +57,7 @@ Azure AD 权利管理利用 [Azure AD 企业对企业 (B2B) 解决方案](../b2b
 
 1. 请求进入[“正在传递”状态](entitlement-management-process.md)。
 
-1. 使用 B2B 邀请过程，在目录中创建来宾用户帐户（在此示例中为“请求者 A (来宾)”）。 如果定义了[允许列表或拒绝列表](../b2b/allow-deny-list.md)，则会应用列表设置。
+1. 使用 B2B 邀请过程，在目录中创建来宾用户帐户（在此示例中为“请求者 A (来宾)”）。 如果定义了[允许列表或拒绝列表](../external-identities/allow-deny-list.md)，则会应用列表设置。
 
 1. 为来宾用户分配对访问包中所有资源的访问权限。 在 Azure AD 中进行更改并将其传播到其他 Microsoft Online Services 或连接的 SaaS 应用程序可能需要一些时间。 有关详细信息，请参阅[应用更改时](entitlement-management-access-package-resources.md#when-changes-are-applied)。
 
@@ -84,7 +84,7 @@ Azure AD 权利管理利用 [Azure AD 企业对企业 (B2B) 解决方案](../b2b
 - 允许来宾将其他来宾邀请到你的目录意味着来宾邀请可以在权利管理外部进行。 建议将“来宾可邀请”设置为“否” ，只允许正确控制的邀请。
 - 如果你使用的是 B2B 允许列表，则必须确保将你需要通过权利管理与之合作的任何域添加到该列表中。 另外，如果你使用的是 B2B 拒绝列表，则必须确保不将你需要与之合作的任何域添加到该列表中。
 - 如果你为**所有用户**（所有连接的组织 + 任何新的外部用户）创建了权利管理策略，则你的任何 B2B 允许列表或拒绝列表设置将具有优先权限。 因此，请务必将要包含在此策略中的域添加到允许列表（如果你使用的是允许列表），或将其从拒绝列表中排除（如果你使用的是拒绝列表）。
-- 有关 Azure AD B2B 外部协作设置的详细信息，请参阅[启用 B2B 外部协作并管理谁可以邀请来宾](../b2b/delegate-invitations.md)。
+- 有关 Azure AD B2B 外部协作设置的详细信息，请参阅[启用 B2B 外部协作并管理谁可以邀请来宾](../external-identities/delegate-invitations.md)。
 
     ![Azure AD 外部协作设置](./media/entitlement-management-external-users/collaboration-settings.png)
 

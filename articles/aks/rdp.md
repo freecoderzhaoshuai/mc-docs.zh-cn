@@ -9,12 +9,12 @@ ms.date: 07/13/2020
 ms.testscope: yes
 ms.testdate: 07/13/2020
 ms.author: v-yeche
-ms.openlocfilehash: ff48d1d2c6733e52ddafc101c2d0bf17ae2b3fd1
-ms.sourcegitcommit: 6c9e5b3292ade56d812e7e214eeb66aeb9b8776e
+ms.openlocfilehash: d68582ea5a5d0ae715385b8bea0e3bcd4a7c29eb
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86218858"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021262"
 ---
 <!--Verified successfully-->
 # <a name="connect-with-rdp-to-azure-kubernetes-service-aks-cluster-windows-server-nodes-for-maintenance-or-troubleshooting"></a>使用 RDP 连接到 Azure Kubernetes 服务 (AKS) 群集 Windows Server 节点以进行维护或故障排除
@@ -171,11 +171,11 @@ az network nsg rule delete --resource-group $CLUSTER_RG --nsg-name $NSG_NAME --n
 <!-- INTERNAL LINKS -->
 
 [aks-windows-cli]: windows-container-cli.md
-[az-aks-install-cli]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-install-cli
-[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-get-credentials
-[az-vm-delete]: https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-delete
+[az-aks-install-cli]: https://docs.microsoft.com/cli/azure/aks#az_aks_install_cli
+[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks#az_aks_get_credentials
+[az-vm-delete]: https://docs.azure.cn/cli/vm#az-vm-delete
 [azure-monitor-containers]: ../azure-monitor/insights/container-insights-overview.md
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
 [ssh-steps]: ssh.md
 [view-master-logs]: view-master-logs.md
 

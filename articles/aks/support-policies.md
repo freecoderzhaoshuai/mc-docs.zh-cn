@@ -2,19 +2,19 @@
 title: Azure Kubernetes 服务 (AKS) 的支持策略
 description: 了解 Azure Kubernetes 服务 (AKS) 预览版（或者 alpha 或 beta 版）中的支持策略、共担责任和功能。
 services: container-service
-author: rockboyfor
 ms.topic: article
 origin.date: 01/24/2020
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: e2a73de926c312470124376dd5646ec9d596ddf6
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 00d4a689691a525a3635f1fc64e94df00ded7264
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842635"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021240"
 ---
 # <a name="support-policies-for-azure-kubernetes-service"></a>Azure Kubernetes 服务的支持策略
 
@@ -23,7 +23,7 @@ ms.locfileid: "87842635"
 ## <a name="service-updates-and-releases"></a>服务更新和版本
 
 * 有关发行信息，请参阅 [AKS 发行说明](https://github.com/Azure/AKS/releases)。
-* 有关预览版功能的信息，请参阅 [AKS 预览版功能和相关项目](https://github.com/Azure/AKS/blob/master/previews.md)。
+* 有关预览版功能的信息，请参阅 [AKS 预览版功能和相关项目](https://awesomeopensource.com/projects/aks?categoryPage=11)。
 
 ## <a name="managed-features-in-aks"></a>AKS 中的托管功能
 
@@ -154,7 +154,7 @@ AKS 仅支持上游 Kubernetes 项目中的稳定功能。 除非另有说明，
 在以下两种情况下，alpha 或 beta 功能可能在正式版发布之前便已推出：
 
 * 客户已与 AKS 产品、支持或工程团队会谈，团队请求他们尝试这些新功能。
-* 这些功能已[通过功能标志启用](https://github.com/Azure/AKS/blob/master/previews.md)。 客户必须明确选择使用这些功能。
+* 这些功能已[通过功能标志启用](https://awesomeopensource.com/projects/aks?categoryPage=11)。 客户必须明确选择使用这些功能。
 
 <!--MOONCAKE: CUSTOMIZED CAREFULLY-->
 

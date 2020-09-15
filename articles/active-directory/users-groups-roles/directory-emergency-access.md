@@ -5,7 +5,7 @@ services: active-directory
 author: markwahl-msft
 manager: daveba
 ms.author: v-junlch
-ms.date: 08/26/2020
+ms.date: 09/08/2020
 ms.topic: conceptual
 ms.service: active-directory
 ms.subservice: users-groups-roles
@@ -13,12 +13,12 @@ ms.workload: identity
 ms.custom: it-pro
 ms.reviewer: markwahl-msft
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: a0af68119496a6fb3a603583fe09c78c285268eb
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 760cab5f2e8f437b6e4fbc58dfd4fc72b52d4f8d
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947178"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593832"
 ---
 # <a name="manage-emergency-access-accounts-in-azure-ad"></a>在 Azure AD 中管理紧急访问帐户
 
@@ -44,7 +44,7 @@ ms.locfileid: "88947178"
 配置这些帐户时，必须满足以下要求：
 
 - 紧急访问帐户不应与组织中的任何单个用户相关联。 确保帐户未关联到任何员工提供的移动电话、会随单个员工流动的硬件令牌或其他特定于员工的凭据。 此预防措施介绍需要凭据而无法找到某个拥有凭据的员工时的情况。 请务必确保将任何已注册设备保存在与 Azure AD 有多种通信方式的已知安全位置。
-- 紧急访问帐户使用的身份验证机制应该不同于其他管理帐户（包括其他紧急访问帐户）使用的机制。  例如，如果管理员通过本地 MFA 正常登录，则 Azure MFA 是不同的机制。  但是，如果 Azure MFA 是管理帐户的主要身份验证部分，请考虑对这些帐户使用不同的方法，例如，通过[自定义控件](/active-directory/conditional-access/controls)结合第三方 MFA 提供程序使用条件访问。
+- 紧急访问帐户使用的身份验证机制应该不同于其他管理帐户（包括其他紧急访问帐户）使用的机制。  例如，如果管理员通过本地 MFA 正常登录，则 Azure MFA 是不同的机制。  但是，如果 Azure MFA 是管理帐户的主要身份验证部分，请考虑对这些帐户使用不同的方法，例如，通过[自定义控件](../conditional-access/controls.md)结合第三方 MFA 提供程序使用条件访问。
 - 设备或凭据不得过期，或者由于使用次数不多而划归到自动清理的范围内。  
 - 应将全局管理员角色分配设为紧急访问帐户的永久角色。 
 
@@ -74,7 +74,7 @@ ms.locfileid: "88947178"
 
 ### <a name="prerequisites"></a>先决条件
 
-1. 向 Azure Monitor [发送 Azure AD 登录日志](/active-directory/reports-monitoring/howto-integrate-activity-logs-with-log-analytics)。
+1. 向 Azure Monitor [发送 Azure AD 登录日志](../reports-monitoring/howto-integrate-activity-logs-with-log-analytics.md)。
 
 ### <a name="obtain-object-ids-of-the-break-glass-accounts"></a>获取破窗式帐户的对象 ID
 

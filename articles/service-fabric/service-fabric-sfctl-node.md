@@ -1,17 +1,19 @@
 ---
 title: Azure Service Fabric CLI - sfctl node
 description: 了解 sfctl（Azure Service Fabric 命令行接口）。 包含用于管理群集节点的命令列表。
-author: rockboyfor
 ms.topic: reference
 origin.date: 01/16/2020
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: c631f36770660c496e79e0f679a3f8438b9b3d42
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 72f6e950010e413ec41125676004ee27aeb963de
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540593"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655633"
 ---
 # <a name="sfctl-node"></a>sfctl node
 管理构成群集的节点。
@@ -244,6 +246,8 @@ ms.locfileid: "77540593"
 
 这意味着无法恢复该节点的保留状态。 如果硬盘已擦除干净或者硬盘崩溃，通常会出现这种情况。 节点必须已关闭，此操作才能成功。 此操作让 Service Fabric 知道该节点上的副本不再存在，并且 Service Fabric 应停止等待这些副本恢复。 如果未删除节点上的状态并且节点能够以原状态恢复，则不要运行此 cmdlet。 自 Service Fabric 6.5 起，若要将此 API 用于种子节点，请将这些种子节点更改为常规节点（非种子节点），然后调用此 API 以删除节点状态。 如果群集正在 Azure 上运行，当种子节点发生故障后，Service Fabric 将尝试自动将其更改为非种子节点。 若要实现这一点，请确保主节点类型中的非种子节点数不少于“发生故障”的种子节点数。 如有必要，请将更多节点添加到主节点类型以实现这一目标。 对于独立群集，如果“发生故障”的种子节点在其状态保持不变的情况下预计不会恢复正常，请从该群集中删除此节点，请参阅 https\://docs.azure.cn/service-fabric/service-fabric-cluster-windows-server-add-remove-nodes。
 
+<!--MOONCAKE CUSTOMIZATION ON http://docs.azure.cn/service-fabric/service-fabric-cluster-windows-server-add-remove-nodes-->
+
 ### <a name="arguments"></a>参数
 
 |参数|说明|
@@ -279,7 +283,7 @@ ms.locfileid: "77540593"
 | --remove-when-expired | 该值指示是否在报告过期时从运行状况存储删除该报告。 <br /><br /> 如果设置为 true，报告在过期后将从运行状况存储中删除。 如果设置为 false，报告在过期时将被视为错误。 此属性的值在默认情况下为 false。 当客户端定期报告时，它们应将 RemoveWhenExpired 设置为 false（默认值）。 这样，如果报告器有问题（例如死锁）并且无法报告，那么在运行状况报告过期时该实体就会被评估为处于错误状态。 这会将该实体标记为处于“Error”运行状况状态。 |
 | --sequence-number | 此运行状况报告的序列号（采用数字字符串形式）。 <br /><br /> 报告序列号由运行状况存储用来检测过时的报告。 如果未指定，序列号将在报告被添加时由运行状况客户端自动生成。 |
 | --timeout -t | 默认值\: 60。 |
-| --ttl | 此运行状况报告保持有效的持续时间。 此字段将 ISO8601 格式用于指定该持续时间。 <br /><br /> 当客户端定期报告时，它们应以高于生存时间的频率发送报告。 如果客户端在转换时才报告，则可以将生存时间设置为无限。 生存时间过期时，包含运行状况信息的运行状况事件将从运行状况存储中删除（如果 RemoveWhenExpired 为 true），或者将会评估为处于错误状态（如果 RemoveWhenExpired 为 false）。 如果未指定，生存时间将默认为无限值。 |
+| --ttl | 此运行状况报告保持有效的持续时间。 此字段将 ISO8601 格式用于指定该持续时间。 <br /><br /> 当客户端定期报告时，它们应以高于生存时间的频率发送报告。 如果客户端以非定期的方式报告，它们可以将生存时间设置为无限。 生存时间过期时，包含运行状况信息的运行状况事件将从运行状况存储中删除（如果 RemoveWhenExpired 为 true），或者将会评估为处于错误状态（如果 RemoveWhenExpired 为 false）。 如果未指定，生存时间将默认为无限值。 |
 
 ### <a name="global-arguments"></a>全局参数
 
@@ -366,6 +370,6 @@ ms.locfileid: "77540593"
 
 ## <a name="next-steps"></a>后续步骤
 - [安装](service-fabric-cli.md) Service Fabric CLI。
-- 了解如何通过[示例脚本](/service-fabric/scripts/sfctl-upgrade-application)使用 Service Fabric CLI。
+- 了解如何通过[示例脚本](./scripts/sfctl-upgrade-application.md)使用 Service Fabric CLI。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

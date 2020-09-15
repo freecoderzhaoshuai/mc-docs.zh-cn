@@ -9,12 +9,12 @@ ms.date: 08/10/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
-ms.openlocfilehash: 42861f30e14e282f882dd4cb7a1b2551a4d4e7ba
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: a013a1d40c4bffcfd5ea676cdc43f6325dccdaa2
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842651"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021550"
 ---
 # <a name="manually-create-and-use-a-volume-with-azure-files-share-in-azure-kubernetes-service-aks"></a>在 Azure Kubernetes 服务 (AKS) 中通过 Azure 文件共享手动创建并使用卷
 
@@ -252,13 +252,13 @@ azurefile   Bound    azurefile   5Gi        RWX            azurefile      5s
 
 <!-- LINKS - internal -->
 
-[az-group-create]: https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-create
-[az-storage-create]: https://docs.azure.cn/cli/storage/account?view=azure-cli-latest#az-storage-account-create
-[az-storage-key-list]: https://docs.azure.cn/cli/storage/account/keys?view=azure-cli-latest#az-storage-account-keys-list
-[az-storage-share-create]: https://docs.azure.cn/cli/storage/share?view=azure-cli-latest#az-storage-share-create
+[az-group-create]: https://docs.azure.cn/cli/group#az-group-create
+[az-storage-create]: https://docs.azure.cn/cli/storage/account#az-storage-account-create
+[az-storage-key-list]: https://docs.azure.cn/cli/storage/account/keys#az-storage-account-keys-list
+[az-storage-share-create]: https://docs.azure.cn/cli/storage/share#az-storage-share-create
 [aks-quickstart-cli]: kubernetes-walkthrough.md
 [aks-quickstart-portal]: kubernetes-walkthrough-portal.md
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
 [operator-best-practices-storage]: operator-best-practices-storage.md
 [concepts-storage]: concepts-storage.md
 

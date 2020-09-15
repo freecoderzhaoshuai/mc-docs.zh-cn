@@ -2,20 +2,22 @@
 title: 使用 Azure Site Recovery 服务对复制到 Azure 次要区域的 Azure VM 进行故障转移和重新保护，以便实现灾难恢复。
 description: 了解如何使用 Azure Site Recovery 服务对复制到 Azure 次要区域的 Azure VM 进行故障转移和重新保护，以便实现灾难恢复。
 services: site-recovery
-author: rockboyfor
-manager: digimobile
+manager: carmonm
 ms.service: site-recovery
 ms.topic: tutorial
 origin.date: 08/05/2019
-ms.date: 08/26/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: ceb5d4fb89e6746dae11e49fe694dee51c6c456c
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 74fbcc62da6c15977a94c72331f462217b7fdbf3
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "70134412"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655494"
 ---
 # <a name="fail-over-and-reprotect-azure-vms-between-regions"></a>在区域之间故障转移和重新保护 Azure VM
 
@@ -39,7 +41,7 @@ ms.locfileid: "70134412"
 
 1. 在“已复制项”  中，选择要故障转移的 VM >“故障转移” 
 
-    ![故障转移](./media/azure-to-azure-tutorial-failover-failback/failover.png)
+    :::image type="content" source="./media/azure-to-azure-tutorial-failover-failback/failover.png" alt-text="显示 VM 的故障转移选项的屏幕截图。":::
 
 2. 在“故障转移”  中，选择要故障转移到的“恢复点”  。 可以使用以下选项之一：
 
@@ -54,12 +56,12 @@ ms.locfileid: "70134412"
 5. 故障转移后，请登录到虚拟机来对它进行验证。 如果想要转到虚拟机的另一个恢复点，可以使用“更改恢复点”选项。 
 
 6. 如果故障转移后的虚拟机符合要求，可以**提交**故障转移。
-   提交会删除该服务提供的所有恢复点。 现在无法无法更改恢复点。
+    提交会删除该服务提供的所有恢复点。 现在无法无法更改恢复点。
 
     > [!NOTE]
     > 当你将启用 VM 复制后添加磁盘的 VM 进行故障转移时，复制点会显示可用于恢复的磁盘。 例如，如果 VM 有一个磁盘，你添加了一个新的磁盘，则在添加磁盘之前创建的复制点会显示复制点包含“1 个磁盘（共 2 个）”。
 
-    ![使用添加的磁盘进行故障转移](./media/azure-to-azure-tutorial-failover-failback/failover-added.png)
+:::image type="content" source="./media/azure-to-azure-tutorial-failover-failback/failover-added.png" alt-text="显示在添加了磁盘时进行故障转移的屏幕截图。":::
 
 ## <a name="reprotect-the-secondary-vm"></a>重新保护辅助 VM
 
@@ -68,7 +70,7 @@ ms.locfileid: "70134412"
 1. 确保 VM 处于“故障转移已提交”  状态，检查主要区域是否可用，并且你是否能够在其中创建和访问新资源。
 2. 在“保管库” > “已复制项”中，右键单击已故障转移的 VM，并选择“重新保护”。   
 
-    ![右键单击以重新保护](./media/azure-to-azure-tutorial-failover-failback/reprotect.png)
+    :::image type="content" source="./media/azure-to-azure-tutorial-failover-failback/reprotect.png" alt-text="VM 重新保护选项的屏幕截图。":::
 
 2. 验证是否已选择保护方向（从次要区域到主要区域）。
 3. 查看“资源组、网络、存储和可用性集”  信息。 任何标记为“新”的资源将在重新保护操作中创建。
@@ -78,4 +80,4 @@ ms.locfileid: "70134412"
 - 进行重新保护以后，[了解如何](azure-to-azure-tutorial-failback.md)在主要区域可用时故障回复到主要区域。
 - [详细了解](azure-to-azure-how-to-reprotect.md#what-happens-during-reprotection)重新保护工作流。
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

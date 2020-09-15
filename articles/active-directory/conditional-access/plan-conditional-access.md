@@ -5,18 +5,18 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: conditional-access
 ms.topic: how-to
-ms.date: 07/08/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 author: BarbaraSelden
 manager: daveba
 ms.reviewer: joflore
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: df6bd276bac4532165af70f8d69277d8fa1bc126
-ms.sourcegitcommit: 92b9b1387314b60661f5f62db4451c9ff2c49500
+ms.openlocfilehash: bc8f4b6750c296d8bcc8c0776c8f22fe695f22c0
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86164992"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593698"
 ---
 # <a name="plan-a-conditional-access-deployment"></a>计划条件访问部署
 
@@ -28,7 +28,9 @@ Azure Active Directory (Azure AD) 条件访问 (CA) 可分析各种信号（例�
 
 ![条件访问概述](./media/plan-conditional-access/conditional-access-overview-how-it-works.png)
 
-## <a name="learn"></a>学习
+Microsoft 提供了标准的条件策略（称为[安全默认值](../fundamentals/concept-fundamentals-security-defaults.md)）可确保基本安全级别。 但是，组织所需要的灵活性可能超出了安全默认值能提供的。 你可以使用条件访问更精细地自定义安全默认值，并配置满足需求的新策略。
+
+## <a name="learn"></a>了解
 
 在开始之前，请确保了解[条件访问](overview.md)的工作原理及其使用时机。
 
@@ -72,9 +74,20 @@ Azure Active Directory (Azure AD) 条件访问 (CA) 可分析各种信号（例�
 
 在环境中确定此部署的策略时，请考虑组织的需求。
 
+### <a name="engage-the-right-stakeholders"></a>让合适的利益干系人参与
+
+当技术项目失败时，失败的原因往往是对影响、结果和责任的预期不符。 为避免这些缺陷，请确保你正在吸引正确的利益干系人，并确保项目角色明确。
+
 ### <a name="plan-communications"></a>规划沟通
 
 沟通对于任何新服务的成功都至关重要。 主动与用户交流他们的体验将如何变化、何时会变化以及在遇到问题时如何获取支持。
+
+### <a name="plan-a-pilot"></a>规划试点
+
+当新策略针对你的环境准备就绪后，在生产环境中分阶段部署它们。 首先在测试环境中将策略应用于一小部分用户，并验证策略是否按预期方式工作。 
+
+> [!NOTE]
+> 若要推出非特定于管理员的新策略，请排除所有管理员。 这可确保管理员仍可以访问策略，并在出现重大影响时进行更改或撤销。 在应用到所有用户之前，请始终使用较小的用户组验证策略。
 
 ## <a name="understand-ca-policy-components"></a>了解 CA 策略组件
 CA 策略是 if-then 语句：如果满足分配条件，则应用这些访问控制。
@@ -204,6 +217,10 @@ CA 策略是 if-then 语句：如果满足分配条件，则应用这些访问�
 
    * 发生服务中断时，请根据需要将其他管理员添加到本地组，并强制执行同步。这会将其例外动态地用于 CA 策略。
 
+### <a name="plan-for-disruption"></a>为应对中断做好计划
+
+如果你依靠单一访问控制（如 MFA 或网络位置）来保护 IT 系统，那么当该单一访问控制不可用或配置错误时，很容易发生访问失败。 为了降低在发生不可预见的中断时被锁定的风险，应计划策略以供组织采用。
+
 ### <a name="set-naming-standards-for-your-policies"></a>为策略设置命名标准
 
 命名标准有助于查找策略及了解其用途，而无需在 Azure 管理门户中将其打开。 我们建议你对策略进行命名以显示：
@@ -225,6 +242,21 @@ CA 策略是 if-then 语句：如果满足分配条件，则应用这些访问�
 ![命名标准](./media/plan-conditional-access/naming-example.png)
 
 描述性名称可帮助你大致了解条件访问实现。 如果需要在对话中引用策略，则序列号非常有用。 例如，当你在电话中与管理员进行交谈时，可以要求他们打开策略 CA01 来解决问题。
+
+#### <a name="naming-standards-for-emergency-access-controls"></a>紧急访问控制的命名标准
+
+除了活动策略以外，还应实施已禁用策略，这些策略在中断或紧急情况下充当辅助性的弹性访问控制措施。 应急策略的命名标准应当包括：
+* 以“ENABLE IN EMERGENCY”开头，使名称从其他策略中脱颖而出。
+
+* 它应当应用于的中断的名称。
+
+* 一个排序序列号，可以帮助管理员了解应当以何顺序启用策略。
+
+**示例**
+
+以下名称表明，如果发生 MFA 中断，此策略是要启用的四个策略中的第一个：
+
+EM01 - ENABLE IN EMERGENCY：MFA 中断 [1/4] - Exchange SharePoint：VIP 用户需要混合 Azure AD 联接。
 
 ### <a name="exclude-countries-from-which-you-never-expect-a-sign-in"></a>排除你绝不会从那里登录的国家/地区。
 
@@ -253,7 +285,7 @@ Azure Active Directory 允许你创建[命名位置](location-condition.md)。 �
 
 * [管理员的访问](howto-conditional-access-policy-admin-mfa.md)
 
-* [访问特定的应用](app-based-mfa.md)
+* [访问特定的应用](../authentication/tutorial-enable-azure-mfa.md)
 
 * [对于所有用户](howto-conditional-access-policy-all-users-mfa.md)
 
@@ -310,16 +342,21 @@ Azure Active Directory 允许你创建[命名位置](location-condition.md)。 �
 | - | - | - |
 | [在非工作时间要求执行 MFA](untrusted-networks.md)| 经授权的用户在受信任的位置/工作时登录到应用| 不提示用户执行 MFA |
 | [在非工作时间要求执行 MFA](untrusted-networks.md)| 经授权的用户不在受信任的位置/工作时登录到应用| 提示用户执行 MFA，他们可以成功登录 |
+| [要求执行 MFA（针对管理员）](../fundamentals/concept-fundamentals-security-defaults.md)| 全局管理员登录到应用| 提示管理员执行 MFA |
 
 ### <a name="configure-the-test-policy"></a>配置测试策略
 
 在 [Azure 门户](https://portal.azure.cn/)中，你将在“Azure Active Directory”>“安全性”>“条件访问”下配置 CA 策略。
 
-如果要了解有关如何创建 CA 策略的详细信息，请参阅以下示例：[用户登录到 Azure 门户时提示执行 MFA 的 CA 策略](/active-directory/authentication/tutorial-enable-azure-mfa?toc=/active-directory/conditional-access/toc.json&bc=/active-directory/conditional-access/breadcrumb/toc.json)。 此快速入门可帮助你：
+如果要了解有关如何创建 CA 策略的详细信息，请参阅以下示例：[用户登录到 Azure 门户时提示执行 MFA 的 CA 策略](../authentication/tutorial-enable-azure-mfa.md?bc=%2fazure%2factive-directory%2fconditional-access%2fbreadcrumb%2ftoc.json&toc=%2fazure%2factive-directory%2fconditional-access%2ftoc.json)。 此快速入门可帮助你：
 
 * 熟悉用户界面
 
 * 初步认识条件访问的工作原理
+
+### <a name="understand-the-impact-of-your-policies-using-the-insights-and-reporting-workbook"></a>使用见解和报告工作簿了解策略的影响
+
+你可以在见解和报告工作簿中查看条件访问策略的总体影响。 若要访问该工作簿，需要 Azure Monitor 订阅，并且需要[将登录日志流式传输到 Log Analytics 工作区](../reports-monitoring/howto-integrate-activity-logs-with-log-analytics.md)。 
 
 ### <a name="simulate-sign-ins-using-the-what-if-tool"></a>使用假设工具模拟登录
 
@@ -349,7 +386,7 @@ Azure Active Directory 允许你创建[命名位置](location-condition.md)。 �
 > [!NOTE]
 >  应该慎用此选项，仅在用户受信任的情况下才使用。 应该尽快将该用户加回到策略或组中。
 
-* 删除策略。 如果不再需要该策略，请将其[删除](/active-directory/authentication/tutorial-enable-azure-mfa?toc=/active-directory/conditional-access/toc.json&bc=/active-directory/conditional-access/breadcrumb/toc.json)。
+* 删除策略。 如果不再需要该策略，请将其[删除](../authentication/tutorial-enable-azure-mfa.md?bc=%2fazure%2factive-directory%2fconditional-access%2fbreadcrumb%2ftoc.json&toc=%2fazure%2factive-directory%2fconditional-access%2ftoc.json)。
 
 ## <a name="manage-access-to-cloud-apps"></a>管理对云应用的访问权限
 
@@ -365,6 +402,10 @@ Azure Active Directory 允许你创建[命名位置](location-condition.md)。 �
 ### <a name="custom-controls"></a>自定义控件
 
 [自定义控件](controls.md)可将用户重定向到兼容的服务，以满足 Azure AD 之外的身份验证要求。 若要满足此控制要求，用户浏览器将重定向到外部服务，执行任何需要的身份验证，然后重定向回 Azure AD。 Azure AD 将验证响应，如果用户已成功完成身份验证或验证，该用户将继续留在条件访问流中。
+
+### <a name="terms-of-use"></a>使用条款
+
+在访问环境中的某些云应用之前，你可能希望通过使用条款 (ToU) 来获取用户的同意。 请按照以下[快速入门创建使用条款](require-tou.md)。
 
 ### <a name="classic-policies"></a>经典策略
 

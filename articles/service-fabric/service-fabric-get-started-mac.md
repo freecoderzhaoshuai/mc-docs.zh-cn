@@ -1,17 +1,20 @@
 ---
 title: 在 macOS 上设置开发环境
 description: 安装运行时、SDK 和工具并创建本地开发群集。 完成此设置后，就可以在 macOS 上生成应用程序了。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 11/17/2017
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 042db2b3a254e7667773ac655569e960402b4367
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.custom: devx-track-javascript
+ms.openlocfilehash: f1e65f1658dfc26d8980016308d02f0c7af3984b
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356223"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655727"
 ---
 # <a name="set-up-your-development-environment-on-mac-os-x"></a>在 Mac OS X 上设置开发环境
 > [!div class="op_single_selector"]
@@ -127,9 +130,9 @@ CLI 命令支持与 Service Fabric 实体（包括群集、应用程序和服务
 
 1. 若要在部署应用程序之前连接到群集，请运行以下命令。 
 
-    ```bash
-    sfctl cluster select --endpoint http://localhost:19080
-    ```
+```bash
+sfctl cluster select --endpoint http://localhost:19080
+```
 
 ## <a name="create-your-application-on-your-mac-by-using-yeoman"></a>使用 Yeoman 在 Mac 上创建应用程序
 
@@ -229,4 +232,4 @@ docker run -itd -p 19080:19080 -v /Users/sayantan/work/workspaces/mySFWorkspace:
 [sf-eclipse-plugin-install]: ./media/service-fabric-get-started-mac/sf-eclipse-plugin-install.png
 [buildship-update]: https://projects.eclipse.org/projects/tools.buildship
 
-<!--Update_Description: update meta properties, wording update, update link -->
+<!-- Update_Description: update meta properties, wording update, update link -->

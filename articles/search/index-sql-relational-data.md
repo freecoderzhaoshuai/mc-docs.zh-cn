@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 06/09/2020
-ms.openlocfilehash: b1360d43b87b89121857b27fb82466e88e0342f2
-ms.sourcegitcommit: c4fc01b7451951ef7a9616fca494e1baf29db714
+ms.date: 09/10/2020
+ms.openlocfilehash: 5f7ee01184cf0d717977eb2a5ca3944c988fc157
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84564247"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021096"
 ---
 # <a name="how-to-model-relational-sql-data-for-import-and-indexing-in-azure-cognitive-search"></a>如何为 Azure 认知搜索中要导入和编制索引的 SQL 关系数据建模
 

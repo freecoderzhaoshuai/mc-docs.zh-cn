@@ -1,17 +1,19 @@
 ---
 title: Azure Service Fabric 中的按需备份
 description: 使用 Service Fabric 中的备份和还原功能来实现应用程序数据的按需备份。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 10/30/2018
-ms.date: 01/06/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 6dabfe53e68fcee0f7f1a7e7b70d7ae08065e883
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: dec90930fa08bb2110f79d9a0707aea1b871d14b
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742349"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655216"
 ---
 # <a name="on-demand-backup-in-azure-service-fabric"></a>Azure Service Fabric 中的按需备份
 
@@ -24,17 +26,17 @@ Azure Service Fabric 提供[定期备份数据](service-fabric-backuprestoreserv
 
 - 安装 Microsoft.ServiceFabric.Powershell.Http模块 [在预览中] 进行配置调用。
 
-    ```powershell
+```powershell
     Install-Module -Name Microsoft.ServiceFabric.Powershell.Http -AllowPrerelease
-    ```
+```
 
 - 请确保在使用 Microsoft.ServiceFabric.Powershell.Http 模块发出任何配置请求之前，先使用 `Connect-SFCluster` 命令连接群集。
 
-    ```powershell
+```powershell
 
     Connect-SFCluster -ConnectionEndpoint 'https://mysfcluster.chinaeast.cloudapp.chinacloudapi.cn:19080'   -X509Credential -FindType FindByThumbprint -FindValue '1b7ebe2174649c45474a4819dafae956712c31d3' -StoreLocation 'CurrentUser' -StoreName 'My' -ServerCertThumbprint '1b7ebe2174649c45474a4819dafae956712c31d3'  
 
-    ```
+```
 
 ## <a name="triggering-on-demand-backup"></a>触发按需备份
 

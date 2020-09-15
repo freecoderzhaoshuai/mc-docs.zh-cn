@@ -1,5 +1,5 @@
 ---
-title: 教程 - 了解如何使用 Azure CLI 管理 Linux 虚拟机
+title: 教程 - 使用 CLI 管理虚拟机
 description: 本教程介绍如何使用 Azure CLI 通过应用 RBAC、策略、锁和标记来管理 Azure 虚拟机。
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -9,15 +9,15 @@ ms.service: virtual-machines-linux
 ms.workload: infrastructure
 ms.tgt_pltfrm: vm-linux
 ms.topic: tutorial
-ms.date: 04/20/2020
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.custom: mvc
-ms.openlocfilehash: fd06e8751ee323a0daeff610c2107088c39fc80d
-ms.sourcegitcommit: ebedf9e489f5218d4dda7468b669a601b3c02ae5
+ms.custom: mvc, devx-track-azurecli
+ms.openlocfilehash: be6dd74209d67639c288638a0c8c83a69c4b2cf6
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2020
-ms.locfileid: "82159180"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057686"
 ---
 # <a name="tutorial-learn-about-linux-virtual-machine-management-with-azure-cli"></a>教程：了解如何使用 Azure CLI 管理 Linux 虚拟机
 
@@ -43,7 +43,7 @@ az group create --name myResourceGroup --location "China East"
 
 ## <a name="role-based-access-control"></a>基于角色的访问控制
 
-你希望确保你的组织中的用户对这些资源具有合适级别的访问权限。 你不希望向用户授予不受限的访问权限，但还需要确保他们可以执行其工作。 使用[基于角色的访问控制](../../role-based-access-control/overview.md)，你可以管理哪些用户有权在某个范围内完成特定操作。
+你希望确保你的组织中的用户对这些资源具有合适级别的访问权限。 你不希望向用户授予不受限的访问权限，但还需要确保他们可以执行其工作。 使用 [Azure 基于角色的访问控制 (Azure RBAC)](../../role-based-access-control/overview.md)，你可以管理哪些用户有权在某个范围内完成特定操作。
 
 若要创建和删除角色分配，用户必须具有 `Microsoft.Authorization/roleAssignments/*` 访问权限。 此访问权限是通过“所有者”或“用户访问”管理员角色授权的。
 
@@ -63,7 +63,7 @@ adgroupId=$(az ad group show --group <your-group-name> --query objectId --output
 az role assignment create --assignee-object-id $adgroupId --role "Virtual Machine Contributor" --resource-group myResourceGroup
 ```
 
-如果收到一条错误，指出“主体 \<guid> 不存在于目录中”  ，则表明新组未在 Azure Active Directory 中完成传播。 请尝试再次运行命令。
+如果收到一条错误，指出**主体 \<guid> 不存在于目录中**，则表明新组未在 Azure Active Directory 中完成传播。 请尝试再次运行命令。
 
 通常情况下，请对*网络参与者*和*存储帐户参与者*重复执行此过程，确保分配用户来管理已部署的资源。 在本文中，可以跳过这些步骤。
 
@@ -75,7 +75,7 @@ az role assignment create --assignee-object-id $adgroupId --role "Virtual Machin
 az policy definition list --query "[].[displayName, policyType, name]" --output table
 ```
 
-可以看到现有的策略定义。 策略类型为“内置”或“自定义”   。 在这些定义中查找所述条件正是你要分配的条件的定义。 在本文中，分配的策略要符合以下条件：
+可以看到现有的策略定义。 策略类型为“内置”或“自定义” 。 在这些定义中查找所述条件正是你要分配的条件的定义。 在本文中，分配的策略要符合以下条件：
 
 * 限制所有资源的位置。
 * 限制虚拟机的 SKU。
@@ -226,7 +226,7 @@ az group delete --name myResourceGroup
 
 ## <a name="next-steps"></a>后续步骤
 
-在本教程中，你已创建了一个自定义 VM 映像。 你已了解如何：
+在本教程中，已创建自定义 VM 映像。 你已了解如何执行以下操作：
 
 > [!div class="checklist"]
 > * 为用户分配角色

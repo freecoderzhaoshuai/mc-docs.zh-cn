@@ -3,20 +3,23 @@ title: 为群集创建 Azure 负载均衡器规则
 description: 配置 Azure 负载均衡器，为 Azure Service Fabric 群集打开端口。
 ms.topic: conceptual
 origin.date: 12/06/2017
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.date: 01/06/2020
-ms.openlocfilehash: e96f1246a2864c9147ba4e1d4ee1167334a81345
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: f0ea6133eba4a31c7666463a3d912620fdc90760
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742454"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655547"
 ---
 # <a name="open-ports-for-a-service-fabric-cluster"></a>为 Service Fabric 群集打开端口
 
 使用 Azure Service Fabric 群集部署的负载均衡器将流量定向到在节点上运行的应用。 如果将应用更改为使用另一端口，必须在 Azure 负载均衡器中公开该端口（或路由另一端口）。
 
-将 Service Fabric 群集部署到 Azure 后，系统会自动创建负载均衡器。 如果没有负载均衡器，请参阅[配置面向 Internet 的负载均衡器](../load-balancer/load-balancer-get-started-internet-portal.md)。
+将 Service Fabric 群集部署到 Azure 后，系统会自动创建负载均衡器。 如果没有负载均衡器，请参阅[配置面向 Internet 的负载均衡器](../load-balancer/quickstart-load-balancer-standard-public-portal.md)。
 
 [!INCLUDE [updated-for-az](../../includes/updated-for-az.md)]
 
@@ -26,7 +29,7 @@ Service Fabric 应用程序 ServiceManifest.xml 配置文件定义应用程序�
 
 ## <a name="create-a-load-balancer-rule"></a>创建负载均衡器规则
 
-负载均衡器规则可打开面向 Internet 的端口，并将流量转发至应用程序所用的内部节点的端口。 如果没有负载均衡器，请参阅[配置面向 Internet 的负载均衡器](../load-balancer/load-balancer-get-started-internet-portal.md)。
+负载均衡器规则可打开面向 Internet 的端口，并将流量转发至应用程序所用的内部节点的端口。 如果没有负载均衡器，请参阅[配置面向 Internet 的负载均衡器](../load-balancer/quickstart-load-balancer-standard-public-portal.md)。
 
 要创建负载均衡器规则，需要收集以下信息：
 
@@ -59,7 +62,7 @@ Azure CLI 命令具有下表中所述的几个参数：
 | `-n`       | 所需的规则名称。 |
 
 >[!NOTE]
->有关如何使用 Azure CLI 创建负载均衡器的详细信息，请参阅[使用 Azure CLI 创建负载均衡器](../load-balancer/load-balancer-get-started-internet-arm-cli.md)。
+>有关如何使用 Azure CLI 创建负载均衡器的详细信息，请参阅[使用 Azure CLI 创建负载均衡器](../load-balancer/load-balancer-get-started-ilb-arm-cli.md)。
 
 ## <a name="powershell"></a>PowerShell
 
@@ -95,10 +98,10 @@ $lb | Set-AzLoadBalancer
 对于 `New-AzLoadBalancerRuleConfig` 命令，`-FrontendPort` 表示负载均衡器针对外部连接公开的端口，而 `-BackendPort` 表示 Service Fabric 应用正在侦听的端口。
 
 >[!NOTE]
->有关如何使用 PowerShell 创建负载均衡器的详细信息，请参阅[使用 PowerShell 创建负载均衡器](../load-balancer/load-balancer-get-started-internet-arm-ps.md)。
+>有关如何使用 PowerShell 创建负载均衡器的详细信息，请参阅[使用 PowerShell 创建负载均衡器](../load-balancer/load-balancer-get-started-ilb-arm-ps.md)。
 
 ## <a name="next-steps"></a>后续步骤
 
 详细了解 [Service Fabric 中的网络](service-fabric-patterns-networking.md)。
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

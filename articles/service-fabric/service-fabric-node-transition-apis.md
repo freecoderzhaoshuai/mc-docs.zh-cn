@@ -1,17 +1,20 @@
 ---
 title: 启动和停止群集节点
 description: 通过启动和停止集群节点，了解如何使用错误注入来测试 Service Fabric 应用程序。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 06/12/2017
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: c9c2e95fb3815f0a743637afba1ada8b500c1910
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 8f02ecc2d0690e72b7997f1b651e89069e9a91bb
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540654"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655648"
 ---
 # <a name="replacing-the-start-node-and-stop-node-apis-with-the-node-transition-api"></a>将启动节点 API 和停止节点 API 替换为节点转换 API
 
@@ -267,13 +270,15 @@ ms.locfileid: "77540654"
         }
 ```
 
-[stopnode]: https://docs.azure.cn/dotnet/api/system.fabric.fabricclient.faultmanagementclient?view=azure-dotnet?redirectedfrom=MSDN
-[stopnodeps]: https://msdn.microsoft.com/library/mt125982.aspx
-[startnode]: https://docs.azure.cn/dotnet/api/system.fabric.fabricclient.faultmanagementclient?view=azure-dotnet?redirectedfrom=MSDN
-[startnodeps]: https://msdn.microsoft.com/library/mt163520.aspx
+<!--MOONCAKE CUSTOMIZATION ON THE LINK-->
+
+[stopnode]: https://docs.azure.cn/dotnet/api/system.fabric.fabricclient.faultmanagementclient?view=azure-dotnet
+[stopnodeps]: https://docs.microsoft.com/previous-versions/azure/mt125982(v=azure.100)
+[startnode]: https://docs.azure.cn/dotnet/api/system.fabric.fabricclient.faultmanagementclient?view=azure-dotnet
+[startnodeps]: https://docs.microsoft.com/previous-versions/azure/mt163520(v=azure.100)
 [nodequery]: https://docs.azure.cn/dotnet/api/system.fabric.fabricclient.queryclient?view=azure-dotnet
 [nodequeryps]: https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricnode
 [snt]: https://docs.azure.cn/dotnet/api/system.fabric.fabricclient.testmanagementclient?view=azure-dotnet
 [gntp]: https://docs.azure.cn/dotnet/api/system.fabric.fabricclient.testmanagementclient?view=azure-dotnet
 
-<!-- Update_Description: update meta properties, wording update, update link -->
+<!-- Update_Description: update meta properties, wording update, update link-->

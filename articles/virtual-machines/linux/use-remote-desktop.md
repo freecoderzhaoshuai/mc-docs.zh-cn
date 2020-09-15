@@ -1,5 +1,5 @@
 ---
-title: 安装和配置远程桌面以连接到 Azure 中的 Linux VM
+title: 使用远程桌面连接到 Azure 中的 Linux VM
 description: 了解如何使用图形工具安装和配置远程桌面 (xrdp) 以连接到 Azure 中的 Linux VM
 services: virtual-machines-linux
 documentationcenter: ''
@@ -10,18 +10,18 @@ ms.assetid: ''
 ms.service: virtual-machines-linux
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
-ms.topic: article
-ms.date: 04/20/2020
+ms.topic: how-to
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.openlocfilehash: dbb5302154e1dbc022737a0150a66db1ea56d8e1
-ms.sourcegitcommit: ebedf9e489f5218d4dda7468b669a601b3c02ae5
+ms.openlocfilehash: 0d51a68716518a939b797e6a6e58f13ce3e68945
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2020
-ms.locfileid: "82159170"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057651"
 ---
 # <a name="install-and-configure-remote-desktop-to-connect-to-a-linux-vm-in-azure"></a>安装和配置远程桌面以连接到 Azure 中的 Linux VM
-通常使用安全外壳 (SSH) 连接从命令行管理 Azure 中的 Linux 虚拟机 (VM)。 如果不熟悉 Linux，或者要快速进行故障排除，使用远程桌面可能会更方便。 本文详细介绍如何使用 Resource Manager 部署模型为 Linux VM 安装和配置桌面环境 ([xfce](https://www.xfce.org)) 和远程桌面 ([xrdp](https://www.xrdp.org))。
+通常使用安全外壳 (SSH) 连接从命令行管理 Azure 中的 Linux 虚拟机 (VM)。 如果不熟悉 Linux，或者要快速进行故障排除，使用远程桌面可能会更方便。 本文详细介绍如何使用 Resource Manager 部署模型为 Linux VM 安装和配置桌面环境 ([xfce](https://www.xfce.org)) 和远程桌面 ([xrdp](http://xrdp.org))。
 
 
 ## <a name="prerequisites"></a>先决条件
@@ -38,7 +38,6 @@ Azure 中的大多数 Linux VM 默认情况下未安装桌面环境。 通常使
 以下示例在 Ubuntu 18.04 LTS VM 上安装轻型 [xfce4](https://www.xfce.org/) 桌面环境。 其他发行版的命令略有不同（例如，使用 `yum` 在 CentOS 上安装并配置适当的 `selinux` 规则，或者使用 `zypper` 在 SUSE 上安装）。
 
 <!-- Change Red Hat to CentOS -->
-
 首先，通过 SSH 连接到 VM。 以下示例使用用户名 *azureuser* 连接到名为 *myvm.chinanorth.cloudapp.chinacloudapi.cn* 的 VM。 使用自己的值：
 
 ```bash
@@ -83,13 +82,13 @@ sudo passwd azureuser
 ```
 
 > [!NOTE]
-> 指定密码不会将 SSHD 配置更新为允许密码登录（如果当前不允许）。 从安全角度看，用户可能想要使用基于密钥的身份验证通过 SSH 隧道连接到 VM，并连接到 xrdp。 如果是这样，请跳过以下创建网络安全组规则的步骤，以允许远程桌面流量。
+> 指定密码不会将 SSHD 配置更新为允许密码登录（如果当前不允许）。 从安全角度看，可能想要使用基于密钥的身份验证通过 SSH 隧道连接到 VM，并连接到 xrdp。 如果是这样，请跳过以下创建网络安全组规则的步骤，以允许远程桌面流量。
 
 
 ## <a name="create-a-network-security-group-rule-for-remote-desktop-traffic"></a>为远程桌面流量创建网络安全组规则
 若要允许远程桌面流量到达 Linux VM，需要创建网络安全组规则以允许端口 3389 上的 TCP 访问 VM。 有关网络安全组规则的详细信息，请参阅[什么是网络安全组？](../../virtual-network/security-overview.md?toc=%2fvirtual-machines%2flinux%2ftoc.json) 还可以[使用 Azure 门户创建网络安全组规则](../windows/nsg-quickstart-portal.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)。
 
-以下示例使用 [az vm open-port](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-open-port) 在端口 *3389* 上创建一个网络安全组规则。 使用 Azure CLI（而不是与 VM 的 SSH 会话），打开以下网络安全组规则：
+以下示例在端口 *3389* 上使用 [az vm open-port](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-open-port) 创建网络安全组规则。 使用 Azure CLI（而不是与 VM 的 SSH 会话），打开以下网络安全组规则：
 
 ```azurecli
 az vm open-port --resource-group myResourceGroup --name myVM --port 3389
@@ -101,14 +100,14 @@ az vm open-port --resource-group myResourceGroup --name myVM --port 3389
 
 ![使用远程桌面客户端连接到 xrdp](./media/use-remote-desktop/remote-desktop-client.png)
 
-进行身份验证后，会加载 xfce 桌面环境，其外观类似于以下示例：
+进行身份验证后，将加载 xfce 桌面环境，其外观类似于以下示例：
 
 ![通过 xrdp 连接 xfce 桌面环境](./media/use-remote-desktop/xfce-desktop-environment.png)
 
-如果本地 RDP 客户端使用网络级别身份验证 (NLA)，则可能需要禁用该连接设置。 XRDP 目前不支持 NLA。 也可以查看其他支持 NLA 的 RDP 解决方案，例如 [FreeRDP](https://www.freerdp.com)。
+如果本地 RDP 客户端使用网络级别身份验证 (NLA)，则可能需要禁用该连接设置。 XRDP 目前不支持 NLA。 还可以考虑其他支持 NLA 的替代 RDP 解决方案，例如 [FreeRDP](https://www.freerdp.com)。
 
 
-## <a name="troubleshoot"></a>故障排除
+## <a name="troubleshoot"></a>疑难解答
 如果无法使用远程桌面客户端连接到 Linux VM，请在 Linux VM上使用 `netstat` 验证 VM 是否正在侦听 RDP 连接，如下所示：
 
 ```bash
@@ -122,7 +121,7 @@ tcp     0     0      127.0.0.1:3350     0.0.0.0:*     LISTEN     53192/xrdp-sesm
 tcp     0     0      0.0.0.0:3389       0.0.0.0:*     LISTEN     53188/xrdp
 ```
 
-如果*xrdp-sesman* 服务未在侦听，请在 Ubuntu VM 上重新启动该服务，如下所示：
+如果 *xrdp-sesman* 服务未在侦听，请在 Ubuntu VM 上重新启动该服务，如下所示：
 
 ```bash
 sudo service xrdp restart
@@ -137,8 +136,7 @@ tail -f /var/log/syslog
 其他 Linux 发行版（例如，CentOS 和 SUSE）可能采用其他方式来重启服务并更换要查看的日志文件位置。
 
 <!-- Change Red Hat to CentOS -->
-
-如果用户在远程桌面客户端中未收到任何响应，并且在系统日志中看不到任何事件，则此行为指示远程桌面流量无法到达 VM。 查看网络安全组规则，以确保有规则允许端口 3389 上的 TCP。 有关详细信息，请参阅[排查应用程序连接问题](../windows/troubleshoot-app-connection.md)。
+如果用户在远程桌面客户端中未收到任何响应，并且在系统日志中看不到任何事件，则此行为指示远程桌面流量无法到达 VM。 查看网络安全组规则，以确保有规则允许端口 3389 上的 TCP。 有关详细信息，请参阅[排查应用程序连接问题](../troubleshooting/troubleshoot-app-connection.md)。
 
 
 ## <a name="next-steps"></a>后续步骤

@@ -1,22 +1,22 @@
 ---
 title: Azure SQL 数据库的内置策略定义
 description: 列出 Azure SQL 数据库和 SQL 托管实例的 Azure Policy 内置策略定义。 这些内置的策略定义提供了管理 Azure 资源的常用方法。
-origin.date: 06/23/2020
-ms.date: 07/13/2020
+origin.date: 07/10/2020
+ms.date: 09/14/2020
 ms.topic: sample
 author: WenJason
 ms.author: v-jay
 ms.service: sql-database
 ms.custom: subject-policy-samples
-ms.openlocfilehash: 00d533cf18e2ee38e109146d8bdcac614f122d68
-ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+ms.openlocfilehash: 386a0487e0a4d63e4d6888aeb395737fa311e60e
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86227954"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014195"
 ---
 # <a name="azure-policy-built-in-definitions-for-azure-sql-database--sql-managed-instance"></a>Azure SQL 数据库和 SQL 托管实例的 Azure Policy 内置定义
-[!INCLUDE[appliesto-sqldb-sqlmi](../includes/appliesto-sqldb-sqlmi.md)]
+[!INCLUDE[appliesto-sqldb-sqlmi-asa](../includes/appliesto-sqldb-sqlmi-asa.md)]
 
 此页是 Azure SQL 数据库和 SQL 托管实例的 [Azure Policy](../../governance/policy/overview.md) 内置策略定义的索引。 有关其他服务的其他 Azure Policy 内置定义，请参阅 [Azure Policy 内置定义](../../governance/policy/samples/built-in-policies.md)。
 

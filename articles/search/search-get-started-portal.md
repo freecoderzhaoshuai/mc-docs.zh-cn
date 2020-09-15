@@ -9,12 +9,12 @@ ms.service: cognitive-search
 ms.topic: quickstart
 origin.date: 06/07/2020
 ms.date: 07/17/2020
-ms.openlocfilehash: dd9ee2a187b4530e3ca476a16cb77d901f7baf40
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.openlocfilehash: 2f3df6ab8435203e8fcf583798984d4c9ae959fb
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471827"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020944"
 ---
 # <a name="quickstart-create-an-azure-cognitive-search-index-in-the-azure-portal"></a>快速入门：在 Azure 门户中创建 Azure 认知搜索索引
 > [!div class="op_single_selector"]
@@ -150,7 +150,7 @@ ms.locfileid: "86471827"
 
    ![搜索浏览器命令](media/search-get-started-portal/search-explorer-cmd.png)
 
-2. 在“索引”下拉列表中，选择“hotels-sample-index”。 单击“API 版本”下拉列表，查看有哪些 REST API 可用。 对于以下查询，请使用正式版 (2019-05-06)。
+2. 在“索引”下拉列表中，选择“hotels-sample-index”。 单击“API 版本”下拉列表，查看有哪些 REST API 可用。 对于以下查询，请使用正式发行版 (2020-06-30)。
 
    ![索引和 API 命令](media/search-get-started-portal/search-explorer-changeindex.png)
 
@@ -207,7 +207,7 @@ ms.locfileid: "86471827"
 
 * 只有可筛选的字段才可分面。 结果中只返回仅可检索的字段。
 
-* “评分”字段为双精度浮点，将按精度值分组。 若要详细了解如何按间隔来分组（例如，“3 星评分”、“4 星评分”等），请参阅[如何在 Azure 认知搜索中实现分面导航](https://docs.azure.cn/search/search-faceted-navigation#filter-based-on-a-range)。
+* “评分”字段为双精度浮点，将按精度值分组。 若要详细了解如何按间隔来分组（例如，“3 星评分”、“4 星评分”等），请参阅[如何在 Azure 认知搜索中实现分面导航](./search-faceted-navigation.md#filter-based-on-a-range)。
 
 
 ### <a name="highlight-search-results"></a><a name="highlight-query"></a> 突出显示搜索结果

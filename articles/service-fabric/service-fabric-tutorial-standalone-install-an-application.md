@@ -1,18 +1,20 @@
 ---
 title: 在独立群集上安装应用
 description: 本教程介绍如何将应用程序安装到独立 Service Fabric 群集中。
-author: rockboyfor
 ms.topic: tutorial
 origin.date: 07/22/2019
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: cf9bec08954cce3847635d61a36abb75527b83c9
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 99f2f30bc2a3f30182af39b7114834ec4aa8dd1c
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540557"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655713"
 ---
 # <a name="tutorial-deploy-an-application-on-your-service-fabric-standalone-cluster"></a>教程：在 Service Fabric 独立群集上部署应用程序
 
@@ -53,7 +55,7 @@ git clone https://github.com/Azure-Samples/service-fabric-dotnet-quickstart
 
 4. 在解决方案资源管理器中右键单击 `Voting` 应用程序项目，选择“发布” 
 
-5. 选择**连接终结点**的下拉列表，并输入群集中某个节点的公共 DNS 名称。  例如，`ec2-34-215-183-77.china-north-2.compute.amazonaws.com:19000` 。 请注意，在 Azure 中，不会自动提供完全限定的域名 (FQDN)，但可以[在“VM 概述”页中轻松设置](/virtual-machines/linux/portal-create-fqdn)。
+5. 选择**连接终结点**的下拉列表，并输入群集中某个节点的公共 DNS 名称。  例如，`ec2-34-215-183-77.china-north-2.compute.amazonaws.com:19000` 。 请注意，在 Azure 中，不会自动提供完全限定的域名 (FQDN)，但可以[在“VM 概述”页中轻松设置](../virtual-machines/linux/portal-create-fqdn.md)。
     
     <!--MOONCAKE: CORRECT ON china-north-2 format-->
     
@@ -61,7 +63,7 @@ git clone https://github.com/Azure-Samples/service-fabric-dotnet-quickstart
     
     <!--MOONCAKE: CORRECT ON china-north-2 format-->
     
-    ![来自群集的 API 响应](./media/service-fabric-tutorial-standalone-cluster/deployed-app.png)
+    :::image type="content" source="./media/service-fabric-tutorial-standalone-cluster/deployed-app.png" alt-text="来自群集的 API 响应":::
 
 ## <a name="next-steps"></a>后续步骤
 

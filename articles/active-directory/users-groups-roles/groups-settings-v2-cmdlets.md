@@ -9,17 +9,17 @@ ms.service: active-directory
 ms.workload: identity
 ms.subservice: users-groups-roles
 ms.topic: how-to
-ms.date: 08/26/2020
+ms.date: 09/08/2020
 ms.author: v-junlch
 ms.reviewer: krbain
 ms.custom: it-pro
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: f0586946f45fb4953c26fa49b7d0906e36d7d714
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: f5231c3519bcc36ba9a9ac23b3b09416ca579d99
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947167"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593740"
 ---
 # <a name="azure-active-directory-version-2-cmdlets-for-group-management"></a>用于组管理的 Azure Active Directory 版本 2 cmdlet
 
@@ -134,7 +134,7 @@ ms.locfileid: "88947167"
 ```
 
 > [!NOTE]
-> Azure AD PowerShell cmdlet 实现 OData 查询标准。 有关详细信息，请参阅[使用 OData 终结点的 OData 系统查询选项](https://msdn.microsoft.com/library/gg309461.aspx#BKMK_filter)中的 $filter。
+> Azure AD PowerShell cmdlet 实现 OData 查询标准。 有关详细信息，请参阅[使用 OData 终结点的 OData 系统查询选项](https://docs.microsoft.com/previous-versions/dynamicscrm-2015/developers-guide/gg309461(v=crm.7)#BKMK_filter)中的 $filter。
 
 ## <a name="create-groups"></a>创建组
 

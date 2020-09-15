@@ -8,15 +8,15 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 08/19/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 ms.custom: aaddev, devx-track-python
-ms.openlocfilehash: a7594141f519a19f7edc82e9ead768acece1c5a6
-ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
+ms.openlocfilehash: d9099404f20b38e95c21c8a1ac6856a599b095ec
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "88647675"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593814"
 ---
 # <a name="a-web-app-that-calls-web-apis-code-configuration"></a>调用 Web API 的 Web 应用：代码配置
 
@@ -49,10 +49,11 @@ public void ConfigureServices(IServiceCollection services)
 {
     // more code here
 
-    services.AddMicrosoftWebAppAuthentication(Configuration, "AzureAd")
-            .AddMicrosoftWebAppCallsdWebApi(Configuration,
-                                           initialScopes: new string[] { "https://microsoftgraph.chinacloudapi.cn/user.read" })
-            .AddInMemoryTokenCaches();
+    services.AddMicrosoftIdentityWebAppAuthentication(Configuration,
+                                                      "AzureAd")
+            .EnableTokenAcquisitionToCallDownstreamApi(
+                    initialScopes: new string[] { "https://microsoftgraph.chinacloudapi.cn/user.read" })
+                .AddInMemoryTokenCaches();
 
     // more code here
 }
@@ -272,9 +273,9 @@ ASP.NET Core 教程使用依赖关系注入，让你能够在应用的 Startup.c
 
 ```csharp
 // Use a distributed token cache by adding:
-    services.AddMicrosoftWebAppAuthentication(Configuration, "AzureAd")
-            .AddMicrosoftWebAppCallsWebApi(Configuration,
-                                           initialScopes: new string[] { "https://microsoftgraph.chinacloudapi.cn/user.read" })
+    services.AddMicrosoftIdentityWebAppAuthentication(Configuration, "AzureAd")
+            .EnableTokenAcquisitionToCallDownstreamApi(
+                initialScopes: new string[] { "https://microsoftgraph.chinacloudapi.cn/user.read" })
             .AddDistributedTokenCaches();
 
 // Then, choose your implementation.

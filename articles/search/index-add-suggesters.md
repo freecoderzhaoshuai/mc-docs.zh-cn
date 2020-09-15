@@ -8,13 +8,14 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 04/21/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: 65f6e34ef6e196cbc2842f0768bf905f8de8e1bc
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.custom: devx-track-csharp
+ms.openlocfilehash: fa68272b60e6125c839cf4c13e7c178cebb7130f
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471988"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021098"
 ---
 # <a name="create-a-suggester-to-enable-autocomplete-and-suggested-results-in-a-query"></a>创建建议器，以在查询中启用“自动完成”和“建议结果”功能
 
@@ -174,4 +175,4 @@ POST /indexes/myxboxgames/docs/autocomplete?search&api-version=2020-06-30
 建议参阅以下文章来详细了解如何请求表述。
 
 > [!div class="nextstepaction"]
-> [向客户端代码添加“自动完成”和“建议”功能](search-autocomplete-tutorial.md) 
+> [向客户端代码添加“自动完成”和“建议”功能](search-autocomplete-tutorial.md)

@@ -4,14 +4,14 @@ description: 快速入门：使用 Azure 资源管理器模板创建包含事件
 ms.topic: quickstart
 ms.custom: subject-armqs
 origin.date: 06/23/2020
-ms.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: v-tawe
-ms.openlocfilehash: 2c766e0b913ddb0f10acb8d51d9fa1ef701e36bb
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 7444aea352f14419d024087cf2c5c07cf105dd0b
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715203"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063292"
 ---
 # <a name="quickstart-create-an-event-hub-by-using-an-arm-template"></a>快速入门：使用 ARM 模板创建事件中心
 
@@ -98,10 +98,10 @@ Write-Host "Press [ENTER] to continue ..."
 
 在本文中，你已创建一个事件中心命名空间，并在该命名空间中创建了一个事件中心。 有关如何将事件发送到事件中心（或）从事件中心接收事件的分步说明，请参阅“发送和接收事件”教程：
 
-- [.NET Core](get-started-dotnet-standard-send-v2.md)
-- [Java](get-started-java-send-v2.md)
-- [Python](get-started-python-send-v2.md)
-- [JavaScript](get-started-node-send-v2.md)
+- [.NET Core](event-hubs-dotnet-standard-getstarted-send.md)
+- [Java](event-hubs-java-get-started-send.md)
+- [Python](event-hubs-python-get-started-send.md)
+- [JavaScript](event-hubs-node-get-started-send.md)
 - [Go](event-hubs-go-get-started-send.md)
 - [C（仅发送）](event-hubs-c-getstarted-send.md)
 - [Apache Storm（仅接收）](event-hubs-storm-getstarted-receive.md)

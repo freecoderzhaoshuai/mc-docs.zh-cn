@@ -11,12 +11,12 @@ ms.workload: big-data
 ms.topic: conceptual
 ms.date: 08/04/2020
 ms.custom: seodec18
-ms.openlocfilehash: 4021190bb136c1d7b6102d2b7ce794c4aa5ed34b
-ms.sourcegitcommit: 36e7f37481969f92138bfe70192b1f4a2414caf7
+ms.openlocfilehash: b6bac528cc782809e656bf770c32137182d0ca8c
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87801833"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593844"
 ---
 # <a name="add-an-iot-hub-event-source-to-your-azure-time-series-insight-environment"></a>将 IoT 中心事件源添加到 Azure 时序见解环境
 
@@ -112,5 +112,5 @@ ms.locfileid: "87801833"
 
 * [发送事件](time-series-insights-send-events.md)到事件源。
 
-* 在 [Azure 时序见解资源管理器](https://insights.timeseries.azure.com)中访问环境。
+* 在 [Azure 时序见解资源管理器](https://insights.timeseries.azure.cn)中访问环境。
 

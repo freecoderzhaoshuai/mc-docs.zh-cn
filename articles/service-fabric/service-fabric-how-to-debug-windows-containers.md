@@ -3,14 +3,17 @@ title: 使用 Service Fabric 和 VS 调试 Windows 容器
 description: 了解如何使用 Visual Studio 2019 在 Azure Service Fabric 中调试 Windows 容器。
 ms.topic: article
 origin.date: 02/14/2019
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: 10458c1114440a48acb7421ee8338298f6dc498c
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: c8c38684f1d9ee7d0867b26b43ab1fa8e25e6977
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79084445"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655085"
 ---
 # <a name="how-to-debug-windows-containers-in-azure-service-fabric-using-visual-studio-2019"></a>如何：使用 Visual Studio 2019 在 Azure Service Fabric 中调试 Windows 容器
 
@@ -20,7 +23,7 @@ ms.locfileid: "79084445"
 
 * 在 Windows 10 上，按照此快速入门[配置 Windows 10 以运行 Windows 容器](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-10)
 * 在 Windows Server 2016 上，按照此快速入门[配置 Windows 2016 以运行 Windows 容器](https://docs.microsoft.com/virtualization/windowscontainers/quick-start/quick-start-windows-server)
-* 按照[在 Windows 上准备开发环境](/service-fabric/service-fabric-get-started)来设置本地 Service Fabric 环境
+* 按照[在 Windows 上准备开发环境](./service-fabric-get-started.md)来设置本地 Service Fabric 环境
 
 ## <a name="configure-your-developer-environment-to-debug-containers"></a>配置开发人员环境以调试容器
 
@@ -39,7 +42,7 @@ ms.locfileid: "79084445"
         > 可以使用 `-CreateOneNodeCluster` 来设置单节点群集。 默认情况下将创建一个本地五节点群集。
         >
 
-        若要详细了解 Service Fabric 中的 DNS 服务，请参阅 [Azure Service Fabric 中的 DNS 服务](/service-fabric/service-fabric-dnsservice)。 如需深入了解从容器中运行的服务使用 Service Fabric 反向代理，请参阅[对容器中运行的服务的反向代理特殊处理](service-fabric-reverseproxy.md#special-handling-for-services-running-in-containers)。
+        若要详细了解 Service Fabric 中的 DNS 服务，请参阅 [Azure Service Fabric 中的 DNS 服务](./service-fabric-dnsservice.md)。 如需深入了解从容器中运行的服务使用 Service Fabric 反向代理，请参阅[对容器中运行的服务的反向代理特殊处理](service-fabric-reverseproxy.md#special-handling-for-services-running-in-containers)。
 
 ### <a name="known-limitations-when-debugging-containers-in-service-fabric"></a>在 Service Fabric 中调试容器时的已知限制
 
@@ -75,4 +78,4 @@ ms.locfileid: "79084445"
 ## <a name="next-steps"></a>后续步骤
 若要详细了解 Service Fabric 和容器的功能，请参阅 [Service Fabric 容器概述](service-fabric-containers-overview.md)。
 
-<!-- Update_Description: update meta properties, wording update  -->
+<!-- Update_Description: update meta properties, wording update, update link -->

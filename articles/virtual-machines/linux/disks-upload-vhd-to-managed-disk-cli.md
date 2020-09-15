@@ -4,16 +4,16 @@ description: 了解如何使用 Azure CLI 通过直接上传将 VHD 上传到 Az
 services: virtual-machines,storage
 author: Johnnytechn
 ms.author: v-johya
-ms.date: 07/29/2020
+ms.date: 09/03/2020
 ms.topic: how-to
 ms.service: virtual-machines
 ms.subservice: disks
-ms.openlocfilehash: 7bdd860c37526a952e03ebb028c6b82fd46f7b67
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.openlocfilehash: ce20f5412bfd6f44cefaf5a9277de5c6e312bd6f
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508337"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057525"
 ---
 # <a name="upload-a-vhd-to-azure-or-copy-a-managed-disk-to-another-region---azure-cli"></a>将 VHD 上传到 Azure，或将托管磁盘复制到其他区域 - Azure CLI
 
@@ -28,13 +28,13 @@ ms.locfileid: "87508337"
 
 ## <a name="getting-started"></a>入门
 
-如果希望通过 GUI 上传磁盘，可以使用 Azure 存储资源管理器。 有关详细信息，请参阅：[使用 Azure 存储资源管理器管理 Azure 托管磁盘](disks-use-storage-explorer-managed-disks.md)
+如果希望通过 GUI 上传磁盘，可以使用 Azure 存储资源管理器。 有关详细信息，请参阅：[使用 Azure 存储资源管理器管理 Azure 托管磁盘](../disks-use-storage-explorer-managed-disks.md)
 
 若要将 VHD 上传到 Azure，需要创建一个针对此上传过程配置的空托管磁盘。 在创建托管磁盘之前，应了解有关这些磁盘的一些附加信息。
 
 这种托管磁盘有两种独特的状态：
 
-- ReadToUpload，表示磁盘已做好上传准备，但尚未生成[安全访问签名](/storage/common/storage-dotnet-shared-access-signature-part-1) (SAS)。
+- ReadToUpload，表示磁盘已做好上传准备，但尚未生成[安全访问签名](../../storage/common/storage-sas-overview.md) (SAS)。
 - ActiveUpload，表示磁盘已做好上传准备，并且已生成 SAS。
 
 > [!NOTE]

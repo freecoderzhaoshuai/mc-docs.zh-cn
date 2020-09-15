@@ -7,13 +7,15 @@ author: luiscabrer
 ms.author: luisca
 ms.service: cognitive-search
 ms.topic: conceptual
-ms.date: 11/04/2019
-ms.openlocfilehash: bae8381b3e65fa4f40456daca2d913b2631e4b8e
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+origin.date: 11/04/2019
+ms.date: 09/10/2020
+ms.custom: devx-track-csharp
+ms.openlocfilehash: e0e9a2ebab18e08e8c4a3152841e3dbb85f1177c
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88227871"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021137"
 ---
 # <a name="example-create-a-custom-skill-using-the-custom-entity-search-api"></a>示例：使用自定义实体搜索 API 创建自定义技能
 
@@ -68,7 +70,7 @@ using Newtonsoft.Json;
 namespace SampleSkills
 {
     /// <summary>
-    /// Sample custom skill that wraps the Custom Entity Search API to connect it with a 
+    /// Sample custom skill that wraps the Custom entity search API to connect it with a 
     /// AI enrichment pipeline.
     /// </summary>
     public static class CustomEntitySearch
@@ -426,7 +428,7 @@ POST https://[your-entity-search-app-name].chinacloudsites.cn/api/EntitySearch?c
       "[... your existing skills remain here]",  
       {
         "@odata.type": "#Microsoft.Skills.Custom.WebApiSkill",
-        "description": "Our new Custom Entity Search custom skill",
+        "description": "Our new Custom entity search custom skill",
         "uri": "https://[your-entity-search-app-name].chinacloudsites.cn/api/EntitySearch?code=[enter default host key here]",
           "context": "/document/merged_content/organizations/*",
           "inputs": [

@@ -8,7 +8,7 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 12/16/2019
+ms.date: 09/10/2020
 translation.priority.mt:
 - de-de
 - es-es
@@ -20,12 +20,12 @@ translation.priority.mt:
 - ru-ru
 - zh-cn
 - zh-tw
-ms.openlocfilehash: 01f7925f73a48424e9ae11508d54b5e6e0addcda
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.openlocfilehash: 7163260a28ce2a4f372fcc633cc7af03f619639b
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588777"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021584"
 ---
 # <a name="troubleshooting-odata-collection-filters-in-azure-cognitive-search"></a>排查 Azure 认知搜索中的 OData 集合筛选器问题
 

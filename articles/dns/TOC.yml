@@ -117,7 +117,7 @@
       items:
         - name: 保护专用 DNS 区域和记录
           href: dns-protect-private-zones-recordsets.md
-    - name: 故障排除
+    - name: 疑难解答
       items:
         - name: 故障排除指南
           href: dns-troubleshoot.md
@@ -140,7 +140,7 @@
         - name: Ruby
           href: 'https://www.rubydoc.info/gems/azure_mgmt_dns/0.8.0'
         - name: Python
-          href: 'http://azure-sdk-for-python.readthedocs.io/en/latest/sample_azure-mgmt-dns.html'
+          href: 'https://azure.github.io/azure-sdk-for-python/ref/DNS.html'
         - name: REST
           href: 'https://docs.microsoft.com/rest/api/dns/'
     - name: 专用 DNS

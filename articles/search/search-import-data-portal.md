@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 07/20/2020
-ms.openlocfilehash: 8aa943db746c355e39bb691fd386119e103f612d
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: 595401e65447b477e7200356547527fc53180de4
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471816"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021467"
 ---
 # <a name="import-data-wizard-for-azure-cognitive-search"></a>Azure 认知搜索的导入数据向导
 

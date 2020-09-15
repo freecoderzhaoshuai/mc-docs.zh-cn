@@ -5,18 +5,18 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: authentication
 ms.topic: conceptual
-ms.date: 08/28/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 author: iainfoulds
 manager: daveba
 ms.reviewer: rhicock
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: c3db64c0a9417f9b7b7f36ea60bbe789fc9e3bef
-ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
+ms.openlocfilehash: bebd0dc7cc791a1162463224416f09d70b5e4c3c
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89046328"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593724"
 ---
 # <a name="how-does-self-service-password-reset-writeback-work-in-azure-active-directory"></a>自助式密码重置写回在 Azure Active Directory 中的工作原理。
 
@@ -47,7 +47,7 @@ Azure Active Directory (Azure AD) 自助式密码重置 (SSPR) 允许用户在�
 若要开始 SSPR 写回，请完成以下教程：
 
 > [!div class="nextstepaction"]
-> [教程：启用自助式密码重置 (SSPR) 写回](tutorial-enable-writeback.md)
+> [教程：启用自助式密码重置 (SSPR) 写回](./tutorial-enable-sspr-writeback.md)
 
 ## <a name="how-password-writeback-works"></a>密码写回的工作原理
 
@@ -140,7 +140,7 @@ Azure Active Directory (Azure AD) 自助式密码重置 (SSPR) 允许用户在�
    * 任何管理员自助强制更改密码操作（例如，密码到期）。
    * 源自[密码重置门户](https://passwordreset.activedirectory.windowsazure.cn)的任何管理员自助密码重置操作。
    * 任何管理员通过 [Azure 门户](https://portal.azure.cn)发起的任何最终用户密码重置操作。
-   * 任何管理员通过 [Microsoft Graph API beta](https://docs.microsoft.com/graph/api/passwordauthenticationmethod-resetpassword?view=graph-rest-beta&tabs=http) 发起的任何最终用户密码重置操作。
+   * 任何管理员通过 [Microsoft Graph API beta](https://docs.microsoft.com/graph/api/passwordauthenticationmethod-resetpassword?tabs=http&view=graph-rest-beta) 发起的任何最终用户密码重置操作。
 
 ## <a name="unsupported-writeback-operations"></a>不支持的写回操作
 
@@ -149,7 +149,7 @@ Azure Active Directory (Azure AD) 自助式密码重置 (SSPR) 允许用户在�
 * **不支持的最终用户操作**
    * 任何最终用户使用 PowerShell 版本 1、版本 2 或 Microsoft Graph API 重置自己的密码。
 * **不支持的管理员操作**
-   * 任何由管理员通过 PowerShell 版本 1、版本 2 或 Microsoft Graph API（支持 [Microsoft Graph API beta](https://docs.microsoft.com/graph/api/passwordauthenticationmethod-resetpassword?view=graph-rest-beta&tabs=http)）发起的最终用户密码重置操作。
+   * 任何由管理员通过 PowerShell 版本 1、版本 2 或 Microsoft Graph API（支持 [Microsoft Graph API beta](https://docs.microsoft.com/graph/api/passwordauthenticationmethod-resetpassword?tabs=http&view=graph-rest-beta)）发起的最终用户密码重置操作。
    * 管理员通过 Microsoft 365 管理中心发起的任何最终用户密码重置。
    * 任何管理员都不能使用密码重置工具来重置其密码以进行密码写回。
 
@@ -161,5 +161,5 @@ Azure Active Directory (Azure AD) 自助式密码重置 (SSPR) 允许用户在�
 若要开始 SSPR 写回，请完成以下教程：
 
 > [!div class="nextstepaction"]
-> [教程：启用自助式密码重置 (SSPR) 写回](tutorial-enable-writeback.md)
+> [教程：启用自助式密码重置 (SSPR) 写回](./tutorial-enable-sspr-writeback.md)
 

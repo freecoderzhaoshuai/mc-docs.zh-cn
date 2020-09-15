@@ -11,13 +11,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: carlrab
 origin.date: 07/16/2019
-ms.date: 07/13/2020
-ms.openlocfilehash: 8167dea600cbd290ba187c0f1b9d9609a94247df
-ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+ms.date: 09/14/2020
+ms.openlocfilehash: ae1a9f823e519d7b44162f8cf126ec0612acc187
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86227256"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014314"
 ---
 # <a name="use-powershell-to-add-an-elastic-pool-to-a-failover-group"></a>使用 PowerShell 将弹性池添加到故障转移组
 [!INCLUDE[appliesto-sqldb](../../includes/appliesto-sqldb.md)]
@@ -232,6 +232,6 @@ Remove-AzResourceGroup -ResourceGroupName $resourceGroupName
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 可以在 [Azure SQL 数据库 PowerShell 脚本](../powershell-script-content-guide.md)中找到更多 SQL 数据库 PowerShell 脚本示例。

@@ -3,14 +3,14 @@ title: 跨多个实例均衡分区负载 - Azure 事件中心 | Microsoft Docs
 description: 介绍如何使用事件处理器和 Azure 事件中心 SDK 跨应用程序的多个实例均衡分区负载。
 ms.topic: conceptual
 origin.date: 06/23/2020
-ms.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: v-tawe
-ms.openlocfilehash: a85094dcf4757115aa60def7ea0a3979fb9d911b
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: b28efce8b6727b157f33414f43d7c1d64ee7cbe5
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715384"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063289"
 ---
 # <a name="balance-partition-load-across-multiple-instances-of-your-application"></a>跨应用程序的多个实例均衡分区负载
 若要缩放事件处理应用程序，可以运行应用程序的多个实例，并让这些实例自行进行负载均衡。 在旧版本中，[EventProcessorHost](event-hubs-event-processor-host.md) 允许在接收检查点事件时，在程序的多个实例与这些事件之间进行负载均衡。 在新版本（5.0 或以上）中，**EventProcessorClient**（.NET 和 Java）或 **EventHubConsumerClient**（Python 和 JavaScript）允许执行相同的操作。 使用事件使开发模型变得更简单。 通过注册事件处理程序来订阅你感兴趣的事件。
@@ -90,7 +90,7 @@ ms.locfileid: "88715384"
 ## <a name="next-steps"></a>后续步骤
 参阅以下快速入门：
 
-- [.NET Core](get-started-dotnet-standard-send-v2.md)
+- [.NET Core](event-hubs-dotnet-standard-getstarted-send.md)
 - [Java](event-hubs-java-get-started-send.md)
-- [Python](get-started-python-send-v2.md)
-- [JavaScript](get-started-node-send-v2.md)
+- [Python](event-hubs-python-get-started-send.md)
+- [JavaScript](event-hubs-node-get-started-send.md)

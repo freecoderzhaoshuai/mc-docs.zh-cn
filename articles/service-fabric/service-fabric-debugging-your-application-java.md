@@ -1,17 +1,20 @@
 ---
 title: 在 Eclipse 中调试应用程序
 description: 通过在本地开发群集上采用 Eclipse 进行开发和调试，来提高服务的可靠性和性能。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 11/02/2017
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
+ms.custom: devx-track-java
 ms.author: v-yeche
-ms.openlocfilehash: f04ff00fbb86486af444c2741eec11034e16073e
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: ad4a579f071f62524cf0da882f609aad1ed88856
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540676"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655098"
 ---
 # <a name="debug-your-java-service-fabric-application-using-eclipse"></a>使用 Eclipse 调试 Java Service Fabric 应用程序
 > [!div class="op_single_selector"]
@@ -42,7 +45,7 @@ ms.locfileid: "77540676"
 
 ### <a name="next-steps"></a>后续步骤
 
-* [使用 Linux Azure 诊断收集日志](service-fabric-diagnostics-how-to-setup-lad.md)。
+* [使用 Linux Azure 诊断收集日志](./service-fabric-diagnostics-event-aggregation-lad.md)。
 * [在本地监视和诊断服务](service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally-linux.md)。
 
-<!-- Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

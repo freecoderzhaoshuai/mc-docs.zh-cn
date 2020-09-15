@@ -1,17 +1,19 @@
 ---
 title: Azure Service Fabric CLI - sfctl chaos schedule
 description: 了解 sfctl（Azure Service Fabric 命令行接口）。 包含用于混沌测试计划的命令列表。
-author: rockboyfor
 ms.topic: reference
 origin.date: 01/16/2020
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: f384547925b2259aab9de9d4230eb0a2ed04ee3f
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: ffb6b42ebe8d1613a24c0d439f814d6f6e66cfc4
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540009"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655061"
 ---
 # <a name="sfctl-chaos-schedule"></a>sfctl chaos schedule
 获取和设置 Chaos Schedule。
@@ -140,6 +142,6 @@ sfctl chaos schedule set --version 0 --start-date-utc "2016-01-01T00:00:00.000Z"
 
 ## <a name="next-steps"></a>后续步骤
 - [安装](service-fabric-cli.md) Service Fabric CLI。
-- 了解如何通过[示例脚本](/service-fabric/scripts/sfctl-upgrade-application)使用 Service Fabric CLI。
+- 了解如何通过[示例脚本](./scripts/sfctl-upgrade-application.md)使用 Service Fabric CLI。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

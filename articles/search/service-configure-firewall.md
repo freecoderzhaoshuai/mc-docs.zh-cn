@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 05/11/2020
-ms.date: 07/03/2020
-ms.openlocfilehash: 969fa876c1eb853a1961a0059cdef164e10d3cfd
-ms.sourcegitcommit: 5afd7c4c3be9b80c4c67ec55f66fcf347aad74c6
+ms.date: 09/10/2020
+ms.openlocfilehash: 4fbb90fe3aabc5c0a60f092b1d640d994b5f921c
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85942595"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021558"
 ---
 # <a name="configure-ip-firewall-for-azure-cognitive-search"></a>为 Azure 认知搜索配置 IP 防火墙
 

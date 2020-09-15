@@ -8,13 +8,14 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 06/20/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: 82ba0bd614a22b869ea967752f16edfc9d41bcca
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 43ce9b7858e43f2e43a7f5307b6297060ea2776e
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471983"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020951"
 ---
 # <a name="analyzers-for-text-processing-in-azure-cognitive-search"></a>用于 Azure 认知搜索中文本处理的分析器
 

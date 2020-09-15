@@ -1,23 +1,23 @@
 ---
-title: 使用 ARM 模板创建 Azure DB for MariaDB
-description: 本文介绍如何使用 Azure 资源管理器模板创建 Azure DB for MariaDB 服务器。
+title: 快速入门：创建 Azure DB for MariaDB - ARM 模板
+description: 本快速入门文章介绍如何使用 Azure 资源管理器模板创建 Azure DB for MariaDB 服务器。
 author: WenJason
 ms.service: mariadb
 ms.topic: quickstart
 ms.custom: subject-armqs
 ms.author: v-jay
 origin.date: 05/14/2020
-ms.date: 08/17/2020
-ms.openlocfilehash: 30ca144500c870ce9fd29fe08bb112a064e82649
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.date: 09/14/2020
+ms.openlocfilehash: 1d9eae8d14c14ed40583867f9493b2d4fb3a840d
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222950"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512952"
 ---
 # <a name="quickstart-use-an-arm-template-to-create-an-azure-database-for-mariadb-server"></a>快速入门：使用 ARM 模板创建 Azure Database for MariaDB 服务器
 
-Azure Database for MariaDB 是一种托管服务，可用于在云中运行、管理和缩放高可用性的 MariaDB 数据库。 在本快速入门中，你将使用 ARM 模板在 Azure 门户、PowerShell 或 Azure CLI 中创建 Azure DB for MariaDB 服务器。
+Azure Database for MariaDB 是一种托管服务，可用于在云中运行、管理和缩放高可用性的 MariaDB 数据库。 在本快速入门中，使用 Azure 资源管理器模板（ARM 模板）在 Azure 门户、PowerShell 或 Azure CLI 中创建 Azure Database for MariaDB 服务器。
 
 [!INCLUDE [About Azure Resource Manager](../../includes/resource-manager-quickstart-introduction.md)]
 
@@ -47,7 +47,7 @@ Azure Database for MariaDB 是一种托管服务，可用于在云中运行、�
 
 创建 Azure Database for MariaDB 服务器时，请使用定义好的一组计算和存储资源。 若要了解详细信息，请参阅 [Azure DB for MariaDB 定价层](concepts-pricing-tiers.md)。 请在 [Azure 资源组](../azure-resource-manager/management/overview.md)中创建该服务器。
 
-本快速入门中使用的模板来自 [Azure 快速启动模板](https://github.com/Azure/azure-quickstart-templates/tree/master/101-managed-mariadb-with-vnet/)。
+本快速入门中使用的模板来自 [Azure 快速启动模板](https://azure.microsoft.com/resources/templates/101-managed-mariadb-with-vnet/)。
 
 ```json
 {
@@ -373,7 +373,7 @@ read -p "Press [ENTER] to continue: "
 
 ## <a name="review-deployed-resources"></a>查看已部署的资源
 
-# <a name="portal"></a>[门户](#tab/azure-portal)
+# <a name="portal"></a>[Portal](#tab/azure-portal)
 
 按照以下步骤查看新 Azure Database for MariaDB 服务器的概览：
 
@@ -408,7 +408,7 @@ read -p "Press [ENTER] to continue: "
 
 如果不再需要该资源组，可以将其删除，这将删除资源组中的资源。
 
-# <a name="portal"></a>[门户](#tab/azure-portal)
+# <a name="portal"></a>[Portal](#tab/azure-portal)
 
 1. 在 [Azure 门户](https://portal.azure.cn)中，搜索并选择“资源组”。
 

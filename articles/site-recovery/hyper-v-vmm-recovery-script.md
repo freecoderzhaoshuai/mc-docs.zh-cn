@@ -1,21 +1,21 @@
 ---
 title: 在 Azure Site Recovery 中将脚本添加到恢复计划
 description: 了解如何将 VMM 脚本添加到恢复计划中，以便在 VMM 云中对 Hyper-V VM 进行灾难恢复。
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 11/27/2018
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 01/21/2019
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 19945521bae64aa7c750131f69cc620247e43b18
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: c0edb97ed1128d65e9e6e1107995b1bdd6fa784c
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426494"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655125"
 ---
 # <a name="add-a-vmm-script-to-a-recovery-plan"></a>将 VMM 脚本添加到还原计划
 
@@ -43,7 +43,7 @@ ms.locfileid: "87426494"
 
     `Import-Module -Name virtualmachinemanager`
 
-    有关详细信息，请参阅 [Windows PowerShell 和 VMM 入门](https://technet.microsoft.com/library/hh875013.aspx)。
+    有关详细信息，请参阅 [Windows PowerShell 和 VMM 入门](https://docs.microsoft.com/previous-versions/system-center/system-center-2012-R2/hh875013(v=sc.12))。
 * 确保 VMM 部署中至少有一个库服务器。 VMM 服务器的库共享路径默认位于本地的 VMM 服务器。 其文件夹名称为 MSCVMMLibrary。
 
     如果库共享路径在远程位置（或在本地但不与 MSCVMMLibrary 共享），请按如下所示配置共享（例如使用 \\libserver2.contoso.com\share\）：
@@ -56,7 +56,7 @@ ms.locfileid: "87426494"
 
         a. 以管理员身份打开 64 位 Windows PowerShell 控制台。
 
-        b. 输入 Set-executionpolicy bypass。 有关详细信息，请参阅[使用 Set-ExecutionPolicy cmdlet](https://technet.microsoft.com/library/ee176961.aspx)。
+        b. 输入 Set-executionpolicy bypass。 有关详细信息，请参阅[使用 Set-ExecutionPolicy cmdlet](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-powershell-1.0/ee176961(v=technet.10))。
 
         > [!IMPORTANT]
         > 仅在 64 位 PowerShell 控制台中设置 Set-executionpolicy bypass。 若为 32 位 PowerShell 控制台设置此项，脚本不会运行。

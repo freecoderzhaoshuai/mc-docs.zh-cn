@@ -1,19 +1,19 @@
 ---
 title: 引发的常见 FabricClient 异常
 description: 描述在执行应用程序和群集管理操作时，FabricClient API 可能会引发的常见异常和错误。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 06/20/2018
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 01/13/2020
 ms.author: v-yeche
-ms.openlocfilehash: 6296f01a7c0a17c286d01a6a7ae807c76136a163
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: a5d10322bff90a6b660d83f29dfb6e60276774bd
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426276"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655372"
 ---
 # <a name="common-exceptions-and-errors-when-working-with-the-fabricclient-apis"></a>使用 FabricClient API 时常见的异常和错误
 [FabricClient](https://docs.azure.cn/dotnet/api/system.fabric.fabricclient?view=azure-dotnet) API 可让群集和应用程序管理员对 Service Fabric 造应用程序、服务或群集执行管理任务。 例如，部署、升级和删除应用程序、检查群集的运行状况或测试服务。 应用程序开发人员和群集管理员可以使用 FabricClient API 来开发用于管理 Service Fabric 群集和应用程序的工具。
@@ -25,11 +25,11 @@ ms.locfileid: "87426276"
 | [System.Fabric.FabricObjectClosedException](https://docs.azure.cn/dotnet/api/system.fabric.fabricobjectclosedexception?view=azure-dotnet) |[FabricClient](https://docs.azure.cn/dotnet/api/system.fabric.fabricclient?view=azure-dotnet) 对象处于关闭状态。 释放正在使用的 [FabricClient](https://docs.azure.cn/dotnet/api/system.fabric.fabricclient?view=azure-dotnet) 对象，然后实例化新的 [FabricClient](https://docs.azure.cn/dotnet/api/system.fabric.fabricclient?view=azure-dotnet) 对象。 |
 | [System.TimeoutException](https://docs.microsoft.com/dotnet/core/api/system.timeoutexception?view=azure-dotnet) |操作超时。[OperationTimedOut](https://docs.azure.cn/dotnet/api/system.fabric.fabricerrorcode?view=azure-dotnet) 。 |
 | [System.UnauthorizedAccessException](https://docs.microsoft.com/dotnet/core/api/system.unauthorizedaccessexception?view=azure-dotnet) |对操作的访问权限检查失败。 返回了 E_ACCESSDENIED。 |
-| [System.Fabric.FabricException](https://docs.azure.cn/dotnet/api/system.fabric.fabricexception?view=azure-dotnet) |执行操作时发生运行时错误。 任何 FabricClient 方法都可能引发 [FabricException](https://docs.azure.cn/dotnet/api/system.fabric.fabricexception?view=azure-dotnet)，[ErrorCode](https://docs.azure.cn/dotnet/api/system.fabric.fabricexception.ErrorCode?view=azure-dotnet) 属性指明了引发异常的确切原因。 [FabricErrorCode](https://docs.azure.cn/dotnet/api/system.fabric.fabricerrorcode?view=azure-dotnet) 枚举中将定义错误代码。 |
+| [System.Fabric.FabricException](https://docs.azure.cn/dotnet/api/system.fabric.fabricexception?view=azure-dotnet) |执行操作时发生运行时错误。 任何 FabricClient 方法都可能引发 [FabricException](https://docs.azure.cn/dotnet/api/system.fabric.fabricexception?view=azure-dotnet)，[ErrorCode](https://docs.azure.cn/dotnet/api/system.fabric.fabricexception.errorcode?view=azure-dotnet) 属性指明了引发异常的确切原因。 [FabricErrorCode](https://docs.azure.cn/dotnet/api/system.fabric.fabricerrorcode?view=azure-dotnet) 枚举中将定义错误代码。 |
 | [System.Fabric.FabricTransientException](https://docs.azure.cn/dotnet/api/system.fabric.fabrictransientexception?view=azure-dotnet) |由于某种暂时性错误状态，操作失败。 例如，由于副本的仲裁暂时不可访问，某项操作可能会失败。 暂时性异常对应于可重试的失败操作。 |
 
-<!-- Line 29 URL is correct of https://docs.microsoft.com/dotnet/api/system.timeoutexception?view=netframework-4.8#System_TimeoutException -->
-<!-- Line 30 URL is correct of https://docs.microsoft.com/dotnet/api/system.unauthorizedaccessexception?view=netframework-4.8#System_UnauthorizedAccessException -->
+<!-- CORRECT ON Line 20 https://docs.microsoft.com/dotnet/api/system.timeoutexception?view=netframework-4.8#System_TimeoutException -->
+<!-- CORRECT ON Line 21 https://docs.microsoft.com/dotnet/api/system.unauthorizedaccessexception?view=netframework-4.8#System_UnauthorizedAccessException -->
 
 可能在 [FabricException](https://docs.azure.cn/dotnet/api/system.fabric.fabricexception?view=azure-dotnet) 中返回的某些常见 [FabricErrorCode](https://docs.azure.cn/dotnet/api/system.fabric.fabricerrorcode?view=azure-dotnet) 错误：
 

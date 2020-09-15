@@ -3,15 +3,15 @@ title: 如何使用 Azure CLI 重设 Linux VM 的大小
 description: 如何通过更改 VM 大小来增加或减少 Linux 虚拟机。
 author: Johnnytechn
 ms.service: virtual-machines-linux
-ms.topic: article
-ms.date: 06/05/2020
+ms.topic: how-to
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.openlocfilehash: 180f9548f2f5aace0f45a630da2c4fe35c9fe4ef
-ms.sourcegitcommit: 285649db9b21169f3136729c041e4d04d323229a
+ms.openlocfilehash: 188d6db7b67070dbd3ce5f7359a36d3b8326d899
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84683875"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057501"
 ---
 # <a name="resize-a-linux-virtual-machine-using-azure-cli"></a>使用 Azure CLI 重设 Linux 虚拟机大小 
 
@@ -33,7 +33,7 @@ ms.locfileid: "84683875"
     ```azurecli
     az vm resize --resource-group myResourceGroup --name myVM --size Standard_DS3_v2
     ```
-
+   
     在此过程中，VM 将重新启动。 重新启动后，现有 OS 和数据磁盘将重新映射。 临时磁盘上的所有内容会丢失。
 
 3. 如果所需的 VM 大小未列出，则需先使用 [az vm deallocate](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-deallocate)解除分配 VM。 然后，可以通过此过程将 VM 的大小调整为区域支持的任何可用大小，再启动该 VM。 以下步骤会将名为 `myResourceGroup` 的资源组中名为 `myVM` 的 VM 解除分配、调整大小并启动：
@@ -43,7 +43,7 @@ ms.locfileid: "84683875"
     az vm resize --resource-group myResourceGroup --name myVM --size Standard_DS3_v2
     az vm start --resource-group myResourceGroup --name myVM
     ```
-
+   
    > [!WARNING]
    > 解除分配 VM 也会释放分配给该 VM 的所有动态 IP 地址。 OS 和数据磁盘不受影响。
 
@@ -53,9 +53,6 @@ ms.locfileid: "84683875"
 <!-- links -->
 [boot-diagnostics]: https://azure.microsoft.com/blog/boot-diagnostics-for-virtual-machines-v2/
 [scale-set]: ../../virtual-machine-scale-sets/tutorial-autoscale-cli.md
-
-<!-- Notice: URL is Correct on tutorial-autoscale-cli.md to replace virtual-machine-scale-sets-linux-autoscale.md-->
-
 [vm-sizes]:sizes.md
 
 <!-- Update_Description: update meta properties, wording update, update cmdlet -->

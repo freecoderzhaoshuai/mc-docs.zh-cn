@@ -1,17 +1,19 @@
 ---
 title: Service Fabric 中的 RunToCompletion 语义
 description: 介绍 Service Fabric 中的 RunToCompletion 语义。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 03/11/2020
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: df0a30bc880e5d2313f4bcfc7c8d9594d627ce28
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.openlocfilehash: 7ec3dd441d6f7c4da8f1b70ba6ee1b7847646d9d
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356259"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655539"
 ---
 # <a name="runtocompletion"></a>RunToCompletion
 
@@ -132,8 +134,8 @@ ExecutionPolicy 允许以下两个属性：
 [setup-entry-point-link]: service-fabric-run-script-at-service-startup.md
 [deployed-service-package-working-with-link]: service-fabric-hosting-model.md#work-with-a-deployed-service-package
 [deployed-code-package-link]: https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricdeployedcodepackage
-[deployed-service-package-link]: https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricdeployedservicePackage
-[fabric-client-link]: https://docs.azure.cn/dotnet/api/system.fabric.fabricclient
-[deployed-service-package-fabricclient-link]: https://docs.microsoft.com/dotnet/api/system.fabric.fabricclient.queryclient.getdeployedservicepackagelistasync
+[deployed-service-package-link]: https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricdeployedservicepackage
+[fabric-client-link]: https://docs.azure.cn/dotnet/api/system.fabric.fabricclient?view=azure-dotnet
+[deployed-service-package-fabricclient-link]: https://docs.azure.cn/dotnet/api/system.fabric.fabricclient.queryclient.getdeployedservicepackagelistasync?view=azure-dotnet
 
-<!-- Update_Description: update meta properties, wording update, update link?view=azure-dotnet -->
+<!-- Update_Description: update meta properties, wording update, update link -->

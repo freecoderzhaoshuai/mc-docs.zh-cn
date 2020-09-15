@@ -1,17 +1,19 @@
 ---
 title: Azure Service Fabric 平台级别监视
 description: 了解用于监视和诊断 Azure Service Fabric 群集的平台级别事件和日志。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 11/21/2018
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 914a7497fd7e261f24613df3244aeab44084f2fa
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.openlocfilehash: 31324e68fcf90de6600ba2ba9044b957e48fc9fb
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356196"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655097"
 ---
 # <a name="monitoring-the-cluster"></a>监视群集
 
@@ -84,7 +86,6 @@ Service Fabric 具有自身的运行状况模型，以下文章对此做了详�
 * **使用代理**  
     这是从计算机中收集性能的首选方法，因为代理通常有可以收集的可能性能指标列表，并且选择要收集或更改的指标是一个相对简单的过程。 阅读有关 Service Fabric 的[创建 Log Analytics 代理](../azure-monitor/platform/agent-windows.md)中的 Azure Monitor 提供的 Azure Monitor 日志，了解有关 Log Analytics 代理的更多信息，该代理是一个能够获取群集 VM 和已部署容器的性能数据的监视代理。
     
-    <!--URL CORRECT ON DIRECT log-analytics/log-analytics-windows-agent.md TO azure-monitor/platform/agent-windows.md-->
     <!-- Not Available on  [Azure Monitor logs integration](service-fabric-diagnostics-event-analysis-oms.md)-->
     
 * **性能计数器到 Azure 表存储**  

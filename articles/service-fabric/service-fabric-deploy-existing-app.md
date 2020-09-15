@@ -3,14 +3,17 @@ title: 将现有可执行文件部署到 Azure Service Fabric
 description: 了解如何将现有应用程序打包为来宾可执行文件，以便部署到 Service Fabric 群集。
 ms.topic: conceptual
 origin.date: 03/30/2020
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 52d47a0777157ab76b3bc99825db0031eb2bdea7
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.openlocfilehash: 2a2c341bf58ea757c962f468a1411e3577727880
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356275"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655106"
 ---
 # <a name="package-and-deploy-an-existing-executable-to-service-fabric"></a>打包现有可执行文件并将其部署到 Service Fabric
 
@@ -78,7 +81,7 @@ Yeoman 创建应用程序包，其中包含相应的应用程序和清单文件�
 
 ### <a name="create-the-package-directory-structure"></a>创建包目录结构
 
-可以首先创建目录结构，如[打包 Azure Service Fabric 应用](/service-fabric/service-fabric-package-apps)中所述。
+可以首先创建目录结构，如[打包 Azure Service Fabric 应用](./service-fabric-package-apps.md)中所述。
 
 ### <a name="add-the-applications-code-and-configuration-files"></a>添加应用程序的代码和配置文件
 
@@ -303,15 +306,15 @@ Service Fabric 服务可以采用各种“配置”进行部署。 例如，可�
 ## <a name="check-your-running-application"></a>检查正在运行的应用程序
 在 Service Fabric Explorer 中，确定服务在其中运行的节点。 在此示例中，它在节点 1 上运行：
 
-![运行服务的节点](./media/service-fabric-deploy-existing-app/nodeappinsfx.png)
+:::image type="content" source="./media/service-fabric-deploy-existing-app/nodeappinsfx.png" alt-text="运行服务的节点":::
 
 导航到该节点并浏览到应用程序后，会看到基本节点信息（包括在它磁盘上的位置）。
 
-![磁盘上的位置](./media/service-fabric-deploy-existing-app/locationondisk2.png)
+:::image type="content" source="./media/service-fabric-deploy-existing-app/locationondisk2.png" alt-text="磁盘上的位置":::
 
 如果使用服务器资源管理器浏览目录，可以找到工作目录和服务的日志文件夹，如以下屏幕截图所示：
 
-![日志的位置](./media/service-fabric-deploy-existing-app/loglocation.png)
+:::image type="content" source="./media/service-fabric-deploy-existing-app/loglocation.png" alt-text="日志的位置":::
 
 ## <a name="next-steps"></a>后续步骤
 

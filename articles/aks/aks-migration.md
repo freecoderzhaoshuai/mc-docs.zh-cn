@@ -9,12 +9,12 @@ ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: 4b5f91a78693cd248f1923caca0b283636e46bca
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: ebc71a87f95650b8e50ef075ddd6d6653d3755b9
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842535"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021557"
 ---
 <!--Can be Release after confirmation-->
 # <a name="migrate-to-azure-kubernetes-service-aks"></a>迁移到 Azure Kubernetes 服务 (AKS)
@@ -146,7 +146,7 @@ az aks create \
 * 将实时流量指向新的 AKS 群集。
 * 断开旧群集的连接。
 
-若要从空共享开始，然后创建源数据的副本，可以使用 [`az storage file copy`](https://docs.azure.cn/cli/storage/file/copy?view=azure-cli-latest) 命令迁移数据。
+若要从空共享开始，然后创建源数据的副本，可以使用 [`az storage file copy`](https://docs.azure.cn/cli/storage/file/copy) 命令迁移数据。
 
 #### <a name="migrating-persistent-volumes"></a>迁移永久性卷。
 

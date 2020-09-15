@@ -7,12 +7,12 @@ origin.date: 02/25/2020
 ms.date: 05/25/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: e7d0b71d925bb720abed25cb426c01759897b3d3
-ms.sourcegitcommit: 6c9e5b3292ade56d812e7e214eeb66aeb9b8776e
+ms.openlocfilehash: fbabe864b1700d818e081109268397d580593cd0
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86218795"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021534"
 ---
 # <a name="tutorial-upgrade-kubernetes-in-azure-kubernetes-service-aks"></a>教程：在 Azure Kubernetes 服务 (AKS) 中升级 Kubernetes
 
@@ -158,11 +158,11 @@ az group delete --name myResourceGroup --yes --no-wait
 
 [aks-intro]: ./intro-kubernetes.md
 [aks-tutorial-prepare-app]: ./tutorial-kubernetes-prepare-app.md
-[az aks show]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-show
-[az aks get-upgrades]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-get-upgrades
-[az aks upgrade]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-upgrade
-[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
-[az-group-delete]: https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-delete
+[az aks show]: https://docs.microsoft.com/cli/azure/aks#az_aks_show
+[az aks get-upgrades]: https://docs.microsoft.com/cli/azure/aks#az_aks_get_upgrades
+[az aks upgrade]: https://docs.microsoft.com/cli/azure/aks#az_aks_upgrade
+[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli
+[az-group-delete]: https://docs.azure.cn/cli/group#az-group-delete
 [sp-delete]: kubernetes-service-principal.md#additional-considerations
 
 <!-- Update_Description: update meta properties, wording update, update link -->

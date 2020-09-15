@@ -7,12 +7,12 @@ ms.author: nibaccam
 ms.service: machine-learning
 ms.topic: how-to
 ms.date: 05/14/2020
-ms.openlocfilehash: dcbead6cba3b1f9185bb588cae93760359b3c132
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: 68986738d1ffea87cb8bbb7156662fba9e1a2d84
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097356"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021211"
 ---
 # <a name="create-and-explore-azure-machine-learning-dataset-with-labels"></a>创建和浏览带标签的 Azure 机器学习数据集
 
@@ -25,7 +25,7 @@ ms.locfileid: "85097356"
 ## <a name="prerequisites"></a>先决条件
 
 * Azure 订阅。 如果没有 Azure 订阅，请在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
-* [适用于 Python 的 Azure 机器学习 SDK](https://docs.microsoft.com/python/api/overview/azure/ml/intro?view=azure-ml-py)，或 [Azure 机器学习工作室](https://ml.azure.com/)的访问权限。
+* [适用于 Python 的 Azure 机器学习 SDK](https://docs.microsoft.com/python/api/overview/azure/ml/intro?view=azure-ml-py)，或 [Azure 机器学习工作室](https://studio.ml.azure.cn/)的访问权限。
     * 安装 [azure-contrib-dataset](https://docs.microsoft.com/python/api/azureml-contrib-dataset/?view=azure-ml-py) 包
 * 机器学习工作区。 请参阅[创建 Azure 机器学习工作区](how-to-manage-workspace.md)。
 * 对 Azure 机器学习数据标记项目的访问权限。 如果没有标记项目，请使用[这些步骤](how-to-create-labeling-projects.md)创建一个。

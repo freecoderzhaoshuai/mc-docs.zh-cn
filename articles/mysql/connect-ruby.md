@@ -1,5 +1,5 @@
 ---
-title: 使用 Ruby 进行连接 - Azure Database for MySQL
+title: 快速入门：使用 Ruby 进行连接 - Azure Database for MySQL
 description: 本快速入门提供多个 Ruby 代码示例，使用这些示例可连接到适用于 MySQL 的 Azure 数据库并查询其中的数据。
 author: WenJason
 ms.author: v-jay
@@ -8,15 +8,15 @@ ms.custom: mvc
 ms.devlang: ruby
 ms.topic: quickstart
 origin.date: 5/26/2020
-ms.date: 06/29/2020
-ms.openlocfilehash: 9c86a04a27da6e40d1ccc24504f671a9a100d4e6
-ms.sourcegitcommit: 3a8a7d65d0791cdb6695fe6c2222a1971a19f745
+ms.date: 09/14/2020
+ms.openlocfilehash: c82eef93bb6e3a456c8762c2445d1e64015eaddc
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2020
-ms.locfileid: "85516615"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512840"
 ---
-# <a name="azure-database-for-mysql-use-ruby-to-connect-and-query-data"></a>Azure Database for MySQL：使用 Ruby 连接和查询数据
+# <a name="quickstart-use-ruby-to-connect-and-query-data-in-azure-database-for-mysql"></a>快速入门：使用 Ruby 连接到 Azure Database for MySQL 并查询其中的数据
 
 > [!NOTE]
 > 将要查看的是 Azure Database for MySQL 的新服务。 若要查看经典 MySQL Database for Azure 的文档，请访问[此页](https://docs.azure.cn/zh-cn/mysql-database-on-azure/)。
@@ -24,6 +24,7 @@ ms.locfileid: "85516615"
 本快速入门演示如何在 Windows、Ubuntu Linux 和 Mac 平台中使用 [Ruby](https://www.ruby-lang.org) 应用程序和 [mysql2](https://rubygems.org/gems/mysql2) gem 连接到适用于 MySQL 的 Azure 数据库。 同时还介绍了如何使用 SQL 语句在数据库中查询、插入、更新和删除数据。 本主题假设你熟悉如何使用 Ruby 进行开发，但不太熟悉 Azure Database for MySQL 的用法。
 
 ## <a name="prerequisites"></a>先决条件
+
 此快速入门使用以下任意指南中创建的资源作为起点：
 - [使用 Azure 门户创建用于 MySQL 服务器的 Azure 数据库](./quickstart-create-mysql-server-database-using-azure-portal.md)
 - [使用 Azure CLI 创建用于 MySQL 服务器的 Azure 数据库](./quickstart-create-mysql-server-database-using-azure-cli.md)

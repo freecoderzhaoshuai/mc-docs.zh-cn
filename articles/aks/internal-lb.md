@@ -9,12 +9,12 @@ ms.date: 08/10/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
-ms.openlocfilehash: 415da083edc20570c588aa2a60b1c351246f7b5c
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 9a662067114da66808d909f49573c45d65b46c9a
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842680"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020831"
 ---
 # <a name="use-an-internal-load-balancer-with-azure-kubernetes-service-aks"></a>使用包含 Azure Kubernetes 服务 (AKS) 的内部负载均衡器
 
@@ -156,13 +156,13 @@ spec:
 <!-- LINKS - Internal -->
 
 [advanced-networking]: configure-azure-cni.md
-[az-aks-show]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-show
-[az-role-assignment-create]: https://docs.azure.cn/cli/role/assignment?view=azure-cli-latest#az-role-assignment-create
+[az-aks-show]: https://docs.microsoft.com/cli/azure/aks#az_aks_show
+[az-role-assignment-create]: https://docs.azure.cn/cli/role/assignment#az-role-assignment-create
 [azure-lb-comparison]: ../load-balancer/skus.md
 [use-kubenet]: configure-kubenet.md
 [aks-quickstart-cli]: kubernetes-walkthrough.md
 [aks-quickstart-portal]: kubernetes-walkthrough-portal.md
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
 [aks-sp]: kubernetes-service-principal.md#delegate-access-to-other-azure-resources
 [different-subnet]: #specify-a-different-subnet
 

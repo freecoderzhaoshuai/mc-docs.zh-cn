@@ -4,17 +4,17 @@ description: 了解如何在 Azure 门户中为基于 Resource Manager 的虚拟
 author: Johnnytechn
 ms.service: virtual-machines
 ms.subservice: networking
-ms.topic: article
+ms.topic: how-to
 ms.workload: infrastructure-services
-ms.date: 06/05/2020
+ms.date: 09/03/2020
 ms.author: v-johya
 ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: eca6e61325a26a422c70f1979d1b4de98e7afe12
-ms.sourcegitcommit: 285649db9b21169f3136729c041e4d04d323229a
+ms.openlocfilehash: cc30ff76e5964eea61e9255f9dee77c0de12bb98
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84684018"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057666"
 ---
 # <a name="create-a-fully-qualified-domain-name-in-the-azure-portal-for-a-linux-vm"></a>在 Azure 门户中为 Linux VM 创建完全限定的域名
 
@@ -25,13 +25,13 @@ ms.locfileid: "84684018"
 
 [!INCLUDE [virtual-machines-common-portal-create-fqdn](../../../includes/virtual-machines-common-portal-create-fqdn.md)]
 
-现在可以使用此 DNS 名称（例如搭配 `ssh azureuser@mydns.chinanorth.chinacloudapp.cn`）远程连接至 VM。
+现在可以使用此 DNS 名称（例如搭配 `ssh azureuser@mydns.chinanorth.cloudapp.chinacloudapi.cn`）远程连接至 VM。
 
-<!--MOONCAKE: CORRECT ON cloudapp.azure.com to chinacloudapi.cn -->
+<!--MOONCAKE: CORRECT ON cloudapp.azure.com to cloudapp.chinacloudapi.cn -->
 
 ## <a name="next-steps"></a>后续步骤
 VM 已经有公共 IP 和 DNS 名称，现在可以部署通用应用程序框架或服务，例如 nginx、MongoDB、Docker 等等。
 
-也可以深入了解[使用 Resource Manager](../../azure-resource-manager/management/overview.md)，获取生成 Azure 部署的相关提示。
+也可以深入了解如何[使用 Resource Manager](../../azure-resource-manager/management/overview.md)，以获取生成 Azure 部署的相关提示。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

@@ -1,17 +1,20 @@
 ---
 title: 在 Azure Service Fabric 执行组件中实现功能
 description: 介绍如何以继承 StatefulService 时所使用的方式编写自己的可实现服务级功能的执行组件服务。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 03/19/2018
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 83f45e0ff87bb43c69ab4ae85a1c02c111bf5f66
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 870b43589dea3054ef893e29ffc74c32d8a82650
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356272"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655718"
 ---
 # <a name="implement-service-level-features-in-your-actor-service"></a>在执行组件服务中实现服务级功能
 
@@ -215,7 +218,7 @@ public class Program
 
 * [执行组件状态管理](service-fabric-reliable-actors-state-management.md)
 * [执行组件生命周期和垃圾回收](service-fabric-reliable-actors-lifecycle.md)
-* [执行组件 API 参考文档](https://msdn.microsoft.com/library/azure/dn971626.aspx)
+* [执行组件 API 参考文档](https://docs.microsoft.com/previous-versions/azure/dn971626(v=azure.100))
 * [.NET 代码示例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)
 * [Java 代码示例](https://github.com/Azure-Samples/service-fabric-java-getting-started)
 
@@ -227,4 +230,4 @@ public class Program
 [4]: ./media/service-fabric-reliable-actors-platform/actor-replica-role.png
 [5]: ./media/service-fabric-reliable-actors-introduction/distribution.png
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

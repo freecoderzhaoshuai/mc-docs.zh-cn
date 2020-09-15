@@ -1,17 +1,20 @@
 ---
 title: Service Fabric 备份和还原
 description: Service Fabric 备份和还原的概念性文档，该服务用于配置可靠有状态服务和 Reliable Actors 的备份。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 10/29/2018
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: c3573399eb81a4c8b8075505c0562a349b9d189b
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 7eeb2e4739eae3b9c87f8a6c576ae288772c292c
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540143"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655640"
 ---
 # <a name="backup-and-restore-reliable-services-and-reliable-actors"></a>备份和还原 Reliable Services 及 Reliable Actors
 Azure Service Fabric 是一个高可用性平台，用于复制多个节点中的状态以维护此高可用性。  因此，即使群集中的一个节点出现故障，服务也将继续可用。 尽管此平台提供的此内置冗余对某些情况来说可能已足够用了，但在特定情况下，仍需要服务备份数据（到外部存储）。
@@ -44,11 +47,11 @@ Azure Service Fabric 是一个高可用性平台，用于复制多个节点中�
 如果我们的恢复点目标是 5 分钟，则副本需要每 5 分钟备份一次。
 每次备份时，需要复制 16 GB 的检查点以及 50 MB（可使用 `CheckpointThresholdInMB` 进行配置）的日志。
 
-![完整备份示例。](media/service-fabric-reliable-services-backup-restore/FullBackupExample.PNG)
+:::image type="content" source="media/service-fabric-reliable-services-backup-restore/FullBackupExample.PNG" alt-text="完整备份示例。":::
 
 此问题的解决方案是增量备份，其中备份仅包含自上次备份以来的更改日志记录。
 
-![增量备份示例。](media/service-fabric-reliable-services-backup-restore/IncrementalBackupExample.PNG)
+:::image type="content" source="media/service-fabric-reliable-services-backup-restore/IncrementalBackupExample.PNG" alt-text="增量备份示例。":::
 
 由于增量备份只在自上次备份以来更改（不包括检查点），因此它们往往更快，但无法自行还原。
 若要还原增量备份，需要整个备份链。
@@ -149,7 +152,7 @@ protected override async Task<bool> OnDataLossAsync(RestoreContext restoreCtx, C
 > 
 
 ## <a name="deleted-or-lost-service"></a>删除或丢失服务
-如果删除了一个服务，则在还原数据之前必须首先重新创建此服务。  请务必创建具有相同配置的服务，例如，相同的分区方案，以便可以无缝地还原数据。  一旦启动服务，就必须在此服务的每个分区上调用用于还原数据的 API（上面的 `OnDataLossAsync`）。 实现此操作的一种方法是在每个分区上使用 [FabricClient.TestManagementClient.StartPartitionDataLossAsync](https://msdn.microsoft.com/library/mt693569.aspx)。  
+如果删除了一个服务，则在还原数据之前必须首先重新创建此服务。  请务必创建具有相同配置的服务，例如，相同的分区方案，以便可以无缝地还原数据。  一旦启动服务，就必须在此服务的每个分区上调用用于还原数据的 API（上面的 `OnDataLossAsync`）。 实现此操作的一种方法是在每个分区上使用 [FabricClient.TestManagementClient.StartPartitionDataLossAsync](https://docs.azure.cn/dotnet/api/system.fabric.fabricclient.testmanagementclient?view=azure-dotnet#System_Fabric_FabricClient_TestManagementClient_StartPartitionDataLossAsync_System_Guid_System_Fabric_PartitionSelector_System_Fabric_DataLossMode_)。  
 
 从这个角度来看，实现操作与上述情况相同。 每个分区需要从外部存储中还原最新的相关备份。 值得注意的一点是，分区 ID 现在可能已更改，因为运行时是动态创建分区 ID。 因此，此服务需要还原相应的分区信息和服务名称来标识每个分区要还原的正确的最新备份。
 
@@ -260,4 +263,4 @@ class MyCustomActorService : ActorService
   - [Reliable Collections 的开发人员参考](https://docs.azure.cn/dotnet/api/microsoft.servicefabric.data.collections?view=azure-dotnet#microsoft_servicefabric_data_collections)
   - [在 Azure Service Fabric 中定期备份和还原](service-fabric-backuprestoreservice-quickstart-azurecluster.md)
 
-<!--Update_Description: update meta properties, update link -->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -4,16 +4,16 @@ description: 使用 Azure Service Fabric 中的备份资源管理器来读取和
 ms.topic: conceptual
 origin.date: 07/01/2020
 author: rockboyfor
-ms.date: 08/31/2020
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 08/31/2020
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: 99d118ac2c6388bf1790d8736110c9b13c790eaf
-ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
+ms.openlocfilehash: fcea6483a36ea8e919811811425f3f9d5b8b6d8d
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89046526"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655224"
 ---
 <!--Verified Successfully-->
 # <a name="read-and-update-a-reliable-collections-backup-by-using-backup-explorer"></a>通过使用备份资源管理器读取和更新可靠集合备份
@@ -51,5 +51,4 @@ ms.locfileid: "89046526"
 * 详细了解 [Azure Service Fabric 有状态服务中的可靠集合](service-fabric-reliable-services-reliable-collections.md)。
 * 查看 [Service Fabric 最佳做法](service-fabric-best-practices-overview.md)。
 
-<!-- Update_Description: new article about backup explorer -->
-<!--NEW.date: 08/31/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

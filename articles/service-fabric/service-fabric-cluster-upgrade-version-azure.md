@@ -3,27 +3,28 @@ title: 升级群集的 Azure Service Fabric 版本
 description: 升级运行 Service Fabric 群集的 Service Fabric 代码和/或配置，包括设置群集更新模式、升级证书、添加应用程序端口、执行操作系统修补，等等。 执行升级时你会预料到哪种结果？
 ms.topic: conceptual
 origin.date: 11/12/2018
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: c7aa0915cb91584e21f5ddbd52ba21045a99d599
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.openlocfilehash: db2dc2ea771cb6cd0787e19d4ca1e0ee8b764980
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356144"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655198"
 ---
 # <a name="upgrade-the-service-fabric-version-of-a-cluster"></a>升级群集的 Service Fabric 版本
 
-对于任何现代系统，设计可升级性都是实现产品长期成功的关键。 Azure Service Fabric 群集是你拥有的，但部分由世纪互联管理的资源。 本文介绍如何升级 Azure 群集中运行的 Service Fabric 版本。
-
-<!--CORRECT ON 21Vianet-->
+对于任何现代系统，设计可升级性都是实现产品长期成功的关键。 Azure Service Fabric 群集是你拥有的，但部分由 Azure 管理的资源。 本文介绍如何升级 Azure 群集中运行的 Service Fabric 版本。
 
 可以将群集设置为 Azure 发布自动结构升级时接收该升级，也可以选择想要群集安装的受支持结构版本。
 
 通过在门户设置“upgradeMode”群集配置，或者在创建实时群集时或在这之后使用 Resource Manager，来实现此目的 
 
 > [!NOTE]
-> 确保始终让群集运行受支持的结构版本。 当我们公布新版本的 Service Fabric 发布后，则标志着自该日期起至少 60 天以后结束对旧版本的支持。 新版本[在 Service Fabric 团队博客](https://blogs.msdn.microsoft.com/azureservicefabric/)上公布。 之后新版本则可供选择。 
+> 确保始终让群集运行受支持的结构版本。 当我们公布新版本的 Service Fabric 发布后，则标志着自该日期起至少 60 天以后结束对旧版本的支持。 新版本[在 Service Fabric 团队博客](https://techcommunity.microsoft.com/t5/azure-service-fabric/bg-p/Service-Fabric)上公布。 之后新版本则可供选择。 
 > 
 > 
 
@@ -77,7 +78,7 @@ Example: https://management.chinacloudapi.cn/subscriptions/1857f442-3bce-4b96-ad
 
 Output:
 {
-  "value": [
+"value": [
     {
       "id": "subscriptions/35349203-a0b3-405e-8a23-9f1450984307/providers/Microsoft.ServiceFabric/environments/Windows/clusterVersions/5.0.1427.9490",
       "name": "5.0.1427.9490",

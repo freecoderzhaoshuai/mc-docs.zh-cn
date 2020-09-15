@@ -5,15 +5,16 @@ author: WenJason
 ms.author: v-jay
 ms.service: mariadb
 ms.devlang: azurepowershell
-ms.topic: conceptual
+ms.topic: how-to
 origin.date: 05/26/2020
-ms.date: 07/06/2020
-ms.openlocfilehash: 8339bbd12e30e6954738533862881ca83e8834ca
-ms.sourcegitcommit: 7ea2d04481512e185a60fa3b0f7b0761e3ed7b59
+ms.date: 09/14/2020
+ms.custom: devx-track-azurepowershell
+ms.openlocfilehash: 746c5ce711ea7cdb4135d50022ed1626431bd45c
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85845925"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512854"
 ---
 # <a name="how-to-back-up-and-restore-an-azure-database-for-mariadb-server-using-powershell"></a>如何使用 PowerShell 来备份和还原 Azure Database for MariaDB 服务器
 
@@ -130,4 +131,4 @@ Get-AzMariaDbServer -Name mydemoserver -ResourceGroupName myresourcegroup |
 ## <a name="next-steps"></a>后续步骤
 
 > [!div class="nextstepaction"]
-> [使用 PowerShell 自定义 Azure Database for MariaDB 服务器参数](howto-configure-server-parameters-using-powershell.md)
+> [如何使用 PowerShell 生成 Azure Database for MariaDB 连接字符串](howto-connection-string-powershell.md)

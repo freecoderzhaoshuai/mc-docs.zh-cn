@@ -1,18 +1,20 @@
 ---
 title: 将 Java 应用部署到 Azure 中的 Service Fabric 群集
 description: 本教程介绍如何将 Java Service Fabric 应用程序部署到 Azure Service Fabric 群集。
-author: rockboyfor
 ms.topic: tutorial
 origin.date: 02/26/2018
-ms.date: 04/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.custom: mvc
-ms.openlocfilehash: 988cbfc8a0a5bf8a38312528acdaa8399e8c9f89
-ms.sourcegitcommit: 564739de7e63e19a172122856ebf1f2f7fb4bd2e
+ms.custom: mvc, devx-track-java
+ms.openlocfilehash: f8c37c1a8cf156d63b8e7b4f8e2392359d02029e
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82093504"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655052"
 ---
 # <a name="tutorial-deploy-a-java-application-to-a-service-fabric-cluster-in-azure"></a>教程：将 Java 应用程序部署到 Azure 中的 Service Fabric 群集
 
@@ -24,7 +26,7 @@ ms.locfileid: "82093504"
 > * 在 Azure 中创建安全的 Linux 群集
 > * 将应用程序部署到群集
 
-在此系列教程中，你将学习如何：
+在此系列教程中，你会学习如何：
 
 > [!div class="checklist"]
 > * [生成 Java Service Fabric Reliable Services 应用程序](service-fabric-tutorial-create-java-app.md)
@@ -43,7 +45,7 @@ ms.locfileid: "82093504"
 * 安装用于 [Mac](service-fabric-get-started-mac.md) 或 [Linux](service-fabric-get-started-linux.md) 的 Service Fabric SDK
 * [安装 Python 3](https://wiki.python.org/moin/BeginnersGuide/Download)
 
-## <a name="create-a-service-fabric-cluster-in-azure"></a>在 Azure 中创建 Service Fabric 群集
+## <a name="create-a-service-fabric-cluster-in-azure"></a>缩放 Azure 中的 Service Fabric 群集
 
 以下步骤创建的资源是将应用程序部署到 Service Fabric 群集所必需的。 另外还会设置通过 ELK（Elasticsearch、Logstash、Kibana）堆栈监视解决方案的运行状况所需的资源。 具体说来，[事件中心](https://www.azure.cn/home/features/event-hubs/)用作接收器，接收来自 Service Fabric 的日志。 根据配置，它可以将日志从 Service Fabric 群集发送到 Logstash 实例。
 
@@ -99,7 +101,7 @@ ms.locfileid: "82093504"
 
 7. 访问 [Azure 门户](https://portal.azure.cn)，导航到供存储帐户使用的“共享访问签名”选项卡。 生成 SAS 令牌，如下所示。
 
-    ![生成用于存储的 SAS](./media/service-fabric-tutorial-java-deploy-azure/storagesas.png)
+    :::image type="content" source="./media/service-fabric-tutorial-java-deploy-azure/storagesas.png" alt-text="生成用于存储的 SAS":::
 
 8. 复制帐户 SAS URL，留待创建 Service Fabric 群集之用。 它类似于以下 URL：
 
@@ -187,7 +189,7 @@ ms.locfileid: "82093504"
 
 14. 运行以下命令，创建 Service Fabric 群集
 
-    ```bash
+    ```azurecli
     az sf cluster create --location 'chinanorth' --resource-group 'testlinux' --template-file sfdeploy.json --parameter-file sfdeploy.parameters.json --secret-identifier <certificate_url_from_step4>
     ```
 
@@ -221,11 +223,11 @@ ms.locfileid: "82093504"
 
 5. 若要访问 Service Fabric Explorer，请打开最常用的浏览器，然后键入 `https://testlinuxcluster.chinanorth.cloudapp.chinacloudapi.cn:19080` 。 从证书存储中选择需要用来连接到此终结点的证书。 如果使用 Linux 计算机，则必须将通过 *new-service-fabric-cluster-certificate.sh* 脚本生成的证书导入到 Chrome 中，然后才能查看 Service Fabric Explorer。 如果使用 Mac，则必须将 PFX 文件安装到密钥链中。 你注意到应用程序已安装到群集上。
 
-    ![SFX Java Azure](./media/service-fabric-tutorial-java-deploy-azure/sfxjavaonazure.png)
+    :::image type="content" source="./media/service-fabric-tutorial-java-deploy-azure/sfxjavaonazure.png" alt-text="SFX Java Azure":::
 
 6. 若要访问应用程序，请键入 `https://testlinuxcluster.chinanorth.cloudapp.chinacloudapi.cn:8080`
 
-    ![Voting 应用 Java Azure](./media/service-fabric-tutorial-java-deploy-azure/votingappjavaazure.png)
+    :::image type="content" source="./media/service-fabric-tutorial-java-deploy-azure/votingappjavaazure.png" alt-text="Voting 应用 Java Azure":::
 
 7. 若要从群集中卸载应用程序，请在 **Scripts** 文件夹中运行 *uninstall.sh* 脚本
 
@@ -235,4 +237,4 @@ ms.locfileid: "82093504"
 
 <!--Not Available on ## Next steps-->
 <!-- Not Available on [Set up Monitoring & Diagnostics](service-fabric-tutorial-java-elk.md)-->
-<!-- Update_Description: wording update, update link  -->
+<!-- Update_Description: update meta properties, wording update, update link -->

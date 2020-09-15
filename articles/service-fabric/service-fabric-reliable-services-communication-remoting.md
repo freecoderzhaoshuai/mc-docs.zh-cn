@@ -1,17 +1,20 @@
 ---
 title: 在 Service Fabric 中使用 C# 进行服务远程处理
 description: Service Fabric 远程处理允许客户端和服务使用远程过程调用来与 C# 服务进行通信。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 09/20/2017
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: cd536c9674c7a8f5f94af3d0f7138f509d5af2db
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 444beb2e7aa34b64e7685cd2b8809fb4a5579394
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742413"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655715"
 ---
 # <a name="service-remoting-in-c-with-reliable-services"></a>通过 Reliable Services 使用 C# 进行服务远程处理
 
@@ -66,7 +69,7 @@ class MyService : StatelessService, IMyService
 ```
 
 > [!NOTE]
-> 服务接口中的参数和返回类型可以是任何简单、复杂或自定义的类型，但它们必须是可以通过 .NET [DataContractSerializer](https://msdn.microsoft.com/library/ms731923.aspx) 序列化的类型。
+> 服务接口中的参数和返回类型可以是任何简单、复杂或自定义的类型，但它们必须是可以通过 .NET [DataContractSerializer](https://docs.microsoft.com/dotnet/framework/wcf/feature-details/types-supported-by-the-data-contract-serializer?view=azure-dotnet) 序列化的类型。
 >
 >
 
@@ -122,9 +125,9 @@ string message = await helloWorldClient.HelloWorldAsync();
 
     ```xml
     <Resources>
-    <Endpoints>
-      <Endpoint Name="ServiceEndpointV2" />
-    </Endpoints>
+        <Endpoints>
+          <Endpoint Name="ServiceEndpointV2" />
+        </Endpoints>
     </Resources>
     ```
 
@@ -156,9 +159,9 @@ string message = await helloWorldClient.HelloWorldAsync();
 
     ```xml
     <Resources>
-    <Endpoints>
-      <Endpoint Name="ServiceEndpointV2" />
-    </Endpoints>
+        <Endpoints>
+          <Endpoint Name="ServiceEndpointV2" />
+        </Endpoints>
     </Resources>
     ```
 
@@ -197,9 +200,9 @@ string message = await helloWorldClient.HelloWorldAsync();
     a. 在服务清单中添加名为“ServiceEndpointV2”的终结点资源。
     ```xml
     <Resources>
-    <Endpoints>
-      <Endpoint Name="ServiceEndpointV2" />  
-    </Endpoints>
+      <Endpoints>
+        <Endpoint Name="ServiceEndpointV2" />  
+      </Endpoints>
     </Resources>
     ```
 
@@ -240,9 +243,9 @@ string message = await helloWorldClient.HelloWorldAsync();
 
     ```xml
     <Resources>
-    <Endpoints>
-      <Endpoint Name="ServiceEndpointV2_1" />  
-    </Endpoints>
+      <Endpoints>
+        <Endpoint Name="ServiceEndpointV2_1" />  
+      </Endpoints>
     </Resources>
     ```
 
@@ -273,9 +276,9 @@ string message = await helloWorldClient.HelloWorldAsync();
 
     ```xml
     <Resources>
-        <Endpoints>
-          <Endpoint Name="ServiceEndpointV2_1" />  
-        </Endpoints>
+      <Endpoints>
+        <Endpoint Name="ServiceEndpointV2_1" />  
+      </Endpoints>
     </Resources>
     ```
 
@@ -307,8 +310,7 @@ string message = await helloWorldClient.HelloWorldAsync();
           });
     ```
 
-<a name="upgrade-from-remoting-v1-to-remoting-v2interfacecompatible"></a>
-## <a name="upgrade-from-remoting-v1-to-remoting-v2-interface-compatible"></a>从远程处理 V1 升级到远程处理 V2（与接口兼容）。
+## <a name="upgrade-from-remoting-v1-to-remoting-v2-interface-compatible"></a><a name="upgrade-from-remoting-v1-to-remoting-v2interfacecompatible"></a>从远程处理 V1 升级到远程处理 V2（接口兼容）
 
 若要从 V1 升级到 V2（与接口兼容，称为 V2_1），必须执行双步升级。 请按以下顺序执行步骤。
 
@@ -323,9 +325,9 @@ string message = await helloWorldClient.HelloWorldAsync();
     a. 在服务清单中添加名为“ServiceEndpointV2_1”的终结点资源。
     ```xml
     <Resources>
-    <Endpoints>
-      <Endpoint Name="ServiceEndpointV2_1" />  
-    </Endpoints>
+      <Endpoints>
+        <Endpoint Name="ServiceEndpointV2_1" />  
+      </Endpoints>
     </Resources>
     ```
 
@@ -553,8 +555,8 @@ string message = await helloWorldClient.HelloWorldAsync();
 
 ## <a name="next-steps"></a>后续步骤
 
-* [Reliable Services 中使用 OWIN 的 Web API](service-fabric-reliable-services-communication-webapi.md)
+* [Reliable Services 中使用 OWIN 的 Web API](./service-fabric-reliable-services-communication-aspnetcore.md)
 * [通过 Reliable Services 进行 Windows Communication Foundation 通信](service-fabric-reliable-services-communication-wcf.md)
 * [确保 Reliable Services 的通信安全](service-fabric-reliable-services-secure-communication.md)
 
-<!--Update_Description: update meta properties, wording update, update link -->
+<!-- Update_Description: update meta properties, wording update, update link -->

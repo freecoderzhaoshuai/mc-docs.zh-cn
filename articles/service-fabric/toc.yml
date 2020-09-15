@@ -94,6 +94,8 @@
       href: service-fabric-best-practices-capacity-scaling.md
     - name: 基础结构即代码
       href: service-fabric-best-practices-infrastructure-as-code.md
+    - name: 监视和诊断
+      href: service-fabric-best-practices-monitoring.md
     - name: 应用程序设计
       href: service-fabric-best-practices-applications.md
     - name: 生产就绪情况核对清单
@@ -133,6 +135,11 @@
           href: cluster-security-certificates.md
         - name: Service Fabric 中的证书管理
           href: cluster-security-certificate-management.md
+        - name: Azure Policy 的安全控件
+          displayName: 'regulatory, compliance, standards, domains'
+          href: ./security-controls-policy.md
+        - name: Azure 安全基准的安全基线
+          href: security-baseline.md
     - name: 术语
       href: service-fabric-technical-overview.md
     - name: 构建应用程序
@@ -268,6 +275,8 @@
               href: service-fabric-backup-restore-service-trigger-restore.md
             - name: 按需备份分区
               href: service-fabric-backup-restore-service-ondemand-backup.md
+            - name: 脱机查看和编辑可靠集合备份
+              href: backup-explorer.md
         - name: Initializer CodePackage
           href: initializer-codepackages.md
         - name: RunToCompletion
@@ -364,6 +373,10 @@
       href: service-fabric-api-management-overview.md
     - name: 应用资源模型
       href: service-fabric-concept-resource-model.md
+    - name: 托管标识
+      href: concepts-managed-identity.md
+    - name: 配置容器存储库凭据
+      href: configure-container-repository-credentials.md
 - name: 操作指南
   items:
     - name: 设置开发环境
@@ -475,7 +488,7 @@
             - name: 配置 ReliableDictionaryActorStateProvider
               href: service-fabric-reliable-actors-reliabledictionarystateprovider-configuration.md
         - name: 生成 ASP.NET Core 服务
-          href: service-fabric-add-a-web-frontend.md
+          href: ./service-fabric-reliable-services-communication-aspnetcore.md
         - name: 在 Linux 上生成 Apache Tomcat 服务器容器
           href: service-fabric-get-started-tomcat.md
         - name: 配置安全性
@@ -608,7 +621,7 @@
         - name: 设置持续集成
           items:
             - name: 使用 Azure Pipelines 设置持续集成
-              href: service-fabric-set-up-continuous-integration.md
+              href: ./service-fabric-tutorial-deploy-app-with-cicd-vsts.md
     - name: 设置和配置反向代理
       items:
         - name: 设置和配置反向代理
@@ -642,7 +655,7 @@
                 - name: 以编程方式横向扩展
                   href: service-fabric-cluster-programmatic-scaling.md
                 - name: 纵向扩展主节点类型
-                  href: service-fabric-scale-up-node-type.md
+                  href: service-fabric-scale-up-primary-node-type.md
                 - name: 添加节点类型
                   href: virtual-machine-scale-set-scale-node-type-scale-out.md
                 - name: 删除节点类型
@@ -703,6 +716,8 @@
           href: service-fabric-connect-to-secure-cluster.md
     - name: 监视和诊断
       items:
+        - name: 诊断常见方案
+          href: service-fabric-diagnostics-common-scenarios.md
         - name: 诊断代码包错误
           href: service-fabric-diagnostics-code-package-errors.md
         - name: 监视应用程序
@@ -715,12 +730,16 @@
               href: service-fabric-diagnostics-event-aggregation-eventflow.md
         - name: 监视群集
           items:
+            - name: 配置 Azure Monitor 日志以收集群集事件
+              href: service-fabric-diagnostics-oms-setup.md
             - name: 查询 EventStore API
               href: service-fabric-diagnostics-eventstore-query.md
             - name: Windows 群集诊断
               href: service-fabric-diagnostics-event-aggregation-wad.md
         - name: 监视基础架构
           items:
+            - name: 使用 Log Analytics 代理收集性能计数器
+              href: service-fabric-diagnostics-oms-agent.md
             - name: 使用 WAD 收集性能计数器
               href: service-fabric-diagnostics-perf-wad.md
         - name: 监视运行状况
@@ -829,7 +848,9 @@
       href: 'https://www.azure.cn/pricing/details/service-fabric/'
     - name: 定价计算器
       href: 'https://www.azure.cn/pricing/calculator/'
-    - name: 代码示例
+    - name: 发行说明
+      href: release-notes.md
+    - name: 示例代码
       href: 'https://aka.ms/servicefabricsamples'
     - name: 支持选项
       href: service-fabric-support.md

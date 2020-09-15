@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: tutorial
 origin.date: 06/23/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: 371b6147230a01efbca9f5b872eb82c5d8930655
-ms.sourcegitcommit: 0e778acf5aa5eb63ab233e07e7aecce3a9a5e6d4
+ms.date: 09/10/2020
+ms.openlocfilehash: 91eb2faf6de03a1ef26735081bc20a14436e6950
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87296504"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021567"
 ---
 # <a name="tutorial-index-json-blobs-from-azure-storage-using-rest"></a>教程：使用 REST 为 Azure 存储中的 JSON Blob 编制索引
 
@@ -32,7 +32,7 @@ Azure 认知搜索可使用一个知晓如何读取半结构化数据的[索引�
 
 ## <a name="prerequisites"></a>先决条件
 
-+ [Azure 存储](https://docs.azure.cn/storage/common/storage-quickstart-create-account)
++ [Azure 存储](../storage/common/storage-account-create.md)
 + [Postman 桌面应用](https://www.getpostman.com/)
 + [创建](search-create-service-portal.md)或[查找现有搜索服务](https://portal.azure.cn/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) 
 
@@ -73,7 +73,7 @@ Azure 认知搜索可使用一个知晓如何读取半结构化数据的[索引�
 
 1. 单击“Blob”服务。 
 
-1. [创建一个 Blob 容器](https://docs.azure.cn/storage/blobs/storage-quickstart-blobs-portal)用于包含示例数据。 可将“公共访问级别”设为任何有效值。
+1. [创建一个 Blob 容器](../storage/blobs/storage-quickstart-blobs-portal.md)用于包含示例数据。 可将“公共访问级别”设为任何有效值。
 
 1. 创建容器后，将其打开，然后在命令栏中选择“上传”  。
 
@@ -314,7 +314,7 @@ URI 必须指定 api-version，每个调用应返回 **201 Created**。 用于�
             . . . 
     ```
 
-1. 添加 `$select` 查询参数以将结果限制为更少的字段：`https://[service name].search.azure.cn/indexes/clinical-trials-json-index/docs?search=*&$select=Gender,metadata_storage_size&api-version=2019-05-06&$count=true`。  对于此查询，有 100 个匹配的文档，但默认情况下，Azure 认知搜索仅在结果中返回 50 个文档。
+1. 添加 `$select` 查询参数以将结果限制为更少的字段：`https://[service name].search.azure.cn/indexes/clinical-trials-json-index/docs?search=*&$select=Gender,metadata_storage_size&api-version=2020-06-30&$count=true`。  对于此查询，有 100 个匹配的文档，但默认情况下，Azure 认知搜索仅在结果中返回 50 个文档。
 
    ![参数化查询](media/search-semi-structured-data/lastquery.png "参数化查询")
 

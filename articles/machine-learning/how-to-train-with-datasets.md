@@ -12,12 +12,12 @@ ms.reviewer: nibaccam
 ms.date: 07/31/2020
 ms.topic: conceptual
 ms.custom: how-to, devx-track-python
-ms.openlocfilehash: 267a44b24958c9ded1642ae7713c99b832e1b712
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 66a0f3762997edd0478df823c451162704b7e1f1
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88946948"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020997"
 ---
 # <a name="train-with-datasets-in-azure-machine-learning"></a>使用 Azure 机器学习中的数据集进行训练
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -115,7 +115,7 @@ experiment_run.wait_for_completion(show_output=True)
 
 ### <a name="create-a-filedataset"></a>创建 FileDataset
 
-以下示例从 Web URL 创建未注册的 FileDataset。 从其他来源详细了解[如何创建数据集](https://aka.ms/azureml/howto/createdatasets)。
+以下示例从 Web URL 创建未注册的 FileDataset。 从其他来源详细了解[如何创建数据集](how-to-create-register-datasets.md)。
 
 ```Python
 from azureml.core.dataset import Dataset

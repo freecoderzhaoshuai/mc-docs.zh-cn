@@ -9,13 +9,13 @@ ms.reviewer: sgilley
 ms.service: machine-learning
 ms.subservice: core
 ms.topic: how-to
-ms.date: 04/21/2020
-ms.openlocfilehash: a91be7802f9fe3a7631ebc4978ae9c31e97fa913
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.date: 06/27/2020
+ms.openlocfilehash: 28dca03ae58f5b24df134163b439b0fa7f7ed40d
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88227908"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021487"
 ---
 # <a name="how-to-run-jupyter-notebooks-in-your-workspace-preview"></a>如何在工作区中运行 Jupyter Notebook（预览）
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -40,7 +40,7 @@ ms.locfileid: "88227908"
 
 创建新笔记本的步骤： 
 
-1. 在 [Azure 机器学习工作室](https://ml.azure.com)中打开工作区。
+1. 在 [Azure 机器学习工作室](https://studio.ml.azure.cn)中打开工作区。
 1. 在左侧选择“笔记本”。 
 1. 在“我的文件”部分的“用户文件”列表上方，选择“新建文件”图标。
 
@@ -74,7 +74,7 @@ ms.locfileid: "88227908"
 
 访问终端的步骤：
 
-1. 在 [Azure 机器学习工作室](https://ml.azure.com)中打开工作区。
+1. 在 [Azure 机器学习工作室](https://studio.ml.azure.cn)中打开工作区。
 1. 在左侧选择“笔记本”。
 1. 选择左侧“用户文件”部分中的任何笔记本。  如果没有笔记本，请先[创建笔记本](#create)
 1. 选择“计算”目标或新建一个目标，然后等待目标运行。
@@ -225,7 +225,7 @@ Azure 机器学习在你创建 ipynb 文件时会创建一个检查点文件。
 
 ## <a name="find-compute-details"></a>查找计算详细信息 
 
-有关计算实例的详细信息，可以访问[工作室](https://ml.azure.com)的“计算”页。
+有关计算实例的详细信息，可以访问[工作室](https://studio.ml.azure.cn)的“计算”页。
 
 ## <a name="next-steps"></a>后续步骤
 

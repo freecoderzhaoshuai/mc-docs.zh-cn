@@ -11,12 +11,12 @@ ms.reviewer: jmartens, larryfr, vaidyas, laobri, tracych
 ms.author: trmccorm
 author: tmccrmck
 ms.date: 07/16/2020
-ms.openlocfilehash: 7089c7c79b5da9aea867429e51b33f124e8fc87d
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 9670c5ec019328d3a7c512e2d3f46425a5b1e267
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228222"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020964"
 ---
 # <a name="debug-and-troubleshoot-parallelrunstep"></a>对 ParallelRunStep 进行调试和故障排除
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -25,11 +25,11 @@ ms.locfileid: "88228222"
 
 ## <a name="testing-scripts-locally"></a>在本地测试脚本
 
-有关机器学习管道的信息，请参阅[在本地测试脚本部分](how-to-debug-pipelines.md#testing-scripts-locally)。 ParallelRunStep 作为 ML 管道中的一个步骤运行，因此相同的答案对两种情况均适用。
+有关机器学习管道的信息，请参阅[在本地测试脚本部分](how-to-debug-pipelines.md#debug-scripts-locally)。 ParallelRunStep 作为 ML 管道中的一个步骤运行，因此相同的答案对两种情况均适用。
 
 ## <a name="debugging-scripts-from-remote-context"></a>从远程上下文调试脚本
 
-要实现从在本地调试评分脚本到在实际管道中调试评分脚本这一飞跃可能很困难。 有关如何在门户中查找日志的信息，请参阅[有关从远程上下文调试脚本的机器学习管道部分](how-to-debug-pipelines.md#debugging-scripts-from-remote-context)。 该部分中的信息也适用于 ParallelRunStep。
+要实现从在本地调试评分脚本到在实际管道中调试评分脚本这一飞跃可能很困难。 有关如何在门户中查找日志的信息，请参阅[有关从远程上下文调试脚本的机器学习管道部分](how-to-debug-pipelines.md#finding-and-reading-pipeline-log-files)。 该部分中的信息也适用于 ParallelRunStep。
 
 例如，日志文件 `70_driver_log.txt` 包含来自启动 ParallelRunStep 代码的控制器的信息。
 

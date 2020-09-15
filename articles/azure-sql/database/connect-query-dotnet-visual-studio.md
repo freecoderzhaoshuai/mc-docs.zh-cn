@@ -5,20 +5,20 @@ titleSuffix: Azure SQL Database & SQL Managed Instance
 services: sql-database
 ms.service: sql-database
 ms.subservice: development
-ms.custom: sqldbrb=2 
+ms.custom: devx-track-csharp, sqldbrb=2
 ms.devlang: dotnet
 ms.topic: quickstart
 author: WenJason
 ms.author: v-jay
 ms.reviewer: ''
-origin.date: 05/29/2020
-ms.date: 08/17/2020
-ms.openlocfilehash: dce6100dd46269b9e6725eb6bdf302d7edb97ecd
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+origin.date: 08/10/2020
+ms.date: 09/14/2020
+ms.openlocfilehash: ebf0e0f6c9489bf1a4210340ce6b098a4ba76b44
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222830"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014217"
 ---
 # <a name="quickstart-use-net-and-c-in-visual-studio-to-connect-to-and-query-a-database-in-azure-sql-database-or-azure-sql-managed-instance"></a>快速入门：使用 Visual Studio 中的 .NET 和 C# 来连接和查询 Azure SQL 数据库中的数据库或 Azure SQL 托管实例
 [!INCLUDE[appliesto-sqldb-sqlmi](../includes/appliesto-sqldb-sqlmi.md)]
@@ -63,7 +63,7 @@ ms.locfileid: "88222830"
 
 ## <a name="create-code-to-query-the-database-in-azure-sql-database"></a>创建用于查询 Azure SQL 数据库中的数据库的代码
 
-1. 在 Visual Studio 中，选择“文件” > “新建” > “项目”。 
+1. 在 Visual Studio 中，创建新的项目。 
    
 1. 在“新建项目”对话框中，选择“Visual C#”，然后选择“控制台应用(.NET Framework)”  。
    
@@ -71,9 +71,9 @@ ms.locfileid: "88222830"
    
 1. 选择“项目” > “管理 NuGet 包” 。 
    
-1. 在“NuGet 包管理器”中，选择“浏览”选项卡，然后搜索并选择“System.Data.SqlClient”  。
+1. 在“NuGet 包管理器”中，选择“浏览”选项卡，然后搜索并选择“Microsoft.Data.SqlClient”  。
    
-1. 在“System.Data.SqlClient”页上选择“安装” 。 
+1. 在“Microsoft.Data.SqlClient”页上选择“安装” 。 
    - 如果出现提示，请选择“确定”继续安装。 
    - 如果显示“接受许可证”窗口，则选择“我接受” 。
    
@@ -86,7 +86,7 @@ ms.locfileid: "88222830"
    
    ```csharp
    using System;
-   using System.Data.SqlClient;
+   using Microsoft.Data.SqlClient;
    using System.Text;
    
    namespace sqltest

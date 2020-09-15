@@ -16,12 +16,12 @@ ms.workload: infrastructure-services
 origin.date: 11/28/2017
 ms.date: 04/01/2018
 ms.author: v-yiso
-ms.openlocfilehash: a5948cf6f5ccb62f26afe0e93b6c9d1a3c0412b0
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 7b1cd60942549a689e513e7a987f33f002ee42f7
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74388966"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021625"
 ---
 # <a name="reset-a-failed-expressroute-circuit"></a>重置有故障的 ExpressRoute 线路
 
@@ -31,7 +31,7 @@ ms.locfileid: "74388966"
 
 ## <a name="reset-a-circuit"></a>重置线路
 
-1. 安装最新版本的 Azure 资源管理器 PowerShell cmdlet。 有关详细信息，请参阅[安装和配置 Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/install-azurerm-ps)。
+1. 安装最新版本的 Azure 资源管理器 PowerShell cmdlet。 有关详细信息，请参阅[安装和配置 Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps)。
 
 2. 使用提升的权限打开 PowerShell 控制台，并连接到帐户。 使用下面的示例来帮助连接：
 

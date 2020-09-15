@@ -3,16 +3,18 @@ title: 在 Azure Kubernetes 服务 (AKS) 中使用 Pod 安全策略
 description: 了解如何在 Azure Kubernetes 服务 (AKS) 中使用 PodSecurityPolicy 控制 Pod 许可
 services: container-service
 ms.topic: article
-ms.date: 08/10/2020
+origin.date: 07/21/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: yes|no
 ms.testdate: 08/10/2020null
 ms.author: v-yeche
-ms.openlocfilehash: 06b3f1654f67dc22abc32f7571ed30aa2e9c4ca9
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: b2eb2411d7891c494e3f837fa7b8e703c859156e
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842728"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021528"
 ---
 <!--Verified successfully-->
 # <a name="preview---secure-your-cluster-using-pod-security-policies-in-azure-kubernetes-service-aks"></a>预览 - 在 Azure Kubernetes 服务 (AKS) 中使用 Pod 安全策略保护群集
@@ -455,19 +457,17 @@ kubectl delete namespace psp-aks
 
 [aks-quickstart-cli]: kubernetes-walkthrough.md
 [aks-quickstart-portal]: kubernetes-walkthrough-portal.md
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
 [network-policies]: use-network-policies.md
-[az-feature-register]: https://docs.azure.cn/cli/feature?view=azure-cli-latest#az-feature-register
-[az-feature-list]: https://docs.azure.cn/cli/feature?view=azure-cli-latest#az-feature-list
-[az-provider-register]: https://docs.azure.cn/cli/provider?view=azure-cli-latest#az-provider-register
-[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-get-credentials
-[az-aks-update]: https://docs.microsoft.com/cli/azure/ext?view=azure-cli-latest#ext-aks-preview-az-aks-update
-[az-extension-add]: https://docs.azure.cn/cli/extension?view=azure-cli-latest#az-extension-add
+[az-feature-register]: https://docs.azure.cn/cli/feature#az-feature-register
+[az-feature-list]: https://docs.azure.cn/cli/feature#az-feature-list
+[az-provider-register]: https://docs.azure.cn/cli/provider#az-provider-register
+[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks#az_aks_get_credentials
+[az-aks-update]: https://docs.microsoft.com/cli/azure/ext#ext-aks-preview-az-aks-update
+[az-extension-add]: https://docs.azure.cn/cli/extension#az-extension-add
 [aks-support-policies]: support-policies.md
 [aks-faq]: faq.md
-[az-extension-add]: https://docs.azure.cn/cli/extension?view=azure-cli-latest#az-extension-add
-[az-extension-update]: https://docs.azure.cn/cli/extension?view=azure-cli-latest#az-extension-update
+[az-extension-add]: https://docs.azure.cn/cli/extension#az-extension-add
+[az-extension-update]: https://docs.azure.cn/cli/extension#az-extension-update
 
-
-<!-- Update_Description: new article about use pod security policies -->
-<!--NEW.date: 08/10/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

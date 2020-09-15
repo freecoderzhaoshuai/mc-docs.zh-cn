@@ -4,17 +4,18 @@ titleSuffix: Azure Kubernetes Service
 description: 了解如何安装和配置 NGINX 入口控制器，该控制器使用 Let's Encrypt 在 Azure Kubernetes 服务 (AKS) 群集中自动生成 TLS 证书。
 services: container-service
 ms.topic: article
-origin.date: 07/21/2020
-ms.date: 08/10/2020
+origin.date: 08/17/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
-ms.openlocfilehash: 1ba6b044b7956257ec1a10ede2d79b950aa21c27
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: 65c4008290783b201e5df892f6cedc6929e86ce9
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222728"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020833"
 ---
 # <a name="create-an-https-ingress-controller-on-azure-kubernetes-service-aks"></a>在 Azure Kubernetes 服务 (AKS) 中创建 HTTPS 入口控制器
 
@@ -62,11 +63,11 @@ ms.locfileid: "88222728"
 # Create a namespace for your ingress resources
 kubectl create namespace ingress-basic
 
-# Add the official stable repo
-helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+# Add the ingress-nginx repository
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 
 # Use Helm to deploy an NGINX ingress controller
-helm install nginx stable/nginx-ingress \
+helm install nginx-ingress ingress-nginx/ingress-nginx \
     --namespace ingress-basic \
     --set controller.replicaCount=2 \
     --set controller.image.registry=usgcr.azk8s.cn \
@@ -82,11 +83,10 @@ helm install nginx stable/nginx-ingress \
 若要获取公共 IP 地址，请使用 `kubectl get service` 命令。 将 IP 地址分配给服务需要几分钟时间。
 
 ```
-$ kubectl get service -l app=nginx-ingress --namespace ingress-basic
+$ kubectl --namespace ingress-basic get services -o wide -w nginx-ingress-ingress-nginx-controller
 
-NAME                                             TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)                      AGE
-nginx-ingress-controller                         LoadBalancer   10.0.182.160   MY_EXTERNAL_IP  80:30920/TCP,443:30426/TCP   20m
-nginx-ingress-default-backend                    ClusterIP      10.0.255.77    <none>          80/TCP                       20m
+NAME                                     TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)                      AGE   SELECTOR
+nginx-ingress-ingress-nginx-controller   LoadBalancer   10.0.74.133   EXTERNAL_IP     80:32486/TCP,443:30953/TCP   44s   app.kubernetes.io/component=controller,app.kubernetes.io/instance=nginx-ingress,app.kubernetes.io/name=ingress-nginx
 ```
 
 尚未创建入口规则。 如果浏览到公共 IP 地址，将显示 NGINX 入口控制器的默认 404 页面。
@@ -130,9 +130,6 @@ NGINX 入口控制器支持 TLS 终止。 可通过多种方法为 HTTPS 检索�
 若要安装证书管理器控制器，请执行以下命令：
 
 ```console
-# Install the CustomResourceDefinition resources separately
-kubectl apply --validate=false -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.13/deploy/manifests/00-crds.yaml
-
 # Label the ingress-basic namespace to disable resource validation
 kubectl label namespace ingress-basic cert-manager.io/disable-validation=true
 
@@ -146,7 +143,9 @@ helm repo update
 helm install \
   cert-manager \
   --namespace ingress-basic \
-  --version v0.13.0 \
+  --version v0.16.1 \
+  --set installCRDs=true \
+  --set nodeSelector."beta\.kubernetes\.io/os"=linux \
   jetstack/cert-manager
 ```
 
@@ -173,6 +172,10 @@ spec:
     - http01:
         ingress:
           class: nginx
+          podTemplate:
+            spec:
+              nodeSelector:
+                "kubernetes.io/os": linux
 ```
 
 若要创建证书颁发者，请使用 `kubectl apply` 命令。
@@ -288,7 +291,8 @@ metadata:
   name: hello-world-ingress
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/use-regex: "true"
     cert-manager.io/cluster-issuer: letsencrypt
 spec:
   tls:
@@ -302,11 +306,15 @@ spec:
       - backend:
           serviceName: aks-helloworld-one
           servicePort: 80
-        path: /(.*)
+        path: /hello-world-one(/|$)(.*)
       - backend:
           serviceName: aks-helloworld-two
           servicePort: 80
         path: /hello-world-two(/|$)(.*)
+      - backend:
+          serviceName: aks-helloworld-one
+          servicePort: 80
+        path: /(.*)
 ---
 apiVersion: networking.k8s.io/v1beta1
 kind: Ingress
@@ -315,6 +323,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /static/$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
     cert-manager.io/cluster-issuer: letsencrypt
 spec:
   tls:
@@ -432,7 +441,7 @@ kubectl delete namespace ingress-basic
 
 <!-- LINKS - external -->
 
-[az-network-dns-record-set-a-add-record]: https://docs.azure.cn/cli/network/dns/record-set/a?view=azure-cli-latest#az-network-dns-record-set-a-add-record
+[az-network-dns-record-set-a-add-record]: https://docs.azure.cn/cli/network/dns/record-set/a#az-network-dns-record-set-a-add-record
 
 <!--Not Available on [custom-domain]: ../app-service/manage-custom-dns-buy-domain.md#buy-the-domain-->
 
@@ -451,9 +460,9 @@ kubectl delete namespace ingress-basic
 <!-- LINKS - internal -->
 
 [use-helm]: kubernetes-helm.md
-[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
-[az-aks-show]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-show
-[az-network-public-ip-create]: https://docs.azure.cn/cli/network/public-ip?view=azure-cli-latest#az-network-public-ip-create
+[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli
+[az-aks-show]: https://docs.microsoft.com/cli/azure/aks#az_aks_show
+[az-network-public-ip-create]: https://docs.azure.cn/cli/network/public-ip#az-network-public-ip-create
 [aks-ingress-internal]: ingress-internal-ip.md
 [aks-ingress-static-tls]: ingress-static-ip.md
 [aks-ingress-basic]: ingress-basic.md
@@ -464,6 +473,6 @@ kubectl delete namespace ingress-basic
 [aks-quickstart-cli]: kubernetes-walkthrough.md
 [aks-quickstart-portal]: kubernetes-walkthrough-portal.md
 [client-source-ip]: concepts-network.md#ingress-controllers
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
 
 <!-- Update_Description: update meta properties, wording update, update link -->

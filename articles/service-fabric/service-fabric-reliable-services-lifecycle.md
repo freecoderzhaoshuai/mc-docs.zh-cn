@@ -1,17 +1,19 @@
 ---
 title: Reliable Services 生命周期概述
 description: 了解 Azure Service Fabric Reliable Services 应用程序中的生命周期事件以实现有状态和无状态服务。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 08/18/2017
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 2af9d57d4eb3b82f8c3a4ae8ef2fa24d59afe1d2
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 9f2a5704ee39421d187ee161be5e4721f391b2cf
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79292465"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655151"
 ---
 # <a name="reliable-services-lifecycle-overview"></a>Reliable Services 生命周期概述
 > [!div class="op_single_selector"]
@@ -56,7 +58,6 @@ ms.locfileid: "79292465"
 1. 并行：
     - 关闭任何打开的侦听器。 对每个侦听器调用 `ICommunicationListener.CloseAsync()`。
     - 取消传递给 `RunAsync()` 的取消令牌。 检查取消令牌的 `IsCancellationRequested` 属性是否返回 true，如果调用令牌的 `ThrowIfCancellationRequested` 方法，则会引发 `OperationCanceledException`。
-
 2. 如果存在，则在针对每个侦听器完成 `CloseAsync()` 并且完成 `RunAsync()` 后，调用服务的 `StatelessService.OnCloseAsync()` 方法。  当要正常关闭无状态服务实例时调用 OnCloseAsync。 升级服务代码、由于负载均衡而移动服务实例或是检测到暂时性故障时，可能会出现这种情况。 重写 `StatelessService.OnCloseAsync()` 并不常见，但它可以用于安全地关闭资源、停止后台处理、完成外部状态保存或关闭现有连接。
 3. 完成 `StatelessService.OnCloseAsync()` 后，销毁服务对象。
 
@@ -132,4 +133,4 @@ Service Fabric 更改有状态服务的主副本的原因有多种。 最常见�
 - [Reliable Services 快速启动](service-fabric-reliable-services-quick-start.md)
 - [副本和实例](service-fabric-concepts-replica-lifecycle.md)
 
-<!--Update_Description: update meta properties, wording update  -->
+<!-- Update_Description: update meta properties, wording update, update link -->

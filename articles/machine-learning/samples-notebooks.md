@@ -11,12 +11,12 @@ ms.author: sgilley
 ms.reviewer: sgilley
 ms.date: 03/05/2020
 ms.custom: seodec18
-ms.openlocfilehash: 6aa4f0048b595447d626e8b373509b753cd6b4f2
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: 7aab795728a5f3ad09fbbf38bf3763fdfc09f981
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097418"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021509"
 ---
 # <a name="explore-azure-machine-learning-with-jupyter-notebooks"></a>使用 Jupyter Notebook 探索 Azure 机器学习
 
@@ -55,7 +55,7 @@ Data Science Virtual Machine (DSVM) 是专为研究数据科学而构建的自�
 
 ## <a name="next-steps"></a>后续步骤
 
-浏览[示例笔记本](https://aka.ms/aml-notebooks)，了解 Azure 机器学习的功能。
+浏览[示例笔记本](https://github.com/Azure/MachineLearningNotebooks)，了解 Azure 机器学习的功能。
 
 有关 GitHub 示例项目和示例的详细信息，请参阅以下存储库：
 + [Microsoft/MLOps](https://github.com/Microsoft/MLOps)

@@ -7,14 +7,14 @@ author: luiscabrer
 ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
-origin.date: 02/20/2020
-ms.date: 06/09/2020
-ms.openlocfilehash: fe5397dbf6252a8f7eb645b4372a507054ae5feb
-ms.sourcegitcommit: 5656c18d7d2faa09329b1a15e352d1622e252d5f
+origin.date: 05/06/2020
+ms.date: 09/10/2020
+ms.openlocfilehash: 94c6cc55ff4f15427a4b7bcb688074b40893d556
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86862839"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021131"
 ---
 # <a name="how-to-add-a-custom-skill-to-an-azure-cognitive-search-enrichment-pipeline"></a>如何向 Azure 认知搜索扩充管道添加自定义技能
 

@@ -3,14 +3,17 @@ title: Azure Service Fabric 中的可靠并发队列
 description: ReliableConcurrentQueue 是一个高吞吐量队列，它允许并行排队和取消排队。
 ms.topic: conceptual
 origin.date: 05/01/2017
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 5ba15ce07841eeefe27b8d792e76bac73a19bb97
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: cf54592ac947d744101bb36fd6667edb63685aa1
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742302"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655352"
 ---
 # <a name="introduction-to-reliableconcurrentqueue-in-azure-service-fabric"></a>Azure Service Fabric 中的可靠并发队列简介
 可靠并发队列是一种异步的、事务性的已复制队列，其特点是排队和取消排队操作的高并发性。 它旨在降低[可靠队列](https://docs.azure.cn/dotnet/api/microsoft.servicefabric.data.collections.ireliablequeue-1?view=azure-dotnet#microsoft_servicefabric_data_collections_ireliablequeue_1)提供的严格的 FIFO 排序要求，代之以“尽力排序”要求，从而提高吞吐量并降低延迟。
@@ -29,7 +32,9 @@ ms.locfileid: "75742302"
 
 在有多个并发事务需要执行排队和/或取消排队操作的情况下，可靠并发队列相对于[可靠队列](https://docs.azure.cn/dotnet/api/microsoft.servicefabric.data.collections.ireliablequeue-1?view=azure-dotnet#microsoft_servicefabric_data_collections_ireliablequeue_1)而言可以提高吞吐量并降低延迟。
 
-可靠并发队列的一个使用示例是[消息队列](https://en.wikipedia.org/wiki/Message_queue)方案。 在该方案中，一个或多个消息生成者会创建项并将其添加到队列中，同时还会有一个或多个消息使用者从队列拉取消息并对其进行处理。 多个生成者和使用者可以独立操作，使用并发事务来处理队列。
+可靠并发队列的一个使用示例是消息队列方案。 在该方案中，一个或多个消息生成者会创建项并将其添加到队列中，同时还会有一个或多个消息使用者从队列拉取消息并对其进行处理。 多个生成者和使用者可以独立操作，使用并发事务来处理队列。
+
+<!--Not Available on [Message Queue](https://en.wikipedia.org/wiki/Message_queue)-->
 
 ## <a name="usage-guidelines"></a>使用指南
 * 队列希望队列中的项的保留期较短。 换句话说，项呆在队列中的时间不宜过长。
@@ -338,8 +343,8 @@ using (var txn = this.StateManager.CreateTransaction())
 * [Reliable Services 通知](service-fabric-reliable-services-notifications.md)
 * [Reliable Services 备份和还原（灾难恢复）](service-fabric-reliable-services-backup-restore.md)
 * [可靠状态管理器配置](service-fabric-reliable-services-configuration.md)
-* [Service Fabric Web API 服务入门](service-fabric-reliable-services-communication-webapi.md)
-* [Reliable Services 编程模型的高级用法](service-fabric-reliable-services-advanced-usage.md)
+* [Service Fabric Web API 服务入门](./service-fabric-reliable-services-communication-aspnetcore.md)
+* [Reliable Services 编程模型的高级用法](./service-fabric-reliable-services-lifecycle.md)
 * [可靠集合的开发人员参考](https://docs.azure.cn/dotnet/api/microsoft.servicefabric.data.collections?view=azure-dotnet#microsoft_servicefabric_data_collections)
 
 <!-- Update_Description: update meta properties, wording update, update link -->

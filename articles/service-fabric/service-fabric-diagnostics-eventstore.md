@@ -1,17 +1,19 @@
 ---
 title: Azure Service Fabric 事件存储
 description: 了解 Azure Service Fabric 的 EventStore，通过它可以随时了解和监视群集或工作负荷的状态。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 06/06/2019
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: fff6fb8af9cd19177a557e2a75437a27d0b33520
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 78854d013d404e6786e2d364f70884ca9cacf283
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540435"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655377"
 ---
 # <a name="eventstore-overview"></a>EventStore 概述
 
@@ -27,7 +29,7 @@ EventStore 是有状态 Service Fabric 服务，它维护群集中的事件。 �
 * 确认正在正确处理对群集执行的管理操作
 * 获取 Service Fabric 如何与特定实体进行交互的“快照”
 
-![EventStore](media/service-fabric-diagnostics-eventstore/eventstore.png)
+:::image type="content" source="media/service-fabric-diagnostics-eventstore/eventstore.png" alt-text="EventStore":::
 
 若要查看 EventStore 中可用的事件的完整列表，请参阅 [Service Fabric 事件](service-fabric-diagnostics-event-generation-operational.md)。
 
@@ -131,4 +133,4 @@ EventStore 服务还能够将群集中的事件相关联。 通过查看在同�
 * 查看 API 调用的完整列表 - [EventStore REST API 参考](https://docs.microsoft.com/rest/api/servicefabric/sfclient-index-eventsstore)
 * 了解有关监视群集的详细信息 - [监视群集和平台](service-fabric-diagnostics-event-generation-infra.md)。
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

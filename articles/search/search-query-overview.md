@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 06/22/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: bef4f61daba7492d90daf8fed3c4c2d98e1acd11
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: 3235e7a5c4612123820a860c781d0e5e00f5c73a
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471843"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020912"
 ---
 # <a name="query-types-and-composition-in-azure-cognitive-search"></a>Azure 认知搜索中的查询类型和组成部分
 
@@ -170,5 +170,5 @@ Azure 认知搜索可轻松对搜索结果进行分页。 使用 **`top`** 和 *
 
 + [Azure 认知搜索中全文搜索的工作原理（查询分析体系结构）](search-lucene-query-architecture.md)
 + [搜索资源管理器](search-explorer.md)
-+ [如何在 .NET 中进行查询](search-query-dotnet.md)
-+ [如何在 REST 中进行查询](search-create-index-rest-api.md)
++ [如何在 .NET 中进行查询](./search-get-started-dotnet.md)
++ [如何在 REST 中进行查询](./search-get-started-powershell.md)

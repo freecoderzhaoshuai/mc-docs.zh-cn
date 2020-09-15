@@ -3,14 +3,17 @@ title: 更新群集以使用证书公用名称
 description: 了解如何将 Service Fabric 群集从使用证书指纹切换为使用证书公用名称。
 ms.topic: conceptual
 origin.date: 09/06/2019
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 4ad9f3225be6f749e34b0b45ae0c9c68dfb380fc
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.openlocfilehash: c5398068ec7362994adc57571ccfaa928ff8798c
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356271"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655660"
 ---
 # <a name="change-cluster-from-certificate-thumbprint-to-common-name"></a>将群集从证书指纹更改为公用名称
 两个证书不能具有相同的指纹，具有相同的指纹会使群集证书滚动更新或管理变得困难。 但是，多个证书可以具有相同的公用名称或使用者。  将已部署的群集从使用证书指纹切换为使用证书公用名称会使证书管理更加简单。 本文介绍了如何将正在运行的 Service Fabric 群集更新为使用证书公用名称而非证书指纹。
@@ -21,12 +24,14 @@ ms.locfileid: "84356271"
 [!INCLUDE [updated-for-az](../../includes/updated-for-az.md)]
 
 ## <a name="get-a-certificate"></a>获取证书
-首先，从[证书颁发机构 (CA)](https://wikipedia.org/wiki/Certificate_authority) 获取证书。  证书的公用名称应该是针对你拥有的自定义域，并且是从域注册机构购买的。 例如，“azureservicefabricbestpractices.com”；不是 Azure 员工的用户不能为 MS 域预配证书，因此不能使用 LB 或流量管理器的 DNS 名称作为证书的公用名称，而需预配 [Azure DNS 区域](/dns/dns-delegate-domain-azure-dns)（前提是自定义域可以在 Azure 中解析）。 如果希望门户反映群集的自定义域别名，则还需将拥有的自定义域声明为群集的“managementEndpoint”。
+首先，从证书颁发机构 (CA) 获取证书。  证书的公用名称应该是针对你拥有的自定义域，并且是从域注册机构购买的。 例如，“azureservicefabricbestpractices.com”；不是 Azure 员工的用户不能为 MS 域预配证书，因此不能使用 LB 或流量管理器的 DNS 名称作为证书的公用名称，而需预配 [Azure DNS 区域](/dns/dns-delegate-domain-azure-dns)（前提是自定义域可以在 Azure 中解析）。 如果希望门户反映群集的自定义域别名，则还需将拥有的自定义域声明为群集的“managementEndpoint”。
+
+<!--Not Available on [certificate authority (CA)](https://wikipedia.org/wiki/Certificate_authority)-->
 
 对于测试用途，可以从免费或开放的证书颁发机构获取由 CA 签名的证书。
 
 > [!NOTE]
-> 不支持自签名证书，包括在 Azure 门户中部署 Service Fabric 群集时生成的证书。
+> 不支持自签名证书，包括在 Azure 门户中部署 Service Fabric 群集时生成的证书。 
 
 ## <a name="upload-the-certificate-and-install-it-in-the-scale-set"></a>上传证书并将其安装在规模集中
 在 Azure 中，Service Fabric 群集部署在虚拟机规模集上。  将证书上传到密钥保管库，然后将其安装在运行群集的虚拟机规模集上。
@@ -180,7 +185,7 @@ Update-AzVmss -ResourceGroupName $VmssResourceGroupName -Verbose `
         ...
     ```
 
-有关更多信息，请参阅[部署使用证书公用名称而非指纹的 Service Fabric 群集](/service-fabric/service-fabric-create-cluster-using-cert-cn)。
+有关更多信息，请参阅[部署使用证书公用名称而非指纹的 Service Fabric 群集](./service-fabric-create-cluster-using-cert-cn.md)。
 
 ## <a name="deploy-the-updated-template"></a>部署已更新的模板
 在进行更改后，重新部署已更新的模板。

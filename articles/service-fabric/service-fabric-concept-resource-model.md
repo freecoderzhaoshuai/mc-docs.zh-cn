@@ -3,15 +3,18 @@ title: Azure Service Fabric 应用程序资源模型
 description: 本文概述如何使用 Azure 资源管理器管理 Azure Service Fabric 应用程序。
 ms.topic: conceptual
 origin.date: 10/21/2019
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
 ms.custom: sfrev
-ms.openlocfilehash: 9cd9a99582c4a8c1434d27c452be486dc932a76e
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.openlocfilehash: e9fce462850f9c55cd1a8d7430934f44edfe0b4f
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356262"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655689"
 ---
 <!--Verfiy sucessfully-->
 # <a name="service-fabric-application-resource-model"></a>Service Fabric 应用程序资源模型

@@ -8,13 +8,14 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: tutorial
 origin.date: 06/20/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: 7c784c1356b60d84e872759336f3b90087710800
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.custom: devx-track-javascript, devx-track-csharp
+ms.openlocfilehash: 89b558726363e31514289c9033ad4e8d9d13c5db
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471927"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021579"
 ---
 # <a name="tutorial-order-search-results-using-the-net-sdk"></a>教程：使用 .NET SDK 对搜索结果排序
 
@@ -956,7 +957,7 @@ ms.locfileid: "86471927"
 
 ### <a name="resources"></a>资源
 
-有关详细信息，请参阅下面的[将计分概要文件添加到 Azure 认知搜索索引](https://docs.azure.cn/search/index-add-scoring-profiles)。
+有关详细信息，请参阅下面的[将计分概要文件添加到 Azure 认知搜索索引](/search/index-add-scoring-profiles)。
 
 ## <a name="takeaways"></a>要点
 
@@ -972,4 +973,4 @@ ms.locfileid: "86471927"
 
 你已学完本系列的 C# 教程，应该已经找到了有关 Azure 认知搜索 API 的宝贵知识。
 
-有关进一步的参考和教程，请考虑浏览 [Microsoft Learn](https://docs.microsoft.com/learn/browse/?products=azure) 或 [Azure 认知搜索文档](https://docs.azure.cn/search/)中的其他教程。
+有关进一步的参考和教程，请考虑浏览 [Microsoft Learn](https://docs.microsoft.com/learn/browse/?products=azure) 或 [Azure 认知搜索文档](./index.yml)中的其他教程。

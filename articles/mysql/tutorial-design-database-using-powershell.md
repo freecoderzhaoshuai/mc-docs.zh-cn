@@ -9,16 +9,16 @@ ms.topic: tutorial
 origin.date: 04/29/2020
 ms.date: 06/01/2020
 ms.custom: mvc
-ms.openlocfilehash: d03067f93910b89ede3186822933f9be3cbd8922
-ms.sourcegitcommit: be0a8e909fbce6b1b09699a721268f2fc7eb89de
+ms.openlocfilehash: fa38a36c0bfae00183fba7c4c9b2e55eaff9d3c1
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84200057"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512941"
 ---
 # <a name="tutorial-design-an-azure-database-for-mysql-using-powershell"></a>教程：使用 PowerShell 设计 Azure Database for MySQL
 
-Azure Database for MySQL 是 Azure 云中基于 MySQL 社区版数据库引擎的一种关系数据库服务。 在本教程中，你将使用 PowerShell 和其他实用程序了解如何执行以下操作：
+Azure Database for MySQL 是 Azure 云中基于 MySQL 社区版数据库引擎的一种关系数据库服务。 本教程介绍如何使用 PowerShell 和其他实用程序来执行以下操作：
 
 > [!div class="checklist"]
 > - 创建 Azure Database for MySQL
@@ -65,7 +65,7 @@ New-AzResourceGroup -Name myresourcegroup -Location chinanorth2
 
 使用 `New-AzMySqlServer` cmdlet 创建 Azure Database for MySQL 服务器。 一个服务器可以管理多个数据库。 通常，每个项目或每个用户使用一个单独的数据库。
 
-以下示例使用服务器管理员登录名 myadmin 在“美国西部”区域中的“myresourcegroup”资源组内创建名为“mydemoserver”的 MySQL 服务器   。 此服务器是常规用途定价层中的第 5 代服务器，其中启用了 2 个 vCore 和异地冗余备份。 记下示例的第一行中使用的密码，因为这是 MySQL 服务器管理员帐户的密码。
+以下示例使用服务器管理员登录名“myadmin”在“中国北部 2”区域中的“myresourcegroup”资源组内创建名为“mydemoserver”的 MySQL 服务器   。 此服务器是常规用途定价层中的第 5 代服务器，其中启用了 2 个 vCore 和异地冗余备份。 记下示例的第一行中使用的密码，因为这是 MySQL 服务器管理员帐户的密码。
 
 > [!TIP]
 > 服务器名称映射到 DNS 名称，必须在 Azure 中全局唯一。
@@ -86,7 +86,7 @@ Sku 参数值遵循 pricing-tier\_compute-generation\_vCores 约定，如以下�
 如果轻量级计算和 I/O 足以满足工作负载要求，请考虑使用基本定价层。
 
 > [!IMPORTANT]
-> 在基本定价层中创建的服务器以后无法扩展到常规用途或内存优化层级，并且无法异地复制。
+> 在基本定价层级中创建的服务器以后无法扩展到常规用途或内存优化层级，并且无法异地复制。
 
 ## <a name="configure-a-firewall-rule"></a>配置防火墙规则
 
@@ -205,7 +205,7 @@ Get-AzMySqlServer -Name mydemoserver -ResourceGroupName myresourcegroup |
 
 还原过程完成后，找到新服务器，验证数据是否已按预期还原。 新服务器具有相同的服务器管理员登录名和密码，该登录名和密码在开始还原时对现有服务器有效。 可以从新服务器的“概述”页更改密码。
 
-还原期间创建的新服务器没有原始服务器上存在的 VNet 服务终结点。 必须单独为新服务器设置这些规则。 将还原原始服务器中的防火墙规则。
+还原期间创建的新服务器没有原始服务器上存在的 VNet 服务终结点。 必须单独为新服务器设置这些规则。 将从原始服务器还原防火墙规则。
 
 ## <a name="next-steps"></a>后续步骤
 

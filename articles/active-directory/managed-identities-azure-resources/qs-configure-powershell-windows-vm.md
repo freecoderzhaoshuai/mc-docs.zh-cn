@@ -3,30 +3,30 @@ title: 使用 PowerShell 在 Azure VM 上配置托管标识 - Azure AD
 description: 分步说明如何使用 PowerShell 在 Azure VM 上配置 Azure 资源的托管标识。
 services: active-directory
 documentationcenter: ''
-author: MarkusVi
+author: barclayn
 manager: daveba
 editor: ''
 ms.service: active-directory
 ms.subservice: msi
 ms.devlang: na
-ms.topic: conceptual
+ms.topic: quickstart
 ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 06/30/2020
+ms.date: 09/08/2020
 ms.author: v-junlch
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 383702efb76a829b2cc1315be0d099a17335de94
-ms.sourcegitcommit: 1008ad28745709e8d666f07a90e02a79dbbe2be5
+ms.openlocfilehash: 26a31dec76cd88f02c55a6f73fd16d47472ab810
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85945172"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593810"
 ---
 # <a name="configure-managed-identities-for-azure-resources-on-an-azure-vm-using-powershell"></a>使用 PowerShell 在 Azure VM 上配置 Azure 资源的托管标识
 
 [!INCLUDE [preview-notice](../../../includes/active-directory-msi-preview-notice.md)]
 
-Azure 资源的托管标识在 Azure Active Directory 中为 Azure 服务提供了一个自动托管标识。 此标识可用于通过支持 Azure AD 身份验证的任何服务的身份验证，这样就无需在代码中插入凭据了。 
+Azure 资源的托管标识在 Azure Active Directory 中为 Azure 服务提供了一个自动托管标识。 此标识可用于通过支持 Azure AD 身份验证的任何服务的身份验证，这样就无需在代码中插入凭据了。
 
 在本文中，你将了解如何在 Azure VM 上使用 PowerShell 执行 Azure 资源的托管标识的以下操作。
 
@@ -47,11 +47,11 @@ Azure 资源的托管标识在 Azure Active Directory 中为 Azure 服务提供�
 若要创建启用了系统分配的托管标识的 Azure VM，你的帐户需要[虚拟机参与者](/role-based-access-control/built-in-roles#virtual-machine-contributor)角色分配。  无需其他 Azure AD 目录角色分配。
 
 1. 请参阅以下 Azure VM 快速入门之一，仅完成必要部分（“登录到 Azure”、“创建资源组”、“创建网络组”、“创建 VM”）。
-    
-    转到“创建 VM”部分时，需要对 [New-AzVMConfig](https://docs.microsoft.com/powershell/module/az.compute/new-azvm) cmdlet 语法稍做修改。 务必添加 `-AssignIdentity:$SystemAssigned` 参数，以预配启用了系统分配标识的 VM，例如：
-      
+
+    转到“创建 VM”部分时，需要对 [New-AzVMConfig](https://docs.microsoft.com/powershell/module/az.compute/new-azvm) cmdlet 语法稍做修改。 务必添加 `-IdentityType SystemAssigned` 参数，以预配启用了系统分配标识的 VM，例如：
+
     ```powershell
-    $vmConfig = New-AzVMConfig -VMName myVM -AssignIdentity:$SystemAssigned ...
+    $vmConfig = New-AzVMConfig -VMName myVM -IdentityType SystemAssigned ...
     ```
 
    - [使用 PowerShell 创建 Windows 虚拟机](../../virtual-machines/windows/quick-create-powershell.md)
@@ -69,11 +69,11 @@ Azure 资源的托管标识在 Azure Active Directory 中为 Azure 服务提供�
    Connect-AzAccount -Environment AzureChinaCloud
    ```
 
-2. 首先，使用 `Get-AzVM` cmdlet 检索 VM 属性。 然后，若要启用系统分配的托管标识，请在 [Update-AzVM](https://docs.microsoft.com/powershell/module/az.compute/update-azvm) cmdlet 中使用 `-AssignIdentity` 开关：
+2. 首先，使用 `Get-AzVM` cmdlet 检索 VM 属性。 然后，若要启用系统分配的托管标识，请在 [Update-AzVM](https://docs.microsoft.com/powershell/module/az.compute/update-azvm) cmdlet 中使用 `-IdentityType` 开关：
 
    ```powershell
    $vm = Get-AzVM -ResourceGroupName myResourceGroup -Name myVM
-   Update-AzVM -ResourceGroupName myResourceGroup -VM $vm -AssignIdentity:$SystemAssigned
+   Update-AzVM -ResourceGroupName myResourceGroup -VM $vm -IdentityType SystemAssigned
    ```
 
 
@@ -90,7 +90,7 @@ Azure 资源的托管标识在 Azure Active Directory 中为 Azure 服务提供�
 
 2. 检索并记下 VM 服务主体的 `ObjectID`（在返回值的 `Id` 字段中指定）：
 
-   ```powerhshell
+   ```powershell
    Get-AzADServicePrincipal -displayname "myVM"
    ```
 
@@ -120,8 +120,8 @@ Azure 资源的托管标识在 Azure Active Directory 中为 Azure 服务提供�
 
 2. 使用 `Get-AzVM` cmdlet 检索 VM 属性并将 `-IdentityType` 参数设置为 `UserAssigned`：
 
-   ```powershell   
-   $vm = Get-AzVM -ResourceGroupName myResourceGroup -Name myVM 
+   ```powershell
+   $vm = Get-AzVM -ResourceGroupName myResourceGroup -Name myVM
    Update-AzVm -ResourceGroupName myResourceGroup -VM $vm -IdentityType "UserAssigned"
    ```
 
@@ -142,14 +142,14 @@ Update-AzVm -ResourceGroupName myResourceGroup -VM $vm -IdentityType None
 
 若要将用户分配的标识分配给 VM，你的帐户需要[虚拟机参与者](/role-based-access-control/built-in-roles#virtual-machine-contributor)和[托管标识操作员](/role-based-access-control/built-in-roles#managed-identity-operator)角色分配。 无需其他 Azure AD 目录角色分配。
 
-1. 请参阅以下 Azure VM 快速入门之一，仅完成必要部分（“登录到 Azure”、“创建资源组”、“创建网络组”、“创建 VM”）。 
-  
+1. 请参阅以下 Azure VM 快速入门之一，仅完成必要部分（“登录到 Azure”、“创建资源组”、“创建网络组”、“创建 VM”）。
+
     转到“创建 VM”部分时，需要对 [`New-AzVMConfig`](https://docs.microsoft.com/powershell/module/az.compute/new-azvm) cmdlet 语法稍做修改。 添加 `-IdentityType UserAssigned` 和 `-IdentityID` 参数，为 VM 预配用户分配的标识。  将 `<VM NAME>`、`<SUBSCRIPTION ID>`、`<RESROURCE GROUP>` 和 `<USER ASSIGNED IDENTITY NAME>` 替换为自己的值。  例如：
-    
-    ```powershell 
+
+    ```powershell
     $vmConfig = New-AzVMConfig -VMName <VM NAME> -IdentityType UserAssigned -IdentityID "/subscriptions/<SUBSCRIPTION ID>/resourcegroups/<RESROURCE GROUP>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<USER ASSIGNED IDENTITY NAME>..."
     ```
-    
+
     - [使用 PowerShell 创建 Windows 虚拟机](../../virtual-machines/windows/quick-create-powershell.md)
     - [使用 PowerShell 创建 Linux 虚拟机](../../virtual-machines/linux/quick-create-powershell.md)
 
@@ -203,7 +203,7 @@ Update-AzVm -ResourceGroupName myResourceGroup -VM $vm -IdentityType None
 ```
 如果 VM 同时具有系统分配的托管标识和用户分配的托管标识，则可通过切换为仅使用系统分配的托管标识，删除所有用户分配的托管标识。
 
-```powershell 
+```powershell
 $vm = Get-AzVm -ResourceGroupName myResourceGroup -Name myVm
 Update-AzVm -ResourceGroupName myResourceGroup -VirtualMachine $vm -IdentityType "SystemAssigned"
 ```
@@ -212,7 +212,7 @@ Update-AzVm -ResourceGroupName myResourceGroup -VirtualMachine $vm -IdentityType
 
 - [Azure 资源的托管标识概述](overview.md)
 - 有关完整的 Azure VM 创建快速入门，请参阅：
-  
-  - [使用 PowerShell 创建 Windows 虚拟机](../../virtual-machines/windows/quick-create-powershell.md) 
-  - [使用 PowerShell 创建 Linux 虚拟机](../../virtual-machines/linux/quick-create-powershell.md) 
+
+  - [使用 PowerShell 创建 Windows 虚拟机](../../virtual-machines/windows/quick-create-powershell.md)
+  - [使用 PowerShell 创建 Linux 虚拟机](../../virtual-machines/linux/quick-create-powershell.md)
 

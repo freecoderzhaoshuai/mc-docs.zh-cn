@@ -8,12 +8,12 @@ ms.topic: conceptual
 origin.date: 04/08/2019
 ms.date: 04/22/2019
 ms.author: v-yeche
-ms.openlocfilehash: 8d5b5a3984446d7fc07c3bcb5f0a5bbd70677569
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: b0ac934027fe40dc2368ba020f82177163261d4b
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "63851581"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655026"
 ---
 # <a name="network-security-groups-with-azure-site-recovery"></a>将网络安全组与 Azure Site Recovery 配合使用
 
@@ -60,24 +60,22 @@ Azure Site Recovery 支持从本地 [Hyper-V 虚拟机](hyper-v-azure-architectu
 
 Azure Site Recovery 支持对 [Azure 虚拟机](azure-to-azure-architecture.md)进行灾难恢复。 如果为 Azure VM 启用复制功能，Site Recovery 可以在目标区域中创建副本虚拟网络（包括子网和网关子网），并在源虚拟网络与目标虚拟网络之间创建所需的映射。 还可以预先创建目标端网络和子网，并在启用复制时使用相同的网络和子网。 在[故障转移](azure-to-azure-tutorial-failover-failback.md)前，Site Recovery 不会在目标 Azure 区域中创建任何 VM。
 
-对于 Azure VM 复制，请确保源 Azure 区域的 NSG 规则允许复制流量的[出站连接](azure-to-azure-about-networking.md#outbound-connectivity-for-ip-address-ranges)。 还可通过此 [NSG 配置示例](azure-to-azure-about-networking.md)来测试和验证这些必需的规则。
-
-<!-- Archor wait for PM reply on #example-nsg-configuration-->
+对于 Azure VM 复制，请确保源 Azure 区域的 NSG 规则允许复制流量的[出站连接](azure-to-azure-about-networking.md#outbound-connectivity-using-service-tags)。 还可通过此 [NSG 配置示例](azure-to-azure-about-networking.md#example-nsg-configuration)来测试和验证这些必需的规则。
 
 Site Recovery 不会在故障转移操作中创建或复制 NSG。 建议在启动故障转移前，在目标 Azure 区域中创建所需的 NSG。 然后即可将自动化脚本与 Site Recovery 的强大[恢复计划](site-recovery-create-recovery-plans.md)配合使用，通过关联 NSG 在故障转移期间自动进行 VM 故障转移。
 
 请考虑之前介绍的[示例方案](concepts-network-security-group-with-site-recovery.md#using-network-security-groups)：
--   如果为 VM 启用复制功能，Site Recovery 可以在目标 Azure 区域中创建 **Contoso VNet** 和 **Contoso 子网**的副本。
--   可以在目标 Azure 区域中创建**子网 NSG** 和 **VM NSG** 的所需副本（例如，分别命名为**目标子网 NSG** 和**目标 VM NSG**），从而允许使用目标区域所需的任何其他规则。
--   **目标子网 NSG** 随后可立即与目标区域子网关联，因为 NSG 和子网都已经可用。
--   在使用恢复计划进行故障转移期间，可以将**目标 VM NSG** 与 VM 关联。
+- 如果为 VM 启用复制功能，Site Recovery 可以在目标 Azure 区域中创建 **Contoso VNet** 和 **Contoso 子网**的副本。
+- 可以在目标 Azure 区域中创建**子网 NSG** 和 **VM NSG** 的所需副本（例如，分别命名为**目标子网 NSG** 和**目标 VM NSG**），从而允许使用目标区域所需的任何其他规则。
+- **目标子网 NSG** 随后可立即与目标区域子网关联，因为 NSG 和子网都已经可用。
+- 在使用恢复计划进行故障转移期间，可以将**目标 VM NSG** 与 VM 关联。
 
 创建并配置 NSG 后，建议运行[测试故障转移](azure-to-azure-tutorial-dr-drill.md)来验证脚本化的 NSG 关联和故障转移后的 VM 连接。
 
 ## <a name="next-steps"></a>后续步骤
--   详细了解[网络安全组](../virtual-network/security-overview.md#network-security-groups)。
--   详细了解 NSG [安全规则](../virtual-network/security-overview.md#security-rules)。
--   详细了解 NSG 的[高效安全规则](../virtual-network/diagnose-network-traffic-filter-problem.md)。
--   详细了解如何使用[恢复计划](site-recovery-create-recovery-plans.md)自动执行应用程序故障转移。
+- 详细了解[网络安全组](../virtual-network/security-overview.md#network-security-groups)。
+- 详细了解 NSG [安全规则](../virtual-network/security-overview.md#security-rules)。
+- 详细了解 NSG 的[高效安全规则](../virtual-network/diagnose-network-traffic-filter-problem.md)。
+- 详细了解如何使用[恢复计划](site-recovery-create-recovery-plans.md)自动执行应用程序故障转移。
 
 <!-- Update_Description: update meta properties, wording update -->

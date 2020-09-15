@@ -1,19 +1,19 @@
 ---
 title: 创建独立 Azure Service Fabric 群集
 description: 在运行 Windows Server 的任何本地或任意云计算机（物理或虚拟）上创建 Azure Service Fabric 群集。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 02/21/2019
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 06/08/2020
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: 9bfd6dc461a9497aa46184ea3043041b5d026633
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 1be1a6fb4cff1233328150d54e12518a3a1cd389
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426331"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655657"
 ---
 # <a name="create-a-standalone-cluster-running-on-windows-server"></a>创建在 Windows Server 上运行的独立群集
 可以使用 Azure Service Fabric 在运行 Windows Server 的任何虚拟机或计算机上创建 Service Fabric 群集。 这意味着，可以在包含一组相互连接的 Windows Server 计算机的任何环境（无论是本地环境还是任何云提供商所提供的环境）中部署和运行 Service Fabric 应用程序。 Service Fabric 提供了一个安装程序包，用于创建名为“Windows Server 独立包”的 Service Fabric 群集。 Azure 上的传统 Service Fabric 群集作为托管服务提供，而独立的 Service Fabric 群集是自助服务。 有关差异的详细信息，请参阅[比较 Azure 和独立 Service Fabric 群集](./service-fabric-deploy-anywhere.md)。
@@ -30,11 +30,11 @@ ms.locfileid: "87426331"
 ## <a name="get-support-for-the-service-fabric-for-windows-server-package"></a>获取用于 Windows Server 的 Service Fabric 包的支持
 * 在 [Azure Service Fabric 的 Microsoft Q&A 问题页](https://docs.microsoft.com/answers/topics/azure-service-fabric.html)中询问社区关于 Windows Server 的 Service Fabric 独立包的信息。
 * 开具 [Service Fabric 专业支持](https://support.azure.cn/support/support-azure/)票证。
-    
+
     <!-- Not Available on [here](https://support.microsoft.com/gp/offerprophone?wa=wsignin1.0)-->
     <!-- Not Available on [Microsoft Premier Support](https://support.microsoft.com/premier)-->
-    
-* 有关详细信息，请参阅 [Azure Service Fabric 支持选项](/service-fabric/service-fabric-support)。
+
+* 有关详细信息，请参阅 [Azure Service Fabric 支持选项](./service-fabric-support.md)。
 * 若要出于支持目的收集日志，请运行 [Service Fabric 独立日志收集器](service-fabric-cluster-standalone-package-contents.md)。
 
 <a name="downloadpackage"></a>
@@ -134,7 +134,7 @@ Connect-ServiceFabricCluster -ConnectionEndpoint <*IPAddressofaMachine*>:<Client
 
 例如：
 ```powershell
-Connect-ServiceFabricCluster -ConnectionEndpoint 192.13.123.2345:19000
+Connect-ServiceFabricCluster -ConnectionEndpoint 192.13.123.234:19000
 ```
 
 有关如何连接到群集的其他示例，请参阅[连接到安全群集](service-fabric-connect-to-secure-cluster.md)。 连接到群集以后，请使用 [Get-ServiceFabricNode](https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricnode?view=azureservicefabricps) cmdlet 显示群集中节点的列表，以及每个节点的状态信息。 每个节点的 **HealthState** 应该为“正常”。
@@ -159,8 +159,8 @@ NodeDeactivationInfo NodeName IpAddressOrFQDN NodeType  CodeVersion  ConfigVersi
 ## <a name="add-and-remove-nodes"></a>添加和删除节点
 当业务需要改变时，可以向独立 Service Fabric 群集添加或删除节点。 参阅[向 Service Fabric 独立群集添加或删节点](service-fabric-cluster-windows-server-add-remove-nodes.md)以了解详细步骤。
 
-<a name="removecluster"></a>
 <a name="removecluster_anchor"></a>
+<a name="removecluster"></a>
 ## <a name="remove-a-cluster"></a>删除群集
 若要删除群集，请运行包文件夹中的 *RemoveServiceFabricCluster.ps1* Powershell 脚本，并传入 JSON 配置文件的路径。 可以选择性地指定删除日志的位置。
 
@@ -184,32 +184,31 @@ NodeDeactivationInfo NodeName IpAddressOrFQDN NodeType  CodeVersion  ConfigVersi
 1. 遥测管道每天都会尝试一次将以下数据上传到 [https://vortex.data.microsoft.com/collect/v1](https://vortex.data.microsoft.com/collect/v1)。 这是一种尽力而为的上传操作，不会影响群集功能。 遥测数据只会从运行主要故障转移管理器的节点发送。 其他节点都不会发送遥测数据。
 2. 遥测数据由以下内容组成：
 
-    * 服务数目
-    * ServiceTypes 数目
-    * Applications 数目
-    * ApplicationUpgrades 数目
-    * FailoverUnits 数目
-    * InBuildFailoverUnits 数目
-    * UnhealthyFailoverUnits 数目
-    * Replicas 数目
-    * InBuildReplicas 数目
-    * StandByReplicas 数目
-    * OfflineReplicas 数目
-    * CommonQueueLength
-    * QueryQueueLength
-    * FailoverUnitQueueLength
-    * CommitQueueLength
-    * Nodes 数目
-    * IsContextComplete：True/False
-    * ClusterId：这是为每个群集随机生成的 GUID
-    * ServiceFabricVersion
-    * 从其上传遥测数据的虚拟机或计算机的 IP 地址
+* 服务数目
+* ServiceTypes 数目
+* Applications 数目
+* ApplicationUpgrades 数目
+* FailoverUnits 数目
+* InBuildFailoverUnits 数目
+* UnhealthyFailoverUnits 数目
+* Replicas 数目
+* InBuildReplicas 数目
+* StandByReplicas 数目
+* OfflineReplicas 数目
+* CommonQueueLength
+* QueryQueueLength
+* FailoverUnitQueueLength
+* CommitQueueLength
+* Nodes 数目
+* IsContextComplete：True/False
+* ClusterId：这是为每个群集随机生成的 GUID
+* ServiceFabricVersion
+* 从其上传遥测数据的虚拟机或计算机的 IP 地址
 
 若要禁用遥测，请将以下内容添加到群集配置中的*属性*：*enableTelemetry: false*。
 
-<a name="previewfeatures"></a>
 <a name="previewfeatures_anchor"></a>
-
+<a name="previewfeatures"></a>
 ## <a name="preview-features-included-in-this-package"></a>此包中包括的预览功能
 无。
 
@@ -223,7 +222,7 @@ NodeDeactivationInfo NodeName IpAddressOrFQDN NodeType  CodeVersion  ConfigVersi
 * [独立 Windows 群集的配置设置](service-fabric-cluster-manifest.md)
 * [向独立 Service Fabric 群集添加或删除节点](service-fabric-cluster-windows-server-add-remove-nodes.md)
 * [升级独立 Service Fabric 群集版本](service-fabric-cluster-upgrade-windows-server.md)
-* [使用运行 Windows 的 Azure VM 创建独立 Service Fabric 群集](service-fabric-cluster-creation-with-windows-azure-vms.md)
+* [使用运行 Windows 的 Azure VM 创建独立 Service Fabric 群集](./service-fabric-cluster-creation-via-arm.md)
 * [使用 Windows 安全性保护 Windows 上的独立群集](service-fabric-windows-cluster-windows-security.md)
 * [使用 X509 证书保护 Windows 上的独立群集](service-fabric-windows-cluster-x509-security.md)
 

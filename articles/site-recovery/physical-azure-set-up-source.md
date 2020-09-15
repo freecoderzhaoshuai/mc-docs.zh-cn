@@ -2,21 +2,21 @@
 title: 使用 Azure Site Recovery 设置配置服务器，以便将物理服务器灾难恢复到 Azure | Azure
 description: 本文介绍如何设置本地配置服务器，以便将本地物理服务器灾难恢复到 Azure。
 services: site-recovery
-author: rockboyfor
 manager: rochakm
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 07/03/2019
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 08/03/2020
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: b9714df8e7f92d457e38ab95d8404da4d0b9d311
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 29adc1a8f80dd99b77ac379384e0d2ec17de6490
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917346"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655316"
 ---
 # <a name="set-up-the-configuration-server-for-disaster-recovery-of-physical-servers-to-azure"></a>设置配置服务器，以便将物理服务器灾难恢复到 Azure
 

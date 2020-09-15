@@ -5,15 +5,15 @@ author: Johnnytechn
 ms.service: virtual-machines
 ms.subservice: imaging
 ms.topic: how-to
-ms.date: 06/17/2020
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.custom: legacy
-ms.openlocfilehash: a50413ca35fc26803dbf97e9e47b7a1a71cd8be5
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.custom: legacy, devx-track-azurecli
+ms.openlocfilehash: 4183e35a3f65cc6648911be6b8ee30a4d2ef7de2
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097500"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057543"
 ---
 # <a name="how-to-create-a-managed-image-of-a-virtual-machine-or-vhd"></a>如何创建虚拟机或 VHD 的托管映像
 
@@ -65,7 +65,7 @@ ms.locfileid: "85097500"
       --resource-group myResourceGroup \
       --name myVM
     ```
-
+    
     等待 VM 完全解除分配，然后继续。 完成此命令可能需要几分钟。  VM 在解除分配期间关闭。
 
 2. 使用 [az vm generalize](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-generalize) 将 VM 标记为通用化。 以下示例将名为 myResourceGroup 的资源组中名为 myVM 的 VM 标记为通用化 。
@@ -139,6 +139,6 @@ az vm show \
 ```
 
 ## <a name="next-steps"></a>后续步骤
-若要大规模创建、存储和共享映像，请参阅[共享映像库](shared-images.md)。
+若要大规模创建、存储和共享映像，请参阅[共享映像库](../shared-images-cli.md)。
 
 <!-- Update_Description: update meta properties, wording update -->

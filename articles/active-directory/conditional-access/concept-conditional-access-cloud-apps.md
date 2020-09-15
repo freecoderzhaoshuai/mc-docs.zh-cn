@@ -5,18 +5,18 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: conditional-access
 ms.topic: conceptual
-ms.date: 08/27/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 author: MicrosoftGuyJFlo
 manager: daveba
 ms.reviewer: calebb
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 8060e88e2fa6826d553f084b368c7d00ef4c3576
-ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
+ms.openlocfilehash: c91fa5be8cad43993e6699bf9795b83e171ffe48
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89046380"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593697"
 ---
 # <a name="conditional-access-cloud-apps-or-actions"></a>条件访问：云应用或操作
 
@@ -106,7 +106,15 @@ Azure 管理应用程序包括多个基础服务。
    - Azure 数据工厂门户
 
 > [!NOTE]
-> Azure 管理应用程序适用于调用 Azure 资源管理器 API 的 Azure PowerShell。 它不适用于调用 Microsoft Graph 的 Azure AD PowerShell。
+> Azure 管理应用程序适用于调用 Azure 资源管理器 API 的 Azure PowerShell。 它不适用于 Azure AD PowerShell，后者调用 Microsoft Graph。
+
+## <a name="other-applications"></a>其他应用程序
+
+除 Microsoft 应用以外，管理员还可以将任何已在 Azure AD 中注册的应用程序添加到条件访问策略。 
+
+> [!NOTE]
+> 由于条件访问策略规定了有关访问服务的要求，因此你无法将其应用于客户端（公共/本机）应用程序。 换句话说，该策略不是直接在客户端（公共/本机）应用程序上设置的，而是在客户端调用服务时应用的。 例如，在 SharePoint 服务上设置的策略将应用于调用 SharePoint 的客户端。 在 Exchange 上设置的策略将应用于使用 Outlook 客户端访问电子邮件的尝试。 正因如此，云应用选取器没有客户端（公共/本机）应用程序可供选择，并且在租户中注册的客户端（公共/本机）应用程序的应用程序设置中未提供条件访问选项。 
+
 
 ## <a name="user-actions"></a>用户操作
 

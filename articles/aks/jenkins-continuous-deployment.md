@@ -8,12 +8,12 @@ ms.author: v-yeche
 ms.topic: article
 origin.date: 01/09/2019
 ms.date: 10/28/2019
-ms.openlocfilehash: 4de7e94556cf895fb9fbf88b93600a9d736ed9eb
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: d336feb73f56806eee3f6192b029a615ea28e635
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "73068892"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020837"
 ---
 # <a name="tutorial-deploy-from-github-to-azure-kubernetes-service-aks-with-jenkins-continuous-integration-and-deployment"></a>教程：使用 Jenkins 持续集成和部署从 GitHub 部署到 Azure Kubernetes 服务 (AKS)
 
@@ -233,8 +233,8 @@ az role assignment create --assignee 626dd8ea-042d-4043-a8df-4ef56273670f --role
 在 Jenkins 门户主页的左侧，选择“新建项”  ：
 
 1. 输入“azure-vote”  作为作业名称。 依次选择“自由风格项目”  和“确定” 
-1. 在“常规”部分下面，选择“GitHub 项目”并输入分叉的存储库的 URL，例如 *https:\//github.com/\<your-github-account\>/azure-voting-app-redis*
-1. 在“源代码管理”部分下面，选择“Git”并输入分叉的存储库 *.git* 的 URL，例如 *https:\//github.com/\<your-github-account\>/azure-voting-app-redis.git*
+1. 在“常规”部分下面，选择“GitHub 项目”并输入分支存储库的 URL，例如 https:\//github.com/\<your-github-account\>/azure-voting-app-redis 
+1. 在“源代码管理”部分下面，选择“Git”并输入分支存储库 .git 的 URL，例如 https:\//github.com/\<your-github-account\>/azure-voting-app-redis.git  
 
 1. 在“生成触发器”  部分下面，选择“用于 GITscm 轮询的 GitHub 挂钩触发器” 
 1. 在“生成环境”  下，选择“使用机密文本或文件” 
@@ -330,15 +330,15 @@ SHOWHOST = 'false'
 
 <!-- LINKS - internal -->
 
-[az-acr-list]: https://docs.azure.cn/cli/acr?view=azure-cli-latest#az-acr-list
+[az-acr-list]: https://docs.azure.cn/cli/acr#az-acr-list
 [acr-authentication]: cluster-container-registry-integration.md
 [acr-quickstart]: ../container-registry/container-registry-get-started-azure-cli.md
-[aks-credentials]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-get-credentials
+[aks-credentials]: https://docs.microsoft.com/cli/azure/aks#az_aks_get_credentials
 [aks-quickstart]: kubernetes-walkthrough.md
-[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
-[az-ad-sp-create-for-rbac]: https://docs.azure.cn/cli/ad/sp?view=azure-cli-latest#az-ad-sp-create-for-rbac
-[az-acr-show]: https://docs.azure.cn/cli/acr?view=azure-cli-latest#az-acr-show
+[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
+[az-ad-sp-create-for-rbac]: https://docs.azure.cn/cli/ad/sp#az-ad-sp-create-for-rbac
+[az-acr-show]: https://docs.azure.cn/cli/acr#az-acr-show
 
 <!--Not Available on [azure-devops]: ../devops-project/azure-devops-project-aks.md-->
 <!--Not Available on [aks-ansible]: ../ansible/ansible-create-configure-aks.md-->

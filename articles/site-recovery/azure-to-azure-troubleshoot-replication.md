@@ -1,24 +1,24 @@
 ---
 title: 排查使用 Azure Site Recovery 复制 Azure VM 时出现的问题
 description: 排查使用 Azure Site Recovery 进行 Azure VM 灾难恢复时出现的复制问题
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.topic: troubleshooting
 origin.date: 04/03/2020
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 06/08/2020
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: c70865add312f8f294425992ddfe9088efe05cd5
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 2b11d4295df5d6b33536520ab20aad2ab21aace1
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426337"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655677"
 ---
 # <a name="troubleshoot-replication-in-azure-vm-disaster-recovery"></a>排查 Azure VM 灾难恢复中的复制问题
 
-本文介绍了在不同区域之间复制和恢复 Azure 虚拟机 (VM) 时在 Azure Site Recovery 中经常出现的问题。 另外还介绍了如何排查常见问题。 有关支持的配置的详细信息，请参阅 [support matrix for replicating Azure VMs](site-recovery-support-matrix-azure-to-azure.md)（复制 Azure VM 的支持矩阵）。
+本文介绍了在不同区域之间复制和恢复 Azure 虚拟机 (VM) 时在 Azure Site Recovery 中经常出现的问题。 另外还介绍了如何排查常见问题。 有关支持的配置的详细信息，请参阅 [support matrix for replicating Azure VMs](./azure-to-azure-support-matrix.md)（复制 Azure VM 的支持矩阵）。
 
 Azure Site Recovery 以一致的方式将数据从源区域复制到灾难恢复区域。 它还每隔 5 分钟创建崩溃一致性恢复点。 如果 Site Recovery 在 60 分钟内无法创建恢复点，它会通过以下信息向你发出警报：
 
@@ -30,8 +30,7 @@ Error ID: 153007
 
 以下部分介绍原因和解决方案。
 
-<a name="high-data-change-rate-on-the-source-virtal-machine"></a>
-## <a name="high-data-change-rate-on-the-source-virtual-machine"></a>源虚拟机上的数据更改率较高
+## <a name="high-data-change-rate-on-the-source-virtual-machine"></a><a name="high-data-change-rate-on-the-source-virtal-machine"></a>源虚拟机上的数据更改率较高
 
 如果源虚拟机上的数据更改率超过支持的限制，Azure Site Recovery 将创建一个事件。 若要确定问题是否由高变动率造成，请转到“复制的项” > “VM” > “事件 - 过去 72 小时”。  
 你应当会看到“数据更改率超过支持的限制”事件：
@@ -77,14 +76,13 @@ Azure Site Recovery 根据磁盘类型实施数据更改率限制。 若要确�
     1. 可能会在“概述”中看到一个横幅，指出已生成 SAS URL。 请选择此横幅并取消导出。 如果看不到该横幅，请忽略此步骤。
     1. 撤销 SAS URL 后，立即转到托管磁盘的“配置”。 增大大小，使 Site Recovery 支持在源磁盘上观测到的变动率。
 
-<a name="Network-connectivity-problem"></a>
-## <a name="network-connectivity-problems"></a>网络连接问题
+## <a name="network-connectivity-problems"></a><a name="Network-connectivity-problem"></a>网络连接问题
 
 ### <a name="network-latency-to-a-cache-storage-account"></a>缓存存储帐户的网络延迟
 
 Site Recovery 会将已复制数据发送到缓存存储帐户。 如果将数据从虚拟机上传到缓存存储帐户时的速度有 3 秒低于 4 MB，则可能是遇到了网络延迟。
 
-若要检查延迟相关的问题，请使用 [AzCopy](/storage/common/storage-use-azcopy)。 可以使用此命令行实用工具将数据从虚拟机上传到缓存存储帐户。 如果延迟较高，请检查你是否在使用网络虚拟设备 (NVA) 控制来自 VM 的出站网络流量。 如果所有复制流量都通过 NVA，设备可能会受到限制。
+若要检查延迟相关的问题，请使用 [AzCopy](../storage/common/storage-use-azcopy-v10.md)。 可以使用此命令行实用工具将数据从虚拟机上传到缓存存储帐户。 如果延迟较高，请检查你是否在使用网络虚拟设备 (NVA) 控制来自 VM 的出站网络流量。 如果所有复制流量都通过 NVA，设备可能会受到限制。
 
 建议在虚拟网络中为“存储”创建一个网络服务终结点，这样复制流量就不会经过 NVA。 有关详细信息，请参阅[网络虚拟设备配置](azure-to-azure-about-networking.md#network-virtual-appliance-configuration)。
 
@@ -114,7 +112,7 @@ Site Recovery 会将已复制数据发送到缓存存储帐户。 如果将数�
 
 ### <a name="app-consistency-not-enabled-on-linux-servers"></a>Linux 服务器上未启用应用一致性
 
-**如何解决**：适用于 Linux 操作系统的 Azure Site Recovery 支持通过应用程序自定义脚本实现应用一致性。 为保障应用一致性，Azure Site Recovery 移动代理将使用带有 pre 和 post 选项的自定义脚本。 [这里](/site-recovery/site-recovery-faq#replication)是启用此功能的步骤。
+**如何解决**：适用于 Linux 操作系统的 Azure Site Recovery 支持通过应用程序自定义脚本实现应用一致性。 为保障应用一致性，Azure Site Recovery 移动代理将使用带有 pre 和 post 选项的自定义脚本。 [这里](./site-recovery-faq.md#replication)是启用此功能的步骤。
 
 ### <a name="more-causes-because-of-vss-related-issues"></a>更多的原因在于 VSS 相关的问题：
 

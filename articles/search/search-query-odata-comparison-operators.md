@@ -8,7 +8,7 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 12/16/2019
+ms.date: 09/10/2020
 translation.priority.mt:
 - de-de
 - es-es
@@ -20,12 +20,12 @@ translation.priority.mt:
 - ru-ru
 - zh-cn
 - zh-tw
-ms.openlocfilehash: 22957329e01a260ab382a23cd7313dbe057f6497
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.openlocfilehash: 466108cc8eaea7515969480ffcab5efdbd45af19
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588713"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021064"
 ---
 # <a name="odata-comparison-operators-in-azure-cognitive-search---eq-ne-gt-lt-ge-and-le"></a>Azure 认知搜索中的 OData 比较运算符 - `eq`、`ne`、`gt`、`lt`、`ge` 和 `le`
 
@@ -137,23 +137,33 @@ comparison_operator ::= 'gt' | 'lt' | 'ge' | 'le' | 'eq' | 'ne'
 
 匹配 `Rating` 字段为 3 到 5（含）的文档：
 
-    Rating ge 3 and Rating le 5
+```text
+Rating ge 3 and Rating le 5
+```
 
 匹配 `Location` 字段与给定纬度和经度之间的距离小于 2 公里的文档：
 
-    geo.distance(Location, geography'POINT(-122.031577 47.578581)') lt 2.0
+```text
+geo.distance(Location, geography'POINT(-122.031577 47.578581)') lt 2.0
+```
 
 匹配 `LastRenovationDate` 字段大于或等于 2015 年 1 月 1 日午夜 (UTC) 的文档：
 
-    LastRenovationDate ge 2015-01-01T00:00:00.000Z
+```text
+LastRenovationDate ge 2015-01-01T00:00:00.000Z
+```
 
 匹配 `Details/Sku` 字段不为 `null` 的文档：
 
-    Details/Sku ne null
+```text
+Details/Sku ne null
+```
 
 匹配至少提供一间“豪华客房”，且 `Rooms/Type` 字段的字符串与筛选器完全匹配的酒店的文档：
 
-    Rooms/any(room: room/Type eq 'Deluxe Room')
+```text
+Rooms/any(room: room/Type eq 'Deluxe Room')
+```
 
 ## <a name="next-steps"></a>后续步骤  
 

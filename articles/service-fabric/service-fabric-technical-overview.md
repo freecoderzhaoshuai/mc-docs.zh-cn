@@ -1,20 +1,20 @@
 ---
 title: 了解 Azure Service Fabric 术语
 description: 了解文档其余部分中使用的关键 Service Fabric 术语和概念。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 09/17/2018
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 02/24/2020
 ms.author: v-yeche
 ms.custom: sfrev
-ms.openlocfilehash: d42247832f5af5bfa2e4f0d315dcf06ee1a882a7
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: d181b5727162ecbc297b94317d0b78d1775e9388
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426534"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655620"
 ---
 # <a name="service-fabric-terminology-overview"></a>Service Fabric 术语概述
 
@@ -30,10 +30,11 @@ Service Fabric 是分布式系统平台，可借助它轻松打包、部署和�
 
 ## <a name="application-and-service-concepts"></a>应用程序和服务概念
 
-**Service Fabric 本机应用程序**：Service Fabric 本机应用程序由本机应用程序模型（基于 XML 的应用程序和服务清单）描述。 
+<!--Not Available on  **Service Fabric Mesh Application**: Service Fabric Mesh Applications are described by the Resource Model (YAML and JSON resource files) and can be deployed to any environment where Service Fabric runs.-->
+
+**Service Fabric 本机应用程序**：Service Fabric 本机应用程序由本机应用程序模型（基于 XML 的应用程序和服务清单）描述。
 
 <!--Not Avaialble on Service Fabric Native Applications cannot run in Service Fabric Mesh-->
-
 <!--Not Available on ### Service Fabric Mesh Application concepts -->
 
 
@@ -113,11 +114,10 @@ Service Fabric 是分布式系统平台，可借助它轻松打包、部署和�
 若要部署服务，需要描述服务的运行方式。 Service Fabric 支持 3 种不同的部署模型：
 
 ### <a name="resource-model-preview"></a>资源模型（预览版）
-Service Fabric 资源是可以单独部署到 Service Fabric 的任何内容，包括应用程序、服务、网络和卷。 资源是使用 JSON 文件定义的，该文件可以部署到群集终结点。 资源模型是用来描述 Service Fabric 应用程序的最简单方法。 其主要重点在于容器化服务的简单部署和管理。
+Service Fabric 资源是可以单独部署到 Service Fabric 的任何内容，包括应用程序、服务、网络和卷。 资源是使用 JSON 文件定义的，该文件可以部署到群集终结点。
 
-<!--Not Available on For Service Fabric Mesh, the Azure Resource Model schema is used.-->
 <!--Not Available on A YAML file schema can also be used to more easily author definition files. Resources can be deployed anywhere Service Fabric runs.-->
-<!-- Not Available on [Introduction to the Service Fabric Resource Model](/service-fabric-mesh/service-fabric-mesh-service-fabric-resources)-->
+<!--Not Available on [Introduction to the Service Fabric Resource Model](/service-fabric-mesh/service-fabric-mesh-service-fabric-resources)-->
 
 ### <a name="native-model"></a>本机模块
 
@@ -125,7 +125,7 @@ Service Fabric 资源是可以单独部署到 Service Fabric 的任何内容，�
 
 本机模型支持 Reliable Services 框架和 Reliable Actors 框架，该框架提供对 C# 和 Java 中 Service Fabric 运行时 API 和群集管理 API 的访问权限。 本机模型还支持任意容器和可执行文件。
 
-<!-- Not Available on [Service Fabric Mesh environment](/service-fabric-mesh/service-fabric-mesh-overview)-->
+<!--Not Available on [Service Fabric Mesh environment](/service-fabric-mesh/service-fabric-mesh-overview)-->
 
 **Reliable Services**：用于构建无状态和有状态服务的 API。 有状态服务将其状态存储在 Reliable Collections（例如字典或队列）中。 也可插入各种通信堆栈，如 Web API 和 Windows Communication Foundation (WCF)。
 
@@ -150,7 +150,7 @@ Service Fabric 是一种开放源平台技术，多种不同的服务和产品�
 <!--Not Available on - **Azure Service Fabric Mesh**:-->
 
 - **Azure Service Fabric**：Azure 托管的 Service Fabric 群集服务/产品。 它提供 Service Fabric 和 Azure 基础结构之间的集成，以及 Service Fabric 群集的升级和配置管理。
-- **Service Fabric 独立**：一组安装和配置工具，可[在任何位置部署 Service Fabric 群集](/service-fabric/service-fabric-deploy-anywhere)（在本地或任何云提供程序）。 不由 Azure 管理。
+- **Service Fabric 独立**：一组安装和配置工具，可[在任何位置部署 Service Fabric 群集](./service-fabric-deploy-anywhere.md)（在本地或任何云提供程序）。 不由 Azure 管理。
 - **Service Fabric 开发群集**：在 Windows、Linux 或 Mac 上提供本地开发经验，用于开发 Service Fabric 应用程序。
 
 ## <a name="environment-framework-and-deployment-model-support-matrix"></a>环境、框架和部署模型支持矩阵
@@ -162,6 +162,7 @@ Service Fabric 是一种开放源平台技术，多种不同的服务和产品�
 |Service Fabric 本机应用程序 | 本机应用程序模型 (XML) | 支持|支持|Windows - 支持|
 
 <!--Not Available on | Service Fabric Mesh Applications | Resource Model (YAML & JSON) | Supported |Not supported | Windows- supported, Linux and Mac- not supported | Windows- not supported |-->
+<!--Not Available on COLUMN OF `Azure Service Fabric Mesh`-->
 
 下表介绍了不同的应用模型以及针对 Service Fabric 为它们提供的工具。
 
@@ -170,7 +171,6 @@ Service Fabric 是一种开放源平台技术，多种不同的服务和产品�
 |Service Fabric 本机应用程序 | 本机应用程序模型 (XML) | VS 2017 和 VS 2015| 支持|支持|支持|支持|
 
 <!--Not Available on | Service Fabric Mesh Applications | Resource Model (YAML & JSON) | VS 2017 |Not supported |Not supported | Supported - Mesh environment only | Not Supported|-->
-<!--Every topic should have next steps and links to the next logical set of content to keep the customer engaged-->
 
 ## <a name="next-steps"></a>后续步骤
 

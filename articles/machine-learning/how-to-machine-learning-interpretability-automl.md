@@ -9,12 +9,12 @@ ms.topic: how-to
 ms.author: mesameki
 author: mesameki
 ms.date: 03/11/2020
-ms.openlocfilehash: e6ddce416a162bd57540492b9f35d06b033f87bd
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: bb851e4e317a077592f7e95b8e4cddaa5aeb5231
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097512"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021490"
 ---
 # <a name="interpretability-model-explanations-in-automated-machine-learning"></a>可解释性：自动化机器学习中的模型说明
 
@@ -208,7 +208,7 @@ if service.state == 'Healthy':
 
 ### <a name="visualize-to-discover-patterns-in-data-and-explanations-at-training-time"></a>在训练时进行可视化以发现数据和解释中的模式
 
-可以在 [Azure 机器学习工作室](https://ml.azure.com)中的工作区内可视化特征重要性图表。 自动化 ML 运行完成后，选择“查看模型详细信息”以查看特定的运行。 选择“解释”选项卡以查看解释可视化仪表板。
+可以在 [Azure 机器学习工作室](https://studio.ml.azure.cn)中的工作区内可视化特征重要性图表。 自动化 ML 运行完成后，选择“查看模型详细信息”以查看特定的运行。 选择“解释”选项卡以查看解释可视化仪表板。
 
 [![机器学习可解释性体系结构](./media/how-to-machine-learning-interpretability-automl/automl-explainability.png)](./media/how-to-machine-learning-interpretability-automl/automl-explainability.png#lightbox)
 

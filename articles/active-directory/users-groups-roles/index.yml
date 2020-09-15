@@ -9,15 +9,15 @@ metadata:
   ms.subservice: users-groups-roles
   manager: daveba
   ms.topic: landing-page
-  ms.date: 08/26/2020
+  ms.date: 09/08/2020
   author: curtand
   ms.author: v-junlch
-  ms.openlocfilehash: 8e7aeb4ce802b7eae7804ec4e711687e982de80b
-  ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+  ms.openlocfilehash: 23729a037d5fa298650f173d5e374b19d59eb636
+  ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 08/27/2020
-  ms.locfileid: "88946710"
+  ms.lasthandoff: 09/09/2020
+  ms.locfileid: "89593608"
 landingContent:
 - title: 关于用户、组、角色和许可证
   linkLists:
@@ -32,17 +32,17 @@ landingContent:
     - text: 委托管理权限
       url: roles-concept-delegation.md
     - text: 比较 Azure 角色与 Azure AD 管理员角色
-      url: /role-based-access-control/rbac-and-directory-admin-roles?context=azure/active-directory/users-groups-roles/context/ugr-context
+      url: ../../role-based-access-control/rbac-and-directory-admin-roles.md
 - title: 入门
   linkLists:
   - linkListType: quickstart
     links:
     - text: 添加用户
-      url: /active-directory/fundamentals/add-users-azure-active-directory?context=azure/active-directory/users-groups-roles/context/ugr-context
+      url: ../fundamentals/add-users-azure-active-directory.md
     - text: 设置组的过期策略
       url: groups-quickstart-expiration.md
     - text: 将许可证分配给用户
-      url: /active-directory/fundamentals/license-users-groups?context=azure/active-directory/users-groups-roles/context/ugr-context
+      url: ../fundamentals/license-users-groups.md
 - title: 分配 Azure AD 管理员角色
   linkLists:
   - linkListType: how-to-guide
@@ -76,6 +76,6 @@ landingContent:
   - linkListType: how-to-guide
     links:
     - text: 添加自定义域名
-      url: /active-directory/fundamentals/add-custom-domain?context=azure/active-directory/users-groups-roles/context/ugr-context
+      url: ../fundamentals/add-custom-domain.md
     - text: 管理自定义域名
       url: domains-manage.md

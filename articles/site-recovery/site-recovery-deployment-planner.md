@@ -1,19 +1,21 @@
 ---
 title: 用于从 VMware 灾难恢复的 Azure Site Recovery 部署规划器
 description: 了解用于将 VMware VM 灾难恢复到 Azure 的 Azure Site Recovery 部署规划器。
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 03/13/2020
-ms.date: 04/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 0ee8b9d106c1933e93f548127641039da13ce22c
-ms.sourcegitcommit: 564739de7e63e19a172122856ebf1f2f7fb4bd2e
+ms.openlocfilehash: dedcf2427d436754533fd7a8526ee382c954b501
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82093476"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89654992"
 ---
 # <a name="about-the-azure-site-recovery-deployment-planner-for-vmware-to-azure"></a>关于用于 VMware 到 Azure 部署的 Azure Site Recovery 部署规划器
 本文为适用于 VMware 到 Azure 生产部署的 Azure Site Recovery 部署规划器用户指南。
@@ -62,7 +64,7 @@ Site Recovery 部署规划器是一个命令行工具，适用于 Hyper-V 到 Az
 
 ## <a name="support-matrix"></a>支持矩阵
 
-| | **VMware 到 Azure** |**Hyper-V 到 Azure**|**Azure 到 Azure**|**Hyper-V 到辅助站点**|**VMware 到辅助站点**
+| **类别** | **VMware 到 Azure** |**Hyper-V 到 Azure**|**Azure 到 Azure**|**Hyper-V 到辅助站点**|**VMware 到辅助站点**
 --|--|--|--|--|--
 支持的方案 |是|是|否|是*|否
 支持的版本 | vCenter 6.7、6.5、6.0 或 5.5| Windows Server 2016、Windows Server 2012 R2 | 不可用 |Windows Server 2016、Windows Server 2012 R2|不可用
@@ -118,9 +120,9 @@ Site Recovery 部署规划器是一个命令行工具，适用于 Hyper-V 到 Az
 
 ## <a name="version-history"></a>版本历史记录
 最新的 Site Recovery 部署规划器工具版本为 2.5。
-请参阅 [Site Recovery 部署规划器版本历史记录](/site-recovery/site-recovery-deployment-planner-history)页，了解每个更新中增加的修补程序。
+请参阅 [Site Recovery 部署规划器版本历史记录](./site-recovery-deployment-planner-history.md)页，了解每个更新中增加的修补程序。
 
 ## <a name="next-steps"></a>后续步骤
 [运行 Site Recovery 部署规划器](site-recovery-vmware-deployment-planner-run.md)
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

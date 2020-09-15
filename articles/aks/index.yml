@@ -6,16 +6,16 @@ metadata:
   description: 使用 AKS 可以在 Azure 中快速部署已准备好用于生产的 Kubernetes 群集。 通过这些快速入门、教程和示例了解 AKS 的用法。
   ms.service: container-service
   ms.topic: landing-page
-  author: rockboyfor
   origin.date: 07/21/2020
+  author: rockboyfor
   ms.date: 08/10/2020
   ms.author: v-yeche
-  ms.openlocfilehash: 3205fefac706417750380ef22ecf6a30e1dd63a4
-  ms.sourcegitcommit: e633c458126612223fbf7a8853dbf19acc7f0fa5
+  ms.openlocfilehash: 2096bd94e4a3c6ab00d46cafd3fba1746367feed
+  ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 08/20/2020
-  ms.locfileid: "88654953"
+  ms.lasthandoff: 09/11/2020
+  ms.locfileid: "90020843"
 landingContent:
 - title: 关于 Azure Kubernetes 服务 (AKS)
   linkLists:

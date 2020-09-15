@@ -11,13 +11,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: carlrab
 origin.date: 03/12/2019
-ms.date: 07/13/2020
-ms.openlocfilehash: 0ee0dc8ad933c755e5d0f2ae36e305967a0b6778
-ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+ms.date: 09/14/2020
+ms.openlocfilehash: 63e0eb85b61fc3280d00c90334aae89ccae56e79
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86227545"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014382"
 ---
 # <a name="use-powershell-to-update-the-sync-schema-in-an-existing-sync-group"></a>使用 PowerShell 更新现有同步组中的同步架构
 [!INCLUDE[appliesto-sqldb](../../includes/appliesto-sqldb.md)]
@@ -86,7 +86,7 @@ UpdateSyncSchema.ps1 -SubscriptionId <subscriptionId> -ResourceGroupName <resour
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 可以在 [Azure SQL 数据库 PowerShell 脚本](../powershell-script-content-guide.md)中找到更多 SQL 数据库 PowerShell 脚本示例。
 

@@ -8,7 +8,7 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 12/16/2019
+ms.date: 09/10/2020
 translation.priority.mt:
 - de-de
 - es-es
@@ -20,12 +20,12 @@ translation.priority.mt:
 - ru-ru
 - zh-cn
 - zh-tw
-ms.openlocfilehash: 70260ae2dc54a7d9a1445618322aaf33cdc0a9fb
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.openlocfilehash: a8b46159bc465d032815004e840e14c4ab9157bf
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588494"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021566"
 ---
 # <a name="odata-expression-syntax-reference-for-azure-cognitive-search"></a>Azure 认知搜索的 OData 表达式语法参考
 

@@ -6,24 +6,26 @@ services: machine-learning
 ms.service: machine-learning
 ms.subservice: core
 ms.topic: tutorial
-ms.reviewer: trbye, jmartens, larryfr
+ms.reviewer: jmartens, larryfr
 ms.author: tracych
 author: tracychms
-ms.date: 07/16/2020
-ms.custom: Build2020, tracking-python
-ms.openlocfilehash: ff604cf0eb2d5432f781e6d601a189d704d53ad3
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.date: 08/14/2020
+ms.custom: Build2020, devx-track-python
+ms.openlocfilehash: 01ad1302a22788e0c410be423baa72b4bd20f9f8
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228397"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021517"
 ---
 # <a name="run-batch-inference-on-large-amounts-of-data-by-using-azure-machine-learning"></a>使用 Azure 机器学习对大量数据运行批处理推理
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
 
-了解如何使用 Azure 机器学习以异步方式和并行方式对大量数据运行批量推理。 ParallelRunStep 提供现成的并行功能。
+本文介绍如何并行运行 Azure 机器学习模型，以快速计算大量数据。 
 
-借助 ParallelRunStep，可以轻松地将离线推理扩展到拥有数 TB 结构化或非结构化数据的大型计算机群集，从而提高工作效率和优化成本。
+通过大型数据集或使用复杂的模型进行推理可能会非常耗时。 通过 `ParallelRunStep` 类，可以并行执行处理，可能会更快地获得整体结果。 即使运行单个计算的速度非常快，但许多方案（对象检测、视频处理、自然语言处理等）都需要运行多个计算。 
+
+通过 `ParallelRunStep`，可轻松将批量推理扩展到大型计算机群集。 此类群集可以处理 TB 级结构化或非结构化数据，同时可提高工作效率和优化成本。
 
 本文介绍如何执行以下任务：
 
@@ -200,19 +202,19 @@ model = Model.register(model_path="models/",
 ## <a name="write-your-inference-script"></a>编写推理脚本
 
 >[!Warning]
->下面的代码只是[示例笔记本](https://aka.ms/batch-inference-notebooks)使用的示例。 你需要根据具体情况创建自己的脚本。
+>下面的代码只是[示例笔记本](https://github.com/Azure/MachineLearningNotebooks/tree/master/how-to-use-azureml/machine-learning-pipelines/parallel-run)使用的示例。 你需要为方案创建自己的脚本。
 
 脚本必须包含两个函数：
 - `init()`：此函数适用于后续推理的任何成本高昂或常见的准备工作。 例如，使用它将模型加载到全局对象。 此函数将在进程开始时调用一次。
 -  `run(mini_batch)`：将针对每个 `mini_batch` 实例运行此函数。
-    -  `mini_batch`：ParallelRunStep 将调用 run 方法，并将列表或 Pandas 数据帧作为参数传递给该方法。 如果输入是 FileDataset，则 mini_batch 中的每个条目都将为文件路径；如果输入是 TabularDataset，则为 Pandas 数据帧。
-    -  `response`：run() 方法应返回 Pandas 数据帧或数组。 对于 append_row output_action，这些返回的元素将追加到公共输出文件中。 对于 summary_only，将忽略元素的内容。 对于所有的输出操作，每个返回的输出元素都指示输入微型批处理中输入元素的一次成功运行。 确保运行结果中包含足够的数据，以便将输入映射到运行输出结果。 运行输出将写入输出文件中，并且不保证按顺序写入，你应使用输出中的某个键将其映射到输入。
+    -  `mini_batch``ParallelRunStep` 将调用 run 方法，并将列表或 pandas `DataFrame` 作为参数传递给该方法。 如果输入是 `FileDataset`，则 mini_batch 中的每个条目都将是文件路径；如果输入是 `TabularDataset`，则是 pandas `DataFrame`。
+    -  `response`：run() 方法应返回 pandas `DataFrame` 或数组。 对于 append_row output_action，这些返回的元素将追加到公共输出文件中。 对于 summary_only，将忽略元素的内容。 对于所有的输出操作，每个返回的输出元素都指示输入微型批处理中输入元素的一次成功运行。 确保运行结果中包含足够的数据，以便将输入映射到运行输出结果。 运行输出将写入输出文件中，并且不保证按顺序写入，你应使用输出中的某个键将其映射到输入。
 
 ```python
 %%writefile digit_identification.py
 # Snippets from a sample script.
 # Refer to the accompanying digit_identification.py
-# (https://aka.ms/batch-inference-notebooks)
+# (https://github.com/Azure/MachineLearningNotebooks/tree/master/how-to-use-azureml/machine-learning-pipelines/parallel-run)
 # for the implementation script.
 
 import os
@@ -380,7 +382,7 @@ pipeline_run.wait_for_completion(show_output=True)
 
 ## <a name="resubmit-a-run-with-new-data-inputs-and-parameters"></a>使用新的数据输入和参数重新提交运行
 
-由于你已将输入和多个配置设置为 `PipelineParameter`，因此可以使用不同的数据集输入重新提交批量推理运行，并微调参数，而不必创建全新的管道。 你将使用相同的数据存储，但仅使用单个映像作为数据输入。
+由于已将输入和几个配置设置为 `PipelineParameter`，因此可以重新提交一个具有不同数据集输入内容的批量推理运行，以及对参数进行微调，而不必创建全新的管道。 你将使用相同的数据存储，但仅使用单个映像作为数据输入。
 
 ```python
 path_on_datastore = mnist_blob.path('mnist/0.png')
@@ -419,7 +421,7 @@ df.head(10)
 
 ## <a name="next-steps"></a>后续步骤
 
-若要了解此过程的端到端运行机制，请尝试[批处理推理笔记本](https://aka.ms/batch-inference-notebooks)。 
+若要了解此过程的端到端运行机制，请尝试[批处理推理笔记本](https://github.com/Azure/MachineLearningNotebooks/tree/master/how-to-use-azureml/machine-learning-pipelines/parallel-run)。 
 
 有关 ParallelRunStep 的调试和故障排除指导，请参阅[操作指南](how-to-debug-parallel-run-step.md)。
 

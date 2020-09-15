@@ -386,8 +386,6 @@
           href: site-recovery-sharepoint.md
         - name: Dynamics AX
           href: site-recovery-dynamicsax.md
-        - name: RDS
-          href: site-recovery-workload.md
         - name: Exchange
           href: site-recovery-workload.md#protect-exchange
         - name: SAP
@@ -489,7 +487,7 @@
 - name: 相关内容
   items:
     - name: Azure 自动化
-      href: /automation/
+      href: ../automation/index.yml
 - name: 资源
   items:
     - name: 博客

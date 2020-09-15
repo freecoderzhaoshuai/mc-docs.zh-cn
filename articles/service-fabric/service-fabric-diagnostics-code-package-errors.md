@@ -1,17 +1,19 @@
 ---
 title: 使用 Service Fabric 诊断常见代码包错误
 description: 了解如何使用 Azure Service Fabric 排查常见的代码包错误
-author: rockboyfor
 ms.topic: article
 origin.date: 05/09/2019
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 97e02fe6c912fca68c02ea77c87988512e759914
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 06dc61f5deec813dca07fdf14cac9299c81df5bf
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742399"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655169"
 ---
 <!--Verify sucessfully-->
 # <a name="diagnose-common-code-package-errors-by-using-service-fabric"></a>使用 Service Fabric 诊断常见代码包错误

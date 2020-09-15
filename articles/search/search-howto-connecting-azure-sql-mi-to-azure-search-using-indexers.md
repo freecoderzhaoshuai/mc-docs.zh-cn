@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 03/02/2020
-ms.openlocfilehash: 4f5546061b4d0e488c676a622a729ca52b95745a
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.date: 09/10/2020
+ms.openlocfilehash: f243ee50fc4661683104969845ef54153d3993c1
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78850512"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020890"
 ---
 # <a name="configure-a-connection-from-an-azure-cognitive-search-indexer-to-sql-managed-instance"></a>配置从 Azure 认知搜索索引器到 SQL 托管实例的连接
 
@@ -39,7 +39,7 @@ ms.locfileid: "78850512"
 > 索引器仍要求使用公共终结点配置 SQL 托管实例以方便读取数据。
 > 但是，可以选择使用以下 2 个规则来替换当前规则 (`public_endpoint_inbound`)，以便限制对该公共终结点的入站访问：
 >
-> * 允许从 `AzureCognitiveSearch` [服务标记](https://docs.azure.cn/virtual-network/service-tags-overview#available-service-tags) ("SOURCE" = `AzureCognitiveSearch`, "NAME" = `cognitive_search_inbound`) 进行的入站访问
+> * 允许从 `AzureCognitiveSearch` [服务标记](../virtual-network/service-tags-overview.md#available-service-tags) ("SOURCE" = `AzureCognitiveSearch`, "NAME" = `cognitive_search_inbound`) 进行的入站访问
 >
 > * 允许来自搜索服务的 IP 地址的入站访问，该 IP 地址可通过 ping 其完全限定的域名（例如 `<your-search-service-name>.search.azure.cn`）来获取。 ("SOURCE" = `IP address`, "NAME" = `search_service_inbound`)
 >

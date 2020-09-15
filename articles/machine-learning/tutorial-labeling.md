@@ -10,12 +10,12 @@ ms.author: sgilley
 author: sdgilley
 ms.reviewer: ranku
 ms.date: 04/09/2020
-ms.openlocfilehash: bf37682b6a69dac019fb8179c18b4b1fcbb60eb5
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 1a5781ff0d60408c07f6ecd06c9cd426aa0658de
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228488"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021282"
 ---
 # <a name="tutorial-create-a-labeling-project-preview-for-multi-class-image-classification"></a>教程：创建用于多类图像分类的标记项目（预览） 
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -50,7 +50,7 @@ Azure 机器学习工作区是云中的基础资源，用于试验、训练和�
 
 接下来，在 Azure 机器学习工作室中管理数据标记项目。机器学习工作室是一个整合的界面，其中包含的机器学习工具可供各种技能水平的数据科学实践者用来执行数据科学方案。 Internet Explorer 浏览器不支持此工作室。
 
-1. 登录到 [Azure 机器学习工作室](https://ml.azure.com)。
+1. 登录到 [Azure 机器学习工作室](https://studio.ml.azure.cn)。
 
 1. 选择创建的订阅和工作区。
 
@@ -144,7 +144,7 @@ Azure 机器学习数据存储用于存储连接信息，例如订阅 ID 和令�
 
 在本教程部分，你要将角色从“项目管理员”切换为标记人员的角色。  任何对你的工作区具有参与者访问权限的人都可以成为标记人员。
 
-1. 在[机器学习工作室](https://ml.azure.com)中，选择左侧的“数据标记”来找到你的项目。  
+1. 在[机器学习工作室](https://studio.ml.azure.cn)中，选择左侧的“数据标记”来找到你的项目。  
 
 1. 选择项目的“标签链接”。
 
@@ -172,7 +172,7 @@ Azure 机器学习数据存储用于存储连接信息，例如订阅 ID 和令�
 
 ### <a name="review-labeled-data"></a>审查标记的数据
 
-1. 在[机器学习工作室](https://ml.azure.com)中，选择左侧的“数据标记”来找到你的项目。  
+1. 在[机器学习工作室](https://studio.ml.azure.cn)中，选择左侧的“数据标记”来找到你的项目。  
 
 1. 选择项目名称链接。
 
@@ -190,7 +190,7 @@ Azure 机器学习数据存储用于存储连接信息，例如订阅 ID 和令�
 
 可以使用 [COCO 格式](http://cocodataset.org/#format-data)导出图像标签，或将其导出为 Azure 机器学习数据集。 数据集采用的格式使得数据集可以方便地在 Azure 机器学习中用于训练。  
 
-1. 在[机器学习工作室](https://ml.azure.com)中，选择左侧的“数据标记”来找到你的项目。  
+1. 在[机器学习工作室](https://studio.ml.azure.cn)中，选择左侧的“数据标记”来找到你的项目。  
 
 1. 选择项目名称链接。
 

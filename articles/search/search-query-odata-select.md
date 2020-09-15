@@ -8,7 +8,7 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 12/16/2019
+ms.date: 09/10/2020
 translation.priority.mt:
 - de-de
 - es-es
@@ -20,12 +20,12 @@ translation.priority.mt:
 - ru-ru
 - zh-cn
 - zh-tw
-ms.openlocfilehash: c23738d3ae38e8ff3200523c0b0ca2677a852fc4
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.openlocfilehash: cc2bd05e88e666453d18af5373fd26458a413c3c
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588779"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021459"
 ---
 # <a name="odata-select-syntax-in-azure-cognitive-search"></a>Azure 认知搜索中的 OData $select 语法
 
@@ -64,7 +64,9 @@ field_path ::= identifier('/'identifier)*
 
 在结果中包括 `HotelId`、`HotelName` 和 `Rating` 顶级字段，以及 `Address` 的 `City` 子字段：
 
+```odata-filter-expr
     $select=HotelId, HotelName, Rating, Address/City
+```
 
 示例结果可能如下所示：
 
@@ -81,7 +83,9 @@ field_path ::= identifier('/'identifier)*
 
 在结果中包括 `HotelName` 顶级字段，以及 `Address` 的所有子字段，以及 `Rooms` 集合中每个对象的 `Type` 和 `BaseRate` 子字段：
 
+```odata-filter-expr
     $select=HotelName, Address, Rooms/Type, Rooms/BaseRate
+```
 
 示例结果可能如下所示：
 

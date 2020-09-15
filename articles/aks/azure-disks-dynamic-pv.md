@@ -5,16 +5,17 @@ description: 了解如何在 Azure Kubernetes 服务 (AKS) 中使用 Azure 磁�
 services: container-service
 ms.topic: article
 origin.date: 07/10/2020
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
-ms.openlocfilehash: 9beb4343f99fe2e63d86d07b1ded0f0d2b25ea2d
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: e2ba693622717f01cf669de82b0aa0f1806a2252
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842599"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021552"
 ---
 # <a name="dynamically-create-and-use-a-persistent-volume-with-azure-disks-in-azure-kubernetes-service-aks"></a>在 Azure Kubernetes 服务 (AKS) 中动态创建永久性卷并将其用于 Azure 磁盘
 
@@ -44,7 +45,7 @@ ms.locfileid: "87842599"
 
 如果使用默认存储类之一，则创建存储类后将无法更新卷大小。 若要能够在创建存储类后更新卷大小，请将行 `allowVolumeExpansion: true` 添加到其中一个默认存储类，或者也可以创建自己的自定义存储类。 注意，不支持减小 PVC 的大小（以防数据丢失）。 可以使用 `kubectl edit sc` 命令编辑现有存储类。 
 
-例如，如果要使用大小为 4 TiB 的磁盘，需要创建一个定义 `cachingmode: None` 的存储类，因为[磁盘缓存不支持 4 TiB 及更大的磁盘](../virtual-machines/windows/premium-storage-performance.md#disk-caching)。
+例如，如果要使用大小为 4 TiB 的磁盘，需要创建一个定义 `cachingmode: None` 的存储类，因为[磁盘缓存不支持 4 TiB 及更大的磁盘](../virtual-machines/premium-storage-performance.md#disk-caching)。
 
 有关存储类和创建自己的存储类的详细信息，请参阅 [AKS 中应用程序的存储选项][storage-class-concepts]。
 
@@ -161,6 +162,7 @@ Events:
 ```
 
 <!--Not Available on ## Use Ultra Disks-->
+<!--Not Available on FEATURE Ultra Disks-->
 
 ## <a name="back-up-a-persistent-volume"></a>备份永久性卷
 
@@ -180,10 +182,10 @@ azure-managed-disk   Bound     pvc-faf0f176-8b8d-11e8-923b-deb28c58d242   5Gi   
 ```azurecli
 $ az disk list --query '[].id | [?contains(@,`pvc-faf0f176-8b8d-11e8-923b-deb28c58d242`)]' -o tsv
 
-/subscriptions/<guid>/resourceGroups/MC_MYRESOURCEGROUP_MYAKSCLUSTER_China_East_2/providers/MicrosoftCompute/disks/kubernetes-dynamic-pvc-faf0f176-8b8d-11e8-923b-deb28c58d242
+/subscriptions/<guid>/resourceGroups/MC_MYRESOURCEGROUP_MYAKSCLUSTER_chinaeast2/providers/MicrosoftCompute/disks/kubernetes-dynamic-pvc-faf0f176-8b8d-11e8-923b-deb28c58d242
 ```
 
-<!--CORRECT ON MC_MYRESOURCEGROUP_MYAKSCLUSTER_China_East_2-->
+<!--CORRECT ON MC_MYRESOURCEGROUP_MYAKSCLUSTER_chinaeast2-->
 
 运行 [az snapshot create][az-snapshot-create]，使用磁盘 ID 创建快照磁盘。 以下示例在 AKS 群集所在的同一资源组 (*MC_myResourceGroup_myAKSCluster_chinaeast2*) 中创建名为 *pvcSnapshot* 的快照。 如果在 AKS 群集无权访问的资源组中创建快照和还原磁盘，可能会遇到权限问题。
 
@@ -291,24 +293,24 @@ Volumes:
 
 [azure-disk-volume]: azure-disk-volume.md
 [azure-files-pvc]: azure-files-dynamic-pv.md
-[premium-storage]: ../virtual-machines/windows/disks-types.md
-[az-disk-list]: https://docs.azure.cn/cli/disk?view=azure-cli-latest#az-disk-list
-[az-snapshot-create]: https://docs.azure.cn/cli/snapshot?view=azure-cli-latest#az-snapshot-create
-[az-disk-create]: https://docs.azure.cn/cli/disk?view=azure-cli-latest#az-disk-create
-[az-disk-show]: https://docs.azure.cn/cli/disk?view=azure-cli-latest#az-disk-show
+[premium-storage]: ../virtual-machines/disks-types.md
+[az-disk-list]: https://docs.azure.cn/cli/disk#az-disk-list
+[az-snapshot-create]: https://docs.azure.cn/cli/snapshot#az-snapshot-create
+[az-disk-create]: https://docs.azure.cn/cli/disk#az-disk-create
+[az-disk-show]: https://docs.azure.cn/cli/disk#az-disk-show
 [aks-quickstart-cli]: kubernetes-walkthrough.md
 [aks-quickstart-portal]: kubernetes-walkthrough-portal.md
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
 [operator-best-practices-storage]: operator-best-practices-storage.md
 [concepts-storage]: concepts-storage.md
 [storage-class-concepts]: concepts-storage.md#storage-classes
-[az-feature-register]: https://docs.azure.cn/cli/feature?view=azure-cli-latest#az-feature-register
-[az-feature-list]: https://docs.azure.cn/cli/feature?view=azure-cli-latest#az-feature-list
-[az-provider-register]: https://docs.azure.cn/cli/provider?view=azure-cli-latest#az-provider-register
-[az-extension-add]: https://docs.azure.cn/cli/extension?view=azure-cli-latest#az-extension-add
-[az-extension-update]: https://docs.azure.cn/cli/extension?view=azure-cli-latest#az-extension-update
-[az-feature-register]: https://docs.azure.cn/cli/feature?view=azure-cli-latest#az-feature-register
-[az-feature-list]: https://docs.azure.cn/cli/feature?view=azure-cli-latest#az-feature-list
-[az-provider-register]: https://docs.azure.cn/cli/provider?view=azure-cli-latest#az-provider-register
+[az-feature-register]: https://docs.azure.cn/cli/feature#az-feature-register
+[az-feature-list]: https://docs.azure.cn/cli/feature#az-feature-list
+[az-provider-register]: https://docs.azure.cn/cli/provider#az-provider-register
+[az-extension-add]: https://docs.azure.cn/cli/extension#az-extension-add
+[az-extension-update]: https://docs.azure.cn/cli/extension#az-extension-update
+[az-feature-register]: https://docs.azure.cn/cli/feature#az-feature-register
+[az-feature-list]: https://docs.azure.cn/cli/feature#az-feature-list
+[az-provider-register]: https://docs.azure.cn/cli/provider#az-provider-register
 
 <!-- Update_Description: update meta properties, wording update, update link -->

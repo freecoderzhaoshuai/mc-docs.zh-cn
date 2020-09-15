@@ -1,21 +1,21 @@
 ---
-title: 从 MySQL Workbench 连接到 Azure Database for MariaDB
+title: 快速入门：连接 MySQL Workbench - Azure Database for MariaDB
 description: 本快速入门介绍如何使用 MySQL Workbench 连接到 Azure Database for MariaDB 并查询其中的数据。
 author: WenJason
 ms.author: v-jay
 ms.service: mariadb
 ms.custom: mvc
 ms.topic: quickstart
-origin.date: 09/24/2018
-ms.date: 05/27/2019
-ms.openlocfilehash: ecfb28d392de3eb676ef71ccd219db42dd194a89
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+origin.date: 03/18/2020
+ms.date: 09/14/2020
+ms.openlocfilehash: 5d8b22f74fa99e3307a1d59a7dc9af55ce9473f9
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440519"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512914"
 ---
-# <a name="azure-database-for-mariadb-use-mysql-workbench-to-connect-and-query-data"></a>Azure Database for MariaDB：使用 MySQL Workbench 连接和查询数据
+# <a name="quickstart-azure-database-for-mariadb-use-mysql-workbench-to-connect-and-query-data"></a>快速入门：Azure Database for MariaDB：使用 MySQL Workbench 连接和查询数据
 
 本快速入门演示如何使用 MySQL Workbench 连接到 Azure Database for MariaDB 实例。 
 
@@ -59,7 +59,7 @@ ms.locfileid: "86440519"
    | 主机名 | 服务器名称 | 指定在创建 Azure Database for MariaDB 实例时使用的服务器名称值。 示例服务器为 **mydemoserver.mariadb.database.chinacloudapi.cn**。 请使用完全限定域名 (\*.mariadb.database.chinacloudapi.cn)，如示例中所示。 如果不记得服务器名称，请完成上一部分的步骤，以便获取连接信息。  |
    | 端口 | **3306** | 在连接到 Azure Database for MariaDB 时，始终使用端口 3306。 |
    | 用户名 |  服务器管理员登录名 | 输入在创建 Azure Database for MariaDB 实例时使用的服务器管理员登录用户名。 示例用户名是 myadmin\@mydemoserver。 如果不记得服务器管理员登录名，请完成上一部分的步骤，以便获取连接信息。 格式为 username\@servername。
-   | 密码 | 你的密码 | 若要保存密码，请选择“在保管库中存储”。 |
+   | 密码 | 你的密码  | 若要保存密码，请选择“在保管库中存储”。 |
 
    ![设置新连接](./media/connect-workbench/2-setup-new-connection.png)
 

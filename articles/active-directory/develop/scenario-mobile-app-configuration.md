@@ -9,15 +9,15 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 07/09/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 ms.custom: aaddev
-ms.openlocfilehash: d2780df8f898e9782bc7a7d1728730590ede5782
-ms.sourcegitcommit: 92b9b1387314b60661f5f62db4451c9ff2c49500
+ms.openlocfilehash: 1dc9280266d8ed617aeb4fb7d770af6ba915b852
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86164915"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593792"
 ---
 # <a name="configure-a-mobile-app-that-calls-web-apis"></a>配置调用 Web API 的移动应用
 
@@ -47,12 +47,12 @@ PublicClientApplication sampleApp = new PublicClientApplication(
 
 ### <a name="ios"></a>iOS
 
-iOS 上的移动应用程序需实例化 `MSALPublicClientApplication` 类。 若要实例化该类，请使用以下代码。 
+iOS 上的移动应用程序需实例化 `MSALPublicClientApplication` 类。 若要实例化该类，请使用以下代码。
 
 ```objc
 NSError *msalError = nil;
-     
-MSALPublicClientApplicationConfig *config = [[MSALPublicClientApplicationConfig alloc] initWithClientId:@"<your-client-id-here>"];    
+
+MSALPublicClientApplicationConfig *config = [[MSALPublicClientApplicationConfig alloc] initWithClientId:@"<your-client-id-here>"];
 MSALPublicClientApplication *application = [[MSALPublicClientApplication alloc] initWithConfiguration:config error:&msalError];
 ```
 
@@ -61,7 +61,7 @@ let config = MSALPublicClientApplicationConfig(clientId: "<your-client-id-here>"
 if let application = try? MSALPublicClientApplication(configuration: config){ /* Use application */}
 ```
 
-[其他 MSALPublicClientApplicationConfig 属性](https://azuread.github.io/microsoft-authentication-library-for-objc/Classes/MSALPublicClientApplicationConfig.html#/Configuration%20options)可以重写默认的颁发机构、指定重定向 URI 或更改 MSAL 令牌缓存的行为。 
+[其他 MSALPublicClientApplicationConfig 属性](https://azuread.github.io/microsoft-authentication-library-for-objc/Classes/MSALPublicClientApplicationConfig.html#/Configuration%20options)可以重写默认的颁发机构、指定重定向 URI 或更改 MSAL 令牌缓存的行为。
 
 ### <a name="xamarin-or-uwp"></a>Xamarin 或 UWP
 
@@ -76,7 +76,7 @@ var app = PublicClientApplicationBuilder.Create(clientId)
                                         .Build();
 ```
 
-其他 `With<Parameter>` 方法可以设置 UI 父级、重写默认的颁发机构、指定遥测的客户端名称和版本、指定重定向 URI 以及指定要使用的 HTTP 工厂。 例如，可以使用 HTTP 工厂来处理代理以及指定遥测和日志记录。 
+其他 `With<Parameter>` 方法可以设置 UI 父级、重写默认的颁发机构、指定遥测的客户端名称和版本、指定重定向 URI 以及指定要使用的 HTTP 工厂。 例如，可以使用 HTTP 工厂来处理代理以及指定遥测和日志记录。
 
 以下部分提供了有关实例化应用程序的详细信息。
 
@@ -132,7 +132,7 @@ var pca = PublicClientApplicationBuilder
 - [确保身份验证流的交互部分结束后控制返回到 MSAL](msal-net-xamarin-android-considerations.md#ensure-that-control-returns-to-msal)
 - [更新 Android 清单](msal-net-xamarin-android-considerations.md#update-the-android-manifest)
 - [使用嵌入式 Web 视图（可选）](msal-net-xamarin-android-considerations.md#use-the-embedded-web-view-optional)
-- [根据需要进行故障排除](msal-net-xamarin-android-considerations.md#troubleshoot)
+- [根据需要进行故障排除](msal-net-xamarin-android-considerations.md#troubleshooting)
 
 有关详细信息，请参阅 [Xamarin.Android 注意事项](msal-net-xamarin-android-considerations.md)。
 
@@ -154,17 +154,17 @@ var pca = PublicClientApplicationBuilder
 
 ### <a name="enable-the-broker-on-xamarin"></a>在 Xamarin 上启用中介
 
-若要在 Xamarin 上启用中介，请在调用 `PublicClientApplicationBuilder.CreateApplication` 方法时使用 `WithBroker()` 参数。 `.WithBroker()` 默认设置为 true。 
+若要在 Xamarin 上启用中介，请在调用 `PublicClientApplicationBuilder.CreateApplication` 方法时使用 `WithBroker()` 参数。 `.WithBroker()` 默认设置为 true。
 
 若要为 Xamarin.iOS 启用中介身份验证，请遵循本文的 [Xamarin.iOS 部分](#enable-brokered-authentication-for-xamarin-ios)中的步骤。
 
 ### <a name="enable-the-broker-for-msal-for-android"></a>为用于 Android 的 MSAL 启用中介
 
-有关在 Android 上启用中介的信息，请参阅 [Android 上的中介身份验证](brokered-auth.md)。 
+有关在 Android 上启用中介的信息，请参阅 [Android 上的中介身份验证](brokered-auth.md)。
 
 ### <a name="enable-the-broker-for-msal-for-ios-and-macos"></a>为用于 iOS 和 macOS 的 MSAL 启用中介
 
-默认已为适用于 iOS 和 macOS 的 MSAL 中的 Azure AD 方案启用中介身份验证。 
+默认已为适用于 iOS 和 macOS 的 MSAL 中的 Azure AD 方案启用中介身份验证。
 
 以下部分提供有关在应用程序中为适用于 Xamarin.iOS 的 MSAL 或适用于 iOS 和 macOS 的 MSAL，配置中介身份验证支持的说明。 这两套说明中的某些步骤有所不同。
 
@@ -235,23 +235,23 @@ public override bool OpenUrl(UIApplication app, NSUrl url,
                  .WithParentActivityOrWindow(App.RootViewController)
                  .ExecuteAsync();
     ```
-    
+
 #### <a name="step-4-register-a-url-scheme"></a>步骤 4：注册 URL 方案
 
-MSAL.NET 使用 URL 调用中介，然后将中介响应返回到应用。 若要完成往返过程，请在 `Info.plist` 文件中注册应用的 URL 方案。 
+MSAL.NET 使用 URL 调用中介，然后将中介响应返回到应用。 若要完成往返过程，请在 `Info.plist` 文件中注册应用的 URL 方案。
 
 若要注册应用的 URL 方案，请执行以下步骤：
 
-1. 为 `CFBundleURLSchemes` 加上 `msauth` 前缀。 
-1. 将 `CFBundleURLName` 添加到末尾。 遵循以下模式： 
+1. 为 `CFBundleURLSchemes` 加上 `msauth` 前缀。
+1. 将 `CFBundleURLName` 添加到末尾。 遵循以下模式：
 
    `$"msauth.(BundleId)"`
 
    此处，`BundleId` 用于唯一标识设备。 例如，如果 `BundleId` 是 `yourcompany.xforms`，则 URL 方案是 `msauth.com.yourcompany.xforms`。
-    
+
    > [!NOTE]
    > 接收中介的响应时，此 URL 方案将成为用于唯一标识应用的重定向 URI 的一部分。
-    
+
    ```XML
     <key>CFBundleURLTypes</key>
        <array>
@@ -267,14 +267,14 @@ MSAL.NET 使用 URL 调用中介，然后将中介响应返回到应用。 若�
          </dict>
        </array>
    ```
-    
+
 #### <a name="step-5-add-to-the-lsapplicationqueriesschemes-section"></a>步骤 5：在 LSApplicationQueriesSchemes 节中添加代码
 
 MSAL 使用 `-canOpenURL:` 来检查是否在设备上安装了中介。 在 iOS 9 中，Apple 锁定了应用程序可以查询的方案。
 
 将 `msauthv2` 添加到 `Info.plist` 文件的 `LSApplicationQueriesSchemes` 节，如以下代码示例所示：
 
-```XML 
+```XML
 <key>LSApplicationQueriesSchemes</key>
     <array>
       <string>msauthv2</string>
@@ -294,18 +294,18 @@ MSAL 使用 `-canOpenURL:` 来检查是否在设备上安装了中介。 在 iOS
             openURL:(NSURL *)url
             options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options
 {
-    return [MSALPublicClientApplication handleMSALResponse:url 
+    return [MSALPublicClientApplication handleMSALResponse:url
                                          sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]];
 }
 ```
 
 ```swift
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        
+
         guard let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String else {
             return false
         }
-        
+
         return MSALPublicClientApplication.handleMSALResponse(url, sourceApplication: sourceApplication)
     }
 ```
@@ -319,19 +319,19 @@ MSAL 使用 `-canOpenURL:` 来检查是否在设备上安装了中介。 在 iOS
 
 适用于 iOS 和 macOS 的 MSAL 使用 URL 调用中介，然后将中介响应返回到应用。 若要完成往返过程，请在 `Info.plist` 文件中注册应用的 URL 方案。
 
-为应用注册方案： 
+为应用注册方案：
 
-1. 使用 `msauth` 作为自定义 URL 方案的前缀。 
+1. 使用 `msauth` 作为自定义 URL 方案的前缀。
 
-1. 将捆绑标识符添加到方案的末尾。 遵循以下模式： 
+1. 将捆绑标识符添加到方案的末尾。 遵循以下模式：
 
    `$"msauth.(BundleId)"`
 
    此处，`BundleId` 用于唯一标识设备。 例如，如果 `BundleId` 是 `yourcompany.xforms`，则 URL 方案是 `msauth.com.yourcompany.xforms`。
-  
+
    > [!NOTE]
    > 接收中介的响应时，此 URL 方案将成为用于唯一标识应用的重定向 URI 的一部分。 确保在 [Azure 门户](https://portal.azure.cn)中为应用程序注册 `msauth.(BundleId)://auth` 格式的重定向 URI。
-  
+
    ```XML
    <key>CFBundleURLTypes</key>
    <array>
@@ -349,11 +349,11 @@ MSAL 使用 `-canOpenURL:` 来检查是否在设备上安装了中介。 在 iOS
 添加 `LSApplicationQueriesSchemes` 以允许调用 Microsoft Authenticator 应用（如果已安装）。
 
 > [!NOTE]
-> 如果应用是使用 Xcode 11 和更高版本编译的，则需要 `msauthv3` 方案。 
+> 如果应用是使用 Xcode 11 和更高版本编译的，则需要 `msauthv3` 方案。
 
 下面是如何添加 `LSApplicationQueriesSchemes` 的示例：
 
-```XML 
+```XML
 <key>LSApplicationQueriesSchemes</key>
 <array>
   <string>msauthv2</string>

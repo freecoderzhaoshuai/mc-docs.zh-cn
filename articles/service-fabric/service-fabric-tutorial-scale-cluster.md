@@ -3,17 +3,18 @@ title: 缩放 Azure 中的 Service Fabric 群集
 description: 本教程介绍如何横向扩展和缩小 Azure 中的 Service Fabric 群集，以及如何清理剩余资源。
 ms.topic: tutorial
 origin.date: 07/22/2019
-ms.date: 08/03/2020
-ms.testscope: no
-ms.testdate: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: e2048b8fb3c1741db12ed203f8700e25f0ba2607
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: a0a6d718256d7d348b9578cf2b725a874bb00875
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426339"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655153"
 ---
 # <a name="tutorial-scale-a-service-fabric-cluster-in-azure"></a>教程：缩放 Azure 中的 Service Fabric 群集
 
@@ -41,7 +42,7 @@ ms.locfileid: "87426339"
 在开始学习本教程之前：
 
 * 如果还没有 Azure 订阅，请创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)
-* 安装 [Azure PowerShell](https://docs.microsoft.com/powershell/azure/install-Az-ps) 或 [Azure CLI](https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest)。
+* 安装 [Azure PowerShell](https://docs.microsoft.com/powershell/azure/install-az-ps) 或 [Azure CLI](https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest)。
 * 在 Azure 上创建安全 [Windows 群集](service-fabric-tutorial-create-vnet-and-windows-cluster.md)
 
 ## <a name="important-considerations-and-guidelines"></a>重要注意事项和指南
@@ -67,7 +68,7 @@ ms.locfileid: "87426339"
 
 ## <a name="export-the-template-for-the-resource-group"></a>导出资源组的模板
 
-成功创建一个安全的 [Windows 群集](service-fabric-tutorial-create-vnet-and-windows-cluster.md)并设置资源组后，导出该资源组的资源管理器模板。 导出模板后，便可自动执行群集及其资源的未来部署，因为模板包含所有完整的基础结构。  有关导出模板的详细信息，请阅读[使用 Azure 门户管理 Azure 资源管理器资源组](/azure-resource-manager/manage-resource-groups-portal)。
+成功创建一个安全的 [Windows 群集](service-fabric-tutorial-create-vnet-and-windows-cluster.md)并设置资源组后，导出该资源组的资源管理器模板。 导出模板后，便可自动执行群集及其资源的未来部署，因为模板包含所有完整的基础结构。  有关导出模板的详细信息，请阅读[使用 Azure 门户管理 Azure 资源管理器资源组](../azure-resource-manager/management/manage-resource-groups-portal.md)。
 
 1. 在 [Azure 门户](https://portal.azure.cn)中，转到包含群集的资源组（如果按本教程操作，即为 **sfclustertutorialgroup**）。 
 
@@ -604,6 +605,7 @@ az group deployment create --resource-group sfclustertutorialgroup --template-fi
                             "type": "IaaSDiagnostics",
                             "autoUpgradeMinorVersion": true,
                             "protectedSettings": {
+                                "storageAccountEndPoint": "https://core.chinacloudapi.cn/",
                                 "storageAccountName": "[variables('applicationDiagnosticsStorageAccountName')]",
                                 "storageAccountKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', variables('applicationDiagnosticsStorageAccountName')),'2015-05-01-preview').key1]",
                                 "storageAccountEndPoint": "https://core.chinacloudapi.cn/"
@@ -836,7 +838,7 @@ Foreach($node in $nodes)
 ```
 
 ## <a name="increase-node-resources"></a>增加节点资源 
-创建 Service Fabric 群集后，可以纵向扩展群集节点类型（更改节点的资源）或升级节点类型 VM 的操作系统，方法是使用新节点类型（带有更新的 VM SKU 或 OS 映像）替换原始节点类型。 有关更多详细信息，请参阅[纵向扩展 Azure Service Fabric 节点类型](service-fabric-scale-up-node-type.md)。
+创建 Service Fabric 群集后，可以纵向扩展群集节点类型（更改节点的资源）或升级节点类型 VM 的操作系统，方法是使用新节点类型（带有更新的 VM SKU 或 OS 映像）替换原始节点类型。 有关更多详细信息，请参阅[纵向扩展 Azure Service Fabric 节点类型](service-fabric-scale-up-primary-node-type.md)。
 
 > [!IMPORTANT]
 > 切勿尝试就地更改 VM SKU 或 OS 映像，这是一项危险操作，不受支持。

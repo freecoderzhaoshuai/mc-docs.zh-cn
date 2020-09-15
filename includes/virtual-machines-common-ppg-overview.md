@@ -2,20 +2,20 @@
 title: include 文件
 description: include 文件
 services: virtual-machines
-author: cynthn
+author: Johnnytechn
 ms.service: virtual-machines
 ms.topic: include
-ms.date: 08/31/2020
-ms.author: v-junlch
+ms.date: 09/09/2020
+ms.author: v-johya
 ms.custom: include file
-ms.openlocfilehash: d97ccd2e5d836a573475f0627485d94a9e0f188d
-ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
+ms.openlocfilehash: ca538ba482d609c9eb3c1f0ee5138c97b463fe7d
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/03/2020
-ms.locfileid: "89413233"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057489"
 ---
-将 VM 置于单个区域可以减少实例之间的物理距离。 将它们置于单一可用性区域中也会减少它们的物理距离。 但是，随着 Azure 占用空间的增加，单个可用性区域可能会跨多个物理数据中心，这可能导致网络延迟，对应用程序造成影响。 
+将 VM 置于单个区域可以减少实例之间的物理距离。
 
 若要让 VM 尽可能靠近，将延迟尽可能降至最低，应将 VM 部署到一个邻近放置组中。
 
@@ -53,5 +53,4 @@ ms.locfileid: "89413233"
 - 在单个模板中部署所有 VM 大小。 为了避免使用不支持所需的全部 VM SKU 和大小的硬件，请将所有应用层包括在单个模板中，以便同时部署它们。
 - 如果使用 PowerShell、CLI 或 SDK 来编写部署脚本，则可能会出现分配错误 `OverconstrainedAllocationRequest`。 在这种情况下，应停止/解除分配所有现有的 VM，并更改部署脚本中的顺序，从失败的 VM SKU/大小开始。 
 - 重复使用现有的放置组时，如果系统正在删除其中的 VM，请等待删除操作全部完成再向该组添加 VM。
-- 如果延迟是首要考虑的事项，请将 VM 置于邻近放置组中，将整个解决方案置于一个可用性区域中。 但是，如果复原能力是首要考虑的事项，请将实例分散到多个可用性区域（单个邻近放置组不能跨多个区域）。
 

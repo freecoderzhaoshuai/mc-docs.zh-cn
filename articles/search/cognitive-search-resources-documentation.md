@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 06/12/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: 2496a6da9674b64563384e933fb72e5e465f4e5d
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: c607623ea766f4f42f58810224aaf05dc3a117d8
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471900"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021604"
 ---
 # <a name="documentation-resources-for-ai-enrichment-in-azure-cognitive-search"></a>Azure 认知搜索中的 AI 扩充文档资源
 
@@ -87,6 +87,7 @@ AI 扩充是基于索引器的索引的加载项，用于查找非文本源和�
   + [Microsoft.Skills.Util.DocumentExtractionSkill](cognitive-search-skill-document-extraction.md)
   + [Microsoft.Skills.Util.ShaperSkill](cognitive-search-skill-shaper.md)
 
+<!--  + [Microsoft.Skills.Custom.AmlSkill](cognitive-search-aml-skill.md) -->
 + 自定义技能
   + [Microsoft.Skills.Custom.WebApiSkill](cognitive-search-custom-skill-web-api.md)
 

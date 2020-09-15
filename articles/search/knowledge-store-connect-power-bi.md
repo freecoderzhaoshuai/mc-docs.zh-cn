@@ -8,13 +8,13 @@ manager: nitinme
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 06/30/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: 9387fae2488ed49f4c2c35533850ad0d2d97ade4
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: 0b2eceee1d40e0e1ca2f579bd74a09e3be48a1fd
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471799"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021089"
 ---
 # <a name="connect-a-knowledge-store-with-power-bi"></a>使用 Power BI 连接知识存储
 
@@ -105,7 +105,7 @@ Create new containers in Azure Blob storage and upload each CSV file to its own 
 | Medium (6000 Records)| [HotelReviews_Medium.csv](https://knowledgestoredemo.blob.core.chinacloudapi.cn/hotel-reviews/HotelReviews_Medium.csv?st=2019-07-29T17%3A51%3A30Z&se=2021-07-30T17%3A51%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=LnWLXqFkPNeuuMgnohiz3jfW4ijePeT5m2SiQDdwDaQ%3D)
 | Large (Full dataset 35000 Records) | [HotelReviews_Large.csv](https://knowledgestoredemo.blob.core.chinacloudapi.cn/hotel-reviews/HotelReviews_Large.csv?st=2019-07-29T17%3A51%3A30Z&se=2021-07-30T17%3A51%3A00Z&sp=rl&sv=2018-03-28&sr=c&sig=LnWLXqFkPNeuuMgnohiz3jfW4ijePeT5m2SiQDdwDaQ%3D). Be aware that very large data sets are expensive to process. This one costs roughly $1000 U.S dollars.|
 
-In the enrichment step of the wizard, attach a billable [Cognitive Services](https://docs.azure.cn/cognitive-services/cognitive-services-apis-create-account) resource, created at the *S0* tier, in the same region as Azure Cognitive Search to use larger data sets. 
+In the enrichment step of the wizard, attach a billable [Cognitive Services](../cognitive-services/cognitive-services-apis-create-account.md) resource, created at the *S0* tier, in the same region as Azure Cognitive Search to use larger data sets. 
 
   ![Create a Cognitive Services resource](media/knowledge-store-connect-power-bi/create-cognitive-service.png "Create a Cognitive Services resource") -->
 

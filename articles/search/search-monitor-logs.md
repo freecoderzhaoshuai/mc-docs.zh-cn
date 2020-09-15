@@ -7,28 +7,28 @@ author: HeidiSteen
 ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
-origin.date: 02/18/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: 53558aa69fb805d9511f361a048502afbb013a38
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+origin.date: 06/30/2020
+ms.date: 09/10/2020
+ms.openlocfilehash: 13cf87f7dc3e2db395cdce1cf26e0be9b26bae11
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471948"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021463"
 ---
 # <a name="collect-and-analyze-log-data-for-azure-cognitive-search"></a>收集和分析 Azure 认知搜索的日志数据
 
 诊断或操作日志提供 Azure 认知搜索的详细操作的见解，可用于监视服务和工作负荷流程。 在内部，某些系统信息会短时存在于后端，但足以进行调查和分析（如果你提交了支持票证）。 但是，如果想要自我掌控操作数据，则应配置诊断设置以指定要从何处收集日志记录信息。
 
-诊断日志记录功能是通过与 [Azure Monitor](https://docs.azure.cn/azure-monitor/) 集成实现的。 
+诊断日志记录功能是通过与 [Azure Monitor](../azure-monitor/index.yml) 集成实现的。 
 
 设置诊断日志记录时，系统将要求你指定存储机制。 下表列举了用于收集和保留数据的选项。
 
 | 资源 | 用途 |
 |----------|----------|
-| [发送到 Log Analytics 工作区](https://docs.azure.cn/azure-monitor/learn/tutorial-resource-logs) | 事件和指标将发送到 Log Analytics 工作区，可在门户中查询该工作区以返回详细信息。 有关介绍，请参阅 [Azure Monitor 日志入门](https://docs.azure.cn/azure-monitor/learn/tutorial-viewdata) |
-| [使用 Blob 存储进行存档](https://docs.azure.cn/storage/blobs/storage-blobs-overview) | 事件和指标将存档到 Blob 容器，并存储在 JSON 文件中。 日志可以精确到小时/分钟，对于调查特定的事件非常有用，但不适合用于无目标性的调查。 使用 JSON 编辑器查看原始日志文件，或使用 Power BI 来聚合与可视化日志数据。|
-| [流式传输到事件中心](https://docs.azure.cn/event-hubs/) | 事件和指标将流式传输到 Azure 事件中心服务。 对于很大的日志，请选择此项作为备用数据收集服务。 |
+| [发送到 Log Analytics 工作区](../azure-monitor/learn/tutorial-resource-logs.md) | 事件和指标将发送到 Log Analytics 工作区，可在门户中查询该工作区以返回详细信息。 有关介绍，请参阅 [Azure Monitor 日志入门](../azure-monitor/log-query/get-started-portal.md) |
+| [使用 Blob 存储进行存档](../storage/blobs/storage-blobs-overview.md) | 事件和指标将存档到 Blob 容器，并存储在 JSON 文件中。 日志可以精确到小时/分钟，对于调查特定的事件非常有用，但不适合用于无目标性的调查。 使用 JSON 编辑器查看原始日志文件，或使用 Power BI 来聚合与可视化日志数据。|
+| [流式传输到事件中心](../event-hubs/index.yml) | 事件和指标将流式传输到 Azure 事件中心服务。 对于很大的日志，请选择此项作为备用数据收集服务。 |
 
 ## <a name="prerequisites"></a>先决条件
 
@@ -36,7 +36,7 @@ ms.locfileid: "86471948"
 
 + [创建 Log Analytics 工作区](../azure-monitor/learn/quick-create-workspace.md)
 
-+ [创建存储帐户](../storage/common/storage-quickstart-create-account.md)
++ [创建存储帐户](../storage/common/storage-account-create.md)
 
 + [创建事件中心](../event-hubs/event-hubs-create.md)
 

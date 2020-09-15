@@ -5,26 +5,26 @@ services: automation
 ms.service: virtual-machines
 author: Johnnytechn
 ms.author: v-johya
-ms.date: 06/17/2020
-ms.topic: article
+ms.date: 09/03/2020
+ms.topic: how-to
 manager: carmonm
-ms.openlocfilehash: 1be8582762787da4417ea239da58fc79b693183a
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: e2eebf79cedc602d6cef5618ab68c6d8f6a184ae
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097226"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057662"
 ---
 <!--Verify sccessfully-->
 # <a name="run-shell-scripts-in-your-linux-vm-by-using-run-command"></a>使用“运行命令”在 Linux VM 中运行 shell 脚本
 
-“运行命令”功能使用虚拟机 (VM) 代理在 Azure Linux VM 中运行 shell 脚本。 可以使用这些脚本进行一般性的计算机或应用程序管理。 它们可以帮助你快速诊断和修正 VM 访问与网络问题，使 VM 恢复正常状态。
+“运行命令”功能使用虚拟机 (VM) 代理在 Azure Linux VM 中运行 shell 脚本。 可以使用这些脚本进行常规计算机或应用程序管理。 它们可以帮助你快速诊断和修正 VM 访问与网络问题，使 VM 恢复正常状态。
 
 ## <a name="benefits"></a>优点
 
 可通过多种方式访问虚拟机。 “运行命令”可以使用 VM 代理在虚拟机上以远程方式运行脚本。 对于 Linux VM，可以通过 [REST API](https://docs.microsoft.com/rest/api/compute/virtual%20machines%20run%20commands/runcommand) 或 [Azure CLI](https://docs.azure.cn/cli/vm/run-command?view=azure-cli-latest#az-vm-run-command-invoke) 使用“运行命令”。
 
-此功能适用于要在虚拟机中运行脚本的所有方案。 它是排查和修正因网络或管理用户配置错误而未打开 RDP 或 SSH 端口的虚拟机的唯一方法。
+在需要在虚拟机中运行脚本的所有方案中，此功能都很有用。 它是排查和修正因网络或管理用户配置错误而未打开 RDP 或 SSH 端口的虚拟机的唯一方法。
 
 ## <a name="restrictions"></a>限制
 
@@ -36,7 +36,7 @@ ms.locfileid: "85097226"
 * 一次只能运行一个脚本。
 * 不支持提示输入信息（交互模式）的脚本。
 * 无法取消正在运行的脚本。
-* 脚本最长可以运行 90 分钟。 90 分钟后脚本将会超时。
+* 脚本最多可以运行 90 分钟。 90 分钟后脚本将会超时。
 * 需要从 VM 建立出站连接才能返回脚本的结果。
 
 > [!NOTE]
@@ -60,7 +60,7 @@ The entity was not found in this Azure location
 以下示例使用 [az vm run-command](https://docs.azure.cn/cli/vm/run-command?view=azure-cli-latest#az-vm-run-command-invoke) 命令在 Azure Linux VM 上运行 shell 脚本。
 
 ```azurecli
-az vm run-command invoke -g myResourceGroup -n myVm --command-id RunShellScript --scripts "sudo apt-get update && sudo apt-get install -y nginx"
+az vm run-command invoke -g myResourceGroup -n myVm --command-id RunShellScript --scripts "apt-get update && apt-get install -y nginx"
 ```
 
 > [!NOTE]
@@ -79,7 +79,7 @@ Invoke-AzVMRunCommand -ResourceGroupName '<myResourceGroup>' -Name '<myVMName>' 
 
 ## <a name="limiting-access-to-run-command"></a>限制对“运行命令”的访问
 
-列出“运行命令”或显示某个命令的详细信息需要 `Microsoft.Compute/locations/runCommands/read` 权限。 内置[读取者](../../role-based-access-control/built-in-roles.md#reader)角色和更高级别的角色具有此权限。
+列出“运行命令”或显示某个命令的详细信息需要 `Microsoft.Compute/locations/runCommands/read` 权限。 内置[读者](../../role-based-access-control/built-in-roles.md#reader)角色和更高级别具有此权限。
 
 运行命令需要 `Microsoft.Compute/virtualMachines/runCommand/action` 权限。 [虚拟机参与者](../../role-based-access-control/built-in-roles.md#virtual-machine-contributor)角色和更高级别具有此权限。
 

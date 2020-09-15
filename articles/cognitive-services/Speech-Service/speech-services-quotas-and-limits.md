@@ -11,12 +11,12 @@ ms.topic: conceptual
 origin.date: 08/20/2020
 ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: 8714d9ac3384fc58c4c9930c87c746385d219422
-ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
+ms.openlocfilehash: 8c5040554a974efda9cb4c90c8a0bc519a640c9d
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/02/2020
-ms.locfileid: "89323289"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021046"
 ---
 # <a name="speech-services-quotas-and-limits"></a>语音服务配额和限制
 
@@ -178,7 +178,7 @@ To create an increase request, you will need to provide your Deployment Region a
 Initiate the increase of Concurrent Request limit for your resource or if necessary check the today's limit by submitting the Support Request:
 
 - Ensure you have the [required information](#prepare-the-required-information)
-- Go to [Azure portal](https://portal.azure.com/)
+- Go to [Azure portal](https://portal.azure.cn/)
 - Select the Speech Resource for which you would like to increase (or to check) the Concurrency Request limit
 - Select *New support request* (*Support + troubleshooting* group) 
 - A new window will appear with auto-populated information about your Azure Subscription and Azure Resource

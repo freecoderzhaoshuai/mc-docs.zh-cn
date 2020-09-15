@@ -5,15 +5,16 @@ author: WenJason
 ms.author: v-jay
 ms.service: mysql
 ms.devlang: azurepowershel
-ms.topic: conceptual
+ms.topic: how-to
 origin.date: 4/28/2020
-ms.date: 06/01/2020
-ms.openlocfilehash: a0407d07e2ec7be693b5c290723f042388d24ea6
-ms.sourcegitcommit: be0a8e909fbce6b1b09699a721268f2fc7eb89de
+ms.date: 09/14/2020
+ms.custom: devx-track-azurepowershell
+ms.openlocfilehash: 3e1205b356ebbda68762a704a215264f15131d73
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84199985"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512884"
 ---
 # <a name="how-to-back-up-and-restore-an-azure-database-for-mysql-server-using-powershell"></a>如何使用 PowerShell 来备份和还原 Azure Database for MySQL 服务器
 
@@ -131,4 +132,4 @@ Get-AzMySqlServer -Name mydemoserver -ResourceGroupName myresourcegroup |
 ## <a name="next-steps"></a>后续步骤
 
 > [!div class="nextstepaction"]
-> [使用 PowerShell 自定义 Azure Database for MySQL 服务器参数](howto-configure-server-parameters-using-powershell.md)
+> [如何使用 PowerShell 生成 Azure Database for MySQL 连接字符串](howto-connection-string-powershell.md)

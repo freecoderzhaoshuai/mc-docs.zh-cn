@@ -9,13 +9,14 @@ ms.devlang: java
 ms.service: cognitive-search
 ms.topic: quickstart
 origin.date: 06/23/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: 5224a42b030ac3693e57b27611242eb09bf56bd9
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.custom: devx-track-java
+ms.openlocfilehash: 3557c95e694cfa6079c31136e75428cc131e9538
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471829"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021575"
 ---
 # <a name="quickstart-create-an-azure-cognitive-search-index-in-java-using-rest-apis"></a>快速入门：使用 REST API 在 Java 中创建 Azure 认知搜索索引
 > [!div class="op_single_selector"]
@@ -23,11 +24,11 @@ ms.locfileid: "86471829"
 > * [C#](search-get-started-dotnet.md)
 > * [Java](search-get-started-java.md)
 > * [门户](search-get-started-portal.md)
-> * [PowerShell](search-create-index-rest-api.md)
+> * [PowerShell](./search-get-started-powershell.md)
 > * [Python](search-get-started-python.md)
 > * [Postman](search-get-started-postman.md)
 
-创建一个 Java 控制台应用程序，用于通过 [IntelliJ](https://www.jetbrains.com/idea/)、[Java 11 SDK](https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable) 和 [Azure 认知搜索 REST API](https://docs.microsoft.com/azure/rest/api/searchservice/) 创建、加载及查询搜索索引。本文提供有关创建该应用程序的分步说明。 此外，还可以[下载并运行完整的应用程序](/samples/azure-samples/azure-search-java-samples/java-sample-quickstart/)。
+创建一个 Java 控制台应用程序，用于通过 [IntelliJ](https://www.jetbrains.com/idea/)、[Java 11 SDK](https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable) 和 [Azure 认知搜索 REST API](https://docs.microsoft.com/rest/api/searchservice/) 创建、加载及查询搜索索引。本文提供有关创建该应用程序的分步说明。 此外，还可以[下载并运行完整的应用程序](/samples/azure-samples/azure-search-java-samples/java-sample-quickstart/)。
 
 如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial/)。
 
@@ -69,14 +70,14 @@ ms.locfileid: "86471829"
 
     ![创建 Maven 项目](media/search-get-started-java/java-quickstart-create-new-maven-project.png) 
 
-1. 对于“GroupId”和“ArtifactId”，请输入 `AzureSearchQuickstart`。 
+1. 对于“GroupId”和“ArtifactId”，请输入 `AzureSearchQuickstart`。
 1. 接受剩余的默认值以打开项目。
 
 ### <a name="specify-maven-dependencies"></a>指定 Maven 依赖项
 
-1. 选择“文件” > “设置”。 
-1. 在“设置”窗口中，选择“生成、执行、部署” > “生成工具” > “Maven” > “导入”。    
-1. 选中“自动导入 Maven 项目”复选框，然后单击“确定”关闭窗口。  在下一步骤中更新 pom.xml 文件时，Maven 插件和其他依赖项将自动同步。
+1. 选择“文件” > “设置”。
+1. 在“设置”窗口中，选择“生成、执行、部署” > “生成工具” > “Maven” > “导入”。
+1. 选中“自动导入 Maven 项目”复选框，然后单击“确定”关闭窗口。 在下一步骤中更新 pom.xml 文件时，Maven 插件和其他依赖项将自动同步。
 
     ![IntelliJ 设置中的 Maven 导入选项](media/search-get-started-java/java-quickstart-settings-import-maven-auto.png)
 
@@ -133,7 +134,7 @@ ms.locfileid: "86471829"
 
 ### <a name="set-up-the-project-structure"></a>设置项目结构
 
-1. 选择“文件” > “项目结构”。 
+1. 选择“文件” > “项目结构”。
 1. 选择“模块”，展开源树以访问 `src` >  `main` 文件夹的内容。
 1. 在 `src` >  `main` > `java` 文件夹中添加 `app` 和 `service` 文件夹。 为此，请选择 `java` 文件夹，按 Alt + Insert，然后输入文件夹名称。
 1. 在 `src` >  `main` >`resources` 文件夹中添加 `app` 和 `service` 文件夹。
@@ -697,7 +698,7 @@ hotels 索引定义包含简单字段和一个复杂字段。 例如，“酒店
 
 1. 将以下代码添加到 `SearchServiceClient` 类。 此代码生成 Azure 认知搜索 REST 服务 URL，用于搜索已编制索引的数据并输出搜索结果。
 
-    使用 `SearchOptions` 类和 `createSearchOptions` 方法可以指定一部分可用的 Azure 认知搜索 REST API 查询选项。 有关 REST API 查询选项的详细信息，请参阅[搜索文档（Azure 认知搜索 REST API）](https://docs.microsoft.com/azure/rest/api/searchservice/search-documents)。
+    使用 `SearchOptions` 类和 `createSearchOptions` 方法可以指定一部分可用的 Azure 认知搜索 REST API 查询选项。 有关 REST API 查询选项的详细信息，请参阅[搜索文档（Azure 认知搜索 REST API）](https://docs.microsoft.com/rest/api/searchservice/search-documents)。
 
     `SearchPlus` 方法创建搜索查询 URL、发出搜索请求，然后将结果输出到控制台。 
 
@@ -831,4 +832,4 @@ hotels 索引定义包含简单字段和一个复杂字段。 例如，“酒店
 在此 Java 快速入门中，你已完成一系列任务：创建索引、使用文档加载索引，以及运行查询。 如果你熟悉基本概念，则建议参阅下文，其中列出了 REST 中的索引器操作。
 
 > [!div class="nextstepaction"]
-> [索引器操作](https://docs.microsoft.com/azure/rest/api/searchservice/indexer-operations)
+> [索引器操作](https://docs.microsoft.com/rest/api/searchservice/indexer-operations)

@@ -4,15 +4,16 @@ description: 了解如何使用 PowerShell 在 Azure Database for MySQL 中设�
 author: WenJason
 ms.author: v-jay
 ms.service: mysql
-ms.topic: conceptual
-origin.date: 6/10/2020
-ms.date: 06/29/2020
-ms.openlocfilehash: 1fbc5a79b4e5d11269d6508716cadfe02f064431
-ms.sourcegitcommit: 3a8a7d65d0791cdb6695fe6c2222a1971a19f745
+ms.topic: how-to
+origin.date: 8/24/2020
+ms.date: 09/14/2020
+ms.custom: devx-track-azurepowershell
+ms.openlocfilehash: c84ce559ae5d3d4d0c5d353dda852d267725a78a
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2020
-ms.locfileid: "85516627"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512945"
 ---
 # <a name="how-to-create-and-manage-read-replicas-in-azure-database-for-mysql-using-powershell"></a>如何使用 PowerShell 在 Azure Database for MySQL 中创建和管理只读副本
 
@@ -44,16 +45,16 @@ ms.locfileid: "85516627"
 ### <a name="create-a-read-replica"></a>创建只读副本
 
 > [!IMPORTANT]
-> 为没有现有副本的主服务器创建副本时，主服务器将首先重启以便为复制做好准备。 请考虑这一点并在非高峰期执行这些操作。
+> 如果为没有现有副本的主服务器创建副本，主服务器将首先重启以便为复制准备自身。 请考虑这一点并在非高峰期执行这些操作。
 
 可以使用以下命令创建只读副本服务器：
 
 ```azurepowershell
 Get-AzMySqlServer -Name mydemoserver -ResourceGroupName myresourcegroup |
-  New-AzMySqlServerReplica -Name mydemoreplicaserver -ResourceGroupName myresourcegroup
+  New-AzMySqlReplica -Name mydemoreplicaserver -ResourceGroupName myresourcegroup
 ```
 
-`New-AzMySqlServerReplica` 命令需要以下参数：
+`New-AzMySqlReplica` 命令需要以下参数：
 
 | 设置 | 示例值 | 说明  |
 | --- | --- | --- |
@@ -64,7 +65,7 @@ Get-AzMySqlServer -Name mydemoserver -ResourceGroupName myresourcegroup |
 
 ```azurepowershell
 Get-AzMySqlServer -Name mrdemoserver -ResourceGroupName myresourcegroup |
-  New-AzMySqlServerReplica -Name mydemoreplicaserver -ResourceGroupName myresourcegroup -Location chinanorth
+  New-AzMySqlReplica -Name mydemoreplicaserver -ResourceGroupName myresourcegroup -Location chinanorth
 ```
 
 若要详细了解可以在哪些区域中创建副本，请访问[只读副本概念文章](concepts-read-replicas.md)。

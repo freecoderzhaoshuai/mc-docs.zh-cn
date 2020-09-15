@@ -8,15 +8,15 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: quickstart
 ms.workload: identity
-ms.date: 08/18/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 ms.custom: devx-track-csharp, aaddev, identityplatformtop40, scenarios:getting-started, languages:aspnet-core
-ms.openlocfilehash: af648ea38152696714b4eb9d38fda020643e7a9e
-ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
+ms.openlocfilehash: 847b4636fdc93f421965f5e81c857a25b0311e94
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "88647614"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593641"
 ---
 # <a name="quickstart-add-sign-in-with-microsoft-to-an-aspnet-core-web-app"></a>快速入门：向 ASP.NET Core Web 应用添加 Microsoft 登录功能
 本快速入门通过代码示例了解 ASP.NET Core Web 应用如何从任何 Azure Active Directory (Azure AD) 实例登录工作和学校帐户。 （有关说明，请参阅[示例工作原理](#how-the-sample-works)。）
@@ -147,7 +147,7 @@ public void ConfigureServices(IServiceCollection services)
 > |其中 | 说明 |
 > |---------|---------|
 > | ClientId  | Azure 门户中注册的应用程序的应用程序（客户端）ID。 |
-> | 颁发机构 | 用户要进行身份验证的 STS 终结点。 对于公有云，此项通常为 <https://login.partner.microsoftonline.cn/{tenant}/v2.0>，其中 {tenant} 是租户名称、租户 ID 或者引用常用终结点（用于多租户应用程序）的 common |
+> | 颁发机构 | 用户要进行身份验证的 STS 终结点。 对于公有云，此项通常为 `https://login.partner.microsoftonline.cn/{tenant}/v2.0`，其中 {tenant} 是租户名称、租户 ID 或者引用常用终结点（用于多租户应用程序）的 common |
 > | TokenValidationParameters | 用于令牌验证的参数列表。 在这种情况下，`ValidateIssuer` 设置为 `false`，以指示它可以接受来自任何工作或学校帐户的登录。 |
 
 

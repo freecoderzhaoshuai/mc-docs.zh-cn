@@ -6,14 +6,14 @@ author: HeidiSteen
 ms.service: search
 ms.custom: subject-policy-samples
 ms.author: v-tawe
-origin.date: 06/23/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: 63dafc5586589a5824fc807a4a07372e1845f40b
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+origin.date: 07/10/2020
+ms.date: 09/10/2020
+ms.openlocfilehash: 62bac7ca759ee5ee1a98fb20eb19a219351b9614
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471871"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020895"
 ---
 # <a name="azure-policy-built-in-definitions-for-azure-cognitive-search"></a>Azure 认知搜索的 Azure Policy 内置定义
 

@@ -13,12 +13,12 @@ ms.author: v-jay
 ms.reviewer: carlrab
 origin.date: 03/25/2019
 ms.date: 08/17/2020
-ms.openlocfilehash: 9c7e961150783964c821c2b257877f6292c3dcdb
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: dbebe107e330d5f91e35235503f84282e5b86799
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223111"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014376"
 ---
 # <a name="use-powershell-to-create-a-managed-instance"></a>使用 PowerShell 创建托管实例
 

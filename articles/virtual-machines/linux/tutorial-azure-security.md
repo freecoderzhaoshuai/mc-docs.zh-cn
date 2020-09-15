@@ -1,5 +1,5 @@
 ---
-title: 教程 - 使用 Azure 安全中心监视 Linux 虚拟机
+title: 教程 - 使用 Azure 安全中心保护 Azure 中的 Linux VM
 description: 本教程介绍如何使用 Azure 安全中心功能保护 Azure 中的 Linux 虚拟机。
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -11,20 +11,20 @@ ms.service: virtual-machines-linux
 ms.topic: tutorial
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 04/20/2020
+ms.date: 09/03/2020
 ms.author: v-johya
 ms.custom: mvc
-ms.openlocfilehash: 99a18b0e6db324cce948e39f46c78128498d3a29
-ms.sourcegitcommit: ebedf9e489f5218d4dda7468b669a601b3c02ae5
+ms.openlocfilehash: 328c604181a4a081704790fb668d216632451f6b
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2020
-ms.locfileid: "82159182"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057689"
 ---
 # <a name="tutorial-use-azure-security-center-to-monitor-linux-virtual-machines"></a>教程：使用 Azure 安全中心监视 Linux 虚拟机
 
 Azure 安全中心可以帮助你深入了解 Azure 资源安全做法。 安全中心提供了集成的安全监视功能。 它可以检测到在其他方式下可能不会注意到的风险。 本教程介绍 Azure 安全中心，以及如何执行以下操作：
-
+ 
 > [!div class="checklist"]
 > * 设置数据收集
 > * 设置安全策略
@@ -47,8 +47,6 @@ Azure 安全中心可以帮助你深入了解 Azure 资源安全做法。 安全
 
 若要深入了解 VM 安全配置，首先需要设置安全中心数据收集。 这涉及启用数据收集，从而会自动在订阅中的所有 VM 上安装 Microsoft Monitoring Agent。
 
-<!--Correct on Microsoft Monitoring Agent -->
-
 1. 在安全中心仪表板上单击“安全策略”，并选择你的订阅。  
 2. 对于**数据收集**，请在“自动预配”  中选择“启用”  。
 3. 对于“默认工作区配置”  ，请将其保留为“使用安全中心创建的工作区(默认)”  。
@@ -60,8 +58,6 @@ Azure 安全中心可以帮助你深入了解 Azure 资源安全做法。 安全
 ## <a name="set-up-a-security-policy"></a>设置安全策略
 
 安全策略用于定义安全中心要为哪些项收集数据并提供建议。 可将不同的安全策略应用到不同的 Azure 资源集。 尽管默认情况下会对照所有策略项评估 Azure 资源，但可以针对所有 Azure 资源或某个资源组关闭单个策略项。 有关安全中心安全策略的详细信息，请参阅[在 Azure 安全中心设置安全策略](../../security-center/tutorial-security-policy.md)。 
-
-<!--CORRECT ON URL DIRECTION FROM security-center/security-center-policies TO security-center/tutorial-security-policy-->
 
 若要为整个订阅设置安全策略，请执行以下操作：
 
@@ -80,8 +76,8 @@ Azure 安全中心可以帮助你深入了解 Azure 资源安全做法。 安全
 
 查看资源运行状况：
 
-1. 在安全中心仪表板上的“防护”下面，选择“计算”。   
-2. 在“计算”边栏选项卡上选择“VM 和计算机”。   此视图提供所有 VM 的配置状态摘要。
+1.  在安全中心仪表板上的“防护”下面，选择“计算”。   
+2.  在“计算”边栏选项卡上选择“VM 和计算机”。   此视图提供所有 VM 的配置状态摘要。
 
 ![计算运行状况](./media/tutorial-azure-security/compute-health.png)
 
@@ -106,9 +102,7 @@ Azure 安全中心可以帮助你深入了解 Azure 资源安全做法。 安全
 
 ## <a name="view-detected-threats"></a>查看检测到的威胁
 
-除了资源配置建议外，安全中心还显示威胁检测警报。 安全警报功能聚合从每个 VM、Azure 网络日志和连接的合作伙伴解决方案中收集的数据，以便检测针对 Azure 资源的安全威胁。
-
-<!--Not Available on  [How does Security Center detect threats?](../../security-center/security-center-alerts-overview.md#detect-threats)-->
+除了资源配置建议外，安全中心还显示威胁检测警报。 安全警报功能聚合从每个 VM、Azure 网络日志和连接的合作伙伴解决方案中收集的数据，以便检测针对 Azure 资源的安全威胁。 有关安全中心威胁检测功能的深入信息，请参阅[安全中心如何检测威胁？](../../security-center/security-center-alerts-overview.md#detect-threats)。
 
 安全警报功能要求将安全中心定价层从“免费”提升到“标准”。   迁移到这个更高的定价层后，可以使用**试用版**。 
 
@@ -128,7 +122,7 @@ Azure 安全中心可以帮助你深入了解 Azure 资源安全做法。 安全
 ![RDP 攻击](./media/tutorial-azure-security/rdp-attack.png)
 
 ## <a name="next-steps"></a>后续步骤
-在本教程中，用户设置了安全中心，并查看了安全中心内的 VM。 你已了解如何：
+在本教程中，用户设置了安全中心，并查看了安全中心内的 VM。 你已了解如何执行以下操作：
 
 > [!div class="checklist"]
 > * 设置数据收集
@@ -139,7 +133,7 @@ Azure 安全中心可以帮助你深入了解 Azure 资源安全做法。 安全
 请继续学习下一教程，详细了解如何使用 Jenkins、GitHub 和 Docker 创建 CI/CD 管道。
 
 > [!div class="nextstepaction"]
-> [使用 Jenkins、GitHub 和 Docker 创建 CI/CD 基础结构](tutorial-jenkins-github-docker-cicd.md)
+> [使用 Jenkins、GitHub 和 Docker 创建 CI/CD 基础结构](https://docs.microsoft.com/azure/developer/jenkins/pipeline-with-github-and-docker)
 
 <!-- Update_Description: new article about tutorial azure security -->
 <!--NEW.date: 12/16/2019-->

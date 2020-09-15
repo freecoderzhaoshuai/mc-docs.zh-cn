@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 04/27/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: 9840fe0b651b192929ee31c1160bf639c74690d1
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: eefae5f6823fe1a0cb3cc58bce9e5abe913e2333
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471834"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021092"
 ---
 # <a name="similarity-and-scoring-in-azure-cognitive-search"></a>Azure 认知搜索中的相似性和评分
 
@@ -26,7 +26,7 @@ ms.locfileid: "86471834"
 
 搜索分数值可以在整个结果集中重复。 当多个命中具有相同的搜索评分时，相同评分项的顺序就不会是明确、稳定的。 再次运行查询，你可能会看到项偏移位置，尤其是使用免费服务或包含多个副本的可计费服务时。 对于具有相同分数的两项，无法保证先显示哪一个。
 
-如果要打破重复评分之间的平局，可以添加一个 $orderby 子句以便先按评分排序，然后按另一个可排序字段（例如 `$orderby=search.score() desc,Rating desc`）排序。 有关详细信息，请参阅 [$orderby](https://docs.azure.cn/search/search-query-odata-orderby)。
+如果要打破重复评分之间的平局，可以添加一个 $orderby 子句以便先按评分排序，然后按另一个可排序字段（例如 `$orderby=search.score() desc,Rating desc`）排序。 有关详细信息，请参阅 [$orderby](./search-query-odata-orderby.md)。
 
 > [!NOTE]
 > `@search.score = 1.00` 指示未评分或未排名的结果集。 评分在所有结果中是统一的。 如果查询形式是模糊搜索、通配符或正则表达式查询，或者采用了 $filter 表达式，则会出现未评分的结果。 
@@ -108,6 +108,7 @@ You can watch the full video for more background.
 ```
 
 可以使用[自定义评分解决方案](https://github.com/Azure-Samples/search-ranking-tutorial)中的这些数据点或使用相关信息来调试搜索相关性问题。
+
 
 ## <a name="see-also"></a>另请参阅
 

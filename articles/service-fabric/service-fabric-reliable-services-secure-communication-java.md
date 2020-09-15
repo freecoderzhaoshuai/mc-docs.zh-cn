@@ -1,17 +1,20 @@
 ---
 title: 使用 Java 保护服务远程处理通信
 description: 了解如何保护 Azure Service Fabric 群集中运行的 Java 可靠服务的基于服务远程处理的通信。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 06/30/2017
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
+ms.custom: devx-track-java
 ms.author: v-yeche
-ms.openlocfilehash: 974f87a4c5404186d10048d0a7ffd97ae6d488ca
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: e89b5353b929ffea6ffd9254ac7d0c433447dddb
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77541057"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655350"
 ---
 # <a name="secure-service-remoting-communications-in-a-java-service"></a>保护 Java 服务的服务远程处理通信
 > [!div class="op_single_selector"]

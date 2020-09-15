@@ -3,16 +3,17 @@ title: 使用 Azure Site Recovery 将磁盘排除在复制之外
 description: 如何使用 Azure Site Recovery 免于将磁盘复制到 Azure。
 ms.topic: conceptual
 origin.date: 12/17/2019
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 06/08/2020
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: c93c90447721471681edd61b4ef22c2850f9b078
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 07b8dbddfbc435d62678308918e7124c47564bf8
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426500"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655681"
 ---
 <!--Verify successfully, It is splited content of released articles(hyper-v-exclude-disk.md)-->
 # <a name="exclude-disks-from-disaster-recovery"></a>将磁盘排除在灾难恢复之外
@@ -105,8 +106,8 @@ Disk3 | G:\ | 用户数据库 2
 
 1. 打开命令提示符。
 2. 通过命令提示符在恢复模式下运行 SQL Server。
-    
-    ```cmd
+
+    ```console
     Net start MSSQLSERVER /f / T3608
     ```
 
@@ -125,13 +126,14 @@ Disk3 | G:\ | 用户数据库 2
     ```
 
 4. 停止 Microsoft SQL Server 服务。
-    
-    ```cmd
+
+    ```console
     Net stop MSSQLSERVER
     ```
+
 5. 启动 Microsoft SQL Server 服务。
 
-    ```cmd
+    ```console
     Net start MSSQLSERVER
     ```
 
@@ -204,7 +206,7 @@ DB-Disk3 | Disk3 | F:\ | 用户数据 2
 
 源 VM 上的页面文件设置如下所示：
 
-![源虚拟机上的页面文件设置](./media/exclude-disks-replication/pagefile-d-drive-source-vm.png)
+:::image type="content" source="./media/exclude-disks-replication/pagefile-d-drive-source-vm.png" alt-text="源虚拟机上的页面文件设置":::
 
 1. 为 VM 启用复制。
 2. 将 DB-Disk1 排除在复制之外。
@@ -222,7 +224,7 @@ DB-Disk3 | Disk3 | F:\ | 用户数据 2
 
 Azure VM 上的页面文件设置如下所示：
 
-![Azure 虚拟机上的页面文件设置](./media/exclude-disks-replication/pagefile-azure-vm-after-failover.png)
+:::image type="content" source="./media/exclude-disks-replication/pagefile-azure-vm-after-failover.png" alt-text="Azure 虚拟机上的页面文件设置":::
 
 ### <a name="paging-file-on-another-drive-not-d"></a>其他驱动器（非 D:）上的页面文件
 
@@ -239,7 +241,7 @@ DB-Disk3 | Disk3 | F:\ | 用户数据 2
 
 本地 VM 上的页面文件设置如下所示：
 
-![本地虚拟机上的页面文件设置](./media/exclude-disks-replication/pagefile-g-drive-source-vm.png)
+:::image type="content" source="./media/exclude-disks-replication/pagefile-g-drive-source-vm.png" alt-text="本地虚拟机上的页面文件设置":::
 
 1. 为 VM 启用复制。
 2. 将 DB-Disk1 排除在复制之外。
@@ -257,13 +259,13 @@ DB-Disk3 | Disk3 | F:\ | 用户数据 2
 
 Azure VM 上的页面文件设置如下所示：
 
-![Azure 虚拟机上的页面文件设置](./media/exclude-disks-replication/pagefile-azure-vm-after-failover-2.png)
+:::image type="content" source="./media/exclude-disks-replication/pagefile-azure-vm-after-failover-2.png" alt-text="Azure 虚拟机上的页面文件设置":::
 
 ## <a name="next-steps"></a>后续步骤
 
 - 详细了解临时存储磁盘的指导原则：
-    - [了解](https://blogs.technet.microsoft.com/dataplatforminsider/2014/09/25/using-ssds-in-azure-vms-to-store-sql-server-tempdb-and-buffer-pool-extensions/)如何在 Azure VM 中使用 SSD 来存储 SQL Server TempDB 和缓冲池扩展
-    - [查看](/virtual-machines/windows/sql/virtual-machines-windows-sql-performance) Azure VM 中 SQL Server 的性能最佳做法。
+    - [了解](https://cloudblogs.microsoft.com/sqlserver/2014/09/25/using-ssds-in-azure-vms-to-store-sql-server-tempdb-and-buffer-pool-extensions/)如何在 Azure VM 中使用 SSD 来存储 SQL Server TempDB 和缓冲池扩展
+    - [查看](../azure-sql/virtual-machines/windows/performance-guidelines-best-practices.md) Azure VM 中 SQL Server 的性能最佳做法。
 - 设置并运行部署后，请 [详细了解](failover-failback-overview.md) 不同类型的故障转移。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

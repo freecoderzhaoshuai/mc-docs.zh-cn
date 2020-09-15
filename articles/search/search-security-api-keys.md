@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 07/20/2020
-ms.openlocfilehash: 158a5158515026d5a5e1b6f7e96dacc70ee27af2
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: a8f34457605267ceadd321a5813dce98c19882d1
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471796"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021583"
 ---
 # <a name="create-and-manage-api-keys-for-an-azure-cognitive-search-service"></a>创建和管理 Azure 认知搜索服务的 API 密钥
 
@@ -65,7 +65,7 @@ API 密钥是随机生成的数字和字母所组成的字符串。 通过[基�
    ![创建或使用查询密钥](media/search-security-overview/create-query-key.png) 
 
 > [!Note]
-> 在[查询以 C# 编写的 Azure 认知搜索索引](search-query-dotnet.md)中可以找到一个演示查询密钥用法的代码示例。
+> 在[查询以 C# 编写的 Azure 认知搜索索引](./search-get-started-dotnet.md)中可以找到一个演示查询密钥用法的代码示例。
 
 <a name="regenerate-admin-keys"></a>
 
@@ -89,7 +89,7 @@ API 密钥是随机生成的数字和字母所组成的字符串。 通过[基�
 
 + 在服务仪表板中，依次单击“访问控制(IAM)”和“角色分配”选项卡可查看服务的角色分配。
 
-以下角色的成员可以查看和重新生成密钥：所有者、参与者和[搜索服务参与者](https://docs.azure.cn/role-based-access-control/built-in-roles#search-service-contributor)
+以下角色的成员可以查看和重新生成密钥：所有者、参与者和[搜索服务参与者](../role-based-access-control/built-in-roles.md#search-service-contributor)
 
 > [!Note]
 > 如果要实现针对搜索结果的、基于标识的访问，可创建安全筛选器按标识来细化结果，由此去除请求者不应具有访问权限的那些文档。 有关详细信息，请参阅[安全筛选器](search-security-trimming-for-azure-search.md)和[使用 Active Directory 进行保护](search-security-trimming-for-azure-search-with-aad.md)。

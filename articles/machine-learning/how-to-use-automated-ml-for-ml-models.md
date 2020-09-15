@@ -11,12 +11,12 @@ author: aniththa
 manager: cgronlun
 ms.reviewer: nibaccam
 ms.date: 07/10/2020
-ms.openlocfilehash: 66e0950b314e45fb9a508af847410fb939740e39
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 0f2a9a9dede69f656c539508f4e75120d9db1df5
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228400"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021158"
 ---
 # <a name="create-review-and-deploy-automated-machine-learning-models-with-azure-machine-learning"></a>使用 Azure 机器学习创建、查看和部署自动化机器学习模型
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-enterprise-sku.md)]
@@ -40,7 +40,7 @@ ms.locfileid: "88228400"
 
 ## <a name="get-started"></a>入门
 
-1. 登录到 https://ml.azure.com 处的 Azure 机器学习。 
+1. 登录到 https://studio.ml.azure.cn 处的 Azure 机器学习。 
 
 1. 选择订阅和工作区。 
 
@@ -134,7 +134,7 @@ ms.locfileid: "88228400"
 
     其他配置|说明
     ------|------
-    主要指标| 用于对模型进行评分的主要指标。 [详细了解模型指标](how-to-configure-auto-train.md#explore-model-metrics)。
+    主要指标| 用于对模型进行评分的主要指标。 [详细了解模型指标](how-to-configure-auto-train.md#primary-metric)。
     解释最佳模型 | 选择启用或禁用，以确定是否显示建议的最佳模型的可解释性。
     阻止的算法| 选择要从训练作业中排除的算法。
     退出条件| 如果满足其中的任一条件，则会停止训练作业。 <br> *训练作业时间(小时)* ：允许训练作业运行多长时间。 <br> *指标评分阈值*：所有管道的最低指标评分。 这可以确保在你具有一个要实现的已定义目标指标时，无需花费不必要的时间来完成训练作业。
@@ -229,7 +229,7 @@ Variance| 此列数据与其平均值之间的分散程度度量。
     计算类型| 选择要部署的终结点类型：Azure Kubernetes 服务 (AKS) 或 Azure 容器实例 (ACI) 。
     计算名称| 仅适用于 AKS：选择要部署到的 AKS 群集的名称。
     启用身份验证 | 选择此项将允许基于令牌或基于密钥的身份验证。
-    使用自定义部署资产| 若要上传自己的评分脚本和环境文件，请启用此功能。 [详细了解评分脚本](how-to-deploy-and-where.md#script)。
+    使用自定义部署资产| 若要上传自己的评分脚本和环境文件，请启用此功能。 [详细了解评分脚本](how-to-deploy-and-where.md)。
 
     >[!Important]
     > 文件名不能超过 32 个字符，并且必须以字母数字开头和结尾。 开头和结尾之间可以包含短划线、下划线、句点和字母数字。 不允许空格。

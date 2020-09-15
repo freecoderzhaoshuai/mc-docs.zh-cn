@@ -3,18 +3,19 @@ title: 快速入门 - 使用 PowerShell 部署 AKS 群集
 description: 了解如何使用 PowerShell 快速创建 Kubernetes 群集、部署应用程序，以及监视 Azure Kubernetes 服务 (AKS) 中的性能。
 services: container-service
 ms.topic: quickstart
-origin.date: 05/26/2020
-ms.date: 08/10/2020
+origin.date: 08/18/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 07/13/2020
 ms.author: v-yeche
 ms.custom: devx-track-azurepowershell
-ms.openlocfilehash: ac610f8ea639b05a9c6932db6dd0b956557a09d6
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 47fb8a9cd8081bf45d508c724d9127c264f43600
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842569"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020812"
 ---
 <!--Verified successfully-->
 # <a name="quickstart-deploy-an-azure-kubernetes-service-cluster-using-powershell"></a>快速入门：使用 PowerShell 部署 Azure Kubernetes 服务群集
@@ -111,15 +112,7 @@ aks-nodepool1-31718369-0   Ready    agent   6m44s   v1.15.10
 
 Kubernetes 清单文件定义群集的所需状态，例如，要运行哪些容器映像。 在本快速入门中，清单用于创建运行 Azure Vote 应用程序所需的所有对象。 此清单包括两个 [Kubernetes 部署][kubernetes-deployment] - 一个用于 Azure Vote Python 示例应用程序，另一个用于 Redis 实例。 此外，还会创建两个 [Kubernetes 服务 - 一个内部服务用于 Redis 实例，一个外部服务用于从 Internet 访问 Azure Vote 应用程序。
 
-> [!TIP]
-> 在本快速入门中，请手动创建应用程序清单并将其部署到 AKS 群集。
-> 在更实际的方案中，可以使用 Azure Dev Spaces 直接在 AKS 群集中快速地循环访问代码并对其进行调试。 可以跨 OS 平台和开发环境使用 Dev Spaces，并可与团队中的他人进行协作。
-
-<!--Not Available on [Azure Dev Spaces][azure-dev-spaces]-->
-
-创建名为 `azure-vote.yaml` 的文件，并将其复制到以下 YAML 定义中。
-
-<!--Not Available on  If you use the Azure Cloud Shell, this file can be created using `vi` or `nano` as if working on a virtual or physical system: -->
+创建名为 `azure-vote.yaml` 的文件，并将其复制到以下 YAML 定义中。 如果使用 Azure 本地 Shell，则可以使用 `vi` 或 `nano` 来创建此文件，就像在虚拟或物理系统中操作一样：
 
 ```yaml
 apiVersion: apps/v1

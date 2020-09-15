@@ -9,17 +9,17 @@ ms.service: active-directory
 ms.workload: identity
 ms.subservice: users-groups-roles
 ms.topic: how-to
-ms.date: 07/06/2020
+ms.date: 09/08/2020
 ms.author: v-junlch
 ms.reviewer: addimitu
 ms.custom: it-pro
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: fd9e38b0166019b25ba97f02f4ca0d1084425d3b
-ms.sourcegitcommit: 92b9b1387314b60661f5f62db4451c9ff2c49500
+ms.openlocfilehash: 58f32eeab70def36bc24109111b6e80851477d1d
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86165036"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593833"
 ---
 # <a name="delete-a-tenant-in-azure-active-directory"></a>在 Azure Active Directory 中删除一个租户
 
@@ -52,6 +52,6 @@ ms.locfileid: "86165036"
 
 ## <a name="next-steps"></a>后续步骤
 
-[Azure Active Directory 文档](/active-directory/)
+[Azure Active Directory 文档](../index.yml)
 
 <!-- Update_Description: wording update -->

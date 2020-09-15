@@ -10,19 +10,19 @@ author: xiaoharper
 ms.author: amlstudiodocs
 ms.custom: seodec18, previous-author=heatherbshapiro, previous-ms.author=hshapiro
 ms.date: 01/05/2018
-ms.openlocfilehash: ae3c3b0728bc7de683ce4eeb1c8d78f47bc83b60
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 630b75df2811f294ca5c066271ce608d7ec3dbbb
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228101"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021505"
 ---
 # <a name="create-azure-machine-learning-studio-classic-experiments-from-working-examples-in-azure-ai-gallery"></a>根据 Azure AI 库中的工作示例创建 Azure 机器学习工作室（经典）试验
 
 **适用于：**  ![yes](../../../includes/media/aml-applies-to-skus/yes.png)机器学习工作室（经典）   ![no](../../../includes/media/aml-applies-to-skus/no.png)[Azure 机器学习](../compare-azure-ml-to-studio-classic.md)
 
 
-[!INCLUDE [Notebook deprecation notice](../../../includes/aml-studio-notebook-notice.md)]
+
 
 了解如何从 [Azure AI 库](https://gallery.azure.ai/)中的示例试验开始，而不是从头开始创建机器学习试验。 可以使用这些示例构建自己的机器学习解决方案。
 

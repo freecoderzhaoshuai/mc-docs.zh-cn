@@ -12,17 +12,17 @@ manager: cgronlun
 ms.reviewer: nibaccam
 ms.date: 01/09/2020
 ms.custom: tracking-python
-ms.openlocfilehash: 45f62c13f138ce439392e31b4e80a7a5e7a758e5
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: 4de454f72c82943afac0e81b6a7cb6585bac5d91
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097506"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021488"
 ---
 # <a name="start-monitor-and-cancel-training-runs-in-python"></a>在 Python 中启动、监视和取消训练运行
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
 
-[适用于 Python 的 Azure 机器学习 SDK](https://docs.microsoft.com/python/api/overview/azure/ml/intro?view=azure-ml-py)、[机器学习 CLI](reference-azure-machine-learning-cli.md) 和 [Azure 机器学习工作室](https://ml.azure.com)提供多种方法用于监视、组织和管理训练运行与试验运行。
+[适用于 Python 的 Azure 机器学习 SDK](https://docs.microsoft.com/python/api/overview/azure/ml/intro?view=azure-ml-py)、[机器学习 CLI](reference-azure-machine-learning-cli.md) 和 [Azure 机器学习工作室](https://studio.ml.azure.cn)提供多种方法用于监视、组织和管理训练运行与试验运行。
 
 本文演示以下任务的示例：
 

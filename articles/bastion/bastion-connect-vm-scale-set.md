@@ -10,14 +10,14 @@ ms.date: 07/27/2020
 ms.testscope: yes
 ms.testdate: 07/27/2020
 ms.author: v-yeche
-ms.openlocfilehash: 15233f5c380a71ed4ce22cd2ef3413b4e1aa8ec1
-ms.sourcegitcommit: 4d9846bb03ac24bd98b0c9a781bb8912ff6d2f61
+ms.openlocfilehash: 66f9cba5256a6ff34954b75eefe0bb33e4582112
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "86927004"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89654980"
 ---
-<!--RELEASE BEFORE CONFIRMATION-->
+<!--Verified successfully on 09/07/2020-->
 # <a name="connect-to-a-virtual-machine-scale-set-using-azure-bastion"></a>使用 Azure Bastion 连接到虚拟机规模集
 
 本文介绍如何使用 Azure Bastion 安全、无缝地通过 RDP 连接到 Azure 虚拟网络中的 Windows 虚拟机规模集实例。 你可通过 Azure 门户直接连接到虚拟机规模集实例。 使用 Azure Bastion 时，VM 不需要客户端、代码或其他软件。 有关 Azure Bastion 的详细信息，请参阅[概述](bastion-overview.md)。

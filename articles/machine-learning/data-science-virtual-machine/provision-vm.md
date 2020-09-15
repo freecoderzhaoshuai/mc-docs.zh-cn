@@ -7,12 +7,12 @@ author: gvashishtha
 ms.author: gopalv
 ms.topic: quickstart
 ms.date: 12/31/2019
-ms.openlocfilehash: 16004acaa2b6df69ce2313dc91291318508c750e
-ms.sourcegitcommit: 2bd0be625b21c1422c65f20658fe9f9277f4fd7c
+ms.openlocfilehash: e28026994f3db546a8d6964f74d30af490191e5b
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440982"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021180"
 ---
 # <a name="quickstart-set-up-the-data-science-virtual-machine-for-windows"></a>快速入门：设置适用于 Windows 的 Data Science Virtual Machine
 
@@ -68,6 +68,5 @@ ms.locfileid: "86440982"
 
 * 打开“开始”菜单探索 DSVM 上的工具。
 * 阅读[什么是 Azure 机器学习？](../overview-what-is-azure-ml.md)并尝试通过[教程](../index.yml)来了解 Azure 机器学习。
-* 阅读文章：[Data Science Virtual Machine 的十大功能](https://aka.ms/dsvmtenthings)。
-* 访问 [Azure AI 库](https://gallery.cortanaintelligence.com)，获取在 Azure 上使用 Azure 机器学习和相关数据服务的机器学习和数据分析示例。 我们还在虚拟机的“开始”菜单与桌面上提供了此库的图标。
+* 阅读文章[使用 Azure 中的 Windows Data Science Virtual Machine 完成数据科学任务](./vm-do-ten-things.md)
 

@@ -1,21 +1,21 @@
 ---
 title: Azure Bastion | Azure
-description: 了解 Azure Bastion
+description: 了解 Azure Bastion，它提供与虚拟机之间的安全无缝的 RDP/SSH 连接，而无需在外部公开 RDP/SSH 端口。
 services: bastion
-author: rockboyfor
 ms.service: bastion
 ms.topic: overview
 origin.date: 01/31/2020
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: ee4a25f7e4b47f80ce4d1932a62fd4a8f8653bf1
-ms.sourcegitcommit: 4d9846bb03ac24bd98b0c9a781bb8912ff6d2f61
+ms.openlocfilehash: 9e26af10987f64dd139e129e4cee6923ee90f548
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "86926979"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89654963"
 ---
 <!--RELEASE BEFORE CONFIRMATION-->
 # <a name="what-is-azure-bastion"></a>什么是 Azure Bastion？
@@ -30,7 +30,7 @@ Azure Bastion 部署是按虚拟网络进行的，而不是按订阅/帐户或�
 
 RDP 和 SSH 是连接 Azure 中运行的工作负载的基本方法。 不要通过 Internet 公开 RDP/SSH 端口，这被视为一个严重的威胁面。 这通常是由于协议漏洞造成的。 若要包含此威胁面，可以在外围网络的公共端部署 bastion 主机（也称为跳转服务器）。 Bastion 主机服务器在设计和配置上考虑了抵御攻击。 Bastion 服务器还为位于 bastion 后以及网络内的工作负载提供 RDP 和 SSH 连接。
 
-![体系结构](./media/bastion-overview/architecture.png)
+architecture
 
 此图显示了 Azure Bastion 部署体系结构。 在此图中：
 

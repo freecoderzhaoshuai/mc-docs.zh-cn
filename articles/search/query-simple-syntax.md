@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 04/24/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: d8d179302ae76b4d75fb46d0e7202fe3ffc60252
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: ebf90990d369da441940c7cf9147c4be0042856e
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471984"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021473"
 ---
 # <a name="simple-query-syntax-in-azure-cognitive-search"></a>Azure 认知搜索中的简单查询语法
 
@@ -122,4 +122,4 @@ NOT 运算符是一个减号。 例如：`wifi –luxury` 将搜索包含 `wifi`
 + [完整 Lucene 搜索的查询示例](search-query-lucene-examples.md)
 + [搜索文档 REST API](https://docs.microsoft.com/rest/api/searchservice/Search-Documents)
 + [Lucene 查询语法](query-lucene-syntax.md)
-+ [OData 表达式语法](query-odata-filter-orderby-syntax.md) 
++ [OData 表达式语法](query-odata-filter-orderby-syntax.md)

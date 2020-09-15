@@ -6,15 +6,15 @@ ms.author: v-johya
 ms.topic: tutorial
 ms.service: virtual-machine-scale-sets
 ms.subservice: linux
-ms.date: 06/05/2020
+ms.date: 09/03/2020
 ms.reviewer: mimckitt
-ms.custom: mimckitt
-ms.openlocfilehash: 3edf0342ae349e61bafcd5f7710d0ff80cb7d6af
-ms.sourcegitcommit: 285649db9b21169f3136729c041e4d04d323229a
+ms.custom: mimckitt, devx-track-javascript, devx-track-azurecli
+ms.openlocfilehash: f96c0adf1ad20517f5143b9e31dfe9f51b2ae934
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84684032"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057687"
 ---
 # <a name="tutorial-create-a-virtual-machine-scale-set-and-deploy-a-highly-available-app-on-linux-with-the-azure-cli"></a>教程：使用 Azure CLI 在 Linux 上创建虚拟机规模集和部署高度可用的应用
 
@@ -35,7 +35,7 @@ ms.locfileid: "84684032"
 ## <a name="scale-set-overview"></a>规模集概述
 利用虚拟机规模集，可以部署和管理一组相同的、自动缩放的虚拟机。 规模集中的 VM 将分布在逻辑容错域和更新域的一个或多个*放置组*中。 这些放置组由配置类似的 VM 组成，与[可用性集](tutorial-availability-sets.md)相似。
 
-可以根据需要在规模集中创建 VM。 定义自动缩放规则，以控制如何以及何时在规模集中添加或删除 VM。 这些规则基于 CPU 负载、内存用量或网络流量等指标触发。
+可以根据需要在规模集中创建 VM。 可以定义自动缩放规则来控制如何以及何时在规模集中添加或删除 VM。 这些规则基于 CPU 负载、内存用量或网络流量等指标触发。
 
 使用 Azure 平台映像时，规模集最多支持 1,000 个 VM。 对于有重要安装或 VM 自定义要求的工作负荷，可能需要[创建自定义 VM 映像](tutorial-custom-images.md)。 使用自定义映像时，在规模集中最多可以创建 300 个 VM。
 
@@ -93,7 +93,7 @@ runcmd:
 
 
 ## <a name="create-a-scale-set"></a>创建规模集
-使用 [az group create](https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-create) 创建资源组，才能创建规模集。 以下示例在“chinaeast”位置创建名为“myResourceGroupScaleSet”的资源组：
+使用 [az group create](https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-create) 创建资源组，才能创建规模集。 以下示例在“chinaeast”** 位置创建名为“myResourceGroupScaleSet”** 的资源组：
 
 ```azurecli
 az group create --name myResourceGroupScaleSet --location chinaeast
@@ -246,7 +246,7 @@ az vmss disk detach \
 
 
 ## <a name="next-steps"></a>后续步骤
-在本教程中，已创建虚拟机规模集。 你已了解如何执行以下操作：
+在本教程中，你已创建了一个虚拟机规模集。 你已了解如何执行以下操作：
 
 > [!div class="checklist"]
 > * 使用 cloud-init 创建用于缩放的应用
@@ -259,6 +259,6 @@ az vmss disk detach \
 请继续学习下一篇教程，详细了解虚拟机的负载均衡概念。
 
 > [!div class="nextstepaction"]
-> [均衡虚拟机的负载](tutorial-load-balancer.md)
+> [对虚拟机进行负载均衡](tutorial-load-balancer.md)
 
 <!--Update_Description: update meta properties -->

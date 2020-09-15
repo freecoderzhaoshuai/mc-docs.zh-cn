@@ -68,11 +68,15 @@
           href: boosted-decision-tree-regression.md
         - name: 决策林回归
           href: decision-forest-regression.md
+        - name: 快速林分位回归
+          href: fast-forest-quantile-regression.md
         - name: 线性回归
           href: linear-regression.md
         - name: 神经网络回归
           href: neural-network-regression.md
-    - name: 群集功能
+        - name: 泊松回归
+          href: poisson-regression.md
+    - name: 群集
       items:
         - name: K 平均值聚类
           href: k-means-clustering.md
@@ -146,6 +150,10 @@
       href: preprocess-text.md
     - name: 隐性 Dirichlet 分配
       href: latent-dirichlet-allocation.md
+    - name: 对 Vowpal Wabbit 模型评分
+      href: score-vowpal-wabbit-model.md
+    - name: 训练 Vowpal Wabbit 模型
+      href: train-vowpal-wabbit-model.md
 - name: 计算机视觉
   items:
     - name: 应用图像转换
@@ -154,6 +162,8 @@
       href: convert-to-image-directory.md
     - name: 初始化图像转换
       href: init-image-transformation.md
+    - name: 拆分图像目录
+      href: split-image-directory.md
     - name: DenseNet
       href: densenet.md
     - name: ResNet
@@ -182,3 +192,5 @@
       href: web-service-input-output.md
 - name: 模块错误和故障排除
   href: designer-error-codes.md
+- name: Graph 搜索查询语法
+  href: graph-search-syntax.md

@@ -9,13 +9,13 @@ tags: Lucene query analyzer syntax
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 07/20/2020
-ms.openlocfilehash: d2da6690f8dc320b96c57562d14b747bcfe7dec1
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: ec15e577286617d5e5bff693cf2c05e057e742ee
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471810"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021079"
 ---
 # <a name="use-the-full-lucene-search-syntax-advanced-queries-in-azure-cognitive-search"></a>使用“完整的”Lucene 搜索语法（Azure 认知搜索中的高级查询）
 
@@ -257,7 +257,7 @@ https://azs-playground.search.azure.cn/indexes/nycjobs/docs?api-version=2020-06-
   ![正则表达式查询](media/search-query-lucene-examples/regex.png)
 
 > [!Note]
-> 不会对正则表达式查询进行[分析](https://docs.azure.cn/search/search-lucene-query-architecture#stage-2-lexical-analysis)。 对不完整查询字词执行的唯一转换操作是转换为小写。
+> 不会对正则表达式查询进行[分析](./search-lucene-query-architecture.md#stage-2-lexical-analysis)。 对不完整查询字词执行的唯一转换操作是转换为小写。
 >
 
 ## <a name="example-7-wildcard-search"></a>示例 7：通配符搜索
@@ -279,14 +279,14 @@ https://azs-playground.search.azure.cn/indexes/nycjobs/docs?api-version=2020-06-
   ![通配符查询](media/search-query-lucene-examples/wildcard.png)
 
 > [!Note]
-> 不会对通配符查询进行[分析](https://docs.azure.cn/search/search-lucene-query-architecture#stage-2-lexical-analysis)。 对不完整查询字词执行的唯一转换操作是转换为小写。
+> 不会对通配符查询进行[分析](./search-lucene-query-architecture.md#stage-2-lexical-analysis)。 对不完整查询字词执行的唯一转换操作是转换为小写。
 >
 
 ## <a name="next-steps"></a>后续步骤
 请尝试在代码中指定 Lucene 查询分析器。 以下链接介绍如何为 .NET 和 REST API 设置搜索查询。 链接使用默认的简单语法，因此需要应用从本文中所学知识指定 **queryType**。
 
-* [使用 .NET SDK 查询索引](search-query-dotnet.md)
-* [使用 REST API 查询索引](search-create-index-rest-api.md)
+* [使用 .NET SDK 查询索引](./search-get-started-dotnet.md)
+* [使用 REST API 查询索引](./search-get-started-powershell.md)
 
 可在以下链接找到其他语法参考、查询体系结构和示例：
 

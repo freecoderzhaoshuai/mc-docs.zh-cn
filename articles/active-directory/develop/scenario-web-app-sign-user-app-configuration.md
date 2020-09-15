@@ -8,15 +8,15 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 08/19/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 ms.custom: aaddev, devx-track-python
-ms.openlocfilehash: c8330793851f7b25bb76c4a10dcb01c08d24f7d1
-ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
+ms.openlocfilehash: aeea47b9fe4b3500c164bc6d496ed8cec5e013d3
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "88647658"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593811"
 ---
 # <a name="web-app-that-signs-in-users-code-configuration"></a>可将用户登录的 Web 应用：代码配置
 
@@ -221,7 +221,7 @@ SESSION_TYPE = "filesystem"  # So the token cache will be stored in a server-sid
 
 1. 将 [Microsoft.Identity.Web](https://www.nuget.org/packages/Microsoft.Identity.Web) 和 [Microsoft.Identity.Web.UI](https://www.nuget.org/packages/Microsoft.Identity.Web.UI) NuGet 包添加到项目。 删除 Microsoft.AspNetCore.Authentication.AzureAD.UI NuGet 包（如果存在）。
 
-2. 更新 `ConfigureServices` 中的代码，使其使用 `AddMicrosoftWebAppAuthentication` 和 `AddMicrosoftIdentityUI` 方法。
+2. 更新 `ConfigureServices` 中的代码，使其使用 `AddMicrosoftIdentityWebAppAuthentication` 和 `AddMicrosoftIdentityUI` 方法。
 
    ```C#
    public class Startup
@@ -230,7 +230,7 @@ SESSION_TYPE = "filesystem"  # So the token cache will be stored in a server-sid
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-     services.AddMicrosoftWebAppAuthentication(Configuration, "AzureAd");
+     services.AddMicrosoftIdentityWebAppAuthentication(Configuration, "AzureAd");
 
      services.AddRazorPages().AddMvcOptions(options =>
      {
@@ -255,16 +255,16 @@ SESSION_TYPE = "filesystem"  # So the token cache will be stored in a server-sid
    ```
 
 在上面的代码中：
-- `AddMicrosoftWebAppAuthentication` 扩展方法在 Microsoft.Identity.Web 中进行定义。 该方法：
+- `AddMicrosoftIdentityWebAppAuthentication` 扩展方法在 Microsoft.Identity.Web 中进行定义。 该方法：
   - 添加身份验证服务。
   - 配置用于读取配置文件的选项（此处来自“AzureAD”部分）
   - 配置 OpenID Connect 选项，使颁发机构是 Microsoft 标识平台终结点。
   - 验证令牌的颁发者。
   - 确保从 ID 令牌中的 `preferred_username` 声明映射与名称对应的声明。
 
-- 除了配置对象以外，还可以在调用 `AddMicrosoftWebAppAuthentication` 时指定配置节的名称。 该名称默认为 `AzureAd`。
+- 除了配置对象以外，还可以在调用 `AddMicrosoftIdentityWebAppAuthentication` 时指定配置节的名称。 该名称默认为 `AzureAd`。
 
-- `AddMicrosoftWebAppAuthentication` 包含高级方案的其他参数。 例如，当身份验证不起作用时，跟踪 OpenID Connect 中间件事件有助于排查 Web 应用程序的问题。 将可选参数 `subscribeToOpenIdConnectMiddlewareDiagnosticsEvents` 设为 `true` 会显示 ASP.NET Core 中间件集在从 HTTP 响应进展到 `HttpContext.User` 中用户标识的过程中是如何处理信息的。
+- `AddMicrosoftIdentityWebAppAuthentication` 包含高级方案的其他参数。 例如，当身份验证不起作用时，跟踪 OpenID Connect 中间件事件有助于排查 Web 应用程序的问题。 将可选参数 `subscribeToOpenIdConnectMiddlewareDiagnosticsEvents` 设为 `true` 会显示 ASP.NET Core 中间件集在从 HTTP 响应进展到 `HttpContext.User` 中用户标识的过程中是如何处理信息的。
 
 - `AddMicrosoftIdentityUI` 扩展方法在 Microsoft.Identity.Web.UI 中进行定义。 它提供了一个默认控制器来处理登录和注销。
 

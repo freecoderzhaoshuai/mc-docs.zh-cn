@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 06/23/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: c079c3c134335627f3a03ce075355d8ba2e55cee
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: e3e3c59a036a5b7a04f4bd3f475171b9e8112a31
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471844"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020911"
 ---
 # <a name="partial-term-search-and-patterns-with-special-characters-wildcard-regex-patterns"></a>部分字词搜索和包含特殊字符（通配符、正则表达式、模式）的模式
 
@@ -161,7 +161,7 @@ Azure 认知搜索在索引中扫描完整的标记化字词，不会基于部�
 
 可以在字段定义的 `analyzer` 属性中按名称指定内置或预定义的分析器，不需要在索引中进行其他配置。 以下示例演示如何在字段中设置 `whitespace` 分析器。 
 
-有关其他方案以及其他内置分析器的详细信息，请参阅[预定义分析器列表](https://docs.azure.cn/search/index-add-custom-analyzers#predefined-analyzers-reference)。 
+有关其他方案以及其他内置分析器的详细信息，请参阅[预定义分析器列表](/search/index-add-custom-analyzers#predefined-analyzers-reference)。 
 
 ```json
     {

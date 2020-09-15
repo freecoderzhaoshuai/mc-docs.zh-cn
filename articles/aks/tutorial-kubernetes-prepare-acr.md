@@ -4,17 +4,18 @@ description: 在本 Azure Kubernetes 服务 (AKS) 教程中，请创建 Azure �
 services: container-service
 ms.topic: tutorial
 origin.date: 12/19/2018
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 03/09/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: a8586eba9831088d6d08a177304f7ef32ac633aa
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 7f1e7bcb91d48cfc3159f201d660d2902a0be036
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842606"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021229"
 ---
 # <a name="tutorial-deploy-and-use-azure-container-registry"></a>教程：部署并使用 Azure 容器注册表
 
@@ -64,9 +65,12 @@ az acr login --name <acrName>
 
 若要查看当前的本地映像的列表，请使用 [docker images][docker-images] 命令：
 
-```
+```azurecli
 $ docker images
+```
+上述命令输出显示当前本地图像的列表：
 
+```
 REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE
 azure-vote-front             latest              4675398c9172        13 minutes ago      694MB
 redis                        latest              a1b99da73d05        7 days ago          106MB
@@ -87,11 +91,15 @@ az acr list --resource-group myResourceGroup --query "[].{acrLoginServer:loginSe
 docker tag azure-vote-front <acrLoginServer>/azure-vote-front:v1
 ```
 
-若要验证是否已应用标记，请再次运行 [docker images][docker-images]。 系统会使用 ACR 实例地址和版本号对映像进行标记。
+若要验证是否已应用标记，请再次运行 [docker images][docker-images]。 
+
+```azurecli
+$ docker images
+```
+
+系统会使用 ACR 实例地址和版本号对映像进行标记。
 
 ```
-$ docker images
-
 REPOSITORY                                           TAG           IMAGE ID            CREATED             SIZE
 azure-vote-front                                     latest        eaf2b9c57e5e        8 minutes ago       716 MB
 mycontainerregistry.azurecr.cn/azure-vote-front      v1            eaf2b9c57e5e        8 minutes ago       716 MB
@@ -163,14 +171,14 @@ v1
 
 <!-- LINKS - internal -->
 
-[az-acr-create]: https://docs.azure.cn/cli/acr?view=azure-cli-latest
-[az-acr-list]: https://docs.azure.cn/cli/acr?view=azure-cli-latest
-[az-acr-login]: https://docs.azure.cn/cli/acr?view=azure-cli-latest#az-acr-login
-[az-acr-list]: https://docs.azure.cn/cli/acr?view=azure-cli-latest#az-acr-list
-[az-acr-repository-list]: https://docs.azure.cn/cli/acr/repository?view=azure-cli-latest
-[az-acr-repository-show-tags]: https://docs.azure.cn/cli/acr/repository?view=azure-cli-latest
-[az-group-create]: https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-create
-[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[az-acr-create]: https://docs.azure.cn/cli/acr
+[az-acr-list]: https://docs.azure.cn/cli/acr
+[az-acr-login]: https://docs.azure.cn/cli/acr#az-acr-login
+[az-acr-list]: https://docs.azure.cn/cli/acr#az-acr-list
+[az-acr-repository-list]: https://docs.azure.cn/cli/acr/repository
+[az-acr-repository-show-tags]: https://docs.azure.cn/cli/acr/repository
+[az-group-create]: https://docs.azure.cn/cli/group#az-group-create
+[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli
 [aks-tutorial-deploy-cluster]: ./tutorial-kubernetes-deploy-cluster.md
 [aks-tutorial-prepare-app]: ./tutorial-kubernetes-prepare-app.md
 

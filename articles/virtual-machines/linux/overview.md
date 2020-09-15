@@ -5,15 +5,15 @@ author: Johnnytechn
 ms.service: virtual-machines-linux
 ms.topic: overview
 ms.workload: infrastructure
-ms.date: 06/05/2020
+ms.date: 09/03/2020
 ms.author: v-johya
 ms.custom: mvc
-ms.openlocfilehash: 945082d2edbf27815dce75aa790f6b5bd8c1fe54
-ms.sourcegitcommit: 285649db9b21169f3136729c041e4d04d323229a
+ms.openlocfilehash: 05e0e269344d03f8eb0edc9c5e3878fc7c9f503a
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84684019"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057664"
 ---
 # <a name="linux-virtual-machines-in-azure"></a>Azure 中的 Linux 虚拟机
 
@@ -64,9 +64,10 @@ Azure 虚拟机 (VM) 是 Azure 提供的多种可缩放按需分配计算资源�
 Azure 宣布了行业领先的单实例虚拟机服务级别协议：可用性达到 99.9%（前提是为所有磁盘使用高级存储部署 VM）。  为了使部署符合标准 99.95% 的 VM 服务级别协议，仍需要在可用性集中部署两个或更多个运行工作负荷的 VM。 可用性集可确保 VM 分布在 Azure 数据中心内的多个容错域，并使用不同的维护时段部署到主机。 完整 [Azure SLA](https://www.azure.cn/support/legal/sla/) 说明了 Azure 作为整体的保证可用性。
 
 ## <a name="vm-size"></a>VM 大小
-VM 的[大小](sizes.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)由所要运行的工作负荷决定。 然后，选择的大小决定了处理能力、内存和存储容量等因素。 Azure 提供各种大小来支持多种类型的用途。
+VM 的[大小](../sizes.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)由所要运行的工作负荷决定。 然后，选择的大小决定了处理能力、内存和存储容量等因素。 Azure 提供各种大小来支持多种类型的用途。
 
 Azure 根据 VM 的大小和操作系统[按小时进行收费](https://www.azure.cn/pricing/details/virtual-machines/)。 对于不足一小时的部分，Azure 仅根据使用的分钟数计费。 存储将另行定价和收费。
+<!--Correct in MC: https://www.azure.cn/pricing/details/virtual-machines/-->
 
 ## <a name="vm-limits"></a>VM 限制
 订阅附带默认的[配额限制](../../azure-resource-manager/management/azure-subscription-service-limits.md)，在为项目部署大量 VM 时，这些限制可能会造成影响。 每个订阅的当前限制是每区域 20 个 VM。 可以[开具支持票证](https://support.azure.cn/support/support-azure/)来请求提高限制
@@ -75,7 +76,7 @@ Azure 根据 VM 的大小和操作系统[按小时进行收费](https://www.azur
 
 托管磁盘为用户在后台处理 Azure 存储帐户的创建和管理，确保用户无需担心存储帐户的可伸缩性限制。 只需指定磁盘大小和性能层（标准或高级），Azure 就会自动创建和管理磁盘。 在添加磁盘或者扩展和缩减 VM 时，无需考虑所用的存储。 如果要创建新的 VM，请[使用 Azure CLI](quick-create-cli.md) 或 Azure 门户，通过托管 OS 和数据磁盘创建 VM。 如果 VM 具有非托管磁盘，则可以[将 VM 转换为由托管磁盘支持](convert-unmanaged-to-managed-disks.md)。
 
-用户还可以按 Azure 区域在一个存储帐户中管理自定义映像，并使用这些映像在同一订阅中创建数百台 VM。 有关托管磁盘的详细信息，请参阅[托管磁盘概述](../linux/managed-disks-overview.md)。
+用户还可以按 Azure 区域在一个存储帐户中管理自定义映像，并使用这些映像在同一订阅中创建数百台 VM。 有关托管磁盘的详细信息，请参阅[托管磁盘概述](../managed-disks-overview.md)。
 
 ## <a name="distributions"></a>分发 
 Azure 支持运行由多家合作伙伴提供和维护的众多热门 Linux 分发版。  可以在 Azure 市场中找到 CentOS、SUSE Linux Enterprise、Debian、Ubuntu、CoreOS 和 FreeBSD 等分发版。 Azure 积极与各大 Linux 社区合作以便为 [Azure 认可的 Linux 发行版](endorsed-distros.md)列表添加更多成员。
@@ -113,7 +114,7 @@ Azure 与合作伙伴紧密合作，以确保及时更新可用映像并针对 A
 <!--Not Available on  Chef -->
 
 * [Azure 模板](create-ssh-secured-vm-from-template.md)
-* [Azure VMAccess](using-vmaccess-extension.md)
+* [Azure VMAccess](../extensions/vmaccess.md)
 
 Azure 在支持它的大多数 Linux 发行版中支持 [cloud-init](https://cloud-init.io/)。  我们正在积极地与我们认可的 Linux 发行版合作伙伴合作，以便在 Azure 市场中提供已启用 cloud-init 的映像。 这些映像可使 cloud-init 部署和配置无缝地应用于 VM 和虚拟机规模集。
 
@@ -126,7 +127,7 @@ Azure 在支持它的大多数 Linux 发行版中支持 [cloud-init](https://clo
 
 ## <a name="networking"></a>网络
 * [虚拟网络概述](../../virtual-network/virtual-networks-overview.md)
-* [Azure 中的 IP 地址](../../virtual-network/virtual-network-ip-addresses-overview-arm.md)
+* [Azure 中的 IP 地址](../../virtual-network/public-ip-addresses.md)
 * [在 Azure 中打开 Linux VM 的端口](nsg-quickstart.md)
 * [在 Azure 门户中创建完全限定的域名](portal-create-fqdn.md)
 

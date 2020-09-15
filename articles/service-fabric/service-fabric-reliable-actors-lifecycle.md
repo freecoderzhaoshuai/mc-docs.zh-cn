@@ -1,17 +1,20 @@
 ---
 title: 概述 Azure Service Fabric 执行组件生命周期
 description: 介绍 Service Fabric Reliable Actor 生命周期、垃圾回收和如何手动删除执行组件及其状态
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 10/06/2017
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: dabb1af81c08656d8c4cecf76d683452b3b8e3d7
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 19c2fe0ba26eb676300cb723def3f3c631758b42
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79292010"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655642"
 ---
 # <a name="actor-lifecycle-automatic-garbage-collection-and-manual-delete"></a>执行组件生命周期、自动垃圾回收和手动删除
 当第一次调用执行组件的任何方法时即可激活该执行组件。 如果在可配置的一段时间内未使用执行组件，则此执行组件将停用（执行组件运行时对其进行垃圾回收）。 还可以在任何时候手动删除执行组件及其状态。
@@ -113,7 +116,7 @@ public class Program
 * [执行组件事件](service-fabric-reliable-actors-events.md)
 * [执行组件可重入性](service-fabric-reliable-actors-reentrancy.md)
 * [执行组件诊断和性能监视](service-fabric-reliable-actors-diagnostics.md)
-* [执行组件 API 参考文档](https://msdn.microsoft.com/library/azure/dn971626.aspx)
+* [执行组件 API 参考文档](https://docs.microsoft.com/previous-versions/azure/dn971626(v=azure.100))
 * [C# 代码示例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)
 * [Java 代码示例](https://github.com/Azure-Samples/service-fabric-java-getting-started)
 
@@ -121,4 +124,4 @@ public class Program
 
 [1]: ./media/service-fabric-reliable-actors-lifecycle/garbage-collection.png
 
-<!--Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

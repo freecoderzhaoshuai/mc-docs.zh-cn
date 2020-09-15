@@ -11,12 +11,12 @@ ms.reviewer: luquinta
 ms.date: 07/09/2020
 ms.topic: conceptual
 ms.custom: how-to, tracking-python
-ms.openlocfilehash: 9ca18e19d3e42ae632a929a95c96301dc8882a7c
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: c44a81cb04d759a679c6940003117e65cdc68dfa
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947142"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021492"
 ---
 # <a name="use-azure-machine-learning-with-the-fairlearn-open-source-package-to-assess-the-fairness-of-ml-models-preview"></a>将 Azure 机器学习与 Fairlearn 开源程序包配合使用来评估机器学习模型的公平性（预览版）
 
@@ -33,7 +33,7 @@ ms.locfileid: "88947142"
 
 ## <a name="azure-machine-learning-fairness-sdk"></a>Azure 机器学习公平性 SDK 
 
-Azure 机器学习公平性 SDK `azureml-contrib-fairness` 在 Azure 机器学习中集成了开源 Python 程序包 [Fairlearn](http://fairlearn.github.io)。 若要详细了解 Azure 机器学习中的 Fairlearn 的集成，请查看这些[示例笔记本](https://github.com/Azure/MachineLearningNotebooks/tree/master/contrib/fairness)。 有关 Fairlearn 的详细信息，请参阅[示例指南](https://fairlearn.github.io/auto_examples/notebooks/index.html)和[示例笔记本](https://github.com/fairlearn/fairlearn/tree/master/notebooks)。 
+Azure 机器学习公平性 SDK `azureml-contrib-fairness` 在 Azure 机器学习中集成了开源 Python 程序包 [Fairlearn](http://fairlearn.github.io)。 若要详细了解 Azure 机器学习中的 Fairlearn 的集成，请查看这些[示例笔记本](https://github.com/Azure/MachineLearningNotebooks/tree/master/contrib/fairness)。 有关 Fairlearn 的详细信息，请参阅[示例指南](https://fairlearn.github.io/auto_examples/)和[示例笔记本](https://github.com/fairlearn/fairlearn/tree/master/notebooks)。 
 
 使用以下命令安装 `azureml-contrib-fairness` 和 `fairlearn` 程序包：
 ```bash
@@ -190,7 +190,7 @@ pip install fairlearn==0.4.6
     ```
 5. 查看 Azure 机器学习工作室中的公平性仪表板
 
-    如果你完成了前面的步骤（将生成的公平性见解上传到 Azure 机器学习），则可查看 [Azure 机器学习工作室](https://ml.azure.com)中的公平性仪表板。 此仪表板与 Fairlearn 中提供的可视化效果仪表板相同，可用于分析敏感特性的子组（例如，男性与女性）之间的差异。
+    如果你完成了前面的步骤（将生成的公平性见解上传到 Azure 机器学习），则可查看 [Azure 机器学习工作室](https://studio.ml.azure.cn)中的公平性仪表板。 此仪表板与 Fairlearn 中提供的可视化效果仪表板相同，可用于分析敏感特性的子组（例如，男性与女性）之间的差异。
     通过以下途径之一访问 Azure 机器学习工作室中的可视化仪表板：
 
     * **“试验”窗格（预览版）**

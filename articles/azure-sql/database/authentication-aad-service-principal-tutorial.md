@@ -8,16 +8,14 @@ ms.topic: tutorial
 author: WenJason
 ms.author: v-jay
 ms.reviewer: vanto
-origin.date: 07/27/2020
-ms.date: 08/17/2020
-test.scope: Yes
-test.data: 08/14/2020
-ms.openlocfilehash: 23286242e26c6d782da3db8876e42d52665a61dc
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+origin.date: 08/17/2020
+ms.date: 09/14/2020
+ms.openlocfilehash: 276eee293dd1f2f52ff833c9a4aaab01db8b84f1
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223538"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014356"
 ---
 # <a name="tutorial-create-azure-ad-users-using-azure-ad-applications"></a>教程：使用 Azure AD 应用程序创建 Azure AD 用户
 

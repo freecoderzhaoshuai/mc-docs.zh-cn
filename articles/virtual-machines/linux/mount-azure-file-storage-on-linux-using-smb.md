@@ -6,14 +6,14 @@ ms.service: virtual-machines-linux
 ms.topic: how-to
 ms.workload: infrastructure
 origin.date: 06/28/2018
-ms.date: 06/17/2020
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.openlocfilehash: c6441ee499acf1c03cc876cce95f6c615d934ba2
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: 8e15e39620ec921c3aa8d384bb848823fe370242
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097409"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057563"
 ---
 <!--Notice: Verify successfully on bash cmdlet-->
 # <a name="mount-azure-file-storage-on-linux-vms-using-smb"></a>使用 SMB 在 Linux VM 上装载 Azure 文件存储
@@ -65,7 +65,7 @@ STORAGEKEY=$(az storage account keys list \
 
 使用 [az storage share create](https://docs.azure.cn/cli/storage/share?view=azure-cli-latest#az-storage-share-create) 创建文件存储共享。 
 
-共享名必须全部采用小写字母、数字和单个连字符，但不能以连字符开头。 有关命名文件共享和文件的完整详细信息，请参阅 [命名和引用共享、目录、文件和元数据](https://docs.microsoft.com/rest/api/storageservices/Naming-and-Referencing-Shares--Directories--Files--and-Metadata)。
+共享名必须全部采用小写字母、数字和单个连字符，但不能以连字符开头。 有关命名文件共享和文件的完整详细信息，请参阅 [命名和引用共享、目录、文件和元数据](https://docs.microsoft.com/rest/api/storageservices/naming-and-referencing-shares--directories--files--and-metadata)。
 
 此示例创建名为 *myshare* 且具有 10-GiB 配额的共享。 
 

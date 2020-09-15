@@ -9,12 +9,12 @@ manager: cgronlund
 ms.custom: include file
 ms.topic: include
 ms.date: 01/25/2019
-ms.openlocfilehash: 57d8479f59cfe7c0e69d404ba904cf623478aee3
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 2e35d70c3f5121bcecef3ade8bd2d6ab20f47a10
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75598733"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021510"
 ---
 1. [创建 Azure 机器学习工作区](../articles/machine-learning/how-to-manage-workspace.md)。
 
@@ -26,7 +26,7 @@ ms.locfileid: "75598733"
 
 1. 使用下述方法之一，将工作区配置文件添加到克隆目录：
 
-    * 在[Azure 门户](https://ms.portal.azure.cn)中，选择工作区的“概览”  部分中的“下载 config.json”  。 
+    * 在[Azure 门户](https://portal.azure.cn)中，选择工作区的“概览”部分中的“下载 config.json”。 
 
     ![下载 config.json](./media/aml-dsvm-server/download-config.png)
 

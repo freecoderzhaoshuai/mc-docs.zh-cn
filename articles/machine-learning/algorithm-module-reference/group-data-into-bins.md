@@ -9,12 +9,12 @@ ms.topic: reference
 author: likebupt
 ms.author: keli19
 ms.date: 05/19/2020
-ms.openlocfilehash: b4dbee5988b1c4fd300ae46571a7287f76f0e74e
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: b60673d0da1db6eebbfcdee2d25b6121be1ec9e1
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097797"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020878"
 ---
 # <a name="group-data-into-bins-module"></a>“将数据分组到箱中”模块
 
@@ -44,7 +44,7 @@ ms.locfileid: "85097797"
 
 下图显示了使用*分位数*方法分箱之前和之后的数字值分布。 请注意，与左侧的原始数据相比，数据已分箱并转换为单位法线标度。  
 
-你可以找到[此管道运行的结果中的示例](https://ml.azure.com/visualinterface/authoring/Normal/87270db9-4651-448e-bd28-8ef7428084dc?wsid=%2Fsubscriptions%2Fe9b2ec51-5c94-4fa8-809a-dc1e695e4896%2Fresourcegroups%2Fmodule-ws-rg%2Fworkspaces%2Fmodule-prerelease-119&flight=cm&tid=72f988bf-86f1-41af-91ab-2d7cd011db47&smtendpoint=https%3A%2F%2Fsmt-test1.azureml-test.net)。
+你可以找到[此管道运行的结果中的示例](https://studio.ml.azure.cn/visualinterface/authoring/Normal/87270db9-4651-448e-bd28-8ef7428084dc?wsid=%2Fsubscriptions%2Fe9b2ec51-5c94-4fa8-809a-dc1e695e4896%2Fresourcegroups%2Fmodule-ws-rg%2Fworkspaces%2Fmodule-prerelease-119&flight=cm&tid=72f988bf-86f1-41af-91ab-2d7cd011db47&smtendpoint=https%3A%2F%2Fsmt-test1.azureml-test.net)。
 
 由于可以通过许多方式对数据进行分组且所有方式都可自定义，因此我们建议使用不同的方法和值进行试验。 
 

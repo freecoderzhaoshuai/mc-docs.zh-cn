@@ -3,14 +3,15 @@ title: 使用 Azure Active Directory 对托管标识进行身份验证
 description: 本文提供有关对使用 Azure Active Directory 访问 Azure 事件中心资源的托管标识进行身份验证的信息
 ms.topic: conceptual
 origin.date: 06/23/2020
-ms.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: v-tawe
-ms.openlocfilehash: 4b1802cf16eddebef8f26bd9ea6b0703114fa528
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 2b19f8ece6a50f25f924dba0703e861032f4df6a
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715184"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063273"
 ---
 # <a name="authenticate-a-managed-identity-with-azure-active-directory-to-access-event-hubs-resources"></a>使用 Azure Active Directory 对托管标识的事件中心资源访问进行身份验证
 Azure 事件中心支持使用 [Azure 资源的托管标识](../active-directory/managed-identities-azure-resources/overview.md)进行 Azure Active Directory (Azure AD) 身份验证。 Azure 资源的托管标识可以从 Azure 虚拟机 (VM)、函数应用、虚拟机规模集和其他服务中运行的应用程序使用 Azure AD 凭据授权对事件中心资源的访问权限。 将 Azure 资源的托管标识与 Azure AD 身份验证结合使用，可避免将凭据随在云中运行的应用程序一起存储。

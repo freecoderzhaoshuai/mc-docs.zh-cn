@@ -1,19 +1,20 @@
 ---
 title: 如何查看 Azure Service Fabric 实体的聚合运行状况
 description: 说明如何通过运行状况查询和常规查询来查询、查看和评估 Azure Service Fabric 实体聚合运行状况。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 02/28/2018
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 01/13/2020
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 1ab9ef0e64da18c703ba80d6f7677825466edbbf
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.custom: devx-track-csharp
+ms.openlocfilehash: bb1951b0dfe16b7676db14b652793107fbd05e54
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426280"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655505"
 ---
 # <a name="view-service-fabric-health-reports"></a>查看 Service Fabric 运行状况报告
 Azure Service Fabric 引入了一种具有运行状况实体的[运行状况模型](service-fabric-health-introduction.md)，系统组件和监视器可以在其上报告它们监视的本地状况。 [运行状况存储](service-fabric-health-introduction.md#health-store)聚合所有运行状况数据以确定实体是否正常运行。

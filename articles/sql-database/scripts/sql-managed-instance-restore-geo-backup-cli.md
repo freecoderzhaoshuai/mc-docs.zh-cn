@@ -3,7 +3,7 @@ title: CLI 示例还原异地备份 - Azure SQL 数据库
 description: Azure CLI 示例脚本，用于通过异地冗余备份还原 Azure SQL 托管实例数据库。
 services: sql-database
 ms.service: sql-database
-ms.subservice: backup-restore
+ms.subservice: operations
 ms.custom: ''
 ms.devlang: azurecli
 ms.topic: sample
@@ -11,13 +11,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: sstein
 origin.date: 07/03/2019
-ms.date: 04/27/2020
-ms.openlocfilehash: 86ae032d3f7ba222fe10405270616c04ab158e30
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.date: 09/14/2020
+ms.openlocfilehash: fecdb60448bde260ec2eb2bd9e8305f10876db0a
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82127200"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014373"
 ---
 # <a name="use-cli-to-restore-a-managed-instance-database-to-another-geo-region"></a>使用 CLI 将托管实例数据库还原到另一个地理区域
 
@@ -29,7 +29,7 @@ ms.locfileid: "82127200"
 
 ### <a name="prerequisites"></a>先决条件
 
-现有的一对托管实例，请参阅[使用 Azure CLI 创建 Azure SQL 数据库托管实例](sql-database-create-configure-managed-instance-cli.md)。
+现有的一对托管实例，请参阅[使用 Azure CLI 创建 Azure SQL 托管实例](sql-database-create-configure-managed-instance-cli.md)。
 
 ### <a name="sign-in-to-azure"></a>登录 Azure
 
@@ -57,7 +57,7 @@ az sql midb restore -g $resource --mi $instance -n $managedDatabase --dest-name 
 
 此脚本使用以下命令。 表中的每条命令均链接到特定于命令的文档。
 
-| | |
+| Script | 说明 |
 |---|---|
 | [az sql midb](/cli/sql/midb) | 托管实例数据库命令。 |
 
@@ -65,4 +65,4 @@ az sql midb restore -g $resource --mi $instance -n $managedDatabase --dest-name 
 
 有关 Azure CLI 的详细信息，请参阅 [Azure CLI 文档](/cli/)。
 
-其他 SQL 数据库 CLI 脚本示例可以在 [Azure SQL 数据库文档](../sql-database-cli-samples.md)中找到。
+其他 SQL 数据库 CLI 脚本示例可以在 [Azure SQL 数据库文档](../../azure-sql/database/az-cli-script-samples-content-guide.md)中找到。

@@ -5,24 +5,24 @@ author: Johnnytechn
 ms.service: virtual-machines-linux
 ms.topic: how-to
 origin.date: 12/15/2017
-ms.date: 06/17/2020
+ms.date: 09/03/2020
 ms.author: v-johya
 ms.subservice: disks
-ms.openlocfilehash: 2913f2c42cd09160a5e0c417179805240a1e10b3
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: 287e8b5569c19675f418568fb542600ed9fb0979
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097031"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057675"
 ---
 # <a name="convert-a-linux-virtual-machine-from-unmanaged-disks-to-managed-disks"></a>将 Linux 虚拟机从非托管磁盘转换为托管磁盘
 
-如果有使用非托管磁盘的现有 Linux 虚拟机 (VM)，可以将这些 VM 转换为使用 [Azure 托管磁盘](../linux/managed-disks-overview.md)。 此过程会同时转换 OS 磁盘和任何附加的数据磁盘。
+如果有使用非托管磁盘的现有 Linux 虚拟机 (VM)，可以将这些 VM 转换为使用 [Azure 托管磁盘](../managed-disks-overview.md)。 此过程会同时转换 OS 磁盘和任何附加的数据磁盘。
 
 本文介绍如何使用 Azure CLI 转换 VM。 如果需要安装或升级它，请参阅[安装 Azure CLI](https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest)。 
 
 ## <a name="before-you-begin"></a>准备阶段
-* 请查看[有关迁移到托管磁盘的常见问题](faq-for-disks.md#migrate-to-managed-disks)。
+* 请查看[有关迁移到托管磁盘的常见问题](../faq-for-disks.md#migrate-to-managed-disks)。
 
 [!INCLUDE [virtual-machines-common-convert-disks-considerations](../../../includes/virtual-machines-common-convert-disks-considerations.md)]
 
@@ -101,14 +101,14 @@ ms.locfileid: "85097031"
 
 1. 登录到 [Azure 门户](https://portal.azure.cn)。
 2. 从门户的 VM 列表中选择 VM。
-3. 在 VM 的边栏选项卡中，从菜单中选择“磁盘”****。
-4. 在“磁盘”**** 边栏选项卡的顶部，选择“迁移到托管磁盘”****。
-5. 如果 VM 位于可用性集中，则“迁移到托管磁盘”**** 边栏选项卡上会出现“首先需要转换可用性集”的警告。 此警告应该有一个链接，单击该链接即可转换可用性集。 转换可用性集后，或者如果 VM 不在可用性集中，请单击“迁移”**** 以启动将磁盘迁移到托管磁盘的过程。
+3. 在 VM 的边栏选项卡中，从菜单中选择“磁盘”。
+4. 在“磁盘”边栏选项卡的顶部，选择“迁移到托管磁盘”。
+5. 如果 VM 位于可用性集中，则“迁移到托管磁盘”边栏选项卡上会出现“首先需要转换可用性集”的警告。 此警告应该有一个链接，单击该链接即可转换可用性集。 转换可用性集后，或者如果 VM 不在可用性集中，请单击“迁移”以启动将磁盘迁移到托管磁盘的过程。
 
 VM 将会停止并在完成迁移后重新启动。
 
 ## <a name="next-steps"></a>后续步骤
 
-有关存储选项的详细信息，请参阅 [Azure 托管磁盘概述](../windows/managed-disks-overview.md)。
+有关存储选项的详细信息，请参阅 [Azure 托管磁盘概述](../managed-disks-overview.md)。
 
 <!--Update_Description: update meta properties, wording update -->

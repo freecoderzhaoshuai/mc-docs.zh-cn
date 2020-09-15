@@ -10,16 +10,16 @@ ms.service: active-directory
 ms.subservice: users-groups-roles
 ms.topic: how-to
 ms.workload: identity
-ms.date: 08/26/2020
+ms.date: 09/08/2020
 ms.author: v-junlch
 ms.reviewer: sumitp
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: a0c30d28a190100dddd4d951c282584ac9f2a154
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 9dfd83afee9c877ada5bd52c2a4d8114d5bae023
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88946705"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593597"
 ---
 # <a name="powershell-and-graph-examples-for-group-based-licensing-in-azure-ad"></a>Azure AD 中基于组的许可的 PowerShell 和 Graph 示例
 
@@ -445,7 +445,7 @@ HTTP/1.1 200 OK
 
 ## <a name="remove-direct-licenses-for-users-with-group-licenses"></a>删除具有组许可证的用户的直接许可证
 
-此脚本的目的是从用户（已从组继承相同许可证）删除不必要的直接许可证；例如，作为[转换到基于组的许可](/active-directory/users-groups-roles/licensing-groups-migrate-users)的一部分。
+此脚本的目的是从用户（已从组继承相同许可证）删除不必要的直接许可证；例如，作为[转换到基于组的许可](./licensing-groups-migrate-users.md)的一部分。
 > [!NOTE]
 > 请务必先验证要删除的直接许可证没有比继承许可证启用更多的服务功能。 否则，删除直接许可证可能会禁用用户对服务和数据的访问。 当前无法借助 PowerShell 检查通过继承许可证与直接许可证启用了哪些服务。 在该脚本中，我们将指定要从组继承的服务的最低级别，并且将针对其进行检查，以确保用户不会意外丢失对服务的访问。
 

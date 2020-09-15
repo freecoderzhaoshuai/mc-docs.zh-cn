@@ -10,19 +10,19 @@ author: xiaoharper
 ms.author: amlstudiodocs
 ms.custom: previous-author=heatherbshapiro, previous-ms.author=hshapiro
 ms.date: 05/25/2018
-ms.openlocfilehash: f0cef519c8aafc6d1543c83c6e80e54a34d32f01
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: c91f868321ec127e415c8c2dd7ea49a1524c3160
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228318"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021622"
 ---
 # <a name="export-and-delete-in-product-user-data-from-azure-machine-learning-studio-classic"></a>从 Azure 机器学习工作室（经典版）中导出和删除产品内用户数据
 
 **适用于：**  ![yes](../../../includes/media/aml-applies-to-skus/yes.png)机器学习工作室（经典）   ![no](../../../includes/media/aml-applies-to-skus/no.png)[Azure 机器学习](../compare-azure-ml-to-studio-classic.md)
 
 
-[!INCLUDE [Notebook deprecation notice](../../../includes/aml-studio-notebook-notice.md)]
+
 
 可以使用 Azure 门户、工作室（经典版）界面、PowerShell 和经过验证的 REST API 删除或导出 Azure 机器学习工作室（经典版）存储的产品内数据。 本文介绍了相关实现方法。 
 

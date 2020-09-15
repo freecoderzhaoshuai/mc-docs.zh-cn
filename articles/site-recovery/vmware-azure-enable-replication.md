@@ -1,18 +1,20 @@
 ---
 title: 使用 Azure Site Recovery 为灾难恢复启用 VMware VM
 description: 本文介绍如何使用 Azure Site Recovery 服务启用本地 VMware VM 的复制，以便进行灾难恢复
-author: rockboyfor
 ms.service: site-recovery
 origin.date: 04/01/2020
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.topic: conceptual
 ms.author: v-yeche
-ms.openlocfilehash: ca21236b3c4e5d69a94441a7341e70e2fc967d46
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: 001b071831f018e66b297cee3dbfa448863f69d7
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440699"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655465"
 ---
 # <a name="enable-replication-to-azure-for-vmware-vms"></a>为 VMware VM 启用到 Azure 的复制
 
@@ -70,7 +72,6 @@ ms.locfileid: "84440699"
     > 从 [9.24 版本](site-recovery-whats-new.md)开始，引入了其他警报，以增强进程服务器的运行状况警报。 将 Site Recovery 组件升级到 9.24 版或更高版本，以便生成所有警报。
 
 1. 对于“目标”，请选择要在其中创建故障转移虚拟机的订阅和资源组。 选择要在 Azure 中用于故障转移 VM 的部署模型。
-
 1. 选择 Azure VM 在故障转移后所要连接的 Azure 网络和子网。 该网络必须位于与 Site Recovery 服务保管库相同的区域中。
 
     选择“立即为选定的计算机配置”，将网络设置应用到选择保护的所有虚拟机。 选择“稍后配置”以选择每个虚拟机的 Azure 网络。 如果没有网络，需要创建一个。 若要使用 Azure 资源管理器创建网络，请选择“新建”。 选择适用的子网，然后选择“确定”。
@@ -111,13 +112,13 @@ ms.locfileid: "84440699"
     :::image type="content" source="./media/vmware-azure-enable-replication/vmproperties.png" alt-text="“计算和网络属性”窗口":::
 
     - **Azure VM 名称**：根据需要修改名称以使其符合 Azure 要求。
-    - **目标 VM 大小或 VM 类型**：基于一些参数选择默认 VM 大小，这些参数包括目标 Azure 区域中的磁盘计数、NIC 计数、CPU 核心计数、内存和可用 VM 角色大小。 Azure Site Recovery 将选取满足所有条件的第一个可用 VM 大小。 在故障转移之前，随时可以根据需要选择不同的 VM 大小。 VM 磁盘大小还取决于源磁盘大小，并且它只能在故障转移后进行更改。 在 [Windows 上的 VM 磁盘的可伸缩性和性能目标](/virtual-machines/windows/disk-scalability-targets)中了解磁盘大小和 IOPS 速率。
-    - **资源组**：可以选择虚拟机会在故障转移后成为其中一部分的[资源组](/azure-resource-manager/management/overview#resource-groups)。 在故障转移之前，随时可以更改此设置。 故障转移之后，如果将虚拟机迁移到其他资源组，则会中断该虚拟机的保护设置。
-    - **可用性集**：如果需要虚拟机在故障转移后成为某个[可用性集](/virtual-machines/windows/tutorial-availability-sets)的一部分，可以选择一个可用性集。 选择可用性集时，请注意以下信息：
-
+    - **目标 VM 大小或 VM 类型**：基于一些参数选择默认 VM 大小，这些参数包括目标 Azure 区域中的磁盘计数、NIC 计数、CPU 核心计数、内存和可用 VM 角色大小。 Azure Site Recovery 将选取满足所有条件的第一个可用 VM 大小。 在故障转移之前，随时可以根据需要选择不同的 VM 大小。 VM 磁盘大小还取决于源磁盘大小，并且它只能在故障转移后进行更改。 在 [Windows 上的 VM 磁盘的可伸缩性和性能目标](../virtual-machines/windows/disk-scalability-targets.md)中了解磁盘大小和 IOPS 速率。
+    - **资源组**：可以选择虚拟机会在故障转移后成为其中一部分的[资源组](../azure-resource-manager/management/overview.md#resource-groups)。 在故障转移之前，随时可以更改此设置。 故障转移之后，如果将虚拟机迁移到其他资源组，则会中断该虚拟机的保护设置。
+    - **可用性集**：如果需要虚拟机在故障转移后成为某个[可用性集](../virtual-machines/windows/tutorial-availability-sets.md)的一部分，可以选择一个可用性集。 选择可用性集时，请注意以下信息：
         - 仅会列出属于指定资源组的可用性集。
         - 位于不同虚拟网络中的 VM 不能属于同一个可用性集。
         - 仅大小相同的虚拟机可以属于同一可用性集。
+
 1. 还可以添加有关目标网络、子网和分配给 Azure VM 的 IP 地址的信息。
 1. 在“磁盘”中，可以看到 VM 上将要复制的操作系统和数据磁盘。
 

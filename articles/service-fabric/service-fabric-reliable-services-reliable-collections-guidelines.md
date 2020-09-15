@@ -3,16 +3,17 @@ title: 有关可靠集合的指导原则
 description: 在 Azure Service Fabric 应用程序中使用 Service Fabric 可靠集合的相关指导原则和建议。
 ms.topic: conceptual
 origin.date: 03/10/2020
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 06/08/2020
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: d5f1e7887e78985274c1b771da1afa3ec6a0af73
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: a36b743d07f69762108f32d4508042498c7cb5be
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426461"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655358"
 ---
 # <a name="guidelines-and-recommendations-for-reliable-collections-in-azure-service-fabric"></a>Azure Service Fabric 中 Reliable Collections 的相关指导原则和建议
 本部分提供有关使用可靠状态管理器和 Reliable Collections 的指导原则。 目的是帮助用户避免常见错误。
@@ -70,4 +71,4 @@ ms.locfileid: "87426461"
     * [Reliable Services 快速启动](service-fabric-reliable-services-quick-start.md)
     * [Reliable Collections 的开发人员参考](https://docs.azure.cn/dotnet/api/microsoft.servicefabric.data.collections?view=azure-dotnet#microsoft_servicefabric_data_collections)
 
-<!-- Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

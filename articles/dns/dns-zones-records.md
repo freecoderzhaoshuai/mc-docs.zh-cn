@@ -8,14 +8,14 @@ ms.topic: conceptual
 ms.custom: H1Hack27Feb2017
 ms.workload: infrastructure-services
 origin.date: 12/18/2017
-ms.date: 02/17/2020
+ms.date: 09/14/2020
 ms.author: v-jay
-ms.openlocfilehash: 66e6c32cf3540f1d7098989b56548031f4708878
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: e0c7780b723638f18d7b6e342dc9bb117dc2fe98
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79293332"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512859"
 ---
 # <a name="overview-of-dns-zones-and-records"></a>DNS 区域和记录概述
 

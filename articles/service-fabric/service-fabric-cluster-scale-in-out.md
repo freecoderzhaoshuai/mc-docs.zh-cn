@@ -3,16 +3,17 @@ title: 扩展或缩减 Service Fabric 群集
 description: 通过为每个节点类型/虚拟机规模集设置自动缩放规则，根据需要扩展或缩减 Service Fabric 群集。 在 Service Fabric 群集中添加或删除节点
 ms.topic: conceptual
 origin.date: 03/12/2019
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 06/08/2020
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: d16735dc784a07f506559e742389eab9bef6a5e9
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 25dada5a518c58b97617b8c545623b3b4f9b521d
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426425"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655523"
 ---
 <!--Verified successfully, ONLY CHARACTERS CONTENT-->
 # <a name="scale-a-cluster-in-or-out"></a>缩小或扩大群集
@@ -28,7 +29,7 @@ ms.locfileid: "87426425"
 虚拟机规模集是一种 Azure 计算资源，可用于将一组虚拟机作为一个集进行部署和管理。 在 Service Fabric 群集中定义的每个节点类型将设置为不同的虚拟机规模集。 然后，每个节点类型可以独立缩减或扩展、打开不同的端口集，并可以有不同的容量指标。 可在 [Service Fabric 节点类型](service-fabric-cluster-nodetypes.md)文档中了解有关详细信息。 由于群集中的 Service Fabric 节点类型由后端的虚拟机规模集构成，因此需要为每个节点类型/虚拟机规模集设置自动缩放规则。
 
 > [!NOTE]
-> 订阅必须有足够的核心用于添加构成此群集的新 VM。 当前没有模型验证，因此如果达到任何配额限制，会遇到部署时故障。 此外，对于单个节点类型，每个 VMSS 不能超过 100 个节点。 要实现目标缩放，可能需要添加 VMSS，且自动缩放不会自动添加 VMSS。 将 VMSS 就地添加到实时集群非常具有挑战性务，这通常会导致用户使用创建时预配的相应节点类型来预配新集群。请相应地[计划群集容量](/service-fabric/service-fabric-cluster-capacity)。 
+> 订阅必须有足够的核心用于添加构成此群集的新 VM。 当前没有模型验证，因此如果达到任何配额限制，会遇到部署时故障。 此外，对于单个节点类型，每个 VMSS 不能超过 100 个节点。 要实现目标缩放，可能需要添加 VMSS，且自动缩放不会自动添加 VMSS。 将 VMSS 就地添加到实时集群非常具有挑战性务，这通常会导致用户使用创建时预配的相应节点类型来预配新集群。请相应地[计划群集容量](./service-fabric-cluster-capacity.md)。 
 > 
 > 
 

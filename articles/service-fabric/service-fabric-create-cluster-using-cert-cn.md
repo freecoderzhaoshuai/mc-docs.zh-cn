@@ -3,14 +3,17 @@ title: 使用证书公用名称创建群集
 description: 了解如何基于模板创建使用证书公用名称的 Service Fabric 群集。
 ms.topic: conceptual
 origin.date: 09/06/2019
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: a3b9fbd1c076bde5dd4969edaf9c343d44376970
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 9e21fdbb68bc4a9d99b859edf11cd74111a3e2d7
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540451"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655520"
 ---
 # <a name="deploy-a-service-fabric-cluster-that-uses-certificate-common-name-instead-of-thumbprint"></a>部署使用证书公用名称而非指纹的 Service Fabric 群集
 两个证书不能具有相同的指纹，具有相同的指纹会使群集证书滚动更新或管理变得困难。 但是，多个证书可以具有相同的公用名称或使用者。  使用证书公用名称会使群集的证书管理更加简单。 本文介绍了如何部署 Service Fabric 群集来使用证书公用名称而非证书指纹。
@@ -18,7 +21,9 @@ ms.locfileid: "77540451"
 [!INCLUDE [updated-for-az](../../includes/updated-for-az.md)]
 
 ## <a name="get-a-certificate"></a>获取证书
-首先，从[证书颁发机构 (CA)](https://wikipedia.org/wiki/Certificate_authority) 获取证书。  证书的公用名称应该是你拥有的自定义域，并从域注册机构购买。 例如，“azureservicefabricbestpractices.com”；不是 Azure 员工的用户不能为 MS 域预配证书，因此不能使用 LB 或流量管理器的 DNS 名称作为证书的公用名称，而需预配 [Azure DNS 区域](/dns/dns-delegate-domain-azure-dns)（前提是自定义域可以在 Azure 中解析）。 如果希望门户反映群集的自定义域别名，还需要将自己的自定义域声明为群集的“managementEndpoint”。
+首先，从证书颁发机构 (CA) 获取证书。  证书的公用名称应该是你拥有的自定义域，并从域注册机构购买。 例如，“azureservicefabricbestpractices.com”；不是 Azure 员工的用户不能为 MS 域预配证书，因此不能使用 LB 或流量管理器的 DNS 名称作为证书的公用名称，而需预配 [Azure DNS 区域](/dns/dns-delegate-domain-azure-dns)（前提是自定义域可以在 Azure 中解析）。 如果希望门户反映群集的自定义域别名，还需要将自己的自定义域声明为群集的“managementEndpoint”。
+
+<!--Not Available on [certificate authority (CA)](https://wikipedia.org/wiki/Certificate_authority)-->
 
 对于测试用途，可以从免费或开放的证书颁发机构获取由 CA 签名的证书。
 

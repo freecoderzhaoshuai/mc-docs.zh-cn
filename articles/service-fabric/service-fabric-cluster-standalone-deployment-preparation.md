@@ -1,25 +1,23 @@
 ---
 title: 独立群集部署准备
 description: 在部署专用于处理生产工作负荷的群集之前要考虑的与准备环境和创建群集配置相关的文档。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 09/11/2018
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 02/24/2020
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: f94db6e5d0ca7995c8ceda32181e6656a0f1f154
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 1d7920874c920753157dd8eaf1297b4b9eb95654
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426399"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655383"
 ---
 # <a name="plan-and-prepare-your-service-fabric-standalone-cluster-deployment"></a>规划和准备 Service Fabric 独立群集部署
 
-<a name="preparemachines"></a>
-
-在创建群集之前，请执行以下步骤。
+<a name="preparemachines"></a>在创建群集之前，请执行以下步骤。
 
 ## <a name="plan-your-cluster-infrastructure"></a>规划群集基础结构
 需要在“拥有的”计算机上创建 Service Fabric 群集，以便确定群集需应对的故障类型。 例如，是否需要为这些计算机单独提供电源线或 Internet 连接？ 此外，还应考虑这些计算机的物理安全性。 计算机位于何处，谁需要访问它们？ 在做出这些决定后，可以采用逻辑方式将计算机映射到多个容错域（请参阅下一步骤）。 相比于测试群集，生产群集的基础结构规划更复杂。
@@ -64,10 +62,10 @@ ms.locfileid: "87426399"
 * 与所有计算机的安全网络建立连接
 * 已安装 Windows Server 操作系统（有效版本：2012 R2、2016、1709 或 1803）。 Service Fabric 版本 6.4.654.9590 及更高版本还支持 Server 2019 和 1809。
 * [.NET Framework 4.5.1 或更高版本](https://www.microsoft.com/download/details.aspx?id=40773)的完整安装版
-* [Windows PowerShell 3.0](https://msdn.microsoft.com/powershell/scripting/install/installing-windows-powershell)
-* 应在所有计算机上运行 [RemoteRegistry 服务](https://technet.microsoft.com/library/cc754820)
+* [Windows PowerShell 3.0](https://docs.microsoft.com/powershell/scripting/windows-powershell/install/installing-windows-powershell?view=powershell-7)
+* 应在所有计算机上运行 [RemoteRegistry 服务](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc754820(v=ws.11))
 * **Service Fabric 安装驱动器必须是 NTFS 文件系统**
-* **Windows 服务*性能日志和警报*以及 *Windows 事件日志*必须[启用](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc755249(v=ws.11))** 。
+* **Windows 服务*性能日志和警报*以及 *Windows 事件日志*必须[启用](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/cc755249(v=ws.11))** 。
 
 > [!IMPORTANT]
 > 部署和配置群集的群集管理员必须拥有每台计算机的 [管理员权限](https://social.technet.microsoft.com/wiki/contents/articles/13436.windows-server-2012-how-to-add-an-account-to-a-local-administrator-group.aspx) 。 不能在域控制器上安装 Service Fabric。
@@ -161,11 +159,11 @@ Passed                     : True
 当前此配置测试模块不验证安全配置，因此这必须独立完成。
 
 > [!NOTE]
-> 我们正在不断改进，旨在使此模块更加可靠，因此如果遇到了可能由 TestConfiguration 导致的故障或丢失情况，请通过我们的[支持通道](/service-fabric/service-fabric-support)告知我们。
+> 我们正在不断改进，旨在使此模块更加可靠，因此如果遇到了可能由 TestConfiguration 导致的故障或丢失情况，请通过我们的[支持通道](./service-fabric-support.md)告知我们。
 >
 >
 
 ## <a name="next-steps"></a>后续步骤
 * [创建在 Windows Server 上运行的独立群集](service-fabric-cluster-creation-for-windows-server.md)
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

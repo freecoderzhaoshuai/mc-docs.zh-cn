@@ -8,20 +8,20 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 06/17/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: b42650da14c3e2d322672862a7fea6dc83ce5c21
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: 3dac85410a3410934757fa3ac8b3ab83ced1c532
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86472005"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021110"
 ---
 #    <a name="pii-detection-cognitive-skill"></a>PII 检测认知技能
 
 > [!IMPORTANT] 
 > 此技能目前为公共预览版。 提供的预览版功能不附带服务级别协议，我们不建议将其用于生产工作负荷。目前未提供门户或 .NET SDK 支持。
 
-**PII 检测**技能可以从输入文本中提取个人身份信息，并可让你通过多种方式在该文本中屏蔽此类信息。 此技能使用认知服务中的[文本分析](https://docs.azure.cn/cognitive-services/text-analytics/overview)提供的机器学习模型。
+**PII 检测**技能可以从输入文本中提取个人身份信息，并可让你通过多种方式在该文本中屏蔽此类信息。 此技能使用认知服务中的[文本分析](../cognitive-services/text-analytics/overview.md)提供的机器学习模型。
 
 > [!NOTE]
 > 通过增大处理频率、添加更多文档或添加更多 AI 算法来扩大范围时，需要[附加可计费的认知服务资源](cognitive-search-attach-cognitive-services.md)。 调用认知服务中的 API 以及在 Azure 认知搜索中的文档破解阶段提取图像时，会产生费用。 提取文档中的文本不会产生费用。
@@ -58,7 +58,7 @@ Microsoft.Skills.Text.PIIDetectionSkill
 
 | 输出名称      | 说明                   |
 |---------------|-------------------------------|
-| `piiEntities` | 复杂类型的数组，包含以下字段： <ul><li>text（提取的实际 PII）</li> <li>type</li><li>subType</li><li>score（值越高意味着它越有可能是一个真实的实体）</li><li>offset（输入文本中）</li><li>length</li></ul> </br> [可在此处找到可能的类型和子类型。](https://docs.azure.cn/cognitive-services/text-analytics/named-entity-types?tabs=personal) |
+| `piiEntities` | 复杂类型的数组，包含以下字段： <ul><li>text（提取的实际 PII）</li> <li>type</li><li>subType</li><li>score（值越高意味着它越有可能是一个真实的实体）</li><li>offset（输入文本中）</li><li>length</li></ul> |
 | `maskedText` | 如果 `maskingMode` 设置为 `none` 以外的值，则此输出将是对由所选 `maskingMode` 描述的输入文本执行屏蔽后的字符串结果。  如果 `maskingMode` 设置为 `none`，则不会提供此输出。 |
 
 ##    <a name="sample-definition"></a>示例定义
@@ -128,7 +128,7 @@ Microsoft.Skills.Text.PIIDetectionSkill
 }
 ```
 
-请注意，在此技能的输出中，针对实体返回的偏移量是直接从[文本分析 API](https://docs.azure.cn/cognitive-services/text-analytics/overview) 返回的，这意味着如果使用这些偏移量为原始字符串编制索引，则应使用 .NET 中的 [StringInfo](https://docs.microsoft.com/dotnet/api/system.globalization.stringinfo?view=netframework-4.8) 类来提取正确的内容。
+请注意，在此技能的输出中，针对实体返回的偏移量是直接从[文本分析 API](https://docs.azure.cn/cognitive-services/text-analytics/overview) 返回的，这意味着如果使用这些偏移量为原始字符串编制索引，则应使用 .NET 中的 [StringInfo](https://docs.microsoft.com/dotnet/api/system.globalization.stringinfo) 类来提取正确的内容。
 
 ## <a name="error-and-warning-cases"></a>错误和警告案例
 如果文档的语言代码不受支持，则会返回警告，并且不提取任何实体。

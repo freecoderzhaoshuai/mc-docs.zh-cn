@@ -4,16 +4,16 @@ description: 本文提供有关适用于 Linux IaaS VM 的 Azure 磁盘加密的
 author: Johnnytechn
 ms.service: virtual-machines-linux
 ms.subservice: security
-ms.topic: article
+ms.topic: conceptual
 ms.author: v-johya
-ms.date: 06/17/2020
+ms.date: 09/03/2020
 ms.custom: seodec18
-ms.openlocfilehash: e4d0b112b29e0662d6c2c31a11ad81f15f3896ad
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: 8cdd68b3faea4f73a4d59ab543e1e5d20968662b
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097413"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057671"
 ---
 # <a name="azure-disk-encryption-for-linux-virtual-machines-faq"></a>适用于 Linux 虚拟机的 Azure 磁盘加密常见问题解答
 
@@ -48,13 +48,13 @@ Azure 磁盘加密正式版支持 Azure 资源管理器模板、Azure PowerShell
 
 加密 OS 卷之后，不支持在 OS 卷上禁用加密。 如果 Linux VM 位于规模集中，则只能加密数据卷。
 
-## <a name="can-i-encrypt-an-unmounted-volume-with-azure-disk-encryption"></a>是否可以使用 Azure 磁盘加密来加密未装载的卷？
+## <a name="can-i-encrypt-an-unmounted-volume-with-azure-disk-encryption"></a>我可以使用 Azure 磁盘加密来加密未装入的卷吗？
 
 不可以，Azure 磁盘加密只加密已装入的卷。
 
 ## <a name="what-is-storage-server-side-encryption"></a>什么是存储服务器端加密？
 
-存储服务器端加密会在 Azure 存储中加密 Azure 托管磁盘。 默认情况下，托管磁盘使用平台托管密钥通过服务器端加密进行加密（从 2017 年 6 月 10 日开始）。 可以通过指定客户托管密钥，使用自己的密钥来管理托管磁盘加密。 有关详细信息，请参阅：[Azure 托管磁盘的服务器端加密](disk-encryption.md)。
+存储服务器端加密会在 Azure 存储中加密 Azure 托管磁盘。 默认情况下，托管磁盘使用平台托管密钥通过服务器端加密进行加密（从 2017 年 6 月 10 日开始）。 指定一个由客户托管的密钥，即可实现对使用自己的密钥加密托管磁盘的管理。 有关详细信息，请参阅：[Azure 托管磁盘的服务器端加密](disk-encryption.md)。
 <!-- Not Avaialble on ## Customer-managed keys in file disk-encryption.md -->
 
 ## <a name="how-do-i-rotate-secrets-or-encryption-keys"></a>如何轮换机密或加密密钥？
@@ -98,7 +98,7 @@ Azure 磁盘加密具有先决条件。 请参阅[使用 Azure AD 的 Azure 磁�
 
 ## <a name="what-version-of-azure-powershell-does-azure-disk-encryption-support"></a>Azure 磁盘加密支持哪些 Azure PowerShell 版本？
 
-使用最新版的 Azure PowerShell SDK 来配置 Azure 磁盘加密。 下载最新版本的 [Azure PowerShell](https://github.com/Azure/azure-powershell/releases)。 Azure SDK 版本 1.1.0 不** 支持 Azure 磁盘加密。
+使用最新版的 Azure PowerShell SDK 来配置 Azure 磁盘加密。 下载最新版本的 [Azure PowerShell](https://github.com/Azure/azure-powershell/releases)。 Azure SDK 版本 1.1.0 不支持 Azure 磁盘加密。
 
 > [!NOTE]
 > Linux Azure 磁盘加密预览扩展“Microsoft.OSTCExtension.AzureDiskEncryptionForLinux”已弃用。 发布的该扩展适用于 Azure 磁盘加密预览版。 不应将预览版扩展用于测试或生产性部署。
@@ -111,8 +111,7 @@ Azure 磁盘加密具有先决条件。 请参阅[使用 Azure AD 的 Azure 磁�
 
 ## <a name="can-i-apply-updates-to-a-linux-red-hat-vm-that-uses-the-yum-update"></a>是否可以向使用 yum 更新的 Linux Red Hat VM 应用更新？
 
-是的，可以在 Red Hat Linux VM 上执行 yum 更新。 
-<!--Pending about For more information, see [Azure Disk Encryption on an isolated network](disk-encryption-isolated-network.md).-->
+是的，可以在 Red Hat Linux VM 上执行 yum 更新。  有关详细信息，请参阅[隔离网络上的 Azure 磁盘加密](disk-encryption-isolated-network.md)。
 
 ## <a name="what-is-the-recommended-azure-disk-encryption-workflow-for-linux"></a>对于 Linux，应使用哪种 Azure 磁盘加密工作流？
 
@@ -143,9 +142,9 @@ Azure 磁盘加密可将 aes-xts-plain64 的 decrypt 默认方法和 256 位卷�
 
 仅当使用 EncryptFormatAll 参数时，才支持加密 XFS 数据磁盘。 该操作将重格式化卷，并清除卷中所有数据。 有关详细信息，请参阅 [EncryptFormatAll 条件](disk-encryption-linux.md#use-encryptformatall-feature-for-data-disks-on-linux-vms)。
 
-## <a name="can-i-backup-and-restore-an-encrypted-vm"></a>能否备份和还原加密的 VM？ 
+## <a name="can-i-backup-and-restore-an-encrypted-vm"></a>我可以备份和还原已加密的 VM 吗？ 
 
-Azure 备份提供一个机制，可以用来备份和还原同一订阅与区域中的已加密 VM。  相关说明，请参阅[通过 Azure 备份来备份和还原加密的虚拟机](/backup/backup-azure-vms-encryption)。  目前不支持将已加密的 VM 还原到另一区域。  
+Azure 备份提供一个机制，可以用来备份和还原同一订阅与区域中的已加密 VM。  相关说明，请参阅[通过 Azure 备份来备份和还原加密的虚拟机](../../backup/backup-azure-vms-encryption.md)。  目前不支持将已加密的 VM 还原到另一区域。  
 
 ## <a name="where-can-i-go-to-ask-questions-or-provide-feedback"></a>可以在何处提问或提供反馈？
 
@@ -155,8 +154,8 @@ Azure 备份提供一个机制，可以用来备份和还原同一订阅与区�
 本文档详细描述了有关 Azure 磁盘加密的最常见问题。 有关此服务的详细信息，请参阅以下文章：
 
 - [Azure 磁盘加密概述](disk-encryption-overview.md)
-- [在 Azure 安全中心应用磁盘加密](https://docs.microsoft.com/azure/security-center/security-center-apply-disk-encryption)
-- [Azure 静态数据加密](/security/fundamentals/encryption-atrest)
+- [在 Azure 安全中心应用磁盘加密](../../security-center/security-center-virtual-machine-protection.md)
+- [Azure 静态数据加密](../../security/fundamentals/encryption-atrest.md)
 
 <!-- Update_Description: new article about disk encryption faq -->
 <!--NEW.date: 11/11/2019-->

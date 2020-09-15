@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 06/30/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: db448c036c345104eae6ed441037f6e0df64ab0f
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: c93202057c8f282d2777180ed0a878b04a79bb45
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471832"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021083"
 ---
 # <a name="knowledge-store-in-azure-cognitive-search"></a>Azure 认知搜索中的知识存储
 

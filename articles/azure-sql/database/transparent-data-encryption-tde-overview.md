@@ -12,13 +12,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: vanto
 origin.date: 06/15/2020
-ms.date: 07/13/2020
-ms.openlocfilehash: 5e7e9d7613907f549623d5cb4e32698e4793e536
-ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+ms.date: 09/14/2020
+ms.openlocfilehash: c52a27e0c683915179877a98e5c2ae8224146e7e
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86227649"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014361"
 ---
 # <a name="transparent-data-encryption-for-sql-database-sql-managed-instance-and-azure-synapse-analytics"></a>Azure SQL 数据库、Azure SQL 托管实例和 Azure Synapse Analytics 的透明数据加密
 [!INCLUDE[appliesto-sqldb-sqlmi-asa](../includes/appliesto-sqldb-sqlmi-asa.md)]
@@ -27,7 +27,7 @@ ms.locfileid: "86227649"
 
 TDE 对页面级数据执行实时 I/O 加密和解密。 将每个页面读入内存时会将其解密，在写入磁盘之前会将其加密。 TDE 使用称为数据库加密密钥 (DEK) 的对称密钥加密整个数据库的存储。 在数据库启动时，已加密的 DEK 被解密，然后用于解密和重新加密 SQL Server 数据库引擎进程中的数据库文件。 DEK 由 TDE 保护器保护。 TDE 保护器是服务托管的证书（服务托管的透明数据加密）或存储在 [Azure Key Vault](/key-vault/key-vault-secure-your-key-vault) 中的非对称密钥（客户管理的透明数据加密）。 
 
-对于 Azure SQL 数据库和 Azure Synapse，TDE 保护器在[服务器](logical-servers.md)级别设置，并由该服务器关联的所有数据库继承。 对于 Azure SQL 托管实例（预览版 BYOK 功能），TDE 保护器是在实例级别设置的，并由该实例上所有加密的数据库继承。 除非另有说明，否则术语“服务器”在整个文档中指的是服务器和实例。
+对于 Azure SQL 数据库和 Azure Synapse，TDE 保护器在[服务器](logical-servers.md)级别设置，并由该服务器关联的所有数据库继承。 对于 Azure SQL 托管实例，TDE 保护器在实例级别设置，并由该实例上所有加密的数据库继承。 除非另有说明，否则术语“服务器”在整个文档中指的是服务器和实例。
 
 > [!IMPORTANT]
 > 默认情况下，将使用服务托管的透明数据加密对 SQL 数据库中所有新建的数据库进行加密。 默认情况下，2017 年 5 月之前创建的现有 SQL 数据库以及通过还原、异地复制和数据库副本创建的 SQL 数据库均不加密。 默认情况下，2019 年 2 月之前创建的现有 SQL 托管实例数据库不加密。 通过源提供的还原继承加密状态创建的 SQL 托管实例数据库。

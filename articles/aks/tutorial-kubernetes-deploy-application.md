@@ -7,12 +7,12 @@ origin.date: 12/19/2018
 ms.date: 03/09/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: 19668ed46dbf6f2ecbc4610628f56ae24800eeb1
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 785a489b68685ea6054f121c47381b8e949f3668
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79290854"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021238"
 ---
 # <a name="tutorial-run-applications-in-azure-kubernetes-service-aks"></a>教程：在 Azure Kubernetes 服务 (AKS) 中运行应用程序
 
@@ -140,8 +140,8 @@ azure-vote-front   LoadBalancer   10.0.34.242   52.179.23.131   80:30676/TCP   6
 
 [aks-tutorial-prepare-app]: ./tutorial-kubernetes-prepare-app.md
 [aks-tutorial-scale]: ./tutorial-kubernetes-scale.md
-[az-acr-list]: https://docs.azure.cn/cli/acr?view=azure-cli-latest
-[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[az-acr-list]: https://docs.azure.cn/cli/acr
+[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli
 [kubernetes-concepts]: concepts-clusters-workloads.md
 [kubernetes-service]: concepts-network.md#services
 

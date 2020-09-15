@@ -3,14 +3,17 @@ title: 将现有可执行文件打包到 Azure Service Fabric
 description: 了解如何将现有应用程序打包为来宾可执行文件，以便部署到 Service Fabric 群集。
 ms.topic: conceptual
 origin.date: 03/15/2018
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: f4c70bb433ee44f8ce6692a7a380e68c7d01f307
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: ffde7e4eb699966c7e1b3f25ec7bb90abbe308da
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742372"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655724"
 ---
 # <a name="deploy-an-existing-executable-to-service-fabric"></a>将现有可执行文件部署到 Service Fabric
 可以在 Azure Service Fabric 中运行任何类型的代码（如 Node.js、Java 或 C++）作为服务。 Service Fabric 将这些类型的服务称为来宾可执行文件。
@@ -67,9 +70,9 @@ ApplicationPackageRoot 包含定义应用程序的 ApplicationManifest.xml 文�
 ## <a name="next-steps"></a>后续步骤
 有关相关信息和任务，请参阅以下文章。
 * [部署来宾可执行文件](service-fabric-deploy-existing-app.md)
-* [部署多个来宾可执行文件](service-fabric-deploy-multiple-apps.md)
+* [部署多个来宾可执行文件](./service-fabric-deploy-existing-app.md)
 * [使用 Visual Studio 创建第一个来宾可执行应用程序](quickstart-guest-app.md)
 * [打包和部署来宾可执行文件的示例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)，包括打包工具的预发行版本的链接
 * [使用 REST 通过命名服务进行通信的两种来宾可执行文件（C# 和 nodejs）示例](https://github.com/Azure-Samples/service-fabric-containers)
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

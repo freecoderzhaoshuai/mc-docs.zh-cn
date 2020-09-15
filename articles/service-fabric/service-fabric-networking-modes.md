@@ -1,17 +1,19 @@
 ---
 title: 配置容器服务的网络模式
 description: 了解如何设置 Azure Service Fabric 支持的不同网络模式。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 02/23/2018
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: cbdc506a4183ae64f7d9d330ba781d02c1d0f3b3
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 840ba2f18b9e1f1027cb99c367db8e170a3462c0
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77539961"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655721"
 ---
 # <a name="service-fabric-container-networking-modes"></a>Service Fabric 容器网络模式
 
@@ -22,7 +24,7 @@ ms.locfileid: "77539961"
 容器服务重启或移动到群集中的另一个节点时，IP 地址会发生更改。 为此，不建议使用动态分配的 IP 地址来发现容器服务。 应仅使用 Service Fabric 命名服务或 DNS 服务来发现服务。 
 
 >[!WARNING]
->Azure 允许每个虚拟网络总共 65,356 个 IP。 因此，在一个虚拟网络中，节点数和容器服务实例数的总和（使用开放模式）不能超过 65,356 个 IP。 对于高密度方案，建议使用 nat 网络模式。 此外，其他依赖项（例如负载均衡器）也有要考虑的其他[限制](/azure-resource-manager/management/azure-subscription-service-limits)。 当前，已测试了每个节点最多 50 个 IP 并且已证明了稳定性。 
+>Azure 允许每个虚拟网络总共 65,356 个 IP。 因此，在一个虚拟网络中，节点数和容器服务实例数的总和（使用开放模式）不能超过 65,356 个 IP。 对于高密度方案，建议使用 nat 网络模式。 此外，其他依赖项（例如负载均衡器）也有要考虑的其他[限制](../azure-resource-manager/management/azure-subscription-service-limits.md)。 当前，已测试了每个节点最多 50 个 IP 并且已证明了稳定性。 
 >
 
 ## <a name="set-up-open-networking-mode"></a>设置开放网络模式
@@ -192,15 +194,14 @@ ms.locfileid: "77539961"
 
 3. 仅对于 Windows 群集，请使用以下值设置 Azure 网络安全组 (NSG) 规则，以便为虚拟网络打开端口 UDP/53：
 
-    |设置 |值 | |
-    | --- | --- | --- |
-    |优先度 |2000 | |
-    |名称 |Custom_Dns  | |
-    |源 |VirtualNetwork | |
-    |目标 | VirtualNetwork | |
-    |服务 | DNS (UDP/53) | |
-    |操作 | Allow  | |
-    | | |
+    |设置 |值 |
+    | --- | --- |
+    |优先度 |2000 |
+    |名称 |Custom_Dns  |
+    |源 |VirtualNetwork |
+    |目标 | VirtualNetwork |
+    |服务 | DNS (UDP/53) |
+    |操作 | Allow  |
 
 4. 在应用程序清单中为每个服务指定网络模式 `<NetworkConfig NetworkType="Open">`。 开放网络模式使服务获得专用 IP 地址  。 如果未指定模式，服务默认使用 nat 模式  。 在以下清单示例中，`NodeContainerServicePackage1` 和 `NodeContainerServicePackage2` 服务均可在相同端口上进行侦听（这两个服务都在 `Endpoint1` 上进行侦听）。 如果指定了开放网络模式，便无法指定 `PortBinding` 配置。
 
@@ -265,8 +266,8 @@ ms.locfileid: "77539961"
 
 ## <a name="next-steps"></a>后续步骤
 * [了解 Service Fabric 应用程序模型](service-fabric-application-model.md)
-* [详细了解 Service Fabric 服务清单资源](/service-fabric/service-fabric-service-manifest-resources)
+* [详细了解 Service Fabric 服务清单资源](./service-fabric-service-manifest-resources.md)
 * [将 Windows 容器部署到 Windows Server 2016 上的 Service Fabric](service-fabric-get-started-containers.md)
 * [将 Docker 容器部署到 Linux 上的 Service Fabric](service-fabric-get-started-containers-linux.md)
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

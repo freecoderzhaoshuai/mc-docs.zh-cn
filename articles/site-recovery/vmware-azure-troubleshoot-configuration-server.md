@@ -1,21 +1,21 @@
 ---
 title: 使用 Azure Site Recovery 排查将 VMware VM 和物理服务器灾难恢复到 Azure 时的配置服务器问题 | Azure
 description: 本文提供用于部署配置服务器以便使用 Azure Site Recovery 将 VMware VM 和物理服务器灾难恢复到 Azure 的故障排除信息。
-author: rockboyfor
 manager: digimobile
 ms.service: site-recovery
 ms.topic: article
 origin.date: 02/13/2019
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 06/08/2020
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: dfe7579ccd8dcd6f3079266e02328740f9090589
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: a73301a28651ebf29ed2489f09a60fb1b3491105
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426499"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655277"
 ---
 # <a name="troubleshoot-configuration-server-issues"></a>排查配置服务器问题
 
@@ -67,13 +67,9 @@ ms.locfileid: "87426499"
 若要解决 vCenter 发现失败问题，请向 byPass 列表代理设置添加 vCenter 服务器。 
 
 - 从[此处](https://aka.ms/PsExec)下载 PsExec 工具来访问系统用户内容。
-- 运行以下命令行，在系统用户上下文中打开 Internet Explorer
-
-    psexec -s -i "%programfiles%\Internet Explorer\iexplore.exe"
+- 通过运行以下命令行在系统用户内容中打开 Internet Explorer：psexec -s -i "%programfiles%\Internet Explorer\iexplore.exe"
 - 在 IE 中添加代理设置并重启 tmanssvc 服务。
-- 若要配置 DRA 代理设置，请运行 
-
-    cd C:\Program Files\Microsoft Azure Site Recovery Provider
+- 若要配置 DRA 代理设置，请运行 cd C:\Program Files\Microsoft Azure Site Recovery Provider
 - 接下来，执行 DRCONFIGURATOR.EXE /configure /AddBypassUrls [添加在[配置服务器部署](vmware-azure-deploy-configuration-server.md#configure-settings)的**配置 vCenter 服务器/vSphere ESXi 服务器**步骤中提供的 vCenter 服务器 IP 地址/FQDN]
 
 ## <a name="change-the-ip-address-of-the-configuration-server"></a>更改配置服务器的 IP 地址
@@ -93,16 +89,15 @@ ms.locfileid: "87426499"
 1. 通过 OVF 部署配置服务器的过程中，使用了评估许可证，该许可证的有效期为 180 天。 需要在此许可证过期之前进行激活。 否则，这可能导致配置服务器频繁关闭，因而妨碍复制活动。
 2. 如果无法激活 Windows 许可证，请联系 [Windows 支持团队](https://aka.ms/Windows_Support)以解决此问题。
 
-<a name="register-source-machine-with-configuration-server"></a>
-## <a name="register-source-machine-with-configuration-server"></a>将源计算机注册到配置服务器
+## <a name="register-source-machine-with-configuration-server"></a><a name="register-source-machine-with-configuration-server"></a>将源计算机注册到配置服务器
 
 ### <a name="if-the-source-machine-runs-windows"></a>如果源计算机运行 Windows
 
 在源计算机上运行以下命令：
 
 ```
-cd C:\Program Files (x86)\Microsoft Azure Site Recovery\agent
-UnifiedAgentConfigurator.exe  /CSEndPoint <configuration server IP address> /PassphraseFilePath <passphrase file path>
+    cd C:\Program Files (x86)\Microsoft Azure Site Recovery\agent
+    UnifiedAgentConfigurator.exe  /CSEndPoint <configuration server IP address> /PassphraseFilePath <passphrase file path>
 ```
 
 <!--Path correct on Microsoft Azure Site Recovery\-->
@@ -119,7 +114,7 @@ UnifiedAgentConfigurator.exe  /CSEndPoint <configuration server IP address> /Pas
 在源计算机上运行以下命令：
 
 ```
-/usr/local/ASR/Vx/bin/UnifiedAgentConfigurator.sh -i <configuration server IP address> -P /var/passphrase.txt
+    /usr/local/ASR/Vx/bin/UnifiedAgentConfigurator.sh -i <configuration server IP address> -P /var/passphrase.txt
 ```
 
 设置 | 详细信息
@@ -172,7 +167,7 @@ UnifiedAgentConfigurator.exe  /CSEndPoint <configuration server IP address> /Pas
 
 若要确定问题，请导航到配置服务器上的 C:\ProgramData\ASRSetupLogs\CX_TP_InstallLogFile。 如果发现以下错误，请使用以下步骤解决问题： 
 
-```
+```output
 2018-06-28 14:28:12.943   Successfully copied php.ini to C:\Temp from C:\thirdparty\php5nts
 2018-06-28 14:28:12.943   svagents service status - SERVICE_RUNNING
 2018-06-28 14:28:12.944   Stopping svagents service.
@@ -222,7 +217,7 @@ TCP    192.168.1.40:52739     192.168.1.40:443      SYN_SENT  // 此处将 IP �
 
 如果在 MT 代理日志中发现类似于以下内容的跟踪，则 MT 代理将报告端口 443 出错：
 
-```
+```output
 #~> (11-20-2018 20:31:51):   ERROR  2508 8408 313 FAILED : PostToSVServer with error [at curlwrapper.cpp:CurlWrapper::processCurlResponse:212]   failed to post request: (7) - Couldn't connect to server
 #~> (11-20-2018 20:31:54):   ERROR  2508 8408 314 FAILED : PostToSVServer with error [at curlwrapper.cpp:CurlWrapper::processCurlResponse:212]   failed to post request: (7) - Couldn't connect to server
 ```
@@ -252,9 +247,9 @@ TCP    192.168.1.40:52739     192.168.1.40:443      SYN_SENT  // 此处将 IP �
     > 验证并确保输入的是克隆配置服务器的 UUID 详细信息，或不再用于保护虚拟机的配置服务器过时条目。 输入不正确的 UUID 将导致丢失所有现有受保护项的信息。
 
     ```
-    MySQL> use svsdb1;
-    MySQL> delete from infrastructurevms where infrastructurevmid='<Stale CS VM UUID>';
-    MySQL> commit; 
+        MySQL> use svsdb1;
+        MySQL> delete from infrastructurevms where infrastructurevmid='<Stale CS VM UUID>';
+        MySQL> commit; 
     ```
 4. 刷新门户页面。
 

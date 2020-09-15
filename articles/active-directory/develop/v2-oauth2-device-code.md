@@ -9,16 +9,16 @@ ms.service: active-directory
 ms.subservice: develop
 ms.workload: identity
 ms.topic: conceptual
-ms.date: 05/28/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 ms.reviewer: hirsin
 ms.custom: aaddev
-ms.openlocfilehash: f3f65ed5eb06277d517875192794b65bfd78578f
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: 2303fb873dafbca5f423b404a8bda59abf29fe2f
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186851"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593762"
 ---
 # <a name="microsoft-identity-platform-and-the-oauth-20-device-authorization-grant-flow"></a>Microsoft 标识平台和 OAuth 2.0 设备权限授予流
 
@@ -55,7 +55,7 @@ scope=user.read%20openid%20profile
 | --- | --- | --- |
 | `tenant` | 必须 | 可以是 /common 或 /organizations。  它也可以是要以 GUID 或友好名称格式向其请求权限的目录租户。  |
 | `client_id` | 必须 | [Azure 门户 - 应用注册](https://portal.azure.cn/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredAppsPreview)体验分配给应用的**应用程序（客户端）ID**。 |
-| `scope` | 建议 | 希望用户同意的[范围](v2-permissions-and-consent.md)的空格分隔列表。  |
+| `scope` | 必需 | 希望用户同意的[范围](v2-permissions-and-consent.md)的空格分隔列表。  |
 
 ### <a name="device-authorization-response"></a>设备授权响应
 

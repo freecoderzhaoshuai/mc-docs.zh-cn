@@ -8,14 +8,14 @@ ms.author: v-tawe
 ms.devlang: rest-api
 ms.service: cognitive-search
 ms.topic: conceptual
-origin.date: 11/04/2019
-ms.date: 07/17/2020
-ms.openlocfilehash: 0fb712b8a805876c92118ad905de7a9ffc6854fb
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+origin.date: 07/11/2020
+ms.date: 09/10/2020
+ms.openlocfilehash: 5327b97b778f6ef36f24dd5bcce96e056c1601ee
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471970"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021416"
 ---
 # <a name="how-to-index-tables-from-azure-table-storage-with-azure-cognitive-search"></a>如何使用 Azure 认知搜索从 Azure 表存储索引表
 
@@ -50,6 +50,7 @@ ms.locfileid: "86471970"
 
 若要创建数据源，请执行以下操作：
 
+```http
     POST https://[service name].search.azure.cn/datasources?api-version=2020-06-30
     Content-Type: application/json
     api-key: [admin key]
@@ -60,6 +61,7 @@ ms.locfileid: "86471970"
         "credentials" : { "connectionString" : "DefaultEndpointsProtocol=https;AccountName=<account name>;AccountKey=<account key>;" },
         "container" : { "name" : "my-table", "query" : "PartitionKey eq '123'" }
     }   
+```
 
 有关创建数据源 API 的详细信息，请参阅[创建数据源](https://docs.microsoft.com/rest/api/searchservice/create-data-source)。
 
@@ -69,10 +71,10 @@ ms.locfileid: "86471970"
 可通过以下一种方式提供表的凭据： 
 
 - **完全访问存储帐户连接字符串**：`DefaultEndpointsProtocol=https;AccountName=<your storage account>;AccountKey=<your account key>` 可通过转到“存储帐户”边栏选项卡  > “设置” > “密钥”（适用于经典存储帐户）或“设置” > “访问密钥”（适用于 Azure 资源管理器存储帐户），从 Azure 门户获取连接字符串      。
-- **存储帐户共享访问签名连接字符串**：`TableEndpoint=https://<your account>.table.chinacloudsites.cn/;SharedAccessSignature=?sv=2016-05-31&sig=<the signature>&spr=https&se=<the validity end time>&srt=co&ss=t&sp=rl` 共享访问签名应具有容器（本例中为表）和对象（表行）的列表和读取权限。
--  **表共享访问签名**：`ContainerSharedAccessUri=https://<your storage account>.table.chinacloudsites.cn/<table name>?tn=<table name>&sv=2016-05-31&sig=<the signature>&se=<the validity end time>&sp=r` 共享访问签名应具有表的查询（读取）权限。
+- **存储帐户共享访问签名连接字符串**：`TableEndpoint=https://<your account>.table.core.chinacloudapi.cn/;SharedAccessSignature=?sv=2016-05-31&sig=<the signature>&spr=https&se=<the validity end time>&srt=co&ss=t&sp=rl` 共享访问签名应具有容器（本例中为表）和对象（表行）的列表和读取权限。
+-  **表共享访问签名**：`ContainerSharedAccessUri=https://<your storage account>.table.core.chinacloudapi.cn/<table name>?tn=<table name>&sv=2016-05-31&sig=<the signature>&se=<the validity end time>&sp=r` 共享访问签名应具有表的查询（读取）权限。
 
-有关存储共享访问签名的详细信息，请参阅[使用共享访问签名](../storage/common/storage-dotnet-shared-access-signature-part-1.md)。
+有关存储共享访问签名的详细信息，请参阅[使用共享访问签名](../storage/common/storage-sas-overview.md)。
 
 > [!NOTE]
 > 如果使用共享访问签名凭据，则需使用续订的签名定期更新数据源凭据，以防止其过期。 如果共享访问签名凭据过期，索引器会失败并出现类似于“连接字符串中提供的凭据无效或已过期”的错误消息。  
@@ -82,6 +84,7 @@ ms.locfileid: "86471970"
 
 若要创建索引，请执行以下操作：
 
+```http
     POST https://[service name].search.azure.cn/indexes?api-version=2020-06-30
     Content-Type: application/json
     api-key: [admin key]
@@ -93,6 +96,7 @@ ms.locfileid: "86471970"
             { "name": "SomeColumnInMyTable", "type": "Edm.String", "searchable": true }
           ]
     }
+```
 
 有关创建索引的详细信息，请参阅[创建索引](https://docs.microsoft.com/rest/api/searchservice/create-index)。
 
@@ -101,6 +105,7 @@ ms.locfileid: "86471970"
 
 创建索引和数据源后，可以创建索引器：
 
+```http
     POST https://[service name].search.azure.cn/indexers?api-version=2020-06-30
     Content-Type: application/json
     api-key: [admin key]
@@ -111,6 +116,7 @@ ms.locfileid: "86471970"
       "targetIndexName" : "my-target-index",
       "schedule" : { "interval" : "PT2H" }
     }
+```
 
 此索引器每两小时运行一次。 （已将计划间隔设置为“PT2H”）。若要每隔 30 分钟运行一次索引器，可将间隔设置为“PT30M”。 支持的最短间隔为 5 分钟。 计划是可选的；如果省略，则索引器在创建后只运行一次。 但是，可以随时根据需要运行索引器。   
 
@@ -136,6 +142,7 @@ ms.locfileid: "86471970"
 
 若要指示必须从索引中删除某些文档，可使用软删除策略。 不删除行，而是添加一个属性来指示删除行，并对数据源设置软删除检测策略。 例如，如果某行具有值为 `"true"` 的属性 `IsDeleted`，以下策略会将该行视为已删除：
 
+```http
     PUT https://[service name].search.azure.cn/datasources?api-version=2020-06-30
     Content-Type: application/json
     api-key: [admin key]
@@ -147,6 +154,7 @@ ms.locfileid: "86471970"
         "container" : { "name" : "table name", "query" : "<query>" },
         "dataDeletionDetectionPolicy" : { "@odata.type" : "#Microsoft.Azure.Search.SoftDeleteColumnDeletionDetectionPolicy", "softDeleteColumnName" : "IsDeleted", "softDeleteMarkerValue" : "true" }
     }   
+```
 
 <a name="Performance"></a>
 ## <a name="performance-considerations"></a>性能注意事项

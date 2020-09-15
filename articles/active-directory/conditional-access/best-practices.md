@@ -5,27 +5,27 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: conditional-access
 ms.topic: how-to
-ms.date: 08/27/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 author: MicrosoftGuyJFlo
 manager: daveba
 ms.reviewer: calebb
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 667d6babecde4e28e2c6de1feeaa435f7da5b2e8
-ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
+ms.openlocfilehash: 455844bf770f4bf8fb1f93d692d433529132ee49
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89046391"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593704"
 ---
 # <a name="best-practices-for-conditional-access-in-azure-active-directory"></a>Azure Active Directory 中条件访问的最佳做法
 
-使用 [Azure Active Directory (Azure AD) 条件访问](overview.md)，可以控制授权用户访问云应用程序的方式。 本文提供以下事项的信息：
+使用 [Azure Active Directory (Azure AD) 条件访问](./overview.md)，可以控制授权用户访问云应用程序的方式。 本文提供以下事项的信息：
 
 - 应了解的内容 
 - 在配置条件访问策略时应避免的操作。 
 
-本文假定你熟悉 [Azure Active Directory 中的条件访问是什么？](overview.md)中所述的概念和术语
+本文假定你熟悉 [Azure Active Directory 中的条件访问是什么？](./overview.md)中所述的概念和术语
 
 ## <a name="whats-required-to-make-a-policy-work"></a>使策略发挥作用需要什么？
 
@@ -154,6 +154,6 @@ ms.locfileid: "89046391"
 
 如果希望了解：
 
-- 如何配置条件访问策略，请参阅[通过 Azure Active Directory 条件访问要求特定应用必须使用 MFA](app-based-mfa.md)。
+- 如何配置条件访问策略，请参阅[通过 Azure Active Directory 条件访问要求特定应用必须使用 MFA](../authentication/tutorial-enable-azure-mfa.md)。
 - 若要了解如何规划条件访问策略，请参阅[如何在 Azure Active Directory 中规划条件访问部署](plan-conditional-access.md)。
 

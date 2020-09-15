@@ -10,14 +10,14 @@ ms.date: 07/27/2020
 ms.testscope: yes
 ms.testdate: 07/27/2020
 ms.author: v-yeche
-ms.openlocfilehash: 190d49b8db6f53147aba9f1f219c44c3a9959638
-ms.sourcegitcommit: 4d9846bb03ac24bd98b0c9a781bb8912ff6d2f61
+ms.openlocfilehash: a5dd4e984671e037b85ee04b15e1142e645d4d70
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "86926987"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89654960"
 ---
-<!--RELEASE BEFORE CONFIRMATION-->
+<!--Verified successfully on 09/07/2020-->
 # <a name="connect-using-ssh-to-a-linux-virtual-machine-using-azure-bastion"></a>使用 Azure Bastion 通过 SSH 连接到 Linux 虚拟机
 
 本文介绍如何在 Azure 虚拟网络中通过 SSH 安全无缝地连接到 Linux VM。 可直接从 Azure 门户连接到 VM。 使用 Azure Bastion 时，VM 不需要客户端、代理或其他软件。 有关 Azure Bastion 的详细信息，请参阅[概述](bastion-overview.md)。

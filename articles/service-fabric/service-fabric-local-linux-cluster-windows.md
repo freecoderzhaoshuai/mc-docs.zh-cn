@@ -1,23 +1,25 @@
 ---
 title: 在 Windows 上设置 Azure Service Fabric Linux 群集
 description: 本文介绍如何设置在 Windows 开发计算机上运行的 Service Fabric Linux 群集。 这对于跨平台开发尤其有用。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 11/20/2017
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 569b04d9c415f1dc28cc7e849fe9cfaaad0403a0
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.openlocfilehash: 961bc1517a3bc9bdc3f76a77ea5a037f868b969a
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356142"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655251"
 ---
 # <a name="set-up-a-linux-service-fabric-cluster-on-your-windows-developer-machine"></a>设置 Windows 开发人员计算机上的 Linux Service Fabric 群集
 
 本文档介绍如何在 Windows 开发计算机上设置本地 Linux Service Fabric。 设置本地 Linux 群集有助于快速测试在 Windows 计算机上开发的面向 Linux 群集的应用程序。
 
-## <a name="prerequisites"></a>必备条件
+## <a name="prerequisites"></a>先决条件
 基于 Linux 的 Service Fabric 群集不在 Windows 本机上运行。 为了运行本地 Service Fabric 群集，我们提供了预配置的 Docker 容器映像。 准备事项：
 
 * 至少 4 GB RAM
@@ -112,7 +114,7 @@ ms.locfileid: "84356142"
 * DNS 服务无法运行且不受支持 [问题 #132](https://github.com/Microsoft/service-fabric/issues/132)
 
 ## <a name="next-steps"></a>后续步骤
-* [Eclipse](/service-fabric/service-fabric-get-started-eclipse) 入门
+* [Eclipse](./service-fabric-get-started-eclipse.md) 入门
 * 查看其他 [Java 示例](https://github.com/Azure-Samples/service-fabric-java-getting-started)
 
 <!-- Image references -->
@@ -120,4 +122,4 @@ ms.locfileid: "84356142"
 [publishdialog]: ./media/service-fabric-manage-multiple-environment-app-configuration/publish-dialog-choose-app-config.png
 [app-parameters-solution-explorer]:./media/service-fabric-manage-multiple-environment-app-configuration/app-parameters-in-solution-explorer.png
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 03/30/2020
-ms.date: 04/20/2020
-ms.openlocfilehash: bd900fb8527b5f772b4ef4b419e27d31e1e09bdc
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.date: 09/10/2020
+ms.openlocfilehash: 18b5b0672a38def7758fde54f8cd28a4136fca7e
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588719"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021593"
 ---
 # <a name="adjust-capacity-in-azure-cognitive-search"></a>在 Azure 认知搜索中调整容量
 

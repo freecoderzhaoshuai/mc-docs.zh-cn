@@ -5,12 +5,12 @@ ms.service: machine-learning
 ms.topic: conceptual
 ms.date: 07/31/2020
 ms.author: gopalv
-ms.openlocfilehash: bb579a682a1153f16ab98b836e798e60940b0e58
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 67af51af8824183f7729fc0f09440d6f6ce22a3e
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947293"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021315"
 ---
 # <a name="update-a-deployed-web-service"></a>更新已部署的 Web 服务
 
@@ -62,6 +62,7 @@ service = Webservice(name=service_name, workspace=ws)
 
 # Update to new model(s).
 service.update(models=[new_model], inference_config=inference_config)
+service.wait_for_deployment(show_output=True)
 print(service.state)
 print(service.get_logs())
 ```

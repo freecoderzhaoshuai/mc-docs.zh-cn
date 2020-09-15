@@ -12,16 +12,16 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: conceptual
 ms.subservice: compliance
-ms.date: 08/25/2020
+ms.date: 09/08/2020
 ms.author: v-junlch
 ms.reviewer: mwahl
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 1d74054822339e5972d6c860bd0e848f080ee6c0
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 40718956cbe269f576b2db73ff90bddb671869c5
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947505"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593803"
 ---
 # <a name="use-azure-ad-access-reviews-to-manage-users-excluded-from-conditional-access-policies"></a>使用 Azure AD 访问评审管理已从条件访问策略中排除的用户
 
@@ -144,7 +144,7 @@ ms.locfileid: "88947505"
     ![示例 2 的“创建访问评审”窗格](./media/conditional-access-exclusion/create-access-review-2.png)
 
 >[!IMPORTANT] 
->如果你有许多的排除组，因此需要创建多个访问评审，现在可以使用 Microsoft Graph 测试版终结点中的某个 API 以编程方式创建和管理访问评审。 若要开始，请参阅 [Azure AD 访问评审 API 参考](https://developer.microsoft.com/graph/docs/api-reference/beta/resources/accessreviews_root)和[通过 Microsoft Graph 检索 Azure AD 访问评审的示例](https://techcommunity.microsoft.com/t5/Azure-Active-Directory/Example-of-retrieving-Azure-AD-access-reviews-via-Microsoft/td-p/236096)。
+>如果你有许多的排除组，因此需要创建多个访问评审，现在可以使用 Microsoft Graph 测试版终结点中的某个 API 以编程方式创建和管理访问评审。 若要开始，请参阅 [Azure AD 访问评审 API 参考](https://docs.microsoft.com/graph/api/resources/accessreviews-root?view=graph-rest-beta)和[通过 Microsoft Graph 检索 Azure AD 访问评审的示例](https://techcommunity.microsoft.com/t5/Azure-Active-Directory/Example-of-retrieving-Azure-AD-access-reviews-via-Microsoft/td-p/236096)。
 
 ## <a name="access-review-results-and-audit-logs"></a>访问评审结果和审核日志
 

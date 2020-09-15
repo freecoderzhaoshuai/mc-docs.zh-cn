@@ -1,19 +1,20 @@
 ---
 title: Azure Service Fabric 的内置策略定义
 description: 列出 Azure Service Fabric 的 Azure Policy 内置策略定义。 这些内置的策略定义提供了管理 Azure 资源的常用方法。
-origin.date: 06/23/2020
-ms.date: 08/03/2020
-ms.testscope: yes
+origin.date: 07/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
 ms.topic: sample
 ms.custom: subject-policy-samples
-ms.openlocfilehash: da8aa08fb2de70f33caf6618c81ec831bfcaf820
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 03032272f30b484fc59a5f309f12012980ecab22
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426364"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655695"
 ---
 <!--Verified successfully-->
 # <a name="azure-policy-built-in-definitions-for-azure-service-fabric"></a>Azure Service Fabric 的 Azure Policy 内置定义

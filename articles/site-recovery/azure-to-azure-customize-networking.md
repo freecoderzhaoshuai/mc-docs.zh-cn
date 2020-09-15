@@ -2,21 +2,21 @@
 title: 为故障转移 VM 自定义网络配置 | Azure
 description: 概述了在使用 Azure Site Recovery 复制 Azure VM 时，如何为故障转移 VM 自定义网络配置。
 services: site-recovery
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.service: site-recovery
 ms.topic: article
 origin.date: 10/21/2019
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 02/24/2020
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: e60cd8403adfed6c67da0ebfe2c5e16f21bf291c
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 16f84ac5302e4041931aa4689a961b5af2b7827f
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426467"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655036"
 ---
 <!--Verify sucessfully-->
 # <a name="customize-networking-configurations-of-the-target-azure-vm"></a>自定义目标 Azure VM 的网络配置
@@ -31,9 +31,9 @@ ms.locfileid: "87426467"
 
 复制 Azure VM 时，可以为故障转移 VM 提供以下关键资源配置：
 
-- [内部负载均衡器](/load-balancer/load-balancer-overview)
+- [内部负载均衡器](../load-balancer/load-balancer-overview.md)
 - [公共 IP](../virtual-network/public-ip-addresses.md)
-- 子网和 NIC 的[网络安全组](/virtual-network/manage-network-security-group)
+- 子网和 NIC 的[网络安全组](../virtual-network/manage-network-security-group.md)
 
 ## <a name="prerequisites"></a>必备条件
 
@@ -46,12 +46,12 @@ ms.locfileid: "87426467"
 2. 选择所需的 Azure VM。
 3. 选择“计算和网络”  ，然后选择“编辑”  。 注意，NIC 配置设置包含源中的相应资源。 
 
-     ![自定义故障转移网络配置](media/azure-to-azure-customize-networking/edit-networking-properties.png)
+    :::image type="content" source="media/azure-to-azure-customize-networking/edit-networking-properties.png" alt-text="自定义故障转移网络配置":::
 
 4. 选择一个测试故障转移虚拟网络。 你可以选择将其留空，并在测试故障转移时选择一个。
 5. 选择要配置的 NIC 旁边的“编辑”。  在接下来打开的边栏选项卡中，在测试故障转移和故障转移位置中选择已预先创建的相应资源。
 
-    ![编辑 NIC 配置](media/azure-to-azure-customize-networking/nic-drilldown.png) 
+    :::image type="content" source="media/azure-to-azure-customize-networking/nic-drilldown.png" alt-text="编辑 NIC 配置"::: 
 
 6. 选择“确定”  。
 

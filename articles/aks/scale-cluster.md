@@ -7,12 +7,12 @@ ms.topic: article
 origin.date: 05/31/2019
 ms.date: 04/06/2020
 ms.author: v-yeche
-ms.openlocfilehash: dd318597da52995fd09d1c6443bec190699e6edc
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: f1240c7d01e4dcbbd121732f613da63382247e02
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80517005"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021255"
 ---
 # <a name="scale-the-node-count-in-an-azure-kubernetes-service-aks-cluster"></a>在 Azure Kubernetes 服务 (AKS) 群集中缩放节点数
 
@@ -79,8 +79,8 @@ az aks scale --resource-group myResourceGroup --name myAKSCluster --node-count 1
 <!-- LINKS - internal -->
 
 [aks-tutorial]: ./tutorial-kubernetes-prepare-app.md
-[az-aks-show]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-show
-[az-aks-scale]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-scale
+[az-aks-show]: https://docs.microsoft.com/cli/azure/aks#az_aks_show
+[az-aks-scale]: https://docs.microsoft.com/cli/azure/aks#az_aks_scale
 
 <!--Not Available on [cluster-autoscaler]: cluster-autoscaler.md-->
 <!-- Update_Description: wording update, update link -->

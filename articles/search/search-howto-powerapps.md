@@ -8,14 +8,14 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.devlang: rest-api
 ms.topic: tutorial
-origin.date: 04/25/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: 20c186b2760d556a5ea486aaba37daa4495d0050
-ms.sourcegitcommit: f4bd97855236f11020f968cfd5fbb0a4e84f9576
+origin.date: 08/21/2020
+ms.date: 09/10/2020
+ms.openlocfilehash: 8d59c771c18bf8c00108b7f725a9e68149a89449
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/18/2020
-ms.locfileid: "88516007"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020900"
 ---
 # <a name="tutorial-query-a-cognitive-search-index-from-power-apps"></a>教程：从 Power Apps 查询认知搜索索引
 
@@ -93,9 +93,9 @@ Power Apps 中的连接器是一个数据源连接。 在此步骤中，你将�
 
 1. 对于 select：将 `HotelName,Description,Address/City` 设置为默认值，将 required 设置为 False，将 visibility 设置为 none。   
 
-    :::image type="content" source="./media/search-howto-powerapps/1-10-4-parameter-metadata-select.png" alt-text="版本参数元数据" border="true":::
+    :::image type="content" source="./media/search-howto-powerapps/1-10-4-parameter-metadata-select.png" alt-text="选择参数元数据" border="true":::
 
-1. 对于 api-version：将 `2019-05-06` 设置为默认值，将 required 设置为 True，将 visibility 设置为 internal。   
+1. 对于 api-version：将 `2020-06-30` 设置为默认值，将 required 设置为 True，将 visibility 设置为 internal。   
 
     :::image type="content" source="./media/search-howto-powerapps/1-10-2-parameter-metadata-version.png" alt-text="版本参数元数据" border="true":::
 

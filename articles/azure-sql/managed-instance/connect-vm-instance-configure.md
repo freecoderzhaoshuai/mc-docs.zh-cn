@@ -12,13 +12,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: sstein, carlrab, srbozovi, bonova
 origin.date: 02/18/2019
-ms.date: 07/13/2020
-ms.openlocfilehash: a76490526bc8d0ec9e7414dcd51fa699ef41ade7
-ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+ms.date: 09/14/2020
+ms.openlocfilehash: c8dcf3b121c53a6163b5488ebf71a8481a6045ed
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86227094"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014178"
 ---
 # <a name="quickstart-configure-an-azure-vm-to-connect-to-azure-sql-managed-instance"></a>快速入门：配置 Azure VM 以连接到 Azure SQL 托管实例
 [!INCLUDE[appliesto-sqlmi](../includes/appliesto-sqlmi.md)]
@@ -75,11 +75,11 @@ ms.locfileid: "86227094"
 
 1. 确保在另一浏览器标签页中登录到 Azure 门户。然后，选择下面的按钮，创建客户端虚拟机并安装 SQL Server Management Studio：
 
-    <a href="https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fjovanpop-msft%2Fazure-quickstart-templates%2Fsql-win-vm-w-tools%2F201-vm-win-vnet-sql-tools%2Fazuredeploy.json" target="_blank"><img src="https://azuredeploy.net/deploybutton.png"/></a>
+   [![图像显示标记为“部署到 Azure”的按钮。](https://azuredeploy.net/deploybutton.png)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fjovanpop-msft%2Fazure-quickstart-templates%2Fsql-win-vm-w-tools%2F201-vm-win-vnet-sql-tools%2Fazuredeploy.json)
 
 2. 根据下表中的信息填充窗体：
 
-   | 设置| 建议的值 | 说明 |
+   | 设置| 建议的值 | 描述 |
    | ---------------- | ----------------- | ----------- |
    | **订阅** | 有效的订阅 | 必须是有权在其中创建新资源的订阅。 |
    | **资源组** |在[创建 SQL 托管实例](instance-create-quickstart.md)快速入门中指定的资源组|此资源组必须是 VNet 所在的资源组。|

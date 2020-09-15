@@ -11,12 +11,12 @@ ms.reviewer: larryfr
 ms.date: 07/08/2020
 ms.topic: conceptual
 ms.custom: how-to, devx-track-python
-ms.openlocfilehash: 86ec9efe87fd647988ad7bdb547d36e01d25a6fe
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 59495c848a894cb2930d1ee3d44ef553376d7b85
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88946973"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021010"
 ---
 # <a name="deploy-models-with-azure-machine-learning"></a>使用 Azure 机器学习部署模型
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -215,14 +215,15 @@ az ml model deploy -n myservice -m mymodel:1 --ic inferenceconfig.json
 推理配置使用 Azure 机器学习环境来定义部署所需的软件依赖项。 利用环境，你可以创建、管理和重复使用训练和部署所需的软件依赖项。 可以从自定义依赖项文件创建环境，或使用特选 Azure 机器学习环境之一。 以下 YAML 是用于推理的 Conda 依赖项文件的一个示例。 请注意，必须将版本为 1.0.45 或更高版本的 azureml-defaults 指示为 pip 依赖项，因为它包含将模型托管为 Web 服务所需的功能。 如果要使用自动生成架构功能，则入口脚本也必须导入 `inference-schema` 包。
 
 ```YAML
+
 name: project_environment
 dependencies:
-  - python=3.6.2
-  - scikit-learn=0.20.0
-  - pip:
-      # You must list azureml-defaults as a pip dependency
-    - azureml-defaults>=1.0.45
-    - inference-schema[numpy-support]
+- python=3.6.2
+- scikit-learn=0.22.1
+- pip:
+ # You must list azureml-defaults as a pip dependency
+ - azureml-defaults>=1.0.45
+ - inference-schema[numpy-support]
 ```
 
 > [!IMPORTANT]

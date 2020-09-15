@@ -1,23 +1,23 @@
 ---
-title: CLI 示例 - 活动异地复制 - 共用 Azure SQL 数据库
+title: Az CLI：为弹性池配置活动异地复制
 description: Azure CLI 示例脚本，用于为 Azure SQL 数据库中的共用数据库设置活动异地复制并进行故障转移。
 services: sql-database
 ms.service: sql-database
 ms.subservice: high-availability
-ms.custom: ''
+ms.custom: sqldbrb=1
 ms.devlang: azurecli
 ms.topic: sample
 author: WenJason
 ms.author: v-jay
 ms.reviewer: carlrab
 origin.date: 03/12/2019
-ms.date: 04/27/2020
-ms.openlocfilehash: 568addaf5009fc7355cd22356bd69a2ba53915d9
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.date: 09/14/2020
+ms.openlocfilehash: 4cdbff11505cc226281f381691b0f67fe6359a39
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82127252"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014278"
 ---
 # <a name="use-cli-to-configure-active-geo-replication-for-a-pooled-database-in-azure-sql-database"></a>使用 CLI 为 Azure SQL 数据库中的共用数据库配置活动异地复制
 
@@ -97,7 +97,7 @@ az group delete --name $secondaryResource
 
 此脚本使用以下命令。 表中的每条命令均链接到特定于命令的文档。
 
-| | |
+| Command | 描述 |
 |---|---|
 | [az sql elastic-pool](/cli/sql/elastic-pool) | 弹性池命令 |
 | [az sql db replica](/cli/sql/db/replica) | 数据库复制命令。 |
@@ -106,4 +106,4 @@ az group delete --name $secondaryResource
 
 有关 Azure CLI 的详细信息，请参阅 [Azure CLI 文档](/cli/)。
 
-其他 SQL 数据库 CLI 脚本示例可以在 [Azure SQL 数据库文档](../sql-database-cli-samples.md)中找到。
+其他 SQL 数据库 CLI 脚本示例可以在 [Azure SQL 数据库文档](../../azure-sql/database/az-cli-script-samples-content-guide.md)中找到。

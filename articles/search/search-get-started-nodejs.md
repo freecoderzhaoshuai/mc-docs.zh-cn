@@ -9,20 +9,21 @@ ms.devlang: nodejs
 ms.service: cognitive-search
 ms.topic: quickstart
 origin.date: 06/23/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: 404c6fe22a24fc93fd221c549937220757866834
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.custom: devx-track-javascript
+ms.openlocfilehash: 2b82e44eee93d0715bf161299ba40ba4f71cf018
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471828"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021573"
 ---
 # <a name="quickstart-create-an-azure-cognitive-search-index-in-nodejs-using-rest-apis"></a>快速入门：使用 REST API 在 Node.js 中创建 Azure 认知搜索索引
 > [!div class="op_single_selector"]
 > * [JavaScript](search-get-started-nodejs.md)
 > * [C#](search-get-started-dotnet.md)
 > * [门户](search-get-started-portal.md)
-> * [PowerShell](search-create-index-rest-api.md)
+> * [PowerShell](./search-get-started-powershell.md)
 > * [Python](search-get-started-python.md)
 > * [Postman](search-get-started-postman.md)
 
@@ -130,7 +131,7 @@ ms.locfileid: "86471828"
 
 ## <a name="1---create-index"></a>1 - 创建索引 
 
-创建文件 **hotels_quickstart_index.json**。  此文件定义 Azure 认知搜索如何处理要在下一步骤中加载的文档。 每个字段由 `name` 标识，采用指定的 `type`。 每个字段还包含一系列索引属性，这些属性指定 Azure 认知搜索是否可以根据字段进行搜索、筛选、排序和分面。 大多数字段采用简单数据类型，但有些字段（例如 `AddressType`）采用复杂类型，可让你在索引中创建丰富的数据结构。  可以详细了解[支持的数据类型](https://docs.microsoft.com/rest/api/searchservice/supported-data-types)和[索引属性](https://docs.azure.cn/search/search-what-is-an-index#index-attributes)。 
+创建文件 **hotels_quickstart_index.json**。  此文件定义 Azure 认知搜索如何处理要在下一步骤中加载的文档。 每个字段由 `name` 标识，采用指定的 `type`。 每个字段还包含一系列索引属性，这些属性指定 Azure 认知搜索是否可以根据字段进行搜索、筛选、排序和分面。 大多数字段采用简单数据类型，但有些字段（例如 `AddressType`）采用复杂类型，可让你在索引中创建丰富的数据结构。  可以详细了解[支持的数据类型](https://docs.microsoft.com/rest/api/searchservice/supported-data-types)和[索引属性](./search-what-is-an-index.md#index-attributes)。 
 
 将以下内容添加到 **hotels_quickstart_index.json** 或[下载文件](https://github.com/Azure-Samples/azure-search-javascript-samples/blob/master/quickstart/hotels_quickstart_index.json)。 
 
@@ -610,7 +611,7 @@ const run = async () => {
 
 ## <a name="3---search-an-index"></a>3 - 搜索索引
 
-返回 Azure 门户上搜索服务“概述”中的“索引”选项卡。   索引现在包含四个文档并消耗了一定的存储量（UI 可能需要在几分钟后才能正确反映索引的基础状态）。 单击索引名称转到“搜索资源管理器”。  在此页中可以体验数据查询。 尝试搜索 `*&$count=true` 的查询字符串，应会返回所有文档和结果数。 尝试使用查询字符串 `historic&highlight=Description&$filter=Rating gt 4`，应会返回单个文档，其 `<em></em>` 标记中包装了“historic”一词。 详细了解[如何在 Azure 认知搜索中撰写查询](https://docs.azure.cn/search/search-query-overview)。 
+返回 Azure 门户上搜索服务“概述”中的“索引”选项卡。   索引现在包含四个文档并消耗了一定的存储量（UI 可能需要在几分钟后才能正确反映索引的基础状态）。 单击索引名称转到“搜索资源管理器”。  在此页中可以体验数据查询。 尝试搜索 `*&$count=true` 的查询字符串，应会返回所有文档和结果数。 尝试使用查询字符串 `historic&highlight=Description&$filter=Rating gt 4`，应会返回单个文档，其 `<em></em>` 标记中包装了“historic”一词。 详细了解[如何在 Azure 认知搜索中撰写查询](./search-query-overview.md)。 
 
 打开 **index.js** 并在顶部附近添加以下代码，以在代码中重新生成这些查询：
 

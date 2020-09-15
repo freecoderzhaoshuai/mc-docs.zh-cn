@@ -10,12 +10,12 @@ author: peterclu
 ms.author: amlstudiodocs
 ms.custom: seodec18, previous-ms.author=yahajiza, previous-author=YasinMSFT
 ms.date: 02/14/2019
-ms.openlocfilehash: b4d2a819204c72caed9da20d39620520d8a9c083
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: a638ba3e3f8d78087184f75b626ca3c6b7168175
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228104"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021506"
 ---
 # <a name="retrain-and-deploy-a-classic-studio-classic-web-service"></a>重新训练和部署经典工作室（经典）Web 服务
 
@@ -79,43 +79,45 @@ ms.locfileid: "88228104"
 
 以下示例代码演示了如何使用 *BaseLocation*、*RelativeLocation*、*SasBlobToken* 和 PATCH URL 更新终结点。
 
-    private async Task OverwriteModel()
+```csharp
+private async Task OverwriteModel()
+{
+    var resourceLocations = new
     {
-        var resourceLocations = new
+        Resources = new[]
         {
-            Resources = new[]
+            new
             {
-                new
+                Name = "Census Model [trained model]",
+                Location = new AzureBlobDataReference()
                 {
-                    Name = "Census Model [trained model]",
-                    Location = new AzureBlobDataReference()
-                    {
-                        BaseLocation = "https://esintussouthsus.blob.core.windows.net/",
-                        RelativeLocation = "your endpoint relative location", //from the output, for example: "experimentoutput/8946abfd-79d6-4438-89a9-3e5d109183/8946abfd-79d6-4438-89a9-3e5d109183.ilearner"
-                        SasBlobToken = "your endpoint SAS blob token" //from the output, for example: "?sv=2013-08-15&sr=c&sig=37lTTfngRwxCcf94%3D&st=2015-01-30T22%3A53%3A06Z&se=2015-01-31T22%3A58%3A06Z&sp=rl"
-                    }
+                    BaseLocation = "https://esintussouthsus.blob.core.windows.net/",
+                    RelativeLocation = "your endpoint relative location", //from the output, for example: "experimentoutput/8946abfd-79d6-4438-89a9-3e5d109183/8946abfd-79d6-4438-89a9-3e5d109183.ilearner"
+                    SasBlobToken = "your endpoint SAS blob token" //from the output, for example: "?sv=2013-08-15&sr=c&sig=37lTTfngRwxCcf94%3D&st=2015-01-30T22%3A53%3A06Z&se=2015-01-31T22%3A58%3A06Z&sp=rl"
                 }
-            }
-        };
-
-        using (var client = new HttpClient())
-        {
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
-
-            using (var request = new HttpRequestMessage(new HttpMethod("PATCH"), endpointUrl))
-            {
-                request.Content = new StringContent(JsonConvert.SerializeObject(resourceLocations), System.Text.Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await client.SendAsync(request);
-
-                if (!response.IsSuccessStatusCode)
-                {
-                    await WriteFailedResponse(response);
-                }
-
-                // Do what you want with a successful response here.
             }
         }
+    };
+
+    using (var client = new HttpClient())
+    {
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
+
+        using (var request = new HttpRequestMessage(new HttpMethod("PATCH"), endpointUrl))
+        {
+            request.Content = new StringContent(JsonConvert.SerializeObject(resourceLocations), System.Text.Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await client.SendAsync(request);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                await WriteFailedResponse(response);
+            }
+
+            // Do what you want with a successful response here.
+        }
     }
+}
+```
 
 可以从终结点仪表板获取用于调用的 *apiKey* 和 *endpointUrl*。
 

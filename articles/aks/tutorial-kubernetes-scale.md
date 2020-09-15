@@ -9,12 +9,12 @@ ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: cbaacb257a9fe0c521aab779a29bd4ce90ba9177
-ms.sourcegitcommit: 6c9e5b3292ade56d812e7e214eeb66aeb9b8776e
+ms.openlocfilehash: 9459fc58d7562f7afab64a63a9b94593c47cb045
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86218797"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021535"
 ---
 # <a name="tutorial-scale-applications-in-azure-kubernetes-service-aks"></a>教程：在 Azure Kubernetes 服务 (AKS) 中缩放应用程序
 
@@ -205,8 +205,8 @@ az aks scale --resource-group myResourceGroup --name myAKSCluster --node-count 3
 
 [aks-tutorial-prepare-app]: ./tutorial-kubernetes-prepare-app.md
 [aks-tutorial-update-app]: ./tutorial-kubernetes-app-update.md
-[az-aks-scale]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-scale
-[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
-[az-aks-show]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-show
+[az-aks-scale]: https://docs.microsoft.com/cli/azure/aks#az_aks_scale
+[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli
+[az-aks-show]: https://docs.microsoft.com/cli/azure/aks#az_aks_show
 
 <!-- Update_Description: update meta properties, wording update, update link -->

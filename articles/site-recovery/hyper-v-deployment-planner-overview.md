@@ -1,19 +1,21 @@
 ---
 title: 使用 Azure Site Recovery 进行 Hyper-V 灾难恢复的部署规划器
 description: 了解用于将 Hyper-V 灾难恢复到 Azure 的 Azure Site Recovery 部署规划器。
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 03/13/2020
-ms.date: 04/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 6f8a398b0c0edb41d075053e433f404689b7700b
-ms.sourcegitcommit: 564739de7e63e19a172122856ebf1f2f7fb4bd2e
+ms.openlocfilehash: 001fa1829f0ca1cbda2ee69b9210cecd59b18d65
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82093375"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655673"
 ---
 # <a name="about-the-azure-site-recovery-deployment-planner-for-hyper-v-disaster-recovery-to-azure"></a>关于用于将 Hyper-V 灾难恢复到 Azure 的 Azure Site Recovery 部署规划器
 
@@ -68,7 +70,7 @@ Azure Site Recovery 部署规划器是一个命令行工具，适用于 Hyper-V 
 
 ## <a name="support-matrix"></a>支持矩阵
 
-| | **VMware 到 Azure** |**Hyper-V 到 Azure**|**Azure 到 Azure**|**Hyper-V 到辅助站点**|**VMware 到辅助站点**
+|**类别** | **VMware 到 Azure** |**Hyper-V 到 Azure**|**Azure 到 Azure**|**Hyper-V 到辅助站点**|**VMware 到辅助站点**
 --|--|--|--|--|--
 支持的方案 |是|是|否|是*|否
 支持的版本 | vCenter 6.7、6.5、6.0 或 5.5| Windows Server 2016、Windows Server 2012 R2 | 不可用 |Windows Server 2016、Windows Server 2012 R2|不可用
@@ -89,17 +91,22 @@ Azure Site Recovery 部署规划器是一个命令行工具，适用于 Hyper-V 
 ## <a name="steps-to-add-servers-into-trustedhosts-list"></a>将服务器添加到 TrustedHosts 列表中的步骤
 1. 要从其部署此工具的 VM 应该让需要分析的所有主机都位于其 TrustedHosts 列表中。 若要将客户端添加到 Trustedhosts 列表中，请在 VM 上通过提升的 PowerShell 运行以下命令。 VM 可以是 Windows Server 2012 R2 或 Windows Server 2016。 
 
-        set-item wsman:\localhost\Client\TrustedHosts -value '<ComputerName>[,<ComputerName>]' -Concatenate
-
+    ```powershell
+    set-item wsman:\localhost\Client\TrustedHosts -value '<ComputerName>[,<ComputerName>]' -Concatenate
+    ```
 1. 每个需要分析的 Hyper-V 主机都应：
 
     a. 有一个 VM，以便其上的此工具能够在其 TrustedHosts 列表中运行。 从 Hyper-V 主机上权限提升的 PowerShell 运行以下命令。
 
-            set-item wsman:\localhost\Client\TrustedHosts -value '<ComputerName>[,<ComputerName>]' -Concatenate
+        ```powershell
+        set-item wsman:\localhost\Client\TrustedHosts -value '<ComputerName>[,<ComputerName>]' -Concatenate
+        ```
 
     b. 已启用 PowerShell 远程功能。
 
-            Enable-PSRemoting -Force
+        ```powershell
+        Enable-PSRemoting -Force
+        ```
 
 ## <a name="download-and-extract-the-deployment-planner-tool"></a>下载和提取部署规划器工具
 
@@ -135,6 +142,6 @@ E:\ASR Deployment Planner_v2.3\ASRDeploymentPlanner.exe
 请参阅 [Azure Site Recovery 部署规划器版本历史记录](https://social.technet.microsoft.com/wiki/contents/articles/51049.asr-deployment-planner-version-history.aspx)页，了解每个更新中增加的修补程序。
 
 ## <a name="next-steps"></a>后续步骤
-* [运行部署规划器](site-recovery-hyper-v-deployment-planner-run.md)。
+* [运行部署规划器](./hyper-v-deployment-planner-run.md)。
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

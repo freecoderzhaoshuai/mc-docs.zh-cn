@@ -1,17 +1,20 @@
 ---
 title: 删除 Azure Service Fabric 执行组件
 description: 了解如何在 Azure Service Fabric 应用程序中手动完全删除 Reliable Actors 及其状态。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 03/19/2018
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: bac0bbd188b753bebc4ae2cd3315140835401bc8
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 4ede69fb775bdfc7666bca3f92a2065e6dee9523
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540110"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655083"
 ---
 # <a name="delete-reliable-actors-and-their-state"></a>删除 Reliable Actors 及其状态
 对已停用的执行组件进行垃圾回收只会清除该执行组件对象，但是存储在执行组件的状态管理器中的数据不会被删除。 重新激活执行组件后，可通过状态管理器再次使用其数据。 如果执行组件将数据存储在状态管理器，并且已停用且始终不激活该执行组件，那么可能需要清理其数据。
@@ -50,7 +53,7 @@ myActorServiceProxy.deleteActorAsync(actorToDelete);
 * [执行组件事件](service-fabric-reliable-actors-events.md)
 * [执行组件可重入性](service-fabric-reliable-actors-reentrancy.md)
 * [执行组件诊断和性能监视](service-fabric-reliable-actors-diagnostics.md)
-* [执行组件 API 参考文档](https://msdn.microsoft.com/library/azure/dn971626.aspx)
+* [执行组件 API 参考文档](https://docs.microsoft.com/previous-versions/azure/dn971626(v=azure.100))
 * [C# 代码示例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)
 * [Java 代码示例](https://github.com/Azure-Samples/service-fabric-java-getting-started)
 

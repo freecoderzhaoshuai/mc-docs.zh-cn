@@ -3,25 +3,26 @@ title: 在 Azure 中的 Service Fabric 上创建 .NET 应用
 description: 本教程介绍如何使用 ASP.NET Core 前端和 Reliable Services 有状态后端创建一个应用程序，然后将其部署到群集。
 ms.topic: tutorial
 origin.date: 07/10/2019
-ms.date: 08/03/2020
-ms.testscope: no
-ms.testdate: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.custom: mvc
-ms.openlocfilehash: 9be4e3b0c67d35364b7e9348d91e99905ba8a98a
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.custom: mvc, devx-track-javascript, devx-track-csharp
+ms.openlocfilehash: cc42f85d3cabd6157d16cc634f659d11b1657de5
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426481"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655073"
 ---
 # <a name="tutorial-create-and-deploy-an-application-with-an-aspnet-core-web-api-front-end-service-and-a-stateful-back-end-service"></a>教程：使用 ASP.NET Core Web API 前端服务和有状态后端服务创建并部署应用程序
 
-本教程是一个系列中的第一部分。  其中介绍了如何使用 ASP.NET Core Web API 前端和有状态后端服务创建 Azure Service Fabric 应用程序以存储数据。 完成后，将生成一个投票应用程序，其中包含 ASP.NET Core Web 前端，用于将投票结果保存到群集的有状态后端服务中。 如果不想手动创建投票应用程序，可以[下载已完成应用程序的源代码](https://github.com/Azure-Samples/service-fabric-dotnet-quickstart/)，跳到[大致了解投票示例应用程序](#walkthrough_anchor)。
+本教程是一个系列中的第一部分。  其中介绍了如何使用 ASP.NET Core Web API 前端和有状态后端服务创建 Azure Service Fabric 应用程序以存储数据。 完成后，将生成一个投票应用程序，其中包含 ASP.NET Core Web 前端，用于将投票结果保存到群集的有状态后端服务中。 本系列教程需要 Windows 开发人员计算机。 如果不想手动创建投票应用程序，可以[下载已完成应用程序的源代码](https://github.com/Azure-Samples/service-fabric-dotnet-quickstart/)，跳到[大致了解投票示例应用程序](#walkthrough_anchor)。
 
 <!-- Not Available on [video walk-through](https://channel9.msdn.com/Events/Connect/2017/E100)-->
 
-![连接到 Service Fabric 上的有状态后端服务的 AngularJS+ASP.NET API 前端](./media/service-fabric-tutorial-create-dotnet-app/application-diagram.png)
+:::image type="content" source="./media/service-fabric-tutorial-create-dotnet-app/application-diagram.png" alt-text="连接到 Service Fabric 上的有状态后端服务的 AngularJS+ASP.NET API 前端":::
 
 在该系列的第一部分中，你会学习如何：
 
@@ -36,8 +37,7 @@ ms.locfileid: "87426481"
 > * [将应用程序部署到远程群集](service-fabric-tutorial-deploy-app-to-party-cluster.md)
 > * [向 ASP.NET Core 前端服务添加 HTTPS 终结点](service-fabric-tutorial-dotnet-app-enable-https-endpoint.md)
 > * [使用 Azure Pipelines 配置 CI/CD](service-fabric-tutorial-deploy-app-with-cicd-vsts.md)
-
-<!-- Not Available on [Set up monitoring and diagnostics for the application](service-fabric-tutorial-monitoring-aspnet.md)-->
+> * [设置监视和诊断应用程序](service-fabric-tutorial-monitoring-aspnet.md)
 
 ## <a name="prerequisites"></a>先决条件
 
@@ -61,15 +61,15 @@ ms.locfileid: "87426481"
 
 4. 将应用程序命名为“Voting”，然后单击“创建” 。
 
-    ![Visual Studio 中的新建项目对话框](./media/service-fabric-tutorial-create-dotnet-app/new-project-dialog.png)
+    :::image type="content" source="./media/service-fabric-tutorial-create-dotnet-app/new-project-dialog.png" alt-text="Visual Studio 中的新建项目对话框":::
 
 5. 在“新建 Service Fabric 服务”页中，选择“无状态 ASP.NET Core”，将服务命名为“VotingWeb”，然后单击“创建”   。
 
-    ![在新建服务对话框中选择 ASP.NET Web 服务](./media/service-fabric-tutorial-create-dotnet-app/new-project-dialog-2.png) 
+    :::image type="content" source="./media/service-fabric-tutorial-create-dotnet-app/new-project-dialog-2.png" alt-text="在新建服务对话框中选择 ASP.NET Web 服务"::: 
 
-6. 下一页提供一组 ASP.NET Core 项目模板。 对于本教程，请选择“Web 应用程序(模型-视图-控制器)”，然后单击“创建” 。
+6. 下一页将提供一组 ASP.NET Core 项目模板。 对于本教程，请选择“Web 应用程序(模型-视图-控制器)”，然后单击“创建” 。
 
-    ![选择 ASP.NET 项目类型](./media/service-fabric-tutorial-create-dotnet-app/vs-new-aspnet-project-dialog.png)
+    :::image type="content" source="./media/service-fabric-tutorial-create-dotnet-app/vs-new-aspnet-project-dialog.png" alt-text="选择 ASP.NET 项目类型":::
 
     Visual Studio 会创建应用程序和服务项目，并在解决方案资源管理器中显示它们。
 
@@ -332,7 +332,7 @@ namespace VotingWeb.Controllers
 
 将“Voting”应用程序部署到本地 Service Fabric 群集后，Web 应用会在浏览器选项卡中自动打开，如下所示：
 
-![ASP.NET Core 前端](./media/service-fabric-tutorial-create-dotnet-app/debug-front-end.png)
+:::image type="content" source="./media/service-fabric-tutorial-create-dotnet-app/debug-front-end.png" alt-text="ASP.NET Core 前端":::
 
 若要停止调试应用程序，请返回到 Visual Studio 并按 Shift+F5。
 
@@ -354,7 +354,7 @@ Service Fabric 允许使用 Reliable Collections 直接在服务内以一致、�
 
     Visual Studio 会创建 VotingData 服务项目，并在解决方案资源管理器中显示。
 
-    ![解决方案资源管理器](./media/service-fabric-tutorial-create-dotnet-app/solution-explorer-aspnetcore-webapi-service.png)
+    :::image type="content" source="./media/service-fabric-tutorial-create-dotnet-app/solution-explorer-aspnetcore-webapi-service.png" alt-text="解决方案资源管理器":::
 
 ### <a name="add-the-votedatacontrollercs-file"></a>添加 VoteDataController.cs 文件
 
@@ -594,7 +594,7 @@ public class VotesController : Controller
 * Web 前端服务 (VotingWeb) - ASP.NET Core Web 前端服务，可提供网页服务，并公开用于与后端服务进行通信的 Web API。
 * 后端服务 (VotingData) - ASP.NET Core Web 服务，可公开用于将投票结果存储在可靠字典中并保留在磁盘上的API。
 
-![应用程序关系图](./media/service-fabric-tutorial-create-dotnet-app/application-diagram.png)
+:::image type="content" source="./media/service-fabric-tutorial-create-dotnet-app/application-diagram.png" alt-text="应用程序关系图":::
 
 在应用程序中投票时，将会发生以下事件：
 
@@ -620,7 +620,7 @@ public class VotesController : Controller
 
     1. 此时，浏览器中的 JavaScript 将请求发送到前端服务中的 Web API 控制器。
 
-        ![添加投票前端服务](./media/service-fabric-tutorial-create-dotnet-app/addvote-frontend.png)
+        :::image type="content" source="./media/service-fabric-tutorial-create-dotnet-app/addvote-frontend.png" alt-text="添加投票前端服务":::
 
     2. 首先，为后端服务构建 ReverseProxy 的 URL **(1)** 。
     3. 然后，向 ReverseProxy 发送 HTTP PUT 请求 **(2)** 。
@@ -629,7 +629,7 @@ public class VotesController : Controller
 5. 按 F5 以继续操作。
     1. 此时，到达后端服务中的断点。
 
-        ![添加投票后端服务](./media/service-fabric-tutorial-create-dotnet-app/addvote-backend.png)
+        :::image type="content" source="./media/service-fabric-tutorial-create-dotnet-app/addvote-backend.png" alt-text="添加投票后端服务":::
 
     2. 方法 **(1)** 的第一行使用 `StateManager` 获取或添加 `counts` 可靠字典。
     3. 与可靠字典中的值进行的所有交互都需要使用事务，这个 using 语句 (2) 负责创建此事务。
@@ -651,4 +651,4 @@ public class VotesController : Controller
 > [!div class="nextstepaction"]
 > [将应用程序部署到 Azure](service-fabric-tutorial-deploy-app-to-party-cluster.md)
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

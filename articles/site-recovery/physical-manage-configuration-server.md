@@ -2,18 +2,20 @@
 title: 在 Azure Site Recovery 中管理物理服务器的配置服务器
 description: 本文介绍如何管理 Azure Site Recovery 配置服务器，以便将物理服务器灾难恢复到 Azure。
 services: site-recovery
-author: rockboyfor
 ms.service: site-recovery
 ms.topic: article
 origin.date: 02/28/2019
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: b3c68b4aa46028e1abc1626248ffe51659e96894
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: 0c55ccb50220cf16e13a60e45963876ff275ccf8
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440652"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655009"
 ---
 # <a name="manage-the-configuration-server-for-physical-server-disaster-recovery"></a>为物理服务器灾难恢复管理配置服务器
 
@@ -36,8 +38,8 @@ ms.locfileid: "84440652"
 | 操作系统区域设置 | 英语(美国)|
 | VMware vSphere PowerCLI 版本 | 不是必需|
 | Windows Server 角色 | 请勿启用以下角色： <br /> - Active Directory 域服务 <br />- Internet Information Services <br /> - Hyper-V |
-| 组策略| 请勿启用以下组策略： <br /> - 阻止访问命令提示符 <br /> - 阻止访问注册表编辑工具 <br /> - 信任文件附件的逻辑 <br /> - 打开脚本执行 <br /> [了解详细信息](https://technet.microsoft.com/library/gg176671(v=ws.10).aspx)|
-| IIS | - 无预先存在的默认网站 <br /> - 启用[匿名身份验证](https://technet.microsoft.com/library/cc731244(v=ws.10).aspx) <br /> - 启用 [FastCGI](https://technet.microsoft.com/library/cc753077(v=ws.10).aspx) 设置  <br /> - 端口 443 上没有预先存在的网站/应用程序侦听<br />|
+| 组策略| 请勿启用以下组策略： <br /> - 阻止访问命令提示符 <br /> - 阻止访问注册表编辑工具 <br /> - 信任文件附件的逻辑 <br /> - 打开脚本执行 <br /> [了解详细信息](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-7/gg176671(v=ws.10))|
+| IIS | - 无预先存在的默认网站 <br /> - 启用[匿名身份验证](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc731244(v=ws.10)) <br /> - 启用 [FastCGI](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc753077(v=ws.10)) 设置  <br /> - 端口 443 上没有预先存在的网站/应用程序侦听<br />|
 | NIC 类型 | VMXNET3（部署为 VMware VM 时） |
 | IP 地址类型 | 静态 |
 | Internet 访问 | 服务器需要以下 URL 的访问权限： <br /> - \*.accesscontrol.chinacloudapi.cn<br /> - \*.backup.windowsazure.cn <br />- \*.store.core.chinacloudapi.cn<br /> - \*.blob.core.chinacloudapi.cn<br /> - \*.hypervrecoverymanager.windowsazure.cn <br /> - `https://management.chinacloudapi.cn` <br /> - *.services.visualstudio.com <br /> - https://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-community-5.7.20.0.msi （不是横向扩展进程服务器所必需的） <br /> - time.nist.gov <br /> - time.windows.com |
@@ -53,14 +55,14 @@ Site Recovery 门户中提供了配置服务器安装文件的最新版本。 �
 4. 在“添加服务器”页中，单击“下载”按钮下载注册密钥。 在安装配置服务器的过程中，需要使用此密钥将它注册到 Azure Site Recovery 服务。
 5. 单击“下载 Azure Site Recovery 统一安装程序”链接，下载最新版本的配置服务器。
 
-    ![“下载”页](./media/physical-manage-configuration-server/downloadcs.png)
+    :::image type="content" source="./media/physical-manage-configuration-server/downloadcs.png" alt-text="“下载”页":::
 
 ## <a name="install-and-register-the-server"></a>安装并注册服务器
 
 1. 运行统一安装程序安装文件。
 2. 在“开始之前”中，选择“安装配置服务器和进程服务器” 。
 
-    ![开始之前](./media/physical-manage-configuration-server/combined-wiz1.png)
+    :::image type="content" source="./media/physical-manage-configuration-server/combined-wiz1.png" alt-text="开始之前":::
 
 3. 在“第三方软件许可证”中单击“我接受”，下载并安装 MySQL 。
 4. 在“Internet 设置”中，指定配置服务器上运行的提供程序通过 Internet 连接到 Azure Site Recovery 的方式。 确保已允许所需的 URL。
@@ -68,20 +70,20 @@ Site Recovery 门户中提供了配置服务器安装文件的最新版本。 �
     - 如果想要使用当前已在计算机上设置的代理进行连接，请选择“使用代理服务器连接到 Azure Site Recovery”。
     - 如果希望提供程序直接进行连接，请选择“在不使用代理服务器的情况下直接连接到 Azure Site Recovery”。
     - 如果现有代理要求身份验证，或者你想要使用自定义代理进行提供程序连接，请选择“使用自定义代理设置进行连接”，并指定地址、端口和凭据。
-        ![防火墙](./media/physical-manage-configuration-server/combined-wiz4.png)
+        :::image type="content" source="./media/physical-manage-configuration-server/combined-wiz4.png" alt-text="Firewall":::
 6. 在“先决条件检查” **全局时间同步检查**的警告，请检查系统时钟的时间（“日期和时间”设置）是否与时区相同。 如果看到有关全局时间同步检查的警告，请检查系统时钟的时间（“日期和时间”设置）是否与时区相同 。
 
-    ![先决条件](./media/physical-manage-configuration-server/combined-wiz5.png)
+    :::image type="content" source="./media/physical-manage-configuration-server/combined-wiz5.png" alt-text="先决条件":::
 7. 在“MySQL 配置”中，创建用于登录到已安装的 MySQL 服务器实例的凭据。
 
-    ![MySQL](./media/physical-manage-configuration-server/combined-wiz6.png)
+    :::image type="content" source="./media/physical-manage-configuration-server/combined-wiz6.png" alt-text="MySQL":::
 8. 在“环境详细信息”中，选择是否要复制 VMware VM。 如果要复制，则安装程序会检查 PowerCLI 6.0 是否已安装。
 9. 在“安装位置”中，选择要安装二进制文件和存储缓存的位置。 所选驱动器必须至少有 5 GB 的可用磁盘空间，但建议选择至少有 600 GB 可用空间的缓存驱动器。
 
-    ![安装位置](./media/physical-manage-configuration-server/combined-wiz8.png)
+    :::image type="content" source="./media/physical-manage-configuration-server/combined-wiz8.png" alt-text="安装位置":::
 10. 在“网络选择”中，首先选择内置进程服务器用于发现的 NIC，将移动服务的安装推送到源计算机上，然后选择配置服务器用来与 Azure 连接的 NIC。 端口 9443 是用于发送和接收复制流量的默认端口，但可以根据环境的要求修改此端口号。 除了端口 9443 以外，还要打开端口 443，Web 服务器要使用该端口协调复制操作。 请不要使用端口 443 来发送或接收复制流量。
 
-    ![网络选择](./media/physical-manage-configuration-server/combined-wiz9.png)
+    :::image type="content" source="./media/physical-manage-configuration-server/combined-wiz9.png" alt-text="网络选择":::
 
 11. 在“摘要”中复查信息，然后单击“安装” 。 安装完成后，将生成密码。 启用复制时需要用到它，因此请复制并将它保存在安全的位置。
 
@@ -149,7 +151,7 @@ ProxyPassword="Password"
 3. 单击“保管库注册”  选项卡。
 4. 从门户下载新的保管库注册文件，并将其作为输入提供给该工具。
 
-    ![register-configuration-server](./media/physical-manage-configuration-server/register-csconfiguration-server.png)
+    :::image type="content" source="./media/physical-manage-configuration-server/register-csconfiguration-server.png" alt-text="register-configuration-server":::
 5. 提供新代理的详细信息，并单击“注册”按钮。
 6. 打开管理员 PowerShell 命令窗口。
 7. 运行以下命令：
@@ -169,7 +171,7 @@ ProxyPassword="Password"
 2. 使用桌面上的快捷方式启动 cspsconfigtool.exe。
 3. 单击“保管库注册”  选项卡。
 4. 从门户下载新的注册文件，并将其作为输入提供给该工具。
-    ![register-configuration-server](./media/physical-manage-configuration-server/register-csconfiguration-server.png)
+    :::image type="content" source="./media/physical-manage-configuration-server/register-csconfiguration-server.png" alt-text="register-configuration-server":::
 5. 提供代理服务器的详细信息，并单击“注册”按钮  。  
 6. 打开管理员 PowerShell 命令窗口。
 7. 运行以下命令
@@ -246,11 +248,14 @@ ProxyPassword="Password"
 1. 以管理员身份登录到配置服务器。
 2. 打开“控制面板”>“程序”>“卸载程序”
 3. 按以下顺序卸载程序：
-    * Azure 恢复服务代理
-    * Azure Site Recovery 移动服务/主目标服务器
-    * Azure Site Recovery 提供程序
-    * Azure Site Recovery 配置服务器/进程服务器
-    * Azure Site Recovery 配置服务器依赖项
+
+    <!--CORRECT ON APPEND Microsoft perfix-->
+    
+    * Microsoft Azure 恢复服务代理
+    * Microsoft Azure Site Recovery 移动服务/主目标服务器
+    * Microsoft Azure Site Recovery 提供程序
+    * Microsoft Azure Site Recovery 配置服务器/进程服务器
+    * Microsoft Azure Site Recovery 配置服务器依赖项
     * MySQL Server 5.5
 4. 在管理员命令提示符下运行以下命令。
     ```
@@ -304,6 +309,6 @@ ProxyPassword="Password"
 
 ## <a name="next-steps"></a>后续步骤
 
-查看有关设置[物理服务器](tutorial-physical-to-azure.md)到 Azure 的灾难恢复的教程。
+查看有关设置[物理服务器](./physical-azure-disaster-recovery.md)到 Azure 的灾难恢复的教程。
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

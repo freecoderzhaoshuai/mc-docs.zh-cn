@@ -8,7 +8,7 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 12/16/2019
+ms.date: 09/10/2020
 translation.priority.mt:
 - de-de
 - es-es
@@ -20,12 +20,12 @@ translation.priority.mt:
 - ru-ru
 - zh-cn
 - zh-tw
-ms.openlocfilehash: e7227f965c26232a73eb11f764752558c7fa3231
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.openlocfilehash: c8f03010e23651399ee76378ba7992216928786d
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588708"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021582"
 ---
 # <a name="understanding-odata-collection-filters-in-azure-cognitive-search"></a>了解 Azure 认知搜索中的 OData 集合筛选器
 
@@ -51,13 +51,17 @@ ms.locfileid: "82588708"
 
 对复杂对象集合应用多个筛选条件时，这些条件是**关联的**，因为它们将应用到*集合中的每个对象*。 例如，以下筛选器将返回至少提供一间价格低于 100 的豪华客房的酒店：
 
+```odata-filter-expr
     Rooms/any(room: room/Type eq 'Deluxe Room' and room/BaseRate lt 100)
+```
 
 如果筛选*不相关联*，上述筛选器可能会返回提供一间豪华客房并提供基本价格低于 100 的另一间客房的酒店。 该结果没有任何意义，因为 Lambda 表达式的两个子句将应用到同一个范围变量，即 `room`。 这就是此类筛选器相关联的原因。
 
 但是，对于全文搜索，无法引用特定的范围变量。 如果使用字段搜索发出如下所示的[完整 Lucene 查询](query-lucene-syntax.md)：
 
+```odata-filter-expr
     Rooms/Type:deluxe AND Rooms/Description:"city view"
+```
 
 可能会返回提供一间豪华客房，并在另一间客房的描述中提到“市景”的酒店。 例如，以下 `Id` 为 `1` 的文档将与查询相匹配：
 
@@ -150,19 +154,27 @@ ms.locfileid: "82588708"
 
 基于相等性，接下来我们将探讨如何使用 `or` 来合并多个针对同一范围变量执行的相等性检查。 此方法得益于代数原理以及限定符的分布属性。 此表达式：
 
+```odata-filter-expr
     seasons/any(s: s eq 'winter' or s eq 'fall')
+```
 
 等效于：
 
+```odata-filter-expr
     seasons/any(s: s eq 'winter') or seasons/any(s: s eq 'fall')
+```
 
 可以使用倒排索引有效执行两个 `any` 子表达式中的每一个。 另外，得益于限定符的求反法则，此表达式：
 
+```odata-filter-expr
     seasons/all(s: s ne 'winter' and s ne 'fall')
+```
 
 等效于：
 
+```odata-filter-expr
     not seasons/any(s: s eq 'winter' or s eq 'fall')
+```
 
 正因如此，我们可以将 `all` 与 `ne` 和 `and` 一起使用。
 

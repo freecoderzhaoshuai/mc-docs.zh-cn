@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: quickstart
 origin.date: 07/01/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: a1ab4be856db1a53c29daf2f5ff7908397e795be
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: b679091207f029c540d6ddebd3aa695cdc3b7134
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86472048"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021082"
 ---
 # <a name="quickstart-create-a-demo-app-in-the-portal-azure-cognitive-search"></a>快速入门：在门户中创建演示应用（Azure 认知搜索）
 
@@ -32,7 +32,7 @@ ms.locfileid: "86472048"
 
 + [Microsoft Edge（最新版本）](https://www.microsoft.com/edge)或 Google Chrome。
 
-+ 要用作所生成应用程序的基础的[搜索索引](search-create-index-portal.md)。 
++ 要用作所生成应用程序的基础的[搜索索引](search-what-is-an-index.md)。 
 
   本快速入门使用内置的“房地产”示例数据和索引，因为该示例包含缩略图（向导支持将图像添加到结果页）。 若要创建本练习中使用的索引，请运行“导入数据”向导，并选择“realestate-us-sample”数据源。
 
@@ -112,4 +112,4 @@ ms.locfileid: "86472048"
 默认应用对于初始探索和小任务非常有用，而尽早查看 API 有助于更深入地了解概念和工作流：
 
 > [!div class="nextstepaction"]
-> [使用 .NET SDK 创建索引](https://docs.azure.cn/search/search-create-index-dotnet)
+> [使用 .NET SDK 创建索引](./search-get-started-dotnet.md)

@@ -1,19 +1,21 @@
 ---
 title: 删除 Azure Site Recovery 保管库
 description: 了解如何删除为 Azure Site Recovery 配置的恢复服务保管库
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.service: site-recovery
 ms.topic: article
 origin.date: 11/05/2019
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: d5a3494fc5c9341343f321d0f1e9c769a5e01085
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: f7646ca35642400762648edb9c0c3da82146ff76
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77611291"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655149"
 ---
 # <a name="delete-a-site-recovery-services-vault"></a>删除 Site Recovery 服务保管库
 
@@ -61,13 +63,15 @@ ms.locfileid: "77611291"
 
 若要删除 Site Recovery 保管库（即使有受保护的项，也不例外），请运行以下命令：
 
-    Connect-AzAccount -Environment AzureChinaCloud
+```azurepowershell
+Connect-AzAccount -Environment AzureChinaCloud
 
-    Select-AzSubscription -SubscriptionName "XXXXX"
+Select-AzSubscription -SubscriptionName "XXXXX"
 
-    $vault = Get-AzRecoveryServicesVault -Name "vaultname"
+$vault = Get-AzRecoveryServicesVault -Name "vaultname"
 
-    Remove-AzRecoveryServicesVault -Vault $vault
+Remove-AzRecoveryServicesVault -Vault $vault
+```
 
 详细了解 [Get-AzRecoveryServicesVault](https://docs.microsoft.com/powershell/module/az.recoveryservices/get-azrecoveryservicesvault) 和 [Remove-AzRecoveryServicesVault](https://docs.microsoft.com/powershell/module/az.recoveryservices/remove-azrecoveryservicesvault)。
 

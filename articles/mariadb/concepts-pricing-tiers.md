@@ -5,14 +5,14 @@ author: WenJason
 ms.author: v-jay
 ms.service: mariadb
 ms.topic: conceptual
-origin.date: 6/9/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: c50b43abf9ef7d803b18838ae3c1c87af8df988b
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+origin.date: 8/13/2020
+ms.date: 09/14/2020
+ms.openlocfilehash: ec9ca9aaa92b03bf3080d34c75cd74e4d94feb6b
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440355"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512906"
 ---
 # <a name="azure-database-for-mariadb-pricing-tiers"></a>Azure Database for MariaDB 定价层
 
@@ -80,13 +80,11 @@ ms.locfileid: "86440355"
 
 ## <a name="backup"></a>Backup
 
-服务自动对服务器进行备份。 可以选择 7 到 35 天的保留期。 常规用途和内存优化服务器可以选择使用异地冗余存储进行备份。 若要详细了解备份，请参阅[概念文章](concepts-backup.md)。
+Azure Database for MariaDB 最高可以提供 100% 的已预配服务器存储作为备份存储，不收取任何额外费用。 使用的任何备份存储量超过此数量将按每月 GB 量收费。 例如，如果为服务器配置了 250 GB 的存储空间，则可以为服务器备份提供 250 GB 的额外存储空间，而不收取任何费用。 超过 250GB 的备份存储量按[定价模型](https://azure.cn/pricing/details/mariadb/)收费。 若要了解影响备份存储使用率的因素、监视和控制备份存储成本，可以参考[备份文档](concepts-backup.md)。
 
 ## <a name="scale-resources"></a>缩放资源
 
 创建服务器之后，可以独立地更改 vCore 数、定价层（基本层的操作除外）、存储量和备份保留期。 创建服务器之后，不能更改备份存储类型。 可以向上或向下调整 VCore 数。 备份保留期可以从 7 天到 35 天进行上下调整。 存储大小只能增加。 可以通过门户或 Azure CLI 缩放资源。 
-
-<!--For an example of scaling by using Azure CLI, see [Monitor and scale an Azure Database for MariaDB server by using Azure CLI](scripts/sample-scale-server.md).-->
 
 更改 vCore 数或定价层时，将会通过新的计算分配创建原始服务器的副本。 启动并运行新服务器后，连接将切换到新服务器。 在系统切换到新服务器的短暂期间，无法建立新的连接，所有未提交的连接将会回退。 此时段不定，但大多数情况下短于一分钟。
 
@@ -99,6 +97,3 @@ ms.locfileid: "86440355"
 ## <a name="next-steps"></a>后续步骤
 - 了解[服务限制](concepts-limits.md)。
 - 了解如何[在 Azure 门户中创建 MariaDB 服务器](quickstart-create-mariadb-server-database-using-azure-portal.md)。
-
-<!--
-- Learn how to [monitor and scale an Azure Database for MariaDB server by using Azure CLI](scripts/sample-scale-server.md).-->

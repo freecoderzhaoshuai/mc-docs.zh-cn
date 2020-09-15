@@ -2,19 +2,21 @@
 title: 查看用于将 Hyper-V VM 灾难恢复到 Azure 的 Azure Site Recovery 部署规划器成本估算报告 | Azure
 description: 本文介绍如何查看 Azure Site Recovery 部署规划器生成的针对从 Hyper-V 灾难恢复到 Azure 的成本估算报告。
 services: site-recovery
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 04/09/2019
-ms.date: 06/10/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 62c373f70b0143af879b512b45297e4f724ad532
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: f1604d0abcd9ead52e9d903b0587a91d9c8e7a1d
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "66390866"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655675"
 ---
 # <a name="cost-estimation-report-by-azure-site-recovery-deployment-planner"></a>Azure Site Recovery 部署规划器成本估算报表 
 
@@ -23,7 +25,7 @@ Azure Site Recovery 部署规划器报表以[建议](hyper-v-deployment-planner-
 ### <a name="cost-estimation-summary"></a>成本估算摘要 
 下图显示的摘要视图包含灾难恢复 (DR) 到所选目标区域的 Azure 时的总估算成本，以及生成报表时所用的指定货币。
 
-![成本估算摘要](media/hyper-v-azure-deployment-planner-cost-estimation/cost-estimation-summary-h2a.png)
+:::image type="content" source="media/hyper-v-azure-deployment-planner-cost-estimation/cost-estimation-summary-h2a.png" alt-text="成本估算摘要":::
 
 可以通过此摘要了解在使用 Azure Site Recovery 对兼容的 VM 进行保护时，需要支付的存储、计算、网络和许可证成本。 计算成本时，只针对兼容的 VM，不针对所有受分析的 VM。 
 
@@ -51,7 +53,7 @@ Azure Site Recovery 部署规划器报表以[建议](hyper-v-deployment-planner-
 
 在整个报表中，标为灰色的单元格为只读。 白色的单元格可以根据要求修改。
 
-![成本估算详细信息](media/hyper-v-azure-deployment-planner-cost-estimation/cost-estimation1-h2a.png)
+:::image type="content" source="media/hyper-v-azure-deployment-planner-cost-estimation/cost-estimation1-h2a.png" alt-text="成本估算详细信息":::
 
 ### <a name="overall-dr-costs-by-components"></a>按组件估算的总体 DR 成本
 第一部分显示按组件估算的总体 DR 成本和按状态估算的总体 DR 成本。 
@@ -103,7 +105,7 @@ Azure Site Recovery 部署规划器报表以[建议](hyper-v-deployment-planner-
 **成本持续时间**：可以查看一个月或一整年的所有成本。 
 
 ## <a name="detailed-cost-analysis-table"></a>详细成本分析表
-![详细成本分析](media/hyper-v-azure-deployment-planner-cost-estimation/detailed-cost-analysis-h2a.png)
+:::image type="content" source="media/hyper-v-azure-deployment-planner-cost-estimation/detailed-cost-analysis-h2a.png" alt-text="详细成本分析":::
 
 此表列出了每个兼容 VM 的成本明细。 也可通过手动添加 VM 的方式，使用此表获取非分析 VM 的 Azure DR 估算成本。 在需要为新的 DR 部署估算 Azure 成本而又不做详细分析的情况下，此信息很有用。
 
@@ -172,5 +174,4 @@ Azure Site Recovery 部署规划器报表以[建议](hyper-v-deployment-planner-
 ## <a name="next-steps"></a>后续步骤
 详细了解如何[使用 Site Recovery 将 Hyper-V VM 转移到 Azure 进行保护](hyper-v-azure-tutorial.md)。
 
-<!-- Update_Description: update meta properties -->
-
+<!-- Update_Description: update meta properties, wording update, update link -->

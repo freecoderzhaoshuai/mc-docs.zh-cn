@@ -1,5 +1,5 @@
 ---
-title: 使用 Azure CLI 从自定义磁盘创建 Linux VM
+title: 使用 Azure CLI 上传或复制自定义 Linux VM
 description: 使用资源管理器部署模型和 Azure CLI 上传或复制自定义的虚拟机
 services: virtual-machines-linux
 documentationcenter: ''
@@ -11,15 +11,15 @@ ms.service: virtual-machines-linux
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.devlang: azurecli
-ms.topic: article
-ms.date: 04/20/2020
+ms.topic: how-to
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.openlocfilehash: fc610e0eb6ad5ee8a2d69dbc1a7b1de50a2447a1
-ms.sourcegitcommit: ebedf9e489f5218d4dda7468b669a601b3c02ae5
+ms.openlocfilehash: b8a5ff4421ac6713bdbb3b3dee3a4b71d1c9f5e7
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2020
-ms.locfileid: "82159167"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057647"
 ---
 # <a name="create-a-linux-vm-from-a-custom-disk-with-the-azure-cli"></a>使用 Azure CLI 从自定义磁盘创建 Linux VM
 
@@ -39,25 +39,25 @@ ms.locfileid: "82159167"
 
 - 已准备好在 Azure 中使用的 Linux 虚拟机。 本文的[准备 VM](#prepare-the-vm) 部分介绍了如何查找有关安装 Azure Linux 代理 (waagent) 的特定于分发版的信息，通过 SSH 连接到 VM 时需要用到该代理。
 - 用于将 [Azure 认可的 Linux 分发版](endorsed-distros.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)（或参阅[关于未认可分发版的信息](create-upload-generic.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)）安装到采用 VHD 格式的虚拟磁盘的 VHD 文件。 可使用多种工具创建 VM 和 VHD：
-    - 安装并配置 [QEMU](https://en.wikibooks.org/wiki/QEMU/Installing_QEMU) 或 [KVM](https://www.linux-kvm.org/page/RunningKVM)，并注意使用 VHD 作为映像格式。 如果需要，可以使用 `qemu-img convert`[转换映像](https://en.wikibooks.org/wiki/QEMU/Images#Converting_image_formats)。
-    - 也可以在 [Windows 10](https://msdn.microsoft.com/virtualization/hyperv_on_windows/quick_start/walkthrough_install) 或 [Windows Server 2012/2012 R2](https://technet.microsoft.com/library/hh846766.aspx) 上使用 Hyper-V。
+  - 安装并配置 [QEMU](https://en.wikibooks.org/wiki/QEMU/Installing_QEMU) 或 [KVM](https://www.linux-kvm.org/page/RunningKVM)，并注意使用 VHD 作为映像格式。 如果需要，可以使用 `qemu-img convert`[转换映像](https://en.wikibooks.org/wiki/QEMU/Images#Converting_image_formats)。
+  - 也可以在 [Windows 10](https://docs.microsoft.com//virtualization/hyper-v-on-windows/quick-start/enable-hyper-v) 或 [Windows Server 2012/2012 R2](https://docs.microsoft.com//previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh846766(v=ws.11)) 上使用 Hyper-V。
 
-    > [!NOTE]
-    > Azure 不支持更新的 VHDX 格式。 创建 VM 时，请将 VHD 指定为格式。 如果需要，可以使用 [qemu-img convert](https://en.wikibooks.org/wiki/QEMU/Images#Converting_image_formats) 或 [Convert-VHD](https://technet.microsoft.com/library/hh848454.aspx) PowerShell cmdlet 将 VHDX 磁盘转换为 VHD。 Azure 不支持上传动态 VHD，因此，上传之前，你需要将此类磁盘转换为静态 VHD。 可以使用 [Azure VHD Utilities for GO](https://github.com/Microsoft/azure-vhd-utils-for-go) 等工具在将动态磁盘上传到 Azure 的过程中转换磁盘。
-    > 
-    > 
+> [!NOTE]
+> Azure 不支持更新的 VHDX 格式。 创建 VM 时，请将 VHD 指定为映像格式。 如果需要，可以使用 [qemu-img convert](https://en.wikibooks.org/wiki/QEMU/Images#Converting_image_formats) 或 [Convert-VHD](https://docs.microsoft.com/powershell/module/hyper-v/convert-vhd?view=win10-ps) PowerShell cmdlet 将 VHDX 磁盘转换为 VHD。 Azure 不支持上传动态 VHD，因此，上传之前，你需要将此类磁盘转换为静态 VHD。 可以使用 [Azure VHD Utilities for GO](https://github.com/Microsoft/azure-vhd-utils-for-go) 等工具在将动态磁盘上传到 Azure 的过程中转换磁盘。
+> 
+> 
 
 - 确保已安装了最新的 [Azure CLI](https://docs.azure.cn/cli/install-az-cli2?view=azure-cli-latest) 并已使用 [az login](https://docs.azure.cn/cli/reference-index?view=azure-cli-latest#az-login) 登录到 Azure 帐户。
 
 <!-- URL is CORRECT ON install-az-cli2 redirect to install-azure-cli -->
 
-在以下示例中，将示例参数名称替换为自己的值，例如 `myResourceGroup`、`mystorageaccount` 和 `mydisks`。
+在以下示例中，请将示例参数名称替换为自己的值，如 `myResourceGroup`、`mystorageaccount` 和 `mydisks`。
 
-<a name="prepimage"></a>
+<a id="prepimage"> </a>
 
 ## <a name="prepare-the-vm"></a>准备 VM
 
-Azure 支持各种 Linux 分发（请参阅[认可的分发](endorsed-distros.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)）。 以下文章介绍了如何准备 Azure 支持的各种 Linux 分发版：
+Azure 支持各种 Linux 分发（请参阅 [Endorsed Distributions](endorsed-distros.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)（认可的分发））。 以下文章介绍了如何准备 Azure 支持的各种 Linux 分发版：
 
 * [基于 CentOS 的分发版](create-upload-centos.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)
 * [Debian Linux](debian-create-upload-vhd.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)
@@ -76,15 +76,15 @@ Azure 支持各种 Linux 分发（请参阅[认可的分发](endorsed-distros.md
 
 ## <a name="option-1-upload-a-vhd"></a>选项 1：上传 VHD
 
-现在可以直接将 VHD 上传到托管磁盘中。 有关说明，请参阅[使用 Azure CLI 将 VHD 上传到 Azure](disks-upload-vhd-to-managed-disk-cli.md)。
+现在可以将 VHD 直接上传到托管磁盘。 有关说明，请参阅[使用 Azure CLI 将 VHD 上传到 Azure](disks-upload-vhd-to-managed-disk-cli.md)。
 
-## <a name="option-2-copy-an-existing-vm"></a>选项 2：复制现有 VM
+## <a name="option-2-copy-an-existing-vm"></a>选项 2：复制现有的 VM
 
-也可以在 Azure 中创建自定义的 VM，然后复制 OS 磁盘并将其附加到新 VM 以创建另一个副本。 这种做法在测试中不会有任何问题，但若要将现有 Azure VM 作为多个新 VM 的模型，请改为创建映像。  有关从现有 Azure VM 创建映像的详细信息，请参阅[使用 CLI 创建 Azure VM 的自定义映像](tutorial-custom-images.md)。
+也可以在 Azure 中创建自定义的 VM，然后复制 OS 磁盘并将其附加到新 VM 以创建另一个副本。 这种做法在测试中不会有任何问题，但若要将现有 Azure VM 作为多个新 VM 的模型，请改为创建映像。 有关从现有 Azure VM 创建映像的详细信息，请参阅[使用 CLI 创建 Azure VM 的自定义映像](tutorial-custom-images.md)。
 
-如果要将现有 VM 复制到其他区域，可能需要使用 azcopy [在其他区域中创建磁盘副本](disks-upload-vhd-to-managed-disk-cli.md#copy-a-managed-disk)。 
+如果要将现有 VM 复制到其他区域，可能想要使用 azcopy [在另一个区域中创建磁盘的副本](disks-upload-vhd-to-managed-disk-cli.md#copy-a-managed-disk)。 
 
-否则，应创建 VM 的快照，然后基于快照创建新的 OS VHD。
+否则，应拍摄 VM 的快照，然后从快照创建新的 OS VHD。
 
 ### <a name="create-a-snapshot"></a>创建快照
 
@@ -134,6 +134,6 @@ az vm create \
 现在，应该可以使用凭据通过 SSH 从源 VM 连接到该 VM。 
 
 ## <a name="next-steps"></a>后续步骤
-准备好并上传自定义虚拟磁盘之后，可以阅读有关[使用 Resource Manager 和模板](../../azure-resource-manager/management/overview.md)的详细信息。 可能还需要向新 VM [添加数据磁盘](add-disk.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)。 如果需要访问在 VM 上运行的应用程序，请务必[打开端口和终结点](nsg-quickstart.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)。
+准备好并上传自定义虚拟磁盘之后，可以阅读有关使用 [Resource Manager](../../azure-resource-manager/management/overview.md) 和模板的详细信息。 可能还需要向新 VM [添加数据磁盘](add-disk.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)。 如果需要访问在 VM 上运行的应用程序，请务必[打开端口和终结点](nsg-quickstart.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)。
 
 <!-- Update_Description: wording update, update meta properties, update link -->

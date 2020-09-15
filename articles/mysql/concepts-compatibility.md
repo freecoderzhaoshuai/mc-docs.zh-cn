@@ -6,13 +6,13 @@ ms.author: v-jay
 ms.service: mysql
 ms.topic: conceptual
 origin.date: 3/18/2020
-ms.date: 08/10/2020
-ms.openlocfilehash: ede61a42eff74b94b7f274de3e59c2eaddc2219b
-ms.sourcegitcommit: 3cf647177c22b24f76236c57cae19482ead6a283
+ms.date: 09/14/2020
+ms.openlocfilehash: 083854c67adc0d5dde10b993a3594be1f432d733
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88029607"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512900"
 ---
 # <a name="mysql-drivers-and-management-tools-compatible-with-azure-database-for-mysql"></a>与 Azure Database for MySQL 兼容的 MySQL 驱动程序和管理工具
 > [!NOTE]
@@ -38,7 +38,7 @@ Azure Database for MySQL 使用世界上最常用的 MySQL 数据库社区版。
 | C | MySQL 连接器/C (libmysqlclient) | https://dev.mysql.com/doc/refman/5.7/en/c-api-implementations.html | 6.0.2+ | | |
 | C | MySQL 连接器/ODBC (myodbc) | https://github.com/mysql/mysql-connector-odbc | 3.51.29+ | | |
 | C++ | MySQL 连接器/C++ | https://github.com/mysql/mysql-connector-cpp | 1.1.9+ | 1.1.3 和更低版本 | | 
-| C++ | MySQL++| https://tangentsoft.net/mysql++ | 3.2.3+ | | |
+| C++ | MySQL++| https://github.com/tangentsoft/mysqlpp | 3.2.3+ | | |
 | Ruby | mysql2 | https://github.com/brianmario/mysql2 | 0.4.10+ | | |
 | R | RMySQL | https://github.com/rstats-db/RMySQL | 0.10.16+ | | |
 | Swift | mysql-swift | https://github.com/novi/mysql-swift | 0.7.2+ | | |

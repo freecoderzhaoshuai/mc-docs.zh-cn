@@ -9,15 +9,15 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 08/19/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 ms.custom: aaddev
-ms.openlocfilehash: 8464679df8ea6b9c70954ddfdc2e38752f138b82
-ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
+ms.openlocfilehash: bd362ef74c0c2a9fa9822660f14fd08e6757bb79
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "88647719"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593813"
 ---
 # <a name="protected-web-api-verify-scopes-and-app-roles"></a>受保护的 Web API：验证范围和应用角色
 
@@ -108,7 +108,7 @@ public class TodoListController : ApiController
 {
     public IEnumerable<TodoItem> Get()
     {
-        ValidateAppRole("access_as_application");
+        HttpContext.ValidateAppRole("access_as_application");
         ...
     }
 ```

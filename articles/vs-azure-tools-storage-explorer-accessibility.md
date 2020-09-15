@@ -13,14 +13,14 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 origin.date: 02/20/2018
-ms.date: 08/27/2020
+ms.date: 09/10/2020
 ms.author: v-tawe
-ms.openlocfilehash: 011592a89df5fe53de0fc9594785f8027640e0f5
-ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
+ms.openlocfilehash: c5da44569beb13d315dcbeaae6b0bf1078dc0863
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88951241"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021048"
 ---
 # <a name="storage-explorer-accessibility"></a>存储资源管理器可访问性
 

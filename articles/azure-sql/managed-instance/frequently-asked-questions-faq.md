@@ -12,13 +12,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: sstein, carlrab
 origin.date: 03/17/2020
-ms.date: 08/17/2020
-ms.openlocfilehash: 122b804a435488a190ba4e4c0754f93018ef796b
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.date: 09/14/2020
+ms.openlocfilehash: 82016a363f8eb2d9e6b73783996114cb103bf29d
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223112"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014337"
 ---
 # <a name="azure-sql-managed-instance-frequently-asked-questions-faq"></a>Azure SQL 托管实例常见问题解答 (FAQ)
 [!INCLUDE[appliesto-sqlmi](../includes/appliesto-sqlmi.md)]
@@ -211,7 +211,7 @@ SQL 托管实例的存储大小取决于所选的服务层级（“常规用途�
 
 如何在常规用途服务层级中优化存储性能？
 
-若要优化存储性能，请参阅[常规用途中的存储最佳做法](https://techcommunity.microsoft.com/t5/datacat/storage-performance-best-practices-and-considerations-for-azure/ba-p/305525)。
+若要优化存储性能，请参阅[常规用途中的存储最佳做法](https://techcommunity.microsoft.com)。
 
 ## <a name="backup-and-restore"></a>备份和还原
 
@@ -220,12 +220,15 @@ SQL 托管实例的存储大小取决于所选的服务层级（“常规用途�
 不是，备份存储不是从托管实例的存储空间中扣减出来的。 备份存储与实例存储空间无关，其大小不受限制。 备份存储受实例数据库备份的保留期限（可配置为最多 35 天）的限制。 有关详细信息，请参阅[自动化备份](../database/automated-backups-overview.md)。
 
 如何查看何时对托管实例进行自动备份？
+
 若要跟踪何时对托管实例执行自动备份，请参阅[如何跟踪 Azure SQL 托管实例的自动备份](https://techcommunity.microsoft.com/t5/azure-database-support-blog/lesson-learned-128-how-to-track-the-automated-backup-for-an/ba-p/1442355)。
 
 是否支持按需备份？
+
 是的，可以在其 Azure Blob 存储中创建仅复制完整备份，但它只能在托管实例中进行还原。 有关详细信息，请参阅[仅复制备份](https://docs.microsoft.com/sql/relational-databases/backup-restore/copy-only-backups-sql-server?view=sql-server-ver15)。 但是，如果数据库通过服务管理的 TDE 进行加密，则无法进行仅复制备份，因为用于加密的证书不可访问。 在这类情况下，使用时间点还原功能将数据库移到另一个 SQL 托管实例或切换到客户管理的密钥。
 
 是否支持本机还原（从 .bak 文件）到托管实例？
+
 是的，该功能受支持，可用于 SQL Server 2005 以上版本。  若要使用本机还原，请将 .bak 文件上传到 Azure blob 存储并执行 T-SQL 命令。 有关更多详细信息，请参阅[从 URL本机还原](/sql-database/sql-database-managed-instance-migrate#native-restore-from-url)。
 
 ## <a name="business-continuity"></a>业务连续性

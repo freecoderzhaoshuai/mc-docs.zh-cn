@@ -4,17 +4,18 @@ description: 此 Azure Kubernetes 服务 (AKS) 教程介绍如何创建 AKS 群�
 services: container-service
 ms.topic: tutorial
 origin.date: 02/25/2020
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: 12d360c05c680bdc10547787379029da2eedd158
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 7cb12583d0943263d9975bd08a10891872de2594
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842617"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021232"
 ---
 # <a name="tutorial-deploy-an-azure-kubernetes-service-aks-cluster"></a>教程：部署 Azure Kubernetes 服务 (AKS) 群集
 
@@ -126,13 +127,13 @@ aks-nodepool1-12345678-0   Ready    agent   32m   v1.14.8
 [aks-tutorial-deploy-app]: ./tutorial-kubernetes-deploy-application.md
 [aks-tutorial-prepare-acr]: ./tutorial-kubernetes-prepare-acr.md
 [aks-tutorial-prepare-app]: ./tutorial-kubernetes-prepare-app.md
-[az ad sp create-for-rbac]: https://docs.azure.cn/cli/ad/sp?view=azure-cli-latest#az-ad-sp-create-for-rbac
-[az acr show]: https://docs.azure.cn/cli/acr?view=azure-cli-latest#az-acr-show
-[az role assignment create]: https://docs.azure.cn/cli/role/assignment?view=azure-cli-latest#az-role-assignment-create
-[az aks create]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-create
-[az aks install-cli]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-install-cli
-[az aks get-credentials]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-get-credentials
-[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[az ad sp create-for-rbac]: https://docs.azure.cn/cli/ad/sp#az-ad-sp-create-for-rbac
+[az acr show]: https://docs.azure.cn/cli/acr#az-acr-show
+[az role assignment create]: https://docs.azure.cn/cli/role/assignment#az-role-assignment-create
+[az aks create]: https://docs.microsoft.com/cli/azure/aks#az_aks_create
+[az aks install-cli]: https://docs.microsoft.com/cli/azure/aks#az_aks_install_cli
+[az aks get-credentials]: https://docs.microsoft.com/cli/azure/aks#az_aks_get_credentials
+[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli
 [container-registry-integration]: ./cluster-container-registry-integration.md
 [quotas-skus-regions]: quotas-skus-regions.md
 

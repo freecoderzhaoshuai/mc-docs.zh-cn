@@ -16,12 +16,12 @@ ms.workload: infrastructure-services
 origin.date: 05/21/2019
 ms.author: v-yiso
 ms.date: 08/12/2019
-ms.openlocfilehash: 521cdaeef578e5782a4c2a3be3b5d455b2a45f84
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: ace808fbb428af30862ee1956c4e433e8810b1d0
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74389436"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021501"
 ---
 # <a name="connect-a-virtual-network-to-an-expressroute-circuit-using-cli"></a>使用 CLI 将虚拟网络连接到 ExpressRoute 线路
 
@@ -91,7 +91,7 @@ az network express-route auth create --circuit-name MyCircuit -g ExpressRouteRes
 
 此响应包含授权密钥和状态：
 
-```azurecli
+```output
 "authorizationKey": "0a7f3020-541f-4b4b-844a-5fb43472e3d7",
 "authorizationUseStatus": "Available",
 "etag": "W/\"010353d4-8955-4984-807a-585c21a22ae0\"",
@@ -129,7 +129,7 @@ az network express-route auth delete --circuit-name MyCircuit -g ExpressRouteRes
 
 线路用户需要对等 ID 以及线路所有者提供的授权密钥。 授权密钥是一个 GUID。
 
-```azurecli
+```powershell
 Get-AzExpressRouteCircuit -Name "MyCircuit" -ResourceGroupName "MyRG"
 ```
 

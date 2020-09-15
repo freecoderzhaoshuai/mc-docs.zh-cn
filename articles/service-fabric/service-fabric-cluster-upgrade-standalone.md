@@ -3,21 +3,24 @@ title: 升级 Azure Service Fabric 独立群集
 description: 了解有关升级 Azure Service Fabric 独立群集的版本或配置的信息。  T
 ms.topic: conceptual
 origin.date: 11/12/2018
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: ff34050d3902f114c573d91eb62addb9f4447235
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.openlocfilehash: 131e4d8ce41fb3973ca001e228e03fb70b5d0cc6
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356137"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655196"
 ---
 # <a name="upgrading-and-updating-a-service-fabric-standalone-cluster"></a>升级和更新 Service Fabric 独立群集
 
 对于任何现代系统，设计可升级性都是实现产品长期成功的关键。 Azure Service Fabric 独立群集是你拥有的资源。 本文介绍可以升级或更新的内容。
 
 ## <a name="controlling-the-fabric-version-that-runs-on-your-cluster"></a>控制在群集上运行的结构版本
-请确保群集始终运行[受支持的 Service Fabric 版本](service-fabric-versions.md)。 当 Azure 宣布发布新版 Service Fabric 时，即标志着自宣布日期起至少 60 天后，将结束对旧版的支持。 新版本将[在 Service Fabric 团队博客](https://blogs.msdn.microsoft.com/azureservicefabric/)中宣布。 从该时间开始，便可以选择使用新版本。
+请确保群集始终运行[受支持的 Service Fabric 版本](service-fabric-versions.md)。 当 Azure 宣布发布新版 Service Fabric 时，即标志着自宣布日期起至少 60 天后，将结束对旧版的支持。 新版本将[在 Service Fabric 团队博客](https://techcommunity.microsoft.com/t5/azure-service-fabric/bg-p/Service-Fabric)中宣布。 从该时间开始，便可以选择使用新版本。
 
 可以将群集设置为 Azure 发布结构升级时自动接收该升级，也可以手动选择希望群集安装的受支持结构版本。 有关详细信息，请阅读[升级群集上运行的 Service Fabric 版本](service-fabric-cluster-upgrade-windows-server.md)。
 

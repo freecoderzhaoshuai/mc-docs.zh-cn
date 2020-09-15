@@ -7,18 +7,18 @@ metadata:
   ms.service: site-recovery
   ms.topic: landing-page
   ms.collection: collection
-  author: rockboyfor
   origin.date: 11/19/2019
-  ms.date: 08/03/2020
+  author: rockboyfor
+  ms.date: 09/14/2020
   ms.testscope: no
-  ms.testdate: 08/03/2020
+  ms.testdate: 09/07/2020
   ms.author: v-yeche
-  ms.openlocfilehash: 10e3c7f582bf7393d1a5ae53212cbdf0734479e6
-  ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+  ms.openlocfilehash: d6e92a20d7d8da6c92ab0c89fc8f1cbda7498722
+  ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 07/30/2020
-  ms.locfileid: "87426369"
+  ms.lasthandoff: 09/10/2020
+  ms.locfileid: "89655311"
 landingContent:
 - title: 关于 Site Recovery
   linkLists:

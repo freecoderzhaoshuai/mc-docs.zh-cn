@@ -1,17 +1,19 @@
 ---
 title: 使用 C# 保护服务远程处理通信
 description: 了解如何保护 Azure Service Fabric 群集中运行的 C# Reliable Services 的基于服务远程处理的通信。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 04/20/2017
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 138a9704e6bca60f80f9cd50695e754694984cfa
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 81aea5fcca0ef6070d259f6988044f9db7aa3791
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77541055"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655346"
 ---
 # <a name="secure-service-remoting-communications-in-a-c-service"></a>保护 C# 服务的服务远程处理通信
 > [!div class="op_single_selector"]
@@ -200,6 +202,6 @@ ms.locfileid: "77541055"
 
     ```
 
-有关后续步骤，请阅读 [Reliable Services 中使用 OWIN 的 Web API](service-fabric-reliable-services-communication-webapi.md)。
+有关后续步骤，请阅读 [Reliable Services 中使用 OWIN 的 Web API](./service-fabric-reliable-services-communication-aspnetcore.md)。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

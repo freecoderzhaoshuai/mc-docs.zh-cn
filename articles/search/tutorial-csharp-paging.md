@@ -8,13 +8,14 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: tutorial
 origin.date: 06/20/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: 8b2f80728dc77102c18f83a8ac80b3dbe0c42fb0
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.custom: devx-track-javascript, devx-track-csharp
+ms.openlocfilehash: 7b8ae19df31473d48a54314e89fa84d2482bf316
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471925"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021577"
 ---
 # <a name="tutorial-add-paging-to-search-results-using-the-net-sdk"></a>教程：使用 .NET SDK 为搜索结果添加分页功能
 

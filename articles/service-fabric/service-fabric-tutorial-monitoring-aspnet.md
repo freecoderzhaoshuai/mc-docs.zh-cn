@@ -1,17 +1,19 @@
 ---
 title: 监视和诊断 ASP.NET Core 服务
 description: 在本教程中，你会学习如何为 Azure Service Fabric ASP.NET Core 应用程序设置监视和诊断。
-author: rockboyfor
 ms.topic: tutorial
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.custom: mvc
-ms.openlocfilehash: 4011e158b3b49234c629f52b194aeac95b24aae4
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.custom: mvc, devx-track-csharp
+ms.openlocfilehash: 5a2ca396d155e5c83354479475b086415c9fe48d
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356211"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655348"
 ---
 # <a name="tutorial-monitor-and-diagnose-an-aspnet-core-application-on-service-fabric-using-application-insights"></a>教程：使用 Application Insights 在 Service Fabric 上监视和诊断 ASP.NET Core 应用程序
 
@@ -24,7 +26,7 @@ ms.locfileid: "84356211"
 > * 使用 Application Insights 中的应用映射功能
 > * 使用 Application Insights API 添加自定义事件
 
-在此系列教程中，你将学习如何：
+在此系列教程中，你会学习如何：
 > [!div class="checklist"]
 > * [构建 .NET Service Fabric 应用程序](service-fabric-tutorial-create-dotnet-app.md)
 > * [将应用程序部署到远程群集](service-fabric-tutorial-deploy-app-to-party-cluster.md)
@@ -36,13 +38,13 @@ ms.locfileid: "84356211"
 
 在开始学习本教程之前：
 
-* 如果还没有 Azure 订阅，请创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial-full)
+* 如果还没有 Azure 订阅，请创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial-full/)
 * [安装 Visual Studio 2019](https://www.visualstudio.com/)，并安装 **Azure 开发**以及 **ASP.NET 和 Web 开发**工作负荷。
 * [安装 Service Fabric SDK](service-fabric-get-started.md)
 
 ## <a name="download-the-voting-sample-application"></a>下载投票示例应用程序
 
-如果未生成[本系列教程的第一部分](service-fabric-tutorial-create-dotnet-app.md)中的投票示例应用程序，可以下载它。 在命令窗口或终端中运行以下命令，将示例应用存储库克隆到本地计算机。
+如果未生成[本教程系列的第一部分](service-fabric-tutorial-create-dotnet-app.md)中的投票示例应用程序，还可以下载它。 在命令窗口或终端中运行以下命令，将示例应用存储库克隆到本地计算机。
 
 ```git
 git clone https://github.com/Azure-Samples/service-fabric-dotnet-quickstart
@@ -60,11 +62,11 @@ Application Insights 是 Azure 的应用程序性能管理平台，也是 Servic
 
 <!--MOONCAKE: CUSTOMIZATION-->
 
-![创建新的 AI 资源](./media/service-fabric-tutorial-monitoring-aspnet/new-ai-resource.png)
+:::image type="content" source="./media/service-fabric-tutorial-monitoring-aspnet/new-ai-resource.png" alt-text="创建新的 AI 资源":::
 
 此时需填写要创建的资源的必要属性信息。 输入适当的“名称”、“资源组”和“订阅”。   设置“位置”，以便在将来部署 Service Fabric 群集。 在本教程中，需将应用部署到本地群集，因此与“位置”字段无关。 “应用程序类型”应保留为“ASP.NET Web 应用程序”。
 
-![AI 资源属性](./media/service-fabric-tutorial-monitoring-aspnet/new-ai-resource-attrib.png)
+:::image type="content" source="./media/service-fabric-tutorial-monitoring-aspnet/new-ai-resource-attrib.png" alt-text="AI 资源属性":::
 
 填充所需信息以后，请单击“创建”对资源进行预配 - 大约需一分钟。
 
@@ -78,15 +80,15 @@ Application Insights 是 Azure 的应用程序性能管理平台，也是 Servic
 
 1. 右键单击服务的名称，然后单击“添加”>“连接的服务”>“使用 Application Insights 进行监视”。
 
-    ![配置 AI](./media/service-fabric-tutorial-monitoring-aspnet/configure-ai.png)
+    :::image type="content" source="./media/service-fabric-tutorial-monitoring-aspnet/configure-ai.png" alt-text="配置 AI":::
     
-    >[!NOTE]
-    >根据项目类型，在右键单击服务名称时，可能需要单击“添加”->“Application Insights 遥测...”
+    > [!NOTE]
+    > 根据项目类型，在右键单击服务名称时，可能需要单击“添加”->“Application Insights 遥测...”
 
 2. 单击“入门”。
 3. 登录到用于设置 Azure 订阅的帐户，选择在其中创建了 Application Insights 资源的订阅。 在“资源”下拉列表的“现有的 Application Insights 资源”下找到该资源。 单击“注册”将 Application Insights 添加到服务。
 
-    ![注册 AI](./media/service-fabric-tutorial-monitoring-aspnet/register-ai.png)
+    :::image type="content" source="./media/service-fabric-tutorial-monitoring-aspnet/register-ai.png" alt-text="注册 AI":::
 
 4. 在弹出的对话框完成操作后，单击“完成”。
 
@@ -109,11 +111,11 @@ Application Insights 有两个特定于 Service Fabric 的 NuGet，可以根据�
 3. 搜索 `Microsoft.ApplicationInsights.ServiceFabric.Native`，然后单击相应的 NuGet 包。
 4. 在右侧单击应用程序中两项服务旁边的复选框“VotingWeb”和“VotingData”，然后单击“安装”。  
     
-    ![AI sdk Nuget](./media/service-fabric-tutorial-monitoring-aspnet/ai-sdk-nuget-new.png)
-    
+    :::image type="content" source="./media/service-fabric-tutorial-monitoring-aspnet/ai-sdk-nuget-new.png" alt-text="AI sdk Nuget":::
 5. 在显示的“审阅更改”对话框中单击“确定”，接受“接受许可证”中的条款。  这样即可将 NuGet 添加到服务。
 6. 现在需在两个服务中设置遥测初始值设定项。 为此，请打开“VotingWeb.cs”和“VotingData.cs”。  对这两个文件执行下述两项步骤：
-    1. 在\<ServiceName>.cs 顶部，现有 using 语句后，添加这两个 using 语句：  
+    
+    1. 在每个 \<ServiceName>.cs 顶部的现有 using 语句之后添加下面这两个 using 语句  ：
 
         ```csharp
         using Microsoft.ApplicationInsights.Extensibility;
@@ -176,12 +178,12 @@ ConfigureServices(services => services
 
 此时可以部署应用程序了。 单击顶部的“开始”（或 F5），Visual Studio 就会生成应用程序并将其打包，设置本地群集，然后向其部署应用程序。
 
-> [!NOTE]
-> 如果未安装 .NET Core SDK 的最新版本，可能会出现生成错误。
+>[!NOTE]
+>如果未安装 .NET Core SDK 的最新版本，可能会出现生成错误。
 
 应用程序部署完后，请访问 `localhost:8080`，其中应该可以看到 Voting 示例单页应用程序。 投票选择各种不同的项目，以便创建一些示例数据和遥测 - 我投票选择甜点！
 
-![AI 示例投票](./media/service-fabric-tutorial-monitoring-aspnet/vote-sample.png)
+:::image type="content" source="./media/service-fabric-tutorial-monitoring-aspnet/vote-sample.png" alt-text="AI 示例投票":::
 
 添加完投票选项后，也可以随意删除部分投票选项。
 
@@ -190,20 +192,19 @@ ConfigureServices(services => services
 在 Azure 门户中转到 Application Insights 资源。
 
 单击“概览”，回到资源的登陆页。 然后单击顶部的“搜索”，查看传入的跟踪。 跟踪显示在 Application Insights 中需要数分钟。 如果看不到任何内容，请等待一会儿，然后单击顶部的“刷新”按钮。
-
-![AI 查看跟踪](./media/service-fabric-tutorial-monitoring-aspnet/ai-search.png)
+:::image type="content" source="./media/service-fabric-tutorial-monitoring-aspnet/ai-search.png" alt-text="AI 查看跟踪":::
 
 在“搜索”窗口中向下滚动就会看到 Application Insights 自带的所有传入遥测。 在 Voting 应用程序中每执行一个操作，就会有一个来自 VotingWeb 的传出 PUT 请求（PUT 投票/Put [名称]）、一个来自 VotingData 的传入 PUT 请求（PUT VoteData/Put [名称]），后跟一对用于刷新所显示数据的 GET 请求。 此外还会在 localhost 上有一个针对 HTTP 的依赖项跟踪，因为这些请求是 HTTP 请求。 下面是一个示例，显示了添加一个投票后的情况：
 
-![AI 示例请求跟踪](./media/service-fabric-tutorial-monitoring-aspnet/sample-request.png)
+:::image type="content" source="./media/service-fabric-tutorial-monitoring-aspnet/sample-request.png" alt-text="AI 示例请求跟踪":::
 
 单击其中一个跟踪即可查看其详细信息。 Application Insights 提供了该请求的有用信息，其中包括“响应时间”和“请求 URL”。  另外，由于添加了特定于 Service Fabric 的 NuGet，因此还会在底部的“自定义数据”部分提供 Service Fabric 群集上下文中的应用程序数据。 这其中包括服务上下文，因此可以查看请求源的“PartitionID”和“ReplicaId”。在对应用程序中的错误进行诊断时，这样能够更好地查找问题。 
 
-![AI 跟踪详细信息](./media/service-fabric-tutorial-monitoring-aspnet/trace-details.png)
+:::image type="content" source="./media/service-fabric-tutorial-monitoring-aspnet/trace-details.png" alt-text="AI 跟踪详细信息":::
 
 另外，可以单击“概览”页中左侧菜单上的“应用程序映射”，或者单击“应用映射”图标，转到显示两个服务已连接的应用映射。
 
-![AI 跟踪详细信息](./media/service-fabric-tutorial-monitoring-aspnet/app-map-new.png)
+:::image type="content" source="./media/service-fabric-tutorial-monitoring-aspnet/app-map-new.png" alt-text="AI 跟踪详细信息":::
 
 可以通过应用映射更好地了解应用程序拓扑，尤其是在开始添加多个不同的一起运行的服务时。 也可通过它来获取有关请求成功率的基本数据，对失败的请求进行诊断，了解问题之所在。 若要详细了解如何使用应用映射，请参阅 [Application Insights 中的应用程序映射](../azure-monitor/app/app-map.md)。
 
@@ -265,11 +266,11 @@ public async Task<IActionResult> Delete(string name)
 
 进行这些更改以后，请启动应用程序，以便生成和部署最新版本。 应用程序部署完后，请访问 `localhost:8080`，添加和删除一些投票选项。 然后回到 Application Insights 资源，查看最新运行的跟踪（与前面一样，跟踪可能需要 1-2 分钟才会显示在 Application Insights 中）。 不管是添加的还是删除的投票，此时都会看到一个“自定义事件”\*，以及所有响应遥测。
 
-![自定义事件](./media/service-fabric-tutorial-monitoring-aspnet/custom-events.png)
+:::image type="content" source="./media/service-fabric-tutorial-monitoring-aspnet/custom-events.png" alt-text="自定义事件":::
 
 ## <a name="next-steps"></a>后续步骤
 
-在本教程中，你已学习了如何执行以下操作：
+在本教程中，你了解了如何执行以下操作：
 > [!div class="checklist"]
 > * 为应用程序配置 Application Insights
 > * 收集响应遥测数据，跟踪服务之间基于 HTTP 的通信
@@ -282,4 +283,5 @@ public async Task<IActionResult> Delete(string name)
 * [使用 Application Insights 进行 Service Fabric 事件分析](service-fabric-diagnostics-event-analysis-appinsights.md)
 * 若要详细了解 Application Insights，请参阅 [Application Insights Documentation](https://docs.azure.cn/azure-monitor/overview)（Application Insights 文档）
 
+<!--MOONCAKE CORRECT ON /azure/application-insights/ REDIECT TO https://docs.azure.cn/azure-monitor/overview-->
 <!-- Update_Description: update meta properties, wording update, update link -->

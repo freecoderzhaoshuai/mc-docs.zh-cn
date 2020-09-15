@@ -1,17 +1,20 @@
 ---
 title: Reliable Services 通信概述
 description: 概述 Reliable Services 通信模型，包括在服务上打开侦听器、解析终结点，以及在服务之间进行通信。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 11/01/2017
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 95cbdcf0792663c58a021458c675328c13c32822
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: dc46447450816a25e9539db191739dd2e20cf721
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742411"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655081"
 ---
 # <a name="how-to-use-the-reliable-services-communication-apis"></a>如何使用 Reliable Services 通信 API
 “Azure Service Fabric 即平台”完全不受服务间通信的影响。 所有协议和堆栈（从 UDP 到 HTTP）都可接受。 至于服务应以哪种方式通信，完全由服务开发人员选择。 Reliable Services 应用程序框架提供了内置通信堆栈和 API，可用于生成自定义通信组件。
@@ -189,7 +192,7 @@ public CompletableFuture<String> openAsync(CancellationToken cancellationToken)
 Service Fabric 提供许多 API，使客户端和其他服务随后可以通过服务名称请求此地址。 这一点很重要，因为服务地址不是静态的。 服务为了资源平衡和可用性目的在群集中移动。 这是允许客户端为服务解析侦听地址的机制。
 
 > [!NOTE]
-> 有关如何用 C# 编写通信侦听器的完整演练，请参阅 [Service Fabric Web API 服务与 OWIN 自托管](service-fabric-reliable-services-communication-webapi.md)，而在 Java 中，可以编写自己的 HTTP 服务器实现，请参阅 https://github.com/Azure-Samples/service-fabric-java-getting-started 中的 EchoServer 应用程序示例。
+> 有关如何用 C# 编写通信侦听器的完整演练，请参阅 [Service Fabric Web API 服务与 OWIN 自托管](./service-fabric-reliable-services-communication-aspnetcore.md)，而在 Java 中，可以编写自己的 HTTP 服务器实现，请参阅 https://github.com/Azure-Samples/service-fabric-java-getting-started 中的 EchoServer 应用程序示例。
 >
 >
 
@@ -425,4 +428,4 @@ CompletableFuture<?> result = myServicePartitionClient.invokeWithRetryAsync(clie
 * [使用 Reliable Services 远程控制执行远程过程调用](service-fabric-reliable-services-communication-remoting.md)
 * [使用 Reliable Services 的 WCF 通信](service-fabric-reliable-services-communication-wcf.md)
 
-<!-- Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

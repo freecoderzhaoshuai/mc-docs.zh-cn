@@ -3,16 +3,17 @@ title: 在 Azure 门户中创建 Service Fabric 群集
 description: 了解如何使用 Azure 门户和 Azure Key Vault 在 Azure 中设置安全的 Service Fabric 群集。
 ms.topic: conceptual
 origin.date: 09/06/2018
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 06/08/2020
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: e4745ae125e7328205031da757a2486b9d1356d3
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 23d1c0a6ee99870111e19e32ed3965b2f7cb6a80
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426447"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655693"
 ---
 # <a name="create-a-service-fabric-cluster-in-azure-using-the-azure-portal"></a>使用 Azure 门户在 Azure 中创建 Service Fabric 群集
 > [!div class="op_single_selector"]
@@ -67,7 +68,6 @@ ms.locfileid: "87426447"
 [通过 Azure 门户创建群集](https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/service-fabric/service-fabric-cluster-creation-via-portal.md)时，无法配置应用程序证书。 若要在设置群集时配置应用程序证书，必须[使用 Azure 资源管理器创建群集][create-cluster-arm]。 也可以在创建群集后将应用程序证书添加到群集。
 
 <a name="create-cluster-portal" ></a>
-
 ## <a name="create-cluster-in-the-azure-portal"></a>在 Azure 门户中创建群集
 
 创建生产群集以满足应用程序需要涉及一些规划，为了帮助你进行规划，强烈建议你阅读并了解 [Service Fabric 群集规划注意事项][service-fabric-cluster-capacity]文档。 
@@ -127,7 +127,7 @@ ms.locfileid: "87426447"
 ### <a name="3-security"></a>3.安全性
 ![Azure 门户上安全配置的屏幕截图。][BasicSecurityConfigs]
 
-为轻松设置安全测试群集，我们提供了“基本”选项。 如果已有证书且已将其上传到 [Key Vault](/key-vault/)（并为部署启用了 Key Vault），则使用“自定义”选项
+为轻松设置安全测试群集，我们提供了“基本”选项。 如果已有证书且已将其上传到 [Key Vault](../key-vault/index.yml)（并为部署启用了 Key Vault），则使用“自定义”选项
 
 #### <a name="basic-option"></a>“基本”选项
 按照屏幕进行操作，以添加或重复使用现有 Key Vault 并添加证书。 添加证书是一个同步过程，因此必须等待证书创建完成。
@@ -209,7 +209,7 @@ ms.locfileid: "87426447"
 
 <!-- Links -->
 
-[azure-powershell]: https://docs.azure.cn/powershell-install-configure
+[azure-powershell]: https://docs.microsoft.com/powershell/azure/
 [azure-portal]: https://portal.azure.cn/
 [key-vault-get-started]: ../key-vault/general/overview.md
 [create-cluster-arm]: service-fabric-cluster-creation-via-arm.md

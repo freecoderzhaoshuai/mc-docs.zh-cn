@@ -11,13 +11,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: carlrab
 origin.date: 03/12/2019
-ms.date: 07/13/2019
-ms.openlocfilehash: 045806754b0fdf4960a55a907ebb242d3d1493ee
-ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+ms.date: 09/14/2020
+ms.openlocfilehash: bd677b6b4674b3c994acc83bae5330a60fd0ab38
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86227727"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014304"
 ---
 # <a name="use-powershell-to-monitor-and-scale-a-single-database-in-azure-sql-database"></a>使用 PowerShell 监视和缩放 Azure SQL 数据库中的单一数据库
 
@@ -134,6 +134,6 @@ Remove-AzResourceGroup -ResourceGroupName $resourcegroupname
 
 ## <a name="next-steps"></a>后续步骤
 
-有关 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/overview)。
+有关 Azure PowerShell 的详细信息，请参阅 [Azure PowerShell 文档](https://docs.microsoft.com/powershell/azure/)。
 
 可以在 [Azure PowerShell 脚本](../powershell-script-content-guide.md)中找到其他 PowerShell 脚本示例。

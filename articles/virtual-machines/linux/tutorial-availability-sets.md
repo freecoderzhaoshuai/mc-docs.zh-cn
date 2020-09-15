@@ -3,8 +3,8 @@ title: 教程 - Azure 中 Linux VM 的高可用性
 description: 本教程介绍了如何使用 Azure CLI 在可用性集中部署高度可用的虚拟机
 documentationcenter: ''
 services: virtual-machines-linux
-author: rockboyfor
-manager: digimobile
+author: Johnnytechn
+manager: gwallace
 editor: ''
 tags: azure-resource-manager
 ms.assetid: ''
@@ -12,22 +12,22 @@ ms.service: virtual-machines-linux
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
 ms.topic: tutorial
+ms.date: 09/03/2020
+ms.author: v-johya
 origin.date: 01/17/2020
-ms.date: 02/10/2020
-ms.author: v-yeche
-ms.custom: mvc
-ms.openlocfilehash: 743de47bdb30b870db7e325b99d5672592194f38
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: mvc, devx-track-azurecli
+ms.openlocfilehash: 7299254fb94d7f383268afbd935696faa6e12c0d
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77428005"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057472"
 ---
 # <a name="tutorial-create-and-deploy-highly-available-virtual-machines-with-the-azure-cli"></a>教程：使用 Azure CLI 创建和部署高度可用的虚拟机
 
 本教程介绍如何使用称作“可用性集”的功能提高 Azure 上虚拟机解决方案的可用性和可靠性。 可用性集可确保在 Azure 上部署的 VM 能够跨多个隔离的硬件群集分布。 这样，就可以确保当 Azure 中发生硬件或软件故障时，只有一部分 VM 受到影响，整体解决方案仍可使用和操作。
 
-在本教程中，你将了解如何执行以下操作：
+本教程介绍如何执行下列操作：
 
 > [!div class="checklist"]
 > * 创建可用性集
@@ -44,6 +44,7 @@ ms.locfileid: "77428005"
 
 假设某个基于 VM 的典型解决方案包含四个前端 Web 服务器，并使用两个托管数据库的后端 VM。 在 Azure 中，需要在部署 VM 之前先定义两个可用性集：一个可用性集用于“Web”层，另一个可用性集用于“数据库”层。 创建新的 VM 时，可在 az vm create 命令中指定可用性集作为参数，Azure 会自动确保在可用性集中创建的 VM 在多个物理硬件资源之间保持独立。 如果运行某个 Web 服务器或数据库服务器的物理硬件有问题，可以确信 Web 服务器和数据库 VM 的其他实例会保持运行状态，因为它们位于不同的硬件上。
 
+
 ## <a name="create-an-availability-set"></a>创建可用性集
 
 可使用 [az vm availability-set create](https://docs.azure.cn/cli/vm/availability-set?view=azure-cli-latest#az-vm-availability-set-create) 创建可用性集。 在本示例中，*myResourceGroupAvailability* 资源组中名为 *myAvailabilitySet* 的可用性集的更新域数和容错域数均设置为 *2*。
@@ -51,7 +52,7 @@ ms.locfileid: "77428005"
 首先，使用 [az group create](https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-create) 创建资源组，然后创建可用性集：
 
 ```azurecli
-az group create --name myResourceGroupAvailability --location chinaeast
+az group create --name myResourceGroupAvailability --location chinaeast2
 
 az vm availability-set create \
     --resource-group myResourceGroupAvailability \
@@ -61,6 +62,7 @@ az vm availability-set create \
 ```
 
 使用可用性集可跨容错域和更新域隔离资源。 **容错域**代表服务器、网络和存储资源的隔离集合。 在前面的示例中，在部署 VM 时，可用性集至少分布在两个容错域中。 可用性集还分布在两个**更新域**中。 两个更新域确保当 Azure 执行软件更新时，VM 资源是隔离的，防止在 VM 上运行的所有软件同时更新。
+
 
 ## <a name="create-vms-inside-an-availability-set"></a>在可用性集内创建 VM
 

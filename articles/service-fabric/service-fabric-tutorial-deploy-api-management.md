@@ -3,15 +3,18 @@ title: 在 Azure 中将 API 管理与 Service Fabric 集成
 description: 了解如何快速开始使用 Azure API 管理以及在 Service Fabric 中将流量路由到后端服务。
 ms.topic: conceptual
 origin.date: 07/10/2019
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: 15b5e355d11ed5afa9e5329c4621dd9b0dc9fa60
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: ec8db90aa94e9732efa1eb0c04e62c8c134d0bcb
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742042"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655614"
 ---
 # <a name="integrate-api-management-with-service-fabric-in-azure"></a>在 Azure 中将 API 管理与 Service Fabric 集成
 
@@ -31,7 +34,7 @@ ms.locfileid: "75742042"
 开始之前：
 
 * 如果还没有 Azure 订阅，请创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)
-* 安装 [Azure Powershell](https://docs.microsoft.com/powershell/azure/install-Az-ps) 或 [Azure CLI](https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest)。
+* 安装 [Azure Powershell](https://docs.microsoft.com/powershell/azure/install-az-ps) 或 [Azure CLI](https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest)。
 * 在网络安全组中创建一个安全的 [Windows 群集](service-fabric-tutorial-create-vnet-and-windows-cluster.md)。
 * 如果部署 Windows 群集，请设置 Windows 开发环境。 安装 [Visual Studio 2019](https://www.visualstudio.com) 和 **Azure 开发**、**ASP.NET 和 Web 开发**以及 **.NET Core 跨平台开发**工作负荷。  然后设置 [.NET 开发环境](service-fabric-get-started.md)。
 
@@ -155,9 +158,9 @@ az account set --subscription <guid>
 
 ### <a name="microsoftapimanagementserviceapispolicies"></a>Microsoft.ApiManagement/service/apis/policies
 
-[Microsoft.ApiManagement/service/apis/policies](https://docs.microsoft.com/azure/templates/microsoft.apimanagement/service/apis/policies) 创建将所有内容联系在一起的后端策略。 你可以在其中配置将请求路由到的后端 Service Fabric 服务。 可以将此策略应用到任何 API 操作。  有关详细信息，请参阅[策略概述](/api-management/api-management-howto-policies)。
+[Microsoft.ApiManagement/service/apis/policies](https://docs.microsoft.com/azure/templates/microsoft.apimanagement/service/apis/policies) 创建将所有内容联系在一起的后端策略。 你可以在其中配置将请求路由到的后端 Service Fabric 服务。 可以将此策略应用到任何 API 操作。  有关详细信息，请参阅[策略概述](../api-management/api-management-howto-policies.md)。
 
-[Service Fabric 的后端配置](/api-management/api-management-transformation-policies#SetBackendService)提供以下请求路由控件：
+[Service Fabric 的后端配置](../api-management/api-management-transformation-policies.md#SetBackendService)提供以下请求路由控件：
 
 * 服务实例选择，方法是指定硬编码的（例如，`"fabric:/myapp/myservice"`）或从 HTTP 请求中生成的（例如，`"fabric:/myapp/users/" + context.Request.MatchedParameters["name"]`）Service Fabric 服务实例名称。
 * 分区解析，方法是使用任何 Service Fabric 分区方案生成分区键。
@@ -184,7 +187,7 @@ az account set --subscription <guid>
 </policies>
 ```
 
-有关完整的 Service Fabric 后端策略属性，请参阅 [API 管理后端文档](/api-management/api-management-transformation-policies#SetBackendService)
+有关完整的 Service Fabric 后端策略属性，请参阅 [API 管理后端文档](../api-management/api-management-transformation-policies.md#SetBackendService)
 
 ## <a name="set-parameters-and-deploy-api-management"></a>设置参数和部署 API 管理
 
@@ -200,7 +203,7 @@ az account set --subscription <guid>
 |serviceFabricCertificateThumbprint|C4C1E541AD512B8065280292A8BA6079C3F26F10 |
 |serviceFabricCertificate|&lt;base-64 编码字符串&gt;|
 |url_path|/api/values|
-|clusterHttpManagementEndpoint|https://mysfcluster.chinaeast.cloudapp.chinacloudapi.cn:19080|
+|clusterHttpManagementEndpoint|`https://mysfcluster.chinaeast.cloudapp.chinacloudapi.cn:19080`|
 |inbound_policy|&lt;XML 字符串&gt;|
 
 “certificatePassword”和“serviceFabricCertificateThumbprint”必须与用于设置群集的群集证书匹配   。
@@ -294,12 +297,12 @@ az group delete --name $ResourceGroupName
 
 ## <a name="next-steps"></a>后续步骤
 
-详细了解如何使用 [API 管理](/api-management/import-and-publish)。
+详细了解如何使用 [API 管理](../api-management/import-and-publish.md)。
 
-[azure-powershell]: https://docs.azure.cn/powershell-install-configure
+[azure-powershell]: https://docs.microsoft.com/powershell/azure/
 
-[apim-arm]:https://github.com/Azure/service-fabric-scripts-and-templates/blob/master/templates/service-integration/apim.json
-[apim-parameters-arm]:https://github.com/Azure/service-fabric-scripts-and-templates/blob/master/templates/service-integration/apim.parameters.json
+[apim-arm]: https://github.com/Azure/service-fabric-scripts-and-templates/blob/master/templates/service-integration/apim.json
+[apim-parameters-arm]: https://github.com/Azure/service-fabric-scripts-and-templates/blob/master/templates/service-integration/apim.parameters.json
 
 [network-arm]: https://github.com/Azure/service-fabric-scripts-and-templates/blob/master/templates/service-integration/network-apim.json
 [network-parameters-arm]: https://github.com/Azure/service-fabric-scripts-and-templates/blob/master/templates/service-integration/network-apim.parameters.json
@@ -313,4 +316,4 @@ az group delete --name $ResourceGroupName
 
 [sf-apim-topology-overview]: ./media/service-fabric-tutorial-deploy-api-management/sf-apim-topology-overview.png
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

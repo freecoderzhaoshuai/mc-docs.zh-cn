@@ -10,15 +10,15 @@ ms.date: 07/27/2020
 ms.testscope: yes|no
 ms.testdate: 07/27/2020Null
 ms.author: v-yeche
-ms.openlocfilehash: 7235039ccfc5f63a1f1e2b4cce5808f9b4d88957
-ms.sourcegitcommit: 4d9846bb03ac24bd98b0c9a781bb8912ff6d2f61
+ms.openlocfilehash: 50877c02154dd034aae7f546895eff78392523c7
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "86926973"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655285"
 ---
-<!--Verified Failed-->
-<!--RELEASE BEFORE CONFIRMATION-->
+<!--Not Available on MOONCAKE 09/07/2020-->
+<!--MESSAGE: The resource type 'microsoft.network/bastionhosts' does not support diagnostic settings.-->
 # <a name="enable-and-work-with-bastion-resource-logs"></a>启用和使用 Bastion 资源日志
 
 当用户使用 Azure Bastion 连接到工作负载时，Bastion 可以记录对远程会话的诊断。 然后你可以使用诊断来查看哪些用户在什么时间从哪里连接到哪些工作负载，以及其他此类相关的日志记录信息。 若要使用诊断，必须在 Azure Bastion 上启用诊断日志。 本文可帮助你先启用诊断日志，然后查看这些日志。
@@ -57,6 +57,8 @@ ms.locfileid: "86926973"
 
 5. 从存储 blob 容器下载 json 文件。 下面显示了 json 文件中的一个示例条目供参考：
 
+    <!--CORRECT ON chinanorth2-->
+    
     ```json
     { 
     "time":"2019-10-03T16:03:34.776Z",
@@ -64,7 +66,7 @@ ms.locfileid: "86926973"
     "operationName":"Microsoft.Network/BastionHost/connect",
     "category":"BastionAuditLogs",
     "level":"Informational",
-    "location":"chinaeast2",
+    "location":"chinanorth2",
     "properties":{ 
       "userName":"<username>",
       "userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36",
@@ -79,7 +81,7 @@ ms.locfileid: "86926973"
       "tunnelId":"<tunnelID>"
     },
     "FluentdIngestTimestamp":"2019-10-03T16:03:34.0000000Z",
-    "Region":"chinaeast2",
+    "Region":"chinanorth2",
     "CustomerSubscriptionId":"<subscripionID>"
     }
     ```

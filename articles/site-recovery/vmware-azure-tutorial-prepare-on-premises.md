@@ -1,20 +1,22 @@
 ---
 title: 使用 Azure Site Recovery 准备 VMware VM 灾难恢复
 description: 了解如何准备本地 VMware 服务器使用 Azure Site Recovery 服务灾难恢复到 Azure。
-author: rockboyfor
 manager: digimobile
 ms.service: site-recovery
 ms.topic: tutorial
 origin.date: 11/12/2019
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
 ms.custom: MVC
-ms.openlocfilehash: b9cb94b1dacf90d7b9896133efeb60ee4f5c9926
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 1e9ca83676c98f2198085c99b6061031d4b2b9c9
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291696"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655398"
 ---
 # <a name="prepare-on-premises-vmware-servers-for-disaster-recovery-to-azure"></a>准备本地 VMware 服务器用于灾难恢复到 Azure
 
@@ -101,7 +103,7 @@ Site Recovery 需要访问 VMware 服务器，才能够：
 - 执行故障转移之前，请在本地计算机上确保安全外壳服务设置为在系统启动时自动启动。
 - 确保防火墙规则允许 SSH 连接。
 - 在 Azure VM 上执行故障转移后，允许已故障转移的 VM 及其所连接 Azure 子网上的网络安全组规则与 SSH 端口建立传入连接。
-- 为 VM [添加公共 IP 地址](site-recovery-monitoring-and-troubleshooting.md)。
+- 为 VM [添加公共 IP 地址](./site-recovery-monitor-and-troubleshoot.md)。
 - 可选中“启动诊断”查看 VM 的屏幕截图  。
 
 ## <a name="failback-requirements"></a>故障回复要求

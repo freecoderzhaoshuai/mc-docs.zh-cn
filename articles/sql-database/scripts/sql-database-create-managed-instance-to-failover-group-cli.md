@@ -1,25 +1,25 @@
 ---
-title: CLI 示例 - 故障转移组 - Azure SQL 数据库托管实例
-description: Azure CLI 示例脚本，用于创建 Azure SQL 数据库托管实例，将其添加到故障转移组，然后测试故障转移。
+title: Azure CLI：将托管实例添加到故障转移组
+description: Azure CLI 示例脚本，用于创建 Azure SQL 托管实例，将其添加到故障转移组，然后测试故障转移。
 services: sql-database
 ms.service: sql-database
 ms.subservice: high-availability
-ms.custom: ''
+ms.custom: devx-track-azurecli
 ms.devlang: azurecli
 ms.topic: sample
 author: WenJason
 ms.author: v-jay
 ms.reviewer: carlrab
 origin.date: 07/16/2019
-ms.date: 04/27/2020
-ms.openlocfilehash: db7dc7e646cb441a1c701c9cce76e3d045d6a64f
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.date: 09/14/2020
+ms.openlocfilehash: a51476310ec9c5586de2c489e2b42edd83ac99c9
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82127237"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014237"
 ---
-# <a name="use-cli-to-add-an-azure-sql-database-managed-instance-to-a-failover-group"></a>使用 CLI 将 Azure SQL 数据库托管实例添加到故障转移组
+# <a name="use-cli-to-create-an-azure-sql-managed-instance-to-a-failover-group"></a>使用 CLI 在故障转移组创建 Azure SQL 托管实例
 
 此 Azure CLI 示例创建两个托管实例，将其添加到故障转移组，然后测试从主托管实例到辅助托管实例的故障转移。
 
@@ -166,20 +166,20 @@ az group delete --name $resource
 
 此脚本使用以下命令。 表中的每条命令均链接到特定于命令的文档。
 
-| | |
+| 命令 | 说明 |
 |---|---|
 | [az network vnet](/cli/network/vnet) | 虚拟网络命令。  |
 | [az network vnet subnet](/cli/network/vnet/subnet) | 虚拟网络子网命令。 |
 | [az network nsg](/cli/network/nsg) | 网络安全组命令。 |
 | [az network nsg rule](/cli/network/nsg/rule)| 网络安全规则命令。 |
 | [az network route-table](/cli/network/route-table) | 路由表命令。 |
-| [az sql mi](/cli/sql/mi) | 托管实例命令。 |
+| [az sql mi](/cli/sql/mi) | SQL 托管实例命令。 |
 | [az network public-ip](/cli/network/public-ip) | 网络公共 IP 地址命令。 |
 | [az network vnet-gateway](/cli/network/vnet-gateway) | 虚拟网络网关命令 |
-| [az sql instance-failover-group](/cli/sql/instance-failover-group) | 托管实例故障转移组命令。 |
+| [az sql instance-failover-group](/cli/sql/instance-failover-group) | SQL 托管实例故障转移组命令。 |
 
 ## <a name="next-steps"></a>后续步骤
 
 有关 Azure CLI 的详细信息，请参阅 [Azure CLI 文档](/cli/)。
 
-其他 SQL 数据库 CLI 脚本示例可以在 [Azure SQL 数据库文档](../sql-database-cli-samples.md)中找到。
+其他 SQL 数据库 CLI 脚本示例可以在 [Azure SQL 数据库文档](../../azure-sql/database/az-cli-script-samples-content-guide.md)中找到。

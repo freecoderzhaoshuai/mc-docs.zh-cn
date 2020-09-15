@@ -3,15 +3,18 @@ title: 使用 Azure Site Recovery 设置 Azure VM 灾难恢复
 description: 了解如何使用 Azure Site Recovery 服务为 Azure VM 设置到其他 Azure 区域的灾难恢复。
 ms.topic: tutorial
 origin.date: 01/24/2020
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: a18efeba5f05c74fee83c7f6364415dfde24c4bb
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: 91e922b784ccfe5710b0aa81ed8af0bf3f9b1014
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440425"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655324"
 ---
 # <a name="set-up-disaster-recovery-for-azure-vms"></a>为 Azure VM 设置灾难恢复
 
@@ -32,8 +35,8 @@ ms.locfileid: "84440425"
 
 完成本教程：
 
-- 查看[方案体系结构和组件](concepts-azure-to-azure-architecture.md)。
-- 在开始之前，请查看[支持要求](site-recovery-support-matrix-azure-to-azure.md)。
+- 查看[方案体系结构和组件](./azure-to-azure-architecture.md)。
+- 在开始之前，请查看[支持要求](./azure-to-azure-support-matrix.md)。
 
 ## <a name="create-a-recovery-services-vault"></a>创建恢复服务保管库
 
@@ -46,11 +49,11 @@ ms.locfileid: "84440425"
     
 1. 在“名称” 中，指定一个友好名称以标识该保管库。 如果有多个订阅，请选择合适的一个。
 1. 创建一个资源组或选择一个现有的资源组。 指定 Azure 区域。 若要查看受支持的区域，请参阅 [Azure Site Recovery 定价详细信息](https://www.azure.cn/pricing/details/site-recovery/)中的“地域可用性”。
-1. 若要从仪表板访问保管库，请选择“固定到仪表板”，然后选择“创建”。 
+1. 若要从仪表板访问保管库，请选择“固定到仪表板”，然后选择“创建”。
 
-    ![新保管库](./media/azure-to-azure-tutorial-enable-replication/new-vault-settings.png)
+    :::image type="content" source="./media/azure-to-azure-tutorial-enable-replication/new-vault-settings.png" alt-text="新保管库":::
 
-新保管库将添加到“仪表板”中的“所有资源”下，以及“恢复服务保管库”主页面上。  
+新保管库将添加到“仪表板”中的“所有资源”下，以及“恢复服务保管库”主页面上。
 
 ## <a name="verify-target-resource-settings"></a>验证目标资源设置
 
@@ -70,12 +73,16 @@ ms.locfileid: "84440425"
 
 如果使用基于 URL 的防火墙代理来控制出站连接，请允许访问以下 URL：
 
-| **URL** | **详细信息** |
-| ------- | ----------- |
-| `*.blob.core.chinacloudapi.cn` | 允许将数据从 VM 写入源区域中的缓存存储帐户。 |
-| `login.chinacloudapi.cn` | 向 Site Recovery 服务 URL 提供授权和身份验证。 |
-| `*.hypervrecoverymanager.windowsazure.cn` | 允许 VM 与 Site Recovery 服务进行通信。 |
-| `*.servicebus.chinacloudapi.cn` | 允许 VM 写入 Site Recovery 监视和诊断数据。 |
+<!--MOONCAKE CUSTOMIZE REMOVE US GOVERMENT DETAILS-->
+
+| **名称** | **Azure 中国世纪互联** | **说明** |
+| ------------------------- | -------------------------------------------- | ----------- |
+| 存储                   | `*.blob.core.chinacloudapi.cn`                  | 允许将数据从 VM 写入源区域中的缓存存储帐户。 |
+| Azure Active Directory    | `login.chinacloudapi.cn`                | 向 Site Recovery 服务 URL 提供授权和身份验证。 |
+| 复制               | `*.hypervrecoverymanager.windowsazure.cn` | 允许 VM 与 Site Recovery 服务进行通信。 |
+| 服务总线               | `*.servicebus.chinacloudapi.cn`                 | 允许 VM 写入 Site Recovery 监视和诊断数据。 |
+
+<!--MOONCAKE CUSTOMIZE REMOVE US GOVERMENT DETAILS-->
 
 ### <a name="outbound-connectivity-for-ip-address-ranges"></a>IP 地址范围的出站连接
 
@@ -98,7 +105,7 @@ Azure Site Recovery 提供了三个用于控制 Site Recovery 管理操作的内
 
 - **Site Recovery 读者** - 此角色有权查看所有 Site Recovery 管理操作。 此角色最适合分配给 IT 监视主管，这样他们就可以监视当前保护状态并创建支持票证。
 
-详细了解 [Azure RBAC 内置角色](../role-based-access-control/built-in-roles.md)。
+详细了解 [Azure 内置角色](../role-based-access-control/built-in-roles.md)。
 
 ## <a name="enable-replication-for-a-vm"></a>为虚拟机启用复制
 
@@ -112,16 +119,16 @@ Azure Site Recovery 提供了三个用于控制 Site Recovery 管理操作的内
 1. 对于“源”，选择“Azure”。
 1. 在“源位置”中，选择当前运行 VM 的 Azure 源区域。
 1. 选择运行虚拟机的**源订阅**。 这可以是存在恢复服务保管库的同一 Azure Active Directory 租户中的任何订阅。
-1. 选择“源资源组”，然后选择“确定”以保存设置。 
+1. 选择“源资源组”，然后选择“确定”以保存设置。
 
-    ![设置源](./media/azure-to-azure-tutorial-enable-replication/source.png)
+    :::image type="content" source="./media/azure-to-azure-tutorial-enable-replication/source.png" alt-text="设置源":::
 
 ### <a name="select-the-vms"></a>选择 VM
 
 Site Recovery 检索与订阅和资源组/云服务关联的 VM 列表。
 
 1. 在“虚拟机”中，选择要复制的 VM。
-1. 选择“确定” 。
+1. 选择“确定”。
 
 ### <a name="configure-replication-settings"></a>配置复制设置
 
@@ -131,7 +138,7 @@ Site Recovery 会针对目标区域创建默认设置和复制策略。 可以�
 
 1. 若要替代默认目标设置，请选择“资源组、网络、存储和可用性”旁边的“自定义” 。
 
-    ![配置设置](./media/azure-to-azure-tutorial-enable-replication/settings.png)
+    :::image type="content" source="./media/azure-to-azure-tutorial-enable-replication/settings.png" alt-text="配置设置":::
 
 1. 根据下表中的摘要内容自定义目标设置。
 
@@ -141,7 +148,7 @@ Site Recovery 会针对目标区域创建默认设置和复制策略。 可以�
     | **目标位置** | 用于灾难恢复的目标区域。<br/><br/> 建议选择与 Site Recovery 保管库位置匹配的目标位置。 |
     | 目标资源组 | 故障转移后，目标区域中用于容纳 Azure VM 的资源组。<br/><br/> 默认情况下，Site Recovery 会在目标位置中创建一个带有 `asr` 后缀的新资源组。 目标资源组的位置可以是除托管源虚拟机区域以外的任何区域。 |
     | 目标虚拟网络 | 故障转移后，目标区域中 VM 所位于的网络。<br/><br/> 默认情况下，Site Recovery 会在目标位置中创建一个带有 `asr` 后缀的新虚拟网络（以及子网）。 |
-    | 缓存存储帐户 | Site Recovery 使用源区域中的一个存储帐户。 复制到目标位置之前，对源 VM 的更改将发送到此帐户。<br/><br/> 如果使用的是启用了防火墙的缓存存储帐户，请确保启用“允许受信任的 Azure 服务”。 [了解详细信息](/storage/common/storage-network-security#exceptions)。 同时，请确保允许访问至少一个源 Vnet 子网。 |
+    | 缓存存储帐户 | Site Recovery 使用源区域中的一个存储帐户。 复制到目标位置之前，对源 VM 的更改将发送到此帐户。<br/><br/> 如果使用的是启用了防火墙的缓存存储帐户，请确保启用“允许受信任的 Azure 服务”。 [了解详细信息](../storage/common/storage-network-security.md#exceptions)。 同时，请确保允许访问至少一个源 Vnet 子网。 |
     | **目标存储帐户(源 VM 使用非托管磁盘)** | 默认情况下，Site Recovery 会在目标区域中创建新存储帐户，从而形成源 VM 存储帐户的镜像。<br/><br/> 如果使用支持防火墙的缓存存储帐户，请启用“允许受信任的 Azure 服务”。 |
     | **副本托管磁盘(如果源 VM 使用托管磁盘)** | 默认情况下，Site Recovery 在目标区域中创建副本托管磁盘，以生成和源 VM 的托管磁盘存储类型一致（标准或高级）的镜像磁盘。 你只能自定义磁盘类型。 |
     | 目标可用性集 | 默认情况下，Azure Site Recovery 会在目标区域中创建一个名称带有 `asr` 后缀（针对源区域中可用性集的 VM 部分）的新可用性集。 如果 Azure Site Recovery 创建的可用性集已存在，则会重复使用。 |
@@ -157,7 +164,7 @@ Site Recovery 会针对目标区域创建默认设置和复制策略。 可以�
     | **应用一致性快照频率** | 默认情况下，Site Recovery 每隔 4 小时创建应用一致性快照。 可将此值配置为 1 - 12 小时之间的任何值。<br/><br/> 应用一致的快照是 VM 内应用程序数据的时间点快照。 卷影复制服务 (VSS) 确保 VM 上的应用在拍摄快照时处于一致状态。 |
     | **复制组** | 如果应用程序需要跨 VM 的多 VM 一致性，可为这些 VM 创建一个复制组。 默认情况下，所选的 VM 不属于任何复制组。 |
 
-1. 若要将 VM 添加到新的或现有的复制组，请在“自定义”中选择“是”以确保多 VM 一致性。  然后选择“确定”。
+1. 若要将 VM 添加到新的或现有的复制组，请在“自定义”中选择“是”以确保多 VM 一致性。 然后选择“确定”。
 
     > [!NOTE]
     > - 故障转移时，复制组中的所有计算机将获得共享的崩溃一致性恢复点和应用程序一致性恢复点。
@@ -182,7 +189,7 @@ Site Recovery 会针对目标区域创建默认设置和复制策略。 可以�
 
 启用复制后，可以跟踪作业的状态。
 
-1. 在“设置”中，选择“刷新”以获取最新状态。 
+1. 在“设置”中，选择“刷新”以获取最新状态。
 1. 跟踪进度和状态，如下所示：
     1. 在“设置” > “作业” > “Site Recovery 作业”中，跟踪“启用保护”作业的进度。   
     1. 在“受保护的项” > “复制的项”中，可以查看 VM 的状态和初始复制进度。  选择 VM 以向下钻取其设置。

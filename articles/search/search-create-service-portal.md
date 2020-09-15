@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: quickstart
 origin.date: 06/07/2020
-ms.date: 07/02/2020
-ms.openlocfilehash: 6312ede662b4fc5ae15e73680126123e53007f59
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: 2817d81dea7dcdd89133279613504caeb8b2c5b1
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471894"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021578"
 ---
 # <a name="quickstart-create-an-azure-cognitive-search-service-in-the-portal"></a>快速入门：在门户中创建 Azure 认知搜索服务
 
@@ -25,6 +25,14 @@ Azure 认知搜索是用于在自定义应用中插入搜索体验的独立资�
 [![动画 GIF](./media/search-create-service-portal/AnimatedGif-AzureSearch-small.gif)](./media/search-create-service-portal/AnimatedGif-AzureSearch.gif#lightbox)
 
 更喜欢 PowerShell？ 使用 Azure 资源管理器[服务模板](https://azure.microsoft.com/resources/templates/101-azure-search-create/)。 有关如何入门的帮助，请参阅[使用 PowerShell 管理 Azure 认知搜索](search-manage-powershell.md)。
+
+## <a name="before-you-start"></a>开始之前
+
+以下服务属性在服务生存期内是固定的，更改任何属性都需要新的服务。 因为它们是固定的，所以在填写每个属性时，请考虑以下与用法相关的注意事项：
+
+* 服务名称变为 URL 终结点的一部分（[查看提示](#name-the-service)，了解有用的服务名称）。
+* 服务层会[影响计费](search-sku-tier.md)，应设置容量上限。 某些功能在免费层上不可用。
+* 服务区域可能决定某些方案的可用性。 如果需要[高安全性功能](search-security-overview.md)或 [AI 扩充](cognitive-search-concept-intro.md)，则需要将 Azure 认知搜索放置在与其他服务相同的区域中，或放置在提供相关功能的区域中。 
 
 ## <a name="subscribe-free-or-paid"></a>订阅（免费或付费）
 
@@ -44,7 +52,7 @@ Azure 认知搜索是用于在自定义应用中插入搜索体验的独立资�
 
 ## <a name="choose-a-subscription"></a>选择订阅
 
-如果有多个订阅，请选择一个用于搜索服务。
+如果有多个订阅，请选择一个用于搜索服务。 如果要实现[双重加密](search-security-overview.md#double-encryption)或依赖于托管服务标识的其他功能，请选择与用于 Azure Key Vault 或对其使用托管标识的其他服务相同的订阅。
 
 ## <a name="set-a-resource-group"></a>设置资源组
 
@@ -151,7 +159,7 @@ Azure 认知搜索在大多数区域中可用。 支持的区域列表可在[定
 
 尽管大多数客户只使用一个服务，但若有以下操作要求，则可能需要提供服务冗余：
 
-+ [业务连续性和灾难恢复 (BCDR)](https://docs.azure.cn/best-practices-availability-paired-regions)。 Azure 认知搜索在发生服务中断时不提供即时故障转移。
++ [业务连续性和灾难恢复 (BCDR)](../best-practices-availability-paired-regions.md)。 Azure 认知搜索在发生服务中断时不提供即时故障转移。
 
 + [多租户体系结构](search-modeling-multitenant-saas-applications.md)有时会调用两个或更多服务。
 

@@ -11,12 +11,12 @@ ms.workload: big-data
 ms.topic: conceptual
 ms.date: 08/05/2020
 ms.custom: seodec18
-ms.openlocfilehash: 4c0e17841b17d1cb9fd70614165b06a1a3adc027
-ms.sourcegitcommit: 36e7f37481969f92138bfe70192b1f4a2414caf7
+ms.openlocfilehash: 678838bfbf06d32ebc9d17aace176588cc95dca8
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87796324"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593793"
 ---
 # <a name="create-a-new-azure-time-series-insights-gen1-environment-in-the-azure-portal"></a>在 Azure 门户中创建新的 Azure 时序见解 Gen1 环境
 
@@ -44,7 +44,7 @@ ms.locfileid: "87796324"
 
    设置|建议的值|说明
    ---|---|---
-   环境名称 | 唯一的名称 | 此名称在[时序资源管理器](https://insights.timeseries.azure.com)中代表环境
+   环境名称 | 唯一的名称 | 此名称在[时序资源管理器](https://insights.timeseries.azure.cn)中代表环境
    订阅 | 订阅 | 如果有多个订阅，最好是选择包含事件源的订阅。 Azure 时序见解可以自动检测 Azure IoT 中心和事件中心资源是否存在于同一订阅中。
    资源组 | 创建新资源组或使用现有的资源组 | 资源组是结合使用的 Azure 资源的集合。 可以选择现有的资源组，例如，包含事件中心或 IoT 中心的资源组。 或者，如果此资源与其他资源不相关，则可以创建新资源组。
    位置 | 最靠近事件源的位置 | 最好是选择包含事件源数据的同一个数据中心位置，以尽量避免增加跨界和跨区域的带宽费用，以及将数据移出区域时增大延迟。

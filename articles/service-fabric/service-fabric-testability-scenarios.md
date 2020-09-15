@@ -1,17 +1,20 @@
 ---
 title: 为 Azure Service Fabric 创建混沌测试和故障转移测试
 description: 使用 Service Fabric 混沌测试和故障转移测试方案来引发故障，并验证服务的可靠性。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 10/01/2019
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: d5d9299372d0ec9d013c0a9943cc833ecc67a5fd
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: a932ffb46cfe8aea4373d332d958fc37600544db
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742115"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655611"
 ---
 # <a name="testability-scenarios"></a>可测试性方案
 大型分布式系统，例如云基础结构，在本质上都是不可靠的。 Azure Service Fabric 使开发人员能够编写出可以在不可靠基础结构上运行的服务。 若要编写高质量的服务，开发人员需要能够引入这种不可靠的基础结构来测试其服务的稳定性。

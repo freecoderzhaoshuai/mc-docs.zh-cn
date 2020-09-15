@@ -1,17 +1,20 @@
 ---
 title: Azure Service Fabric 托管模型
 description: 介绍已部署的 Service Fabric 服务和服务主机进程的副本（或实例）之间的关系。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 04/15/2017
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: e4051b7670c5307d2550490a304985e24b2b2729
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 578fd9b33eb338dcf23d387868d5cf9d1c604e2a
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356220"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655512"
 ---
 # <a name="azure-service-fabric-hosting-model"></a>Azure Service Fabric 托管模型
 本文概述 Azure Service Fabric 提供的应用程序托管模型，并介绍**共享进程**模型和**独占进程**模型之间的差异。 本文介绍已部署的应用程序在 Service Fabric 节点上的外观，以及服务和服务主机进程的副本（或实例）之间的关系。
@@ -186,12 +189,11 @@ Service Fabric 将[来宾可执行文件][a2]和[容器][a3]应用程序视为�
 
 [r1]: https://docs.microsoft.com/rest/api/servicefabric/sfclient-api-createservice
 
-[c1]: https://docs.azure.cn/dotnet/api/system.fabric.fabricclient.servicemanagementclient.createserviceasync?view=azure-dotnet
+[c1]: https://docs.azure.cn/dotnet/api/system.fabric.fabricclient.servicemanagementclient.createserviceasync
 [c2]: https://docs.azure.cn/dotnet/api/system.fabric.description.statelessservicedescription.instancecount?view=azure-dotnet
-
 [p1]: https://docs.microsoft.com/powershell/module/servicefabric/new-servicefabricservice
 [p2]: https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricservicedescription
-[p3]: https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricdeployedservicePackage
+[p3]: https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricdeployedservicepackage
 [p4]: https://docs.microsoft.com/powershell/module/servicefabric/send-servicefabricdeployedservicepackagehealthreport
 [p5]: https://docs.microsoft.com/powershell/module/servicefabric/restart-servicefabricdeployedcodepackage
 [p6]: https://docs.microsoft.com/powershell/module/servicefabric/get-servicefabricdeployedservicetype

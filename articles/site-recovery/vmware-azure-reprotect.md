@@ -1,19 +1,21 @@
 ---
 title: 使用 Azure Site Recovery 将 VMware VM 重新保护到本地站点
 description: 了解如何在故障转移到 Azure 后使用 Azure Site Recovery 重新保护 VMware VM。
-author: rockboyfor
 manager: digimobile
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 12/17/2019
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: f98452124059cd5946e6cac6ac3e1ef29ed82be6
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 05af6148d22d5ea4bbc1bc44852506d7cd8ef771
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291340"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655445"
 ---
 # <a name="reprotect-from-azure-to-on-premises"></a>从 Azure 到本地进行重新保护
 
@@ -34,7 +36,7 @@ ms.locfileid: "79291340"
     - 是否使用的是 ESXi 5.5 免费版或 vSphere 6 虚拟机监控程序免费版。 升级到其他版本。
     - 你是否有 Windows Server 2008 R2 SP1 物理服务器。
     - VMware VM 无法故障回复到 Hyper-V。
-    - [已迁移](migrate-overview.md#what-do-we-mean-by-migration)的 VM。
+    - 已迁移的 VM。
     - 已移动到另一个资源组的 VM。
     - 已删除的副本 Azure VM。
     - 未受保护（复制到本地站点）的副本 Azure VM。
@@ -63,7 +65,7 @@ ms.locfileid: "79291340"
 6. 将自动选择故障回复策略。
 7. 选择“确定”开始重新保护。 
 
-    ![“重新保护”对话框](./media/vmware-azure-reprotect/reprotectinputs.png)
+    :::image type="content" source="./media/vmware-azure-reprotect/reprotectinputs.png" alt-text="“重新保护”对话框":::
 
 8. 一个作业会开始将 Azure VM 复制到本地站点。 可以在“**作业**”选项卡上跟踪进度。
     - 重新保护成功后，VM 进入受保护状态。

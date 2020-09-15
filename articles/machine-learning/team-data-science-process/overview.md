@@ -11,12 +11,12 @@ ms.topic: overview
 ms.date: 1/10/2020
 ms.author: tdsp
 ms.custom: previous-author=deguhath, previous-ms.author=deguhath
-ms.openlocfilehash: 38aab4c4b3726a505da17e90aea848bc1e25de6f
-ms.sourcegitcommit: 2bd0be625b21c1422c65f20658fe9f9277f4fd7c
+ms.openlocfilehash: a0021253390b2a34f74ea887c419f2c24dce47fb
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440942"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021292"
 ---
 # <a name="what-is-the-team-data-science-process"></a>什么是团队数据科学过程？
 
@@ -100,7 +100,7 @@ TDSP 提供有关管理共享分析和存储基础结构的建议，例如：
 
 ## <a name="tools-and-utilities-for-project-execution"></a>用于项目执行的工具和实用程序
 
-在大多数组织中引入过程很有难度。 TDSP 提供了工具用于实现数据科学过程和生命周期，帮助削减屏障，提高客户的采用一致性。 TDSP 提供了一套初始工具和脚本，帮助在团队中快速采用 TDSP。 另外，它还帮助自动完成数据科学生命周期中的某些常见任务，例如数据探索和基线建模。 它为个人提供一个完善定义的结构，以便在团队的共享代码存储库中贡献共享的工具和实用程序。 然后，这些资源可由团队或组织中的其他项目利用。 TDSP 还计划为向整个社区贡献工具和实用程序提供支持。 可从 [GitHub](https://github.com/Azure/Azure-TDSP-Utilities) 克隆 TDSP 实用程序。
+在大多数组织中引入过程很有难度。 TDSP 提供了工具用于实现数据科学过程和生命周期，帮助削减屏障，提高客户的采用一致性。 TDSP 提供了一套初始工具和脚本，帮助在团队中快速采用 TDSP。 另外，它还帮助自动完成数据科学生命周期中的某些常见任务，例如数据探索和基线建模。 提供了一个妥善定义的结构，供个人将共享工具和实用程序贡献到团队的共享代码存储库中。 然后，这些资源可由团队或组织中的其他项目利用。 TDSP 还计划为向整个社区贡献工具和实用程序提供支持。 可从 [GitHub](https://github.com/Azure/Azure-TDSP-Utilities) 克隆 TDSP 实用程序。
 
 
 ## <a name="next-steps"></a>后续步骤

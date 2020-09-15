@@ -1,17 +1,20 @@
 ---
 title: 备份和还原 Azure Service Fabric 执行组件
 description: 了解如何在 Azure Service Fabric 执行组件中实现备份和还原。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 10/29/2018
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: e88634df11de2afc44a6f82d0beb257b242c68c8
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 86bb2cf6a0518b1a4697e1ddd8f85e920bfe3f3b
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742415"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655246"
 ---
 # <a name="implement-reliable-actors-backup-and-restore"></a>实现 Reliable Actors 备份和还原
 
@@ -113,7 +116,7 @@ myActorServiceProxy.backupActorsAsync();
 有关 Reliable Actors 的详细信息，请阅读以下文章：
 * [执行组件状态管理](service-fabric-reliable-actors-state-management.md)
 * [执行组件生命周期和垃圾回收](service-fabric-reliable-actors-lifecycle.md)
-* [执行组件 API 参考文档](https://msdn.microsoft.com/library/azure/dn971626.aspx)
+* [执行组件 API 参考文档](https://docs.microsoft.com/previous-versions/azure/dn971626(v=azure.100))
 * [.NET 代码示例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)
 * [Java 代码示例](https://github.com/Azure-Samples/service-fabric-java-getting-started)
 
@@ -125,4 +128,4 @@ myActorServiceProxy.backupActorsAsync();
 [4]: ./media/service-fabric-reliable-actors-platform/actor-replica-role.png
 [5]: ./media/service-fabric-reliable-actors-introduction/distribution.png
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

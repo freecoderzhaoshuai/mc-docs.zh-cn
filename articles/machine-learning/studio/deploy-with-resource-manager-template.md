@@ -10,12 +10,12 @@ author: xiaoharper
 ms.author: amlstudiodocs
 ms.custom: seodec18
 ms.date: 02/05/2018
-ms.openlocfilehash: 6cb007a70f3dfc5e0063bae0b18e38853daf558c
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 590ac7d6ee6968feec9a7d22bfa447d4fa62a240
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228319"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020961"
 ---
 # <a name="deploy-azure-machine-learning-studio-classic-workspace-using-azure-resource-manager"></a>使用 Azure 资源管理器部署 Azure 机器学习工作室（经典）工作区
 
@@ -110,7 +110,7 @@ Connect-AzAccount
 * 创建资源组
 
 ```powershell
-$rg = New-AzResourceGroup -Name "uniquenamerequired523" -Location "South Central US"
+$rg = New-AzResourceGroup -Name "uniquenamerequired523" -Location "China East 2"
 $rg
 ```
 

@@ -7,14 +7,15 @@ author: HeidiSteen
 ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: tutorial
-origin.date: 04/15/2020
-ms.date: 06/09/2020
-ms.openlocfilehash: eec3811e4c9f15d9bf23252ea7f2b8d91e3a25d5
-ms.sourcegitcommit: c4fc01b7451951ef7a9616fca494e1baf29db714
+origin.date: 07/15/2020
+ms.date: 09/10/2020
+ms.custom: devx-track-javascript, devx-track-csharp
+ms.openlocfilehash: 8f61bf09e9ce553dddd19e3216bc2dccb31228d2
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84564222"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021576"
 ---
 # <a name="tutorial-add-autocomplete-and-suggestions-using-the-net-sdk"></a>教程：使用 .NET SDK 添加自动完成和建议功能
 
@@ -145,7 +146,7 @@ ms.locfileid: "84564222"
  
     ![在将 fuzzy 设置为 true 后，键入“pa”](./media/tutorial-csharp-create-first-app/azure-search-suggest-fuzzy.png)
 
-    如果感兴趣，可阅读 [Azure 认知搜索中的 Lucene 查询语法](https://docs.azure.cn/search/query-lucene-syntax)，其中详细介绍了模糊搜索使用的逻辑。
+    如果感兴趣，可阅读 [Azure 认知搜索中的 Lucene 查询语法](./query-lucene-syntax.md)，其中详细介绍了模糊搜索使用的逻辑。
 
 ## <a name="add-highlighting-to-the-suggestions"></a>为建议添加突出显示
 
@@ -464,5 +465,3 @@ ms.locfileid: "84564222"
 
 > [!div class="nextstepaction"]
 > [C# 教程：使用 facet 辅助导航 - Azure 认知搜索](tutorial-csharp-facets.md)
-
-

@@ -7,13 +7,13 @@ ms.author: v-jay
 ms.custom: mvc
 ms.topic: overview
 origin.date: 3/18/2020
-ms.date: 08/17/2020
-ms.openlocfilehash: 73d7423a9a28efee0254558df66d3591c7d65860
-ms.sourcegitcommit: 3cf647177c22b24f76236c57cae19482ead6a283
+ms.date: 09/14/2020
+ms.openlocfilehash: 12bfa7a0c043422b5008003f42a11ab9daed1999
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88029681"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512928"
 ---
 # <a name="what-is-azure-database-for-mysql"></a>什么是用于 MySQL 的 Azure 数据库？
 
@@ -41,6 +41,9 @@ Azure Database for MySQL 是 Azure 中基于 [MySQL 社区版](https://www.mysql
 如需一组 Azure CLI 示例，请参阅：
 
 - [用于 MySQL 的 Azure 数据库的 Azure CLI 示例](sample-scripts-azure-cli.md)
+
+## <a name="automated-patching"></a>自动修补
+该服务执行基础硬件、OS 和数据库引擎的自动修补。 补丁包括基础硬件、OS 和数据库引擎的安全和软件更新。 对于 MySQL 引擎，次要版本升级自动进行，作为修补版本的一部分包含在内。 当社区发布次要版本时，它会作为服务测试周期的一部分自动集成。 次要版本的测试是在 MySQL 的一些标准工作负载上执行的。 将对 MySQL 引擎的次要版本进行可靠性（无崩溃）、可用性、安全性和性能评估。 并不是每个次要版本都会在服务中发布到生产环境，而会根据 bug 修复的关键程度和新的增量值进行评估。 这是为了在以下二者之间努力实现适当的平衡：实现新的增量价值，同时最大程度地减少系统中的变量以保持稳定。 无需任何用户操作或配置设置即可进行修补。 修补频率根据有效负载的重要性由服务管理。 一般来说，作为持续集成和发布的一部分，该服务遵循每月发布计划。 用户可以订阅[计划内维护通知](concepts-monitoring.md)，在维护开始前 72 小时接收有关该维护事件的通知。
 
 ## <a name="adjust-performance-and-scale-within-seconds"></a>几秒钟内调整性能和规模
 Azure Database for MySQL 服务提供多个服务层级：“基本”、“常规用途”和“内存优化”。 每个层提供不同的性能和功能，以支持从轻型到重型的数据库工作负荷。 可以在一个月内花费很少的费用基于小型数据库构建第一个应用，然后根据解决方案的需求调整缩放。 动态可伸缩性使得数据库能够以透明方式对不断变化的资源需求做出响应。 只需在需要资源时为所需的资源付费。 有关详细信息，请参阅 [定价层](concepts-service-tiers.md)。

@@ -1,17 +1,19 @@
 ---
 title: 云服务与 Service Fabric 之间的差异
 description: 有关将应用程序从云服务迁移到 Service Fabric 的概念性概述。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 11/02/2017
-ms.date: 01/06/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 54ae83ea549483e1052728418b1f55c677e49dbb
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: e9e225002b5a85edbf849b3812723d401b8079b4
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742371"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655664"
 ---
 # <a name="learn-about-the-differences-between-cloud-services-and-service-fabric-before-migrating-applications"></a>迁移应用程序之前了解云服务与 Service Fabric 之间的差异。
 Azure Service Fabric 是面向高度可缩放、高度可靠的分布式应用程序的下一代云应用程序平台。 其中引入了许多用于打包、部署、更新和管理分布式云应用程序的新功能。 
@@ -82,9 +84,10 @@ Service Fabric 提供服务发现机制（称为“命名服务”），用于�
 ![Service Fabric 直接通信][8]
 
 ## <a name="parity"></a>Parity
-[云服务的控制和易用程度类似于 Service Fabric，但它现在是旧版服务，因此建议将 Service Fabric 用于新的开发](/app-service/overview-compare)；下面是 API 的对比情况：
 
-| **云服务 API** | **Service Fabric API** | **说明** |
+<!--Not Available on [Cloud Services is similar to Service Fabric in degree of control versus ease of use, but it's now a legacy service and Service Fabric is recommended for new development](https://docs.microsoft.com/azure/architecture/guide/technology-choices/compute-decision-tree); the following is an API comparison:-->
+
+| **云服务 API** | **Service Fabric API** | **备注** |
 | --- | --- | --- |
 | RoleInstance.GetID | FabricRuntime.GetNodeContext.NodeId 或 .NodeName | ID 是 NodeName 的属性 |
 | RoleInstance.GetFaultDomain | FabricClient.QueryManager.GetNodeList | 按 NodeName 筛选并使用 FD 属性 |
@@ -115,4 +118,4 @@ Service Fabric 提供服务发现机制（称为“命名服务”），用于�
 [10]: ./media/service-fabric-cloud-services-migration-differences/service-fabric-architecture-simple.png
 [11]: ./media/service-fabric-cloud-services-migration-differences/service-fabric-architecture-full.png
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

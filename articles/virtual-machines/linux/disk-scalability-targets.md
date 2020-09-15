@@ -1,29 +1,29 @@
 ---
 title: Linux 上的 VM 磁盘的可伸缩性和性能目标
 description: 了解附加到运行 Linux 的 VM 的虚拟机磁盘的可伸缩性和性能目标。
-author: rockboyfor
-ms.author: v-yeche
+author: Johnnytechn
+ms.author: v-johya
 origin.date: 11/15/2017
-ms.date: 02/10/2020
+ms.date: 09/03/2020
 ms.topic: conceptual
 ms.service: virtual-machines-linux
 ms.subservice: disks
-ms.openlocfilehash: bf908910169278b3590146b06029bac430554f00
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 77ee6bdcac2035ba8a076559f34189b3e934f29f
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77428488"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057600"
 ---
 # <a name="scalability-and-performance-targets-for-vm-disks-on-linux"></a>Linux 上的 VM 磁盘的可伸缩性和性能目标
 
 [!INCLUDE [azure-storage-limits-vm-disks](../../../includes/azure-storage-limits-vm-disks.md)]
 
-请参阅 [Linux VM 大小](../../virtual-machines/windows/sizes.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)了解其他详细信息。
+请参阅 [Linux VM 大小](../sizes.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)了解其他详细信息。
 
 ## <a name="managed-virtual-machine-disks"></a>托管虚拟机磁盘
 
-<!--Not Avaialble on PREVIEW ON [FAQ](faq-for-disks.md#new-disk-sizes-managed-and-unmanaged)-->
+用星号表示的大小当前处于预览阶段。 请参阅我们的[常见问题解答](../faq-for-disks.md#new-disk-sizes-managed-and-unmanaged)，了解它们可用的区域。
 
 [!INCLUDE [azure-storage-limits-vm-disks-managed](../../../includes/azure-storage-limits-vm-disks-managed.md)]
 
@@ -34,6 +34,6 @@ ms.locfileid: "77428488"
 
 ## <a name="see-also"></a>另请参阅
 
-[Azure 订阅和服务限制、配额和约束](/azure-resource-manager/management/azure-subscription-service-limits)
+[Azure 订阅和服务限制、配额和约束](../../azure-resource-manager/management/azure-subscription-service-limits.md)
 
 <!-- Update_Description: update meta properties, wording update, update link -->

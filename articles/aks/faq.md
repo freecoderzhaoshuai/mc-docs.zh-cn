@@ -2,17 +2,18 @@
 title: 有关 Azure Kubernetes 服务 (AKS) 的常见问题解答
 description: 查找有关 Azure Kubernetes 服务 (AKS) 的某些常见问题的解答。
 ms.topic: conceptual
-origin.date: 07/31/2020
-ms.date: 08/10/2020
+origin.date: 08/06/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 07/20/2020
 ms.author: v-yeche
-ms.openlocfilehash: 55ebe68751bbb1e58041a19762fdcddfd2f8ef2a
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: a9d9d5a03f258ce8e1205038d56cddd6ce7fc4d1
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842556"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021539"
 ---
 # <a name="frequently-asked-questions-about-azure-kubernetes-service-aks"></a>有关 Azure Kubernetes 服务 (AKS) 的常见问题解答
 
@@ -71,13 +72,11 @@ AKS 在多个 Azure 基础结构资源之上构建，包括虚拟机规模集、
 1. 创建第一个资源组。 此组仅包含 Kubernetes 服务资源。 在部署过程中，AKS 资源提供程序会自动创建第二个资源组。 例如，第二个资源组为 *MC_myResourceGroup_myAKSCluster_chinaeast2*。 有关如何指定这第二个资源组的名称，请参阅下一部分。
 1. 第二个资源组（称为节点资源组）包含与该群集相关联的所有基础结构资源。 这些资源包括 Kubernetes 节点 VM、虚拟网络和存储。 默认情况下，节点资源组使用类似于 *MC_myResourceGroup_myAKSCluster_chinaeast2* 的名称。 每当删除群集时，AKS 会自动删除节点资源，因此，仅应对生命周期与群集相同的资源使用 AKS。
 
-    <!--CUSTOMIZATION: CORRECT ON  resources THAT share the cluster's lifecycle-->
+    <!--CUSTOMIZATION: MEET SCORECARD REQUEST ON resources THAT share the cluster's lifecycle-->
 
 ## <a name="can-i-provide-my-own-name-for-the-aks-node-resource-group"></a>我是否可为 AKS 节点资源组提供自己的名称？
 
-是的。 默认情况下，AKS 将节点资源组命名为 MC_resourcegroupname_clustername_location，但你也可以提供自己的名称。
-
-<!--CUSTOMIZE CORRECT ON `--node-resource-group` -->
+可以。 默认情况下，AKS 将节点资源组命名为 MC_resourcegroupname_clustername_location，但你也可以提供自己的名称。
 
 若要自行指定一个资源组名称，请安装 [aks-preview][aks-preview-cli] Azure CLI 扩展版本 0.3.2 或更高版本。 使用 [az aks create][az-aks-create] 命令创建 AKS 群集时，请使用 `*--node-resource-group` 参数并指定资源组的名称。 如果使用 Azure 资源管理器模板部署 AKS 群集，则可以使用 nodeResourceGroup 属性定义资源组名称。
 
@@ -98,7 +97,7 @@ AKS 在多个 Azure 基础结构资源之上构建，包括虚拟机规模集、
 
 如果修改或删除节点资源组中 Azure 创建的标记和其他资源属性，可能会出现意外的结果，例如缩放和升级错误。 使用 AKS，可以创建和修改由最终用户创建的自定义标记，还可以在[创建节点池](use-multiple-node-pools.md#specify-a-taint-label-or-tag-for-a-node-pool)时添加这些标记。 例如，可以创建或修改标记，以分配业务单位或成本中心。 这也可以通过在托管资源组上创建具有作用域的 Azure 策略来实现。
 
-<!--CUSTOMIZATION: CORRECT ON end users DUE TO SCORECARD-->
+<!--CUSTOMIZATION: MEET SCORECARD REQUEST ON end users-->
 
 但是，在 AKS 群集中的节点资源组下修改任何 Azure 在资源中创建的标记是不受支持的操作，会中断服务级别目标 (SLO)。
 
@@ -212,6 +211,8 @@ Windows Server 对节点池的支持具有一些限制，Kubernetes 项目中的
 
 ## <a name="does-aks-store-any-customer-data-outside-of-the-clusters-region"></a>AKS 是否将任何客户数据存储在群集区域之外？
 
+<!--MOONCAKE: CORRECT ON within the cluster's region-->
+
 不是。 在 AKS 群集中创建的所有数据都将保留在群集的区域内。
 
 <!-- LINKS - internal -->
@@ -221,8 +222,11 @@ Windows Server 对节点池的支持具有一些限制，Kubernetes 项目中的
 [aks-advanced-networking]: ./configure-azure-cni.md
 [aks-rbac-aad]: ./azure-ad-integration-cli.md
 [node-updates-kured]: node-updates-kured.md
-[aks-preview-cli]: https://docs.microsoft.com/cli/azure/ext/aks-preview/aks?view=azure-cli-latest
-[az-aks-create]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-create
+
+<!--CORRECT ON /cli/azure/ext/aks-preview/aks-->
+
+[aks-preview-cli]: https://docs.microsoft.com/cli/azure/ext/aks-preview/aks
+[az-aks-create]: https://docs.microsoft.com/cli/azure/aks#az_aks_create
 
 <!--Not Avaialble on [aks-rm-template]: /templates/microsoft.containerservice/2019-06-01/managedclusters-->
 

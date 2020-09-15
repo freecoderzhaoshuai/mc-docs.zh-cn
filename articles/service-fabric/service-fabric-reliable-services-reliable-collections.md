@@ -3,14 +3,17 @@ title: 可靠集合简介
 description: Service Fabric 有状态服务提供可靠集合让你编写高度可用、可缩放且低延迟的云应用程序。
 ms.topic: conceptual
 origin.date: 03/10/2020
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 42060bb9d72c46b835462fe7f8ffe458db9cf1be
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.openlocfilehash: f4d6bc2dd7619cc89184d139c676e6f48c29e539
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356255"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655357"
 ---
 # <a name="introduction-to-reliable-collections-in-azure-service-fabric-stateful-services"></a>Azure Service Fabric 有状态服务中的可靠集合简介
 
@@ -21,7 +24,7 @@ Reliable Collections 与其他高可用性技术（如 Redis、Azure 表服务�
 * 所有读取均在本地进行，可保障读取的低延迟和高吞吐量。
 * 所有写入都只产生最少量的网络 IO，可保障写入的低延迟和高吞吐量。
 
-![集合演变图。](media/service-fabric-reliable-services-reliable-collections/ReliableCollectionsEvolution.png)
+:::image type="content" source="media/service-fabric-reliable-services-reliable-collections/ReliableCollectionsEvolution.png" alt-text="集合演变图。":::
 
 可以将可靠集合视作 **System.Collections** 类的自然演变：它们是一组新的集合，专为云应用程序和多计算机应用程序设计，且不会为开发人员增加复杂性。 因此，可靠集合的特性如下：
 
@@ -61,4 +64,4 @@ Reliable Collections 提供全新的非常一致保证，使应用程序状态�
     * [Reliable Services 快速启动](service-fabric-reliable-services-quick-start.md)
     * [Reliable Collections 的开发人员参考](https://docs.azure.cn/dotnet/api/microsoft.servicefabric.data.collections?view=azure-dotnet#microsoft_servicefabric_data_collections)
 
-<!-- Update_Description: update meta properties, update link -->
+<!-- Update_Description: update meta properties, wording update, update link -->

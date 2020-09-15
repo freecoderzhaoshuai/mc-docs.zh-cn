@@ -13,14 +13,14 @@ ms.tgt_pltfrm: na
 ms.devlang: nodejs
 ms.topic: article
 origin.date: 08/17/2016
-ms.date: 08/27/2020
+ms.date: 09/10/2020
 ms.author: v-tawe
-ms.openlocfilehash: fd9b7813dad5415ab61bba39e169c7bf96e8be27
-ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
+ms.openlocfilehash: 9f711e6207a696ae9199d447078ccb9d5c860863
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88951313"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021445"
 ---
 # <a name="using-nodejs-modules-with-azure-applications"></a>将 Node.js 模块与 Azure 应用程序一起使用
 本文档提供有关将 Node.js 模块与托管在 Azure 中的应用程序一起使用的指南。 其中提供有关确保应用程序使用特定版本的模块以及对 Azure 使用本机模块的指南。

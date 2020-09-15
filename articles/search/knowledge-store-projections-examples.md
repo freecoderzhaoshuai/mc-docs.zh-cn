@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 06/30/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: 8bcae62df74ffe4848ba666cb42cd71f2e0c2673
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: 2a545545fa292560fd816e9bc3d0398643d31983
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471854"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021594"
 ---
 # <a name="how-to-shape-and-export-enrichments"></a>如何整形和导出扩充内容
 

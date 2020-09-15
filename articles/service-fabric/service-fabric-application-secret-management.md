@@ -3,14 +3,18 @@ title: 管理 Azure Service Fabric 应用程序机密
 description: 了解如何保护 Service Fabric 应用程序中的机密值（与平台无关）。
 ms.topic: conceptual
 origin.date: 01/04/2019
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 7b61897c50474bff8baccd4fcf0c2f30968701f6
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 43c2f2d0045a7d88229e061ba06df57627c0960a
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356287"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655268"
 ---
 # <a name="manage-encrypted-secrets-in-service-fabric-applications"></a>管理 Service Fabric 应用程序中的已加密机密
 本指南逐步讲解管理 Service Fabric 应用程序中的机密的步骤。 机密可以是任何敏感信息，例如存储连接字符串、密码或其他不应以明文形式处理的值。
@@ -101,7 +105,7 @@ Settings.xml 配置文件允许使用可在创建应用程序时提供的可重�
 
 现在，可以在创建应用程序实例时将值指定为*应用程序参数* 。 可以使用 PowerShell 或 C# 编写用于创建应用程序实例的脚本，方便在生成过程中轻松集成。
 
-使用 PowerShell 时，参数将以[哈希表](https://technet.microsoft.com/library/ee692803.aspx)的形式提供给 `New-ServiceFabricApplication`：
+使用 PowerShell 时，参数将以[哈希表](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-powershell-1.0/ee692803(v=technet.10))的形式提供给 `New-ServiceFabricApplication`：
 
 ```powershell
 New-ServiceFabricApplication -ApplicationName fabric:/MyApp -ApplicationTypeName MyAppType -ApplicationTypeVersion 1.0.0 -ApplicationParameter @{"MySecret" = "I6jCCAeYCAxgFhBXABFxzAt ... gNBRyeWFXl2VydmjZNwJIM="}

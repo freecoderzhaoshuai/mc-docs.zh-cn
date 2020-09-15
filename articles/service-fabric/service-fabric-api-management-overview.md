@@ -1,21 +1,23 @@
 ---
 title: Azure Service Fabric 与 API 管理概述
 description: 本文介绍了如何将 Azure API 管理用作 Service Fabric 应用程序的网关。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 06/22/2017
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: e3047202460cb4349b8d9e27c82cdba9e48fd992
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 3f7b71210c877899f0ac5d4469cd5ce3e4210248
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540507"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655546"
 ---
 # <a name="service-fabric-with-azure-api-management-overview"></a>有关 Azure Service Fabric 与 API 管理的概述
 
-云应用程序通常都需要使用前端网关，为用户、设备或其他应用程序提供同一个入口点。 在 Service Fabric 中，网关可以是任意无状态服务（如 [ASP.NET Core 应用程序](service-fabric-reliable-services-communication-aspnetcore.md)），也可以是其他专为流量入口设计的服务（如[事件中心](/event-hubs/)、[IoT 中心](/iot-hub/)或 [Azure API 管理](/api-management/)）。
+云应用程序通常都需要使用前端网关，为用户、设备或其他应用程序提供同一个入口点。 在 Service Fabric 中，网关可以是任意无状态服务（如 [ASP.NET Core 应用程序](service-fabric-reliable-services-communication-aspnetcore.md)），也可以是其他专为流量入口设计的服务（如[事件中心](../event-hubs/index.yml)、[IoT 中心](../iot-hub/index.yml)或 [Azure API 管理](../api-management/index.yml)）。
 
 本文介绍了如何将 Azure API 管理用作 Service Fabric 应用程序的网关。 API 管理直接与 Service Fabric 集成，以便可以使用一组丰富的路由规则向后端 Service Fabric 服务发布 API。
 
@@ -121,4 +123,4 @@ Azure API 管理可与无状态服务、有状态服务和任何分区方案的�
 [sf-apim-dynamic-stateless]: ./media/service-fabric-api-management-overview/sf-apim-dynamic-stateless.png
 [sf-apim-dynamic-stateful]: ./media/service-fabric-api-management-overview/sf-apim-dynamic-stateful.png
 
-<!-- Update_Description: update meta properties, update link -->
+<!-- Update_Description: update meta properties, wording update, update link -->

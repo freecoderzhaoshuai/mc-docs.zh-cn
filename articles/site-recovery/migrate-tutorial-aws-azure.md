@@ -1,21 +1,23 @@
 ---
-title: 使用 Azure Site Recovery 服务将 AWS VM 迁移到 Azure | Azure
-description: 本文介绍如何使用 Azure Site Recovery 将 Amazon Web Services (AWS) 中运行的 Windows VM 迁移到 Azure。
+title: 使用 Azure Migrate 将 AWS VM 迁移到 Azure
+description: 本文介绍用于将 AWS 实例迁移到 Azure 的选项，并推荐 Azure Migrate。
 services: site-recovery
-author: rockboyfor
 manager: digimobile
 ms.service: site-recovery
 ms.topic: tutorial
-origin.date: 09/09/2019
-ms.date: 06/08/2020
+origin.date: 07/27/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
 ms.custom: MVC
-ms.openlocfilehash: cb71e83d22a26dc16008d041e85d0f59113060bc
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: 12d047a4a70aa4a101134b6ce579a33468a9c14f
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440562"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655433"
 ---
 # <a name="migrate-amazon-web-services-aws-vms-to-azure"></a>将 Amazon Web Services (AWS) VM 迁移到 Azure
 
@@ -84,7 +86,7 @@ ms.locfileid: "84440562"
 4. 对于“资源组”，请选择“使用现有”，然后选择“migrationRG”。
 5. 选择“中国北部”作为“位置”。
 5. 选择“固定到仪表板”即可从仪表板快速访问新的保管库。
-7. 完成操作后，选择“创建”。
+7. 完成操作后，选择“创建”  。
 
 若要查看新保管库，请转到“仪表板” > “所有资源”。 新保管库也显示在“恢复服务保管库”主页上。
 
@@ -217,7 +219,7 @@ ms.locfileid: "84440562"
 
 3. 向导完成后，选择“启用复制”。
 
-若要跟踪“启用保护”作业的进度，请转到“监视和报告” > “作业” > “Site Recovery 作业”。 在“完成保护”作业运行之后，计算机就可以进行故障转移了。        
+若要跟踪“启用保护”作业的进度，请转到“监视和报告” > “作业” > “Site Recovery 作业”。 在“完成保护”  作业运行之后，计算机就可以进行故障转移了。        
 
 为 VM 启用复制后，可能要等 15 分钟或更长时间，更改才会生效并显示在门户中。
 
@@ -250,7 +252,7 @@ ms.locfileid: "84440562"
 对 EC2 实例运行真正的故障转移，将其迁移到 Azure VM：
 
 1. 在“受保护的项” > “复制的项”中选择 AWS 实例，然后选择“故障转移”。
-2. 在“故障转移”中，选择要故障转移到其中的“恢复点”。 选择最新的恢复点，然后启动故障转移。 可以在“作业”页上跟踪故障转移进度。
+2. 在“故障转移”中，选择要故障转移到其中的“恢复点”。 选择最新的恢复点，然后启动故障转移。 可以在“作业”页上跟踪故障转移进度。 
 1. 确保 VM 出现在“复制的项”中。
 2. 右键单击每个 VM，然后选择“完成迁移”。 这样会执行以下操作：
 

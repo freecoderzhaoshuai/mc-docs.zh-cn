@@ -1,17 +1,20 @@
 ---
 title: 从 .NET 应用生成日志事件
 description: 了解如何向 Azure 群集或独立群集中托管的 .NET Service Fabric 应用程序添加日志记录。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 03/27/2018
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 32c5a02d34dfe07007e1e3b5620f09927e3d5ed5
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 0b10d1ef9f0dd915916ac4ea0acf1422172bc4fd
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540670"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655654"
 ---
 # <a name="add-logging-to-your-service-fabric-application"></a>向 Service Fabric 应用程序添加日志记录
 
@@ -171,4 +174,4 @@ ASP.NET Core 日志记录（[Microsoft.Extensions.Logging NuGet 包](https://www
 - 阅读有关 [Service Fabric 中的应用程序监视](service-fabric-diagnostics-event-generation-app.md)的详细信息。
 - 阅读使用 [EventFlow](service-fabric-diagnostics-event-aggregation-eventflow.md) 和 [Windows Azure 诊断](service-fabric-diagnostics-event-aggregation-wad.md)进行日志记录的相关信息。
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

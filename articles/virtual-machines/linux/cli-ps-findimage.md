@@ -1,28 +1,18 @@
 ---
-title: 使用 Azure CLI 在 Azure 市场中查找 Linux VM 映像
+title: 使用 Azure CLI 选择 Linux VM 映像
 description: 了解如何使用 Azure CLI 确定发布服务器、产品/服务、SKU 和市场 VM 映像的版本。
-services: virtual-machines-linux
-documentationcenter: ''
 author: Johnnytechn
-manager: digimobile
-editor: ''
-tags: azure-resource-manager
-ms.assetid: 7a858e38-4f17-4e8e-a28a-c7f801101721
 ms.service: virtual-machines-linux
-ms.devlang: azurecli
-ms.topic: article
-ms.tgt_pltfrm: vm-linux
-ms.workload: infrastructure
 origin.date: 01/25/2019
-ms.date: 04/13/2020
+ms.topic: how-to
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.custom: H1Hack27Feb2017
-ms.openlocfilehash: aa64c1eec38ad2d5d773ee1033494d07b0c6208e
-ms.sourcegitcommit: ebedf9e489f5218d4dda7468b669a601b3c02ae5
+ms.openlocfilehash: 0506df4fb264de705ac48328b6600f7159d584dc
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2020
-ms.locfileid: "82159121"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057498"
 ---
 # <a name="find-linux-vm-images-in-the-azure-marketplace-with-the-azure-cli"></a>使用 Azure CLI 在 Azure 市场中查找 Linux VM 映像
 
@@ -74,6 +64,7 @@ UbuntuServer   Canonical               16.04-LTS           Canonical:UbuntuServe
 
 ```azurecli
 az vm image list --offer Debian --all --output table 
+
 ```
 
 部分输出： 
@@ -182,22 +173,30 @@ az vm image list-publishers --location chinanorth --output table
 ```
 Location    Name
 ----------  ----------------------------------------------------
+chinanorth  360-cn
 chinanorth  A10Networks
+chinanorth  a10networks-cn
+chinanorth  afajr-cn
+chinanorth  aibaby
+chinanorth  aigauss
+chinanorth  airdoc
+chinanorth  airdoc-cn
+chinanorth  alauda
 chinanorth  AllMobilize
 chinanorth  alteonva
 chinanorth  Antshares
+chinanorth  arcblock-cn
+chinanorth  arctron
 chinanorth  array_networks
+chinanorth  array_networks-cn
 chinanorth  AsiaInfo.DeepSecurity
+chinanorth  attittu-cn
 chinanorth  AzureChinaMarketplace
+chinanorth  AzureDatabricks
 chinanorth  baison
 chinanorth  BespinGlobal
 chinanorth  beyondsoft
-chinanorth  bjjzhj
-chinanorth  blacklake2
-chinanorth  BlueStoneEcommerceSolution
-chinanorth  bw-jx
-chinanorth  C3CRM
-chinanorth  Canonical
+chinanorth  beyondsoft-cn
 ...
 ```
 
@@ -231,24 +230,34 @@ az vm image list-skus --location chinanorth --publisher Canonical --offer Ubuntu
 ```
 Location    Name
 ----------  -----------------
-chinanorth      12.04.3-LTS
-chinanorth      12.04.4-LTS
-chinanorth      12.04.5-LTS
-chinanorth      14.04.0-LTS
-chinanorth      14.04.1-LTS
-chinanorth      14.04.2-LTS
-chinanorth      14.04.3-LTS
-chinanorth      14.04.4-LTS
-chinanorth      14.04.5-DAILY-LTS
-chinanorth      14.04.5-LTS
-chinanorth      16.04-DAILY-LTS
-chinanorth      16.04-LTS
-chinanorth      16.04.0-LTS
-chinanorth      17.10
-chinanorth      17.10-DAILY
-chinanorth      18.04-DAILY-LTS
-chinanorth      18.04-LTS
-chinanorth      18.10-DAILY
+chinanorth  12.04.5-LTS
+chinanorth  14.04.2-LTS
+chinanorth  14.04.3-LTS
+chinanorth  14.04.4-LTS
+chinanorth  14.04.5-LTS
+chinanorth  14.10
+chinanorth  15.04
+chinanorth  15.10
+chinanorth  16.04-DAILY-LTS
+chinanorth  16.04-LTS
+chinanorth  16.04.0-LTS
+chinanorth  16.10
+chinanorth  16_04-daily-lts-gen2
+chinanorth  16_04-lts-gen2
+chinanorth  16_04_0-lts-gen2
+chinanorth  17.04
+chinanorth  17.10
+chinanorth  18.04-DAILY-LTS
+chinanorth  18.04-LTS
+chinanorth  18.10
+chinanorth  18_04-daily-lts-gen2
+chinanorth  18_04-lts-gen2
+chinanorth  19.04
+chinanorth  19.04-DAILY
+chinanorth  19.10-DAILY
+chinanorth  19_04-daily-gen2
+chinanorth  19_04-gen2
+chinanorth  19_10-daily-gen2
 ```
 
 最后，使用 `az vm image list` 命令查找所需的特定版本的 SKU，例如，18.04-LTS  ：

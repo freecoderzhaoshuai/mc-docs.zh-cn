@@ -1,19 +1,19 @@
 ---
 title: Azure Service Fabric CLI - sfctl chaos
 description: 了解 sfctl（Azure Service Fabric 命令行接口）。 包含用于管理混沌测试的命令列表。
-author: rockboyfor
 ms.topic: reference
 origin.date: 01/16/2020
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 02/24/2020
 ms.author: v-yeche
-ms.openlocfilehash: 8abca80c7cdc6e134359c717d65c99c2ba3d3056
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 01a99dd34c2ae7eda20898f6a521ae701a824dc2
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426535"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655637"
 ---
 # <a name="sfctl-chaos"></a>sfctl chaos
 启动、停止和报告混沌测试服务。
@@ -133,6 +133,6 @@ ms.locfileid: "87426535"
 
 ## <a name="next-steps"></a>后续步骤
 - [安装](service-fabric-cli.md) Service Fabric CLI。
-- 了解如何通过[示例脚本](/service-fabric/scripts/sfctl-upgrade-application)使用 Service Fabric CLI。
+- 了解如何通过[示例脚本](./scripts/sfctl-upgrade-application.md)使用 Service Fabric CLI。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

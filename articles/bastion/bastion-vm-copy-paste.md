@@ -10,14 +10,14 @@ ms.date: 07/27/2020
 ms.testscope: yes
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 09a18b10004a00d1633d30859e738d43f159d51b
-ms.sourcegitcommit: 4d9846bb03ac24bd98b0c9a781bb8912ff6d2f61
+ms.openlocfilehash: 9e89efd74f35d1cfcc572e8c4c119ae0694a4992
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "86926978"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89654972"
 ---
-<!--RELEASE BEFORE CONFIRMATION-->
+<!--Verified successfully on 09/07/2020-->
 # <a name="copy-and-paste-to-a-virtual-machine-azure-bastion"></a>复制并粘贴到虚拟机：Azure Bastion
 
 本文可帮助你在使用 Azure Bastion 时将内容复制并粘贴到虚拟机，以及从中进行复制和粘贴。 使用 VM 之前，请确保已按照[创建 Bastion 主机](bastion-create-host-portal.md)的步骤进行操作。 然后，连接到要通过 [RDP](bastion-connect-vm-rdp.md) 或 [SSH](bastion-connect-vm-ssh.md) 使用的 VM。

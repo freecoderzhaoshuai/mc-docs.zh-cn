@@ -16,12 +16,12 @@ ms.workload: infrastructure-services
 origin.date: 05/20/2018
 ms.author: v-yiso
 ms.date: 12/02/2019
-ms.openlocfilehash: 01f3115918a198bda89961c5b8db6ccfb4b6e5a4
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 7e63c9a7660478e97c49f2a979d2bc2a717edc58
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291918"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021329"
 ---
 # <a name="connect-a-virtual-network-to-an-expressroute-circuit"></a>将虚拟网络连接到 ExpressRoute 线路
 > [!div class="op_single_selector"]
@@ -56,7 +56,7 @@ ms.locfileid: "79291918"
 
 可以使用以下 cmdlet 将虚拟网络网关连接到 ExpressRoute 线路。 在运行 cmdlet 之前，请确保已创建虚拟网络网关并可将其用于进行链接：
 
-```powershell
+```azurepowershell
 $circuit = Get-AzExpressRouteCircuit -Name "MyCircuit" -ResourceGroupName "MyRG"
 $gw = Get-AzVirtualNetworkGateway -Name "ExpressRouteGw" -ResourceGroupName "MyRG"
 $connection = New-AzVirtualNetworkGatewayConnection -Name "ERConnection" -ResourceGroupName "MyRG" -Location "China North" -VirtualNetworkGateway1 $gw -PeerId $circuit.Id -ConnectionType ExpressRoute
@@ -90,7 +90,7 @@ $connection = New-AzVirtualNetworkGatewayConnection -Name "ERConnection" -Resour
 
 以下 cmdlet 代码段演示如何创建授权：
 
-```powershell
+```azurepowershell
 $circuit = Get-AzExpressRouteCircuit -Name "MyCircuit" -ResourceGroupName "MyRG"
 Add-AzExpressRouteCircuitAuthorization -ExpressRouteCircuit $circuit -Name "MyAuthorization1"
 Set-AzExpressRouteCircuit -ExpressRouteCircuit $circuit
@@ -115,7 +115,7 @@ $auth1 = Get-AzExpressRouteCircuitAuthorization -ExpressRouteCircuit $circuit -N
 
 线路所有者可以通过运行以下 cmdlet 来查看针对特定线路发出的所有授权：
 
-```powershell
+```azurepowershell
 $circuit = Get-AzExpressRouteCircuit -Name "MyCircuit" -ResourceGroupName "MyRG"
 $authorizations = Get-AzExpressRouteCircuitAuthorization -ExpressRouteCircuit $circuit
 ```
@@ -124,7 +124,7 @@ $authorizations = Get-AzExpressRouteCircuitAuthorization -ExpressRouteCircuit $c
 
 线路所有者可以使用以下 cmdlet 添加授权：
 
-```powershell
+```azurepowershell
 $circuit = Get-AzExpressRouteCircuit -Name "MyCircuit" -ResourceGroupName "MyRG"
 Add-AzExpressRouteCircuitAuthorization -ExpressRouteCircuit $circuit -Name "MyAuthorization2"
 Set-AzExpressRouteCircuit -ExpressRouteCircuit $circuit
@@ -137,7 +137,7 @@ $authorizations = Get-AzExpressRouteCircuitAuthorization -ExpressRouteCircuit $c
 
 线路所有者可以通过运行以下 cmdlet 来撤消/删除对用户的授权：
 
-```powershell
+```azurepowershell
 Remove-AzExpressRouteCircuitAuthorization -Name "MyAuthorization2" -ExpressRouteCircuit $circuit
 Set-AzExpressRouteCircuit -ExpressRouteCircuit $circuit
 ```
@@ -148,7 +148,7 @@ Set-AzExpressRouteCircuit -ExpressRouteCircuit $circuit
 
 可以使用以下命令检查对等 ID：
 
-```powershell
+```azurepowershell
 Get-AzExpressRouteCircuit -Name "MyCircuit" -ResourceGroupName "MyRG"
 ```
 
@@ -156,7 +156,7 @@ Get-AzExpressRouteCircuit -Name "MyCircuit" -ResourceGroupName "MyRG"
 
 线路用户可以通过运行以下 cmdlet 来兑现链接授权：
 
-```powershell
+```azurepowershell
 $id = "/subscriptions/********************************/resourceGroups/ERCrossSubTestRG/providers/Microsoft.Network/expressRouteCircuits/MyCircuit"    
 $gw = Get-AzVirtualNetworkGateway -Name "ExpressRouteGw" -ResourceGroupName "MyRG"
 $connection = New-AzVirtualNetworkGatewayConnection -Name "ERConnection" -ResourceGroupName "RemoteResourceGroup" -Location "China North" -VirtualNetworkGateway1 $gw -PeerId $id -ConnectionType ExpressRoute -AuthorizationKey "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
@@ -173,7 +173,7 @@ $connection = New-AzVirtualNetworkGatewayConnection -Name "ERConnection" -Resour
 
 虚拟网络可以连接到多条 ExpressRoute 线路。 可以从多条 ExpressRoute 线路收到相同的前缀。 若要选择使用哪个连接发送目标为此前缀的流量，可以更改连接的 *RoutingWeight*。 将在具有最高 *RoutingWeight* 的连接上发送流量。
 
-```powershell
+```azurepowershell
 $connection = Get-AzVirtualNetworkGatewayConnection -Name "MyVirtualNetworkConnection" -ResourceGroupName "MyRG"
 $connection.RoutingWeight = 100
 Set-AzVirtualNetworkGatewayConnection -VirtualNetworkGatewayConnection $connection

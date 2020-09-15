@@ -1,17 +1,20 @@
 ---
 title: 在 Java 中创建第一个可靠服务
 description: 介绍如何创建包含无状态服务和有状态服务的 Azure Service Fabric 应用程序。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 11/02/2017
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
+ms.custom: devx-track-java
 ms.author: v-yeche
-ms.openlocfilehash: fee6657e802b01dc8ce64c9aeb64314f592d3d01
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.openlocfilehash: 3b47712993a19663188c9ae6cde9e13cdb0480e7
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356280"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655366"
 ---
 # <a name="get-started-with-reliable-services-in-java"></a>Java 中的 Reliable Services 入门
 > [!div class="op_single_selector"]
@@ -90,21 +93,21 @@ public static void main(String[] args) throws Exception {
 
 * 名为 `runAsync()`的开放式入口点方法，可在其中开始执行任何工作负荷，包括长时间运行的计算工作负荷。
 
-    ```java
-    @Override
-    protected CompletableFuture<?> runAsync(CancellationToken cancellationToken) {
-        ...
-    }
-    ```
+```java
+@Override
+protected CompletableFuture<?> runAsync(CancellationToken cancellationToken) {
+    ...
+}
+```
 
 * 一个通信入口点，可在其中插入选择的通信堆栈。 这就是可以开始接收来自用户和其他服务请求的位置。
 
-    ```java
-    @Override
-    protected List<ServiceInstanceListener> createServiceInstanceListeners() {
-        ...
-    }
-    ```
+```java
+@Override
+protected List<ServiceInstanceListener> createServiceInstanceListeners() {
+    ...
+}
+```
 
 本教程将重点放在 `runAsync()` 入口点方法上。 可在其中立即开始运行代码。
 
@@ -264,4 +267,4 @@ $ gradle
 
 * [Service Fabric CLI 入门](service-fabric-cli.md)
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

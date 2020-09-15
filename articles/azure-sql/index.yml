@@ -15,12 +15,12 @@ metadata:
   ms.reviewer: carlrab
   origin.date: 10/30/2019
   ms.date: 07/13/2020
-  ms.openlocfilehash: 54c81a08559c1e4201b7a95d6e96d05680346f99
-  ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+  ms.openlocfilehash: b525f3c67490e2cc5dcc56dcc721c11af4b13036
+  ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 07/10/2020
-  ms.locfileid: "86227097"
+  ms.lasthandoff: 09/11/2020
+  ms.locfileid: "90014328"
 landingContent:
 - title: Azure SQL 数据库
   linkLists:
@@ -142,18 +142,14 @@ landingContent:
       url: database/design-first-database-csharp-tutorial.md
 - title: 参考
   linkLists:
-  - linkListType: learn
-    links:
-    - text: SQL 教育资源
-      url: https://docs.microsoft.com/sql/sql-server/educational-sql-resources
   - linkListType: deploy
     links:
     - text: Azure CLI 示例
-      url: https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms
+      url: database/az-cli-script-samples-content-guide.md
     - text: PowerShell 示例
-      url: https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms
+      url: database/powershell-script-content-guide.md
     - text: ARM 模板示例
-      url: https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms
+      url: database/arm-templates-content-guide.md
   - linkListType: download
     links:
     - text: SQL Server Management Studio (SSMS)

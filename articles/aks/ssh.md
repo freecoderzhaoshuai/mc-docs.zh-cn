@@ -8,12 +8,12 @@ ms.date: 08/10/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
-ms.openlocfilehash: a5ecfe49e48de8f2ddf936609e17c98f7fa25329
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 2c19aea565a54f7dc333aef7f33d5036f2514702
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842619"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021248"
 ---
 # <a name="connect-with-ssh-to-azure-kubernetes-service-aks-cluster-nodes-for-maintenance-or-troubleshooting"></a>使用 SSH 连接到 Azure Kubernetes 服务 (AKS) 群集节点以进行维护或故障排除
 
@@ -212,20 +212,20 @@ aks-nodepool1-79590246-0  10.240.0.4
 
 <!-- INTERNAL LINKS -->
 
-[az-aks-show]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-show
-[az-vm-list]: https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-list
-[az-vm-user-update]: https://docs.azure.cn/cli/vm/user?view=azure-cli-latest#az-vm-user-update
-[az-vm-list-ip-addresses]: https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-list-ip-addresses
+[az-aks-show]: https://docs.microsoft.com/cli/azure/aks#az_aks_show
+[az-vm-list]: https://docs.azure.cn/cli/vm#az-vm-list
+[az-vm-user-update]: https://docs.azure.cn/cli/vm/user#az-vm-user-update
+[az-vm-list-ip-addresses]: https://docs.azure.cn/cli/vm#az-vm-list-ip-addresses
 [view-kubelet-logs]: kubelet-logs.md
 [view-master-logs]: view-master-logs.md
 [aks-quickstart-cli]: kubernetes-walkthrough.md
 [aks-quickstart-portal]: kubernetes-walkthrough-portal.md
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
 [aks-windows-rdp]: rdp.md
 [ssh-nix]: ../virtual-machines/linux/mac-create-ssh-keys.md
 [ssh-windows]: ../virtual-machines/linux/ssh-from-windows.md
-[az-vmss-list]: https://docs.azure.cn/cli/vmss?view=azure-cli-latest#az-vmss-list
-[az-vmss-extension-set]: https://docs.azure.cn/cli/vmss/extension?view=azure-cli-latest#az-vmss-extension-set
-[az-vmss-update-instances]: https://docs.azure.cn/cli/vmss?view=azure-cli-latest#az-vmss-update-instances
+[az-vmss-list]: https://docs.azure.cn/cli/vmss#az-vmss-list
+[az-vmss-extension-set]: https://docs.azure.cn/cli/vmss/extension#az-vmss-extension-set
+[az-vmss-update-instances]: https://docs.azure.cn/cli/vmss#az-vmss-update-instances
 
 <!-- Update_Description: update meta properties, wording update, update link -->

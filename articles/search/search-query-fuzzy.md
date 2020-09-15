@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 04/08/2020
-ms.date: 04/20/2020
-ms.openlocfilehash: 89f8d57b399b0513cc665fbf40148564ad14af12
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.date: 09/10/2020
+ms.openlocfilehash: 9fae89d8860f1b578d4888573d9afcf8c6a5fd74
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588939"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021073"
 ---
 # <a name="fuzzy-search-to-correct-misspellings-and-typos"></a>使用模糊搜索来更正拼写错误
 
@@ -87,37 +87,49 @@ Azure 认知搜索支持模糊搜索 - 这是可以纠正输入字符串中的�
 
 首先对“special”执行模糊搜索，并向 Description 字段添加命中项突出显示：
 
-    search=special~&highlight=Description
+```console
+search=special~&highlight=Description
+```
 
 在响应中，由于添加了命中项突出显示，因此格式设置将应用于作为匹配字词的“special”。
 
-    "@search.highlights": {
-        "Description": [
-            "Test queries with <em>special</em> characters, plus strings for MSFT, SQL and Java."
-        ]
+```output
+"@search.highlights": {
+    "Description": [
+        "Test queries with <em>special</em> characters, plus strings for MSFT, SQL and Java."
+    ]
+```
 
 删掉“special”中的几个字母（“pe”）以将其误拼，然后再次尝试该请求：
 
-    search=scial~&highlight=Description
+```console
+search=scial~&highlight=Description
+```
 
 到目前为止，响应没有任何变化。 使用默认的 2 度距离时，从“special”中删除两个字符“pe”后，仍可成功匹配该字词。
 
-    "@search.highlights": {
-        "Description": [
-            "Test queries with <em>special</em> characters, plus strings for MSFT, SQL and Java."
-        ]
+```output
+"@search.highlights": {
+    "Description": [
+        "Test queries with <em>special</em> characters, plus strings for MSFT, SQL and Java."
+    ]
+```
 
 再尝试一次请求，这次请如下所述进一步修改搜索字词：删除最后一个字符，也就是总共删除三个字符（使“special”变成“scal”）：
 
-    search=scal~&highlight=Description
+```console
+search=scal~&highlight=Description
+```
 
 可以看到，返回了相同的响应，但匹配不是针对“special”进行的，而是针对“SQL”进行了模糊匹配。
 
-            "@search.score": 0.4232868,
-            "@search.highlights": {
-                "Description": [
-                    "Mix of special characters, plus strings for MSFT, <em>SQL</em>, 2019, Linux, Java."
-                ]
+```output
+        "@search.score": 0.4232868,
+        "@search.highlights": {
+            "Description": [
+                "Mix of special characters, plus strings for MSFT, <em>SQL</em>, 2019, Linux, Java."
+            ]
+```
 
 此扩展示例的要点是演示命中项突出显示可为模糊结果带来的明确性。 在所有情况下，都将返回同一文档。 如果你依赖于文档 ID 来验证匹配，则可能会漏掉从“special”到“SQL”的变动。
 
@@ -125,5 +137,5 @@ Azure 认知搜索支持模糊搜索 - 这是可以纠正输入字符串中的�
 
 + [Azure 认知搜索中全文搜索的工作原理（查询分析体系结构）](search-lucene-query-architecture.md)
 + [搜索资源管理器](search-explorer.md)
-+ [如何在 .NET 中进行查询](search-query-dotnet.md)
-+ [如何在 REST 中进行查询](search-create-index-rest-api.md)
++ [如何在 .NET 中进行查询](./search-get-started-dotnet.md)
++ [如何在 REST 中进行查询](./search-get-started-powershell.md)

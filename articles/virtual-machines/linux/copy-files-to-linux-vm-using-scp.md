@@ -6,15 +6,15 @@ ms.service: virtual-machines-linux
 ms.workload: infrastructure
 ms.topic: how-to
 origin.date: 07/12/2017
-ms.date: 06/17/2020
+ms.date: 09/03/2020
 ms.author: v-johya
 ms.subservice: disks
-ms.openlocfilehash: aa5f06ad4bf53aad792f5e6a16383f7fbfe4c5a9
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: fd76bfe1a9205c5ca040b389b858bbb7b980c3a3
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097024"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057633"
 ---
 # <a name="move-files-to-and-from-a-linux-vm-using-scp"></a>使用 SCP 将文件移到 Linux VM 和从 Linux VM 移动文件
 
@@ -70,6 +70,6 @@ scp -r azureuser@myserver.chinaeast.chinacloudapp.cn:/home/azureuser/logs/. /tmp
 
 ## <a name="next-steps"></a>后续步骤
 
-* [管理用户、SSH，并使用 VMAccess 扩展检查或修复 Azure Linux VM 上的磁盘](using-vmaccess-extension.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)
+* [管理用户、SSH，并使用 VMAccess 扩展检查或修复 Azure Linux VM 上的磁盘](../extensions/vmaccess.md?toc=%2fvirtual-machines%2flinux%2ftoc.json)
 
 <!--Update_Description: remove one link, wording update -->

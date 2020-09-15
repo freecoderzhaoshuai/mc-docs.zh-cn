@@ -8,16 +8,16 @@ ms.service: synapse-analytics
 ms.topic: conceptual
 ms.subservice: sql-dw
 origin.date: 08/29/2018
-ms.date: 08/03/2020
+ms.date: 09/14/2020
 ms.author: v-jay
 ms.reviewer: igorstan
 ms.custom: seo-lt-2019
-ms.openlocfilehash: 347001882399572775ada97db55ad28d36cb5da8
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 0bdef40d93772220b8c073b75a3880d8f1fa1890
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426326"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014236"
 ---
 # <a name="restore-a-deleted-sql-pool-using-azure-synapse-analytics"></a>使用 Azure Synapse Analytics 还原已删除的 SQL 池
 
@@ -33,7 +33,7 @@ ms.locfileid: "87426326"
 
 若要还原已删除的 SQL 池，请使用 [Restore-AzSqlDatabase](https://docs.microsoft.com/powershell/module/az.sql/restore-azsqldatabase?toc=/synapse-analytics/sql-data-warehouse/toc.json&bc=/synapse-analytics/sql-data-warehouse/breadcrumb/toc.json) cmdlet。 如果相应的服务器也已被删除，则不能还原该数据仓库。
 
-1. 开始之前，请确保[安装 Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview?toc=/synapse-analytics/sql-data-warehouse/toc.json&bc=/synapse-analytics/sql-data-warehouse/breadcrumb/toc.json)。
+1. 开始之前，请确保[安装 Azure PowerShell](https://docs.microsoft.com/powershell/azure/?toc=/synapse-analytics/sql-data-warehouse/toc.json&bc=/synapse-analytics/sql-data-warehouse/breadcrumb/toc.json)。
 2. 打开 PowerShell。
 3. 连接到 Azure 帐户，并列出与帐户关联的所有订阅。
 4. 选择包含要还原的已删除 SQL 池的订阅。

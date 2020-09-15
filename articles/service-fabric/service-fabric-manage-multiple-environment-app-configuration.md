@@ -1,17 +1,19 @@
 ---
 title: 管理多个环境的应用
 description: Azure Service Fabric 应用程序可以在规模为一台计算机到数千台计算机的群集上运行。 在某些情况下，需要以不同的方式针对各种环境配置应用程序。 本文介绍如何为每个环境定义不同的应用程序参数。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 02/23/2018
-ms.date: 04/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 55f18fb687ccd24fb59a2699c91f280db011a168
-ms.sourcegitcommit: 564739de7e63e19a172122856ebf1f2f7fb4bd2e
+ms.openlocfilehash: cb3e54e47a087ad0b9ebbbda20b788f82585f30f
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82093440"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655166"
 ---
 # <a name="manage-applications-for-multiple-environments"></a>管理多个环境的应用程序
 
@@ -42,7 +44,7 @@ ms.locfileid: "82093440"
 在 Service Fabric 中创建命名的应用程序实例时，可以选择传入参数。 执行此操作的方式取决于创建应用程序实例的方式。
 
 - 在 PowerShell 中，[`New-ServiceFabricApplication`](https://docs.microsoft.com/powershell/module/servicefabric/new-servicefabricapplication?view=azureservicefabricps) cmdlet 将应用程序参数作为哈希表。
-- 借助 sfctl，[`sfctl application create`](/service-fabric/service-fabric-sfctl-application#sfctl-application-create) 命令将参数作为 JSON 字符串。 Install.sh 脚本使用 sfctl。
+- 借助 sfctl，[`sfctl application create`](./service-fabric-sfctl-application.md#sfctl-application-create) 命令将参数作为 JSON 字符串。 Install.sh 脚本使用 sfctl。
 - Visual Studio 在应用程序项目的参数文件夹中提供一组参数文件。 使用 Azure DevOps Services 或 Azure DevOps Server 从 Visual Studio 发布时会使用这些参数文件。 在 Visual Studio 中，参数文件会传递给 Deploy-FabricApplication.ps1 脚本。
 
 ## <a name="next-steps"></a>后续步骤
@@ -54,4 +56,4 @@ ms.locfileid: "82093440"
 
 - [环境变量引用](service-fabric-environment-variables-reference.md)
 
-<!--Update_Description: update meta properties, wording update  -->
+<!-- Update_Description: update meta properties, wording update, update link -->

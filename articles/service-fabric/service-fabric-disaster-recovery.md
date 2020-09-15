@@ -1,17 +1,19 @@
 ---
 title: Azure Service Fabric 灾难恢复
 description: Azure Service Fabric 提供应对灾难的功能。 本文介绍可能发生的灾难类型，以及如何应对这些灾难。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 08/18/2017
-ms.date: 04/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 5f36458a56c6ca957c00032c5e4974bf640b9964
-ms.sourcegitcommit: 564739de7e63e19a172122856ebf1f2f7fb4bd2e
+ms.openlocfilehash: 68f195c09b37ead6d4417fc56e76146cc996939f
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82093423"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655089"
 ---
 # <a name="disaster-recovery-in-azure-service-fabric"></a>Azure Service Fabric 中的灾难恢复
 提供高可用性的关键一环是确保服务能够经受各种不同类型的故障。 对于计划外和不受控制的故障，这一点尤其重要。 
@@ -213,18 +215,19 @@ Service Fabric 具有种子节点的概念  。 种子节点可以维护基础�
     
     <!--Not Available on - [Availability checklist](https://docs.microsoft.com/azure/architecture/checklist/resiliency-per-service)-->
     
-    - [执行灾难恢复演练](../sql-database/sql-database-disaster-recovery-drills.md)
+    - [执行灾难恢复演练](../azure-sql/database/disaster-recovery-drills.md)
     - [Azure 应用程序的灾难恢复和高可用性][dr-ha-guide]
     
 - 了解 [Service Fabric 支持选项](service-fabric-support.md)。
 
 <!-- External links -->
 
-[repair-partition-ps]: https://msdn.microsoft.com/library/mt163522.aspx
-[azure-status-dashboard]:https://status.azure.com/status/
-[azure-regions]: https://status.azure.com/status/
-[dr-ha-guide]: https://msdn.microsoft.com/library/azure/dn251004.aspx
+[repair-partition-ps]: https://docs.microsoft.com/windows/win32/perfctrs/specifying-a-counter-path
+[azure-status-dashboard]: https://status.azure.com/status/
+[azure-regions]: https://azure.microsoft.com/regions/
+[dr-ha-guide]: https://docs.microsoft.com/previous-versions/azure/dn251004(v=azure.100)
 
+<!--MOONCAKE CUSTOMIZATION ON https://docs.microsoft.com/previous-versions/azure/dn251004(v=azure.100)-->
 <!-- Images -->
 
 [sfx-cluster-map]: ./media/service-fabric-disaster-recovery/sfx-clustermap.png

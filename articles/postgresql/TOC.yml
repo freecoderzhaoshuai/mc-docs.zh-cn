@@ -1,4 +1,4 @@
-- name: 用于 PostgreSQL 的 Azure DB 文档
+- name: Azure DB for PostgreSQL 文档
   href: index.yml
 - name: 概述
   items:
@@ -28,6 +28,12 @@
               href: connect-nodejs.md
             - name: Java
               href: connect-java.md
+            - name: 将 Java 与 Spring Data JDBC 配合使用
+              href: 'https://docs.microsoft.com/azure/developer/java/spring-framework/configure-spring-data-jdbc-with-azure-postgresql?toc=/azure/postgresql/toc.json&bc=/azure/bread/toc.json'
+            - name: 将 Java 与 Spring Data JPA 配合使用
+              href: 'https://docs.microsoft.com/azure/developer/java/spring-framework/configure-spring-data-jpa-with-azure-postgresql?toc=/azure/postgresql/toc.json&bc=/azure/bread/toc.json'
+            - name: 将 Java 与 Spring Data R2DBC 配合使用
+              href: 'https://docs.microsoft.com/azure/developer/java/spring-framework/configure-spring-data-r2dbc-with-azure-postgresql?toc=/azure/postgresql/toc.json&bc=/azure/bread/toc.json'
             - name: Ruby
               href: connect-ruby.md
             - name: PHP
@@ -126,20 +132,20 @@
               href: concepts-aks.md
             - name: Java
               items:
+                - name: 使用 Java 和 JDBC
+                  href: connect-java.md
                 - name: 配置 Spring Data JDBC
-                  href: /java/spring-framework/configure-spring-data-jdbc-with-azure-postgresql
+                  href: 'https://docs.microsoft.com/azure/developer/java/spring-framework/configure-spring-data-jdbc-with-azure-postgresql?toc=/azure/postgresql/toc.json&bc=/azure/bread/toc.json'
                 - name: 配置 Spring Data JPA
-                  href: /java/spring-framework/configure-spring-data-jpa-with-azure-postgresql
+                  href: 'https://docs.microsoft.com/azure/developer/java/spring-framework/configure-spring-data-jpa-with-azure-postgresql?toc=/azure/postgresql/toc.json&bc=/azure/bread/toc.json'
+                - name: 配置 Spring Data R2DBC
+                  href: 'https://docs.microsoft.com/azure/developer/java/spring-framework/configure-spring-data-r2dbc-with-azure-mysql'
         - name: 复制
           items:
             - name: 只读副本
               href: concepts-read-replicas.md
             - name: 逻辑解码
               href: concepts-logical.md
-        - name: 在区域之间移动
-          items:
-            - name: Azure 门户
-              href: howto-move-regions-portal.md
 - name: 操作指南
   items:
     - name: 单个服务器
@@ -188,6 +194,8 @@
           items:
             - name: 配置 TLS
               href: howto-tls-configurations.md
+            - name: Azure PowerShell
+              href: howto-connection-string-powershell.md
         - name: 配置服务器参数
           items:
             - name: Azure 门户
@@ -214,7 +222,7 @@
           items:
             - name: 针对指标创建警报
               href: howto-alert-on-metric.md
-        - name: 疑难解答
+        - name: 故障排除
           items:
             - name: 排查连接错误
               href: howto-troubleshoot-common-connection-issues.md
@@ -240,14 +248,20 @@
               href: howto-read-replicas-cli.md
             - name: 管理只读副本 - Azure PowerShell
               href: howto-read-replicas-powershell.md
+        - name: 在区域之间移动
+          items:
+            - name: Azure 门户
+              href: howto-move-regions-portal.md
 - name: 参考
   items:
-    - name: Azure CLI
-      href: /cli/postgres
-    - name: REST API
-      href: 'https://docs.microsoft.com/rest/api/postgresql'
-    - name: 资源管理器模板
-      href: 'https://docs.microsoft.com/azure/templates/microsoft.dbforpostgresql/allversions'
+    - name: 单个服务器
+      items:
+        - name: Azure CLI
+          href: /cli/postgres
+        - name: REST API
+          href: 'https://docs.microsoft.com/rest/api/postgresql'
+        - name: 资源管理器模板
+          href: 'https://docs.microsoft.com/azure/templates/microsoft.dbforpostgresql/allversions'
 - name: 资源
   items:
     - name: 定价

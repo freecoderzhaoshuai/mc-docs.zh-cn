@@ -13,14 +13,14 @@ ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: na
 origin.date: 05/21/2019
-ms.date: 08/27/2020
+ms.date: 09/10/2020
 ms.author: v-tawe
-ms.openlocfilehash: 27d95f552159bcce952bf15f8a2b3570eda57994
-ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
+ms.openlocfilehash: d4b9b7351df76338bfbd4d0f5fb7a4549de19b11
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88951254"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021245"
 ---
 # <a name="manage-azure-blob-storage-resources-with-storage-explorer"></a>使用存储资源管理器管理 Azure Blob 存储资源
 

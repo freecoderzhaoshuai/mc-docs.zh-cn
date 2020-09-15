@@ -10,15 +10,14 @@ ms.date: 07/27/2020
 ms.testscope: yes|no
 ms.testdate: 07/27/2020Null
 ms.author: v-yeche
-ms.openlocfilehash: a3899f00ac370b7c66cb99359eab31cf37fbc463
-ms.sourcegitcommit: 4d9846bb03ac24bd98b0c9a781bb8912ff6d2f61
+ms.openlocfilehash: dd336946cb6d22d7bd92280750bfe7018eeb9668
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "86926994"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655136"
 ---
-<!--Verified Failed-->
-<!--RELEASE BEFORE CONFIRMATION-->
+<!--Verified successfully on 09/07/2020-->
 # <a name="session-monitoring-and-management-for-azure-bastion"></a>Azure Bastion 的会话监视和管理
 
 在虚拟网络中预配和部署 Bastion 服务后，就可以使用它无缝地连接到此虚拟网络中的任何 VM。 当用户连接到工作负载时，Azure Bastion 可以用于监视远程会话并采取快速管理操作。 Azure Bastion 会话监视可用于查看哪些用户连接到了哪些虚拟机。 它可显示已连接用户的 IP、连接时长以及连接时间。 会话管理体验可用于选择正在进行的会话并强制断开连接或删除会话，以便将用户与正在进行的会话断开连接。

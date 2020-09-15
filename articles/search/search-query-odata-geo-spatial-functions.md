@@ -8,7 +8,7 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 12/16/2019
+ms.date: 09/10/2019
 translation.priority.mt:
 - de-de
 - es-es
@@ -20,12 +20,12 @@ translation.priority.mt:
 - ru-ru
 - zh-cn
 - zh-tw
-ms.openlocfilehash: 68315c3cbc2a656d4839ed8c9af9934b1fe1f610
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.openlocfilehash: 2dbb4c9ae697f2ea7d5402d0505f1f3c61adabd9
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588732"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021569"
 ---
 # <a name="odata-geo-spatial-functions-in-azure-cognitive-search---geodistance-and-geointersects"></a>Azure 认知搜索中的 OData 地理空间函数 - `geo.distance` 和 `geo.intersects`
 
@@ -106,21 +106,29 @@ lon_lat_list ::= lon_lat(',' lon_lat)*
 
 查找与给定参考点的距离在 10 公里范围内的所有酒店（其中 location 是 `Edm.GeographyPoint` 类型的字段）：
 
+```odata-filter-expr
     geo.distance(location, geography'POINT(-122.131577 47.678581)') le 10
+```
 
 查找描述为多边形的给定视区内的所有酒店（其中 location 是 `Edm.GeographyPoint` 类型的字段）。 请注意，多边形是闭合的（第一个点集和最后一个点集必须相同），且[这些点必须按逆时针顺序列出](https://docs.microsoft.com/rest/api/searchservice/supported-data-types#Anchor_1)。
 
+```odata-filter-expr
     geo.intersects(location, geography'POLYGON((-122.031577 47.578581, -122.031577 47.678581, -122.131577 47.678581, -122.031577 47.578581))')
+```
 
 ### <a name="order-by-examples"></a>Order-by 示例
 
 按 `rating` 对酒店进行降序排序，然后按距给定坐标的距离进行升序排序：
 
+```odata-filter-expr
     rating desc,geo.distance(location, geography'POINT(-122.131577 47.678581)') asc
+```
 
 按 `search.score` 和 `rating` 对酒店进行降序排序，然后按距给定坐标的距离进行升序排序，以便在两个具有相同评分的酒店中，将距离最近的酒店列在前面：
 
+```odata-filter-expr
     search.score() desc,rating desc,geo.distance(location, geography'POINT(-122.131577 47.678581)') asc
+```
 
 ## <a name="next-steps"></a>后续步骤  
 

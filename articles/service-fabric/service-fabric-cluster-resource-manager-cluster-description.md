@@ -1,19 +1,20 @@
 ---
 title: 使用群集资源管理器描述群集
 description: 通过为群集资源管理器指定容错域、升级域、节点属性和节点容量来描述 Service Fabric 群集。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 08/18/2017
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 02/24/2020
 ms.author: v-yeche
-ms.openlocfilehash: 5419bf3789e702c9a8b8fa08948c473d6265de01
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.custom: devx-track-csharp
+ms.openlocfilehash: fde4a870caa83a936f07ed91361330cb4fc97e57
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426449"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655530"
 ---
 # <a name="describe-a-service-fabric-cluster-by-using-cluster-resource-manager"></a>使用群集资源管理器描述 Service Fabric 群集
 Azure Service Fabric 的群集资源管理器功能提供多种机制用于描述群集：
@@ -39,7 +40,7 @@ Azure Service Fabric 的群集资源管理器功能提供多种机制用于描�
 > [!WARNING]
 > 请务必确保提供给 Service Fabric 的容错域信息准确无误。 例如，假设 Service Fabric 群集的节点在 5 个物理主机上运行的 10 台虚拟机中运行。 在此情况下，即使有 10 个虚拟机，也只有 5 个不同的（顶层）容错域。 共享同一物理主机会导致 VM 共享同一个根容错域，因此如果物理主机发生故障，共享主机的 VM 也会同时相应发生故障。  
 >
-> Service Fabric 预期节点的容错域不变。 确保实现 VM 高可用性的其他机制（例如 [HA-VM](https://technet.microsoft.com/library/cc967323.aspx)）可能会导致与 Service Fabric 发生冲突。 这些机制使用主机间的 VM 透明迁移。 它们不会重新配置或通知 VM 内运行的代码。 因此，不支持将这些机制用作运行 Service Fabric 群集的环境。  
+> Service Fabric 预期节点的容错域不变。 确保实现 VM 高可用性的其他机制（例如 [HA-VM](https://docs.microsoft.com/previous-versions/system-center/virtual-machine-manager-2008-r2/cc967323(v=technet.10))）可能会导致与 Service Fabric 发生冲突。 这些机制使用主机间的 VM 透明迁移。 它们不会重新配置或通知 VM 内运行的代码。 因此，不支持将这些机制用作运行 Service Fabric 群集的环境。  
 >
 > 应使用 Service Fabric 作为唯一的高可用性技术。 实时 VM 迁移和 SAN 等机制不是必要的机制。 如果将这些机制与 Service Fabric 一同使用，会降低应用程序的可用性和可靠性。  原因是这些机制会增大复杂性，增加并发性故障来源，并且它们使用的可靠性和可用性策略可能会与 Service Fabric 中的策略相冲突。 
 >
@@ -637,4 +638,4 @@ LoadMetricInformation     :
 [Image6]:./media/service-fabric-cluster-resource-manager-cluster-description/cluster-placement-constraints-node-properties.png
 [Image7]:./media/service-fabric-cluster-resource-manager-cluster-description/cluster-nodes-and-capacity.png
 
-<!--Update_Description: update meta properties， wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

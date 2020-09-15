@@ -5,14 +5,14 @@ author: sffamily
 ms.service: signalr
 ms.topic: conceptual
 origin.date: 08/05/2020
-ms.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: v-tawe
-ms.openlocfilehash: 7cbcce8935d8fab3aac2020b14f722f77ab66d62
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: fd211095dd4f1db869a8b6e4d77bf34a5bf93bc0
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715280"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063310"
 ---
 # <a name="messages-and-connections-in-azure-signalr-service"></a>Azure SignalR 服务中的消息和连接
 

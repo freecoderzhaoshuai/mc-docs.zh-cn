@@ -4,18 +4,19 @@ titleSuffix: Azure Kubernetes Service
 description: 了解如何使用 Azure 门户快速创建 Kubernetes 群集、部署应用程序，以及监视 Azure Kubernetes 服务 (AKS) 中的性能。
 services: container-service
 ms.topic: quickstart
-origin.date: 01/21/2020
-ms.date: 08/10/2020
+origin.date: 08/18/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
 ms.custom: mvc, seo-javascript-october2019
-ms.openlocfilehash: 2a7b7befe3b105aa3f66e6f9b37058455de696b9
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: de1db00f433c9a393866f723b01c5db2184350ba
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842570"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020817"
 ---
 # <a name="quickstart-deploy-an-azure-kubernetes-service-aks-cluster-using-the-azure-portal"></a>快速入门：使用 Azure 门户部署 Azure Kubernetes 服务 (AKS) 群集
 
@@ -58,7 +59,7 @@ Azure Kubernetes 服务 (AKS) 是可用于快速部署和管理群集的托管�
 
 5. 在“身份验证”页上，配置以下选项：
     - 将“服务主体”字段保留为“(新)默认服务主体”以创建新的服务主体。 或者，可以选择“配置服务主体”以使用现有的服务主体。 如果使用现有的服务主体，则需要提供 SPN 客户端 ID 和机密。
-    - 启用 Kubernetes 基于角色的访问控制 (RBAC) 所对应的选项。 这样可以对部署在 AKS 群集中的 Kubernetes 资源进行更精细的访问控制。
+    - 启用 Kubernetes 基于角色的访问控制 (RBAC) 选项。 这样可以对部署在 AKS 群集中的 Kubernetes 资源进行更精细的访问控制。
 
     或者，可以使用托管标识而不是服务主体。 有关详细信息，请参阅[使用托管标识](use-managed-identity.md)。
 
@@ -104,14 +105,7 @@ aks-agentpool-14693408-0   Ready     agent     15m       v1.11.5
 
 Kubernetes 清单文件定义群集的所需状态，例如，要运行哪些容器映像。 在本快速入门中，清单用于创建运行 Azure Vote 应用程序所需的所有对象。 此清单包括两个 [Kubernetes 部署][kubernetes-deployment] - 一个用于 Azure Vote Python 示例应用程序，另一个用于 Redis 实例。 此外，还会创建两个 [Kubernetes 服务][kubernetes-service] - 一个内部服务用于 Redis 实例，一个外部服务用于从 Internet 访问 Azure Vote 应用程序。
 
-> [!TIP]
-> 在本快速入门中，请手动创建应用程序清单并将其部署到 AKS 群集。
-
-<!--Not Available on Line 103  In more real-world scenarios, you can use [Azure Dev Spaces][azure-dev-spaces] to rapidly iterate and debug your code directly in the AKS cluster. You can use Dev Spaces across OS platforms and development environments, and work together with others on your team.-->
-
 在本地 Shell 中，使用编辑器创建一个名为 `azure-vote.yaml` 的文件，如 `code azure-vote.yaml`、`nano azure-vote.yaml` 或 `vi azure-vote.yaml`。 然后复制以下 YAML 定义：
-
-<!--Not Available on  In Azure Cloud Shell, create the file using `vi` or `Nano`, as if working on a virtual or physical system:-->
 
 ```yaml
 apiVersion: apps/v1
@@ -296,8 +290,8 @@ az aks delete --resource-group myResourceGroup --name myAKSCluster --no-wait
 <!-- LINKS - internal -->
 
 [kubernetes-concepts]: concepts-clusters-workloads.md
-[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-get-credentials
-[az-aks-delete]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-delete
+[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks#az_aks_get_credentials
+[az-aks-delete]: https://docs.microsoft.com/cli/azure/aks#az_aks_delete
 [aks-monitor]: ../azure-monitor/insights/container-insights-overview.md
 [aks-network]: ./concepts-network.md
 [aks-tutorial]: ./tutorial-kubernetes-prepare-app.md

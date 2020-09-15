@@ -11,13 +11,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: carlrab, vanto
 origin.date: 08/05/2019
-ms.date: 04/27/2020
-ms.openlocfilehash: ada176627ad45cbd40948e93d2bd5155c6a47aab
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.date: 09/14/2020
+ms.openlocfilehash: 80544c5a89b16d2011cb8fcbcb0f2d86773f93d4
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82127257"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014248"
 ---
 # <a name="use-cli-to-configure-sql-database-auditing-and-advanced-threat-protection"></a>使用 CLI 配置 SQL 数据库审核和高级威胁防护
 
@@ -77,7 +77,7 @@ az sql db threat-policy update --email-account-admins Disabled --email-addresses
 
 ### <a name="clean-up-deployment"></a>清理部署
 
-使用以下命令删除资源组及其相关的所有资源。
+使用以下命令删除资源组以及与其关联的所有资源。
 
 ```azurecli
 az group delete --name $resource
@@ -87,7 +87,7 @@ az group delete --name $resource
 
 此脚本使用以下命令。 表中的每条命令均链接到特定于命令的文档。
 
-| | |
+| Command | 描述 |
 |---|---|
 | [az sql db audit-policy](/cli/sql/db/audit-policy) | 设置数据库的审核策略。 |
 | [az sql db threat-policy](/cli/sql/db/threat-policy) | 在数据库上设置高级威胁防护策略。 |
@@ -96,4 +96,4 @@ az group delete --name $resource
 
 有关 Azure CLI 的详细信息，请参阅 [Azure CLI 文档](/cli/)。
 
-其他 SQL 数据库 CLI 脚本示例可以在 [Azure SQL 数据库文档](../sql-database-cli-samples.md)中找到。
+其他 SQL 数据库 CLI 脚本示例可以在 [Azure SQL 数据库文档](../../azure-sql/database/az-cli-script-samples-content-guide.md)中找到。

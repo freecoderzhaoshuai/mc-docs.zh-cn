@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 03/16/2020
-ms.openlocfilehash: f01937016280aaa9da5f2f11c8d31ce2dd6559e5
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.date: 09/10/2020
+ms.openlocfilehash: 60dce661949804989751de39b3b56dfce679a37f
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78934812"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021122"
 ---
 # <a name="deprecated-cognitive-skills-in-azure-cognitive-search"></a>Azure 认知搜索中已弃用的认知技能
 

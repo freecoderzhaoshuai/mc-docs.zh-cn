@@ -3,14 +3,17 @@ title: 为 Linux 上的应用程序配置证书
 description: 在 Linux 群集上使用 Service Fabric 运行时配置应用的证书
 ms.topic: conceptual
 origin.date: 09/06/2019
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 5bde52f58343829de3d239253987a0503a821f8a
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 7193f452402d92cdaae91d1c237d3072897d95de
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291419"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021613"
 ---
 # <a name="certificates-and-security-on-linux-clusters"></a>Linux 群集上的证书和安全性
 
@@ -26,7 +29,7 @@ Service Fabric 通常要求在 Linux 群集节点上的 */var/lib/sfcerts* 目�
 
 ## <a name="certificates-referenced-in-the-application-manifest"></a>应用程序清单中引用的证书
 
-应用程序清单中指定的证书（例如，通过 [**SecretsCertificate**](/service-fabric/service-fabric-service-model-schema-elements#secretscertificate-element) 或 [**EndpointCertificate**](/service-fabric/service-fabric-service-model-schema-elements#endpointcertificate-element) 元素指定）必须位于 */var/lib/sfcerts* 目录中。 用于在应用程序清单中指定证书的元素不采用路径属性，因此证书必须位于默认目录中。 这些元素采用可选的 **X509StoreName** 属性。 默认值为“My”，指向 Linux 节点上的 */var/lib/sfcerts* 目录。 其他任何值未在 Linux 群集上定义。 对于 Linux 群集上运行的应用，我们建议省略 **X509StoreName** 属性。 
+应用程序清单中指定的证书（例如，通过 [**SecretsCertificate**](./service-fabric-service-model-schema-elements.md#secretscertificate-element) 或 [**EndpointCertificate**](./service-fabric-service-model-schema-elements.md#endpointcertificate-element) 元素指定）必须位于 */var/lib/sfcerts* 目录中。 用于在应用程序清单中指定证书的元素不采用路径属性，因此证书必须位于默认目录中。 这些元素采用可选的 **X509StoreName** 属性。 默认值为“My”，指向 Linux 节点上的 */var/lib/sfcerts* 目录。 其他任何值未在 Linux 群集上定义。 对于 Linux 群集上运行的应用，我们建议省略 **X509StoreName** 属性。 
 
 ## <a name="certificates-referenced-in-the-configuration-package-settingsxml"></a>配置包 (Settings.xml) 中引用的证书
 
@@ -34,7 +37,7 @@ Service Fabric 通常要求在 Linux 群集节点上的 */var/lib/sfcerts* 目�
 
 ### <a name="using-x509-securitycredentialstype"></a>使用 X509 SecurityCredentialsType
 
-使用 .NET 或 Java SDK，可为 **SecurityCredentialsType** 指定 **X509**。 此值对应于 `SecurityCredentials` ([.NET](https://msdn.microsoft.com/library/system.fabric.securitycredentials.aspx)/[Java](https://docs.azure.cn/java/api/system.fabric.securitycredentials)) 类型的 `X509Credentials` ([.NET](https://msdn.microsoft.com/library/system.fabric.x509credentials.aspx)/[Java](https://docs.azure.cn/java/api/system.fabric.x509credentials))。
+使用 .NET 或 Java SDK，可为 **SecurityCredentialsType** 指定 **X509**。 此值对应于 `SecurityCredentials` ([.NET](https://docs.microsoft.com//previous-versions/azure/reference/mt124894(v=azure.100))/[Java](https://docs.azure.cn/java/api/system.fabric.securitycredentials)) 类型的 `X509Credentials` ([.NET](https://docs.microsoft.com/previous-versions/azure/reference/mt124925(v=azure.100))/[Java](https://docs.azure.cn/java/api/system.fabric.x509credentials))。
 
 **X509** 引用在证书存储中查找证书。 以下 XML 显示用于指定证书位置的参数：
 
@@ -96,11 +99,11 @@ Service Fabric 通常要求在 Linux 群集节点上的 */var/lib/sfcerts* 目�
 
 使用 Service Fabric SDK 可与 Service Fabric 运行时 API 通信，以利用平台。 在安全的 Linux 群集上运行使用此功能的任何应用程序时，需要使用一个证书来配置该应用程序，该证书可用于验证 Service Fabric 运行时。 包含使用 .NET Core 或 Java SDK 编写的 Service Fabric Reliable Service 服务的应用程序需要此配置。 
 
-若要配置应用程序，请在 **Certificates** 标记（位于 *ApplicationManifest.xml* 文件中的 **ApplicationManifest** 标记下面）下面添加一个 [**SecretsCertificate**](/service-fabric/service-fabric-service-model-schema-elements#secretscertificate-element) 元素。 以下 XML 显示按证书指纹引用的证书： 
+若要配置应用程序，请在 **Certificates** 标记（位于 *ApplicationManifest.xml* 文件中的 **ApplicationManifest** 标记下面）下面添加一个 [**SecretsCertificate**](./service-fabric-service-model-schema-elements.md#secretscertificate-element) 元素。 以下 XML 显示按证书指纹引用的证书： 
 
 ```xml
 <Certificates>
-   <SecretsCertificate X509FindType="FindByThumbprint" X509FindValue="0A00AA0AAAA0AAA00A000000A0AA00A0AAAA00" />
+    <SecretsCertificate X509FindType="FindByThumbprint" X509FindValue="0A00AA0AAAA0AAA00A000000A0AA00A0AAAA00" />
 </Certificates>   
 ```
 

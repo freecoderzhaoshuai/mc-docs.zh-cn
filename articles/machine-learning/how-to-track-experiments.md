@@ -11,12 +11,12 @@ ms.subservice: core
 ms.date: 07/30/2020
 ms.topic: conceptual
 ms.custom: how-to
-ms.openlocfilehash: 02a18a185a2f711833351578b07dfa4def4ff57a
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 3b89941e77ff570263e38a477c87de2485420521
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88946745"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021520"
 ---
 # <a name="enable-logging-in-azure-ml-training-runs"></a>在 Azure 机器学习训练运行中启用日志记录功能
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -42,40 +42,6 @@ Azure 机器学习 Python SDK 允许使用默认的 Python 日志记录包和特
 ## <a name="interactive-logging-session"></a>交互式日志记录会话
 
 交互式日志记录会话通常用在笔记本环境中。 方法 [Experiment.start_logging()](https://docs.microsoft.com/python/api/azureml-core/azureml.core.experiment(class)?view=azure-ml-py#start-logging--args----kwargs-) 启动交互式日志记录会话。 试验中会话期间记录的任何指标都会添加到运行记录中。 方法 [run.complete()](https://docs.microsoft.com/python/api/azureml-core/azureml.core.run(class)?view=azure-ml-py#complete--set-status-true-) 结束会话并将运行标记为已完成。
-
-以下代码片段使用交互式日志记录会话通过 [run.log()](https://docs.microsoft.com/python/api/azureml-core/azureml.core.run(class)?view=azure-ml-py#log-name--value--description----) 方法记录训练参数和性能指标。 它还将训练的模型上传到指定的输出位置。
-
-```Python
-# Get an experiment object from Azure Machine Learning
-experiment = Experiment(workspace=ws, name="train-within-notebook")
-
-# Create a run object in the experiment
-run =  experiment.start_logging()
-# Log the algorithm parameter alpha to the run
-run.log('alpha', 0.03)
-
-# Create, fit, and test the scikit-learn Ridge regression model
-regression_model = Ridge(alpha=0.03)
-regression_model.fit(data['train']['X'], data['train']['y'])
-preds = regression_model.predict(data['test']['X'])
-
-# Output the Mean Squared Error to the notebook and to the run
-print('Mean Squared Error is', mean_squared_error(data['test']['y'], preds))
-run.log('mse', mean_squared_error(data['test']['y'], preds))
-
-# Save the model to the outputs directory for capture
-model_file_name = 'outputs/model.pkl'
-
-joblib.dump(value = regression_model, filename = model_file_name)
-
-# upload the model file explicitly into artifacts 
-run.upload_file(name = model_file_name, path_or_stream = model_file_name)
-
-# Complete the run
-run.complete()
-```
-
-如需一个使用交互式日志记录的完整示例笔记本，请参阅[在笔记本中训练模型](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/training/train-within-notebook/train-within-notebook.ipynb)。
 
 ## <a name="scriptrunconfig-logs"></a>ScriptRunConfig 日志
 
@@ -163,8 +129,6 @@ run = exp.submit(src, show_output=True)
 run.wait_for_completion(show_output=True)
 ```
 
-如需一个使用 ScriptRunConfigs 日志的完整示例笔记本，请参阅[在本地训练模型](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/training/train-on-local/train-on-local.ipynb)。
-
 ## <a name="native-python-logging"></a>原生 Python 日志记录
 
 SDK 中的某些日志可能包含一个错误，指示你将日志记录级别设置为“调试”。 若要设置日志记录级别，请在脚本中添加以下代码。
@@ -182,7 +146,6 @@ Azure 机器学习还可以在训练期间记录其他来源的信息，例如�
 
 ## <a name="example-notebooks"></a>示例笔记本
 下面的笔记本展示了本文中的概念：
-* [how-to-use-azureml/training/train-within-notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/training/train-within-notebook)
 * [how-to-use-azureml/training/train-on-local](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/training/train-on-local)
 * [how-to-use-azureml/track-and-monitor-experiments/logging-api](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/track-and-monitor-experiments/logging-api)
 

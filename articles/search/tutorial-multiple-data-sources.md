@@ -8,13 +8,14 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: tutorial
 origin.date: 06/20/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: ba08386f6d3ebe942f580fc1393679acb312e05b
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.custom: devx-track-csharp
+ms.openlocfilehash: ef22679f0e36b070a8ae3eb20eb22fb3e5dfcb9d
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471923"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020889"
 ---
 # <a name="tutorial-index-from-multiple-data-sources-using-the-net-sdk"></a>教程：使用 .NET SDK 从多个数据源编制索引
 
@@ -35,8 +36,8 @@ Azure 认知搜索可以导入、分析多个数据源的数据，并将其编�
 
 ## <a name="prerequisites"></a>先决条件
 
-+ [Azure Cosmos DB](https://docs.azure.cn/cosmos-db/create-cosmosdb-resources-portal)
-+ [Azure 存储](https://docs.azure.cn/storage/common/storage-quickstart-create-account)
++ [Azure Cosmos DB](../cosmos-db/create-cosmosdb-resources-portal.md)
++ [Azure 存储](../storage/common/storage-account-create.md)
 + [Visual Studio 2019](https://visualstudio.microsoft.com/)
 + [创建](search-create-service-portal.md)或[查找现有搜索服务](https://portal.azure.cn/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) 
 
@@ -81,7 +82,7 @@ Azure 认知搜索可以导入、分析多个数据源的数据，并将其编�
 
 1. 登录到 [Azure 门户](https://portal.azure.cn)，导航到你的 Azure 存储帐户，单击“Blob”，然后单击“+ 容器”。  
 
-1. [创建 blob 容器](https://docs.azure.cn/storage/blobs/storage-quickstart-blobs-portal)，名为“hotel-rooms”  ，用于存储示例酒店房间 JSON 文件。 可将“公共访问级别”设为任何有效值。
+1. [创建 blob 容器](../storage/blobs/storage-quickstart-blobs-portal.md)，名为“hotel-rooms”  ，用于存储示例酒店房间 JSON 文件。 可将“公共访问级别”设为任何有效值。
 
    ![创建一个 blob 容器](media/tutorial-multiple-data-sources/blob-add-container.png "创建 Blob 容器")
 

@@ -1,17 +1,19 @@
 ---
 title: 在单独的 Azure Service Fabric 中进行定期备份/还原
 description: 使用 Service Fabric 的定期备份和还原功能来实现应用程序数据的定期数据备份。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 05/24/2019
-ms.date: 01/06/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 55aacdc23d96a6913e891117bef5c833e919e144
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 12d296a19ca98f7f2e1967aa1469d7407a8731a9
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742446"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655124"
 ---
 # <a name="periodic-backup-and-restore-in-a-standalone-service-fabric"></a>在独立 Service Fabric 中定期备份和还原
 > [!div class="op_single_selector"]
@@ -51,15 +53,17 @@ Service Fabric 提供了一组 API 以实现与定期备份和还原功能相关
 * 使用 Service Fabric SDK 3.0 或更高版本生成的 Service Fabric 可靠有状态应用程序。 对于面向 .NET Core 2.0 的应用程序，应使用 Service Fabric SDK 3.1 或更高版本生成应用程序。
 * 安装 Microsoft.ServiceFabric.Powershell.Http模块 [在预览中] 进行配置调用。
 
-    ```powershell
-    Install-Module -Name Microsoft.ServiceFabric.Powershell.Http -AllowPrerelease
-    ```
+```powershell
+Install-Module -Name Microsoft.ServiceFabric.Powershell.Http -AllowPrerelease
+```
 
 * 请确保在使用 Microsoft.ServiceFabric.Powershell.Http 模块发出任何配置请求之前，先使用 `Connect-SFCluster` 命令连接群集。
 
-    ```powershell
-    Connect-SFCluster -ConnectionEndpoint 'https://mysfcluster.chinaeast.cloudapp.chinacloudapi.cn:19080'   -X509Credential -FindType FindByThumbprint -FindValue '1b7ebe2174649c45474a4819dafae956712c31d3' -StoreLocation 'CurrentUser' -StoreName 'My' -ServerCertThumbprint '1b7ebe2174649c45474a4819dafae956712c31d3'  
-    ```
+```powershell
+
+Connect-SFCluster -ConnectionEndpoint 'https://mysfcluster.chinaeast.cloudapp.chinacloudapi.cn:19080'   -X509Credential -FindType FindByThumbprint -FindValue '1b7ebe2174649c45474a4819dafae956712c31d3' -StoreLocation 'CurrentUser' -StoreName 'My' -ServerCertThumbprint '1b7ebe2174649c45474a4819dafae956712c31d3'  
+
+```
 
 ## <a name="enabling-backup-and-restore-service"></a>启用备份和还原服务
 首先，需要在群集中启用备份和还原服务  。 获取要部署的群集的模板。 可使用[示例模板](https://github.com/Azure-Samples/service-fabric-dotnet-standalone-cluster-configuration/tree/master/Samples)。 通过以下步骤启用备份和还原服务  ：
@@ -78,12 +82,13 @@ Service Fabric 提供了一组 API 以实现与定期备份和还原功能相关
 2. 现在，通过在 `properties` 部分下添加以下 `addonFeatures` 部分来启用备份和还原服务，如以下代码片段所示： 
 
     ```json
-    "properties": {
-        ...
-        "addonFeatures": ["BackupRestoreService"],
-        "fabricSettings": [ ... ]
-        ...
-    }
+        "properties": {
+            ...
+            "addonFeatures": ["BackupRestoreService"],
+            "fabricSettings": [ ... ]
+            ...
+        }
+
     ```
 
 3. 配置 X.509 证书以用于加密凭据。 此步骤非常重要，可确保在保留之前对提供用于连接存储的凭据（如果有）进行加密。 通过在 `fabricSettings` 部分下添加以下 `BackupRestoreService` 部分来配置加密证书，如以下代码片段所示： 
@@ -107,7 +112,7 @@ Service Fabric 提供了一组 API 以实现与定期备份和还原功能相关
 
 ## <a name="enabling-periodic-backup-for-reliable-stateful-service-and-reliable-actors"></a>启用可靠有状态服务和 Reliable Actors 的定期备份
 让我们通过一些步骤来启用可靠有状态服务和 Reliable Actors 的定期备份。 这些步骤假定
-- 通过备份和还原服务安装群集  。
+- 通过备份和还原服务安装群集__。
 - 在群集上部署了可靠有状态服务。 在本快速入门指南中，应用程序 URI 为 `fabric:/SampleApp`，属于此应用程序的可靠有状态服务的 URI 为 `fabric:/SampleApp/MyStatefulService`。 使用单个分区部署此服务，分区 ID 为 `23aebc1e-e9ea-4e16-9d5c-e91a614fefa7`。  
 
 ### <a name="create-backup-policy"></a>创建备份策略

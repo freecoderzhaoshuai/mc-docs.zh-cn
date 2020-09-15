@@ -11,12 +11,12 @@ author: lostmygithubaccount
 ms.date: 06/25/2020
 ms.topic: conceptual
 ms.custom: how-to
-ms.openlocfilehash: 04e73a87d8a1d090f16d57080bb2f56147738cd3
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 0603343e19b3e9915e7a9524e76741ddf6796e09
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228391"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020989"
 ---
 # <a name="detect-data-drift-preview-on-datasets"></a>检测数据集中的数据偏移（预览版）
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -211,7 +211,7 @@ monitor = monitor.enable_schedule()
 
 若要在数据集监视器中设置警报，要为其创建监视器的数据集所在的工作区必须具有企业版功能。
 
-确认工作区功能后，导航到[工作室的主页](https://ml.azure.com)，然后选择左侧的“数据集”选项卡。 选择“数据集监视器”。
+确认工作区功能后，导航到[工作室的主页](https://studio.ml.azure.cn)，然后选择左侧的“数据集”选项卡。 选择“数据集监视器”。
 
 ![监视器列表](./media/how-to-monitor-datasets/monitor-list.png)
 
@@ -324,6 +324,6 @@ monitor = monitor.enable_schedule()
 
 ## <a name="next-steps"></a>后续步骤
 
-* 转到 [Azure 机器学习工作室](https://ml.azure.com)或 [Python 笔记本](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/work-with-data/datadrift-tutorial/datadrift-tutorial.ipynb)来设置数据集监视器。
+* 转到 [Azure 机器学习工作室](https://studio.ml.azure.cn)或 [Python 笔记本](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/work-with-data/datadrift-tutorial/datadrift-tutorial.ipynb)来设置数据集监视器。
 * 使用[事件网格](how-to-use-event-grid.md)设置数据集偏移监视器。 
 * 如果遇到问题，请参阅这些常见的[故障排除提示](resource-known-issues.md#data-drift)。

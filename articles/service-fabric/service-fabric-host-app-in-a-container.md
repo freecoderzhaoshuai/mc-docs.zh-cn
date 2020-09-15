@@ -3,20 +3,21 @@ title: 将容器中的 .NET 应用部署到 Azure Service Fabric
 description: 了解如何使用 Visual Studio 将现有 .NET 应用程序容器化并在 Service Fabric 中本地调试容器。 容器化后的应用程序会被推送给 Azure 容器注册表，并部署到 Service Fabric 群集。 部署到 Azure 时，应用程序使用 Azure SQL DB 保存数据。
 ms.topic: tutorial
 origin.date: 07/08/2019
-ms.date: 08/03/2020
-ms.testscope: no
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
 ms.testdate: 06/08/2020
 ms.author: v-yeche
-ms.openlocfilehash: e5c9a65258a3deca378425c98c1e170411d4f688
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 83524971b4a21b064b2388ef1480e754e15bb1a1
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426342"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655684"
 ---
 # <a name="tutorial-deploy-a-net-application-in-a-windows-container-to-azure-service-fabric"></a>教程：将 Windows 容器中的 .NET 应用程序部署到 Azure Service Fabric
 
-本教程介绍如何将现有 ASP.NET 应用程序容器化，并将其打包为 Service Fabric 应用程序。  在 Service Fabric 开发群集上本地运行该容器，然后将该应用程序部署到 Azure。  应用程序将数据保存在 [Azure SQL 数据库](/sql-database/sql-database-technical-overview)中。
+本教程介绍如何将现有 ASP.NET 应用程序容器化，并将其打包为 Service Fabric 应用程序。  在 Service Fabric 开发群集上本地运行该容器，然后将该应用程序部署到 Azure。  应用程序将数据保存在 [Azure SQL 数据库](../azure-sql/database/sql-database-paas-overview.md)中。
 
 在本教程中，你将了解如何执行以下操作：
 
@@ -43,7 +44,7 @@ ms.locfileid: "87426342"
 
 2. 验证 Fabrikam Fiber CallCenter 应用程序是否能正确无误地生成和运行。  以**管理员身份**启动 Visual Studio，然后打开 [FabrikamFiber.CallCenter.sln][link-fabrikam-github] 文件。  按 F5 调试并运行应用程序。
 
-   ![Fabrikam Web 示例][fabrikam-web-page]
+    ![Fabrikam Web 示例][fabrikam-web-page]
 
 ## <a name="containerize-the-application"></a>容器化应用程序
 
@@ -51,15 +52,15 @@ ms.locfileid: "87426342"
 
 2. 单击“是”立即将 Docker 切换到 Windows 容器。
 
-   解决方案中将创建一个新的 Service Fabric 应用程序项目，即“FabrikamFiber.CallCenterApplication”。  系统会向现有的“FabrikamFiber.Web”项目添加一个 Dockerfile。  还会向“FabrikamFiber.Web”项目添加一个“PackageRoot”目录，其中包含新 FabrikamFiber.Web 服务的服务清单和设置 。
+    解决方案中将创建一个新的 Service Fabric 应用程序项目，即“FabrikamFiber.CallCenterApplication”。  系统会向现有的“FabrikamFiber.Web”项目添加一个 Dockerfile。  还会向“FabrikamFiber.Web”项目添加一个“PackageRoot”目录，其中包含新 FabrikamFiber.Web 服务的服务清单和设置 。
 
-   现在可以在 Service Fabric 应用程序中生成和打包该容器。 在计算机上生成容器映像后，即可将其推送到任何容器注册表并下拉到任何主机上运行。
+    现在可以在 Service Fabric 应用程序中生成和打包该容器。 在计算机上生成容器映像后，即可将其推送到任何容器注册表并下拉到任何主机上运行。
 
 ## <a name="create-an-azure-sql-db"></a>创建 Azure SQL DB
 
 在生产中运行 Fabrikam Fiber CallCenter 应用程序时，需要将数据保存在数据库中。 目前无法保证将数据保留在容器中，因此无法将生产数据存储在容器中的 SQL Server 中。
 
-建议使用 [Azure SQL 数据库](/sql-database/sql-database-get-started-powershell)。 若要在 Azure 中设置和运行托管的 SQL Server DB，请运行以下脚本。  根据需要修改脚本变量。 clientIP 是开发计算机的 IP 地址。 记下脚本输出的服务器的名称。
+建议使用 [Azure SQL 数据库](../azure-sql/database/powershell-script-content-guide.md)。 若要在 Azure 中设置和运行托管的 SQL Server DB，请运行以下脚本。  根据需要修改脚本变量。 clientIP 是开发计算机的 IP 地址。 记下脚本输出的服务器的名称。
 
 ```powershell
 $subscriptionID="<subscription ID>"
@@ -130,7 +131,7 @@ Write-Host "Server name is $servername"
 
 ## <a name="create-a-container-registry"></a>创建容器注册表
 
-在本地运行应用程序后，开始准备将其部署到 Azure。  需将容器映像保存在容器注册表中。  使用以下脚本创建 [Azure 容器注册表](/container-registry/container-registry-intro)。 容器注册表名称对其他 Azure 订阅可见，因此它必须是唯一的。
+在本地运行应用程序后，开始准备将其部署到 Azure。  需将容器映像保存在容器注册表中。  使用以下脚本创建 [Azure 容器注册表](../container-registry/container-registry-intro.md)。 容器注册表名称对其他 Azure 订阅可见，因此它必须是唯一的。
 将应用程序部署到 Azure 之前，先将容器映像推送给此注册表。  应用程序部署到 Azure 中的群集时，系统会从此注册表中拉取容器映像。
 
 ```powershell
@@ -160,11 +161,8 @@ $registry = New-AzContainerRegistry -ResourceGroupName $acrresourcegroupname -Na
 创建群集时，请执行以下操作：
 
 1. 在解决方案资源管理器中右键单击“FabrikamFiber.CallCenterApplication”应用程序项目，然后选择“发布” 。
-
-2. 使用 Azure 帐户登录，以便访问订阅。 
-
-3. 选择“连接终结点”对应的下拉列表，然后选择“新建群集...”选项 。    
-
+2. 使用 Azure 帐户登录，以便访问订阅。
+3. 选择“连接终结点”对应的下拉列表，然后选择“新建群集...”选项 。
 4. 在“创建群集”对话框中，修改以下设置：
 
     a. 在“群集名称”字段中指定群集的名称，并指定要使用的订阅和位置。 记下群集资源组的名称。
@@ -186,7 +184,7 @@ $registry = New-AzContainerRegistry -ResourceGroupName $acrresourcegroupname -Na
 
 ## <a name="allow-your-application-running-in-azure-to-access-sql-database"></a>允许在 Azure 中运行的应用程序访问 SQL 数据库
 
-之前已创建一个 SQL 防火墙规则，允许对本地运行的应用程序进行访问。  接下来，需要使 Azure 中运行的应用程序能够访问 SQL DB。  为 Service Fabric 群集创建[虚拟网络服务终结点](/sql-database/sql-database-vnet-service-endpoint-rule-overview)，然后创建一个规则，允许该终结点访问 SQL DB。 请务必指定群集资源组变量，该变量是在创建群集时记下的。
+之前已创建一个 SQL 防火墙规则，允许对本地运行的应用程序进行访问。  接下来，需要使 Azure 中运行的应用程序能够访问 SQL DB。  为 Service Fabric 群集创建[虚拟网络服务终结点](../azure-sql/database/vnet-service-endpoint-rule-overview.md)，然后创建一个规则，允许该终结点访问 SQL DB。 请务必指定群集资源组变量，该变量是在创建群集时记下的。
 
 ```powershell
 # Create a virtual network service endpoint

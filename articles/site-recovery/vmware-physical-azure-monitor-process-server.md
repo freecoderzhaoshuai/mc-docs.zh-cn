@@ -1,21 +1,21 @@
 ---
 title: 监视 Azure Site Recovery 进程服务器
 description: 本文介绍如何监视用于 VMware VM/物理服务器灾难恢复的 Azure Site Recovery 进程服务器
-author: rockboyfor
 manager: digimobile
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 11/14/2019
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 09/30/2019
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 0d0ec89c98db9b57e9377aa95d01d3eff8ac784f
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: a813add459c7d36e82b6b8b75bb89c190965e7d5
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426333"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655482"
 ---
 # <a name="monitor-the-process-server"></a>监视进程服务器
 
@@ -67,7 +67,7 @@ ms.locfileid: "87426333"
 ![严重][red] | Site Recovery 每五分钟监视挂起/传出数据，估计进程服务器缓存中的数据在 45 分钟内无法上传到 Azure。
 ![严重][red] | 在 15 分钟内没有来自进程服务器的检测信号。
 
-![表键](./media/vmware-physical-azure-monitor-process-server/table-key.png)
+:::image type="content" source="./media/vmware-physical-azure-monitor-process-server/table-key.png" alt-text="表键":::
 
 > [!NOTE]
 > 进程服务器的总体运行状况基于生成的最差警报。
@@ -79,11 +79,11 @@ ms.locfileid: "87426333"
 1. 若要监视复制计算机及其进程服务器的复制运行状况和状态，请在保管库 >“复制的项”中，单击要监视的计算机。
 2. 在“复制运行状况”中，可以监视 VM 运行状况。 单击状态以向下钻取错误详细信息。
 
-    ![VM 仪表板中的进程服务器运行状况](./media/vmware-physical-azure-monitor-process-server/vm-ps-health.png)
+    :::image type="content" source="./media/vmware-physical-azure-monitor-process-server/vm-ps-health.png" alt-text="VM 仪表板中的进程服务器运行状况":::
 
 4. 在“进程服务器运行状况”中，可以监视进程服务器的状态。 向下钻取详细信息。
 
-    ![VM 仪表板中的进程服务器详细信息](./media/vmware-physical-azure-monitor-process-server/ps-summary.png)
+    :::image type="content" source="./media/vmware-physical-azure-monitor-process-server/ps-summary.png" alt-text="VM 仪表板中的进程服务器详细信息":::
 
 5. 还可以使用 VM 页上的图形表示形式来监视运行状况。
     - 横向扩展进程服务器在有与之关联的警告时以橙色突出显示，在有任何严重问题时为红色。 

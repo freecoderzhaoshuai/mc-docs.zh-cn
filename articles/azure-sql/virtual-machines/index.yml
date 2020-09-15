@@ -12,13 +12,13 @@ metadata:
   ms.author: v-jay
   ms.reviewer: carlrab
   origin.date: 05/27/2020
-  ms.date: 08/17/2020
-  ms.openlocfilehash: 7fad9a8e29611224d7aa75d2ab6ad0d3c52e9dd4
-  ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+  ms.date: 09/14/2020
+  ms.openlocfilehash: c335a7649f84cf8b2213480e042b89d360bdfe5b
+  ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 08/14/2020
-  ms.locfileid: "88223612"
+  ms.lasthandoff: 09/11/2020
+  ms.locfileid: "90014313"
 landingContent:
 - title: Azure VM 上的 SQL Server
   linkLists:
@@ -70,18 +70,14 @@ landingContent:
       url: windows/availability-group-manually-configure-prerequisites-tutorial.md
 - title: 参考
   linkLists:
-  - linkListType: learn
-    links:
-    - text: SQL 教育资源
-      url: https://docs.microsoft.com/sql/sql-server/educational-sql-resources
   - linkListType: deploy
     links:
+    - text: Azure 门户
+      url: windows/sql-vm-create-portal-quickstart.md
     - text: Azure CLI 示例
-      url: https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms
+      url: /cli/azure/sql/vm
     - text: PowerShell 示例
-      url: https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms
-    - text: ARM 模板示例
-      url: https://docs.microsoft.com/sql/ssms/download-sql-server-management-studio-ssms
+      url: windows/sql-vm-create-powershell-quickstart.md
   - linkListType: download
     links:
     - text: SQL Server Management Studio (SSMS)

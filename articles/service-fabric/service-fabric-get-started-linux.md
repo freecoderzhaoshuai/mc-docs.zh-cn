@@ -3,14 +3,18 @@ title: 在 Linux 上设置开发环境
 description: 在 Linux 上安装运行时和 SDK 并创建本地开发群集。 完成此设置后，便可以开始生成应用程序。
 ms.topic: conceptual
 origin.date: 02/23/2018
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 07fa49efa24c1c13df9b36155a4d0a4d6c2162ad
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.custom: devx-track-javascript
+ms.openlocfilehash: e5ec00383df2ab7e2b3e72d9230ba86ca7eda112
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426397"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655729"
 ---
 <!--RHEL SUPPORTED DEVELOPMENT ENVIRONMENT, NOT SERVICE FABRIC NODE OS CATEGORY -->
 # <a name="prepare-your-development-environment-on-linux"></a>在 Linux 上准备开发环境
@@ -161,8 +165,8 @@ SDK 安装随附的 Service Fabric 运行时包含下表中所述的包。
 
  | | DotNetCore | Java | Python | NodeJS | 
 --- | --- | --- | --- |---
-Ubuntu | 2.0.0 | AzulJDK 1.8 | Implicit from npm | 最新 |
-RHEL | - | OpenJDK 1.8 | Implicit from npm | 最新 |
+**Ubuntu** | 2.0.0 | AzulJDK 1.8 | Implicit from npm | 最新 |
+**RHEL** | - | OpenJDK 1.8 | Implicit from npm | 最新 |
 
 ## <a name="set-up-a-local-cluster"></a>设置本地群集
 安装完成后，启动本地群集。

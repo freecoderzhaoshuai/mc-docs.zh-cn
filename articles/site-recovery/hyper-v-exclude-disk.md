@@ -1,18 +1,20 @@
 ---
 title: 使用 Azure Site Recovery 在灾难恢复到 Azure 时排除 Hyper-V VM 磁盘
 description: 如何使用 Azure Site Recovery 在复制到 Azure 时排除 Hyper-V VM 磁盘。
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.topic: conceptual
 origin.date: 11/12/2019
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 59ba851d0e3071b67842a14b8366e37ac3ef7f44
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 06e8037b2ea78ddb3b8067ae4e3f2df038a06536
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75776729"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655674"
 ---
 # <a name="exclude-disks-from-replication"></a>从复制中排除磁盘
 
@@ -42,10 +44,10 @@ ms.locfileid: "75776729"
 
 ## <a name="exclude-disks"></a>排除磁盘
 
-1. 若要在对 Hyper-V VM [启用复制](site-recovery-hyper-v-site-to-azure.md)时排除磁盘，请选择要复制的 VM，然后在“启用复制” > “属性” > “配置属性”页上，查看“要复制的磁盘”列     。 默认情况下，选择所有磁盘进行复制。
+1. 若要在对 Hyper-V VM [启用复制](./hyper-v-azure-tutorial.md)时排除磁盘，请选择要复制的 VM，然后在“启用复制” > “属性” > “配置属性”页上，查看“要复制的磁盘”列     。 默认情况下，选择所有磁盘进行复制。
 2. 如果不想复制特定磁盘，请在“要复制的磁盘”中取消选择要排除的任何磁盘  。 
 
-    ![从复制中排除磁盘](./media/hyper-v-exclude-disk/enable-replication6-with-exclude-disk.png)
+    :::image type="content" source="./media/hyper-v-exclude-disk/enable-replication6-with-exclude-disk.png" alt-text="从复制中排除磁盘":::
 
 ## <a name="next-steps"></a>后续步骤
 设置并运行部署后，请 [详细了解](failover-failback-overview.md) 不同类型的故障转移。

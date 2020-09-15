@@ -4,16 +4,17 @@ description: 自带密钥 (BYOK) 来加密 AKS OS 和数据磁盘。
 services: container-service
 ms.topic: article
 origin.date: 07/17/2020
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 07/13/2020
 ms.author: v-yeche
-ms.openlocfilehash: 1d695dd6c8a69c9af87bde1ee8d1c55aa8497849
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: a27713026142020f05cc1ef8b142710a463c8a1c
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842653"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021554"
 ---
 <!--Verified successfully-->
 # <a name="bring-your-own-keys-byok-with-azure-disks-in-azure-kubernetes-service-aks"></a>对 Azure Kubernetes Service (AKS) 中的 Azure 磁盘使用自带密钥 (BYOK)
@@ -28,11 +29,7 @@ Azure 存储对静态存储帐户中的所有数据进行加密。 默认情况�
 
 * 需要 Azure CLI 2.0.79 或更高版本，以及 aks-preview 0.4.26 扩展
 
-> [!IMPORTANT]
-> AKS 预览功能是自助式选择加入功能。 预览版“按原样”提供，并且仅在“可用情况下”提供，不包含在服务级别协议和有限保障中。 AKS 预览版的内容部分包含在客户支持中，我们只能尽力提供支持。 因此，这些功能不应用于生产。 有关其他信息，请参阅以下支持文章：
->
-> * [AKS 支持策略](support-policies.md)
-> * [Azure 支持常见问题](faq.md)
+<!--Not Available on [!INCLUDE [preview features callout](./includes/preview/preview-callout.md)]-->
 
 ## <a name="install-latest-aks-cli-preview-extension"></a>安装最新的 AKS CLI 预览版扩展
 
@@ -101,7 +98,7 @@ az keyvault set-policy -n myKeyVaultName -g myResourceGroup --object-id $desIden
 
 ```azurecli
 # Retrieve the DiskEncryptionSet value and set a variable
-diskEncryptionSetId=$(az resource show -n mydiskEncryptionSetName -g myResourceGroup --resource-type "Microsoft.Compute/diskEncryptionSets" --query [id] -o tsv)
+diskEncryptionSetId=$(az disk-encryption-set show -n mydiskEncryptionSetName -g myResourceGroup --query [id] -o tsv)
 
 # Create a resource group for the AKS cluster
 az group create -n myResourceGroup -l myAzureRegionName
@@ -179,8 +176,8 @@ kubectl apply -f byok-azure-disk.yaml
 
 <!-- LINKS - internal -->
 
-[az-extension-add]: https://docs.azure.cn/cli/extension?view=azure-cli-latest#az-extension-add
-[az-extension-update]: https://docs.azure.cn/cli/extension?view=azure-cli-latest#az-extension-update
+[az-extension-add]: https://docs.azure.cn/cli/extension#az-extension-add
+[az-extension-update]: https://docs.azure.cn/cli/extension#az-extension-update
 [best-practices-security]: ./operator-best-practices-cluster-security.md
 [byok-azure-portal]: ../storage/common/storage-encryption-keys-portal.md
 [customer-managed-keys]: ../virtual-machines/windows/disk-encryption.md#customer-managed-keys

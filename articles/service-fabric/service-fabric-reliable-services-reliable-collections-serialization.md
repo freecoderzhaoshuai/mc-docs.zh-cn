@@ -3,14 +3,18 @@ title: 可靠集合对象序列化
 description: 了解 Azure Service Fabric 可靠集合对象序列化，包括默认策略和如何定义自定义序列化。
 ms.topic: conceptual
 origin.date: 05/08/2017
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: c32ad9a493d4b9c8ca8967de5f88b52b435b288c
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 49a9a914b0af2b655dee585a2b1c43481cce175f
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77541061"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655355"
 ---
 # <a name="reliable-collection-object-serialization-in-azure-service-fabric"></a>Azure Service Fabric 中的 Reliable Collection 对象序列化
 Reliable Collections 通过复制和保留项目，确保这些项目在机器故障和电力中断时能够持久。
@@ -21,7 +25,7 @@ Reliable Collections 从可靠状态管理器获取与给定类型对应的串�
 
 ## <a name="built-in-serializers"></a>内置串行化程序
 
-可靠状态管理器包含针对一些常见类型的内置串行化程序，以便在默认情况下对其进行高效串行化。 对于其他类型，可靠状态管理器回退为使用 [DataContractSerializer](https://msdn.microsoft.com/library/system.runtime.serialization.datacontractserializer(v=vs.110).aspx)。
+可靠状态管理器包含针对一些常见类型的内置串行化程序，以便在默认情况下对其进行高效串行化。 对于其他类型，可靠状态管理器回退为使用 [DataContractSerializer](https://docs.microsoft.com/dotnet/api/system.runtime.serialization.datacontractserializer?view=netcore-3.1)。
 内置串行化程序更高效，因为它们知道其类型无法更改，且它们无需包含类型名称等有关类型的信息。
 
 可靠状态管理器拥有针对以下类型的内置串行化程序： 
@@ -46,7 +50,7 @@ Reliable Collections 从可靠状态管理器获取与给定类型对应的串�
 
 自定义串行化程序通常用于提高性能，或用于在网络传输时以及在磁盘上加密数据。 自定义串行化程序通常比通用序列化程序更高效，因为它们不需要串行化有关类型的信息。 
 
-[IReliableStateManager.TryAddStateSerializer\<T>](https://docs.azure.cn/dotnet/api/microsoft.servicefabric.data.ireliablestatemanager.tryaddstateserializer?view=azure-dotnet) 用于为给定类型 T 注册自定义序列化程序。此注册应在 StatefulServiceBase 构造内发生，以确保在开始恢复前，所有可靠集合都有权访问相关序列化程序来读取其保留的数据。
+[IReliableStateManager.TryAddStateSerializer\<T>](https://docs.azure.cn/dotnet/api/microsoft.servicefabric.data.ireliablestatemanager.tryaddstateserializer?view=azure-dotnet) 用于为给定类型 T 注册自定义串行化程序。此注册应在 StatefulServiceBase 构造内发生，以确保在开始恢复前，所有 Reliable Collections 都有权访问相关串行化程序来读取其保留的数据。
 
 ```csharp
 public StatefulBackendService(StatefulServiceContext context)
@@ -64,7 +68,7 @@ public StatefulBackendService(StatefulServiceContext context)
 
 ### <a name="how-to-implement-a-custom-serializer"></a>如何实现自定义串行化程序
 
-自定义序列化程序需要实现 [IStateSerializer\<T>](https://docs.azure.cn/dotnet/api/microsoft.servicefabric.data.istateserializer-1?view=azure-dotnet) 接口。
+自定义串行化程序需要实现 [IStateSerializer\<T>](https://docs.azure.cn/dotnet/api/microsoft.servicefabric.data.istateserializer-1?view=azure-dotnet) 接口。
 
 > [!NOTE]
 > IStateSerializer\<T> 包含读取和写入重载，可接受名为基值的附加 T。 此 API 用于差分序列化。 当前未公开差分序列化功能。 因此，在公开和启用差分序列化前，不会调用这两个重载。
@@ -87,7 +91,7 @@ public class OrderKey : IComparable<OrderKey>, IEquatable<OrderKey>
 }
 ```
 
-下面是 IStateSerializer\<OrderKey> 的一个实现示例。
+以下是 IStateSerializer\<OrderKey> 的实现示例。
 请注意，接受 baseValue 的读取和写入重载调用各自的重载来实现向前兼容。
 
 ```csharp
@@ -133,7 +137,7 @@ public class OrderKeySerializer : IStateSerializer<OrderKey>
 但是，如果使用自定义串行化程序或 DataContractSerializer，数据必须能够无限向后和向前兼容。
 换而言之，串行化程序的每个版本都需要能够序列化和反序列化类型的任何版本。
 
-数据协定用户应遵循用于添加、删除和更改字段的定义完善的版本控制规则。 数据协定还支持处理未知字段、挂接到序列化和反序列化进程以及处理类继承。 有关详细信息，请参阅[使用数据协定](https://msdn.microsoft.com/library/ms733127.aspx)。
+数据协定用户应遵循用于添加、删除和更改字段的定义完善的版本控制规则。 数据协定还支持处理未知字段、挂接到序列化和反序列化进程以及处理类继承。 有关详细信息，请参阅[使用数据协定](https://docs.microsoft.com/dotnet/framework/wcf/feature-details/using-data-contracts?view=azure-dotnet)。
 
 自定义串行化程序用户应遵循其使用的串行化程序的指导原则，以确保它向前和向后兼容。
 支持所有版本的常用方法是在开头添加大小信息，并且仅添加可选属性。
@@ -148,4 +152,4 @@ public class OrderKeySerializer : IStateSerializer<OrderKey>
   * 参考[高级主题](service-fabric-application-upgrade-advanced.md)，了解如何在升级应用程序时使用高级功能。
   * 参考[对应用程序升级进行故障排除](service-fabric-application-upgrade-troubleshooting.md)中的步骤来解决应用程序升级时的常见问题。
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -8,13 +8,14 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: tutorial
 origin.date: 06/20/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: 7acdeced8b3a7c02c3e5ae816c26c24bcda5f323
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 661b7a5644038b8e5d1590605a3bc43e4512cf6a
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471930"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021192"
 ---
 # <a name="tutorial-add-faceted-navigation-using-the-net-sdk"></a>教程：使用 .NET SDK 添加分面导航
 

@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: quickstart
 origin.date: 06/07/2020
-ms.date: 07/02/2020
-ms.openlocfilehash: f65b5470feff1a792408938dccfd009a68969890
-ms.sourcegitcommit: 5afd7c4c3be9b80c4c67ec55f66fcf347aad74c6
+ms.date: 09/10/2020
+ms.openlocfilehash: 1e5cd8e9e624e2d05f15cdb7c6c0e48fd725236e
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85942507"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021442"
 ---
 # <a name="quickstart-use-search-explorer-to-run-queries-in-the-portal"></a>快速入门：在门户中使用“搜索浏览器”来运行查询
 

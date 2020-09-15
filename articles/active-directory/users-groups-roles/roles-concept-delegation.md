@@ -10,17 +10,17 @@ ms.service: active-directory
 ms.workload: identity
 ms.subservice: users-groups-roles
 ms.topic: conceptual
-ms.date: 08/26/2020
+ms.date: 09/08/2020
 ms.author: v-junlch
 ms.reviewer: vincesm
 ms.custom: it-pro
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: c56136bd2a172625663ff35d9320387c79278568
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 17ea49a4f8144fc83aeca28a8e825a484f01876f
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88946930"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593775"
 ---
 # <a name="delegate-administration-in-azure-active-directory"></a>在 Azure Active Directory 中委托管理权限
 
@@ -60,7 +60,7 @@ ms.locfileid: "88946930"
 应该评估每个任务的频率、重要性和难度。 这些标准是任务定义至关重要的方面，因为它们决定了是否要委托某个权限：
 
 * 日常执行的、风险有限的和容易完成的任务非常适合委托权限。
-* 至于极少执行但会在整个组织中造成很大影响且需要较高技能的任务，在委托权限之前应慎重考虑。 可以[暂时将某个帐户提升到所需的角色](/active-directory/privileged-identity-management/pim-configure)，或重新分配任务。
+* 至于极少执行但会在整个组织中造成很大影响且需要较高技能的任务，在委托权限之前应慎重考虑。 可以[暂时将某个帐户提升到所需的角色](../privileged-identity-management/pim-configure.md)，或重新分配任务。
 
 ## <a name="delegate-app-administration"></a>委托应用管理权限
 
@@ -90,6 +90,10 @@ ms.locfileid: "88946930"
 * “企业应用程序所有者”角色授予管理用户拥有的企业应用程序的能力，包括单一登录设置、用户和组分配，以及添加其他所有者。 它不能授予管理条件访问的能力。
 * “应用程序注册所有者”角色授予管理用户拥有的应用的应用程序注册的能力，包括应用程序清单和添加其他所有者。
 
+## <a name="develop-a-security-plan"></a>制定安全计划
+
+Azure AD 提供了一篇综合性的指南来帮助你规划和执行 Azure AD 管理员角色的安全计划：保护混合和云部署的特权访问。
+
 ## <a name="establish-emergency-accounts"></a>建立紧急帐户
 
 若要在出现问题时保持对标识管理存储的访问权限，请按照[创建紧急访问管理帐户](directory-emergency-access.md)中的说明准备紧急访问帐户。
@@ -106,7 +110,7 @@ ms.locfileid: "88946930"
 
 ## <a name="elevate-privilege-temporarily"></a>暂时提升特权
 
-对于大多数日常活动，并非所有用户都需要全局管理员权限，也不应将所有用户永久分配到全局管理员角色。 当用户需要全局管理员权限时，应使用其自己的帐户或备用管理帐户在 Azure AD [Privileged Identity Management](/active-directory/privileged-identity-management/pim-configure) 中激活角色分配。
+对于大多数日常活动，并非所有用户都需要全局管理员权限，也不应将所有用户永久分配到全局管理员角色。 当用户需要全局管理员权限时，应使用其自己的帐户或备用管理帐户在 Azure AD [Privileged Identity Management](../privileged-identity-management/pim-configure.md) 中激活角色分配。
 
 ## <a name="next-steps"></a>后续步骤
 

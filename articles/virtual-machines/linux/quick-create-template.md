@@ -5,31 +5,31 @@ author: Johnnytechn
 ms.service: virtual-machines-linux
 ms.topic: quickstart
 ms.workload: infrastructure
-ms.date: 06/16/2020
+ms.date: 09/03/2020
 ms.author: v-johya
 ms.custom: subject-armqs
-ms.openlocfilehash: 8fe9dbf6508d9d2436f91d7ee29ead146d861e65
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: e5cc570a48434c6fe0dcb67b5bbde1f6ca4de845
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097771"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057516"
 ---
-# <a name="quickstart-create-an-ubuntu-linux-virtual-machine-using-a-resource-manager-template"></a>快速入门：使用资源管理器模板创建 Ubuntu Linux 虚拟机
+# <a name="quickstart-create-an-ubuntu-linux-virtual-machine-using-an-arm-template"></a>快速入门：使用 ARM 模板创建 Ubuntu Linux 虚拟机
 
-本快速入门演示如何使用资源管理器模板在 Azure 中部署 Ubuntu Linux 虚拟机 (VM)。 
+本快速入门介绍如何使用 Azure 资源管理器模板（ARM 模板）在 Azure 中部署 Ubuntu Linux 虚拟机 (VM)。
 
 [!INCLUDE [About Azure Resource Manager](../../../includes/resource-manager-quickstart-introduction.md)]
 
-如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
+如果你的环境满足先决条件，并且你熟悉如何使用 ARM 模板，请选择“部署到 Azure”按钮。 Azure 门户中会打开模板。
+
+[![部署到 Azure](../../media/template-deployments/deploy-to-azure.svg)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fAzure%2fazure-quickstart-templates%2fmaster%2f101-vm-simple-linux%2fazuredeploy.json)
 
 ## <a name="prerequisites"></a>先决条件
 
-无。
+如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
 
-## <a name="create-an-ubuntu-linux-virtual-machine"></a>创建 Ubuntu Linux 虚拟机
-
-### <a name="review-the-template"></a>查看模板
+## <a name="review-the-template"></a>查看模板
 
 本快速入门中使用的模板来自 [Azure 快速启动模板](https://azure.microsoft.com/resources/templates/101-vm-simple-linux/)。
 
@@ -308,16 +308,16 @@ ms.locfileid: "85097771"
 - [Microsoft.Network/publicIPAddresses](https://docs.microsoft.com/azure/templates/Microsoft.Network/publicIPAddresses)：创建公共 IP 地址。
 - [Microsoft.Compute/virtualMachines](https://docs.microsoft.com/azure/templates/Microsoft.Compute/virtualMachines)：创建虚拟机。
 
-### <a name="deploy-the-template"></a>部署模板
+## <a name="deploy-the-template"></a>部署模板
 
 1. 选择下图登录到 Azure 并打开一个模板。 该模板将创建 Key Vault 和机密。
 
-    [![“部署到 Azure”](../../media/template-deployments/deploy-to-azure.svg)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fAzure%2fazure-quickstart-templates%2fmaster%2f101-vm-simple-linux%2fazuredeploy.json)
+    [![部署到 Azure](../../media/template-deployments/deploy-to-azure.svg)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fAzure%2fazure-quickstart-templates%2fmaster%2f101-vm-simple-linux%2fazuredeploy.json)
 
 1. 选择或输入以下值。 使用可用的默认值。
 
     - 订阅：选择一个 Azure 订阅。
-    - 资源组：从下拉列表中选择现有资源组，或选择“新建”并输入资源组的唯一名称，然后单击“确定”  。
+    - 资源组：从下拉列表中选择现有资源组，或选择“新建”并输入资源组的唯一名称，然后单击“确定” 。
     - 位置：选择一个位置。  例如，**中国北部**。
     - 管理员用户名：提供用户名，如 azureuser。
     - **身份验证类型**：可以在使用 SSH 密钥或密码之间进行选择。
@@ -327,7 +327,7 @@ ms.locfileid: "85097771"
     - DNS 标签前缀：输入要用作 DNS 标签一部分的唯一标识符。
     - Ubuntu OS 版本：选择想要在 VM 上运行的 Ubuntu 版本。
     - 位置：默认与资源组位置相同（如果已存在）。
-    - VM 大小：选择要用于 VM 的[大小](sizes.md)。
+    - VM 大小：选择要用于 VM 的[大小](../sizes.md)。
     - 虚拟网络名称：要用于 vNet 的名称。
     - 子网名称：VM 应使用的子网的名称。
     - 网络安全组名称：NSG 的名称。
@@ -338,7 +338,7 @@ ms.locfileid: "85097771"
 
 ## <a name="review-deployed-resources"></a>查看已部署的资源
 
-可以使用 Azure 门户来检查 VM 和创建的其他资源。 部署完成后，请选择“转到资源组”以查看 VM 和其他资源。
+你可以使用 Azure 门户来检查 VM 和创建的其他资源。 部署完成后，请选择“转到资源组”以查看 VM 和其他资源。
 
 
 ## <a name="clean-up-resources"></a>清理资源
@@ -352,7 +352,7 @@ ms.locfileid: "85097771"
 
 ## <a name="next-steps"></a>后续步骤
 
-在本快速入门中，你使用资源管理器模板部署了一个简单的虚拟机。 若要详细了解 Azure 虚拟机，请继续学习 Linux VM 教程。
+在本快速入门中，你已使用 ARM 模板部署了一个简单的虚拟机。 若要详细了解 Azure 虚拟机，请继续学习 Linux VM 的教程。
 
 
 > [!div class="nextstepaction"]

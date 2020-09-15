@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 06/18/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: 764ea96b79d12a19ca5684dd224e4ee5213d5f3e
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: 39a2596ba5ce701a0a1c5c169edd871f1dfda493
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471817"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021572"
 ---
 # <a name="how-to-rebuild-an-index-in-azure-cognitive-search"></a>如何在 Azure 认知搜索中重新生成索引
 

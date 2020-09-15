@@ -1,19 +1,20 @@
 ---
 title: 添加自定义 Service Fabric 运行状况报告
 description: 介绍如何将自定义运行状况报告发送至 Azure Service Fabric 运行状况实体。 为设计和实现优质运行状况报告提供建议。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 02/28/2018
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 01/13/2020
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 9fccc0ea81993989db1b80aeca8f1cbc4bbd7014
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 9b2f4e264044f453886c48e5dd5db9237bddb566
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426341"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655337"
 ---
 # <a name="add-custom-service-fabric-health-reports"></a>添加自定义 Service Fabric 运行状况报告
 Azure Service Fabric 引入了[运行状况模型](service-fabric-health-introduction.md)，用于在特定实体上标记不正常的群集和应用程序状态。 运行状况模型使用**运行状况报告器**（系统组件和监视器）。 其目标是实现轻松快捷的诊断和修复。 服务编写人员必须预先考虑运行状况。 应报告任何可能会影响运行状况的条件，尤其是如果它有助于标记出接近根源的问题。 运行状况信息可节省调试和调查的时间和精力。 该服务在云中（私有云或 Azure 云）大规模启动并运行后，好处格外明显。

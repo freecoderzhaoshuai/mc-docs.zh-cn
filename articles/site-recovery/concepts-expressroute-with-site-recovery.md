@@ -2,19 +2,21 @@
 title: 将 ExpressRoute 与 Azure Site Recovery 结合使用
 description: 介绍如何结合使用 Azure ExpressRoute 与 Azure Site Recovery 服务来实现灾难恢复和迁移。
 services: site-recovery
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 10/13/2019
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 505508445d923868c929e128f2ef907e6b62f5ee
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 13ea1576feb6846c8a0c785b902b79f70c361a31
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79292866"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655025"
 ---
 # <a name="azure-expressroute-with-azure-site-recovery"></a>将 Azure ExpressRoute 与 Azure Site Recovery 结合使用
 
@@ -35,8 +37,7 @@ ExpressRoute 线路表示通过连接提供商在本地基础结构与 Azure 云
 
 Azure Site Recovery 支持从本地 [Hyper-V 虚拟机](hyper-v-azure-architecture.md)、[VMware 虚拟机](vmware-azure-architecture.md)和[物理服务器](physical-azure-architecture.md)向 Azure 进行灾难恢复和迁移。 对于所有本地到 Azure 的方案，复制数据都发送到 Azure 存储帐户并存储在其中。 在复制期间，无需支付任何虚拟机费用。 故障转移到 Azure 时，Site Recovery 会自动创建 Azure IaaS 虚拟机。
 
-Site Recovery 通过公共终结点将数据复制到目标 Azure 区域上的 Azure 存储帐户或副本托管磁盘。 若要将 ExpressRoute 用于 Site Recovery 复制流量，可以利用 [Azure 对等互连](../expressroute/expressroute-circuit-peerings.md#microsoftpeering)或现有的[公共对等互连](../expressroute/expressroute-circuit-peerings.md)（不再支持新创建的对等互连）。 在复制时，建议使用 Azure 对等互连作为路由域。 请注意，不支持通过专用对等互连进行复制。
-<!--MOONCAKE: Not Available on or an existing [public peering](../expressroute/about-public-peering.md)-->
+Site Recovery 通过公共终结点将数据复制到目标 Azure 区域上的 Azure 存储帐户或副本托管磁盘。 若要将 ExpressRoute 用于 Site Recovery 复制流量，可以利用 [Azure 对等互连](../expressroute/expressroute-circuit-peerings.md#microsoftpeering)或现有的[公共对等互连](../expressroute/about-public-peering.md)（不再支持新创建的对等互连）。 在复制时，建议使用 Azure 对等互连作为路由域。 请注意，不支持通过专用对等互连进行复制。
 
 确保还满足配置服务器的[网络要求](vmware-azure-configuration-server-requirements.md#network-requirements)。 配置服务器需要连接到特定 URL，以便编排 Site Recovery 复制。 ExpressRoute 不能用于此连接。 
 
@@ -44,8 +45,8 @@ Site Recovery 通过公共终结点将数据复制到目标 Azure 区域上的 A
 
 - 从[此处](https://aka.ms/PsExec)下载 PsExec 工具来访问系统用户上下文。
 - 运行以下命令行，在系统用户上下文中打开 Internet Explorer
-
-    psexec -s -i "%programfiles%\Internet Explorer\iexplore.exe"
+    
+    `psexec -s -i "%programfiles%\Internet Explorer\iexplore.exe"`
     
 - 在 IE 中添加代理设置
 - 在绕过列表中，添加 Azure 存储 URL *.blob.core.chinacloudapi.cn
@@ -54,11 +55,11 @@ Site Recovery 通过公共终结点将数据复制到目标 Azure 区域上的 A
 
 在将虚拟机或服务器故障转移到 Azure 虚拟网络后，可以使用[专用对等互连](../expressroute/expressroute-circuit-peerings.md#privatepeering)访问它们。 
 
-下图描绘了这种组合方案：![使用 ExpressRoute 进行本地到 Azure 的复制](./media/concepts-expressroute-with-site-recovery/site-recovery-with-expressroute.png)
+下图描绘了这种组合方案：:::image type="content" source="./media/concepts-expressroute-with-site-recovery/site-recovery-with-expressroute.png" alt-text="使用 ExpressRoute 进行本地到 Azure 的复制":::
 
 ## <a name="azure-to-azure-replication-with-expressroute"></a>使用 ExpressRoute 进行 Azure 到 Azure 的复制
 
-Azure Site Recovery 支持对 [Azure 虚拟机](azure-to-azure-architecture.md)进行灾难恢复。 根据 Azure 虚拟机是否使用 [Azure 托管磁盘](../virtual-machines/windows/managed-disks-overview.md)，复制数据将被发送到目标 Azure 区域中的 Azure 存储帐户或副本托管磁盘。 尽管复制终结点是公共终结点，但在默认情况下，无论源虚拟网络位于哪个 Azure 区域，Azure VM 复制的复制流量都不会遍历 Internet。 对 0.0.0.0/0 地址前缀，可将 Azure 默认系统路由重写为[自定义路由](../virtual-network/virtual-networks-udr-overview.md#custom-routes)，并将 VM 流量转换为本地网络虚拟设备 (NVA)，但不建议对 Site Recovery 复制使用此配置。 如果使用自定义路由，则应在虚拟网络中为“存储”[创建一个虚拟网络服务终结点](azure-to-azure-about-networking.md#create-network-service-endpoint-for-storage)，这样复制流量就不会离开 Azure 边界。
+Azure Site Recovery 支持对 [Azure 虚拟机](azure-to-azure-architecture.md)进行灾难恢复。 根据 Azure 虚拟机是否使用 [Azure 托管磁盘](../virtual-machines/managed-disks-overview.md)，复制数据将被发送到目标 Azure 区域中的 Azure 存储帐户或副本托管磁盘。 尽管复制终结点是公共终结点，但在默认情况下，无论源虚拟网络位于哪个 Azure 区域，Azure VM 复制的复制流量都不会遍历 Internet。 对 0.0.0.0/0 地址前缀，可将 Azure 默认系统路由重写为[自定义路由](../virtual-network/virtual-networks-udr-overview.md#custom-routes)，并将 VM 流量转换为本地网络虚拟设备 (NVA)，但不建议对 Site Recovery 复制使用此配置。 如果使用自定义路由，则应在虚拟网络中为“存储”[创建一个虚拟网络服务终结点](azure-to-azure-about-networking.md#create-network-service-endpoint-for-storage)，这样复制流量就不会离开 Azure 边界。
 
 对于 Azure VM 灾难恢复，默认情况下，复制时不需要 ExpressRoute。 在将虚拟机故障转移到目标 Azure 区域后，可以使用[专用对等互连](../expressroute/expressroute-circuit-peerings.md#privatepeering)访问它们。 请注意，无论 Azure 区域之间的数据复制模式如何，数据传输价格都适用。
 

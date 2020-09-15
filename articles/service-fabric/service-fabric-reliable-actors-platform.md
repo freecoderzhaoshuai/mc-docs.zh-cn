@@ -1,17 +1,20 @@
 ---
 title: Service Fabric 上的 Reliable Actors
 description: 介绍 Reliable Actors 如何在 Reliable Services 上进行分层以及如何使用 Service Fabric 平台的功能。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 03/09/2018
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 100400dc5b53e2a17bf7bf007660947c615effa1
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 896788ae9c31d26e2ab7309e1749d01fddf95191
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79292009"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655159"
 ---
 # <a name="how-reliable-actors-use-the-service-fabric-platform"></a>Reliable Actors 如何使用 Service Fabric 平台
 本文介绍了 Reliable Actors 如何使用 Azure Service Fabric 平台。 Reliable Actors 在有状态的可靠服务（称为*执行组件服务*）的实现托管的框架中运行。 执行组件服务包含管理执行组件的生命周期和消息发送所需的所有组件：
@@ -90,7 +93,7 @@ ActorProxyBase.create(MyActor.class, new ActorId(1234));
 ## <a name="next-steps"></a>后续步骤
 * [执行组件状态管理](service-fabric-reliable-actors-state-management.md)
 * [执行组件生命周期和垃圾回收](service-fabric-reliable-actors-lifecycle.md)
-* [执行组件 API 参考文档](https://docs.azure.cn/dotnet/api/microsoft.servicefabric.actors?view=azure-dotnet?redirectedfrom=MSDN&view=azure-dotnet)
+* [执行组件 API 参考文档](https://docs.azure.cn/dotnet/api/microsoft.servicefabric.actors?view=azure-dotnet)
 * [.NET 代码示例](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)
 * [Java 代码示例](https://github.com/Azure-Samples/service-fabric-java-getting-started)
 
@@ -102,4 +105,4 @@ ActorProxyBase.create(MyActor.class, new ActorId(1234));
 [4]: ./media/service-fabric-reliable-actors-platform/actor-replica-role.png
 [5]: ./media/service-fabric-reliable-actors-introduction/distribution.png
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

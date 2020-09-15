@@ -3,17 +3,20 @@ title: Service Fabric 群集中基于 X.509 证书的身份验证
 description: 了解 Service Fabric 群集中基于证书的身份验证，以及如何检测、缓解和修复与证书相关的问题。
 ms.topic: conceptual
 origin.date: 03/16/2020
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: 09/07/2020
 ms.author: v-yeche
 ms.custom: sfrev
-ms.openlocfilehash: 3e68dc55b687e8fa393cdf0dd1fc8c7de6937903
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.openlocfilehash: 0e093a8ae766a94695958918e91003254c8a8077
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356263"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655560"
 ---
-<!--Character content without cmdlet or portal process-->
+<!--Verified succcessfully on Character content only-->
 # <a name="x509-certificate-based-authentication-in-service-fabric-clusters"></a>Service Fabric 群集中基于 X.509 证书的身份验证
 
 本文是对 [Service Fabric 群集安全性](service-fabric-cluster-security.md)简介的补充，详细介绍了 Service Fabric 群集中基于证书的身份验证。 假设读者熟悉基本的安全性概念，以及 Service Fabric 公开的用于控制群集安全性的控制措施。  
@@ -285,7 +288,7 @@ Nk: {P:{TP=A}, V:{TP=A}}，其中：
 
 * 某个节点已启动，但无法连接到其他节点；其他节点不接收来自有故障节点的入站流量。 在这种情况下，本地节点上的证书加载可能会失败。 查看以下错误：
     - 找不到证书 - 确保可以按照 LocalMachine\My 证书存储（或指定的证书存储）的内容解析出示规则中声明的证书。 
-    可能的失败原因包括： 
+        可能的失败原因包括： 
         - 指纹声明中的字符无效
         - 未安装证书
         - 证书已过期
@@ -305,5 +308,4 @@ Nk: {P:{TP=A}, V:{TP=A}}，其中：
         ```
         若要修正此问题，请使用 CAPI1（例如“Microsoft 增强型 RSA 和 AES 加密提供程序”）提供程序重新创建群集证书。 有关加密提供程序的更多详细信息，请参阅 [Understanding Cryptographic Providers](https://docs.microsoft.com/windows/win32/seccertenroll/understanding-cryptographic-providers)（了解加密提供程序）
 
-<!-- Update_Description: new article about cluster security certificates -->
-<!--NEW.date: 05/06/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

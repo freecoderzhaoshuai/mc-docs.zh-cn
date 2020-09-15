@@ -7,15 +7,15 @@ ms.service: mariadb
 ms.custom: mvc
 ms.topic: quickstart
 origin.date: 3/19/2019
-ms.date: 04/27/2020
-ms.openlocfilehash: 6a480fbf381323d9090ae4b9b8ebb5cec5cbe87e
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.date: 09/14/2020
+ms.openlocfilehash: dc1060d74c98f87762e0ea3feaa7abe8f71b05c0
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82126797"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512940"
 ---
-# <a name="create-an-azure-database-for-mariadb-server-by-using-the-azure-portal"></a>使用 Azure 门户创建 Azure Database for MariaDB 服务器
+# <a name="quickstart-create-an-azure-database-for-mariadb-server-by-using-the-azure-portal"></a>快速入门：使用 Azure 门户创建 Azure Database for MariaDB 服务器
 
 Azure Database for MariaDB 是一种托管服务，可用于在云中运行、管理和缩放高可用性的 MariaDB 数据库。 本快速入门介绍了如何使用 Azure 门户在大约五分钟内创建 Azure Database for MariaDB 服务器。  
 
@@ -44,7 +44,7 @@ Azure Database for MariaDB 是一种托管服务，可用于在云中运行、�
     设置 | 建议的值 | 说明
     ---|---|---
     服务器名称 |  唯一的服务器名称 | 选择用于标识 Azure Database for MariaDB 服务器的唯一名称。 例如，**mydemoserver**。 域名 *.mariadb.database.chinacloudapi.cn* 将追加到你输入的服务器名称后面。 服务器名称只能包含小写字母、数字和连字符 (-) 字符。 它必须包含 3 到 63 个字符。
-    订阅 | *订阅* | 选择要用于服务器的 Azure 订阅。 如果有多个订阅，请选择要计费的资源所在的订阅。
+    订阅 | *用户的订阅* | 选择要用于服务器的 Azure 订阅。 如果有多个订阅，请选择要计费的资源所在的订阅。
     资源组 |  myresourcegroup | 输入新的资源组名称，或选择现有的资源组。 
     选择源 | **空白** | 选择“空白”  可从头开始创建新服务器。 （如果要从现有 Azure Database for MariaDB 服务器的异地备份创建服务器，请选择“备份”  。）
     服务器管理员登录名 | **myadmin** | 连接到服务器时需使用的登录帐户。 管理员登录名不能是“azure_superuser”、“admin”、“administrator”、“root”、“guest”或“public”。      

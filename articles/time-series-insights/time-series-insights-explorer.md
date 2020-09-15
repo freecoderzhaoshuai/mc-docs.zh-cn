@@ -12,16 +12,16 @@ ms.workload: big-data
 ms.topic: conceptual
 ms.date: 08/05/2020
 ms.custom: seodec18
-ms.openlocfilehash: 0419de6afe9c29f5a3e66fa01522026d63cce7b5
-ms.sourcegitcommit: 36e7f37481969f92138bfe70192b1f4a2414caf7
+ms.openlocfilehash: cf7c9a9aaed4a1c7d3ef3663d858aa727cedc2e3
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87796281"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593801"
 ---
 # <a name="azure-time-series-insights-gen1-explorer"></a>Azure 时序见解 Gen1 资源管理器
 
-本文介绍 Azure 时序见解 Gen1 [资源管理器 Web 应用](https://insights.timeseries.azure.com/)的功能和选项。 Azure 时序见解资源管理器演示了该服务提供的，可在你自己的环境中访问的强大数据可视化功能。
+本文介绍 Azure 时序见解 Gen1 [资源管理器 Web 应用](https://insights.timeseries.azure.cn/)的功能和选项。 Azure 时序见解资源管理器演示了该服务提供的，可在你自己的环境中访问的强大数据可视化功能。
 
 Azure 时序见解是一种完全托管的分析、存储和可视化服务，让同时探索和分析数十亿 IoT 事件变得简单轻松。 它提供数据的全局视图，从而可以快速验证 IoT 解决方案并避免任务关键型设备出现代价高昂的故障时间。 可以近乎实时地发现隐藏的趋势、找出异常以及进行根本原因分析。 
 

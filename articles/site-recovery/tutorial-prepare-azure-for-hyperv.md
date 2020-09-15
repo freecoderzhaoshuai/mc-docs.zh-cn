@@ -1,22 +1,24 @@
 ---
-title: 准备 Azure 资源，以便对本地计算机进行灾难恢复
+title: 准备 Azure 以使用 Azure Site Recovery 实现 Hyper-V 灾难恢复
 description: 了解如何使用 Azure Site Recovery 准备 Azure，对本地 Hyper-V VM 进行灾难恢复。
-author: rockboyfor
 ms.service: site-recovery
 services: site-recovery
 ms.topic: tutorial
-origin.date: 09/09/2019
-ms.date: 09/30/2019
+origin.date: 11/14/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
 ms.custom: MVC
-ms.openlocfilehash: ea6f72aa5684e47a518e474799b57c6163b77969
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 3443a198b1dcba51a81cfc7ca4b904c2346a5e9e
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71340910"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655703"
 ---
-# <a name="prepare-azure-resources-for-disaster-recovery-of-on-premises-machines"></a>准备 Azure 资源，以便对本地计算机进行灾难恢复
+# <a name="prepare-azure-resources-for-hyper-v-disaster-recovery"></a>为 Hyper-V 灾难恢复准备 Azure 资源
 
  [Azure Site Recovery](site-recovery-overview.md) 通过在计划内和计划外中断期间使商业应用保持运行状态，来帮助实现业务连续性和灾难恢复 (BCDR)。 Site Recovery 管理并安排本地计算机和 Azure 虚拟机 (VM) 的灾难恢复，包括复制、故障转移和恢复。
 
@@ -33,7 +35,7 @@ ms.locfileid: "71340910"
 > * 创建一个恢复服务保管库，用于存储 VM 和其他复制组件的元数据与配置信息。
 > * 设置 Azure 网络。 在故障转移后创建的 Azure VM 将加入此网络。
 
-如果没有 Azure 订阅，可在开始前创建一个 [试用帐户](https://www.azure.cn/pricing/1rmb-trial/) 。
+如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial/)。
 
 ## <a name="sign-in"></a>登录
 
@@ -53,63 +55,63 @@ ms.locfileid: "71340910"
 
 已复制计算机的映像保存在 Azure 存储中。 在从本地故障转移到 Azure 时，会从该存储中创建 Azure VM。 存储帐户必须位于与恢复服务保管库相同的区域。
 
-1. 在 [Azure 门户](https://portal.azure.cn)菜单中，选择“创建资源” > “存储” > “存储帐户”。
+1. 在 [Azure 门户](https://portal.azure.cn)菜单中，选择“创建资源” > “存储” > “存储帐户”************。
     
     <!--MOONCAKE: CORRECT ON **Storage account**-->
     
-2. 在“创建存储帐户”  中，输入帐户的名称。  选择的名称必须在 Azure 中唯一，长度为 3 到 24 个字符，且只能使用小写字母和数字。 本教程使用 **contosovmsacct1910171607**。
-3. 在“部署模型”中，选择“资源管理器”。  
-4. 在“帐户类型”中，选择“存储(常规用途 v1)”   。 请不要选择 blob 存储。
-5. 在“复制”中，选择默认的“读取访问异地冗余存储”作为存储冗余。   将“需要安全传输”设置保留为“已禁用”。
-6. 在“性能”中  ，选择“标准”  。 接下来，在“访问层级”中选择默认选项“热”。  
-7. 在“订阅”中，选择要在其中创建新存储帐户的订阅。 
-8. 在“资源组”  中，输入新的资源组。 Azure 资源组是在其中部署和管理 Azure 资源的逻辑容器。 本教程使用 **ContosoRG**。
-9. 在“位置”中，选择存储帐户的地理位置。  本教程使用“中国北部”  。
-10. 选择“创建”  以创建存储帐户。
+2. 在“创建存储帐户”中，输入帐户的名称。  选择的名称必须在 Azure 中唯一，长度为 3 到 24 个字符，且只能使用小写字母和数字。 本教程使用 **contosovmsacct1910171607**。
+3. 在“部署模型”中，选择“资源管理器”。 
+4. 在“帐户类型”中，选择“存储(常规用途 v1)” 。 请不要选择 blob 存储。
+5. 在“复制”中，选择默认的“读取访问异地冗余存储”作为存储冗余。  将“需要安全传输”设置保留为“已禁用”。
+6. 在“性能”中，选择“标准”。 接下来，在“访问层级”中选择默认选项“热”。 
+7. 在“订阅”中，选择要在其中创建新存储帐户的订阅。
+8. 在“资源组”中，输入新的资源组。 Azure 资源组是在其中部署和管理 Azure 资源的逻辑容器。 本教程使用 **ContosoRG**。
+9. 在“位置”中，选择存储帐户的地理位置。 本教程使用“中国北部”****。
+10. 选择“创建”以创建存储帐户。
 
-    ![创建存储帐户](media/tutorial-prepare-azure/create-storageacct.png)
+    :::image type="content" source="media/tutorial-prepare-azure/create-storageacct.png" alt-text="创建存储帐户选项的屏幕截图。":::
 
 ## <a name="create-a-recovery-services-vault"></a>创建恢复服务保管库
 
-1. 在 Azure 门户中选择“+创建资源”，然后在 Azure 市场中搜索“恢复服务”。{3}{4}
-2. 选择“备份和站点恢复(OMS)”。  接下来，在“备份和站点恢复”页上，选择“创建”。  
-1. 在“恢复服务保管库”>“名称”中，输入一个易记名称用于标识该保管库。  在本教程中，请使用 ContosoVMVault  。
+1. 在 Azure 门户中选择“+创建资源”，然后在 Azure 市场中搜索“恢复服务”。
+2. 选择“备份和站点恢复(OMS)”。 接下来，在“备份和站点恢复”页上，选择“创建”。 
+1. 在“恢复服务保管库”>“名称”中，输入一个易记名称用于标识该保管库。 在本教程中，请使用 ContosoVMVault。
 2. 在**资源组**中，选择现有资源组或创建新资源组。 本教程使用 **contosoRG**。
-3. 在“位置”中，选择该保管库要放到的区域。  本教程使用“中国北部”  。
-4. 若要从仪表板快速访问保管库，请选择“固定到仪表板”   >   “创建”。
+3. 在“位置”中，选择该保管库要放到的区域。 本教程使用“中国北部”****。
+4. 若要从仪表板快速访问保管库，请选择“固定到仪表板” > “创建”。
 
-    ![创建新的保管库](./media/tutorial-prepare-azure/new-vault-settings.png)
+    :::image type="content" source="./media/tutorial-prepare-azure/new-vault-settings.png" alt-text="创建恢复服务保管库页的屏幕截图。":::
 
-新保管库显示在“仪表板”   > “所有资源”  中，以及“恢复服务保管库”  主页上。
+新保管库显示在“仪表板” > “所有资源”中，以及“恢复服务保管库”主页上。
 
 ## <a name="set-up-an-azure-network"></a>设置 Azure 网络
 
 在故障转移后创建的 Azure VM 会加入此网络。
 
 1. 在 [Azure 门户](https://portal.azure.cn)中，选择 **“创建资源”**  >  **“网络”**  >  **“虚拟网络”** 。 保留选择“资源管理器”作为部署模型。
-2. 在“名称”中  ，输入网络名称。 名称在 Azure 资源组中必须唯一。 本教程使用 **ContosoASRnet**。
+2. 在“名称”中，输入网络名称。 名称在 Azure 资源组中必须唯一。 本教程使用 **ContosoASRnet**。
 3. 指定要在其中创建网络的资源组。 本教程使用现有资源组 **contosoRG**。
 4. 在“地址范围”中，输入 **10.0.0.0/24** 作为网络范围。 此网络没有子网。
-5. 在“订阅”中，选择要在其中创建网络的订阅。 
-6. 在“位置”中  ，选择“中国北部”  。 该网络必须位于与恢复服务保管库相同的区域中。
+5. 在“订阅”中，选择要在其中创建网络的订阅。
+6. 在“位置”中****，选择“中国北部”****。 该网络必须位于与恢复服务保管库相同的区域中。
     
     <!--Not Available on basic DDoS protection-->
     
-8. 选择“创建”  。
+8. 选择“创建”。
 
-    ![创建虚拟网络](media/tutorial-prepare-azure/create-network.png)
+    :::image type="content" source="media/tutorial-prepare-azure/create-network.png" alt-text="创建虚拟网络选项的屏幕截图。":::
 
 创建虚拟网络需要几秒钟的时间。 创建后，可在 Azure 门户仪表板中看到它。
 
 ## <a name="useful-links"></a>有用链接
 
 学习内容：
-- [Azure 网络](/virtual-network/virtual-networks-overview)
-- [托管磁盘](/virtual-machines/windows/managed-disks-overview)
+- [Azure 网络](../virtual-network/virtual-networks-overview.md)
+- [托管磁盘](../virtual-machines/managed-disks-overview.md)
 
 ## <a name="next-steps"></a>后续步骤
 
 > [!div class="nextstepaction"]
 > [准备本地 Hyper-V 基础结构以灾难恢复到 Azure](hyper-v-prepare-on-premises-tutorial.md)
 
-<!--Update_Description: wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

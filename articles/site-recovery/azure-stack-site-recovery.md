@@ -3,16 +3,17 @@ title: 使用 Azure Site Recovery 将 Azure Stack VM 复制到 Azure | Azure
 description: 了解如何使用 Azure Site Recovery 服务为 Azure Stack VM 设置到 Microsoft Azure 的灾难恢复。
 ms.topic: conceptual
 origin.date: 08/05/2019
-ms.date: 08/10/2020
-ms.testscope: yes|no
-ms.testdate: 08/10/2020null
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 5f658a19291888a2cba2ad36a8bd683702a41a33
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: ba28a710e746a179a64c83e5e9e9b78d1955e68e
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917210"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655263"
 ---
 # <a name="replicate-azure-stack-vms-to-azure"></a>将 Azure Stack VM 复制到 Azure
 
@@ -132,11 +133,11 @@ Site Recovery 有助于实现业务连续性和灾难恢复 (BCDR) 策略。 该
 
 ## <a name="step-2-create-a-vault-and-select-a-replication-goal"></a>步骤 2：创建保管库并选择复制目标
 
-<!--Notice: Correct on **Monitoring + Management** on Mooncake-->
+<!--MOONCAKE: Correct on **Monitoring + Management**-->
 
 1. 在 Azure 门户中，选择“创建资源” > “监视 + 管理” > “备份和站点恢复(OMS)”。   
 
-    <!--Notice: Correct on **Monitoring + Management** on Mooncake-->
+    <!--MOONCAKE: Correct on **Monitoring + Management**-->
     
 2. 在“名称”  中，输入一个友好名称以标识此保管库。
 3. 在“资源”组中，创建或选择资源组  。 我们将使用 contosoRG  。
@@ -184,7 +185,7 @@ Site Recovery 有助于实现业务连续性和灾难恢复 (BCDR) 策略。 该
 
 > [!NOTE]
 > 还可通过命令行安装配置服务器。 [了解详细信息](physical-manage-configuration-server.md#install-from-the-command-line)。
-> 
+>
 > 帐户名可能需要 15 分钟或更长时间才能出现在门户中。 若要立即更新，请选择“配置服务器” > ***服务器名称*** > “刷新服务器”。  
 
 ## <a name="step-4-set-up-the-target-environment"></a>步骤 4：设置目标环境
@@ -239,9 +240,9 @@ Site Recovery 有助于实现业务连续性和灾难恢复 (BCDR) 策略。 该
 
 > [!NOTE]
 > 为 VM 启用复制后，Site Recovery 会安装移动服务。
-> 
+>
 > 可能要等 15 分钟或更长时间，更改才会生效并显示在门户中。
-> 
+>
 > 若要监视添加的 VM，请在“配置服务器”   >   “上次联系时间”中查看上次发现 VM 的时间。 若要添加 VM 而不想要等待计划的发现，请突出显示配置服务器（不要选择它），然后选择“刷新”。 
 
 ## <a name="step-6-run-a-disaster-recovery-drill"></a>步骤 6：运行灾难恢复演练

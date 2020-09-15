@@ -10,12 +10,12 @@ author: luisquintanilla
 ms.author: v-yiso
 origin.date: 07/09/2020
 ms.date: 08/24/2020
-ms.openlocfilehash: 1c540efc4791a178adc00a305f777742ee04acec
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 6593f71f68b36213290339a401d5bb59b2953189
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228487"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021617"
 ---
 # <a name="set-up-azure-machine-learning-visual-studio-code-extension"></a>设置 Azure 机器学习 Visual Studio Code 扩展
 
@@ -84,7 +84,7 @@ ms.locfileid: "88228487"
     {
         "workspace": "WS06271500",
         "resourceGroup": "WS06271500-rg2",
-        "location": "South Central US",
+        "location": "China East 2",
         "experiment": "WS06271500-exp1",
         "compute": {
             "name": "WS06271500-com1",

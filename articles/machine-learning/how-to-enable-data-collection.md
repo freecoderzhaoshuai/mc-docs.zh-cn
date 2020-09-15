@@ -11,12 +11,12 @@ ms.author: copeters
 author: lostmygithubaccount
 ms.date: 11/12/2019
 ms.custom: seodec18
-ms.openlocfilehash: f31bdc7fede617421cd94c71db173f423371ca41
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 967ffdf88f3aecb2ae5952decaa456f3bee9dd79
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228284"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021160"
 ---
 # <a name="collect-data-for-models-in-production"></a>为生产环境中的模型收集数据
 
@@ -134,7 +134,7 @@ Blob 中输出数据的路径遵循以下语法：
 
 ### <a name="quickly-access-your-blob-data"></a>快速访问 Blob 数据
 
-1. 登录到 [Azure 机器学习](https://ml.azure.com)。
+1. 登录到 [Azure 机器学习](https://studio.ml.azure.cn)。
 
 1. 打开你的工作区。
 

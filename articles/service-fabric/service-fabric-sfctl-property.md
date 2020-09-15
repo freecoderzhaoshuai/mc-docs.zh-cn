@@ -1,17 +1,19 @@
 ---
 title: Azure Service Fabric CLI- sfctl property
 description: 了解 sfctl（Azure Service Fabric 命令行接口）。 包含用于存储和查询属性的命令列表。
-author: rockboyfor
 ms.topic: reference
 origin.date: 01/16/2020
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 267a766308e4bb3aabd36aa8a02d4d9a098512d7
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 9ae9bd2ddf95bf3ab6edb78681ff13cee797f826
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540589"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655631"
 ---
 # <a name="sfctl-property"></a>sfctl property
 在 Service Fabric 名称下存储和查询属性。
@@ -122,6 +124,6 @@ ms.locfileid: "77540589"
 
 ## <a name="next-steps"></a>后续步骤
 - [安装](service-fabric-cli.md) Service Fabric CLI。
-- 了解如何通过[示例脚本](/service-fabric/scripts/sfctl-upgrade-application)使用 Service Fabric CLI。
+- 了解如何通过[示例脚本](./scripts/sfctl-upgrade-application.md)使用 Service Fabric CLI。
 
 <!-- Update_Description: update meta properties, wording update -->

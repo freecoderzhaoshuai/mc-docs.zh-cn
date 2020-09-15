@@ -8,21 +8,21 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 07/17/2020
-ms.openlocfilehash: 000d1bffe649bd89dcc3a0080832822c536b88ad
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: 792eb1a30f42696644b5077bd4f59e8e7a2550ee
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86472002"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021107"
 ---
 #   <a name="text-translation-cognitive-skill"></a>文本翻译认知技能
 
-**文本翻译**技能对文本进行评估，并针对每个记录返回已翻译为指定目标语言的文本。 此技能使用认知服务中提供的[文本翻译 API v3.0](https://docs.azure.cn/cognitive-services/translator/reference/v3-0-translate)。
+**文本翻译**技能对文本进行评估，并针对每个记录返回已翻译为指定目标语言的文本。 此技能使用认知服务中提供的[文本翻译 API v3.0](../cognitive-services/translator/reference/v3-0-translate.md)。
 
 此功能适用于你预期自己的文档可能不会全部采用一种语言的情况，在这种情况下，你可能会在编制索引以方便搜索之前通过翻译将文本标准化为单一语言。  这也适用于本地化用例，即，你可能需要将同一文本的副本以多种语言发布。
 
-[文本翻译 API v3.0](https://docs.azure.cn/cognitive-services/translator/reference/v3-0-reference) 是一项非区域性认知服务，这意味着，我们不保证你的数据与 Azure 认知搜索或附加的认知服务资源位于同一区域。
+[文本翻译 API v3.0](../cognitive-services/translator/reference/v3-0-reference.md) 是一项非区域性认知服务，这意味着，我们不保证你的数据与 Azure 认知搜索或附加的认知服务资源位于同一区域。
 
 > [!NOTE]
 > 通过增大处理频率、添加更多文档或添加更多 AI 算法来扩大范围时，需要[附加可计费的认知服务资源](cognitive-search-attach-cognitive-services.md)。 调用认知服务中的 API 以及在 Azure 认知搜索中的文档破解阶段提取图像时，会产生费用。 提取文档中的文本不会产生费用。
@@ -41,17 +41,17 @@ Microsoft.Skills.Text.TranslationSkill
 
 | 输入                | 说明 |
 |---------------------|-------------|
-| defaultToLanguageCode | （必需）将文档翻译为未显式指定语言的文档时所需的语言代码。 <br/> 请参阅[支持的语言的完整列表](https://docs.azure.cn/cognitive-services/translator/language-support)。 |
-| defaultFromLanguageCode | （可选）将文档从未显式指定语言的文档进行翻译时所需的语言代码。  如果未指定 defaultFromLanguageCode，则会使用文本翻译 API 提供的自动语言检测功能来确定源语言。 <br/> 请参阅[支持的语言的完整列表](https://docs.azure.cn/cognitive-services/translator/language-support)。 |
-| suggestedFrom | （可选）在 fromLanguageCode 输入和 defaultFromLanguageCode 参数均未提供且自动语言检测操作不成功情况下，将文档从源语言进行翻译所需的语言代码。  如果未指定 suggestedFrom 语言，则会将英语 (en) 用作 suggestedFrom 语言。 <br/> 请参阅[支持的语言的完整列表](https://docs.azure.cn/cognitive-services/translator/language-support)。 |
+| defaultToLanguageCode | （必需）将文档翻译为未显式指定语言的文档时所需的语言代码。 <br/> 请参阅[支持的语言的完整列表](../cognitive-services/translator/language-support.md)。 |
+| defaultFromLanguageCode | （可选）将文档从未显式指定语言的文档进行翻译时所需的语言代码。  如果未指定 defaultFromLanguageCode，则会使用文本翻译 API 提供的自动语言检测功能来确定源语言。 <br/> 请参阅[支持的语言的完整列表](../cognitive-services/translator/language-support.md)。 |
+| suggestedFrom | （可选）在 fromLanguageCode 输入和 defaultFromLanguageCode 参数均未提供且自动语言检测操作不成功情况下，将文档从源语言进行翻译所需的语言代码。  如果未指定 suggestedFrom 语言，则会将英语 (en) 用作 suggestedFrom 语言。 <br/> 请参阅[支持的语言的完整列表](../cognitive-services/translator/language-support.md)。 |
 
 ## <a name="skill-inputs"></a>技能输入
 
 | 输入名称     | 说明 |
 |--------------------|-------------|
 | text | 要翻译的文本。|
-| toLanguageCode    | 一个表示文本翻译目标语言的字符串。 如果未指定此输入，则使用 defaultToLanguageCode 来翻译文本。 <br/>请参阅[支持的语言的完整列表](https://docs.azure.cn/cognitive-services/translator/language-support)|
-| fromLanguageCode  | 一个表示文本的当前语言的字符串。 如果此参数未指定，则会使用 defaultFromLanguageCode（在未提供 defaultFromLanguageCode 的情况下，则会使用自动语言检测功能）来翻译文本。 <br/>请参阅[支持的语言的完整列表](https://docs.azure.cn/cognitive-services/translator/language-support)|
+| toLanguageCode    | 一个表示文本翻译目标语言的字符串。 如果未指定此输入，则使用 defaultToLanguageCode 来翻译文本。 <br/>请参阅[支持的语言的完整列表](../cognitive-services/translator/language-support.md)|
+| fromLanguageCode  | 一个表示文本的当前语言的字符串。 如果此参数未指定，则会使用 defaultFromLanguageCode（在未提供 defaultFromLanguageCode 的情况下，则会使用自动语言检测功能）来翻译文本。 <br/>请参阅[支持的语言的完整列表](../cognitive-services/translator/language-support.md)|
 
 ## <a name="skill-outputs"></a>技能输出
 

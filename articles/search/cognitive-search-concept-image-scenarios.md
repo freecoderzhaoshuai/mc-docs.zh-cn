@@ -8,13 +8,14 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 03/16/2020
-ms.openlocfilehash: 984479aa1cc8c8a65e05e1db3e6b1aac8e5e82cf
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.date: 09/10/2020
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 98d46ed0fcc9dfe4fe098c8d398db7665101596b
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78934867"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021605"
 ---
 # <a name="how-to-process-and-extract-information-from-images-in-ai-enrichment-scenarios"></a>如何处理和提取 AI 扩充方案中的图像中的信息
 

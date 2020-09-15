@@ -10,13 +10,14 @@ ms.date: 07/27/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 89b806cad4e4a192494c21282e9ed44dfc811595
-ms.sourcegitcommit: 4d9846bb03ac24bd98b0c9a781bb8912ff6d2f61
+ms.openlocfilehash: 98348495878638b8868d97aa6bbcb56a381e38fe
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "86926990"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655120"
 ---
+<!--Verified successfully-->
 <!--Character contents only-->
 # <a name="working-remotely-using-azure-bastion"></a>使用 Azure Bastion 进行远程工作
 

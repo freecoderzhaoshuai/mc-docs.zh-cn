@@ -5,18 +5,18 @@ author: Johnnytechn
 tags: azure-resource-manager
 ms.service: virtual-machines-linux
 ms.subservice: imaging
-ms.topic: article
+ms.topic: how-to
 ms.workload: infrastructure
 origin.date: 11/06/2019
-ms.date: 06/05/2020
+ms.date: 09/03/2020
 ms.author: v-johya
 ms.reviewer: akjosh
-ms.openlocfilehash: a08024ca10c61aeaaac2510cb1ed3397c47cddb8
-ms.sourcegitcommit: 285649db9b21169f3136729c041e4d04d323229a
+ms.openlocfilehash: 384f1d0a69d8c528b968145dc6ba43e81693e9da
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84683944"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057585"
 ---
 <!--Verified the Shared Image Gallery exist-->
 # <a name="create-an-azure-shared-image-gallery-using-the-portal"></a>使用门户创建 Azure 共享映像库

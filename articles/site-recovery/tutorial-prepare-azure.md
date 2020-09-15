@@ -1,22 +1,24 @@
 ---
-title: 准备 Azure 以使用 Azure Site Recovery 对本地计算机进行灾难恢复
+title: 准备 Azure 以使用 Azure Site Recovery 实现本地灾难恢复
 description: 了解如何使用 Azure Site Recovery 准备 Azure，对本地计算机进行灾难恢复。
 services: site-recovery
-author: rockboyfor
 ms.service: site-recovery
 ms.topic: tutorial
 origin.date: 09/09/2019
-ms.date: 09/30/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
 ms.custom: MVC
-ms.openlocfilehash: ac849ae96396f8b44169cbc0bb682a1156bfa3bb
-ms.sourcegitcommit: 3cf647177c22b24f76236c57cae19482ead6a283
+ms.openlocfilehash: 808a4e8fcb386c14c1101ead795c0d6eac0b20ba
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88029696"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655699"
 ---
-# <a name="prepare-azure-resources-for-disaster-recovery-of-on-premises-machines"></a>准备 Azure 资源，以便对本地计算机进行灾难恢复
+# <a name="prepare-azure-for-on-premises-disaster-recovery-to-azure"></a>准备 Azure 以实现本地到 Azure 的灾难恢复
 
 本文介绍如何准备 Azure 资源和组件，以便可以使用 [Azure Site Recovery](site-recovery-overview.md) 服务设置本地 VMware VM、Hyper-V VM 或 Windows/Linux 物理服务器到 Azure 的灾难恢复。
 
@@ -52,6 +54,8 @@ ms.locfileid: "88029696"
 
 ## <a name="create-a-recovery-services-vault"></a>创建恢复服务保管库
 
+<!--MOONCAKE CUSTOMIZATION-->
+
 1. 在 Azure 门户中，选择“+ 创建资源” > “监视 + 管理” > “备份和站点恢复 (OMS)”。  
     
     <!--Submenu is correct on **Monitoring + Management**-->
@@ -60,11 +64,13 @@ ms.locfileid: "88029696"
 1. 在“恢复服务保管库” > “名称”中，输入一个友好名称以标识此保管库。 对于这组教程，我们使用 **ContosoVMVault**。
 2. 在**资源组**中，选择现有资源组或创建新资源组。 在本教程中，我们使用 **contosoRG**。
 3. 在**位置**中，选择保管库应位于的区域。 我们将使用“中国北部”****。
-4. 若要从仪表板快速访问保管库，请选择“固定到仪表板” > “创建”。
+4. 若要从仪表板快速访问保管库，请选择“固定到仪表板”   >   “创建”。
 
-    ![创建新的保管库](./media/tutorial-prepare-azure/new-vault-settings.png)
+<!--MOONCAKE CUSTOMIZATION-->
 
-    新保管库显示在“仪表板” > “所有资源”中，以及“恢复服务保管库”主页上。
+    :::image type="content" source="./media/tutorial-prepare-azure/new-vault-settings.png" alt-text="Screenshot of the Create Recovery Services vault page.":::
+
+    The new vault will now be listed in **Dashboard** > **All resources**, and on the main **Recovery Services vaults** page.
 
 ## <a name="set-up-an-azure-network"></a>设置 Azure 网络
 
@@ -82,16 +88,16 @@ ms.locfileid: "88029696"
     
 8. 单击“创建”。
 
-    ![创建虚拟网络](media/tutorial-prepare-azure/create-network.png)
+    :::image type="content" source="media/tutorial-prepare-azure/create-network.png" alt-text="创建虚拟网络选项的屏幕截图。":::
 
-创建虚拟网络需要几秒钟的时间。 创建后，即可在 Azure 门户仪表板中看到它。
+创建虚拟网络需要几秒钟的时间。 创建后，可在 Azure 门户仪表板中看到它。
 
 ## <a name="next-steps"></a>后续步骤
 
-- 若要实现 VMware 灾难恢复，请[准备本地 VMware 基础结构](tutorial-prepare-on-premises-vmware.md)。
+- 若要实现 VMware 灾难恢复，请[准备本地 VMware 基础结构](./vmware-azure-tutorial-prepare-on-premises.md)。
 - 若要实现 Hyper-V 灾难恢复，请[准备本地 Hyper-V 基础结构](hyper-v-prepare-on-premises-tutorial.md)。
 - 若要实现物理服务器灾难恢复，请[设置配置服务器和源环境](physical-azure-disaster-recovery.md)。
-- [了解](/virtual-network/virtual-networks-overview) Azure 网络。
-- [了解](/virtual-machines/windows/managed-disks-overview)托管磁盘。
+- [了解](../virtual-network/virtual-networks-overview.md) Azure 网络。
+- [了解](../virtual-machines/managed-disks-overview.md)托管磁盘。
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

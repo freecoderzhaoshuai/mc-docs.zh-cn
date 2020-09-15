@@ -3,18 +3,19 @@ title: 快速入门 - 创建 Azure Kubernetes 服务 (AKS) 群集
 description: 了解如何使用 Azure 资源管理器模板快速创建 Kubernetes 群集，并在 Azure Kubernetes 服务 (AKS) 中部署应用程序
 services: container-service
 ms.topic: quickstart
-origin.date: 04/19/2019
-ms.date: 08/10/2020
+origin.date: 08/18/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
 ms.custom: mvc,subject-armqs
-ms.openlocfilehash: 9e1ffbc5c7e8ef87e5b4f60f260e3d146d500787
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: e9da3b4bd3c68c0c8658c6273584d0a284bdf55c
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842682"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020822"
 ---
 <!--Verify successfully-->
 # <a name="quickstart-deploy-an-azure-kubernetes-service-aks-cluster-using-an-arm-template"></a>快速入门：使用 ARM 模板部署 Azure Kubernetes 服务 (AKS) 群集
@@ -277,12 +278,6 @@ aks-agentpool-41324942-2   Ready    agent   6m45s   v1.12.6
 
 Kubernetes 清单文件定义群集的所需状态，例如，要运行哪些容器映像。 在本快速入门中，清单用于创建运行 Azure Vote 应用程序所需的所有对象。 此清单包括两个 [Kubernetes 部署][kubernetes-deployment] - 一个用于 Azure Vote Python 示例应用程序，另一个用于 Redis 实例。 此外，还会创建两个 [Kubernetes 服务][kubernetes-service] - 一个内部服务用于 Redis 实例，一个外部服务用于从 Internet 访问 Azure Vote 应用程序。
 
-> [!TIP]
-> 在本快速入门中，请手动创建应用程序清单并将其部署到 AKS 群集。
-
-<!--Not Avaialble on [Azure Dev Spaces][azure-dev-spaces]-->
-<!--Not Available on  In more real-world scenarios, you can use Azure Dev Spaces to rapidly iterate and debug your code directly in the AKS cluster. You can use Dev Spaces across OS platforms and development environments, and work together with others on your team.-->
-
 创建名为 `azure-vote.yaml` 的文件，并将其复制到以下 YAML 定义中。 如果使用 Azure 本地 Shell，则可以使用 `vi` 或 `nano` 来创建此文件，就像在虚拟或物理系统中操作一样：
 
 ```yaml
@@ -456,19 +451,19 @@ az group delete --name myResourceGroup --yes --no-wait
 [kubernetes-concepts]: concepts-clusters-workloads.md
 [aks-monitor]: https://aka.ms/coingfonboarding
 [aks-tutorial]: ./tutorial-kubernetes-prepare-app.md
-[az-aks-browse]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-browse
-[az-aks-create]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-create
-[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-get-credentials
-[az-aks-install-cli]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-install-cli
-[az-group-create]: https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-create
-[az-group-delete]: https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-delete
-[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[az-aks-browse]: https://docs.microsoft.com/cli/azure/aks#az_aks_browse
+[az-aks-create]: https://docs.microsoft.com/cli/azure/aks#az_aks_create
+[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks#az_aks_get_credentials
+[az-aks-install-cli]: https://docs.microsoft.com/cli/azure/aks#az_aks_install_cli
+[az-group-create]: https://docs.azure.cn/cli/group#az-group-create
+[az-group-delete]: https://docs.azure.cn/cli/group#az-group-delete
+[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli
 [sp-delete]: kubernetes-service-principal.md#additional-considerations
 [azure-portal]: https://portal.azure.cn
 [kubernetes-deployment]: concepts-clusters-workloads.md#deployments-and-yaml-manifests
 [kubernetes-service]: concepts-network.md#services
 [kubernetes-dashboard]: kubernetes-dashboard.md
 [ssh-keys]: ../virtual-machines/linux/create-ssh-keys-detailed.md
-[az-ad-sp-create-for-rbac]: https://docs.azure.cn/cli/ad/sp?view=azure-cli-latest#az-ad-sp-create-for-rbac
+[az-ad-sp-create-for-rbac]: https://docs.azure.cn/cli/ad/sp#az-ad-sp-create-for-rbac
 
 <!-- Update_Description: update meta properties, wording update, update link -->

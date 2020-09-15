@@ -10,12 +10,12 @@ ms.author: peterlu
 author: peterclu
 ms.date: 05/05/2020
 ms.custom: tracking-python
-ms.openlocfilehash: 9eabef7814af92858f0dc2a345898b8101155e9e
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 81e5d837c0fb6de240314f431c681f3a493dcd67
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228383"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021313"
 ---
 # <a name="reinforcement-learning-preview-with-azure-machine-learning"></a>Azure 机器学习的强化学习（预览版）
 
@@ -34,7 +34,7 @@ ms.locfileid: "88228383"
 > * 提交试验以开始运行
 > * 查看结果
 
-本文基于可在 Azure 机器学习笔记本 [GitHub 存储库](https://aka.ms/azureml-rl-notebooks)中找到的 [RLlib Pong 示例](https://aka.ms/azureml-rl-pong)。
+本文基于可在 Azure 机器学习笔记本 [GitHub 存储库](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/reinforcement-learning/README.md)中找到的 [RLlib Pong 示例](https://aka.ms/azureml-rl-pong)。
 
 ## <a name="prerequisites"></a>先决条件
 
@@ -433,4 +433,4 @@ run.wait_for_completion()
 
 ## <a name="next-steps"></a>后续步骤
 
-在本文中，你已了解如何使用 IMPALA 学习代理来训练强化学习代理。 若要查看更多示例，请转到 [Azure 机器学习强化学习 GitHub 存储库](https://aka.ms/azureml-rl-notebooks)。
+在本文中，你已了解如何使用 IMPALA 学习代理来训练强化学习代理。 若要查看更多示例，请转到 [Azure 机器学习强化学习 GitHub 存储库](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/reinforcement-learning/README.md)。

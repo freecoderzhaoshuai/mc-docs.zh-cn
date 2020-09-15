@@ -10,12 +10,12 @@ author: vijetajo
 ms.author: vijetaj
 ms.topic: conceptual
 ms.date: 05/08/2018
-ms.openlocfilehash: 3cb9764771d25341bb22f4fb08e948c36408313a
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: b04fbc28e135c10e0641834a8acb035dfd0beaad
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097438"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021053"
 ---
 # <a name="store-access-credentials-securely-on-an-azure-data-science-virtual-machine"></a>在 Azure Data Science Virtual Machine 上安全存储访问凭据
 
@@ -64,9 +64,9 @@ curl https://<Vault Name>.vault.azure.net/secrets/SQLPasswd?api-version=2016-10-
 ```
 # Prerequisite: You have granted your VMs MSI access to use storage account access keys based on instructions at https://docs.azure.cn/active-directory/managed-service-identity/tutorial-linux-vm-access-storage. This article describes the process in more detail.
 
-y=`curl http://localhost:50342/oauth2/token --data "resource=https://management.azure.com/" -H Metadata:true`
+y=`curl http://localhost:50342/oauth2/token --data "resource=https://management.chinacloudapi.cn/" -H Metadata:true`
 ytoken=`echo $y | python -c "import sys, json; print(json.load(sys.stdin)['access_token'])"`
-curl https://management.azure.com/subscriptions/<SubscriptionID>/resourceGroups/<ResourceGroup of Storage account>/providers/Microsoft.Storage/storageAccounts/<Storage Account Name>/listKeys?api-version=2016-12-01 --request POST -d "" -H "Authorization: Bearer $ytoken"
+curl https://management.chinacloudapi.cn/subscriptions/<SubscriptionID>/resourceGroups/<ResourceGroup of Storage account>/providers/Microsoft.Storage/storageAccounts/<Storage Account Name>/listKeys?api-version=2016-12-01 --request POST -d "" -H "Authorization: Bearer $ytoken"
 
 # Now you can access the data in the storage account from the retrieved storage account keys.
 ```

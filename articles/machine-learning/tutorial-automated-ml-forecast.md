@@ -10,12 +10,12 @@ ms.author: sacartac
 ms.reviewer: nibaccam
 author: cartacioS
 ms.date: 07/10/2020
-ms.openlocfilehash: 115a5565c06dda203deb5a6bd78107b50292a5af
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 44bfbc06d4b98bbf6de6e2ea541ff0a703c688c1
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228497"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021288"
 ---
 # <a name="tutorial-forecast-demand-with-automated-machine-learning"></a>教程：使用自动化机器学习预测需求
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-enterprise-sku.md)]
@@ -46,7 +46,7 @@ ms.locfileid: "88228497"
 
 本教程将在 Azure 机器学习工作室中创建自动化 ML 试验运行。机器学习工作室是一个整合的 Web 界面，其中包含的机器学习工具可让各种技能水平的数据科学实践者执行数据科学方案。 Internet Explorer 浏览器不支持此工作室。
 
-1. 登录到 [Azure 机器学习工作室](https://ml.azure.com)。
+1. 登录到 [Azure 机器学习工作室](https://studio.ml.azure.cn)。
 
 1. 选择创建的订阅和工作区。
 
@@ -217,7 +217,7 @@ Azure 机器学习工作室中的自动化机器学习可以通过几个步骤�
 
 若要保留资源组和工作区以便在其他教程和探索中使用，请仅从 Azure 机器学习工作室中删除部署实例。 
 
-1. 转到 [Azure 机器学习工作室](https://ml.azure.com/)。 导航到你的工作区，然后在“资产”窗格的左下角选择“终结点”。 
+1. 转到 [Azure 机器学习工作室](https://studio.ml.azure.cn/)。 导航到你的工作区，然后在“资产”窗格的左下角选择“终结点”。 
 
 1. 选择要删除的部署，然后选择“删除”。 
 

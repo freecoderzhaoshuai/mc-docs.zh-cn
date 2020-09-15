@@ -9,13 +9,13 @@ ms.service: cognitive-search
 ms.devlang: rest-api
 ms.topic: conceptual
 origin.date: 01/06/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: 9fa134756bf39d65387847f1bad8e67950ecc7a8
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: 2a883a84cc0d50704b1928f54aaa186e94a602d2
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86472046"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020932"
 ---
 # <a name="how-to-configure-caching-for-incremental-enrichment-in-azure-cognitive-search"></a>如何在 Azure 认知搜索中为增量扩充配置缓存
 
@@ -105,11 +105,13 @@ api-key: [YOUR-ADMIN-KEY]
 
 如果现在针对索引器发出另一个 GET 请求，服务的响应将包含缓存对象中的 `ID` 属性。 将字母数字字符串追加到容器的名称，该容器包含此索引器处理的每个文档的所有缓存结果和中间状态。 ID 用于唯一命名 Blob 存储中的缓存。
 
+```http
     "cache": {
         "ID": "<ALPHA-NUMERIC STRING>",
         "enableReprocessing": true,
         "storageConnectionString": "DefaultEndpointsProtocol=https;AccountName=<YOUR-STORAGE-ACCOUNT>;AccountKey=<YOUR-STORAGE-KEY>;EndpointSuffix=core.chinacloudapi.cn"
     }
+```
 
 ### <a name="step-5-run-the-indexer"></a>步骤 5：运行索引器
 

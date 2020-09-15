@@ -9,12 +9,12 @@ ms.date: 08/10/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
-ms.openlocfilehash: e636b7002e019b481d37ae6f3ef551a64357d2c0
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: d5486b6472ae540463a0821e6788d98971ab3519
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842589"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020853"
 ---
 <!--Verify successfully-->
 # <a name="authenticate-with-azure-container-registry-from-azure-kubernetes-service"></a>使用 Azure 容器注册表从 Azure Kubernetes 服务进行身份验证
@@ -158,6 +158,6 @@ nginx0-deployment-669dfc4d4b-xdpd6   1/1     Running   0          20s
 
 <!-- LINKS - external -->
 
-[AKS AKS CLI]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-create
+[AKS AKS CLI]: https://docs.microsoft.com/cli/azure/aks#az_aks_create
 
 <!-- Update_Description: update meta properties, wording update, update link -->

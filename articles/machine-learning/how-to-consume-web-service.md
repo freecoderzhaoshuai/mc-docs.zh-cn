@@ -11,12 +11,12 @@ author: aashishb
 ms.reviewer: larryfr
 ms.date: 04/14/2020
 ms.custom: seodec18, tracking-python
-ms.openlocfilehash: f41656f68fb4eb542e4b6a34ebfb4e61a950e8c9
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 4c19309f1e6a0539f0f3da1f3fc6bf7ae4ed5040
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88946630"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021022"
 ---
 # <a name="consume-an-azure-machine-learning-model-deployed-as-a-web-service"></a>使用部署为 Web 服务的 Azure 机器学习模型
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -158,30 +158,6 @@ REST API 预期请求正文是采用以下结构的 JSON 文档：
 > [!IMPORTANT]
 > 数据结构需要符合服务中评分脚本和模型的预期。 评分脚本在将数据传递到模型之前可以修改数据。
 
-例如，[在笔记本中训练](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/training/train-within-notebook/train-within-notebook.ipynb)示例中的模型预期存在由 10 个数字构成的数组。 此示例的评分脚本从请求创建一个 Numpy 数组，并将其传递给模型。 以下示例演示此服务预期的数据：
-
-```json
-{
-    "data": 
-        [
-            [
-                0.0199132141783263, 
-                0.0506801187398187, 
-                0.104808689473925, 
-                0.0700725447072635, 
-                -0.0359677812752396, 
-                -0.0266789028311707, 
-                -0.0249926566315915, 
-                -0.00259226199818282, 
-                0.00371173823343597, 
-                0.0403433716478807
-            ]
-        ]
-}
-```
-
-Web 服务可以接受一个请求中的多个数据集。 它会返回包含响应数组的 JSON 文档。
-
 ### <a name="binary-data"></a>Binary data
 
 有关如何在服务中启用对二进制数据的支持的信息，请参阅[二进制数据](how-to-deploy-advanced-entry-script.md#binary-data)。
@@ -203,7 +179,7 @@ Web 服务可以接受一个请求中的多个数据集。 它会返回包含响
 
 ## <a name="call-the-service-c"></a>调用服务 (C#)
 
-此示例演示如何使用 C# 调用[在笔记本中训练](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/training/train-within-notebook/train-within-notebook.ipynb)示例创建的 Web 服务：
+此示例演示如何使用 C# 调用[在笔记本中训练](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/training-with-deep-learning/how-to-use-estimator/notebook_example.ipynb)示例创建的 Web 服务：
 
 ```csharp
 using System;
@@ -292,7 +268,7 @@ namespace MLWebServiceClient
 
 ## <a name="call-the-service-go"></a>调用服务 (Go)
 
-此示例演示如何使用 Go 调用[在笔记本中训练](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/training/train-within-notebook/train-within-notebook.ipynb)示例创建的 Web 服务：
+此示例演示如何使用 Go 调用[在笔记本中训练](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/training-with-deep-learning/how-to-use-estimator/notebook_example.ipynb)示例创建的 Web 服务：
 
 ```go
 package main
@@ -384,7 +360,7 @@ func main() {
 
 ## <a name="call-the-service-java"></a>调用服务 (Java)
 
-此示例演示如何使用 Java 调用[在笔记本中训练](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/training/train-within-notebook/train-within-notebook.ipynb)示例创建的 Web 服务：
+此示例演示如何使用 Java 调用[在笔记本中训练](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/training-with-deep-learning/how-to-use-estimator/notebook_example.ipynb)示例创建的 Web 服务：
 
 ```java
 import java.io.IOException;
@@ -464,7 +440,7 @@ public class App {
 
 ## <a name="call-the-service-python"></a>调用服务 (Python)
 
-此示例演示如何使用 Python 调用[在笔记本中训练](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/training/train-within-notebook/train-within-notebook.ipynb)示例创建的 Web 服务：
+此示例演示如何使用 Python 调用[在笔记本中训练](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/training-with-deep-learning/how-to-use-estimator/notebook_example.ipynb)示例创建的 Web 服务：
 
 ```python
 import requests

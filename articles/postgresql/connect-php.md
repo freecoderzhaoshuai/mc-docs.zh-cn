@@ -1,5 +1,5 @@
 ---
-title: 使用 PHP 连接到 Azure Database for PostgreSQL - 单一服务器
+title: 快速入门：使用 PHP 进行连接 - Azure Database for PostgreSQL - 单一服务器
 description: 本快速入门提供了可用于从 Azure Database for PostgreSQL - 单一服务器连接和查询数据的 PHP 代码示例。
 author: WenJason
 ms.author: v-jay
@@ -8,15 +8,16 @@ ms.custom: mvc
 ms.devlang: php
 ms.topic: quickstart
 origin.date: 2/28/2018
-ms.date: 05/20/2019
-ms.openlocfilehash: ae7d05b9f91bd54106e7de232e2730888a889237
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.date: 09/14/2019
+ms.openlocfilehash: f82273a8552ad95aa3a3bc8998d0d8177b6cd3f2
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "65732028"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512865"
 ---
-# <a name="azure-database-for-postgresql---single-server-use-php-to-connect-and-query-data"></a>Azure Database for PostgreSQL - 单一服务器：使用 PHP 连接和查询数据
+# <a name="quickstart-use-php-to-connect-and-query-data-in-azure-database-for-postgresql---single-server"></a>快速入门：使用 PHP 连接到 Azure Database for PostgreSQL 并查询其中的数据 - 单一服务器
+
 本快速入门演示了如何使用 [PHP](https://secure.php.net/manual/intro-whatis.php) 应用程序连接到 Azure Database for PostgreSQL。 同时还介绍了如何使用 SQL 语句在数据库中查询、插入、更新和删除数据。 本文中的步骤假定你熟悉如何使用 PHP 进行开发，但不熟悉如何使用 Azure Database for PostgreSQL。
 
 ## <a name="prerequisites"></a>先决条件
@@ -47,9 +48,9 @@ ms.locfileid: "65732028"
 获取连接到 Azure Database for PostgreSQL 所需的连接信息。 需要完全限定的服务器名称和登录凭据。
 
 1. 登录到 [Azure 门户](https://portal.azure.cn/)。
-2. 在 Azure 门户的左侧菜单中，单击“所有资源”  ，然后搜索已创建的服务器（例如 mydemoserver  ）。
+2. 在 Azure 门户的左侧菜单中，单击“所有资源”，然后搜索已创建的服务器（例如 mydemoserver）。
 3. 单击服务器名称。
-4. 从服务器的“概览”面板中记下“服务器名称”和“服务器管理员登录名”。    如果忘记了密码，也可通过此面板来重置密码。
+4. 从服务器的“概览”面板中记下“服务器名称”和“服务器管理员登录名”。   如果忘记了密码，也可通过此面板来重置密码。
  ![Azure Database for PostgreSQL 服务器名称](./media/connect-php/1-connection-string.png)
 
 ## <a name="connect-and-create-a-table"></a>进行连接并创建表

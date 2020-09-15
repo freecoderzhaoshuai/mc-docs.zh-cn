@@ -3,14 +3,17 @@ title: Azure Service Fabric - 使用 Service Fabric 应用程序 KeyVault 引用
 description: 本文介绍如何使用应用程序机密的 Service Fabric KeyVaultReference 支持。
 ms.topic: article
 origin.date: 09/20/2019
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: d6cc57d9459d589111e27ee2530b7780788cd640
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 2345ace47dbb31a179385427f723f6687135e41e
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540411"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655649"
 ---
 # <a name="keyvaultreference-support-for-service-fabric-applications-preview"></a>Service Fabric 应用程序的 KeyVaultReference 支持（预览版）
 
@@ -19,7 +22,7 @@ ms.locfileid: "77540411"
 ## <a name="prerequisites"></a>必备条件
 
 - 应用程序的托管标识 (MIT)
-    
+
     Service Fabric KeyVaultReference 支持使用应用程序的托管标识，因此，计划使用 KeyVaultReferences 的应用程序应使用托管标识。 可遵循[此文档](concepts-managed-identity.md)为应用程序启用托管标识。
 
 - 中心机密存储 (CSS)。
@@ -162,6 +165,6 @@ KeyVaultReference 是容器 RepositoryCredentials 支持的类型。以下示例
 
 ## <a name="next-steps"></a>后续步骤
 
-* [Azure KeyVault 文档](/key-vault/)
+* [Azure KeyVault 文档](../key-vault/index.yml)
 
 <!-- Update_Description: update meta properties, wording update, update link -->

@@ -8,15 +8,15 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: quickstart
 ms.workload: identity
-ms.date: 08/18/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 ms.custom: aaddev, identityplatformtop40, devx-track-python, scenarios:getting-started, languages:Python
-ms.openlocfilehash: e58693c376ef08a0b82d308f1fb77f19f0c50571
-ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
+ms.openlocfilehash: 90713deb06bd956608e680cb244f5dcc0023a9d4
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "88647605"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593636"
 ---
 # <a name="quickstart-acquire-a-token-and-call-microsoft-graph-api-from-a-python-console-app-using-apps-identity"></a>快速入门：使用应用的标识获取令牌并从 Python 控制台应用中调用 Microsoft Graph API
 
@@ -193,7 +193,7 @@ app = msal.ConfidentialClientApplication(
 > |---------|---------|
 > | `config["secret"]` | 是在 Azure 门户中为应用程序创建的客户端机密。 |
 > | `config["client_id"]` | 是在 Azure 门户中注册的应用程序的**应用程序(客户端) ID**。 可以在 Azure 门户的应用的“概览”页中找到此值。 |
-> | `config["authority"]`    | 用户要进行身份验证的 STS 终结点。 对于公有云，通常为 <https://login.partner.microsoftonline.cn/{tenant}>，其中 {tenant} 是租户名称或租户 ID。|
+> | `config["authority"]`    | 用户要进行身份验证的 STS 终结点。 对于公有云，通常为 `https://login.partner.microsoftonline.cn/{tenant}`，其中 {tenant} 是租户名称或租户 ID。|
 
 有关详细信息，请参阅 [`ConfidentialClientApplication` 的参考文档](https://msal-python.readthedocs.io/en/latest/#confidentialclientapplication)
 

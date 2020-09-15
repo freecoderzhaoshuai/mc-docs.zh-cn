@@ -8,17 +8,16 @@ metadata:
   ms.service: active-directory
   ms.subservice: devices
   ms.topic: landing-page
-  author: MarkusVi
+  author: barclayn
   ms.author: v-junlch
-  origin.date: 08/29/2019
-  ms.date: 10/11/2019
+  ms.date: 09/08/2020
   ms.collection: M365-identity-device-management
-  ms.openlocfilehash: dd1da464b95570284ee8af21eab5a1145a864610
-  ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+  ms.openlocfilehash: 95c39ef0745dafa38d12a88bb6f6af0191891ad0
+  ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 04/17/2020
-  ms.locfileid: "72292071"
+  ms.lasthandoff: 09/09/2020
+  ms.locfileid: "89593827"
 landingContent:
 - title: 关于托管标识
   linkLists:
@@ -36,7 +35,7 @@ landingContent:
       url: qs-configure-cli-windows-vmss.md
     - text: PowerShell
       url: qs-configure-powershell-windows-vmss.md
-    - text: Azure 资源管理器模板
+    - text: Azure Resource Manager 模板
       url: qs-configure-template-windows-vmss.md
     - text: REST
       url: qs-configure-rest-vmss.md

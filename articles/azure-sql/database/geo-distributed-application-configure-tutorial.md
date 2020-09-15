@@ -4,20 +4,20 @@ description: 了解如何在 Azure SQL 数据库和客户端应用程序中配�
 services: sql-database
 ms.service: sql-database
 ms.subservice: high-availability
-ms.custom: sqldbrb=1
+ms.custom: sqldbrb=1, devx-track-azurecli, devx-track-azurepowershell
 ms.devlang: ''
 ms.topic: conceptual
 author: WenJason
 ms.author: v-jay
 ms.reviewer: mathoma, carlrab
 origin.date: 03/12/2019
-ms.date: 07/13/2020
-ms.openlocfilehash: aa1892be791951e1fc4908759c2d4c268a8ca42a
-ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+ms.date: 09/14/2020
+ms.openlocfilehash: 4f4037ff4a5cd8ad36999f423102d9292827ddf0
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86227209"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014198"
 ---
 # <a name="tutorial-implement-a-geo-distributed-database-azure-sql-database"></a>教程：实现地理分散的数据库（Azure SQL 数据库）
 [!INCLUDE[appliesto-sqldb](../includes/appliesto-sqldb.md)]
@@ -41,7 +41,7 @@ ms.locfileid: "86227209"
 
 若要完成本教程，请确保已安装以下项目：
 
-- [Azure PowerShell](https://docs.microsoft.com/powershell/azureps-cmdlets-docs)
+- [Azure PowerShell](https://docs.microsoft.com/powershell/azure/)
 - Azure SQL 数据库中的单一数据库。 若要创建一个，请使用：
   - [Azure 门户](single-database-create-quickstart.md)
   - [Azure CLI](az-cli-script-samples-content-guide.md)

@@ -1,10 +1,10 @@
 ---
-title: 教程 - 在 Azure 中的 Linux 虚拟机上安装 LAMP Web 服务器
+title: 教程 - 在 Azure 中的 Linux 虚拟机上部署 LAMP
 description: 本教程介绍如何在 Azure 中的 Linux 虚拟机上安装 LAMP 堆栈
 services: virtual-machines-linux
 documentationcenter: virtual-machines
 author: Johnnytechn
-manager: digimobile
+manager: gwallace
 editor: ''
 tags: azure-resource-manager
 ms.assetid: 6c12603a-e391-4d3e-acce-442dd7ebb2fe
@@ -14,14 +14,14 @@ ms.tgt_pltfrm: vm-linux
 ms.devlang: azurecli
 ms.topic: tutorial
 origin.date: 01/30/2019
-ms.date: 04/13/2020
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.openlocfilehash: a52177d8f3ec0239a497c80e6861fb5fe983ab28
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.openlocfilehash: 7581f4e3b99ae3c077890e94aef1f766301fc642
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508437"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057513"
 ---
 # <a name="tutorial-install-a-lamp-web-server-on-a-linux-virtual-machine-in-azure"></a>教程：在 Azure 中的 Linux 虚拟机上安装 LAMP Web 服务器
 
@@ -46,6 +46,7 @@ ms.locfileid: "87508437"
 
 运行以下命令更新 Ubuntu 包源并安装 Apache、MySQL 和 PHP。 请注意命令末尾的脱字号 (^)，它是 `lamp-server^` 包名称的一部分。 
 
+
 ```bash
 sudo apt update && sudo apt install lamp-server^
 ```
@@ -53,6 +54,7 @@ sudo apt update && sudo apt install lamp-server^
 系统会提示安装包和其他依赖项。 此股从会安装最低要求的 PHP 扩展，这些扩展是通过 MySQL 使用 PHP 所必需的。  
 
 ## <a name="verify-installation-and-configuration"></a>验证安装和配置
+
 
 ### <a name="verify-apache"></a>验证 Apache
 
@@ -64,6 +66,7 @@ apache2 -v
 安装 Apache 并向 VM 打开端口 80 之后，即可通过 Internet 访问 Web 服务器。 若要查看 Apache2 Ubuntu 默认页，请打开 Web 浏览器并输入 VM 的公共 IP 地址。 使用通过 SSH 连接到 VM 时所用的公共 IP 地址：
 
 ![Apache 默认页][3]
+
 
 ### <a name="verify-and-secure-mysql"></a>验证并保护 MySQL
 

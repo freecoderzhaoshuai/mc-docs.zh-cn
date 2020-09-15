@@ -1,17 +1,20 @@
 ---
 title: 保护基于 WCF 的服务通信
 description: 了解如何保护 Azure Service Fabric 群集中运行的 Reliable Services 的基于 WCF 的通信。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 04/20/2017
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 7cf873eeab7de98c8709849b5ef542ab51a9c6cc
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 267bd15c9fe3beea20a21ea5b8d834ff250994b4
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77541056"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655345"
 ---
 # <a name="secure-wcf-based-communications-for-a-service"></a>保护服务的基于 WCF 的通信
 安全是通信最为重视的要素之一。 Reliable Services 应用程序框架提供了一些预先构建的通信堆栈和工具，可用来提高安全性。 本文介绍如何在使用服务远程处理时提高安全性。
@@ -121,6 +124,6 @@ ms.locfileid: "77541056"
         client => client.Channel.Add(2, 3)).Result;
     ```
 
-有关后续步骤，请阅读 [Reliable Services 中使用 OWIN 的 Web API](service-fabric-reliable-services-communication-webapi.md)。
+有关后续步骤，请阅读 [Reliable Services 中使用 OWIN 的 Web API](./service-fabric-reliable-services-communication-aspnetcore.md)。
 
-<!-- Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

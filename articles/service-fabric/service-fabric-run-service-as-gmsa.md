@@ -1,18 +1,20 @@
 ---
 title: 以 gMSA 帐户身份运行 Azure Service Fabric 服务
 description: 了解如何在 Service Fabric Windows 独立群集上以组托管服务帐户 (gMSA) 身份运行服务。
-author: rockboyfor
 ms.topic: how-to
 origin.date: 03/29/2018
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
 ms.custom: sfrev
-ms.openlocfilehash: 575732f31a5c88fa2fe593e0ffb74e926ce452ce
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 2d3f943b83f08c50d806eba683b5bb40d3bb15ed
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540095"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655504"
 ---
 # <a name="run-a-service-as-a-group-managed-service-account"></a>以组托管服务帐户身份运行服务
 
@@ -42,7 +44,7 @@ ms.locfileid: "77540095"
     Test-AdServiceAccount svc-Test$
     ```
 
-3. 配置用户主体，并配置 `RunAsPolicy` 以引用[用户](/service-fabric/service-fabric-cluster-fabric-settings#runas)。
+3. 配置用户主体，并配置 `RunAsPolicy` 以引用[用户](./service-fabric-cluster-fabric-settings.md#runas)。
 
     ```xml
     <?xml version="1.0" encoding="utf-8"?>

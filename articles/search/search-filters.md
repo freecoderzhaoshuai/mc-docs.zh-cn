@@ -8,13 +8,14 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 07/17/2020
-ms.openlocfilehash: b3f181fc53c35fa540244253c440c7cabbb62cbc
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 197bc1972b6ed9501991a5a80357be50b88e1cc4
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471798"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021587"
 ---
 # <a name="filters-in-azure-cognitive-search"></a>Azure 认知搜索中的筛选器 
 
@@ -96,7 +97,7 @@ POST https://[service name].search.azure.cn/indexes/hotels/docs/search?api-versi
 
 ## <a name="filter-usage-patterns"></a>筛选器使用模式
 
-以下示例演示了筛选器方案的多种使用模式。 有关更多思路，请参阅 [OData 表达式语法 > 示例](https://docs.azure.cn/search/search-query-odata-filter#examples)。
+以下示例演示了筛选器方案的多种使用模式。 有关更多思路，请参阅 [OData 表达式语法 > 示例](./search-query-odata-filter.md#examples)。
 
 + 单独使用 **$filter** 而不使用查询字符串：如果筛选表达式能够完全限定所需的文档，则此模式很有效。 不使用查询字符串也就不会执行词法或语言分析、评分和排名。 请注意，搜索字符串只是一个星号，表示“匹配所有文档”。
 
@@ -194,7 +195,7 @@ search=John Leclerc&$count=true&$select=source,city,postCode,baths,beds&$filter=
 search=John Leclerc&$count=true&$select=source,city,postCode,baths,beds&$filter=city gt 'Seattle'
 ```
 
-若要学习更多示例，请参阅 [OData 筛选表达式语法 > 示例](https://docs.azure.cn/search/search-query-odata-filter#examples)。
+若要学习更多示例，请参阅 [OData 筛选表达式语法 > 示例](./search-query-odata-filter.md#examples)。
 
 ## <a name="see-also"></a>另请参阅
 

@@ -9,12 +9,12 @@ ms.date: 08/10/2020
 ms.testscope: no
 ms.testdate: 05/06/2020
 ms.author: v-yeche
-ms.openlocfilehash: 80c8989f4e9d0808b0ce7a00fdaf0c3ee38d562b
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 6826ae9643a67c75624b6aa34d685b2891951d66
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842675"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020828"
 ---
 <!--CONFIRME WITH DONG LIU SUCCESSFULLY-->
 <!--NEW FEATURES HAS BEEN RELEASED ON AZURE CHINA CLOUD-->
@@ -36,7 +36,7 @@ ms.locfileid: "87842675"
 
 ## <a name="create-a-service-principal"></a>创建服务主体
 
-可以在 [Azure CLI](https://docs.azure.cn/cli/?view=azure-cli-latest) 中使用 [az ad sp create-for-rbac](https://docs.azure.cn/cli/ad/sp?view=azure-cli-latest#az-ad-sp-create-for-rbac) 命令创建[服务主体](../active-directory/develop/app-objects-and-service-principals.md#service-principal-object)。
+可以在 [Azure CLI](https://docs.azure.cn/cli/) 中使用 [az ad sp create-for-rbac](https://docs.azure.cn/cli/ad/sp#az-ad-sp-create-for-rbac) 命令创建[服务主体](../active-directory/develop/app-objects-and-service-principals.md#service-principal-object)。
 
 <!--Not Avaialble on [Azure Cloud Shell](https://shell.azure.com/)-->
 

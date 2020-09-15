@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 06/17/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: 41111335e31b29f1ae6a036ec0bc59628d25b2c3
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: 13d549593e384976d17f79fd4447b3ea95f69783
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471898"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021601"
 ---
 #     <a name="custom-entity-lookup-cognitive-skill-preview"></a>自定义实体查找认知技能（预览版）
 
@@ -23,7 +23,7 @@ ms.locfileid: "86471898"
 
 “自定义实体查找”技能可在用户自定义的单词和短语列表中查找文本。 它使用此列表为包含任何匹配实体的所有文档加上标签。 该技能还支持一定程度的模糊匹配，应用此匹配方法可以查找类似但不完全相同的匹配项。  
 
-此技能未绑定到认知服务 API，在预览期可免费使用。 但是，仍然应该[附加一个认知服务资源](https://docs.azure.cn/search/cognitive-search-attach-cognitive-services)，以覆盖每日扩充限制。 每日限制适用于通过 Azure 认知搜索免费访问认知服务的情况。
+此技能未绑定到认知服务 API，在预览期可免费使用。 但是，仍然应该[附加一个认知服务资源](./cognitive-search-attach-cognitive-services.md)，以覆盖每日扩充限制。 每日限制适用于通过 Azure 认知搜索免费访问认知服务的情况。
 
 ## <a name="odatatype"></a>@odata.type  
 Microsoft.Skills.Text.CustomEntityLookupSkill 

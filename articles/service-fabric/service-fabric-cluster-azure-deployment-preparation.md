@@ -3,16 +3,17 @@ title: 规划 Azure Service Fabric 群集部署
 description: 了解如何规划和准备 Azure 中的生产 Service Fabric 群集部署。
 ms.topic: conceptual
 origin.date: 03/20/2019
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 06/08/2020
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: 8bb0a855b926244ff32bc55af388ca676258259f
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: b682712f76d6d1f88013bbd687590ec3fc40eab3
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426537"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655266"
 ---
 # <a name="plan-and-prepare-for-a-cluster-deployment"></a>规划和准备群集部署
 
@@ -55,7 +56,7 @@ ms.locfileid: "87426537"
 
 临时 OS 磁盘不是特定的 Service Fabric 功能，而是映射到 Service Fabric 节点类型的 Azure“虚拟机规模集”的功能。 将它们与 Service Fabric 一起使用需要在群集 Azure 资源管理器模板中执行以下操作：
 
-1. 确保你的节点类型为临时 OS 磁盘指定[支持的 Azure VM 大小](../virtual-machines/windows/ephemeral-os-disks.md)，并且 VM 大小有足够的缓存大小来支持其 OS 磁盘大小（请参阅下文中的*注释*。）例如：
+1. 确保你的节点类型为临时 OS 磁盘指定[支持的 Azure VM 大小](../virtual-machines/ephemeral-os-disks.md)，并且 VM 大小有足够的缓存大小来支持其 OS 磁盘大小（请参阅下文中的*注释*。）例如：
 
     ```xml
     "vmNodeType1Size": {
@@ -101,7 +102,7 @@ ms.locfileid: "87426537"
 > 若要进行迁移，用户必须使用临时磁盘[添加](./virtual-machine-scale-set-scale-node-type-scale-out.md)新的 nodeType，将工作负荷移至新的 nodeType 并[删除](./service-fabric-how-to-remove-node-type.md)现有 nodeType。
 >
 
-有关详细信息和更多配置选项，请参阅 [Azure VM 的临时 OS 磁盘](../virtual-machines/windows/ephemeral-os-disks.md) 
+有关详细信息和更多配置选项，请参阅 [Azure VM 的临时 OS 磁盘](../virtual-machines/ephemeral-os-disks.md) 
 
 ### <a name="select-the-durability-and-reliability-levels-for-the-cluster"></a>选择群集的持续性和可靠性级别
 持久性层用于向系统指示 VM 对于基本 Azure 基础结构拥有的权限。 在主节点类型中，此权限可让 Service Fabric 暂停影响系统服务及有状态服务的仲裁要求的任何 VM 级别基础结构请求（例如，VM 重启、VM 重置映像或 VM 迁移）。 在非主节点类型中，此特权可让 Service Fabric 暂停影响其中运行的有状态服务的仲裁要求的任何 VM 级别基础结构请求，例如，VM 重新启动、VM 重置映像、VM 迁移，等等。  有关不同级别的优势、要使用哪种级别以及何时使用的建议，请参阅[群集的持久性特征][durability]。

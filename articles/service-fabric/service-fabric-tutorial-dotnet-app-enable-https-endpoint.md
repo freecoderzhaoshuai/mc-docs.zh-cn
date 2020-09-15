@@ -3,15 +3,18 @@ title: 使用 Kestrel 添加 HTTPS 终结点
 description: 本教程介绍如何使用 Kestrel 向 ASP.NET Core 前端 Web 服务添加 HTTPS 终结点，以及如何将应用程序部署到群集。
 ms.topic: tutorial
 origin.date: 07/22/2019
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.custom: mvc
-ms.openlocfilehash: 4e9be67bcd69c04748f1db65af8a28e8883168d9
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.custom: mvc, devx-track-csharp
+ms.openlocfilehash: 8f3aaa619e04b3c5036cb5ace8049a635fabde63
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356215"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655610"
 ---
 # <a name="tutorial-add-an-https-endpoint-to-an-aspnet-core-web-api-front-end-service-using-kestrel"></a>教程：使用 Kestrel 向 ASP.NET Core Web API 前端服务添加 HTTPS 终结点
 
@@ -47,7 +50,9 @@ ms.locfileid: "84356215"
 
 ## <a name="obtain-a-certificate-or-create-a-self-signed-development-certificate"></a>获取证书或创建自签名开发证书
 
-对于生产应用程序，请使用[证书颁发机构 (CA)](https://wikipedia.org/wiki/Certificate_authority) 提供的证书。 出于开发和测试目的，可以创建并使用自签名证书。 Service Fabric SDK 提供的 *CertSetup.ps1* 脚本可创建自签名证书并将其导入 `Cert:\LocalMachine\My` 证书存储。 以管理员身份打开命令提示符并运行以下命令即可创建使用者为“CN=mytestcert”的证书：
+对于生产应用程序，请使用证书颁发机构 (CA) 提供的证书。 出于开发和测试目的，可以创建并使用自签名证书。 Service Fabric SDK 提供的 *CertSetup.ps1* 脚本可创建自签名证书并将其导入 `Cert:\LocalMachine\My` 证书存储。 以管理员身份打开命令提示符并运行以下命令即可创建使用者为“CN=mytestcert”的证书：
+
+<!--Not Available on [certificate authority (CA)](https://wikipedia.org/wiki/Certificate_authority)-->
 
 ```powershell
 PS C:\program files\microsoft sdks\service fabric\clustersetup\secure> .\CertSetup.ps1 -Install -CertSubjectName CN=mytestcert
@@ -367,7 +372,9 @@ if ($cert -eq $null)
 接下来，使用[提供的 Powershell 脚本](./scripts/service-fabric-powershell-add-application-certificate.md)在远程群集上安装此证书。
 
 > [!Warning]
-> 对于开发和测试应用程序，自签名证书已足够。 对于生产应用程序，请使用[证书颁发机构 (CA)](https://wikipedia.org/wiki/Certificate_authority) 提供的证书，而不是自签名证书。
+> 对于开发和测试应用程序，自签名证书已足够。 对于生产应用程序，请使用证书颁发机构 (CA) 提供的证书，而不是自签名证书。
+
+<!--Not Available on [certificate authority (CA)](https://wikipedia.org/wiki/Certificate_authority)-->
 
 ## <a name="open-port-443-in-the-azure-load-balancer"></a>在 Azure 负载均衡器中打开端口 443
 

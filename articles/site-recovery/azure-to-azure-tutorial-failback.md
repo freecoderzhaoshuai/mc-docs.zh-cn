@@ -1,26 +1,28 @@
 ---
-title: 使用 Azure Site Recovery 服务对复制到 Azure 次要区域的 Azure VM 进行故障回复，以实现灾难恢复。
-description: 了解如何使用 Azure Site Recovery 服务对 Azure VM 进行故障回复。
-author: rockboyfor
-manager: digimobile
+title: 使用 Azure Site Recovery 服务将 Azure VM 故障回复到主区域。
+description: 介绍如何使用 Azure Site Recovery 服务将 Azure VM 故障回复到主要区域。
+manager: carmonm
 ms.service: site-recovery
 ms.topic: tutorial
-origin.date: 09/09/2019
-ms.date: 09/30/2019
+origin.date: 11/14/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: fce4d4a95df558aa60218396cd11f2679d5880e4
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 891ee0664b9abd77a7fb09a972fb80778641798c
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71340774"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655498"
 ---
 # <a name="fail-back-an-azure-vm-between-azure-regions"></a>在 Azure 区域之间对 Azure VM 进行故障回复
 
 [Azure Site Recovery](site-recovery-overview.md) 服务可管理和协调本地计算机和 Azure 虚拟机 (VM) 的复制、故障转移和故障回复，因而有利于灾难恢复策略。
 
-本教程介绍如何故障回复单个 Azure VM。 故障转移后，须在主要区域可用时故障回复到主要区域。 本教程介绍如何执行下列操作：
+本教程介绍如何故障回复单个 Azure VM。 故障转移后，须在主要区域可用时故障回复到主要区域。 在本教程中，你将了解如何执行以下操作：
 
 > [!div class="checklist"]
 > 
@@ -29,7 +31,7 @@ ms.locfileid: "71340774"
 > 
 > [!NOTE]
 > 
-> 本教程可帮助你在只需进行极少量的自定义操作的情况下，将多个 VM 故障转移到目标区域，然后故障回复到源区域。 有关更深入的说明，请查看 [Azure VM 的操作指南](/virtual-machines/windows/)。
+> 本教程可帮助你在只需进行极少量的自定义操作的情况下，将多个 VM 故障转移到目标区域，然后故障回复到源区域。 有关更深入的说明，请查看 [Azure VM 的操作指南](../virtual-machines/windows/index.yml)。
 
 ## <a name="before-you-start"></a>开始之前
 
@@ -43,7 +45,7 @@ ms.locfileid: "71340774"
 
 1. 在保管库中选择“复制的项”，然后选择已重新保护的 VM  。
 
-    ![故障回复到主要区域](./media/site-recovery-azure-to-azure-failback/azure-to-azure-failback.png)
+    :::image type="content" source="./media/site-recovery-azure-to-azure-failback/azure-to-azure-failback.png" alt-text="显示在 Azure 门户故障回复到主要区域的屏幕截图。":::
 
 2. 在“复制的项”中选择 VM，然后选择“故障转移”   。
 3. 在“故障转移”中，选择要故障转移到的恢复点  ：
@@ -51,15 +53,18 @@ ms.locfileid: "71340774"
     - **最新处理**：将 VM 还原到由 Site Recovery 处理过的最新恢复点。
     - **自定义**：故障转移到特定的恢复点。 此选项可用于执行测试故障转移。
 4. 如果希望 Site Recovery 在触发故障转移之前在 DR 区域尝试关闭 VM，请选择“在开始故障转移前关闭计算机”  。 即使关机失败，故障转移也仍会继续。 
-5. 在“作业”页上跟踪故障转移进度。 
+5. 在“作业”页上跟踪故障转移进度。
 6. 故障转移完成后，请登录到 VM 来对它进行验证。 可根据需要更改恢复点。
 7. 验证故障转移后，选择“提交故障转移”  。 提交操作会删除所有可用的恢复点。 “更改恢复点”选项不再可用。
 8. VM 应显示为已故障转移并已故障回复。
 
-    ![主要和次要区域的 VM](./media/site-recovery-azure-to-azure-failback/azure-to-azure-failback-vm-view.png)
+    :::image type="content" source="./media/site-recovery-azure-to-azure-failback/azure-to-azure-failback-vm-view.png" alt-text="显示主要和次要区域的 VM 的屏幕截图。":::
+
+> [!NOTE]
+> 对于使用托管磁盘以及运行 Site Recovery 扩展版本 9.28.x.x 及更高版本[更新汇总 40](https://support.microsoft.com/help/4521530/update-rollup-40-for-azure-site-recovery) 的计算机，在故障回复完成并重新保护 VM 后，Site Recovery 将清理次要灾难恢复区域中的计算机。 无需手动删除次要区域中的 VM 和 NIC。 请注意，不会清理使用非托管磁盘的 VM。 如果在故障回复后完全禁用复制，则除了 VM 和 NIC 之外，Site Recovery 还会清理灾难恢复区域中的磁盘。
 
 ## <a name="next-steps"></a>后续步骤
 
 [详细了解](azure-to-azure-how-to-reprotect.md#what-happens-during-reprotection)重新保护工作流。
 
-<!--Update_Description: wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

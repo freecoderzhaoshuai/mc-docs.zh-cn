@@ -9,14 +9,14 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: vanto
 origin.date: 06/17/2020
-ms.date: 08/17/2020
+ms.date: 09/14/2020
 ms.custom: azure-synapse
-ms.openlocfilehash: 0962d5fdddbf212c883427a970871b2c18705a57
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: d49975c1a8b7b387be9dd2c62bdf3d788d237678
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222579"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014261"
 ---
 # <a name="write-audit-to-a-storage-account-behind-vnet-and-firewall"></a>将审核内容写入到 VNet 和防火墙后面的存储帐户
 [!INCLUDE[appliesto-sqldb-asa](../includes/appliesto-sqldb-asa.md)]
@@ -154,7 +154,7 @@ ms.locfileid: "88222579"
 > [!IMPORTANT]
 > 若要使用虚拟网络和防火墙后面的存储帐户，需将 isStorageBehindVnet 参数设置为 true
 
-- [部署启用了审核的 Azure SQL Server，以将审核日志写入 Blob 存储](https://github.com/Azure/azure-quickstart-templates/tree/master/201-sql-auditing-server-policy-to-blob-storage/)
+- [部署启用了审核的 Azure SQL Server，以将审核日志写入 Blob 存储](https://azure.microsoft.com/resources/templates/201-sql-auditing-server-policy-to-blob-storage)
 
 > [!NOTE]
 > 链接的示例在外部公共存储库上并且“按现样”提供，不提供任何担保，并非在任何 Azure 支持计划/服务下都受支持。

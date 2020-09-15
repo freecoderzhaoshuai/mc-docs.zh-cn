@@ -7,13 +7,14 @@ ms.service: virtual-machines-linux
 ms.subservice: security
 ms.topic: quickstart
 origin.date: 05/17/2019
-ms.date: 06/17/2020
-ms.openlocfilehash: ce3bd76f0d94fa3d1e9d56b331ff9940ce7f8e48
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.date: 09/03/2020
+ms.custom: devx-track-azurepowershell
+ms.openlocfilehash: 83465b1509054e15bd369fab49779fc0a6d52015
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097010"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057529"
 ---
 <!--Verified successfully-->
 # <a name="quickstart-create-and-encrypt-a-linux-vm-in-azure-with-azure-powershell"></a>快速入门：在 Azure 中使用 Azure PowerShell 创建和加密 Linux VM
@@ -27,7 +28,7 @@ Azure PowerShell 模块用于从 PowerShell 命令行或脚本创建和管理 Az
 使用 [New-AzResourceGroup](https://docs.microsoft.com/powershell/module/az.resources/new-azresourcegroup) 创建 Azure 资源组。 资源组是在其中部署和管理 Azure 资源的逻辑容器：
 
 ```azurepowershell
-New-AzResourceGroup -Name "myResourceGroup" -Location "ChinaEast"
+New-AzResourceGroup -Name "myResourceGroup" -Location "ChinaEast2"
 ```
 
 ## <a name="create-a-virtual-machine"></a>创建虚拟机
@@ -50,7 +51,7 @@ Azure 磁盘加密将其加密密钥存储在 Azure 密钥保管库中。 使用
 > 每个密钥保管库必须有一个在 Azure 中唯一的名称。 在下面的示例中，将 <your-unique-keyvault-name> 替换为你选择的名称。
 
 ```azurepowershell
-New-AzKeyvault -name "<your-unique-keyvault-name>" -ResourceGroupName "myResourceGroup" -Location ChinaEast -EnabledForDiskEncryption
+New-AzKeyvault -name "<your-unique-keyvault-name>" -ResourceGroupName "myResourceGroup" -Location ChinaEast2 -EnabledForDiskEncryption
 ```
 
 ## <a name="encrypt-the-virtual-machine"></a>加密虚拟机

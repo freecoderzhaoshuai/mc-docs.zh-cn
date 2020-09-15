@@ -33,14 +33,14 @@
           href: concept-conditional-access-grant.md
         - name: 会话
           href: concept-conditional-access-session.md
-    - name: 见解和报告
-      href: howto-conditional-access-insights-reporting.md
     - name: 服务依赖项
       href: service-dependencies.md
     - name: 位置条件
       href: location-condition.md
     - name: 假设分析工具
       href: what-if-tool.md
+    - name: 连续访问评估
+      href: concept-continuous-access-evaluation.md
     - name: 自定义控件
       href: controls.md
     - name: 经典策略迁移
@@ -74,9 +74,7 @@
       href: app-based-conditional-access.md
     - name: 要求对来自不受信任网络的访问尝试执行 MFA
       href: untrusted-networks.md
-    - name: 迁移经典策略
-      href: policy-migration-mfa.md
-    - name: 故障排除
+    - name: 疑难解答
       items:
         - name: 排查登录问题
           href: troubleshoot-conditional-access.md
@@ -84,6 +82,8 @@
           href: troubleshoot-conditional-access-what-if.md
         - name: 常见问题
           href: faqs.md
+    - name: 迁移经典策略
+      href: policy-migration-mfa.md
 - name: 资源
   items:
     - name: Azure 反馈论坛

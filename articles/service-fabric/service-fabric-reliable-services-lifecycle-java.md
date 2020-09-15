@@ -1,17 +1,20 @@
 ---
 title: Azure Service Fabric Reliable Services 生命周期
 description: 了解使用 Java 的 Azure Service Fabric Reliable Services 应用程序中的生命周期事件以实现有状态和无状态服务。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 06/30/2017
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
+ms.custom: devx-track-java
 ms.author: v-yeche
-ms.openlocfilehash: 7f4a7403bc82da3eb1ee18428dfc4c8ef02518a8
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 5c8487af6137fd67a2ea476da53711d396ee975f
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540102"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655370"
 ---
 # <a name="reliable-services-lifecycle"></a>Reliable Services 生命周期
 > [!div class="op_single_selector"]
@@ -132,5 +135,4 @@ Service Fabric 更改有状态服务的主副本的原因有多种。 最常见�
 * [Reliable Services 简介](service-fabric-reliable-services-introduction.md)
 * [Reliable Services 快速启动](service-fabric-reliable-services-quick-start-java.md)
 
-<!--Update_Description: wording update, update link -->
-
+<!-- Update_Description: update meta properties, wording update, update link -->

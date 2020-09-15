@@ -2,21 +2,21 @@
 title: 使用 Azure Site Recovery 对 Hyper-V 灾难恢复进行故障排除
 description: 介绍如何排查使用 Azure Site Recovery 执行 Hyper-V 到 Azure 的复制时遇到的灾难恢复问题
 services: site-recovery
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.service: site-recovery
 ms.topic: article
 origin.date: 04/14/2019
-ms.date: 08/03/2020
-ms.testscope: no
-ms.testdate: 08/26/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: f612d5cbb878b38b2bd0417b2c2fd4eb7d3ab1d3
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: ad152d01dbcad3aed98892ec019ba54bc1c7c6c9
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426334"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655003"
 ---
 # <a name="troubleshoot-hyper-v-to-azure-replication-and-failover"></a>排查 Hyper-V 到 Azure 的复制和故障转移的问题
 
@@ -31,9 +31,9 @@ ms.locfileid: "87426334"
 3. 检查 Hyper-V 虚拟机管理服务是否在 Hyper-V 主机上运行。
 4. 检查 VM 的 Hyper-V-VMMS\Admin 登录中显示的问题。 此日志位于“应用程序和服务日志” > “Microsoft” > “Windows”中。
 5. 在来宾 VM 上，验证 WMI 是否已启用并可访问。
-    - [了解](https://blogs.technet.microsoft.com/askperf/2007/06/22/basic-wmi-testing/)基本 WMI 测试。
+    - [了解](https://techcommunity.microsoft.com/t5/ask-the-performance-team/bg-p/AskPerf)基本 WMI 测试。
     - [排查](https://aka.ms/WMiTshooting) WMI 问题。
-    - [排查](https://technet.microsoft.com/library/ff406382.aspx#H22) WMI 脚本和服务的问题。
+    - [排查](https://docs.microsoft.com/previous-versions/tn-archive/ff406382(v=msdn.10)#H22) WMI 脚本和服务的问题。
 6. 在来宾 VM 上，确保运行最新版本的 Integration Services。
     - [检查](https://docs.microsoft.com/windows-server/virtualization/hyper-v/manage/manage-hyper-v-integration-services)是否安装了最新版本。
     - [始终使用](https://docs.microsoft.com/windows-server/virtualization/hyper-v/manage/manage-hyper-v-integration-services#keep-integration-services-up-to-date)最新的 Integration Services。
@@ -69,7 +69,7 @@ ms.locfileid: "87426334"
 3. 运行探查器后，遵循[带宽](hyper-v-deployment-planner-analyze-report.md#recommendations-with-available-bandwidth-as-input)和[存储](hyper-v-deployment-planner-analyze-report.md#vm-storage-placement-recommendation)方面的建议。
 4. 检查[数据变动限制](hyper-v-deployment-planner-analyze-report.md#azure-site-recovery-limits)。 如果发现 VM 上的数据变动率较高，请执行以下操作：
     - 检查 VM 是否标记为重新同步。
-    - 遵循[这些步骤](https://blogs.technet.microsoft.com/virtualization/2014/02/02/hyper-v-replica-debugging-why-are-very-large-log-files-generated/)来调查变动的起源。
+    - 遵循[这些步骤](https://techcommunity.microsoft.com/t5/virtualization/bg-p/Virtualization)来调查变动的起源。
     - 当 HRL 日志文件超过可用磁盘空间的 50% 时，可能会发生数据变动。 如果这是问题所在，请为出现问题的所有 VM 预配更多的存储空间。
     - 检查并确认复制未暂停。 如果已暂停，则它会继续将更改写入 HRL 文件，从而可能导致其大小增加。
 
@@ -77,7 +77,7 @@ ms.locfileid: "87426334"
 
 1. 若要检查复制运行状况，请连接到本地 Hyper-V 管理器控制台，选择 VM，然后检查运行状况。
 
-    ![复制运行状况](media/hyper-v-azure-troubleshoot/replication-health1.png)
+    :::image type="content" source="media/hyper-v-azure-troubleshoot/replication-health1.png" alt-text="复制运行状况":::
 
 2. 单击“查看复制运行状况”查看详细信息： 
 
@@ -105,7 +105,7 @@ ms.locfileid: "87426334"
     - 最后一招是尝试重新启动 VM。 这可能解决服务处于无响应状态的问题。
 3. 检查 VM 中是否不包含任何动态磁盘。 应用一致的快照不支持动态磁盘。 可在磁盘管理 (diskmgmt.msc) 中进行此项检查。
 
-    ![动态磁盘](media/hyper-v-azure-troubleshoot/dynamic-disk.png)
+    :::image type="content" source="media/hyper-v-azure-troubleshoot/dynamic-disk.png" alt-text="动态磁盘":::
 
 4. 检查是否未将 iSCSI 磁盘附加到 VM。 不支持此操作。
 5. 检查是否已启用备份服务。 请在“Hyper-V 设置” > “Integration Services”中验证它是否已启用。
@@ -116,8 +116,8 @@ ms.locfileid: "87426334"
         - 计数器：“Write Bytes / Sec”<br />
         - 根据 VM 或其应用的繁忙程度，此数据变动率将会提高或保持在较高级别。
         - 对于 Site Recovery 的标准存储，平均源磁盘数据变动率为 2 MB/秒。 [了解详细信息](hyper-v-deployment-planner-analyze-report.md#azure-site-recovery-limits)
-    - 此外，可以[验证存储可伸缩性目标](/storage/common/storage-scalability-targets)。
-8. 如果使用的是基于 Linux 的服务器，请确保在其上启用了应用一致性。 [了解详细信息](/site-recovery/site-recovery-faq#replication)
+    - 此外，可以[验证存储可伸缩性目标](../storage/common/scalability-targets-standard-account.md)。
+8. 如果使用的是基于 Linux 的服务器，请确保在其上启用了应用一致性。 [了解详细信息](./site-recovery-faq.md#replication)
 9. 运行[部署规划器](hyper-v-deployment-planner-run.md)。
 10. 查看有关[网络](hyper-v-deployment-planner-analyze-report.md#recommendations-with-available-bandwidth-as-input)和[存储](hyper-v-deployment-planner-analyze-report.md#recommendations-with-available-bandwidth-as-input)的建议。
 
@@ -147,7 +147,7 @@ ms.locfileid: "87426334"
 1. 在事件查看器中显示分析和调试日志。 若要使日志可用，请在事件查看器中，单击“视图” > “显示分析和调试日志”。  分析日志显示在“Hyper-V-VMMS”下。
 2. 在“操作”窗格中，单击“启用日志”。 
 
-    ![启用日志](media/hyper-v-azure-troubleshoot/enable-log.png)
+    :::image type="content" source="media/hyper-v-azure-troubleshoot/enable-log.png" alt-text="启用日志":::
 
 3. 启用后，日志将作为“事件跟踪会话”显示在“性能监视器”中的“数据收集器集”下。   
 4. 若要查看收集到的信息，请禁用日志，从而停止跟踪会话。 然后保存日志，并再次在事件查看器中打开日志，或使用其他工具根据需要转换日志。

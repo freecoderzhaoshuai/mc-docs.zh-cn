@@ -2,20 +2,20 @@
 title: Azure Service Fabric 的 Azure Policy 法规遵从性控制措施
 description: 列出可用于 Azure Service Fabric 的 Azure Policy 法规遵从性控制措施。 这些内置的策略定义提供了管理 Azure 资源符合性的常用方法。
 origin.date: 07/22/2020
-ms.date: 08/31/2020
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 08/31/2020
+ms.testdate: 09/07/2020
 ms.topic: sample
 author: rockboyfor
 ms.author: v-yeche
 ms.service: service-fabric
 ms.custom: subject-policy-compliancecontrols
-ms.openlocfilehash: 0b896e04f5ca9d55fe9ee6124552a8ef1ed36751
-ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
+ms.openlocfilehash: d4d1b45f606f1746dd6ea54450bb3ae2349002fc
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89046513"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655663"
 ---
 <!--Verified successfully-->
 # <a name="azure-policy-regulatory-compliance-controls-for-azure-service-fabric"></a>Azure Service Fabric 的 Azure Policy 法规遵从性控制措施
@@ -32,7 +32,8 @@ Azure Policy 中的法规符合性为与不同符合性标准相关的“符合�
 
 <!--Not Available on - Learn more about [Azure Policy Regulatory Compliance](../governance/policy/concepts/regulatory-compliance.md)-->
 
+<!--Not Available on - Learn more about [Azure Policy Regulatory Compliance](../governance/policy/concepts/regulatory-compliance.md)-->
+
 - 在 [Azure Policy GitHub 存储库](https://github.com/Azure/azure-policy)中查看这些内置项。
 
-<!-- Update_Description: new article about security controls policy -->
-<!--NEW.date: 08/31/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

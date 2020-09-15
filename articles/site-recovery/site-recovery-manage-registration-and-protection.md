@@ -1,19 +1,21 @@
 ---
 title: 删除服务器并禁用保护 | Azure
 description: 本文介绍如何从 Site Recovery 保管库中注销服务器，以及如何禁用虚拟机和物理服务器的保护。
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 06/18/2019
-ms.date: 08/05/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: d08e5decf98a65bce4e54b715a26a13f0834045b
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 1b70fe74d5f79c4498caf4a57edc3878eabfede0
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291579"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655704"
 ---
 # <a name="remove-servers-and-disable-protection"></a>删除服务器并禁用保护
 
@@ -79,7 +81,7 @@ ms.locfileid: "79291579"
         $service = Get-Service -Name $serviceName
         if ($service.Status -eq "Running")
         {
-            "Stopping the Azure Site Recovery service..."
+            "Stopping the Microsoft Azure Site Recovery service..."
             net stop $serviceName
         }
 
@@ -196,8 +198,11 @@ ms.locfileid: "79291579"
         > 如果选择“删除”  选项，请运行下面的脚本，清理本地 VMM 服务器上的复制设置。
 3. 从源 VMM 服务器上的 VMM 控制台使用 PowerShell（需要管理员权限）运行此脚本。 将占位符 SQLVM1  替换为虚拟机名称。
 
-        $vm = get-scvirtualmachine -Name "SQLVM1"
-        Set-SCVirtualMachine -VM $vm -ClearDRProtection
+    ```powershell
+    $vm = get-scvirtualmachine -Name "SQLVM1"
+    Set-SCVirtualMachine -VM $vm -ClearDRProtection
+    ```
+
 4. 上述步骤清理 VMM 服务器上的复制设置。 若要停止运行在 Hyper-V 主机服务器上的虚拟机的复制，请运行以下脚本。 将 SQLVM1 替换为虚拟机的名称，将 host01.contoso.com 替换为 Hyper-V 主机服务器的名称。
 
     ```powershell
@@ -221,15 +226,23 @@ ms.locfileid: "79291579"
 
 3. 从源 VMM 服务器上的 VMM 控制台使用 PowerShell（需要管理员权限）运行此脚本。 将占位符 SQLVM1  替换为虚拟机名称。
 
-        $vm = get-scvirtualmachine -Name "SQLVM1"
-        Set-SCVirtualMachine -VM $vm -ClearDRProtection
+    ```powershell
+    $vm = get-scvirtualmachine -Name "SQLVM1"
+    Set-SCVirtualMachine -VM $vm -ClearDRProtection
+    ```
+
 4. 在辅助 VMM 服务器上，运行下面的脚本，清理辅助虚拟机的设置：
 
-        $vm = get-scvirtualmachine -Name "SQLVM1"
-        Remove-SCVirtualMachine -VM $vm -Force
+    ```powershell
+    $vm = get-scvirtualmachine -Name "SQLVM1"
+    Remove-SCVirtualMachine -VM $vm -Force
+    ```
+
 5. 在辅助 VMM 服务器上刷新 Hyper-V 主机服务器上的虚拟机，以便在 VMM 控制台中重新检测辅助 VM。
 6. 上述步骤清理 VMM 服务器上的复制设置。 若要停止虚拟机的复制，请在主 VM 和辅助 VM 上运行以下脚本。 将 SQLVM1 替换为虚拟机名称。
 
-        Remove-VMReplication -VMName "SQLVM1"
+    ```powershell
+    Remove-VMReplication -VMName "SQLVM1"
+    ```
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

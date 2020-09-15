@@ -5,22 +5,22 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: conditional-access
 ms.topic: conceptual
-ms.date: 08/27/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 author: MicrosoftGuyJFlo
 manager: daveba
 ms.reviewer: nigu
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 173b3489209b89b783974d9d30e07e2c3f3e803e
-ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
+ms.openlocfilehash: 8457882f01ee5730af7a58a98f9e029c374b80a3
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89046398"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593686"
 ---
 # <a name="troubleshoot-using-the-what-if-tool-in-conditional-access"></a>在条件访问中使用 What If 工具进行故障排除
 
-[条件访问](overview.md)是 Azure Active Directory (Azure AD) 中的一项功能，用于控制已获授权的用户访问云应用的方式。 如何知道环境中的条件访问策略会带来什么？ 若要回答此问题，可以使用“条件访问 What If 工具”。
+[条件访问](./overview.md)是 Azure Active Directory (Azure AD) 中的一项功能，用于控制已获授权的用户访问云应用的方式。 如何知道环境中的条件访问策略会带来什么？ 若要回答此问题，可以使用“条件访问 What If 工具”。
 
 本文介绍如何使用此工具来测试条件访问策略。
 
@@ -40,7 +40,7 @@ ms.locfileid: "89046398"
      
 下一步，可以启动用于评估设置的模拟运行。 评估运行中仅包含启用的策略。
 
-完成评估后，此工具将生成一份受影响策略的报表。 若要收集有关条件访问策略的详细信息，可参阅[条件访问见解和报表工作簿](howto-conditional-access-insights-reporting.md)，更详细地了解“仅限报告”模式的策略以及那些目前已启用的策略。
+完成评估后，此工具将生成一份受影响策略的报表。 
 
 ## <a name="running-the-tool"></a>运行此工具
 
@@ -104,6 +104,5 @@ IP 地址为单个 IPv4 地址，用于模拟[位置条件](location-condition.m
 
 ## <a name="next-steps"></a>后续步骤
 
-- 有关条件访问策略应用程序的详细信息，可以使用[条件访问见解和报告](howto-conditional-access-insights-reporting.md)通过策略的“仅限报告”模式来查找。
-- 如果已准备好为环境配置条件访问策略，请参阅[条件访问常见策略](concept-conditional-access-policy-common.md)。 
+- 如果已准备好为环境配置条件访问策略，请参阅[条件访问常见策略](concept-conditional-access-policy-common.md)。
 

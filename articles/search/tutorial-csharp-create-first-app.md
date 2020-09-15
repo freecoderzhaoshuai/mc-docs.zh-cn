@@ -8,13 +8,14 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: tutorial
 origin.date: 06/20/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: 848ec7acba6ba32a43bf421def6e13eae8d19027
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 8f573773db8f21254c10a31b0726edaa77daf537
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471934"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021462"
 ---
 # <a name="tutorial-create-your-first-search-app-using-the-net-sdk"></a>教程：使用 .NET SDK 创建你的第一个搜索应用
 

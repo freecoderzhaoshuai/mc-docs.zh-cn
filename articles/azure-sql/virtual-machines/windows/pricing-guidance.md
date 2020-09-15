@@ -3,7 +3,7 @@ title: 价格指南和管理成本
 description: 提供选择适当 SQL Server 虚拟机定价模型的最佳做法。
 services: virtual-machines-windows
 documentationcenter: na
-author: rockboyfor
+author: WenJason
 tags: azure-service-management
 ms.assetid: ''
 ms.service: virtual-machines-sql
@@ -11,16 +11,16 @@ ms.topic: article
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 origin.date: 08/09/2018
-ms.date: 07/06/2020
-ms.author: v-yeche
+ms.date: 09/14/2020
+ms.author: v-jay
 ms.reviewer: jroth
 ms.custom: seo-lt-2019
-ms.openlocfilehash: 36a36ea59e08b1d076a1978fe4515b6fe97c0cc6
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 444270e42282406552edcebe3b2a79c8b26f2c08
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946325"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014177"
 ---
 # <a name="pricing-guidance-for-sql-server-on-azure-vms"></a>Azure VM 上 SQL Server 的定价指南
 [!INCLUDE[appliesto-sqlvm](../../includes/appliesto-sqlvm.md)]
@@ -103,8 +103,7 @@ ms.locfileid: "85946325"
 
 <!-- Not Available on NOTE [How to change the licensing model for a SQL VM](virtual-machines-windows-sql-ahb.md)-->
 
-<a name="byol"></a>
-## <a name="bring-your-own-license-byol"></a>自带许可证 (BYOL)
+## <a name="bring-your-own-license-byol"></a><a id="byol"></a> 自带许可证 (BYOL)
 
 “通过许可移动性使用自己的 SQL Server 许可证”（也称为**BYOL**）是指在 Azure VM 中使用带软件保障的现有 SQL Server 批量许可证。 使用 BYOL 的 SQL Server VM 仅收取 VM 运行费用，而不收取 SQL Server 许可的费用，前提是已通过批量许可计划获得许可证和软件保障。
 
@@ -122,7 +121,7 @@ ms.locfileid: "85946325"
 
 - **生存期和规模已知的工作负荷**。 例如，全年需要且已预测其需求的应用。
 
-若要对 SQL Server VM 使用 BYOL，必须拥有 SQL Server Standard 或 Enterprise 的许可证以及[软件保障](https://www.microsoft.com/en-us/licensing/licensing-programs/software-assurance-default.aspx#tab=1)，这是通过某些批量许可计划的必需选项，而对其他计划而言为可选购买项。 根据协议类型以及 SQL Server 的数量和/或对其的承诺，批量许可计划提供的定价级别各不相同。 但一般而言，针对连续生产工作负荷自带许可证具有以下优点：
+若要对 SQL Server VM 使用 BYOL，必须拥有 SQL Server Standard 或 Enterprise 的许可证以及[软件保障](https://www.microsoft.com/licensing/licensing-programs/software-assurance-default.aspx#tab=1)，这是通过某些批量许可计划的必需选项，而对其他计划而言为可选购买项。 根据协议类型以及 SQL Server 的数量和/或对其的承诺，批量许可计划提供的定价级别各不相同。 但一般而言，针对连续生产工作负荷自带许可证具有以下优点：
 
 | BYOL 权益 | 说明 |
 |-----|-----|
@@ -146,8 +145,7 @@ ms.locfileid: "85946325"
 
 为了避免不必要的成本，请选择最佳的虚拟机大小，并考虑间歇性关闭非连续的工作负荷。
 
-<a name="machinesize"></a>
-### <a name="correctly-size-your-vm"></a>正确调整 VM 的大小
+### <a name="correctly-size-your-vm"></a><a id="machinesize"></a>正确调整 VM 的大小
 
 SQL Server 的许可成本直接与 vCPU 数相关。 请选择与 CPU、内存、存储和 I/O 带宽需求相符的 VM 大小。 有关计算机大小选项的完整列表，请参阅 [Windows VM 大小](/virtual-machines/windows/sizes)和 [Linux VM 大小](/virtual-machines/linux/sizes?toc=%2fvirtual-machines%2flinux%2ftoc.json)。
 

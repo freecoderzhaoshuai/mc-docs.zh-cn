@@ -1,27 +1,27 @@
 ---
-title: CLI 示例 - 还原/备份 Azure SQL 数据库
-description: Azure CLI 示例脚本，用于使用自动备份将 Azure SQL 单一数据库还原到更早的时间点
+title: Azure CLI：还原备份
+description: Azure CLI 示例脚本，用于通过自动备份将 Azure SQL 数据库中的数据库还原到更早的时间点。
 services: sql-database
 ms.service: sql-database
-ms.subservice: backup-restore
-ms.custom: ''
+ms.subservice: operations
+ms.custom: devx-track-azurecli
 ms.devlang: azurecli
 ms.topic: sample
 author: WenJason
 ms.author: v-jay
 ms.reviewer: carlrab
 origin.date: 03/27/2019
-ms.date: 04/27/2020
-ms.openlocfilehash: bd080c8239ff00a84c9605dddddb519a20f79956
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.date: 09/14/2020
+ms.openlocfilehash: 0ed24eed1dc6f231531a8595fcdd6c28fb4851f2
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82127253"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014224"
 ---
-# <a name="use-cli-to-restore-an-azure-sql-single-database-to-an-earlier-point-in-time"></a>使用 CLI 将 Azure SQL 单一数据库还原到更早的时间点
+# <a name="use-cli-to-restore-a-single-database-in-azure-sql-database-to-an-earlier-point-in-time"></a>使用 CLI 将 Azure SQL 数据库中的单一数据库还原到更早的时间点
 
-此 Azure CLI 脚本示例将 Azure SQL 数据库还原到特定的时间点。  
+此 Azure CLI 脚本示例将 Azure SQL 数据库中的单一数据库还原到特定的时间点。  
 
 本文要求运行 Azure CLI 2.0 或更高版本。 运行 `az --version` 即可查找版本。 如需进行安装或升级，请参阅[安装 Azure CLI](/cli/install-azure-cli)。
 
@@ -86,7 +86,7 @@ az group delete --name $resource
 
 此脚本使用以下命令。 表中的每条命令均链接到特定于命令的文档。
 
-| | |
+| Command | 描述 |
 |---|---|
 | [az sql db restore](/cli/sql/db#az-sql-db-restore) | 还原数据库命令。 |
 
@@ -94,4 +94,4 @@ az group delete --name $resource
 
 有关 Azure CLI 的详细信息，请参阅 [Azure CLI 文档](/cli/)。
 
-其他 SQL 数据库 CLI 脚本示例可以在 [Azure SQL 数据库文档](../sql-database-cli-samples.md)中找到。
+其他 SQL 数据库 CLI 脚本示例可以在 [Azure SQL 数据库文档](../../azure-sql/database/az-cli-script-samples-content-guide.md)中找到。

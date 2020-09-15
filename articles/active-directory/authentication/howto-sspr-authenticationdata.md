@@ -5,18 +5,19 @@ services: active-directory
 ms.service: active-directory
 ms.subservice: authentication
 ms.topic: how-to
-ms.date: 08/28/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 author: iainfoulds
 manager: daveba
 ms.reviewer: rhicock
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: d1923ee3727c8218336beea8b0de76bd8e2ddad7
-ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
+ms.custom: devx-track-azurepowershell
+ms.openlocfilehash: a83356f3ccfbc096541153f0dc5ad299266dc076
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89046343"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593722"
 ---
 # <a name="pre-populate-user-authentication-contact-information-for-azure-active-directory-self-service-password-reset-sspr"></a>为 Azure Active Directory 自助式密码重置 (SSPR) 预填用户身份验证联系信息
 
@@ -88,7 +89,7 @@ ms.locfileid: "89046343"
 
 ### <a name="use-powershell-version-1"></a>使用 PowerShell 版本 1
 
-首先，[下载并安装 Azure AD PowerShell 模块](https://msdn.microsoft.com/library/azure/jj151815.aspx#bkmk_installmodule)。 安装该模块后，请使用以下步骤来配置各个字段。
+首先，[下载并安装 Azure AD PowerShell 模块](https://docs.microsoft.com/previous-versions/azure/jj151815(v=azure.100)#bkmk_installmodule)。 安装该模块后，请使用以下步骤来配置各个字段。
 
 #### <a name="set-the-authentication-data-with-powershell-version-1"></a>使用 PowerShell 版本 1 设置身份验证数据
 

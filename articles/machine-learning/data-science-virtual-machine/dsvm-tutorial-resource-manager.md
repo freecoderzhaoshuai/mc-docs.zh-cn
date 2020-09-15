@@ -10,12 +10,12 @@ ms.date: 06/10/2020
 ms.service: machine-learning
 ms.subservice: data-science-vm
 ms.topic: quickstart
-ms.openlocfilehash: 71f37aa5bf707333c45d3b6917e3e78552adda20
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 9f75e45b25d2fc32d901b21ed1cfb5818c421d0e
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228190"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021524"
 ---
 # <a name="quickstart-create-an-ubuntu-data-science-virtual-machine-using-an-arm-template"></a>快速入门：使用 ARM 模板创建 Ubuntu Data Science Virtual Machine
 
@@ -127,15 +127,20 @@ ms.locfileid: "88228190"
 
 该模板中定义了以下资源：
 
+* [Microsoft.Network/networkInterfaces](https://docs.microsoft.com/azure/templates/microsoft.network/networkinterfaces)
+* [Microsoft.Network/networkSecurityGroups](https://docs.microsoft.com/azure/templates/microsoft.network/networksecuritygroups)
+* [Microsoft.Network/virtualNetworks](https://docs.microsoft.com/azure/templates/microsoft.network/virtualnetworks)
+* [Microsoft.Network/publicIPAddresses](https://docs.microsoft.com/azure/templates/microsoft.network/publicipaddresses)
+* [Microsoft.Storage/storageAccounts](https://docs.microsoft.com/azure/templates/microsoft.storage/storageaccounts)
 * [Microsoft.Compute/virtualMachines](https://docs.microsoft.com/azure/templates/microsoft.compute/virtualmachines)：创建基于云的虚拟机。 在此模板中，将虚拟机配置为运行 Ubuntu 18.04 的 Data Science Virtual Machine。
 
 ## <a name="deploy-the-template"></a>部署模板
 
-若要通过 Azure CLI 使用该模板，请登录并选择你的订阅（请参阅[使用 Azure CLI 登录](/cli/authenticate-azure-cli?view=azure-cli-latest)）。 然后运行：
+若要通过 Azure CLI 使用该模板，请登录并选择你的订阅（请参阅[使用 Azure CLI 登录](/cli/authenticate-azure-cli?view=azure-cli-latest)）。 运行：
 
 ```azurecli
 read -p "Enter the name of the resource group to create:" resourceGroupName &&
-read -p "Enter the Azure location (e.g., centralus):" location &&
+read -p "Enter the Azure location (e.g., chinaeast2):" location &&
 read -p "Enter the authentication type (must be 'password' or 'sshPublicKey') :" authenticationType &&
 read -p "Enter the login name for the administrator account (may not be 'admin'):" adminUsername &&
 read -p "Enter administrator account secure string (value of password or ssh public key):" adminPasswordOrKey &&
@@ -158,7 +163,7 @@ read
 
 若要查看 Data Science Virtual Machine：
 
-1. 转到 https://portal.azure.cn 
+1. 转到 [Azure 门户](https://portal.azure.cn)
 1. 登录 
 1. 选择刚创建的资源组
 

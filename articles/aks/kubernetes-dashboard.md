@@ -2,25 +2,27 @@
 title: 使用 Web 仪表板管理 Azure Kubernetes 服务群集
 description: 了解如何使用内置的 Kubernetes Web UI 仪表板管理 Azure Kubernetes 服务 (AKS) 群集
 services: container-service
-author: rockboyfor
 ms.topic: article
 origin.date: 06/03/2020
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: yes|no
 ms.testdate: 07/13/2020
 ms.author: v-yeche
-ms.openlocfilehash: 3b57226e9379f2d182f3c5f8ac7f6aad3c92ee81
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 657eae5d7b705a856d0bee82c5e1b28b16509f22
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842676"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020832"
 ---
 # <a name="access-the-kubernetes-web-dashboard-in-azure-kubernetes-service-aks"></a>访问 Azure Kubernetes 服务 (AKS) 中的 Kubernetes Web 仪表板
 
 Kubernetes 包含一个可用于基本管理操作的 Web 仪表板。 使用此仪表板，可以查看应用程序的基本运行状况状态和指标，创建并部署服务，以及编辑现有应用程序。 本文介绍如何使用 Azure CLI 访问 Kubernetes 仪表板，然后引导你完成一些基本的仪表板操作。
 
 有关 Kubernetes 仪表板的详细信息，请参阅 [Kubernetes Web UI 仪表板][kubernetes-dashboard]。 AKS 使用版本 2.0 及更高版本的开源仪表板。
+
+<!--Not Available on [Kubernetes resource view in the Azure portal (preview)][kubernetes-portal]-->
 
 > [!WARNING]
 > **AKS 仪表板加载项已设置为弃用。** 
@@ -49,12 +51,18 @@ az aks disable-addons -g myRG -n myAKScluster -a kube-dashboard
 
 以下示例将为 *myResourceGroup* 资源组中的 *myAKSCluster* 群集打开仪表板：
 
+<!--MOONCAKE: CUSTOMZIE TO KEEP az aks enable-addons --addons kube-dashboard-->
+<!--REASON: Kubernets resource(Preview) is not Available on Mooncake-->
+
 ```azurecli
 # Enable kube-dashboard addon before start the kubernetes dashboard
 az aks enable-addons --addons kube-dashboard --resource-group myResourceGroup --name myAKSCluster
 
 az aks browse --resource-group myResourceGroup --name myAKSCluster
 ```
+
+<!--MOONCAKE: CUSTOMZIE TO KEEP az aks enable-addons --addons kube-dashboard-->
+<!--REASON: Kubernets resource(Preview) is not Available on Mooncake-->
 
 此命令在开发系统与 Kubernetes API 之间创建一个代理，并在 Web 浏览器中打开 Kubernetes 仪表板。 如果 Web 浏览器未打开到 Kubernetes 仪表板，请复制并在 Azure CLI 中粘贴所记录的 URL 地址，通常为 `http://127.0.0.1:8001`。
 
@@ -173,9 +181,11 @@ Kubernetes 仪表板可以提供基本的监视指标和故障排除信息，例
 [aad-cluster]: ./azure-ad-integration-cli.md
 [aks-quickstart]: ./kubernetes-walkthrough.md
 [aks-service-accounts]: ./concepts-identity.md#kubernetes-service-accounts
-[az-account-get-access-token]: https://docs.azure.cn/cli/account?view=azure-cli-latest#az-account-get-access-token
-[az-aks-browse]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-browse
-[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-get-credentials
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[az-account-get-access-token]: https://docs.azure.cn/cli/account#az-account-get-access-token
+[az-aks-browse]: https://docs.microsoft.com/cli/azure/aks#az_aks_browse
+[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks#az_aks_get_credentials
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
+
+<!--Not Available on [kubernetes-portal]: ./kubernetes-portal.md-->
 
 <!-- Update_Description: update meta properties, wording update, update link -->

@@ -11,13 +11,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: carlrab
 origin.date: 07/16/2019
-ms.date: 04/27/2020
-ms.openlocfilehash: 3f14ae3de156e8d4476646a8ae8ff2477378c173
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.date: 09/14/2020
+ms.openlocfilehash: 19965b0c9add78fd2a731303d36396003d85ed3c
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82127247"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014221"
 ---
 # <a name="use-cli-to-add-an-azure-sql-database-elastic-pool-to-a-failover-group"></a>使用 CLI 将 Azure SQL 数据库弹性池添加到故障转移组
 
@@ -113,7 +113,7 @@ az group delete --name $resource
 
 此脚本使用以下命令。 表中的每条命令均链接到特定于命令的文档。
 
-| | |
+| Command | 描述 |
 |---|---|
 | [az sql elastic-pool](/cli/sql/elastic-pool) | 弹性池命令。 |
 | [az sql failover-group ](/cli/sql/failover-group) | 故障转移组命令。 |
@@ -122,4 +122,4 @@ az group delete --name $resource
 
 有关 Azure CLI 的详细信息，请参阅 [Azure CLI 文档](/cli/overview)。
 
-可以在 [Azure SQL 数据库 Azure CLI 脚本](../sql-database-cli-samples.md)中找到其他 SQL 数据库 Azure CLI 脚本示例。
+可以在 [Azure SQL 数据库 Azure CLI 脚本](../../azure-sql/database/az-cli-script-samples-content-guide.md)中找到其他 SQL 数据库 Azure CLI 脚本示例。

@@ -3,20 +3,20 @@ title: Team Data Science Process for DevOps
 description: 特定于高级分析和认知服务解决方案实施的开发人员运营 (DevOps) 功能。
 services: machine-learning
 author: marktab
-manager: cgronlun
-editor: cgronlun
+manager: marktab
+editor: marktab
 ms.service: machine-learning
 ms.subservice: team-data-science-process
 ms.topic: article
-ms.date: 11/21/2017
+ms.date: 01/10/2020
 ms.author: tdsp
 ms.custom: seodec18, previous-author=deguhath, previous-ms.author=deguhath
-ms.openlocfilehash: 280abb73ff0b60a1e843b38371d76cd36fdbb1df
-ms.sourcegitcommit: 3de7d92ac955272fd140ec47b3a0a7b1e287ca14
+ms.openlocfilehash: 385514e7c4781b9d81aa298135b6f344c91be5ac
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84723752"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021208"
 ---
 # <a name="team-data-science-process-for-developer-operations"></a>用于开发人员运营的 Team Data Science Process
 
@@ -81,7 +81,7 @@ ms.locfileid: "84723752"
 |                                                                |                                         | [此主题介绍有关 Operations Manager 的基本概念，管理员可以使用它来管理 Operations Manager 基础结构，操作员可以使用它来监视和支持高级分析解决方案](https://technet.microsoft.com/library/hh230741.aspx) | System Center                                                                                                                                                                                                                                                                                      | 有经验                                             | 熟悉企业监视和 System Center Operations Manager                                                                                                                                                  |
 |                                                                |                                         | [此博客文章介绍如何使用 Azure 数据工厂来监视和管理高级分析管道](https://azure.microsoft.com/blog/azure-data-factory-updates-monitoring-and-management-enhancements/)                                      | Azure 数据工厂                                                                                                                                                                                                                                                                                    | 中级                                            | 熟悉 Azure 数据工厂                                                                                                                                                                                       |
 |                                                                |                                         | [此视频演示如何使用 Azure Monitor 日志监视日志](https://channel9.msdn.com/Shows/Data-Exposed/Enterprise-HDInsight-Monitoring-with-Operations-Management-Suite)                                                                                    | Azure 日志、PowerShell                                                                                                                                                                                                                                                                                | 有经验                                              | 熟悉 Azure 平台                                                                                                                                                                                      |
-| 了解如何在 Azure 上使用开源工具进行 DevOps   | 开源 DevOps 工具和 Azure      | [此参考页包含两段视频，以及有关在 Azure 部署中使用 Chef 的白皮书](https://www.chef.io/implementations/azure/)                                                                                                                        | Chef                                                                                                                                                                                                                                                                                                  | 有经验                                             | 熟悉 Azure 平台和 DevOps                                                                                                                                                             |
+| 了解如何在 Azure 上使用开源工具进行 DevOps   | 开源 DevOps 工具和 Azure      | [此参考页包含两段视频，以及有关在 Azure 部署中使用 Chef 的白皮书](https://www.chef.io/)                                                                                                                        | Chef                                                                                                                                                                                                                                                                                                  | 有经验                                             | 熟悉 Azure 平台和 DevOps                                                                                                                                                             |
 |                                                                |                                         | [此站点提供工具链选择路径](https://azure.microsoft.com/try/devops/)                                                                                                                                                                          | DevOps、Microsoft Azure 平台、Azure DevOps、开源软件                                                                                                                                                                                                                   | 有经验                                             | 用过 SDLC，熟悉 Agile 和其他开发框架，熟悉 IT 运营                                                                                                                          |
 |                                                                |                                         | [此教程使用持续集成和持续部署 (CI/CD) 管道将应用程序开发的生成和测试阶段自动化](../../virtual-machines/linux/tutorial-jenkins-github-docker-cicd.md)      | Jenkins                                                                                                                                                                                                                                                                                               | 有经验                                             | 熟悉 Azure 平台、DevOps 和 Jenkins                                                                                                                                   |
 |                                                                |                                         | [此文概述 Docker 和 Azure 的用法，以及有关数据科学应用程序实施方法的其他参考信息](https://www.docker.com/docker-azure#/overview)                                                                       | Docker                                                                                                                                                                                                                                                                                                | 中级                                           | 熟悉 Azure 平台和 Server 操作系统                                                                                                                                           |

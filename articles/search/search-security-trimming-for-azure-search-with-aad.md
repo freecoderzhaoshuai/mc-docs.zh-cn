@@ -8,13 +8,14 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 06/04/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: fb033c76813d4c39a45ca758f0b593bdd83edab4
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 9eddd022bc5e89e5d18db9e61784ca8e01ae0a01
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471932"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021457"
 ---
 # <a name="security-filters-for-trimming-azure-cognitive-search-results-using-active-directory-identities"></a>用于使用 Active Directory 标识修剪 Azure 认知搜索结果的安全筛选器
 
@@ -41,7 +42,7 @@ Azure 认知搜索中的索引必须有一个[安全字段](search-security-trim
 
 ### <a name="register-your-application-with-aad"></a>将应用程序注册到 AAD
 
-此步骤将应用程序与 AAD 集成，以接受用户和组帐户的登录。 如果你不是组织中的 AAD 管理员，可能需要[创建新租户](https://docs.azure.cn/active-directory/develop/active-directory-howto-tenant)才能执行以下步骤。
+此步骤将应用程序与 AAD 集成，以接受用户和组帐户的登录。 如果你不是组织中的 AAD 管理员，可能需要[创建新租户](../active-directory/develop/quickstart-create-new-tenant.md)才能执行以下步骤。
 
 1. 转到[**应用程序注册门户**](https://apps.dev.microsoft.com) >   选择“聚合应用” > “添加应用”。 
 2. 输入应用程序的名称，单击“创建”。 
@@ -99,9 +100,9 @@ await graph.Groups[newGroup.Id].Members.References.Request().AddAsync(newUser);
 ```
 
 ### <a name="step-4-cache-the-groups-identifiers"></a>步骤 4：缓存组标识符
-（可选）为了降低网络延迟，可以缓存用户与组之间的关联，以便在发出搜索请求后，可以从缓存返回组，免除与 AAD 之间的一次往返。 可以使用 [AAD Batch API](https://developer.microsoft.com/graph/docs/concepts/json_batching) 发送包含多个用户的单个 Http 请求并生成缓存。
+（可选）为了降低网络延迟，可以缓存用户与组之间的关联，以便在发出搜索请求后，可以从缓存返回组，免除与 AAD 之间的一次往返。 可以使用 [AAD Batch API](https://docs.microsoft.com/graph/json-batching) 发送包含多个用户的单个 Http 请求并生成缓存。
 
-Microsoft Graph 能够处理大量的请求。 如果发出无以数计的请求，Microsoft Graph 将会失败并返回 HTTP 状态代码 429。 有关详细信息，请参阅 [Microsoft Graph 限制](https://developer.microsoft.com/graph/docs/concepts/throttling)。
+Microsoft Graph 能够处理大量的请求。 如果发出无以数计的请求，Microsoft Graph 将会失败并返回 HTTP 状态代码 429。 有关详细信息，请参阅 [Microsoft Graph 限制](https://docs.microsoft.com/graph/throttling)。
 
 ## <a name="index-document-with-their-permitted-groups"></a>使用受允许的组编制文档索引
 

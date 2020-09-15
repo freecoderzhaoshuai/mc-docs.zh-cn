@@ -11,19 +11,19 @@ author: blackmist
 ms.date: 07/23/2020
 ms.topic: conceptual
 ms.custom: how-to, devx-track-python
-ms.openlocfilehash: df45a47952d9f7b3cc4284d8f94fa17ded42291c
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 5b178351bd3de3ca8c16188aad85ee7ece17bc75
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947144"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021165"
 ---
 # <a name="monitor-and-collect-data-from-ml-web-service-endpoints"></a>监视机器学习 Web 服务终结点以及从中收集数据
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
 
 本文介绍如何通过以下方式查询日志并启用 Azure Application Insights，监视部署到 Azure Kubernetes 服务 (AKS) 或 Azure 容器实例 (ACI) 中 Web 服务终结点的模型以及从中收集数据： 
 * [Azure 机器学习 Python SDK](#python)
-* [Azure 机器学习工作室](#studio) (https://ml.azure.com )
+* [Azure 机器学习工作室](#studio) (https://studio.ml.azure.cn )
 
 除了收集终结点的输出数据和响应之外，还可以监视：
 
@@ -157,7 +157,7 @@ logs = service.get_logs()
 
 当你准备好按照以下步骤部署模型时，还可以从 Azure 机器学习工作室启用 Azure Application Insights。
 
-1. 登录到你的工作区 (https://ml.azure.com/ )
+1. 登录到你的工作区 (https://studio.ml.azure.cn/ )
 1. 转到“模型”并选择要部署的模型
 1. 选择“+部署”
 1. 填充“部署模型”窗体

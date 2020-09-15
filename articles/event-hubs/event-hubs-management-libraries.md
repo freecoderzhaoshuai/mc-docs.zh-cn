@@ -3,14 +3,15 @@ title: 管理库 – Azure 事件中心 | Microsoft Docs
 description: 本文提供有关可用于从 .NET 管理 Azure 事件中心命名空间和实体的库的信息。
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: v-tawe
-ms.openlocfilehash: c393419aa50c9a90f902971d2f9cd1fd0d7758bc
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.custom: devx-track-csharp
+ms.openlocfilehash: ae71fec9004f5d7baeeb1af69e56c19c222954d5
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715121"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063258"
 ---
 # <a name="event-hubs-management-libraries"></a>事件中心管理库
 
@@ -28,7 +29,7 @@ ms.locfileid: "88715121"
 
 * [使用 Azure 门户创建可访问资源的 Active Directory 应用程序和服务主体](../active-directory/develop/howto-create-service-principal-portal.md)
 * [使用 Azure PowerShell 创建服务主体来访问资源](../active-directory/develop/howto-authenticate-service-principal-powershell.md)
-* [使用 Azure CLI 创建服务主体来访问资源](../azure-resource-manager/resource-group-authenticate-service-principal-cli.md)
+* [使用 Azure CLI 创建服务主体来访问资源](/cli/create-an-azure-service-principal-azure-cli)
 
 这些教程提供 `AppId`（客户端 ID）、`TenantId` 和 `ClientSecret`（身份验证密钥），这些都用于管理库进行的身份验证。 若要对资源组运行命令，必须拥有“所有者”  权限。
 

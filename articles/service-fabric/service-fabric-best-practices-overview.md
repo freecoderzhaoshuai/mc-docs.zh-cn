@@ -1,17 +1,19 @@
 ---
 title: Azure Service Fabric 应用程序和群集最佳做法
 description: 使用 Azure Service Fabric 管理群集、应用和服务的最佳做法和设计注意事项。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 06/18/2019
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: dd8d4cfd65e46d113ebda4f988a81a9563308f0b
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 86d40233e7204aa286c234c71bdffe4432189a6d
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540202"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655101"
 ---
 # <a name="azure-service-fabric-application-and-cluster-best-practices"></a>Azure Service Fabric 应用程序和群集最佳做法
 
@@ -28,7 +30,7 @@ ms.locfileid: "77540202"
 ## <a name="compute-planning-and-scaling"></a>计算规划和缩放
 
 * [计算缩放最佳做法](service-fabric-best-practices-capacity-scaling.md)
-* [计算容量规划](/service-fabric/service-fabric-cluster-capacity)
+* [计算容量规划](./service-fabric-cluster-capacity.md)
 
 ## <a name="infrastructure-as-code"></a>基础结构即代码
 
@@ -44,7 +46,7 @@ ms.locfileid: "77540202"
 ## <a name="checklist"></a>清单
 
 实施前面几节中建议的做法后，请确保已将所有最佳做法集成到生产就绪情况核对清单中：
-* [Azure Service Fabric 生产就绪情况核对清单](/service-fabric/service-fabric-production-readiness-checklist)
+* [Azure Service Fabric 生产就绪情况核对清单](./service-fabric-production-readiness-checklist.md)
 
 ## <a name="next-steps"></a>后续步骤
 
@@ -52,4 +54,4 @@ ms.locfileid: "77540202"
 * 在运行 Linux 的 VM 或计算机上创建群集：[创建 Linux 群集](service-fabric-cluster-creation-via-portal.md)
 * Service Fabric 故障排除：[故障排除指南](https://github.com/Azure/Service-Fabric-Troubleshooting-Guides)
 
-<!-- Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

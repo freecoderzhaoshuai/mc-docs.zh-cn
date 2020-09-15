@@ -8,17 +8,17 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 07/17/2020
-ms.openlocfilehash: 51720f68e1a1b056014dbe0c5cf37cffff284201
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: ed9ec0429c05b5bca5f1f3c1f1efb9ab47f80fd7
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471857"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021116"
 ---
 #   <a name="key-phrase-extraction-cognitive-skill"></a>关键短语提取认知技能
 
-关键短语提取技能可以计算非结构化的文本，并针对每个记录返回关键短语列表。 此技能使用认知服务中的[文本分析](https://docs.azure.cn/cognitive-services/text-analytics/overview)提供的机器学习模型。
+关键短语提取技能可以计算非结构化的文本，并针对每个记录返回关键短语列表。 此技能使用认知服务中的[文本分析](../cognitive-services/text-analytics/overview.md)提供的机器学习模型。
 
 如果你需要快速确定记录中的谈话要点，此功能十分有用。 例如，给定输入文本“The food was delicious and there were wonderful staff”，服务会返回“food”和“wonderful staff”。
 
@@ -40,7 +40,7 @@ Microsoft.Skills.Text.KeyPhraseExtractionSkill
 
 | 输入                | 说明 |
 |---------------------|-------------|
-| `defaultLanguageCode` | （可选）要应用到未显式指定语言的文档的语言代码。  如果未指定默认语言代码，会将英语 (en) 用作默认语言代码。 <br/> 请参阅[支持的语言的完整列表](https://docs.azure.cn/cognitive-services/text-analytics/text-analytics-supported-languages)。 |
+| `defaultLanguageCode` | （可选）要应用到未显式指定语言的文档的语言代码。  如果未指定默认语言代码，会将英语 (en) 用作默认语言代码。 <br/> 请参阅[支持的语言的完整列表](../cognitive-services/text-analytics/language-support.md)。 |
 | `maxKeyPhraseCount`   | （可选）要生成的关键短语的最大数量。 |
 
 ## <a name="skill-inputs"></a>技能输入
@@ -48,7 +48,7 @@ Microsoft.Skills.Text.KeyPhraseExtractionSkill
 | 输入  | 说明 |
 |--------------------|-------------|
 | `text` | 要分析的文本。|
-| `languageCode`    |  表示记录的语言的字符串。 如果未指定此参数，将使用默认语言代码分析记录。 <br/>请参阅[支持的语言的完整列表](https://docs.azure.cn/cognitive-services/text-analytics/text-analytics-supported-languages)|
+| `languageCode`    |  表示记录的语言的字符串。 如果未指定此参数，将使用默认语言代码分析记录。 <br/>请参阅[支持的语言的完整列表](../cognitive-services/text-analytics/language-support.md)|
 
 ## <a name="skill-outputs"></a>技能输出
 

@@ -1,17 +1,20 @@
 ---
 title: 配置 Azure Service Fabric Reliable Services
 description: 了解如何在 Azure Service Fabric 应用程序中全局配置以及针对单个服务配置有状态可靠服务。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 10/02/2017
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: d62f00100cf5d4f1be16a3b5c96700fcf511f471
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: c3edf51013756f4d62c81652834aad05829b5da6
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540133"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655080"
 ---
 # <a name="configure-stateful-reliable-services"></a>配置有状态 Reliable Services
 有两组配置设置可供 Reliable Services 使用。 一组适用于群集中的所有 Reliable Services，而另一组特定于特定的 Reliable Services。
@@ -31,13 +34,15 @@ ms.locfileid: "77540133"
 
 在 Azure ARM 或本地 JSON 模板中，以下示例说明如何更改为支持有状态服务的任何可靠集合而创建的共享事务日志。
 
-    "fabricSettings": [{
-        "name": "KtlLogger",
-        "parameters": [{
-            "name": "SharedLogSizeInMB",
-            "value": "4096"
-        }]
+```json
+"fabricSettings": [{
+    "name": "KtlLogger",
+    "parameters": [{
+        "name": "SharedLogSizeInMB",
+        "value": "4096"
     }]
+}]
+```
 
 ### <a name="sample-local-developer-cluster-manifest-section"></a>本地开发人员群集清单部分示例
 若要在本地开发环境中更改此设置，则需编辑本地 clustermanifest.xml 文件。
@@ -102,7 +107,6 @@ ReplicatorConfig
 > 
 
 ### <a name="configuration-names"></a>配置名称
-
 | 名称 | 单位 | 默认值 | 备注 |
 | --- | --- | --- | --- |
 | BatchAcknowledgementInterval |秒 |0.015 |收到操作后，在向主要复制器送回确认之前，辅助复制器等待的时间段。 为在此间隔内处理的操作发送的任何其他确认都作为响应发送。 |
@@ -186,6 +190,6 @@ SharedLogId 和 SharedLogPath 设置始终一起使用，使服务可以使用�
 
 ## <a name="next-steps"></a>后续步骤
 * [在 Visual Studio 中调试 Service Fabric 应用程序](service-fabric-debugging-your-application.md)
-* [Reliable Services 的开发人员参考](https://msdn.microsoft.com/library/azure/dn706529.aspx)
+* [Reliable Services 的开发人员参考](https://docs.microsoft.com/previous-versions/azure/dn706529(v=azure.100))
 
-<!--Update_Description: update meta properties  -->
+<!-- Update_Description: update meta properties, wording update, update link -->

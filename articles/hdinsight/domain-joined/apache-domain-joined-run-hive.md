@@ -8,12 +8,12 @@ ms.service: hdinsight
 ms.topic: conceptual
 ms.custom: hdinsightactive
 ms.date: 11/27/2019
-ms.openlocfilehash: 4b7efebc818756892738b5cd02ecbd19dacfa588
-ms.sourcegitcommit: 362814dc7ac5b56cf0237b9016a67c35d8d72c32
+ms.openlocfilehash: 042577dc4bb5a8e0dfc9bc8f227bded2129bb160
+ms.sourcegitcommit: e1a0ea64b617b7f96655c29cd8edd69890cbd553
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/31/2020
-ms.locfileid: "87457504"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89592498"
 ---
 # <a name="configure-apache-hive-policies-in-hdinsight-with-enterprise-security-package"></a>在具有企业安全性套餐的 HDInsight 中配置 Apache Hive 策略
 
@@ -121,7 +121,9 @@ ms.locfileid: "87457504"
 
 1. 选择“定义”选项卡。命令文本为：
 
-       SELECT * FROM "HIVE"."default"."hivesampletable"
+    ```sql
+    SELECT * FROM "HIVE"."default"."hivesampletable"`
+    ```
 
    根据定义的 Ranger 策略，hiveuser1 对所有列拥有 select 权限。  因此，此查询可以使用 hiveuser1 的凭据，但不能使用 hiveuser2 的凭据。
 
@@ -136,15 +138,21 @@ ms.locfileid: "87457504"
 1. 在 Excel 中添加新工作表。
 2. 按照上一过程导入数据。  所做的唯一更改是使用 hiveuser2 的凭据，而不是 hiveuser1 的凭据。 此查询失败，因为 hiveuser2 仅有权查看两个列。 将收到以下错误：
 
-        [Microsoft][HiveODBC] (35) Error from Hive: error code: '40000' error message: 'Error while compiling statement: FAILED: HiveAccessControlException Permission denied: user [hiveuser2] does not have [SELECT] privilege on [default/hivesampletable/clientid,country ...]'.
-        
+    ```output
+    [Microsoft][HiveODBC] (35) Error from Hive: error code: '40000' error message: 'Error while compiling statement: FAILED: HiveAccessControlException Permission denied: user [hiveuser2] does not have [SELECT] privilege on [default/hivesampletable/clientid,country ...]'.
+    ```
+
 3. 按照相同的过程导入数据。 这次使用 hiveuser2 的凭据，并且还修改 select 语句，从：
 
-        SELECT * FROM "HIVE"."default"."hivesampletable"
+    ```sql
+    SELECT * FROM "HIVE"."default"."hivesampletable"
+    ```
 
     to:
 
-        SELECT clientid, devicemake FROM "HIVE"."default"."hivesampletable"
+    ```sql
+    SELECT clientid, devicemake FROM "HIVE"."default"."hivesampletable"
+    ```
 
     完成后，应看到导入了两列的数据。
 

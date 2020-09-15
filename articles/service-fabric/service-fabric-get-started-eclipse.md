@@ -1,17 +1,20 @@
 ---
 title: 适用于 Eclipse 的 Azure Service Fabric 插件
 description: 了解如何使用 Eclipse 和 Service Fabric 提供的插件在 Java 中开始使用 Azure Service Fabric。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 04/06/2018
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 2e9cf26f36122297f8f7e5239890fc0637fe7fbb
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.custom: devx-track-java
+ms.openlocfilehash: 9e8a37fa86cd1e9854756cc616eb1e2eb53403d6
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356242"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655731"
 ---
 # <a name="service-fabric-plug-in-for-eclipse-java-application-development"></a>使用适用于 Eclipse 的 Service Fabric 插件开发 Java 应用程序
 Eclipse 是面向 Java 开发人员的最常用集成开发环境 (IDE) 之一。 本文介绍如何设置适用于 Azure Service Fabric 的 Eclipse 开发环境。 了解如何安装 Service Fabric 插件、创建 Service Fabric 应用程序，以及将 Service Fabric 应用程序部署到 Eclipse 中的本地或远程 Service Fabric 群集。 
@@ -112,7 +115,7 @@ Eclipse 是面向 Java 开发人员的最常用集成开发环境 (IDE) 之一�
 2. 在上下文菜单中，单击“发布应用程序...”。
 3. 在“发布应用程序”窗口中，选择“PublishProfiles/Local.json”为目标配置文件，然后单击“发布”。  
 
-    ![本地“发布”对话框](./media/service-fabric-get-started-eclipse/localjson.png)
+    :::image type="content" source="./media/service-fabric-get-started-eclipse/localjson.png" alt-text="本地“发布”对话框":::
 
     默认情况下，Local.json 发布配置文件设置为发布到本地群集。 有关发布配置文件中提供的连接和终结点参数的详细信息，请参阅下一部分。
 
@@ -135,7 +138,7 @@ Eclipse 是面向 Java 开发人员的最常用集成开发环境 (IDE) 之一�
     - `ClientKey` 字段应指向本地计算机上包含客户端或群集证书私钥的 PEM 格式的 .pem 或 .key 文件。
     - `ClientCert` 字段应指向本地计算机上包含客户端或群集证书数据的 PEM 格式的 .pem 或 .crt 文件。 证书。 
 
-        ```bash
+    ```bash
         {
              "ClusterConnectionParameters":
              {
@@ -145,13 +148,13 @@ Eclipse 是面向 Java 开发人员的最常用集成开发环境 (IDE) 之一�
                 "ClientCert": "[path_to_your_pem_file_on_local_machine]"
              }
         }
-        ```
+    ```
 
 2. 右键单击 Service Fabric 应用程序，并选择“Service Fabric”。
 3. 在上下文菜单中，单击“发布应用程序...”。
 3. 在“发布应用程序”窗口中，选择“PublishProfiles/Cloud.json”为目标配置文件，然后单击“发布”。  
 
-    ![云端“发布”对话框](./media/service-fabric-get-started-eclipse/cloudjson.png)
+    :::image type="content" source="./media/service-fabric-get-started-eclipse/cloudjson.png" alt-text="云端“发布”对话框":::
 
 4. 可以在控制台窗口中跟踪发布操作的进度。
 5. 若要验证应用程序是否正在运行，请在浏览器窗口中的 Azure 群集上打开 Service Fabric Explorer。 在上述示例中，URL 为：`https://lnxxug0tlqm5.chinanorth.cloudapp.chinacloudapi.cn:19080/Explorer`。 展开“应用程序”节点，确保应用程序正在运行。 
@@ -168,7 +171,7 @@ Eclipse 是面向 Java 开发人员的最常用集成开发环境 (IDE) 之一�
 2. 在“Gradle 项目”下面，选择“ServiceFabricDeployer”运行配置。 
 3. 在右窗格中的“参数”选项卡上，确保适当地为部署设置了 **ip**、**port**、**clientCert** 和 **clientKey** 参数。 这些参数默认设置为部署到本地群集，如以下屏幕截图中所示。 若要将应用发布到 Azure，可以修改参数，以包含 Azure 群集的终结点详细信息和安全凭据。 有关详细信息，请参阅上一部分[在 Eclipse 中将 Service Fabric 应用程序发布到 Azure](#publish-your-service-fabric-application-to-azure-with-eclipse)。
 
-    ![运行配置对话框 - 本地](./media/service-fabric-get-started-eclipse/run-config-local.png)
+    :::image type="content" source="./media/service-fabric-get-started-eclipse/run-config-local.png" alt-text="运行配置对话框 - 本地":::
 
 5. 确保“工作目录”指向要部署的应用程序。 若要更改应用程序，请单击“工作区”按钮，然后选择所需的应用程序。
 6. 单击“应用”，然后单击“运行”。 
@@ -231,12 +234,12 @@ Eclipse 是面向 Java 开发人员的最常用集成开发环境 (IDE) 之一�
 
 [sf-eclipse-plugin-install]: ./media/service-fabric-get-started-eclipse/service-fabric-eclipse-plugin.png
 
-[create-application/p1]: ./media/service-fabric-get-started-eclipse/create-application/p1.png
-[create-application/p2]: ./media/service-fabric-get-started-eclipse/create-application/p2.png
-[create-application/p3]: ./media/service-fabric-get-started-eclipse/create-application/p3.png
-[create-application/p4]: ./media/service-fabric-get-started-eclipse/create-application/p4.png
-[create-application/p5]: ./media/service-fabric-get-started-eclipse/create-application/p5.png
-[create-application/p6]: ./media/service-fabric-get-started-eclipse/create-application/p6.png
+[create-application/p1]:./media/service-fabric-get-started-eclipse/create-application/p1.png
+[create-application/p2]:./media/service-fabric-get-started-eclipse/create-application/p2.png
+[create-application/p3]:./media/service-fabric-get-started-eclipse/create-application/p3.png
+[create-application/p4]:./media/service-fabric-get-started-eclipse/create-application/p4.png
+[create-application/p5]:./media/service-fabric-get-started-eclipse/create-application/p5.png
+[create-application/p6]:./media/service-fabric-get-started-eclipse/create-application/p6.png
 
 [publish/Publish]: ./media/service-fabric-get-started-eclipse/publish/Publish.png
 [publish/RightClick]: ./media/service-fabric-get-started-eclipse/publish/RightClick.png
@@ -250,4 +253,4 @@ Eclipse 是面向 Java 开发人员的最常用集成开发环境 (IDE) 之一�
 
 [buildship-update]: https://projects.eclipse.org/projects/tools.buildship
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

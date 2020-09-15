@@ -7,14 +7,14 @@ author: HeidiSteen
 ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
-origin.date: 11/04/2019
-ms.date: 07/20/2020
-ms.openlocfilehash: 3b41e08e810aeb7370ecca5d9baa51969cbad00a
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+origin.date: 06/30/2020
+ms.date: 09/10/2020
+ms.openlocfilehash: c36d199b772f51dc1839d785cc2b00cb443f362c
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471790"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021559"
 ---
 # <a name="data-import-overview---azure-cognitive-search"></a>数据导入概述 - Azure 认知搜索
 
@@ -40,7 +40,7 @@ ms.locfileid: "86471790"
 
 目前尚没有支持通过门户推送数据的工具。
 
-有关每种方法的简介，请参阅[快速入门：使用 PowerShell 创建 Azure 认知搜索索引](search-create-index-rest-api.md)或[C# 快速入门：使用 .NET SDK 创建 Azure 认知搜索索引](search-get-started-dotnet.md)。
+有关每种方法的简介，请参阅[快速入门：使用 PowerShell 创建 Azure 认知搜索索引](./search-get-started-powershell.md)或[C# 快速入门：使用 .NET SDK 创建 Azure 认知搜索索引](search-get-started-dotnet.md)。
 
 <a name="indexing-actions"></a>
 
@@ -68,7 +68,9 @@ ms.locfileid: "86471790"
 
 GET 的 URL 末尾为*查询字符串*，用于提供查询参数。 有关 URL 格式，请参见以下内容：
 
-    https://[service name].search.azure.cn/indexes/[index name]/docs?[query string]&api-version=2020-06-30
+```http
+    https://[service name].search.azure.cn/indexes/[index name]/docs?[query string]&api-version=2019-05-06
+```
 
 POST 的 URL 格式相同，但查询字符串参数包含 `api-version`。
 
@@ -86,13 +88,13 @@ POST 的 URL 格式相同，但查询字符串参数包含 `api-version`。
 
 ### <a name="how-to-pull-data-into-an-azure-cognitive-search-index"></a>如何将数据拉取至 Azure 认知搜索索引
 
-索引器功能已在 [Azure 门户](search-import-data-portal.md)、[REST API](https://docs.microsoft.com/azure/rest/api/searchservice/Indexer-operations) 和 [.NET SDK](/dotnet/api/microsoft.azure.search.indexersoperationsextensions) 中公开。 
+索引器功能已在 [Azure 门户](search-import-data-portal.md)、[REST API](https://docs.microsoft.com/rest/api/searchservice/Indexer-operations) 和 [.NET SDK](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.indexersoperationsextensions) 中公开。 
 
 使用门户的一个优势在于，Azure 认知搜索通常可以通过读取源数据集的元数据来生成默认的索引架构。 在处理生成的索引之前可对其进行修改，此后，只能编辑不需要重建索引的架构。 如果想要进行的更改会直接影响架构，则需要重建索引。 
 
 ## <a name="verify-data-import-with-search-explorer"></a>使用搜索浏览器验证数据导入
 
-针对文档上传执行初步检查的捷径之一是在门户中使用**搜索浏览器**。 使用资源管理器可以直接查询索引，而无需编写任何代码。 搜索体验取决于默认设置，例如[简单语法](https://docs.microsoft.com/azure/rest/api/searchservice/simple-query-syntax-in-azure-search)和默认的 [searchMode 查询参数](https://docs.microsoft.com/azure/rest/api/searchservice/search-documents)。 结果以 JSON 格式返回，方便用户检查整个文档。
+针对文档上传执行初步检查的捷径之一是在门户中使用**搜索浏览器**。 使用资源管理器可以直接查询索引，而无需编写任何代码。 搜索体验取决于默认设置，例如[简单语法](https://docs.microsoft.com/rest/api/searchservice/simple-query-syntax-in-azure-search)和默认的 [searchMode 查询参数](https://docs.microsoft.com/rest/api/searchservice/search-documents)。 结果以 JSON 格式返回，方便用户检查整个文档。
 
 > [!TIP]
 > 有大量的 [Azure 认知搜索代码示例](https://github.com/Azure-Samples/?utf8=%E2%9C%93&query=search)包含了嵌入的或随时可用的数据集，帮助用户轻松入门。 门户中还提供了一个示例索引器，以及一个由小型房地产数据集组成的数据源（名为“realestate-us-sample”）。 针对示例数据源运行预配置的索引器时，会创建索引并连同文档一起加载该索引，然后，可以使用搜索浏览器或编写的代码查询该索引。

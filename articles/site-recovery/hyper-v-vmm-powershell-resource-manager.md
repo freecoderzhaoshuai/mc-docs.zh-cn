@@ -2,18 +2,20 @@
 title: 使用 Azure Site Recovery/PowerShell 设置到辅助站点的 Hyper-V（使用 VMM）灾难恢复
 description: 介绍如何使用 Azure Site Recovery 和 PowerShell 设置 VMM 云中的 Hyper-V VM 到辅助 VMM 站点的灾难恢复。
 services: site-recovery
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.topic: article
 origin.date: 01/10/2020
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: b198758b2623c8e434d8c23061d67a44d0023aa1
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: eb679691c677b4646f2efd67db23ee0399ef17d8
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77611277"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655488"
 ---
 # <a name="set-up-disaster-recovery-of-hyper-v-vms-to-a-secondary-site-by-using-powershell-resource-manager"></a>使用 PowerShell（资源管理器）设置 Hyper-V VM 到辅助站点的灾难恢复
 
@@ -24,9 +26,9 @@ ms.locfileid: "77611277"
 ## <a name="prerequisites"></a>必备条件
 
 - 查看[方案体系结构和组件](hyper-v-vmm-architecture.md)。
-- 查看所有组件的[支持要求](site-recovery-support-matrix-to-sec-site.md)。
-- 确保 Virtual Machine Manager 服务器和 Hyper-V 主机符合[支持要求](site-recovery-support-matrix-to-sec-site.md)。
-- 确保要复制的 VM 符合[复制计算机支持](site-recovery-support-matrix-to-sec-site.md)。
+- 查看所有组件的[支持要求](./vmware-physical-secondary-support-matrix.md)。
+- 确保 Virtual Machine Manager 服务器和 Hyper-V 主机符合[支持要求](./vmware-physical-secondary-support-matrix.md)。
+- 确保要复制的 VM 符合[复制计算机支持](./vmware-physical-secondary-support-matrix.md)。
 
 ## <a name="prepare-for-network-mapping"></a>准备网络映射
 
@@ -49,14 +51,16 @@ ms.locfileid: "77611277"
 
 确保已将 Azure PowerShell 准备就绪：
 
-- 如果已使用 PowerShell，请升级到 0.8.10 或更高版本。 [详细了解](https://docs.microsoft.com/powershell/azureps-cmdlets-docs)如何设置 PowerShell。
-- 设置并配置 PowerShell 后，请参阅[服务 cmdlet](https://docs.microsoft.com/powershell/azure/overview)。
+- 如果已使用 PowerShell，请升级到 0.8.10 或更高版本。 [详细了解](https://docs.microsoft.com/powershell/azure/)如何设置 PowerShell。
+- 设置并配置 PowerShell 后，请参阅[服务 cmdlet](https://docs.microsoft.com/powershell/azure/)。
 - 若要详细了解如何在 PowerShell 中使用参数值、输入和输出，请参阅[入门](https://docs.microsoft.com/powershell/azure/get-started-azureps)指南。
 
 ## <a name="set-up-a-subscription"></a>设置订阅
 
 1. 从 PowerShell 登录到 Azure 帐户。
-
+    
+    <!--MOONCAKE: CORRECT ON user@XXXX.partner.onmschina.cn-->
+    
     ```azurepowershell
     $UserName = "<user@XXXX.partner.onmschina.cn>"
     $Password = "<password>"
@@ -64,8 +68,6 @@ ms.locfileid: "77611277"
     $Cred = New-Object System.Management.Automation.PSCredential -ArgumentList $UserName, $SecurePassword
     Connect-AzAccount -Environment AzureChinaCloud #-Credential $Cred
     ```
-    
-    <!--Notice: Update username format for Azure.cn-->
     
 1. 使用订阅 ID 检索订阅列表。 记下要在其中创建恢复服务保管库的订阅的 ID。
 
@@ -368,4 +370,4 @@ if($isJobLeftForProcessing)
 
 [详细了解](https://docs.microsoft.com/powershell/module/az.recoveryservices)如何将 Site Recovery 和资源管理器 PowerShell cmdlet 配合使用。
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

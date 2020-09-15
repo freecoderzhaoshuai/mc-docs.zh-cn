@@ -4,19 +4,19 @@ description: 了解如何在 Azure Active Directory (Azure AD) 中针对来自�
 services: active-directory
 ms.service: active-directory
 ms.subservice: conditional-access
-ms.topic: article
-ms.date: 01/09/2020
+ms.topic: how-to
+ms.date: 09/07/2020
 ms.author: v-junlch
 author: MicrosoftGuyJFlo
 manager: daveba
 ms.reviewer: calebb
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 9f99fc2eba7d4239848a302756548c4859997a35
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: bfb82b84f9952c804eb484d50dc867164bbe731e
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75859399"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593687"
 ---
 # <a name="how-to-require-mfa-for-access-from-untrusted-networks-with-conditional-access"></a>如何：使用条件访问要求来自不受信任网络的访问进行 MFA   
 
@@ -69,5 +69,5 @@ Azure Active Directory (Azure AD) 允许从任何位置以单一登录方式登�
 
 ## <a name="next-steps"></a>后续步骤
 
-若要了解有关条件访问的详细信息，请参阅[什么是 Azure Active Directory 中的条件访问？](overview.md)
+若要了解有关条件访问的详细信息，请参阅[什么是 Azure Active Directory 中的条件访问？](./overview.md)
 

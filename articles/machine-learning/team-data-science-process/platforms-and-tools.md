@@ -2,20 +2,20 @@
 title: 用于数据科学项目的平台和工具 - Team Data Science Process
 description: 列举并讨论基于 Team Data Science Process 实现标准化的企业可用的数据和分析资源。
 author: marktab
-manager: cgronlun
-editor: cgronlun
+manager: marktab
+editor: marktab
 ms.service: machine-learning
 ms.subservice: team-data-science-process
 ms.topic: article
-ms.date: 09/04/2017
+ms.date: 01/10/2020
 ms.author: tdsp
 ms.custom: seodec18, previous-author=deguhath, previous-ms.author=deguhath
-ms.openlocfilehash: 20615936fdae9a3c23b82e950e9395d5ad2320fc
-ms.sourcegitcommit: 3de7d92ac955272fd140ec47b3a0a7b1e287ca14
+ms.openlocfilehash: 9765fcd541efb9e6a167c488a7b4d9c62bbd24c4
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/12/2020
-ms.locfileid: "84723105"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021287"
 ---
 # <a name="platforms-and-tools-for-data-science-projects"></a>用于数据科学项目的平台和工具
 
@@ -48,7 +48,7 @@ Microsoft 在 Windows 和 Linux 上提供的数据科学虚拟机包含用于数
 
 DSVM 目前可在 **Windows** 和 **Linux CentOS** 操作系统中使用。 根据计划在其上执行的数据科学项目的需求，选择 DSVM 的大小（CPU 核心数和内存量）。 
 
-有关 Windows 版 DSVM 的详细信息，请参阅 Azure 市场中的 [Microsoft Data Science Virtual Machine](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019)。 有关 Linux 版 DSVM，请参阅 [Linux 数据科学虚拟机](https://azure.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-1804)。
+有关 Windows 版 DSVM 的详细信息，请参阅 Azure 市场中的 [Microsoft Data Science Virtual Machine](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019)。 有关 Linux 版 DSVM，请参阅 [Linux 数据科学虚拟机](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-1804)。
 
 若要了解如何在 DSVM 上有效执行某些常见的数据科学任务，请参阅 [Data Science Virtual Machine 的十大功能](../data-science-virtual-machine/vm-do-ten-things.md)
 
@@ -109,16 +109,18 @@ Microsoft 的 TDSP 团队发布了两篇端到端演练，介绍如何在 SQL Se
 
 如果在 **Windows** 上遵循 TDSP，需要安装 **Git 凭据管理器 (GCM)** 来与 Git 存储库通信。 若要安装 GCM，首先需要安装 **Chocolaty**。 若要安装 Chocolaty 和 GCM，请在 Windows PowerShell 中以**管理员**身份运行以下命令：  
 
-    iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex
-    choco install git-credential-manager-for-windows -y
-    
+```powershell
+iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex
+choco install git-credential-manager-for-windows -y
+```  
 
 ### <a name="install-git-on-linux-centos-machines"></a>在 Linux (CentOS) 计算机上安装 Git
 
 运行以下 bash 命令，在 Linux (CentOS) 计算机上安装 Git：
 
-    sudo yum install git
-
+```powershell
+sudo yum install git
+```
 
 ### <a name="generate-public-ssh-key-on-linux-centos-machines"></a>在 Linux (CentOS) 计算机上生成公共 SSH 密钥
 

@@ -2,21 +2,21 @@
 title: Azure Site Recovery 部署规划器版本历史记录
 description: 已知不同的 Site Recovery 部署规划器版本修复、已知限制及其发布日期。
 services: site-recovery
-author: rockboyfor
-manager: digimobile
+manager: carmonm
 ms.topic: article
 ms.service: site-recovery
 origin.date: 06/04/2020
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 08/26/2019
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: 9c36f7ee01a972a1f9faca864099253d9dccf070
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 59dde36a45a70a4270417b0f32967d9db1101946
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426514"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655423"
 ---
 # <a name="azure-site-recovery-deployment-planner-version-history"></a>Azure Site Recovery 部署规划器版本历史记录
 
@@ -174,7 +174,7 @@ ms.locfileid: "87426514"
 
 **已知限制：**
 
-- 仅支持 VMware 到 Azure 的灾难恢复方案。 对于 Hyper-V 到 Azure 的灾难恢复方案，请使用 [Hyper-V 容量规划器工具](./site-recovery-capacity-planning-for-hyper-v-replication.md)。
+- 仅支持 VMware 到 Azure 的灾难恢复方案。 对于 Hyper-V 到 Azure 的灾难恢复方案，请使用 [Hyper-V 容量规划器工具](./hyper-v-deployment-planner-overview.md)。
 - 不支持在 Azure 中国区域执行 GetThroughput 操作。
 
     <!--Not Available on US Government and -->
@@ -182,4 +182,4 @@ ms.locfileid: "87426514"
 - 如果 vCenter 服务器中有两个或更多个 VM 跨不同的 ESXi 主机使用相同的名称或 IP 地址，则该工具无法分析 VM。
 在此版本中，该工具将跳过 VMListFile 中针对重复 VM 名称或 IP 地址的分析。 解决方法是使用 ESXi 主机而不是 vCenter 服务器来分析 VM。 确保运行每个 ESXi 主机的一个实例。
 
-<!--Update_Description: wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -11,19 +11,19 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: carlrab, sstein, vanto
 origin.date: 04/19/2020
-ms.date: 07/13/2020
-ms.openlocfilehash: aa589cc8d9756a453e51096e7be51f276cddfae2
-ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+ms.date: 09/14/2020
+ms.openlocfilehash: 92582a7a4703f12c365cfe4bba482c5abf070347
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86228063"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014340"
 ---
 # <a name="quickstart-create-an-azure-sql-database-single-database"></a>快速入门：创建 Azure SQL 数据库单一数据库
 
 在本快速入门中，你将使用 Azure 门户、PowerShell 脚本或 Azure CLI 脚本在 Azure SQL 数据库中创建单一数据库。 然后，在 Azure 门户中使用“查询编辑器”查询该数据库。
 
-[单一数据库](single-database-overview.md)是适用于 Azure SQL 数据库的最快速且最简单的选项。 在[服务器](logical-servers.md)中管理单一数据库，该服务器位于指定 Azure 区域中的某个 [Azure 资源组](../../active-directory-b2c/overview.md)内。 在本快速入门中，你将为新数据库创建新的资源组和服务器。
+[单一数据库](single-database-overview.md)是适用于 Azure SQL 数据库的最快速且最简单的选项。 在[服务器](logical-servers.md)中管理单一数据库，该服务器位于指定 Azure 区域中的某个 [Azure 资源组](../../azure-resource-manager/management/manage-resource-groups-portal.md)内。 在本快速入门中，你将为新数据库创建新的资源组和服务器。
 
 可以在预配的计算层或无服务器计算层中创建单一数据库。  预配的数据库预先分配有固定数量的计算资源（包括 CPU 和内存），并使用两个[购买模型](purchasing-models.md)中的一个。 本快速入门使用[基于 vCore](service-tiers-vcore.md) 的购买模型创建预配的数据库，但你也可以选择[基于 DTU](service-tiers-dtu.md) 的模型。
 

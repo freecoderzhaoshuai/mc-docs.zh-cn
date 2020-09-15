@@ -3,17 +3,18 @@ title: 创建 Azure Service Fabric 容器应用程序
 description: 在 Azure Service Fabric 上创建第一个 Windows 容器应用程序。 使用 Python 应用程序生成 Docker 映像，将该映像推送到容器注册表，然后生成容器并将其部署到 Azure Service Fabric。
 ms.topic: conceptual
 origin.date: 01/25/2019
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 02/24/2020
 ms.author: v-yeche
-ms.custom: tracking-python
-ms.openlocfilehash: e5007bfb45aac87af3dd276cf1ad30eb6edbdf6c
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.custom: devx-track-python
+ms.openlocfilehash: 2907c9464f53ef564387f8dfdb1056677e551303
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426277"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655730"
 ---
 # <a name="create-your-first-service-fabric-container-application-on-windows"></a>在 Windows 上创建第一个 Service Fabric 容器应用程序
 
@@ -21,7 +22,7 @@ ms.locfileid: "87426277"
 > * [Windows](service-fabric-get-started-containers.md)
 > * [Linux](service-fabric-get-started-containers-linux.md)
 
-在 Service Fabric 群集上运行 Windows 容器中的现有应用程序不需要对应用程序进行任何更改。 本文逐步讲解如何创建包含 Python [Flask](http://flask.pocoo.org/) Web 应用程序的 Docker 映像并将其部署到 Azure Service Fabric 群集。 此外，会通过 [Azure 容器注册表](/container-registry/)共享容器化的应用程序。 本文假定读者对 Docker 有一个基本的了解。 阅读 [Docker Overview](https://docs.docker.com/engine/understanding-docker/)（Docker 概述）即可了解 Docker。
+在 Service Fabric 群集上运行 Windows 容器中的现有应用程序不需要对应用程序进行任何更改。 本文逐步讲解如何创建包含 Python [Flask](http://flask.pocoo.org/) Web 应用程序的 Docker 映像并将其部署到 Azure Service Fabric 群集。 此外，会通过 [Azure 容器注册表](../container-registry/index.yml)共享容器化的应用程序。 本文假定读者对 Docker 有一个基本的了解。 阅读 [Docker Overview](https://docs.docker.com/engine/understanding-docker/)（Docker 概述）即可了解 Docker。
 
 > [!NOTE]
 > 本文适用于 Windows 开发环境。  Service Fabric 群集运行时和 Docker 运行时必须在同一 OS 上运行。  不能在 Linux 群集上运行 Windows 容器。
@@ -334,7 +335,7 @@ Windows 支持容器的两种隔离模式：进程和 Hyper-V。 使用进程隔
 
 ## <a name="clean-up"></a>清理
 
-只要群集处于运行状态，就会产生费用。若要避免不必要的费用，可考虑[删除群集](service-fabric-cluster-delete.md)。
+只要群集处于运行状态，就会产生费用。若要避免不必要的费用，可考虑[删除群集](./service-fabric-tutorial-delete-cluster.md)。
 
 <!-- Not Available on  [Party clusters](https://try.servicefabric.azure.com/) -->
 
@@ -377,7 +378,7 @@ Windows Server 容器在不同 OS 版本中可能不兼容。 例如，在进程
 ```xml
       <ContainerHostPolicies> 
          <ImageOverrides> 
-           <Image Name="myregistry.azurecr.cn/samples/helloworldappDefault" />
+           <Image Name="myregistry.azurecr.cn/samples/helloworldappDefault" /> 
                <Image Name="myregistry.azurecr.cn/samples/helloworldapp1701" Os="14393" /> 
                <Image Name="myregistry.azurecr.cn/samples/helloworldapp1709" Os="16299" /> 
          </ImageOverrides> 
@@ -605,4 +606,4 @@ Service Fabric（6.1 或更高版本）支持保留终止的或无法启动的�
 [4]: ./media/service-fabric-get-started-containers/HealthCheckUnhealthy_App.png
 [5]: ./media/service-fabric-get-started-containers/HealthCheckUnhealthy_Dsp.png
 
-<!--Update_Description: update meta properties, wording update, update link -->
+<!-- Update_Description: update meta properties, wording update, update link -->

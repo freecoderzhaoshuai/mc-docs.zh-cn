@@ -12,12 +12,12 @@ manager: cgronlun
 ms.reviewer: nibaccam
 origin.date: 07/31/2020
 ms.date: 08/27/2020
-ms.openlocfilehash: 053b676459f236a6c4893592b3fee3b24fdd241a
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: e9d0dfb3f4e416154d9d5e8217e95553b805b6e7
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88946628"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020975"
 ---
 # <a name="create-azure-machine-learning-datasets"></a>创建 Azure 机器学习数据集
 
@@ -208,7 +208,7 @@ titanic_ds = titanic_ds.register(workspace=workspace,
 
 <a name="datasets-ui"></a>
 ## <a name="create-datasets-in-the-studio"></a>在工作室中创建数据集
-以下步骤和动画演示如何在 [Azure 机器学习工作室](https://ml.azure.com)中创建数据集。
+以下步骤和动画演示如何在 [Azure 机器学习工作室](https://studio.ml.azure.cn)中创建数据集。
 
 > [!Note]
 > 通过 Azure 机器学习工作室创建的数据集会自动注册到工作区。
@@ -216,7 +216,7 @@ titanic_ds = titanic_ds.register(workspace=workspace,
 ![使用 UI 创建数据集](./media/how-to-create-register-datasets/create-dataset-ui.gif)
 
 若要在工作室中创建数据集：
-1. 在 https://ml.azure.com 上登录。
+1. 在 https://studio.ml.azure.cn 上登录。
 1. 在左侧窗格的“资产”部分，选择“数据集”。  
 1. 选择“创建数据集”以选择数据集的源。 此源可以是本地文件、数据存储或公共 URL。
 1. 为“数据集类型”选择“表格”或“文件”。 
@@ -249,5 +249,5 @@ titanic_ds = titanic_ds.register(workspace = workspace,
 ## <a name="next-steps"></a>后续步骤
 
 * 了解[如何使用数据集进行训练](how-to-train-with-datasets.md)。
-* 通过自动化机器学习[使用 TabularDataset 进行训练](https://aka.ms/automl-dataset)。
-* 有关更多数据集训练示例，请参阅[示例笔记本](https://aka.ms/dataset-tutorial)。
+* 通过自动化机器学习[使用 TabularDataset 进行训练](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/automated-machine-learning/forecasting-energy-demand/auto-ml-forecasting-energy-demand.ipynb)。
+* 有关更多数据集训练示例，请参阅[示例笔记本](https://github.com/Azure/MachineLearningNotebooks/tree/master/how-to-use-azureml/work-with-data/)。

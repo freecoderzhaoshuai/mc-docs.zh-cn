@@ -9,13 +9,13 @@ ms.service: cognitive-search
 ms.devlang: powershell
 ms.topic: conceptual
 origin.date: 02/11/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: e0a36518266d5c6c179050ab9aef444c34737319
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: c659a9faed14a434cac8d28763590dc9d1bfa7bf
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471950"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020914"
 ---
 # <a name="manage-your-azure-cognitive-search-service-with-powershell"></a>使用 PowerShell 管理 Azure 认知搜索服务
 > [!div class="op_single_selector"]
@@ -43,7 +43,7 @@ ms.locfileid: "86471950"
 
 ## <a name="check-versions-and-load-modules"></a>检查版本并加载模块
 
-本文中的示例是交互式，需要提升的权限。 必须安装 Azure PowerShell（**Az** 模块）。 有关详细信息，请参阅[安装 Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview)。
+本文中的示例是交互式，需要提升的权限。 必须安装 Azure PowerShell（**Az** 模块）。 有关详细信息，请参阅[安装 Azure PowerShell](https://docs.microsoft.com/powershell/azure/)。
 
 ### <a name="powershell-version-check-51-or-later"></a>PowerShell 版本检查（5.1 或更高版本）
 
@@ -253,7 +253,7 @@ Id                : /subscriptions/65a1016d-0f67-45d2-b838-b8f373d6d52e/resource
 
 使用门户、REST API 或 .NET SDK 生成[索引](search-what-is-an-index.md)和[查询索引](search-query-overview.md)。
 
-* [在 Azure 门户中创建 Azure 认知搜索索引](search-create-index-portal.md)
+* [在 Azure 门户中创建 Azure 认知搜索索引](search-get-started-portal.md)
 * [设置索引器以从其他服务加载数据](search-indexer-overview.md)
 * [使用搜索资源管理器在 Azure 门户中查询 Azure 认知搜索索引](search-explorer.md)
 * [如何在 .NET 中使用 Azure 认知搜索](search-howto-dotnet-sdk.md)

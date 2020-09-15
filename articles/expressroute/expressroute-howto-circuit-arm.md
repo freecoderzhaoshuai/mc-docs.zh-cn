@@ -7,15 +7,15 @@ ms.service: expressroute
 ms.topic: article
 ms.tgt_pltfrm: na
 ms.workload: infrastructure-services
-origin.date: 11/13/2019
+origin.date: 01/08/2020
 ms.date: 12/02/2019
 ms.author: v-yiso
-ms.openlocfilehash: 1b2ebc0b52e308c83cb072c3ad2a393ac1ad080f
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 327a0d15af2b28f0307e62d8c4a1f18d35695b82
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74389455"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021380"
 ---
 # <a name="create-and-modify-an-expressroute-circuit-using-powershell"></a>使用 PowerShell 创建和修改 ExpressRoute 线路
 > [!div class="op_single_selector"]
@@ -114,6 +114,7 @@ Get-AzExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "Exp
 
 响应类似于以下示例：
 
+```azurepowershell
     Name                             : ExpressRouteARMCircuit
     ResourceGroupName                : ExpressRouteResourceGroup
     Location                         : chinanorth
@@ -135,6 +136,7 @@ Get-AzExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "Exp
                                         }
     ServiceKey                        : **************************************
     Peerings                          : []
+```
 
 可以随时使用 `Get-AzExpressRouteCircuit` cmdlet 检索此信息。 如果调用不带任何参数，则列出所有线路。 服务密钥会在 ServiceKey  字段中列出：
 
@@ -145,6 +147,7 @@ Get-AzExpressRouteCircuit
 
 响应类似于以下示例：
 
+```azurepowershell
     Name                             : ExpressRouteARMCircuit
     ResourceGroupName                : ExpressRouteResourceGroup
     Location                         : chinanorth
@@ -166,6 +169,7 @@ Get-AzExpressRouteCircuit
                                           }
     ServiceKey                       : **************************************
     Peerings                         : []
+```
 
 
 ### <a name="5-send-the-service-key-to-your-connectivity-provider-for-provisioning"></a>5.将服务密钥发送给连接服务提供商进行预配
@@ -173,20 +177,26 @@ Get-AzExpressRouteCircuit
 
 创建新的 ExpressRoute 线路时，线路处于以下状态：
 
-    ServiceProviderProvisioningState : NotProvisioned
-    CircuitProvisioningState         : Enabled
+```azurepowershell
+ServiceProviderProvisioningState : NotProvisioned
+CircuitProvisioningState         : Enabled
+```
 
 
 
 当连接服务提供商正在启用线路时，线路会更改为以下状态：
 
-    ServiceProviderProvisioningState : Provisioning
-    Status                           : Enabled
+```azurepowershell
+ServiceProviderProvisioningState : Provisioning
+Status                           : Enabled
+```
 
 ExpressRoute 线路必须处于以下状态时才能使用：
 
-    ServiceProviderProvisioningState : Provisioned
-    CircuitProvisioningState         : Enabled
+```azurepowershell
+ServiceProviderProvisioningState : Provisioned
+CircuitProvisioningState         : Enabled
+```
 
 ### <a name="6-periodically-check-the-status-and-the-state-of-the-circuit-key"></a>6.定期检查线路密钥的状态
 检查线路密钥的状态，可以通过此状态了解提供商何时启用了线路。 配置线路后，*ServiceProviderProvisioningState* 将显示为“已预配”  ，如以下示例所示：
@@ -198,6 +208,7 @@ Get-AzExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "Exp
 
 响应类似于以下示例：
 
+```azurepowershell
     Name                             : ExpressRouteARMCircuit
     ResourceGroupName                : ExpressRouteResourceGroup
     Location                         : chinanorth
@@ -219,6 +230,7 @@ Get-AzExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "Exp
                                        }
     ServiceKey                       : **************************************
     Peerings                         : []
+```
 
 ### <a name="7-create-your-routing-configuration"></a>7.创建路由配置
 
@@ -243,6 +255,7 @@ Get-AzExpressRouteCircuit
 
 其响应类似于如下示例：
 
+```azurepowershell
     Name                             : ExpressRouteARMCircuit
     ResourceGroupName                : ExpressRouteResourceGroup
     Location                         : chinanorth
@@ -264,6 +277,7 @@ Get-AzExpressRouteCircuit
                                           }
     ServiceKey                       : **************************************
     Peerings                         : []
+```
 
 
 可以通过将资源组名称和线路名称作为参数传递给调用来获取有关特定 ExpressRoute 线路的信息：
@@ -275,6 +289,7 @@ Get-AzExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "Exp
 
 响应类似于以下示例：
 
+```azurepowershell
     Name                             : ExpressRouteARMCircuit
     ResourceGroupName                : ExpressRouteResourceGroup
     Location                         : chinanorth
@@ -296,12 +311,13 @@ Get-AzExpressRouteCircuit -Name "ExpressRouteARMCircuit" -ResourceGroupName "Exp
                                           }
     ServiceKey                       : **************************************
     Peerings                         : []
+```
 
 
 可以通过运行以下命令获取所有这些参数的详细说明：
 
 ```azurepowershell
-get-help get-azurededicatedcircuit -detailed
+get-help Get-AzExpressRouteCircuit -detailed
 ```
 
 ## <a name="modifying-an-expressroute-circuit"></a><a name="modify"></a>修改 ExpressRoute 线路

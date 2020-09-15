@@ -1,26 +1,18 @@
 ---
-title: 在 Azure 的 Linux VM 中使用 cloud-init 运行 bash 脚本 | Azure
+title: 在 Azure 上的 Linux VM 中使用 cloud-init 运行 bash 脚本 | Azure
 description: 如何在使用 Azure CLI 进行创建时在 Linux VM 中使用 cloud-init 运行 bash 脚本
-services: virtual-machines-linux
-documentationcenter: ''
-author: rockboyfor
-manager: digimobile
-editor: ''
-tags: azure-resource-manager
+author: Johnnytechn
 ms.service: virtual-machines-linux
-ms.workload: infrastructure-services
-ms.tgt_pltfrm: vm-linux
-ms.devlang: azurecli
-ms.topic: article
+ms.topic: how-to
+ms.date: 09/03/2020
+ms.author: v-johya
 origin.date: 11/29/2017
-ms.date: 08/12/2019
-ms.author: v-yeche
-ms.openlocfilehash: 9cf7f1dd45234fe6afcff0356855480e28671df2
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 7feed9a6ccbd343aeece1191d8737921ecbbc26a
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "68912898"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057482"
 ---
 # <a name="use-cloud-init-to-run-a-bash-script-in-a-linux-vm-in-azure"></a>在 Azure 上的 Linux VM 中使用 cloud-init 运行 bash 脚本
 本文介绍如何在 Azure 中使用 [cloud-init](https://cloudinit.readthedocs.io) 在预配时在 Linux 虚拟机 (VM) 或虚拟机规模集 (VMSS) 中运行现有的 bash 脚本。 Azure 预配资源后，这些 cloud-init 脚本即会在第一次启动时运行。 有关 cloud-init 如何在 Azure 以及受支持的 Linux 发行版中本机工作的详细信息，请参阅 [cloud-init 概述](using-cloud-init.md)
