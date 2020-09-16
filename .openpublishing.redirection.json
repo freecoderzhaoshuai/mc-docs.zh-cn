@@ -1,6 +1,66 @@
 {
     "redirections": [
         {
+            "source_path": "articles/key-vault/secrets/tutorial-python-linux-virtual-machine.md",
+            "redirect_url": "/key-vault/general/tutorial-python-virtual-machine",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/key-vault/secrets/tutorial-net-linux-virtual-machine.md",
+            "redirect_url": "/key-vault/general/tutorial-net-virtual-machine",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/key-vault/general/managed-identity.md",
+            "redirect_url": "/key-vault/general/assign-access-policy-portal",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/key-vault/general/group-permissions-for-apps.md",
+            "redirect_url": "/key-vault/general/assign-access-policy-cli",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/key-vault/general/overview-soft-delete.md",
+            "redirect_url": "/key-vault/general/soft-delete-overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/key-vault/general/subscription-move-fix.md",
+            "redirect_url": "/key-vault/general/move-subscription",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/key-vault/general/tutorial-net-windows-virtual-machine.md",
+            "redirect_url": "/key-vault/general/tutorial-net-virtual-machine",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/key-vault/general/tutorial-python-windows-virtual-machine.md",
+            "redirect_url": "/key-vault/general/tutorial-python-virtual-machine",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/key-vault/policy-samples.md",
+            "redirect_url": "/key-vault/policy-reference",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/key-vault/keyvault-move-subscription.md",
+            "redirect_url": "/key-vault/general/move-subscription",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/key-vault/keyvault-moveregion.md",
+            "redirect_url": "/key-vault/general/move-region",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "articles/key-vault/keyvault-moveresourcegroup.md",
+            "redirect_url": "/key-vault/general/move-resourcegroup",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "articles/governance/management-groups/create.md",
             "redirect_url": "/governance/management-groups/create-management-group-portal",
             "redirect_document_id": false
