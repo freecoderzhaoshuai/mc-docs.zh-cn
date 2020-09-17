@@ -2,21 +2,21 @@
 title: 使用 Azure CLI 将数据磁盘添加到 Linux VM
 description: 了解如何使用 Azure CLI 将持久性数据磁盘添加到 Linux VM
 author: Johnnytechn
-manager: twooley
 ms.service: virtual-machines-linux
 ms.topic: how-to
 origin.date: 06/13/2018
-ms.date: 06/17/2020
+ms.date: 09/03/2020
 ms.author: v-johya
 ms.subservice: disks
-ms.openlocfilehash: 8596d973137c8396af3901dce59faa476cb5288b
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: 3cac3e8b17667c9bc28bb3886e2b1c2f0fd98210
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097415"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057613"
 ---
 # <a name="add-a-disk-to-a-linux-vm"></a>将磁盘添加到 Linux VM
+
 本文介绍了如何将持久性磁盘附加到 VM 以便持久保存数据 - 即使 VM 由于维护或调整大小而重新预配。
 
 [!INCLUDE [azure-cli-2-azurechinacloud-environment-parameter](../../../includes/azure-cli-2-azurechinacloud-environment-parameter.md)]
@@ -46,132 +46,74 @@ diskId=$(az disk show -g myResourceGroup -n myDataDisk --query 'id' -o tsv)
 az vm disk attach -g myResourceGroup --vm-name myVM --name $diskId
 ```
 
-## <a name="connect-to-the-linux-vm-to-mount-the-new-disk"></a>连接到 Linux VM 以装入新磁盘
+## <a name="format-and-mount-the-disk"></a>格式化磁盘和装载磁盘
 
-若要对新磁盘进行分区、格式化和装载，以便 Linux VM 可以使用它，请通过 SSH 登录到 VM。 有关详细信息，请参阅[如何在 Azure 中将 SSH 用于 Linux](mac-create-ssh-keys.md)。 以下示例使用公共 DNS 条目 *mypublicdns.chinanorth.cloudapp.chinacloudapi.cn* 和用户名 *azureuser* 连接到一个 VM：
+若要对新磁盘进行分区、格式化和装载，以便 Linux VM 可以使用它，请通过 SSH 登录到 VM。 有关详细信息，请参阅[如何在 Azure 中将 SSH 用于 Linux](mac-create-ssh-keys.md)。 以下示例使用用户名“azureuser”连接到公共 IP 地址为 10.123.123.25 的 VM ：
 
 ```bash
-ssh azureuser@mypublicdns.chinanorth.cloudapp.chinacloudapi.cn
+ssh azureuser@10.123.123.25
 ```
-<!--Correct in MC about dns name: mypublicdns.chinanorth.cloudapp.chinacloudapi.cn-->
 
-连接到 VM 后就可以附加磁盘了。 首先，使用 `dmesg` 来查找磁盘（用于发现新磁盘的方法可能各不相同）。 以下示例使用 dmesg 来筛选 *SCSI* 磁盘：
+### <a name="find-the-disk"></a>找到磁盘
+
+连接到 VM 后，需要找到该磁盘。 在此示例中，我们使用 `lsblk` 来列出磁盘。 
 
 ```bash
-dmesg | grep SCSI
+lsblk -o NAME,HCTL,SIZE,MOUNTPOINT | grep -i "sd"
 ```
 
 输出类似于以下示例：
 
 ```bash
-[    0.294784] SCSI subsystem initialized
-[    0.573458] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 252)
-[    7.110271] sd 2:0:0:0: [sda] Attached SCSI disk
-[    8.079653] sd 3:0:1:0: [sdb] Attached SCSI disk
-[ 1828.162306] sd 5:0:0:0: [sdc] Attached SCSI disk
+sda     0:0:0:0      30G
+├─sda1             29.9G /
+├─sda14               4M
+└─sda15             106M /boot/efi
+sdb     1:0:1:0      14G
+└─sdb1               14G /mnt
+sdc     3:0:0:0      50G
 ```
+
+这里的 `sdc` 是我们所需的磁盘，因为它是 50G。 如果只根据大小无法确定是哪块磁盘，可转到门户中的 VM 页面，选择“磁盘”，然后在“数据磁盘”下检查磁盘的 LUN 编号 。 
+
+
+### <a name="format-the-disk"></a>格式化磁盘
+
+请使用 `parted` 对磁盘进行格式化，如果磁盘大小大于等于 2TiB，必须使用 GPT 分区，如果小于 2TiB，则可以使用 MBR 或 GPT 分区。 
 
 > [!NOTE]
-> 建议你使用适用于你的发行版的最新版 fdisk 或 parted。
+> 建议使用适用于你的发行版的最新版 `parted`。
+> 如果磁盘大小大于等于 2 TiB，必须使用 GPT 分区。 如果磁盘大小小于 2 TiB，则可以使用 MBR 或 GPT 分区。  
 
-此处，*sdc* 是我们需要的磁盘。 使用 `parted` 对磁盘进行分区，如果磁盘大小为 2TiB 或更大，则必须使用 GPT 进行分区，如果小于 2TiB，则可以使用 MBR 或 GPT 进行分区。 如果使用 MBR 分区，则可以使用 `fdisk`。 将其设置为分区 1 中的主磁盘，并接受其他默认值。 以下示例在 */dev/sdc* 上启动 `fdisk` 进程：
 
-```bash
-sudo fdisk /dev/sdc
-```
-
-使用 `n` 命令添加新分区。 在此示例中，我们还选择主分区的 `p` 并接受其余默认值。 输出将类似于以下示例：
+以下示例在 `/dev/sdc`（大多数 VM 上第一块数据磁盘通常所在的位置）上使用 `parted`。 请将 `sdc` 替换为适用于你的磁盘的正确选项。 我们还使用 [XFS](https://xfs.wiki.kernel.org/) 文件系统对其进行格式化。
 
 ```bash
-Device contains neither a valid DOS partition table, nor Sun, SGI or OSF disklabel
-Building a new DOS disklabel with disk identifier 0x2a59b123.
-Changes will remain in memory only, until you decide to write them.
-After that, of course, the previous content won't be recoverable.
-
-Warning: invalid flag 0x0000 of partition table 4 will be corrected by w(rite)
-
-Command (m for help): n
-Partition type:
-   p   primary (0 primary, 0 extended, 4 free)
-   e   extended
-Select (default p): p
-Partition number (1-4, default 1): 1
-First sector (2048-10485759, default 2048):
-Using default value 2048
-Last sector, +sectors or +size{K,M,G} (2048-10485759, default 10485759):
-Using default value 10485759
+sudo parted /dev/sdc --script mklabel gpt mkpart xfspart xfs 0% 100%
+sudo mkfs.xfs /dev/sdc1
+sudo partprobe /dev/sdc1
 ```
 
-通过键入 `p` 打印分区表并使用 `w` 将该表写入磁盘，然后退出。 输出应类似于以下示例：
+请使用 [`partprobe`](https://linux.die.net/man/8/partprobe) 实用工具以确保内核知晓新的分区和文件系统。 若无法使用 `partprobe`，则可能导致 blkid 或 lslbk 命令不立即返回新文件系统的 UUID。
 
-```bash
-Command (m for help): p
 
-Disk /dev/sdc: 5368 MB, 5368709120 bytes
-255 heads, 63 sectors/track, 652 cylinders, total 10485760 sectors
-Units = sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disk identifier: 0x2a59b123
+### <a name="mount-the-disk"></a>装载磁盘
 
-   Device Boot      Start         End      Blocks   Id  System
-/dev/sdc1            2048    10485759     5241856   83  Linux
-
-Command (m for help): w
-The partition table has been altered!
-
-Calling ioctl() to re-read partition table.
-Syncing disks.
-```
-使用以下命令更新内核：
-```
-partprobe 
-```
-
-现在，使用 `mkfs` 命令将文件系统写入到该分区。 指定文件系统类型和设备名称。 以下示例在通过前面的步骤创建的 */dev/sdc1* 分区中创建 *ext4* 文件系统：
-
-```bash
-sudo mkfs -t ext4 /dev/sdc1
-```
-
-输出类似于以下示例：
-
-```bash
-mke2fs 1.42.9 (4-Feb-2014)
-Discarding device blocks: done
-Filesystem label=
-OS type: Linux
-Block size=4096 (log=2)
-Fragment size=4096 (log=2)
-Stride=0 blocks, Stripe width=0 blocks
-327680 inodes, 1310464 blocks
-65523 blocks (5.00%) reserved for the super user
-First data block=0
-Maximum filesystem blocks=1342177280
-40 block groups
-32768 blocks per group, 32768 fragments per group
-8192 inodes per group
-Superblock backups stored on blocks:
-    32768, 98304, 163840, 229376, 294912, 819200, 884736
-Allocating group tables: done
-Writing inode tables: done
-Creating journal (32768 blocks): done
-Writing superblocks and filesystem accounting information: done
-```
-
-现在，使用 `mkdir` 创建一个目录来装载文件系统。 以下示例在 */datadrive* 处创建一个目录：
+现在，使用 `mkdir` 创建一个目录来装载文件系统。 以下示例在 `/datadrive` 处创建一个目录：
 
 ```bash
 sudo mkdir /datadrive
 ```
 
-然后，使用 `mount` 来装载文件系统。 以下示例将 */dev/sdc1* 分区装载到 */datadrive* 装入点：
+然后，使用 `mount` 来装载文件系统。 以下示例将 `/dev/sdc1` 分区装载到 `/datadrive` 装入点：
 
 ```bash
 sudo mount /dev/sdc1 /datadrive
 ```
 
-若要确保在重新引导后自动重新装载驱动器，必须将其添加到 */etc/fstab* 文件。 此外，强烈建议在 */etc/fstab* 中使用 UUID（全局唯一标识符）来引用驱动器而不是只使用设备名称（例如 */dev/sdc1*）。 如果 OS 在启动过程中检测到磁盘错误，使用 UUID 可以避免将错误的磁盘装载到给定位置。 然后为剩余的数据磁盘分配这些设备 ID。 若要查找新驱动器的 UUID，请使用 `blkid` 实用工具：
+### <a name="persist-the-mount"></a>持久保留装载
+
+若要确保在重新引导后自动重新装载驱动器，必须将其添加到 */etc/fstab* 文件。 此外，强烈建议在 /etc/fstab 中使用 UUID（全局唯一标识符）来引用驱动器而不是只使用设备名称（例如 /dev/sdc1） 。 如果 OS 在启动过程中检测到磁盘错误，使用 UUID 可以避免将错误的磁盘装载到给定位置。 然后为剩余的数据磁盘分配这些设备 ID。 若要查找新驱动器的 UUID，请使用 `blkid` 实用工具：
 
 ```bash
 sudo blkid
@@ -180,9 +122,11 @@ sudo blkid
 输出与以下示例类似：
 
 ```bash
-/dev/sda1: UUID="11111111-1b1b-1c1c-1d1d-1e1e1e1e1e1e" TYPE="ext4"
-/dev/sdb1: UUID="22222222-2b2b-2c2c-2d2d-2e2e2e2e2e2e" TYPE="ext4"
-/dev/sdc1: UUID="33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e" TYPE="ext4"
+/dev/sda1: LABEL="cloudimg-rootfs" UUID="11111111-1b1b-1c1c-1d1d-1e1e1e1e1e1e" TYPE="ext4" PARTUUID="1a1b1c1d-11aa-1234-1a1a1a1a1a1a"
+/dev/sda15: LABEL="UEFI" UUID="BCD7-96A6" TYPE="vfat" PARTUUID="1e1g1cg1h-11aa-1234-1u1u1a1a1u1u"
+/dev/sdb1: UUID="22222222-2b2b-2c2c-2d2d-2e2e2e2e2e2e" TYPE="ext4" TYPE="ext4" PARTUUID="1a2b3c4d-01"
+/dev/sda14: PARTUUID="2e2g2cg2h-11aa-1234-1u1u1a1a1u1u"
+/dev/sdc1: UUID="33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e" TYPE="xfs" PARTLABEL="xfspart" PARTUUID="c1c2c3c4-1234-cdef-asdf3456ghjk"
 ```
 
 > [!NOTE]
@@ -191,19 +135,21 @@ sudo blkid
 接下来，在文本编辑器中打开 */etc/fstab* 文件，如下所示：
 
 ```bash
-sudo vi /etc/fstab
+sudo nano /etc/fstab
 ```
 
-在此示例中，使用在之前的步骤中创建的 /dev/sdc1 设备的 UUID 值并使用装入点 /datadrive。 将以下行添加到 */etc/fstab* 文件的末尾：
+在此示例中，使用在之前的步骤中创建的 `/dev/sdc1` 设备的 UUID 值，并使用装入点 `/datadrive`。 请将以下行添加到 `/etc/fstab`文件的末尾：
 
 ```bash
-UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,nofail   1   2
+UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   xfs   defaults,nofail   1   2
 ```
+
+此示例中使用的是 nano 编辑器，所以在编辑完文件后，请使用 `Ctrl+O` 写入文件，然后使用 `Ctrl+X` 退出编辑器。
 
 > [!NOTE]
 > 之后，在不编辑 fstab 的情况下删除数据磁盘可能会导致 VM 无法启动。 大多数分发版都提供 *nofail* 和/或 *nobootwait* fstab 选项。 这些选项使系统在磁盘无法装载的情况下也能启动。 有关这些参数的详细信息，请查阅分发文档。
 >
-> 即使文件系统已损坏或磁盘在引导时不存在， *nofail* 选项也能确保 VM 启动。 如果不使用此选项，可能会遇到 [Cannot SSH to Linux VM due to FSTAB errors](https://blogs.msdn.microsoft.com/linuxonazure/2016/07/21/cannot-ssh-to-linux-vm-after-adding-data-disk-to-etcfstab-and-rebooting/)
+> 即使文件系统已损坏或磁盘在引导时不存在， *nofail* 选项也能确保 VM 启动。 如果不使用此选项，可能会遇到 [Cannot SSH to Linux VM due to FSTAB errors](https://docs.microsoft.com//archive/blogs/linuxonazure/cannot-ssh-to-linux-vm-after-adding-data-disk-to-etcfstab-and-rebooting)
 
 <!--Not Available on [Serial Console documentation](/virtual-machines/troubleshooting/serial-console-linux)-->
 
@@ -215,7 +161,7 @@ UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,nofail 
 * 在 */etc/fstab* 中使用 `discard` 装载选项，例如：
 
     ```bash
-    UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   ext4   defaults,discard   1   2
+    UUID=33333333-3b3b-3c3c-3d3d-3e3e3e3e3e3e   /datadrive   xfs   defaults,discard   1   2
     ```
 * 在某些情况下，`discard` 选项可能会影响性能。 此处，还可以从命令行手动运行 `fstrim` 命令，或将其添加到 crontab 以定期运行：
 
