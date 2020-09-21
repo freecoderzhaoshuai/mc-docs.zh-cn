@@ -6,13 +6,13 @@ ms.author: v-jay
 ms.service: mysql
 ms.topic: conceptual
 origin.date: 6/25/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: c92c6b4bc5b157c4680d7ca9efbfc912713eb811
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.date: 09/14/2020
+ms.openlocfilehash: 5640f91d628a3d1754e0efbfdd4c764bb7bb2349
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440394"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512895"
 ---
 # <a name="server-parameters-in-azure-database-for-mysql"></a>Azure Database for MySQL 中的服务器参数
 
@@ -114,25 +114,25 @@ MySQL 根据你在表创建期间提供的配置，将 InnoDB 表存储在不同
 
 |**定价层**|**vCore(s)**|**默认值**|**最小值**|**最大值**|
 |---|---|---|---|---|
-|基本|1|50|10 个|50|
-|基本|2|100|10 个|100|
-|常规用途|2|300|10 个|600|
-|常规用途|4|625|10 个|1250|
-|常规用途|8|1250|10 个|2500|
-|常规用途|16|2500|10 个|5000|
-|常规用途|32|5000|10 个|10000|
-|常规用途|64|10000|10 个|20000|
-|内存优化|2|625|10 个|1250|
-|内存优化|4|1250|10 个|2500|
-|内存优化|8|2500|10 个|5000|
-|内存优化|16|5000|10 个|10000|
-|内存优化|32|10000|10 个|20000|
+|基本|1|50|10|50|
+|基本|2|100|10|100|
+|常规用途|2|300|10|600|
+|常规用途|4|625|10|1250|
+|常规用途|8|1250|10|2500|
+|常规用途|16|2500|10|5000|
+|常规用途|32|5000|10|10000|
+|常规用途|64|10000|10|20000|
+|内存优化|2|625|10|1250|
+|内存优化|4|1250|10|2500|
+|内存优化|8|2500|10|5000|
+|内存优化|16|5000|10|10000|
+|内存优化|32|10000|10|20000|
 
 当连接数超出限制时，可能会收到以下错误：
 > 错误 1040 (08004)：连接过多
 
 > [!IMPORTANT]
-> 为了获得最佳体验，我们建议你使用 ProxySQL 之类的连接池程序来有效地管理连接。
+> 为了获得最佳体验，建议使用 ProxySQL 等连接池程序来高效地管理连接。
 
 创建与 MySQL 的新客户端连接需要时间，一旦建立，这些连接就会占用数据库资源，即使在空闲时也是如此。 大多数应用程序请求许多生存期短的连接，这加剧了这种情况。 其结果是可用于实际工作负荷的资源减少，从而导致性能下降。 连接池程序不仅会减少空闲连接，还会重用现有连接，因而有助于避免这种情况。 若要了解如何设置 ProxySQL，请访问我们的[博客文章](https://techcommunity.microsoft.com/t5/azure-database-for-mysql/load-balance-read-replicas-using-proxysql-in-azure-database-for/ba-p/880042)。
 
@@ -183,6 +183,24 @@ MySQL 根据你在表创建期间提供的配置，将 InnoDB 表存储在不同
 |内存优化|8|0|0|134217728|
 |内存优化|16|0|0|134217728|
 |内存优化|32|0|0|134217728|
+
+### <a name="lower_case_table_names"></a>lower_case_table_names
+
+lower_case_table_name 默认设置为 1，你可以在 MySQL 5.6 和 MySQL 5.7 中更新此参数
+
+查看 [MySQL 文档](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_lower_case_table_names)详细了解此参数。
+
+> [!NOTE]
+> 在 MySQL 8.0 中，lower_case_table_name 默认设置为 1 且无法更改。
+
+### <a name="innodb_strict_mode"></a>innodb_strict_mode
+
+如果收到类似于“行大小太大(> 8126)”的错误，则可能需要关闭 innodb_strict_mode 参数。 不允许在服务器级别全局修改服务器参数 innodb_strict_mode，因为如果行数据大小大于 8k，该数据将会被截断，且不显示错误，这样就会导致有可能丢失数据。 建议修改架构以适应页面大小限制。 
+
+可以使用 `init_connect` 在会话级别设置此参数。 若要在会话级别设置 innodb_strict_mode，请参阅[设置未列出的参数](/mysql/howto-server-parameters#setting-parameters-not-listed)。
+
+> [!NOTE]
+> 如果有只读副本服务器，在主服务器上的会话级别将 innodb_strict_mode 设置为 OFF 将会中断复制。 如果有只读副本，建议将该参数始终设置为 OFF。
 
 ### <a name="sort_buffer_size"></a>sort_buffer_size
 

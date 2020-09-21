@@ -2,19 +2,21 @@
 title: 关于如何使用 Azure Site Recovery 在 Azure VM 灾难恢复中联网
 description: 概述了使用 Azure Site Recovery 复制 Azure 虚拟机的网络。
 services: site-recovery
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.service: site-recovery
 ms.topic: article
 origin.date: 03/13/2020
-ms.date: 04/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: e9411fd89922707c916638b04e9a200876862597
-ms.sourcegitcommit: 564739de7e63e19a172122856ebf1f2f7fb4bd2e
+ms.openlocfilehash: 1c694b81fd752929ab7069951d2a3d37cee20922
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82093392"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655249"
 ---
 # <a name="about-networking-in-azure-vm-disaster-recovery"></a>关于如何在 Azure VM 灾难恢复中联网
 
@@ -28,11 +30,11 @@ ms.locfileid: "82093392"
 
 下图描绘了 Azure VM 上运行的应用程序的典型 Azure 环境：
 
-![客户环境](./media/site-recovery-azure-to-azure-architecture/source-environment.png)
+:::image type="content" source="./media/site-recovery-azure-to-azure-architecture/source-environment.png" alt-text="客户环境":::
 
 如果使用 Azure ExpressRoute 或从本地网络到 Azure 的 VPN 连接，则环境如下：
 
-![客户环境](./media/site-recovery-azure-to-azure-architecture/source-environment-expressroute.png)
+:::image type="content" source="./media/site-recovery-azure-to-azure-architecture/source-environment-expressroute.png" alt-text="客户环境":::
 
 通常，网络使用防火墙和网络安全组 (NSG) 进行保护。 防火墙使用基于 URL 或 IP 的允许列表来控制网络连接。 NSG 提供使用 IP 地址范围控制网络连接的规则。
 
@@ -52,45 +54,43 @@ login.chinacloudapi.cn | 对于 Site Recovery 服务 URL 的授权和身份验�
 *.vault.azure.cn | 允许访问，以便通过门户为支持 ADE 的虚拟机启用复制
 *.automation.ext.azure.com | 允许通过门户为复制项启用移动代理自动升级
 
-<a name="outbound-connectivity-using-service-tags"></a>
-## <a name="outbound-connectivity-for-ip-address-ranges"></a>IP 地址范围的出站连接
+## <a name="outbound-connectivity-using-service-tags"></a><a name="outbound-connectivity-using-service-tags"></a>使用服务标记的出站连接
 
-如果使用 NSG 或基于 IP 的防火墙代理来控制出站连接，需要允许这些服务标记和 IP 范围。
+如果使用 NSG 来控制出站连接，需要允许这些服务标记。
 
-- 对应于源区域中存储帐户的所有 IP 地址范围
+- 对于源区域中的存储帐户：
     - 为源区域创建基于[存储服务标记](../virtual-network/security-overview.md#service-tags)的 NSG 规则。
     - 允许这些地址，才能从 VM 将数据写入到缓存存储帐户。
 - 创建一个基于 [Azure Active Directory (AAD) 服务标记](../virtual-network/security-overview.md#service-tags)的 NSG 规则以允许访问与 AAD 对应的所有 IP 地址
 - 为目标区域创建基于 EventsHub 服务标记的 NSG 规则，这样就可以访问 Site Recovery 监视功能。
-- 创建 Site Recovery 服务终结点 IP 地址，这样就可以访问任何区域中的 Site Recovery 服务。 - 在[中国的 Site Recovery 服务终结点](#site-recovery-ip-in-china)中提供，具体取决于目标位置。
-    
-    Site Recovery IP 地址范围如下：
-
-    <!--MOONCAKE: CUSTOMIZE, UPDATE CAREFULLY-->
-    
-    <a name="site-recovery-ip-in-china"></a>
-
-    **Target** | **Site Recovery IP** |  **Site Recovery 监视 IP**
-    --- | --- | ---
-    中国东部 | 42.159.205.45 | 42.159.132.40
-    中国北部 | 40.125.202.254 | 42.159.4.151
-    中国东部 2 | 40.73.118.52 | 40.73.100.125          
-    中国北部 2 | 40.73.35.193 | 40.73.33.230
-
-    <!--MOONCAKE: CUSTOMIZE, UPDATE CAREFULLY-->
-    
+- 创建基于 AzureSiteRecovery 服务标记的 NSG 规则，以允许访问任何区域中的 Site Recovery 服务。  
 - 创建基于 AzureKeyVault 服务标记的 NSG 规则。 仅在通过门户为支持 ADE 的虚拟机启用复制时才需要这样做。
-- 创建基于 GuestAndHybridManagement 服务终结点 IP 地址的 NSG 规则。 仅在通过门户为复制项启用移动代理自动升级时才需要这样做。
-    
-    <!--MOONCAKE: CORRECT ON URL [Site Recovery service endpoint in China](#site-recovery-ip-in-china)-->
-    
+- 创建基于 GuestAndHybridManagement 服务标记的 NSG 规则。 仅在通过门户为复制项启用移动代理自动升级时才需要这样做。
 - 在生产 NSG 中创建所需的 NSG 规则之前，建议先在测试 NSG 中创建这些规则，并确保没有任何问题。
 
-> [!NOTE]
-> 对于在 Azure 中国云上为 IP 地址范围创建出站连接时未显示在“目标服务标记”  中的那些不受支持的服务标记。
-> 可以在 [Azure IP 范围和服务标记 - 中国云](https://www.microsoft.com/download/confirmation.aspx?id=57062)中按服务标记找到有效的终结点 IP 地址。
+    <!--MOONCAKE: CUSTOMIZE, UPDATE CAREFULLY-->
 
-## <a name="example-nsg-configuration"></a>NSG 配置示例
+    <a name="site-recovery-ip-in-china"></a>
+
+    > [!NOTE]
+    > 在 Azure 中国云上使用服务标记创建出站连接时，对于那些“目标服务标记”中未显示的不受支持的服务标记，我们可以使用匹配的终结点 IP 地址创建出站连接，以允许访问任何区域中的特定服务。
+    >
+    > 例如，当 `AzureSiteRecovery` 服务标记不支持 Azure 中国的特定区域时。
+    > 我们可以使用匹配的 `AzureSiteRecovery` 终结点 IP 地址来创建出站连接，以允许访问任何区域中的 Site Recovery 服务。
+    >
+    >   **Target** | **Site Recovery IP** |  **Site Recovery 监视 IP**
+    >   --- | --- | ---
+    >   中国东部 | 42.159.205.45 | 42.159.132.40
+    >   中国北部 | 40.125.202.254 | 42.159.4.151
+    >   中国东部 2 | 40.73.118.52 | 40.73.100.125          
+    >   中国北部 2 | 40.73.35.193 | 40.73.33.230
+    >
+    > 可以在 [Azure IP 范围和服务标记 - 中国云](https://www.microsoft.com/download/confirmation.aspx?id=57062)中按服务标记查找所有匹配的终结点 IP 地址。
+    > 
+
+    <!--MOONCAKE: CUSTOMIZE, UPDATE CAREFULLY-->
+
+## <a name="example-nsg-configuration"></a><a name="example-nsg-configuration"></a>NSG 配置示例
 
 此示例演示如何为要复制的 VM 配置 NSG 规则。
 
@@ -105,11 +105,11 @@ login.chinacloudapi.cn | 对于 Site Recovery 服务 URL 的授权和身份验�
 
     <!--MOONCAKE: CORRECT ON Storage WITHOUT .ChinaEast-->
     
-    ![storage-tag](./media/azure-to-azure-about-networking/storage-tag.png)
+    :::image type="content" source="./media/azure-to-azure-about-networking/storage-tag.png" alt-text="storage-tag":::
 
 2. 基于 NSG 规则为“AzureActiveDirectory”创建出站 HTTPS (443) 安全规则，如以下屏幕截图所示。
 
-    ![aad-tag](./media/azure-to-azure-about-networking/aad-tag.png)
+    :::image type="content" source="./media/azure-to-azure-about-networking/aad-tag.png" alt-text="aad-tag":::
 
     <!--MOONCAKE: CORRECT ON EventHub WITHOUT .chinanorth-->
     
@@ -117,17 +117,24 @@ login.chinacloudapi.cn | 对于 Site Recovery 服务 URL 的授权和身份验�
 
     <!--MOONCAKE: CORRECT ON EventHub WITHOUT .chinanorth-->
     
-4. 为对应于目标位置的 Site Recovery IP 创建出站 HTTPS (443) 安全规则：
+4. 在 NSG 上为“AzureSiteRecovery”创建出站 HTTPS (443) 安全规则。 这样就可以在任何区域访问 Site Recovery 服务。
     
+    <!--MOONCAKE: CUSTOMIZE, UPDATE CAREFULLY-->
     <!--MOONCAKE: CORRECT ON China North | 40.125.202.254 | 42.159.4.151 -->
     
-    **位置** | **Site Recovery IP 地址** |  **Site Recovery 监视 IP 地址**
-    --- | --- | ---
-    中国北部 | 40.125.202.254 | 42.159.4.151
-    
-    ![site-recovery-ip-address](./media/azure-to-azure-about-networking/site-recovery-ip-address-chenye.png)
+    > [!NOTE]
+    > 如果 Azure 中国的特定区域不支持 `AzureSiteRecovery` 服务标记，则可以为对应于目标位置的 Site Recovery IP 创建出站 HTTPS (443) 安全规则：
+    >
+    > 例如： 
+    >
+    >  |**位置** | **Site Recovery IP 地址** |  **Site Recovery 监视 IP 地址**|
+    >  |--- | --- | ---|
+    >  |中国北部 | 40.125.202.254 | 42.159.4.151|
+    >  
+    > ![site-recovery-ip-address](./media/azure-to-azure-about-networking/site-recovery-ip-address-chenye.png)
     
     <!--MOONCAKE: CORRECT ON China North | 40.125.202.254 | 42.159.4.151-->
+    <!--MOONCAKE: CUSTOMIZE, UPDATE CAREFULLY-->
 
 ### <a name="nsg-rules---china-north"></a>NSG 规则 - 中国北部
 
@@ -147,17 +154,23 @@ login.chinacloudapi.cn | 对于 Site Recovery 服务 URL 的授权和身份验�
 
     <!--MOONCAKE: CORRECT ON EventHub WITHOUT .ChinaEast-->
     
-4. 为对应于源位置的 Site Recovery IP 创建出站 HTTPS (443) 安全规则：
+4. 在 NSG 上为“AzureSiteRecovery”创建出站 HTTPS (443) 安全规则。 这样就可以在任何区域访问 Site Recovery 服务。
     
+    <!--MOONCAKE: CUSTOMIZE, UPDATE CAREFULLY-->
     <!--MOONCAKE: CORRECT ON China East | 42.159.205.45 | 42.159.132.40 -->
     
-    **位置** | **Site Recovery IP 地址** |  **Site Recovery 监视 IP 地址**
-    --- | --- | ---
-    中国东部 | 42.159.205.45 | 42.159.132.40
+    > [!NOTE]
+    > 如果 Azure 中国的特定区域不支持 `AzureSiteRecovery` 服务标记，则可以为对应于源位置的 Site Recovery IP 创建出站 HTTPS (443) 安全规则：
+    >
+    > 例如：
+    > 
+    >  |**位置** | **Site Recovery IP 地址** |  **Site Recovery 监视 IP 地址**|
+    >  |--- | --- | ---|
+    >  |中国东部 | 42.159.205.45 | 42.159.132.40|
+    >
     
     <!--MOONCAKE: CORRECT ON China East | 42.159.205.45 | 42.159.132.40 -->
-
-<!--MOONCAKE: CUSTOMIZE, UPDATE CAREFULLY-->
+    <!--MOONCAKE: CUSTOMIZE, UPDATE CAREFULLY-->
 
 ## <a name="network-virtual-appliance-configuration"></a>网络虚拟设备配置
 
@@ -168,7 +181,7 @@ login.chinacloudapi.cn | 对于 Site Recovery 服务 URL 的授权和身份验�
 
 - 选择 Azure 虚拟网络并单击“服务终结点”。
 
-    ![storage-endpoint](./media/azure-to-azure-about-networking/storage-service-endpoint.png)
+    :::image type="content" source="./media/azure-to-azure-about-networking/storage-service-endpoint.png" alt-text="storage-endpoint":::
 
 - 单击“添加”，“添加服务终结点”选项卡随即打开
 - 选择“服务”下的“Microsoft.Storage”和“子网”字段下的所需子网，并单击“添加”。
@@ -181,7 +194,7 @@ login.chinacloudapi.cn | 对于 Site Recovery 服务 URL 的授权和身份验�
 对 0.0.0.0/0 地址前缀，可将 Azure 默认系统路由重写为[自定义路由](../virtual-network/virtual-networks-udr-overview.md#custom-routes)，并将 VM 流量转换为本地网络虚拟设备 (NVA)，但不建议对 Site Recovery 复制使用此配置。 如果使用自定义路由，则应在虚拟网络中为“存储”[创建一个虚拟网络服务终结点](azure-to-azure-about-networking.md#create-network-service-endpoint-for-storage)，这样复制流量就不会离开 Azure 边界。
 
 ## <a name="next-steps"></a>后续步骤
-- [复制 Azure 虚拟机](site-recovery-azure-to-azure.md)，开始对工作负荷进行保护。
+- [复制 Azure 虚拟机](./azure-to-azure-quickstart.md)，开始对工作负荷进行保护。
 - 详细了解为 Azure 虚拟机故障转移[保留 IP 地址](site-recovery-retain-ip-azure-vm-failover.md)。
 - 详细了解[使用 ExpressRoute 的 Azure 虚拟机](azure-vm-disaster-recovery-with-expressroute.md)的灾难恢复。
 

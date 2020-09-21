@@ -3,20 +3,20 @@ title: 使用 Azure 数据工厂将 SQL Server 数据移动到 SQL Azure - Team 
 description: 设置一个 ADF 管道，它由两个数据迁移活动组成，这两个活动每天共同在本地和云中的数据库之间移动数据。
 services: machine-learning
 author: marktab
-manager: cgronlun
-editor: cgronlun
+manager: marktab
+editor: marktab
 ms.service: machine-learning
 ms.subservice: team-data-science-process
 ms.topic: article
-ms.date: 11/04/2017
+ms.date: 01/10/2020
 ms.author: tdsp
 ms.custom: seodec18, previous-author=deguhath, previous-ms.author=deguhath
-ms.openlocfilehash: 218504bf5b03f86f59fdf0a1db76c3313627799a
-ms.sourcegitcommit: 2bd0be625b21c1422c65f20658fe9f9277f4fd7c
+ms.openlocfilehash: 08c255fb916d70e519bf27b8ad22e4770bb28a0f
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86441178"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020955"
 ---
 # <a name="move-data-from-a-sql-server-database-to-sql-database-with-azure-data-factory"></a>使用 Azure 数据工厂将数据从 SQL Server 数据库移到 SQL 数据库
 
@@ -43,7 +43,7 @@ ADF 允许使用简单的 JSON 脚本计划和监视作业，JSON 脚本可定�
 * 从 Azure Blob 存储帐户将数据复制到 Azure SQL 数据库。
 
 > [!NOTE]
-> 此处所示的步骤改编自 ADF 团队提供的更详细教程：[将数据从本地 SQL Server 数据库复制到 Azure Blob 存储](/data-factory/tutorial-hybrid-copy-portal/) 在适当时候提供了对该主题相关部分的引用。
+> 此处所示的步骤改编自 ADF 团队提供的更详细教程：[将数据从 SQL Server 数据库复制到 Azure Blob 存储](/data-factory/tutorial-hybrid-copy-portal/) 适时提供对该主题相关部分的引用。
 >
 >
 
@@ -140,7 +140,9 @@ SQL Server 的表定义在以下 JSON 文件中指定：
 
 将表的 JSON 定义复制到名为 onpremtabledef.json 的文件中，并将其保存到已知位置（此处假定为 *C:\temp\onpremtabledef.json*）。 使用以下 Azure PowerShell cmdlet 在 ADF 中创建表：
 
-    New-AzureDataFactoryTable -ResourceGroupName ADFdsprg -DataFactoryName ADFdsp –File C:\temp\onpremtabledef.json
+```azurepowershell
+New-AzureDataFactoryTable -ResourceGroupName ADFdsprg -DataFactoryName ADFdsp –File C:\temp\onpremtabledef.json
+```
 
 
 ### <a name="blob-table"></a><a name="adf-table-blob-store"></a>Blob 表
@@ -173,7 +175,9 @@ SQL Server 的表定义在以下 JSON 文件中指定：
 
 将表的 JSON 定义复制到名为 bloboutputtabledef.json 的文件中，并将其保存到已知位置（此处假定为 *C:\temp\bloboutputtabledef.json*）。 使用以下 Azure PowerShell cmdlet 在 ADF 中创建表：
 
-    New-AzureDataFactoryTable -ResourceGroupName adfdsprg -DataFactoryName adfdsp -File C:\temp\bloboutputtabledef.json
+```azurepowershell
+New-AzureDataFactoryTable -ResourceGroupName adfdsprg -DataFactoryName adfdsp -File C:\temp\bloboutputtabledef.json
+```
 
 ### <a name="sql-azure-table"></a><a name="adf-table-azure-sql"></a>SQL Azure 表
 以下是适用于 SQL Azure 输出的表的定义（此架构将映射来自 blob 的数据）：
@@ -205,7 +209,9 @@ SQL Server 的表定义在以下 JSON 文件中指定：
 
 将表的 JSON 定义复制到名为 AzureSqlTable.json 的文件中，并将其保存到已知位置（此处假定为 *C:\temp\AzureSqlTable.json*）。 使用以下 Azure PowerShell cmdlet 在 ADF 中创建表：
 
-    New-AzureDataFactoryTable -ResourceGroupName adfdsprg -DataFactoryName adfdsp -File C:\temp\AzureSqlTable.json
+```azurepowershell
+New-AzureDataFactoryTable -ResourceGroupName adfdsprg -DataFactoryName adfdsp -File C:\temp\AzureSqlTable.json
+```
 
 
 ## <a name="define-and-create-the-pipeline"></a><a name="adf-pipeline"></a>定义和创建管道
@@ -290,16 +296,20 @@ SQL Server 的表定义在以下 JSON 文件中指定：
 
 将管道的 JSON 定义复制到名为 *pipelinedef.json* 的文件中，并将其保存到已知位置（此处假定为 *C:\temp\pipelinedef.json*）。 使用以下 Azure PowerShell cmdlet 在 ADF 中创建管道：
 
-    New-AzureDataFactoryPipeline  -ResourceGroupName adfdsprg -DataFactoryName adfdsp -File C:\temp\pipelinedef.json
+```azurepowershell
+New-AzureDataFactoryPipeline  -ResourceGroupName adfdsprg -DataFactoryName adfdsp -File C:\temp\pipelinedef.json
+```
 
 
 ## <a name="start-the-pipeline"></a><a name="adf-pipeline-start"></a>启动管道
 现在可使用以下命令来运行管道：
 
-    Set-AzureDataFactoryPipelineActivePeriod -ResourceGroupName ADFdsprg -DataFactoryName ADFdsp -StartDateTime startdateZ –EndDateTime enddateZ –Name AMLDSProcessPipeline
+```azurepowershell
+Set-AzureDataFactoryPipelineActivePeriod -ResourceGroupName ADFdsprg -DataFactoryName ADFdsp -StartDateTime startdateZ –EndDateTime enddateZ –Name AMLDSProcessPipeline
+```
 
 需要将 *startdate* 和 *enddate* 参数值替换为想要在此期间运行管道的实际日期。
 
 在管道执行后，应能看到数据显示在为 blob 选择的容器中，每天一个文件。
 
-请注意：我们并未使用 ADF 提供的功能以用管道增量输送数据。 若要深入了解如何执行此操作以及 ADF 提供的其他功能，请参阅 [ADF 文档](/data-factory/)。
+我们并未使用 ADF 提供的功能以增量方式对数据进行管道传输。 若要深入了解如何执行此操作以及 ADF 提供的其他功能，请参阅 [ADF 文档](/data-factory/)。

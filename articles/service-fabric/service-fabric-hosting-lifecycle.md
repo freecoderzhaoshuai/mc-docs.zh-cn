@@ -1,19 +1,19 @@
 ---
 title: Azure Service Fabric 宿主激活和停用生命周期
 description: 介绍了节点上的应用程序和 ServicePackage 的生命周期
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 05/01/2020
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: affaf4a022ef5b76920b080a76293ad4ee6905d6
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: ede4f242c9a0c5678049d07c428970982fba7502
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426786"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655653"
 ---
 <!--Verified successfully-->
 # <a name="azure-service-fabric-hosting-lifecycle"></a>Azure Service Fabric 宿主生命周期
@@ -166,5 +166,4 @@ Deactivator 会保留 ServicePackage 保存的副本的计数。 如果 ServiceP
 
 [p1]: https://docs.microsoft.com/powershell/module/servicefabric/copy-servicefabricservicepackagetonode
 
-<!-- Update_Description: new article about service fabric hosting lifecycle -->
-<!--NEW.date: 08/03/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

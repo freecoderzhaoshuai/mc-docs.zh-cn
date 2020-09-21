@@ -8,23 +8,22 @@ ms.topic: conceptual
 author: j-martens
 ms.author: jmartens
 ms.date: 06/11/2020
-ms.openlocfilehash: 9cb751adf42e15978f1f38a9879fed007a9e688b
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 8e41865066f88d0f049cffc4e027b328bdcf8566
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88227862"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021358"
 ---
-# <a name="enterprise-and-basic-editions-of-azure-machine-learning"></a>Azure 机器学习的 Basic Edition 和 Basic Edition 
+# <a name="enterprise-preview-and-basic-editions-of-azure-machine-learning"></a>Azure 机器学习的 Enterprise（预览）和 Basic Edition 
 
 Azure 机器学习提供了两个版本，专为你的机器学习需求提供。 这些版本确定开发人员和数据科学家的工作区中可用的机器学习工具。
 
 ## <a name="choose-an-edition"></a>选择版本
 
-你始终可以在创建工作区时分配版本。 客户负责在此期间因计算和其他 Azure 资源产生的成本。 
+你始终可以在创建工作区时分配版本。 客户负责在此期间因计算和其他 Azure 资源产生的成本。 了解如何[管理 Azure 机器学习的成本](concept-plan-manage-cost.md)。
 
-了解如何[将 Basic 工作区升级到 Enterprise Edition](how-to-manage-workspace.md#upgrade)。 
-
+了解如何[将 Basic 工作区升级到 Enterprise（预览）Edition](how-to-manage-workspace.md#upgrade)。 
 
 ## <a name="whats-in-each-edition"></a>每个版本中的内容
 
@@ -113,7 +112,7 @@ Azure 机器学习提供了两个版本，专为你的机器学习需求提供�
 
 | 功能     | 版本                 |
 |------------------------------------------------------------------------------------|:-----------:|
-| [基于角色的访问控制](how-to-assign-roles.md) (RBAC) 支持                                           | 全部                     |
+| [Azure 基于角色的访问控制](how-to-assign-roles.md) (Azure RBAC) 支持                                           | 全部                     |
 | [虚拟网络 (VNet)](how-to-enable-virtual-network.md) 计算支持                                         | 全部                     |
 | 对终结点身份验证评分                                                    | 全部                     |
 | 跨工作区[配额管理](how-to-manage-quotas.md)                                                 | 仅限 Enterprise Edition |

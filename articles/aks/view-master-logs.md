@@ -3,16 +3,17 @@ title: 查看 Azure Kubernetes 服务 (AKS) 控制器日志
 description: 了解如何启用和查看 Azure Kubernetes 服务 (AKS) 中 Kubernetes 主节点的日志
 services: container-service
 ms.topic: article
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
-ms.openlocfilehash: 5b60c4e0bc78b11317d8fb1b79c053b1731ff672
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: d520ba43c8626ab68ffef4a7a9e54a99c6de8bac
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842645"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021525"
 ---
 # <a name="enable-and-review-kubernetes-master-node-logs-in-azure-kubernetes-service-aks"></a>启用和查看 Azure Kubernetes 服务 (AKS) 中 Kubernetes 主节点的日志
 
@@ -42,12 +43,8 @@ Azure Monitor 日志是在 Azure 门户中启用和管理的。 若要为 AKS �
     
 1. 输入名称（例如 myAKSClusterLogs），然后选择“发送到 Log Analytics”选项。
 1. 选择现有工作区或者创建新的工作区。 如果创建工作区，请提供工作区名称、资源组和位置。
-1. 在可用日志列表中，选择要启用的日志。 常见日志包括 kube-apiserver、kube-controller-manager 和 kube-scheduler。 你可以启用其他日志，例如 kube-audit 和 cluster-autoscaler。 启用 Log Analytics 工作区后，可以返回并更改收集的日志。
+1. 在可用日志列表中，选择要启用的日志。 对于本示例，请启用 kube-audit 日志。 常见日志包括 kube-apiserver、kube-controller-manager 和 kube-scheduler。 启用 Log Analytics 工作区后，可以返回并更改收集的日志。
 1. 准备就绪后，选择“保存”以启用收集选定日志。
-
-以下示例门户屏幕截图显示了“诊断设置”窗口：
-
-:::image type="content" source="media/view-master-logs/enable-oms-log-analytics.png" alt-text="为 AKS 群集的 Azure Monitor 日志启用 Log Analytics 工作区":::
 
 ## <a name="schedule-a-test-pod-on-the-aks-cluster"></a>在 AKS 群集上计划测试 pod
 
@@ -83,30 +80,25 @@ pod/nginx created
 
 ## <a name="view-collected-logs"></a>查看收集的日志
 
-可能需要等待几分钟，诊断日志才会启用并显示在 Log Analytics 工作区中。 在 Azure 门户中，选择 Log Analytics 工作区的资源组（例如 *myResourceGroup*），然后选择 Log Analytics 资源（例如 *myAKSLogs*）。
+可能需要等待几分钟，诊断日志才会启用并显示。 在 Azure 门户中导航到 AKS 群集，然后选择左侧的“日志”。 关闭“示例查询”窗口（如果出现了此窗口）。
 
-:::image type="content" source="media/view-master-logs/select-log-analytics-workspace.png" alt-text="选择 AKS 群集的 Log Analytics 工作区":::
 
-在左侧选择“日志”。 若要查看 *kube-apiserver*，请在文本框中输入以下查询：
-
-```
-AzureDiagnostics
-| where Category == "kube-apiserver"
-| project log_s
-```
-
-可能返回了 API 服务器的多个日志。 若要缩小查询范围，以便查看上一步骤中创建的 NGINX pod 的相关日志，请额外添加一个 *where* 语句来搜索 *pod/nginx*，如以下示例查询中所示：
+在左侧选择“日志”。 若要查看 kube-audit 日志，请在文本框中输入以下查询：
 
 ```
 AzureDiagnostics
-| where Category == "kube-apiserver"
-| where log_s contains "pods/nginx"
+| where Category == "kube-audit"
 | project log_s
 ```
 
-此时会显示 NGINX pod 的特定日志，如以下示例屏幕截图中所示：
+可能会返回多个日志。 若要缩小查询范围，以便查看上一步骤中创建的 NGINX pod 的相关日志，请额外添加一个 where 语句来搜索 nginx，如以下示例查询所示：
 
-:::image type="content" source="media/view-master-logs/log-analytics-query-results.png" alt-text="示例 NGINX pod 的 Log Analytics 查询结果":::
+```
+AzureDiagnostics
+| where Category == "kube-audit"
+| where log_s contains "nginx"
+| project log_s
+```
 
 若要查看其他日志，可将针对 *Category* 名称的查询更新为 *kube-controller-manager* 或 *kube-scheduler*，具体取决于启用的其他日志。 然后，可以使用附加的 *where* 语句来具体化要查找的事件。
 
@@ -151,8 +143,8 @@ AzureDiagnostics
 [analyze-log-analytics]: ../azure-monitor/log-query/get-started-portal.md
 [kubelet-logs]: kubelet-logs.md
 [aks-ssh]: ssh.md
-[az-feature-register]: https://docs.azure.cn/cli/feature?view=azure-cli-latest#az-feature-register
-[az-feature-list]: https://docs.azure.cn/cli/feature?view=azure-cli-latest#az-feature-list
-[az-provider-register]: https://docs.azure.cn/cli/provider?view=azure-cli-latest#az-provider-register
+[az-feature-register]: https://docs.azure.cn/cli/feature#az-feature-register
+[az-feature-list]: https://docs.azure.cn/cli/feature#az-feature-list
+[az-provider-register]: https://docs.azure.cn/cli/provider#az-provider-register
 
 <!-- Update_Description: update meta properties, wording update, update link -->

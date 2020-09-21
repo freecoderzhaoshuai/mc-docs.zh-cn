@@ -1,17 +1,20 @@
 ---
 title: 在 Azure 微服务中模拟故障
 description: 本文介绍了 Azure Service Fabric 中的可测试性操作。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 06/07/2017
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: f45144696dd93d3b817e02aa1228e8f0bb2f051f
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 83569b87cc87cb6c558e085f6cf5f50658b98e37
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291999"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655613"
 ---
 # <a name="testability-actions"></a>可测试性操作
 为了模拟不可靠的基础结构，Azure Service Fabric 向开发者提供了众多选项，用于模拟各种现实世界故障和状态转换。 这些方式被称为可测试操作。 这些操作属于低级别 API，导致具体的故障注入、状态转换或验证。 结合使用这些操作，可以为服务编写全面的测试方案。
@@ -54,8 +57,7 @@ System.Fabric.dll 程序集包含了这些操作的 C# 实现。 Microsoft.Servi
 * [针对单机群集运行一个操作](#run-an-action-against-a-one-box-cluster)
 * [针对 Azure 群集运行一个操作](#run-an-action-against-an-azure-cluster)
 
-<a name="run-an-action-against-a-one-box-cluster"></a>
-### <a name="run-an-action-against-a-one-box-cluster"></a>针对单机群集运行一个操作
+### <a name="run-an-action-against-a-one-box-cluster"></a><a name="run-an-action-against-a-one-box-cluster"></a>针对单机群集运行一个操作
 要针对本地群集运行一个可测试性操作，首先需要连接到群集并且应在管理员模式下打开 PowerShell 提示符。 让我们看一下 **Restart-ServiceFabricNode** 操作。
 
 ```powershell
@@ -80,11 +82,11 @@ Restart-ServiceFabricNode -NodeName $nodeName -CompletionMode DoNotVerify
 
 以下屏幕快照显示操作中的 **Restart-ServiceFabricNode** 可测试性命令。
 
-![](media/service-fabric-testability-actions/Restart-ServiceFabricNode.png)
+:::image type="content" source="media/service-fabric-testability-actions/Restart-ServiceFabricNode.png" alt-text="在 PowerShell 中运行 Restart-ServiceFabricNode 命令的屏幕截图。":::
 
 第一个 **Get-ServiceFabricNode**（来自 Service Fabric PowerShell 模块的一个 cmdlet）的输出显示本地群集有五个节点：Node.1 至 Node.5。 在名为 Node.4 的节点上执行可测试性操作 (cmdlet) **Restart-ServiceFabricNode** 之后，我们看到节点的正常运行时间已被重置。
 
-### <a name="run-an-action-against-an-azure-cluster"></a><a name="run-an-action-against-an-azure-cluster"></a>针对 Azure 群集运行操作
+### <a name="run-an-action-against-an-azure-cluster"></a><a name="run-an-action-against-an-azure-cluster"></a>针对 Azure 群集运行一个操作
 针对 Azure 群集运行一个可测试性操作（使用 PowerShell）与针对本地群集运行一个操作类似。 唯一的区别在于：在能够运行操作之前，不是连接到本地群集，而是需要首先连接到 Azure 群集。
 
 ## <a name="running-a-testability-action-using-c35"></a>使用 C&#35; 运行可测试性操作
@@ -225,4 +227,4 @@ ReplicaSelector secondaryReplicaSelector = ReplicaSelector.RandomSecondaryOf(par
     * [在服务工作负荷期间模拟故障](service-fabric-testability-workload-tests.md)
     * [服务到服务通信失败](service-fabric-testability-scenarios-service-communication.md)
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

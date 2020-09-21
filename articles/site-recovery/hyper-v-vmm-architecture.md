@@ -1,19 +1,21 @@
 ---
-title: 使用 Azure Site Recovery 执行 Hyper-V 到辅助本地站点的灾难恢复的体系结构
+title: 使用 Azure Site Recovery 的到辅助站点的 Architecture-Hyper-V 灾难恢复
 description: 本文概述使用 Azure Site Recovery 将本地 Hyper-V VM 灾难恢复到辅助 System Center VMM 站点所用的体系结构。
-author: rockboyfor
-manager: digimobile
+manager: carmonm
 ms.service: site-recovery
 ms.topic: conceptual
-origin.date: 09/09/2019
-ms.date: 09/30/2019
+origin.date: 11/12/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: d765c878eb9735bd15b4ab38eeb6030f04d2833c
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 61b446b82432e04ab9521d4650549def0c8546a3
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71340729"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655669"
 ---
 # <a name="architecture---hyper-v-replication-to-a-secondary-site"></a>体系结构 - 从 Hyper-V 复制到辅助站点
 
@@ -32,11 +34,11 @@ ms.locfileid: "71340729"
 
 **本地到本地的体系结构**
 
-![本地到本地](./media/hyper-v-vmm-architecture/arch-onprem-onprem.png)
+:::image type="content" source="./media/hyper-v-vmm-architecture/arch-onprem-onprem.png" alt-text="此图显示了本地到本地保护。":::
 
 ## <a name="replication-process"></a>复制过程
 
-1. 当触发初始复制时，系统会拍摄一个 [Hyper-V VM 快照](https://technet.microsoft.com/library/dd560637.aspx)。
+1. 当触发初始复制时，系统会拍摄一个 [Hyper-V VM 快照](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/dd560637(v=ws.10))。
 2. VM 上的虚拟硬盘会逐一复制到辅助位置。
 3. 如果在初始复制期间发生磁盘更改，Hyper-V 副本复制跟踪器将跟踪这些更改，并将其记录在 Hyper-V 复制日志 (.hrl) 中。 这些日志文件位于与磁盘相同的文件夹中。 每个磁盘都有一个关联的 .hrl 文件，该文件将发送到辅助位置。 当初始复制正在进行时，快照和日志将占用磁盘资源。
 4. 当初始复制完成时，将删除 VM 快照，并开始增量复制。
@@ -57,4 +59,4 @@ ms.locfileid: "71340729"
 
 按照[此教程](hyper-v-vmm-disaster-recovery.md)启用 VMM 云之间的 Hyper-V 复制。
 
-<!-- Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

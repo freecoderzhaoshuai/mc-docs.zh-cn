@@ -8,12 +8,12 @@ ms.topic: article
 origin.date: 12/06/2018
 ms.date: 12/02/2019
 ms.author: v-yiso
-ms.openlocfilehash: 99892d5583ee3a935d26e2f0a8d0e5ef8d917679
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 326194b1ff7d9752c9bf73d8d24217c40d2a6d7c
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74389998"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021393"
 ---
 # <a name="router-configuration-samples-to-set-up-and-manage-nat"></a>用于设置和管理 NAT 的路由器配置示例
 
@@ -31,24 +31,27 @@ ms.locfileid: "74389998"
 
 ## <a name="cisco-asa-firewalls"></a>Cisco ASA 防火墙
 ### <a name="pat-configuration-for-traffic-from-customer-network-to-microsoft"></a>从客户网络到 Microsoft 的流量的 PAT 配置
-    object network MSFT-PAT
-      range <SNAT-START-IP> <SNAT-END-IP>
+
+```console
+object network MSFT-PAT
+  range <SNAT-START-IP> <SNAT-END-IP>
 
 
-    object-group network MSFT-Range
-      network-object <IP> <Subnet_Mask>
+object-group network MSFT-Range
+  network-object <IP> <Subnet_Mask>
 
-    object-group network on-prem-range-1
-      network-object <IP> <Subnet-Mask>
+object-group network on-prem-range-1
+  network-object <IP> <Subnet-Mask>
 
-    object-group network on-prem-range-2
-      network-object <IP> <Subnet-Mask>
+object-group network on-prem-range-2
+  network-object <IP> <Subnet-Mask>
 
-    object-group network on-prem
-      network-object object on-prem-range-1
-      network-object object on-prem-range-2
+object-group network on-prem
+  network-object object on-prem-range-1
+  network-object object on-prem-range-2
 
-    nat (outside,inside) source dynamic on-prem pat-pool MSFT-PAT destination static MSFT-Range MSFT-Range
+nat (outside,inside) source dynamic on-prem pat-pool MSFT-PAT destination static MSFT-Range MSFT-Range
+```
 
 ### <a name="pat-configuration-for-traffic-from-microsoft-to-customer-network"></a>从 Microsoft 到客户网络的流量的 PAT 配置
 
@@ -61,29 +64,39 @@ ms.locfileid: "74389998"
 
 NAT 池：
 
-    object network outbound-PAT
-        host <NAT-IP>
+```console
+object network outbound-PAT
+    host <NAT-IP>
+```
 
 目标服务器：
 
-    object network Customer-Network
-        network-object <IP> <Subnet-Mask>
+```console
+object network Customer-Network
+    network-object <IP> <Subnet-Mask>
+```
 
-客户 IP 地址的对象组
+客户 IP 地址的对象组：
 
-    object-group network MSFT-Network-1
-        network-object <MSFT-IP> <Subnet-Mask>
+```console
+object-group network MSFT-Network-1
+    network-object <MSFT-IP> <Subnet-Mask>
 
-    object-group network MSFT-PAT-Networks
-        network-object object MSFT-Network-1
+object-group network MSFT-PAT-Networks
+    network-object object MSFT-Network-1
+```
 
 NAT 命令：
 
-    nat (inside,outside) source dynamic MSFT-PAT-Networks pat-pool outbound-PAT destination static Customer-Network Customer-Network
+```console
+nat (inside,outside) source dynamic MSFT-PAT-Networks pat-pool outbound-PAT destination static Customer-Network Customer-Network
+```
 
 
 ## <a name="juniper-srx-series-routers"></a>Juniper SRX 系列路由器
 ### <a name="1-create-redundant-ethernet-interfaces-for-the-cluster"></a>1.为群集创建冗余的以太网接口
+
+```console
     interfaces {
         reth0 {
             description "To Internal Network";
@@ -113,17 +126,50 @@ NAT 命令：
             }
         }
     }
-
+```
 
 ### <a name="2-create-two-security-zones"></a>2.创建两个安全区域
 * 内部网络的信任区域和面向外部网络的边缘路由器的非信任区域
 * 向区域分配适当的接口
 * 在接口上允许服务
 
-    security {       zones {           security-zone Trust {               host-inbound-traffic {                   system-services {                       ping;                   }                   protocols {                       bgp;                   }               }               interfaces {                   reth0.100;               }           }           security-zone Untrust {               host-inbound-traffic {                   system-services {                       ping;                   }                   protocols {                       bgp;                   }               }               interfaces {                   reth1.100;               }           }       }   }
+```console
+    security {
+        zones {
+            security-zone Trust {
+                host-inbound-traffic {
+                    system-services {
+                        ping;
+                    }
+                    protocols {
+                        bgp;
+                    }
+                }
+                interfaces {
+                    reth0.100;
+                }
+            }
+            security-zone Untrust {
+                host-inbound-traffic {
+                    system-services {
+                        ping;
+                    }
+                    protocols {
+                        bgp;
+                    }
+                }
+                interfaces {
+                    reth1.100;
+                }
+            }
+        }
+    }
+```
 
 
 ### <a name="3-create-security-policies-between-zones"></a>3.在区域之间创建安全策略
+
+```console
     security {
         policies {
             from-zone Trust to-zone Untrust {
@@ -152,12 +198,13 @@ NAT 命令：
             }
         }
     }
-
+```
 
 ### <a name="4-configure-nat-policies"></a>4.配置 NAT 策略
 * 创建两个 NAT 池。 一个用于通过 NAT 转换出站到 Microsoft 的流量，另一个用于从 Microsoft 发往客户的流量。
 * 创建规则以通过 NAT 转换相应的流量
-  
+
+```console
        security {
            nat {
                source {
@@ -212,11 +259,14 @@ NAT 命令：
                }
            }
        }
+```
 
 ### <a name="5-configure-bgp-to-advertise-selective-prefixes-in-each-direction"></a>5.配置 BGP 以朝每个方向播发选择的前缀
 请参阅[路由配置示例](expressroute-config-samples-routing.md)页中的示例。
 
 ### <a name="6-create-policies"></a>6.创建策略
+
+```console
     routing-options {
                   autonomous-system <Customer-ASN>;
     }
@@ -310,7 +360,8 @@ NAT 命令：
             }
         }
     }
+```
 
 ## <a name="next-steps"></a>后续步骤
-有关更多详细信息，请参阅 [ExpressRoute 常见问题解答](expressroute-faqs.md)。
+有关详细信息，请参阅 [ExpressRoute 常见问题](expressroute-faqs.md) 。
 

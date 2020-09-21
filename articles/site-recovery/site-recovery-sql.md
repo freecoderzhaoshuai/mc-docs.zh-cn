@@ -2,21 +2,21 @@
 title: 使用 Azure Site Recovery 为 SQL Server 设置灾难恢复
 description: 本文介绍如何使用 SQL Server 和 Azure Site Recovery 为 SQL Server 设置灾难恢复。
 services: site-recovery
-author: rockboyfor
 manager: digimobile
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 08/02/2019
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 09/30/2019
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 70b4b873584ff19bc135aefe70725ce6bc722a85
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 670364337f417c9bf3d3b6764ba152b4c0e2c607
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426349"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655464"
 ---
 # <a name="set-up-disaster-recovery-for-sql-server"></a>为 SQL Server 设置灾难恢复
 
@@ -41,7 +41,7 @@ Azure 基础结构即服务 (IaaS) 虚拟机 (VM) 上的或本地的 SQL Server�
 Azure IaaS VM 上的或本地的 SQL Server。| [故障转移群集 (Always On FCI)](https://docs.microsoft.com/sql/sql-server/failover-clusters/windows/windows-server-failover-clustering-wsfc-with-sql-server?view=sql-server-2017) | 在节点之间进行故障转移所花费的时间。 | 由于 Always On FCI 使用共享存储，因此故障转移时会提供相同的存储实例视图。
 Azure IaaS VM 上的或本地的 SQL Server。| [数据库镜像（高性能模式）](https://docs.microsoft.com/sql/database-engine/database-mirroring/database-mirroring-sql-server?view=sql-server-2017) | 强制服务所花费的时间，使用镜像服务器作为温备用服务器。 | 复制是异步的。 镜像数据库可能稍微滞后于主体数据库。 滞后时间通常很小。 但是，如果主体或镜像服务器的系统负载过大，则滞后时间可能很大。<br/><br/>日志传送可用作数据库镜像的补充。 它是异步数据库镜像的理想替代方案。
 Azure 上的 SQL 平台即服务 (PaaS)。<br/><br/>此部署类型包括单一数据库和弹性池。 | 活动异地复制 | 触发故障转移后持续 30 秒。<br/><br/>对一个辅助数据库激活故障转移后，所有其他辅助数据库将自动链接到新的主数据库。 | 5 秒 RPO。<br/><br/>活动异地复制使用 SQL Server 的 Always On 技术。 它使用快照隔离以异步方式将主数据库上已提交的事务复制到辅助数据库。<br/><br/>保证辅助数据永不包含部分事务。
-Azure 上配置了活动异地复制的 SQL as PaaS。<br/><br/>此部署类型包括 SQL 数据库托管实例、弹性池和单一数据库。 | 自动故障转移组 | 1 小时 RTO。 | 5 秒 RPO。<br/><br/>自动故障转移组在活动异地复制的顶层提供组语义。 但使用相同的异步复制机制。
+Azure 上配置了活动异地复制的 SQL as PaaS。<br/><br/>此部署类型包括托管实例、弹性池和单一数据库。 | 自动故障转移组 | 1 小时 RTO。 | 5 秒 RPO。<br/><br/>自动故障转移组在活动异地复制的顶层提供组语义。 但使用相同的异步复制机制。
 Azure IaaS VM 上的或本地的 SQL Server。| 使用 Azure Site Recovery 进行复制 | RTO 通常小于 15 分钟。 有关详细信息，请阅读 [Site Recovery 提供的 RTO SLA](https://www.azure.cn/support/sla/site-recovery/)。 | 为应用程序一致性提供 1 小时保证，为崩溃一致性提供 5 分钟保证。 若要寻求降低 RPO，请使用其他 BCDR 技术。
 
 > [!NOTE]
@@ -50,6 +50,8 @@ Azure IaaS VM 上的或本地的 SQL Server。| 使用 Azure Site Recovery 进�
 > * 对于 Azure、Hyper-V、VMware 或物理基础结构中的任何部署，都可以选择使用 Site Recovery。 请遵照本文档末尾的指导来了解[如何使用 Site Recovery 帮助保护 SQL Server 群集](#how-to-help-protect-a-sql-server-cluster)。
 > * 确保在计算机上观测到的数据更改率在 [Site Recovery 限制](vmware-physical-azure-support-matrix.md#churn-limits)范围内。 更改率以每秒写入字节数度量。 对于运行 Windows 的计算机，可以选择任务管理器中的“性能”选项卡来查看此更改率。  观测每个磁盘的写入速度。
 > * Site Recovery 支持复制存储空间直通上的故障转移群集实例。 有关详细信息，请参阅[如何启用存储空间直通复制](azure-to-azure-how-to-enable-replication-s2d-vms.md)。
+> 
+> 将 SQL 工作负载迁移到 Azure 时，建议应用 [Azure 虚拟机上的 SQL Server 的性能准则](../azure-sql/virtual-machines/windows/performance-guidelines-best-practices.md)。
 
 ## <a name="disaster-recovery-of-an-application"></a>应用程序的灾难恢复
 
@@ -87,16 +89,20 @@ BCDR 技术 Always On、活动异地复制和自动故障转移组为目标 Azur
 使用应用层和 Web 层虚拟机[创建恢复计划](site-recovery-create-recovery-plans.md)。 以下步骤说明如何添加数据库层的故障转移：
 
 1. 导入相应的脚本，用于在[资源管理器虚拟机](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/asr-automation-recovery/scripts/ASR-SQL-FailoverAG.ps1)和[经典虚拟机](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/asr-automation-recovery/scripts/ASR-SQL-FailoverAGClassic.ps1)中对 SQL 可用性组进行故障转移。 将脚本导入到 Azure 自动化帐户中。
-    
-    [![“部署到 Azure”徽标图像](http://azuredeploy.net/deploybutton.png)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fazure-quickstart-templates%2Fmaster%2Fasr-automation-recovery%2F%2Fazuredeploy.json)
-                                            
+
     > [!NOTE]
     > 必须修改从 GitHub 存储库“azure-quickstart-templates”下载或参考的模板，以适应 Azure 中国云环境。
     > 例如，替换某些终结点（将“blob.core.windows.net”替换为“blob.core.chinacloudapi.cn”，将“cloudapp.azure.com”替换为“cloudapp.chinacloudapi.cn”）；必要时更改某些不受支持的位置、VM 映像、VM 大小、SKU 以及资源提供程序的 API 版本。
     >
-    > 在本文中，选择 Azure 门户中的“编辑模板”，并将 **allowedValues** 列表替换为 **automationRegion** 属性中的以下参数。
-    > `[chinaeast2, chinanorth, chinanorth2]`
-    
+    > 选择以下 `Deploy to Azure` 后，选择 `Edit template` 并根据 Azure 中国环境更新特定项。
+    > * 在第 14 行将 `automationRegion` 参数的 `allowedValues` 属性替换为以下项。
+    >   `chinaeast2,chinanorth,chinanorth2`
+    > * 选择“保存”。
+
+    [![“部署到 Azure”徽标图像](http://azuredeploy.net/deploybutton.png)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fazure-quickstart-templates%2Fmaster%2Fasr-automation-recovery%2F%2Fazuredeploy.json)
+
+    <!--MOONCAKE CUSTOMIZATION ON azuredeploy.net/deploybutton.png-->
+
 1. 将 ASR-SQL-FailoverAG 脚本添加为恢复计划的第一个组的准备操作。
 
 1. 遵照脚本中的说明创建自动化变量。 此变量提供可用性组的名称。
@@ -105,21 +111,21 @@ BCDR 技术 Always On、活动异地复制和自动故障转移组为目标 Azur
 
 某些 BCDR 技术（例如 SQL Always On）原生并不支持测试故障转移。 我们建议仅在使用此类技术时才运用以下方法。 
 
-1. 在 Azure 中托管可用性组副本的 VM 上设置 [Azure 备份](../backup/backup-azure-arm-vms.md)。
+1. 在 Azure 中托管可用性组副本的 VM 上设置 [Azure 备份](../backup/backup-azure-vms-first-look-arm.md)。
 
 1. 触发对恢复计划进行测试故障转移之前，请从上一步骤中进行的备份恢复 VM。
 
-    ![显示用于从 Azure 备份还原配置的窗口屏幕截图](./media/site-recovery-sql/restore-from-backup.png)
+    :::image type="content" source="./media/site-recovery-sql/restore-from-backup.png" alt-text="显示用于从 Azure 备份还原配置的窗口屏幕截图":::
 
 1. 在从备份还原的 VM 中[强制仲裁](https://docs.microsoft.com/sql/sql-server/failover-clusters/windows/force-a-wsfc-cluster-to-start-without-a-quorum#PowerShellProcedure)。
 
 1. 将侦听器的 IP 地址更新为测试故障转移网络中的可用地址。
 
-    ![规则窗口和 IP 地址属性对话框的屏幕截图](./media/site-recovery-sql/update-listener-ip.png)
+    :::image type="content" source="./media/site-recovery-sql/update-listener-ip.png" alt-text="规则窗口和 IP 地址属性对话框的屏幕截图":::
 
 1. 使侦听器联机。
 
-    ![标有 Content_AG 的窗口屏幕截图，其中显示了服务器名称和状态](./media/site-recovery-sql/bring-listener-online.png)
+    :::image type="content" source="./media/site-recovery-sql/bring-listener-online.png" alt-text="标有 Content_AG 的窗口屏幕截图，其中显示了服务器名称和状态":::
 
 1. 确保故障转移网络中的负载均衡器有一个 IP 地址，它来自与每个可用性组侦听器对应的前端 IP 地址池，以及后端池中的 SQL Server VM。
 
@@ -149,11 +155,11 @@ BCDR 技术 Always On、活动异地复制和自动故障转移组为目标 Azur
 
 1. 将此实例配置为需要帮助保护的数据库的镜像。 在高安全模式下配置镜像。
 
-1. 在主要站点上为 [Azure](azure-to-azure-tutorial-enable-replication.md)、[Hyper-V](site-recovery-hyper-v-site-to-azure.md) 或 [VMware VM 和物理服务器](site-recovery-vmware-to-azure-classic.md)配置 Site Recovery。
+1. 在主要站点上为 [Azure](azure-to-azure-tutorial-enable-replication.md)、[Hyper-V](./hyper-v-azure-tutorial.md) 或 [VMware VM 和物理服务器](./vmware-azure-tutorial.md)配置 Site Recovery。
 
 1. 使用 Site Recovery 复制将新的 SQL Server 实例复制到次要站点。 由于该实例是高安全性镜像副本，因此会将它与主群集同步，但会使用 Site Recovery 复制来复制它。
 
-    ![标准群集插图，其中显示了主要站点、Site Recovery 和 Azure 之间的关系与流](./media/site-recovery-sql/standalone-cluster-local.png)
+    :::image type="content" source="./media/site-recovery-sql/standalone-cluster-local.png" alt-text="标准群集插图，其中显示了主要站点、Site Recovery 和 Azure 之间的关系与流":::
 
 ### <a name="failback-considerations"></a>故障回复注意事项
 
@@ -171,7 +177,7 @@ Site Recovery 是应用程序不可知的。 Azure Site Recovery 可帮助保护
 
 ## <a name="next-steps"></a>后续步骤
 
-* 详细了解 [Site Recovery 体系结构](site-recovery-components.md)。
+* 详细了解 [Site Recovery 体系结构](./azure-to-azure-architecture.md)。
 * 对于 Azure 中的 SQL 服务器，请详细了解适用于次要 Azure 区域中的恢复的[高可用性解决方案](../azure-sql/virtual-machines/windows/business-continuity-high-availability-disaster-recovery-hadr-overview.md#azure-only-high-availability-solutions)。
 * 对于 SQL 数据库，请详细了解适用于次要 Azure 区域中的恢复的[业务连续性](../azure-sql/database/business-continuity-high-availability-disaster-recover-hadr-overview.md)和[高可用性](../azure-sql/database/high-availability-sla.md)选项。
 * 对于本地的 SQL Server 计算机，请详细了解适用于 Azure 虚拟机中的恢复的[高可用性选项](../azure-sql/virtual-machines/windows/business-continuity-high-availability-disaster-recovery-hadr-overview.md#hybrid-it-disaster-recovery-solutions)。

@@ -11,13 +11,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: jrasnik, carlrab
 origin.date: 03/10/2020
-ms.date: 08/17/2020
-ms.openlocfilehash: 4fcbbeb8e2c12dead14a35fad19e69d50582d318
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.date: 09/14/2020
+ms.openlocfilehash: 736b62c749c63cd1aff74b40829530a9036cad01
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222880"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014209"
 ---
 # <a name="query-performance-insight-for-azure-sql-database"></a>适用于 Azure SQL 数据库的 Query Performance Insight
 [!INCLUDE[appliesto-sqldb](../includes/appliesto-sqldb.md)]
@@ -40,7 +40,7 @@ Query Performance Insight 为单一数据库和共用数据库提供了智能查
 
 ## <a name="permissions"></a>权限
 
-需要拥有以下[基于角色的访问控制](../../role-based-access-control/overview.md)权限才能使用 Query Performance Insight：
+需要拥有以下 [Azure 基于角色的访问控制 (Azure RBAC)](../../role-based-access-control/overview.md) 权限才能使用 Query Performance Insight：
 
 * 需要拥有“读取者”、“所有者”、“参与者”、“SQL DB 参与者”或“SQL Server 参与者”权限才能查看资源消耗量靠前的查询和图表。    
 * 需要具备**所有者**、**参与者**、**SQL DB 参与者**或 **SQL Server 参与者**权限才能查看查询文本。

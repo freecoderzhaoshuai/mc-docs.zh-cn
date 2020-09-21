@@ -12,13 +12,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: bonova, sstein
 origin.date: 07/22/2020
-ms.date: 08/17/2020
-ms.openlocfilehash: 374f749241b28e525457d2a11e777aee4f8732bd
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.date: 09/14/2020
+ms.openlocfilehash: e970700c8b5d8bb0a31c2b537ea2187b2322e350
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223402"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014266"
 ---
 # <a name="features-comparison-azure-sql-database-and-azure-sql-managed-instance"></a>功能比较：Azure SQL 数据库和 Azure SQL 托管实例
 
@@ -97,7 +97,7 @@ Azure 管理数据库并保证其高可用性。 可能影响高可用性或无�
 | [Service Broker](https://docs.microsoft.com/sql/database-engine/configure-windows/sql-server-service-broker) | 否 | 是，但仅限在实例中。 如果使用远程 Service Broker 路由，请在迁移期间尝试将多个分布式 SQL Server 实例中的数据库整合到一个 SQL 托管实例中，并只使用本地路由。 请参阅 [Service Broker 差异](../managed-instance/transact-sql-tsql-differences-sql-server.md#service-broker) |
 | [服务器配置设置](https://docs.microsoft.com/sql/database-engine/configure-windows/server-configuration-options-sql-server) | 否 | 是 - 请参阅 [T-SQL 差异](../managed-instance/transact-sql-tsql-differences-sql-server.md) |
 | [SET 语句](https://docs.microsoft.com/sql/t-sql/statements/set-statements-transact-sql) | 大多数 - 请参阅单个语句 | 是 - 请参阅 [T-SQL 差异](../managed-instance/transact-sql-tsql-differences-sql-server.md)|
-| [SQL Server 代理](https://docs.microsoft.com/sql/ssms/agent/sql-server-agent) | 否 - 请参阅[弹性作业](elastic-jobs-overview.md) | 是 - 请参阅 [SQL Server 代理差异](../managed-instance/transact-sql-tsql-differences-sql-server.md#sql-server-agent) |
+| [SQL Server 代理](https://docs.microsoft.com/sql/ssms/agent/sql-server-agent) | 否 - 请参阅[弹性作业（预览版）](elastic-jobs-overview.md) | 是 - 请参阅 [SQL Server 代理差异](../managed-instance/transact-sql-tsql-differences-sql-server.md#sql-server-agent) |
 | [SQL Server 审核](https://docs.microsoft.com/sql/relational-databases/security/auditing/sql-server-audit-database-engine) | 否 - 请参阅 [SQL 数据库审核](auditing-overview.md) | 是 - 请参阅[审核差异](../managed-instance/transact-sql-tsql-differences-sql-server.md#auditing) |
 | [系统存储函数](https://docs.microsoft.com/sql/relational-databases/system-functions/system-functions-for-transact-sql) | 大多数 - 请参阅单个函数 | 是 - 请参阅[存储过程、函数和触发器差异](../managed-instance/transact-sql-tsql-differences-sql-server.md#stored-procedures-functions-and-triggers) |
 | [系统存储过程](https://docs.microsoft.com/sql/relational-databases/system-stored-procedures/system-stored-procedures-transact-sql) | 部分 - 请参阅单个存储过程 | 是 - 请参阅[存储过程、函数和触发器差异](../managed-instance/transact-sql-tsql-differences-sql-server.md#stored-procedures-functions-and-triggers) |

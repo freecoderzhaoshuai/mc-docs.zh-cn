@@ -3,19 +3,19 @@ title: 资源管理最佳做法
 titleSuffix: Azure Kubernetes Service
 description: 了解有关 Azure Kubernetes 服务 (AKS) 中的资源管理的应用程序开发人员最佳做法
 services: container-service
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 11/13/2019
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: yes
 ms.testdate: 05/25/2020
 ms.author: v-yeche
-ms.openlocfilehash: e18887761f5e1d6a46855b9f9052d0318dcb6662
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 467f6f650148915c0867adef2d02b3e9ad97e213
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842595"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021542"
 ---
 # <a name="best-practices-for-application-developers-to-manage-resources-in-azure-kubernetes-service-aks"></a>有关管理 Azure Kubernetes 服务 (AKS) 中的资源的应用程序开发人员最佳做法
 
@@ -25,10 +25,10 @@ ms.locfileid: "87842595"
 
 > [!div class="checklist"]
 > * pod 资源请求和限制是什么
-> * 使用 Visual Studio Code 开发和部署应用程序的方法
+> * 使用 Dev Spaces 与 Visual Studio Code 开发和部署应用程序的方法
 > * 如何使用 `kube-advisor` 工具检查部署问题
 
-<!--Not Available on Dev Spaces -->
+<!--CORRECT on with Dev Spaces for https://docs.microsoft.com/visualstudio/XXXX-->
 
 ## <a name="define-pod-resource-requests-and-limits"></a>定义 pod 资源请求和限制
 
@@ -79,7 +79,7 @@ spec:
 
 ## <a name="develop-and-debug-applications-against-an-aks-cluster"></a>针对 AKS 群集开发和调试应用程序
 
-**最佳做法指导** - 开发团队应该使用 Dev Spaces 针对 AKS 群集进行部署和调试。 此开发模型可确保在将应用部署到生产环境之前，实现基于角色的访问控制、网络或存储需求。
+**最佳做法指导** - 开发团队应该使用 Dev Spaces 针对 AKS 群集进行部署和调试。 此开发模型可确保在将应用部署到生产环境之前，实现基于角色的访问控制 (RBAC)、网络或存储需求。
 
 使用 Azure Dev Spaces 直接针对 AKS 群集开发、调试和测试应用程序。 在整个应用程序生命周期，团队中的开发人员共同协作进行生成和测试。 可以继续使用现有的工具，例如 Visual Studio 或 Visual Studio Code。 已为 Dev Spaces 安装扩展，该扩展提供用于在 AKS 群集中运行和调试应用程序的选项。
 
@@ -111,8 +111,7 @@ kube-advisor 工具可以报告 PodSpecs for Windows 应用程序以及 Linux �
 
 若要实施其中的某些最佳做法，请参阅以下文章：
 
-<!--Not Available on * [Develop with Dev Spaces][dev-spaces]-->
-
+* [使用 Dev Spaces 进行开发][dev-spaces]
 * [使用 kube-advisor 检查问题][aks-kubeadvisor]
 
 <!-- EXTERNAL LINKS -->
@@ -125,9 +124,7 @@ kube-advisor 工具可以报告 PodSpecs for Windows 应用程序以及 Linux �
 <!-- INTERNAL LINKS -->
 
 [aks-kubeadvisor]: kube-advisor-tool.md
-
-<!--Not Available on [dev-spaces]: ../dev-spaces/get-started-netcore.md-->
-
+[dev-spaces]: https://docs.microsoft.com/visualstudio/containers/overview-local-process-kubernetes
 [operator-best-practices-isolation]: operator-best-practices-cluster-isolation.md
 [resource-quotas]: operator-best-practices-scheduler.md#enforce-resource-quotas
 [k8s-node-selector]: concepts-clusters-workloads.md#node-selectors

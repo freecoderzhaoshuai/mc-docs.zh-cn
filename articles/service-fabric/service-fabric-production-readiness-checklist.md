@@ -2,39 +2,40 @@
 title: Azure Service Fabric 生产就绪情况核对清单
 description: 遵循最佳做法，让 Service Fabric 应用程序和群集做好生产准备。
 ms.topic: conceptual
-ms.date: 08/03/2020
+origin.date: 06/05/2019
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 01/13/2020
 ms.author: v-yeche
-ms.openlocfilehash: 160a70c75ec50af8e0555480d94f1f9496992433
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 062f748d8989fd0b6ce1ed5a310d7249cb310ef0
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426361"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655078"
 ---
 # <a name="production-readiness-checklist"></a>生产就绪情况核对清单
 
 应用程序和群集是否准备好接收生产流量？ 运行和测试应用程序及群集并不一定意味着它们已准备好投入生产。 通过查看以下核对清单，使应用程序和群集保持平稳运行。 强烈建议检查所有这些项目。 显然，可以选择为特定明细项目（例如，自己的诊断框架）使用替代解决方案。
 
 ## <a name="prerequisites-for-production"></a>生产的先决条件
-1. Azure Service Fabric 最佳做法：[应用程序设计](./service-fabric-best-practices-applications.md)、[安全性](./service-fabric-best-practices-security.md)、[网络](./service-fabric-best-practices-networking.md)、[容量规划和缩放](./service-fabric-best-practices-capacity-scaling.md)和[基础结构即代码](./service-fabric-best-practices-infrastructure-as-code.md)。
-    
-    <!--Not Available on [Monitoring and Diagnostics](./service-fabric-best-practices-monitoring.md)-->
-    
+1. Azure Service Fabric 最佳做法：[应用程序设计](./service-fabric-best-practices-applications.md)、[安全性](./service-fabric-best-practices-security.md)、[网络](./service-fabric-best-practices-networking.md)、[容量规划和缩放](./service-fabric-best-practices-capacity-scaling.md)、[基础结构即代码](./service-fabric-best-practices-infrastructure-as-code.md)和[监视和诊断](./service-fabric-best-practices-monitoring.md)。 
 1. 若要使用 Reliable Actors 编程模型并且需要安全的服务间通信，请[配置 FabricTransport 设置](./service-fabric-reliable-actors-fabrictransportsettings.md)。
 1. 对于具有超过 20 个核心或 10 个节点的群集，请为系统服务创建专用的主节点类型。 添加[放置约束](service-fabric-cluster-resource-manager-advanced-placement-rules-placement-policies.md)，保留系统服务的主节点类型。
 1. 对主节点类型使用 D2v2 或更高版本的 SKU。 建议选择至少有 50 GB 硬盘容量的 SKU。
 1. 生产群集必须是[安全的](service-fabric-cluster-security.md)。 有关设置安全群集的示例，请参阅此[群集模板](https://github.com/Azure-Samples/service-fabric-cluster-templates/tree/master/7-VM-Windows-3-NodeTypes-Secure-NSG)。 使用证书的通用名称，避免使用自签名证书。
 1. 添加[容器和服务的资源约束](service-fabric-resource-governance.md)，以便它们消耗的节点资源不超过 75%。 
-1. 理解并设置[持续性级别](service-fabric-cluster-capacity.md#durability-characteristics-of-the-cluster)。 对于运行有状态工作负载的节点类型，建议使用银级或更高的持续性级别。 主节点类型应将持续性级别设置为银级或更高级别。
+1. 理解并设置[持续性级别](service-fabric-cluster-capacity.md#durability-characteristics-of-the-cluster)。 对于运行有状态工作负载的节点类型，建议使用银级或更高的持续性级别。
 1. 理解并选取节点类型的[可靠性级别](service-fabric-cluster-capacity.md#reliability-characteristics-of-the-cluster)。 建议使用银级或更高级别的可靠性。
 1. 对工作负载进行负载和缩放测试，确定群集的[容量需求](service-fabric-cluster-capacity.md)。 
 1. 服务和应用程序受到监视，并且系统会生成并存储应用程序日志，并会发送警报。 例如，请参阅[向 Service Fabric 应用程序添加日志记录](service-fabric-how-to-diagnostics-log.md)。
     
     <!--Not Available on and [Monitor containers with Azure Monitor logs](service-fabric-diagnostics-oms-containers.md)-->
     <!--Not Available on [Azure Monitor logs](service-fabric-diagnostics-event-analysis-oms.md)-->
-    <!--Not Avaiable on [Azure Monitor logs](service-fabric-diagnostics-oms-agent.md)-->
+    
+1. 基础虚拟机规模集基础结构通过警报（例如，通过 [Azure Monitor 日志](service-fabric-diagnostics-oms-agent.md)）进行监视。
+
     
 1. 该群集始终具有[主要和辅助证书](service-fabric-cluster-security-update-certs-azure.md)（因此不会将你拒之门外）。
 1. 维护用于开发、暂存和生产的独立集群。 
@@ -68,4 +69,4 @@ ms.locfileid: "87426361"
 * [部署 Service Fabric Linux 群集](service-fabric-tutorial-create-vnet-and-linux-cluster.md)
 * 了解 Service Fabric [应用程序生命周期](service-fabric-application-lifecycle.md)。
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -1,17 +1,17 @@
 ---
-title: Azure 中 Linux 虚拟机的 DNS 名称解析选项
+title: Linux VM 的 DNS 名称解析选项
 description: 适用于 Azure IaaS 中 Linux 虚拟机的名称解析方案，包括提供的 DNS 服务、混合外部 DNS 和自带 DNS 服务器。
 author: RicksterCDN
 ms.service: virtual-machines-linux
-ms.topic: article
-ms.date: 04/20/2020
+ms.topic: conceptual
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.openlocfilehash: 38e0fee0db968685e79a14f2a8be242efc02f4bf
-ms.sourcegitcommit: ebedf9e489f5218d4dda7468b669a601b3c02ae5
+ms.openlocfilehash: 9aa23f26fe63e7dda029cd303ec74ba948e8e1c4
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2020
-ms.locfileid: "82159067"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057699"
 ---
 # <a name="dns-name-resolution-options-for-linux-virtual-machines-in-azure"></a>Azure 中 Linux 虚拟机的 DNS 名称解析选项
 Azure 默认提供单个虚拟网络内的所有虚拟机的 DNS 名称解析。 在 Azure 托管的虚拟机上配置自己的 DNS 服务，即可实现自己的 DNS 名称解析解决方案。 以下方案可帮助你选择适合你情况的解决方案。
@@ -92,7 +92,9 @@ DNS 主要是一个 UDP 协议。 因为 UDP 协议无法保证消息传递，�
 
 若要检查 Linux 虚拟机上的当前设置，请执行“cat /etc/resolv.conf”并查看“options”行，例如：
 
-    options timeout:1 attempts:5
+```config-conf
+options timeout:1 attempts:5
+```
 
 resolv.conf 文件是自动生成的，不应进行编辑。 添加“options”行的具体步骤因发行版而异：
 
@@ -119,7 +121,7 @@ DNS 转发还可用于在虚拟网络之间进行 DNS 解析，并允许本地�
 
 使用 Azure 提供的名称解析时，会通过 DHCP 为每个虚拟机提供内部 DNS 后缀。 使用你自己的名称解析解决方案时，不会向虚拟机提供该后缀，因为该后缀会干扰其他 DNS 体系结构。 若要通过 FQDN 来引用计算机，或者要在虚拟机上配置后缀，可通过 PowerShell 或 API 来确定该后缀：
 
-* 对于 Azure Resource Manager 托管的虚拟网络，可以通过[网络接口卡](https://msdn.microsoft.com/library/azure/mt163668.aspx)资源来使用该后缀。 也可通过运行 `azure network public-ip show <resource group> <pip name>` 命令来显示公共 IP 的详细信息，该 IP 中包括 NIC 的 FQDN。
+* 对于 Azure Resource Manager 托管的虚拟网络，可以通过[网络接口卡](https://docs.microsoft.com/rest/api/virtualnetwork/networkinterfaces)资源来使用该后缀。 也可通过运行 `azure network public-ip show <resource group> <pip name>` 命令来显示公共 IP 的详细信息，该 IP 中包括 NIC 的 FQDN。
 
 如果不想将查询转发到 Azure，则需提供自己的 DNS 解决方案。  DNS 解决方案需要：
 
@@ -129,7 +131,7 @@ DNS 转发还可用于在虚拟网络之间进行 DNS 解析，并允许本地�
 * 禁止从 Internet 进行访问，减少外部代理带来的威胁。
 
 > [!NOTE]
-> 为了获得最佳性能，在 Azure DNS 服务器中使用虚拟机时，请禁用 IPv6 并为每个 DNS 服务器虚拟机分配[实例级公共 IP](../../virtual-network/virtual-networks-instance-level-public-ip.md)。  
+> 为了获得最佳性能，在 Azure DNS 服务器中使用虚拟机时，请禁用 IPv6 并为每个 DNS 服务器虚拟机分配[实例级公共 IP](https://docs.microsoft.com/previous-versions/azure/virtual-network/virtual-networks-instance-level-public-ip)。  
 >
 >
 

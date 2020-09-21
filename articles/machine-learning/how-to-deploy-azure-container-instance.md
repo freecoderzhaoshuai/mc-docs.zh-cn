@@ -10,12 +10,12 @@ ms.author: jordane
 author: jpe316
 ms.reviewer: larryfr
 ms.date: 06/12/2020
-ms.openlocfilehash: 2ab6902c29ff45b18f2cda6d38fd88a770cf73cd
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 7facbbe65bf1cd77185b318d21aa41634e1257e3
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88946972"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021214"
 ---
 # <a name="deploy-a-model-to-azure-container-instances"></a>将模型部署到 Azure 容器实例
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -55,8 +55,9 @@ ms.locfileid: "88946972"
 要将模型部署到 Azure 容器实例，请创建一个描述所需计算资源的部署配置。 例如，核心数和内存。 此外，还需要一个推理配置，描述托管模型和 Web 服务所需的环境。 有关如何创建推理配置的详细信息，请参阅[部署模型的方式和位置](how-to-deploy-and-where.md)。
 
 > [!NOTE]
-> * ACI 仅适用于大小 <1GB 的小模型。 
+> * ACI 仅适用于大小不到 1 GB 的小模型。 
 > * 建议使用单节点 AKS 对较大的模型进行开发测试。
+> * 要部署的模型数仅限每个部署（每个容器）1,000 个模型。 
 
 ### <a name="using-the-sdk"></a>使用 SDK
 

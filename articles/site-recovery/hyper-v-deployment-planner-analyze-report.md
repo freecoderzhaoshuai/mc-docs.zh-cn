@@ -1,20 +1,22 @@
 ---
-title: 分析 Azure Site Recovery 部署规划器报告，以便将 Hyper-V VM 灾难恢复到 Azure | Azure
+title: 在 Azure Site Recovery 中分析 Azure Site Recovery 部署规划器报告
 description: 本文介绍如何分析 Azure Site Recovery 部署规划器生成的报告，以便将 Hyper-V VM 灾难恢复到 Azure。
 services: site-recovery
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.service: site-recovery
 ms.topic: conceptual
-origin.date: 03/20/2019
-ms.date: 04/22/2019
+origin.date: 10/21/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: d342c5b4b7b1c1a8a3cd8c18df60c62f44c14444
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: d384aa04439546ea75cc3e54aa0082a43b46a74e
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291367"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655683"
 ---
 # <a name="analyze-the-azure-site-recovery-deployment-planner-report"></a>分析 Azure Site Recovery 部署规划器报告
 本文介绍 Azure Site Recovery 部署规划器针对 Hyper-V 到 Azure 方案生成的 Excel 报表中包含的工作表。
@@ -22,7 +24,7 @@ ms.locfileid: "79291367"
 ## <a name="on-premises-summary"></a>本地摘要
 本地摘要工作表概述了分析的 Hyper-V 环境。
 
-![本地摘要](media/hyper-v-deployment-planner-analyze-report/on-premises-summary-h2a.png)
+:::image type="content" source="media/hyper-v-deployment-planner-analyze-report/on-premises-summary-h2a.png" alt-text="本地摘要":::
 
 **开始日期**和**结束日期**：生成报告时要考虑的分析数据的开始和结束日期。 默认情况下，开始日期是开始分析的日期，结束日期是停止分析的日期。 如果报表是使用这些参数生成的，此信息可以是“StartDate”和“EndDate”值。
 
@@ -45,10 +47,10 @@ ms.locfileid: "79291367"
 ## <a name="recommendations"></a>建议 
 Hyper-V 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细信息：
 
-![适用于 Hyper-V 到 Azure 报表的建议](media/hyper-v-deployment-planner-analyze-report/Recommendations-h2a.png)
+:::image type="content" source="media/hyper-v-deployment-planner-analyze-report/Recommendations-h2a.png" alt-text="适用于 Hyper-V 到 Azure 报表的建议":::
 
 ### <a name="profile-data"></a>配置文件数据
-![配置文件数据](media/hyper-v-deployment-planner-analyze-report/profile-data-h2a.png)
+:::image type="content" source="media/hyper-v-deployment-planner-analyze-report/profile-data-h2a.png" alt-text="配置文件数据":::
 
 **数据分析期**：在此期间运行了分析。 默认情况下，此工具在计算中包括所有分析的数据。 如果在报表生成过程中使用了 StartDate 和 EndDate 选项，则会生成特定期间的报表。 
 
@@ -57,7 +59,7 @@ Hyper-V 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细
 **所需 RPO**：部署的恢复点目标。 默认情况下，所需网络带宽是根据 RPO 值为 15、30 和 60 分钟计算的。 根据所做的选择，受影响的值会在工作表中更新。 如果生成报表时使用了 DesiredRPOinMin 参数，该值会显示在“所需 RPO”结果中。
 
 ### <a name="profiling-overview"></a>分析概述
-![分析概述](media/hyper-v-deployment-planner-analyze-report/profiling-overview-h2a.png)
+:::image type="content" source="media/hyper-v-deployment-planner-analyze-report/profiling-overview-h2a.png" alt-text="分析概述":::
 
 **分析的虚拟机总数**：提供了其分析数据的 VM 总数。 如果 VMListFile 中包含未分析的任何 VM 的名称，则生成报表时不会考虑这些 VM，会将其从分析的 VM 总数中排除。
 
@@ -68,7 +70,7 @@ Hyper-V 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细
 **所需 RPO**：以分钟为单位的所需恢复点目标。 针对以下三个 RPO 值生成报告：15 分钟（默认值）、30 分钟和 60 分钟。 会根据你在工作表右上方“所需 RPO”下拉列表中所做的选择来更改报表中的带宽建议。  如果结合某个自定义值使用 -DesiredRPO 参数生成了报表，此自定义值会在“所需 RPO”下拉列表中显示为默认值。 
 
 ### <a name="required-network-bandwidth-mbps"></a>所需的网络带宽 (Mbps)
-![所需的网络带宽](media/hyper-v-deployment-planner-analyze-report/required-network-bandwidth-h2a.png)
+:::image type="content" source="media/hyper-v-deployment-planner-analyze-report/required-network-bandwidth-h2a.png" alt-text="所需的网络带宽":::
 
 **为了满足 100% 时间的 RPO**：分配建议的以 Mbps 为单位的带宽，以便满足 100% 时间的所需 RPO。 这种带宽量必须专用于所有兼容 VM 的稳态增量复制，避免任何 RPO 违规。
 
@@ -81,12 +83,12 @@ Hyper-V 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细
 ### <a name="required-storage-accounts"></a>所需的存储帐户
 下图显示了保护所有兼容 VM 所需的存储帐户（标准和高级）总数。 若要了解适用于每个 VM 的存储帐户，请参阅“VM-存储位置”部分。
 
-![所需的 Azure 存储帐户](media/hyper-v-deployment-planner-analyze-report/required-storage-accounts-h2a.png)
+:::image type="content" source="media/hyper-v-deployment-planner-analyze-report/required-storage-accounts-h2a.png" alt-text="所需的 Azure 存储帐户":::
 
 ### <a name="required-number-of-azure-cores"></a>所需的 Azure 核心数
 此结果是在对所有兼容的 VM 进行故障转移或测试性故障转移之前需要设置的核心总数。 如果订阅中能够使用的核心太少，在执行测试性故障转移或故障转移时，Site Recovery 无法创建 VM。
 
-![所需的 Azure 核心数](media/hyper-v-deployment-planner-analyze-report/required-number-of-azure-cores-h2a.png)
+:::image type="content" source="media/hyper-v-deployment-planner-analyze-report/required-number-of-azure-cores-h2a.png" alt-text="所需的 Azure 核心数":::
 
 ### <a name="additional-on-premises-storage-requirement"></a>其他本地存储要求
 
@@ -94,18 +96,19 @@ Hyper-V 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细
 
 若要了解为何复制时需要可用空间，请参阅[本地存储要求](#why-do-i-need-free-space-on-the-hyper-v-server-for-the-replication)部分。
 
-![本地存储要求和复制频率](media/hyper-v-deployment-planner-analyze-report/on-premises-storage-and-copy-frequency-h2a.png)
+:::image type="content" source="media/hyper-v-deployment-planner-analyze-report/on-premises-storage-and-copy-frequency-h2a.png" alt-text="本地存储要求和复制频率":::
 
 ### <a name="maximum-copy-frequency"></a>最大复制频率
 若要在复制时实现所需的 RPO，必须设置建议的最大复制频率。 默认值为 5 分钟。 若要实现更好的 RPO，可将复制频率设置为 30 秒。
 
 ### <a name="what-if-analysis"></a>假设分析
-![模拟分析](media/hyper-v-deployment-planner-analyze-report/what-if-analysis-h2a.png) 此项分析概述了如果设置较低的带宽，导致只能在 90% 的时间内满足所需 RPO，则在分析期间可能会发生多少项违规。 在任何给定的日期可能会发生一项或多项 RPO 违规。 下图显示了一天的峰值 RPO。 基于此分析，可以确定在使用指定的较低带宽的条件下，是否可以接受所有日期的 RPO 违规数以及每天的峰值 RPO。 如果可以接受，则可为复制设置较低的带宽。 如果不可接受，请根据建议分配较高的带宽，以便满足 100% 时间的所需 RPO。 
+:::image type="content" source="media/hyper-v-deployment-planner-analyze-report/what-if-analysis-h2a.png" alt-text="假设分析":::
+此项分析概述了如果设置较低的带宽，导致只能在 90% 的时间内满足所需 RPO，则在分析期间可能会发生多少项违规。 在任何给定的日期可能会发生一项或多项 RPO 违规。 下图显示了一天的峰值 RPO。 基于此分析，可以确定在使用指定的较低带宽的条件下，是否可以接受所有日期的 RPO 违规数以及每天的峰值 RPO。 如果可以接受，则可为复制设置较低的带宽。 如果不可接受，请根据建议分配较高的带宽，以便满足 100% 时间的所需 RPO。 
 
 ### <a name="recommendation-for-successful-initial-replication"></a>成功进行初始复制的建议
 此部分讨论了需要对 VM 进行保护的批数，以及成功完成初始复制 (IR) 所需的最小带宽。 
 
-![IR 批处理](media/hyper-v-deployment-planner-analyze-report/ir-batching-h2a.png)
+:::image type="content" source="media/hyper-v-deployment-planner-analyze-report/ir-batching-h2a.png" alt-text="IR 批处理":::
 
 必须按给定的批顺序对 VM 进行保护。 每一批都有一个特定的 VM 列表。 第 1 批 VM 必须在第 2 批 VM 之前受到保护， 第 2 批 VM 必须在第 3 批 VM 之前受到保护，依此类推。 完成第 1 批 VM 的初始复制以后，即可启用对第 2 批 VM 的复制。 类似地，完成第 2 批 VM 的初始复制以后，即可启用对第 3 批 VM 的复制，依此类推。 
 
@@ -121,7 +124,7 @@ Hyper-V 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细
 ### <a name="cost-estimation"></a>成本估算
 下图显示的摘要视图包含灾难恢复 (DR) 到所选目标区域的 Azure 时的总估算成本，以及生成报表时所用的指定货币。
 
-![成本估算摘要](media/hyper-v-deployment-planner-analyze-report/cost-estimation-summary-h2a.png)
+:::image type="content" source="media/hyper-v-deployment-planner-analyze-report/cost-estimation-summary-h2a.png" alt-text="成本估算摘要":::
 
 可以通过此摘要了解在使用 Site Recovery 将所有兼容的 VM 转移到 Azure 进行保护时，需要支付的存储、计算、网络和许可证成本。 计算成本时，只针对兼容的 VM，不针对所有受分析的 VM。 
 
@@ -130,32 +133,32 @@ Hyper-V 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细
 <!-- Not Availalble on [supported target regions](./hyper-v-deployment-planner-cost-estimation.md#supported-target-regions) -->
 <!-- Not Availalble on [supported currencies](./hyper-v-deployment-planner-cost-estimation.md#supported-currencies) -->
 
-**按组件列出的成本**：总 DR 成本分为四个部分：计算成本、存储成本、网络成本和 Site Recovery 许可证成本。 成本计算取决于在复制和 DR 演练时相关资源的使用情况。 用于计算的资源包括计算、存储（高级和标准）、在本地站点和 Azure 之间配置的 ExpressRoute/VPN、Site Recovery 许可证。
+**按组件成本**：总 DR 成本分为四个部分：计算成本、存储成本、网络成本和 Site Recovery 许可证成本。 成本计算取决于在复制和 DR 演练时相关资源的使用情况。 用于计算的资源包括计算、存储（高级和标准）、在本地站点和 Azure 之间配置的 ExpressRoute/VPN、Site Recovery 许可证。
 
-**按状态列出的成本**：总灾难恢复成本按两种不同的状态（“复制”和“DR 演练”）分类。 
+**按状态成本**：总灾难恢复成本按两种不同的状态（“复制”和“DR 演练”）分类。 
 
 **复制成本**：复制期间产生的成本， 涵盖存储成本、网络成本、Site Recovery 许可证成本。 
 
-**DR 演练成本**：测试性故障转移期间产生的成本。 Site Recovery 会在测试性故障转移期间启动 VM。 DR 演练成本涵盖了正在运行的 VM 的计算和存储成本。 
+**DR 演练成本**：测试性故障转移期间产生的成本。 Site Recovery 会在测试性故障转移期间启动 VM。 DR 演练成本涵盖正在运行的 VM 的计算和存储成本。 
 
 **每月/年的 Azure 存储成本**：条形图表示针对高级和标准存储进行复制和 DR 演练时产生的总存储成本。 可以在[成本估算](hyper-v-deployment-planner-cost-estimation.md)表中查看每个 VM 的详细成本分析。
 
 ### <a name="growth-factor-and-percentile-values-used"></a>增长系数和使用的百分位值
 工作表底部的此部分显示用于已分析 VM 的所有性能计数器的百分位值（默认为第 95 百分位）， 以及所有计算中使用的增长系数（默认为 30%）。
 
-![增长系数和使用的百分位值](media/hyper-v-deployment-planner-run/growth-factor-max-percentile-value.png)
+:::image type="content" source="media/hyper-v-deployment-planner-run/growth-factor-max-percentile-value.png" alt-text="增长系数和使用的百分位值":::
 
 ## <a name="recommendations-with-available-bandwidth-as-input"></a>有关用作输入的可用带宽建议
-![带宽输入分析概述](media/hyper-v-deployment-planner-analyze-report/profiling-overview-bandwidth-input-h2a.png)
+:::image type="content" source="media/hyper-v-deployment-planner-analyze-report/profiling-overview-bandwidth-input-h2a.png" alt-text="带宽输入分析概述":::
 
 有时，你知道无法为 Site Recovery 复制设置 x Mbps 以上的带宽。 可以使用该工具输入可用带宽（生成报表时使用 -Bandwidth 参数），在数分钟内获得可实现的 RPO。 使用这个可实现的 RPO 值，可以确定是需要预配额外的带宽，还是可以使用某个灾难恢复解决方案来实现此 RPO。
 
-![可实现的 RPO](media/hyper-v-deployment-planner-analyze-report/achivable-rpo-h2a.PNG)
+:::image type="content" source="media/hyper-v-deployment-planner-analyze-report/achivable-rpo-h2a.PNG" alt-text="可实现的 RPO":::
 
 ## <a name="vm-storage-placement-recommendation"></a>VM-存储位置建议 
-![VM-存储位置](media/hyper-v-deployment-planner-analyze-report/vm-storage-placement-h2a.png)
+:::image type="content" source="media/hyper-v-deployment-planner-analyze-report/vm-storage-placement-h2a.png" alt-text="VM-粗糙年位置":::
 
-**磁盘存储类型**：标准或高级存储帐户，用于复制“要放置的 VM”列中所述的所有相应 VM。 
+**磁盘存储类型**：标准或高级存储帐户，用于复制“要放置的 VM”列中所述的所有相应 VM。****
 
 **建议的前缀**：建议的三字符前缀，可用于存储帐户的命名。 可以使用自己的前缀，而该工具的建议则遵循[存储帐户的分区命名约定](https://aka.ms/storage-performance-checklist)。
 
@@ -178,11 +181,11 @@ Hyper-V 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细
 ## <a name="compatible-vms"></a>兼容的 VM
 由 Site Recovery 部署规划器生成的 Excel 报表在“兼容的 VM”工作表中提供了所有兼容 VM 的详细信息。
 
-![兼容的 VM](media/hyper-v-deployment-planner-analyze-report/compatible-vms-h2a.png)
+:::image type="content" source="media/hyper-v-deployment-planner-analyze-report/compatible-vms-h2a.png" alt-text="兼容的 VM":::
 
-**VM 名称**：生成报告时在 VMListFile 中使用的 VM 名称。 此列还列出附加到 VM 的磁盘 (VHD)。 这些名称包括 Hyper-V 主机名，其中的 VM 是此工具在分析期间发现它们时放置的。
+**VM 名称**：生成报表时在 VMListFile 中使用的 VM 名称。 此列还列出附加到 VM 的磁盘 (VHD)。 这些名称包括 Hyper-V 主机名，其中的 VM 是此工具在分析期间发现它们时放置的。
 
-**VM 兼容性**：值为“是”和“是\*”。  “是\*”针对 VM 适用于[高级 SSD](../virtual-machines/windows/disks-types.md) 的情况。 在这里，所分析的高变动量磁盘或 IOPS 磁盘适合的高级磁盘大小大于映射到磁盘的大小。 存储帐户决定了根据大小对磁盘分类时，可将磁盘归入哪种高级存储磁盘类型： 
+**VM 兼容性**：值为“是”和“是\*”。 ******** “是\*”针对 VM 适用于[高级 SSD](../virtual-machines/disks-types.md) 的情况。 在这里，所分析的高变动量磁盘或 IOPS 磁盘适合的高级磁盘大小大于映射到磁盘的大小。 存储帐户决定了根据大小对磁盘分类时，可将磁盘归入哪种高级存储磁盘类型： 
 * <128 GB 为 P10。
 * 128 GB 到 256 GB 为 P15。
 * 256 GB 到 512 GB 为 P20。
@@ -196,32 +199,32 @@ Hyper-V 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细
 
 **建议的前缀**：由三个字符构成的存储帐户前缀。
 
-**存储帐户**：使用建议的存储帐户前缀的名称。
+**存储帐户**：此名称使用建议的存储帐户前缀。
 
-**峰值读/写 IOPS (包括增长系数)** ：磁盘上的峰值工作负荷读/写 IOPS（默认为第 95 百分位），以及将来的增长系数（默认为 30%）。 VM 的总读/写 IOPS 并非总是 VM 的单个磁盘的读/写 IOPS 之和。 VM 的峰值读/写 IOPS 是单个磁盘在分析期间的每分钟读/写 IOPS 之和的峰值。
+**峰值读/写 IOPS (包括增长系数)**：磁盘上的峰值工作负荷读/写 IOPS（默认为第 95 百分位），以及将来的增长系数（默认为 30%）。 VM 的总读/写 IOPS 并非总是 VM 的单个磁盘的读/写 IOPS 之和。 VM 的峰值读/写 IOPS 是单个磁盘在分析期间的每分钟读/写 IOPS 之和的峰值。
 
-**以 MB/秒为单位的峰值数据变动量(包括增长系数)** ：磁盘上的峰值变动率（默认为第 95 百分位），以及将来的增长系数（默认为 30%）。 VM 的总数据变动量并非总是 VM 的单个磁盘的数据变动量之和。 VM 的峰值数据变动量是单个磁盘在分析期间的每分钟变动量之和的峰值。
+**以 MB/秒为单位的峰值数据变动量(包括增长系数)**：磁盘上的峰值变动率（默认为第 95 百分位），以及将来的增长系数（默认为 30%）。 VM 的总数据变动量并非总是 VM 的单个磁盘的数据变动量之和。 VM 的峰值数据变动量是单个磁盘在分析期间的每分钟变动量之和的峰值。
 
 **Azure VM 大小**：适用于此本地 VM 的映射 Azure 云服务 VM 大小。 映射取决于本地 VM 的内存、磁盘/核心/NIC 数以及读/写 IOPS。 建议在符合所有本地 VM 特征的情况下，始终使用最小的 Azure VM 大小。
 
 **磁盘数**：VM 上的虚拟机磁盘 (VHD) 总数。
 
-**磁盘大小(GB)** ：VM 所有磁盘的总大小。 该工具还会显示 VM 中各个磁盘的磁盘大小。
+**磁盘大小(GB)**：VM 所有磁盘的总大小。 该工具还会显示 VM 中各个磁盘的磁盘大小。
 
 **核心数**：VM 上的 CPU 核心数。
 
-**内存(MB)** ：VM 上的 RAM。
+**内存(MB)**：VM 上的 RAM。
 
-**NIC 数**：VM 上的 NIC 数。
+**NIC**：VM 上的 NIC 数。
 
 **启动类型**：VM 的启动类型。 它可以是 BIOS 或 EFI。
 
 ## <a name="incompatible-vms"></a>不兼容的 VM
 由 Site Recovery 部署规划器生成的 Excel 报表在“不兼容的 VM”工作表中提供了所有不兼容 VM 的详细信息。
 
-![不兼容的 VM](media/hyper-v-deployment-planner-analyze-report/incompatible-vms-h2a.png)
+:::image type="content" source="media/hyper-v-deployment-planner-analyze-report/incompatible-vms-h2a.png" alt-text="不兼容的 VM":::
 
-**VM 名称**：生成报告时在 VMListFile 中使用的 VM 名称。 此列还列出附加到 VM 的磁盘 (VHD)。 这些名称包括 Hyper-V 主机名，其中的 VM 是此工具在分析期间发现它们时放置的。
+**VM 名称**：生成报表时在 VMListFile 中使用的 VM 名称。 此列还列出附加到 VM 的磁盘 (VHD)。 这些名称包括 Hyper-V 主机名，其中的 VM 是此工具在分析期间发现它们时放置的。
 
 **VM 兼容性**：指示给定的 VM 为何无法与 Site Recovery 兼容使用。 会针对 VM 的每个不兼容磁盘说明原因，而根据已发布的[存储限制](https://aka.ms/azure-storage-scalbility-performance)，这些原因不外乎：
 
@@ -249,15 +252,15 @@ Hyper-V 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细
 
 * 源 IOPS 超出了每个 VM 支持的存储 IOPS 限制，即 80,000。
 
-* 源 VM 平均数据变动量超出了支持的 Site Recovery 数据变动量限制，即平均 I/O 大小不能超过 10 MB/秒。
+* 源 VM 平均数据变动量超出了支持的 Site Recovery 数据变动量限制（平均 I/O 大小不能超过 20 MB/秒）。
 
 * 源 VM 平均有效写入 IOPS 超出了支持的 Site Recovery IOPS 限制，即 840。
 
 * 计算出的快照存储超出了支持的快照存储限制，即 10 TB。
 
-**峰值读/写 IOPS (包括增长系数)** ：磁盘上的峰值工作负荷 IOPS（默认为第 95 百分位），以及将来的增长系数（默认为 30%）。 VM 的总读/写 IOPS 并非总是 VM 的单个磁盘的读/写 IOPS 之和。 VM 的峰值读/写 IOPS 是单个磁盘在分析期间的每分钟读/写 IOPS 之和的峰值。
+**峰值读/写 IOPS (包括增长系数)**：磁盘上的峰值工作负荷 IOPS（默认为第 95 百分位），以及将来的增长系数（默认为 30%）。 VM 的总读/写 IOPS 并非总是 VM 的单个磁盘的读/写 IOPS 之和。 VM 的峰值读/写 IOPS 是单个磁盘在分析期间的每分钟读/写 IOPS 之和的峰值。
 
-**峰值数据变动量(MB/秒，包括增长系数)** ：磁盘上的峰值变动率（默认为第 95 百分位），以及将来的增长系数（默认为 30%）。 请注意，VM 的总数据变动量并非总是 VM 的单个磁盘的数据变动量之和。 VM 的峰值数据变动量是单个磁盘在分析期间的每分钟变动量之和的峰值。
+**峰值数据变动量(MB/秒，包括增长系数)**：磁盘上的峰值变动率（默认为第 95 百分位），以及将来的增长系数（默认为 30%）。 请注意，VM 的总数据变动量并非总是 VM 的单个磁盘的数据变动量之和。 VM 的峰值数据变动量是单个磁盘在分析期间的每分钟变动量之和的峰值。
 
 **磁盘数**：VM 上的 VHD 总数。
 
@@ -265,9 +268,9 @@ Hyper-V 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细
 
 **核心数**：VM 上的 CPU 核心数。
 
-**内存(MB)** ：VM 上的 RAM 量。
+**内存(MB)**：VM 上的 RAM 量。
 
-**NIC 数**：VM 上的 NIC 数。
+**NIC**：VM 上的 NIC 数。
 
 **启动类型**：VM 的启动类型。 它可以是 BIOS 或 EFI。
 
@@ -280,7 +283,7 @@ Hyper-V 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细
 高级存储 | 8 KB  | 每个 VM 5 MB/秒 | 每个 VM 421 GB
 高级存储 | 16 KB 或更高| 每个 VM 20 MB/秒 | 每个 VM 1684 GB
 
-这些限制是在假设存在 30% 的 I/O 重叠的情况下给出的平均数。 Site Recovery 能够根据重叠率、较大的写入大小和实际工作负荷 I/O 行为处理更高的吞吐量。 上述数字假设通常情况下存在大约 5 分钟的积压工作。 也就是说，数据在上传后会在 5 分钟内进行处理并创建恢复点。
+这些限制是在假设存在 30% 的 I/O 重叠的情况下给出的平均数。 Site Recovery 能够根据重叠率、较大的写入大小和实际工作负荷 I/O 行为处理更高的吞吐量。 上述数字假定通常情况下存在大约 5 分钟的积压工作。 也就是说，数据在上传后会在 5 分钟内进行处理并创建恢复点。
 
 ## <a name="on-premises-storage-requirement"></a>本地存储要求
 
@@ -288,7 +291,7 @@ Hyper-V 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细
 
   Site Recovery 部署规划器根据用于复制的 VHD 大小和网络带宽来确定最佳存储空间要求。
 
-![本地存储要求](media/hyper-v-deployment-planner-analyze-report/on-premises-storage-requirement-h2a.png)
+:::image type="content" source="media/hyper-v-deployment-planner-analyze-report/on-premises-storage-requirement-h2a.png" alt-text="本地存储要求":::
 
 ### <a name="why-do-i-need-free-space-on-the-hyper-v-server-for-the-replication"></a>复制时为何需要 Hyper-V 服务器上存在可用空间？
 * 启用 VM 复制时，Site Recovery 会拍摄 VM 的每个 VHD 的快照，以便进行初始复制。 当初始复制正在进行时，应用程序会将新的更改写入磁盘。 Site Recovery 在日志文件中跟踪这些增量更改，因此需要额外的存储空间。 在初始复制完成之前，日志文件存储在本地。 
@@ -301,13 +304,13 @@ Hyper-V 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细
 
 **Hyper-V 主机**：已分析的 Hyper-V 服务器的列表。 如果某个服务器是 Hyper-V 群集的一部分，则会将所有群集节点组合在一起。
 
-**卷(VHD 路径)** ：VHD/VHDX 所在的 Hyper-V 主机的每个卷。 
+**卷(VHD 路径)**：VHD/VHDX 所在的 Hyper-V 主机的每个卷。 
 
-**可用空间(GB)** ：卷上的可用空间。
+**可用空间(GB)**：卷上的可用空间。
 
-**卷上需要的总存储空间(GB)** ：成功进行初始复制和增量复制所需要的在卷上可用的总存储空间。 
+**卷上需要的总存储空间(GB)**：成功进行初始复制和增量复制所需要的在卷上可用的总存储空间。 
 
-**需要在卷上预配才能成功进行复制的总额外存储(GB)** ：此项建议的总额外空间必须在卷上预配好，然后才能成功进行初始复制和增量复制。
+**需要在卷上预配才能成功进行复制的总额外存储(GB)**：此项建议的总额外空间必须在卷上预配好，然后才能成功进行初始复制和增量复制。
 
 ## <a name="initial-replication-batching"></a>初始复制批处理 
 
@@ -319,46 +322,45 @@ Hyper-V 到 Azure 报表的建议表根据选定的所需 RPO 提供以下详细
 
 按照每个卷的本地存储要求建议操作以后，需要复制的主要信息是可以并行进行保护的 VM 的列表。 这些 VM 按批组合在一起，可以有多个批次。 请按给定的批顺序对 VM 进行保护。 首先保护第 1 批 VM。 完成初始复制后，保护第 2 批 VM，依此类推。 可以从此工作表中获取批次和相应 VM 的列表。 
 
-![IR 批处理详细信息](media/hyper-v-deployment-planner-analyze-report/ir-batching-for-rpo-h2a.png)
+:::image type="content" source="media/hyper-v-deployment-planner-analyze-report/ir-batching-for-rpo-h2a.png" alt-text="IR 批处理详细信息":::
 
-![其他 IR 批处理详细信息](media/hyper-v-deployment-planner-analyze-report/ir-batching-for-rpo2-h2a.png)
+:::image type="content" source="media/hyper-v-deployment-planner-analyze-report/ir-batching-for-rpo2-h2a.png" alt-text="其他 IR 批处理详细信息":::
 
 ### <a name="each-batch-provides-the-following-information"></a>每一批都提供以下信息 
 **Hyper-V 主机**：要保护的 VM 的 Hyper-V 主机。
 
 **虚拟机**：要保护的 VM。 
 
-**备注**：如果需要对 VM 的特定卷执行操作，则在此处提供备注。 例如，如果卷上没有足够的可用空间，则注释会要求“添加额外的存储来保护此 VM”。
+**注释**：如果需要对 VM 的特定卷执行操作，则在此处提供注释。 例如，如果卷上没有足够的可用空间，则注释会要求“添加额外的存储来保护此 VM”。
 
-**卷(VHD 路径)** ：VM 的 VHD 所在的卷名称。 
+**卷(VHD 路径)**：VM 的 VHD 所驻留的卷名称。 
 
 **卷上的可用空间(GB)** ：VM 的卷上的可用磁盘空间。 在计算卷上的可用空间时，会考虑由以前批次的 VM（其 VHD 位于同一卷上）用来进行增量复制的磁盘空间。 
 
 例如，VM1、VM2 和 VM3 驻留在路径为 E:\VHDpath 的卷上。 在复制前，卷上的可用空间为 500 GB。 VM1 属于第 1 批，VM2 属于第 2 批，VM3 属于第 3 批。 VM1 的可用空间为 500 GB。 VM2 的可用空间为 500 - VM1 进行增量复制所需的磁盘空间。 如果 VM1 需要 300 GB 的空间进行增量复制，则 VM2 的可用空间为 500 GB - 300 GB = 200 GB。 同样，假设 VM2 需要 300 GB 进行增量复制， 则 VM3 的可用空间为 200 GB - 300 GB = -100 GB。
 
-**卷上用于初始复制的存储(GB)** ：VM 的卷上需要为初始复制准备的可用存储空间。
+**卷上需要用于初始复制的存储(GB)**：VM 的卷上需要用于初始复制的存储空间。
 
 **卷上用于增量复制的存储(GB)** ：VM 的卷上需要为增量复制准备的可用存储空间。
 
-**在资源不足情况下为了避免复制失败而需要的额外存储(GB)** ：VM 的卷上所需的额外存储空间。 这就是进行初始复制和增量复制的最高存储空间要求减去卷上的可用空间。
+**在资源不足情况下为了避免复制失败而需要的额外存储(GB)**：卷上 VM 所需的额外存储空间。 这就是进行初始复制和增量复制的最高存储空间要求减去卷上的可用空间。
 
-**进行初始复制所需的最小带宽(Mbps)** ：VM 进行初始复制所需的最小带宽。
+**进行初始复制所需的最小带宽(Mbps)**：VM 进行初始复制所需的最小带宽。
 
-**进行增量复制所需的最小带宽(Mbps)** ：VM 进行增量复制所需的最小带宽。
+**进行增量复制所需的最小带宽(Mbps)**：VM 进行增量复制所需的最小带宽。
 
 ### <a name="network-utilization-details-for-each-batch"></a>每个批次的网络使用率详细信息 
 每个批次表都提供了该批次的网络使用率摘要。
 
-**可用于批的带宽**：在考虑前一个批的增量复制带宽因素后可供此批使用的带宽。
+**可用于此批次的带宽**：在考虑以前批次的增量复制带宽因素后可供此批次使用的带宽。
 
-**可用于批的初始复制的大致带宽**：可用于此批的 VM 初始复制的带宽。 
+**可用于此批次的初始复制的大致带宽**：可用于此批次的 VM 初始复制的带宽。 
 
-**批的增量复制消耗的大致带宽**：此批的 VM 增量复制所需的带宽。 
+**此批次的增量复制所用的大致带宽**：此批次的 VM 增量复制所需的带宽。 
 
 **批的估计初始复制时间(HH:MM)** ：估计的初始复制时间，采用“小时:分钟”格式。
 
 ## <a name="next-steps"></a>后续步骤
 详细了解[成本估算](hyper-v-deployment-planner-cost-estimation.md)。
 
-<!-- Update_Description: update meta properties, wording update -->
-
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -4,21 +4,20 @@ description: 如何创建和使用适用于 Azure 中 Linux VM 的 SSH 公钥-�
 author: Johnnytechn
 ms.service: virtual-machines-linux
 ms.workload: infrastructure-services
-ms.topic: article
+ms.topic: how-to
 origin.date: 12/06/2019
-ms.date: 06/17/2020
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.openlocfilehash: 3cc15f0f56fe610d5c3c101e2168c7575706ba8d
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: 8e63745a94044766e63fba28c8bf1cd3a6894c1d
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097236"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057622"
 ---
 # <a name="quick-steps-create-and-use-an-ssh-public-private-key-pair-for-linux-vms-in-azure"></a>快速步骤：创建和使用适用于 Azure 中 Linux VM 的 SSH 公钥-私钥对
 
-使用安全外壳 (SSH) 密钥对，可以在 Azure 中创建使用 SSH 密钥进行身份验证的虚拟机 (VM)，从而无需密码即可登录。 本文介绍如何快速生成和使用适用于 Linux VM 的 SSH 公钥-私钥文件对。 可使用 Azure 本地 Shell、macOS 或 Linux 主机或者适用于 Linux 的 Windows 子系统以及其他支持 OpenSSH 的工具完成这些步骤。 
-
+使用安全外壳 (SSH) 密钥对，可以创建使用 SSH 密钥进行身份验证的 Azure 虚拟机 (VM)。 本文介绍如何快速生成和使用适用于 Linux VM 的 SSH 公钥-私钥文件对。 可以使用 Azure 本地 Shell、macOS 或 Linux 主机完成这些步骤。 
 <!-- Not Available on Azure Cloud Shell-->
 
 > [!NOTE]
@@ -40,12 +39,11 @@ ms.locfileid: "85097236"
 ssh-keygen -m PEM -t rsa -b 4096
 ```
 
-如果通过 [Azure CLI](https://docs.azure.cn/cli/index?view=azure-cli-latest) 使用 [az vm create](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-create) 命令创建 VM，可以使用 `--generate-ssh-keys` 选项生成 SSH 公钥和私钥文件。 除非使用 `--ssh-dest-key-path` 选项另行指定，否则将在 ~/.ssh 目录中存储密钥文件。 `--generate-ssh-keys` 选项不会覆盖现有密钥文件，而是返回错误。 在以下命令中，请将 *VMname* 和 *RGname* 替换为自己的值：
+如果通过 [Azure CLI](/cli) 使用 [az vm create](/cli/vm#az-vm-create) 命令创建 VM，可以使用 `--generate-ssh-keys` 选项生成 SSH 公钥和私钥文件。 除非使用 `--ssh-dest-key-path` 选项另行指定，否则将在 ~/.ssh 目录中存储密钥文件。 如果已存在 ssh 密钥对且使用的是 `--generate-ssh-keys` 选项，则不会生成新的密钥对，而是会使用现有的密钥对。 在以下命令中，请将 *VMname* 和 *RGname* 替换为自己的值：
 
 [!INCLUDE [azure-cli-2-azurechinacloud-environment-parameter](../../../includes/azure-cli-2-azurechinacloud-environment-parameter.md)]
-
 ```azurecli
-az vm create --name VMname --resource-group RGname --generate-ssh-keys 
+az vm create --name VMname --resource-group RGname --image UbuntuLTS --generate-ssh-keys 
 ```
 
 ## <a name="provide-an-ssh-public-key-when-deploying-a-vm"></a>部署 VM 时提供 SSH 公钥
@@ -101,6 +99,6 @@ ssh azureuser@myvm.chinanorth.cloudapp.chinacloudapi.cn
 
 * 有关使用 SSH 密钥对的详细信息，请参阅[创建和管理 SSH 密钥对的详细步骤](create-ssh-keys-detailed.md)。
 
-* 如果使用 SSH 连接 Azure VM 时遇到问题，请参阅[排查 Azure Linux VM 的 SSH 连接问题](troubleshoot-ssh-connection.md)。
+* 如果使用 SSH 连接 Azure VM 时遇到问题，请参阅[排查 Azure Linux VM 的 SSH 连接问题](../troubleshooting/troubleshoot-ssh-connection.md)。
 
 <!--Update_Description: wording update-->

@@ -3,17 +3,18 @@ title: Service Fabric 群集容量规划注意事项
 description: 在规划 Service Fabric 群集时要考虑节点类型、持久性、可靠性和其他事项。
 ms.topic: conceptual
 origin.date: 05/21/2020
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 06/08/2020
+ms.testdate: 09/07/2020
 ms.author: v-yeche
 ms.custom: sfrev
-ms.openlocfilehash: eb11b1d6673611c01a05553e920a2740c7c1e852
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 15865f9a498443c75377f3f1f32f08499c086d0e
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426278"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655661"
 ---
 # <a name="service-fabric-cluster-capacity-planning-considerations"></a>Service Fabric 群集容量规划注意事项
 
@@ -29,7 +30,7 @@ ms.locfileid: "87426278"
 
 ## <a name="initial-number-and-properties-of-cluster-node-types"></a>群集节点类型的初始编号和属性
 
-节点类型定义群集中一组节点（虚拟机）的大小、数量和属性。 在 Service Fabric 群集中定义的每个节点类型映射到[虚拟机规模集](/virtual-machine-scale-sets/overview)。
+节点类型定义群集中一组节点（虚拟机）的大小、数量和属性。 在 Service Fabric 群集中定义的每个节点类型映射到[虚拟机规模集](../virtual-machine-scale-sets/overview.md)。
 
 由于每个节点类型是不同的规模集，所以可以独立纵向扩展或缩减，可以打开不同的端口集，并使用不同的容量指标。 有关节点类型和虚拟机规模集之间关系的详细信息，请参阅 [Service Fabric 群集节点类型](service-fabric-cluster-nodetypes.md)。
 
@@ -58,7 +59,8 @@ ms.locfileid: "87426278"
 <!--Not Available on * ***Will your cluster span across Availability Zones?***-->
 
 <!--Not Available on  [Availability Zones](../availability-zones/az-overview.md)-->
-为集群的初始创建确定节点类型的数量和属性时，请记住，部署集群后，随时可以添加、修改或删除（非主要）节点类型。 也可以在正在运行的集群中[修改主节点类型](service-fabric-scale-up-node-type.md)（尽管在生产环境中执行此类操作需要大量的计划和谨慎工作）。
+
+为集群的初始创建确定节点类型的数量和属性时，请记住，部署集群后，随时可以添加、修改或删除（非主要）节点类型。 也可以在正在运行的集群中[修改主节点类型](service-fabric-scale-up-primary-node-type.md)（尽管在生产环境中执行此类操作需要大量的计划和谨慎工作）。
 
 节点类型属性的另一个考虑因素是持续性级别，它决定该节点类型的 VM 在 Azure 基础结构中拥有的权限。 使用你为群集选择的 VM 的大小以及为各个节点类型分配的实例计数，帮助确定每种节点类型的适当持续性层，如下所述。
 
@@ -109,7 +111,7 @@ ms.locfileid: "87426278"
 请遵循以下建议来管理具有白银或黄金持续性的节点类型：
 
 * 使群集和应用程序在任何时间都正常工作，并确保应用程序及时响应所有[服务副本生命周期事件](service-fabric-reliable-services-lifecycle.md)（例如，生成副本时出现停滞）。
-* 采用更安全的方式进行 VM 大小更改（纵向扩展/缩减）。 要更改虚拟机规模集的 VM 大小，需要仔细计划和谨慎操作。 有关详细信息，请参阅[纵向扩展 Service Fabric 节点类型](service-fabric-scale-up-node-type.md)
+* 采用更安全的方式进行 VM 大小更改（纵向扩展/缩减）。 要更改虚拟机规模集的 VM 大小，需要仔细计划和谨慎操作。 有关详细信息，请参阅[纵向扩展 Service Fabric 节点类型](service-fabric-scale-up-primary-node-type.md)
 * 为任何已启用“黄金”或“白银”耐久性级别的虚拟机规模集保留至少五个节点。 如果横向缩减到此阈值以下，群集将进入错误状态，需要手动清除已删除节点的状态 (`Remove-ServiceFabricNodeState`)。
 * 持续性级别为“白银”或“黄金”的每个虚拟机规模集，在 Service Fabric 群集中都必须映射到其自己的节点类型。 将多个虚拟机规模集映射到单个节点类型，将阻碍 Service Fabric 群集和 Azure 基础结构间的协调正常工作。
 * 不要删除随机 VM 实例，请始终使用虚拟机规模集横向缩减功能。 删除随机 VM 实例可能会在分布于[升级域](service-fabric-cluster-resource-manager-cluster-description.md#upgrade-domains)和[故障域](service-fabric-cluster-resource-manager-cluster-description.md#fault-domains)的 VM 实例中造成不平衡。 这一失衡可能会对系统在服务实例/服务副本之间进行适当负载均衡的能力产生负面影响。
@@ -158,7 +160,7 @@ ms.locfileid: "87426278"
 
 #### <a name="virtual-machine-sizing"></a>虚拟机大小调整
 
-“对于生产工作负载，建议将 VM 大小 (SKU) 设为 Standard D2_V2（或同等规模），并使其具有至少 50 GB 的本地 SSD”。 建议至少使用 50 GB 的本地 SSD，但某些工作负载（例如运行 Windows 容器的工作负荷）需要更大的磁盘。 为生产工作负载选择其他 [VM 大小](../virtual-machines/sizes-general.md)时，请记住以下约束：
+“对于生产工作负载，建议将 VM 大小 (SKU) 设为 [Standard D2_V2](../virtual-machines/dv2-dsv2-series.md)（或同等规模），并使其具有至少 50 GB 的本地 SSD、2 个核心和 4 GiB 的内存。” 建议至少使用 50 GB 的本地 SSD，但某些工作负载（例如运行 Windows 容器的工作负荷）需要更大的磁盘。 为生产工作负载选择其他 [VM 大小](../virtual-machines/sizes-general.md)时，请记住以下约束：
 
 - 不支持部分核心 VM 大小，例如 Standard A0。
 - 由于性能原因，不支持 A系列 VM 大小。

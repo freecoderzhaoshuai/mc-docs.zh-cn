@@ -11,12 +11,12 @@ ms.subservice: core
 ms.date: 08/10/2020
 ms.topic: conceptual
 ms.custom: how-to, devx-track-python
-ms.openlocfilehash: 1f626ed45fafcf37ee02fb0c7c256d12fbe26663
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 50e7d6762f372c1d8299bbb3c93ecaad318e5a93
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947186"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021024"
 ---
 # <a name="configure-automated-ml-experiments-in-python"></a>使用 Python 配置自动化 ML 试验
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]

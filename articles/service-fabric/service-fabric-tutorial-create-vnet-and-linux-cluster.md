@@ -3,17 +3,18 @@ title: 在 Azure 中创建 Linux Service Fabric 群集
 description: 了解如何使用 Azure CLI 将 Linux Service Fabric 群集部署到现有 Azure 虚拟网络。
 ms.topic: conceptual
 origin.date: 02/14/2019
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 06/08/2020
+ms.testdate: ''
 ms.author: v-yeche
 ms.custom: mvc
-ms.openlocfilehash: 2b88be75e9da52c4aa40a87837ebafe5853a3a58
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 4d7c1f4596dda8f82d64d5f4e55ee8cb3dadd352
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426423"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655055"
 ---
 # <a name="deploy-a-linux-service-fabric-cluster-into-an-azure-virtual-network"></a>将 Linux Service Fabric 群集部署到 Azure 虚拟网络
 
@@ -45,7 +46,12 @@ ms.locfileid: "87426423"
 * [AzureDeploy.json][template2]
 * [AzureDeploy.Parameters.json][parameters2]
 
-这两个模板之间的区别在于“vmImageSku”属性设置为“18.04-LTS”，每个节点的“typeHandlerVersion”设置为 1.1 。
+对于 Ubuntu 18.04 LTS，这两个模板之间的区别在于 
+* vmImageSku 特性设置为“18.04-LTS”
+* 每个节点的 typeHandlerVersion 设置为 1.1
+* Microsoft.ServiceFabric/clusters 资源的
+   - **apiVersion** 设置为“2019-03-01”或更高版本
+   - **vmImage** 属性设置为“Ubuntu18_04”
 
 <!--MOONCAKE: CUSTOMIZE-->
 
@@ -184,7 +190,7 @@ sfctl cluster health
 
 ## <a name="clean-up-resources"></a>清理资源
 
-如果不立即转到下一篇文章，可能需要[删除该群集](service-fabric-cluster-delete.md)，以避免产生费用。
+如果不立即转到下一篇文章，可能需要[删除该群集](./service-fabric-tutorial-delete-cluster.md)，以避免产生费用。
 
 ## <a name="next-steps"></a>后续步骤
 

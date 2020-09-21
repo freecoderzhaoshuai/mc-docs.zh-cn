@@ -1,19 +1,21 @@
 ---
-title: 使用 Azure Site Recovery 为多层 Citrix XenDesktop 和 XenApp 部署设置灾难恢复 | Azure
+title: 使用 Azure Site Recovery 设置 Citrix XenDesktop/XenApp 灾难恢复
 description: 本文介绍了如何使用 Azure Site Recovery 为 Citrix XenDesktop 和 XenApp 部署设置灾难恢复。
-author: rockboyfor
-manager: digimobile
+manager: abhemraj
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 11/27/2018
-ms.date: 01/21/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: d1f425c14efb024105717d98800bbe6fe0b99d24
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 97285d339934d75d670ebf523499cb1a5b1faee2
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "72519392"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89654997"
 ---
 # <a name="set-up-disaster-recovery-for-a-multi-tier-citrix-xenapp-and-xendesktop-deployment"></a>为多层 Citrix XenApp 和 XenDesktop 部署设置灾难恢复
 
@@ -28,8 +30,8 @@ Citrix XenApp 暂不提供任何灾难恢复功能。
 
 在开始之前，请确保了解以下知识：
 
-1. [将虚拟机复制到 Azure](site-recovery-vmware-to-azure.md)
-1. 如何[设计恢复网络](site-recovery-network-design.md)
+1. [将虚拟机复制到 Azure](./vmware-azure-tutorial.md)
+1. 如何[设计恢复网络](./concepts-on-premises-to-azure-networking.md)
 1. [执行到 Azure 的测试故障转移](site-recovery-test-failover-to-azure.md)
 1. [执行到 Azure 的故障转移](site-recovery-failover.md)
 1. 如何[复制域控制器](site-recovery-active-directory.md)
@@ -43,7 +45,7 @@ Citrix XenApp 和 XenDesktop 场通常具有以下部署模式：
 
 包含 AD DNS 服务器、SQL 数据库服务器、Citrix 传递控制器、StoreFront 服务器、XenApp Master (VDA) 和 Citrix XenApp 许可证服务器的 Citrix XenApp 和 XenDesktop 部署
 
-![部署模式 1](./media/site-recovery-citrix-xenapp-and-xendesktop/citrix-deployment.png)
+:::image type="content" source="./media/site-recovery-citrix-xenapp-and-xendesktop/citrix-deployment.png" alt-text="部署模式 1":::
 
 ## <a name="site-recovery-support"></a>Site Recovery 支持
 
@@ -93,9 +95,9 @@ Citrix XenApp 和 XenDesktop 场通常具有以下部署模式：
 
 有关用于保护 SQL 服务器的推荐选项的详细技术指南，请参阅[使用 SQL Server 灾难恢复和 Azure Site Recovery 来保护 SQL Server](site-recovery-sql.md)。
 
-遵循[此指南](site-recovery-vmware-to-azure.md)，开始将其他组件虚拟机复制到 Azure。
+遵循[此指南](./vmware-azure-tutorial.md)，开始将其他组件虚拟机复制到 Azure。
 
-![保护 XenApp 组件](./media/site-recovery-citrix-xenapp-and-xendesktop/citrix-enablereplication.png)
+:::image type="content" source="./media/site-recovery-citrix-xenapp-and-xendesktop/citrix-enablereplication.png" alt-text="保护 XenApp 组件":::
 
 **“计算和网络”设置**
 
@@ -167,7 +169,7 @@ Citrix XenApp 和 XenDesktop 场通常具有以下部署模式：
 
     主站点上现有的 MCS 或 PVS 克隆不会复制到 Azure。 你需要使用从交付控制器复制的主 VDA 和 Azure 预配重新创建这些克隆。 根据此[文章](https://www.citrix.com/blogs/2016/09/12/using-xenapp-xendesktop-in-azure-resource-manager/)中介绍的步骤在 Azure 中创建 MCS 目录。
 
-    ![XenApp 组件的恢复计划](./media/site-recovery-citrix-xenapp-and-xendesktop/citrix-recoveryplan.png)
+    :::image type="content" source="./media/site-recovery-citrix-xenapp-and-xendesktop/citrix-recoveryplan.png" alt-text="XenApp 组件的恢复计划":::
 
     >[!NOTE]
     >可以使用[此处](https://github.com/Azure/azure-quickstart-templates/tree/master/asr-automation-recovery/scripts)的脚本，根据需要使用已故障转移虚拟机的新 IP 更新 DNS 或在已故障转移虚拟机上附加负载均衡器。
@@ -176,7 +178,7 @@ Citrix XenApp 和 XenDesktop 场通常具有以下部署模式：
 
 遵循[此指南](site-recovery-test-failover-to-azure.md)执行测试故障转移。
 
-![恢复计划](./media/site-recovery-citrix-xenapp-and-xendesktop/citrix-tfo.png)
+:::image type="content" source="./media/site-recovery-citrix-xenapp-and-xendesktop/citrix-tfo.png" alt-text="恢复计划":::
 
 ## <a name="doing-a-failover"></a>执行故障转移
 
@@ -186,4 +188,4 @@ Citrix XenApp 和 XenDesktop 场通常具有以下部署模式：
 
 可以从本白皮书中[详细了解](https://aka.ms/citrix-xenapp-xendesktop-with-asr)如何复制 Citrix XenApp 和 XenDesktop 部署。 请查看相关指南，使用 Site Recovery [复制其他应用程序](site-recovery-workload.md)。
 
-<!-- Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

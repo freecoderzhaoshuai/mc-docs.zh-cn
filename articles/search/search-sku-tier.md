@@ -7,14 +7,14 @@ author: HeidiSteen
 ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
-origin.date: 03/30/2020
-ms.date: 07/02/2020
-ms.openlocfilehash: 16e5c514204d3ef76d10c21d68581c6ace37282a
-ms.sourcegitcommit: 5afd7c4c3be9b80c4c67ec55f66fcf347aad74c6
+origin.date: 07/14/2020
+ms.date: 09/10/2020
+ms.openlocfilehash: 6fcc024f36c8dd654b21af307ae96720c9560d2a
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85942579"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021563"
 ---
 # <a name="choose-a-pricing-tier-for-azure-cognitive-search"></a>选择 Azure 认知搜索的定价层
 
@@ -24,14 +24,16 @@ ms.locfileid: "85942579"
 
 ## <a name="feature-availability-by-tier"></a>按层划分的功能可用性
 
-几乎每个功能都可在每个层（包括免费层）上使用，但如果不为其提供足够的容量，则资源密集型功能或工作流可能无法正常工作。 例如，[AI 扩充](cognitive-search-concept-intro.md)包含长时间运行的技能，除非数据集较小，否则这些技能在免费服务中会超时。
-
 下表描述了与层相关的功能约束。
 
 | 功能 | 限制 |
 |---------|-------------|
 | [索引器](search-indexer-overview.md) | 索引器在 S3 HD 上不可用。 |
+| [AI 扩充](search-security-manage-encryption-keys.md) | 在免费层上运行，但不建议这样做。 |
 | [客户托管的加密密钥](search-security-manage-encryption-keys.md) | 在免费层上不可用。 |
+| [IP 防火墙访问](service-configure-firewall.md) | 在免费层上不可用。 |
+
+大多数功能都可在每个层（包括免费层）上使用，但如果不为其提供足够的容量，则资源密集型功能可能无法正常工作。 例如，[AI 扩充](cognitive-search-concept-intro.md)包含长时间运行的技能，除非数据集较小，否则这些技能在免费服务中会超时。
 
 ## <a name="tiers-skus"></a>层 (SKU)
 
@@ -58,10 +60,20 @@ ms.locfileid: "85942579"
 
 基于 Azure 认知搜索构建的解决方案可能会在以下方面产生成本：
 
-+ 在全天候运行且使用最低配置（一个分区和副本）的情况下，服务本身产生的固定成本
-+ 纵向扩展时的增量成本（添加副本或分区）
-+ 带宽费用（出站数据传输） 
-+ 认知搜索（附加认知服务进行 AI 扩充，或者使用 Azure 存储来存储知识）
++ 在全天候运行且使用最低配置（一个分区和副本）的情况下，服务本身产生的成本
+
++ 添加容量（副本或分区）
+
++ 带宽费用（出站数据传输）
+
++ 特定功能或特性所需的附加服务：
+
+  + AI 扩充（需要[认知服务](https://www.azure.cn/pricing/details/cognitive-services/)）
+  + 知识存储（需要 [Azure 存储](https://www.azure.cn/pricing/details/storage/)）
+  + 增量扩充（需要 [Azure 存储](https://www.azure.cn/pricing/details/storage/)，适用于 AI 扩充）
+  + 客户管理的密钥和双加密（需要 [Azure Key Vault](https://www.azure.cn/pricing/details/key-vault/)）
+
+<!--   + private endpoints for a no-internet access model (requires [Azure Private Link](https://azure.microsoft.com/pricing/details/private-link/)) -->
 
 ### <a name="service-costs"></a>服务成本
 
@@ -73,7 +85,7 @@ ms.locfileid: "85942579"
 
 ### <a name="bandwidth-charges"></a>带宽费用
 
-使用 [Azure 认知搜索索引器](search-indexer-overview.md)可能会影响计费，具体取决于服务的位置。 如果在数据所在的同一区域中创建 Azure 认知搜索服务，则可以完全消除数据流出费用。 下面是摘自[带宽定价页](https://www.azure.cn/pricing/details/bandwidth/)中的一些信息：
+使用[索引器](search-indexer-overview.md)可能会影响计费，具体取决于服务的位置。 如果在数据所在的同一区域中创建 Azure 认知搜索服务，则可以完全消除数据流出费用。 下面是摘自[带宽定价页](https://www.azure.cn/pricing/details/bandwidth/)中的一些信息：
 
 + Microsoft 不会对入站到 Azure 上的任何服务的任何数据收费，也不会对 Azure 认知搜索的任何出站数据收费。
 + 在多服务解决方案中，如果所有服务位于同一个区域，将不会对通过网络传输的数据收费。
@@ -109,7 +121,7 @@ SU 是服务使用的副本数和分区数的乘积：  **(R x P = SU)** 。
 
 ## <a name="how-to-manage-costs"></a>如何管理成本
 
-以下建议可帮助你至少保持成本：
+以下建议有助于降低成本或提高成本管理效率：
 
 + 在同一区域或者在尽可能少的区域中创建所有资源，以最大程度地减少甚至消除带宽费用。
 
@@ -119,7 +131,7 @@ SU 是服务使用的副本数和分区数的乘积：  **(R x P = SU)** 。
 
 + 针对索引编制等资源密集型操作纵向扩展，然后针对常规查询工作负荷向下重新调整。 首先对 Azure 认知搜索使用最低的配置（由一个分区和一个副本组成的一个 SU），然后监视用户活动，以识别指示需要更多容量的使用模式。 如果有可预测的模式，也许可以使用活动来同步规模（需要编写代码来自动化此过程）。
 
-此外，请访问[计费和成本管理](https://docs.azure.cn/billing/billing-getting-started)获取与支出相关的内置工具和功能。
+<!-- Additionally, visit [Billing and cost management](../cost-management-billing/manage/getting-started.md) for built-in tools and features related to spending. -->
 
 不可能临时关闭搜索服务。 专用资源始终运行，是在服务的生存期内专门分配给你使用的。 删除服务这项操作是永久性的，也会删除其关联的数据。
 
@@ -142,7 +154,7 @@ SU 是服务使用的副本数和分区数的乘积：  **(R x P = SU)** 。
 
 业务需求通常决定了所需的索引数。 例如，你可能需要对一个较大的文档存储库使用全局索引。 或者，你可能需要多个基于区域、应用或商业利基的索引。
 
-若要确定索引大小，必须[生成一个索引](search-create-index-portal.md)。 其大小将基于导入的数据和索引配置，例如是否启用建议器、筛选和排序。 有关配置对大小的影响的详细信息，请参阅[创建基本索引](search-what-is-an-index.md)。
+若要确定索引大小，必须[生成一个索引](search-what-is-an-index.md)。 其大小将基于导入的数据和索引配置，例如是否启用建议器、筛选和排序。
 
 进行全文搜索时，主要数据结构是倒排索引结构，该结构具有与源数据不同的特征。 对于倒排索引，大小和复杂度由内容决定，不一定是输入的数据量。 具有高度冗余的大型数据源可能会导致比包含高度可变内容的较小数据集更小的索引。 因此，很难根据原始数据集的大小来推断索引大小。
 
@@ -156,7 +168,7 @@ SU 是服务使用的副本数和分区数的乘积：  **(R x P = SU)** 。
 
 + [创建免费服务](search-create-service-portal.md)。
 + 准备一个小型的有代表性的数据集。
-+ [在门户中生成初始索引](search-create-index-portal.md)并记下其大小。 功能和属性会影响存储。 例如，添加建议器（“边键入边搜索”查询）会提高存储要求。 可以使用同一个数据集尝试创建索引的多个版本，并在每个字段中使用不同的属性，以了解存储要求的变化。 有关详细信息，请参阅[“创建基本索引”中的“存储影响”](search-what-is-an-index.md#index-size)。
++ [在门户中生成初始索引](search-get-started-portal.md)并记下其大小。 功能和属性会影响存储。 例如，添加建议器（“边键入边搜索”查询）会提高存储要求。 可以使用同一个数据集尝试创建索引的多个版本，并在每个字段中使用不同的属性，以了解存储要求的变化。 有关详细信息，请参阅[“创建基本索引”中的“存储影响”](search-what-is-an-index.md#index-size)。
 
 估算出粗略的数字后，可将此数量增大一倍来得出两个索引（开发和生产）的预算，然后相应地选择层。
 
@@ -164,7 +176,7 @@ SU 是服务使用的副本数和分区数的乘积：  **(R x P = SU)** 。
 
 专用资源可以适应更大的采样和处理时间，并可以在开发期间对索引数量、大小和查询量进行更贴近实际的估算。 某些客户会直接选择计费层，然后在开发项目成熟后重新进行评估。
 
-1. [检查每个层级的服务限制](https://docs.azure.cn/search/search-limits-quotas-capacity#index-limits)以确定较低层级是否可以支持需要的索引数量。 在“基本”、“S1”和“S2”层中，索引数限制分别为 15、50 和 200。 “存储优化”层的索引数限制为 10 个，因为它旨在支持少量的极大型索引。
+1. [检查每个层级的服务限制](./search-limits-quotas-capacity.md#index-limits)以确定较低层级是否可以支持需要的索引数量。 在“基本”、“S1”和“S2”层中，索引数限制分别为 15、50 和 200。 “存储优化”层的索引数限制为 10 个，因为它旨在支持少量的极大型索引。
 
 1. [在可计费层中创建服务](search-create-service-portal.md)：
 
@@ -172,7 +184,7 @@ SU 是服务使用的副本数和分区数的乘积：  **(R x P = SU)** 。
     + 如果你知道会出现较大的索引和查询负载，请从较高的“S2”甚至“S3”层着手。
     + 如果你要为大量的数据编制索引并且查询负载相对较低（例如，使用与内部商务应用程序时），请从“优化存储”层 L1 或 L2 着手。
 
-1. [生成初始索引](search-create-index-portal.md)以确定将源数据转换为索引的方式。 这是估计索引大小的唯一方法。
+1. [生成初始索引](search-what-is-an-index.md)以确定将源数据转换为索引的方式。 这是估计索引大小的唯一方法。
 
 1. 在门户中[监视存储、服务限制、查询量和延迟](search-monitor-usage.md)。 门户会显示每秒查询数、限制的查询数和搜索延迟。 所有这些值可帮助你确定是否选择了合适的层。 
 

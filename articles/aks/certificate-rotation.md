@@ -4,16 +4,17 @@ description: 了解如何轮换 Azure Kubernetes 服务 (AKS) 群集中的证书
 services: container-service
 ms.topic: article
 origin.date: 11/15/2019
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
-ms.openlocfilehash: aa23d06abb26d402d7da642c4cee93c8662895fa
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 39fc3914d96c83fa36e2b363bc5bdf2cbbb7507d
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842587"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020857"
 ---
 <!--CONFIRME WITH DONG LIU SUCCESSFULLY-->
 <!--NEW FEATURES HAS BEEN RELEASED ON AZURE CHINA CLOUD-->
@@ -43,7 +44,7 @@ AKS 生成并使用以下证书、证书颁发机构和服务帐户：
 > [!NOTE]
 > 对于 2019 年 3 月之前创建的 AKS 群集，其证书将在两年后到期。 任何在 2019 年 3 月之后创建的群集或其证书已轮换的群集都具有 30 年后过期的群集 CA 证书。 其他所有证书均两年后过期。 若要验证群集的创建时间，请使用 `kubectl get nodes` 查看节点池的*存在时间*。
 > 
-> 此外，还可以检查群集证书的到期日期。 例如，以下命令会显示 *myAKSCluster* 群集的证书详细信息。
+> 此外，还可以检查群集证书的到期日期。 例如，以下 Bash 命令会显示 myAKSCluster 群集的证书详细信息。
 > ```console
 > kubectl config view --raw -o jsonpath="{.clusters[?(@.name == 'myAKSCluster')].cluster.certificate-authority-data}" | base64 -d | openssl x509 -text | grep -A2 Validity
 > ```
@@ -94,10 +95,10 @@ kubectl get no
 
 本文介绍了如何自动轮换群集的证书、CA 和 SA。 有关 AKS 安全最佳做法的详细信息，请参阅[有关 Azure Kubernetes 服务 (AKS) 中的群集安全性和升级的最佳做法][aks-best-practices-security-upgrades]。
 
-[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
-[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-get-credentials
-[az-extension-add]: https://docs.azure.cn/cli/extension?view=azure-cli-latest#az-extension-add
-[az-extension-update]: https://docs.azure.cn/cli/extension?view=azure-cli-latest#az-extension-update
+[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli
+[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks#az_aks_get_credentials
+[az-extension-add]: https://docs.azure.cn/cli/extension#az-extension-add
+[az-extension-update]: https://docs.azure.cn/cli/extension#az-extension-update
 [aks-best-practices-security-upgrades]: operator-best-practices-cluster-security.md
 
 <!--Not Available on [dev-spaces]: /dev-spaces/-->

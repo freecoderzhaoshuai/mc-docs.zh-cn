@@ -1,23 +1,23 @@
 ---
 title: 对故障转移到 Azure 的故障进行排除 | Azure
 description: 本指南介绍如何解决在故障转移到 Azure 中的常见错误
-author: rockboyfor
-manager: digimobile
+manager: abhemraj
 ms.service: site-recovery
 services: site-recovery
 ms.topic: article
 ms.workload: storage-backup-recovery
 origin.date: 01/08/2020
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 06/08/2020
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: af2035c0c81629dad44df91acdea1c83370ba6ac
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: fafcda42c1f2c3e54d924d364e0c82061c73db95
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426532"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655426"
 ---
 # <a name="troubleshoot-errors-when-failing-over-vmware-vm-or-physical-machine-to-azure"></a>解决将 VMware VM 或物理计算机故障转移到 Azure 时出现的错误
 
@@ -56,8 +56,8 @@ Site Recovery 无法在 Azure 中创建故障转移的虚拟机。 发生此情�
     `.\Script-no-hydration.ps1`
 
     如果需要混合，则它提供以下结果：
-    
-    ```
+
+    ```output
     REGISTRY::HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\services\storvsc           start =  3 expected value =  0
 
     This system doesn't meet no-hydration requirement.
@@ -70,30 +70,34 @@ Site Recovery 无法在 Azure 中创建故障转移的虚拟机。 发生此情�
     `.\Script-no-hydration.ps1 -set`
 
     这将转换驱动程序的启动类型并提供如下所示的结果：
-    
-    ```
-    REGISTRY::HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\services\storvsc           start =  3 expected value =  0 
 
-    Updating registry:  REGISTRY::HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\services\storvsc   start =  0 
+    ```output
+    REGISTRY::HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\services\storvsc           start =  3 expected value =  0
+
+    Updating registry:  REGISTRY::HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\services\storvsc   start =  0
 
     This system is now no-hydration compatible.
-    ``` 
+    ```
 
 ## <a name="unable-to-connectrdpssh-to-the-failed-over-virtual-machine-due-to-grayed-out-connect-button-on-the-virtual-machine"></a>由于虚拟机上的“连接”按钮已灰显，无法连接/通过 RDP/SSH 连接到已故障转移的虚拟机
 
+有关 RDP 问题的详细故障排除说明，请参阅[此处](../virtual-machines/troubleshooting/troubleshoot-rdp-connection.md)的文档。
+
+有关 SSH 问题的详细故障排除说明，请参阅[此处](../virtual-machines/troubleshooting/troubleshoot-ssh-connection.md)的文档。
+
 如果 Azure 中已故障转移的 VM 的“连接”按钮灰显，并且你未通过快速路由或站点到站点 VPN 连接来连接到 Azure，则执行以下操作：
 
-1. 转到“虚拟机” > “网络”，单击所需网络接口的名称。  ![network-interface](media/site-recovery-failover-to-azure-troubleshoot/network-interface.PNG)
-2. 导航到“IP 配置”，然后单击所需 IP 配置的名称字段。 ![IPConfigurations](media/site-recovery-failover-to-azure-troubleshoot/IpConfigurations.png)
-3. 若要启用公共 IP 地址，请单击“启用”。 ![启用 IP](media/site-recovery-failover-to-azure-troubleshoot/Enable-Public-IP.png)
-4. 单击“配置所需设置” > “新建”。 ![新建](media/site-recovery-failover-to-azure-troubleshoot/Create-New-Public-IP.png)
+1. 转到“虚拟机” > “网络”，单击所需网络接口的名称。  :::image type="content" source="media/site-recovery-failover-to-azure-troubleshoot/network-interface.PNG" alt-text="network-interface":::
+2. 导航到“IP 配置”，然后单击所需 IP 配置的名称字段。 :::image type="content" source="media/site-recovery-failover-to-azure-troubleshoot/IpConfigurations.png" alt-text="IPConfigurations":::
+3. 若要启用公共 IP 地址，请单击“启用”。 :::image type="content" source="media/site-recovery-failover-to-azure-troubleshoot/Enable-Public-IP.png" alt-text="启用 IP":::
+4. 单击“配置所需设置” > “新建”。 :::image type="content" source="media/site-recovery-failover-to-azure-troubleshoot/Create-New-Public-IP.png" alt-text="新建":::
 5. 输入公共地址的名称，选择“SKU”和“分配”的默认选项，然后单击“确定”。
 6. 现在，单击“保存”以保存所做的更改。
 7. 关闭面板并导航到虚拟机的“概述”部分以进行连接/通过 RDP 连接。
 
 ## <a name="unable-to-connectrdpssh---vm-connect-button-available"></a>无法连接/RDP/SSH - VM 的“连接”按钮可用
 
-如果 Azure 中已故障转移的 VM 的“连接”按钮可用（未灰显），则请检查虚拟机上的“启动诊断”，查看是否有[此文](../virtual-machines/windows/boot-diagnostics.md)中所列的错误。 
+如果 Azure 中已故障转移的 VM 的“连接”按钮可用（未灰显），则请检查虚拟机上的“启动诊断”，查看是否有[此文](../virtual-machines/troubleshooting/boot-diagnostics.md)中所列的错误。 
 
 1. 如果虚拟机尚未启动，请尝试故障转移到以前的恢复点。
 2. 如果虚拟机中的应用程序未启动，请尝试故障转移到应用一致的恢复点。
@@ -147,15 +151,11 @@ RegisterHostStaticInfo encountered exception config/talwrapper.cpp(107)[post] Cu
 
 若要解决问题，请执行以下操作：
 
-1. 在配置服务器 VM 上打开命令提示符，使用以下命令验证代理设置：
-    
-    ```
-    cat /etc/environment 
-    echo $http_proxy 
-    echo $https_proxy
-    ```
+1. 在配置服务器 VM 上，打开命令提示符并使用以下命令验证代理设置：
 
-2. 如果上述命令的输出表明 http_proxy 或 https_proxy 设置已定义，请使用下述方法之一来取消阻止主目标与配置服务器的通信：
+    cat /etc/environment  echo $http_proxy  echo $https_proxy 
+
+2. 如果前面命令的输出显示已定义 http_proxy 或 https_proxy 设置，请使用以下方法之一取消阻止主目标与配置服务器之间的通信：
 
     - 下载 [PsExec 工具](https://aka.ms/PsExec)。
     - 使用该工具访问系统用户上下文并确定是否配置了代理地址。 
@@ -170,8 +170,8 @@ RegisterHostStaticInfo encountered exception config/talwrapper.cpp(107)[post] Cu
         - 禁用主目标服务器上的代理。 
 
 ## <a name="next-steps"></a>后续步骤
-- 排查[通过 RDP 连接到 Windows VM](../virtual-machines/windows/troubleshoot-rdp-connection.md) 的问题
-- 排查[通过 SSH 连接到 Linux VM](../virtual-machines/linux/detailed-troubleshoot-ssh-connection.md) 的问题
+- 排查[通过 RDP 连接到 Windows VM](../virtual-machines/troubleshooting/troubleshoot-rdp-connection.md) 的问题
+- 排查[通过 SSH 连接到 Linux VM](../virtual-machines/troubleshooting/detailed-troubleshoot-ssh-connection.md) 的问题
 
 如需更多帮助，请在[有关 Site Recovery 的 Microsoft Q&A 问题页面](https://docs.microsoft.com/answers/topics/azure-site-recovery.html)上发布查询。 我们的活动社区应能够为你提供帮助。
 

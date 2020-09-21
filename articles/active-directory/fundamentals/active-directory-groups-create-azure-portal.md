@@ -2,23 +2,23 @@
 title: 创建基本组并添成员 - Azure Active Directory | Microsoft Docs
 description: 介绍如何使用 Azure Active Directory 创建基本组。
 services: active-directory
-author: msaburnley
+author: ajburnle
 manager: daveba
 ms.service: active-directory
 ms.workload: identity
 ms.subservice: fundamentals
 ms.topic: how-to
-ms.date: 07/09/2020
+ms.date: 09/08/2020
 ms.author: v-junlch
 ms.reviewer: krbain
 ms.custom: it-pro, seodec18, contperfq4
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 6f5b89f0fb17cac44fd17e4cd5488d84985c7bdf
-ms.sourcegitcommit: 92b9b1387314b60661f5f62db4451c9ff2c49500
+ms.openlocfilehash: 1305ed03a7c1b535ec1d41736391ee782f230f19
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86164896"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593819"
 ---
 # <a name="create-a-basic-group-and-add-members-using-azure-active-directory"></a>使用 Azure Active Directory 创建基本组并添成员
 可以使用 Azure Active Directory (Azure AD) 门户创建基本组。 对于本文而言，将由资源所有者（管理员）向单个资源中添加一个基本组，该组中将包括需要访问该资源的特定成员（员工）。 有关更复杂的方案（包括动态成员身份和规则创建），请参阅 [Azure Active Directory 用户管理文档](../users-groups-roles/index.yml)。
@@ -28,7 +28,7 @@ ms.locfileid: "86164896"
 
 ### <a name="group-types"></a>组类型：
 - **安全性**。 用来为一组用户管理成员和计算机对共享资源的访问权限。 例如，你可以创建一个安全组来实施特定的安全策略。 这样，你可以一次向所有成员授予一组权限，而不需要分别为每个成员添加权限。 安全组可以将用户、设备、组和服务主体作为其成员，而将用户和服务主体作为其所有者。 有关管理对资源的访问权限的详细信息，请参阅[使用 Azure Active Directory 组管理对资源的访问权限](active-directory-manage-groups.md)。
-- **Office 365**。 通过向成员授予对共享邮箱、日历、文件、SharePoint 站点和其他内容的访问权限，提供了协作机会。 此选项还允许向组织外部的人授予对该组的访问权限。 Office 365 组只能将用户作为其成员。 用户和服务主体都可以是 Office 365 组的所有者。 有关 Office 365 组的详细信息，请参阅[了解 Office 365 组](https://support.office.com/article/learn-about-office-365-groups-b565caa1-5c40-40ef-9915-60fdb2d97fa2)。
+- **Microsoft 365**。 通过向成员授予对共享邮箱、日历、文件、SharePoint 站点和其他内容的访问权限，提供了协作机会。 此选项还允许向组织外部的人授予对该组的访问权限。 Microsoft 365 组只能将用户作为其成员。 用户和服务主体都可以是 Microsoft 365 组的所有者。 有关 Office 365 组的详细信息，请参阅[了解 Microsoft 365 组](https://support.office.com/article/learn-about-office-365-groups-b565caa1-5c40-40ef-9915-60fdb2d97fa2)。
 
 ### <a name="membership-types"></a>成员身份类型：
 - **已分配。** 允许将特定用户添加为该组的成员并获得独特权限。 对于本文，我们将使用此选项。
@@ -72,7 +72,7 @@ ms.locfileid: "86164896"
 
 ## <a name="turn-on-or-off-group-welcome-email"></a>打开或关闭组欢迎电子邮件
 
-创建任何新的 Office 365 组时，会向添加到该组的所有用户发送欢迎通知。 
+创建任何新的 Microsoft 365 组时，会向添加到该组的所有用户发送欢迎通知。 
 
 ## <a name="next-steps"></a>后续步骤
 

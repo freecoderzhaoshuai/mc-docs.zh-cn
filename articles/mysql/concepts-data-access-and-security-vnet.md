@@ -6,13 +6,13 @@ ms.author: v-jay
 ms.service: mysql
 ms.topic: conceptual
 origin.date: 7/17/2020
-ms.date: 08/10/2020
-ms.openlocfilehash: cb4264b2af7f52e151a3eaa2eb3d1ba2e3582748
-ms.sourcegitcommit: 3cf647177c22b24f76236c57cae19482ead6a283
+ms.date: 09/14/2020
+ms.openlocfilehash: d53303b42bf08e6765c6379a9dda1258768ad351
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88029608"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512948"
 ---
 # <a name="use-virtual-network-service-endpoints-and-rules-for-azure-database-for-mysql"></a>对 Azure Database for MySQL 使用虚拟网络服务终结点和规则
 
@@ -88,7 +88,7 @@ RBAC 备用：
 
 网络管理员和数据库管理员角色的权限超出虚拟网络规则的管理需要， 只有部分权限是必需的。
 
-可以选择在 Azure 中使用[基于角色的访问控制 (RBAC)][rbac-what-is-813s]，创建一个只有部分必需权限的自定义角色。 在涉及到网络管理员或数据库管理员时，可以使用自定义角色来代替。与向两个主要的管理员角色添加用户相比，向自定义角色添加用户的安全风险较低。
+可以选择在 Azure 中使用[基于 Azure 角色的访问控制 (Azure RBAC)][rbac-what-is-813s]，创建一个只有部分必需权限的自定义角色。 在涉及到网络管理员或数据库管理员时，可以使用自定义角色来代替。与向两个主要的管理员角色添加用户相比，向自定义角色添加用户的安全风险较低。
 
 > [!NOTE]
 > 在某些情况下，Azure Database for MySQL 和 VNet 子网位于不同的订阅中。 在这些情况下，必须确保以下配置：

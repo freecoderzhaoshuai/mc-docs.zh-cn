@@ -4,16 +4,16 @@ description: 了解如何通过添加节点类型来缩放 Service Fabric 群集
 ms.topic: article
 origin.date: 08/06/2020
 author: rockboyfor
-ms.date: 08/31/2020
+ms.date: 09/14/2020
 ms.testscope: yes
-ms.testdate: 08/31/2020
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: 768d761a3754835735ee40fa72d35d202ed1f751
-ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
+ms.openlocfilehash: c1b244ec61f4375c6f18f4af064a9964594cc371
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89046543"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655250"
 ---
 <!--Verify successfully partial-->
 <!--The failed section due to quota limit-->
@@ -38,44 +38,55 @@ ms.locfileid: "89046543"
 ### <a name="deploy-the-initial-service-fabric-cluster"></a>部署初始 Service Fabric 群集 
 如果你想要按照示例进行操作，请部署包含单个主节点类型和单个规模集的初始群集：[Service Fabric - 初始群集](https://github.com/Azure-Samples/service-fabric-cluster-templates/blob/master/Primary-NodeType-Scaling-Sample/AzureDeploy-1.json)。 如果你有已部署的现有 Service Fabric 群集，则可以跳过此步骤。 
 
-1. 登录到 Azure 帐户。 
-```powershell
-# sign in to your Azure account and select your subscription
-Connect-AzAccount -Environment AzureChinaCloud -SubscriptionId "<your subscription ID>"
-```
-2. 创建新的资源组。 
-```powershell
-# create a resource group for your cluster deployment
-$resourceGroupName = "myResourceGroup"
-$location = "ChinaNorth"
+>  [!NOTE]
+> 必须修改从 GitHub 存储库“Azure-Sample”下载或引用的模板，使之适应 Azure 中国云环境。
+>例如，替换某些终结点（将“blob.core.windows.net”替换为“blob.core.chinacloudapi.cn”，将“cloudapp.azure.com”替换为“cloudapp.chinacloudapi.cn”）；必要时更改某些不受支持的位置、VM 映像、VM 大小、SKU 以及资源提供程序的 API 版本。
+>
 
-New-AzResourceGroup `
-    -Name $resourceGroupName
-    -Location $location
-```
+1. 登录到 Azure 帐户。 
+
+    ```powershell
+    # sign in to your Azure account and select your subscription
+    Connect-AzAccount -Environment AzureChinaCloud -SubscriptionId "<your subscription ID>"
+    ```
+    
+2. 创建新的资源组。 
+
+    ```powershell
+    # create a resource group for your cluster deployment
+    $resourceGroupName = "myResourceGroup"
+    $location = "ChinaNorth"
+
+    New-AzResourceGroup `
+        -Name $resourceGroupName `
+        -Location $location
+    ```
 3. 填写模板文件中的参数值。 
 4. 将群集部署到在步骤 2 中创建的资源组。 
-```powershell
-# deploy the template files to the resource group created above
-$templateFilePath = "C:\AzureDeploy-1.json"
-$parameterFilePath = "C:\AzureDeploy.Parameters.json"
 
-New-AzResourceGroupDeployment `
-    -ResourceGroupName $resourceGroupName `
-    -TemplateFile $templateFilePath `
-    -TemplateParameterFile $parameterFilePath `
-```
+    ```powershell
+    # deploy the template files to the resource group created above
+    $templateFilePath = "C:\AzureDeploy-1.json"
+    $parameterFilePath = "C:\AzureDeploy.Parameters.json"
+
+    New-AzResourceGroupDeployment `
+        -ResourceGroupName $resourceGroupName `
+        -TemplateFile $templateFilePath `
+        -TemplateParameterFile $parameterFilePath
+    ```
 
 <!--Verified the above cmdlet successfully-->
 <!--Verifed the below cmdlet failed due to Quota limit-->
 
 ### <a name="add-a-new-primary-node-type-to-the-cluster"></a>向群集添加新的主节点类型
+
 > [!Note]
 > 缩放操作完成后，以下步骤中创建的资源将成为群集中新的主节点类型。 请确保为初始子网、公共 IP、负载均衡器、虚拟机规模集和节点类型使用唯一的名称。 
 
 可在以下位置找到包含以下所有步骤的模板：[Service Fabric - 新节点类型群集](https://github.com/Azure-Samples/service-fabric-cluster-templates/blob/master/Primary-NodeType-Scaling-Sample/AzureDeploy-2.json)。 以下步骤包含部分资源代码片段，其中突出显示了新资源中的更改。  
 
 1. 在现有虚拟网络中创建新的子网。
+
     ```json
     {
         "name": "[variables('subnet1Name')]",
@@ -84,7 +95,9 @@ New-AzResourceGroupDeployment `
         }
     }
     ```
+    
 2. 创建具有唯一 domainNameLabel 的新的公共 IP 资源。 
+
     ```json
     {
         "apiVersion": "[variables('publicIPApiVersion')]",
@@ -103,12 +116,15 @@ New-AzResourceGroupDeployment `
         }
     }
     ```
+    
 3. 创建依赖于上面创建的公共 IP 的新负载均衡器资源。 
+
     ```json
     "dependsOn": [
         "[concat('Microsoft.Network/publicIPAddresses/',concat(variables('lbIPName'),'-',variables('vmNodeType1Name')))]"
     ]
     ```
+    
 4. 创建一个新的虚拟机规模集，该规模集使用新的 VM SKU 以及你要纵向扩展到的 OS SKU。 
 
     节点类型引用 
@@ -135,6 +151,7 @@ New-AzResourceGroupDeployment `
     }
     ```
 5. 向群集添加新的节点类型，该类型引用前面创建的虚拟机规模集。 此节点类型上的 **isPrimary** 属性应当设置为 true。 
+    
     ```json
     "name": "[variables('vmNodeType1Name')]",
     "applicationPorts": {
@@ -202,7 +219,7 @@ New-AzResourceGroupDeployment `
         -TemplateParameterFile $parameterFilePath `
     ```
 
-    3. 禁用节点类型 0 中的节点。 
+3. 禁用节点类型 0 中的节点。 
     ```powershell
     Connect-ServiceFabricCluster -ConnectionEndpoint $ClusterConnectionEndpoint `
         -KeepAliveIntervalInSec 10 `
@@ -372,5 +389,4 @@ New-AzResourceGroupDeployment `
 * 使用 fluent Azure 计算 SDK [以编程方式缩放 Azure 群集](service-fabric-cluster-programmatic-scaling.md)。
 * [横向扩展或缩减独立群集](service-fabric-cluster-windows-server-add-remove-nodes.md)。
 
-<!-- Update_Description: new article about service fabric scale up primary node type -->
-<!--NEW.date: 08/31/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

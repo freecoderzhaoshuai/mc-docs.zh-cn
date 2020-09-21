@@ -3,15 +3,18 @@ title: Service Fabric 群集中的证书管理
 description: 了解如何在使用 X.509 证书保护的 Service Fabric 群集中管理证书。
 ms.topic: conceptual
 origin.date: 04/10/2020
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: 09/07/2020
 ms.author: v-yeche
 ms.custom: sfrev
-ms.openlocfilehash: 9e924697c4de9ce295fb766558c3f4aa5c04793f
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: d63bfe1e5767c520d08a34603e0221460408b988
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426373"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655551"
 ---
 <!--Verified successfully, ONLY CHARACTERS CONTENT-->
 # <a name="certificate-management-in-service-fabric-clusters"></a>Service Fabric 群集中的证书管理
@@ -26,10 +29,7 @@ ms.locfileid: "87426373"
 * 深入探讨一个示例
 * 故障排除和常见问题解答
 
-不过，首先是一个免责声明：本文尝试将理论与实践相结合，这就要求受众了解服务、技术等方面的细节。 由于受众中有很大一部分是 Microsoft 内部员工，因此我们将提到的服务、技术和产品是特定于 Azure 的。 如果特定于 Microsoft 的细节不适用于你的情况，请在 [Azure 支持](https://support.azure.cn/support/contact/)中提问，以获得详细说明或相关指导。
-
-<!--CORRECT ON [Azure support](https://support.azure.cn/support/contact/)-->
-<!--Not Available on comments section in the page-->
+不过，首先是一个免责声明：本文尝试将理论与实践相结合，这就要求受众了解服务、技术等方面的细节。 由于受众中有很大一部分是 Microsoft 内部员工，因此我们将提到的服务、技术和产品是特定于 Azure 的。 如果特定于 Microsoft 的细节不适用于你的情况，请在评论部分提问，以获得详细说明或相关指导。
 
 ## <a name="defining-certificate-management"></a>定义证书管理
 正如我们在[配套文章](cluster-security-certificates.md)中看到的那样，证书是一个加密对象，它本质上是将某个非对称密钥对与描述它所表示的实体的属性绑定在一起。 但它也是一个“易变质”对象，原因在于它的生存期有限，并且容易泄漏 - 不管是意外泄露还是被攻击者成功利用，都可能会使证书变得毫无用处（从安全角度来看）。 这意味着需要更改证书 - 定期更改或为了响应安全事件而更改。 管理的另一方面（其本身就是一整个主题）是保护证书私钥，或者保护相关机密，这些机密保护那些涉及证书获得和预配过程的实体的标识。 我们将用于获取证书并将其安全地传输到需要证书的位置的流程和过程称为“证书管理”。 某些管理操作（例如注册、策略设置和授权控制）超出了本文的范围。 还有其他一些功能（如预配、续订、重新生成密钥或吊销）只是偶尔与 Service Fabric 相关。尽管如此，我们仍会在此对其进行某种程度的阐述，因为了解这些操作有助于用户正确保护其群集。 
@@ -82,23 +82,22 @@ Service Fabric 自身将承担以下职责：
 ![预配通过所有者公用名称声明的证书][Image2]
 
 ### <a name="certificate-enrollment"></a>证书注册
-有关本主题的详细介绍，请参阅 Key Vault [文档](../key-vault/create-certificate.md)；我们在此提供一个概要是为了保持连续性，并且也方便你参考。 在继续使用 Azure 的情况下，如果使用 Azure Key Vault 作为机密管理服务，则经授权的证书请求者必须至少在保管库上具有由保管库所有者授予的证书管理权限；然后，请求者会注册到证书中，如下所示：
-
-- 在 Azure Key Vault (AKV) 中创建一个证书策略，该策略指定证书的域/所有者、所需颁发者、密钥类型和长度、预期的密钥用法，等等；有关详细信息，请参阅 [Azure Key Vault 中的证书](../key-vault/certificate-scenarios.md)。 
-- 使用上面指定的策略在同一保管库中创建一个证书；该证书接下来会生成一个用作保管库对象的密钥对、一个使用私钥签名的证书签名请求，然后该请求会转发给指定的颁发者进行签名。
-- 颁发者（证书颁发机构）使用签名证书进行答复后，系统会将结果合并到保管库中，然后证书即可用于以下操作：
-    - 在 {vaultUri}/certificates/{name} 下：包含公钥和元数据的证书
-    - 在 {vaultUri}/keys/{name} 下：证书的私钥，可用于加密操作（包装/解包、签名/验证）
-    - 在 {vaultUri}/secrets/{name} 下：包含私钥的证书，可作为不受保护的 pfx 或 pem 文件下载。请回想一下，保管库证书实际上是一系列按时间排序的共享某个策略的证书实例。 证书版本将根据策略的生存期和续订属性创建。 强烈建议不要让保管库证书共享使用者或域/DNS 名称；在一个群集中，若要从不同的保管库证书预配证书实例，并且这些证书的使用者相同，但其他属性（例如颁发者、密钥用法等）却存在实质性的差异，则可能会造成中断。
+有关本主题的详细介绍，请参阅 Key Vault [文档](../key-vault/certificates/create-certificate.md)；我们在此提供一个概要是为了保持连续性，并且也方便你参考。 在继续使用 Azure 的情况下，如果使用 Azure Key Vault 作为机密管理服务，则经授权的证书请求者必须至少在保管库上具有由保管库所有者授予的证书管理权限；然后，请求者会注册到证书中，如下所示：
+    - 在 Azure Key Vault (AKV) 中创建一个证书策略，该策略指定证书的域/所有者、所需颁发者、密钥类型和长度、预期的密钥用法，等等；有关详细信息，请参阅 [Azure Key Vault 中的证书](../key-vault/certificates/certificate-scenarios.md)。 
+    - 使用上面指定的策略在同一保管库中创建一个证书；该证书接下来会生成一个用作保管库对象的密钥对、一个使用私钥签名的证书签名请求，然后该请求会转发给指定的颁发者进行签名。
+    - 颁发者（证书颁发机构）使用签名证书进行答复后，系统会将结果合并到保管库中，然后证书即可用于以下操作：
+      - 在 {vaultUri}/certificates/{name} 下：包含公钥和元数据的证书
+      - 在 {vaultUri}/keys/{name} 下：证书的私钥，可用于加密操作（包装/解包、签名/验证）
+      - 在 {vaultUri}/secrets/{name} 下：包含私钥的证书，可作为不受保护的 pfx 或 pem 文件下载  
+    请回想一下，保管库证书实际上是一系列按时间排序的共享某个策略的证书实例。 证书版本将根据策略的生存期和续订属性创建。 强烈建议不要让保管库证书共享使用者或域/DNS 名称；在一个群集中，若要从不同的保管库证书预配证书实例，并且这些证书的使用者相同，但其他属性（例如颁发者、密钥用法等）却存在实质性的差异，则可能会造成中断。
 
 此时，保管库中存在一个可供使用的证书。 接下来讲述：
 
 ### <a name="certificate-provisioning"></a>证书预配
 我们提到过“预配代理”，这是一个实体，用于从保管库检索证书（包括其私钥），并将其安装在群集的每个主机上。 （请回想一下，Service Fabric 不预配证书。）在我们的上下文中，群集会托管在一系列 Azure VM 和/或虚拟机规模集上。 在 Azure 中，可以使用以下机制将证书从保管库预配到 VM/VMSS - 如上所述，假设预配代理以前已被保管库所有者授予保管库的“获取”权限： 
-  
   - 即席：操作员从保管库中检索证书（以 pfx/PKCS #12 或 pem 的形式），并将其安装在每个节点上
   - 在部署过程中作为虚拟机规模集“机密”：计算服务代表操作员使用第一方标识从一个启用了模板部署的保管库检索证书，然后将其安装在虚拟机规模集的每个节点上（[像这样](../virtual-machine-scale-sets/virtual-machine-scale-sets-faq.md#certificates)）；请注意，这只允许预配进行了版本控制的机密
-  - 使用 [Key Vault VM 扩展](../virtual-machines/extensions/key-vault-windows.md)；这样可以使用无版本声明来预配证书，并可定期刷新观察到的证书。 在这种情况下，VM/VMSS 应该有一个[托管标识](../virtual-machines/windows/security-policy.md#managed-identities-for-azure-resources)，该标识已被授予对观察到的证书所在的保管库的访问权限。
+  - 使用 [Key Vault VM 扩展](../virtual-machines/extensions/key-vault-windows.md)；这样可以使用无版本声明来预配证书，并可定期刷新观察到的证书。 在这种情况下，VM/VMSS 应该有一个[托管标识](../virtual-machines/security-policy.md#managed-identities-for-azure-resources)，该标识已被授予对观察到的证书所在的保管库的访问权限。
 
 出于多种原因（包括从安全性到可用性在内的各种原因），不建议使用即席机制，我们在这里不对其进行进一步的讨论。有关详细信息，请参阅[虚拟机规模集中的证书](../virtual-machine-scale-sets/virtual-machine-scale-sets-faq.md#certificates)。
 
@@ -141,9 +140,8 @@ Service Fabric 自身将承担以下职责：
 
 此序列可以完全脚本化/自动化，可以在不让用户接触的情况下对某个已配置为证书自动滚动更新的群集进行初始部署。 下面提供了详细步骤。 我们将混合使用 PowerShell cmdlet 和 json 模板片段。 可以使用与 Azure 交互时所有支持的方法来实现相同的功能。
 
-> [!NOTE] 
-> 此示例假设保管库中已经存在一个证书；注册和续订 KeyVault 托管证书需要完成充当先决条件的手动步骤，如本文前面所述。 对于生产环境，请使用 KeyVault 托管证书 - 下面提供了特定于 Microsoft 内部 PKI 的示例脚本。
-> 证书自动滚动更新仅适用于 CA 颁发的证书；使用自签名证书（包括在 Azure 门户中部署 Service Fabric 群集时生成的证书）是不合理的，但自签名证书仍可用于本地/开发人员托管的部署，方法是将颁发者指纹声明为与叶证书的相同。
+[!NOTE] 此示例假设保管库中已经存在一个证书；注册和续订 KeyVault 托管证书需要完成充当先决条件的手动步骤，如本文前面所述。 对于生产环境，请使用 KeyVault 托管证书 - 下面提供了特定于 Microsoft 内部 PKI 的示例脚本。
+证书自动滚动更新仅适用于 CA 颁发的证书；使用自签名证书（包括在 Azure 门户中部署 Service Fabric 群集时生成的证书）是不合理的，但自签名证书仍可用于本地/开发人员托管的部署，方法是将颁发者指纹声明为与叶证书的相同。
 
 ### <a name="starting-point"></a>起点
 为了简单起见，我们将假定采用以下开始状态：
@@ -218,7 +216,7 @@ Service Fabric 自身将承担以下职责：
 
 所有后续摘录应进行伴随部署 - 它们单个列出，可以以逐个播放的方式进行分析和说明。
 
-首先定义用户分配的标识（默认值作为示例包括）- 有关最新信息，请参阅[官方文档](/active-directory/managed-identities-azure-resources/how-to-manage-ua-identity-arm#create-a-user-assigned-managed-identity)：
+首先定义用户分配的标识（默认值作为示例包括）- 有关最新信息，请参阅[官方文档](../active-directory/managed-identities-azure-resources/how-to-manage-ua-identity-arm.md#create-a-user-assigned-managed-identity)：
 ```json
 {
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
@@ -274,7 +272,7 @@ Service Fabric 自身将承担以下职责：
 在下一步中，我们将执行以下操作：
   - 将用户分配的标识分配给虚拟机规模集
   - 在创建托管标识并向其授予对保管库的访问权限后声明虚拟机规模集的依赖项
-  - 声明 KeyVault VM 扩展，要求它在启动时检索观察到的证书（[官方文档](/virtual-machines/extensions/key-vault-windows)）
+  - 声明 KeyVault VM 扩展，要求它在启动时检索观察到的证书（[官方文档](../virtual-machines/extensions/key-vault-windows.md)）
   - 更新 Service Fabric VM 扩展的定义，使其依赖于 KVVM 扩展，并将群集证书转换为公用名称（我们将在单个步骤中进行这些更改，因为它们属于同一资源的范围。）
 
 ```json
@@ -428,7 +426,7 @@ Service Fabric 自身将承担以下职责：
 #### <a name="certificate-linking-explained"></a>证书链接（已介绍）
 你可能已注意到 KVVM 扩展的“linkOnRenewal”标志，以及它已设置为 false 这一事实。 在这里，我们将深入探讨此标志控制的行为及其对群集功能的影响。 请注意，此行为特定于 Windows。
 
-根据其[定义](/virtual-machines/extensions/key-vault-windows#extension-schema)：
+根据其[定义](../virtual-machines/extensions/key-vault-windows.md#extension-schema)：
 ```json
 "linkOnRenewal": <Only Windows. This feature enables auto-rotation of SSL certificates, without necessitating a re-deployment or binding.  e.g.: false>,
 ```

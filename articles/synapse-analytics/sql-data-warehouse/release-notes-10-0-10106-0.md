@@ -6,19 +6,19 @@ ms.service: synapse-analytics
 ms.topic: conceptual
 ms.subservice: sql-dw
 origin.date: 4/30/2020
-ms.date: 08/10/2020
+ms.date: 09/14/2020
 author: WenJason
 ms.author: v-jay
 ms.reviewer: jrasnick
 manager: digimobile
 ms.custom: seo-lt-2019
 tags: azure-synapse
-ms.openlocfilehash: 01d8d6bc7d5ba4f3d7861c26b4eb6a22308fa93e
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 686fa0b7d0d1e56c1a4dd4901cc47e67aaa03209
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917165"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014274"
 ---
 # <a name="azure-synapse-analytics-release-notes"></a>Azure Synapse Analytics 发行说明
 
@@ -41,10 +41,20 @@ ms.locfileid: "87917165"
 > SELECT SERVERPROPERTY('EngineEdition')
 > ```
 
+## <a name="aug-2020"></a>2020 年 8 月
+
+| 服务改进 | 详细信息 |
+| --- | --- |
+|工作负载管理 - 门户体验|用户可以通过 Azure 门户来配置和管理自己的工作负荷管理设置。 可以配置[工作负荷组](/synapse-analytics/sql-data-warehouse/quickstart-configure-workload-isolation-portal)和[工作负荷分类器](/synapse-analytics/sql-data-warehouse/quickstart-create-a-workload-classifier-portal)（含重要性）。|
+|改进了表映射目录视图|新的目录视图 [sys.pdw_permanent_table_mappings](https://docs.microsoft.com/sql/relational-databases/system-catalog-views/sys-pdw-permanent-table-mappings-transact-sql?view=sqlallproducts-allversions) 将永久用户表的 object_id 映射到它们的物理表名称。|
+
 ## <a name="july-2020"></a>2020 年 7 月
 
 | 服务改进 | 详细信息 |
 | --- | --- |
+|列级加密（公共预览版）|通过使用 Transact-SQL 对数据列应用对称加密来保护 Synapse SQL 数据仓库中的敏感信息。 列级加密具有内置函数，可用于使用对称密钥（通过证书、密码、对称密钥或非对称密钥受到进一步保护）来加密数据。 有关详细信息，请访问[加密数据列](https://docs.microsoft.com/sql/relational-databases/security/encryption/encrypt-a-column-of-data?view=azure-sqldw-latest)。|
+|兼容性级别支持 (GA)|在此版本中，用户现在可以设置数据库的兼容性级别，以获取 Synapse SQL 引擎的特定版本的 Transact-SQL 语言和查询处理行为。 有关详细信息，请参阅 [sys.database_scoped_configurations](https://docs.microsoft.com/sql/relational-databases/system-catalog-views/sys-database-scoped-configurations-transact-sql?toc=/synapse-analytics/sql-data-warehouse/toc.json&bc=/synapse-analytics/sql-data-warehouse/breadcrumb/toc.json&view=azure-sqldw-latest) 和[更改数据库范围的配置](https://docs.microsoft.com/sql/t-sql/statements/alter-database-scoped-configuration-transact-sql?toc=/synapse-analytics/sql-data-warehouse/toc.json&bc=/synapse-analytics/sql-data-warehouse/breadcrumb/toc.json&view=azure-sqldw-latest)。|
+|**行级别安全性**|此版本包含对于在强制执行了 RLS 的行上进行的更新和删除操作的改进。 使用此版本时，如果内部函数（如“is_rolemember”）不引用 DML 目标表中的任何列，使用该内部函数的更新和删除操作将会成功。 在此次改进之前，这些操作会因基础 DML 操作中的限制而失败。|
 |DBCC SHRINKDATABASE (GA)|现在可以收缩指定数据库中的数据文件和日志文件的大小。 有关详细信息，请参阅[文档](https://docs.microsoft.com/sql/t-sql/database-console-commands/dbcc-shrinkdatabase-transact-sql?view=sql-server-ver15)。|
 
 ## <a name="may-2020"></a>2020 年 5 月

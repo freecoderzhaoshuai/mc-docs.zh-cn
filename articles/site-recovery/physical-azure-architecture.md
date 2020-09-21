@@ -3,14 +3,17 @@ title: Azure Site Recovery 中的物理服务器灾难恢复体系结构
 description: 本文概述了使用 Azure Site Recovery 服务将本地物理服务器灾难恢复到 Azure 的过程中使用的组件和体系结构。
 ms.topic: conceptual
 origin.date: 02/11/2020
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 2fcbea89264198c3506d7efb14932d3e6ca6d907
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 58f10f5a96beb4f75aa1ac599b828b068ba29724
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80109764"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655434"
 ---
 # <a name="physical-server-to-azure-disaster-recovery-architecture"></a>物理服务器到 Azure 的灾难恢复体系结构
 
@@ -29,7 +32,29 @@ ms.locfileid: "80109764"
 
 **物理机到 Azure 体系结构**
 
-![组件](./media/physical-azure-architecture/arch-enhanced.png)
+:::image type="content" source="./media/physical-azure-architecture/arch-enhanced.png" alt-text="组件":::
+
+## <a name="set-up-outbound-network-connectivity"></a>设置出站网络连接
+
+若要使 Site Recovery 按预期工作，需修改出站网络连接以使环境进行复制。
+
+> [!NOTE]
+> Site Recovery 不支持使用身份验证代理来控制网络连接。
+
+### <a name="outbound-connectivity-for-urls"></a>URL 的出站连接
+
+如果使用基于 URL 的防火墙代理来控制出站连接，请允许访问以下 URL：
+
+<!--MOONCAKE: CUSTOMIZE REMOVE THE US GOVERMENT DETAILS-->
+
+| **名称** | **Azure 中国世纪互联** | **说明** |
+| ------------------------- | ---------------------------------------------- | ----------- |
+| 存储                   | `*.blob.core.chinacloudapi.cn`                  | 允许将数据从 VM 写入源区域中的缓存存储帐户。 |
+| Azure Active Directory    | `login.chinacloudapi.cn`                | 向 Site Recovery 服务 URL 提供授权和身份验证。 |
+| 复制               | `*.hypervrecoverymanager.windowsazure.cn` | 允许 VM 与 Site Recovery 服务进行通信。 |
+| 服务总线               | `*.servicebus.chinacloudapi.cn`                 | 允许 VM 写入 Site Recovery 监视和诊断数据。 |
+
+<!--MOONCAKE: CUSTOMIZE REMOVE THE US GOVERMENT DETAILS-->
 
 ## <a name="replication-process"></a>复制过程
 
@@ -41,16 +66,14 @@ ms.locfileid: "80109764"
     - 配置服务器通过 HTTPS 出站端口 443 与 Azure 协调复制管理。
     - 进程服务器从源计算机接收数据、优化和加密数据，然后通过 HTTPS 出站端口 443 将其发送到 Azure 存储。
     - 如果启用了多 VM 一致性，则复制组中的计算机将通过端口 20004 相互通信。 如果将多台计算机分组到复制组，并且这些组在故障转移时共享崩溃一致且应用一致的恢复点，请使用多 VM 方案。 如果计算机运行相同的工作负载并需要保持一致，则这些组非常有用。
-1. 流量通过 Internet 复制到 Azure 存储公共终结点。
-
-     <!--Not Available on [public peering](../expressroute/about-public-peering.md)-->
+1. 流量通过 Internet 复制到 Azure 存储公共终结点。 或者，可以使用 Azure ExpressRoute [公共对等互连](../expressroute/about-public-peering.md)。
 
     > [!NOTE]
     > 不支持使用站点到站点 VPN 通过本地站点或 Azure ExpressRoute [专用对等互连](concepts-expressroute-with-site-recovery.md#on-premises-to-azure-replication-with-expressroute)进行复制。
 
 **物理机到 Azure 的复制过程**
 
-![复制过程](./media/physical-azure-architecture/v2a-architecture-henry.png)
+:::image type="content" source="./media/physical-azure-architecture/v2a-architecture-henry.png" alt-text="复制过程":::
 
 ## <a name="failover-and-failback-process"></a>故障转移和故障回复过程
 
@@ -67,7 +90,7 @@ ms.locfileid: "80109764"
     - **VPN 连接**：若要进行故障回复，需要设置从 Azure 网络到本地站点的 VPN 连接（或 Azure ExpressRoute）。
     - **单独的主目标服务器**：默认情况下，故障回复由本地 VMware VM 上与配置服务器一起安装的主目标服务器处理。 如需对大量流量进行故障回复，应设置独立的本地主目标服务器。
     - **故障回复策略**：若要复制回到本地站点，需要创建故障回复策略。 此策略是在创建从本地到 Azure 的复制策略时自动创建的。
-    - **VMware 基础结构**：若要进行故障回复，需要 VMware 基础结构。 无法故障回复到物理服务器。
+    - **VMware 基础结构**：若要进行故障回复，需要 VMware 基础结构。 不能故障回复到物理服务器。
 - 组件就位后，故障回复分三个阶段进行：
     - **第 1 阶段**：重新保护 Azure VM，以便它们可以从 Azure 复制回本地 VMware VM。
     - **第 2 阶段**：运行到本地站点的故障转移。
@@ -75,7 +98,7 @@ ms.locfileid: "80109764"
 
 **从 Azure 进行 VMware 故障回复**
 
-![故障回复](./media/physical-azure-architecture/enhanced-failback.png)
+:::image type="content" source="./media/physical-azure-architecture/enhanced-failback.png" alt-text="故障回复":::
 
 ## <a name="next-steps"></a>后续步骤
 

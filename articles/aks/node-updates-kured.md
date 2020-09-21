@@ -5,20 +5,21 @@ description: 了解如何在 Azure Kubernetes 服务 (AKS) 中使用 kured 更�
 services: container-service
 ms.topic: article
 origin.date: 02/28/2019
-ms.date: 05/25/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.author: v-yeche
-ms.openlocfilehash: 67d99a170b79cb1d72614ba6bc6ecf17fcfec62d
-ms.sourcegitcommit: 7e6b94bbaeaddb854beed616aaeba6584b9316d9
+ms.openlocfilehash: 821bdd9e193bf60623f880bbb86eab1d8899306a
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/21/2020
-ms.locfileid: "83735081"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021538"
 ---
 # <a name="apply-security-and-kernel-updates-to-linux-nodes-in-azure-kubernetes-service-aks"></a>将安全更新和内核更新应用于 Azure Kubernetes 服务 (AKS) 中的 Linux 节点
 
 为保护群集，安全更新会自动应用于 AKS 中的 Linux 节点。 这些更新包括 OS 安全修复项或内核更新。 其中的部分更新需要重启节点才能完成更新进程。 AKS 不会自动重启这些 Linux 节点以完成更新进程。
 
-<!--Not Available on Windows Server nodes (currently in preview in AKS)-->
+用来保持 Windows Server 节点处于最新状态的过程稍有不同。 Windows Server 节点不接收每日更新， 而是需要你执行 AKS 升级，该升级使用最新的基础 Window Server 映像和补丁来部署新节点。 对于使用 Windows Server 节点的 AKS 群集，请参阅[升级 AKS 中的节点池][nodepool-upgrade]。
 
 本文介绍了如何使用开源 [kured (KUbernetes REboot Daemon)][kured] 来查看需要重启的 Linux 节点，然后自动重新调度运行中的 Pod 并处理节点重启进程。
 
@@ -35,7 +36,7 @@ ms.locfileid: "83735081"
 
 在 AKS 群集中，Kubernetes 节点作为 Azure 虚拟机 (VM) 运行。 这些基于 Linux 的虚拟机使用 Ubuntu 映像，其 OS 配置为每晚自动检查更新。 如果有可用的安全更新或内核更新，则会自动下载并进行安装。
 
-![使用 kured 进行的 AKS 节点更新和重启进程](media/node-updates-kured/node-reboot-process.png)
+:::image type="content" source="media/node-updates-kured/node-reboot-process.png" alt-text="使用 kured 进行的 AKS 节点更新和重启进程":::
 
 部分安全更新（如内核更新）需要重启节点才能完成更新进程。 需要重启的 Linux 节点会创建名为 /var/run/reboot-required 的文件。 此重启进程不会自动进行。
 
@@ -57,8 +58,8 @@ AKS 中还有额外的进程，可通过该进程升级群集。 升级通常是
 若要部署 `kured` DaemonSet，请安装以下正式的 Kured Helm 图表。 这将创建角色和群集角色、绑定以及服务帐户，然后使用 `kured` 部署 DaemonSet。
 
 ```console
-# Add the stable Helm repository
-helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+# Add the Kured Helm repository
+helm repo add kured https://weaveworks.github.io/kured
 
 # Update your local Helm chart repository cache
 helm repo update
@@ -67,7 +68,7 @@ helm repo update
 kubectl create namespace kured
 
 # Install kured in that namespace with Helm 3 (only on Linux nodes, kured is not working on Windows nodes)
-helm install kured stable/kured --namespace kured --set nodeSelector."beta\.kubernetes\.io/os"=linux
+helm install kured kured/kured --namespace kured --set nodeSelector."beta\.kubernetes\.io/os"=linux
 ```
 
 也可以为 `kured` 配置其他参数，例如与 Prometheus 或 Slack 集成。 有关其他配置参数的详细信息，请参阅 [kured Helm 图表][kured-install]。
@@ -105,19 +106,19 @@ aks-nodepool1-28993262-1   Ready     agent     1h        v1.11.7   10.240.0.5   
 
 本文详细介绍了如何在安全更新进程中使用 `kured` 自动重启 Linux 节点。 若要升级到 Kubernetes 的最新版本，可以[升级 AKS 群集][aks-upgrade]。
 
-<!--Not Available on Windows Server nodes-->
+对于使用 Windows Server 节点的 AKS 群集，请参阅[升级 AKS 中的节点池][nodepool-upgrade]。
 
 <!-- LINKS - external -->
 
 [kured]: https://github.com/weaveworks/kured
-[kured-install]: https://hub.helm.sh/charts/stable/kured
+[kured-install]: https://github.com/weaveworks/kured/tree/master/charts/kured
 [kubectl-get-nodes]: https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get
 
 <!-- LINKS - internal -->
 
 [aks-quickstart-cli]: kubernetes-walkthrough.md
 [aks-quickstart-portal]: kubernetes-walkthrough-portal.md
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
 [DaemonSet]: concepts-clusters-workloads.md#statefulsets-and-daemonsets
 [aks-ssh]: ssh.md
 [aks-upgrade]: upgrade-cluster.md

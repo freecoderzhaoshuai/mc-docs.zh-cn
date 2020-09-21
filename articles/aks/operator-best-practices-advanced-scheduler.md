@@ -5,16 +5,17 @@ description: 了解有关使用 Azure Kubernetes 服务 (AKS) 中的高级计划
 services: container-service
 ms.topic: conceptual
 origin.date: 11/26/2018
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: a86aa917568a5d0de547371e4958df048ec12c57
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 7f39548b5fbdaf1a4482c4792da89e562b7318bc
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842567"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021609"
 ---
 # <a name="best-practices-for-advanced-scheduler-features-in-azure-kubernetes-service-aks"></a>有关 Azure Kubernetes 服务 (AKS) 中的高级计划程序功能的最佳做法
 
@@ -75,8 +76,6 @@ spec:
 
 应用排斥时，请与应用程序开发人员和所有者协作，让他们在其部署中定义所需的容许。
 
-有关排斥和容许的详细信息，请参阅[应用排斥和容许][k8s-taints-tolerations]。
-
 若要详细了解如何在 AKS 中使用多个节点池，请参阅[为 AKS 中的群集创建和管理多个节点池][use-multiple-node-pools]。
 
 ### <a name="behavior-of-taints-and-tolerations-in-aks"></a>AKS 中的排斥和容许的行为
@@ -84,6 +83,7 @@ spec:
 升级 AKS 中的节点池时，排斥和容许在应用于新节点时遵循一个设定的模式：
 
 - **使用虚拟机规模集的默认群集**
+    - 可以从 AKS API [污染节点池][taint-node-pool]，以使新横向扩展的节点接收 API 指定的节点污点。
     - 假设你的群集有两个节点 - *node1* 和 *node2*。 升级节点池。
     - 另外两个节点（node3 和 node4）将被创建，并且排斥会被分别传递。
     - 原始 node1 和 node2 将被删除。
@@ -130,7 +130,7 @@ spec:
       hardware: highmem
 ```
 
-<!--Correct on aligment of nodeSelector-->
+<!--MOONCAKE: Correct on aligment of nodeSelector-->
 
 使用这些计划程序选项时，请与应用程序开发人员和所有者协作，让他们正确定义其 pod 规范。
 
@@ -206,5 +206,6 @@ Kubernetes 计划程序逻辑隔离工作负荷的最终方法之一是使用 po
 [aks-best-practices-cluster-isolation]: operator-best-practices-cluster-isolation.md
 [aks-best-practices-identity]: operator-best-practices-identity.md
 [use-multiple-node-pools]: use-multiple-node-pools.md
+[taint-node-pool]: use-multiple-node-pools.md#specify-a-taint-label-or-tag-for-a-node-pool
 
 <!-- Update_Description: update meta properties, wording update, update link -->

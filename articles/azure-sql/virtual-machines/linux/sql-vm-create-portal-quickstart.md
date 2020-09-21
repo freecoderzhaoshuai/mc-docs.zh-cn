@@ -4,19 +4,19 @@ description: 本教程介绍如何在 Azure 门户中创建 Linux SQL Server 201
 services: virtual-machines-linux
 author: WenJason
 origin.date: 10/22/2019
-ms.date: 08/17/2020
+ms.date: 09/14/2020
 tags: azure-service-management
 ms.topic: conceptual
 ms.service: virtual-machines-sql
 ms.workload: iaas-sql-server
 ms.author: v-jay
 ms.reviewer: jroth
-ms.openlocfilehash: 4b0ca192509b0e6d0b47dcf9c5feb4ce695d0532
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: 3dd97e31eece0bef46b0bd6932df0810e055d162
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222512"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014377"
 ---
 # <a name="provision-a-linux-virtual-machine-running-sql-server-in-the-azure-portal"></a>在 Azure 门户中预配运行 SQL Server 的 Linux 虚拟机
 [!INCLUDE[appliesto-sqlvm](../../includes/appliesto-sqlvm.md)]
@@ -73,7 +73,7 @@ ms.locfileid: "88222512"
 1. 然后键入或选择以下值：
    * **区域**：选择合适的 Azure 区域。
    * **可用性选项**：选择最适合应用和数据的可用性与冗余选项。
-   * **更改大小**：选择此选项以选择计算机大小，完成后，选择“选择”。
+   * **更改大小**：选择此选项以选择计算机大小，完成后，选择“选择”。 有关 VM 计算机大小的详细信息，请参阅 [VM 大小](../../../virtual-machines/sizes.md)。
 
      ![选择 VM 大小](./media/sql-vm-create-portal-quickstart/vmsizes.png)
 

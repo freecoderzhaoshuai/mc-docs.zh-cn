@@ -3,14 +3,18 @@ title: Azure Service Fabric DNS 服务
 description: 使用 Service Fabric 的 DNS 服务从群集内部发现微服务。
 ms.topic: conceptual
 origin.date: 07/20/2018
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: f0c0ba997799eb1d3491179f59f9d25510f0a397
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 5c0fc4ff8906a05e8513469bfa358218ab23a71c
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742394"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655174"
 ---
 # <a name="dns-service-in-azure-service-fabric"></a>Azure Service Fabric 中的 DNS 服务
 DNS 服务是可选的系统服务，可以在群集中启用，用于发现使用 DNS 协议的其他服务。 
@@ -19,7 +23,7 @@ DNS 服务是可选的系统服务，可以在群集中启用，用于发现使�
 
 DNS 服务将 DNS 名称映射到服务名称，命名服务将服务名称进行解析并将其发送回服务终结点。 在创建时提供服务的 DNS 名称。 下图显示了如何对无状态服务运行 DNS 服务。
 
-![服务终结点](./media/service-fabric-dnsservice/stateless-dns.png)
+:::image type="content" source="./media/service-fabric-dnsservice/stateless-dns.png" alt-text="服务终结点":::
 
 从 Service Fabric 版本 6.3 开始，Service Fabric DNS 协议经过扩展，现在包含用于寻址已分区的有状态服务的方案。 使用这些扩展可以通过有状态服务 DNS 名称和分区名称的组合来解析特定的分区 IP 地址。 支持所有三种分区方案：
 
@@ -29,7 +33,7 @@ DNS 服务将 DNS 名称映射到服务名称，命名服务将服务名称进�
 
 下图显示了如何分区的有状态服务运行 DNS 服务。
 
-![有状态服务终结点](./media/service-fabric-dnsservice/stateful-dns.png)
+:::image type="content" source="./media/service-fabric-dnsservice/stateful-dns.png" alt-text="有状态服务终结点":::
 
 DNS 服务不支持动态端口。 若要解析动态端口上公开的服务，请使用[反向代理服务](./service-fabric-reverseproxy.md)。
 
@@ -39,12 +43,12 @@ DNS 服务不支持动态端口。 若要解析动态端口上公开的服务，
 
 使用门户创建群集时，默认情况下，在“群集配置”菜单的“包括 DNS 服务”复选框中启用 DNS 服务   ：
 
-![通过门户启用 DNS 服务](./media/service-fabric-dnsservice/enable-dns-service.png)
+:::image type="content" source="./media/service-fabric-dnsservice/enable-dns-service.png" alt-text="通过门户启用 DNS 服务":::
 
 如果不使用门户创建群集或者要更新现有群集，则需要在模板中启用 DNS 服务：
 
 - 若要部署新的群集，可以使用[示例模板](https://github.com/Azure/azure-quickstart-templates/tree/master/service-fabric-secure-cluster-5-node-1-nodetype)或创建自己的资源管理器模板。 
-- 若要更新现有群集，可以导航到门户的群集资源组并单击“自动化脚本”，使用反映群集和组中其他资源当前状态的模板  。 若要了解详细信息，请参阅[从资源组导出模板](/azure-resource-manager/resource-manager-export-template)。
+- 若要更新现有群集，可以导航到门户的群集资源组并单击“自动化脚本”，使用反映群集和组中其他资源当前状态的模板  。 若要了解详细信息，请参阅[从资源组导出模板](../azure-resource-manager/templates/export-template-portal.md)。
 
 有了模板后，可以通过以下步骤启用 DNS 服务：
 
@@ -129,9 +133,9 @@ DNS 服务不支持动态端口。 若要解析动态端口上公开的服务，
 ```
 部署应用程序后，Service Fabric Explorer 中的服务实例会显示此实例的 DNS 名称，如下图所示： 
 
-![服务终结点](./media/service-fabric-dnsservice/service-fabric-explorer-dns.png)
+:::image type="content" source="./media/service-fabric-dnsservice/service-fabric-explorer-dns.png" alt-text="服务终结点":::
 
-以下示例将有状态服务的 DNS 名称设置为 `statefulsvc.app`。 该服务使用命名分区方案。 请注意分区名称均为小写。 这是在 DNS 查询中用作目标的分区的一项要求；有关详细信息，请参阅[针对有状态服务分区发出 DNS 查询](/service-fabric/service-fabric-dnsservice#preview-making-dns-queries-on-a-stateful-service-partition)。
+以下示例将有状态服务的 DNS 名称设置为 `statefulsvc.app`。 该服务使用命名分区方案。 请注意分区名称均为小写。 这是在 DNS 查询中用作目标的分区的一项要求；有关详细信息，请参阅[针对有状态服务分区发出 DNS 查询](#preview-making-dns-queries-on-a-stateful-service-partition)。
 
 ```xml
 <Service Name="Stateful1" ServiceDnsName="statefulsvc.app" />

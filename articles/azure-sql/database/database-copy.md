@@ -11,13 +11,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: carlrab
 origin.date: 07/29/2020
-ms.date: 08/17/2020
-ms.openlocfilehash: 506ef62b29c774ecaf231e27f9e847e16201153c
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.date: 09/14/2020
+ms.openlocfilehash: f4ef0ed5cd1e07c2f3e4f0cd575a60ddde3975b6
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222811"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014380"
 ---
 # <a name="copy-a-transactionally-consistent-copy-of-a-database-in-azure-sql-database"></a>复制 Azure SQL 数据库中数据库的事务一致性副本
 
@@ -131,7 +131,7 @@ CREATE DATABASE Database2 AS COPY OF server1.Database1;
 > [!IMPORTANT]
 > 如果需要使用比源小得多的服务目标创建副本，则目标数据库可能没有足够的资源来完成种子设定过程，这可能会导致复制操作失败。 在这种情况下，请使用异地还原请求在不同服务器和/或不同区域中创建副本。 有关详细信息，请参阅[使用数据库备份恢复 Azure SQL 数据库](recovery-using-backups.md#geo-restore)。
 
-## <a name="rbac-roles-to-manage-database-copy"></a>用于管理数据库副本的 RBAC 角色
+## <a name="azure-roles-to-manage-database-copy"></a>用于管理数据库副本的 Azure 角色
 
 若要创建数据库副本，需要具有以下角色
 
@@ -153,7 +153,7 @@ CREATE DATABASE Database2 AS COPY OF server1.Database1;
 
    Microsoft.Resources/subscriptions/resources/read Microsoft.Resources/subscriptions/resources/write Microsoft.Resources/deployments/read Microsoft.Resources/deployments/write Microsoft.Resources/deployments/operationstatuses/read
 
-若要查看门户上资源组中部署下的操作、跨多个资源提供程序的操作（包括 SQL 操作），还需要以下 RBAC 角色：
+若要查看门户上资源组中部署下的操作、跨多个资源提供程序的操作（包括 SQL 操作），还需要以下 Azure 角色：
 
    Microsoft.Resources/subscriptions/resourcegroups/deployments/operations/read Microsoft.Resources/subscriptions/resourcegroups/deployments/operationstatuses/read
 

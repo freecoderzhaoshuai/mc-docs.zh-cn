@@ -2,19 +2,19 @@
 title: 概念 - Azure Kubernetes 服务 (AKS) 安全性
 description: 了解 Azure Kubernetes 服务 (AKS) 安全性，包括 master 和节点通信、网络策略和 Kubernetes 机密。
 services: container-service
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 07/01/2020
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 227ff317d54b89f43d74406f56ab186a50c66297
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 9042b71beec5b65f78c82ad6e641a5722a88018f
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842615"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021612"
 ---
 # <a name="security-concepts-for-applications-and-clusters-in-azure-kubernetes-service-aks"></a>Azure Kubernetes 服务 (AKS) 中应用程序和群集的安全性相关概念
 <a name="security-concepts-for-applications-and-clusters-in-azure-kubernetes-service-aks"></a>
@@ -44,7 +44,7 @@ ms.locfileid: "87842615"
 
 <!--Not Available on [private cluster][private-clusters]-->
 
-可使用 Kubernetes 基于角色的访问控制和 Azure Active Directory 控制对 API 服务器的访问。 有关详细信息，请参阅 [Azure AD 与 AKS 集成][aks-aad]。
+可使用 Kubernetes 基于角色的访问控制 (RBAC) 和 Azure Active Directory 控制对 API 服务器的访问。 有关详细信息，请参阅 [Azure AD 与 AKS 集成][aks-aad]。
 
 ## <a name="node-security"></a>节点安全性
 

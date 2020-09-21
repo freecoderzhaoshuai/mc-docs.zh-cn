@@ -12,14 +12,14 @@ ms.topic: troubleshooting
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 origin.date: 08/05/2019
-ms.date: 08/17/2020
-ms.author: v-yeche
-ms.openlocfilehash: 1dee25f854111cd899875742ae05b42ebfec5bdf
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.date: 09/14/2020
+ms.author: v-jay
+ms.openlocfilehash: 63edce8216f584173ebb7ddfe87eea1d2db586ed
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223264"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014374"
 ---
 <!--Verified Redirect file-->
 # <a name="frequently-asked-questions-for-sql-server-on-azure-vms"></a>Azure VM 上的 SQL Server 常见问题解答
@@ -186,7 +186,7 @@ ms.locfileid: "88223264"
 
 1. SQL Server VM 与 SQL 数据库服务之间的差别是什么？
 
-    从概念上讲，在 Azure 虚拟机上运行 SQL Server 与在远程数据中心运行 SQL Server 并没什么不同。 相比之下， [SQL 数据库](../../../sql-database/sql-database-technical-overview.md) 可提供数据库即服务。 使用 SQL 数据库时，无法访问托管数据库的计算机。 有关完整比较，请参阅[选择云 SQL Server 选项：Azure SQL (PaaS) 数据库或 Azure VM 上的 SQL Server (IaaS)](../../../sql-database/sql-database-paas-vs-sql-server-iaas.md)。
+   从概念上讲，在 Azure 虚拟机上运行 SQL Server 与在远程数据中心运行 SQL Server 并没什么不同。 相比之下，[Azure SQL 数据库](../../database/sql-database-paas-overview.md) 可提供数据库即服务。 使用 SQL 数据库时，无法访问托管数据库的计算机。 有关完整比较，请参阅[选择云 SQL Server 选项：Azure SQL (PaaS) 数据库或 Azure VM 上的 SQL Server (IaaS)](../../azure-sql-iaas-vs-paas-what-is-overview.md)。
 
 1. **如何在 Azure VM 上安装 SQL Data Tools？**
 

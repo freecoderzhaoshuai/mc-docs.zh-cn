@@ -6,17 +6,17 @@ ms.service: virtual-machines-windows
 ms.subservice: imaging
 ms.topic: troubleshooting
 ms.workload: infrastructure
-ms.date: 06/05/2020
+ms.date: 09/03/2020
 ms.author: v-johya
 ms.reviewer: akjosh
-ms.openlocfilehash: 1ed42c012ba954ecad1af7f258a6620f163298d3
-ms.sourcegitcommit: 285649db9b21169f3136729c041e4d04d323229a
+ms.openlocfilehash: 33aad98366dbcd5930dadde8b803d902a7a7e162
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84684031"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057584"
 ---
-# <a name="troubleshooting-shared-image-galleries"></a>排查共享映像库问题
+# <a name="troubleshooting-shared-image-galleries-linux"></a>排查共享映像库问题 (Linux)
 
 
 [!INCLUDE [virtual-machines-common-shared-image-troubleshooting](../../../includes/virtual-machines-common-shared-image-troubleshooting.md)]

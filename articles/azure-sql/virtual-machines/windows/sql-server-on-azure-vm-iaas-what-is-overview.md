@@ -1,9 +1,9 @@
 ---
-title: Azure Windows 虚拟机上的 SQL Server 概述 | Azure
+title: Azure Windows 虚拟机上的 SQL Server 概述 | Microsoft Docs
 description: 了解如何在 Azure 虚拟机上运行完整版本的 SQL Server。
 services: virtual-machines-windows
 documentationcenter: ''
-author: rockboyfor
+author: WenJason
 tags: azure-service-management
 ms.assetid: c505089e-6bbf-4d14-af0e-dd39a1872767
 ms.service: virtual-machines-sql
@@ -11,15 +11,15 @@ ms.topic: conceptual
 ms.tgt_pltfrm: vm-windows-sql-server
 ms.workload: iaas-sql-server
 origin.date: 11/27/2019
-ms.date: 07/06/2020
-ms.author: v-yeche
+ms.date: 09/14/2020
+ms.author: v-jay
 ms.reviewer: jroth
-ms.openlocfilehash: 53c93b5cd1d477b3d82df19c73f546b512e1bb96
-ms.sourcegitcommit: 89118b7c897e2d731b87e25641dc0c1bf32acbde
+ms.openlocfilehash: 9d4f4765c0ee0f27e08e8aeaeb0dea7639823be7
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85946319"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014358"
 ---
 # <a name="what-is-sql-server-on-azure-virtual-machines-windows"></a>Azure 虚拟机 (Windows) 上的 SQL Server 是什么？
 [!INCLUDE[appliesto-sqlvm](../../includes/appliesto-sqlvm.md)]
@@ -111,12 +111,11 @@ Azure 虚拟机提供的虚拟机大小取决于工作负荷需求。 SQL Server
 <!--Not Available on ## Create and manage Azure SQL resources with the Azure portal-->
 <!--MOONCAKE: **Azure SQL** resource not exist on Azure China portal-->
 
-<a name="lifecycle"></a>
-## <a name="sql-server-vm-image-refresh-policy"></a>SQL Server VM 映像刷新策略
+## <a name="sql-server-vm-image-refresh-policy"></a><a id="lifecycle"></a> SQL Server VM 映像刷新策略
 对于每种支持的操作系统和版本的组合，Azure 只保留一个虚拟机映像。 这意味着，随着时间的推移，映像会进行刷新，旧映像会被删除。 有关详细信息，请参阅[SQL Server VM 常见问题解答](frequently-asked-questions-faq.md#images)的“映像”部分。
 
 ## <a name="customer-experience-improvement-program-ceip"></a>客户体验改善计划 (CEIP)
-客户体验改善计划 (CEIP) 默认情况下已启用。 它定期将报告发送给 Azure，以帮助改进 SQL Server。 CEIP 不要求管理任务，除非想在预配后禁用它。 可以通过远程桌面连接到 VM，以自定义或禁用 CEIP。 然后运行 **SQL Server 错误和使用情况报告**实用工具。 请按照说明禁用报告功能。 有关数据收集的详细信息，请参阅 [SQL Server 隐私声明](https://docs.microsoft.com/sql/getting-started/microsoft-sql-server-privacy-statement)。
+客户体验改善计划 (CEIP) 默认情况下已启用。 它定期将报告发送给 Azure，以帮助改进 SQL Server。 CEIP 不要求管理任务，除非想在预配后禁用它。 可以通过远程桌面连接到 VM，以自定义或禁用 CEIP。 然后运行 **SQL Server 错误和使用情况报告**实用工具。 请按照说明禁用报告功能。 有关数据收集的详细信息，请参阅 [SQL Server 隐私声明](https://docs.microsoft.com/sql/sql-server/sql-server-privacy)。
 
 ## <a name="related-products-and-services"></a>相关产品和服务
 ### <a name="windows-virtual-machines"></a>Windows 虚拟机

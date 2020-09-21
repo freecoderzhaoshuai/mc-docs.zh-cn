@@ -1,19 +1,19 @@
 ---
 title: 异地复制注册表
 description: 开始创建和管理异地复制的 Azure 容器注册表，使注册表能够为多个区域提供多主区域副本。 异地复制是高级服务层级的一项功能。
-author: rockboyfor
 ms.topic: article
-origin.date: 05/11/2020
-ms.date: 07/27/2020
+origin.date: 07/21/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 07/27/2020
+ms.testdate: 09/14/2020
 ms.author: v-yeche
-ms.openlocfilehash: a3e6c49929914daa66e5603c455e87abda36b4cf
-ms.sourcegitcommit: 5726d3b2e694f1f94f9f7d965676c67beb6ed07c
+ms.openlocfilehash: 84facd581c5fabc8c7599b2ba2f0f81f6b7764fe
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86863153"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021615"
 ---
 # <a name="geo-replication-in-azure-container-registry"></a>Azure 容器注册表中的异地复制
 
@@ -35,7 +35,7 @@ Contoso 在中国各地运行着一个公开展示网站。 为了向这些市�
 
 开发团队位于北京，使用中国北部数据中心。
 
-![推送到多个注册表](media/container-registry-geo-replication/before-geo-replicate.png)<br />*推送到多个注册表*
+:::image type="content" source="media/container-registry-geo-replication/before-geo-replicate.png" alt-text="推送到多个注册表":::<br />*推送到多个注册表*
 
 使用异地复制功能之前，Contoso 已在中国北部拥有基于 CN 的注册表，在中国东部拥有其他注册表。 为了向这些不同的区域提供服务，开发团队将映像推送到了两个不同的注册表。
 
@@ -43,7 +43,7 @@ Contoso 在中国各地运行着一个公开展示网站。 为了向这些市�
 docker push contoso.azurecr.cn/public/products/web:1.2
 docker push contosochinaeast.azurecr.cn/public/products/web:1.2
 ```
-![从多个注册表拉取](media/container-registry-geo-replication/before-geo-replicate-pull.png)<br />*从多个注册表拉取*
+:::image type="content" source="media/container-registry-geo-replication/before-geo-replicate-pull.png" alt-text="从多个注册表拉取":::<br />*从多个注册表拉取*
 
 多个注册表的典型挑战包括：
 
@@ -54,7 +54,7 @@ docker push contosochinaeast.azurecr.cn/public/products/web:1.2
 
 ## <a name="benefits-of-geo-replication"></a>异地复制的优点
 
-![从异地复制注册表拉取](media/container-registry-geo-replication/after-geo-replicate-pull.png)
+:::image type="content" source="media/container-registry-geo-replication/after-geo-replicate-pull.png" alt-text="从异地复制注册表拉取":::
 
 使用 Azure 容器注册表的异地复制功能，将实现以下优点：
 
@@ -74,17 +74,17 @@ docker push contosochinaeast.azurecr.cn/public/products/web:1.2
 
 异地复制是[高级注册表](container-registry-skus.md)的一项功能。 如果尚未使用高级注册表，可在 [Azure 门户](https://portal.azure.cn)中将基本和标准更改为高级：
 
-![在 Azure 门户中切换服务层级](media/container-registry-skus/update-registry-sku.png)
+:::image type="content" source="media/container-registry-skus/update-registry-sku.png" alt-text="在 Azure 门户中切换服务层级":::
 
 若要为高级注册表配置异地复制，可通过 https://portal.azure.cn 登录到 Azure 门户。
 
 导航到 Azure 容器注册表，然后选择“复制”：
 
-![Azure 门户容器注册表 UI 中的副本](media/container-registry-geo-replication/registry-services.png)
+:::image type="content" source="media/container-registry-geo-replication/registry-services.png" alt-text="Azure 门户容器注册表 UI 中的复制项":::
 
 地图中显示了所有当前的 Azure 区域：
 
-![Azure 门户中的区域地图](media/container-registry-geo-replication/registry-geo-map.png)
+:::image type="content" source="media/container-registry-geo-replication/registry-geo-map.png" alt-text="Azure 门户中的区域地图":::
 
 * 蓝色六边形表示当前的副本
 * 绿色六边形表示可能的复制区域
@@ -92,7 +92,7 @@ docker push contosochinaeast.azurecr.cn/public/products/web:1.2
 
 若要配置副本，请选择一个绿色六边形，然后选择“创建”：
 
-![Azure 门户中的“创建副本”UI](media/container-registry-geo-replication/create-replication.png)
+:::image type="content" source="media/container-registry-geo-replication/create-replication.png" alt-text="Azure 门户中的“创建复制项”UI":::
 
 若要创建其他副本，请选择表示其他区域的绿色六边形，然后单击“创建”。
 
@@ -104,7 +104,7 @@ ACR 将开始在配置的副本间同步映像。 完成后，门户将显示“
 * 当你从异地复制注册表中推送或拉取映像时，后台的 Azure 流量管理器会将请求发送到位于离你最近（就网络延迟而言）的区域中的注册表。
 * 将映像或标记更新推送到最近的区域后，Azure 容器注册表需要一些时间将清单和层复制到你选择加入的其余区域。 较大的映像比较小的映像复制所需的时间更长。 映像和标记通过最终一致性模型在复制区域之间进行同步。
 * 若要管理依赖于异地复制注册表的推送更新的工作流，建议你配置 [Webhook](container-registry-webhook.md) 以响应推送事件。 你可以在异地复制注册表中设置区域性 Webhook，以跟踪在异地复制区域内完成的推送事件。
-* 为了向表示内容层的 blob 提供服务，Azure 容器注册表使用了数据终结点。 可以在注册表的每个异地复制区域中为注册表启用[专用数据终结点](container-registry-firewall-access-rules.md#enable-dedicated-data-endpoints)。 这些终结点允许配置严格限定范围的防火墙访问规则。
+* 为了向表示内容层的 blob 提供服务，Azure 容器注册表使用了数据终结点。 可以在注册表的每个异地复制区域中为注册表启用[专用数据终结点](container-registry-firewall-access-rules.md#enable-dedicated-data-endpoints)。 这些终结点允许配置严格限定范围的防火墙访问规则。 出于故障排除目的，你可以选择[禁止路由到副本](#temporarily-disable-routing-to-replication)同时维护复制的数据。
 * 如果使用虚拟网络中的专用终结点为注册表配置[专用链接](container-registry-private-link.md)，则默认情况下会启用每个异地复制区域中的专用数据终结点。 
 
 ## <a name="delete-a-replica"></a>删除副本
@@ -138,11 +138,39 @@ az acr replication delete --name chinanorth --registry myregistry
 
 若要在推送映像时将 DNS 解析优化到最近的副本，请在推送操作源所在的 Azure 区域中配置异地复制注册表，或者在 Azure 外部工作时配置最近的区域。
 
+<a name="temporarily-disable-routing-to-replication"></a>
+### <a name="temporarily-disable-routing-to-replication"></a>暂时禁止路由到副本
+
+若要对针对异地复制注册表的操作进行故障排除，可能需要暂时禁止流量管理器路由到一个或多个副本。 从 Azure CLI 版本 2.8 开始，你可以在创建或更新复制区域时配置 `--region-endpoint-enabled` 选项（预览）。 将副本的 `--region-endpoint-enabled` 选项设置为 `false` 时，流量管理器不再将 docker 推送或拉取请求路由到该区域。 默认情况下，允许路由到所有副本，并且无论启用还是禁用路由，都将在所有副本间实现数据同步。
+
+若要禁止路由到现有副本，请先运行 [az acr replication list][az-acr-replication-list] 以列出注册表中的副本。 然后，运行 [az acr replication update][az-acr-replication-update] 并为特定副本设置 `--region-endpoint-enabled false`。 例如，若要在 myregistry 中配置 chinanorth 副本的设置，请执行以下操作 ：
+
+```azurecli
+# Show names of existing replications
+az acr replication list --registry --output table
+
+# Disable routing to replication
+az acr replication update update --name chinanorth \
+  --registry myregistry --resource-group MyResourceGroup \
+  --region-endpoint-enabled false
+```
+
+若要恢复路由到副本，请执行以下操作：
+
+```azurecli
+az acr replication update update --name chinanorth \
+  --registry myregistry --resource-group MyResourceGroup \
+  --region-endpoint-enabled true
+```
+
 ## <a name="next-steps"></a>后续步骤
 
 签出三部分的教程系列，[Azure 容器注册表中的异地复制](container-registry-tutorial-prepare-registry.md)。 演示创建异地复制注册表、构建容器，然后使用单个 `docker push` 命令将其部署到多个区域的用于容器的 Web 应用。
 
 > [!div class="nextstepaction"]
 > [Azure 容器注册表中的异地复制](container-registry-tutorial-prepare-registry.md)
+
+[az-acr-replication-list]: https://docs.azure.cn/cli/acr/replication?view=azure-cli-latest#az-acr-replication-list
+[az-acr-replication-update]: https://docs.azure.cn/cli/acr/replication?view=azure-cli-latest#az-acr-replication-update
 
 <!-- Update_Description: update meta properties, wording update, update link -->

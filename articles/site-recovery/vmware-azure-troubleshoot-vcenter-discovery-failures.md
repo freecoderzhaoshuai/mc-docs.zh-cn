@@ -1,19 +1,21 @@
 ---
 title: 排查 Azure Site Recovery 中的 VMware vCenter 发现失败问题
 description: 本文介绍如何排查 Azure Site Recovery 中的 VMware vCenter 发现失败问题。
-author: rockboyfor
 manager: digimobile
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 10/29/2019
-ms.date: 12/16/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 4bb5c173eb3d2aabbd9096042b3694bec937aa1b
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 90f84bb6518be23f721e6c375b1275fdad40e873
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75336087"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655409"
 ---
 # <a name="troubleshoot-vcenter-server-discovery-failures"></a>排查 vCenter Server 发现失败问题
 
@@ -25,11 +27,13 @@ ms.locfileid: "75336087"
 
 此问题由错误 ID 95126 标识。
 
-    ERROR :: Hit an exception while fetching the required informationfrom vCenter/vSphere.Exception details:
-    System.FormatException: Input string was not in a correct format.
-       at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
-       at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
-       at VMware.VSphere.Management.InfraContracts.VirtualMachineInfo.get_MaxSnapshots()
+```output
+ERROR :: Hit an exception while fetching the required informationfrom vCenter/vSphere.Exception details:
+System.FormatException: Input string was not in a correct format.
+    at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+    at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+    at VMware.VSphere.Management.InfraContracts.VirtualMachineInfo.get_MaxSnapshots()
+```
 
 若要解决问题，请执行以下操作：
 
@@ -80,6 +84,6 @@ vCenter 发现遵守 System 用户配置的系统默认代理设置。 DRA 服�
 
 ## <a name="next-steps"></a>后续步骤
 
-[管理用于 VMware VM 灾难恢复的配置服务器](/site-recovery/vmware-azure-manage-configuration-server#refresh-configuration-server)
+[管理用于 VMware VM 灾难恢复的配置服务器](./vmware-azure-manage-configuration-server.md#refresh-configuration-server)
 
 <!-- Update_Description: update meta properties, wording update, update link -->

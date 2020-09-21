@@ -4,21 +4,21 @@ description: 本文介绍了如何创建新的用户帐户，用以与 Azure Dat
 author: WenJason
 ms.author: v-jay
 ms.service: postgresql
-ms.topic: conceptual
+ms.topic: how-to
 origin.date: 09/22/2019
-ms.date: 04/27/2020
-ms.openlocfilehash: b67591f489353aa11bc3781a53edb7ec85de177d
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.date: 09/14/2020
+ms.openlocfilehash: 073e452c223572c2fbc69c01d2c25880eba0daaa
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82126874"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512873"
 ---
 # <a name="create-users-in-azure-database-for-postgresql---single-server"></a>在 Azure Database for PostgreSQL - 单一服务器中创建用户
 
 本文介绍了如何在 Azure Database for PostgreSQL 服务器中创建用户。
 
-如果想要了解如何创建和管理 Azure 订阅用户及其权限，可以访问[“Azure 基于角色的访问控制 (RBAC)”一文](../role-based-access-control/built-in-roles.md)或查看[如何自定义角色](../role-based-access-control/custom-roles.md)。
+如果想要了解如何创建和管理 Azure 订阅用户及其权限，可以访问[“Azure 基于角色的访问控制 (Azure RBAC)”一文](../role-based-access-control/built-in-roles.md)或查看[如何自定义角色](../role-based-access-control/custom-roles.md)。
 
 ## <a name="the-server-admin-account"></a>服务器管理员帐户
 

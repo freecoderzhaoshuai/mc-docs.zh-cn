@@ -1,21 +1,21 @@
 ---
 title: 使用 Azure Site Recovery 排查将 VMware VM 和物理服务器灾难恢复到 Azure 时的复制问题 | Azure
 description: 本文针对使用 Azure Site Recovery 将 VMware VM 和物理服务器灾难恢复到 Azure 期间遇到的常见复制问题提供故障排除信息。
-author: rockboyfor
 manager: digimobile
 ms.service: site-recovery
 ms.topic: article
 origin.date: 08/02/2019
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 06/08/2020
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: 2c8e35351c5ca5e7dcfb0810eb8e794e103dffcf
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: d496b677f32d23b25f12ddb92329e3234593e774
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426345"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655411"
 ---
 # <a name="troubleshoot-replication-issues-for-vmware-vms-and-physical-servers"></a>解决 VMware VM 和物理服务器的复制问题
 
@@ -96,14 +96,16 @@ Site Recovery 使用[进程服务器](vmware-physical-azure-config-process-serve
     - InMage Scout 应用程序服务
 4. 在源计算机上，检查位于以下位置的日志以查看错误详细信息：
 
-    `C:\Program Files (X86)\Microsoft Azure Site Recovery\agent\svagents*.log`
+    C:\Program Files (X86)\Microsoft Azure Site Recovery\agent\svagents\*.log
 
 ### <a name="process-server-with-no-heartbeat-error-806"></a>进程服务器无检测信号 [错误 806]
 如果进程服务器 (PS) 未发出检测信号，请检查：
 1. PS VM 已启动并正在运行
 2. 检查 PS 上的以下日志以查看错误详细信息：
 
-    `C:\ProgramData\ASR\home\svsystems\eventmanager*.log` 和 `C:\ProgramData\ASR\home\svsystems\monitor_protection*.log`
+    C:\ProgramData\ASR\home\svsystems\eventmanager\*.log\
+    and\
+    C:\ProgramData\ASR\home\svsystems\monitor_protection\*.log
 
 ### <a name="master-target-server-with-no-heartbeat-error-78022"></a>主目标服务器无检测信号 [错误 78022]
 
@@ -116,7 +118,7 @@ Site Recovery 使用[进程服务器](vmware-physical-azure-config-process-serve
     - 验证 svagents 服务是否正在运行。 如果正在运行，请重启服务
     - 检查位于以下位置的日志以查看错误详细信息：
 
-        C:\Program Files (X86)\Microsoft Azure Site Recovery\agent\svagents*log
+        C:\Program Files (X86)\Microsoft Azure Site Recovery\agent\svagents\*.log
 3. 若要将主目标注册到配置服务器，请导航到文件夹 %PROGRAMDATA%\ASR\Agent，并在命令提示符下运行以下命令：
     ```
     cmd
@@ -128,6 +130,7 @@ Site Recovery 使用[进程服务器](vmware-physical-azure-config-process-serve
 
     exit
     ```
+
 ## <a name="error-id-78144---no-app-consistent-recovery-point-available-for-the-vm-in-the-last-xxx-minutes"></a>错误 ID 78144 - 在过去“XXX”分钟内没有可供 VM 使用的应用一致性恢复点
 
 已在移动代理 [9.23](vmware-physical-mobility-service-overview.md#mobility-service-agent-version-923-and-higher) & [9.27](site-recovery-whats-new.md#update-rollup-39) 版本中进行了增强，以处理 VSS 安装失败行为。 请确保使用的是最新版本，以获取有关排查 VSS 故障的最佳指南。
@@ -144,36 +147,32 @@ Site Recovery 使用[进程服务器](vmware-physical-azure-config-process-serve
 **如何解决**：请参阅知识库[文章](https://support.microsoft.com/help/4493364/fix-error-occurs-when-you-back-up-a-virtual-machine-with-non-component)
 
 #### <a name="cause-4-app-consistency-not-enabled-on-linux-servers"></a>原因 4：Linux 服务器上未启用应用一致性
-**如何解决**：适用于 Linux 操作系统的 Azure Site Recovery 支持通过应用程序自定义脚本实现应用一致性。 为保障应用一致性，Azure Site Recovery 移动代理将使用带有 pre 和 post 选项的自定义脚本。 [这里](/site-recovery/site-recovery-faq#replication)是启用此功能的步骤。
+**如何解决**：适用于 Linux 操作系统的 Azure Site Recovery 支持通过应用程序自定义脚本实现应用一致性。 为保障应用一致性，Azure Site Recovery 移动代理将使用带有 pre 和 post 选项的自定义脚本。 [这里](./site-recovery-faq.md#replication)是启用此功能的步骤。
 
 ### <a name="more-causes-due-to-vss-related-issues"></a>VSS 相关问题的更多原因：
 
 若要进一步排除故障，请检查源计算机上的文件，获取故障的具体错误代码：
 
-```
 C:\Program Files (x86)\Microsoft Azure Site Recovery\agent\Application Data\ApplicationPolicyLogs\vacp.log
-```
 
 如何在文件中查找错误？
 在编辑器中打开 vacp.log 文件，搜索字符串“vacpError”
 
-```
-Ex: vacpError:220#Following disks are in FilteringStopped state [\\.\PHYSICALDRIVE1=5, ]#220|^|224#FAILED: CheckWriterStatus().#2147754994|^|226#FAILED to revoke tags.FAILED: CheckWriterStatus().#2147754994|^|
-```
+`Ex: `**`vacpError`**`:220#Following disks are in FilteringStopped state [\\.\PHYSICALDRIVE1=5, ]#220|^|224#FAILED: CheckWriterStatus().#2147754994|^|226#FAILED to revoke tags.FAILED: CheckWriterStatus().#2147754994|^|`
 
 在上面的示例中，“2147754994”是介绍故障情况的错误代码，如下所示
 
 #### <a name="vss-writer-is-not-installed---error-2147221164"></a>VSS 编写器未安装 - 错误 2147221164
 
 *如何解决*：为了生成应用程序一致性标记，Azure Site Recovery 会使用 Azure 卷影复制服务 (VSS)。 它安装适用于其操作的 VSS 提供程序，以便拍摄应用一致性快照。 此 VSS 提供程序作为服务安装。 如果 VSS 提供程序服务未安装，则应用程序一致性快照创建会失败，并出现 ID 为 0x80040154 的错误“类未注册”。 <br />
-请参阅[有关 VSS 编写器安装故障排除的文章](/site-recovery/vmware-azure-troubleshoot-push-install#vss-installation-failures)
+请参阅[有关 VSS 编写器安装故障排除的文章](./vmware-azure-troubleshoot-push-install.md#vss-installation-failures)
 
 #### <a name="vss-writer-is-disabled---error-2147943458"></a>VSS 编写器已禁用 - 错误 2147943458
 
 **如何解决**：为了生成应用程序一致性标记，Azure Site Recovery 会使用 Azure 卷影复制服务 (VSS)。 它安装适用于其操作的 VSS 提供程序，以便拍摄应用一致性快照。 此 VSS 提供程序作为服务安装。 如果 VSS 提供程序服务已禁用，则应用程序一致性快照创建会失败，并出现错误“指定的服务已禁用，无法启动(0x80070422)”。 <br />
 
 - 如果已禁用 VSS，
-    - 验证 VSS 提供程序服务的启动类型是否设置为“自动”。
+    - 确认 VSS 提供程序服务的启动类型是否设置为“自动”。
     - 重启以下服务：
         - VSS 服务
         - Azure Site Recovery VSS 提供程序
@@ -188,11 +187,11 @@ Ex: vacpError:220#Following disks are in FilteringStopped state [\\.\PHYSICALDRI
 - 卸载现有提供程序：C:\Program Files (x86)\Microsoft Azure Site Recovery\agent\InMageVSSProvider_Uninstall.cmd
 - 重新安装：C:\Program Files (x86)\Microsoft Azure Site Recovery\agent\InMageVSSProvider_Install.cmd
 
-验证 VSS 提供程序服务的启动类型是否设置为“自动”。
-- 重启以下服务：
-    - VSS 服务
-    - Azure Site Recovery VSS 提供程序
-    - VDS 服务
+确认 VSS 提供程序服务的启动类型是否设置为“自动”。
+    - 重启以下服务：
+        - VSS 服务
+        - Azure Site Recovery VSS 提供程序
+        - VDS 服务
 
 ## <a name="next-steps"></a>后续步骤
 

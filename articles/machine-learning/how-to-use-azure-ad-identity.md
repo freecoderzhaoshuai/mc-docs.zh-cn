@@ -10,12 +10,12 @@ ms.service: machine-learning
 ms.subservice: core
 ms.topic: how-to
 ms.date: 02/10/2020
-ms.openlocfilehash: 21db1b97a6e03f4c1f90361af5442ba4e8bffb70
-ms.sourcegitcommit: 2bd0be625b21c1422c65f20658fe9f9277f4fd7c
+ms.openlocfilehash: 7024d0545cbb7fdd9daa9c2cac63d8f6a2d383ca
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86441202"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021516"
 ---
 # <a name="use-azure-ad-identity-with-your-machine-learning-web-service-in-azure-kubernetes-service"></a>对 Azure Kubernetes 服务中的机器学习 Web 服务使用 Azure AD 标识
 
@@ -150,6 +150,9 @@ secret_client = SecretClient(
     credential=credential)
 secret = secret_client.get_secret(my_secret_name)
 ```
+
+> [!IMPORTANT]
+> 本例使用 DefaultAzureCredential。 若要使用特定访问策略授予标识访问权限，请参阅[第 4 部分：从 Azure Key Vault 中检索机密](../key-vault/general/authentication.md#part-4-retrieve-the-secret-from-your-azure-key-vault-in-an-application-python)。
 
 ### <a name="access-blob-from-your-web-service"></a>从 Web 服务访问 Blob
 

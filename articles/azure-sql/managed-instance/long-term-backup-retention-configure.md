@@ -11,13 +11,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: mathoma, carlrab
 origin.date: 04/29/2020
-ms.date: 07/13/2020
-ms.openlocfilehash: 5d3af03db8d8b290a87bdff3c7d0c9cbf50b96c6
-ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+ms.date: 09/14/2020
+ms.openlocfilehash: e8660cc80f5d84735915ef38e6526d426a11c99c
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86227771"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014334"
 ---
 # <a name="manage-azure-sql-managed-instance-long-term-backup-retention-powershell"></a>管理 Azure SQL 托管实例长期备份保留 (PowerShell)
 [!INCLUDE[appliesto-sqlmi](../includes/appliesto-sqlmi.md)]
@@ -29,7 +29,7 @@ ms.locfileid: "86227771"
 
 以下各部分展示了如何使用 PowerShell 配置长期备份保留、查看 Azure SQL 存储中的备份，以及从 Azure SQL 存储中的备份进行还原。
 
-## <a name="rbac-roles-to-manage-long-term-retention"></a>用于管理长期保留的 RBAC 角色
+## <a name="azure-roles-to-manage-long-term-retention"></a>用于管理长期保留的 Azure 角色
 
 对于 Get-AzSqlInstanceDatabaseLongTermRetentionBackup 和 Restore-AzSqlInstanceDatabase，你需要有以下角色之一：
 
@@ -141,7 +141,7 @@ Restore-AzSqlInstanceDatabase -FromLongTermRetentionBackup -ResourceId $ltrBacku
 ```
 
 > [!IMPORTANT]
-> 若要在删除实例后从 LTR 备份进行还原，必须有实例订阅范围内的权限，并且该订阅必须处于活动状态。 此外，还必须省略可选的 -ResourceGroupName 参数。
+> 若要在删除实例后从 LTR 备份进行还原，必须有实例订阅范围内的权限，并且该订阅必须处于活动状态。 还必须省略可选的 -ResourceGroupName 参数。
 
 > [!NOTE]
 > 从此处，可使用 SQL Server Management Studio 连接到已还原的数据库，执行所需任务，例如从恢复的数据库中提取一部分数据，复制到现有数据库或删除现有数据库，并将已还原的数据库重命名为现有数据库名。 请参阅[时间点还原](../database/recovery-using-backups.md#point-in-time-restore)。

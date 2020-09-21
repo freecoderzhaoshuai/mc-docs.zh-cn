@@ -11,13 +11,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: ''
 origin.date: 06/03/2020
-ms.date: 08/17/2020
-ms.openlocfilehash: 94f7445842951ea8166b367244aca6197f575cb4
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.date: 09/14/2020
+ms.openlocfilehash: 305805ea55b01c2f15544aba5353cc8065d265f4
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223288"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014339"
 ---
 # <a name="hyperscale-service-tier"></a>“超大规模”服务层级
 
@@ -106,7 +106,9 @@ Azure 存储在某个数据库中包含所有数据文件。 页面服务器使 
 
 ## <a name="backup-and-restore"></a>备份和还原
 
-备份是文件快照库，因此它们几乎是瞬时完成的。 存储和计算分离可将备份/还原操作推送到存储层，以减少主要计算副本的处理负担。 因此，数据库备份不会影响主计算节点的性能。 同样，还原是通过还原为文件快照完成的，因此不是数据操作的大小。 还原是时间恒定的操作，即使是若干 TB 的数据库，也能在数分钟内还原，而无需几个小时甚至几天。 通过还原现有备份创建新数据库的过程也利用此功能：创建数据库副本用于开发或测试目的，即使是 TB 大小的数据库，也能在数分钟内创建完成。
+备份是文件快照库，因此它们几乎是瞬时完成的。 存储和计算分离可将备份/还原操作推送到存储层，以减少主要计算副本的处理负担。 因此，数据库备份不会影响主计算节点的性能。 同样，时间点还原 (PITR) 是通过还原到文件快照来完成的，因此规模不像数据操作那样大。 还原同一 Azure 区域中的超大规模数据库是一项时间恒定的操作，即使是若干 TB 的数据库也能在数分钟内还原，而无需几个小时甚至几天。 通过还原现有备份创建新数据库的过程也利用此功能：创建数据库副本用于开发或测试目的，即使是 TB 大小的数据库，也能在数分钟内创建完成。
+
+有关超大规模数据库的异地还原，请参阅[将超大规模数据库还原到其他区域](#restoring-a-hyperscale-database-to-a-different-region)。
 
 ## <a name="scale-and-performance-advantages"></a>缩放和性能优势
 
@@ -157,7 +159,7 @@ Server=tcp:<myserver>.database.chinacloudapi.cn;Database=<mydatabase>;Applicatio
 
 ## <a name="disaster-recovery-for-hyperscale-databases"></a>超大规模数据库的灾难恢复
 
-### <a name="restoring-a-hyperscale-database-to-a-different-geography"></a>将超大规模数据库还原到其他地理位置
+### <a name="restoring-a-hyperscale-database-to-a-different-region"></a>将超大规模数据库还原到其他区域
 
 如果在执行灾难恢复操作或演练、重新定位期间或者出于任何其他原因，需要将 Azure SQL 数据库中的某个超大规模数据库还原到其他位置（而不是其当前所在位置），主要方法是执行数据库的异地还原。 异地还原所涉及的步骤与将 SQL 数据库中任何其他数据库还原到其他区域的步骤完全相同：
 
@@ -185,7 +187,7 @@ Server=tcp:<myserver>.database.chinacloudapi.cn;Database=<mydatabase>;Applicatio
 | SQL 托管实例 | 超大规模数据库目前不支持 Azure SQL 托管实例。 |
 | 弹性池 |  超大规模目前不支持弹性池。|
 | 迁移到“超大规模”服务层级目前是单向操作 | 将数据库迁移到“超大规模”层级后，它不能直接迁移到非“超大规模”服务层级。 目前，将数据库从“超大规模”迁移到非“超大规模”的唯一方法是使用 bacpac 文件或其他数据移动技术（大容量复制、Azure 数据工厂、SSIS 等）进行导出/导入。不支持从 Azure 门户、PowerShell（使用 [New-AzSqlDatabaseExport](https://docs.microsoft.com/powershell/module/az.sql/new-azsqldatabaseexport) 或 [New-AzSqlDatabaseImport](https://docs.microsoft.com/powershell/module/az.sql/new-azsqldatabaseimport)）、Azure CLI（使用 [az sql db export](/cli/sql/db?view=azure-cli-latest#az-sql-db-export) 和 [az sql db import](/cli/sql/db?view=azure-cli-latest#az-sql-db-import)）以及从 [REST API](https://docs.microsoft.com/rest/api/sql/databases%20-%20import%20export) 进行 bacpac 导出/导入。 支持使用 SSMS 和 [SqlPackage](https://docs.microsoft.com/sql/tools/sqlpackage) 版本 18.4 及更高版本对较小的超大规模数据库（最多 200 GB）进行 bacpac 导入/导出。 对于较大的数据库，bacpac 导出/导入可能需要很长时间，并且可能会因各种原因失败。|
-| 迁移包含持久性内存中 OLTP 对象的数据库 | “超大规模”服务层级仅支持非持久性内存中 OLTP 对象（表类型、本机 SP 和函数）。  将数据库迁移到“超大规模”服务层级之前，必须删除持久性内存中 OLTP 表和其他对象，并将其重新创建为基于磁盘的对象。|
+| 迁移包含内存中 OLTP 对象的数据库 | 超大规模支持内存中 OLTP 对象的子集，包括内存优化表类型、表变量和本机编译模块。 但是，如果要迁移的数据库中存在任何类型的内存中 OLTP 对象，则不支持从“高级”和“业务关键”服务层级迁移到“超大规模”。 若要将此类数据库迁移到“超大规模”，必须删除所有内存中 OLTP 对象及其依赖项。 迁移数据库之后，可以重新创建这些对象。 “超大规模”目前不支持持久的和非持久的内存优化表，必须将这些表重新创建为磁盘表。|
 | 异地复制  | 目前无法为超大规模 Azure SQL 数据库配置异地复制。 |
 | 数据库复制 | 目前无法使用“数据库复制”在 Azure SQL“超大规模”中创建新数据库。 |
 | TDE/AKV 集成 | 使用 Azure Key Vault（通常称为自带密钥或 BYOK）的透明数据库加密功能目前为预览版。 |

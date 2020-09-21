@@ -1,27 +1,31 @@
 ---
-title: 在 .NET 中使用 Azure 认知搜索
+title: 在 .NET 中使用 Microsoft.Azure.Search (v10)
 titleSuffix: Azure Cognitive Search
-description: 了解如何使用 C# 和 .NET SDK 在 .NET 应用程序中使用 Azure 认知搜索。 基于代码的任务包括连接到服务，为内容编制索引，以及查询索引。
+description: 了解如何使用 C# 和 .NET SDK 的版本 10 为 .NET 应用程序创建和管理搜索对象。 代码片段演示了如何连接到服务、创建索引，以及如何查询。
 manager: nitinme
 author: brjohnstmsft
 ms.author: v-tawe
 ms.devlang: dotnet
 ms.service: cognitive-search
 ms.topic: conceptual
-origin.date: 11/04/2019
-ms.date: 07/17/2020
-ms.openlocfilehash: 45402fa79813676f1a8f66535e0fbfcac7ba5bf7
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+origin.date: 08/05/2020
+ms.date: 09/10/2020
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 20f2ce5a11b85cc2fc1cbd6d9e3ac28f37190b29
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471952"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020933"
 ---
-# <a name="how-to-use-azure-cognitive-search-from-a-net-application"></a>如何通过 .NET 应用程序使用 Azure 认知搜索
+# <a name="how-to-use-microsoftazuresearch-v10-in-a-net-application"></a>如何在 .NET 应用程序中使用 Microsoft.Azure.Search (v10)
 
-文本介绍了如何使用 [Azure 认知搜索 .NET SDK](https://docs.microsoft.com/dotnet/api/overview/azure/search)。 可以使用 .NET SDK，在应用程序中使用 Azure 认知搜索实现丰富的搜索体验。
+本文介绍了如何使用 C# 和 [Azure 认知搜索 (v10) .NET SDK](https://docs.microsoft.com/dotnet/api/overview/azure/search) 来创建和管理搜索对象。 版本 10 是 Microsoft.Azure.Search 包的最新版。 今后，Azure SDK 团队将会在 [Azure.Search.Documents](https://docs.microsoft.com/dotnet/api/overview/azure/search.documents-readme) 中推出新功能。
 
-## <a name="whats-in-the-azure-cognitive-search-sdk"></a>Azure 认知搜索 SDK 包含的功能
+如果你有现有的或正在进行外部测试的开发项目，请继续使用版本 10。 对于新项目或者是要使用新功能的情况，则应将现有的搜索解决方案转换到新库。
+
+## <a name="whats-in-version-10"></a>版本 10 中的功能
+
 SDK 包括一些客户端库。借助它，不仅可以管理索引、数据源、索引器和同义词映射，还能上传和管理文档并执行查询，所有这些操作都无需处理 HTTP 和 JSON 的详细信息。 这些客户端库全部作为 NuGet 包进行分发。
 
 主 NuGet 包是 `Microsoft.Azure.Search`，它是一个元包，包括所有作为依赖关系的其他程序包。 如果你刚入门，或者如果你知道应用程序将需要 Azure 认知搜索的所有功能，请使用此程序包。
@@ -174,46 +178,49 @@ private static SearchIndexClient CreateSearchIndexClient(string indexName, IConf
 
 如果使用有效服务名称和 API 密钥运行此应用程序，输出应如以下示例所示：（为方便演示，某些控制台输出已替换为“...”。）
 
-    Deleting index...
+```output
 
-    Creating index...
+Deleting index...
 
-    Uploading documents...
+Creating index...
 
-    Waiting for documents to be indexed...
+Uploading documents...
 
-    Search the entire index for the term 'motel' and return only the HotelName field:
+Waiting for documents to be indexed...
 
-    Name: Secret Point Motel
+Search the entire index for the term 'motel' and return only the HotelName field:
 
-    Name: Twin Dome Motel
+Name: Secret Point Motel
 
-
-    Apply a filter to the index to find hotels with a room cheaper than $100 per night, and return the hotelId and description:
-
-    HotelId: 1
-    Description: The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.
-
-    HotelId: 2
-    Description: The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.
+Name: Twin Dome Motel
 
 
-    Search the entire index, order by a specific field (lastRenovationDate) in descending order, take the top two results, and show only hotelName and lastRenovationDate:
+Apply a filter to the index to find hotels with a room cheaper than $100 per night, and return the hotelId and description:
 
-    Name: Triple Landscape Hotel
-    Last renovated on: 9/20/2015 12:00:00 AM +00:00
+HotelId: 1
+Description: The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Times Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.
 
-    Name: Twin Dome Motel
-    Last renovated on: 2/18/1979 12:00:00 AM +00:00
+HotelId: 2
+Description: The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts.
 
 
-    Search the hotel names for the term 'hotel':
+Search the entire index, order by a specific field (lastRenovationDate) in descending order, take the top two results, and show only hotelName and lastRenovationDate:
 
-    HotelId: 3
-    Name: Triple Landscape Hotel
-    ...
+Name: Triple Landscape Hotel
+Last renovated on: 9/20/2015 12:00:00 AM +00:00
 
-    Complete.  Press any key to end application... 
+Name: Twin Dome Motel
+Last renovated on: 2/18/1979 12:00:00 AM +00:00
+
+
+Search the hotel names for the term 'hotel':
+
+HotelId: 3
+Name: Triple Landscape Hotel
+...
+
+Complete.  Press any key to end application... 
+```
 
 本文末尾处提供了应用程序的完整源代码。
 
@@ -478,7 +485,7 @@ public bool? SmokingAllowed => (Rooms != null) ? Array.Exists(Rooms, element => 
 
 此属性的 `JsonIgnore` 特性告知 `FieldBuilder` 不要将其序列化为字段形式的索引。  这是创建可在应用程序中用作帮助器的客户端计算属性的极佳方法。  在这种情况下，`SmokingAllowed` 属性将反映 `Rooms` 集合中的任何 `Room` 是否允许吸烟。  如果全部为 false，则表示整个酒店不允许吸烟。
 
-某些属性（例如 `Address` 和 `Rooms`）是 .NET 类的实例。  这些属性表示更复杂的数据结构，因此，需要在索引中使用[复杂数据类型](https://docs.azure.cn/search/search-howto-complex-data-types)的字段。
+某些属性（例如 `Address` 和 `Rooms`）是 .NET 类的实例。  这些属性表示更复杂的数据结构，因此，需要在索引中使用[复杂数据类型](./search-howto-complex-data-types.md)的字段。
 
 `Address` 属性表示 `Address` 类中的多个值，定义如下：
 
@@ -569,7 +576,9 @@ namespace AzureSearch.SDKHowTo
 
 这不只是假想的问题：假设将新字段添加到 `Edm.Int32` 类型的现有索引。 更新索引定义后，所有文档的该新字段都具有 null 值（因为 Azure 认知搜索中的所有类型都可以为 null）。 如果随后使用该字段具有不可为 null `int` 属性的模型类，则在尝试检索文档时会获得如下所示的 `JsonSerializationException`：
 
-    Error converting value {null} to type 'System.Int32'. Path 'IntValue'.
+```output
+Error converting value {null} to type 'System.Int32'. Path 'IntValue'.
+```
 
 由于此原因，最佳做法是建议在模型类中使用可以为 null 的类型。
 
@@ -683,9 +692,11 @@ WriteDocuments(results);
 
 在本例中，我们将在任何可搜索字段中搜索“motel”一词的整个索引，并且我们只检索 `Select` 参数指定的酒店名称。 结果如下：
 
-    Name: Secret Point Motel
+```output
+Name: Secret Point Motel
 
-    Name: Twin Dome Motel
+Name: Twin Dome Motel
+```
 
 下一个查询更有趣一点。  我们想要查找客房价格不超过 100 美元的任何酒店，并仅返回酒店 ID 和说明：
 
@@ -702,15 +713,17 @@ results = indexClient.Documents.Search<Hotel>("*", parameters);
 WriteDocuments(results);
 ```
 
-此查询使用 OData `$filter` 表达式 `Rooms/any(r: r/BaseRate lt 100)` 来筛选索引中的文档。 这会使用 [any 运算符](https://docs.azure.cn/search/search-query-odata-collection-operators)将“BaseRate lt 100”应用到 Rooms 集合中的每个项。 可在[此处](https://docs.azure.cn/search/query-odata-filter-orderby-syntax)找到有关 Azure 认知搜索支持的 OData 语法的详细信息。
+此查询使用 OData `$filter` 表达式 `Rooms/any(r: r/BaseRate lt 100)` 来筛选索引中的文档。 这会使用 [any 运算符](./search-query-odata-collection-operators.md)将“BaseRate lt 100”应用到 Rooms 集合中的每个项。 可在[此处](./query-odata-filter-orderby-syntax.md)找到有关 Azure 认知搜索支持的 OData 语法的详细信息。
 
 下面是查询的结果：
 
-    HotelId: 1
-    Description: The hotel is ideally located on the main commercial artery of the city in the heart of New York...
+```output
+HotelId: 1
+Description: The hotel is ideally located on the main commercial artery of the city in the heart of New York...
 
-    HotelId: 2
-    Description: The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to...
+HotelId: 2
+Description: The hotel is situated in a nineteenth century plaza, which has been expanded and renovated to...
+```
 
 接下来，我们想要查找最近翻修的前两个酒店，并显示酒店名称和上次翻修日期。 代码如下： 
 
@@ -732,8 +745,10 @@ WriteDocuments(results);
 
 结果如下：
 
-    Name: Fancy Stay        Last renovated on: 6/27/2010 12:00:00 AM +00:00
-    Name: Roach Motel       Last renovated on: 4/28/1982 12:00:00 AM +00:00
+```output
+Name: Fancy Stay        Last renovated on: 6/27/2010 12:00:00 AM +00:00
+Name: Roach Motel       Last renovated on: 4/28/1982 12:00:00 AM +00:00
+```
 
 最后，我们想要查找与“motel”一词匹配的所有酒店名称：
 
@@ -749,9 +764,11 @@ WriteDocuments(results);
 
 以下是结果，它包含所有字段，因为我们未指定 `Select` 属性：
 
+```output
     HotelId: 3
     Name: Triple Landscape Hotel
     ...
+```
 
 本教程到此步骤结束，但不要就此打住。 **后续步骤提供了详细了解 Azure 认知搜索的其他资源。
 

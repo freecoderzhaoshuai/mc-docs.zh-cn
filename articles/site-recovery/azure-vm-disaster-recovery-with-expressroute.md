@@ -1,31 +1,33 @@
 ---
-title: 使用 Azure Site Recovery 服务将 Azure ExpressRoute 与 Azure VM 的灾难恢复相集成 | Azure
+title: 将 Azure ExpressRoute Azure VM 灾难恢复与 Azure Site Recovery 集成
 description: 介绍如何使用 Azure Site Recovery 和 Azure ExpressRoute 来设置 Azure VM 的灾难恢复
 services: site-recovery
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 04/08/2019
-ms.date: 08/26/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: dcdd8dd77425ee8267052e3b65ada15b9ca15955
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 42977d7610e7ffb9d555d63a48aab1299a658303
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74528626"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655030"
 ---
-<!-- NOTICE:  THIS ARTICLE CHANGE ASIA EAST TO CHINA EAST REGION AND HONG KONG TO GUANG ZHOU-->
-<!-- Notice:  Target Location CHANGE TO Azure China North with Singpore to Tian Jing -->
+<!-- NOTICE:  Source Location EAST ASIA(HONG KONG) TO CHINA EAST(GUANG ZHOU)-->
+<!-- Notice:  Target Location SOURCE EAST ASIS(Singpore) TO China North(Tian Jing) -->
 
-# <a name="integrate-azure-expressroute-with-disaster-recovery-for-azure-vms"></a>将 Azure ExpressRoute 与 Azure VM 的灾难恢复相集成
+# <a name="integrate-expressroute-with-disaster-recovery-for-azure-vms"></a>将 ExpressRoute 与 Azure VM 的灾难恢复集成
 
 本文介绍在将 Azure VM 的灾难恢复设置为次要 Azure 区域时，如何将 Azure ExpressRoute 与 [Azure Site Recovery](site-recovery-overview.md) 相集成。
 
 Site Recovery 通过将 Azure VM 数据复制到 Azure 来实现 Azure VM 的灾难恢复。
 
-- 如果 Azure VM 使用 [Azure 托管磁盘](../virtual-machines/windows/managed-disks-overview.md)，则 VM 数据将复制到次要区域中复制的托管磁盘。
+- 如果 Azure VM 使用 [Azure 托管磁盘](../virtual-machines/managed-disks-overview.md)，则 VM 数据将复制到次要区域中复制的托管磁盘。
 - 如果 Azure VM 没有使用托管磁盘，则 VM 数据将复制到 Azure 存储帐户。
 - 复制终结点是公共终结点，但 Azure VM 的复制流量不会通过 Internet。
 
@@ -83,7 +85,7 @@ Site Recovery 通过将 Azure VM 数据复制到 Azure 来实现 Azure VM 的灾
 
 通常，企业部署会在多个 Azure VNet 之间拆分工作负荷，其中央连接中心用于与 Internet 和本地站点建立外部连接。 中心和分支拓扑通常与 ExpressRoute 一起使用。
 
-![故障转移之前使用 ExpressRoute 建立本地到 Azure 的连接](./media/azure-vm-disaster-recovery-with-expressroute/site-recovery-with-expressroute-before-failover.png)
+:::image type="content" source="./media/azure-vm-disaster-recovery-with-expressroute/site-recovery-with-expressroute-before-failover.png" alt-text="故障转移之前使用 ExpressRoute 建立本地到 Azure 的连接":::
 
 - **区域**。 应用部署在 Azure 中国东部区域。
 - **分支 VNet**。 应用部署在两个分支 vNet 中：
@@ -113,7 +115,7 @@ Site Recovery 通过将 Azure VM 数据复制到 Azure 来实现 Azure VM 的灾
 分支到中心 | 允许网关传输 | 已禁用
 分支到中心 | 使用删除网关 | 已启用
 
- ![分支到中心对等互连配置](./media/azure-vm-disaster-recovery-with-expressroute/spoke-to-hub-peering-configuration.png)
+:::image type="content" source="./media/azure-vm-disaster-recovery-with-expressroute/spoke-to-hub-peering-configuration.png" alt-text="分支到中心对等互连配置":::
 
 #### <a name="hub-to-spoke"></a>中心到分支
 
@@ -124,7 +126,7 @@ Site Recovery 通过将 Azure VM 数据复制到 Azure 来实现 Azure VM 的灾
 中心到分支 | 允许网关传输 | 已启用
 中心到分支 | 使用删除网关 | 已禁用
 
- ![中心到分支对等互连配置](./media/azure-vm-disaster-recovery-with-expressroute/hub-to-spoke-peering-configuration.png)
+:::image type="content" source="./media/azure-vm-disaster-recovery-with-expressroute/hub-to-spoke-peering-configuration.png" alt-text="中心到分支对等互连配置":::
 
 ### <a name="example-steps"></a>示例步骤
 
@@ -185,7 +187,7 @@ Site Recovery 通过将 Azure VM 数据复制到 Azure 来实现 Azure VM 的灾
 - 目标恢复区域是 Azure 中国北部。
 - ExpressRoute 次要线路连接是通过天津的合作伙伴边缘建立的。
 
-    <!-- Notice: Target Location CHANGE TO Azure China North with Singpore to Tian Jing -->
+    <!-- Notice: Target Location CHANGE TO Azure China North(Tian Jing) -->
     
 有关在故障转移后使用具有相同 IP 地址的单条 ExpressRoute 线路的简单拓扑，请[查看本文](site-recovery-retain-ip-azure-vm-failover.md#hybrid-resources-full-failover)。
 
@@ -212,13 +214,12 @@ Site Recovery 通过将 Azure VM 数据复制到 Azure 来实现 Azure VM 的灾
 
 恢复 VM 并完成连接后，恢复环境如下。
 
-![故障转移之后使用 ExpressRoute 建立本地到 Azure 的连接](./media/azure-vm-disaster-recovery-with-expressroute/site-recovery-with-expressroute-after-failover.png)
+:::image type="content" source="./media/azure-vm-disaster-recovery-with-expressroute/site-recovery-with-expressroute-after-failover.png" alt-text="故障转移之后使用 ExpressRoute 建立本地到 Azure 的连接":::
 
 ## <a name="next-steps"></a>后续步骤
 
 详细了解如何使用[恢复计划](site-recovery-create-recovery-plans.md)自动执行应用故障转移。
 
-<!-- Update_Description: update meta properties, wording update -->
-<!-- NOTICE:  THIS ARTICLE CHANGE ASIA EAST TO CHINA EAST REGION AND HONG KONG TO GUAN ZHOU-->
-<!-- Notice:  Target Location CHANGE TO Azure China North with Singpore to Tian Jing -->
-
+<!-- Update_Description: update meta properties, wording update, update link -->
+<!-- NOTICE:  Source Location EAST ASIA(HONG KONG) TO CHINA EAST(Guang Zhou)-->
+<!-- Notice:  Target Location SOURCE EAST ASIS(Singpore) TO China North(Tian Jing) -->

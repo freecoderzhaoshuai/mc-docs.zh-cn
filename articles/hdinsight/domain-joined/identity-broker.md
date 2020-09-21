@@ -7,12 +7,12 @@ ms.author: hrasheed
 ms.reviewer: jasonh
 ms.topic: conceptual
 ms.date: 12/12/2019
-ms.openlocfilehash: b7f3a17bd47e748c3d5dcf9d4bb4ecd330ceb3e6
-ms.sourcegitcommit: 362814dc7ac5b56cf0237b9016a67c35d8d72c32
+ms.openlocfilehash: bb388ba81bd44da3d05317553c166b717681ae27
+ms.sourcegitcommit: e1a0ea64b617b7f96655c29cd8edd69890cbd553
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/31/2020
-ms.locfileid: "87457494"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89592491"
 ---
 # <a name="use-id-broker-preview-for-credential-management"></a>使用 ID 代理（预览版）进行凭据管理
 
@@ -98,6 +98,8 @@ HDInsight [IntelliJ 插件](/hdinsight/spark/apache-spark-intellij-tool-plugin#i
 
 SSH 身份验证要求 Azure AD DS 中存在哈希。 如果只想将 SSH 用于管理方案，则可创建一个纯云帐户，并使用该帐户通过 SSH 连接到群集。 其他用户仍可使用 Ambari 或 HDInsight 工具（例如 IntelliJ 插件），不需要在 Azure AD DS 中有密码哈希。
 
+若要排查身份验证问题，请参阅此[指南](/hdinsight/domain-joined/domain-joined-authentication-issues)。
+
 ## <a name="clients-using-oauth-to-connect-to-hdinsight-gateway-with-id-broker-setup"></a>客户端使用 OAuth 连接到设置了 ID 代理的 HDInsight 网关
 
 在 ID 代理设置中，可以更新连接到网关的自定义应用和客户端，以便首先获取所需的 OAuth 令牌。 你可以按照此[文档](/storage/common/storage-auth-aad-app)中的步骤使用以下信息获取令牌：
@@ -105,6 +107,12 @@ SSH 身份验证要求 Azure AD DS 中存在哈希。 如果只想将 SSH 用于
 *   OAuth 资源 URI：`https://hib.azurehdinsight.cn` 
 * AppId：7865c1d2-f040-46cc-875f-831a1ef6a28a
 *   权限：（名称：Cluster.ReadWrite，id：8f89faa0-ffef-4007-974d-4989b39ad77d）
+
+获取 OAuth 令牌后，可以在向群集网关（例如 <clustername>-int.azurehdinsight.cn）发出的 HTTP 请求的授权标头中使用该令牌。 例如，livy API 的示例 curl 命令可能如下所示：
+    
+```bash
+curl -k -v -H "Authorization: TOKEN" -H "Content-Type: application/json" -X POST -d '{ "file":"wasbs://mycontainer@mystorageaccount.blob.core.windows.net/data/SparkSimpleTest.jar", "className":"com.microsoft.spark.test.SimpleFile" }' "https://<clustername>-int.azurehdinsight.cn/livy/batches" -H "X-Requested-By: UPN"
+``` 
 
 ## <a name="next-steps"></a>后续步骤
 

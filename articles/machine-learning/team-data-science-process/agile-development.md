@@ -10,12 +10,12 @@ ms.topic: article
 ms.date: 09/05/2019
 ms.author: tdsp
 ms.custom: seodec18, previous-author=deguhath, previous-ms.author=deguhath
-ms.openlocfilehash: 7c8cf5e6fc7db594719e4b9bcb3fbb7d41d02af3
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 37d8d0069a58361d7c30a74ca1ea3e1be29311c0
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75598552"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021225"
 ---
 # <a name="agile-development-of-data-science-projects"></a>数据科学项目的敏捷开发
 
@@ -39,7 +39,7 @@ ms.locfileid: "75598552"
 
 下面是工作项类型的定义：
 
-- **功能**：一个功能对应一个项目协定。 与客户端不同的协定是不同的功能，最好将项目的不同阶段视为不同的功能。 如果选择类似 \<ClientName-\<EngagementName> 的架构作为功能命名，则可以通过名称轻松识别出项目和协定的上下文  。
+- **功能**：一个功能对应一个项目协定。 与客户端不同的协定是不同的功能，最好将项目的不同阶段视为不同的功能。 如果选择类似 \<ClientName>-\<EngagementName> 的架构作为功能命名，则可以通过名称轻松识别出项目和协定的上下文。
   
 - **用户情景**：用户情景是完成端到端功能所需的工作项。 用户情景示例包括：
   - 获取数据 
@@ -86,7 +86,7 @@ ms.locfileid: "75598552"
    
    还可以通过选择“开发”部分下的“添加链接”，将功能链接到项目的 Azure Repos 代码存储库   。 
    
-   编辑此功能后，选择“保存并关闭”  。
+   编辑此功能后，选择“保存并关闭”。
    
    ![编辑功能并选择“保存并关闭”](./media/agile-development/3a-add-link-repo.png)
 

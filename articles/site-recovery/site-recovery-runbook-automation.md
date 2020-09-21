@@ -10,12 +10,12 @@ ms.date: 08/03/2020
 ms.testscope: no
 ms.testdate: 09/18/2019
 ms.author: v-yeche
-ms.openlocfilehash: e6aeba60b2906eec054162ad2e78a94b8f635ff7
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: e757297e65df6d0e4b239b23e7e9ac3181d66fc9
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426530"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655295"
 ---
 <!--Not Available on MOONCAKE-->
 <!--REASON: AzureRM.Network is not invalid on Automation account module-->
@@ -252,14 +252,16 @@ Aman Sharma 在其博客 [Harvesting Clouds](http://harvestingclouds.com) 上给
 
 单击“部署到 Azure”按钮，将示例脚本部署到自动化帐户。
 
-[![“部署到 Azure”](http://azuredeploy.net/deploybutton.png)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fazure-quickstart-templates%2Fmaster%2Fasr-automation-recovery%2F%2Fazuredeploy.json)
-
 > [!NOTE]
 > 必须修改从 GitHub 存储库“azure-quickstart-templates”下载或参考的模板，以适应 Azure 中国云环境。
 > 例如，替换某些终结点（将“blob.core.windows.net”替换为“blob.core.chinacloudapi.cn”，将“cloudapp.azure.com”替换为“cloudapp.chinacloudapi.cn”）；必要时更改某些不受支持的位置、VM 映像、VM 大小、SKU 以及资源提供程序的 API 版本。
 >
-> 在本文中，选择 Azure 门户中的“编辑模板”，并将 **allowedValues** 列表替换为 **automationRegion** 属性中的以下参数。
-> `[chinaeast2, chinanorth, chinanorth2]`
+> 选择下面的“`Deploy to Azure`”后，请选择“`Edit template`”并根据 Azure 中国环境更新特定项。
+> * 在第 14 行将 `automationRegion` 参数的 `allowedValues` 属性替换为以下项。
+>   `chinaeast2,chinanorth,chinanorth2`
+> * 选择“保存”。
+
+[![部署到 Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fazure-quickstart-templates%2Fmaster%2Fasr-automation-recovery%2F%2Fazuredeploy.json)
     
 <!-- Not Available on Channel9 VIDEO -->
 

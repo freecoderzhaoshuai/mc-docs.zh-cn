@@ -1,18 +1,20 @@
 ---
 title: 准备源计算机以通过推送安装来安装移动服务，以便将 VMware VM 和物理服务器灾难恢复到 Azure | Azure
 description: 了解如何准备服务器以通过推送安装来安装移动代理，以便使用 Azure Site Recovery 服务将 VMware VM 和物理服务器灾难恢复到 Azure。
-author: rockboyfor
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 03/25/2019
-ms.date: 08/26/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 9eae495d657b7b3ec1802baa2faef271fc09d344
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 611e7461afdbb7041d3afa850f4989b46d1bc626
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "70134472"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655562"
 ---
 # <a name="prepare-source-machine-for-push-installation-of-mobility-agent"></a>准备源计算机以推送安装移动代理
 
@@ -30,10 +32,10 @@ ms.locfileid: "70134472"
         `REG ADD HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v LocalAccountTokenFilterPolicy /t REG_DWORD /d
 3. 在要保护的计算机上的 Windows 防火墙中，选择“允许应用或功能通过防火墙”。  启用“文件和打印机共享”和“Windows Management Instrumentation (WMI)”。   对于属于某个域的计算机，可以使用组策略对象 (GPO) 配置防火墙设置。
 
-    ![防火墙设置](./media/vmware-azure-install-mobility-service/mobility1.png)
+    :::image type="content" source="./media/vmware-azure-install-mobility-service/mobility1.png" alt-text="防火墙设置":::
 
 4. 添加在 CSPSConfigtool 中创建的帐户。 若要执行此操作，请登录到你的配置服务器。
-5. 打开 **cspsconfigtool.exe**。 桌面上有该工具的快捷方式，也可以在 %ProgramData%\home\svsystems\bin 文件夹中找到它。
+5. 打开 **cspsconfigtool.exe**。 桌面上有该工具的快捷方式，也可以在 %ProgramData%\ASR\home\svsystems\bin 文件夹中找到它。
 6. 在“管理帐户”选项卡中，选择“添加帐户”。  
 7. 添加已创建的帐户。
 8. 输入为计算机启用复制时使用的凭据。
@@ -52,7 +54,7 @@ ms.locfileid: "70134472"
 6. 取消注释该行，并将值更改为 **yes**。
 7. 找到以“Subsystem”  开头的行，并取消注释该行。
 
-    ![Linux](./media/vmware-azure-install-mobility-service/mobility2.png)
+    :::image type="content" source="./media/vmware-azure-install-mobility-service/mobility2.png" alt-text="Linux":::
 
 8. 重启 **sshd** 服务。
 9. 添加在 CSPSConfigtool 中创建的帐户。 若要执行此操作，请登录到你的配置服务器。
@@ -60,6 +62,7 @@ ms.locfileid: "70134472"
 11. 在“管理帐户”选项卡中，选择“添加帐户”。  
 12. 添加已创建的帐户。
 13. 输入为计算机启用复制时使用的凭据。
+14. 用于更新或保护 SUSE Linux Enterprise Server 11 SP3 计算机的其他步骤。 [确保配置服务器中提供了最新版本](vmware-physical-mobility-service-overview.md#download-latest-mobility-agent-installer-for-suse-11-sp3-server)。
 
 ## <a name="anti-virus-on-replicated-machines"></a>复制计算机上的防病毒
 
@@ -67,6 +70,6 @@ ms.locfileid: "70134472"
 
 ## <a name="next-steps"></a>后续步骤
 
-安装移动服务后，在 Azure 门户中选择“+复制”以开始保护这些 VM。  详细了解如何为 [VMware VM](vmware-azure-enable-replication.md) 和[物理服务器](physical-azure-disaster-recovery.md#enable-replication)启用复制。
+安装移动服务后，在 Azure 门户中选择“+复制”以开始保护这些 VM。**** 详细了解如何为 [VMware VM](vmware-azure-enable-replication.md) 和[物理服务器](physical-azure-disaster-recovery.md#enable-replication)启用复制。
 
-<!-- Update_Description: update meta properties, wording update  -->
+<!-- Update_Description: update meta properties, wording update, update link -->

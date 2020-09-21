@@ -1,19 +1,21 @@
 ---
-title: 使用 Azure Site Recovery 将 VMM 云中的 Hyper-V VM 灾难恢复到辅助站点时的支持矩阵
+title: 使用 Azure Site Recovery 支持到辅助 VMM 站点的 matrix-Hyper-V 灾难恢复
 description: 汇总了对使用 Azure Site Recovery 将 VMM 云中的 Hyper-V VM 复制到辅助站点的支持。
-author: rockboyfor
-manager: digimobile
+manager: carmonm
 ms.service: site-recovery
 ms.topic: conceptual
-origin.date: 09/09/2019
-ms.date: 09/30/2019
+origin.date: 11/06/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: f67ccb875018ba837013b4fa0bce9cf4633c46c0
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 586b2303267258cee40948e29f4054cc8fb864e5
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71340717"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655667"
 ---
 # <a name="support-matrix-for-disaster-recovery-of-hyper-v-vms-to-a-secondary-site"></a>将 Hyper-V VM 灾难恢复到辅助站点时的支持矩阵
 
@@ -58,10 +60,9 @@ Windows Server 2012 R2 | Windows Server 2012 R2 上的[Hyper-V 支持](https://d
 主机 - IPv6 | 否 
 来宾 VM - NIC 组合 | 否
 来宾 VM - IPv4 | 是
+来宾 VM - IPv6 | 否
 来宾 VM - Windows/Linux - 静态 IP 地址 | 是
 来宾 VM - 多 NIC | 是
-
-<!-- Not Available on Guest VM - IPv6 | No -->
 
 ## <a name="storage"></a>存储
 
@@ -96,7 +97,7 @@ RDM | 空值
 
 ## <a name="vaults"></a>保管库
 
-**Action** | **支持**
+**操作** | **支持**
 --- | --- 
 跨资源组移动保管库（订阅内或跨订阅移动） |  否
 跨资源组移动存储、网络和 Azure VM（订阅内或跨订阅移动） | 否
@@ -111,6 +112,6 @@ RDM | 空值
 
 ## <a name="next-steps"></a>后续步骤
 
-[将 VMM 云中的 Hyper-V VM 复制到辅助站点](tutorial-vmm-to-vmm.md)
+[将 VMM 云中的 Hyper-V VM 复制到辅助站点](./hyper-v-vmm-disaster-recovery.md)
 
-<!-- Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -9,16 +9,16 @@ ms.service: active-directory
 ms.subservice: develop
 ms.workload: identity
 ms.topic: conceptual
-ms.date: 08/17/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 ms.reviewer: hirsin
 ms.custom: aaddev
-ms.openlocfilehash: 7c9b39d27c31f45a573e21e8e8167b3975367124
-ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
+ms.openlocfilehash: 3a316435317a2e752e6e776e396c75bb942f8196
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "88647532"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593663"
 ---
 # <a name="oauth-20-and-openid-connect-protocols-on-microsoft-identity-platform"></a>Microsoft 标识平台上的 OAuth 2.0 和 OpenID 连接协议
 
@@ -30,7 +30,7 @@ ms.locfileid: "88647532"
 
 ![显示 OAuth 2.0 角色的关系图](./media/active-directory-v2-flows/protocols-roles.svg)
 
-* “授权服务器”是 Microsoft 标识平台终结点，它负责确保用户的标识、授予和吊销对资源的访问权限，以及颁发令牌。 授权服务器也称为标识提供者 - 它可安全处理与用户信息、用户访问权，以及流中各方彼此间信任关系有关的任何项目。
+* “授权服务器”是 Microsoft 标识平台终结点，它负责确保用户的标识、授予和吊销对资源的访问权限，以及颁发令牌。 授权服务器也称为标识提供者 - 它可以安全地处理与用户信息、用户访问权限以及流中各方彼此间的信任关系有关的任何项目。
 * 资源所有者通常是最终用户。 它是拥有数据的一方，并且有权允许客户端访问该数据或资源。
 * OAuth 客户端是应用，按照其应用程序 ID 进行标识。 OAuth 客户端通常是与最终用户交互的对象，并向授权服务器请求令牌。 客户端必须获得资源所有者授权才能访问资源。
 * **资源服务器**是资源或数据所在的位置。 它信任授权服务器安全验证和授权 OAuth 客户端，并使用持有者访问令牌来确保可以授予对资源的访问权限。

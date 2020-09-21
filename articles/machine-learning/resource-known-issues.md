@@ -12,12 +12,12 @@ ms.topic: conceptual
 ms.custom: troubleshooting, contperfq4
 origin.date: 08/13/2020
 ms.date: 09/07/2020
-ms.openlocfilehash: 5366fa8d56960b345eafc625a529370a41b3890e
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: fdb52cffcd19f2474c82658b69dab3cf447b59bc
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88946876"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021507"
 ---
 # <a name="known-issues-and-troubleshooting-in-azure-machine-learning"></a>Azure 机器学习中的已知问题和故障排除
 
@@ -31,7 +31,7 @@ ms.locfileid: "88946876"
 ## <a name="access-diagnostic-logs"></a>访问诊断日志
 
 如果在请求帮助时可以提供诊断信息，有时会很有帮助。 若要日志，请执行以下操作： 
-1. 访问 [Azure 机器学习工作室](https://ml.azure.com)。 
+1. 访问 [Azure 机器学习工作室](https://studio.ml.azure.cn)。 
 1. 在左侧选择“试验” 
 1. 选择一个试验。
 1. 选择一个运行。
@@ -97,6 +97,22 @@ ms.locfileid: "88946876"
     ```bash
     automl_setup
     ```
+    
+* **在本地计算机上运行时出现 KeyError: 'brand'**
+
+    如果在 2020 年 6 月 10 日之后使用 SDK 1.7.0 或更早版本创建了新环境，由于 py-cpuinfo 包中的某个更新，训练可能会失败并收到此错误。 （在 2020 年 6 月 10 日或之前创建的环境不受影响，因为使用的是缓存的训练图像，所以是远程计算上运行的试验。）若要解决此问题，请执行以下两个步骤之一：
+    
+    * 将 SDK 版本更新为 1.8.0 或更高版本（这也会将 py-cpuinfo 降级到 5.0.0）：
+    
+      ```bash
+      pip install --upgrade azureml-sdk[automl]
+      ```
+    
+    * 将已安装的 py-cpuinfo 版本降级为 5.0.0：
+    
+      ```bash
+      pip install py-cpuinfo==5.0.0
+      ```
   
 * 错误消息：无法卸载 'PyYAML'
 
@@ -106,6 +122,18 @@ ms.locfileid: "88946876"
     pip install --upgrade azureml-sdk[notebooks,automl] --ignore-installed PyYAML
     ```
 
+* **Azure 机器学习 SDK 安装失败并收到异常：ModuleNotFoundError:没有名为 "ruamel" 的模块或 "ImportError:没有名为 ruamel. yaml 的模块"**
+   
+   在 conda 基本环境中，在最新 pip (>20.1.1) 上安装适用于 Python 的 Azure 机器学习 SDK 时，所有已发布的适用于 Python 的 Azure 机器学习 SDK 版本都会遇到此问题。 请尝试以下解决方法：
+
+    * 应避免在 conda 基本环境中安装 Python SDK，而是应创建 conda 环境并在新创建的用户环境中安装 SDK。 最新的 pip 应在这个新的 conda 环境中运行。
+
+    * 在 docker 中创建映像时，如果不能脱离 conda 基本环境，请在 docker 文件中固定 pip<=20.1.1。
+
+    ```Python
+    conda install -c r -y conda python=3.6.2 pip=20.1.1
+    ```
+    
 * 安装包时 Databricks 失败
 
     安装更多包时，Azure Databricks 上的 Azure 机器学习 SDK 安装失败。 某些包（如 `psutil`）可能会导致冲突。 为了避免安装错误，请通过冻结库版本来安装包。 此问题与 Databricks 相关，而与 Azure 机器学习 SDK 无关。 使用其他库时也可能会遇到此问题。 示例：
@@ -116,7 +144,7 @@ ms.locfileid: "88946876"
 
     或者，如果一直面临 Python 库的安装问题，可以使用初始化脚本。 此方法并不正式受到支持。 有关详细信息，请参阅[群集范围的初始化脚本](https://docs.azuredatabricks.net/user-guide/clusters/init-scripts.html#cluster-scoped-init-scripts)。
 
-* **Databricks 导入错误：无法从“pandas._libs.tslibs”导入名称“Timedelta”** ：如果在使用自动机器学习时看到此错误，请在笔记本中运行以下两行：
+* **Databricks 导入错误：无法从 `pandas._libs.tslibs` 中导入名称 `Timedelta`** ：如果在使用自动机器学习时看到此错误，请在笔记本中运行以下两行：
     ```
     %sh rm -rf /databricks/python/lib/python3.7/site-packages/pandas-0.23.4.dist-info /databricks/python/lib/python3.7/site-packages/pandas
     %sh /databricks/python/bin/pip install pandas==0.23.4
@@ -146,7 +174,7 @@ ms.locfileid: "88946876"
 > [!WARNING]
 > 不支持将 Azure 机器学习工作区移动到另一个订阅，或将拥有的订阅移到新租户。 这样做可能会导致错误。
 
-* **Azure 门户**：如果直接通过 SDK 或门户的共享链接查看工作区，则将无法在扩展程序中查看包含订阅信息的常规“概述”页。 也将无法切换到另一个工作区。 如果需要查看其他工作区，请直接转到 [Azure 机器学习工作室](https://ml.azure.com)并搜索工作区名称。
+* **Azure 门户**：如果直接通过 SDK 或门户的共享链接查看工作区，则将无法在扩展程序中查看包含订阅信息的常规“概述”页。 也将无法切换到另一个工作区。 如果需要查看其他工作区，请直接转到 [Azure 机器学习工作室](https://studio.ml.azure.cn)并搜索工作区名称。
 
 * **Azure 机器学习工作室 Web 门户支持的浏览器**：建议使用与操作系统兼容的最新浏览器。 支持以下浏览器：
   * Microsoft Edge（新的 Microsoft Edge（最新版）， 不是旧版 Microsoft Edge）
@@ -157,6 +185,8 @@ ms.locfileid: "88946876"
 ## <a name="set-up-your-environment"></a>设置你的环境
 
 * **创建 AmlCompute 时出错**：如果用户在 GA 发布之前已通过 Azure 门户创建了自己的 Azure 机器学习工作区，则他们很可能无法在该工作区中创建 AmlCompute。 可对服务提出支持请求，也可通过门户或 SDK 创建新的工作区以立即解除锁定。
+
+* **Azure 容器注册表当前不支持在资源组名称中使用 unicode 字符**：由于 ACR 请求的资源组名称包含 unicode 字符，因此可能会失败。 若要缓解此问题，建议在具有其他名称的资源组中创建一个 ACR。
 
 ## <a name="work-with-data"></a>处理数据
 
@@ -326,7 +356,6 @@ interactive_auth = InteractiveLoginAuthentication(tenant_id="the tenant_id in wh
   * 对于本地 conda，请首先确保 automl_setup 已成功运行。
   * 确保 subscription_id 是正确的。 通过选择“所有服务”，然后选择“订阅”，在 Azure 门户中查找 subscription_id。 字符“<”和“>”不应包含在 subscription_id 值中。 例如，`subscription_id = "12345678-90ab-1234-5678-1234567890abcd"` 的格式有效。
   * 确保参与者或所有者有权访问“订阅”。
-  * 检查该区域是否为受支持的区域之一：`eastus2`、`eastus`、`westcentralus`、`southeastasia`、`westeurope`、`australiaeast`、`westus2`、`southcentralus`。
   * 确保使用 Azure 门户访问该区域。
   
 * **导入 AutoMLConfig 失败**：自动化机器学习版本 1.0.76 中存在包更改，这要求先卸载以前的版本，再更新到新版本。 如果从 v1.0.76 之前的 SDK 版本升级到 v1.0.76 或更高版本后遇到 `ImportError: cannot import name AutoMLConfig`，请先运行 `pip uninstall azureml-train automl` 再运行 `pip install azureml-train-auotml` 来解决该错误。 automl_setup.cmd 脚本会自动执行此操作。 

@@ -1,18 +1,20 @@
 ---
 title: 使用 Azure Site Recovery 和 PowerShell 进行 Hyper-V VM 灾难恢复
 description: 在 PowerShell 和 Azure 资源管理器中使用 Azure Site Recovery 服务将 Hyper-V VM 自动灾难恢复到 Azure。
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.topic: article
 origin.date: 01/10/2020
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 0c507b1fb40fc902f6405339c3fb39caa945fefc
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 0cd7b12dc948eb3d6113922f55b9733fb12bf5a9
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291370"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655010"
 ---
 # <a name="set-up-disaster-recovery-to-azure-for-hyper-v-vms-using-powershell-and-azure-resource-manager"></a>使用 PowerShell 和 Azure 资源管理器对 Hyper-V VM 设置到 Azure 的灾难恢复
 
@@ -26,12 +28,12 @@ ms.locfileid: "79291370"
 
 Azure PowerShell 提供用于通过 Windows PowerShell 管理 Azure 的 cmdlet。 适用于 Azure 资源管理器的 Azure PowerShell 随附 Site Recovery PowerShell cmdlet，有助于保护和恢复 Azure 中的服务器。
 
-尽管无需成为一名 PowerShell 专家就可以使用本文章，但你还是需要理解诸如模块、cmdlet 和会话等基本概念。 有关详细信息，请参阅 [PowerShell 文档](https://docs.microsoft.com/powershell)和 [将 Azure PowerShell 与 Azure 资源管理器配合使用](../powershell-azure-resource-manager.md)。
+尽管无需成为一名 PowerShell 专家就可以使用本文章，但你还是需要理解诸如模块、cmdlet 和会话等基本概念。 有关详细信息，请参阅 [PowerShell 文档](https://docs.microsoft.com/powershell)和 [将 Azure PowerShell 与 Azure 资源管理器配合使用](../azure-resource-manager/management/manage-resources-powershell.md)。
 
+> [!NOTE]
+> 参与云解决方案提供商 (CSP) 计划的 Azure 合作伙伴可以根据各自的 CSP 订阅（租户订阅）对客户服务器的保护措施进行配置和管理。
 
-<!-- Not Avaialbe on Microsoft partners in the Cloud Solution Provider (CSP) program -->
-
-## <a name="before-you-start"></a>开始之前
+## <a name="before-you-start"></a>准备工作
 
 确保已满足以下先决条件：
 
@@ -47,8 +49,7 @@ Azure PowerShell 提供用于通过 Windows PowerShell 管理 Azure 的 cmdlet�
 
 1. 打开 PowerShell 控制台，并运行以下命令以登录到 Azure 帐户。 此 cmdlet 会打开一个网页，提示输入帐户凭据：`Connect-AzAccount -Environment AzureChinaCloud`。
     - 或者，可以使用 **Credential** 参数，在 `Connect-AzAccount -Environment AzureChinaCloud` cmdlet 中将帐户凭据作为参数包括。
-    
-    <!-- Not Available on CSP partner working on behalf of a tenant -->
+    - 如果你是代表租户的 CSP 合作伙伴，则需使用 tenantID 或租户主域名将客户指定为一名租户。 例如：`Connect-AzAccount -Environment AzureChinaCloud -Tenant "fabrikam.com"`
     
 1. 由于一个帐户可以有多个订阅，因此请将要使用的订阅与帐户关联在一起：
 
@@ -62,7 +63,7 @@ Azure PowerShell 提供用于通过 Windows PowerShell 管理 Azure 的 cmdlet�
     Get-AzResourceProvider -ProviderNamespace  Microsoft.RecoveryServices
     ```
 
-1. 验证命令输出中是否将“RegistrationState”设置为“已注册”，如果是，则可继续执行步骤 2   。 否则，需要通过运行以下命令注册订阅中缺失的提供程序：
+1. 验证命令输出中是否将“RegistrationState”设置为“已注册”，如果是，则可继续执行步骤 2********。 否则，需要通过运行以下命令注册订阅中缺失的提供程序：
 
     ```azurepowershell
     Register-AzResourceProvider -ProviderNamespace Microsoft.RecoveryServices
@@ -76,7 +77,7 @@ Azure PowerShell 提供用于通过 Windows PowerShell 管理 Azure 的 cmdlet�
 
 ## <a name="step-2-set-up-the-vault"></a>步骤 2：设置保管库
 
-1. 创建一个可在其中创建保管库的 Azure 资源管理器资源组，或者使用现有资源组。 创建新资源组，如下所示。 $ResourceGroupName 变量包含需要创建的资源组的名称，$Geo 变量包含要在其中创建资源组的 Azure 区域（例如“中国北部”）。
+1. 创建一个可在其中创建保管库的 Azure 资源管理器资源组，或者使用现有资源组。 创建新资源组，如下所示。 `$ResourceGroupName` 变量包含需要创建的资源组的名称，$Geo 变量包含要在其中创建资源组的 Azure 区域（例如“中国北部”）。
 
     ```azurepowershell
     New-AzResourceGroup -Name $ResourceGroupName -Location $Geo

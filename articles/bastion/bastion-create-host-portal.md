@@ -1,23 +1,23 @@
 ---
 title: 创建 Azure Bastion 主机 - 门户
-description: 在本文中，学习如何使用门户创建 Azure Bastion 主机
+description: 本文介绍如何创建 Azure Bastion 主机，该主机提供与虚拟网络中所有虚拟机的 RDP/SSH 连接。
 services: bastion
-author: rockboyfor
 ms.service: bastion
 ms.topic: how-to
 origin.date: 04/24/2020
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: yes
 ms.testdate: 07/27/2020
 ms.author: v-yeche
-ms.openlocfilehash: 633e18dc0c3a1146270ab6424c2d276556fe8c02
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 815cc096b0e41a3fc5b96e1b10f9f177f82eef4e
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917066"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89654959"
 ---
-<!--RELEASE BEFORE CONFIRMATION-->
+<!--Verified successfully on 09/07/2020-->
 # <a name="create-an-azure-bastion-host-using-the-portal"></a>使用门户创建 Azure Bastion 主机
 
 本文介绍如何使用 Azure 门户创建 Azure Bastion 主机。 在虚拟网络中预配 Azure Bastion 服务后，即可在该虚拟网络中的所有 VM 上获得无缝的 RDP/SSH 体验。 Azure Bastion 部署是按虚拟网络进行的，而不是按订阅/帐户或虚拟机进行的。
@@ -26,7 +26,9 @@ ms.locfileid: "87917066"
 
 ## <a name="before-you-begin"></a>准备阶段
 
-可在下面的 Azure 公共区域中使用 Bastion：
+可在下面的 Azure 中国区域中使用 Bastion：
+
+<!--CORRECT ON Azure China regions-->
 
 [!INCLUDE [available regions](../../includes/bastion-regions-include.md)]
 
@@ -45,7 +47,7 @@ ms.locfileid: "87917066"
 
 1. 在“创建 Bastion”页面上，配置新的 Bastion 资源。 指定 Bastion 资源的配置设置。
 
-    ![创建 Bastion](./media/bastion-create-host-portal/settings.png)
+    :::image type="content" source="./media/bastion-create-host-portal/settings.png" alt-text="创建 Bastion":::
 
     * **订阅**：你需要用于新建 Bastion 资源的 Azure 订阅。
     * **资源组**：将在其中新建 Bastion 资源的 Azure 资源组。 如果目前没有资源组，可新建一个。
@@ -70,5 +72,4 @@ ms.locfileid: "87917066"
 
 * 若要在 Azure Bastion 子网中使用网络安全组，请参阅[使用 NSG](bastion-nsg.md)。
 
-<!-- Update_Description: new article about bastion create host portal -->
-<!--NEW.date: 07/27/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

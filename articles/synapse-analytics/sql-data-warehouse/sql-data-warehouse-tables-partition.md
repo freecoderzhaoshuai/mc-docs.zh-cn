@@ -8,16 +8,16 @@ ms.service: synapse-analytics
 ms.topic: conceptual
 ms.subservice: sql-dw
 origin.date: 03/18/2019
-ms.date: 08/10/2020
+ms.date: 09/14/2020
 ms.author: v-jay
 ms.reviewer: igorstan
 ms.custom: seo-lt-2019, azure-synapse
-ms.openlocfilehash: 07d4dfb719a8ea2f3e54b9521ac78b57e35c6fd6
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 9685b032bef239cdf5479cdc2ba7927dd499cdf7
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917152"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014199"
 ---
 # <a name="partitioning-tables-in-synapse-sql-pool"></a>在 Synapse SQL 池中对表进行分区
 

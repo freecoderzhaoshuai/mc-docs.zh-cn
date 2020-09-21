@@ -10,12 +10,12 @@ author: cartacioS
 ms.author: sacartac
 ms.reviewer: nibaccam
 ms.date: 07/10/2020
-ms.openlocfilehash: a4d6296c98b9f91fae2a3821d84454873566e6a9
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: c800b5c7ba44644614a1b4b9ffdce3c633ef1ca4
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228490"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021289"
 ---
 # <a name="tutorial-create-a-classification-model-with-automated-ml-in-azure-machine-learning"></a>教程：使用 Azure 机器学习中的自动化 ML 创建分类模型
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-enterprise-sku.md)]
@@ -56,9 +56,9 @@ Azure 机器学习工作区是云中的基础资源，用于试验、训练和�
 
 ## <a name="get-started-in-azure-machine-learning-studio"></a>在 Azure 机器学习工作室中开始操作
 
-通过 https://ml.azure.com 处的 Azure 机器学习工作室完成以下试验设置和运行步骤，这是一个综合性的 Web 界面，其中包括了为所有技能级别的数据科学实践者执行数据科学方案所需的机器学习工具。 Internet Explorer 浏览器不支持此工作室。
+通过 https://studio.ml.azure.cn 处的 Azure 机器学习工作室完成以下试验设置和运行步骤，这是一个综合性的 Web 界面，其中包括了为所有技能级别的数据科学实践者执行数据科学方案所需的机器学习工具。 Internet Explorer 浏览器不支持此工作室。
 
-1. 登录到 [Azure 机器学习](https://ml.azure.com)。
+1. 登录到 [Azure 机器学习](https://studio.ml.azure.cn)。
 
 1. 选择创建的订阅和工作区。
 
@@ -220,9 +220,9 @@ Azure 机器学习工作区是云中的基础资源，用于试验、训练和�
 
 ### <a name="delete-the-deployment-instance"></a>删除部署实例
 
-若要保留资源组和工作区以用于其他教程和探索，请仅从 Azure 机器学习 (https:\//ml.azure.com/) 中删除部署实例。 
+若要保留资源组和工作区以用于其他教程和探索，请从 Azure 机器学习 (https:\//studio.ml.azure.cn/) 中仅删除部署实例。 
 
-1. 转到 [Azure 机器学习](https://ml.azure.com/)。 导航到你的工作区，然后在“资产”窗格的左下角选择“终结点”。 
+1. 转到 [Azure 机器学习](https://studio.ml.azure.cn/)。 导航到你的工作区，然后在“资产”窗格的左下角选择“终结点”。 
 
 1. 选择要删除的部署，然后选择“删除”。 
 

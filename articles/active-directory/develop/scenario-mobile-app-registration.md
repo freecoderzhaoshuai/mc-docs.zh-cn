@@ -1,28 +1,24 @@
 ---
 title: 注册调用 Web API 的移动应用 | Azure
 titleSuffix: Microsoft identity platform
-description: 了解如何构建调用 Web API 的移动应用（应用的代码配置）
+description: 了解如何构建用于调用 Web API 的移动应用（应用的注册）
 services: active-directory
-documentationcenter: dev-center-name
 author: jmprieur
 manager: CelesteDG
 ms.service: active-directory
 ms.subservice: develop
-ms.devlang: na
 ms.topic: conceptual
-ms.tgt_pltfrm: na
 ms.workload: identity
-ms.date: 02/25/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
-ms.reviwer: brandwe
+ms.reviewer: brandwe
 ms.custom: aaddev
-ms.collection: M365-identity-device-management
-ms.openlocfilehash: e9970e85efd55ab320803c698ed3d206d2ef75c8
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: d5c451a3083b569ee07459597658db46cec73217
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77653162"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593787"
 ---
 # <a name="register-mobile-apps-that-call-web-apis"></a>注册调用 Web API 的移动应用
 
@@ -44,7 +40,7 @@ ms.locfileid: "77653162"
 
 有关详细信息，请参阅[方案和支持的身份验证流](authentication-flows-app-scenarios.md#scenarios-and-supported-authentication-flows)以及[方案和支持的平台与语言](authentication-flows-app-scenarios.md#scenarios-and-supported-platforms-and-languages)
 
-## <a name="platform-configuration-and-redirect-uris"></a>平台配置和重定向 URI  
+## <a name="platform-configuration-and-redirect-uris"></a>平台配置和重定向 URI
 
 ### <a name="interactive-authentication"></a>交互式身份验证
 
@@ -76,20 +72,20 @@ ms.locfileid: "77653162"
 
 如果你偏向于手动配置重定向 URI，可以通过应用程序清单进行配置。 下面是清单的建议格式：
 
-- **iOS**：`msauth.<BUNDLE_ID>://auth` 
+- **iOS**：`msauth.<BUNDLE_ID>://auth`
   - 例如，输入 `msauth.com.yourcompany.appName://auth`
 - **Android**：`msauth://<PACKAGE_NAME>/<SIGNATURE_HASH>`
   - 可以通过 KeyTool 命令使用发布密钥或调试密钥来生成 Android 签名哈希。
 
 ### <a name="username-password-authentication"></a>用户名-密码身份验证
 
-如果应用仅使用用户名-密码身份验证，则无需为应用程序注册重定向 URI。 此流将往返访问 Microsoft 标识平台版本 2.0 终结点。 不会在任何特定 URI 上调用你的应用程序。 
+如果应用仅使用用户名-密码身份验证，则无需为应用程序注册重定向 URI。 此流将往返访问 Microsoft 标识平台版本 2.0 终结点。 不会在任何特定 URI 上调用你的应用程序。
 
 但是，需要将应用程序标识为公共客户端应用程序。 为此，请从应用程序的“身份验证”部分开始。  在“高级设置”子部分的“默认客户端类型”段落中，对于“将应用程序视为公共客户端”问题，请选择“是”。    
 
 ## <a name="api-permissions"></a>API 权限
 
-移动应用程序代表已登录用户调用 API。 应用需要请求委托的权限。 这些权限也称为范围。 根据所需的体验，可以通过 Azure 门户以静态方式请求委托的权限。 或者，可以在运行时动态请求这些权限。 
+移动应用程序代表已登录用户调用 API。 应用需要请求委托的权限。 这些权限也称为范围。 根据所需的体验，可以通过 Azure 门户以静态方式请求委托的权限。 或者，可以在运行时动态请求这些权限。
 
 以静态方式注册权限可让管理员轻松审批应用。 建议使用静态注册。
 
@@ -98,4 +94,3 @@ ms.locfileid: "77653162"
 > [!div class="nextstepaction"]
 > [代码配置](scenario-mobile-app-configuration.md)
 
-<!-- Update_Description: wording update -->

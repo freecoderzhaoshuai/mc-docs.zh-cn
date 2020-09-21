@@ -8,16 +8,16 @@ ms.service: synapse-analytics
 ms.topic: conceptual
 ms.subservice: sql-dw
 origin.date: 07/20/2019
-ms.date: 08/10/2020
+ms.date: 09/14/2020
 ms.author: v-jay
 ms.reviewer: igorstan
 ms.custom: seo-lt-2019, azure-synapse
-ms.openlocfilehash: 9dcf12ad1be897f1861f78bc661b08bfe9bb4bd8
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: df4d2a232a7201c4f76e9cedb4038814a264cf21
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917151"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014200"
 ---
 # <a name="using-identity-to-create-surrogate-keys-in-synapse-sql-pool"></a>使用 IDENTITY 在 Synapse SQL 池中创建代理键
 
@@ -25,7 +25,9 @@ ms.locfileid: "87917151"
 
 ## <a name="what-is-a-surrogate-key"></a>什么是代理键
 
-基于表的代理键是一个列，其中包含针对每个行的唯一标识符。 此键不是从表数据生成的。 数据建模者想要在设计数据仓库模型时在其表上创建代理键。 可以使用 IDENTITY 属性轻松高效地实现此目标，而不会影响负载性能。 IDENTITY 属性有一些限制，详见 [CREATE TABLE (Transact-SQL) IDENTITY（属性）](https://docs.microsoft.com/sql/t-sql/statements/create-table-transact-sql-identity-property?view=azure-sqldw-latest)。 IDENTITY 的一个局限是不能保证它是唯一的。 触发 IDENTITY INSERT 且不对 IDENTITY 值重新设定种子会导致更唯一的值，但可能无法保证在所有情况下都是唯一的。 如果因为对 IDENTITY 的限制而不能使用标识值，则可以创建一个包含当前值的独立表，并使用您的应用程序管理对该表的访问和数字分配。 
+基于表的代理键是一个列，其中包含针对每个行的唯一标识符。 此键不是从表数据生成的。 数据建模者想要在设计数据仓库模型时在其表上创建代理键。 可以使用 IDENTITY 属性轻松高效地实现此目标，而不会影响负载性能。
+> [!NOTE]
+> 如果用户通过“SET IDENTITY_INSERT ON”显式插入重复值，或为 IDENTITY 重新设定种子，则 Synapse SQL 中的 IDENTITY 值不能保证是唯一的。 有关详细信息，请参阅 [CREATE TABLE (Transact-SQL) IDENTITY (Property)](https://docs.microsoft.com/sql/t-sql/statements/create-table-transact-sql-identity-property?view=azure-sqldw-latest)。 
 
 ## <a name="creating-a-table-with-an-identity-column"></a>创建包含 IDENTITY 列的表
 

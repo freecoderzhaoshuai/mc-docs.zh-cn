@@ -5,19 +5,20 @@ ms.service: service-fabric
 ms.topic: conceptual
 origin.date: 07/22/2020
 author: rockboyfor
-ms.date: 08/31/2020
+ms.date: 09/14/2020
 ms.testscope: yes
-ms.testdate: 08/31/2020
+ms.testdate: 09/07/2020
 ms.author: v-yeche
 ms.custom: security-benchmark
-ms.openlocfilehash: 4fdb83785be4733e2a98041832e57ad25258ff0b
-ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
+ms.openlocfilehash: c052074b5aa6887619fa5b9a76471f921f69f39b
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89046515"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655694"
 ---
 <!--All Links Verified Successfully-->
+
 # <a name="azure-security-baseline-for-service-fabric"></a>Service Fabric 的 Azure 安全基线
 
 Service Fabric 的 Azure 安全基线包含可帮助你改善部署安全状况的建议。
@@ -102,11 +103,11 @@ Service Fabric 的 Azure 安全基线包含可帮助你改善部署安全状况�
 
 ### <a name="16-deploy-network-based-intrusion-detectionintrusion-prevention-systems-idsips"></a>1.6：部署基于网络的入侵检测/入侵防护系统 (IDS/IPS)
 
-**指导**：从 Azure 市场中选择一种产品/服务，该产品/服务应支持包含有效负载检查功能的 ID/IPS 功能。 如果不需要基于有效负载检查的入侵检测和/或防护，则可以使用包含威胁情报功能的 Azure 防火墙。 使用基于 Azure 防火墙威胁情报的筛选，能发出警报并拒绝往返于已知恶意 IP 地址和域的流量。 IP 地址和域源自 Azure 威胁智能源。
+**指导**：从 Azure 市场中选择一种产品/服务，该产品/服务应支持包含有效负载检查功能的 ID/IPS 功能。 如果不需要基于有效负载检查的入侵检测和/或防护，则可以使用包含威胁情报功能的 Azure 防火墙。 基于 Azure 防火墙威胁情报的筛选功能可以发出警报，并拒绝传入和传出已知恶意 IP 地址和域的流量。 IP 地址和域源自 Microsoft 威胁智能源。
 
 在组织的每个网络边界上部署所选的防火墙解决方案，以检测和/或拒绝恶意流量。
 
-* [Azure 市场](https://market.azure.cn/marketplace/apps?search=Firewall)
+* [Azure 市场](https://market.azure.cn/marketplace/apps/filter?search=Firewall)
 
 * [如何部署 Azure 防火墙](../firewall/tutorial-firewall-deploy-portal.md)
 
@@ -548,7 +549,7 @@ Service Fabric 的 Azure 安全基线包含可帮助你改善部署安全状况�
 
 **责任**：共享
 
-### <a name="46-use-role-based-access-control-to-control-access-to-resources"></a>4.6：使用基于角色的访问控制来控制对资源的访问
+### <a name="46-use-azure-rbac-to-control-access-to-resources"></a>4.6：使用 Azure RBAC 控制对资源的访问
 
 **指南**：不适用；此建议适用于设计用于存储数据的非计算资源。
 
@@ -870,13 +871,13 @@ Service Fabric 的 Azure 安全基线包含可帮助你改善部署安全状况�
 
 ### <a name="76-securely-store-custom-operating-system-images"></a>7.6：安全存储自定义操作系统映像
 
-**指导**：如果使用自定义映像，请使用 RBAC 以确保只有授权用户才能访问映像。 对于容器映像，请将其存储在 Azure 容器注册表中，并利用 RBAC 确保只有授权用户才能访问这些映像。
+**指导**：如果使用自定义映像，请使用 Azure 基于角色的访问控制 (Azure RBAC) 来确保只有授权用户才能访问映像。 对于容器映像，请将其存储在 Azure 容器注册表中，并利用 Azure RBAC 确保只有授权用户才能访问这些映像。
 
-* [了解 Azure 中的 RBAC](../role-based-access-control/rbac-and-directory-admin-roles.md)
+* [了解 Azure RBAC](../role-based-access-control/rbac-and-directory-admin-roles.md)
 
-* [了解容器注册表的 RBAC](../container-registry/container-registry-roles.md)
+* [了解容器注册表的 Azure RBAC](../container-registry/container-registry-roles.md)
 
-* [如何在 Azure 中配置 RBAC](../role-based-access-control/quickstart-assign-role-user-portal.md)
+* [如何配置 Azure RBAC](../role-based-access-control/quickstart-assign-role-user-portal.md)
 
 **Azure 安全中心监视**：目前不可用
 
@@ -1145,5 +1146,4 @@ Service Fabric 的 Azure 安全基线包含可帮助你改善部署安全状况�
 - 请参阅 [Azure 安全基准](../security/benchmarks/overview.md)
 - 详细了解 [Azure 安全基线](../security/benchmarks/security-baselines-overview.md)
 
-<!-- Update_Description: new article about security baseline -->
-<!--NEW.date: 08/31/2020-->
+<!-- Update_Description: update meta properties, wording update, update link -->

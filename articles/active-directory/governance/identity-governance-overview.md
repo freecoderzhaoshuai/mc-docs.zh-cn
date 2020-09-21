@@ -1,37 +1,37 @@
 ---
-title: 标识监管 - Azure Active Directory | Microsoft Docs
-description: 使用 Azure Active Directory 标识监管可以在组织的安全性和员工工作效率与适当的流程和可见性需求之间实现平衡。
+title: Identity Governance - Azure Active Directory | Microsoft Docs
+description: Azure Active Directory Identity Governance 可以在组织的安全性和员工工作效率与适当的流程和可见性需求之间实现平衡。
 services: active-directory
 documentationcenter: ''
-author: msaburnley
+author: ajburnle
 manager: daveba
 editor: markwahl-msft
 ms.service: active-directory
 ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
-ms.topic: conceptual
+ms.topic: overview
 ms.subservice: compliance
-ms.date: 02/11/2020
+ms.date: 09/08/2020
 ms.author: v-junlch
 ms.reviewer: markwahl-msft
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 7b94afbdc78e20e0d3fec06ee29fbae62feb99a8
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 46279efeb273a152ee3fbf67bffb645137395845
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77429918"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593627"
 ---
 # <a name="what-is-azure-ad-identity-governance"></a>什么是 Azure AD Identity Governance？
 
-使用 Azure Active Directory (Azure AD) 标识监管可以在组织的安全性和员工工作效率与适当的流程和可见性需求之间实现平衡。 标识监管提供的功能可以确保适当的人员对适当的资源拥有适当的访问权限。 使用这些功能以及相关的 Azure AD 和企业移动性 + 安全性功能，可以保护、监视和审核对关键资产的访问权限，同时确保员工和业务合作伙伴的工作效率，因此可以缓解访问风险。  
+Azure Active Directory (Azure AD) Identity Governance 可以在组织的安全性和员工工作效率与适当的流程和可见性需求之间实现平衡。 使用这项服务，可以确保人员、人员具备的访问权限以及访问权限对应的资源都是正确的。 将这些功能与相关的 Azure AD 和企业移动性 + 安全性功能结合使用，可以通过保护、监视和审核对关键资产的访问来降低访问风险，同时不影响员工和业务合作伙伴的工作效率。  
 
-标识监管使组织能够跨员工、业务合作伙伴和供应商以及服务和应用程序执行以下任务，不管是在本地还是在云中：
+使用 Identity Governance，组织能针对员工、业务合作伙伴和供应商在本地和云中的多种服务和应用程序间实现以下目的：
 
 - 监管标识生命周期
 - 监管访问生命周期
-- 保护特权访问以方便管理
+- 保护特权访问以进行管理
 
 具体而言，标识监管旨在帮助组织解决以下四个关键问题：
 
@@ -42,11 +42,13 @@ ms.locfileid: "77429918"
 
 ## <a name="identity-lifecycle"></a>标识生命周期
 
-标识监管可帮助组织在以下需求之间实现平衡：工作效率 - 用户可以多快地访问所需的资源（例如，在刚入职时）？  安全性 - 用户的访问权限会不断发生怎样的变化（例如，由于该用户的雇佣状态发生变化）？   标识生命周期管理是标识监管的基石，大规模的有效监管需要将应用程序的标识生命周期管理基础结构现代化。
+Identity Governance 可帮助组织在以下需求之间实现平衡：工作效率 - 用户可以多快地访问所需的资源（例如在刚入职时）？ 安全性 - 用户的访问权限会不断发生怎样的变化（例如，由于该用户的雇佣状态发生变化）？  标识生命周期管理是 Identity Governance 的基石，大规模的有效监管需要将应用程序的标识生命周期管理基础结构现代化。
 
 ![标识生命周期](./media/identity-governance-overview/identity-lifecycle.png)
 
-对于许多组织而言，员工的标识生命周期与该用户在 HCM（人力资本管理）系统中的表示形式密切相关。  Azure AD Premium 在 Active Directory 和 Azure Active Directory 中自动维护 Workday 中表示的人员的用户标识。  
+对于许多组织而言，员工的标识生命周期与该用户在 HCM（人力资本管理）系统中的表示形式密切相关。  Azure AD Premium 在 Active Directory 和 Azure Active Directory 中自动维护 Workday 中表示的人员的用户标识。  Azure AD Premium 还包含可从 SAP、Oracle eBusiness 和 Oracle PeopleSoft 等本地 HCM 系统导入记录的 Microsoft Identity Manager。
+
+越来越多的方案需要与组织外部的人员协作。 使用 [Azure AD B2B](/active-directory/b2b/) 协作可以安全地将组织的应用程序和服务与来自任何组织的来宾用户和外部合作伙伴共享，同时保持对自己公司数据的控制。  使用 [Azure AD 权利管理](entitlement-management-overview.md)可以选择允许哪些组织的用户请求访问权限，并将其作为 B2B 来宾添加到组织的目录中，同时确保在他们不再需要访问时删除这些来宾。
 
 ## <a name="access-lifecycle"></a>访问生命周期
 
@@ -54,11 +56,14 @@ ms.locfileid: "77429918"
 
 ![访问生命周期](./media/identity-governance-overview/access-lifecycle.png)
 
-通常，IT 部门会将访问权限审批决策委托给业务决策人。  此外，IT 部门可能涉及到用户本身的事务。  
+通常，IT 部门会将访问权限审批决策委托给业务决策人。  此外，IT 部门可能涉及到用户本身的事务。  例如，访问公司的市场营销应用程序中的机密客户数据的用户需要知道该公司的策略。 来宾用户可能不知道他们受邀访问的组织的数据处理要求。
+
+
+当用户尝试访问应用程序时，Azure AD 会实施[条件访问](../conditional-access/index.yml)策略。 
 
 ## <a name="privileged-access-lifecycle"></a>特权访问权限生命周期
 
-一直以来，其他供应商将特权访问权限描述为标识监管中的一项独立功能。 但是，Microsoft 将特权访问权限的监管视为标识监管的重要组成部分 - 特别是考虑到与这些管理员权限相关的滥用可能会对组织造成的影响。 拥有管理权限的员工、供应商与合同工需要接受监管。
+一直以来，其他供应商将特许访问权限描述为 Identity Governance 中的一项独立功能。 但是，Microsoft 将特权访问权限的监管视为 Identity Governance 的重要组成部分 - 尤其是组织可能遇到管理员权限的滥用情况时。 拥有管理权限的员工、供应商与合同工需要接受监管。
 
 ![特权访问权限生命周期](./media/identity-governance-overview/privileged-access-lifecycle.png)
 
@@ -66,27 +71,30 @@ ms.locfileid: "77429918"
 
 ## <a name="getting-started"></a>入门
 
-在 Azure 门户中查看**标识治理**的“入门”选项卡，以开始使用访问评审和 Privileged Identity Management。
+在 Azure 门户中查看 Identity Governance 的“开始使用”选项卡，开始使用权利管理、访问评审和 Privileged Identity Management。
 
-![标识监管入门](./media/identity-governance-overview/getting-started.png)
+![Identity Governance 入门](./media/identity-governance-overview/getting-started.png)
 
 
-如果你对标识治理功能有任何反馈，请在 Azure 门户中单击“获得反馈?”  以提交反馈。 团队定期审查反馈。
+若对 Identity Governance 功能有任何反馈，请在 Azure 门户中单击“有反馈?”以提交反馈。 团队会定期查看反馈。
 
-尽管我们不能为每个客户提供完美的解决方案或建议，但以下配置指南还提供了 Microsoft 建议你遵循的基准策略，以确保提高安全性和员工工作效率。
+尽管我们不能为每个客户提供完美的解决方案或建议，但以下配置指南提供了 Microsoft 推荐的基准策略，遵循这些策略，可提高安全性和员工工作效率。
 
 - [标识和设备访问权限配置](https://docs.microsoft.com/microsoft-365/enterprise/microsoft-365-policies-configurations)
 
-## <a name="appendix---least-privileged-roles-for-managing-in-identity-governance-features"></a>附录 - 在标识治理功能中进行管理的最低特权角色
+## <a name="appendix---least-privileged-roles-for-managing-in-identity-governance-features"></a>附录 - 在 Identity Governance 功能中进行管理所需的最低特权角色
 
-在标识治理中使用最小特权角色来执行管理任务是一种最佳做法。 我们建议你使用 Azure AD PIM 根据需要激活角色以执行这些任务。 以下是配置标识治理功能所需的最小特权目录角色：
+最佳做法是使用最低特权角色在 Identity Governance 中执行管理任务。 建议使用 Azure AD PIM 激活执行这些任务所需的角色。 下面列出的是用于配置 Identity Governance 功能的最低特权角色：
 
 | Feature | 最小特权角色 |
 | ------- | --------------------- |
-| 访问评审 | 用户管理员（Azure 或 Azure AD 角色的访问评审除外，这需要特权角色管理员） |
+| 权利管理 | 用户管理员（例外：将 SharePoint Online 站点添加到目录需要使用全局管理员角色） |
+| 访问评审 | 用户管理员（例外：对 Azure 或 Azure AD 角色进行访问评审需要使用特权角色管理员角色） |
 |Privileged Identity Management | 特权角色管理员 |
 
 ## <a name="next-steps"></a>后续步骤
 
+- [Azure AD 权利管理是什么？](entitlement-management-overview.md)
 - [Azure AD 访问评审是什么？](access-reviews-overview.md)
 - [什么是 Azure AD Privileged Identity Management？](../privileged-identity-management/pim-configure.md)
+

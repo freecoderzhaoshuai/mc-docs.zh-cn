@@ -1,20 +1,22 @@
 ---
 title: 使用 Azure Site Recovery 设置到 Azure 的 VMware VM 灾难恢复
 description: 了解如何使用 Azure Site Recovery 针对本地 VMware VM 设置到 Azure 的灾难恢复。
-author: rockboyfor
 manager: digimobile
 ms.service: site-recovery
 ms.topic: tutorial
 origin.date: 11/12/2019
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
 ms.custom: MVC
-ms.openlocfilehash: 4c55f1a701a419e23bc1b431762fbdff4f675697
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: 5b4c0aa85f0ea87a49c54b2c1f47a7c28d499dfa
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440432"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655400"
 ---
 # <a name="set-up-disaster-recovery-to-azure-for-on-premises-vmware-vms"></a>针对本地 VMware VM 设置到 Azure 的灾难恢复
 
@@ -68,19 +70,19 @@ ms.locfileid: "84440432"
 ### <a name="download-the-vm-template"></a>下载 VM 模板
 
 1. 在保管库中，转到“准备基础结构” > “源” 。
-2. 在“准备源”中，选择“+配置服务器”。 
+2. 在“准备源”中，选择“+配置服务器”。
 3. 在“添加服务器”中，检查“VMware 的配置服务器”是否已显示在“服务器类型”中  。
 4. 下载配置服务器的 OVA 模板。
 
 ## <a name="import-the-template-in-vmware"></a>在 VMware 中导入模板
 
-1. 使用 VMWare vSphere 客户端登录到 VMware vCenter 服务器或 vSphere ESXi 主机。
+1. 使用 VMware vSphere 客户端登录到 VMware vCenter 服务器或 vSphere ESXi 主机。
 2. 在“文件”菜单中，选择“部署 OVF 模板”以启动“部署 OVF 模板”向导  。
 
-    ![OVF 模板](./media/vmware-azure-tutorial/vcenter-wizard.png)
+    :::image type="content" source="./media/vmware-azure-tutorial/vcenter-wizard.png" alt-text="VMWare vSphere 客户端中的部署 OVF 模板命令的屏幕截图。":::
 
 3. 在“选择源”中，输入下载的 OVF 所在的位置。
-4. 在“查看详细信息”中，选择“下一步”。 
+4. 在“查看详细信息”中，选择“下一步”。
 5. 在“选择名称和文件夹”和“选择配置”中，接受默认设置 。
 6. 在“选择存储”中，为获得最佳性能，请在“选择虚拟磁盘格式”中选择“Thick Provision Eager Zeroed”  。
 7. 在余下的向导页中，接受默认设置。
@@ -102,7 +104,7 @@ ms.locfileid: "84440432"
 
 设置配置服务器后，将它注册到保管库中。
 
-1. 通过 VMWare vSphere 客户端控制台打开 VM。
+1. 通过 VMware vSphere 客户端控制台打开 VM。
 2. VM 将启动并进入 Windows Server 2016 安装体验。 接受许可协议，然后输入管理员密码。
 3. 安装完成后，以管理员身份登录到 VM。
 4. 首次登录时，会在数秒内启动 Azure Site Recovery 配置工具。
@@ -120,7 +122,7 @@ ms.locfileid: "84440432"
 3. 在“安装第三方软件”中，接受许可协议。 选择“下载并安装”，安装 MySQL 服务器。 如果已将 MySQL 置于路径中，则可跳过此步骤。 了解[更多](vmware-azure-deploy-configuration-server.md#configure-settings)
 4. 在“验证设备配置”中验证先决条件，然后继续。
 5. 在“配置 vCenter Server/vSphere ESXi 服务器”中，输入要复制的 VM 所在的 vCenter Server 或 vSphere 主机的 FQDN 或 IP 地址。 输入服务器侦听的端口。 为保管库中的 VMware 服务器输入一个可用的友好名称。
-6. 输入配置服务器用来连接到 VMware 服务器的用户凭据。 确保用户名和密码正确无误，并且属于要保护的虚拟机的 Administrators 组。 Site Recovery 将使用这些凭据自动发现可复制的 VMware VM。 选择“添加”，然后选择“继续”。 
+6. 输入配置服务器用来连接到 VMware 服务器的用户凭据。 确保用户名和密码正确无误，并且属于要保护的虚拟机的 Administrators 组。 Site Recovery 将使用这些凭据自动发现可复制的 VMware VM。 选择“添加”，然后选择“继续”。
 7. 在“配置虚拟机凭据”中，输入将用于在 VM 上自动安装移动服务的用户名和密码（如果已启用复制）。
     - 对于 Windows 计算机，该帐户在要复制的计算机上需有本地管理员特权。
     - 对于 Linux，请提供根帐户的详细信息。
@@ -130,16 +132,16 @@ ms.locfileid: "84440432"
 注册配置服务器后，Site Recovery 将使用指定的设置连接到 VMware 服务器，并发现 VM。
 
 > [!NOTE]
-> 帐户名可能需要 15 分钟或更长时间才能出现在门户中。 若要立即更新，请选择“配置服务器” > ***服务器名称*** > “刷新服务器”。 
+> 帐户名可能需要 15 分钟或更长时间才能出现在门户中。 若要立即更新，请选择“配置服务器” > ***服务器名称*** > “刷新服务器”。
 
 ## <a name="set-up-the-target-environment"></a>设置目标环境
 
 选择并验证目标资源。
 
-1. 选择“准备基础结构” > “目标”。  选择要使用的 Azure 订阅。 我们将使用资源管理器模型。
+1. 选择“准备基础结构” > “目标”。 选择要使用的 Azure 订阅。 我们将使用资源管理器模型。
 2. Site Recovery 会检查是否有一个或多个虚拟网络。 在此教程系列的[第一个教程](tutorial-prepare-azure.md)中设置 Azure 组件时，你应该已经有了这些。
 
-    ![“目标”选项卡](./media/vmware-azure-tutorial/storage-network.png)
+    :::image type="content" source="./media/vmware-azure-tutorial/storage-network.png" alt-text="“准备基础结构”>“目标”选项的屏幕截图。":::
 
 ## <a name="create-a-replication-policy"></a>创建复制策略
 
@@ -151,25 +153,27 @@ ms.locfileid: "84440432"
 6. 在“恢复点保留期”中，指定每个恢复点的保留时间。 在本教程中，我们将使用 72 小时。 可以将复制的 VM 恢复到保留窗口中的任何点。
 7. 在“应用一致性快照频率”中，指定创建应用一致性快照的频率。 我们将使用默认值，即 60 分钟。 选择“确定”以创建策略。
 
-    ![创建复制策略](./media/vmware-azure-tutorial/replication-policy.png)
+    :::image type="content" source="./media/vmware-azure-tutorial/replication-policy.png" alt-text="创建复制策略选项的屏幕截图。":::
 
 - 此策略自动与配置服务器关联。
 - 默认情况下会自动创建一个匹配策略，用于故障回复。 例如，如果复制策略是 **rep-policy**，则故障回复策略将是 **rep-policy-failback**。 从 Azure 启动故障回复之前，不会使用此策略。
+
+注意：在 VMware 到 Azure 方案中，崩溃一致性快照的拍摄间隔为 5 分钟。
 
 ## <a name="enable-replication"></a>启用复制
 
 为 VM 启用复制，如下所示：
 
 1. 选择“复制应用程序” > “源” 。
-2. 在“源”中选择“本地”，然后在“源位置”中选择配置服务器。 
+2. 在“源”中选择“本地”，然后在“源位置”中选择配置服务器。
 3. 在“计算机类型”中，选择“虚拟机” 。
 4. 在“vCenter/vSphere 虚拟机监控程序”中选择 vSphere 主机或管理该主机的 vCenter 服务器。
 5. 选择进程服务器（默认安装在配置服务器 VM 上）。 然后选择“确定”。 每个进程服务器的运行状况状态是根据建议的限制和其他参数指示的。 选择一个正常运行的进程服务器。 不能选择[有严重错误的](vmware-physical-azure-monitor-process-server.md#process-server-alerts)进程服务器。 你可以[进行故障排除并解决](vmware-physical-azure-troubleshoot-process-server.md)错误**或者**设置一个[横向扩展进程服务器](vmware-azure-set-up-process-server-scale.md)。
 6. 在“目标”中，选择要创建故障转移 VM 的订阅和资源组。 我们将使用资源管理器部署模型。
 7. 选择 Azure VM 在故障转移后创建时所要连接的 Azure 网络和子网。
-8. 选择“立即为选定的计算机配置”，以便将网络设置应用到在其上启用了复制的所有 VM。  选择“稍后配置”以选择每个计算机的 Azure 网络。
+8. 选择“立即为选定的计算机配置”，以便将网络设置应用到在其上启用了复制的所有 VM。 选择“稍后配置”以选择每个计算机的 Azure 网络。
 9. 在“虚拟机” > “选择虚拟机”中，选择要复制的每个虚拟机 。 只能选择可以启用复制的计算机。 然后选择“确定”。 如果无法查看/选择特定的虚拟机，请[详细了解](../site-recovery/vmware-azure-troubleshoot-replication.md#source-machine-isnt-listed-in-the-azure-portal)如何解决此问题。
-10. 在“属性” > “配置属性”中，选择进程服务器在计算机上自动安装移动服务时使用的帐户。 
+10. 在“属性” > “配置属性”中，选择进程服务器在计算机上自动安装移动服务时使用的帐户。
 11. 在“复制设置” > “配置复制设置”中，检查是否选择了正确的复制策略 。
 12. 选择“启用复制”。 为 VM 启用复制后，Site Recovery 会安装移动服务。
 13. 可以在“设置” > “作业” > “Site Recovery 作业”中，跟踪“启用保护”作业的进度   。 在“完成保护”作业运行并且恢复点生成已完成后，计算机就可以进行故障转移了。

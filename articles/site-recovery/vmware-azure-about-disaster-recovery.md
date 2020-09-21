@@ -1,19 +1,20 @@
 ---
-title: 关于使用 Azure Site Recovery 进行 VMware VM 到 Azure 的灾难恢复 | Azure
+title: 使用 Azure Site Recovery 执行 VMware 灾难恢复
 description: 本文概述了使用 Azure Site Recovery 服务执行从 VMware VM 到 Azure 的灾难恢复。
-author: rockboyfor
 ms.service: site-recovery
-services: site-recovery
 ms.topic: conceptual
-origin.date: 09/09/2019
-ms.date: 09/30/2019
+origin.date: 11/12/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 7d7ae869698a03e318c832221d58aff2098e69bb
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: c41e15fe03350defb247ae1c2470dcb40abeca11
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71340905"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655696"
 ---
 # <a name="about-disaster-recovery-of-vmware-vms-to-azure"></a>关于 VMware VM 到 Azure 的灾难恢复
 
@@ -23,8 +24,11 @@ ms.locfileid: "71340905"
 
 业务连续性和灾难恢复 (BCDR) 策略有助于保持业务正常运行。 在计划的停机和意外故障期间，BCDR 可确保数据安全可用，并确保应用继续运行。 除了区域配对和高可用性存储等平台 BCDR 功能外，Azure 还提供恢复服务作为 BCDR 解决方案的一个主要部分。 恢复服务包括以下功能： 
 
-- [Azure 备份](/backup/backup-introduction-to-azure-backup)可备份用户的本地和 Azure VM 数据。 用户可以备份文件和文件夹、特定工作负载或整个 VM。 
+- [Azure 备份](../backup/backup-overview.md)可备份用户的本地和 Azure VM 数据。 用户可以备份文件和文件夹、特定工作负载或整个 VM。 
 - [Azure Site Recovery](site-recovery-overview.md) 为在本地计算机或 Azure IaaS VM 上运行的应用和工作负载提供恢复能力和灾难恢复。 Site Recovery 协调复制，并在发生中断时处理到 Azure 的故障转移。 它还处理从 Azure 到主站点的恢复。 
+
+> [!NOTE]
+> Site Recovery 不会将客户数据移到或存储在目标区域之外，目标区域中已为源计算机设置了灾难恢复。 如果客户愿意，可以从其他地区选择恢复服务保管库。 恢复服务保管库包含元数据，但不包含实际的客户数据。
 
 ## <a name="how-does-site-recovery-do-disaster-recovery"></a>Site Recovery 如何进行灾难恢复？
 
@@ -85,8 +89,8 @@ Site Recovery 可复制受支持的 VMware VM 或物理服务器上运行的任�
 在 Azure 和本地基础结构就位后，可以设置灾难恢复。
 
 1. 若要了解需要部署的组件，请查看 [VMware 到 Azure 体系结构](vmware-azure-architecture.md)，以及[物理机到 Azure 体系结构](physical-azure-architecture.md)。 其中包含许多组件，请务必了解它们如何搭配在一起。
-2. **源环境**：作为部署中的第一步，需要设置复制源环境。 指定要复制的内容以及要复制到的位置。
-3. **配置服务器**：需要设置本地源环境中的配置服务器：
+2. 源环境****：作为部署中的第一步，需要设置复制源环境。 指定要复制的内容以及要复制到的位置。
+3. 配置服务器****：需要设置本地源环境中的配置服务器：
     - 配置服务器是一台本地计算机。 对于 VMware 灾难恢复，建议将其作为可通过可下载的 OVF 模板部署的 VMware VM 来部署。
     - 配置服务器协调本地环境与 Azure 之间的通信
     - 其他几个组件在配置服务器计算机上运行。
@@ -94,7 +98,7 @@ Site Recovery 可复制受支持的 VMware VM 或物理服务器上运行的任�
         - 主目标服务器处理从 Azure 进行故障回复期间产生的复制数据。
     - 设置过程包括在保管库中注册配置服务器、下载 MySQL Server 和 VMware PowerCLI，以及指定为自动发现和移动服务安装所创建的帐户。
 4. **目标环境**：通过指定 Azure 订阅和网络设置来设置目标 Azure 环境。
-5. **复制策略**：指定复制的方式。 设置包括创建和存储恢复点的频率，以及是否应创建应用一致性快照。
+5. 复制策略****：指定复制的方式。 设置包括创建和存储恢复点的频率，以及是否应创建应用一致性快照。
 6. **启用复制**。 为本地计算机启用复制。 如果你创建了一个帐户用于安装移动服务，则在为计算机启用复制时将进行安装。 
 
 *需要更多帮助？*
@@ -118,4 +122,4 @@ Site Recovery 可复制受支持的 VMware VM 或物理服务器上运行的任�
 
 现在复制已准备就绪，应[运行灾难恢复钻取](tutorial-dr-drill-azure.md)以确保故障转移按预期工作。
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

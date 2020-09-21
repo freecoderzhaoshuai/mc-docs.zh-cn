@@ -9,13 +9,13 @@ tags: azure-portal
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 06/24/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: cab5fab5c1e14fe73296607f78f9afc4496c38a4
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: 7db060784ee3a996a0c00862da29bac05b71c1d4
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471868"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020913"
 ---
 # <a name="service-administration-for-azure-cognitive-search-in-the-azure-portal"></a>Azure 门户中 Azure 认知搜索服务管理
 
@@ -36,7 +36,7 @@ Azure 认知搜索是一种完全托管的、基于云的搜索服务，用于�
 
 在门户中执行的相同任务也可以通过[管理 API](https://docs.microsoft.com/rest/api/searchmanagement/) 和 [Az.Search PowerShell 模块](search-manage-powershell.md)以编程方式处理。 管理任务完全呈现在门户和程序设计界面中。 任何特定管理任务都不会只能通过一种形式使用。
 
-Azure 认知搜索充分利用其他 Azure 服务进行更深入的监视和管理。 通过搜索服务单独存储的唯一数据是内容（索引、索引器和数据源定义，以及其他对象）。 报告到门户页面的指标按照滚动的 30 天周期从内部日志中拉取。 对于用户控制的日志保留和其他事件，需要 [Azure Monitor](https://docs.azure.cn/azure-monitor/)。 
+Azure 认知搜索充分利用其他 Azure 服务进行更深入的监视和管理。 通过搜索服务单独存储的唯一数据是内容（索引、索引器和数据源定义，以及其他对象）。 报告到门户页面的指标按照滚动的 30 天周期从内部日志中拉取。 对于用户控制的日志保留和其他事件，需要 [Azure Monitor](../azure-monitor/index.yml)。 
 
 ## <a name="fixed-service-properties"></a>固定的服务属性
 
@@ -57,9 +57,9 @@ Azure 认知搜索充分利用其他 Azure 服务进行更深入的监视和管�
 * 服务的只读访问权限是查询权限，通常，向客户端应用程序授予这种权限的方式是向该应用程序提供 URL 和查询 API 密钥。
 * 具有读写访问权限就能够添加、删除或修改服务器对象，包括 API 密钥、索引、索引器、数据源和计划。读写访问权限是通过提供 URL 和管理 API 密钥来授予的。
 
-服务预配设备的权限是通过角色分配授予的。 [基于角色的访问 (RBAC)](../role-based-access-control/overview.md) 是基于 [Azure 资源管理器](../azure-resource-manager/management/overview.md)构建的授权系统，用于预配 Azure 资源。 
+服务预配设备的权限是通过角色分配授予的。 [Azure 基于角色的访问控制 (Azure RBAC)](../role-based-access-control/overview.md) 是基于 [Azure 资源管理器](../azure-resource-manager/management/overview.md)构建的授权系统，用于预配 Azure 资源。 
 
-在 Azure 认知搜索上下文中，[RBAC 角色分配](search-security-rbac.md)将确定哪些用户可以执行任务，而不考虑他们是使用[门户](search-manage.md)、[PowerShell](search-manage-powershell.md) 还是[管理 REST API](https://docs.microsoft.com/rest/api/searchmanagement/search-howto-management-rest-api)：
+在 Azure 认知搜索上下文中，[Azure 角色分配](search-security-rbac.md)将确定哪些用户可以执行任务，而不考虑他们是使用[门户](search-manage.md)、[PowerShell](search-manage-powershell.md) 还是[管理 REST API](https://docs.microsoft.com/rest/api/searchmanagement/search-howto-management-rest-api)：
 
 * 创建或删除服务
 * 缩放服务
@@ -74,7 +74,7 @@ Azure 认知搜索充分利用其他 Azure 服务进行更深入的监视和管�
 
 在基本层以及更高层上，Microsoft 会监视所有 Azure 认知搜索服务以达到服务级别协议 (SLA) 的 99.9% 可用性。 如果服务的速度较慢或请求吞吐量低于 SLA 阈值，则支持团队审查提供给他们的日志文件并解决问题。
 
-Azure 认知搜索利用 [Azure Monitor](https://docs.azure.cn/azure-monitor/) 来收集和存储索引及查询活动。 搜索服务仅单独存储其内容（索引、索引器定义、数据源定义、技能组定义、同义词映射）。 高速缓存信息和记录的信息是脱离服务而存储的，通常存储在 Azure 存储帐户中。 有关记录索引和查询工作负载的详细信息，请参阅[收集和分析日志数据](search-monitor-logs.md)。
+Azure 认知搜索利用 [Azure Monitor](../azure-monitor/index.yml) 来收集和存储索引及查询活动。 搜索服务仅单独存储其内容（索引、索引器定义、数据源定义、技能组定义、同义词映射）。 高速缓存信息和记录的信息是脱离服务而存储的，通常存储在 Azure 存储帐户中。 有关记录索引和查询工作负载的详细信息，请参阅[收集和分析日志数据](search-monitor-logs.md)。
 
 就有关服务的一般信息而言，只需使用 Azure 认知搜索本身内置的设施就可以通过以下方式获取信息：
 

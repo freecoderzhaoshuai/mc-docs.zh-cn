@@ -8,15 +8,15 @@ ms.topic: overview
 origin.date: 05/20/2019
 ms.author: v-yiso
 ms.date: 06/24/2019
-ms.openlocfilehash: 461951e1b4f34d6bd55d5f4daa1e22ea5b845d1f
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 9f3b8f5ab1caa15f79206faa19547ea40eebd091
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "67135872"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021614"
 ---
-# <a name="expressroute-overview"></a>ExpressRoute 概述
-使用 Azure ExpressRoute 可通过连接服务提供商所提供的专用连接，将本地网络扩展到 Microsoft 云。 使用 ExpressRoute 可与 Microsoft Azure、Office 365 和 Dynamics 365 等 Microsoft 云服务建立连接。
+# <a name="what-is-azure-expressroute"></a>什么是 Azure ExpressRoute？
+使用 ExpressRoute 可通过连接服务提供商所提供的专用连接，将本地网络扩展到 Microsoft 云。 使用 ExpressRoute 可与 Microsoft Azure 等 Microsoft 云服务建立连接。
 
 可以从任意位置之间的 (IP VPN) 网络、点到点以太网或在共置设施上通过连接服务提供商的虚拟交叉连接来建立这种连接。 ExpressRoute 连接不通过公共 Internet 。 与通过 Internet 的典型连接相比，ExpressRoute 连接提供更高的可靠性、更快的速度、更低的延迟和更高的安全性。 要了解如何使用 ExpressRoute 将网络连接到 Microsoft，请参阅 [ExpressRoute 连接模型](expressroute-connectivity-models.md)。
 
@@ -97,7 +97,7 @@ ExpressRoute Direct 提供的主要功能包括但不限于：
 * 10 Gbps
 
 ### <a name="dynamic-scaling-of-bandwidth"></a>动态调整带宽
-可以在不中断连接的情况下增大 ExpressRoute 线路带宽（尽最大努力）。 有关详细信息，请参阅[修改 ExpressRoute 线路](expressroute-howto-circuit-portal-resource-manager.md#modify)。
+用户可以在不中断连接的情况下增大 ExpressRoute 线路带宽（尽最大努力）。 有关详细信息，请参阅[修改 ExpressRoute 线路](expressroute-howto-circuit-portal-resource-manager.md#modify)。
 
 ### <a name="flexible-billing-models"></a>弹性计费模式
 可以选择最适合自己的计费模式。 请从以下计费模式中选择。 有关详细信息，请参阅 [ExpressRoute 常见问题解答](expressroute-faqs.md)。
@@ -106,10 +106,10 @@ ExpressRoute Direct 提供的主要功能包括但不限于：
 * **计量数据**。 计费按月，所有入站数据传输不收取费用。 出站数据传输按每 GB 数据传输计费。 数据传输费率根据区域不同而异。
 * **ExpressRoute 高级版附加组件**。 ExpressRoute 高级版是 ExpressRoute 线路上的附加组件。 ExpressRoute 高级版附加组件提供以下功能： 
   * 提高 Azure 公共和 Azure 专用对等互连的路由限制，从4,000 路由提升至 10,000 路由。
-  * 服务的全球连接。 在任何区域（国家/地区云除外）创建的 ExpressRoute 线路都会能够访问位于全球其他区域的资源。
+  * 服务的全球连接。 在任何区域（国家/地区云除外）创建的 ExpressRoute 线路都能够访问位于全球其他区域的资源。
   * 增加了每个 ExpressRoute 线路的 VNet 链接数量，从 10 增加至更大的限制，具体取决于线路的带宽。
 
-## <a name="faq"></a>常见问题
+## <a name="faq"></a>常见问题解答
 有关 ExpressRoute 的常见问题，请参阅 [ExpressRoute 常见问题解答](expressroute-faqs.md)。
 
 ## <a name="next-steps"></a>后续步骤

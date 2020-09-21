@@ -9,24 +9,24 @@ ms.topic: conceptual
 ms.reviewer: nibaccam
 author: nibaccam
 ms.author: nibaccam
-ms.date: 04/24/2020
-ms.custom: tracking-python
-ms.openlocfilehash: cd5e8de5c0b17da4f014bb06e95eb7e6412aa595
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.date: 08/31/2020
+ms.custom: devx-track-python
+ms.openlocfilehash: 209fc08781f8ae95230831f5a41ce98d0ca32d09
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88227864"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021370"
 ---
 # <a name="secure-data-access-in-azure-machine-learning"></a>Azure 机器学习中的安全数据访问
 
 Azure 机器学习使你可以轻松连接到云中的数据。  它在基础存储服务上提供抽象层，让你可以安全地访问和使用数据，而无需编写特定于存储类型的代码。 Azure 机器学习还提供了以下数据功能：
 
+*    与 Pandas 和 Spark DataFrames 的互操作性
 *    数据世系的版本控制和跟踪
 *    数据标记 
 *    数据偏差监视
-*    与 Pandas 和 Spark DataFrames 的互操作性
-
+    
 ## <a name="data-workflow"></a>数据工作流
 
 准备好在基于云的存储解决方案中使用数据时，建议使用以下数据发送工作流。 此工作流假设你拥有 [Azure 存储帐户](https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal)，并在 Azure 中的基于云的存储服务中拥有数据。 
@@ -67,13 +67,19 @@ Azure 中支持的基于云的存储服务，可注册为数据存储：
 
 ## <a name="datasets"></a>数据集
 
-Azure 机器学习数据集是指向存储服务中数据的引用。 它们不是数据的副本，因此不会产生额外的存储成本，且原始数据源的完整性也不会面临风险。
+Azure 机器学习数据集是指向存储服务中数据的引用。 它们不是数据的副本。创建 Azure 机器学习数据集时，将会创建对数据源位置的引用及其元数据的副本。 
 
- 若要与存储中的数据进行交互，请[创建一个数据集](how-to-create-register-datasets.md)以将数据打包成机器学习任务可用的对象。 将数据集注册到工作区可在不同的试验中共享和重用该数据集，而不会造成数据引入复杂性。
+由于数据集是延迟计算的，并且数据仍保留在其现有位置，因此
 
-可以从本地文件、公共 URL、[Azure 开放数据集](https://azure.microsoft.com/services/open-datasets/)或经由数据存储的 Azure 存储服务创建数据集。 若要从内存中 pandas 数据帧创建数据集，请将数据写入本地文件（例如 parquet），然后从该文件创建数据集。  
+* 不会产生额外的存储成本。
+* 不会无意中更改原始数据源。
+* 会提高 ML 工作流性能速度。
 
-我们支持 2 种类型的数据集： 
+若要与存储中的数据进行交互，请[创建一个数据集](how-to-create-register-datasets.md)以将数据打包成机器学习任务可用的对象。 将数据集注册到工作区可在不同的试验中共享和重用该数据集，而不会造成数据引入复杂性。
+
+可以从本地文件、公共 URL、[Azure 开放数据集](https://azure.microsoft.com/services/open-datasets/)或经由数据存储的 Azure 存储服务创建数据集。 
+
+有两种类型的数据集： 
 
 + [FileDataset](https://docs.microsoft.com/python/api/azureml-core/azureml.data.file_dataset.filedataset?view=azure-ml-py) 引用数据存储或公共 URL 中的单个或多个文件。 如果数据已被清理并且可用于训练试验，则可以[下载或装载 FileDataset 引用的文件](how-to-train-with-datasets.md#mount-files-to-remote-compute-targets)到计算目标。
 
@@ -118,5 +124,4 @@ Azure 机器学习提供了一个中心位置，用于创建、管理和监视�
 ## <a name="next-steps"></a>后续步骤 
 
 + 若要在 Azure 机器学习工作室或 Python SDK 中创建数据集，请[使用这些步骤](how-to-create-register-datasets.md)。
-+ 阅读[示例笔记本](https://aka.ms/dataset-tutorial)中的数据集训练示例。
-+ 有关数据偏移的示例，请参阅此[数据偏移教程](https://aka.ms/datadrift-notebook)。
++ 阅读[示例笔记本](https://github.com/Azure/MachineLearningNotebooks/tree/master/how-to-use-azureml/work-with-data/)中的数据集训练示例。

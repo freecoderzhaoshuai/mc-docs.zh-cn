@@ -11,12 +11,12 @@ author: lobrien
 manager: cgronlun
 ms.date: 06/15/2020
 ms.custom: tracking-python
-ms.openlocfilehash: 11b982db0c9da169ed47645c5c680085ae095d99
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: f9fb52f73840b19d25e1459f7a09bfbfdb921a23
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88946947"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021519"
 ---
 # <a name="use-automated-ml-in-an-azure-machine-learning-pipeline-in-python"></a>在 Python 的 Azure 机器学习管道中使用自动化 ML
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -38,6 +38,12 @@ Azure 机器学习的自动化 ML 功能可帮助你发现高性能模型，而�
 `PipelineStep` 有多个子类。 除了 `AutoMLStep`，本文还将显示一个 `PythonScriptStep` 用于数据准备，另一个用于注册模型。
 
 最初将数据移动到 ML 管道时，首选方法是使用 `Dataset` 对象__。 若要在步骤之间移动数据，首选方法是使用 `PipelineData` 对象__。 若要与 `AutoMLStep` 结合使用，必须将 `PipelineData` 对象转换为 `PipelineOutputTabularDataset` 对象。 有关详细信息，请参阅[来自 ML 管道的输入和输出数据](how-to-move-data-in-out-of-pipelines.md)。
+
+
+> [!TIP]
+> 公共预览版类 `OutputFileDatasetConfig` 和 `OutputTabularDatasetConfig` 改进了在管道步骤之间传递临时数据的体验。  这些类属于试验性预览功能，可能会随时发生变化。
+> 
+>若要详细了解试验性功能，请参阅 https://aka.ms/azuremlexperimental 。
 
 通过 `AutoMLConfig` 对象配置 `AutoMLStep`。 `AutoMLConfig` 是一个灵活的类，如[使用 Python 配置自动化 ML 试验](https://docs.microsoft.com/azure/machine-learning/how-to-configure-auto-train#configure-your-experiment-settings)中所述。 
 
@@ -145,7 +151,8 @@ else:
 - 将分类数据转换为整数
 - 删除不打算使用的列
 - 将数据分为训练集和测试集
-- 将转换的数据写入 `PipelineData` 输出路径
+- 将转换的数据写入到任一
+    - `PipelineData` 输出路径
 
 ```python
 %%writefile dataprep.py
@@ -225,11 +232,10 @@ print(f"Wrote test to {args.output_path} and train to {args.output_path}")
 
 上述数据准备代码必须与 `PythonScripStep` 对象相关联才能用于管道。 将 Parquet 数据准备输出写入到的路径由 `PipelineData` 对象生成。 前面准备的资源（如 `ComputeTarget`、`RunConfig` 和 `'titanic_ds' Dataset`）用于补全规范。
 
+PipelineData 用户
 ```python
 from azureml.pipeline.core import PipelineData
 from azureml.pipeline.steps import PythonScriptStep
-
-prepped_data_path = PipelineData("titanic_train", datastore).as_dataset()
 prepped_data_path = PipelineData("titanic_train", datastore).as_dataset()
 
 dataprep_step = PythonScriptStep(
@@ -246,6 +252,9 @@ dataprep_step = PythonScriptStep(
 
 `prepped_data_path` 对象的类型是 `PipelineOutputFileDataset`。 注意，`arguments` 和 `outputs` 参数中都指定了它。 如果回顾上一步，你将看到在数据准备代码中，参数 `'--output_path'` 的值即将 Parquet 文件写入到的文件路径。 
 
+> [!TIP]
+> 公共预览版类 `OutputFileDatasetConfig` 改进了在管道步骤之间传递中间数据的体验。 详细了解 [SDK 参考文档](https://docs.microsoft.com/python/api/azureml-core/azureml.data.outputfiledatasetconfig?view=azure-ml-py)中的 `OutputFileDatasetConfig` 设计模式和方法。
+
 ## <a name="train-with-automlstep"></a>通过 AutoMLStep 训练
 
 使用 `AutoMLConfig` 类配置自动化 ML 管道步骤。 此灵活的类，如[使用 Python 配置自动化 ML 试验](https://docs.microsoft.com/azure/machine-learning/how-to-configure-auto-train)中所述。 在 ML 管道中，配置时需要特别注意的只有数据输入和输出。 下面将详细讨论管道中 `AutoMLConfig` 的输入和输出。 除了数据之外，ML 管道的一个优点是能够为不同的步骤使用不同的计算目标。 你可以选择只对自动化 ML 进程使用更强大的 `ComputeTarget`。 这样做很简单，只需将功能更强大的 `RunConfiguration` 分配给 `AutoMLConfig` 对象的 `run_configuration` 参数即可。
@@ -261,6 +270,9 @@ prepped_data = prepped_data_path.parse_parquet_files(file_extension=None)
 ```
 
 以上代码片段会从数据准备步骤的 `PipelineOutputFileDataset` 输出创建一个高性能的 `PipelineOutputTabularDataset`。
+
+> [!TIP]
+> 公共预览版类 `OutputFileDatasetConfig` 还能够将 `OutputFileDatasetConfig` 转换为在 AutoML 运行中消耗的 `OutputTabularDatasetConfig`。 详细了解 [SDK 参考文档](https://docs.microsoft.com/python/api/azureml-core/azureml.data.outputfiledatasetconfig?view=azure-ml-py)中的 `OutputFileDatasetConfig` 设计模式和方法。
 
 另一个选项是使用在工作区中注册的 `Dataset` 对象：
 
@@ -341,13 +353,13 @@ train_step = AutoMLStep(name='AutoML_Classification',
 - `path` 以及 `debug_log` 描述项目的路径和要将调试信息写入的本地文件 
 - `compute_target` 是先前定义的 `compute_target`，在本例中，它是一个基于 CPU、价格便宜的计算机。 如果你使用 AutoML 的深度学习工具，则需要将计算目标更改为基于 GPU
 - `featurization` 设置为 `auto`。 可以在自动化 ML 配置文档的[数据特征化](https://docs.microsoft.com/azure/machine-learning/how-to-configure-auto-train#data-featurization)部分找到更多详细信息 
-- `training_data` 设置为从数据准备步骤的输出生成的 `PipelineOutputTabularDataset` 对象 
 - `label_column_name` 指示要预测的列 
+- `training_data` 设置为从数据准备步骤的输出生成的 `PipelineOutputTabularDataset` 对象 
 
 `AutoMLStep` 本身接受 `AutoMLConfig`，并创建用于保存指标和模型数据的 `PipelineData` 对象作为输出。 
 
 >[!Important]
-> 除非使用 `AutoMLStep`，否则必须将 `enable_default_model_output` 和 `enable_default_metrics_output` 设置为 `False`。
+> 只有在使用 `AutoMLStepRun` 时，才必须将 `enable_default_model_output` 和 `enable_default_metrics_output` 设置为 `True`。
 
 在本例中，自动化 ML 进程将对 `training_data` 执行交叉验证。 可以使用 `n_cross_validations` 参数控制交叉验证次数。 如果已经在数据准备步骤中包含拆分训练数据的过程，可将 `validation_data` 设置为其自身的 `Dataset`。
 

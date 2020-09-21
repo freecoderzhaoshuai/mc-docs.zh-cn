@@ -11,12 +11,12 @@ author: Blackmist
 origin.date: 11/04/2019
 ms.date: 03/09/2020
 ms.custom: seoapril2019
-ms.openlocfilehash: e854ab19a3a174d7fed6843cb871b64a9910f6cb
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 877702706cf752e2e04760d8a8e54ecc0ffb2525
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947185"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020974"
 ---
 # <a name="use-an-azure-resource-manager-template-to-create-a-workspace-for-azure-machine-learning"></a>使用 Azure 资源管理器模板创建 Azure 机器学习的工作区
 
@@ -31,7 +31,7 @@ ms.locfileid: "88947185"
 
 * 一个 **Azure 订阅**。 如果没有订阅，可试用 [Azure 机器学习免费版或付费版](https://www.azure.cn/pricing/1rmb-trial)。
 
-* 若要在 CLI 中使用模板，需要安装 [Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview?view=azps-1.2.0) 或 [Azure CLI](/cli/install-azure-cli?view=azure-cli-latest)。
+* 若要在 CLI 中使用模板，需要安装 [Azure PowerShell](https://docs.microsoft.com/powershell/azure/?view=azps-1.2.0) 或 [Azure CLI](/cli/install-azure-cli?view=azure-cli-latest)。
 
 ## <a name="workspace-resource-manager-template"></a>工作区资源管理器模板
 
@@ -51,7 +51,7 @@ ms.locfileid: "88947185"
 
 * 将在其中创建资源的**位置**。
 
-    模板将使用你为大多数资源选择的位置。 例外的情况是 Application Insights 服务，它不像其他所有服务一样在所有位置都可用。 如果选择了 Application Insights 服务不可用的位置，将在美国中南部位置创建该服务。
+    模板将使用你为大多数资源选择的位置。 例外的情况是 Application Insights 服务，它不像其他所有服务一样在所有位置都可用。 如果选择该服务不可用的位置，将会在中国东部 2 位置创建该服务。
 
 * **工作区名称**：Azure 机器学习工作区的友好名称。
 
@@ -121,7 +121,7 @@ New-AzResourceGroupDeployment `
 默认情况下，作为模板的一部分创建的所有资源都是新的。 不过，你也可以选择使用现有资源。 可以通过向模板提供其他参数来使用现有资源。 例如，如果你想要使用现有的存储帐户，请将 **storageAccountOption** 值设置为 **existing**，并在 **storageAccountName** 参数中提供存储帐户的名称。
 
 > [!IMPORTANT]
-> 若要使用现有 Azure 存储帐户，则该帐户不能是高级帐户（Premium_LRS 和 Premium_GRS）。 它也不能具有分层命名空间（与 Azure Data Lake Storage Gen2 一起使用）。 工作区的默认存储帐户不支持高级存储和分层命名空间。
+> 若要使用现有 Azure 存储帐户，则该帐户不能是高级帐户（Premium_LRS 和 Premium_GRS）。 它也不能具有分层命名空间（与 Azure Data Lake Storage Gen2 一起使用）。 工作区的默认存储帐户不支持高级存储和分层命名空间。 工作区的默认存储帐户不支持高级存储和分层命名空间。 可以将高级存储或分层命名空间用于非默认存储帐户。
 
 # <a name="azure-cli"></a>[Azure CLI](#tab/azcli)
 
@@ -166,116 +166,9 @@ New-AzResourceGroupDeployment `
 
 > [!IMPORTANT]
 > 在使用此模板之前，订阅必须满足一些特定要求：
-> * “Azure 机器学习”应用程序必须是 Azure 订阅的“参与者” 。
 > * 你必须具有包含加密密钥的现有 Azure Key Vault。
-> * Azure Key Vault 中必须具有访问策略，该策略授予对 Azure Cosmos DB 应用程序的“获取”、“包装”和“解包”访问权限   。
 > * Azure Key Vault 必须位于计划创建 Azure 机器学习工作区的同一区域。
-
-要将 Azure 机器学习应用作为参与者添加，请使用以下命令：
-
-1. 登录到你的 Azure 帐户并获取你的订阅 ID。 此订阅必须与包含 Azure 机器学习工作区的订阅相同。  
-
-    # <a name="azure-cli"></a>[Azure CLI](#tab/azcli)
-
-    ```azurecli
-    az account list --query '[].[name,id]' --output tsv
-    ```
-
-    > [!TIP]
-    > 若要选择另一个订阅，请使用 `az account set -s <subscription name or ID>` 命令并指定要切换到的订阅名称或 ID。 有关订阅选择的详细信息，请参阅[使用多个 Azure 订阅](/cli/manage-azure-subscriptions-azure-cli?view=azure-cli-latest)。 
-
-    # <a name="azure-powershell"></a>[Azure PowerShell](#tab/azpowershell)
-
-    ```azurepowershell
-    Get-AzSubscription
-    ```
-
-    > [!TIP]
-    > 若要选择另一个订阅，请使用 `Az-SetContext -SubscriptionId <subscription ID>` 命令并指定要切换到的订阅名称或 ID。 有关订阅选择的详细信息，请参阅[使用多个 Azure 订阅](https://docs.microsoft.com/powershell/azure/manage-subscriptions-azureps?view=azps-4.3.0)。
-
-    ---
-
-1. 要获取 Azure 机器学习应用的对象 ID，请使用以下命令。 对于每个 Azure 订阅，该值可能不同：
-
-    # <a name="azure-cli"></a>[Azure CLI](#tab/azcli)
-
-    ```azurecli
-    az ad sp list --display-name "Azure Machine Learning" --query '[].[appDisplayName,objectId]' --output tsv
-    ```
-
-    # <a name="azure-powershell"></a>[Azure PowerShell](#tab/azpowershell)
-
-    ```azurepowershell
-    Get-AzADServicePrincipal --DisplayName "Azure Machine Learning" | select-object DisplayName, Id
-    ```
-
-    ---
-    此命令返回对象 ID，该 ID 为 GUID。
-
-1. 要将对象 ID 作为参与者添加到订阅，请使用以下命令。 将 `<object-ID>` 替换为服务主体的对象 ID。 将 `<subscription-ID>` 替换为 Azure 订阅的名称或 ID：
-
-    # <a name="azure-cli"></a>[Azure CLI](#tab/azcli)
-
-    ```azurecli
-    az role assignment create --role 'Contributor' --assignee-object-id <object-ID> --subscription <subscription-ID>
-    ```
-
-    # <a name="azure-powershell"></a>[Azure PowerShell](#tab/azpowershell)
-
-    ```azurepowershell
-    New-AzRoleAssignment --ObjectId <object-ID> --RoleDefinitionName "Contributor" -Scope /subscriptions/<subscription-ID>
-    ```
-
-    ---
-
-1. 若要在现有 Azure Key Vault 中生成密钥，请使用以下命令之一。 将 `<keyvault-name>` 替换为密钥保管库的名称。 将 `<key-name>` 替换为要用于密钥的名称：
-
-    # <a name="azure-cli"></a>[Azure CLI](#tab/azcli)
-
-    ```azurecli
-    az keyvault key create --vault-name <keyvault-name> --name <key-name> --protection software
-    ```
-
-    # <a name="azure-powershell"></a>[Azure PowerShell](#tab/azpowershell)
-
-    ```azurepowershell
-    Add-AzKeyVaultKey -VaultName <keyvault-name> -Name <key-name> -Destination 'Software'
-    ```
-    --- 
-
-__要向密钥保管库添加访问策略，请使用以下命令__：
-
-1. 要获取 Azure Cosmos DB 应用的对象 ID，请使用以下命令。 对于每个 Azure 订阅，该值可能不同：
-
-    # <a name="azure-cli"></a>[Azure CLI](#tab/azcli)
-
-    ```azurecli
-    az ad sp list --display-name "Azure Cosmos DB" --query '[].[appDisplayName,objectId]' --output tsv
-    ```
-
-    # <a name="azure-powershell"></a>[Azure PowerShell](#tab/azpowershell)
-
-    ```azurepowershell
-    Get-AzADServicePrincipal --DisplayName "Azure Cosmos DB" | select-object DisplayName, Id
-    ```
-    ---
-
-    此命令返回对象 ID，该 ID 为 GUID。 保存它供以后使用
-
-1. 要设置策略，请使用以下命令。 将 `<keyvault-name>` 替换为现有的 Azure Key Vault 的名称。 将 `<object-ID>` 替换为上一步中的 GUID：
-
-    # <a name="azure-cli"></a>[Azure CLI](#tab/azcli)
-
-    ```azurecli
-    az keyvault set-policy --name <keyvault-name> --object-id <object-ID> --key-permissions get unwrapKey wrapKey
-    ```
-
-    # <a name="azure-powershell"></a>[Azure PowerShell](#tab/azpowershell)
-    
-    ```azurepowershell
-    Set-AzKeyVaultAccessPolicy -VaultName <keyvault-name> -ObjectId <object-ID> -PermissionsToKeys get, unwrapKey, wrapKey
-    ```
-    ---    
+> * 必须指定 Azure Key Vault 的 ID 和加密密钥的 URI。
 
 要获取此模板所需的 `cmk_keyvault`（Key Vault 的 ID）和 `resource_cmk_uri`（密钥 URI）参数的值，请执行以下操作：
 
@@ -316,7 +209,7 @@ __要向密钥保管库添加访问策略，请使用以下命令__：
 > [!IMPORTANT]
 > 创建工作区后，无法更改机密数据、加密、密钥保管库 ID 或密钥标识符的设置。 要更改这些值，必须使用新值创建新工作区。
 
-成功完成上述步骤后，即可像往常一样部署模板。 若要允许使用客户管理的密钥，请设置以下参数：
+若要允许使用客户管理的密钥，请在部署该模板时设置以下参数：
 
 * 将 **encryption_status** 设置为 **Enabled**。
 * 将 **cmk_keyvault** 设置为在前面的步骤中获取的 `cmk_keyvault` 值。
@@ -565,12 +458,12 @@ New-AzResourceGroupDeployment `
     ```
     ---
 
-当关联资源位于虚拟网络后面时，工作区需要使用专用终结点才能正常工作。 若要为使用现有虚拟网络的工作区设置专用终结点，请执行以下操作：
+<!-- Workspaces need a private endpoint when associated resources are behind a virtual network to work properly. To set up a private endpoint for the workspace with an existing virtual network:
 
 > [!IMPORTANT]
-> 部署仅在支持专用终结点的区域中有效。
+> The deployment is only valid in regions which support private endpoints.
 
-# <a name="azure-cli"></a>[Azure CLI](#tab/azcli)
+# [Azure CLI](#tab/azcli)
 
 ```azurecli
 az deployment group create \
@@ -587,7 +480,7 @@ az deployment group create \
       subnetOption="existing"
 ```
 
-# <a name="azure-powershell"></a>[Azure PowerShell](#tab/azpowershell)
+# [Azure PowerShell](#tab/azpowershell)
 
 ```azurepowershell
 New-AzResourceGroupDeployment `
@@ -604,7 +497,7 @@ New-AzResourceGroupDeployment `
   -subnetOption "existing"
 ```
 
----
+--- -->
 
 ## <a name="use-the-azure-portal"></a>使用 Azure 门户
 
@@ -718,6 +611,32 @@ New-AzResourceGroupDeployment `
 
     ```text
     /subscriptions/{subscription-guid}/resourceGroups/myresourcegroup/providers/Microsoft.KeyVault/vaults/mykeyvault
+    ```
+
+### <a name="virtual-network-not-linked-to-private-dns-zone"></a>未链接到专用 DNS 区域的虚拟网络
+
+创建具有专用终结点的工作区时，该模板会创建一个名为“privatelink.api.azureml.ms”的专用 DNS 区域。 一个虚拟网络链接会自动添加到此专用 DNS 区域。 该链接只为在资源组中创建的第一个工作区和专用终结点添加；如果在同一资源组中创建另一个具有专用终结点的虚拟网络和工作区，第二个虚拟网络添可能不会被添加到专用 DNS 区域。
+
+若要查看对于专用 DNS 区域已存在的虚拟网络链接，请使用以下 Azure CLI 命令：
+
+```azurecli
+az network private-dns link vnet list --zone-name privatelink.api.azureml.ms --resource-group myresourcegroup
+```
+
+若要添加包含另一工作区和专用终结点的虚拟网络，请执行以下步骤：
+
+1. 若要查找需要添加的网络的虚拟网络 ID，请使用以下命令：
+
+    ```azurecli
+    az network vnet show --name myvnet --resource-group myresourcegroup --query id
+    ```
+    
+    此命令返回一个类似于“"/subscriptions/GUID/resourceGroups/myresourcegroup/providers/Microsoft.Network/virtualNetworks/myvnet"”的值。 请保存此值并在下一步中使用它。
+
+2. 若要将虚拟网络链接添加到 privatelink.api.azureml.ms 专用 DNS 区域，请使用以下命令。 对于 `--virtual-network` 参数，请使用上一命令的输出：
+
+    ```azurecli
+    az network private-dns link vnet create --name mylinkname --registration-enabled true --resource-group myresourcegroup --virtual-network myvirtualnetworkid --zone-name privatelink.api.azureml.ms
     ```
 
 ## <a name="next-steps"></a>后续步骤

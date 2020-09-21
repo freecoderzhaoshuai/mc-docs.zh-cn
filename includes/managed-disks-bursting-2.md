@@ -6,18 +6,20 @@ author: rockboyfor
 ms.service: virtual-machines
 ms.topic: include
 origin.date: 04/27/2020
-ms.date: 05/18/2020
+ms.date: 08/10/2020
+ms.testscope: no
+ms.testdate: 05/18/2020
 ms.author: v-yeche
 ms.custom: include file
-ms.openlocfilehash: ffd46a5112ce87aefbecd03709234dec944a2502
-ms.sourcegitcommit: f6d0bd7958e0720367022e68dc1824448c866882
+ms.openlocfilehash: c7232d710896fe3ecd8415f92f4cc495009fa4c1
+ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83417247"
+ms.lasthandoff: 08/07/2020
+ms.locfileid: "90057549"
 ---
-<!--CONFIRM THE DEOPLOMENT REGIONS BEFORE RELEASEMENT-->
 <!--Verified successfully-->
+<!--CONFIRM THE DEOPLOMENT REGIONS BEFORE RELEASEMENT-->
 ## <a name="common-scenarios"></a>常见场景
 以下需求场景可显著受益于突发：
 - **缩短启动时间** - 在使用突发的情况下，实例的启动速度将大大加快。 例如，启用高级层的 VM 的默认 OS 磁盘是 P4 磁盘，其预配性能最高可达 120 IOPS 和 25 MB/s。 在使用突发的情况下，P4 的性能最高可达 3500 IOPS 和 170 MB/s，可使启动速度加快 6 倍。
@@ -29,7 +31,7 @@ ms.locfileid: "83417247"
 
 ![突发桶关系图](media/managed-disks-bursting/bucket-diagram.jpg)
 
-有关突发累积，需要注意的一件事是，各个资源的突发累积都各不相同，因为它基于资源在其性能限制下运行时未使用的 IOPS 和 MB/s。 这意味着，较高基线性能的产品积累其突发额度的速度可能会快于较低基线性能的产品。 例如，处于空闲状态、没有任何活动的 P1 磁盘将每秒积累 120 IOPS，而 P20 磁盘在处于空闲状态、没有任何活动时将每秒积累 2300 IOPS。
+这完全取决于你希望如何使用这 30 分钟的突发。 可以连续使用 30 分钟，也可以在一天内分散地使用。 部署产品后，该产品为满信用额度；当其信用额度耗尽时，可在一天内再次充满信用额度。 你可以自行决定如何累积和花费其突发信用额度，不一定要再次充满 30 分钟的 Bucket 才能突发。 有关突发累积，需要注意的一件事是，各个资源的突发累积都各不相同，因为它基于资源在其性能限制下运行时未使用的 IOPS 和 MB/s。 这意味着，较高基线性能的产品积累其突发额度的速度可能会快于较低基线性能的产品。 例如，处于空闲状态、没有任何活动的 P1 磁盘将每秒积累 120 IOPS，而 P20 磁盘在处于空闲状态、没有任何活动时将每秒积累 2300 IOPS。
 
 ## <a name="bursting-states"></a>突发状态
 启用了突发功能时，资源可能处于以下三种状态之一：

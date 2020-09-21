@@ -1,17 +1,19 @@
 ---
 title: 配置 Azure Service Fabric 独立群集
 description: 了解如何配置独立的或本地 Azure Service Fabric 群集。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 11/12/2018
-ms.date: 01/06/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 711b4bf4b226b31aecb1c29c6e5629489146539b
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 5ebecba48df3510001498636eea42dec9addd872
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742348"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655258"
 ---
 # <a name="configuration-settings-for-a-standalone-windows-cluster"></a>独立 Windows 群集的配置设置
 本文介绍可使用 ClusterConfig.json  文件设置的独立 Azure Service Fabric 群集的配置设置。 需要使用该文件指定有关群集节点、安全配置以及有关容错域和升级域的网络拓扑信息。  更改或添加配置设置后，可以[创建一个独立的群集](service-fabric-cluster-creation-for-windows-server.md)，也可以[升级独立群集的配置](service-fabric-cluster-config-upgrade-windows-server.md)。
@@ -38,32 +40,29 @@ ms.locfileid: "75742348"
 可为 Service Fabric 群集指定任何友好名称，只需将该名称分配到 name 变量即可。 clusterConfigurationVersion 是群集的版本号。 每次升级 Service Fabric 群集时，都应该递增该编号。 请将 apiVersion 保留为默认值。
 
 <a name="clusternodes"></a>
-## <a name="nodes-on-the-cluster"></a><a name="nodes-on-the-cluster"></a>群集上的节点
-
+<a name="nodes-on-the-cluster"></a>
+## <a name="nodes-on-the-cluster"></a>群集上的节点
 可以使用 nodes 节配置 Service Fabric 群集上的节点，如以下代码片段中所示：
 ```json
 "nodes": [{
-        "nodeName": "vm0",
-        "iPAddress": "localhost",
-        "nodeTypeRef": "NodeType0",
-        "faultDomain": "fd:/dc1/r0",
-        "upgradeDomain": "UD0"
-    },
-    {
-        "nodeName": "vm1",
-        "iPAddress": "localhost",
-        "nodeTypeRef": "NodeType1",
-        "faultDomain": "fd:/dc1/r1",
-        "upgradeDomain": "UD1"
-    },
-    {
-        "nodeName": "vm2",
-        "iPAddress": "localhost",
-        "nodeTypeRef": "NodeType2",
-        "faultDomain": "fd:/dc1/r2",
-        "upgradeDomain": "UD2"
-    }
-],
+    "nodeName": "vm0",
+    "iPAddress": "localhost",
+    "nodeTypeRef": "NodeType0",
+    "faultDomain": "fd:/dc1/r0",
+    "upgradeDomain": "UD0"
+}, {
+    "nodeName": "vm1",
+    "iPAddress": "localhost",
+    "nodeTypeRef": "NodeType1",
+    "faultDomain": "fd:/dc1/r1",
+    "upgradeDomain": "UD1"
+}, {
+    "nodeName": "vm2",
+    "iPAddress": "localhost",
+    "nodeTypeRef": "NodeType2",
+    "faultDomain": "fd:/dc1/r2",
+    "upgradeDomain": "UD2"
+}],
 ```
 
 一个 Service Fabric 群集必须至少包含三个节点。 可以根据设置向此节添加更多节点。 下表说明了每个节点的配置设置：
@@ -95,7 +94,9 @@ reliabilityLevel 的概念定义可在群集的主节点上运行的 Service Fab
 }
 ```
 
-metadata 用于描述群集诊断，可以根据具体的情况进行设置。 这些变量有助于收集 ETW 跟踪日志、故障转储和性能计数器。 有关 ETW 跟踪日志的详细信息，请阅读 [Tracelog](https://msdn.microsoft.com/library/windows/hardware/ff552994.aspx) 和 [ETW 跟踪](https://msdn.microsoft.com/library/ms751538.aspx)。 可将所有日志（包含[故障转储](https://blogs.technet.microsoft.com/askperf/2008/01/08/understanding-crash-dump-files/)和[性能计数器](https://msdn.microsoft.com/library/windows/desktop/aa373083.aspx)）定向到计算机上的 connectionString 文件夹。 还可以使用 AzureStorage 来存储诊断信息。 请参阅以下示例代码片段：
+metadata 用于描述群集诊断，可以根据具体的情况进行设置。 这些变量有助于收集 ETW 跟踪日志、故障转储和性能计数器。 有关 ETW 跟踪日志的详细信息，请阅读 [Tracelog](https://docs.microsoft.com/windows-hardware/drivers/devtest/tracelog) 和 [ETW 跟踪](https://docs.microsoft.com/dotnet/framework/wcf/samples/etw-tracing)。 可将所有日志（包含[故障转储](https://techcommunity.microsoft.com/t5/ask-the-performance-team/bg-p/AskPerf)和[性能计数器](https://docs.microsoft.com/windows/win32/perfctrs/performance-counters-portal)）定向到计算机上的 connectionString 文件夹。 还可以使用 AzureStorage 来存储诊断信息。 请参阅以下示例代码片段：
+
+<!--CORRECT ON [ETW tracing](https://docs.microsoft.com/dotnet/framework/wcf/samples/etw-tracing)-->
 
 ```json
 "diagnosticsStore": {
@@ -122,7 +123,7 @@ metadata 用于描述群集诊断，可以根据具体的情况进行设置。 �
 metadata 用于描述安全群集，可根据具体的情况进行设置。 ClusterCredentialType 和 ServerCredentialType 确定群集与节点将要实现的安全类型。 可将这两项设置为 *X509* 来实现基于证书的安全性，或者设置为 *Windows* 来实现基于 Active Directory 的安全性。 security 节的余下设置基于安全类型。 若要了解如何填充 security 节的余下设置，请参阅[独立群集中基于证书的安全性](service-fabric-windows-cluster-x509-security.md)，或[独立群集中的 Windows 安全性](service-fabric-windows-cluster-windows-security.md)。
 
 <a name="nodetypes"></a>
-### <a name="node-types"></a>节点类型
+### <a name="node-types"></a><a name="node-types"></a>节点类型
 nodeTypes 节描述群集中的节点类型。 一个群集必须指定至少一个节点类型，如以下代码片段所示： 
 
 ```json
@@ -165,14 +166,11 @@ name 是此特定节点类型的友好名称。 要创建这种类型的节点�
 "fabricSettings": [{
     "name": "Setup",
     "parameters": [{
-            "name": "FabricDataRoot",
-            "value": "C:\\ProgramData\\SF"
-        },
-        {
-            "name": "FabricLogRoot",
-            "value": "C:\\ProgramData\\SF\\Log"
-        }
-    ]
+        "name": "FabricDataRoot",
+        "value": "C:\\ProgramData\\SF"
+    }, {
+        "name": "FabricLogRoot",
+        "value": "C:\\ProgramData\\SF\\Log"
 }]
 ```
 
@@ -215,4 +213,4 @@ name 是此特定节点类型的友好名称。 要创建这种类型的节点�
 
 了解如何[使用 Service Fabric Explorer 可视化群集](service-fabric-visualizing-your-cluster.md)。
 
-<!--Update_Description: wording update, update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

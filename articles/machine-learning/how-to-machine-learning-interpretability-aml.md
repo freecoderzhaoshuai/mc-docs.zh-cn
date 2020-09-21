@@ -1,24 +1,24 @@
 ---
-title: 使用 Python 解释和说明机器学习模型
+title: 使用 Python 解释和说明 ML 模型（预览版）
 titleSuffix: Azure Machine Learning
 description: 了解使用 Azure 机器学习 SDK 时如何获取解释，以了解机器学习模型如何确定特征重要性并做出预测。
 services: machine-learning
 ms.service: machine-learning
 ms.subservice: core
-ms.topic: how-to
-ms.author: mesameki
-author: mesameki
+ms.author: mithigpe
+author: minthigpen
 ms.reviewer: Luis.Quintanilla
-ms.date: 04/12/2020
-ms.custom: tracking-python
-ms.openlocfilehash: 1b22e64508db95b55d6a21180f42c5f1218d9d96
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.date: 07/09/2020
+ms.topic: conceptual
+ms.custom: how-to, devx-track-python
+ms.openlocfilehash: 4693f5e92417395c9eddf55ca13ad589a319af1c
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88227895"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021493"
 ---
-# <a name="use-the-interpretability-package-to-explain-ml-models--predictions-in-python"></a>使用可解释性包通过 Python 解释机器学习模型和预测
+# <a name="use-the-interpretability-package-to-explain-ml-models--predictions-in-python-preview"></a>使用可解释性包通过 Python 解释 ML 模型和预测（预览版）
 
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
 
@@ -275,7 +275,7 @@ tabular_explainer = TabularExplainer(clf.steps[-1][1],
     #client.upload_model_explanation(global_explanation, top_k=2, comment='global explanation: Only top 2 features')
     ```
 
-1. 将 Azure 机器学习计算设置为计算目标，并提交训练运行。 有关说明，请参阅[设置模型训练的计算目标](how-to-set-up-training-targets.md#amlcompute)。 [示例笔记本](https://github.com/Azure/MachineLearningNotebooks/tree/master/how-to-use-azureml/explain-model/azure-integration/remote-explanation)也可能很有帮助。
+1. 将 Azure 机器学习计算设置为计算目标，并提交训练运行。 有关说明，请参阅[使用 Python SDK 创建计算目标](how-to-create-attach-compute-sdk.md#amlcompute)。 [示例笔记本](https://github.com/Azure/MachineLearningNotebooks/tree/master/how-to-use-azureml/explain-model/azure-integration/remote-explanation)也可能很有帮助。
 
 1. 下载本地 Jupyter 笔记本中的解释。
 
@@ -359,7 +359,7 @@ ExplanationDashboard(global_explanation, model, dataset=x_test)
 
 ### <a name="visualization-in-azure-machine-learning-studio"></a>Azure 机器学习工作室中的可视化效果
 
-如果完成了[远程可解释性](how-to-machine-learning-interpretability-aml.md#generate-feature-importance-values-via-remote-runs)步骤（将生成的解释上传到 Azure 机器学习运行历史记录），则可在 [Azure 机器学习工作室](https://ml.azure.com)中查看可视化仪表板。 此仪表板是上述可视化仪表板的简化版本（解释探索和 ICE 绘图已禁用，因为工作室中没有可执行其实时计算的活动计算）。
+如果完成了[远程可解释性](how-to-machine-learning-interpretability-aml.md#generate-feature-importance-values-via-remote-runs)步骤（将生成的解释上传到 Azure 机器学习运行历史记录），则可在 [Azure 机器学习工作室](https://studio.ml.azure.cn)中查看可视化仪表板。 此仪表板是上述可视化仪表板的简化版本（解释探索和 ICE 绘图已禁用，因为工作室中没有可执行其实时计算的活动计算）。
 
 如果数据集、全局解释和本地解释可用，则数据将填充所有选项卡（扰动探索和 ICE 除外）。 如果只有全局解释可用，将会禁用“摘要重要性”选项卡和所有本地解释选项卡。
 

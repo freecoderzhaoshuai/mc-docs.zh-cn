@@ -10,12 +10,12 @@ ms.author: v-yiso
 author: sdgilley
 origin.date: 07/08/2020
 ms.date: 08/27/2020
-ms.openlocfilehash: 6e2f35aea7c2b872665b2c19dc6a581e83a70f79
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 3ff76f1cb57e67f0833861f3844d524dcdef4e27
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228449"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021343"
 ---
 # <a name="what-is-an-azure-machine-learning-workspace"></a>什么是 Azure 机器学习工作区？
 
@@ -53,7 +53,7 @@ ms.locfileid: "88228449"
 > 该预览版在提供时没有附带服务级别协议，建议不要将其用于生产工作负载。 某些功能可能不受支持或者受限。 
 
 + 在 Web 上：
-    + [Azure 机器学习工作室](https://ml.azure.com) 
+    + [Azure 机器学习工作室](https://studio.ml.azure.cn) 
     + [Azure 机器学习设计器（预览版）](concept-designer.md)- 仅在[企业版](overview-what-is-azure-ml.md#sku)工作区中可用。
 + 在任何 Python 环境中使用[适用于 Python 的 Azure 机器学习 SDK](https://docs.microsoft.com/python/api/overview/azure/ml/intro?view=azure-ml-py)。
 + 在任何 R 环境中使用[适用于 R 的 Azure 机器学习 SDK](https://azure.github.io/azureml-sdk-for-r/reference/index.html)。
@@ -117,8 +117,16 @@ ms.locfileid: "88228449"
 > [!NOTE]
 > 除创建新版本以外，还可以使用现有的 Azure 服务。
 
+### <a name="azure-storage-account"></a>Azure 存储帐户
+
+默认情况下，使用工作区创建的 Azure 存储帐户是常规用途 v1 帐户。 可以按照[升级到常规用途 v2 存储帐户](/storage/common/storage-account-upgrade)一文中的步骤，在创建工作区后将其升级到常规用途 v2。
+
 > [!IMPORTANT]
-> 若要使用现有 Azure 存储帐户，则该帐户不能是高级帐户（Premium_LRS 和 Premium_GRS）。 它也不能具有分层命名空间（与 Azure Data Lake Storage Gen2 一起使用）。 工作区的默认存储帐户不支持高级存储和分层命名空间。 可以将高级存储或分层命名空间用于非默认存储帐户。
+> 升级到常规用途 v2 后，请勿在存储帐户上启用分层命名空间。
+
+若要使用现有 Azure 存储帐户，则该帐户不能是高级帐户（Premium_LRS 和 Premium_GRS）。 它也不能具有分层命名空间（与 Azure Data Lake Storage Gen2 一起使用）。 工作区的默认存储帐户不支持高级存储和分层命名空间。 可以将高级存储或分层命名空间用于非默认存储帐户。
+
+
 
 ## <a name="next-steps"></a>后续步骤
 

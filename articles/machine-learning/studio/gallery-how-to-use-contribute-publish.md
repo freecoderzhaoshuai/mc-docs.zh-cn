@@ -10,19 +10,19 @@ author: xiaoharper
 ms.author: amlstudiodocs
 ms.custom: previous-author=heatherbshapiro, previous-ms.author=hshapiro
 ms.date: 01/11/2019
-ms.openlocfilehash: 627edeb60ca150ac2d84ab4b218128907574c228
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: b42f876527d37e5f3c1034e46f97fec93e28da9b
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228188"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021620"
 ---
 # <a name="share-and-discover-resources-in-the-azure-ai-gallery"></a>在 Azure AI 库中共享和发现资源
 
 **适用于：**  ![yes](../../../includes/media/aml-applies-to-skus/yes.png)机器学习工作室（经典）   ![no](../../../includes/media/aml-applies-to-skus/no.png)[Azure 机器学习](../compare-azure-ml-to-studio-classic.md)
 
 
-[!INCLUDE [Notebook deprecation notice](../../../includes/aml-studio-notebook-notice.md)]
+
 
 **[Azure AI 库](https://gallery.azure.ai)** 是一个社区驱动的站点，用于发现和共享使用 Azure AI 构建的解决方案。
 该库包含各种可用于开发自己的分析解决方案的资源。
@@ -35,7 +35,6 @@ Azure AI 库包含 Microsoft 和数据科学社区成员贡献的多种不同资
 * **教程** - 可以通过一些教程来了解机器学习技术和概念，或描述解决各种机器学习问题的高级方法。
 * **集合** - 使用集合可将提出特定解决方案或概念的试验、API 以及其他库资源组合在一起。
 * **自定义模块** - 可将自定义模块下载到工作室（经典）工作区，以便在自己的试验中使用。
-* **Jupyter Notebook** - Jupyter Notebook 在单一的交互式画布中包括代码、数据可视化和文档。 库中的笔记本提供了有关高级机器学习技术和解决方案的教程和详细说明。
 
 ## <a name="discover-and-contribute"></a>发现和参与
 
@@ -50,12 +49,12 @@ Azure AI 库包含 Microsoft 和数据科学社区成员贡献的多种不同资
 
 在登录到库时你即会成为库社区的一名成员。 这样就可以下载资源或者贡献自己的库项，使其他人可以从你发现的解决方案中受益。
 
-可以下载**试验**、**自定义模块**和 **Jupyter Notebook**，以便在开发自己的分析解决方案时使用。
+可以下载试验、自定义模块，以便在开发自己的分析解决方案时使用 。
 可以在库中贡献**试验**、**教程**和**集合**。
 
-## <a name="download-experiments-modules-notebooks"></a>下载试验、模块和 Notebook
+## <a name="download-experiments-modules"></a>下载试验、模块
 
-可将**试验**、**自定义模块**和 **Jupyter Notebook** 下载到自己的机器学习工作室（经典）工作区中，以便在开发自己的分析解决方案时使用。
+可将试验、自定义模块下载到自己的机器学习工作室（经典）工作区中，以便在开发自己的分析解决方案时使用 。
 
 从 AI 库内部下载资源：
 

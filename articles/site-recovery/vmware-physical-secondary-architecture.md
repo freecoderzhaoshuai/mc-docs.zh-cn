@@ -1,20 +1,21 @@
 ---
-title: 使用 Azure Site Recovery 将 VMware/物理服务器灾难恢复到辅助站点时的体系结构 | Azure
+title: 使用 Azure Site Recovery 将 Architecture-VMware/物理灾难恢复到辅助站点
 description: 本文概述使用 Azure Site Recovery 将本地 VMware VM 或物理 Windows/Linux 服务器灾难恢复到辅助 VMware 站点时使用的组件和体系结构。
-author: rockboyfor
 manager: digimobile
 ms.service: site-recovery
-services: site-recovery
 ms.topic: conceptual
-origin.date: 08/22/2019
-ms.date: 09/30/2019
+origin.date: 11/12/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 4de49f496160feed65853cc46b8abeee30174557
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: f97d7a6c16af914daa17a8057745bf51d7561ede
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71340956"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655461"
 ---
 # <a name="architecture-for-vmwarephysical-server-replication-to-a-secondary-on-premises-site"></a>将 VMware/物理服务器复制到辅助本地站点的体系结构
 
@@ -32,18 +33,38 @@ ms.locfileid: "71340956"
 **VMware ESX/ESXi 和 vCenter 服务器** |  VMs 托管在 ESX/ESXi 主机上。 主机通过 vCenter 服务器进行托管 | 需要使用 VMware 基础结构来复制 VMware VM。
 **VM/物理服务器** |  安装在要复制的 VMware VM 和物理服务器上的统一代理。 | 该代理充当所有组件之间的通信提供程序。
 
+## <a name="set-up-outbound-network-connectivity"></a>设置出站网络连接
+
+若要使 Site Recovery 按预期工作，需修改出站网络连接以允许环境复制。
+
+> [!NOTE]
+> Site Recovery 不支持使用身份验证代理来控制网络连接。
+
+### <a name="outbound-connectivity-for-urls"></a>URL 的出站连接
+
+如果使用基于 URL 的防火墙代理来控制出站连接，请允许访问以下 URL：
+
+<!--MOONCAKE: CUSTOMIZE REMOVE THE US GOVERMENT DETAILS-->
+
+| **名称** | **Azure 中国世纪互联** | **说明** |
+| ------------------------- | -------------------------------------------- | ----------- |
+| 存储                   | `*.blob.core.chinacloudapi.cn`                  | 允许将数据从 VM 写入源区域中的缓存存储帐户。 |
+| Azure Active Directory    | `login.chinacloudapi.cn`                | 向 Site Recovery 服务 URL 提供授权和身份验证。 |
+| 复制               | `*.hypervrecoverymanager.windowsazure.cn` | 允许 VM 与 Site Recovery 服务进行通信。 |
+| 服务总线               | `*.servicebus.chinacloudapi.cn`                 | 允许 VM 写入 Site Recovery 监视和诊断数据。 |
+
+<!--MOONCAKE: CUSTOMIZE REMOVE THE US GOVERMENT DETAILS-->
+
 ## <a name="replication-process"></a>复制过程
 
 1. 在每个站点（配置、进程、主目标）中设置组件服务器，并在要复制的计算机上安装统一代理。
 2. 在初始复制之后，每台计算机上的代理会将增量复制更改发送到进程服务器。
 3. 进程服务器将优化这些数据，并将其传输到辅助站点上的主目标服务器。 配置服务器将管理复制进程。
 
-**图 6：VMware 到 VMware 的复制**
-
-![VMware 到 VMware](./media/site-recovery-components/vmware-to-vmware.png)
+:::image type="content" source="./media/site-recovery-components/vmware-to-vmware.png" alt-text="此图显示将 VMware VM 和物理服务器复制到辅助数据中心的情况":::
 
 ## <a name="next-steps"></a>后续步骤
 
 [设置](vmware-physical-secondary-disaster-recovery.md) VMware VM 和物理服务器到辅助站点的灾难恢复。
 
-<!-- Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

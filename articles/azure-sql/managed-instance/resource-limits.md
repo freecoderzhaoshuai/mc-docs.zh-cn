@@ -11,14 +11,14 @@ ms.topic: conceptual
 author: WenJason
 ms.author: v-jay
 ms.reviewer: carlrab, jovanpop, sachinp, sstein
-origin.date: 02/25/2020
-ms.date: 08/17/2020
-ms.openlocfilehash: 77be555c9ed7082cea65b357f5dee2c8f6dfbd1e
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+origin.date: 08/14/2020
+ms.date: 09/14/2020
+ms.openlocfilehash: 3bfbbe0de628344a18739441062bd60eed73d565
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223275"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014366"
 ---
 # <a name="overview-of-azure-sql-managed-instance-resource-limits"></a>Azure SQL 托管实例资源限制概述
 [!INCLUDE[appliesto-sqlmi](../includes/appliesto-sqlmi.md)]
@@ -34,7 +34,7 @@ SQL 托管实例的某些特征和资源限制取决于底层基础结构和体�
 
 |   | **Gen4** | **Gen5** |
 | --- | --- | --- |
-| **硬件** | Intel E5-2673 v3 (Haswell) 2.4-GHz 处理器、附加的 SSD vCore = 1 PP（物理核心） | Intel E5-2673 v4 (Broadwell) 2.3-GHz 处理器和 Intel SP-8160 (Skylake) 处理器、快速 NVMe SSD、vCore=1 LP（超线程） |
+| **硬件** | Intel� E5-2673 v3 (Haswell) 2.4-GHz 处理器、附加的 SSD vCore = 1 PP（物理核心） | Intel� E5-2673 v4 (Broadwell) 2.3 GHz、Intel� SP-8160 (Skylake) 和 Intel� 8272CL (Cascade Lake) 2.5 GHz 处理器、快速 NVMe SSD、vCore = 1 LP（超线程） |
 | **vCore 数目** | 8、16、24 个 vCore | 4、8、16、24、32、40、64、80 个 vCore |
 | **最大内存（内存/核心比）** | 每个 vCore 7 GB<br/>添加更多 vCore 以获得更多内存。 | 每个 vCore 5.1 GB<br/>添加更多 vCore 以获得更多内存。 |
 | **最大内存中 OLTP 存储** | 实例限制：每个 vCore 1 - 1.5 GB| 实例限制：每个 vCore 0.8 - 1.65 GB |

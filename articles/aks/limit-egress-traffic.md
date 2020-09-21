@@ -3,17 +3,19 @@ title: 限制 Azure Kubernetes 服务 (AKS) 中的出口流量
 description: 了解控制 Azure Kubernetes Service (AKS) 中的出口流量所需的端口和地址
 services: container-service
 ms.topic: article
-ms.date: 08/10/2020
+origin.date: 06/29/2020
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
+ms.custom: fasttrack-edit
 author: rockboyfor
-ms.openlocfilehash: d29e9d5fe5531fd68ce927c88ecfd094e79a80df
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 5b982258b7f8aeaf2d5f5bbfe266ea62e05a8087
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842629"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020805"
 ---
 # <a name="control-egress-traffic-for-cluster-nodes-in-azure-kubernetes-service-aks"></a>控制 Azure Kubernetes 服务 (AKS) 中群集节点的出口流量
 
@@ -145,9 +147,7 @@ AKS 出站依赖项几乎完全是使用 FQDN 定义的，不附带任何静态�
 |--------------------------------------------------------------------------------|---------------|----------|
 | **`security.ubuntu.com`、`azure.archive.ubuntu.com`、`changelogs.ubuntu.com`** | **`HTTP:80`** | 此地址允许 Linux 群集节点下载必需的安全修补程序和更新。 |
 
-如果选择阻止/不允许这些 FQDN，则在进行[群集升级](upgrade-cluster.md)时，节点将仅接收 OS 更新。
-
-<!--Not Available on [node image upgrade](node-image-upgrade.md)-->
+如果选择阻止/不允许这些 FQDN，则仅当进行[节点映像升级](node-image-upgrade.md)或[群集升级](upgrade-cluster.md)时，节点才会接收 OS 更新。
 
 ## <a name="gpu-enabled-aks-clusters"></a>启用 GPU 的 AKS 群集
 
@@ -240,6 +240,8 @@ Azure 防火墙提供 Azure Kubernetes 服务 (`AzureKubernetesService`) FQDN �
 
 > [!NOTE]
 > FQDN 标记包含上面列出的所有 FQDN，并自动保持最新。
+>
+> 对于生产方案，建议在 Azure 防火墙上至少具有 20 个前端 IP，以避免出现 SNAT 端口耗尽问题。
 
 下面是部署的示例体系结构：
 
@@ -326,7 +328,6 @@ az network vnet subnet create \
 
 :::image type="content" source="media/limit-egress-traffic/firewall-udr.png" alt-text="防火墙和 UDR":::
 
-
 > [!IMPORTANT]
 > 如果群集或应用程序创建众多定向到相同目标或目标子集的出站连接，则可能需要更多的防火墙前端 IP 来避免用尽每个前端 IP 的端口。
 > 有关如何创建具有多个 IP 的 Azure 防火墙的详细信息，请参阅[此处](../firewall/quick-create-multiple-ip-template.md)
@@ -380,7 +381,7 @@ Azure 自动在 Azure 子网、虚拟网络与本地网络之间路由流量。 
 ```azure-cli
 # Create UDR and add a route for Azure Firewall
 
-az network route-table create -g $RG --name $FWROUTE_TABLE_NAME
+az network route-table create -g $RG -l -$LOC --name $FWROUTE_TABLE_NAME
 az network route-table route create -g $RG --name $FWROUTE_NAME --route-table-name $FWROUTE_TABLE_NAME --address-prefix 0.0.0.0/0 --next-hop-type VirtualAppliance --next-hop-ip-address $FWPRIVATE_IP --subscription $SUBID
 az network route-table route create -g $RG --name $FWROUTE_NAME_INTERNET --route-table-name $FWROUTE_TABLE_NAME --address-prefix $FWPUBLIC_IP/32 --next-hop-type Internet
 ```
@@ -467,7 +468,6 @@ SUBNETID=$(az network vnet subnet show -g $RG --vnet-name $VNET_NAME --name $AKS
 > [!IMPORTANT]
 > 有关出站类型 UDR（包括限制）的详细信息，请参阅[流出量出站类型 UDR](egress-outboundtype.md#limitations)。
 
-
 > [!TIP]
 >
 > 可以添加 [API 服务器已授权 IP 范围](api-server-authorized-ip-ranges.md) AKS 功能，以便限制 API 服务器仅访问防火墙的公共终结点。 已授权 IP 范围功能在图中表示为可选。 启用已授权 IP 范围功能来限制 API 服务器访问权限时，开发人员工具必须使用防火墙虚拟网络中的 Jumpbox，或者必须将所有开发人员终结点添加到已授权 IP 范围。
@@ -501,15 +501,15 @@ az aks create -g $RG -n $AKSNAME -l $LOC \
 CURRENT_IP=$(dig @resolver1.opendns.com ANY myip.opendns.com +short)
 
 # Add to AKS approved list
-az aks update -g $RG -n $AKS_NAME --api-server-authorized-ip-ranges $CURRENT_IP/32
+az aks update -g $RG -n $AKSNAME --api-server-authorized-ip-ranges $CURRENT_IP/32
 
 ```
 
- 使用 [az aks get-credentials][az-aks-get-credentials] 命令将 `kubectl` 配置为连接到新建的 Kubernetes 群集。 
+使用 [az aks get-credentials][az-aks-get-credentials] 命令将 `kubectl` 配置为连接到新建的 Kubernetes 群集。 
 
- ```azure-cli
- az aks get-credentials -g $RG -n $AKS_NAME
- ```
+```azure-cli
+az aks get-credentials -g $RG -n $AKSNAME
+```
 
 ### <a name="deploy-a-public-service"></a>部署公共服务
 现在可以开始公开服务并将应用程序部署到此群集。 此示例将公开公共服务，但也可以选择通过[内部负载均衡器](internal-lb.md)公开内部服务。
@@ -743,7 +743,6 @@ kubectl apply -f example.yaml
 > [!IMPORTANT]
 > 使用 Azure 防火墙限制出口流量并创建用户定义的路由 (UDR) 来强制所有出口流量时，请确保在防火墙中创建适当的 DNAT 规则，以正确允许入口流量。 结合使用 Azure 防火墙和 UDR 时，会因为路由不对称而中断入口设置。 （如果 AKS 子网具有指向防火墙专用 IP 地址的默认路由，但你使用的是公共负载均衡器 - 类型为 LoadBalancer 的入口或 Kubernetes 服务，则会出现此问题）。 在这种情况下，将通过负载均衡器的公共 IP 地址接收传入的负载均衡器流量，但返回路径将通过防火墙的专用 IP 地址。 由于防火墙是有状态的，并且无法识别已建立的会话，因此会丢弃返回的数据包。 若要了解如何将 Azure 防火墙与入口或服务负载均衡器集成，请参阅[将 Azure 防火墙与 Azure 标准负载均衡器集成](../firewall/integrate-lb.md)。
 
-
 若要配置入站连接，必须将一个 DNAT 规则写入到 Azure 防火墙。 为了测试与群集的连接，为防火墙前端公共 IP 地址定义了规则，以便路由到内部服务公开的内部 IP。
 
 可以自定义目标地址，因为它是防火墙上要访问的端口。 转换的地址必须是内部负载均衡器的 IP 地址。 转换的端口必须是 Kubernetes 服务的已公开端口。
@@ -778,11 +777,9 @@ az network firewall nat-rule create --collection-name exampleset --destination-a
 
 在浏览器中导航到 Azure 防火墙前端 IP 地址来验证连接。
 
-应看到 AKS 投票应用程序。 此示例中，防火墙公共 IP 是 `52.253.228.132`。
-
+应看到 AKS 投票应用程序。 此示例中，防火墙公共 IP 为 `52.253.228.132`。
 
 :::image type="content" source="media/limit-egress-traffic/aks-vote.png" alt-text="aks-vote":::
-
 
 ### <a name="clean-up-resources"></a>清理资源
 
@@ -804,12 +801,12 @@ az group delete -g $RG
 
 [aks-quickstart-cli]: kubernetes-walkthrough.md
 [aks-quickstart-portal]: kubernetes-walkthrough-portal.md
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
 [network-policy]: use-network-policies.md
 [azure-firewall]: ../firewall/overview.md
-[az-feature-register]: https://docs.azure.cn/cli/feature?view=azure-cli-latest#az-feature-register
-[az-feature-list]: https://docs.azure.cn/cli/feature?view=azure-cli-latest#az-feature-list
-[az-provider-register]: https://docs.azure.cn/cli/provider?view=azure-cli-latest#az-provider-register
+[az-feature-register]: https://docs.azure.cn/cli/feature#az-feature-register
+[az-feature-list]: https://docs.azure.cn/cli/feature#az-feature-list
+[az-provider-register]: https://docs.azure.cn/cli/provider#az-provider-register
 [aks-upgrade]: upgrade-cluster.md
 [aks-support-policies]: support-policies.md
 [aks-faq]: faq.md

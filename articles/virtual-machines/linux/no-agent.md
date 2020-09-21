@@ -6,21 +6,21 @@ ms.service: virtual-machines-linux
 ms.subservice: imaging
 ms.topic: how-to
 ms.workload: infrastructure
-ms.date: 07/29/2020
+ms.date: 09/10/2020
 ms.author: v-johya
 ms.reviewer: cynthn
-ms.openlocfilehash: 2cf48ae2693cccc49d90203eaeebac9780929caf
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.openlocfilehash: a79d2483c2fda0439e2317dd267b0057de4ee620
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508872"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057614"
 ---
 # <a name="creating-generalized-images-without-a-provisioning-agent"></a>创建不含预配代理的通用映像
 
 Azure 以 [walinuxagent](https://github.com/Azure/WALinuxAgent) 或 [cloud-init](https://github.com/canonical/cloud-init) 形式（推荐）提供适用于 Linux VM 的预配代理。 但在某些情况下，你不希望使用这些应用程序之一作为你的预配代理，例如：
 
-- 你的 Linux 发行版/版本不支持 cloud-init。
+- 你的 Linux 发行版/版本不支持 cloud-init/Linux 代理。
 - 你需要设置特定的 VM 属性，例如主机名。
 
 > [!NOTE] 
@@ -70,7 +70,7 @@ $ az vm create \
 预配 VM 后，可以通过 SSH 连接到该 VM 并删除 Linux 代理：
 
 ```bash
-$ sudo apt remove -y waagent
+$ sudo apt purge -y waagent
 $ sudo rm -rf /var/lib/waagent /etc/waagent.conf /var/log/waagent.log
 ```
 

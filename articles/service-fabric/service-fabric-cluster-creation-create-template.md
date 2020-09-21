@@ -3,14 +3,17 @@ title: 创建 Azure Service Fabric 群集模板
 description: 了解如何为 Service Fabric 群集创建资源管理器模板。 为客户端身份验证配置安全性、Azure Key Vault 和 Azure Active Directory (Azure AD)。
 ms.topic: conceptual
 origin.date: 08/16/2018
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 64da551805e686bb653ca8fdb11451e379b4c27c
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.openlocfilehash: 7aa62cad696a3aa424e326f8daed1033589da604
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356269"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655211"
 ---
 # <a name="create-a-service-fabric-cluster-resource-manager-template"></a>创建 Service Fabric 群集 Resource Manager 模板
 
@@ -28,7 +31,7 @@ ms.locfileid: "84356269"
 本文使用了[五节点安全群集][service-fabric-secure-cluster-5-node-1-nodetype]示例模板和模板参数。 将 *azuredeploy.json* 和 *azuredeploy.parameters.json* 下载到计算机并在你喜欢使用的文本编辑器中打开这两个文件。
 
 > [!NOTE]
-> 对于 Azure 中国云，还应将下面的 `fabricSettings` 添加到模板：`AADLoginEndpoint`、`AADTokenEndpointFormat` 和 `AADCertEndpointFormat`。
+> 对于国家/地区云（Azure 中国云、Azure 中国、Azure 德国），还应将以下 `fabricSettings` 添加到模板：`AADLoginEndpoint`、`AADTokenEndpointFormat` 和 `AADCertEndpointFormat`。
 
 ## <a name="add-certificates"></a>添加证书
 通过引用包含证书密钥的密钥保管库将证书添加到群集 Resource Manager 模板。 在资源管理器模板参数文件 (*azuredeploy.parameters.json*) 中添加这些密钥保管库参数和值。
@@ -257,7 +260,7 @@ Test-AzResourceGroupDeployment -ResourceGroupName "myresourcegroup" -TemplateFil
 
 [service-fabric-cluster-security]: service-fabric-cluster-security.md
 [service-fabric-secure-cluster-5-node-1-nodetype]: https://github.com/Azure-Samples/service-fabric-cluster-templates/tree/master/5-VM-Windows-1-NodeTypes-Secure
-[resource-group-template-deploy]: https://docs.azure.cn/azure-resource-manager/templates/deploy-powershell
+[resource-group-template-deploy]: ../azure-resource-manager/templates/deploy-powershell.md
 
 <!-- Images -->
 

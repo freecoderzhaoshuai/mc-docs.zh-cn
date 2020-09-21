@@ -10,12 +10,12 @@ author: xiaoharper
 ms.author: amlstudiodocs
 ms.custom: seodec18
 ms.date: 02/14/2019
-ms.openlocfilehash: 0139c053e16cbf71989b71e54b5adf7d61c31de1
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: f6cedb69020aa81fad4fcceebe8c6339886fce3d
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228103"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021508"
 ---
 # <a name="retrain-and-deploy-a-machine-learning-model"></a>重新训练和部署机器学习模型
 
@@ -79,7 +79,9 @@ ms.locfileid: "88228103"
 
 定位 **apikey** 声明：
 
-    const string apiKey = "abc123"; // Replace this with the API key for the web service
+```csharp
+const string apiKey = "abc123"; // Replace this with the API key for the web service
+```
 
 在“使用”页的“基本使用信息”部分中，找到主密钥，并将其复制到 **apikey** 声明。
 
@@ -97,9 +99,11 @@ BES 示例代码将文件从本地驱动器（例如，“C:\temp\CensusInput.cs
 
 找到“StorageAccountName”**、“StorageAccountKey”** 和“StorageContainerName”** 声明，然后更新从门户保存的值。
 
-    const string StorageAccountName = "mystorageacct"; // Replace this with your Azure storage account name
-    const string StorageAccountKey = "a_storage_account_key"; // Replace this with your Azure Storage key
-    const string StorageContainerName = "mycontainer"; // Replace this with your Azure Storage container name
+```csharp
+const string StorageAccountName = "mystorageacct"; // Replace this with your Azure storage account name
+const string StorageAccountKey = "a_storage_account_key"; // Replace this with your Azure Storage key
+const string StorageContainerName = "mycontainer"; // Replace this with your Azure Storage container name
+```
 
 还必须确保输入文件在代码中指定的位置上可用。
 
@@ -107,15 +111,17 @@ BES 示例代码将文件从本地驱动器（例如，“C:\temp\CensusInput.cs
 
 在“请求有效负载”中指定输出位置时，在 *RelativeLocation* 中指定的文件的扩展必须指定为 `ilearner`。
 
-    Outputs = new Dictionary<string, AzureBlobDataReference>() {
+```csharp
+Outputs = new Dictionary<string, AzureBlobDataReference>() {
+    {
+        "output1",
+        new AzureBlobDataReference()
         {
-            "output1",
-            new AzureBlobDataReference()
-            {
-                ConnectionString = storageConnectionString,
-                RelativeLocation = string.Format("{0}/output1results.ilearner", StorageContainerName) /*Replace this with the location you want to use for your output file and a valid file extension (usually .csv for scoring results or .ilearner for trained models)*/
-            }
-        },
+            ConnectionString = storageConnectionString,
+            RelativeLocation = string.Format("{0}/output1results.ilearner", StorageContainerName) /*Replace this with the location you want to use for your output file and a valid file extension (usually .csv for scoring results or .ilearner for trained models)*/
+        }
+    },
+```
 
 下面是重新训练输出的示例：
 
@@ -141,55 +147,67 @@ BES 示例代码将文件从本地驱动器（例如，“C:\temp\CensusInput.cs
 
 然后，通过调用 [Get-AzMlWebService](https://docs.microsoft.com/powershell/module/az.machinelearning/get-azmlwebservice) cmdlet 获取 Web 服务定义对象。
 
-    $wsd = Get-AzMlWebService -Name 'RetrainSamplePre.2016.8.17.0.3.51.237' -ResourceGroupName 'Default-MachineLearning-SouthCentralUS'
+```azurepowershell
+$wsd = Get-AzMlWebService -Name 'RetrainSamplePre.2016.8.17.0.3.51.237' -ResourceGroupName 'Default-MachineLearning-ChinaEast2'
+```
 
-若要确定现有 Web 服务的资源组名称，请运行 Get-AzMlWebService cmdlet 而不是任何参数，以显示订阅中的 Web 服务。 定位到 Web 服务，并查看其 Web 服务 ID。 资源组的名称是 ID 中的第四个元素，紧随 *resourceGroups* 元素之后。 在下面的示例中，资源组名称为 Default-MachineLearning-SouthCentralUS。
+若要确定现有 Web 服务的资源组名称，请运行 Get-AzMlWebService cmdlet 而不是任何参数，以显示订阅中的 Web 服务。 定位到 Web 服务，并查看其 Web 服务 ID。 资源组的名称是 ID 中的第四个元素，紧随 *resourceGroups* 元素之后。 在下面的示例中，资源组名称为 Default-MachineLearning-ChinaEast2。
 
-    Properties : Microsoft.Azure.Management.MachineLearning.WebServices.Models.WebServicePropertiesForGraph
-    Id : /subscriptions/<subscription ID>/resourceGroups/Default-MachineLearning-SouthCentralUS/providers/Microsoft.MachineLearning/webServices/RetrainSamplePre.2016.8.17.0.3.51.237
-    Name : RetrainSamplePre.2016.8.17.0.3.51.237
-    Location : South Central US
-    Type : Microsoft.MachineLearning/webServices
-    Tags : {}
+```azurepowershell
+Properties : Microsoft.Azure.Management.MachineLearning.WebServices.Models.WebServicePropertiesForGraph
+Id : /subscriptions/<subscription ID>/resourceGroups/Default-MachineLearning-ChinaEast2/providers/Microsoft.MachineLearning/webServices/RetrainSamplePre.2016.8.17.0.3.51.237
+Name : RetrainSamplePre.2016.8.17.0.3.51.237
+Location : China East 2
+Type : Microsoft.MachineLearning/webServices
+Tags : {}
+```
 
-或者，若要确定现有 Web 服务的资源组名称，请登录 Azure Microsoft Azure 机器学习 Web 服务门户。 选择 Web 服务。 资源组名称是 Web 服务的 URL 的第五个元素，紧随 *resourceGroups* 元素之后。 在下面的示例中，资源组名称为 Default-MachineLearning-SouthCentralUS。
+或者，若要确定现有 Web 服务的资源组名称，请登录 Azure Microsoft Azure 机器学习 Web 服务门户。 选择 Web 服务。 资源组名称是 Web 服务的 URL 的第五个元素，紧随 *resourceGroups* 元素之后。 在下面的示例中，资源组名称为 Default-MachineLearning-ChinaEast2。
 
-    https://services.azureml.net/subscriptions/<subscription ID>/resourceGroups/Default-MachineLearning-SouthCentralUS/providers/Microsoft.MachineLearning/webServices/RetrainSamplePre.2016.8.17.0.3.51.237
+`https://services.azureml.net/subscriptions/<subscription ID>/resourceGroups/Default-MachineLearning-ChinaEast2/providers/Microsoft.MachineLearning/webServices/RetrainSamplePre.2016.8.17.0.3.51.237`
 
 ### <a name="export-the-web-service-definition-object-as-json"></a>将 Web 服务定义对象导出为 JSON
 
 要修改训练模型定义以使用新训练的模型，必须先使用 [Export-AzMlWebService](https://docs.microsoft.com/powershell/module/az.machinelearning/export-azmlwebservice) cmdlet 将其导出到 JSON 格式的文件。
 
-    Export-AzMlWebService -WebService $wsd -OutputFile "C:\temp\mlservice_export.json"
+```azurepowershell
+Export-AzMlWebService -WebService $wsd -OutputFile "C:\temp\mlservice_export.json"
+```
 
 ### <a name="update-the-reference-to-the-ilearner-blob"></a>将引用更新到 iLearner blob
 
 在资产中，定位到 [训练的模型]，使用 iLearner blob 的 URI 更新 *locationInfo* 节点中的 *URI* 值。 通过组合 BES 重新训练调用的输出结果中的 *BaseLocation* 和 *RelativeLocation* 生成 URI。
 
-     "asset3": {
-        "name": "Retrain Sample [trained model]",
-        "type": "Resource",
-        "locationInfo": {
-          "uri": "https://mltestaccount.blob.core.windows.net/azuremlassetscontainer/baca7bca650f46218633552c0bcbba0e.ilearner"
-        },
-        "outputPorts": {
-          "Results dataset": {
+```json
+"asset3": {
+    "name": "Retrain Sample [trained model]",
+    "type": "Resource",
+    "locationInfo": {
+        "uri": "https://mltestaccount.blob.core.windows.net/azuremlassetscontainer/baca7bca650f46218633552c0bcbba0e.ilearner"
+    },
+    "outputPorts": {
+        "Results dataset": {
             "type": "Dataset"
-          }
         }
-      },
+    }
+},
+```
 
 ### <a name="import-the-json-into-a-web-service-definition-object"></a>将 JSON 导入到 Web 服务定义对象
 
 使用 [Import-AzMlWebService](https://docs.microsoft.com/powershell/module/az.machinelearning/import-azmlwebservice) cmdlet 将修改的 JSON 文件转换回可用于更新预测实验的 Web 服务定义对象。
 
-    $wsd = Import-AzMlWebService -InputFile "C:\temp\mlservice_export.json"
+```azurepowershell
+$wsd = Import-AzMlWebService -InputFile "C:\temp\mlservice_export.json"
+```
 
 ### <a name="update-the-web-service"></a>更新 Web 服务
 
 最后，使用 [Update-AzMlWebService](https://docs.microsoft.com/powershell/module/az.machinelearning/update-azmlwebservice) cmdlet 更新预测实验。
 
-    Update-AzMlWebService -Name 'RetrainSamplePre.2016.8.17.0.3.51.237' -ResourceGroupName 'Default-MachineLearning-SouthCentralUS'
+```azurepowershell
+Update-AzMlWebService -Name 'RetrainSamplePre.2016.8.17.0.3.51.237' -ResourceGroupName 'Default-MachineLearning-ChinaEast2'
+```
 
 ## <a name="next-steps"></a>后续步骤
 

@@ -4,16 +4,17 @@ description: 了解如何使用群集自动缩放程序自动缩放群集以满�
 services: container-service
 ms.topic: article
 origin.date: 07/18/2019
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 07/27/2020
 ms.author: v-yeche
-ms.openlocfilehash: ce91d69492ccd6442638dd197d754988a51f8285
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 53692985148a11de749a12eda9417a458d6ef2e5
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842588"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020858"
 ---
 <!--Verified successfully-->
 <!--PG team have confirm the issue have been fixed-->
@@ -26,12 +27,6 @@ ms.locfileid: "87842588"
 ## <a name="before-you-begin"></a>准备阶段
 
 本文要求运行 Azure CLI 2.0.76 或更高版本。 运行 `az --version` 即可查找版本。 如果需要进行安装或升级，请参阅[安装 Azure CLI][azure-cli-install]。
-
-## <a name="limitations"></a>限制
-
-创建和管理使用群集自动缩放程序的 AKS 群集时存在以下限制：
-
-* 无法使用 HTTP 应用程序路由加载项。
 
 ## <a name="about-the-cluster-autoscaler"></a>关于群集自动缩放程序
 
@@ -50,7 +45,7 @@ ms.locfileid: "87842588"
 
 有关群集自动缩放程序如何可能无法减少的详细信息，请参阅[哪些类型的 Pod 可能会阻止群集自动缩放程序删除节点？][autoscaler-scaledown]
 
-群集自动缩放程序对诸如缩放事件与资源阈值之间的时间间隔等内容使用启动参数。 有关群集自动缩放程序使用的参数的详细信息，请参阅[群集自动缩放程序参数是什么？][autoscaler-parameters]
+群集自动缩放程序对诸如缩放事件与资源阈值之间的时间间隔等内容使用启动参数。 有关群集自动缩放程序使用的参数的详细信息，请参阅[使用自动缩放程序配置文件](#using-the-autoscaler-profile)。
 
 群集和水平 Pod 自动缩放程序可以协同工作，通常部署在一个群集中。 结合使用时，水平 Pod 自动缩放程序侧重于运行满足应用程序需求所需的 Pod 数。 群集自动缩放程序侧重于运行支持计划 Pod 所需的节点数。
 
@@ -64,7 +59,7 @@ ms.locfileid: "87842588"
 > [!IMPORTANT]
 > 群集自动缩放程序是 Kubernetes 组件。 虽然 AKS 群集对节点使用虚拟机规模集，但请勿在 Azure 门户中或使用 Azure CLI 手动启用或编辑规模集自动缩放设置。 让 Kubernetes 群集自动缩放程序管理所需的规模设置。 有关详细信息，请参阅[我可以修改节点资源组中的 AKS 资源吗？][aks-faq-node-resource-group]
 
-以下示例使用虚拟机规模集支持的单个节点池创建 AKS 群集。 它还会在群集的节点池中启用群集自动缩放程序，并将最小节点数设置为 1，将最大节点数设置为 3： 
+以下示例使用虚拟机规模集支持的单个节点池创建 AKS 群集。 它还在群集的节点池中启用群集自动缩放程序，并将节点的最小数目设置为 *1*，最大数目设置为 *3*：
 
 ```azurecli
 # First create a resource group
@@ -302,16 +297,16 @@ az aks nodepool update \
 [aks-upgrade]: upgrade-cluster.md
 [aks-view-master-logs]: ./view-master-logs.md#enable-resource-logs
 [autoscaler-profile-properties]: #using-the-autoscaler-profile
-[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
-[az-aks-show]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-show
-[az-extension-add]: https://docs.azure.cn/cli/extension?view=azure-cli-latest#az-extension-add
-[az-extension-update]: https://docs.azure.cn/cli/extension?view=azure-cli-latest#az-extension-update
-[az-aks-create]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-create
-[az-aks-update]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-update
-[az-aks-scale]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-scale
-[az-feature-register]: https://docs.azure.cn/cli/feature?view=azure-cli-latest#az-feature-register
-[az-feature-list]: https://docs.azure.cn/cli/feature?view=azure-cli-latest#az-feature-list
-[az-provider-register]: https://docs.azure.cn/cli/provider?view=azure-cli-latest#az-provider-register
+[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli
+[az-aks-show]: https://docs.microsoft.com/cli/azure/aks#az_aks_show
+[az-extension-add]: https://docs.azure.cn/cli/extension#az-extension-add
+[az-extension-update]: https://docs.azure.cn/cli/extension#az-extension-update
+[az-aks-create]: https://docs.microsoft.com/cli/azure/aks#az_aks_create
+[az-aks-update]: https://docs.microsoft.com/cli/azure/aks#az_aks_update
+[az-aks-scale]: https://docs.microsoft.com/cli/azure/aks#az_aks_scale
+[az-feature-register]: https://docs.azure.cn/cli/feature#az-feature-register
+[az-feature-list]: https://docs.azure.cn/cli/feature#az-feature-list
+[az-provider-register]: https://docs.azure.cn/cli/provider#az-provider-register
 
 <!-- LINKS - external -->
 

@@ -9,16 +9,16 @@ ms.service: active-directory
 ms.subservice: develop
 ms.workload: identity
 ms.topic: conceptual
-ms.date: 08/20/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 ms.reviewer: hirsin
 ms.custom: aaddev, identityplatformtop40
-ms.openlocfilehash: cd74b59915fd037ab9608417ce316a15f3355f36
-ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
+ms.openlocfilehash: b1d4e52469760e17b20883355df721bc459d5570
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "88647498"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593764"
 ---
 # <a name="microsoft-identity-platform-and-oauth-20-authorization-code-flow"></a>Microsoft 标识平台和 OAuth 2.0 授权代码流
 
@@ -233,6 +233,7 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 | `interaction_required` | 非标准，因为 OIDC 规范仅在 `/authorize` 终结点上调用它。请求需要用户交互。 例如，需要额外的身份验证步骤。 | 使用同一范围重试 `/authorize` 请求。 |
 | `temporarily_unavailable` | 服务器暂时繁忙，无法处理请求。 | 请在短暂延迟后重试该请求。 客户端应用程序可能向用户说明，其响应由于临时状况而延迟。 |
 |`consent_required` | 请求需要用户同意。 此错误是非标准错误，因为根据 OIDC 规范，它通常仅在 `/authorize` 终结点上返回。 在客户端应用无权请求的代码兑换流上使用 `scope` 参数时返回。  | 客户端应将用户发送回具有正确范围的 `/authorize` 终结点，以便触发同意。 |
+|`invalid_scope` | 应用请求的范围无效。  | 将身份验证请求中的 scope 参数值更新为有效值。 |
 
 > [!NOTE]
 > 单页应用可能会收到 `invalid_request` 错误，指明仅“单页应用程序”客户端类型允许进行跨源令牌兑换。  这表明用于请求令牌的重定向 URI 未标记为 `spa` 重定向 URI。  有关如何启用此流的信息，请查看[应用程序注册步骤](#redirect-uri-setup-required-for-single-page-apps)。
@@ -283,8 +284,8 @@ client_id=6731de76-14a6-49ae-97bc-6eba6914391e
 | 参数     | 类型           | 说明        |
 |---------------|----------------|--------------------|
 | `tenant`        | 必需     | 请求路径中的 `{tenant}` 值可用于控制哪些用户可以登录应用程序。 可以使用的值包括 `common`、`organizations`、`consumers` 和租户标识符。 有关详细信息，请参阅[协议基础知识](active-directory-v2-protocols.md#endpoints)。   |
-| `client_id`     | 必需    | [Azure 门户 - 应用注册](https://portal.azure.cn/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredAppsPreview)体验分配给应用的**应用程序（客户端）ID**。 |
-| `grant_type`    | 必填    | 必须是授权代码流的此阶段的 `refresh_token` 。 |
+| `client_id`     | 必填    | [Azure 门户 - 应用注册](https://portal.azure.cn/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredAppsPreview)体验分配给应用的**应用程序（客户端）ID**。 |
+| `grant_type`    | 必需    | 必须是授权代码流的此阶段的 `refresh_token` 。 |
 | `scope`         | 必需    | 范围的空格分隔列表。 在此阶段请求的范围必须等效于原始 authorization_code 请求阶段中所请求的范围，或者为该范围的子集。 如果这个请求中指定的范围遍及多个资源服务器，Microsoft 标识平台终结点将返回第一个范围内所指定资源的令牌。 有关范围更加详细的说明，请参阅[权限、许可和范围](v2-permissions-and-consent.md)。 |
 | `refresh_token` | 必需    | 在流的第二个阶段获取的 refresh_token。 |
 | `client_secret` | 必填（对于 Web 应用） | 在应用注册门户中为应用创建的应用程序机密。 它不应用于本机应用，因为设备无法可靠地存储 client_secrets。 Web 应用和 Web API 都需要应用程序密钥，它能够将 client_secret 安全地存储在服务器端。 此机密需要进行 URL 编码。 有关详细信息，请参阅 [URI 一般语法规范](https://tools.ietf.org/html/rfc3986#page-12)。 |

@@ -1,19 +1,21 @@
 ---
-title: 使用 Azure Site Recovery 运行将 Hyper-V VM 灾难恢复到辅助站点的演练 | Azure
+title: 使用 Azure Site Recovery 运行到辅助站点的 NHyper-V 灾难恢复演练
 description: 了解如何使用 Azure Site Recovery 运行将 VMM 云中的 Hyper-V VM 灾难恢复到本地辅助数据中心的演练。
-author: rockboyfor
-manager: digimobile
+manager: gaggupta
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 11/27/2018
-ms.date: 04/22/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: bf985624eb0b37ee0b95af6d2b35f1b6175837ab
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 964cb85b03d5a1f23ca9a25ab2c7bb1a3f14fbca
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291357"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655709"
 ---
 # <a name="run-a-dr-drill-for-hyper-v-vms-to-a-secondary-site"></a>运行将 Hyper-V VM 灾难恢复到辅助站点的演练
 
@@ -41,12 +43,11 @@ ms.locfileid: "79291357"
 
 运行测试故障转移时，系统将要求为测试副本计算机选择网络设置。请参阅表中的摘要。
 
-
-|      **选项**      |                                                                                                                                                                                                                                                                                                                                                                                                               **详细信息**                                                                                                                                                                                                                                                                                                                                                                                                               |
-|----------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|       无        |                                                                                                                                                                                                                                                                                                        将在副本 VM 所在的主机上创建测试 VM。 该 VM 不会添加到云中，且不会连接到任何网络。<br/><br/> 创建 VM 后，可将它连接到 VM 网络。                                                                                                                                                                                                                                                                                                         |
-|   **使用现有项**   | 将在副本 VM 所在的主机上创建测试 VM。 该 VM 不会添加到云中。<br/><br/>创建与生产网络隔离的 VM 网络。<br/><br/>如果使用的是基于 VLAN 的网络，我们建议在 VMM 中创建一个未在生产中使用的单独逻辑网络来实现此目的。 此逻辑网络用于创建 VM 网络以用于测试故障转移。<br/><br/>逻辑网络应至少与所有托管虚拟机的 Hyper-V 服务器中的一个网络适配器关联。<br/><br/>对于 VLAN 逻辑网络，应隔离在逻辑网络中添加的网络站点。<br/><br/>如果使用基于 Windows 网络虚拟化的逻辑网络，Azure Site Recovery 将自动创建隔离的 VM 网络。 |
-| **创建网络** |                                                                     将根据你在“逻辑网络”及其相关网站中指定的设置自动创建一个临时测试网络  。<br/><br/> 故障转移会检查是否已创建 VM。<br/><br/> 如果恢复计划使用多个 VM 网络，则应使用此选项。<br/><br/> 如果使用 Windows 网络虚拟化网络，此选项可以使用副本虚拟机网络中的相同设置（子网和 IP 地址池）自动创建 VM 网络。 在测试故障转移完成后，会自动清理这些 VM 网络。<br/><br/> 将在副本虚拟机所在的主机上创建测试 VM。 该 VM 不会添加到云中。                                            |
+| **选项** | **详细信息** | |
+| --- | --- | --- |
+| 无  | 将在副本 VM 所在的主机上创建测试 VM。 该 VM 不会添加到云中，且不会连接到任何网络。<br/><br/> 创建 VM 后，可将它连接到 VM 网络。| |
+| **使用现有项** | 将在副本 VM 所在的主机上创建测试 VM。 该 VM 不会添加到云中。<br/><br/>创建与生产网络隔离的 VM 网络。<br/><br/>如果使用的是基于 VLAN 的网络，我们建议在 VMM 中创建一个未在生产中使用的单独逻辑网络来实现此目的。 此逻辑网络用于创建 VM 网络以用于测试故障转移。<br/><br/>逻辑网络应至少与所有托管虚拟机的 Hyper-V 服务器中的一个网络适配器关联。<br/><br/>对于 VLAN 逻辑网络，应隔离在逻辑网络中添加的网络站点。<br/><br/>如果使用基于 Windows 网络虚拟化的逻辑网络，Azure Site Recovery 将自动创建隔离的 VM 网络。 | |
+| **创建网络** | 将根据你在“逻辑网络”及其相关网站中指定的设置自动创建一个临时测试网络  。<br/><br/> 故障转移会检查是否已创建 VM。<br/><br/> 如果恢复计划使用多个 VM 网络，则应使用此选项。<br/><br/> 如果使用 Windows 网络虚拟化网络，此选项可以使用副本虚拟机网络中的相同设置（子网和 IP 地址池）自动创建 VM 网络。 在测试故障转移完成后，会自动清理这些 VM 网络。<br/><br/> 将在副本虚拟机所在的主机上创建测试 VM。 该 VM 不会添加到云中。|
 
 ### <a name="best-practices"></a>最佳做法
 
@@ -97,15 +98,17 @@ ms.locfileid: "79291357"
 * DHCP  ：如果虚拟机使用 DHCP，则应在测试 DHCP 服务器上更新测试 DNS 的 IP 地址。 如果使用的网络类型为 Windows 网络虚拟化，则 VMM 服务器充当 DHCP 服务器。 因此，应在测试性故障转移网络中更新 DNS 的 IP 地址。 在这种情况下，虚拟机将向相关的 DNS 服务器注册其本身。
 * 静态地址  ：如果虚拟机使用静态 IP 地址，则应在测试故障转移网络中更新测试 DNS 服务器的 IP 地址。 可能需要使用测试虚拟机的 IP 地址更新 DNS。 可以使用以下示例脚本实现此目的：
 
-        Param(
-        [string]$Zone,
-        [string]$name,
-        [string]$IP
-        )
-        $Record = Get-DnsServerResourceRecord -ZoneName $zone -Name $name
-        $newrecord = $record.clone()
-        $newrecord.RecordData[0].IPv4Address  =  $IP
-        Set-DnsServerResourceRecord -zonename $zone -OldInputObject $record -NewInputObject $Newrecord
+    ```powershell
+    Param(
+    [string]$Zone,
+    [string]$name,
+    [string]$IP
+    )
+    $Record = Get-DnsServerResourceRecord -ZoneName $zone -Name $name
+    $newrecord = $record.clone()
+    $newrecord.RecordData[0].IPv4Address  =  $IP
+    Set-DnsServerResourceRecord -zonename $zone -OldInputObject $record -NewInputObject $Newrecord
+    ```
 
 ## <a name="run-a-test-failover"></a>运行测试故障转移
 
@@ -117,7 +120,7 @@ ms.locfileid: "79291357"
 4. 故障转移完成后，验证 VM 是否成功启动。
 5. 完成后，在恢复计划上单击“清理测试故障转移”  。 在“说明”中，记录并保存与测试性故障转移相关联的任何观测结果。  此步骤会删除在测试故障转移期间由 Site Recovery 创建的所有 VM 和网络。 
 
-![测试故障转移](./media/hyper-v-vmm-test-failover/TestFailover.png)
+:::image type="content" source="./media/hyper-v-vmm-test-failover/TestFailover.png" alt-text="测试故障转移":::
 
 > [!TIP]
 > 如果 IP 地址可用于测试故障转移网络，则在测试故障转移期间指定给虚拟机的 IP 地址与在计划或非计划故障转移时虚拟机收到的 IP 地址相同。 如果此相同的 IP 地址在测试故障转移网络中不可用，那么虚拟机会收到可在测试故障转移网络中使用的其他 IP 地址。
@@ -133,4 +136,4 @@ ms.locfileid: "79291357"
 ## <a name="next-steps"></a>后续步骤
 成功运行灾难恢复演练后，可以[运行完整故障转移](site-recovery-failover.md)。
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

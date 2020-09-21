@@ -3,14 +3,17 @@ title: Azure Service Fabric 反向代理安全通信
 description: 在 Azure Service Fabric 应用程序中配置反向代理以启用安全的端到端通信。
 ms.topic: conceptual
 origin.date: 08/10/2017
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: aa458648ea83cbf622fb4ac01b7e8d92e863fcbb
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.openlocfilehash: 2ebae56277515e073bb1b020d8b687ad022a0bc1
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356246"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655335"
 ---
 # <a name="connect-to-a-secure-service-with-the-reverse-proxy"></a>使用反向代理连接到安全服务
 
@@ -190,7 +193,7 @@ Service Fabric 支持为服务配置多个终结点。 有关详细信息，请�
 * 请参阅[配置反向代理以连接到安全服务](https://github.com/Azure-Samples/service-fabric-cluster-templates/tree/master/Reverse-Proxy-Sample#configure-reverse-proxy-to-connect-to-secure-services)
 * 参阅 [GitHub 上的示例项目](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)中服务之间的 HTTP 通信示例。
 * [使用 Reliable Services 远程控制执行远程过程调用](service-fabric-reliable-services-communication-remoting.md)
-* [Reliable Services 中使用 OWIN 的 Web API](service-fabric-reliable-services-communication-webapi.md)
+* [Reliable Services 中使用 OWIN 的 Web API](./service-fabric-reliable-services-communication-aspnetcore.md)
 * [管理群集证书](service-fabric-cluster-security-update-certs-azure.md)
 
 <!-- Update_Description: update meta properties, wording update, update link -->

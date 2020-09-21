@@ -2,19 +2,19 @@
 title: 将 Azure Active Directory 与 Azure Kubernetes 服务（旧版）集成
 description: 了解如何使用 Azure CLI 创建支持 Azure Active Directory 的 Azure Kubernetes 服务 (AKS) 群集（旧版）
 services: container-service
-author: rockboyfor
 ms.topic: article
 origin.date: 07/20/2020
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
-ms.openlocfilehash: 2aae847abbf0d0fae2d83289d1603def2b117b01
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 489536cf0f263f8fc10bf4747306d4b958891877
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842538"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021556"
 ---
 # <a name="integrate-azure-active-directory-with-azure-kubernetes-service-using-the-azure-cli"></a>使用 Azure CLI 将 Azure Active Directory 与 Azure Kubernetes 服务集成
 
@@ -30,6 +30,7 @@ ms.locfileid: "87842538"
 ## <a name="the-following-limitations-apply"></a>以下限制适用：
 
 - Azure AD 只能在支持 RBAC 的群集上启用。
+- Azure AD 传统集成只能在创建群集期间启用。
 
 ## <a name="before-you-begin"></a>准备阶段
 
@@ -272,24 +273,24 @@ error: You must be logged in to the server (Unauthorized)
 
 <!-- LINKS - internal -->
 
-[az-aks-create]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-create
-[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-get-credentials
-[az-group-create]: https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-create
+[az-aks-create]: https://docs.microsoft.com/cli/azure/aks#az_aks_create
+[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks#az_aks_get_credentials
+[az-group-create]: https://docs.azure.cn/cli/group#az-group-create
 [open-id-connect]: ../active-directory/develop/v2-protocols-oidc.md
-[az-ad-user-show]: https://docs.azure.cn/cli/ad/user?view=azure-cli-latest#az-ad-user-show
-[az-ad-app-create]: https://docs.azure.cn/cli/ad/app?view=azure-cli-latest#az-ad-app-create
-[az-ad-app-update]: https://docs.azure.cn/cli/ad/app?view=azure-cli-latest#az-ad-app-update
-[az-ad-sp-create]: https://docs.azure.cn/cli/ad/sp?view=azure-cli-latest#az-ad-sp-create
-[az-ad-app-permission-add]: https://docs.azure.cn/cli/ad/app/permission?view=azure-cli-latest#az-ad-app-permission-add
-[az-ad-app-permission-grant]: https://docs.azure.cn/cli/ad/app/permission?view=azure-cli-latest#az-ad-app-permission-grant
-[az-ad-app-permission-admin-consent]: https://docs.azure.cn/cli/ad/app/permission?view=azure-cli-latest#az-ad-app-permission-admin-consent
-[az-ad-app-show]: https://docs.azure.cn/cli/ad/app?view=azure-cli-latest#az-ad-app-show
-[az-group-create]: https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-create
-[az-account-show]: https://docs.azure.cn/cli/account?view=azure-cli-latest#az-account-show
-[az-ad-signed-in-user-show]: https://docs.azure.cn/cli/ad/signed-in-user?view=azure-cli-latest#az-ad-signed-in-user-show
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
-[az-ad-sp-credential-reset]: https://docs.azure.cn/cli/ad/sp/credential?view=azure-cli-latest#az-ad-sp-credential-reset
-[rbac-authorization]: concepts-identity.md#kubernetes-role-based-access-controls-rbac
+[az-ad-user-show]: https://docs.azure.cn/cli/ad/user#az-ad-user-show
+[az-ad-app-create]: https://docs.azure.cn/cli/ad/app#az-ad-app-create
+[az-ad-app-update]: https://docs.azure.cn/cli/ad/app#az-ad-app-update
+[az-ad-sp-create]: https://docs.azure.cn/cli/ad/sp#az-ad-sp-create
+[az-ad-app-permission-add]: https://docs.azure.cn/cli/ad/app/permission#az-ad-app-permission-add
+[az-ad-app-permission-grant]: https://docs.azure.cn/cli/ad/app/permission#az-ad-app-permission-grant
+[az-ad-app-permission-admin-consent]: https://docs.azure.cn/cli/ad/app/permission#az-ad-app-permission-admin-consent
+[az-ad-app-show]: https://docs.azure.cn/cli/ad/app#az-ad-app-show
+[az-group-create]: https://docs.azure.cn/cli/group#az-group-create
+[az-account-show]: https://docs.azure.cn/cli/account#az-account-show
+[az-ad-signed-in-user-show]: https://docs.azure.cn/cli/ad/signed-in-user#az-ad-signed-in-user-show
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
+[az-ad-sp-credential-reset]: https://docs.azure.cn/cli/ad/sp/credential#az-ad-sp-credential-reset
+[rbac-authorization]: concepts-identity.md#kubernetes-role-based-access-control-rbac
 [operator-best-practices-identity]: operator-best-practices-identity.md
 [azure-ad-rbac]: azure-ad-rbac.md
 

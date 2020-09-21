@@ -3,21 +3,26 @@ title: 可靠集合中的事务和锁定模式
 description: Azure Service Fabric 可靠状态管理器和可靠集合事务和锁定。
 ms.topic: conceptual
 origin.date: 05/01/2017
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
 ms.custom: sfrev
-ms.openlocfilehash: e03817c4dcc34abfc59767d298ae338b093691cb
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 0dffd7dca5b8cafa3ced955bd175197523c7f244
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77541060"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655354"
 ---
 # <a name="transactions-and-lock-modes-in-azure-service-fabric-reliable-collections"></a>Azure Service Fabric 可靠集合中的事务和锁模式
 
 ## <a name="transaction"></a>事务
 
-事务是作为单个逻辑工作单元执行的一系列操作。 它表现出数据库事务常见的 [ACID](https://en.wikipedia.org/wiki/ACID)（原子性  、一致性  、隔离性  、持续性  ）属性：
+事务是作为单个逻辑工作单元执行的一系列操作。 它表现出数据库事务常见的 ACID（原子性、一致性、隔离性、持续性）属性：   
+
+<!--Not Available on ACID](https://en.wikipedia.org/wiki/ACID)-->
 
 * **原子性**：事务必须是原子工作单元。 换而言之，要么执行其所有数据修改，要么一个数据修改也不执行。
 * **一致性**：事务在完成时，必须使所有的数据都保持一致状态。 事务结束时，所有内部数据结构必须都正确。
@@ -89,4 +94,4 @@ Reliable Queue 权衡严格事务性 FIFO 属性的并发。
 * [可靠状态管理器和配置](service-fabric-reliable-services-configuration.md)
 * [Reliable Collections 的开发人员参考](https://docs.azure.cn/dotnet/api/microsoft.servicefabric.data.collections?view=azure-dotnet#microsoft_servicefabric_data_collections)
 
-<!-- Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

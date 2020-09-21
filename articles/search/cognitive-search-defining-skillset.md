@@ -8,17 +8,21 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 07/17/2020
-ms.openlocfilehash: 2f35af4d4a0e4022b4cf504daeb2c1bb27e0812a
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: df47006e91e0d2e83f67e65b70379c169f9571c9
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471906"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021135"
 ---
 # <a name="how-to-create-a-skillset-in-an-ai-enrichment-pipeline-in-azure-cognitive-search"></a>如何在 Azure 认知搜索中的 AI 扩充管道中创建技能组 
 
-AI 扩充可提取和扩充数据，使之能够在 Azure 认知搜索中可供搜索。 我们将提取和扩充步骤称作认知技能，这些技能将合并成索引编制期间所引用的技能集。 技能组可以使用[内置技能](cognitive-search-predefined-skills.md)或自定义技能（请参阅[示例：在 AI 扩充管道中创建自定义技能](cognitive-search-create-custom-skill-example.md)来了解详细信息）。
+![索引器阶段](media/cognitive-search-defining-skillset/indexer-stages-skillset.png "索引器阶段")
+
+技能组定义提取和扩充数据以使其可搜索的操作。 从源文档提取文本和图像内容后，以及在将源文档中的任何字段（可选）映射到索引或知识存储中的目标字段后，技能组都会执行。
+
+技能组包含一个或多个表示特定扩充操作的认知技能，如翻译文本、提取关键短语或从图像文件执行光学字符识别。 若要创建技能组，可以使用 Microsoft 提供的[内置技能](cognitive-search-predefined-skills.md)，或包含你提供的模型或处理逻辑的自定义技能（请参阅[示例：在 AI 扩充管道中创建自定义技能](cognitive-search-create-custom-skill-example.md)来了解详细信息）。
 
 本文介绍如何对想要使用的技能创建扩充管道。 技能组将附加到 Azure 认知搜索[索引器](search-indexer-overview.md)。 本文介绍的管道设计的一个部分是构造技能集本身。 
 
@@ -278,4 +282,4 @@ Content-Type: application/json
 
 ## <a name="next-steps"></a>后续步骤
 
-熟悉扩充管道和技能集后，请继续阅读[如何在技能集中引用注释](cognitive-search-concept-annotations-syntax.md)或[如何将输出映射到索引中的字段](cognitive-search-output-field-mapping.md)。 
+熟悉扩充管道和技能集后，请继续阅读[如何在技能集中引用注释](cognitive-search-concept-annotations-syntax.md)或[如何将输出映射到索引中的字段](cognitive-search-output-field-mapping.md)。

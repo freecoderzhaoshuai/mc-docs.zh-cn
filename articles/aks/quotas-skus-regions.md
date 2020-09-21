@@ -5,14 +5,15 @@ description: 了解 Azure Kubernetes 服务 (AKS) 中的默认配额、受限制
 services: container-service
 ms.topic: conceptual
 origin.date: 04/09/2019
-ms.date: 05/25/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.author: v-yeche
-ms.openlocfilehash: 61f92e9dcd7651f201c9d997e8d17669ac2e6792
-ms.sourcegitcommit: 7e6b94bbaeaddb854beed616aaeba6584b9316d9
+ms.openlocfilehash: bd5f8056f1d0083a416cd974a9fdb187251df05f
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/21/2020
-ms.locfileid: "83735135"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021261"
 ---
 # <a name="quotas-virtual-machine-size-restrictions-and-region-availability-in-azure-kubernetes-service-aks"></a>Azure Kubernetes 服务 (AKS) 中的配额、虚拟机大小限制和适用地区
 
@@ -29,10 +30,7 @@ ms.locfileid: "83735135"
 所有其他网络、计算和存储限制均适用于预配的基础结构。 若要了解相关限制，请参阅 [Azure 订阅和服务限制](../azure-resource-manager/management/azure-subscription-service-limits.md)。
 
 > [!IMPORTANT]
-> 升级 AKS 群集时，会临时使用其他资源。 这些资源包括虚拟网络子网中的可用 IP 地址，或者虚拟机 vCPU 配额。
-
-<!--Not Available on  If you use Windows Server containers (currently in preview in AKS)-->
-<!--Not Available on  WINDOWS UPDATE [Upgrade a node pool in AKS][nodepool-upgrade]-->
+> 升级 AKS 群集时，会临时使用其他资源。 这些资源包括虚拟网络子网中的可用 IP 地址，或者虚拟机 vCPU 配额。 如果使用 Windows Server 容器，则唯一认可的将最新更新应用于节点的方法是执行升级操作。 群集升级过程失败可能表明没有可用的 IP 地址空间或 vCPU 配额来处理这些临时资源。 有关 Windows Server 节点升级过程的详细信息，请参阅[升级 AKS 中的节点池][nodepool-upgrade]。
 
 ## <a name="restricted-vm-sizes"></a>受限制的 VM 大小
 
@@ -63,11 +61,11 @@ AKS 群集中的每个节点都包含固定数量的计算资源，例如 vCPU �
 <!-- LINKS - External -->
 
 [azure-support]: https://support.azure.cn/support/support-azure/
-[region-availability]: https://azure.microsoft.com/global-infrastructure/services/?products=kubernetes-service&regions=china-non-regional,china-east,china-east-2,china-north,china-north-2
+[region-availability]: https://azure.microsoft.com/global-infrastructure/services/?products=kubernetes-service&regions=,china-non-regional,china-east,china-east-2,china-north,china-north-2,
 
 <!-- LINKS - Internal -->
 
-[vm-skus]: ../virtual-machines/linux/sizes.md
+[vm-skus]: ../virtual-machines/sizes.md
 [nodepool-upgrade]: use-multiple-node-pools.md#upgrade-a-node-pool
 
 <!-- Update_Description: update meta properties, wording update, update link -->

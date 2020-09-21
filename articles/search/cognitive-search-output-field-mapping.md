@@ -8,24 +8,35 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 07/17/2020
-ms.openlocfilehash: 5fec84f9f962b087f5d37f726ba95c35d8ffd67f
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: 33ec5cb9fb3167f3bd174b15034128e0d4d6380b
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471904"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021128"
 ---
 # <a name="how-to-map-ai-enriched-fields-to-a-searchable-index"></a>如何将 AI 扩充字段映射到可搜索索引
 
-在本文中，你将了解如何将扩充输入字段映射到可搜索索引中的输出字段。 [定义技能组合](cognitive-search-defining-skillset.md)后，你必须将直接添加值的任何技能的输出字段映射到搜索索引中的给定字段。 
+![索引器阶段](./media/cognitive-search-output-field-mapping/indexer-stages-output-field-mapping.png "索引器阶段")
 
-将内容从扩充文档移动到索引中必须进行输出字段映射。  扩充的文档实际上是一个信息树，虽然索引中支持复杂类型，但有时你可能需要将扩充的树中的信息转换为更简单的类型（例如字符串数组）。 使用输出字段映射，可以通过平展信息来执行数据形状转换。
+在本文中，你将了解如何将扩充输入字段映射到可搜索索引中的输出字段。 [定义技能组合](cognitive-search-defining-skillset.md)后，你必须将直接添加值的任何技能的输出字段映射到搜索索引中的给定字段。
+
+将内容从扩充文档移动到索引中必须进行输出字段映射。  扩充的文档实际上是一个信息树，虽然索引中支持复杂类型，但有时你可能需要将扩充的树中的信息转换为更简单的类型（例如字符串数组）。 使用输出字段映射，可以通过平展信息来执行数据形状转换。 即使没有定义技能组，此阶段也可能运行，但输出字段映射总是发生在技能组执行后。
+
+输出字段映射示例：
+
+* 作为技能组的一部分，你提取了文档的每一页中提到的组织的名称。 现在，你想要将每个组织名称映射到 Edm.Collection(Edm.String) 类型的索引中的字段。
+
+* 作为技能组的一部分，你生成了名为“document/translated_text”的新节点。 你希望将此节点上的信息映射到索引中的特定字段。
+
+* 你没有技能组，但正在从 Cosmos DB 数据库中索引复杂类型。 你希望获取该复杂类型上的节点，并将其映射到索引中的字段。
 
 > [!NOTE]
-> 我们最近在输出字段映射上启用了映射函数的功能。 有关映射函数的更多详细信息，请参阅[字段映射函数](https://docs.azure.cn/search/search-indexer-field-mappings#field-mapping-functions)
+> 我们最近在输出字段映射上启用了映射函数的功能。 有关映射函数的更多详细信息，请参阅[字段映射函数](./search-indexer-field-mappings.md#field-mapping-functions)
 
 ## <a name="use-outputfieldmappings"></a>使用 outputFieldMappings
+
 要映射字段，请按如下所示将 `outputFieldMappings` 添加到索引器定义：
 
 ```http

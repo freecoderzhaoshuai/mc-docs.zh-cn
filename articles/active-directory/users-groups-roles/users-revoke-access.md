@@ -1,6 +1,6 @@
 ---
 title: 在 Azure Active Directory 中紧急撤消用户访问权限 | Microsoft Docs
-description: 在 Azure Active Directory 中的 Azure AD 管理中心批量添加用户
+description: 如何撤消 Azure Active Directory 中用户的所有访问权限
 services: active-directory
 ms.service: active-directory
 ms.subservice: users-groups-roles
@@ -10,15 +10,15 @@ author: curtand
 ms.author: v-junlch
 manager: daveba
 ms.reviewer: krbain
-ms.date: 08/14/2020
+ms.date: 09/08/2020
 ms.custom: it-pro
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: c995774d73499092c592b1c99600947e927d243b
-ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
+ms.openlocfilehash: 3fe823819196f370876a64a3c89afa9e4cad2e19
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "88648043"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593598"
 ---
 # <a name="revoke-user-access-in-azure-active-directory"></a>在 Azure Active Directory 中撤销用户访问
 
@@ -38,7 +38,7 @@ ms.locfileid: "88648043"
 
 然后 Azure AD 重新评估其授权策略。 如果用户仍获得授权，则 Azure AD 将发布新的访问令牌和刷新令牌。
 
-如果必须在短于令牌的生存期（通常为一小时左右）内撤销访问，则访问令牌可能是一个安全问题。 出于这个原因，Microsoft 正在积极努力将[连续访问评估](/active-directory/fundamentals/concept-fundamentals-continuous-access-evaluation)引入 Office 365 应用程序，这有助于确保访问令牌在近乎实时的情况下失效。  
+如果必须在短于令牌的生存期（通常为一小时左右）内撤销访问，则访问令牌可能是一个安全问题。 出于这个原因，Microsoft 正在积极努力将[连续访问评估](../conditional-access/concept-continuous-access-evaluation.md)引入 Office 365 应用程序，这有助于确保访问令牌在近乎实时的情况下失效。  
 
 ## <a name="session-tokens-cookies"></a>会话令牌 (cookies)
 

@@ -5,14 +5,14 @@ author: WenJason
 ms.author: v-jay
 ms.service: mariadb
 ms.topic: conceptual
-origin.date: 3/27/2020
-ms.date: 04/27/2020
-ms.openlocfilehash: 7238819ba86f6ba50dc5e524d663c2a9eaeb7562
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+origin.date: 8/13/2020
+ms.date: 09/14/2020
+ms.openlocfilehash: df0a7b7e1eaa2ac7a28c4a085eca9e4103ab70ed
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82127063"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512903"
 ---
 # <a name="backup-and-restore-in-azure-database-for-mariadb"></a>在 Azure Database for MariaDB 中进行备份和还原
 
@@ -26,7 +26,13 @@ Azure Database for MariaDB 可以进行完整备份、差异备份和事务日�
 
 ### <a name="backup-frequency"></a>备份频率
 
-通常情况下，完整备份每周进行一次，差异备份每天进行两次，事务日志备份每五分钟进行一次。 第一次完整备份在创建服务器后立即进行计划。 初始备份在大型已还原服务器上可能耗时较长。 新服务器可以还原到的最早时间点是完成初始完整备份的时间。
+完整备份每周进行一次。 差异备份一天进行两次。 事务日志备份每五分钟进行一次。
+
+### <a name="backup-retention"></a>备份保留
+
+根据服务器上的备份保持期设置来保留备份。 可以选择 7 到 35 天的保留期。 默认保持期为 7 天。 可以在服务器创建期间或以后通过使用 [Azure 门户](howto-restore-server-portal.md#set-backup-configuration)或 [Azure CLI](howto-restore-server-cli.md#set-backup-configuration) 更新备份配置来设置保留期。 
+
+备份保留期控制可以往回检索多长时间的时间点还原，因为它基于可用备份。 从恢复的角度来看，备份保留期也可以视为恢复时段。 在备份保留期间内执行时间点还原所需的所有备份都保留在备份存储中。 例如，如果备份保留期设置为 7 天，则可认为恢复时段是最近 7 天。 在这种情况下，将保留在过去 7 天内还原服务器所需的所有备份。 备份保留期为 7 天：服务器将保留最多 2 个完整数据库备份、所有差异备份和自最早的完整数据库备份以来执行的事务日志备份。
 
 ### <a name="backup-redundancy-options"></a>备份冗余选项
 
@@ -37,11 +43,11 @@ Azure Database for MariaDB 可以进行完整备份、差异备份和事务日�
 
 ### <a name="backup-storage-cost"></a>备份存储成本
 
-Azure Database for MariaDB 最高可以提供 100% 的已预配服务器存储作为备份存储，不收取任何额外费用。 通常情况下，这适合将备份保留七天。 超出的备份存储使用量按每月每 GB 标准收费。
+Azure Database for MariaDB 最高可以提供 100% 的已预配服务器存储作为备份存储，不收取任何额外费用。 超出的备份存储使用量按每月每 GB 标准收费。 例如，如果为服务器配置了 250 GB 的存储空间，则可以为服务器备份提供 250 GB 的额外存储空间，而不另外收费。 备份所消耗的存储量超过 250GB 将按照[定价模型](https://azure.cn/pricing/details/mariadb/)收费。 
 
-例如，如果为服务器预配了 250 GB，则有 250 GB 不额外收费的备份存储。 存储超出 250 GB 就会收费。
+可以通过使用 Azure 门户中提供的 Azure Monitor 中的[已使用的备份存储](concepts-monitoring.md)指标来监视服务器使用的备份存储。 使用的备份存储指标表示根据为服务器设置的备份保留期保留的所有完整数据库备份、差异备份和日志备份所消耗的存储的总和。 备份的频率由服务进行管控，已在前面进行了说明。 无论数据库的总大小如何，如果服务器上的事务性活动繁重，都会导致备份存储使用率增加。 对于异地冗余存储，备份存储使用率是本地冗余存储的两倍。 
 
-有关备份存储成本的更多信息，请访问 [MariaDB 定价页面](https://azure.cn/pricing/details/mariadb/)。
+控制备份存储成本的主要方法是设置适当的备份保留期，并选择正确的备份冗余选项以满足恢复目标。 可以选择 7 到 35 天的保留期。 常规用途和内存优化服务器可以选择使用异地冗余存储进行备份。
 
 ## <a name="restore"></a>还原
 
@@ -67,7 +73,9 @@ Azure Database for MariaDB 最高可以提供 100% 的已预配服务器存储�
 
 ### <a name="geo-restore"></a>异地还原
 
-如果已将服务器配置为进行异地冗余备份，则可将服务器还原到另一 Azure 区域，只要服务在该区域可用即可。 当服务器因其所在的区域发生事故而不可用时，异地还原是默认的恢复选项。 如果区域中出现的大规模事件导致数据库应用程序不可用，可以根据异地冗余备份将服务器还原到任何其他区域中的服务器。 异地还原利用服务器的最新备份。 提取备份后，会延迟一段时间才会将其复制到其他区域中。 此延迟可能长达一小时，因此发生灾难时，会有长达 1 小时的数据丢失风险。
+如果已将服务器配置为进行异地冗余备份，则可将服务器还原到另一 Azure 区域，只要服务在该区域可用即可。 
+
+当服务器因其所在的区域发生事故而不可用时，异地还原是默认的恢复选项。 如果区域中出现的大规模事件导致数据库应用程序不可用，可以根据异地冗余备份将服务器还原到任何其他区域中的服务器。 异地还原利用服务器的最新备份。 提取备份后，会延迟一段时间才会将其复制到其他区域中。 此延迟可能长达一小时，因此发生灾难时，会有长达 1 小时的数据丢失风险。
 
 在异地还原过程中，可以更改的服务器配置包括计算的代、vCore、备份保持期和备份冗余选项。 不支持在异地还原过程中更改定价层（“基本”、“常规用途”或“内存优化”）或存储大小。
 

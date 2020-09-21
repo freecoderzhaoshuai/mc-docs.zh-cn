@@ -1,19 +1,19 @@
 ---
 title: 使用证书在 Windows 上保护群集
 description: 保护 Azure Service Fabric 独立群集或本地群集内部的通信，以及客户端与群集之间的通信。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 10/15/2017
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 06/08/2020
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 3159cea07d2882527b52fbedc66d3d805a93dcc1
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: f3192aea0859d2fde5c47d4ded83a109a209a821
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426418"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655591"
 ---
 # <a name="secure-a-standalone-cluster-on-windows-by-using-x509-certificates"></a>使用 X.509 证书在 Windows 上保护独立群集
 本文介绍如何保护独立 Windows 群集的不同节点之间的通信。 此外，还介绍如何使用 X.509 证书针对连接到此群集的客户端进行身份验证。 身份验证可确保只有经过授权的用户才能访问该群集和部署的应用程序，以及执行管理任务。 创建群集时，应在该群集上启用证书安全性。  
@@ -112,9 +112,11 @@ ms.locfileid: "87426418"
 该部分描述保护独立 Windows 群集所需的证书。 如果指定群集证书，请将 ClusterCredentialType 的值设置为 _X509_。 如果为外部连接指定服务器证书，请将 ServerCredentialType 的值设置为 _X509_。 虽然并非强制，但为了妥善保护群集，我们建议同时拥有这两个证书。 如果将这些值设置为 *X509*，还必须指定相应的证书，否则 Service Fabric 将引发异常。 在某些情况下，仅需要指定 _ClientCertificateThumbprints_ 或 _ReverseProxyCertificate_。 在这些情况下，不需要将 _ClusterCredentialType_ 或 _ServerCredentialType_ 设置为 _X509_。
 
 > [!NOTE]
-> [指纹](https://en.wikipedia.org/wiki/Public_key_fingerprint)是证书的主要标识。 若要查找创建的证书的指纹，请阅读[检索证书的指纹](https://msdn.microsoft.com/library/ms734695.aspx)。
+> 指纹是证书的主要标识。 若要查找创建的证书的指纹，请阅读[检索证书的指纹](https://docs.microsoft.com/dotnet/framework/wcf/feature-details/how-to-retrieve-the-thumbprint-of-a-certificate?view=azure-dotnet)。
 > 
 > 
+
+<!--Not Available on [thumbprint](https://en.wikipedia.org/wiki/Public_key_fingerprint)-->
 
 下表列出了在设置群集时所需的证书：
 
@@ -127,7 +129,7 @@ ms.locfileid: "87426418"
 | ServerCertificateCommonNames |建议用于生产环境。 当客户端尝试连接到此群集时，系统会向客户端提供此证书。 CertificateIssuerThumbprint 对应此证书的颁发者的指纹。 如果要使用具有相同常见名称的多个证书，可以指定多个颁发者指纹。 为方便起见，可以选择对 ClusterCertificateCommonNames 和 ServerCertificateCommonNames 使用相同的证书。 可以使用一个或两个服务器证书公用名称。 |
 | ServerCertificateIssuerStores |建议用于生产环境。 此证书与服务器证书的颁发者相对应。 可以在此节下提供颁发者公用名称和相应的存储名称，而不是在 ServerCertificateCommonNames 下指定颁发者指纹。  这样可以轻松滚动更新服务器颁发者证书。 如果使用多个服务器证书，可以指定多个颁发者。 空的 IssuerCommonName 会将 X509StoreNames 下指定的相应存储中的所有证书加入允许列表。|
 | ClientCertificateThumbprints |在经过身份验证的客户端上安装这一组证书。 可以在想要允许其访问群集的计算机上安装许多不同的客户端证书。 在 CertificateThumbprint 变量中设置每个证书的指纹。 如果将 IsAdmin 设置为 *true*，则安装了此证书的客户端可以针对群集执行管理员管理活动。 如果 IsAdmin 设置为 *false*，则使用此证书的客户端只能执行用户有权执行的操作（通常为只读）。 有关角色的详细信息，请阅读[基于角色的访问控制 (RBAC)](service-fabric-cluster-security.md#role-based-access-control-rbac)。 |
-| ClientCertificateCommonNames |在 CertificateCommonName 中设置第一个客户端证书的通用名称。 CertificateIssuerThumbprint 是此证书的颁发者的指纹。 若要详细了解公用名称和颁发者，请阅读[使用证书](https://msdn.microsoft.com/library/ms731899.aspx)。 |
+| ClientCertificateCommonNames |在 CertificateCommonName 中设置第一个客户端证书的通用名称。 CertificateIssuerThumbprint 是此证书的颁发者的指纹。 若要详细了解公用名称和颁发者，请阅读[使用证书](https://docs.microsoft.com/dotnet/framework/wcf/feature-details/working-with-certificates?view=azure-dotnet)。 |
 | ClientCertificateIssuerStores |建议用于生产环境。 此证书与客户端证书的颁发者（管理员和非管理员角色）相对应。 可以在此节下提供颁发者公用名称和相应的存储名称，而不是在 ClientCertificateCommonNames 下指定颁发者指纹。  这样可以轻松滚动更新客户端颁发者证书。 如果使用多个客户端证书，可以指定多个颁发者。 空的 IssuerCommonName 会将 X509StoreNames 下指定的相应存储中的所有证书加入允许列表。|
 | ReverseProxyCertificate |建议用于测试环境。 如果想要保护[反向代理](service-fabric-reverseproxy.md)，可以选择指定此证书。 若要使用此证书，请确保已在 nodeTypes 中设置了 reverseProxyEndpointPort。 |
 | ReverseProxyCertificateCommonNames |建议用于生产环境。 如果想要保护[反向代理](service-fabric-reverseproxy.md)，可以选择指定此证书。 若要使用此证书，请确保已在 nodeTypes 中设置了 reverseProxyEndpointPort。 |
@@ -250,7 +252,7 @@ ms.locfileid: "87426418"
 ## <a name="acquire-the-x509-certificates"></a>获取 X.509 证书
 若要保护群集内部的通信，首先需要获取群集节点的 X.509 证书。 此外，如果只想允许经过授权的计算机/用户连接到此群集，需要获得并安装客户端计算机的证书。
 
-对于运行生产工作负载的群集，请使用证书颁发机构 (CA) 签名的 X.509 证书来保护群集。 有关如何获取这些证书的详细信息，请参阅[如何获取证书](https://msdn.microsoft.com/library/aa702761.aspx)。
+对于运行生产工作负荷的群集，请使用证书颁发机构 (CA) 签名的 X.509 证书来保护群集。 有关如何获取这些证书的详细信息，请参阅[如何获取证书](https://docs.microsoft.com/dotnet/framework/wcf/feature-details/how-to-obtain-a-certificate-wcf?view=azure-dotnet)。 
 
 <!--Not Avaialble on [certificate authority (CA)](https://en.wikipedia.org/wiki/Certificate_authority)-->
 
@@ -266,7 +268,7 @@ ms.locfileid: "87426418"
 
 对于用于测试的群集，可以选择使用自签名证书。
 
-如有其他问题，请参阅[常见证书问题](/service-fabric/cluster-security-certificate-management#troubleshooting-and-frequently-asked-questions)。
+如有其他问题，请参阅[常见证书问题](./cluster-security-certificate-management.md#troubleshooting-and-frequently-asked-questions)。
 
 ## <a name="optional-create-a-self-signed-certificate"></a>可选：创建自签名证书
 创建能够得到适当保护的自签名证书的一种方法是，使用位于 C:\Program Files\Microsoft SDKs\Service Fabric\ClusterSetup\Secure 目录的 Service Fabric SDK 文件夹中的 CertSetup.ps1 脚本。 编辑此文件以更改证书的默认名称。 （查找值 CN=ServiceFabricDevClusterCert。）以 `.\CertSetup.ps1 -Install` 的方式运行此脚本。
@@ -372,6 +374,6 @@ Connect-ServiceFabricCluster $ConnectArgs
 > [!NOTE]
 > 证书配置不正确会导致在部署时看不到群集。 若要对安全性问题进行自我诊断，请查看事件查看器组（**应用程序和服务日志** > **Microsoft-Service Fabric**）。
 > 
-> 
+>
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

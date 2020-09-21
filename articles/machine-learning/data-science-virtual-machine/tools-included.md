@@ -12,16 +12,16 @@ ms.topic: reference
 origin.date: 05/28/2020
 ms.date: 06/29/2020
 ms.custom: contperfq4
-ms.openlocfilehash: 4842465c93a6f6b43b8772fbca12e7679556574c
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: ac26222c27d4cfdfb7b97229c1a6d89c850f42eb
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097516"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021045"
 ---
 # <a name="what-tools-are-included-on-the-azure-data-science-virtual-machine"></a>Azure Data Science Virtual Machine 中包含哪些工具？
 
-Data Science Virtual Machine 是在云中浏览数据和进行机器学习的最简单方法。 Data Science Virtual Machine 已预先配置了完整的操作系统、安全修补程序、驱动程序和常用的数据科学和开发软件。 可以选择硬件环境，选择范围包括低成本的以 CPU 为中心的计算机，以及具有多个 GPU、NVMe 存储和大量内存的极强大计算机。 对于具有 GPU 的计算机，我们安装了所有驱动程序，对所有机器学习框架进行了版本匹配以确保 GPU 兼容性，并且在支持 GPU 的所有应用程序软件中启用了加速。
+Data Science Virtual Machine 是在云中浏览数据和进行机器学习的一种简单方法。 Data Science Virtual Machine 已预先配置了完整的操作系统、安全修补程序、驱动程序和常用的数据科学和开发软件。 可以选择硬件环境，选择范围包括低成本的以 CPU 为中心的计算机，以及具有多个 GPU、NVMe 存储和大量内存的极强大计算机。 对于具有 GPU 的计算机，我们安装了所有驱动程序，对所有机器学习框架进行了版本匹配以确保 GPU 兼容性，并且在支持 GPU 的所有应用程序软件中启用了加速。
 
 Data Science Virtual Machine 预装有非常实用的数据科学工具： 
 

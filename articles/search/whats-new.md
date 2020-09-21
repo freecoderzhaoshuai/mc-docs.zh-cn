@@ -6,64 +6,84 @@ author: HeidiSteen
 ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: overview
-origin.date: 06/30/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: 70d13aff194d8c11616dc63efdb8a7615af17ed3
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+origin.date: 08/01/2020
+ms.date: 09/10/2020
+ms.custom: references_regions
+ms.openlocfilehash: c0bb88f25056c45b2da77f9dfa022808ebd245ab
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471916"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021446"
 ---
 # <a name="whats-new-in-azure-cognitive-search"></a>Azure 认知搜索中的新增功能
 
 了解服务中的新增功能。 请将本页加入书签，以随时了解该服务的最新信息。
 
-## <a name="feature-announcements"></a>功能增强
+## <a name="feature-announcements-in-2020"></a>2020 版功能公告
+
+### <a name="august-2020"></a>2020 年 8 月
+
+|功能&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  | 类别 | 说明 | 可用性  |
+|---------|------------------|-------------|---------------|
+| [双重加密](search-security-overview.md#encryption) | 安全性 | 通过对新的搜索服务配置客户管理的密钥 (CMK) 加密，在存储层启用双重加密。 创建新服务，[配置客户管理的密钥并应用于](search-security-manage-encryption-keys.md)索引或同义词映射，可受益于对该内容进行的双重加密。 | 2020 年 8 月 1 日后在以下区域创建的所有搜索服务都公开可用：中国东部 2。 使用门户、管理 REST API 或 SDK 创建服务。 |
+
+### <a name="july-2020"></a>2020 年 7 月
+
+|功能&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  | 类别 | 说明 | 可用性  |
+|---------|------------------|-------------|---------------|
+| [Azure.Search.Documents 客户端库](https://docs.microsoft.com/dotnet/api/overview/azure/search.documents-readme?view=azure-dotnet) | 用于 .NET 的 Azure SDK | .NET 客户端库，由 Azure SDK 团队发布，旨在保持与其他 .NET 客户端库的一致性。 <br/><br/>版本 11 面向搜索 REST api-version=2020-06-30，但尚不支持知识存储、地理空间类型或 [FieldBuilder](https://docs.microsoft.com/dotnet/api/microsoft.azure.search.fieldbuilder)。 <br/><br/>有关详细信息，请参阅[快速入门：创建索引](search-get-started-dotnet.md)和[升级到 Azure.Search.Documents (v11)](search-dotnet-sdk-migration-version-11.md)。 | 正式发布。 </br> 从 NuGet 安装 [Azure.Search.Documents 包](https://www.nuget.org/packages/Azure.Search.Documents/)。 |
+| [azure.search.documents 客户端库](https://docs.microsoft.com/python/api/overview/azure/search-documents-readme?view=azure-python)  | 用于 Python 的 Azure SDK| Python 客户端库，由 Azure SDK 团队发布，旨在保持与其他 Python 客户端库的一致性。 <br/><br/>版本 11 面向搜索 REST api-version=2020-06-30。 | 正式发布。 </br> 从 PyPI 安装 [azure-search-documents 包](https://pypi.org/project/azure-search-documents/)。 |
+| [@azure/search-documents 客户端库](https://docs.microsoft.com/javascript/api/overview/azure/search-documents-readme?view=azure-node-latest)  | 用于 JavaScript 的 Azure SDK | JavaScript 客户端库，由 Azure SDK 团队发布，旨在保持与其他 JavaScript 客户端库的一致性。 <br/><br/>版本 11 面向搜索 REST api-version=2020-06-30。 | 正式发布。 </br> 从 npm 安装 [@azure/search-documents 包](https://www.npmjs.com/package/@azure/search-documents)。 |
 
 ### <a name="june-2020"></a>2020 年 6 月
 
-+ [知识存储](knowledge-store-concept-intro.md)现已正式发布。
+|功能&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  | 类别 | 说明 | 可用性  |
+|---------|------------------|-------------|---------------|
+[知识存储](knowledge-store-concept-intro.md) | AI 扩充 | AI 扩充索引器的输出，将内容存储在 Azure 存储中以供其他应用和进程使用。 | 正式发布。 </br> 使用[搜索 REST API 2020-06-30](https://docs.microsoft.com/rest/api/searchservice/) 或更高版本，或门户。 |
+| [搜索 REST API 2020-06-30](https://docs.microsoft.com/rest/api/searchservice/) | REST | REST API 的新稳定版本。 除了知识存储，此版本还包括搜索相关性和评分的增强功能。 | 正式发布。 |
+| **Okapi BM25 相关性算法** | 查询 | 新的相关性排名算法自动用于 7 月 15 日之后创建的所有新搜索服务。 对于先前创建的服务，可以通过在索引字段上设置 `similarity` 属性来选择加入。 | 正式发布。 </br> 使用[搜索 REST API 2020-06-30](https://docs.microsoft.com/rest/api/searchservice/) 或更高版本，或 REST API 2019-05-06。 |
 
-+ [搜索服务 REST API 2020-06-30](https://docs.microsoft.com/rest/api/searchservice/) 是 REST API 的新稳定版本。 除了知识存储，此正式发布版还包括搜索相关性和评分的增强功能。
-
-+ 现在，对于创建的任何新服务，新的相关性排名算法都是 BM25。 对于现有服务，可以通过在索引字段上设置 `similarity` 属性来选择加入。 此属性已正式发布。
-
-+ 新索引器 `executionEnvironment` 可以显式设置为 `private`。 此功能支持索引器通过专用终结点访问外部数据，并且该功能已正式发布。
-
-<!-- + [Azure Machine Learning (AML)](cognitive-search-aml-skill.md) is a new skill type to integrate an inferencing endpoint from Azure Machine Learning. The portal experience supports discovery and integration of your Azure Machine Learning endpoint within a Cognitive Search skillset. The discovery requires your Cognitive Search and Azure ML services be deployed in the same subscription. This skill is generally available. Get started with [this tutorial](cognitive-search-tutorial-aml-custom-skill.md). -->
+<!-- | **executionEnvironment** | Security (indexers) | Explicitly set this indexer configuration property to `private` to force all connections to external data sources over a private endpoint. Applicable only to search services that leverage Azure Private Link. | Generally available. </br> Use [Search REST API 2020-06-30](https://docs.microsoft.com/rest/api/searchservice/) to set this general configuration parameter. | -->
 
 ### <a name="may-2020-microsoft-build"></a>2020 年 5 月（Microsoft Build 大会）
 
-<!-- + [Debug sessions](cognitive-search-debug-session.md) feature is now in preview. Debug sessions provide a portal-based interface to investigate and resolve issues with a skillset. Fixes created in the debug session can be saved to production skillsets. Get started with [this tutorial](cognitive-search-tutorial-debug-sessions.md). -->
+<!--
+| [**Debug sessions**](cognitive-search-debug-session.md) | AI enrichment | Debug sessions provide a portal-based interface to investigate and resolve issues with an existing skillset. Fixes created in the debug session can be saved to production skillsets. Get started with [this tutorial](cognitive-search-tutorial-debug-sessions.md). | Public preview, in the portal. |
+| [**IP rules for in-bound firewall support**](service-configure-firewall.md) | Security | Limit access to a search service endpoint to specific IP addresses. | Generally available. </br> Use [Management REST API 2020-03-13](https://docs.microsoft.com/rest/api/searchmanagement/) or later, or the portal. |
+| [**Azure Private Link for a private search endpoint**](service-create-private-endpoint.md) | Security| Shield a search service from the public internet by running it as a private link resource, accessible only to client apps and other Azure services on the same virtual network. | Generally available. </br> Use [Management REST API 2020-03-13](https://docs.microsoft.com/rest/api/searchmanagement/) or later, or the portal. |
+| [**system-managed identity (preview)**](search-howto-managed-identities-data-sources.md) | Security (indexers) | Register a search service as a trusted service with Azure Active Directory to set up connections to supported Azure data source for indexing. Applies to [indexers](search-indexer-overview.md) that ingest content from Azure data sources such as Azure SQL Database, Azure Cosmos DB, and Azure Storage. | Public preview. </br> Use the portal to register the search service. |
+-->
 
-<!-- + Shield a search service endpoint from the public internet by [configuring IP rules for in-bound firewall support](service-configure-firewall.md) or by leveraging [Azure Private Link for a private search endpoint](service-create-private-endpoint.md). Both capabilities are generally available. -->
-
-<!-- + Use a [system-managed identity (preview)](search-howto-managed-identities-data-sources.md) to set up a connection to an Azure data source for indexing. Applies to [indexers](search-indexer-overview.md) that ingest content from Azure data sources such as Azure SQL Database, Azure Cosmos DB, and Azure Storage. -->
-
-+ 使用 [sessionId](index-similarity-and-scoring.md) 和 [scoringStatistics=global](index-similarity-and-scoring.md#scoring-statistics) 查询参数，将搜索评分的计算方式从每个分片更改为所有分片。 这些参数已正式发布。
-
-+ 添加 [featuresMode（预览版）](index-similarity-and-scoring.md#featuresMode-param)查询参数，展开相关性分数以显示详细信息：每个字段相似度得分、每个字段术语频率和每个字段匹配的唯一标记数。 你可以在自定义评分算法中使用这些数据点。 有关演示此功能的示例，请参阅[添加机器学习 (LearnToRank) 以搜索相关性](https://github.com/Azure-Samples/search-ranking-tutorial)。
+|功能&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  | 类别 | 说明 | 可用性  |
+|---------|------------------|-------------|---------------|
+| [**sessionId 查询参数**](index-similarity-and-scoring.md)，[scoringStatistics=global parameter](index-similarity-and-scoring.md#scoring-statistics) | 查询（相关性） | 将 sessionID 添加到查询中，以建立一个用于计算搜索分数的会话，scoringStatistics=global 用于从所有分区收集分数，以实现更一致的搜索分数计算。 | 正式发布。 </br> 使用[搜索 REST API 2020-06-30](https://docs.microsoft.com/rest/api/searchservice/) 或更高版本，或 REST API 2019-05-06。 |
+| [featuresMode（预览版）](index-similarity-and-scoring.md#featuresMode-param) | 查询 | 添加此查询参数，展开相关性分数以显示详细信息：每个字段相似度得分、每个字段术语频率和每个字段匹配的唯一标记数。 你可以在自定义评分算法中使用这些数据点。 有关演示此功能的示例，请参阅[添加机器学习 (LearnToRank) 以搜索相关性](https://github.com/Azure-Samples/search-ranking-tutorial)。 | 公共预览版。 </br> 使用[搜索 REST API 2020-06-30-Preview](https://docs.microsoft.com/rest/api/searchservice/index-preview) 或 REST API 2019-05-06-Preview。 |
 
 ### <a name="march-2020"></a>2020 年 3 月
 
-+ [本机 blob 软删除（预览版）](search-howto-indexing-azure-blob-storage.md#incremental-indexing-and-deletion-detection)意味着 Azure 认知搜索中的 Azure blob 存储索引器会识别处于软删除状态的 blob，并在编制索引过程中删除相应的搜索文档。
-
-+ 新的稳定版[管理 REST API (2020-03-13)](https://docs.microsoft.com/rest/api/searchmanagement/management-api-versions) 现已正式发布。 
+|功能&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  | 类别 | 说明 | 可用性  |
+|---------|------------------|-------------|---------------|
+| [本机 blob 软删除（预览版）](search-howto-indexing-azure-blob-storage.md#incremental-indexing-and-deletion-detection) | 索引器 | Azure 认知搜索中的 Azure blob 存储索引器会识别处于软删除状态的 blob，并在编制索引过程中删除相应的搜索文档。 | 公共预览版。 </br> 使用[搜索 REST API 2020-06-30-Preview](https://docs.microsoft.com/rest/api/searchservice/index-preview) 和 REST API 2019-05-06-Preview，并对启用了本机“软删除”的 Azure Blob 数据源运行索引器。 |
+| [管理 REST API (2020-03-13)](https://docs.microsoft.com/rest/api/searchmanagement/management-api-versions) | REST | 用于创建和管理搜索服务的新的稳定 REST API。 添加 IP 防火墙和专用链接支持 | 正式发布。 |
 
 ### <a name="february-2020"></a>2020 年 2 月
 
-+ [PII 检测（预览版）](cognitive-search-skill-pii-detection.md)是编制索引期间使用的一项认知技能，它可以从输入文本中提取个人身份信息，并可让你通过多种方式在该文本中屏蔽此类信息。
-
-+ [自定义实体查找（预览版）](cognitive-search-skill-custom-entity-lookup.md )可在用户自定义的单词和短语列表中查找文本。 它使用此列表为包含任何匹配实体的所有文档加上标签。 该技能还支持一定程度的模糊匹配，应用此匹配方法可以查找类似但不完全相同的匹配项。 
+|功能&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  | 类别 | 说明 | 可用性  |
+|---------|------------------|-------------|---------------|
+| [PII 检测（预览版）](cognitive-search-skill-pii-detection.md) | AI 扩充 | 在编制索引期间使用的一项新的认知技能，它可以从输入文本中提取个人身份信息，并可让你通过多种方式在该文本中屏蔽此类信息。 | 公共预览版。 </br> 使用门户或[搜索 REST API 2020-06-30-Preview](https://docs.microsoft.com/rest/api/searchservice/index-preview) 或 REST API 2019-05-06-Preview。 |
+| [自定义实体查找（预览版）](cognitive-search-skill-custom-entity-lookup.md )| AI 扩充 | 一项新的认知技能，可在用户自定义的单词和短语列表中查找文本。 它使用此列表为包含任何匹配实体的所有文档加上标签。 该技能还支持一定程度的模糊匹配，应用此匹配方法可以查找类似但不完全相同的匹配项。 | 公共预览版。 </br> 使用门户或[搜索 REST API 2020-06-30-Preview](https://docs.microsoft.com/rest/api/searchservice/index-preview) 或 REST API 2019-05-06-Preview。 |
 
 ### <a name="january-2020"></a>2020 年 1 月
 
-+ [客户管理的加密密钥](search-security-manage-encryption-keys.md)现已推出正式版。 如果使用 REST，可以使用 `api-version=2019-05-06` 或更高版本访问该功能。 对于托管代码，即使该功能现在不再以预览版提供，但正确的包仍是 [.NET SDK 版本 8.0-preview](search-dotnet-sdk-migration-version-9.md)。 
+|功能&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  | 类别 | 说明 | 可用性  |
+|---------|------------------|-------------|---------------|
+| [客户管理的加密密钥](search-security-manage-encryption-keys.md) |安全性 | 除了平台的内置加密外，还添加了额外的加密层。 使用你创建和管理的加密密钥，可以在有效负载到达搜索服务之前对索引内容和同义词映射进行加密。 | 正式发布。 </br> 使用 Search REST API 2019-05-06 或更高版本。 对于托管代码，即使该功能现在不再以预览版提供，但正确的包仍是 [.NET SDK 版本 8.0-preview](search-dotnet-sdk-migration-version-9.md)。 |
+| [适用于入站防火墙支持的 IP 规则（预览版）](service-configure-firewall.md) | 安全性 | 将对搜索服务终结点的访问限制为特定的 IP 地址。 预览版 API 在 [CreateOrUpdate API](https://docs.microsoft.com/rest/api/searchmanagement/2019-10-01-preview/createorupdate-service) 中提供 **IpRule** 和 **NetworkRuleSet** 属性。 此预览版功能可在选定的区域中使用。 |  使用 api-version=2019-10-01-Preview 的公共预览版。  |
 
-+ 可以通过两种机制（两者的功能目前以预览版提供）对搜索服务进行私密访问：
+<!-- | [**Azure Private Link for a private search endpoint (preview)**](service-create-private-endpoint.md) | Security| Shield a search service from the public internet by running it as a private link resource, accessible only to client apps and other Azure services on the same virtual network. | Public preview using api-version=2019-10-01-Preview.  | -->
 
-  + 可以使用管理 REST API `api-version=2019-10-01-Preview` 创建服务，来仅限特定的 IP 地址进行访问。 预览版 API 在 [CreateOrUpdate API](https://docs.microsoft.com/rest/api/searchmanagement/2019-10-01-preview/createorupdate-service) 中提供 **IpRule** 和 **NetworkRuleSet** 属性。 此预览版功能可在选定的区域中使用。 有关详细信息，请参阅[如何使用管理 REST API](https://docs.microsoft.com/rest/api/searchmanagement/search-howto-management-rest-api)。
+## <a name="feature-announcements-in-2019"></a>2019 版的功能公告
 
 ### <a name="december-2019"></a>2019 年 12 月
 
@@ -84,11 +104,17 @@ ms.locfileid: "86471916"
 
 + [Power BI 模板](https://github.com/Azure-Samples/cognitive-search-templates/blob/master/README.md)可以在 Power BI Desktop 中立即开始可视化和分析知识存储中的扩充内容。 此模板适用于通过[导入数据向导](knowledge-store-create-portal.md)创建的 Azure 表投影。
 
-+ 索引器现在支持 [Azure Data Lake Storage Gen2（预览版）](search-howto-index-azure-data-lake-storage.md)、[Cosmos DB Gremlin API（预览版）](search-howto-index-cosmosdb.md)和 [Cosmos DB Cassandra API（预览版）](search-howto-index-cosmosdb.md)。 可以使用[此表单](https://aka.ms/azure-cognitive-search/indexer-preview)进行注册。 获允加入预览计划以后，你会收到确认电子邮件。
++ 索引器现在支持 [Azure Data Lake Storage Gen2（预览版）](search-howto-index-azure-data-lake-storage.md)、[Cosmos DB Gremlin API（预览版）](search-howto-index-cosmosdb.md)和 [Cosmos DB Cassandra API（预览版）](search-howto-index-cosmosdb.md)。 可以使用[此表单](https://aka.ms/azure-cognitive-search/indexer-preview)进行注册。 在我们同意你参与预览计划后，你会收到确认电子邮件。
 
 <!-- ### July 2019 -->
 
 <!-- + Generally available in [Azure Government Cloud](https://docs.microsoft.com/azure/azure-government/documentation-government-services-webandmobile#azure-cognitive-search). -->
+
+<a name="new-service-name"></a>
+
+## <a name="new-service-name"></a>新服务名称
+
+Azure 搜索现已重命名为 **Azure 认知搜索**，以反映认知技能和 AI 处理在核心操作中的更广泛用途（但仍为可选）。 API 版本、NuGet 包、命名空间和终结点未有变化。 新的和现有的搜索解决方案不受服务名称更改的影响。
 
 ## <a name="service-updates"></a>服务更新
 

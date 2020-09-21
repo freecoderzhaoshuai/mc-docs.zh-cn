@@ -3,14 +3,14 @@ title: Azure Monitor 中的指标 - Azure 事件中心 | Microsoft Docs
 description: 本文介绍如何使用 Azure 监视功能来监视 Azure 事件中心
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: v-tawe
-ms.openlocfilehash: f7f4a1f5be3e460096bd21f17486c0b823549c68
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 69f516c27c6e433cab0b04ca61bf0c9d8b5c13c8
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715120"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063345"
 ---
 # <a name="azure-event-hubs-metrics-in-azure-monitor"></a>Azure Monitor 中的 Azure 事件中心指标
 
@@ -39,7 +39,7 @@ Azure Monitor 提供多种访问指标的方法。 可通过 [Azure 门户](http
 
 ## <a name="billing"></a>计费
 
-目前，在 Azure Monitor 中可以免费使用指标。 但是，如果使用引入指标数据的其他解决方案，可能就需要收费。 例如，如果将指标数据存档到 Azure 存储帐户，则 Azure 存储会收费。
+目前，在 Azure Monitor 中可以免费使用指标。 但是，如果使用引入指标数据的其他解决方案，可能就需要收费。 例如，如果将指标数据存档到 Azure 存储帐户，则 Azure 存储会收费。 如果将指标数据流式传输到 Azure Monitor 日志进行高级分析，Azure 也会向你收费。
 
 <!-- Not Available on Log Analytics for advanced analysis -->
 
@@ -54,7 +54,7 @@ Azure Monitor 提供多种访问指标的方法。 可通过 [Azure 门户](http
 
 计算数据量和管理操作请求数。
 
-| 标准名称 | 说明 |
+| 指标名称 | 说明 |
 | ------------------- | ----------------- |
 | 传入请求数  | 在指定期间内向 Azure 事件中心服务发送的请求数。 <br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：EntityName |
 | 成功的请求数    | 在指定期间内向 Azure 事件中心服务发送成功的请求数。 <br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：EntityName |
@@ -70,7 +70,7 @@ Azure Monitor 提供多种访问指标的方法。 可通过 [Azure 门户](http
 
 ## <a name="message-metrics"></a>消息指标
 
-| 标准名称 | 说明 |
+| 指标名称 | 说明 |
 | ------------------- | ----------------- |
 |传入消息数 |在指定期间内发送到事件中心的事件或邮件数。<br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：EntityName|
 |传出消息数 |在指定期间内从事件中心检索的事件或邮件数。<br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：EntityName|
@@ -79,7 +79,7 @@ Azure Monitor 提供多种访问指标的方法。 可通过 [Azure 门户](http
 
 ## <a name="connection-metrics"></a>连接指标
 
-| 标准名称 | 说明 |
+| 指标名称 | 说明 |
 | ------------------- | ----------------- |
 |ActiveConnections |命名空间以及实体上的活动连接数。<br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：EntityName|
 |打开的连接数 |打开的连接数。<br/><br/> 单位：计数 <br/> 聚合类型：总计 <br/> 维度：EntityName|
@@ -125,10 +125,10 @@ Azure 事件中心支持对 Azure Monitor 中的指标使用以下维度。 为�
 有关事件中心的详细信息，请访问以下链接：
 
 - 事件中心入门教程
-    - [.NET Core](get-started-dotnet-standard-send-v2.md)
-    - [Java](get-started-java-send-v2.md)
-    - [Python](get-started-python-send-v2.md)
-    - [JavaScript](get-started-java-send-v2.md)
+    - [.NET Core](event-hubs-dotnet-standard-getstarted-send.md)
+    - [Java](event-hubs-java-get-started-send.md)
+    - [Python](event-hubs-python-get-started-send.md)
+    - [JavaScript](event-hubs-java-get-started-send.md)
 * [事件中心常见问题解答](event-hubs-faq.md)
 * [使用事件中心的示例应用程序](https://github.com/Azure/azure-event-hubs/tree/master/samples)
 

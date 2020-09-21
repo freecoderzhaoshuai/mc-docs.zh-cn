@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 07/02/2020
-ms.openlocfilehash: 4ce716e6ea1fbf88c8201703673e15b78d44fce3
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: feb1362a3d2ec17faf7fe5fed80f6b03a3696f29
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471951"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021420"
 ---
 # <a name="full-text-search-in-azure-cognitive-search"></a>Azure 认知搜索中的全文搜索
 
@@ -240,7 +240,7 @@ Spacious,||air-condition*+"Ocean view"
 要在倒排索引中生成字词，搜索引擎将针对文档内容执行词法分析，这类似于查询处理期间执行的操作：
 
 1. 根据分析器的配置，执行将文本输入传递给分析器、转换为小写、去除标点等操作。 
-2. 令牌是文本分析的输出。
+2. 令牌是词法分析的输出。
 3. 将词语添加到索引。
 
 我们经常（但不是非要这样做）使用相同的分析器来执行搜索和索引编制操作，使查询词看上去更像是索引中的字词。
@@ -400,7 +400,7 @@ Internet 搜索引擎取得的成功提高了人们对私有数据运行全文�
 
 [完整 Lucene 查询语法](https://docs.microsoft.com/rest/api/searchservice/lucene-query-syntax-in-azure-search) 
 
-[处理搜索结果](https://docs.azure.cn/search/search-pagination-page-layout)
+[处理搜索结果](./search-pagination-page-layout.md)
 
 <!--Image references-->
 [1]: ./media/search-lucene-query-architecture/architecture-diagram2.png

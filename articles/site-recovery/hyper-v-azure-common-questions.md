@@ -2,17 +2,18 @@
 title: 有关使用 Azure Site Recovery 实现 Hyper-V 灾难恢复的常见问题
 description: 本文汇总了有关使用 Azure Site Recovery 站点设置本地 Hyper-V VM 到 Azure 的灾难恢复的常见问题。
 origin.date: 11/12/2019
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 01/13/2020
+ms.testdate: ''
 ms.author: v-yeche
 ms.topic: conceptual
-ms.openlocfilehash: efa957fcb43e851ee23e2390fc00b3e1077ca5ae
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 96ec1c370a9a447636f59489c58b573fde52c132
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426387"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655018"
 ---
 # <a name="common-questions---hyper-v-to-azure-disaster-recovery"></a>常见问题 - Hyper-V 到 Azure 的灾难恢复
 
@@ -36,17 +37,17 @@ ms.locfileid: "87426387"
 
 对于 Hyper-V 主机服务器，所需取决于部署方案。 在以下内容中查看 Hyper-V 先决条件：
 
-* [将 Hyper-V VM 复制（不使用 VMM）到 Azure](site-recovery-hyper-v-site-to-azure.md)
-* [将 Hyper-V VM 复制（使用 VMM）到 Azure](site-recovery-vmm-to-azure.md)
-* [将 Hyper-V VM 复制到辅助数据中心](site-recovery-vmm-to-vmm.md)
-* 如果要复制到辅助数据中心，请阅读 [Hyper-V 虚拟机的受支持的来宾操作系统](https://technet.microsoft.com/library/mt126277.aspx)。
-* 如果要复制到 Azure，站点恢复支持 [Azure 支持的](https://technet.microsoft.com/library/cc794868%28v=ws.10%29.aspx)所有来宾操作系统。
+* [将 Hyper-V VM 复制（不使用 VMM）到 Azure](./hyper-v-azure-tutorial.md)
+* [将 Hyper-V VM 复制（使用 VMM）到 Azure](./hyper-v-vmm-disaster-recovery.md)
+* [将 Hyper-V VM 复制到辅助数据中心](./hyper-v-vmm-disaster-recovery.md)
+* 如果要复制到辅助数据中心，请阅读 [Hyper-V 虚拟机的受支持的来宾操作系统](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/mt126277(v=ws.11))。
+* 如果要复制到 Azure，站点恢复支持 [Azure 支持的](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc794868(v=ws.10))所有来宾操作系统。
 
 ### <a name="can-i-protect-vms-when-hyper-v-is-running-on-a-client-operating-system"></a>当 Hyper-V 在客户端操作系统上运行时，我可以保护 VM 吗？
-不可以。VM 必须位于在受支持的 Windows 服务器计算机上运行的 Hyper-V 主机服务器上。 如果需要保护客户端计算机，可以将其作为物理计算机复制到 [Azure](site-recovery-vmware-to-azure.md) 或[辅助数据中心](site-recovery-vmware-to-vmware.md)。
+不可以。VM 必须位于在受支持的 Windows 服务器计算机上运行的 Hyper-V 主机服务器上。 如果需要保护客户端计算机，可以将其作为物理计算机复制到 [Azure](./vmware-azure-tutorial.md) 或[辅助数据中心](./vmware-physical-secondary-disaster-recovery.md)。
 
 ### <a name="do-hyper-v-hosts-need-to-be-in-vmm-clouds"></a>Hyper-V 主机是否需要位于 VMM 云中？
-如果要复制到辅助数据中心，那么 Hyper-V VM 就必须位于 VMM 云中的 Hyper-V 主机服务器上。 如果想要复制到 Azure，那么可以复制 VM（无论是否使用 VMM 云）。 [详细了解](tutorial-hyper-v-to-azure.md)从 Hyper-V 复制到 Azure。
+如果要复制到辅助数据中心，那么 Hyper-V VM 就必须位于 VMM 云中的 Hyper-V 主机服务器上。 如果想要复制到 Azure，那么可以复制 VM（无论是否使用 VMM 云）。 [详细了解](./hyper-v-azure-tutorial.md)从 Hyper-V 复制到 Azure。
 
 ### <a name="can-i-replicate-hyper-v-generation-2-virtual-machines-to-azure"></a>我可以将 Hyper-V 第 2 代虚拟机复制到 Azure 吗？
 是的。 站点恢复在故障转移过程中将从第 2 代转换成第 1 代。 在故障回复时，计算机将转换回到第 2 代。 [了解详细信息](https://azure.microsoft.com/blog/2015/04/28/disaster-recovery-to-azure-enhanced-and-were-listening/)。
@@ -73,18 +74,16 @@ ms.locfileid: "87426387"
 是的。 当你在某个区域中创建保管库时，我们会确保 Site Recovery 使用的所有元数据保留在该区域的地理边界内。
 
 ### <a name="does-site-recovery-encrypt-replication"></a>站点恢复是否将复制数据加密？
-是的，传输中加密和 [Azure 中加密](/storage/storage-service-encryption)均受支持。
+是的，传输中加密和 [Azure 中加密](../storage/common/storage-service-encryption.md)均受支持。
 
 ## <a name="deployment"></a>部署
 
 ### <a name="what-can-i-do-with-hyper-v-to-azure-replication"></a>可通过哪些方法实现 Hyper-V 到 Azure 的复制？
 
 - **灾难恢复**：可以设置完整的灾难恢复。 在此场景中，可将本地 Hyper-V VM 复制到 Azure 存储：
-    
     - 可将 VM 复制到 Azure。 如果本地基础结构不可用，则可以故障转移到 Azure。
     - 在故障转移时，将使用复制的数据创建 Azure VM。 可以访问 Azure VM 上的应用和工作负载。
     - 本地数据中心重新可用时，可从 Azure 故障回复到本地站点。
-
 - **迁移**：可以使用 Site Recovery 将本地 Hyper-V VM 迁移到 Azure 存储。 然后从本地故障转移到 Azure。 故障转移后，应用和工作负荷可供使用并在 Azure VM 上运行。
 
 ### <a name="what-do-i-need-on-premises"></a>需要在本地做好哪些准备？
@@ -157,6 +156,10 @@ Site Recovery 通过公共终结点或使用 ExpressRoute Azure 对等互连将�
 
 若要复制某个 Hyper-V VM，该 VM 必须运行受支持的操作系统。 此外，该 VM 必须满足 Azure VM 的要求。 在支持矩阵中[了解详细信息](hyper-v-azure-support-matrix.md#replicated-vms)。
 
+### <a name="why-is-an-additional-standard-storage-account-required-if-i-replicate-my-virtual-machine-disks-to-premium-storage"></a>为什么将虚拟机磁盘复制到高级存储需要使用额外的标准存储帐户？
+
+将本地虚拟机/物理服务器复制到高级存储时，驻留在受保护计算机磁盘上的所有数据都将复制到高级存储帐户。 需要额外的标准存储帐户来存储复制日志。 复制磁盘数据的初始阶段完成之后，将持续跟踪对本地磁盘数据的所有更改，并将其作为复制日志存储到这一额外的标准存储帐户中。
+
 ### <a name="how-often-can-i-replicate-to-azure"></a>可以多久复制到 Azure 一次？
 
 可以每隔 30 秒（高级存储除外）或 5 分钟复制一次 Hyper-V VM。
@@ -165,13 +168,13 @@ Site Recovery 通过公共终结点或使用 ExpressRoute Azure 对等互连将�
 
 ### <a name="can-i-extend-replication"></a>是否可以扩展复制？
 
-当前不支持扩展复制或链式复制。
+Azure 中国世纪互联目前不支持扩展复制或链式复制。
 
 <!--Not Available on  Request this feature in [feedback forum](https://support.azure.cn/support/contact/)-->
 
 ### <a name="can-i-do-an-offline-initial-replication"></a>是否可以执行脱机初始复制？
 
-不支持此操作。
+Azure 中国世纪互联目前不支持这种情况。
 
 <!--Not Available on  Request this feature in the [feedback forum](https://support.azure.cn/support/contact/)-->
 <!--MOONCAKE: CUSTOMIZATION-->

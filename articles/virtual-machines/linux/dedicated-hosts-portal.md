@@ -1,22 +1,22 @@
 ---
 title: 使用 Azure 门户部署 Azure 专用主机
 description: 使用 Azure 门户将 VM 部署到专用主机。
-author: rockboyfor
+author: Johnnytechn
 ms.service: virtual-machines
-ms.topic: article
-ms.workload: infrastructure
+ms.topic: how-to
 origin.date: 03/10/2020
-ms.date: 06/08/2020
-ms.author: v-yeche
-ms.openlocfilehash: 29059eaf273162717989ba6acde693b967dc4b2b
-ms.sourcegitcommit: 4d824957213536e79cf097fd29bd0bd0f8306066
+ms.workload: infrastructure
+ms.date: 09/03/2020
+ms.author: v-johya
+ms.openlocfilehash: 7463ce3e032c03699c8babf448da8406269f7a13
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/17/2020
-ms.locfileid: "84901930"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057608"
 ---
 <!--Verified successfully from Peter Gu's session-->
-# <a name="deploy-vms-to-dedicated-hosts-using-the-portal"></a>使用门户将 VM 部署到专用主机
+# <a name="deploy-linux-vms-to-dedicated-hosts-using-the-portal"></a>使用门户将 Linux VM 部署到专用主机 
 
 本文介绍了如何创建 Azure [专用主机](dedicated-hosts.md)来托管虚拟机 (VM)。 
 
@@ -50,7 +50,7 @@ ms.locfileid: "84901930"
 
 - VM 大小必须属于专用主机所用的同一大小系列。 例如，如果专用主机是 DSv3，则 VM 大小可以是 Standard_D4s_v3，但不能是 Standard_A4_v2。 
 - VM 需要位于专用主机所在的同一区域。
-- VM 不能是邻近放置组的一部分。 在将 VM 移动到专用主机之前，请先从邻近放置组中删除该 VM。 有关详细信息，请参阅[将 VM 移出邻近放置组](/virtual-machines/windows/proximity-placement-groups#move-an-existing-vm-out-of-a-proximity-placement-group)
+- VM 不能是邻近放置组的一部分。 在将 VM 移动到专用主机之前，请先从邻近放置组中删除该 VM。 有关详细信息，请参阅[将 VM 移出邻近放置组](../windows/proximity-placement-groups.md#move-an-existing-vm-out-of-a-proximity-placement-group)
 - VM 不能位于可用性集中。
 
     <!--Not Available on availability zone-->

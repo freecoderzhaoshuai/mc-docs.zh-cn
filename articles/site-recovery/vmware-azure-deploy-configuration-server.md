@@ -2,19 +2,21 @@
 title: 在 Azure Site Recovery 中部署配置服务器
 description: 本文介绍如何通过 Azure Site Recovery 部署配置服务器，以便进行 VMware 灾难恢复
 services: site-recovery
-author: rockboyfor
 manager: digimobile
 ms.service: site-recovery
 ms.topic: article
 origin.date: 10/15/2019
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: d8f16e08c5ed05c5787c1e65728ee3c46de082b2
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 0b9920348dee8c2d0286def8a87aeba28933965a
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291356"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655568"
 ---
 # <a name="deploy-a-configuration-server"></a>部署配置服务器
 
@@ -41,7 +43,7 @@ ms.locfileid: "79291356"
 1. 创建应用程序的用户必须拥有应用程序开发人员角色。
     - 若要验证角色，请登录到 Azure 门户。<br />
     - 转到“Azure Active Directory” > “角色和管理员”。<br />
-    - 检查应用程序开发人员角色是否已分配到该用户。 如果没有，请使用拥有此权限的用户，或[联系管理员启用该权限](/active-directory/fundamentals/active-directory-users-assign-role-azure-portal#assign-roles)。
+    - 检查应用程序开发人员角色是否已分配到该用户。 如果没有，请使用拥有此权限的用户，或[联系管理员启用该权限](../active-directory/fundamentals/active-directory-users-assign-role-azure-portal.md#assign-roles)。
 
 2. 如果无法分配应用程序开发人员角色，请确保“用户可以注册应用程序”标志设置为 **true**，使该用户能够创建标识。 若要启用这些权限：
     - 登录到 Azure 门户。
@@ -51,7 +53,7 @@ ms.locfileid: "79291356"
         ![Azure AD_application_permission](media/vmware-azure-deploy-configuration-server/AAD_application_permission.png)
 
 > [!NOTE]
-> 不支持 Active Directory 联合身份验证服务。  请使用通过 [Azure Active Directory](/active-directory/fundamentals/active-directory-whatis) 管理的帐户。
+> 不支持 Active Directory 联合身份验证服务。  请使用通过 [Azure Active Directory](../active-directory/fundamentals/active-directory-whatis.md) 管理的帐户。
 
 ## <a name="download-the-template"></a>下载模板
 
@@ -68,10 +70,10 @@ ms.locfileid: "79291356"
 
 ## <a name="import-the-template-in-vmware"></a>在 VMware 中导入模板
 
-1. 使用 VMWare vSphere 客户端登录到 VMware vCenter 服务器或 vSphere ESXi 主机。
+1. 使用 VMware vSphere 客户端登录到 VMware vCenter 服务器或 vSphere ESXi 主机。
 2. 在“文件”菜单中，选择“部署 OVF 模板”以启动“部署 OVF 模板”向导    。
 
-     ![部署 OVF 模板](./media/vmware-azure-deploy-configuration-server/vcenter-wizard.png)
+    :::image type="content" source="./media/vmware-azure-deploy-configuration-server/vcenter-wizard.png" alt-text="部署 OVF 模板":::
 
 3. 在“选择源”中，输入下载的 OVF 所在的位置  。
 4. 在“查看详细信息”中，选择“下一步”。  
@@ -150,7 +152,7 @@ ms.locfileid: "79291356"
 参阅我们的[故障排除文章](vmware-azure-troubleshoot-configuration-server.md)来解决部署和连接问题。
 
 <a name="faq"></a>
-## <a name="faqs"></a>常见问题
+## <a name="faqs"></a><a name="faqs"></a>常见问题解答
 
 * 通过 OVF 部署在配置服务器上的许可证有效期是多长？ 如果不重新激活许可证会发生什么情况？
 

@@ -10,32 +10,32 @@ ms.assetid: 2777a526-c260-4cb9-a31a-bdfe1a55fffc
 ms.service: virtual-machines-linux
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
-ms.topic: article
-ms.date: 06/17/2020
+ms.topic: conceptual
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.openlocfilehash: 8b99034e70746a34f59560747d4949bf5db72504
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: d3ddbfa5a26d1beb462a9f26519e6d3c62f6fbb7
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097498"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057589"
 ---
 # <a name="endorsed-linux-distributions-on-azure"></a>Azure 认可的 Linux 分发版
-合作伙伴在 Azure 市场中提供了 Linux 映像。 我们与各大 Linux 社区合作以便在认可的发行版列表中添加更多成员。  对于市场未提供的分发，用户始终可以按照[创建并上传包含 Linux 操作系统的虚拟硬盘](/virtual-machines/linux/create-upload-generic)中的准则安装自己的 Linux。
+
+合作伙伴在 Azure 市场中提供了 Linux 映像。 Azure 与各大 Linux 社区合作以便在认可的发行版列表中添加更多成员。 对于市场未提供的分发，用户始终可以按照[创建并上传包含 Linux 操作系统的虚拟硬盘](./create-upload-generic.md)中的准则安装自己的 Linux。
 
 ## <a name="supported-distributions-and-versions"></a>支持的发行版和版本
 
-下表列出了 Azure 支持的 Linux 分发和版本。 有关 Azure 中支持 Linux 和开源代码技术的更多详细信息，请参阅 [Azure 中对 Linux 映像的支持](https://support.microsoft.com/help/2941892/support-for-linux-and-open-source-technology-in-azure)。
+下表列出了 Azure 支持的 Linux 分发和版本。 有关详细信息，请参阅 [Azure 中对 Linux 映像的支持](https://support.microsoft.com/help/2941892/support-for-linux-and-open-source-technology-in-azure)。
 
-Hyper-V 和 Azure 的 Linux 集成服务 (LIS) 驱动程序是 Azure 直接为上游 Linux 内核提供的内核模块。  默认情况下，某些 LIS 驱动程序已内置在发行版的内核中。 [适用于 Hyper-V 和 Azure 的 Linux Integration Services 版本 4.2](https://www.microsoft.com/download/details.aspx?id=55106) 中提供了基于 CentOS 的旧式发行版供单独下载。 有关 LIS 驱动程序的详细信息，请参阅 [Linux 内核要求](create-upload-generic.md#linux-kernel-requirements)。
+Hyper-V 和 Azure 的 Linux 集成服务 (LIS) 驱动程序是 Microsoft 直接为上游 Linux 内核提供的内核模块。 默认情况下，某些 LIS 驱动程序已内置在发行版的内核中。 [适用于 Hyper-V 和 Azure 的 Linux Integration Services 版本 4.2](https://www.microsoft.com/download/details.aspx?id=55106) 中提供了基于 CentOS 的旧式发行版供单独下载。 有关详细信息，请参阅 [Linux 内核要求](create-upload-generic.md#linux-kernel-requirements)。
 
 <!-- Not Avaiable on Red Hat Enterprise (RHEL) -->
-
 Azure Linux 代理已预安装在 Azure 市场映像中，通常可从分发的包存储库中获得。 源代码可在 [GitHub](https://github.com/azure/walinuxagent)上找到。
 
 | 分发 | 版本 | 驱动程序 | Agent |
 | --- | --- | --- | --- |
-| 由 Rogue Wave 软件提供的 CentOS |CentOS 6.x、7.x、8.x|CentOS 6.3：[LIS 下载](https://www.microsoft.com/download/details.aspx?id=55106)<p>CentOS 6.4+：在内核中 |包：在“WALinuxAgent”下的[存储库](http://olcentgbl.trafficmanager.net/openlogic/6/openlogic/x86_64/RPMS/)中 <br/>源代码：[GitHub](https://github.com/Azure/WALinuxAgent) |
+| 由 Rogue Wave 软件提供的 CentOS |CentOS 6.x、7.x、8.x |CentOS 6.3：[LIS 下载](https://www.microsoft.com/download/details.aspx?id=55106)<p>CentOS 6.4+：在内核中 |包：在“WALinuxAgent”下的[存储库](http://olcentgbl.trafficmanager.net/openlogic/6/openlogic/x86_64/RPMS/)中 <br/>源代码：[GitHub](https://github.com/Azure/WALinuxAgent) |
 | [CoreOS](https://coreos.com/docs/running-coreos/cloud-providers/azure/)<p> 从 2020 年 5 月 26 日开始，CoreOS 已处于[生命周期终止](https://coreos.com/os/eol/)状态。 |不再可用 | | |
 | 由 Credativ 提供的 Debian |8.x、9.x |在内核中 |包：在“waagent”下的存储库中 <br/>源代码：[GitHub](https://github.com/Azure/WALinuxAgent) |
 |由 Kinvolk 提供的 Flatcar Container Linux| Stable、Edge| | |
@@ -47,7 +47,7 @@ Azure Linux 代理已预安装在 Azure 市场映像中，通常可从分发的�
 
 ## <a name="image-update-cadence"></a>映像的更新节奏
 
-Azure 要求受认可 Linux 分发版的发布者在每个季度或以更快的节奏，定期使用最新修补程序和安全修复程序，更新其在 Azure 市场中的映像。 在 Azure 市场中更新的映像将自动以新版映像 SKU 的形式提供给客户使用。 有关如何查找 Linux 映像的详细信息：[在 Azure 市场中查找 Linux VM 映像](/virtual-machines/linux/cli-ps-findimage)。
+Azure 要求受认可 Linux 分发版的发布者在每个季度或以更快的节奏，定期使用最新修补程序和安全修复程序，更新其在 Azure 市场中的映像。 在市场中更新的映像将自动以新版映像 SKU 的形式提供给客户使用。 有关如何查找 Linux 映像的详细信息：[在 Azure 市场中查找 Linux VM 映像](./cli-ps-findimage.md)。
 
 ## <a name="azure-tuned-kernels"></a>Azure 优化的内核
 
@@ -76,7 +76,8 @@ Microsoft 为 CoreOS 用户提供了两 (2) 个迁移通道。
 
 Credativ 是一家独立的咨询和服务公司，致力于通过免费软件开发和实施专业解决方案。 Credativ 是获得国际认可的开源领域专业先行者，为许多公司的 IT 部门提供支持。 Credativ 与 Azure 合作，目前正在为 Debian 8 (Jessie) 以及 Debian 7 (Wheezy) 之前的版本准备相应的 Debian 映像。 这些映像经过专门的设计，可以在 Azure 上运行并可通过该平台轻松进行管理。 Credativ 还会通过其开源支持中心为 Azure 的 Debian 映像的维护和更新提供长期支持。
 
-<!--MOONCAKE: CORRECT ON Azure-->
+<!-- Not Available on ### Kinvolk -->
+
 <!-- Not Available on ### Oracle -->
 <!-- Not Available on ### Red Hat -->
 ### <a name="suse"></a>SUSE

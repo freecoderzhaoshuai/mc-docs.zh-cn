@@ -10,12 +10,12 @@ ms.author: peterlu
 ms.date: 06/28/2020
 ms.topic: conceptual
 ms.custom: how-to, designer
-ms.openlocfilehash: 3d47b6e93c9095a7e68ec2e030e953a20b068a64
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 14fd9e4b5bf4f022e01b5deac12feb37b69858c9
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228286"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021499"
 ---
 # <a name="transform-data-in-azure-machine-learning-designer-preview"></a>在 Azure 机器学习设计器（预览版）中转换数据
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-enterprise-sku.md)]
@@ -42,7 +42,7 @@ ms.locfileid: "88228286"
 
 使用下列步骤导入示例数据集。
 
-1. 登录到 <a href="https://ml.azure.com?tabs=jre" target="_blank">ml.azure.com</a>，选择要使用的工作区。
+1. 登录到 <a href="https://studio.ml.azure.cn?tabs=jre" target="_blank">studio.ml.azure.cn</a>，选择要使用的工作区。
 
 1. 转到设计器。 选择 Easy-to-use-prebuild 模块以创建新管道。
 

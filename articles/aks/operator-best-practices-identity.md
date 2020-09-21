@@ -5,17 +5,17 @@ description: 了解有关为 Azure Kubernetes 服务 (AKS) 中的群集管理身
 services: container-service
 ms.topic: conceptual
 origin.date: 07/07/2020
-ms.date: 08/10/2020
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
 author: rockboyfor
-ms.openlocfilehash: 4fb90cbb64e547f72f363acf9284fcfd5e4266a1
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: c244edbfed9bf8a73bb752043ae2798bf3b685af
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842628"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021269"
 ---
 # <a name="best-practices-for-authentication-and-authorization-in-azure-kubernetes-service-aks"></a>有关 Azure Kubernetes 服务 (AKS) 中的身份验证和授权的最佳做法
 
@@ -49,7 +49,7 @@ Kubernetes 群集的开发人员和应用程序所有者需要访问不同的资
 
 若要创建使用 Azure AD 的 AKS 群集，请参阅[将 Azure Active Directory 与 AKS 集成][aks-aad]。
 
-## <a name="use-kubernetes-role-based-access-controls-rbac"></a>使用 Kubernetes 基于角色的访问控制 (RBAC)
+## <a name="use-kubernetes-role-based-access-control-rbac"></a>使用 Kubernetes 基于角色的访问控制 (RBAC)
 
 **最佳做法指导** - 使用 Kubernetes RBAC 定义用户或组对群集中的资源拥有的权限。 创建角色和绑定，用于分配所需的最少量权限。 与 Azure AD 集成，使用户状态或组成员身份的任何更改可自动更新，并使群集资源访问权限保持最新状态。
 
@@ -96,9 +96,9 @@ roleRef:
 
 完全操作 AKS 群集需要两个级别的访问权限： 
 1. 访问 Azure 订阅上的 AKS 资源。 具有此访问级别，可以使用 AKS API 来控制群集的缩放或升级，还可以拉取 kubeconfig。
-要查看如何控制对 AKS 资源和 kubeconfig 的访问权限，请参阅[限制对群集配置文件的访问](control-kubeconfig-access.md)。
+    要查看如何控制对 AKS 资源和 kubeconfig 的访问权限，请参阅[限制对群集配置文件的访问](control-kubeconfig-access.md)。
 
-2. 访问 Kubernetes API。 此访问级别可通过 [Kubernetes RBAC](#use-kubernetes-role-based-access-controls-rbac)（传统上）进行控制，或通过将 Azure RBAC 与 AKS 集成以实现 Kubernetes 授权来进行控制。
+2. 访问 Kubernetes API。 此访问级别可通过 [Kubernetes RBAC](#use-kubernetes-role-based-access-control-rbac)（传统上）进行控制，或通过将 Azure RBAC 与 AKS 集成以实现 Kubernetes 授权来进行控制。
 
     <!--Not Available on [Use Azure RBAC for Kubernetes authorization](manage-azure-rbac.md)-->
 

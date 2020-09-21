@@ -4,18 +4,18 @@ description: 本文提供了对 IaaS VM 使用 Azure 磁盘加密所要满足的
 author: Johnnytechn
 ms.service: virtual-machines-linux
 ms.subservice: security
-ms.topic: article
+ms.topic: conceptual
 ms.author: v-johya
-ms.date: 06/05/2020
+ms.date: 09/03/2020
 ms.custom: seodec18
-ms.openlocfilehash: 907377b7ab42aee8040448f68db939a4483ffb8d
-ms.sourcegitcommit: 285649db9b21169f3136729c041e4d04d323229a
+ms.openlocfilehash: 2614dc927b978d17e7f67b0dab65518d5cfb140f
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84684046"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057693"
 ---
-# <a name="azure-disk-encryption-with-azure-ad-previous-release"></a>使用 Azure AD 进行 Azure 磁盘加密（以前版本）
+# <a name="azure-disk-encryption-with-azure-active-directory-ad-previous-release"></a>使用 Azure Active Directory (AD) 进行的 Azure 磁盘加密（以前的版本）
 
 新版本的 Azure 磁盘加密无需提供 Azure Active Directory (Azure AD) 应用程序参数即可启用 VM 磁盘加密。 使用新版本，在执行启用加密步骤时，不再需要提供 Azure AD 凭据。 所有新 VM 都必须使用新版本在没有 Azure AD 应用程序参数的情况下进行加密。 有关如何使用新版本来启用 VM 磁盘加密的说明，请参阅[适用于 Linux VM 的 Azure 磁盘加密](disk-encryption-overview.md)。 已使用 Azure AD 应用程序参数加密的 VM 仍受支持，应继续使用 AAD 语法进行维护。
 
@@ -35,16 +35,17 @@ ms.locfileid: "84684046"
   - IaaS VM 必须能够连接到托管 Azure 扩展存储库的 Azure 存储终结点和托管 VHD 文件的 Azure 存储帐户。
   -  如果安全策略限制从 Azure VM 到 Internet 的访问，可以解析上述 URI，并配置特定的规则，允许与这些 IP 建立出站连接。 有关详细信息，请参阅[防火墙后的 Azure Key Vault](../../key-vault/general/access-behind-firewall.md)。
   - 在 Windows 中，如果显式禁用了 TLS 1.0 且 .NET 版本未更新到 4.6 或更高版本，则下面的注册表更改将使 Azure 磁盘加密能够选择较新的 TLS 版本：
+
+  ```config-registry
+  [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319]
+  "SystemDefaultTlsVersions"=dword:00000001
+  "SchUseStrongCrypto"=dword:00000001
     
-            [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319]
-            "SystemDefaultTlsVersions"=dword:00000001
-            "SchUseStrongCrypto"=dword:00000001
-    
-            [HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\.NETFramework\v4.0.30319]
-            "SystemDefaultTlsVersions"=dword:00000001
-            "SchUseStrongCrypto"=dword:00000001` 
-         
-    
+  [HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\.NETFramework\v4.0.30319]
+  "SystemDefaultTlsVersions"=dword:00000001
+  "SchUseStrongCrypto"=dword:00000001` 
+  ```
+
 ### <a name="group-policy"></a>组策略
  - Azure 磁盘加密解决方案对 Windows IaaS VM 使用 BitLocker 外部密钥保护程序。 对于已加入域的 VM，请不要推送会强制执行 TPM 保护程序的任何组策略。 有关“在没有兼容 TPM 的情况下允许 BitLocker”**** 选项的组策略信息，请参阅 [BitLocker 组策略参考](https://docs.microsoft.com/windows/security/information-protection/bitlocker/bitlocker-group-policy-settings#bkmk-unlockpol1)。
 

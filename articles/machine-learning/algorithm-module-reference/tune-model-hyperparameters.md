@@ -10,12 +10,12 @@ author: likebupt
 ms.author: v-yiso
 origin.date: 06/17/2020
 ms.date: 07/27/2020
-ms.openlocfilehash: 798503dfbacaa3c120297956f7d5f7e84f52b927
-ms.sourcegitcommit: 2bd0be625b21c1422c65f20658fe9f9277f4fd7c
+ms.openlocfilehash: 15d844c1f316075f3b5cdc0ec14df268e4f5b9c5
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86441127"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020865"
 ---
 # <a name="tune-model-hyperparameters"></a>优化模型超参数
 
@@ -78,11 +78,11 @@ ms.locfileid: "86441127"
 
 训练完成时：
 
-+ 若要查看最佳模型的一组准确度指标，请右键单击该模块，然后选择“可视化”。
++ 若要查看扫描结果，请右键单击模块，然后选择“可视化”。
 
-    输出包括应用到模型类型的所有准确度指标，但选择用于排名的指标确定了哪个模型被视为“最佳”。
+    输出包括应用到模型类型的所有参数扫描和准确度指标，但选择用于排名的指标确定了哪个模型被视为“最佳”。
 
-+ 若要保存已训练模型的快照，请选择“训练模型”模块右侧面板中的“输出”选项卡。 选择“注册数据集”图标将模型保存为可重用模块。
++ 若要保存已训练模型的快照，请选择“训练模型”模块右侧面板中的“输出+日志”选项卡 。 选择“注册数据集”图标将模型保存为可重用模块。
 
 
 ## <a name="technical-notes"></a>技术说明

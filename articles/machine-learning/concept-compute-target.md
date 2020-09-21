@@ -9,12 +9,12 @@ ms.topic: conceptual
 ms.author: sgilley
 author: sdgilley
 ms.date: 07/27/2020
-ms.openlocfilehash: aae859bdbd357cd851de72be1404d84b1fc43d09
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 3a066eed2c6935d9987c649407c3157413841c31
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947058"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021372"
 ---
 #  <a name="what-are-compute-targets-in-azure-machine-learning"></a>什么是 Azure 机器学习中的计算目标? 
 
@@ -33,7 +33,7 @@ Azure 机器学习为不同的计算资源提供不同的支持。  你也可以
 
 [!INCLUDE [aml-compute-target-train](../../includes/aml-compute-target-train.md)]
 
-详细了解[设置并使用计算目标进行模型训练](how-to-set-up-training-targets.md)。
+详细了解如何[使用计算目标进行模型训练](how-to-set-up-training-targets.md)。
 
 ## <a name="deployment-targets"></a><a name="deploy"></a>部署目标
 
@@ -46,10 +46,10 @@ Azure 机器学习为不同的计算资源提供不同的支持。  你也可以
 <a name="amlcompute"></a>
 ## <a name="azure-machine-learning-compute-managed"></a>Azure 机器学习计算（托管）
 
-托管计算资源是由 Azure 机器学习创建和管理的。 此计算针对机器学习工作负荷进行了优化。 Azure 机器学习计算群集和[计算实例](concept-compute-instance.md)是仅有的托管计算。 将来可能会添加其他托管计算资源。
+托管计算资源是由 Azure 机器学习创建和管理的。 此计算针对机器学习工作负荷进行了优化。 Azure 机器学习计算群集和[计算实例](concept-compute-instance.md)是仅有的托管计算。 
 
-可以通过以下方法创建 Azure 机器学习计算实例（预览版）或计算群集：
-* Azure 机器学习工作室
+可以通过以下方法创建 Azure 机器学习计算实例或计算群集：
+* [Azure 机器学习工作室](how-to-create-attach-compute-studio.md)
 * Azure 门户
 * Python SDK [ComputeInstance](https://docs.microsoft.com/python/api/azureml-core/azureml.core.compute.computeinstance(class)?view=azure-ml-py) 和 [AmlCompute](https://docs.microsoft.com/python/api/azureml-core/azureml.core.compute.amlcompute(class)?view=azure-ml-py) 类
 * [R SDK](https://azure.github.io/azureml-sdk-for-r/reference/index.html#section-compute-targets)（预览版）
@@ -107,5 +107,5 @@ Azure 机器学习为不同的计算资源提供不同的支持。  你也可以
 ## <a name="next-steps"></a>后续步骤
 
 了解如何：
-* [设置用来训练模型的计算目标](how-to-set-up-training-targets.md)
+* [使用计算目标训练模型](how-to-set-up-training-targets.md)
 * [将模型部署到计算目标](how-to-deploy-and-where.md)

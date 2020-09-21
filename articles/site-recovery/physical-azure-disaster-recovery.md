@@ -1,19 +1,21 @@
 ---
 title: 使用 Azure Site Recovery 设置物理本地服务器的灾难恢复
 description: 了解如何使用 Azure Site Recovery 服务针对本地 Windows 和 Linux 服务器设置到 Azure 的灾难恢复。
-author: rockboyfor
-manager: digimobile
+manager: carmonm
 ms.service: site-recovery
 ms.topic: article
 origin.date: 11/12/2019
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: 17587f57b6aa1b65ac03c35ab2b37993ab4dce7e
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 2f7217a4d5cdba2966f304949aec82f7ef5ada15
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79292763"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655318"
 ---
 # <a name="set-up-disaster-recovery-to-azure-for-on-premises-physical-servers"></a>针对本地物理服务器设置到 Azure 的灾难恢复
 
@@ -59,7 +61,7 @@ ms.locfileid: "79292763"
 请确保 Azure 帐户具有将 VM 复制到 Azure 的权限。
 
 - 查看将计算机复制到 Azure 所需的[权限](site-recovery-role-based-linked-access-control.md#permissions-required-to-enable-replication-for-new-virtual-machines)。
-- 验证和修改[基于角色的访问](../role-based-access-control/role-assignments-portal.md)权限。 
+- 验证和修改 [Azure 基于角色的访问控制 (Azure RBAC)](../role-based-access-control/role-assignments-portal.md) 权限。 
 
 ### <a name="set-up-an-azure-network"></a>设置 Azure 网络
 
@@ -106,14 +108,14 @@ ms.locfileid: "79292763"
 4. 下载站点恢复统一安装程序安装文件。
 5. 下载保管库注册密钥。 运行统一安装程序时需要用到此密钥。 生成的密钥有效期为 5 天。
 
-    ![设置源](./media/physical-azure-disaster-recovery/source-environment.png)
+    :::image type="content" source="./media/physical-azure-disaster-recovery/source-environment.png" alt-text="屏幕截图，显示用于下载安装文件和注册密钥的选项。":::
 
 ### <a name="register-the-configuration-server-in-the-vault"></a>在保管库中注册配置服务器
 
 开始之前，请执行以下操作： 
 
 #### <a name="verify-time-accuracy"></a>验证时间准确性
-在配置服务器计算机上，确保将系统时钟与[时间服务器](https://technet.microsoft.com/windows-server-docs/identity/ad-ds/get-started/windows-time-service/windows-time-service)进行同步。 它应与之匹配。 如果它提前或落后 15 分钟，安装程序可能会失败。
+在配置服务器计算机上，确保将系统时钟与[时间服务器](https://docs.microsoft.com/windows-server/networking/windows-time-service/windows-time-service-top)进行同步。 它应与之匹配。 如果它提前或落后 15 分钟，安装程序可能会失败。
 
 #### <a name="verify-connectivity"></a>验证连接性
 确保计算机可以根据你的环境访问这些 URL： 
@@ -131,27 +133,25 @@ ms.locfileid: "79292763"
 
 [!INCLUDE [site-recovery-add-configuration-server](../../includes/site-recovery-add-configuration-server.md)]
 
-注册完成后，配置服务器会显示在保管库的“设置” > “服务器”页中。
-
 ## <a name="set-up-the-target-environment"></a>设置目标环境
 
 选择并验证目标资源。
 
-1. 单击“准备基础结构” > “目标”，然后选择要使用的 Azure 订阅。
+1. 单击“准备基础结构”   > “目标”  ，并选择要使用的 Azure 订阅。
 2. 指定目标部署模型。
 3. Site Recovery 会检查是否有一个或多个兼容的 Azure 存储帐户和网络。
 
-    ![目标](./media/physical-azure-disaster-recovery/network-storage.png)
+    :::image type="content" source="./media/physical-azure-disaster-recovery/network-storage.png" alt-text="用于设置目标环境的选项的屏幕截图。":::
 
 ## <a name="create-a-replication-policy"></a>创建复制策略
 
-1. 若要创建新的复制策略，请单击“Site Recovery 基础结构” > “复制策略” > “+复制策略”。
+1. 若要创建新的复制策略，请单击“Site Recovery 基础结构”   > “复制策略”   > “+ 复制策略”  。
 2. 在“创建复制策略”  中指定策略名称。
 3. 在“RPO 阈值”中，指定恢复点目标 (RPO) 限制  。 此值指定创建数据恢复点的频率。 如果连续复制超出此限制，将生成警报。
 4. 在“恢复点保留期”中，指定每个恢复点的保留期时长（以小时为单位）  。 可以将复制的虚拟机恢复到窗口中的任何点。 复制到高级存储的计算机最多支持 24 小时的保留期，复制到标准存储的计算机最多支持 72 小时的保留期。
 5. 在“应用一致性快照频率”中，指定创建包含应用程序一致性快照的恢复点的频率（以分钟为单位）。  单击“确定”创建该策略。 
 
-    ![复制策略](./media/physical-azure-disaster-recovery/replication-policy.png)
+    :::image type="content" source="./media/physical-azure-disaster-recovery/replication-policy.png" alt-text="用于创建复制策略的选项的屏幕截图。":::
 
 此策略自动与配置服务器关联。 默认情况下会自动创建一个匹配策略以用于故障回复。 例如，如果复制策略是 rep-policy，则创建故障回复策略 rep-policy-failback   。 从 Azure 启动故障回复之前，不会使用此策略。
 
@@ -175,7 +175,7 @@ ms.locfileid: "79292763"
 11. 在“复制设置” > “配置复制设置”中，检查是否选择了正确的复制策略。 
 12. 单击“启用复制”。  可以在“设置” > “作业” > “Site Recovery 作业”中，跟踪“启用保护”作业的进度。 在“完成保护”作业运行之后，计算机就可以进行故障转移了。 
 
-若要监视添加的服务器，可在“配置服务器” > “上次联系位置”查看上次发现服务器的时间。 若要添加计算机而不想要等待计划的发现时间，请突出显示配置服务器（不要单击它），并单击“刷新”  。
+若要监视添加的服务器，可在“配置服务器” > “上次联系位置”查看上次发现服务器的时间。 若要添加计算机而不想要等待计划的发现时间，请突出显示配置服务器（不要单击它），并单击“刷新”。
 
 ## <a name="next-steps"></a>后续步骤
 

@@ -11,12 +11,12 @@ ms.subservice: core
 ms.topic: conceptual
 origin.date: 07/23/2020
 ms.date: 08/24/2020
-ms.openlocfilehash: a8d1792364dd588ce5c4403002dd2af6097aba4b
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 97abf0c7cd961888d347fc90246265385fdd6cc4
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88946945"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021316"
 ---
 # <a name="create--use-software-environments-in-azure-machine-learning"></a>在 Azure 机器学习中创建和使用软件环境
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -63,11 +63,6 @@ ws = Workspace.from_config()
 env = Environment.get(workspace=ws, name="AzureML-Minimal")
 ```
 
-若要修改特选环境，必须复制该环境：
-
-```python
-env = Environment.get(workspace=ws, name="AzureML-Tutorial").clone("new_env")
-```
 可以使用以下代码列出特选环境及其包：
 
 ```python
@@ -159,7 +154,7 @@ run.wait_for_completion(show_output=True)
 
 如果某个包已在 Conda 包存储库中提供，则相较于 pip 安装，我们更建议使用 Conda 安装。 Conda 包通常附带预生成的二进制文件，能提高安装的可靠性。
 
-以下示例将包添加到环境。 它添加了 1.17.0 版的 `numpy`。 它还添加 `pillow` 包 `myenv`。 该示例分别使用 [`add_conda_package()`](https://docs.microsoft.com/python/api/azureml-core/azureml.core.conda_dependencies.condadependencies?view=azure-ml-py#add-conda-package-conda-package-) 方法和 [`add_pip_package()`](https://docs.microsoft.com/python/api/azureml-core/azureml.core.conda_dependencies.condadependencies?view=azure-ml-py#add-pip-package-pip-package-) 方法。
+以下示例将其添加到环境 `myenv`。 它添加了 1.17.0 版的 `numpy`。 它还添加 `pillow` 包。 该示例分别使用 [`add_conda_package()`](https://docs.microsoft.com/python/api/azureml-core/azureml.core.conda_dependencies.condadependencies?view=azure-ml-py#add-conda-package-conda-package-) 方法和 [`add_pip_package()`](https://docs.microsoft.com/python/api/azureml-core/azureml.core.conda_dependencies.condadependencies?view=azure-ml-py#add-pip-package-pip-package-) 方法。
 
 ```python
 from azureml.core.environment import Environment
@@ -248,10 +243,14 @@ build = env.build(workspace=ws)
 build.wait_for_completion(show_output=True)
 ```
 
-可以首先使用 [`build_local()`](https://docs.microsoft.com/python/api/azureml-core/azureml.core.environment.environment?view=azure-ml-py#build-local-workspace--platform-none----kwargs-) 方法在本地生成映像。 设置可选参数 `pushImageToWorkspaceAcr = True` 会将生成的映像推送到 Azure ML 工作区容器注册表中。 
+可以首先使用 [`build_local()`](https://docs.microsoft.com/python/api/azureml-core/azureml.core.environment.environment?view=azure-ml-py#build-local-workspace--platform-none----kwargs-) 方法在本地生成映像。 若要生成 docker 映像，请设置可选参数 `useDocker=True`。 若要将生成的映像推送到 AzureML 工作区容器注册表，请设置 `pushImageToWorkspaceAcr=True`。
+
+```python
+build = env.build_local(workspace=ws, useDocker=True, pushImageToWorkspaceAcr=True)
+```
 
 > [!WARNING]
->  更改环境中的依赖项或通道的顺序将产生新的环境，并将需要新的映像生成。
+>  更改环境中的依赖项或通道的顺序将产生新的环境，并将需要新的映像生成。 此外，如果存在新版本，则为现有映像调用 `build()` 方法将更新其依赖项。 
 
 ## <a name="enable-docker"></a>启用 Docker
 
@@ -329,7 +328,7 @@ myenv.python.interpreter_path = "/opt/miniconda/bin/python"
 对于已注册的环境，可以使用以下代码检索映像详细信息，其中 `details` 是 [DockerImageDetails](https://docs.microsoft.com/python/api/azureml-core/azureml.core.environment.dockerimagedetails?view=azure-ml-py) 的实例 (AzureML Python SDK >= 1.11)，并提供有关环境映像的所有信息，例如 dockerfile、注册表和映像名称。
 
 ```python
-details = environment.get_image_details()
+details = environment.get_image_details(workspace=ws)
 ```
 
 ## <a name="use-environments-for-training"></a>使用环境进行训练
@@ -423,10 +422,6 @@ service = Model.deploy(
 ## <a name="notebooks"></a>笔记本
 
 此[文章](https://docs.microsoft.com/azure/machine-learning/how-to-run-jupyter-notebooks#add-new-kernels)介绍如何将 Conda 环境安装为笔记本中的内核。
-
-此[示例笔记本](https://github.com/Azure/MachineLearningNotebooks/tree/master/how-to-use-azureml/training/using-environments)扩展了本文中演示的概念和方法。
-
-此[示例笔记本](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/training/train-on-local/train-on-local.ipynb)演示如何使用不同类型的环境在本地训练模型。
 
 [使用自定义 Docker 基础映像部署模型](how-to-deploy-custom-docker-image.md)演示了如何使用自定义的 Docker 基础映像部署模型。
 

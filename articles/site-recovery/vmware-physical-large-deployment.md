@@ -1,19 +1,21 @@
 ---
 title: 使用 Azure Site Recovery 缩放 VMware/物理灾难恢复
 description: 了解如何使用 Azure Site Recovery 将大量本地 VMware VM 或物理服务器设置为灾难恢复到 Azure。
-author: rockboyfor
 manager: digimobile
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 11/14/2019
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: f7ada98e5dff4fa1a8435dde2b9ce2ba546031d1
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: 2e658c748297d042ad98fe87fa4514298f60e6ff
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440560"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655468"
 ---
 # <a name="set-up-disaster-recovery-at-scale-for-vmware-vmsphysical-servers"></a>为 VMware VM/物理服务器设置大规模灾难恢复
 
@@ -76,8 +78,7 @@ ms.locfileid: "84440560"
 
 使用这些建议可以规划 Azure 资源、网络带宽和 VM 批处理。
 
-<a name="plan-azure-subscriptions-and-quotas"></a>
-## <a name="plan-azure-subscriptions-and-quotas"></a>规划 Azure 订阅和配额
+## <a name="plan-azure-subscriptions-and-quotas"></a><a name="plan-azure-subscriptions-and-quotas"></a>规划 Azure 订阅和配额
 
 我们希望确保目标订阅中的可用配额足以应对故障转移。
 
@@ -88,8 +89,7 @@ ms.locfileid: "84440560"
 
 <!--MOONCAKE: CORRECT ON https://support.azure.cn/zh-cn/support/support-azure/-->
 
-<a name="failover-limits"></a>
-### <a name="failover-limits"></a>故障转移限制
+### <a name="failover-limits"></a><a name="failover-limits"></a>故障转移限制
 
 限制是指 Site Recovery 在一小时内支持的故障转移次数（假设每台计算机包含三个磁盘）。
 
@@ -106,8 +106,7 @@ ms.locfileid: "84440560"
 - 限制假设订阅的目标区域中只有其他极少量的作业正在进行。
 - 某些 Azure 区域的规模较小，因此限制可能略低一些。
 
-<a name="plan-infrastructure-and-vm-connectivity"></a>
-## <a name="plan-infrastructure-and-vm-connectivity"></a>规划基础结构和 VM 连接
+## <a name="plan-infrastructure-and-vm-connectivity"></a><a name="plan-infrastructure-and-vm-connectivity"></a>规划基础结构和 VM 连接
 
 故障转移到 Azure 后，需要让工作负荷像在本地一样正常运行，并使用户能够访问 Azure VM 上运行的工作负荷。
 
@@ -183,7 +182,9 @@ ms.locfileid: "84440560"
 1. 分配一名灾难恢复管理员来监视复制的计算机的运行状态。
 2. 监视复制项和基础结构的[事件](site-recovery-monitor-and-troubleshoot.md)。
 3. 监视横向扩展进程服务器的[运行状况](vmware-physical-azure-monitor-process-server.md)。
-4. 注册接收事件的[电子邮件通知](/site-recovery/site-recovery-monitor-and-troubleshoot#subscribe-to-email-notifications)，以便于监视。
+    
+    <!--Not Availabl eon [email notifications](./site-recovery-monitor-and-troubleshoot.md#subscribe-to-email-notifications)-->
+    
 5. 定期开展[灾难恢复演练](site-recovery-test-failover-to-azure.md)，以确保一切按预期方式进行。
 
 ## <a name="plan-for-large-scale-failovers"></a>规划大规模故障转移
@@ -199,7 +200,7 @@ ms.locfileid: "84440560"
     - 估算应用的端到端 RTO。
     - 估算工作负荷的端到端 RPO。
     - 识别 IP 地址范围冲突。
-    - 运行演练时，我们建议不要使用生产网络，避免在生产和测试网络中使用相同的子网名称，并在每次演练后清理测试故障转移。
+    - 运行演练时，我们建议不要使用生产网络，并在每次演练后清理测试故障转移。
 
 若要运行大规模故障转移，我们建议：
 

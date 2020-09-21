@@ -1,21 +1,21 @@
 ---
 title: Azure Site Recovery 进程服务器故障排除
 description: 本文介绍如何对 Azure Site Recovery 进程服务器的问题进行故障排除
-author: rockboyfor
 manager: digimobile
 ms.service: site-recovery
 ms.topic: troubleshooting
 origin.date: 09/09/2019
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 09/30/2019
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 345ffb6cdd44850b59aae63f15e8389258dad79a
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: ce0cce1ab0a709f1f8805e1321b16f9610ceb056
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426482"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89654990"
 ---
 # <a name="troubleshoot-the-process-server"></a>进程服务器故障排除
 
@@ -46,7 +46,7 @@ IP 地址 | 确保进程服务器具有静态 IPv4 地址，而未配置 NAT。
 
 故障排除的第一步是检查进程服务器的运行状况和状态。 为此，请查看所有警报，检查所需服务是否正在运行，并验证是否有来自进程服务器的检测信号。 下图汇总了这些步骤，后面是可帮助你执行这些步骤的过程。
 
-![进程服务器运行状况故障排除](./media/vmware-physical-azure-troubleshoot-process-server/troubleshoot-process-server-health.png)
+:::image type="content" source="./media/vmware-physical-azure-troubleshoot-process-server/troubleshoot-process-server-health.png" alt-text="进程服务器运行状况故障排除":::
 
 ## <a name="step-1-troubleshoot-process-server-health-alerts"></a>步骤 1：对进程服务器运行状况警报进行故障排除
 
@@ -64,7 +64,7 @@ IP 地址 | 确保进程服务器具有静态 IPv4 地址，而未配置 NAT。
 ![严重][red] |  过去 15 分钟内的可用空间 < 25% | 1.按照与警告关联的说明来解决此问题。<br/> 2. 3. 按照下面的说明[对连接和复制问题进行故障排除](#check-connectivity-and-replication)。<br/> 3.如果问题仍然存在，请运行[部署规划器](https://docs.azure.cn/site-recovery/site-recovery-deployment-planner)以用于 VMware/物理服务器复制。
 ![严重][red] | 在 15 分钟或更长时间内没有来自进程服务器的检测信号。 tmansvs 服务未与配置服务器通信。 | 1) 检查进程服务器是否已启动并正在运行。<br/> 2.检查 tmassvc 是否在进程服务器上运行。<br/> 3.按照下面的说明[对连接和复制问题进行故障排除](#check-connectivity-and-replication)。
 
-![表键](./media/vmware-physical-azure-troubleshoot-process-server/table-key.png)
+:::image type="content" source="./media/vmware-physical-azure-troubleshoot-process-server/table-key.png" alt-text="表键":::
 
 ## <a name="step-2-check-process-server-services"></a>步骤 2：检查进程服务器服务
 
@@ -74,7 +74,7 @@ IP 地址 | 确保进程服务器具有静态 IPv4 地址，而未配置 NAT。
 
 **部署** | 正在运行的服务
 --- | ---
-配置服务器上的进程服务器 | ProcessServer；ProcessServerMonitor；cxprocessserver；InMage PushInstall；Log Upload Service (LogUpload)；InMage Scout Application Service；Microsoft Azure 恢复服务代理 (obengine)；InMage Scout VX Agent-Sentinel/Outpost (svagents)；tmansvc；World Wide Web Publishing Service (W3SVC)；MySQL；Microsoft Azure Site Recovery 服务 (dra)
+配置服务器上的进程服务器 | ProcessServer；ProcessServerMonitor；cxprocessserver；InMage PushInstall；日志上传服务 (LogUpload)；InMage Scout 应用程序服务；Microsoft Azure 恢复服务代理 (obengine)；InMage Scout VX Agent-Sentinel/Outpost (svagents)；tmansvc；World Wide Web 发布服务 (W3SVC)；MySQL；Microsoft Azure Site Recovery 服务 (dra)
 作为独立服务器运行的进程服务器 | ProcessServer；ProcessServerMonitor；cxprocessserver；InMage PushInstall；日志上传服务 (LogUpload)；InMage Scout 应用程序服务；Microsoft Azure 恢复服务代理 (obengine)；InMage Scout VX Agent-Sentinel/Outpost (svagents)；tmansvc。
 部署在 Azure 中用于故障回复的进程服务器 | ProcessServer；ProcessServerMonitor；cxprocessserver；InMage PushInstall；日志上传服务 (LogUpload)
 
@@ -91,7 +91,7 @@ IP 地址 | 确保进程服务器具有静态 IPv4 地址，而未配置 NAT。
 
  初始和持续的复制失败通常是源计算机与进程服务器或者进程服务器与 Azure 之间的连接问题造成的。 下图汇总了这些步骤，后面是可帮助你执行这些步骤的过程。
 
-![对连接和复制进行故障排除](./media/vmware-physical-azure-troubleshoot-process-server/troubleshoot-connectivity-replication.png)
+:::image type="content" source="./media/vmware-physical-azure-troubleshoot-process-server/troubleshoot-connectivity-replication.png" alt-text="流程图，显示了排查连接和复制问题的步骤。":::
 
 ## <a name="step-4-verify-time-sync-on-source-machine"></a>步骤 4：验证源计算机上的时间同步
 
@@ -103,7 +103,7 @@ IP 地址 | 确保进程服务器具有静态 IPv4 地址，而未配置 NAT。
 
 ## <a name="step-6-check-connectivity-from-source-machine"></a>步骤 6：检查来自源计算机的连接
 
-1. 如果需要，在源计算机上安装 [Telnet 客户端](https://technet.microsoft.com/library/cc771275(v=WS.10).aspx)。 请勿使用 Ping。
+1. 如果需要，在源计算机上安装 [Telnet 客户端](https://docs.microsoft.com/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc771275(v=ws.10))。 请勿使用 Ping。
 2. 在源计算机上，使用 Telnet 在 HTTPS 端口上对进程服务器执行 ping 操作。 默认情况下，9443 是用于复制流量的 HTTPS 端口。
 
     `telnet <process server IP address> <port>`
@@ -162,7 +162,7 @@ IP 地址 | 确保进程服务器具有静态 IPv4 地址，而未配置 NAT。
 2. 选择“性能”选项卡 >“打开资源监视器”。
 3. 在“资源监视器”页中，选择“网络”选项卡。 在“网络活动的进程”下，检查 cbengine.exe 是否正在主动发送大量数据。
 
-    ![“网络活动的进程”下的卷](./media/vmware-physical-azure-troubleshoot-process-server/cbengine.png)
+    :::image type="content" source="./media/vmware-physical-azure-troubleshoot-process-server/cbengine.png" alt-text="屏幕截图，显示在“网络活动的进程”下有大量的卷。":::
 
     如果 cbengine.exe 未发送大量数据，请完成以下部分中的步骤。
 
@@ -171,7 +171,7 @@ IP 地址 | 确保进程服务器具有静态 IPv4 地址，而未配置 NAT。
 1. 在资源监视器中，选择 cbengine.exe。
 2. 在“TCP 连接”下，检查进程服务器与 Azure 存储之间是否建立了连接。
 
-    ![cbengine.exe 与 Azure Blob 存储 URL 之间的连接](./media/vmware-physical-azure-troubleshoot-process-server/rmonitor.png)
+    :::image type="content" source="./media/vmware-physical-azure-troubleshoot-process-server/rmonitor.png" alt-text="屏幕截图，显示 cbengine.exe 与 Azure Blob 存储 URL 之间的连接性。":::
 
 ### <a name="check-services"></a>检查服务
 
@@ -194,7 +194,7 @@ IP 地址 | 确保进程服务器具有静态 IPv4 地址，而未配置 NAT。
 1. 在进程服务器上的 %programfiles%\Microsoft Azure Recovery Services Agent\Temp 中，打开最新的 CBEngineCurr.errlog 文件。
 2. 在该文件中，搜索 443 或字符串 connection attempt failed。
 
-    ![Temp 文件夹中的错误日志](./media/vmware-physical-azure-troubleshoot-process-server/logdetails1.png)
+    :::image type="content" source="./media/vmware-physical-azure-troubleshoot-process-server/logdetails1.png" alt-text="Temp 文件夹中的错误日志":::
 
 3. 如果看到问题，请使用端口 443 在 CBEngineCurr.currLog 文件中查找 Azure 公共 IP 地址：
 
@@ -209,7 +209,7 @@ IP 地址 | 确保进程服务器具有静态 IPv4 地址，而未配置 NAT。
 
 1. 对于基于 IP 地址的防火墙规则：
 
-    a) 下载[中国 Windows Azure 数据中心 IP 范围](https://www.microsoft.com/download/confirmation.aspx?id=57062)的完整列表。
+    a) 下载 [Azure 数据中心 IP 范围](https://www.microsoft.com/download/confirmation.aspx?id=57062)的完整列表。
 
     b) 将 IP 地址范围添加到防火墙配置，以确保防火墙允许与 Azure（以及默认的 HTTPS 端口 443）通信。
 

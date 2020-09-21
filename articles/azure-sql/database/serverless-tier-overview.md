@@ -10,14 +10,14 @@ ms.topic: conceptual
 author: WenJason
 ms.author: v-jay
 ms.reviewer: sstein, carlrab
-origin.date: 7/9/2020
-ms.date: 08/17/2020
-ms.openlocfilehash: ae2c9019b816c0ee05c84151171968a34bc08f32
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+origin.date: 8/7/2020
+ms.date: 09/14/2020
+ms.openlocfilehash: 24048119bab646659185ac13ac092ecf4aa8d43a
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223291"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014320"
 ---
 # <a name="azure-sql-database-serverless"></a>Azure SQL 数据库无服务器
 [!INCLUDE[appliesto-sqldb](../includes/appliesto-sqldb.md)]
@@ -89,7 +89,7 @@ Azure SQL 数据库中单一数据库的无服务器计算层由计算自动缩�
 
 #### <a name="cache-reclamation"></a>缓存回收
 
-与预配的计算数据库不同，当 CPU 或活动缓存使用率较低时，从无服务器数据库回收 SQL 缓存中的内存。  请注意，当 CPU 使用率较低时，主动缓存利用率可能会保持较高水平（具体取决于使用模式），并会阻止内存回收。
+与预配的计算数据库不同，当 CPU 或活动缓存使用率较低时，从无服务器数据库回收 SQL 缓存中的内存。
 
 - 当最近使用的缓存条目的总大小低于某个时间段的阈值时，主动缓存利用率将视为低。
 - 触发缓存回收后，目标缓存大小将递减到以前大小的一部分，并且仅当使用率保持较低时才继续回收。
@@ -97,6 +97,8 @@ Azure SQL 数据库中单一数据库的无服务器计算层由计算自动缩�
 - 缓存大小永远不会减至小于最小 vCore 数定义的最小内存限制（可配置）。
 
 在无服务器数据库和预配的计算数据库中，如果使用了所有可用内存，则可能会逐出缓存条目。
+
+请注意，当 CPU 使用率较低时，主动缓存利用率可能会保持较高水平（具体取决于使用模式），并会阻止内存回收。  此外，用户活动停止后，在内存回收之前，可能会有额外的延迟，因为后台进程会定期响应先前的用户活动。  例如，删除操作会生成标记为“需删除”的虚影记录，但在虚影清除进程运行（这可能涉及到将数据页读入缓存）之前不会进行物理删除。
 
 #### <a name="cache-hydration"></a>缓存合成
 
@@ -118,7 +120,7 @@ Azure SQL 数据库中单一数据库的无服务器计算层由计算自动缩�
 - 异地复制（活动异地复制和自动故障转移组）。
 - 长期备份保留 (LTR)。
 - SQL 数据同步中使用的同步数据库。与同步数据库不同，中心数据库和成员数据库支持自动暂停。
-- 弹性作业中使用的作业数据库。
+- 弹性作业（预览版）中使用的作业数据库。
 
 在部署某些需要数据库联机的服务更新期间，会暂时阻止自动暂停。  在这种情况下，一旦服务更新完成，就会再次允许自动暂停。
 

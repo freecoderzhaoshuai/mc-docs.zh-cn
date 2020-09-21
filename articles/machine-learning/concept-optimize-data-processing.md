@@ -10,12 +10,12 @@ ms.subservice: core
 ms.reviewer: nibaccam
 ms.topic: conceptual
 ms.date: 06/26/2020
-ms.openlocfilehash: f0254b678e7f53a75b81038fb507304b523f13fc
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: d5ca045ba180a0235d0e8199ce7850ff30968c7c
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88227861"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021353"
 ---
 # <a name="optimize-data-processing-with-azure-machine-learning"></a>使用 Azure 机器学习优化数据处理
 
@@ -46,6 +46,16 @@ CSV 文件通常用于导入和导出数据，因为它们易于在 Excel 中进
 一个解决方案是增加 RAM 以适应内存中的数据帧。 建议将计算大小和处理能力设置为包含 2 倍大小的 RAM。 因此，如果数据帧为 10 GB，请使用至少具有 20 GB RAM 的计算目标，以确保可以将数据帧恰当地置于内存中并对其进行处理。 
 
 对于多个虚拟 CPU (vCPU)，请记住，所设置的分区应拟合计算机上的每个 vCPU 所能拥有的 RAM 容量。 也就是说，如果具有 16 GB RAM 4 个 vCPU，则每个 vCPU 需要大约 2-GB 的数据帧。
+
+### <a name="local-vs-remote"></a>本地与远程
+
+你可能会注意到，与使用 Azure 机器学习预配的远程 VM 相比，在本地电脑上工作时，某些 pandas 数据帧命令的执行速度更快。 你的本地电脑通常启用了页面文件，这样就可以加载多于物理内存所能容纳的数据量，也就是你的硬盘驱动器将充当 RAM 的扩展。 目前，Azure 机器学习 VM 运行时未启用页面文件，因此，只能加载可用物理 RAM 允许的数据量。 
+
+对于计算密集型作业，建议选取更大的 VM 以提高处理速度。
+
+详细了解 Azure 机器学习的[可用 VM 系列和大小](concept-compute-target.md#supported-vm-series-and-sizes)。 
+
+有关 RAM 规范，请参阅相应的 VM 系列页，例如，[Dv2-Dsv2 系列](../virtual-machines/dv2-dsv2-series-memory.md)或 [NC 系列](../virtual-machines/nc-series.md)。
 
 ### <a name="minimize-cpu-workloads"></a>最小化 CPU 工作负载
 

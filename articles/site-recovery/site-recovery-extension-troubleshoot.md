@@ -1,22 +1,28 @@
 ---
 title: 排查使用 Azure Site Recovery 进行灾难恢复时的 Azure VM 扩展问题
 description: 排查使用 Azure Site Recovery 进行灾难恢复时的 Azure VM 扩展问题。
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.topic: troubleshooting
 origin.date: 11/27/2018
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 3e1ba5498342350b77842a56eb323e84d97669ce
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 5f7cb834eb0f2aa171e504b3e58f81db2a922c2e
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77611268"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655572"
 ---
 # <a name="troubleshoot-azure-vm-extension-issues"></a>排查 Azure VM 扩展问题
 
 本文提供了故障排查步骤，可帮助你解决与 VM 代理和扩展相关的 Azure Site Recovery 错误。
+
+## <a name="low-system-resources"></a>系统资源不足
+
+如果系统内存不足，且无法为移动服务安装分配内存，则会出现此问题。 确保已释放足够的内存，以便安装继续进行并成功完成。
 
 ## <a name="azure-site-recovery-extension-time-out"></a>Azure Site Recovery 扩展超时  
 
@@ -43,7 +49,7 @@ ms.locfileid: "77611268"
 
 如果虚拟机中的 Azure 来宾代理未处于就绪状态，则会发生此错误。
 
-可以在 [Azure 门户](https://portal.azure.cn/)中检查 Azure 来宾代理的状态。 转到你尝试保护的虚拟机，在“VM” > “设置” > “属性” > “代理状态”中检查状态。     大多数情况下，重新启动虚拟机后，代理的状态是准备就绪。 但是，如果无法重启或仍然面临问题，请完成以下故障排除步骤：
+可以在 [Azure 门户](https://portal.azure.cn/)中检查 Azure 来宾代理的状态。 转到你尝试保护的虚拟机，在“VM” > “设置” > “属性” > “代理状态”中检查状态。    大多数情况下，重新启动虚拟机后，代理的状态是准备就绪。 但是，如果无法重启或仍然面临问题，请完成以下故障排除步骤：
 
 - [代理安装在 VM 中，但无响应（针对 Windows VM）](#the-agent-installed-in-the-vm-but-unresponsive-for-windows-vms)
 - [VM 中安装的代理已过时（针对 Linux VM）](#the-agent-installed-in-the-vm-is-out-of-date-for-linux-vms)
@@ -55,7 +61,7 @@ ms.locfileid: "77611268"
 
 - [VM 中安装的代理已过时（针对 Linux VM）](#the-agent-installed-in-the-vm-is-out-of-date-for-linux-vms)  
 
-## <a name="causes-and-solutions"></a>原因和解决方法
+## <a name="causes-and-solutions"></a>原因和解决方案
 
 <a name="the-agent-installed-in-the-vm-but-unresponsive-for-windows-vms"></a>
 ### <a name="the-agent-is-installed-in-the-vm-but-its-unresponsive-for-windows-vms"></a>代理安装在 VM 中，但无响应（针对 Windows VM）
@@ -64,8 +70,8 @@ ms.locfileid: "77611268"
 VM 代理可能已损坏或服务可能已停止。 重新安装 VM 代理可帮助获取最新版本。 此外，还有助于与服务重新开始通信。
 
 1. 确定 Windows Azure 来宾代理服务是否在 VM 服务 (services.msc) 中运行。 重启 Windows Azure 来宾代理服务。    
-1. 如果“Windows Azure 来宾代理”服务在“服务”中不可见，请打开“控制面板”。 转到“程序和功能”  来查看是否安装了“Windows 来宾代理”服务。
-1. 如果“程序和功能”中显示了 Windows Azure 来宾代理，请将其卸载  。
+1. 如果“Windows Azure 来宾代理”服务在“服务”中不可见，请打开“控制面板”。 转到“程序和功能”来查看是否安装了“Windows 来宾代理”服务。
+1. 如果“程序和功能”中显示了 Windows Azure 来宾代理，请将其卸载****。
 1. 下载并安装[最新版本的代理 MSI](https://go.microsoft.com/fwlink/?LinkID=394789&clcid=0x409)。 必须拥有管理员权限才能完成安装。
 1. 检查服务中是否显示了“Windows Azure 来宾代理”服务。
 1. 重启保护作业。
@@ -77,7 +83,7 @@ VM 代理可能已损坏或服务可能已停止。 重新安装 VM 代理可帮
 #### <a name="solution"></a>解决方案
 对于 Linux VM，与代理或扩展相关的大多数失败都是由于影响过时的 VM 代理的问题所造成的。 若要解决此问题，请遵循以下通用准则：
 
-1. 按照[更新 Linux VM 代理](../virtual-machines/linux/update-agent.md)的说明进行操作。
+1. 按照[更新 Linux VM 代理](../virtual-machines/extensions/update-linux-agent.md)的说明进行操作。
 
    > [!NOTE]
    > *强烈建议* 只通过分发存储库更新代理。 建议不要直接从 GitHub 下载代理代码并将其更新。 如果你的分发没有可用的最新代理，请联系分发支持部门，了解如何安装最新代理。 若要检查最新代理，请转到 GitHub 存储库中的 [Microsoft Azure Linux 代理](https://github.com/Azure/WALinuxAgent/releases)页。
@@ -103,12 +109,12 @@ VM 代理可能已损坏或服务可能已停止。 重新安装 VM 代理可帮
 卸载扩展：
 
 1. 在 [Azure 门户](https://portal.azure.cn/)中，找到备份失败的 VM。
-1. Select <bpt id="p1">**</bpt>Settings<ept id="p1">**</ept>.
-1. 选择“扩展”  。
-1. 选择“Site Recovery 扩展”  。
-1. 选择“卸载”  。
+1. 选择“设置”  。
+1. 选择“扩展”。
+1. 选择“Site Recovery 扩展”****。
+1. 选择“卸载” 。
 
-对于 Linux VM，如果 VMSnapshot 扩展未显示在 Azure 门户中，请[更新 Azure Linux 代理](../virtual-machines/linux/update-agent.md)。 然后运行保护。
+对于 Linux VM，如果 VMSnapshot 扩展未显示在 Azure 门户中，请[更新 Azure Linux 代理](../virtual-machines/extensions/update-linux-agent.md)。 然后运行保护。
 
 完成这些步骤后，会在保护期间重新安装扩展。
 

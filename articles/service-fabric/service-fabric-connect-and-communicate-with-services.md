@@ -1,17 +1,20 @@
 ---
 title: 在 Azure Service Fabric 中与服务建立连接并与之通信
 description: 了解如何在 Service Fabric 中解析服务、建立连接以及与之通信。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 11/01/2017
-ms.date: 01/06/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: ddde8c310bd688e4e5803f6f9a2044e5bb33d7b8
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: fd18bd170c784c42ac4f07fa3096b83bc5f7a663
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742449"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655393"
 ---
 # <a name="connect-and-communicate-with-services-in-service-fabric"></a>在 Service Fabric 中与服务建立连接和通信
 在 Service Fabric 中，服务在 Service Fabric 群集（通常分布在多个 VM 间）中的某个位置运行。 它可以从一个位置移动到另一个位置（由服务所有者移动或由 Service Fabric 自动移动）。 服务不以静态方式绑定到特定计算机或地址。
@@ -58,7 +61,7 @@ Service Fabric 提供一种服务发现和解析服务，称为“命名服务�
 有关如何使用反向代理服务的更多详细信息，请参阅 [Azure Service Fabric 中的反向代理](service-fabric-reverseproxy.md)一文。
 
 ## <a name="connections-from-external-clients"></a>来自外部客户端的连接
-在群集内相互连接的服务通常可以直接访问其他服务的终结点，因为群集中的节点处于相同的本地网络上。 但是在某些环境中，群集可能位于通过一组有限端口对外部入口流量进行路由的负载均衡器之后。 在这些情况下，服务仍可以使用命名服务相互通信和解析地址，但必须执行额外步骤才能允许外部客户端连接到服务。
+在群集内相互连接的服务通常可以直接访问其他服务的终结点，因为群集中的节点处于相同的本地网络上。 但是在某些环境中，群集可能位于通过一组有限端口对入口流量进行路由的负载均衡器之后。 在这些情况下，服务仍可以使用命名服务相互通信和解析地址，但必须执行额外步骤才能允许外部客户端连接到服务。
 
 ## <a name="service-fabric-in-azure"></a>Azure 中的 Service Fabric
 Azure 中的 Service Fabric 群集位于 Azure 负载均衡器之后。 发送到群集的所有外部流量都必须通过该负载均衡器。 该负载均衡器自动在给定端口上将入站流量转发到打开了相同端口的随机 *节点* 。 Azure 负载均衡器只了解节点上打开的端口，它不了解各个服务打开的端口   。
@@ -163,14 +166,14 @@ Azure 中的 Service Fabric 群集位于 Azure 负载均衡器之后。 发送�
 Reliable Services 框架附带几个预建的通信选项。 可以根据所选的编程模型、通信框架和编写服务时使用的编程语言决定哪个选项最适合自己。
 
 * **无特定协议：** 如果没有选择特定的通信框架，但想要快速启动并运行某个程序，则理想之选是[服务远程处理](service-fabric-reliable-services-communication-remoting.md)，此项允许对 Reliable Services 和 Reliable Actors 进行强类型远程过程调用。 这是服务通信入门最简单、最快捷的方法。 服务远程处理可处理服务地址的解析、连接、重试和错误处理。 这适用于 C# 和 Java 应用程序。
-* **HTTP**：对于与语言无关的通信，HTTP 为行业标准选择提供了可在许多不同语言（Service Fabric 全都支持）中使用的工具和 HTTP 服务器。 服务可以使用提供的任何 HTTP 堆栈，包括适用于 C# 应用程序的 [ASP.NET Web API](service-fabric-reliable-services-communication-webapi.md)。 以 C# 编写的客户端可以利用 `ICommunicationClient` 和 `ServicePartitionClient` 类（而 Java 则可以使用 `CommunicationClient` 和 `FabricServicePartitionClient` 类）来[进行服务解析、HTTP 连接和重试循环](service-fabric-reliable-services-communication.md)。
+* **HTTP**：对于与语言无关的通信，HTTP 为行业标准选择提供了可在许多不同语言（Service Fabric 全都支持）中使用的工具和 HTTP 服务器。 服务可以使用提供的任何 HTTP 堆栈，包括适用于 C# 应用程序的 [ASP.NET Web API](./service-fabric-reliable-services-communication-aspnetcore.md)。 以 C# 编写的客户端可以利用 `ICommunicationClient` 和 `ServicePartitionClient` 类（而 Java 则可以使用 `CommunicationClient` 和 `FabricServicePartitionClient` 类）来[进行服务解析、HTTP 连接和重试循环](service-fabric-reliable-services-communication.md)。
 * **WCF**：如果具备将 WCF 用作通信框架的现有代码，则可将 `WcfCommunicationListener` 用于服务器端，并将 `WcfCommunicationClient` 和 `ServicePartitionClient` 类用于客户端。 但是，这仅适用于基于 Windows 的群集上的 C# 应用程序。 有关更多详细信息，请参阅这篇有关[通信堆栈的基于 WCF 的实现](service-fabric-reliable-services-communication-wcf.md)的文章。
 
 ## <a name="using-custom-protocols-and-other-communication-frameworks"></a>使用自定义协议和其他通信框架
 服务可以使用任何协议或框架进行通信，无论它是 TCP 套接字上的自定义二进制协议，还是通过 [Azure 事件中心](https://www.azure.cn/home/features/event-hubs/)或 [Azure IoT 中心](https://www.azure.cn/home/features/iot-hub/)实现的流式处理事件。 Service Fabric 提供了通信 API，可以将通信堆栈插入其中，同时将用于发现和连接的所有工作与你分离。 有关更多详细信息，请参阅这篇有关 [Reliable Service 通信模型](service-fabric-reliable-services-communication.md)的文章。
 
 ## <a name="next-steps"></a>后续步骤
-了解有关 [Reliable Services 通信模型](service-fabric-reliable-services-communication.md)中可用的概念和 API 的详细信息，然后快速开始使用[服务远程处理](service-fabric-reliable-services-communication-remoting.md)或深入了解如何使用[具有 OWIN 自承载的 Web API](service-fabric-reliable-services-communication-webapi.md) 编写通信侦听器。
+了解有关 [Reliable Services 通信模型](service-fabric-reliable-services-communication.md)中可用的概念和 API 的详细信息，然后快速开始使用[服务远程处理](service-fabric-reliable-services-communication-remoting.md)或深入了解如何使用[具有 OWIN 自承载的 Web API](./service-fabric-reliable-services-communication-aspnetcore.md) 编写通信侦听器。
 
 [1]: ./media/service-fabric-connect-and-communicate-with-services/serviceendpoints.png
 [2]: ./media/service-fabric-connect-and-communicate-with-services/namingservice.png
@@ -182,4 +185,4 @@ Reliable Services 框架附带几个预建的通信选项。 可以根据所选�
 [9]: ./media/service-fabric-connect-and-communicate-with-services/dns.png
 [10]: ./media/service-fabric-reverseproxy/internal-communication.png
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

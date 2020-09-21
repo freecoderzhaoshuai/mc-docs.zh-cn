@@ -11,14 +11,14 @@ ms.topic: conceptual
 author: WenJason
 ms.author: v-jay
 ms.reviewer: carlrab, sashan
-origin.date: 04/02/2020
-ms.date: 08/17/2020
-ms.openlocfilehash: 39ad19ddc550e333d6013f2a3ad48511fb9be0a9
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+origin.date: 08/12/2020
+ms.date: 09/14/2020
+ms.openlocfilehash: 771941a276fc4260456d60f0ad46e616364d9372
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223395"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014170"
 ---
 # <a name="high-availability-for-azure-sql-database-and-sql-managed-instance"></a>Azure SQL 数据库和 SQL 托管实例的高可用性
 [!INCLUDE[appliesto-sqldb-sqlmi](../includes/appliesto-sqldb-sqlmi.md)]
@@ -86,13 +86,12 @@ SQL 数据库和 SQL 托管实例均在最新稳定版本的 SQL Server 数据�
 
 |部署类型|PowerShell|REST API| Azure CLI|
 |:---|:---|:---|:---|
-|数据库|[Invoke-AzSqlDatabaseFailover](https://docs.microsoft.com/powershell/module/az.sql/invoke-azsqldatabasefailover)|[数据库故障转移](https://docs.microsoft.com/rest/api/sql/databases(failover)/failover/)|[az rest](/cli/reference-index#az-rest)|
-|弹性池|[Invoke-AzSqlElasticPoolFailover](https://docs.microsoft.com/powershell/module/az.sql/invoke-azsqlelasticpoolfailover)|[弹性池故障转移](https://docs.microsoft.com/rest/api/sql/elasticpools(failover)/failover/)|[az rest](/cli/reference-index#az-rest)|
-|托管实例|[Invoke-AzSqlInstanceFailover](https://docs.microsoft.com/powershell/module/az.sql/Invoke-AzSqlInstanceFailover/)|[托管实例 - 故障转移](https://docs.microsoft.com/powershell/module/az.sql/Invoke-AzSqlInstanceFailover/)|[az sql mi failover](/cli/sql/mi/#az-sql-mi-failover)|
-
+|数据库|[Invoke-AzSqlDatabaseFailover](https://docs.microsoft.com/powershell/module/az.sql/invoke-azsqldatabasefailover)|[数据库故障转移](https://docs.microsoft.com/rest/api/sql/databases(failover)/failover/)|[az rest](/cli/reference-index#az-rest) 可用于从 Azure CLI 调用 REST API 调用|
+|弹性池|[Invoke-AzSqlElasticPoolFailover](https://docs.microsoft.com/powershell/module/az.sql/invoke-azsqlelasticpoolfailover)|[弹性池故障转移](https://docs.microsoft.com/rest/api/sql/elasticpools(failover)/failover/)|[az rest](/cli/reference-index#az-rest) 可用于从 Azure CLI 调用 REST API 调用|
+|托管实例|[Invoke-AzSqlInstanceFailover](https://docs.microsoft.com/powershell/module/az.sql/Invoke-AzSqlInstanceFailover/)|[托管实例 - 故障转移](https://docs.microsoft.com/rest/api/sql/managed%20instances%20-%20failover/failover)|[az sql mi failover](/cli/sql/mi/#az-sql-mi-failover)|
 
 > [!IMPORTANT]
-> 故障转移命令目前在超大规模服务层级中不可用。
+> 故障转移命令不可用于超大规模数据库的可读次要副本。
 
 ## <a name="conclusion"></a>结论
 
@@ -102,4 +101,5 @@ Azure SQL 数据库和 Azure SQL 托管实例提供与 Azure 平台深度集成�
 
 - 了解 [Service Fabric](../../service-fabric/service-fabric-overview.md)
 - 了解 [Azure 流量管理器](../../traffic-manager/traffic-manager-overview.md)
+- 了解[如何在 SQL 托管实例上发起手动故障转移](../managed-instance/user-initiated-failover.md)
 - 有关高可用性和灾难恢复的更多选项，请参阅[业务连续性](business-continuity-high-availability-disaster-recover-hadr-overview.md)

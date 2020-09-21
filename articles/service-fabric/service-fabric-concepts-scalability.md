@@ -1,22 +1,25 @@
 ---
 title: Service Fabric 服务的可伸缩性
 description: 了解如何在 Azure Service Fabric 中进行缩放以及用于缩放应用程序的各种方法。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 08/26/2019
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 18b1f290237642b92a1ef11f175e09cd2e5c97de
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 5ced61ffb81150bb8051ce190fbd25a27eb2c997
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291418"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655192"
 ---
 # <a name="scaling-in-service-fabric"></a>在 Service Fabric 中进行缩放
 Azure Service Fabric 通过管理服务、分区以及群集的节点上的副本，让生成可缩放的应用程序更简单。 在同一硬件上运行多个工作负荷不仅可实现最大资源使用率，还可提供在如何选择缩放工作负荷方面的灵活性。 
 
-<!-- Not Avaiable on Channel 9 VIDEO URL -->
+<!-- Not Avaiable on [!VIDEO https://channel9.msdn.com/Events/Connect/2017/T116/player]-->
 
 在 Service Fabric 中进行缩放可通过多种不同方式实现：
 
@@ -95,16 +98,14 @@ Service Fabric 支持分区。 分区可将服务拆分成若干逻辑和物理�
 
 <center>
 
-![三节点式分区布局](./media/service-fabric-concepts-scalability/layout-three-nodes.png)
-
+:::image type="content" source="./media/service-fabric-concepts-scalability/layout-three-nodes.png" alt-text="三节点式分区布局":::
 </center>
 
 如果增加节点数目，Service Fabric 会移动其中的一些现有副本。 例如，假设节点数增加到 4，且已重新分发副本。 现在，服务在每个节点上有 3 个正在运行的副本，每个副本均属于不同的分区。 这可以实现更高的资源利用率，因为新节点不冷。 通常情况下，这还可提高性能，因为每项服务均有更多可用资源。
 
 <center>
 
-![四节点式分区布局](./media/service-fabric-concepts-scalability/layout-four-nodes.png)
-
+:::image type="content" source="./media/service-fabric-concepts-scalability/layout-four-nodes.png" alt-text="四节点式分区布局":::
 </center>
 
 ## <a name="scaling-by-using-the-service-fabric-cluster-resource-manager-and-metrics"></a>使用 Service Fabric 群集资源管理器和指标进行缩放
@@ -131,18 +132,18 @@ Service Fabric 支持分区。 分区可将服务拆分成若干逻辑和物理�
 通过生成进行缩放时，请考虑以下动态模式。 可能需要使其适应具体的情况：
 
 1. 生成一项“管理器服务”，而不是尝试为所有人预先选取一个分区方案。
-2. 管理器服务作业的目标是在客户注册服务时，查看客户信息。 然后根据该信息，管理器服务只为该客户创建实际的联系人存储服务的实例   。 如果需要特定配置、隔离或升级，还可决定为此客户启动应用程序实例。 
+2. 管理器服务作业的目标是在客户注册服务时，查看客户信息。 根据该信息，管理器服务只为该客户创建实际联系人存储服务的实例 。 如果需要特定配置、隔离或升级，还可决定为此客户启动应用程序实例。 
 
-    此动态创建模式有多种好处：
+此动态创建模式有多种好处：
 
-    - 无需提前猜测所有用户的正确分区计数，或者自行生成可无限缩放的单一服务。 
-    - 不同的用户无需具有相同的分区计数、副本计数、替换约束、指标、默认负载、服务名称、DNS 设置或在服务或应用程序级别指定的任何其他属性。 
-    - 你将获得更多的数据段。 每个客户都有自己的服务副本
-        - 可以通过不同方式配置每个客户服务，且授予其更多或更少资源，并且可以根据需要基于客户预期的规模，增加或减少包含的分区或副本数。
-            - 例如，假设客户支付了“黄金”层 - 他们可以获取更多副本或更高分区计数，以及通过指标和应用程序容量专用于其服务的资源。
-            - 或者假设客户提供的信息指示他们需要的联系人数为“Small”- 则会只得到几个分区，或者甚至可能与其他客户一起放置到共享服务池中。
-    - 不需在等待客户出现时运行多个服务实例或副本
-    - 如果某个客户要离开，则从服务中删除其信息非常简单，就像让管理器删除它创建的服务或应用程序一样。
+  - 无需提前猜测所有用户的正确分区计数，或者自行生成可无限缩放的单一服务。 
+  - 不同的用户无需具有相同的分区计数、副本计数、替换约束、指标、默认负载、服务名称、DNS 设置或在服务或应用程序级别指定的任何其他属性。 
+  - 你将获得更多的数据段。 每个客户都有自己的服务副本
+    - 可以通过不同方式配置每个客户服务，且授予其更多或更少资源，并且可以根据需要基于客户预期的规模，增加或减少包含的分区或副本数。
+        - 例如，假设客户支付了“黄金”层 - 他们可以获取更多副本或更高分区计数，以及通过指标和应用程序容量专用于其服务的资源。
+        - 或者假设客户提供的信息指示他们需要的联系人数为“Small”- 则会只得到几个分区，或者甚至可能与其他客户一起放置到共享服务池中。
+  - 不需在等待客户出现时运行多个服务实例或副本
+  - 如果某个客户要离开，则从服务中删除其信息非常简单，就像让管理器删除它创建的服务或应用程序一样。
 
 ## <a name="next-steps"></a>后续步骤
 有关 Service Fabric 概念的详细信息，请参阅以下文章：
@@ -150,4 +151,4 @@ Service Fabric 支持分区。 分区可将服务拆分成若干逻辑和物理�
 * [Service Fabric 服务的可用性](service-fabric-availability-services.md)
 * [Service Fabric 服务分区](service-fabric-concepts-partitioning.md)
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -1,39 +1,45 @@
 ---
 title: 使用 Azure Site Recovery 管理 VMware/物理服务器的移动代理
 description: 管理可使用 Azure Site Recovery 将 VMware VM 和物理服务器灾难恢复到 Azure 的移动服务代理。
-author: rockboyfor
 manager: digimobile
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 03/25/2019
-ms.date: 04/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: d72565c6a8e5ae93de95b164104d97f0a93e4938
-ms.sourcegitcommit: 564739de7e63e19a172122856ebf1f2f7fb4bd2e
+ms.openlocfilehash: 2d4ab275f3e558c34672eb5577c7a7d7cc6c4f5b
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82093241"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655402"
 ---
 # <a name="manage-the-mobility-agent"></a>管理移动代理 
 
 使用 Azure Site Recovery 进行从 VMware VM 和物理服务器到 Azure 的灾难恢复时，请在服务器上设置移动代理。 移动代理协调受保护计算机、配置服务器/横向扩展进程服务器之间的通信，并管理数据复制。 本文概述了在部署移动代理后对其进行管理时要执行的常见任务。
+
+>[!TIP]
+>若要下载特定 OS/Linux 发行版的安装程序，请参阅[此处](vmware-physical-mobility-service-overview.md#locate-installer-files)的指南。 若要从门户自动更新，则无需下载安装程序。 [ASR 会从配置服务器自动提取安装程序，并更新代理](#update-mobility-service-from-azure-portal)。
 
 [!INCLUDE [updated-for-az](../../includes/updated-for-az.md)]
 
 ## <a name="update-mobility-service-from-azure-portal"></a>从 Azure 门户更新移动服务
 
 1. 开始在受保护的计算机上更新移动服务之前，请确保部署中的配置服务器、横向扩展进程服务器及所有主目标服务器均已更新。
-2. 在门户中打开保管库 >“复制的项”。 
-3. 如果配置服务器是最新版本，则会看到一条通知，指出“新的 Site Recovery 复制代理更新已可用。 单击可安装。”
+    1. 从 [9.36 版本](https://support.microsoft.com/help/4578241/)开始，对于 SUSE Linux Enterprise Server 11 SP4，确保最新的安装程序[在配置服务器和横向扩展进程服务器上可用](vmware-physical-mobility-service-overview.md#download-latest-mobility-agent-installer-for-suse-11-sp3-server)。
+1. 在门户中打开保管库 >“复制的项”。 
+1. 如果配置服务器是最新版本，则会看到一条通知，指出“新的 Site Recovery 复制代理更新已可用。 单击可安装。”
 
-    ![“复制的项”窗口](./media/vmware-azure-install-mobility-service/replicated-item-notif.png)
+    :::image type="content" source="./media/vmware-azure-install-mobility-service/replicated-item-notif.png" alt-text="“复制的项”窗口":::
 
 4. 单击该通知，并在“代理更新”中选择要在其上升级移动服务的计算机。   。
 
-    ![“复制的项”VM 列表](./media/vmware-azure-install-mobility-service/update-okpng.png)
+    :::image type="content" source="./media/vmware-azure-install-mobility-service/update-okpng.png" alt-text="“复制的项”VM 列表":::
 
-5. 将为所选的每台计算机启动“更新移动服务”作业。
+5. 将为所选的每台计算机启动“更新移动服务”作业。 移动代理已更新到配置服务器的版本。 例如，如果配置服务器为版本 9.33，则受保护的 VM 上的移动代理也会更新为 9.33 版本。
 
 ## <a name="update-mobility-service-through-powershell-script-on-windows-server"></a>在 Windows 服务器上通过 powershell 脚本更新移动服务
 
@@ -51,8 +57,8 @@ Update-AzRecoveryServicesAsrMobilityService -ReplicationProtectedItem $rpi -Acco
 
 2. 根据服务器的操作系统[找到代理安装程序](vmware-physical-mobility-service-overview.md#locate-installer-files)。
 
-    > [!IMPORTANT]
-    > 如果要在不同的 Azure 区域之间复制 Azure IaaS VM，请不要使用此方法。 
+> [!IMPORTANT]
+> 如果要在不同的 Azure 区域之间复制 Azure IaaS VM，请不要使用此方法。 
     
     <!--Not Available on [our guidance](azure-to-azure-autoupdate.md)-->
 

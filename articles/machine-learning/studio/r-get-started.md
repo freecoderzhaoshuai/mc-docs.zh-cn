@@ -9,12 +9,12 @@ author: xiaoharper
 ms.author: amlstudiodocs
 ms.custom: previous-author=heatherbshapiro, previous-ms.author=hshapiro
 ms.date: 03/01/2019
-ms.openlocfilehash: 6dd98a74c26197b956faf071d923d7865f381627
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 9ca7b3993ae9f5bd94e2e36d982ac20e0651c938
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228105"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021514"
 ---
 # <a name="get-started-with-azure-machine-learning-studio-classic-in-r"></a>在 Azure 机器学习工作室（经典版）中使用 R
 
@@ -86,7 +86,7 @@ Azure 机器学习工作室（经典版）包含许多功能强大的机器学�
 
 例如，我在[执行 R 脚本][execute-r-script]模块中运行下面的 R 代码，其中 y 为未定义变量：
 
-```R
+```r
 x <- 1.0
 z <- x + y
 ```
@@ -99,13 +99,15 @@ z <- x + y
 
 看来我们需要打开 output.log 文件查看此 R 错误消息。 选择[执行 R 脚本][execute-r-script]后，选择右侧的“属性”窗格上的“查看 output.log”。**** **** 打开了新的浏览器窗口，我看到以下内容。
 
-    [Critical]     Error: Error 0063: The following error occurred during evaluation of R script:
-    ---------- Start of error message from R ----------
-    object 'y' not found
+```output
+[Critical]     Error: Error 0063: The following error occurred during evaluation of R script:
+---------- Start of error message from R ----------
+object 'y' not found
 
 
-    object 'y' not found
-    ----------- End of error message from R -----------
+object 'y' not found
+----------- End of error message from R -----------
+```
 
 此错误消息没有意料之外的内容，明确标识了问题所在。
 
@@ -223,7 +225,7 @@ load("src/yourData.rdata") # Reads a zipped R data file
 
 我们已经在[加载数据集](#loading)中讨论过加载数据集。 一旦创建并测试上一节中所示的 R 脚本后，请执行以下操作：
 
-1. 将 R 脚本保存到 R 文件。 调用脚本文件“simpleplot.R”。 内容如下：
+1. 将 R 脚本保存到 R 文件。 调用脚本文件“simpleplot.R”。 下面是文件中的内容：
 
    ```R
    ## Only one of the following two lines should be used
@@ -266,38 +268,42 @@ cadairydata <- maml.mapInputPort(1)
 
 选择“运行”按钮执行试验。**** 执行完成后，选择[执行 R 脚本][execute-r-script]模块，并选择“属性”窗格上的“查看 output.log”。**** 浏览器中打开新的页面，其中显示 output.log 文件的内容。 向下滚动页面时会看到类似下面的内容：
 
-    [ModuleOutput] InputDataStructure
-    [ModuleOutput]
-    [ModuleOutput] {
-    [ModuleOutput]  "InputName":Dataset1
-    [ModuleOutput]  "Rows":228
-    [ModuleOutput]  "Cols":9
-    [ModuleOutput]  "ColumnTypes":System.Int32,3,System.Double,5,System.String,1
-    [ModuleOutput] }
+```output
+[ModuleOutput] InputDataStructure
+[ModuleOutput]
+[ModuleOutput] {
+[ModuleOutput]  "InputName":Dataset1
+[ModuleOutput]  "Rows":228
+[ModuleOutput]  "Cols":9
+[ModuleOutput]  "ColumnTypes":System.Int32,3,System.Double,5,System.String,1
+[ModuleOutput] }
+```
 
 继续向下滚动页面会显示列的详细信息，其内容如下所示。
 
-    [ModuleOutput] [1] "Loading variable port1..."
-    [ModuleOutput]
-    [ModuleOutput] 'data.frame':    228 obs. of  9 variables:
-    [ModuleOutput]
-    [ModuleOutput]  $ Column 0         : int  1 2 3 4 5 6 7 8 9 10 ...
-    [ModuleOutput]
-    [ModuleOutput]  $ Year.Month       : num  1995 1995 1995 1995 1995 ...
-    [ModuleOutput]
-    [ModuleOutput]  $ Month.Number     : int  1 2 3 4 5 6 7 8 9 10 ...
-    [ModuleOutput]
-    [ModuleOutput]  $ Year             : int  1995 1995 1995 1995 1995 1995 1995 1995 1995 1995 ...
-    [ModuleOutput]
-    [ModuleOutput]  $ Month            : chr  "Jan" "Feb" "Mar" "Apr" ...
-    [ModuleOutput]
-    [ModuleOutput]  $ Cotagecheese.Prod: num  4.37 3.69 4.54 4.28 4.47 ...
-    [ModuleOutput]
-    [ModuleOutput]  $ Icecream.Prod    : num  51.6 56.1 68.5 65.7 73.7 ...
-    [ModuleOutput]
-    [ModuleOutput]  $ Milk.Prod        : num  2.11 1.93 2.16 2.13 2.23 ...
-    [ModuleOutput]
-    [ModuleOutput]  $ N.CA.Fat.Price   : num  0.98 0.892 0.892 0.897 0.897 ...
+```output
+[ModuleOutput] [1] "Loading variable port1..."
+[ModuleOutput]
+[ModuleOutput] 'data.frame':    228 obs. of  9 variables:
+[ModuleOutput]
+[ModuleOutput]  $ Column 0         : int  1 2 3 4 5 6 7 8 9 10 ...
+[ModuleOutput]
+[ModuleOutput]  $ Year.Month       : num  1995 1995 1995 1995 1995 ...
+[ModuleOutput]
+[ModuleOutput]  $ Month.Number     : int  1 2 3 4 5 6 7 8 9 10 ...
+[ModuleOutput]
+[ModuleOutput]  $ Year             : int  1995 1995 1995 1995 1995 1995 1995 1995 1995 1995 ...
+[ModuleOutput]
+[ModuleOutput]  $ Month            : chr  "Jan" "Feb" "Mar" "Apr" ...
+[ModuleOutput]
+[ModuleOutput]  $ Cotagecheese.Prod: num  4.37 3.69 4.54 4.28 4.47 ...
+[ModuleOutput]
+[ModuleOutput]  $ Icecream.Prod    : num  51.6 56.1 68.5 65.7 73.7 ...
+[ModuleOutput]
+[ModuleOutput]  $ Milk.Prod        : num  2.11 1.93 2.16 2.13 2.23 ...
+[ModuleOutput]
+[ModuleOutput]  $ N.CA.Fat.Price   : num  0.98 0.892 0.892 0.897 0.897 ...
+```
 
 这些结果大多和预期的一样，数据框中包含 228 个观测值和 9 个列。 我们可以看到列名称、R 数据类型和每个列的示例。
 
@@ -314,7 +320,7 @@ Dataset2 的输入行为与 Dataset1 相同。 使用此输入可以将另一个
 
 可以使用 `maml.mapOutputPort()` 函数，通过结果 Dataset1 端口将 R 数据框的内容输出为表格。 在我们的简单 R 脚本中，由以下行执行此操作。
 
-```
+```r
 maml.mapOutputPort('cadairydata')
 ```
 
@@ -387,31 +393,33 @@ maml.mapOutputPort('cadairydata')
 
 让我们来执行此代码，并查看 R 脚本的输出日志。 图 9 中显示了日志中的相关数据。
 
-    [ModuleOutput] [1] "Loading variable port1..."
-    [ModuleOutput] 
-    [ModuleOutput] 'data.frame':    228 obs. of  9 variables:
-    [ModuleOutput] 
-    [ModuleOutput]  $ Column 0         : int  1 2 3 4 5 6 7 8 9 10 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Year.Month       : num  1995 1995 1995 1995 1995 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Month.Number     : int  1 2 3 4 5 6 7 8 9 10 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Year             : int  1995 1995 1995 1995 1995 1995 1995 1995 1995 1995 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Month            : Factor w/ 14 levels "Apr","April",..: 6 5 9 1 11 8 7 3 14 13 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Cotagecheese.Prod: num  4.37 3.69 4.54 4.28 4.47 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Icecream.Prod    : num  51.6 56.1 68.5 65.7 73.7 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Milk.Prod        : num  2.11 1.93 2.16 2.13 2.23 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ N.CA.Fat.Price   : num  0.98 0.892 0.892 0.897 0.897 ...
-    [ModuleOutput] 
-    [ModuleOutput] [1] "Saving variable  cadairydata  ..."
-    [ModuleOutput] 
-    [ModuleOutput] [1] "Saving the following item(s):  .maml.oport1"
+```output
+[ModuleOutput] [1] "Loading variable port1..."
+[ModuleOutput] 
+[ModuleOutput] 'data.frame':    228 obs. of  9 variables:
+[ModuleOutput] 
+[ModuleOutput]  $ Column 0         : int  1 2 3 4 5 6 7 8 9 10 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Year.Month       : num  1995 1995 1995 1995 1995 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Month.Number     : int  1 2 3 4 5 6 7 8 9 10 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Year             : int  1995 1995 1995 1995 1995 1995 1995 1995 1995 1995 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Month            : Factor w/ 14 levels "Apr","April",..: 6 5 9 1 11 8 7 3 14 13 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Cotagecheese.Prod: num  4.37 3.69 4.54 4.28 4.47 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Icecream.Prod    : num  51.6 56.1 68.5 65.7 73.7 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Milk.Prod        : num  2.11 1.93 2.16 2.13 2.23 ...
+[ModuleOutput] 
+[ModuleOutput]  $ N.CA.Fat.Price   : num  0.98 0.892 0.892 0.897 0.897 ...
+[ModuleOutput] 
+[ModuleOutput] [1] "Saving variable  cadairydata  ..."
+[ModuleOutput] 
+[ModuleOutput] [1] "Saving the following item(s):  .maml.oport1"
+```
 
 *图 9.具有因子变量的数据框摘要*
 
@@ -426,31 +434,33 @@ cadairydata$Month <- as.factor(substr(cadairydata$Month, 1, 3))
 
 重新运行实验，并查看输出日志。 预期的结果如图 10 所示。  
 
-    [ModuleOutput] [1] "Loading variable port1..."
-    [ModuleOutput] 
-    [ModuleOutput] 'data.frame':    228 obs. of  9 variables:
-    [ModuleOutput] 
-    [ModuleOutput]  $ Column 0         : int  1 2 3 4 5 6 7 8 9 10 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Year.Month       : num  1995 1995 1995 1995 1995 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Month.Number     : int  1 2 3 4 5 6 7 8 9 10 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Year             : int  1995 1995 1995 1995 1995 1995 1995 1995 1995 1995 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Month            : Factor w/ 12 levels "Apr","Aug","Dec",..: 5 4 8 1 9 7 6 2 12 11 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Cotagecheese.Prod: num  4.37 3.69 4.54 4.28 4.47 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Icecream.Prod    : num  51.6 56.1 68.5 65.7 73.7 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Milk.Prod        : num  2.11 1.93 2.16 2.13 2.23 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ N.CA.Fat.Price   : num  0.98 0.892 0.892 0.897 0.897 ...
-    [ModuleOutput] 
-    [ModuleOutput] [1] "Saving variable  cadairydata  ..."
-    [ModuleOutput] 
-    [ModuleOutput] [1] "Saving the following item(s):  .maml.oport1"
+```output
+[ModuleOutput] [1] "Loading variable port1..."
+[ModuleOutput] 
+[ModuleOutput] 'data.frame':    228 obs. of  9 variables:
+[ModuleOutput] 
+[ModuleOutput]  $ Column 0         : int  1 2 3 4 5 6 7 8 9 10 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Year.Month       : num  1995 1995 1995 1995 1995 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Month.Number     : int  1 2 3 4 5 6 7 8 9 10 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Year             : int  1995 1995 1995 1995 1995 1995 1995 1995 1995 1995 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Month            : Factor w/ 12 levels "Apr","Aug","Dec",..: 5 4 8 1 9 7 6 2 12 11 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Cotagecheese.Prod: num  4.37 3.69 4.54 4.28 4.47 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Icecream.Prod    : num  51.6 56.1 68.5 65.7 73.7 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Milk.Prod        : num  2.11 1.93 2.16 2.13 2.23 ...
+[ModuleOutput] 
+[ModuleOutput]  $ N.CA.Fat.Price   : num  0.98 0.892 0.892 0.897 0.897 ...
+[ModuleOutput] 
+[ModuleOutput] [1] "Saving variable  cadairydata  ..."
+[ModuleOutput] 
+[ModuleOutput] [1] "Saving the following item(s):  .maml.oport1"
+```
 
 *图 10.具有正确的因子级别数的数据框摘要*
 
@@ -474,27 +484,29 @@ cadairydata <- cadairydata[, c(-1, -2)]
 
 在试验中运行此代码，并检查输出日志中的结果。 结果如图 11 所示。
 
-    [ModuleOutput] [1] "Loading variable port1..."
-    [ModuleOutput] 
-    [ModuleOutput] 'data.frame':    228 obs. of  7 variables:
-    [ModuleOutput] 
-    [ModuleOutput]  $ Month.Number     : int  1 2 3 4 5 6 7 8 9 10 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Year             : int  1995 1995 1995 1995 1995 1995 1995 1995 1995 1995 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Month            : Factor w/ 12 levels "Apr","Aug","Dec",..: 5 4 8 1 9 7 6 2 12 11 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Cotagecheese.Prod: num  4.37 3.69 4.54 4.28 4.47 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Icecream.Prod    : num  51.6 56.1 68.5 65.7 73.7 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Milk.Prod        : num  2.11 1.93 2.16 2.13 2.23 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ N.CA.Fat.Price   : num  0.98 0.892 0.892 0.897 0.897 ...
-    [ModuleOutput] 
-    [ModuleOutput] [1] "Saving variable  cadairydata  ..."
-    [ModuleOutput] 
-    [ModuleOutput] [1] "Saving the following item(s):  .maml.oport1"
+```output
+[ModuleOutput] [1] "Loading variable port1..."
+[ModuleOutput] 
+[ModuleOutput] 'data.frame':    228 obs. of  7 variables:
+[ModuleOutput] 
+[ModuleOutput]  $ Month.Number     : int  1 2 3 4 5 6 7 8 9 10 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Year             : int  1995 1995 1995 1995 1995 1995 1995 1995 1995 1995 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Month            : Factor w/ 12 levels "Apr","Aug","Dec",..: 5 4 8 1 9 7 6 2 12 11 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Cotagecheese.Prod: num  4.37 3.69 4.54 4.28 4.47 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Icecream.Prod    : num  51.6 56.1 68.5 65.7 73.7 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Milk.Prod        : num  2.11 1.93 2.16 2.13 2.23 ...
+[ModuleOutput] 
+[ModuleOutput]  $ N.CA.Fat.Price   : num  0.98 0.892 0.892 0.897 0.897 ...
+[ModuleOutput] 
+[ModuleOutput] [1] "Saving variable  cadairydata  ..."
+[ModuleOutput] 
+[ModuleOutput] [1] "Saving the following item(s):  .maml.oport1"
+```
 
 *图 11.删除了两列的数据框摘要*
 
@@ -524,29 +536,31 @@ cadairydata$Month.Count <- num.month(cadairydata$Year, cadairydata$Month.Number)
 
 现在运行更新的试验，并使用输出日志查看结果。 结果如图 12 所示。
 
-    [ModuleOutput] [1] "Loading variable port1..."
-    [ModuleOutput] 
-    [ModuleOutput] 'data.frame':    228 obs. of  8 variables:
-    [ModuleOutput] 
-    [ModuleOutput]  $ Month.Number     : int  1 2 3 4 5 6 7 8 9 10 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Year             : int  1995 1995 1995 1995 1995 1995 1995 1995 1995 1995 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Month            : Factor w/ 12 levels "Apr","Aug","Dec",..: 5 4 8 1 9 7 6 2 12 11 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Cotagecheese.Prod: num  4.37 3.69 4.54 4.28 4.47 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Icecream.Prod    : num  51.6 56.1 68.5 65.7 73.7 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Milk.Prod        : num  2.11 1.93 2.16 2.13 2.23 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ N.CA.Fat.Price   : num  0.98 0.892 0.892 0.897 0.897 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Month.Count      : num  0 1 2 3 4 5 6 7 8 9 ...
-    [ModuleOutput] 
-    [ModuleOutput] [1] "Saving variable  cadairydata  ..."
-    [ModuleOutput] 
-    [ModuleOutput] [1] "Saving the following item(s):  .maml.oport1"
+```output
+[ModuleOutput] [1] "Loading variable port1..."
+[ModuleOutput] 
+[ModuleOutput] 'data.frame':    228 obs. of  8 variables:
+[ModuleOutput] 
+[ModuleOutput]  $ Month.Number     : int  1 2 3 4 5 6 7 8 9 10 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Year             : int  1995 1995 1995 1995 1995 1995 1995 1995 1995 1995 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Month            : Factor w/ 12 levels "Apr","Aug","Dec",..: 5 4 8 1 9 7 6 2 12 11 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Cotagecheese.Prod: num  4.37 3.69 4.54 4.28 4.47 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Icecream.Prod    : num  51.6 56.1 68.5 65.7 73.7 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Milk.Prod        : num  2.11 1.93 2.16 2.13 2.23 ...
+[ModuleOutput] 
+[ModuleOutput]  $ N.CA.Fat.Price   : num  0.98 0.892 0.892 0.897 0.897 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Month.Count      : num  0 1 2 3 4 5 6 7 8 9 ...
+[ModuleOutput] 
+[ModuleOutput] [1] "Saving variable  cadairydata  ..."
+[ModuleOutput] 
+[ModuleOutput] [1] "Saving the following item(s):  .maml.oport1"
+```
 
 *图 12.具有附加列的数据框摘要*
 
@@ -608,29 +622,31 @@ cadairydata <- na.omit(cadairydata)
 
 在试验中执行此 R 代码，并在 output.log 文件中查看打印输出。 现在可在日志中看到四个列的转换后的值，如图 13 所示。
 
-    [ModuleOutput] [1] "Loading variable port1..."
-    [ModuleOutput] 
-    [ModuleOutput] 'data.frame':    228 obs. of  8 variables:
-    [ModuleOutput] 
-    [ModuleOutput]  $ Month.Number     : int  1 2 3 4 5 6 7 8 9 10 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Year             : int  1995 1995 1995 1995 1995 1995 1995 1995 1995 1995 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Month            : Factor w/ 12 levels "Apr","Aug","Dec",..: 5 4 8 1 9 7 6 2 12 11 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Cotagecheese.Prod: num  1.47 1.31 1.51 1.45 1.5 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Icecream.Prod    : num  5.82 5.9 6.1 6.06 6.17 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Milk.Prod        : num  7.66 7.57 7.68 7.66 7.71 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ N.CA.Fat.Price   : num  6.89 6.79 6.79 6.8 6.8 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Month.Count      : num  0 1 2 3 4 5 6 7 8 9 ...
-    [ModuleOutput] 
-    [ModuleOutput] [1] "Saving variable  cadairydata  ..."
-    [ModuleOutput] 
-    [ModuleOutput] [1] "Saving the following item(s):  .maml.oport1"
+```output
+[ModuleOutput] [1] "Loading variable port1..."
+[ModuleOutput] 
+[ModuleOutput] 'data.frame':    228 obs. of  8 variables:
+[ModuleOutput] 
+[ModuleOutput]  $ Month.Number     : int  1 2 3 4 5 6 7 8 9 10 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Year             : int  1995 1995 1995 1995 1995 1995 1995 1995 1995 1995 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Month            : Factor w/ 12 levels "Apr","Aug","Dec",..: 5 4 8 1 9 7 6 2 12 11 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Cotagecheese.Prod: num  1.47 1.31 1.51 1.45 1.5 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Icecream.Prod    : num  5.82 5.9 6.1 6.06 6.17 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Milk.Prod        : num  7.66 7.57 7.68 7.66 7.71 ...
+[ModuleOutput] 
+[ModuleOutput]  $ N.CA.Fat.Price   : num  6.89 6.79 6.79 6.8 6.8 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Month.Count      : num  0 1 2 3 4 5 6 7 8 9 ...
+[ModuleOutput] 
+[ModuleOutput] [1] "Saving variable  cadairydata  ..."
+[ModuleOutput] 
+[ModuleOutput] [1] "Saving the following item(s):  .maml.oport1"
+```
 
 *图 13.数据框中转换后的值摘要*
 
@@ -668,25 +684,27 @@ str(cadairydata) # Check the results
 
 现在，运行试验。 新的执行 R 脚本形状的日志应如图 14 所示。
 
-    [ModuleOutput] [1] "Loading variable port1..."
-    [ModuleOutput] 
-    [ModuleOutput] 'data.frame':    228 obs. of  8 variables:
-    [ModuleOutput] 
-    [ModuleOutput]  $ Month.Number     : int  1 2 3 4 5 6 7 8 9 10 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Year             : int  1995 1995 1995 1995 1995 1995 1995 1995 1995 1995 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Month            : Factor w/ 12 levels "Apr","Aug","Dec",..: 5 4 8 1 9 7 6 2 12 11 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Cotagecheese.Prod: num  1.47 1.31 1.51 1.45 1.5 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Icecream.Prod    : num  5.82 5.9 6.1 6.06 6.17 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Milk.Prod        : num  7.66 7.57 7.68 7.66 7.71 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ N.CA.Fat.Price   : num  6.89 6.79 6.79 6.8 6.8 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Month.Count      : num  0 1 2 3 4 5 6 7 8 9 ...
+```output
+[ModuleOutput] [1] "Loading variable port1..."
+[ModuleOutput] 
+[ModuleOutput] 'data.frame':    228 obs. of  8 variables:
+[ModuleOutput] 
+[ModuleOutput]  $ Month.Number     : int  1 2 3 4 5 6 7 8 9 10 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Year             : int  1995 1995 1995 1995 1995 1995 1995 1995 1995 1995 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Month            : Factor w/ 12 levels "Apr","Aug","Dec",..: 5 4 8 1 9 7 6 2 12 11 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Cotagecheese.Prod: num  1.47 1.31 1.51 1.45 1.5 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Icecream.Prod    : num  5.82 5.9 6.1 6.06 6.17 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Milk.Prod        : num  7.66 7.57 7.68 7.66 7.71 ...
+[ModuleOutput] 
+[ModuleOutput]  $ N.CA.Fat.Price   : num  6.89 6.79 6.79 6.8 6.8 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Month.Count      : num  0 1 2 3 4 5 6 7 8 9 ...
+```
 
 *图 14.执行 R 脚本模块中的数据框摘要*
 
@@ -709,27 +727,29 @@ str(cadairydata) # Check the results
 
 现在，检查日志。 日志如图 15 所示：
 
-    [ModuleOutput] [1] "Loading variable port1..."
-    [ModuleOutput] 
-    [ModuleOutput] 'data.frame':    228 obs. of  9 variables:
-    [ModuleOutput] 
-    [ModuleOutput]  $ Month.Number     : int  1 2 3 4 5 6 7 8 9 10 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Year             : int  1995 1995 1995 1995 1995 1995 1995 1995 1995 1995 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Month            : Factor w/ 12 levels "Apr","Aug","Dec",..: 5 4 8 1 9 7 6 2 12 11 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Cotagecheese.Prod: num  1.47 1.31 1.51 1.45 1.5 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Icecream.Prod    : num  5.82 5.9 6.1 6.06 6.17 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Milk.Prod        : num  7.66 7.57 7.68 7.66 7.71 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ N.CA.Fat.Price   : num  6.89 6.79 6.79 6.8 6.8 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Month.Count      : num  0 1 2 3 4 5 6 7 8 9 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Time             : POSIXct, format: "1995-01-01" "1995-02-01" ...
+```output
+[ModuleOutput] [1] "Loading variable port1..."
+[ModuleOutput] 
+[ModuleOutput] 'data.frame':    228 obs. of  9 variables:
+[ModuleOutput] 
+[ModuleOutput]  $ Month.Number     : int  1 2 3 4 5 6 7 8 9 10 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Year             : int  1995 1995 1995 1995 1995 1995 1995 1995 1995 1995 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Month            : Factor w/ 12 levels "Apr","Aug","Dec",..: 5 4 8 1 9 7 6 2 12 11 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Cotagecheese.Prod: num  1.47 1.31 1.51 1.45 1.5 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Icecream.Prod    : num  5.82 5.9 6.1 6.06 6.17 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Milk.Prod        : num  7.66 7.57 7.68 7.66 7.71 ...
+[ModuleOutput] 
+[ModuleOutput]  $ N.CA.Fat.Price   : num  6.89 6.79 6.79 6.8 6.8 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Month.Count      : num  0 1 2 3 4 5 6 7 8 9 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Time             : POSIXct, format: "1995-01-01" "1995-02-01" ...
+```
 
 *图 15.具有时序对象的数据框摘要*
 
@@ -838,57 +858,59 @@ cadairycorrelations
 
 运行此代码生成的日志如图 18 所示。
 
-    [ModuleOutput] Loading objects:
-    [ModuleOutput]   port1
-    [ModuleOutput] [1] "Loading variable port1..."
-    [ModuleOutput] [[1]]
-    [ModuleOutput] 
-    [ModuleOutput] 
-    [ModuleOutput] Autocorrelations of series 'X', by lag
-    [ModuleOutput] 
-    [ModuleOutput] 
-    [ModuleOutput]    -1     0     1 
-    [ModuleOutput] 0.148 0.358 0.317 
-    [ModuleOutput] 
-    [ModuleOutput] 
-    [ModuleOutput] [[2]]
-    [ModuleOutput] 
-    [ModuleOutput] 
-    [ModuleOutput] Autocorrelations of series 'X', by lag
-    [ModuleOutput] 
-    [ModuleOutput] 
-    [ModuleOutput]     -1      0      1 
-    [ModuleOutput] -0.395 -0.186 -0.238 
-    [ModuleOutput] 
-    [ModuleOutput] 
-    [ModuleOutput] [[3]]
-    [ModuleOutput] 
-    [ModuleOutput] 
-    [ModuleOutput] Autocorrelations of series 'X', by lag
-    [ModuleOutput] 
-    [ModuleOutput] 
-    [ModuleOutput]     -1      0      1 
-    [ModuleOutput] -0.059 -0.089 -0.127 
-    [ModuleOutput] 
-    [ModuleOutput] 
-    [ModuleOutput] [[4]]
-    [ModuleOutput] 
-    [ModuleOutput] 
-    [ModuleOutput] Autocorrelations of series 'X', by lag
-    [ModuleOutput] 
-    [ModuleOutput] 
-    [ModuleOutput]    -1     0     1 
-    [ModuleOutput] 0.140 0.294 0.293 
-    [ModuleOutput] 
-    [ModuleOutput] 
-    [ModuleOutput] [[5]]
-    [ModuleOutput] 
-    [ModuleOutput] 
-    [ModuleOutput] Autocorrelations of series 'X', by lag
-    [ModuleOutput] 
-    [ModuleOutput] 
-    [ModuleOutput]     -1      0      1 
-    [ModuleOutput] -0.002 -0.074 -0.124 
+```output
+[ModuleOutput] Loading objects:
+[ModuleOutput]   port1
+[ModuleOutput] [1] "Loading variable port1..."
+[ModuleOutput] [[1]]
+[ModuleOutput] 
+[ModuleOutput] 
+[ModuleOutput] Autocorrelations of series 'X', by lag
+[ModuleOutput] 
+[ModuleOutput] 
+[ModuleOutput]    -1     0     1 
+[ModuleOutput] 0.148 0.358 0.317 
+[ModuleOutput] 
+[ModuleOutput] 
+[ModuleOutput] [[2]]
+[ModuleOutput] 
+[ModuleOutput] 
+[ModuleOutput] Autocorrelations of series 'X', by lag
+[ModuleOutput] 
+[ModuleOutput] 
+[ModuleOutput]     -1      0      1 
+[ModuleOutput] -0.395 -0.186 -0.238 
+[ModuleOutput] 
+[ModuleOutput] 
+[ModuleOutput] [[3]]
+[ModuleOutput] 
+[ModuleOutput] 
+[ModuleOutput] Autocorrelations of series 'X', by lag
+[ModuleOutput] 
+[ModuleOutput] 
+[ModuleOutput]     -1      0      1 
+[ModuleOutput] -0.059 -0.089 -0.127 
+[ModuleOutput] 
+[ModuleOutput] 
+[ModuleOutput] [[4]]
+[ModuleOutput] 
+[ModuleOutput] 
+[ModuleOutput] Autocorrelations of series 'X', by lag
+[ModuleOutput] 
+[ModuleOutput] 
+[ModuleOutput]    -1     0     1 
+[ModuleOutput] 0.140 0.294 0.293 
+[ModuleOutput] 
+[ModuleOutput] 
+[ModuleOutput] [[5]]
+[ModuleOutput] 
+[ModuleOutput] 
+[ModuleOutput] Autocorrelations of series 'X', by lag
+[ModuleOutput] 
+[ModuleOutput] 
+[ModuleOutput]     -1      0      1 
+[ModuleOutput] -0.002 -0.074 -0.124 
+```
 
 *图 18.成对相关性分析的 ccf 对象列表*
 
@@ -968,27 +990,29 @@ str(cadairydata)
 
 运行此代码并查看日志。 结果如图 21 所示。
 
-    [ModuleOutput] [1] "Loading variable port1..."
-    [ModuleOutput] 
-    [ModuleOutput] 'data.frame':    228 obs. of  9 variables:
-    [ModuleOutput] 
-    [ModuleOutput]  $ Month.Number     : int  1 2 3 4 5 6 7 8 9 10 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Year             : int  1995 1995 1995 1995 1995 1995 1995 1995 1995 1995 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Month            : Factor w/ 12 levels "Apr","Aug","Dec",..: 5 4 8 1 9 7 6 2 12 11 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Cotagecheese.Prod: num  1.47 1.31 1.51 1.45 1.5 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Icecream.Prod    : num  5.82 5.9 6.1 6.06 6.17 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Milk.Prod        : num  7.66 7.57 7.68 7.66 7.71 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ N.CA.Fat.Price   : num  6.89 6.79 6.79 6.8 6.8 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Month.Count      : num  0 1 2 3 4 5 6 7 8 9 ...
-    [ModuleOutput] 
-    [ModuleOutput]  $ Time             : POSIXct, format: "1995-01-01" "1995-02-01" ...
+```output
+[ModuleOutput] [1] "Loading variable port1..."
+[ModuleOutput] 
+[ModuleOutput] 'data.frame':    228 obs. of  9 variables:
+[ModuleOutput] 
+[ModuleOutput]  $ Month.Number     : int  1 2 3 4 5 6 7 8 9 10 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Year             : int  1995 1995 1995 1995 1995 1995 1995 1995 1995 1995 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Month            : Factor w/ 12 levels "Apr","Aug","Dec",..: 5 4 8 1 9 7 6 2 12 11 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Cotagecheese.Prod: num  1.47 1.31 1.51 1.45 1.5 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Icecream.Prod    : num  5.82 5.9 6.1 6.06 6.17 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Milk.Prod        : num  7.66 7.57 7.68 7.66 7.71 ...
+[ModuleOutput] 
+[ModuleOutput]  $ N.CA.Fat.Price   : num  6.89 6.79 6.79 6.8 6.8 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Month.Count      : num  0 1 2 3 4 5 6 7 8 9 ...
+[ModuleOutput] 
+[ModuleOutput]  $ Time             : POSIXct, format: "1995-01-01" "1995-02-01" ...
+```
 
 *图 21.数据框摘要*
 
@@ -1036,27 +1060,29 @@ summary(milk.lm)
 
 此代码生成以下结果。
 
-    ##
-    ## Call:
-    ## lm(formula = Milk.Prod ~ Time + I(Month.Count^2) + I(Month.Count^3),
-    ##     data = cadairytrain)
-    ##
-    ## Residuals:
-    ##      Min       1Q   Median       3Q      Max
-    ## -0.12667 -0.02730  0.00236  0.02943  0.10586
-    ##
-    ## Coefficients:
-    ##                   Estimate Std. Error t value Pr(>|t|)
-    ## (Intercept)       6.33e+00   1.45e-01   43.60   <2e-16 ***
-    ## Time              1.63e-09   1.72e-10    9.47   <2e-16 ***
-    ## I(Month.Count^2) -1.71e-06   4.89e-06   -0.35    0.726
-    ## I(Month.Count^3) -3.24e-08   1.49e-08   -2.17    0.031 *  
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ##
-    ## Residual standard error: 0.0418 on 212 degrees of freedom
-    ## Multiple R-squared:  0.941,    Adjusted R-squared:  0.94
-    ## F-statistic: 1.12e+03 on 3 and 212 DF,  p-value: <2e-16
+```output
+##
+## Call:
+## lm(formula = Milk.Prod ~ Time + I(Month.Count^2) + I(Month.Count^3),
+##     data = cadairytrain)
+##
+## Residuals:
+##      Min       1Q   Median       3Q      Max
+## -0.12667 -0.02730  0.00236  0.02943  0.10586
+##
+## Coefficients:
+##                   Estimate Std. Error t value Pr(>|t|)
+## (Intercept)       6.33e+00   1.45e-01   43.60   <2e-16 ***
+## Time              1.63e-09   1.72e-10    9.47   <2e-16 ***
+## I(Month.Count^2) -1.71e-06   4.89e-06   -0.35    0.726
+## I(Month.Count^3) -3.24e-08   1.49e-08   -2.17    0.031 *  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+##
+## Residual standard error: 0.0418 on 212 degrees of freedom
+## Multiple R-squared:  0.941,    Adjusted R-squared:  0.94
+## F-statistic: 1.12e+03 on 3 and 212 DF,  p-value: <2e-16
+```
 
 从该输出中的 P 值 (`Pr(>|t|)`) 来看，平方项可能并不重要。 我使用 `update()` 函数删除平方项来修改此模型。
 
@@ -1067,25 +1093,27 @@ summary(milk.lm)
 
 此代码生成以下结果。
 
-    ##
-    ## Call:
-    ## lm(formula = Milk.Prod ~ Time + I(Month.Count^3), data = cadairytrain)
-    ##
-    ## Residuals:
-    ##      Min       1Q   Median       3Q      Max
-    ## -0.12597 -0.02659  0.00185  0.02963  0.10696
-    ##
-    ## Coefficients:
-    ##                   Estimate Std. Error t value Pr(>|t|)
-    ## (Intercept)       6.38e+00   4.07e-02   156.6   <2e-16 ***
-    ## Time              1.57e-09   4.32e-11    36.3   <2e-16 ***
-    ## I(Month.Count^3) -3.76e-08   2.50e-09   -15.1   <2e-16 ***
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ##
-    ## Residual standard error: 0.0417 on 213 degrees of freedom
-    ## Multiple R-squared:  0.941,  Adjusted R-squared:  0.94
-    ## F-statistic: 1.69e+03 on 2 and 213 DF,  p-value: <2e-16
+```output
+##
+## Call:
+## lm(formula = Milk.Prod ~ Time + I(Month.Count^3), data = cadairytrain)
+##
+## Residuals:
+##      Min       1Q   Median       3Q      Max
+## -0.12597 -0.02659  0.00185  0.02963  0.10696
+##
+## Coefficients:
+##                   Estimate Std. Error t value Pr(>|t|)
+## (Intercept)       6.38e+00   4.07e-02   156.6   <2e-16 ***
+## Time              1.57e-09   4.32e-11    36.3   <2e-16 ***
+## I(Month.Count^3) -3.76e-08   2.50e-09   -15.1   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+##
+## Residual standard error: 0.0417 on 213 degrees of freedom
+## Multiple R-squared:  0.941,  Adjusted R-squared:  0.94
+## F-statistic: 1.69e+03 on 2 and 213 DF,  p-value: <2e-16
+```
 
 这个结果看起来好多了。 所有项都重要。 但是，2e-16 值是默认值，不必太关心。  
 
@@ -1117,37 +1145,39 @@ summary(milk.lm2)
 
 此代码生成以下结果。
 
-    ##
-    ## Call:
-    ## lm(formula = Milk.Prod ~ Time + I(Month.Count^3) + Month - 1,
-    ##     data = cadairytrain)
-    ##
-    ## Residuals:
-    ##      Min       1Q   Median       3Q      Max
-    ## -0.06879 -0.01693  0.00346  0.01543  0.08726
-    ##
-    ## Coefficients:
-    ##                   Estimate Std. Error t value Pr(>|t|)
-    ## Time              1.57e-09   2.72e-11    57.7   <2e-16 ***
-    ## I(Month.Count^3) -3.74e-08   1.57e-09   -23.8   <2e-16 ***
-    ## MonthApr          6.40e+00   2.63e-02   243.3   <2e-16 ***
-    ## MonthAug          6.38e+00   2.63e-02   242.2   <2e-16 ***
-    ## MonthDec          6.38e+00   2.64e-02   241.9   <2e-16 ***
-    ## MonthFeb          6.31e+00   2.63e-02   240.1   <2e-16 ***
-    ## MonthJan          6.39e+00   2.63e-02   243.1   <2e-16 ***
-    ## MonthJul          6.39e+00   2.63e-02   242.6   <2e-16 ***
-    ## MonthJun          6.38e+00   2.63e-02   242.4   <2e-16 ***
-    ## MonthMar          6.42e+00   2.63e-02   244.2   <2e-16 ***
-    ## MonthMay          6.43e+00   2.63e-02   244.3   <2e-16 ***
-    ## MonthNov          6.34e+00   2.63e-02   240.6   <2e-16 ***
-    ## MonthOct          6.37e+00   2.63e-02   241.8   <2e-16 ***
-    ## MonthSep          6.34e+00   2.63e-02   240.6   <2e-16 ***
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ##
-    ## Residual standard error: 0.0263 on 202 degrees of freedom
-    ## Multiple R-squared:     1,    Adjusted R-squared:     1
-    ## F-statistic: 1.42e+06 on 14 and 202 DF,  p-value: <2e-16
+```output
+##
+## Call:
+## lm(formula = Milk.Prod ~ Time + I(Month.Count^3) + Month - 1,
+##     data = cadairytrain)
+##
+## Residuals:
+##      Min       1Q   Median       3Q      Max
+## -0.06879 -0.01693  0.00346  0.01543  0.08726
+##
+## Coefficients:
+##                   Estimate Std. Error t value Pr(>|t|)
+## Time              1.57e-09   2.72e-11    57.7   <2e-16 ***
+## I(Month.Count^3) -3.74e-08   1.57e-09   -23.8   <2e-16 ***
+## MonthApr          6.40e+00   2.63e-02   243.3   <2e-16 ***
+## MonthAug          6.38e+00   2.63e-02   242.2   <2e-16 ***
+## MonthDec          6.38e+00   2.64e-02   241.9   <2e-16 ***
+## MonthFeb          6.31e+00   2.63e-02   240.1   <2e-16 ***
+## MonthJan          6.39e+00   2.63e-02   243.1   <2e-16 ***
+## MonthJul          6.39e+00   2.63e-02   242.6   <2e-16 ***
+## MonthJun          6.38e+00   2.63e-02   242.4   <2e-16 ***
+## MonthMar          6.42e+00   2.63e-02   244.2   <2e-16 ***
+## MonthMay          6.43e+00   2.63e-02   244.3   <2e-16 ***
+## MonthNov          6.34e+00   2.63e-02   240.6   <2e-16 ***
+## MonthOct          6.37e+00   2.63e-02   241.8   <2e-16 ***
+## MonthSep          6.34e+00   2.63e-02   240.6   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+##
+## Residual standard error: 0.0263 on 202 degrees of freedom
+## Multiple R-squared:     1,    Adjusted R-squared:     1
+## F-statistic: 1.42e+06 on 14 and 202 DF,  p-value: <2e-16
+```
 
 我们看到该模型不再具有截距项，并且有 12 个重要的月因子。 这正是我们想要看到的。
 
@@ -1325,7 +1355,8 @@ RStudio 随附了齐备的文档。 下面提供了 RStudio 文档中关键部�
 下面是一些很好的 Internet 资源：
 
 * DataCamp 通过视频课程和编码练习在舒适的浏览器中教授 R。 DataCamp 提供了关于最新的 R 技术和包的互动式课程。 获取免费的[交互式 R 教程](https://www.datacamp.com/courses/introduction-to-r)。
-* Programiz 提供的 [Learn R Programming, The Definitive Guide](https://www.programiz.com/r-programming)（学习 R 编程 - 权威指南）。
+* DataMentor 提供的 [Learn R Programming, The Definitive Guide](https://www.datamentor.io/r-programming/)（学习 R 编程 - 权威指南）。
+* [R CODER](https://r-coder.com/)。 面向初学者的详细 R 教程和免费 R 课程。
 * Clarkson 大学的 Kelly Black 编写的快速 [R 教程](https://www.cyclismo.org/tutorial/R/)。
 * [Top R language resources to improve your data skills](https://www.computerworld.com/article/2497464/business-intelligence-60-r-resources-to-improve-your-data-skills.html)（用于改善数据技能的顶级 R 语言资源）中列出了 60 多个 R 资源。
 

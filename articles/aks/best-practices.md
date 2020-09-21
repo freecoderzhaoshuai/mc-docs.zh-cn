@@ -4,14 +4,15 @@ description: 群集操作员和开发人员最佳做法的集合，用于在 Azu
 services: container-service
 ms.topic: article
 origin.date: 12/07/2018
-ms.date: 03/09/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.author: v-yeche
-ms.openlocfilehash: 8a1a14b209579fe06e39c51035d32e8071fc0602
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 81c8e29161233494b4dd186a48de1996b25266a7
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79290765"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020859"
 ---
 # <a name="cluster-operator-and-developer-best-practices-to-build-and-manage-applications-on-azure-kubernetes-service-aks"></a>群集操作员和开发人员的最佳做法，用于在 Azure Kubernetes 服务 (AKS) 中生成并管理应用程序
 
@@ -70,7 +71,7 @@ ms.locfileid: "79290765"
 
 * [Kubernetes 核心概念](concepts-clusters-workloads.md)
 * [访问和标识](concepts-identity.md)
-* [安全概念](concepts-security.md)
+* [安全性概念](concepts-security.md)
 * [网络概念](concepts-network.md)
 * [存储选项](concepts-storage.md)
 * [缩放选项](concepts-scale.md)

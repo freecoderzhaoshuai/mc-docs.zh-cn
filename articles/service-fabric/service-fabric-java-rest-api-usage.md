@@ -1,17 +1,20 @@
 ---
 title: Azure Service Fabric Java 客户端 API
 description: 按照 Service Fabric 客户端 REST API 规范生成和使用 Service Fabric Java 客户端 API
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 11/27/2017
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
+ms.custom: devx-track-java
 ms.author: v-yeche
-ms.openlocfilehash: 2b2d87cc8ac3af1612530241a643330a535fb6e2
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: fa11a9b119ef9f61890bdd8e9f46e4d5968d2965
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742500"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655650"
 ---
 # <a name="azure-service-fabric-java-client-apis"></a>Azure Service Fabric Java 客户端 API
 
@@ -70,46 +73,46 @@ ms.locfileid: "75742500"
 2. 如果创建库，则请在库的项目中包括以下依赖项。 如果使用其他方法，则请采用相应的格式包括依赖项。
 
     ```
-    GroupId:  com.microsoft.rest
-    Artifactid: client-runtime
-    Version: 1.2.1
+        GroupId:  com.microsoft.rest
+        Artifactid: client-runtime
+        Version: 1.2.1
     ```
     例如，如果使用 Maven 生成系统，则请在 ``pom.xml`` 文件中包括以下内容：
 
     ```xml
-    <dependency>
-      <groupId>com.microsoft.rest</groupId>
-      <artifactId>client-runtime</artifactId>
-      <version>1.2.1</version>
-    </dependency>
+        <dependency>
+          <groupId>com.microsoft.rest</groupId>
+          <artifactId>client-runtime</artifactId>
+          <version>1.2.1</version>
+        </dependency>
     ```
 
 3. 使用以下代码创建 RestClient：
 
     ```java
-    RestClient simpleClient = new RestClient.Builder()
-        .withBaseUrl("http://<cluster-ip or name:port>")
-        .withResponseBuilderFactory(new ServiceResponseBuilder.Factory())
-        .withSerializerAdapter(new JacksonAdapter())
-        .build();
-    ServiceFabricClientAPIs client = new ServiceFabricClientAPIsImpl(simpleClient);
+        RestClient simpleClient = new RestClient.Builder()
+            .withBaseUrl("http://<cluster-ip or name:port>")
+            .withResponseBuilderFactory(new ServiceResponseBuilder.Factory())
+            .withSerializerAdapter(new JacksonAdapter())
+            .build();
+        ServiceFabricClientAPIs client = new ServiceFabricClientAPIsImpl(simpleClient);
     ```
 4. 使用此客户端对象，根据需要进行相应的调用。 下面是一些演示如何使用客户端对象的示例。 假设在使用下面的 API 之前，应用程序包已生成并上传到映像存储区。
     * 预配应用程序
 
         ```java
-        ApplicationTypeImageStorePath imageStorePath = new ApplicationTypeImageStorePath();
-        imageStorePath.withApplicationTypeBuildPath("<application-path-in-image-store>");
-        client.provisionApplicationType(imageStorePath);
+            ApplicationTypeImageStorePath imageStorePath = new ApplicationTypeImageStorePath();
+            imageStorePath.withApplicationTypeBuildPath("<application-path-in-image-store>");
+            client.provisionApplicationType(imageStorePath);
         ```
     * 创建应用程序
 
         ```java
-        ApplicationDescription applicationDescription = new ApplicationDescription();
-        applicationDescription.withName("<application-uri>");
-        applicationDescription.withTypeName("<application-type>");
-        applicationDescription.withTypeVersion("<application-version>");
-        client.createApplication(applicationDescription);
+            ApplicationDescription applicationDescription = new ApplicationDescription();
+            applicationDescription.withName("<application-uri>");
+            applicationDescription.withTypeName("<application-type>");
+            applicationDescription.withTypeVersion("<application-version>");
+            client.createApplication(applicationDescription);
         ```
 
 ## <a name="understanding-the-generated-code"></a>了解生成的代码
@@ -126,4 +129,4 @@ ms.locfileid: "75742500"
 ## <a name="next-steps"></a>后续步骤
 * 了解 [Service Fabric REST APIs](https://docs.microsoft.com/rest/api/servicefabric/)（Service Fabric REST API）
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

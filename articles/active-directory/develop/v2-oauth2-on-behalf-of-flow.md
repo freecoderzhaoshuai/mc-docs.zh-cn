@@ -9,16 +9,16 @@ ms.service: active-directory
 ms.subservice: develop
 ms.workload: identity
 ms.topic: conceptual
-ms.date: 08/20/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 ms.reviewer: hirsin
 ms.custom: aaddev
-ms.openlocfilehash: bfa64f8d1f8342d1cf14966cb382ce6024e913c9
-ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
+ms.openlocfilehash: 01559016d19ac1ba70199812561ec878694e1098
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "88647688"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593760"
 ---
 # <a name="microsoft-identity-platform-and-oauth-20-on-behalf-of-flow"></a>Microsoft 标识平台和 OAuth 2.0 代理流
 
@@ -153,7 +153,7 @@ grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Ajwt-bearer
 ```
 
 > [!NOTE]
-> 上述访问令牌是 v1.0 格式的 Microosft Graph 令牌。 这是因为令牌格式基于所访问的资源，而与请求它时使用的终结点无关。 Microsoft Graph 设置为接受 v1.0 令牌，因此当客户端请求 Microsoft Graph 的令牌时，Microsoft 标识平台会生成 v1.0 访问令牌。 其他应用可能指示它们需要 v2.0 格式的令牌、1.0 格式的令牌甚至专用或加密格式的令牌。  v1.0 和 v2.0 终结点都可以发出任意一种令牌格式，这样资源就可以始终获得正确的令牌格式，而不管客户端如何或在何处请求令牌。 
+> 上述访问令牌是 v1.0 格式的 Microsoft Graph 令牌。 这是因为令牌格式基于所访问的资源，而与请求它时使用的终结点无关。 Microsoft Graph 设置为接受 v1.0 令牌，因此当客户端请求 Microsoft Graph 的令牌时，Microsoft 标识平台会生成 v1.0 访问令牌。 其他应用可能指示它们需要 v2.0 格式的令牌、1.0 格式的令牌甚至专用或加密格式的令牌。  v1.0 和 v2.0 终结点都可以发出任意一种令牌格式，这样资源就可以始终获得正确的令牌格式，而不管客户端如何或在何处请求令牌。 
 >
 > 只有应用程序才能查看访问令牌。 客户端**不得**检查它们。 在代码中检查其他应用的访问令牌会导致应用在该应用更改其令牌的格式或开始对令牌进行加密时意外中断。 
 

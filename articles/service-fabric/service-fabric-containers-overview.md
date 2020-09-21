@@ -2,15 +2,18 @@
 title: Service Fabric 和容器概述
 description: 概述 Service Fabric，以及如何使用容器部署微服务应用程序。 本文概述容器的用法以及 Service Fabric 提供的功能。
 ms.topic: conceptual
-origin.date: 08/08/2018
+origin.date: 07/09/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.date: 01/06/2020
-ms.openlocfilehash: ad823fc1b44a339cb6063ff92e8b6f228ac60796
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 800aa8ddc3813daf056473ef700ba30df04de67d
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742459"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655181"
 ---
 # <a name="service-fabric-and-containers"></a>Service Fabric 和容器
 
@@ -18,7 +21,9 @@ ms.locfileid: "75742459"
 
 Azure Service Fabric 是一款分布式系统平台，可方便用户轻松打包、部署和管理可缩放的可靠微服务和容器。
 
-Service Fabric 是 21Vianet 推出的跨计算机群集部署微服务的[容器业务流程协调程序](service-fabric-cluster-resource-manager-introduction.md)。 Service Fabric 受益于多年来在 Azure 上大规模运行服务所吸取的经验教训。
+Service Fabric 是 Azure 推出的跨计算机群集部署微服务的[容器业务流程协调程序](service-fabric-cluster-resource-manager-introduction.md)。 Service Fabric 受益于多年来在 Azure 上大规模运行服务所吸取的经验教训。
+
+<!--MOONCAKE CORRECT ON: Azure's-->
 
 微服务的开发方法有多种，包括使用 [Service Fabric 编程模型](service-fabric-choose-framework.md)、[ASP.NET Core](service-fabric-reliable-services-communication-aspnetcore.md) 或部署[任意选定代码](service-fabric-guest-executables-introduction.md)。 或者，如果你只想[部署和管理容器](service-fabric-containers-overview.md)，则Service Fabric 也是一个不错的选择。
 
@@ -55,7 +60,7 @@ Docker 提供 API 用于在 Linux 内核容器上创建和管理容器。 Docker
 
 #### <a name="windows-server-containers"></a>Windows Server 容器
 
-Windows Server 2016 提供两种不同类型的容器，它们的隔离程度有所不同。 Windows Server 容器与 Docker 容器相似，因为两者都能提供命名空间和文件系统隔离，但与它们运行所在的主机共享内核。 在 Linux 上，这种隔离一贯是由控制组 (cgroup) 和命名空间提供的，Windows Server 容器的行为与此类似。
+Windows Server 2016 及更高版本提供两种不同类型的容器，它们的隔离程度有所不同。 Windows Server 容器与 Docker 容器相似，因为两者都能提供命名空间和文件系统隔离，但与它们运行所在的主机共享内核。 在 Linux 上，这种隔离一贯是由控制组 (cgroup) 和命名空间提供的，Windows Server 容器的行为与此类似。
 
 包含 Hyper 支持的 Windows 容器提供更多隔离性和安全性，因为任何容器都不与其他容器或主机共享操作系统内核。 由于具有这么高的安全隔离性，启用 Hyper-V 的容器适合用于对付潜在恶意的多租户方案。
 有关基于 Windows 的教程，请参阅[在 Windows 上创建第一个 Service Fabric 容器应用程序](service-fabric-get-started-containers.md)。
@@ -75,7 +80,10 @@ Windows Server 2016 提供两种不同类型的容器，它们的隔离程度有
 
 ## <a name="service-fabric-support-for-containers"></a>Service Fabric 对容器的支持
 
-Service Fabric 支持在 Linux 上部署 Docker 容器，在 Windows Server 2016 上部署 Windows Server 容器，同时支持 Hyper-V 隔离模式。 
+Service Fabric 支持在 Linux 上部署 Docker 容器，在 Windows Server 2016 及更高版本上部署 Windows Server 容器，同时支持 Hyper-V 隔离模式。
+
+> [!NOTE]
+> 本地单节点 Service Fabric 群集（既不是 OneBox 上的 Linux 群集，也不是本地 Service Fabric 安装上的 Windows 群集）上不支持容器。
 
 Service Fabric 提供一个[应用程序模型](service-fabric-application-model.md)，其中的容器表示放置多个服务副本的应用程序主机。 Service Fabric 还支持[来宾可执行方案](service-fabric-guest-executables-introduction.md)，在其中不是使用内置的 Service Fabric 编程模型，而是在容器内打包以任何语言或框架编写的现有应用程序。 此方案是容器的常见用例。
 
@@ -105,4 +113,4 @@ Service Fabric 提供多种容器功能，可帮助构建由容器化的微服�
 
 [Image1]: media/service-fabric-containers/Service-Fabric-Types-of-Isolation.png
 
-<!--Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

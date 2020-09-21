@@ -1,19 +1,21 @@
 ---
 title: 使用 Azure Site Recovery 排查移动服务推送安装问题
 description: 在为灾难恢复启用复制时，使用 Azure Site Recovery 排查移动服务安装错误。
-author: rockboyfor
 manager: digimobile
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 04/03/2020
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: c32775c8eb85c88d8a6d5ffaa4097934b37ae53e
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: 8c4e0b0b84e9051f472676ec2bba4bd7e5815c1c
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440447"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655414"
 ---
 # <a name="troubleshoot-mobility-service-push-installation"></a>排查移动服务推送安装问题
 
@@ -33,8 +35,7 @@ ms.locfileid: "84440447"
 
 启用复制时，Azure Site Recovery 会尝试在虚拟机 (VM) 上安装移动服务代理。 在此过程中，配置服务器会尝试连接虚拟机并复制代理。 要想成功安装，请按照分步故障排除指导进行操作。
 
-<a name="credentials-check-errorid-95107--95108"></a>
-## <a name="credentials-check-errorid-95107--95108"></a>凭据检查（ErrorID：95107 和 95108）
+## <a name="credentials-check-errorid-95107--95108"></a><a name="credentials-check-errorid-95107--95108"></a>凭据检查（ErrorID：95107 和 95108）
 
 验证在启用复制期间选择的用户帐户是否有效且准确。 Azure Site Recovery 需要具有**管理员特权**的 **root** 帐户或用户帐户来执行推送安装。 否则，系统会在源计算机上阻止推送安装。
 
@@ -72,8 +73,7 @@ ms.locfileid: "84440447"
 
 如果想要修改所选用户帐户的凭据，请按照[这些说明](vmware-azure-manage-configuration-server.md#modify-credentials-for-mobility-service-installation)进行操作。
 
-<a name="login-failures-errorid-95519-95520-95521-95522"></a>
-## <a name="login-failures-errorid-95519-95520-95521-95522"></a>登录失败（错误 ID：95519、95520、95521、95522）
+## <a name="login-failures-errorid-95519-95520-95521-95522"></a><a name="login-failures-errorid-95519-95520-95521-95522"></a>登录失败（错误 ID：95519、95520、95521、95522）
 
 本部分介绍了凭据和登录错误消息。
 
@@ -103,8 +103,7 @@ ms.locfileid: "84440447"
 * 若要从命令提示符启动 `Netlogon` 服务，请运行 `net start Netlogon` 命令。
 * 从任务管理器中，启动 `Netlogon` 服务。
 
-<a name="connectivity-failure-errorid-95117--97118"></a>
-## <a name="connectivity-failure-errorid-95117--97118"></a>连接失败（ErrorID：95117 和 97118）
+## <a name="connectivity-failure-errorid-95117--97118"></a><a name="connectivity-failure-errorid-95117--97118"></a>连接失败（ErrorID：95117 和 97118）
 
 配置服务器/横向扩展进程服务器尝试连接到源 VM 以安装移动代理。 当源计算机因网络连接问题而无法访问时，会发生此错误。
 
@@ -134,8 +133,29 @@ ms.locfileid: "84440447"
 
 当源计算机所在的网络无法找到、可能已被删除或不再可用时，会发生此错误。 若要解决此错误，唯一的方法是确保网络存在。
 
-<a name="file-and-printer-sharing-services-check-errorid-95105--95106"></a>
-## <a name="file-and-printer-sharing-services-check-errorid-95105--95106"></a>文件和打印机共享服务检查（ErrorID：95105 和 95106）
+## <a name="check-access-for-network-shared-folders-on-source-machine-errorid-9510595523"></a>检查源计算机上网络共享文件夹的访问权限（ErrorID：95105,95523）
+
+验证虚拟计算机上的网络共享文件夹是否可使用特定凭据从进程服务器 (PS) 进行远程访问。 若要确认访问，请执行以下操作： 
+
+1. 登录到进程服务器计算机。
+2. 打开文件资源管理器。 在地址栏中，键入 `\\<SOURCE-MACHINE-IP>\C$`，然后按 Enter。
+
+    :::image type="content" source="./media/vmware-azure-troubleshoot-push-install/open-folder-process-server.PNG" alt-text="在 PS 中打开文件夹":::
+
+3. 文件资源管理器将提示输入凭据。 输入用户名和密码，然后单击“确定”。 <br /><br/>
+
+    :::image type="content" source="./media/vmware-azure-troubleshoot-push-install/provide-credentials.PNG" alt-text="提供凭据":::
+
+    > [!NOTE]
+    > 如果源计算机已加入域，则按 `<domainName>\<username>` 格式提供域名和用户名。 如果源计算机位于工作组中，仅提供用户名。
+
+4. 如果成功连接，则可以从进程服务器远程查看源计算机的文件夹。
+
+    :::image type="content" source="./media/vmware-azure-troubleshoot-push-install/visible-folders-from-source.png" alt-text="源计算机上的可见文件夹":::
+
+如果连接不成功，请检查是否满足所有先决条件。
+
+## <a name="file-and-printer-sharing-services-check-errorid-95105--95106"></a><a name="file-and-printer-sharing-services-check-errorid-95105--95106"></a>文件和打印机共享服务检查（ErrorID：95105 和 95106）
 
 进行连接性检查后，验证是否在虚拟机上启用了文件和打印机共享服务。 若要将移动代理复制到源计算机，这些设置是必需的。
 
@@ -159,8 +179,7 @@ ms.locfileid: "84440447"
 
 若要为更高版本的 Windows 或 Linux 启用文件和打印机共享，请按照[安装移动服务以对 VMware VM 和物理服务器进行灾难恢复](vmware-azure-install-mobility-service.md)中的说明进行操作。
 
-<a name="windows-management-instrumentation-wmi-configuration-check-error-code-95103"></a>
-## <a name="windows-management-instrumentation-wmi-configuration-check-error-code-95103"></a>Windows Management Instrumentation (WMI) 配置检查（错误代码：95103）
+## <a name="windows-management-instrumentation-wmi-configuration-check-error-code-95103"></a><a name="windows-management-instrumentation-wmi-configuration-check-error-code-95103"></a>Windows Management Instrumentation (WMI) 配置检查（错误代码：95103）
 
 进行文件和打印机服务检查后，通过防火墙为专用配置文件、公共配置文件和域配置文件启用 WMI 服务。 若要在源计算机上完成远程执行操作，这些设置是必需的。
 
@@ -176,19 +195,17 @@ ms.locfileid: "84440447"
 
 可以在以下文章中找到其他 WMI 故障排除文章。
 
-* [基本 WMI 测试](https://blogs.technet.microsoft.com/askperf/2007/06/22/basic-wmi-testing/)
+* [基本 WMI 测试](https://techcommunity.microsoft.com/t5/ask-the-performance-team/bg-p/AskPerf)
 * [WMI 故障排除](https://docs.microsoft.com/windows/win32/wmisdk/wmi-troubleshooting)
 * [使用 WMI 脚本和 WMI 服务排查问题](https://docs.microsoft.com/previous-versions/tn-archive/ff406382(v=msdn.10))
 
-<a name="unsupported-operating-systems"></a>
-## <a name="unsupported-operating-systems"></a>不支持的操作系统
+## <a name="unsupported-operating-systems"></a><a name="unsupported-operating-systems"></a>不支持的操作系统
 
 另一个常见的失败原因可能是操作系统不受支持。 请使用受支持的操作系统和内核版本，以便成功安装移动服务。 避免使用私有修补程序。
 
 若要查看 Azure Site Recovery 支持的操作系统和内核版本列表，请参阅[支持矩阵文档](vmware-physical-azure-support-matrix.md#replicated-machines)。
 
-<a name="unsupported-boot-disk-configurations-errorid-95309-95310-95311"></a>
-## <a name="unsupported-boot-disk-configurations-errorid-95309-95310-95311"></a>启动磁盘配置不受支持（ErrorID：95309、95310、95311）
+## <a name="unsupported-boot-disk-configurations-errorid-95309-95310-95311"></a><a name="unsupported-boot-disk-configurations-errorid-95309-95310-95311"></a>启动磁盘配置不受支持（ErrorID：95309、95310、95311）
 
 ### <a name="boot-and-system-partitions--volumes-arent-the-same-disk-errorid-95309"></a>启动和系统分区/卷不是同一磁盘（ErrorID：95309）
 
@@ -206,8 +223,7 @@ ms.locfileid: "84440447"
 
 在版本 9.20 之前，将根分区或卷设置在多个磁盘上是不受支持的配置。 从[版本 9.20](https://support.microsoft.com/help/4478871/update-rollup-31-for-azure-site-recovery) 开始，此配置受支持。
 
-<a name="enable-protection-failed-as-device-name-mentioned-in-the-grub-configuration-instead-of-uuid-errorid-95320"></a>
-## <a name="enable-protection-failed-as-device-name-mentioned-in-the-grub-configuration-instead-of-uuid-errorid-95320"></a>启用保护失败，因为 GRUB 配置中提到了设备名而非 UUID（ErrorID：95320)
+## <a name="enable-protection-failed-as-device-name-mentioned-in-the-grub-configuration-instead-of-uuid-errorid-95320"></a><a name="enable-protection-failed-as-device-name-mentioned-in-the-grub-configuration-instead-of-uuid-errorid-95320"></a>启用保护失败，因为 GRUB 配置中提到了设备名而非 UUID（ErrorID：95320)
 
 ### <a name="possible-cause"></a>可能的原因
 
@@ -247,8 +263,7 @@ Grand Unified Bootloader (GRUB) 配置文件（“/boot/grub/menu.lst”、“/b
 
 1. 重启保护。
 
-<a name="install-mobility-service-completed-with-warning-to-reboot-errorid-95265--95266"></a>
-## <a name="install-mobility-service-completed-with-warning-to-reboot-errorid-95265--95266"></a>安装移动设备的操作完成，出现重启警告（ErrorID：95265 和 95266）
+## <a name="install-mobility-service-completed-with-warning-to-reboot-errorid-95265--95266"></a><a name="install-mobility-service-completed-with-warning-to-reboot-errorid-95265--95266"></a>安装移动设备的操作完成，出现重启警告（ErrorID：95265 和 95266）
 
 Site Recovery 移动服务有多个组件，其中一个称为筛选器驱动程序。 筛选器驱动程序只有在系统重启期间才会加载到系统内存中。 实现筛选器驱动程序修复的前提是，在系统重启时加载新的筛选器驱动程序。
 
@@ -258,8 +273,7 @@ Site Recovery 移动服务有多个组件，其中一个称为筛选器驱动程
 > [!TIP]
 >有关在维护时段计划升级的最佳做法，请参阅“Azure Site Recovery 中的服务更新”中的[对最新操作系统/内核的支持](service-updates-how-to.md#support-for-latest-operating-systemskernels)。
 
-<a name="lvm-support-from-920-version"></a>
-## <a name="lvm-support-from-920-version"></a>版本 9.20 提供的 LVM 支持
+## <a name="lvm-support-from-920-version"></a><a name="lvm-support-from-920-version"></a>版本 9.20 提供的 LVM 支持
 
 在版本 9.20 之前，仅支持将逻辑卷管理器 (LVM) 用于数据磁盘。 `/boot` 分区应位于磁盘分区上，而不应位于 LVM 卷上。
 
@@ -269,8 +283,11 @@ Site Recovery 移动服务有多个组件，其中一个称为筛选器驱动程
 
 将移动代理复制到源计算机时，需要至少 100 MB 的可用空间。 请确保源计算机有必需的可用空间量，然后重试此操作。
 
-<a name="vss-installation-failures"></a>
-## <a name="vss-installation-failures"></a>VSS 安装失败
+## <a name="low-system-resources"></a>系统资源不足
+
+出现此问题时，可能看到的错误 ID 有 95572 和 95573。 如果系统内存不足，且无法为移动服务安装分配内存，则会出现此问题。 确保已释放足够的内存，让安装继续进行并成功完成。
+
+## <a name="vss-installation-failures"></a><a name="vss-installation-failures"></a>VSS 安装失败
 
 卷影复制服务 (VSS) 安装是移动代理安装的一部分。 在生成应用程序一致恢复点的过程中将使用此服务。 VSS 安装过程可能会由于多种原因而失败。 若要查明确切的错误，请参阅 C:\ProgramData\ASRSetupLogs\ASRUnifiedAgentInstaller.log。 以下部分中重点介绍了一些常见的错误和解决方法步骤。
 

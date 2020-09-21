@@ -1,18 +1,20 @@
 ---
 title: 使用 Azure Site Recovery 进行 Dynamics AX 灾难恢复
 description: 了解如何使用 Azure Site Recovery 为 Dynamics AX 设置灾难恢复
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.topic: how-to
 origin.date: 11/27/2018
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: 1646708a0c672f35909453df21ccfbac247d33d9
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 04ead1584732ae26e970b1f0b80bf798ea839309
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77611293"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89654996"
 ---
 # <a name="set-up-disaster-recovery-for-a-multitier-dynamics-ax-application"></a>为多层 Dynamics AX 应用程序设置灾难恢复   
 
@@ -66,7 +68,7 @@ ms.locfileid: "77611293"
 有关保护 SQL 层的建议选项的技术指导，请参阅[使用 SQL Server 和 Azure Site Recovery 复制应用程序](site-recovery-sql.md)。
 
 ### <a name="3-enable-protection-for-the-dynamics-ax-client-and-application-object-server-vms"></a>3.为 Dynamics AX 客户端和应用程序对象服务器 VM 启用保护
-根据 VM 是在 [Hyper-V](site-recovery-hyper-v-site-to-azure.md) 还是在 [VMware](site-recovery-vmware-to-azure.md) 上部署的，执行相关的 Site Recovery 配置。
+根据 VM 是在 [Hyper-V](./hyper-v-azure-tutorial.md) 还是在 [VMware](./vmware-azure-tutorial.md) 上部署的，执行相关的 Site Recovery 配置。
 
 > [!TIP]
 > 建议将“崩溃时一致”频率配置为 15 分钟。
@@ -74,7 +76,7 @@ ms.locfileid: "77611293"
 
 以下快照显示 VMware 站点到 Azure 保护方案中 Dynamics 组件 VM 的保护状态。
 
-![受保护的项](./media/site-recovery-dynamics-ax/protecteditems.png)
+:::image type="content" source="./media/site-recovery-dynamics-ax/protecteditems.png" alt-text="受保护的项":::
 
 ### <a name="4-configure-networking"></a>4.配置网络
 **配置 VM 计算和网络设置**
@@ -87,7 +89,7 @@ ms.locfileid: "77611293"
 
 * 如果使用静态 IP，请在“目标 IP”文本框中指定希望 VM 采用的 IP  。
 
-    ![网络设置](./media/site-recovery-dynamics-ax/vmpropertiesaos1.png)
+    :::image type="content" source="./media/site-recovery-dynamics-ax/vmpropertiesaos1.png" alt-text="网络设置":::
 
 ### <a name="5-create-a-recovery-plan"></a>5.创建恢复计划
 
@@ -99,15 +101,15 @@ ms.locfileid: "77611293"
 
 3. 选择“源”  和“目标”  。 目标可以是 Azure 或辅助站点。 如果选择 Azure，则必须指定部署模型。
 
-    ![创建恢复计划](./media/site-recovery-dynamics-ax/recoveryplancreation1.png)
+    :::image type="content" source="./media/site-recovery-dynamics-ax/recoveryplancreation1.png" alt-text="创建恢复计划":::
 
 4. 为恢复计划选择应用程序对象服务器和客户端 VM，然后选择 ✓。
 
-    ![选择项](./media/site-recovery-dynamics-ax/selectvms.png)
+    :::image type="content" source="./media/site-recovery-dynamics-ax/selectvms.png" alt-text="选择项":::
 
     恢复计划示例：
 
-    ![恢复计划详细信息](./media/site-recovery-dynamics-ax/recoveryplan.png)
+    :::image type="content" source="./media/site-recovery-dynamics-ax/recoveryplan.png" alt-text="恢复计划详细信息":::
 
 可通过添加以下步骤来自定义 Dynamics AX 应用程序的恢复计划。 以上快照显示添加所有步骤后的完整恢复计划。
 
@@ -169,7 +171,7 @@ ms.locfileid: "77611293"
 
 6. 选择 ✓  开始执行故障回复过程。
 
-有关执行故障回复的详细信息，请参阅[将 VMware VM 从 Azure 故障回复到本地](site-recovery-failback-azure-to-vmware.md)。
+有关执行故障回复的详细信息，请参阅[将 VMware VM 从 Azure 故障回复到本地](./vmware-azure-failback.md)。
 
 ## <a name="summary"></a>摘要
 使用 Site Recovery 可为 Dynamics AX 应用程序创建一个完整的自动化灾难恢复计划。 发生服务中断时，可在数秒内从任何位置启动故障转移，在数分钟内启动和运行应用程序。
@@ -177,4 +179,4 @@ ms.locfileid: "77611293"
 ## <a name="next-steps"></a>后续步骤
 若要详细了解如何使用 Site Recovery 保护企业工作负荷，请参阅[我可以保护哪些工作负荷？](site-recovery-workload.md)。
 
-<!-- Update_Description: update meta propeties, update link -->
+<!-- Update_Description: update meta properties, wording update, update link -->

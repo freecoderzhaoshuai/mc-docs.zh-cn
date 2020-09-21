@@ -3,17 +3,18 @@ title: 概念 - Azure Kubernetes 服务 (AKS) 中的网络
 description: 了解 Azure Kubernetes 服务 (AKS) 中的网络，包括 kubenet 和 Azure CNI、入口控制器、负载均衡器和静态 IP 地址。
 ms.topic: conceptual
 origin.date: 06/11/2020
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
 ms.custom: fasttrack-edit
-ms.openlocfilehash: 3a5666d8926c8051871c23e5173893950358adbb
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: afbf89faf47941b989c8130a1a9bcd72589a42db
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842669"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020854"
 ---
 # <a name="network-concepts-for-applications-in-azure-kubernetes-service-aks"></a>Azure Kubernetes 服务 (AKS) 中应用程序的网络概念
 
@@ -78,6 +79,8 @@ kubenet 网络选项是用于创建 AKS 群集的默认配置。 节点使用 *k
 ### <a name="azure-cni-advanced-networking"></a>Azure CNI（高级）网络
 
 借助 Azure CNI，每个 pod 都可以从子网获取 IP 地址，并且可以直接访问。 这些 IP 地址在网络空间中必须唯一，并且必须事先计划。 每个节点都有一个配置参数来表示它支持的最大 Pod 数。 这样，就会为每个节点预留相应的 IP 地址数。 使用此方法需要经过更详细的规划，否则可能会耗尽 IP 地址，或者在应用程序需求增长时需要在更大的子网中重建群集。
+
+与 kubenet 不同，流向同一虚拟网络中终结点的流量不会通过 NAT 转换到节点的主 IP。 虚拟网络中流量的源地址是 Pod IP。 虚拟网络外部的流量仍然通过 NAT 转换到节点的主 IP。
 
 节点使用 [Azure 容器网络接口 (CNI)][cni-networking] Kubernetes 插件。
 

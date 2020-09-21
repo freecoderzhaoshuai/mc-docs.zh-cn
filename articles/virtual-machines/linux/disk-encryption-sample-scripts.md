@@ -4,18 +4,18 @@ description: 本文是适用于 Linux VM 的 Azure 磁盘加密的附录。
 author: Johnnytechn
 ms.service: virtual-machines-linux
 ms.subservice: security
-ms.topic: article
+ms.topic: how-to
 ms.author: v-johya
-ms.date: 04/20/2020
-ms.custom: seodec18
-ms.openlocfilehash: 5dd581687d07acbe96f151dfd76ae1085d89769a
-ms.sourcegitcommit: ebedf9e489f5218d4dda7468b669a601b3c02ae5
+ms.date: 09/03/2020
+ms.custom: seodec18, devx-track-azurepowershell
+ms.openlocfilehash: 755f9e506e41f405cf3e1a1f63c9435f3228f32c
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2020
-ms.locfileid: "82159045"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057707"
 ---
-# <a name="azure-disk-encryption-sample-scripts"></a>Azure 磁盘加密示例脚本 
+# <a name="azure-disk-encryption-sample-scripts-for-linux-vms"></a>适用于 Linux VM 的 Azure 磁盘加密示例脚本
 
 本文提供了用于准备预加密 VHD 和其他任务的示例脚本。
 
@@ -61,7 +61,7 @@ ms.locfileid: "82159045"
     - 只允许对 Linux VM 的数据卷禁用加密。  
 
 ### <a name="encrypt-or-decrypt-vms-with-an-azure-ad-app-previous-release"></a>使用 Azure AD 应用加密或解密 VM（以前的版本） 
-
+ 
 - [在现有或正在运行的 Linux VM 上启用磁盘加密](https://github.com/Azure/azure-quickstart-templates/tree/master/201-encrypt-running-linux-vm)    
 
 
@@ -134,7 +134,7 @@ ms.locfileid: "82159045"
 
   由于 WALinuxAgent 出现[问题 #388](https://github.com/Azure/WALinuxAgent/issues/388)，`OsVolumeEncrypted` 和 `DataVolumesEncrypted` 在某些发行版中显示为 `Unknown`。 在 WALinuxAgent 2.1.5 版及更高版本中，将自动修复此问题。 如果在输出中看到 `Unknown`，可通过使用 Azure 资源浏览器验证磁盘加密状态。
 
-  转到 [Azure 资源浏览器](https://resources.azure.com/)，然后在左侧的选择面板中展开此层次结构：
+  转到 [Azure 资源浏览器](https://portal.azure.cn/#blade/HubsExtension/ArmExplorerBlade)，然后在左侧的选择面板中展开此层次结构：
 
   ~~~~
   |-- subscriptions
@@ -186,10 +186,8 @@ ms.locfileid: "82159045"
 
    ![Ubuntu 16.04 安装 - 在启动时提供通行短语](./media/disk-encryption/ubuntu-1604-preencrypted-fig5.png)
 
-6. 使用[这些说明](/virtual-machines/linux/create-upload-ubuntu)准备 VM 以上传到 Azure。 暂时不要运行最后一个步骤（取消预配 VM）。
-    
-    <!--URL CORRECT ON /virtual-machines/linux/create-upload-ubuntu-->
-    
+6. 使用[这些说明](./create-upload-ubuntu.md?toc=/virtual-machines/linux/toc.json)准备 VM 以上传到 Azure。 暂时不要运行最后一个步骤（取消预配 VM）。
+
 执行以下步骤，配置适用于 Azure 的加密：
 
 1. 在 /usr/local/sbin/azure_crypt_key.sh 下创建一个包含以下脚本的文件。 请注意 KeyFileName，因为它是 Azure 使用的通行短语文件名。
@@ -444,7 +442,7 @@ ms.locfileid: "82159045"
 在下一步中使用 `$secretUrl` 以便[在不使用 KEK 的情况下附加 OS 磁盘](#without-using-a-kek)。
 
 ### <a name="disk-encryption-secret-encrypted-with-a-kek"></a>使用 KEK 加密的磁盘加密机密
-将机密上传到 Key Vault 之前，可根据需要使用密钥加密密钥对其进行加密。 先使用包装 [API](https://msdn.microsoft.com/library/azure/dn878066.aspx) 加密使用密钥加密密钥的机密。 此包装操作的输出是 base64 URL 编码的字符串，可以使用 [`Set-AzKeyVaultSecret`](https://docs.microsoft.com/powershell/module/az.keyvault/set-azkeyvaultsecret) cmdlet 将其作为机密上传。
+将机密上传到 Key Vault 之前，可根据需要使用密钥加密密钥对其进行加密。 先使用包装 [API](https://docs.microsoft.com/rest/api/keyvault/wrapkey) 加密使用密钥加密密钥的机密。 此包装操作的输出是 base64 URL 编码的字符串，可以使用 [`Set-AzKeyVaultSecret`](https://docs.microsoft.com/powershell/module/az.keyvault/set-azkeyvaultsecret) cmdlet 将其作为机密上传。
 
 ```powershell
     # This is the passphrase that was provided for encryption during the distribution installation

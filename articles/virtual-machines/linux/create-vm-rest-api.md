@@ -1,26 +1,18 @@
 ---
-title: 使用 REST API 创建使用 SSH 身份验证的 Linux 虚拟机 | Azure
+title: 使用 REST API 创建 Linux VM | Azure
 description: 了解如何使用 Azure REST API 在 Azure 中创建使用托管磁盘和 SSH 身份验证的 Linux 虚拟机。
-services: virtual-machines-linux
-documentationcenter: virtual-machines
-author: rockboyfor
-manager: digimobile
-editor: ''
-tags: azure-resource-manager
-ms.assetid: ''
+author: Johnnytechn
 ms.service: virtual-machines-linux
-ms.topic: article
-ms.tgt_pltfrm: vm-linux
-ms.workload: infrastructure
+ms.topic: how-to
+ms.date: 09/03/2020
+ms.author: v-johya
 origin.date: 06/05/2018
-ms.date: 10/14/2019
-ms.author: v-yeche
-ms.openlocfilehash: 6d847525c9317b833bd5962cf6d30cdbe8322e13
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 01681623bf13b3100428bed074cec21a540012ce
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "72272490"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057488"
 ---
 # <a name="create-a-linux-virtual-machine-that-uses-ssh-authentication-with-the-rest-api"></a>使用 REST API 创建使用 SSH 身份验证的 Linux 虚拟机
 
@@ -76,7 +68,7 @@ PUT https://management.chinacloudapi.cn/subscriptions/{subscription-id}/resource
 
 ```json
 {
-  "location": "chinaeast",
+  "location": "chinaeast2",
   "name": "{vmName}",
   "properties": {
     "hardwareProfile": {
@@ -160,7 +152,7 @@ PUT https://management.chinacloudapi.cn/subscriptions/{subscription-id}/resource
 - [Azure 计算提供程序 REST API](https://docs.microsoft.com/rest/api/compute/)
 - [Azure REST API 入门](https://docs.microsoft.com/rest/api/azure/)
 - [Azure CLI](https://docs.azure.cn/cli/?view=azure-cli-latest)
-- [Azure PowerShell 模块](https://docs.microsoft.com/powershell/azure/overview)
+- [Azure PowerShell 模块](https://docs.microsoft.com/powershell/azure/)
 
 <!-- Update_Description: update meta properties, wording update, update link -->
 

@@ -2,18 +2,18 @@
 title: include 文件
 description: include 文件
 services: virtual-machines
-author: rockboyfor
+author: Johnnytechn
 ms.service: virtual-machines
 ms.topic: include
-ms.date: 05/25/2020
-ms.author: v-yeche
+ms.date: 09/09/2020
+ms.author: v-johya
 ms.custom: include file
-ms.openlocfilehash: e685f60296f4bbd34813fefe0e954d849ab1761c
-ms.sourcegitcommit: 981a75a78f8cf74ab5a76f9e6b0dc5978387be4b
+ms.openlocfilehash: dba12447bf724dc305abc867abf10ee46e3c0acc
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/22/2020
-ms.locfileid: "83801837"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057609"
 ---
 <!--Verified on Portal-->
 ## <a name="limitations"></a>限制
@@ -48,7 +48,7 @@ ms.locfileid: "83801837"
 1. 打开 [Azure 门户](https://portal.azure.cn)。
 1. 选择左上角的“创建资源”。
 1. 搜索“主机组”，然后从结果中选择“主机组”。
-1. 在“主机组”页中，选择“创建”。
+1. 在“主机组”页中，选择“添加”。
 1. 选择要使用的订阅，然后选择“新建”以创建新的资源组。
 1. 键入“myDedicatedHostsRG”作为“名称”，然后选择“确定”。
 1. 对于“主机组名称”，请键入“myHostGroup”。
@@ -73,8 +73,8 @@ ms.locfileid: "83801837"
 如果为主机组设置了容错域计数，则系统会要求你为主机指定容错域。  
 
 1. 选择左上角的“创建资源”。
-1. 搜索“专用主机”，然后从结果中选择“专用主机”。
-1. 在“专用主机”页中，选择“创建”。
+1. 搜索“主机”，然后从结果中选择“主机”。
+1. 在“主机”页中，选择“添加”。 
 1. 选择要使用的订阅。
 1. 选择“myDedicatedHostsRG”作为“资源组”。
 1. 在“实例详细信息”中，键入“myHost”作为“名称”，并选择“中国东部”作为位置。

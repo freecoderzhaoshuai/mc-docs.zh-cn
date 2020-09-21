@@ -9,15 +9,15 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 08/19/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 ms.custom: aaddev
-ms.openlocfilehash: ad2c978c5b909caf727ba3171c54d398fa31569c
-ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
+ms.openlocfilehash: cf51b008552d5644a9e052f1ba16b61e6f996462
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "88647723"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593785"
 ---
 # <a name="protected-web-api-code-configuration"></a>受保护的 Web API：代码配置
 
@@ -143,7 +143,19 @@ using Microsoft.Identity.Web;
 public void ConfigureServices(IServiceCollection services)
 {
  // Adds Microsoft Identity platform (AAD v2.0) support to protect this API
- services.AddMicrosoftWebApiAuthentication(Configuration, "AzureAd");
+ services.AddMicrosoftIdentityWebApiAuthentication(Configuration, "AzureAd");
+
+ services.AddControllers();
+}
+```
+
+你也可以编写以下内容（这是等效的）
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+ // Adds Microsoft Identity platform (AAD v2.0) support to protect this API
+ services.AddMicrosoftIdentityWebApiAuthentication(Configuration, "AzureAd");
 
  services.AddControllers();
 }
@@ -155,7 +167,7 @@ public void ConfigureServices(IServiceCollection services)
 > - 在所有其他情况下（用于 v1.0 [访问令牌](access-tokens.md)），使用 `$"api://{ClientId}`。
 > 有关详细信息，请参阅 Microsoft.Identity.Web [源代码](https://github.com/AzureAD/microsoft-identity-web/blob/d2ad0f5f830391a34175d48621a2c56011a45082/src/Microsoft.Identity.Web/Resource/RegisterValidAudience.cs#L70-L83)。
 
-前面的代码段摘自 [ASP.NET Core Web API 增量教程](https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore-v2/blob/63087e83326e6a332d05fee6e1586b66d840b08f/1.%20Desktop%20app%20calls%20Web%20API/TodoListService/Startup.cs#L23-L28)。 [Microsoft.Identity.Web](https://github.com/AzureAD/microsoft-identity-web/blob/d2ad0f5f830391a34175d48621a2c56011a45082/src/Microsoft.Identity.Web/WebApiExtensions/WebApiServiceCollectionExtensions.cs#L27) 中提供了“AddMicrosoftWebApiAuthentication”的详细信息。 此方法调用 [AddMicrosoftWebAPI](https://github.com/AzureAD/microsoft-identity-web/blob/d2ad0f5f830391a34175d48621a2c56011a45082/src/Microsoft.Identity.Web/WebApiExtensions/WebApiAuthenticationBuilderExtensions.cs#L58)，后者会指示中间件如何验证令牌。 有关详细信息，请参阅其[源代码](https://github.com/AzureAD/microsoft-identity-web/blob/d2ad0f5f830391a34175d48621a2c56011a45082/src/Microsoft.Identity.Web/WebApiExtensions/WebApiAuthenticationBuilderExtensions.cs#L104-L122)。
+前面的代码段摘自 [ASP.NET Core Web API 增量教程](https://github.com/Azure-Samples/active-directory-dotnet-native-aspnetcore-v2/blob/63087e83326e6a332d05fee6e1586b66d840b08f/1.%20Desktop%20app%20calls%20Web%20API/TodoListService/Startup.cs#L23-L28)。 [Microsoft.Identity.Web](https://github.com/AzureAD/microsoft-identity-web/blob/d2ad0f5f830391a34175d48621a2c56011a45082/src/Microsoft.Identity.Web/WebApiExtensions/WebApiServiceCollectionExtensions.cs#L27) 中提供了 AddMicrosoftIdentityWebApiAuthentication 的详细信息。 此方法调用 [AddMicrosoftWebAPI](https://github.com/AzureAD/microsoft-identity-web/blob/d2ad0f5f830391a34175d48621a2c56011a45082/src/Microsoft.Identity.Web/WebApiExtensions/WebApiAuthenticationBuilderExtensions.cs#L58)，后者会指示中间件如何验证令牌。 有关详细信息，请参阅其[源代码](https://github.com/AzureAD/microsoft-identity-web/blob/d2ad0f5f830391a34175d48621a2c56011a45082/src/Microsoft.Identity.Web/WebApiExtensions/WebApiAuthenticationBuilderExtensions.cs#L104-L122)。
 
 ## <a name="token-validation"></a>令牌验证
 
@@ -193,7 +205,8 @@ public void ConfigureServices(IServiceCollection services)
 在 ASP.NET Core 中，如果要自定义令牌验证参数，请在 Startup.cs 中使用以下代码片段：
 
 ```C#
-services.AddMicrosoftWebApiAuthentication(Configuration);
+services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddMicrosoftIdentityWebApi(Configuration);
 services.Configure<JwtBearerOptions>(JwtBearerDefaults.AuthenticationScheme, options =>
 {
   var existingOnTokenValidatedHandler = options.Events.OnTokenValidated;

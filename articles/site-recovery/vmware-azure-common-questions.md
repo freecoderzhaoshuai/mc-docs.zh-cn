@@ -2,15 +2,18 @@
 title: 有关使用 Azure Site Recovery 进行 VMware 灾难恢复的常见问题
 description: 获取使用 Azure Site Recovery 将本地 VMware VM 灾难恢复到 Azure 时出现的常见问题的解答。
 origin.date: 11/14/2019
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
 ms.topic: conceptual
-ms.openlocfilehash: 9267f59e2f5dfdc29d7fa0c753a7fdd3ba8fc9d1
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: 0f2ba9228c0aba0407dd717dba8cc42371ad137d
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440698"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655565"
 ---
 # <a name="common-questions-about-vmware-to-azure-replication"></a>有关 VMware 到 Azure 的复制的常见问题
 
@@ -116,7 +119,7 @@ Site Recovery 将本地 VMware VM 和物理服务器复制到 Azure 中的托管
 
 否。 从 2019 年 3 月开始，在 Azure 门户中只能复制到 Azure 托管磁盘。
 
-只能使用 PowerShell 或 REST API（版本 2018-01-10 或 2016-08-10）将新 VM 复制到存储帐户。
+只能使用 PowerShell（[Az.RecoveryServices 模块版本 1.4.5](https://www.powershellgallery.com/packages/Az.RecoveryServices/1.4.5)）或 REST API（版本 2018-01-10 或 2016-08-10）将新 VM 复制到存储帐户。 [了解如何](/site-recovery/vmware-azure-disaster-recovery-powershell)使用 PowerShell 命令来设置复制。
 
 ### <a name="what-are-the-benefits-of-replicating-to-managed-disks"></a>复制到托管磁盘的优点是什么？
 
@@ -124,7 +127,7 @@ Site Recovery 将本地 VMware VM 和物理服务器复制到 Azure 中的托管
 
 ### <a name="can-i-change-the-managed-disk-type-after-a-machine-is-protected"></a>计算机受保护后，是否可以更改托管磁盘类型？
 
-是的，可以轻松针对正在进行的复制[更改托管磁盘的类型](/virtual-machines/windows/convert-disk-storage)。 在更改类型之前，请确保未在托管磁盘上生成任何共享访问签名 URL：
+是的，可以轻松针对正在进行的复制[更改托管磁盘的类型](../virtual-machines/windows/convert-disk-storage.md)。 在更改类型之前，请确保未在托管磁盘上生成任何共享访问签名 URL：
 
 1. 在 Azure 门户中转到“托管磁盘”资源，并检查“概述”边栏选项卡上是否出现了共享访问签名 URL 横幅。 
 1. 如果出现了横幅，请选择它以取消正在进行的导出。
@@ -149,13 +152,13 @@ Site Recovery 将本地 VMware VM 和物理服务器复制到 Azure 中的托管
 
 不支持扩展或链式复制。 
 
-<!--Not Available on Request this feature in the [feedback forum](https://support.azure.cn/en-us/support/contact/)-->
+<!--Not Available on Request this feature in the [feedback forum](https://support.azure.cn/support/contact/)-->
 
 ### <a name="can-i-do-an-offline-initial-replication"></a>是否可以执行脱机初始复制？
 
 不支持脱机复制。 
 
-<!--Not Available on Request this feature in the [feedback forum](https://support.azure.cn/en-us/support/contact/)-->
+<!--Not Available on Request this feature in the [feedback forum](https://support.azure.cn/support/contact/)-->
 
 ### <a name="what-is-asrseeddisk"></a>什么是 asrseeddisk？
 
@@ -188,6 +191,10 @@ Site Recovery 将本地 VMware VM 和物理服务器复制到 Azure 中的托管
 
 否，Site Recovery 不支持复制到虚拟网络上的 Azure 存储。
 
+### <a name="what-is-the-frequency-of-generation-of-crash-consistent-recovery-points"></a>生成崩溃一致性恢复点的频率是多少？
+
+Site Recovery 每隔 5 分钟生成一次崩溃一致性恢复点。
+
 ## <a name="component-upgrade"></a>组件升级
 
 ### <a name="my-version-of-the-mobility-services-agent-or-configuration-server-is-old-and-my-upgrade-failed-what-do-i-do"></a>我的移动服务代理或配置服务器版本较低，并且升级失败。 我该怎么办？
@@ -217,7 +224,6 @@ Site Recovery 遵循 N-4 支持模型。 [详细了解](../site-recovery/service
     1. 接收复制数据。
     2. 通过缓存、压缩和解密来优化数据。
     3. 将数据发送到 Azure 存储。
-    
     进程服务器还会在 VM 上推送安装移动服务，并执行本地 VMware VM 的自动发现。
 - 处理从 Azure 进行故障回复期间生成的复制数据的主目标服务器。
 
@@ -247,7 +253,7 @@ Site Recovery 遵循 N-4 支持模型。 [详细了解](../site-recovery/service
 
 [了解](vmware-azure-manage-configuration-server.md#upgrade-the-configuration-server)如何更新配置服务器。
 
-- 可以在 [Azure 更新页](https://www.azure.cn/what-is-new/)中找到最新的更新信息。
+- 可以在 [Azure 更新页](https://updates.azure.cn/)中找到最新的更新信息。
 - 可从门户下载最新版本。 或者，可以直接从[下载中心](https://aka.ms/asrconfigurationserver_bjb)下载最新版本的配置服务器。
 - 如果你的版本比当前版本低 4 个版本，请参阅[支持声明](../site-recovery/service-updates-how-to.md#support-statement-for-azure-site-recovery)获取升级指导。
 

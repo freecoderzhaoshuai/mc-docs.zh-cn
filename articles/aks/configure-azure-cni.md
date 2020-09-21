@@ -4,20 +4,21 @@ description: 了解如何在 Azure Kubernetes 服务 (AKS) 中配置 Azure CNI�
 services: container-service
 ms.topic: article
 origin.date: 06/03/2019
-ms.date: 07/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: yes
 ms.testdate: 05/25/2020
 ms.author: v-yeche
-ms.openlocfilehash: c8a9209393a67043fabfe597f476a1b119752382
-ms.sourcegitcommit: 6c9e5b3292ade56d812e7e214eeb66aeb9b8776e
+ms.openlocfilehash: c04b8b769f8d1c83e008f8d1f77257ff1cd7350d
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86218752"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021549"
 ---
 # <a name="configure-azure-cni-networking-in-azure-kubernetes-service-aks"></a>在 Azure Kubernetes 服务 (AKS) 中配置 Azure CNI 网络
 
-默认情况下，AKS 群集使用 [kubenet][kubenet]，系统会为你创建虚拟网络和子网。 使用 kubenet，节点从虚拟网络子网获取 IP 地址。 然后会在节点上配置网络地址转换 (NAT)，并且 Pod 将接收“隐藏”在节点 IP 背后的 IP 地址。 这种方法减少了需要在网络空间中保留供 Pod 使用的 IP 地址数量。
+默认情况下，AKS 群集使用 [kubenet][kubenet]，系统会为你创建虚拟网络和子网。 使用 *kubenet*，节点从虚拟网络子网获取 IP 地址。 然后会在节点上配置网络地址转换 (NAT)，并且 Pod 将接收“隐藏”在节点 IP 背后的 IP 地址。 这种方法减少了需要在网络空间中保留供 Pod 使用的 IP 地址数量。
 
 借助 [Azure 容器网络接口 (CNI)][cni-networking]，每个 Pod 都可以从子网获得 IP 地址，并且可供直接访问。 这些 IP 地址在网络空间中必须唯一，并且必须事先计划。 每个节点都有一个配置参数来表示它支持的最大 Pod 数。 这样，就会为每个节点预留相应的 IP 地址数。 使用此方法需要经过更详细的规划，并且经常会耗尽 IP 地址，或者在应用程序需求增长时需要在更大的子网中重建群集。
 
@@ -53,7 +54,7 @@ AKS 群集 IP 地址计划包括虚拟网络、至少一个节点和 Pod 子网�
 
 | 地址范围 / Azure 资源 | 限制和调整大小 |
 | --------- | ------------- |
-| 虚拟网络 | Azure 虚拟网络的大小可以为 /8，但仅限于 65,536 个已配置的 IP 地址。 |
+| 虚拟网络 | Azure 虚拟网络的大小可以为 /8，但仅限于 65,536 个已配置的 IP 地址。 在配置地址空间之前，请考虑所有网络需求（包括与其他虚拟网络中的服务进行通信）。 例如，如果配置的地址空间太大，则可能会遇到与网络中的其他地址空间重叠的问题。|
 | 子网 | 大小必须足以容纳群集中可能预配的节点、Pod 以及所有 Kubernetes 和 Azure 资源。 例如，如果部署内部 Azure 负载均衡器，其前端 IP 分配自群集子网（而不是公共 IP）。 子网大小还应考虑到帐户升级操作或将来的缩放需求。<p />若要计算最小子网大小，包括用于升级操作的其他节点：`(number of nodes + 1) + ((number of nodes + 1) * maximum pods per node that you configure)`<p/>50 个节点群集的示例：`(51) + (51  * 30 (default)) = 1,581`（/21 或更大）<p/>50 节点群集的示例，其中还包括纵向扩展额外 10 个节点的预配：`(61) + (61 * 30 (default)) = 1,891`（/21 或更大）<p>如果在创建群集时没有指定每个节点的最大 Pod 数，则每个节点的最大 Pod 数将设置为 30。 所需的最小 IP 地址数取决于该值。 如果基于不同的最大值计算最小 IP 地址要求，请参阅[如何配置每个节点的最大 Pod 数](#configure-maximum---new-clusters)，以便在部署群集时设置此值。 |
 | Kubernetes 服务地址范围 | 此范围不应由此虚拟网络上或连接到此虚拟网络的任何网络元素使用。 服务地址 CIDR 必须小于 /12。 可以在不同 AKS 群集中重复使用此范围。 |
 | Kubernetes DNS 服务 IP 地址 | Kubernetes 服务地址范围内的 IP 地址将由群集服务发现 (kube-dns) 使用。 请勿使用地址范围内的第一个 IP 地址，例如 1。 子网范围内的第一个地址用于 kubernetes.default.svc.cluster.local 地址。 |
@@ -79,8 +80,8 @@ AKS 群集中每个节点的最大 Pod 数为 250。 每个节点的默认最大
 
 | 网络 | 最小值 | 最大值 |
 | -- | :--: | :--: |
-| Azure CNI | 10 个 | 250 |
-| Kubenet | 10 个 | 110 |
+| Azure CNI | 10 | 250 |
+| Kubenet | 10 | 110 |
 
 > [!NOTE]
 > 上表中的最小值由 AKS 服务严格强制实施。 不能将 maxPods 值设置为低于所示的最小值，因为这样做可能会阻止群集启动。
@@ -94,7 +95,7 @@ AKS 群集中每个节点的最大 Pod 数为 250。 每个节点的默认最大
 
 ### <a name="configure-maximum---existing-clusters"></a>配置最大值 - 现有群集
 
-创建新节点池时，可以定义“每个节点的 maxPod”设置。 如果需要增加现有群集的“每个节点的 maxPod”设置，请使用新的所需 maxPod 计数添加新的节点池。 将 Pod 迁移到新池后，请删除旧池。 若要删除群集中的任何旧池，请确保按[系统节点池文档[system-node-pools]中的定义设置节点池模式。
+创建新节点池时，可以定义“每个节点的 maxPod”设置。 如果需要增加现有群集的“每个节点的 maxPod”设置，请使用新的所需 maxPod 计数添加新的节点池。 将 Pod 迁移到新池后，请删除旧池。 若要删除群集中的任何旧池，请确保按[系统节点池文档][system-node-pools]中的定义设置节点池模式。
 
 ## <a name="deployment-parameters"></a>部署参数
 
@@ -160,6 +161,10 @@ az aks create \
 
     是的。
 
+* 外部系统查看什么源 IP 来获取源自某个支持 Azure CNI 的 Pod 的流量？
+
+    与 AKS 群集处于同一虚拟网络中的系统将 Pod IP 视为来自 Pod 的任何流量的源地址。 AKS 群集虚拟网络外部的系统将节点 IP 视为来自 Pod 的任何流量的源地址。 
+
 * *是否可以配置基于 Pod 的网络策略？*
 
     是的，Kubernetes 网络策略在 AKS 中可用。 若要开始使用，请参阅[在 AKS 中使用网络策略保护 Pod 之间的流量][network-policy]。
@@ -215,7 +220,7 @@ az aks create \
 <!-- LINKS - Internal -->
 <!-- Not Available on cli/aks -->
 
-[az-aks-create]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-create
+[az-aks-create]: https://docs.microsoft.com/cli/azure/aks#az_aks_create
 [aks-ssh]: ssh.md
 
 <!--Not Available on [ManagedClusterAgentPoolProfile]: /templates/microsoft.containerservice/managedclusters#managedclusteragentpoolprofile-object-->

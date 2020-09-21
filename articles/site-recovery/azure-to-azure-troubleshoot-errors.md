@@ -1,26 +1,27 @@
 ---
 title: 排查 Azure Site Recovery 中的 Azure VM 复制问题
 description: 排查复制 Azure 虚拟机进行灾难恢复时出现的错误。
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.service: site-recovery
 ms.topic: article
 origin.date: 04/07/2020
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: 973dfc43937471be3c9aa12801fe87a831ce18f7
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: ce85d4771f46d1a43048e5e9630335ce6f2abdc6
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440422"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655243"
 ---
 # <a name="troubleshoot-azure-to-azure-vm-replication-errors"></a>排查 Azure 到 Azure VM 复制错误
 
 本文介绍如何排查在 Azure Site Recovery 中将 Azure 虚拟机 (VM) 从一个区域复制和恢复到另一个区域期间出现的常见错误。 有关支持的配置的详细信息，请参阅 [support matrix for replicating Azure VMs](azure-to-azure-support-matrix.md)（复制 Azure VM 的支持矩阵）。
 
-<a name="azure-resource-quota-issues-error-code-150097"></a>
-## <a name="azure-resource-quota-issues-error-code-150097"></a>Azure 资源配额问题（错误代码 150097）
+## <a name="azure-resource-quota-issues-error-code-150097"></a><a name="azure-resource-quota-issues-error-code-150097"></a>Azure 资源配额问题（错误代码 150097）
 
 确保启用订阅，以在计划用作灾难恢复 (DR) 区域的目标区域中创建 Azure VM。 你的订阅需要有足够的配额来创建所需大小的 VM。 默认情况下，Site Recovery 会选择与源 VM 大小相同的目标 VM 大小。 如果匹配的大小不可用，Site Recovery 会自动选择最接近的可用大小。
 
@@ -42,8 +43,7 @@ Replication couldn't be enabled for the virtual machine <VmName>.
 
 如果目标位置存在容量约束，请禁用到该位置的复制。 然后在订阅具有足够配额的其他位置启用复制，以创建所需大小的 VM。
 
-<a name="trusted-root-certificates-error-code-151066"></a>
-## <a name="trusted-root-certificates-error-code-151066"></a>受信任的根证书（错误代码 151066）
+## <a name="trusted-root-certificates-error-code-151066"></a><a name="trusted-root-certificates-error-code-151066"></a>受信任的根证书（错误代码 151066）
 
 如果 VM 上不存在所有最新的受信任根证书，则为 Site Recovery 启用复制的作业可能会失败。 如果没有这些证书，VM 发出的 Site Recovery 服务调用的身份验证和授权会失败。
 
@@ -205,7 +205,7 @@ Site Recovery configuration failed.
 #### <a name="fix-the-problem"></a>解决问题
 
 Azure Site Recovery 需要具有对 Office 365 IP 范围的访问权限才能进行身份验证。
-如果使用 Azure 网络安全组 (NSG) 规则/防火墙代理控制 VM 的出站网络连接，请确保使用基于 [Azure Active Directory (AAD) 服务标记](/virtual-network/security-overview#service-tags)的 NSG 规则来允许访问 AAD。 我们不再支持基于 IP 地址的 NSG 规则。
+如果使用 Azure 网络安全组 (NSG) 规则/防火墙代理控制 VM 的出站网络连接，请确保使用基于 [Azure Active Directory (AAD) 服务标记](../virtual-network/security-overview.md#service-tags)的 NSG 规则来允许访问 AAD。 我们不再支持基于 IP 地址的 NSG 规则。
 
 ### <a name="issue-3-site-recovery-configuration-failed-151197"></a>问题 3：Site Recovery 配置失败 (151197)
 
@@ -263,8 +263,8 @@ Azure data disk <DiskName> <DiskURI> with logical unit number <LUN> <LUNValue> w
 
 确保数据磁盘已初始化，然后重试该操作。
 
-- **Windows**：[附加并初始化新的磁盘](/virtual-machines/windows/attach-managed-disk-portal)。
-- Linux：[在 Linux 中初始化新的数据磁盘](/virtual-machines/linux/add-disk)。
+- **Windows**：[附加并初始化新的磁盘](../virtual-machines/windows/attach-managed-disk-portal.md)。
+- Linux：[在 Linux 中初始化新的数据磁盘](../virtual-machines/linux/add-disk.md)。
 
 如果问题仍然存在，请联系支持部门。
 
@@ -536,6 +536,44 @@ Site Recovery 移动服务有多个组件，其中一个称为筛选器驱动程
 ### <a name="fix-the-problem"></a>解决问题
 
 删除错误消息中指出的副本磁盘，然后重试失败的保护作业。
+
+## <a name="enable-protection-failed-as-the-installer-is-unable-to-find-the-root-disk-error-code-151137"></a>启动保护失败，因为安装程序无法找到根磁盘（错误代码 151137）
+
+对于使用 Azure 磁盘加密 (ADE) 对 OS 磁盘进行加密的 Linux 计算机，会发生此错误。 这只是代理版本 9.35 中的有效问题。
+
+### <a name="possible-causes"></a>可能的原因
+
+安装程序无法找到托管根文件系统的根磁盘。
+
+### <a name="fix-the-problem"></a>解决问题
+
+请按照以下步骤解决此问题 -
+
+1. 使用以下命令在 RHEL 和 CentOS 计算机上的目录 /var/lib/waagent 下查找代理位： <br />
+
+    `# find /var/lib/ -name Micro\*.gz`
+
+    预期输出：
+
+    `/var/lib/waagent/Microsoft.Azure.RecoveryServices.SiteRecovery.LinuxRHEL7-1.0.0.9139/UnifiedAgent/Microsoft-ASR_UA_9.35.0.0_RHEL7-64_GA_30Jun2020_release.tar.gz`
+
+2. 创建一个新目录，并将目录更改为此新目录。
+3. 使用以下命令提取在第一步中找到的代理文件：
+
+    `tar -xf <Tar Ball File>`
+
+4. 打开文件 prereq_check_installer.json 并删除以下行。 在此之后保存该文件。
+
+    ```
+       {
+          "CheckName": "SystemDiskAvailable",
+          "CheckType": "MobilityService"
+       },
+    ```
+5. 使用以下命令调用安装程序： <br />
+
+    `./install -d /usr/local/ASR -r MS -q -v Azure`
+6. 如果安装程序成功，请重试“启用复制”作业。
 
 ## <a name="next-steps"></a>后续步骤
 

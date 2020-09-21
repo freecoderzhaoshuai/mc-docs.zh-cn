@@ -9,13 +9,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: vanto
 origin.date: 07/27/2020
-ms.date: 08/17/2020
-ms.openlocfilehash: 37a1038d118a7c3af62106536031d05e5b83336c
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.date: 09/14/2020
+ms.openlocfilehash: 6b04348fc5d8ebd606fd96f2d068dd4bfb09102d
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223540"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014357"
 ---
 # <a name="create-azure-ad-guest-users-and-set-as-an-azure-ad-admin"></a>创建 Azure AD 来宾用户并将其设置为 Azure AD 管理员
 
@@ -134,9 +134,9 @@ Azure Active Directory (Azure AD) 中的来宾用户是从其他 Azure Active Di
 
 ## <a name="limitations"></a>限制
 
-Azure 门户有个限制会阻止将 Azure AD 来宾用户选为 SQL 数据库、SQL 托管实例和 Azure Synapse 的 Azure AD 管理员。 对于 Azure AD 外部的来宾帐户（如 \@outlook.com、\@hotmail.com、\@live.com 或 \@gmail.com），AD 管理员选择器会显示这些帐户，但它们是灰显的且不能选择它们   。 使用上面列出的 [PowerShell 或 CLI 命令](#setting-a-guest-user-as-an-azure-ad-admin)设置 Azure AD 管理员。或者，可以将包含来宾用户的 Azure AD 组设为 SQL 逻辑服务器的 Azure AD 管理员。
+Azure 门户一个限制会阻止将 Azure AD 来宾用户选为 SQL 托管实例的 Azure AD 管理员。 对于 Azure AD 外部的来宾帐户（如 \@outlook.com、\@hotmail.com、\@live.com 或 \@gmail.com），AD 管理员选择器会显示这些帐户，但它们是灰显的且不能选择它们   。 使用上面列出的 [PowerShell 或 CLI 命令](#setting-a-guest-user-as-an-azure-ad-admin)设置 Azure AD 管理员。或者，可以将包含来宾用户的 Azure AD 组设为 SQL 托管实例的 Azure AD 管理员。
 
-此功能正式发布之前，将为 SQL 数据库和 Azure Synapse 启用此功能。
+此功能正式发布之前，将为 SQL 托管实例启用此功能。
 
 ## <a name="next-steps"></a>后续步骤
 

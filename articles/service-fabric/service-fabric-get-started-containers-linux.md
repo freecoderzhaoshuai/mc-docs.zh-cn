@@ -3,24 +3,25 @@ title: 在 Linux 上创建 Azure Service Fabric 容器应用程序
 description: 在 Azure Service Fabric 上创建第一个 Linux 容器应用程序。 生成包含应用程序的 Docker 映像，将该映像推送到容器注册表，然后生成并部署 Service Fabric 容器应用程序。
 ms.topic: conceptual
 origin.date: 01/04/2019
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 01/13/2020
 ms.author: v-yeche
-ms.custom: tracking-python
-ms.openlocfilehash: a568fd81486c90cf3ad5cad120201c84cae9a1e3
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.custom: devx-track-python
+ms.openlocfilehash: 0f481736266538e9825e90cb548afc73a1493954
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426536"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655686"
 ---
 # <a name="create-your-first-service-fabric-container-application-on-linux"></a>在 Linux 上创建第一个 Service Fabric 容器应用程序
 > [!div class="op_single_selector"]
 > * [Windows](service-fabric-get-started-containers.md)
 > * [Linux](service-fabric-get-started-containers-linux.md)
 
-在 Service Fabric 群集上运行 Linux 容器中的现有应用程序不需要对应用程序进行任何更改。 本文逐步讲解如何创建包含 Python [Flask](http://flask.pocoo.org/) Web 应用程序的 Docker 映像并将其部署到 Service Fabric 群集。 此外，将通过 [Azure 容器注册表](/container-registry/)共享容器化的应用程序。 本文假定读者对 Docker 有一个基本的了解。 阅读 [Docker Overview](https://docs.docker.com/engine/understanding-docker/)（Docker 概述）即可了解 Docker。
+在 Service Fabric 群集上运行 Linux 容器中的现有应用程序不需要对应用程序进行任何更改。 本文逐步讲解如何创建包含 Python [Flask](http://flask.pocoo.org/) Web 应用程序的 Docker 映像并将其部署到 Service Fabric 群集。 此外，将通过 [Azure 容器注册表](../container-registry/index.yml)共享容器化的应用程序。 本文假定读者对 Docker 有一个基本的了解。 阅读 [Docker Overview](https://docs.docker.com/engine/understanding-docker/)（Docker 概述）即可了解 Docker。
 
 > [!NOTE]
 > 本文适用于 Linux 开发环境。  Service Fabric 群集运行时和 Docker 运行时必须在同一 OS 上运行。  不能在 Windows 群集上运行 Linux 容器。
@@ -30,6 +31,8 @@ ms.locfileid: "87426536"
     * [Service Fabric SDK 和工具](service-fabric-get-started-linux.md)。
     * [适用于 Linux 的 Docker CE](https://docs.docker.com/engine/installation/#prior-releases)。 
     * [Service Fabric CLI](service-fabric-cli.md)
+
+* 包含三个或多个节点的 Linux 群集。
 
 * 一个位于 Azure 容器注册表中的注册表 - 在 Azure 订阅中[创建容器注册表](../container-registry/container-registry-get-started-portal.md)。 
 
@@ -114,7 +117,7 @@ helloworldapp                 latest              86838648aab6        2 minutes 
 docker run -d -p 4000:80 --name my-web-site helloworldapp
 ```
 
-name 用于为运行的容器（而不是容器 ID）命名。 
+name 用于为运行的容器（而不是容器 ID）命名。**
 
 连接到正在运行的容器。 打开 Web 浏览器并指向端口 4000 上返回的 IP 地址，例如“http:\//localhost:4000”。 此时会看到标题“Hello World!” 显示在浏览器中。
 
@@ -172,9 +175,9 @@ docker push myregistry.azurecr.cn/samples/helloworldapp
 
 ![适用于容器的 Service Fabric Yeoman 生成器][sf-yeoman]
 
-<!--Not Available on ## Configure container repository authentication-->
+## <a name="configure-container-repository-authentication"></a>配置容器存储库身份验证
 
-<!--Not Available on [Container Repository Authentication](configure-container-repository-credentials.md)-->
+请参阅[容器存储库身份验证](configure-container-repository-credentials.md)，了解如何为容器映像的下载配置不同类型的身份验证。
 
 ## <a name="configure-isolation-mode"></a>配置隔离模式
 使用 6.3 运行时版本时，Linux 容器支持 VM 隔离，从而支持两种容器隔离模式：process 和 Hyper-V。 使用 Hyper-V 隔离模式时，内核将在每个容器与容器主机之间隔离。 使用 [Clear Containers](https://software.intel.com/articles/intel-clear-containers-2-using-clear-containers-with-docker) 实现 Hyper-V 隔离。 在应用程序清单文件中的 `ServicePackageContainerPolicy` 元素内，为 Linux 群集指定了隔离模式。 可以指定的隔离模式为 `process`、`hyperv` 和 `default`。 默认为 process 隔离模式。 以下代码片段演示如何在应用程序清单文件中指定隔离模式。
@@ -205,9 +208,9 @@ docker push myregistry.azurecr.cn/samples/helloworldapp
 
 ## <a name="configure-docker-healthcheck"></a>配置 docker HEALTHCHECK 
 
-从 v6.1 开始，Service Fabric 自动将 [docker HEALTHCHECK](https://docs.docker.com/engine/reference/builder/#healthcheck) 事件集成到其系统运行状况报告。 这意味着，如果容器启用了 **HEALTHCHECK**，则只要容器的运行状况状态如 Docker 所报告的那样更改，Service Fabric 就会报告运行状况。  当 [health_status](service-fabric-visualizing-your-cluster.md) 为“正常”  时，会在 *Service Fabric Explorer* 中显示运行状况报告“正常”；  当 *health_status* 为“不正常”时，  会显示“警告”。 
+从 v6.1 开始，Service Fabric 自动将 [docker HEALTHCHECK](https://docs.docker.com/engine/reference/builder/#healthcheck) 事件集成到其系统运行状况报告。 这意味着，如果容器启用了 **HEALTHCHECK**，则只要容器的运行状况状态如 Docker 所报告的那样更改，Service Fabric 就会报告运行状况。 **** 当 *health_status* 为“正常”** 时，会在 [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) 中显示运行状况报告“正常”；**** 当 *health_status* 为“不正常”时，** 会显示“警告”。 
 
-从 v6.4 的最新更新版开始，可以选择指定应将 Docker HEALTHCHECK 评估报告为错误。 如果此选项已启用，当 *health_status* 为“正常”时，将显示“正常”运行状况报告；当 *health_status* 为“不正常”时，将显示“错误”运行状况报告。
+从 v6.4 的最新更新版开始，可以选择指定应将 Docker HEALTHCHECK 评估报告为错误。 如果此选项已启用，当 *health_status* 为“正常”时，将显示“正常”运行状况报告；当 *health_status* 为“不正常”时，将显示“错误”运行状况报告************。
 
 生成容器映像时使用的 Dockerfile 中必须存在 **HEALTHCHECK** 指令，该指令指向监视容器运行状况时执行的实际检查。
 
@@ -235,7 +238,7 @@ docker push myregistry.azurecr.cn/samples/helloworldapp
 
 如果 *RestartContainerOnUnhealthyDockerHealthStatus* 设置为 **true**，则会重启（可能在其他节点上进行）反复报告“不正常”的容器。
 
-如果 *TreatContainerUnhealthyStatusAsError* 设置为 **true**，当容器的 *health_status* 为“运行不正常”时，将显示“错误”运行状况报告。
+如果 *TreatContainerUnhealthyStatusAsError* 设置为 **true**，当容器的 *health_status* 为“运行不正常”时，将显示“错误”运行状况报告******。
 
 若要禁用整个 Service Fabric 群集的 **HEALTHCHECK** 集成，则需将 [EnableDockerHealthCheckIntegration](service-fabric-cluster-fabric-settings.md) 设置为 **false**。
 
@@ -260,7 +263,7 @@ sfctl cluster select --endpoint http://localhost:19080
 
 ![Hello World!][hello-world]
 
-## <a name="clean-up"></a>清除
+## <a name="clean-up"></a>清理
 使用模板中提供的卸载脚本从本地开发群集中删除应用程序实例并取消注册应用程序类型。
 
 ```bash
@@ -366,8 +369,8 @@ docker rmi myregistry.azurecr.cn/samples/helloworldapp
 
 若要将其他容器服务添加到使用 yeoman 创建的应用程序，请执行以下步骤：
 
-1. 将目录更改为现有应用程序的根目录。 例如，如果 `MyApplication` 是 Yeoman 创建的应用程序，则使用 `cd ~/YeomanSamples/MyApplication`。
-2. `yo azuresfcontainer:AddService`运行 {2}
+1. 将目录更改为现有应用程序的根目录。 例如 `cd ~/YeomanSamples/MyApplication`（如果 `MyApplication` 是 Yeoman 创建的应用程序）。
+2. 运行 `yo azuresfcontainer:AddService`
 
 <a name="manually"></a>
 
@@ -432,13 +435,13 @@ Service Fabric 运行时为下载和解压缩容器映像分配了 20 分钟的�
 
 ## <a name="set-container-retention-policy"></a>设置容器保留策略
 
-为了帮助诊断容器启动故障，Service Fabric（6.1 或更高版本）支持保留终止的或无法启动的容器。 此策略可以在  ApplicationManifest.xml 文件中设置，如以下代码片段所示：
+为了帮助诊断容器启动故障，Service Fabric（6.1 或更高版本）支持保留终止的或无法启动的容器。 此策略可以在 **** ApplicationManifest.xml 文件中设置，如以下代码片段所示：
 
 ```xml
  <ContainerHostPolicies CodePackageRef="NodeService.Code" Isolation="process" ContainersRetentionCount="2"  RunInteractive="true"> 
 ```
 
- ContainersRetentionCount 设置指定在容器故障时需保留的容器数。 如果指定一个负值，则会保留所有故障容器。 如果不指定 **ContainersRetentionCount** 属性，则不会保留任何容器。  ContainersRetentionCount 属性还支持应用程序参数，因此用户可以为测试性群集和生产群集指定不同的值。 使用此功能时可使用放置约束，将容器服务的目标设置为特定的节点，防止将容器服务移至其他节点。 使用此功能保留的容器必须手动删除。
+**** ContainersRetentionCount 设置指定在容器故障时需保留的容器数。 如果指定一个负值，则会保留所有故障容器。 如果不指定 **** ContainersRetentionCount 属性，则不会保留任何容器。 **** ContainersRetentionCount 属性还支持应用程序参数，因此用户可以为测试性群集和生产群集指定不同的值。 使用此功能时可使用放置约束，将容器服务的目标设置为特定的节点，防止将容器服务移至其他节点。 使用此功能保留的容器必须手动删除。
 
 ## <a name="start-the-docker-daemon-with-custom-arguments"></a>使用自定义参数启动 Docker 守护程序
 
@@ -454,6 +457,7 @@ Service Fabric 运行时为下载和解压缩容器映像分配了 20 分钟的�
           } 
         ] 
 } 
+
 ```
 
 ## <a name="next-steps"></a>后续步骤
@@ -469,4 +473,4 @@ Service Fabric 运行时为下载和解压缩容器映像分配了 20 分钟的�
 [2]: ./media/service-fabric-get-started-containers/HealthCheckUnhealthy_App.png
 [3]: ./media/service-fabric-get-started-containers/HealthCheckUnhealthy_Dsp.png
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

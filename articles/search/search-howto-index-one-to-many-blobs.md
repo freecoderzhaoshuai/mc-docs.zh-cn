@@ -8,14 +8,14 @@ ms.author: v-tawe
 ms.devlang: rest-api
 ms.service: cognitive-search
 ms.topic: conceptual
-origin.date: 11/04/2019
-ms.date: 12/16/2019
-ms.openlocfilehash: eb6203bc156b04275a4dc063811c9f64e0dd4ba6
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+origin.date: 07/11/2020
+ms.date: 09/10/2020
+ms.openlocfilehash: 1b6aca90fafbe0a28b1fbbeb532571372b9307ef
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75336528"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020918"
 ---
 # <a name="indexing-blobs-to-produce-multiple-search-documents"></a>为可以生成多个搜索文档的 Blob 编制索引
 默认情况下，Blob 索引器将一个 Blob 的内容视为单个搜索文档。 某些 **parsingMode** 值支持单个 Blob 导致多个搜索文档的方案。 允许索引器从一个 Blob 提取多个搜索文档的不同类型的 **parsingMode** 包括：
@@ -43,21 +43,27 @@ Blob 容器包含采用以下结构的 Blob：
 
 _Blob1.json_
 
+```json
     { "temperature": 100, "pressure": 100, "timestamp": "2019-02-13T00:00:00Z" }
     { "temperature" : 33, "pressure" : 30, "timestamp": "2019-02-14T00:00:00Z" }
+```
 
 _Blob2.json_
 
+```json
     { "temperature": 1, "pressure": 1, "timestamp": "2018-01-12T00:00:00Z" }
     { "temperature" : 120, "pressure" : 3, "timestamp": "2013-05-11T00:00:00Z" }
+```
 
 创建索引器并将 **parsingMode** 设置为 `jsonLines`（未指定键字段的任何显式字段映射）时，将隐式应用以下映射
-    
+
+```http
     {
         "sourceFieldName" : "AzureSearch_DocumentKey",
         "targetFieldName": "id",
         "mappingFunction": { "name" : "base64Encode" }
     }
+```
 
 此设置会生成包含以下信息的 Azure 认知搜索索引（为简洁起见，base64 编码的 ID 已缩短）
 
@@ -74,22 +80,28 @@ _Blob2.json_
 
 _Blob1.json_
 
+```json
     recordid, temperature, pressure, timestamp
     1, 100, 100,"2019-02-13T00:00:00Z" 
     2, 33, 30,"2019-02-14T00:00:00Z" 
+```
 
 _Blob2.json_
 
+```json
     recordid, temperature, pressure, timestamp
     1, 1, 1,"2018-01-12T00:00:00Z" 
     2, 120, 3,"2013-05-11T00:00:00Z" 
+```
 
 使用 `delimitedText` **parsingMode** 创建索引器时，可能会自然而然地将字段映射函数设置为如下所示的键字段：
 
+```http
     {
         "sourceFieldName" : "recordid",
         "targetFieldName": "id"
     }
+```
 
 但是，此映射不会生成索引中显示的 4 个文档，因为 `recordid` 字段在各 Blob 中不是唯一的。   因此，我们建议对“一对多”分析模式，应用从 `AzureSearch_DocumentKey` 属性到键索引字段的隐式字段映射。
 

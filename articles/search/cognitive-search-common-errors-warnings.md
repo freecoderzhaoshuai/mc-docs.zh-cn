@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 07/02/2020
-ms.openlocfilehash: 145eb9e1a0a62c25fc0e51f46afa6c975b6ec02b
-ms.sourcegitcommit: 5afd7c4c3be9b80c4c67ec55f66fcf347aad74c6
+ms.date: 09/10/2020
+ms.openlocfilehash: f459b26947d179b2434683b10d74eb9e3d91089b
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/03/2020
-ms.locfileid: "85942536"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021607"
 ---
 # <a name="troubleshooting-common-indexer-errors-and-warnings-in-azure-cognitive-search"></a>排查 Azure 认知搜索中的常见索引器错误和警告
 
@@ -41,7 +41,7 @@ ms.locfileid: "85942536"
 | 详细信息 | 可能有助于诊断问题的任何其他详细信息，例如，执行自定义技能失败时的 Web API 响应。 | `link-cryptonyms-list - Error processing the request record : System.ArgumentNullException: Value cannot be null. Parameter name: source at System.Linq.Enumerable.All[TSource](IEnumerable`1 source, Func`2 predicate) at Microsoft.CognitiveSearch.WebApiSkills.JfkWebApiSkills.` ...rest of stack trace... |
 | documentationLink | 相关文档的链接，该文档包含用于调试和解决问题的详细信息。 此链接通常指向本页的以下部分之一。 | https://docs.azure.cn/search/cognitive-search-common-errors-warnings#could-not-execute-skill-because-the-web-api-request-failed |
 
-<a name="could-not-read-document"/>
+<a name="could-not-read-document"></a>
 
 ## <a name="error-could-not-read-document"></a>错误：无法读取文档
 
@@ -53,7 +53,7 @@ ms.locfileid: "85942536"
 | 数据源的底层服务发生的错误 | （来自 Cosmos DB）`{"Errors":["Request rate is large"]}` | 检查存储实例，确保其正常运行。 可能需要调整缩放/分区。 |
 | 暂时性问题 | 在接收来自服务器的结果时发生传输级错误。 （提供程序：TCP 提供程序，错误:0 - 远程主机强行关闭了现有连接 | 偶尔出现意外的连接问题。 稍后再次尝试通过索引器运行文档。 |
 
-<a name="could-not-extract-document-content"/>
+<a name="could-not-extract-document-content"></a>
 
 ## <a name="error-could-not-extract-content-or-metadata-from-your-document"></a>错误：无法从文档中提取内容或元数据
 具有 Blob 数据源的索引器无法从文档（例如 PDF 文件）中提取内容或元数据。 此错误的可能原因包括：
@@ -65,24 +65,24 @@ ms.locfileid: "85942536"
 | Blob 已加密 | 无法处理文档 - 它可能已加密或者受密码保护。 | 可以使用 [Blob 设置](search-howto-indexing-azure-blob-storage.md#controlling-which-parts-of-the-blob-are-indexed)跳过 Blob。 |
 | 暂时性问题 | “处理 Blob 时出错:请求已中止：请求已被取消。” “在处理期间文档超时。” | 偶尔出现意外的连接问题。 稍后再次尝试通过索引器运行文档。 |
 
-<a name="could-not-parse-document"/>
+<a name="could-not-parse-document"></a>
 
 ## <a name="error-could-not-parse-document"></a>错误：无法分析文档
 索引器从数据源中读取了文档，但在将文档内容转换为指定的字段映射架构时出现了问题。 此错误的可能原因包括：
 
 | Reason | 详细信息/示例 | 解决方法 |
 | --- | --- | --- |
-| 缺少文档键 | 文档键不能缺失或为空 | 确保所有文档具有有效的文档键 |
+| 缺少文档键 | 文档键不能缺失或为空 | 确保所有文档具有有效的文档键。 文档键是通过将“键”属性设置为[索引定义](https://docs.microsoft.com/rest/api/searchservice/create-index#request-body)的一部分来确定的。 当在特定文档上找不到标记为“键”的属性时，索引器将发出此错误。 |
 | 文档键无效 | 文档键的长度不能超过 1024 个字符 | 根据验证要求修改文档键。 |
 | 无法将字段映射应用到某个字段 | 无法将映射函数 `'functionName'` 应用到字段 `'fieldName'`。 数组不能为 null。 参数名称: bytes | 请反复检查索引器中定义的[字段映射](search-indexer-field-mappings.md)，并与失败文档的指定字段的数据进行比较。 可能需要修改字段映射或文档数据。 |
 | 无法读取字段值 | 无法读取列 `'fieldName'` 在索引 `'fieldIndex'` 处的值。 在接收来自服务器的结果时发生传输级错误。 （提供程序：TCP 提供程序，错误:0 - 远程主机强行关闭了现有连接。 | 这些错误的常见原因是数据源的底层服务出现了意外的连接问题。 稍后再次尝试通过索引器运行文档。 |
 
-<a name="Could not map output field '`xyz`' to search index due to deserialization problem while applying mapping function '`abc`'"/>
+<a name="Could not map output field '`xyz`' to search index due to deserialization problem while applying mapping function '`abc`'"></a>
 
 ## <a name="error-could-not-map-output-field-xyz-to-search-index-due-to-deserialization-problem-while-applying-mapping-function-abc"></a>错误：应用映射函数“`abc`”时，由于反序列化问题，无法将输出字段“`xyz`”映射到搜索索引
 输出映射可能已失败，因为输出数据的格式与你使用的映射函数不兼容。 例如，对二进制数据应用 Base64Encode 映射函数就会生成此错误。 若要解决此问题，请重新运行索引器而不指定映射函数，或者确保映射函数与输出字段的数据类型兼容。 有关详细信息，请参阅[输出字段映射](cognitive-search-output-field-mapping.md)。
 
-<a name="could-not-execute-skill"/>
+<a name="could-not-execute-skill"></a>
 
 ## <a name="error-could-not-execute-skill"></a>错误：无法执行技能
 索引器无法运行技能集中的某个技能。
@@ -93,19 +93,19 @@ ms.locfileid: "85942536"
 | 潜在的产品 bug | 发生了意外错误。 | 这表示发生了未知类别的失败，也可能表示产品有 bug。 若要获得帮助，请提交[支持票证](https://portal.azure.cn/#create/Microsoft.Support)。 |
 | 技能在执行期间遇到错误 | （来自合并技能）一个或多个偏移量值无效，无法对其进行分析。 项已插入到文本的末尾 | 使用错误消息中的信息来解决问题。 此类失败需要采取措施才能解决。 |
 
-<a name="could-not-execute-skill-because-the-web-api-request-failed"/>
+<a name="could-not-execute-skill-because-the-web-api-request-failed"></a>
 
 ## <a name="error-could-not-execute-skill-because-the-web-api-request-failed"></a>错误：由于 Web API 请求失败，无法执行技能
 由于对 Web API 的调用失败，未能执行技能。 通常，此类失败是在使用自定义技能时发生的，在这种情况下，需要调试自定义代码才能解决问题。 如果失败来源于某个内置技能，请参考错误消息获得解决问题的帮助。
 
 在调试此问题时，请务必注意此技能的所有[技能输入警告](#warning-skill-input-was-invalid)。 你的 Web API 终结点可能会失败，因为索引器正在向它传递意外的输入。
 
-<a name="could-not-execute-skill-because-web-api-skill-response-is-invalid"/>
+<a name="could-not-execute-skill-because-web-api-skill-response-is-invalid"></a>
 
 ## <a name="error-could-not-execute-skill-because-web-api-skill-response-is-invalid"></a>错误：由于 Web API 技能响应无效，无法执行技能
 由于对 Web API 的调用返回了无效的响应，技能执行失败。 通常，此类失败是在使用自定义技能时发生的，在这种情况下，需要调试自定义代码才能解决问题。 如果失败来源于内置技能，请提交[支持票证](https://portal.azure.cn/#create/Microsoft.Support)以获得帮助。
 
-<a name="skill-did-not-execute-within-the-time-limit"/>
+<a name="skill-did-not-execute-within-the-time-limit"></a>
 
 ## <a name="error-skill-did-not-execute-within-the-time-limit"></a>错误：在时间限制内未执行技能
 在两种情况下可能会出现此错误消息，每种情况应以不同的方式进行处理。 请根据返回此错误的技能，按照以下说明予以解决。
@@ -142,7 +142,7 @@ ms.locfileid: "85942536"
 
 可为 `timeout` 参数设置的最大值为 230 秒。  如果自定义技能无法在 230 秒内以一致的方式执行，你可以考虑减小自定义技能的 `batchSize`，以减少它在单次执行中处理的文档数。  如果已将 `batchSize` 设置为 1，则需要重写技能，使其能够在 230 秒内完成执行；或者将其拆分为多个自定义技能，使任何一个自定义技能的最长执行时间为 230 秒。 有关详细信息，请查看[自定义技能文档](cognitive-search-custom-skill-web-api.md)。
 
-<a name="could-not-mergeorupload--delete-document-to-the-search-index"/>
+<a name="could-not-mergeorupload--delete-document-to-the-search-index"></a>
 
 ## <a name="error-could-not-mergeorupload--delete-document-to-the-search-index"></a>错误：无法在搜索索引中“`MergeOrUpload`”|“`Delete`”文档
 
@@ -158,7 +158,7 @@ ms.locfileid: "85942536"
 | 底层计算/网络资源发生故障（罕见情况） | 未能建立连接，因此无法更新索引。 发生未知的失败。 | 将索引器配置为[按计划运行](search-howto-schedule-indexers.md)，以从失败状态继续工作。
 | 由于出现网络问题，在超时期限内未确认对目标索引发出的索引编制请求。 | 无法及时与搜索索引建立连接。 | 将索引器配置为[按计划运行](search-howto-schedule-indexers.md)，以从失败状态继续工作。 此外，如果此错误持续出现，请尝试减小索引器的[批大小](https://docs.microsoft.com/rest/api/searchservice/create-indexer#parameters)。
 
-<a name="could-not-index-document-because-the-indexer-data-to-index-was-invalid"/>
+<a name="could-not-index-document-because-the-indexer-data-to-index-was-invalid"></a>
 
 ## <a name="error-could-not-index-document-because-some-of-the-documents-data-was-not-valid"></a>错误：由于文档的某些数据无效，无法为文档编制索引
 
@@ -178,13 +178,13 @@ ms.locfileid: "85942536"
 
 这适用于 SQL 表，此错误通常发生在将键定义为组合键，或者在表定义了唯一聚集索引时（在 SQL 索引而不是 Azure 搜索索引中）。 主要原因是在使用[唯一聚集索引](https://docs.microsoft.com/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described?view=sql-server-ver15)的情况下将键属性修改为组合主键。 在这种情况下，请确保 SQL 表不采用唯一聚集索引，或者，请将键字段映射到某个保证不包含重复值的字段。
 
-<a name="could-not-process-document-within-indexer-max-run-time"/>
+<a name="could-not-process-document-within-indexer-max-run-time"></a>
 
 ## <a name="error-could-not-process-document-within-indexer-max-run-time"></a>错误：在索引器最长运行时间内无法处理文档
 
 当索引器无法在允许的执行时间内处理完数据源中的单个文档时，将发生此错误。 使用技能集时，[最长运行时间](search-limits-quotas-capacity.md#indexer-limits)更短。 发生此错误时，如果 maxFailedItems 设置为非 0 值，则索引器将在以后的运行中绕过该文档，使索引编制能够继续。 如果无法跳过任何文档，或者此错误一直出现，请考虑将文档分解为较小的文档，以便在索引器的单次执行中处理能够取得部分进展。
 
-<a name="could-not-project-document"/>
+<a name="could-not-project-document></a>
 
 ## <a name="error-could-not-project-document"></a>错误：无法投影文档
 
@@ -196,7 +196,7 @@ ms.locfileid: "85942536"
 | 无法在容器 `'containerName'` 中更新投影 Blob `'blobUri'` |无法将数据写入传输连接:远程主机强行关闭了现有连接。 | 这是预期的 Azure 存储暂时性失败，因此应该通过重新运行索引器来予以解决。 如果此错误持续出现，请提交[支持票证](https://portal.azure.cn/#create/Microsoft.Support)，让我们进一步调查。  |
 | 无法更新表 `'tableName'` 中的行 `'projectionRow'` | 服务器繁忙。 | 这是预期的 Azure 存储暂时性失败，因此应该通过重新运行索引器来予以解决。 如果此错误持续出现，请提交[支持票证](https://portal.azure.cn/#create/Microsoft.Support)，让我们进一步调查。  |
 
-<a name="could-not-execute-skill-because-a-skill-input-was-invalid"/>
+<a name="could-not-execute-skill-because-a-skill-input-was-invalid"></a>
 
 ## <a name="warning-skill-input-was-invalid"></a>警告：技能输入无效
 技能的某项输入缺少、类型错误或无效。 警告消息会指出影响：
@@ -233,7 +233,7 @@ ms.locfileid: "85942536"
 | 缺少技能输入 | “缺少必需的技能输入。 名称: `text`，源: `/document/merged_content`”。“缺少值 `/document/normalized_images/0/imageTags`。”  “无法在长度为 `0` 的数组 `/document/pages` 中选择 `0`。” | 如果所有文档都出现此警告，则很有可能是输入路径中存在拼写错误。请反复检查属性名称大小写、路径中多余或缺少的 `*`，并确保数据源中的文档提供必需的输入。 |
 | 技能语言代码输入无效 | 技能输入 `languageCode` 具有以下语言代码 `X,Y,Z`，其中至少有一个语言代码无效。 | 参阅[下面](cognitive-search-common-errors-warnings.md#skill-input-languagecode-has-the-following-language-codes-xyz-at-least-one-of-which-is-invalid)的更多详细信息 |
 
-<a name="skill-input-languagecode-has-the-following-language-codes-xyz-at-least-one-of-which-is-invalid"/>
+<a name="skill-input-languagecode-has-the-following-language-codes-xyz-at-least-one-of-which-is-invalid"></a>
 
 ## <a name="warning--skill-input-languagecode-has-the-following-language-codes-xyz-at-least-one-of-which-is-invalid"></a>警告：技能输入“languageCode”具有以下语言代码“X,Y,Z”，其中至少有一个语言代码无效。
 传入到下游技能的可选 `languageCode` 输入的一个或多个值不受支持。 如果将 [LanguageDetectionSkill](cognitive-search-skill-language-detection.md) 的输出传递给后续技能，而该输出包含的语言数目超过了这些下游技能所能支持的数目，则会出现此警告。
@@ -256,11 +256,11 @@ ms.locfileid: "85942536"
 ```
 
 下面是可能生成此错误消息的每项技能当前支持的语言的一些参考资源：
-* [文本分析支持的语言](https://docs.azure.cn/cognitive-services/text-analytics/text-analytics-supported-languages)（[KeyPhraseExtractionSkill](cognitive-search-skill-keyphrases.md)，[EntityRecognitionSkill](cognitive-search-skill-entity-recognition.md)、[SentimentSkill](cognitive-search-skill-sentiment.md) 和 [PIIDetectionSkill](cognitive-search-skill-pii-detection.md)）
-* [翻译服务支持的语言](https://docs.azure.cn/cognitive-services/translator/language-support)（[文本 TranslationSkill](cognitive-search-skill-text-translation.md)）
+* [文本分析支持的语言](../cognitive-services/text-analytics/language-support.md)（[KeyPhraseExtractionSkill](cognitive-search-skill-keyphrases.md)，[EntityRecognitionSkill](cognitive-search-skill-entity-recognition.md)、[SentimentSkill](cognitive-search-skill-sentiment.md) 和 [PIIDetectionSkill](cognitive-search-skill-pii-detection.md)）
+* [翻译服务支持的语言](../cognitive-services/translator/language-support.md)（[文本 TranslationSkill](cognitive-search-skill-text-translation.md)）
 * [文本 SplitSkill](cognitive-search-skill-textsplit.md) 支持的语言：`da, de, en, es, fi, fr, it, ko, pt`
 
-<a name="skill-input-was-truncated"/>
+<a name="skill-input-was-truncated"></a>
 
 ## <a name="warning-skill-input-was-truncated"></a>警告：技能输入已截断
 认知技能对每次可以分析的文本长度施加了限制。 如果这些技能的文本输入超过该限制，我们会根据限制截断文本，然后对截断后的文本执行扩充。 这意味着，技能将会执行，但不会针对所有数据执行。
@@ -282,12 +282,12 @@ ms.locfileid: "85942536"
 
 若要确保分析所有文本，请考虑使用[拆分技能](cognitive-search-skill-textsplit.md)。
 
-<a name="web-api-skill-response-contains-warnings"/>
+<a name="web-api-skill-response-contains-warnings"></a>
 
 ## <a name="warning-web-api-skill-response-contains-warnings"></a>警告：Web API 技能响应包含警告
 索引器能够运行技能集中的技能，但 Web API 请求的响应指出执行期间出现了警告。 查看警告，了解数据受到了何种影响，以及是否需要采取措施。
 
-<a name="the-current-indexer-configuration-does-not-support-incremental-progress"/>
+<a name="the-current-indexer-configuration-does-not-support-incremental-progress"></a>
 
 ## <a name="warning-the-current-indexer-configuration-does-not-support-incremental-progress"></a>警告：当前索引器配置不支持增量进度
 
@@ -301,20 +301,20 @@ ms.locfileid: "85942536"
 
 有关详细信息，请参阅[增量进度和自定义查询](search-howto-index-cosmosdb.md#IncrementalProgress)。
 
-<a name="some-data-was-lost-during projection-row-x-in-table-y-has-string-property-z-which-was-too-long"/>
+<a name="some-data-was-lost-during projection-row-x-in-table-y-has-string-property-z-which-was-too-long"></a>
 
 ## <a name="warning-some-data-was-lost-during-projection-row-x-in-table-y-has-string-property-z-which-was-too-long"></a>警告：某些数据在投影期间已丢失。 表“Y”中行“X”的字符串属性“Z”太长。
 
 [表存储服务](https://azure.microsoft.com/services/storage/tables)对[实体属性](https://docs.microsoft.com/rest/api/storageservices/understanding-the-table-service-data-model#property-types)的大小施加了限制。 字符串最多只能包含 32,000 个字符。 如果所要投影的行中的字符串属性超过 32,000 个字符，只会保留前 32,000 个字符。 若要解决此问题，请避免投影其字符串属性超过 32,000 个字符的行。
 
-<a name="truncated-extracted-text-to-x-characters"/>
+<a name="truncated-extracted-text-to-x-characters"></a>
 
 ## <a name="warning-truncated-extracted-text-to-x-characters"></a>警告：提取的文本已截断为 X 个字符
 索引器会限制可从任一文档中提取的文本量。 此限制取决于定价层：免费层为 32,000 个字符，基本层为 64,000 个字符，标准层为 400 万个字符、标准 S2 层为 800 万个字符，标准 S3 层为 1600 万个字符。 不会为已截断的文本编制索引。 若要避免此警告，请尝试将包含大量文本的文档分解为多个较小的文档。 
 
 有关详细信息，请参阅[索引器限制](search-limits-quotas-capacity.md#indexer-limits)。
 
-<a name="could-not-map-output-field-x-to-search-index"/>
+<a name="could-not-map-output-field-x-to-search-index"></a>
 
 ## <a name="warning-could-not-map-output-field-x-to-search-index"></a>警告：无法将输出字段“X”映射到搜索索引
 引用不存在的数据/null 数据的输出字段映射会针对每个文档生成警告，并生成空索引字段。 若要解决此问题，请反复检查输出字段映射源路径是否存在拼写错误，或使用[条件技能](cognitive-search-skill-conditional.md#sample-skill-definition-2-set-a-default-value-for-a-value-that-doesnt-exist)设置默认值。 有关详细信息，请参阅[输出字段映射](cognitive-search-output-field-mapping.md)。
@@ -324,12 +324,12 @@ ms.locfileid: "85942536"
 | 无法循环访问非数组 | “无法迭代非数组 `/document/normalized_images/0/imageCelebrities/0/detail/celebrities`。” | 当输出不是数组时，将发生此错误。 如果你认为输出应该是数组，请检查指示的输出源字段路径是否有误。 例如，源字段名称中可能缺少或有多余的 `*`。 也有可能是因为此技能的输入为 null，从而导致数组为空。 请在[技能输入无效](cognitive-search-common-errors-warnings.md#warning-skill-input-was-invalid)部分中查找类似的详细信息。    |
 | 无法选择非数组中的 `0` | “无法选择非数组 `/document/pages` 中的 `0`。” | 如果技能输出未生成数组，但输出源字段名称的路径中有数组索引或 `*`，则可能会发生这种情况。 请仔细检查输出源字段名称中提供的路径以及指示的字段名称的字段值。 请在[技能输入无效](cognitive-search-common-errors-warnings.md#warning-skill-input-was-invalid)部分中查找类似的详细信息。  |
 
-<a name="the-data-change-detection-policy-is-configured-to-use-key-column-x"/>
+<a name="the-data-change-detection-policy-is-configured-to-use-key-column-x"></a>
 
 ## <a name="warning-the-data-change-detection-policy-is-configured-to-use-key-column-x"></a>警告：数据更改检测策略配置为使用键列“X”
 [数据更改检测策略](https://docs.microsoft.com/rest/api/searchservice/create-data-source#data-change-detection-policies)对它们用于检测更改的列提出了特定的要求。 其中的一项要求是，每当源项发生更改时，都要更新此列。 另一要求是，此列的新值大于以前的值。 键列不满足此要求，因为每次更新时它们不会更改。 若要解决此问题，请为更改检测策略选择另一个列。
 
-<a name="document-text-appears-to-be-utf-16-encoded-but-is-missing-a-byte-order-mark"/>
+<a name="document-text-appears-to-be-utf-16-encoded-but-is-missing-a-byte-order-mark"></a>
 
 ## <a name="warning-document-text-appears-to-be-utf-16-encoded-but-is-missing-a-byte-order-mark"></a>警告：文档文本看似经过 UTF-16 编码，但缺少字节顺序标记
 
@@ -345,7 +345,7 @@ ms.locfileid: "85942536"
 
 若要解决此警告，请确定此 Blob 的文本编码，并添加相应的字节顺序标记。
 
-<a name="cosmos-db-collection-has-a-lazy-indexing-policy"/>
+<a name="cosmos-db-collection-has-a-lazy-indexing-policy"></a>
 
 ## <a name="warning-cosmos-db-collection-x-has-a-lazy-indexing-policy-some-data-may-be-lost"></a>警告：Cosmos DB 集合“X”采用延迟索引策略。 某些数据可能已丢失
 

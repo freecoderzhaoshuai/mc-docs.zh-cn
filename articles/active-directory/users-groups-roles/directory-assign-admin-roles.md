@@ -9,17 +9,17 @@ ms.service: active-directory
 ms.workload: identity
 ms.subservice: users-groups-roles
 ms.topic: reference
-ms.date: 08/26/2020
+ms.date: 09/08/2020
 ms.author: v-junlch
 ms.reviewer: vincesm
 ms.custom: it-pro, fasttrack-edit
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 68e25571c63d120702303c265269637d55423cdd
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 9903c9218d1d04331b3a00f0b0aa6900296ab861
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947174"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593834"
 ---
 # <a name="administrator-role-permissions-in-azure-active-directory"></a>Azure Active Directory 中的管理员角色权限
 
@@ -56,19 +56,12 @@ ms.locfileid: "88947174"
 
 充当此角色的用户可以创建和管理企业应用程序、应用程序注册和应用程序代理设置的所有方面。 请注意，在创建新应用程序注册或企业应用程序时，不会将分配到此角色的用户添加为所有者。
 
-应用程序管理员可以管理用于模拟应用程序的应用程序凭据。 因此，分配了此角色的用户只能管理那些尚未分配给任何 Azure AD 角色或仅分配给以下管理员角色的应用程序的应用程序凭据：
-
-* 应用程序管理员
-* 应用程序开发人员
-* 云应用管理员
-* 目录读者
-
-如果应用程序分配给上面未提到的任何其他角色，则应用程序管理员不能管理该应用程序的凭据。
-
 此角色还可以许可委托的权限和应用程序权限，但对 Microsoft Graph API 的权限除外。
 
 > [!IMPORTANT]
 > 这种例外情况意味着，你仍可以许可对其他应用（例如，非 Microsoft 应用或已注册应用）的权限，但不能许可 Azure AD 本身的权限。 仍可以在应用注册过程中请求这些权限，但授予（即许可）这些权限需要拥有 Azure AD 管理员权限。 这意味着，恶意用户无法通过某些方式轻松提升其权限，例如，通过创建并许可可写入整个目录的应用，然后通过该应用的权限将自己提升为全局管理员。
+>
+>此角色授予管理应用程序凭据这一功能。 分配有此角色的用户可以将凭据添加到应用程序，并使用这些凭据模拟应用程序的标识。 如果已向应用程序的标识授予资源访问权限，例如创建或更新用户或其他对象，那么分配到此角色的用户在模拟应用程序时可以执行这些操作。 这种模拟应用程序标识的能力可能是用户在角色分配的基础上的权限提升。 请务必了解，向用户分配应用程序管理员角色，会赋予其模拟应用程序标识的能力。
 
 ### <a name="application-developer"></a>[应用程序开发人员](#application-developer-permissions)
 
@@ -125,15 +118,11 @@ ms.locfileid: "88947174"
 
 ### <a name="cloud-application-administrator"></a>[云应用程序管理员](#cloud-application-administrator-permissions)
 
-充当此角色的用户具有与应用程序管理员角色相同的权限，但不包括管理应用程序代理的权限。 此角色授予创建和管理企业应用程序和应用程序注册的所有方面的权限。 此角色还可以同意委派权限以及除 Microsoft Graph API 之外的应用程序权限。 在创建新应用程序注册或企业应用程序时，不会将分配到此角色的用户添加为所有者。
+充当此角色的用户具有与应用程序管理员角色相同的权限，但不包括管理应用程序代理的权限。 此角色授予创建和管理企业应用程序和应用程序注册的所有方面的权限。 此角色还可以同意委派权限，以及除 Microsoft Graph 和 Azure AD Graph 之外的应用程序权限。 在创建新应用程序注册或企业应用程序时，不会将分配到此角色的用户添加为所有者。
 
-云应用程序管理员可以管理用于模拟应用程序的应用程序凭据。 因此，分配了此角色的用户只能管理那些尚未分配给任何 Azure AD 角色或仅分配给以下管理员角色的应用程序的应用程序凭据：
+> [!IMPORTANT]
+> 此角色授予管理应用程序凭据这一功能。 分配有此角色的用户可以将凭据添加到应用程序，并使用这些凭据模拟应用程序的标识。 如果已向应用程序的标识授予资源访问权限，例如创建或更新用户或其他对象，那么分配到此角色的用户在模拟应用程序时可以执行这些操作。 这种模拟应用程序标识的能力可能是用户在角色分配的基础上的权限提升。 请务必了解，向用户分配云应用程序管理员角色，会赋予其模拟应用程序标识的能力。
 
-* 应用程序开发人员
-* 云应用管理员
-* 目录读者
-
-如果应用程序分配给上面未提到的任何其他角色，则云应用程序管理员不能管理该应用程序的凭据。
 
 ### <a name="cloud-device-administrator"></a>[云设备管理员](#cloud-device-administrator-permissions)
 
@@ -377,7 +366,7 @@ In | 有权执行的操作
 
 In | 有权执行的操作
 --- | ---
-[Microsoft 365 安全中心](https://protection.office.com) | 跨 Microsoft 365 服务监视与安全相关的策略<br>管理安全威胁和警报<br>查看报告
+[Microsoft 365 安全中心](https://protection.office.com) | 跨 Microsoft 365 服务监视与安全相关的策略<br>管理安全威胁和警报<br>查看报表
 标识保护中心 | 安全读取者角色的所有权限<br>此外，还能够执行除了重置密码以外的所有“标识保护中心”操作
 [Privileged Identity Management](/active-directory/privileged-identity-management/pim-configure) | 安全读取者角色的所有权限<br>无法管理 Azure AD 角色分配或设置
 [Office 365 安全与合规中心](https://support.office.com/article/About-Office-365-admin-roles-da585eea-f576-4f55-a1e0-87090b6aaa9d) | 管理安全策略<br>查看、调查和响应安全威胁<br>查看报表
@@ -1702,7 +1691,7 @@ CRM 服务管理员 | Dynamics 365 管理员 | 44367163-eba1-44c3-98af-f5787879f
 客户密码箱访问审批者 | 客户密码箱访问审批者 | 5c4f9dcd-47dc-4cf7-8c9a-9e4207cbfc91
 桌面分析管理员 | 桌面分析管理员 | 38a96431-2bdf-4b4c-8b6e-5d3d8abac1a4
 设备管理员 | 设备管理员 | 9f06204d-73c1-4d4c-880a-6edb90606fd8
-设备联接 | 不推荐使用 | 9c094953-4995-41c8-84c8-3ebb9b32c93f
+设备联接 | 已放弃 | 9c094953-4995-41c8-84c8-3ebb9b32c93f
 设备管理器 | 不推荐使用 | 2b499bcd-da44-4968-8aec-78e1674fa64d
 设备用户 | 不推荐使用 | d405c6df-0af8-4e3b-95e4-4d06e542189e
 目录读者 | 目录读者 | 88d8e3e3-8f55-4a1e-953a-9b9898b8876b
@@ -1725,6 +1714,7 @@ Kaizala 管理员 | Kaizala 管理员 | 74ef975b-6605-40af-a5d2-b9539d836353
 Lync 服务管理员 | Skype for Business 管理员 | 75941009-915a-4869-abe7-691bff18279e
 消息中心隐私读取者 | 消息中心隐私读取者 | ac16e43d-7b2d-40e0-ac05-243ff356ab5b
 消息中心读取者 | 消息中心读取者 | 790c1fb9-7f7d-4f88-86a1-ef1f95c05c1b
+现代商业用户 | 现代商业用户 | d24aef57-1500-4070-84db-2666f29cf966
 网络管理员 | 网络管理员 | d37c8bed-0711-4417-ba38-b4abe66ce4c2
 Office 应用管理员 | Office 应用管理员 | 2b745bdf-0803-4d80-aa65-822c4493daac
 合作伙伴一线支持人员 | 不显示，因为不应使用它 | 4ba39ca4-527c-499a-b93d-d9b492c50246

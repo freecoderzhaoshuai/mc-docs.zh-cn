@@ -3,14 +3,14 @@ title: Azure 事件中心功能概述 | Microsoft Docs
 description: 本文详细介绍 Azure 事件中心的功能和术语。
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: v-tawe
-ms.openlocfilehash: aacfdef8c85c04fe4d864d9c7da854e88481e933
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: d4529ad150c18f3c46b4597fee39daf3d6e01ae7
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715288"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063355"
 ---
 # <a name="features-and-terminology-in-azure-event-hubs"></a>Azure 事件中心的功能和术语
 
@@ -39,7 +39,7 @@ Azure 事件中心是可缩放的事件处理服务，它引入并处理大量�
 
 是要使用 AMQP 还 HTTPS 根据具体的使用方案而定。 AMQP 除了需要使用传输级别安全 (TLS) 或 SSL/TLS 以外，还需要建立持久的双向套接字。 初始化会话时，AMQP 具有较高的网络成本，但是 HTTPS 需要为每个请求使用额外的 TLS 开销。 对于活动频繁的发布者，AMQP 的性能更高。
 
-![事件中心](./media/event-hubs-features/partition_keys.png)
+![分区键](./media/event-hubs-features/partition_keys.png)
 
 事件中心可确保按顺序将共享分区键值的所有事件传送到同一分区。 如果将分区键与发布者策略结合使用，则发布者的标识与分区键的值必须匹配。 否则会出错。
 
@@ -88,13 +88,13 @@ Azure SDK 提供的某些客户端是智能使用者代理，可以自动管理�
 
 下图显示了事件中心流处理体系结构：
 
-![事件中心](./media/event-hubs-features/event_hubs_architecture.png)
+![事件中心体系结构](./media/event-hubs-features/event_hubs_architecture.png)
 
 ### <a name="stream-offsets"></a>流偏移量
 
 偏移量  是事件在分区中的位置。 可以将偏移量视为客户端游标。 偏移量是事件的字节编号。 有了该偏移量，事件使用者（读取者）便可以在事件流中指定要从其开始读取事件的点。 可以时间戳或者偏移量值的形式指定偏移量。 使用者负责在事件中心服务的外部存储其自身的偏移量值。 在分区中，每个事件都包含一个偏移量。
 
-![事件中心](./media/event-hubs-features/partition_offset.png)
+![分区偏移](./media/event-hubs-features/partition_offset.png)
 
 ### <a name="checkpointing"></a>检查点
 
@@ -140,10 +140,10 @@ Azure SDK 提供的某些客户端是智能使用者代理，可以自动管理�
 有关事件中心的详细信息，请访问以下链接：
 
 - 事件中心入门
-    - [.NET](get-started-dotnet-standard-send-v2.md)
-    - [Java](get-started-java-send-v2.md)
-    - [Python](get-started-python-send-v2.md)
-    - [JavaScript](get-started-java-send-v2.md)
+    - [.NET](event-hubs-dotnet-standard-getstarted-send.md)
+    - [Java](event-hubs-java-get-started-send.md)
+    - [Python](event-hubs-python-get-started-send.md)
+    - [JavaScript](event-hubs-java-get-started-send.md)
 * [事件中心编程指南](event-hubs-programming-guide.md)
 * [事件中心中的可用性和一致性](event-hubs-availability-and-consistency.md)
 * [事件中心常见问题](event-hubs-faq.md)

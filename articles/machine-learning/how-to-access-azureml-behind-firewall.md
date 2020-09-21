@@ -10,13 +10,13 @@ ms.author: aashishb
 author: aashishb
 ms.reviewer: larryfr
 ms.date: 07/17/2020
-ms.custom: how-to, tracking-python
-ms.openlocfilehash: b95f4b148d4cdba9b1e69d9d5057800083fd88b8
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.custom: how-to, devx-track-python
+ms.openlocfilehash: 0cd40370a2255b0a0c35d6c011a5c0d7a0b7ef7f
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947048"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021030"
 ---
 # <a name="use-workspace-behind-a-firewall-for-azure-machine-learning"></a>将防火墙后的工作区用于 Azure 机器学习
 
@@ -24,9 +24,9 @@ ms.locfileid: "88947048"
 
 虽然本文档中的信息基于使用 [Azure 防火墙](../firewall/tutorial-firewall-deploy-portal.md)，但你应该能够将其与其他防火墙产品一起使用。 如果你对如何允许通过防火墙进行通信有疑问，请查阅你正在使用的防火墙的相关文档。
 
-## <a name="network-rules"></a>网络规则
+## <a name="application-rules"></a>应用程序规则
 
-在防火墙上创建网络规则，允许流量流入和流出本文中的地址。
+在防火墙上创建应用程序规则，允许流量流入和流出本文中的地址。
 
 > [!TIP]
 > 添加网络规则时，请将“协议”设置为“任何”，并将端口设置为 `*`。
@@ -42,10 +42,10 @@ ms.locfileid: "88947048"
 | **主机名** | **用途** |
 | ---- | ---- |
 | **\*.batchai.core.windows.net** | 训练群集 |
-| **ml.azure.com** | Azure 机器学习工作室 |
+| **studio.ml.azure.cn** | Azure 机器学习工作室 |
 | **default.exp-tas.com** | 由 Azure 机器学习工作室使用 |
 | **\*.azureml.ms** | 由 Azure 机器学习 API 使用 |
-| **\*.experiments.azureml.net** | 由 Azure 机器学习中运行的试验使用|
+| **\*.experiments.ml.azure.cn** | 由 Azure 机器学习中运行的试验使用|
 | **\*.modelmanagement.azureml.net** | 用于注册和部署模型|
 | **mlworkspace.azure.ai** | 由 Azure 门户在查看工作区时使用 |
 | **\*.aether.ms** | 在运行 Azure 机器学习管道时使用 |
@@ -57,6 +57,7 @@ ms.locfileid: "88947048"
 | **mcr.microsoft.com** | 用于 docker 基础映像的 Microsoft 容器注册表 |
 | **your-acr-server-name.azurecr.io** | 仅当 Azure 容器注册表位于虚拟网络后面时才需要。 通过此配置，将创建从 Microsoft 环境到订阅中的 ACR 实例的专用链接。 将 ACR 服务器名称用于 Azure 机器学习工作区。 |
 | **\*.notebooks.azure.net** | Azure 机器学习工作室中的笔记本需要。 |
+| **graph.windows.net** | 笔记本所需 |
 
 ## <a name="python-hosts"></a>Python 主机
 

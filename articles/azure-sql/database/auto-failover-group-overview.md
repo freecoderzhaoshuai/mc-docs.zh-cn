@@ -11,19 +11,19 @@ ms.topic: conceptual
 author: WenJason
 ms.author: v-jay
 ms.reviewer: mathoma, carlrab
-origin.date: 07/09/2020
-ms.date: 08/17/2020
-ms.openlocfilehash: 3aa800115ed5d34cc6a551cb4eb2456da65636c8
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+origin.date: 08/28/2020
+ms.date: 09/14/2020
+ms.openlocfilehash: 78b6e8f8acdeaf5c8def91f809273ba5d253f221
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222845"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014343"
 ---
 # <a name="use-auto-failover-groups-to-enable-transparent-and-coordinated-failover-of-multiple-databases"></a>使用自动故障转移组可以实现多个数据库的透明、协调式故障转移
 [!INCLUDE[appliesto-sqldb-sqlmi](../includes/appliesto-sqldb-sqlmi.md)]
 
-自动故障转移组可用于管理服务器中一组数据库或托管实例中所有数据库到另一区域的复制和故障转移。 它是建立在现有[活动异地复制](active-geo-replication-overview.md)功能基础之上的声明性抽象，旨在简化异地复制的数据库的大规模部署和管理。 可以手动启动故障转移，也可以基于用户定义的策略委托 Azure 服务进行故障转移。 使用后一种做法可在发生下述情况后自动恢复次要区域中的多个相关数据库：灾难性故障或其他导致主要区域中 SQL 数据库或 SQL 托管实例完全或部分丧失可用性的计划外事件。 一个故障转移组可以包含一个或多个数据库，通常由同一个应用程序使用。 此外，你还可以使用可读辅助数据库卸载只读查询工作负荷。 由于自动故障转移组涉及多个数据库，因此这些数据库必须在主服务器上进行配置。 自动故障转移组支持将组中所有的数据库复制到另一个区域中唯一的辅助服务器或实例。
+通过自动故障转移组功能，可以管理服务器中一组数据库或托管实例中所有数据库到另一区域的复制和故障转移。 它是建立在现有[活动异地复制](active-geo-replication-overview.md)功能基础之上的声明性抽象，旨在简化异地复制的数据库的大规模部署和管理。 可以手动启动故障转移，也可以基于用户定义的策略委托 Azure 服务进行故障转移。 使用后一种做法可在发生下述情况后自动恢复次要区域中的多个相关数据库：灾难性故障或其他导致主要区域中 SQL 数据库或 SQL 托管实例完全或部分丧失可用性的计划外事件。 一个故障转移组可以包含一个或多个数据库，通常由同一个应用程序使用。 此外，你还可以使用可读辅助数据库卸载只读查询工作负荷。 由于自动故障转移组涉及多个数据库，因此这些数据库必须在主服务器上进行配置。 自动故障转移组支持将组中所有的数据库复制到另一个区域中唯一的辅助服务器或实例。
 
 > [!NOTE]
 > 如果希望多个 Azure SQL 数据库辅助数据库在相同或不同的区域中，请使用[活动异地复制](active-geo-replication-overview.md)。
@@ -90,11 +90,11 @@ ms.locfileid: "88222845"
 
 - **故障转移组读写侦听器**
 
-  一个 DNS CNAME 记录，指向当前主要节点的 URL。 此记录是创建故障转移组时自动创建的，可让读写工作负载在故障转移发生后主节点发生更改时，以透明方式重新连接到主数据库。 在服务器上创建故障转移组时，侦听器 URL 的 DNS CNAME 记录格式为 `<fog-name>.database.chinacloudapi.cn`。 在 SQL 托管实例上创建故障转移组时，侦听器 URL 的 DNS CNAME 记录格式为 `<fog-name>.zone_id.database.chinacloudapi.cn`。
+  一个 DNS CNAME 记录，指向当前主要节点的 URL。 此记录是创建故障转移组时自动创建的，可让读写工作负载在故障转移发生后主节点发生更改时，以透明方式重新连接到主数据库。 在服务器上创建故障转移组时，侦听器 URL 的 DNS CNAME 记录格式为 `<fog-name>.database.chinacloudapi.cn`。 在 SQL 托管实例上创建故障转移组时，侦听器 URL 的 DNS CNAME 记录格式为 `<fog-name>.<zone_id>.database.chinacloudapi.cn`。
 
 - **故障转移组只读侦听器**
 
-  构成的 DNS CNAME 记录，指向只读侦听器，后者指向辅助节点的 URL。 此记录是创建故障转移组时自动创建的，可让只读 SQL 工作负荷使用指定的负载均衡规则以透明方式连接到辅助数据库。 在服务器上创建故障转移组时，侦听器 URL 的 DNS CNAME 记录格式为 `<fog-name>.secondary.database.chinacloudapi.cn`。 在 SQL 托管实例上创建故障转移组时，侦听器 URL 的 DNS CNAME 记录格式为 `<fog-name>.zone_id.secondary.database.chinacloudapi.cn`。
+  构成的 DNS CNAME 记录，指向只读侦听器，后者指向辅助节点的 URL。 此记录是创建故障转移组时自动创建的，可让只读 SQL 工作负荷使用指定的负载均衡规则以透明方式连接到辅助数据库。 在服务器上创建故障转移组时，侦听器 URL 的 DNS CNAME 记录格式为 `<fog-name>.secondary.database.chinacloudapi.cn`。 在 SQL 托管实例上创建故障转移组时，侦听器 URL 的 DNS CNAME 记录格式为 `<fog-name>.secondary.<zone_id>.database.chinacloudapi.cn`。
 
 - **自动故障转移策略**
 
@@ -136,7 +136,7 @@ ms.locfileid: "88222845"
   
 ## <a name="permissions"></a>权限
 
-通过[基于角色的访问控制 (RBAC)](../../role-based-access-control/overview.md) 管理故障转移组的权限。 [SQL Server 参与者](../../role-based-access-control/built-in-roles.md#sql-server-contributor)角色拥有管理故障转移组所需的全部权限。
+通过 [Azure 基于角色的访问控制 (Azure RBAC)](../../role-based-access-control/overview.md) 管理故障转移组的权限。 [SQL Server 参与者](../../role-based-access-control/built-in-roles.md#sql-server-contributor)角色拥有管理故障转移组所需的全部权限。
 
 ### <a name="create-failover-group"></a>创建故障转移组
 
@@ -204,7 +204,7 @@ ms.locfileid: "88222845"
 1. 执行计划性故障转移，将主服务器切换到 B。服务器 A 将成为新的辅助服务器。 故障转移可能会导致几分钟的停机。 实际时间取决于故障转移组的大小。
 2. 使用[活动异地复制](active-geo-replication-overview.md)，在服务器 C 中为服务器 B 上的每个数据库创建额外的辅助数据库。 服务器 B 上的每个数据库具有两个辅助数据库，其中一个位于服务器 A 上，另一个位于服务器 C 上。这可以保证主数据库在转换过程中仍受保护。
 3. 删除故障转移组。 此时，登录将会失败。 这是因为，故障转移组侦听器的 SQL 别名已删除，因此网关无法识别故障转移组名称。
-4. 在服务器 A 与 C 之间重新创建同名的故障转移组。此时，登录将不再失败。
+4. 在服务器 B 与 C 之间重新创建同名的故障转移组。此时，登录将不再失败。
 5. 将服务器 B 上的所有主数据库添加到新的故障转移组。
 6. 执行故障转移组的计划性故障转移来切换 B 和 C。现在，服务器 C 将成为主服务器，B 将成为辅助服务器。 服务器 A 上的所有辅助数据库将自动链接到 C 上的主数据库。如步骤 1 中所述，故障转移可能会导致几分钟的停机。
 7. 删除服务器 A。服务器 A 上的所有数据库将自动删除。
@@ -232,7 +232,7 @@ ms.locfileid: "88222845"
 > [!IMPORTANT]
 > 在子网中创建的第一个托管实例确定同一子网中所有后续实例的 DNS 区域。 这意味着，同一子网中的两个实例不能属于不同的 DNS 区域。
 
-有关在主要实例所在的 DNS 区域中创建辅助 SQL 托管实例的详细信息，请参阅[创建辅助托管实例](../managed-instance/failover-group-add-instance-tutorial.md#3---create-a-secondary-managed-instance)。
+有关在主要实例所在的 DNS 区域中创建辅助 SQL 托管实例的详细信息，请参阅[创建辅助托管实例](../managed-instance/failover-group-add-instance-tutorial.md#create-a-secondary-managed-instance)。
 
 ### <a name="enabling-replication-traffic-between-two-instances"></a>在两个实例之间启用复制流量
 
@@ -258,13 +258,13 @@ ms.locfileid: "88222845"
 
 ### <a name="using-read-only-listener-to-connect-to-the-secondary-instance"></a>使用只读侦听器连接到辅助实例
 
-如果你有一个在逻辑上隔离的只读工作负荷，且它允许存在一些过时数据，则可在应用程序中使用辅助数据库。 若要直接连接到异地复制的辅助节点，请使用 `server.secondary.zone_id.database.chinacloudapi.cn` 作为服务器 URL，这样可以直接连接到异地复制的辅助节点。
+如果你有一个在逻辑上隔离的只读工作负荷，且它允许存在一些过时数据，则可在应用程序中使用辅助数据库。 若要直接连接到异地复制的辅助节点，请使用 `<fog-name>.secondary.<zone_id>.database.chinacloudapi.cn` 作为服务器 URL，这样可以直接连接到异地复制的辅助节点。
 
 > [!NOTE]
 > 在某些服务层级中，SQL 数据库支持通过[只读副本](read-scale-out.md)，使用一个只读副本的容量和连接字符串中的 `ApplicationIntent=ReadOnly` 参数对只读查询工作负载进行负载均衡。 如果配置了异地复制的辅助节点，则可以使用此功能连接到主要位置或异地复制位置中的只读副本。
 >
-> - 若要连接到主要位置中的只读副本，请使用 `<fog-name>.zone_id.database.chinacloudapi.cn`。
-> - 若要连接到辅助位置中的只读副本，请使用 `<fog-name>.secondary.zone_id.database.chinacloudapi.cn`。
+> - 若要连接到主要位置中的只读副本，请使用 `<fog-name>.<zone_id>.database.chinacloudapi.cn`。
+> - 若要连接到辅助位置中的只读副本，请使用 `<fog-name>.secondary.<zone_id>.database.chinacloudapi.cn`。
 
 ### <a name="preparing-for-performance-degradation"></a>为性能降低做好准备
 

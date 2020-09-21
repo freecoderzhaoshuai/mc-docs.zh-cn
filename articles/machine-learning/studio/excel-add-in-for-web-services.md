@@ -10,12 +10,12 @@ author: xiaoharper
 ms.author: amlstudiodocs
 ms.custom: seodec18
 ms.date: 02/01/2018
-ms.openlocfilehash: e987f214f3ef876c937be007f9de13830fc63de4
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: b5c9a6b101082eafadef2861643ca4897accaf87
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228312"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021152"
 ---
 # <a name="excel-add-in-for-azure-machine-learning-studio-classic-web-services"></a>适用于 Azure 机器学习工作室（经典）Web 服务的 Excel 加载项
 
@@ -29,7 +29,10 @@ Excel 可以直接轻松调用 Web 服务，而无需编写任何代码。
 1. 打开“[示例 Excel 文件](https://aka.ms/amlexcel-sample-2)”，其中包含 Excel 外接程序和有关 Titanic 上的乘客数据。 
  
     > [!NOTE]
-    > 你将看到与该文件相关的 Web 服务列表，并在底部显示“自动预测”复选框。 如果启用自动预测，则每次输入发生更改时，**所有**服务的预测都将更新。 如果未选中该复选框，则必须单击“全部预测”才能刷新。 若要在服务级别启用自动预测，请转到步骤 6。
+    > - 你将看到与该文件相关的 Web 服务列表，并在底部显示“自动预测”复选框。 如果启用自动预测，则每次输入发生更改时，**所有**服务的预测都将更新。 如果未选中该复选框，则必须单击“全部预测”才能刷新。 若要在服务级别启用自动预测，请转到步骤 6。
+    > - Azure 机器学习 Excel 加载项将调用 Office 加载项应用商店来加载。 如果你的组织禁止访问 Office 加载项应用商店，则加载加载项时将会出现错误。 对于这种情况，请从 Microsoft 365 管理中心部署 Azure 机器学习 Excel 加载项。 然后调用加载项，通过粘贴 URL 和 API 密钥手动添加 Web 服务。
+
+ 
 
 2. 通过单击来选择 Web 服务，在此示例中为“Titanic 存活者预测器（Excel 外接程序示例）[分数]”。
    
@@ -86,4 +89,4 @@ Excel 可以直接轻松调用 Web 服务，而无需编写任何代码。
 ## <a name="sharing-your-workbook"></a>共享工作簿
 如果保存工作簿，则会一并保存为 Web 服务添加的 API/主密钥。 这意味着只应与自己信任的人共享该工作簿。
 
-请在以下评论部分中或在我们[论坛](https://go.microsoft.com/fwlink/?LinkID=403669&clcid=0x409)上提出任何问题。
+请在以下评论部分中或在我们[论坛](https://docs.microsoft.com/answers/topics/azure-machine-learning.html)上提出任何问题。

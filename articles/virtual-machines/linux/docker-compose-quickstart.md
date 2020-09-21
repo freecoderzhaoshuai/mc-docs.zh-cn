@@ -1,27 +1,19 @@
 ---
-title: 使用 Docker 和 Compose 在 Azure 中定义和运行多容器应用程序入门 | Azure
-description: 如何通过 Azure CLI 在 Linux 虚拟机上安装和使用 Docker 和 Compose
-services: virtual-machines-linux
-documentationcenter: ''
-author: rockboyfor
-manager: digimobile
-editor: ''
-tags: azure-resource-manager
-ms.assetid: 02ab8cf9-318d-4a28-9d0c-4a31dccc2a84
+title: 使用 Docker Compose | Azure
+description: 如何通过 Azure CLI 在 Linux 虚拟机上安装和使用 Docker 和 Compose。
+author: Johnnytechn
 ms.service: virtual-machines-linux
-ms.devlang: azurecli
-ms.topic: article
-ms.tgt_pltfrm: vm-linux
-ms.workload: infrastructure-services
+ms.topic: how-to
+ms.date: 09/03/2020
+ms.author: v-johya
 origin.date: 02/14/2019
-ms.date: 08/12/2019
-ms.author: v-yeche
-ms.openlocfilehash: 4b7e7bacd8d4292ad1953e16ae58d0675a322509
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 4239038393fdf6866907f9177b63d5985623f4a1
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "68912978"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057527"
 ---
 # <a name="get-started-with-docker-and-compose-to-define-and-run-a-multi-container-application-in-azure"></a>使用 Docker 和 Compose 在 Azure 中定义和运行多容器应用程序入门
 借助 [Compose](https://github.com/docker/compose)，可以使用简单的文本文件定义由多个 Docker 容器组成的应用程序。 然后使用单个命令启动应用程序，该命令会执行部署定义的环境所需的所有操作。 作为示例，本文说明如何在 Ubuntu VM 上使用后端 MariaDB SQL 数据库快速设置 WordPress 博客。 也可以使用 Compose 设置更复杂的应用程序。
@@ -64,7 +56,10 @@ az vm open-port --port 80 \
 
 创建 VM、安装程序包和启动应用需耗时几分钟。 在 Azure CLI 向你返回提示之后，仍然存在继续运行的后台任务。 创建 VM 后，请记下 Azure CLI 显示的 `publicIpAddress`。 
 
+                 
+
 ## <a name="install-compose"></a>安装 Compose
+
 
 通过 SSH 连接到新的 Docker 主机 VM。 提供自己的 IP 地址。
 
@@ -77,6 +72,7 @@ ssh azureuser@10.10.111.11
 ```bash
 sudo apt install docker-compose
 ```
+
 
 ## <a name="create-a-docker-composeyml-configuration-file"></a>创建 docker-compose.yml 配置文件
 创建 `docker-compose.yml` 配置文件，用于定义要在 VM 上运行的 Docker 容器。 该文件指定要在每个容器中运行的映像、必要的环境变量和依赖关系、端口以及容器之间的链接。 有关 yml 文件语法的详细信息，请参阅 [Compose 文件参考](https://docs.docker.com/compose/compose-file/)。
@@ -117,6 +113,7 @@ Creating wordpress_db_1...
 Creating wordpress_wordpress_1...
 ...
 ```
+
 
 若要验证容器是否已启动，请键入 `sudo docker-compose ps`。 应看到类似如下的内容：
 

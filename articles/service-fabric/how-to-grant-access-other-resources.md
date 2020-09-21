@@ -1,16 +1,19 @@
 ---
-title: 为 Service Fabric 应用程序授予对其他 Azure 资源的访问权限
+title: 为应用程序授予对其他 Azure 资源的访问权限
 description: 本文介绍如何为启用了托管标识的 Service Fabric 应用程序授予对支持基于 Azure Active Directory 身份验证的其他 Azure 资源的访问权限。
 ms.topic: article
 origin.date: 12/09/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 01/06/2020
 ms.author: v-yeche
-ms.date: 01/06/2020
-ms.openlocfilehash: 7ad97983c511d444821e56e500434956d49735d0
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 47a583c803049dbe452c8a3681969b61fdaaee96
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75957107"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655545"
 ---
 # <a name="granting-a-service-fabric-applications-managed-identity-access-to-azure-resources-preview"></a>为 Service Fabric 应用程序的托管标识授予对 Azure 资源的访问权限（预览）
 
@@ -28,9 +31,7 @@ ms.locfileid: "75957107"
 2. 单击左侧面板中的“访问控制(IAM)”链接。
 3. （可选）检查现有的访问权限：在“查找”控件中选择“系统分配的托管标识”或“用户分配的托管标识”；从随后的结果列表中选择适当的标识
 4. 单击页面顶部的“+ 添加角色分配”，为应用程序的标识添加新的角色分配。
-    
-    在“角色”下面的下拉列表中，选择“存储 Blob 数据读取者”。
-    
+在“角色”下面的下拉列表中，选择“存储 Blob 数据读取者”。
 5. 在“将访问权限分配给”下面的下拉列表中，选择 `User assigned managed identity`。
 6. 接下来，确保“订阅”下拉列表中列出了正确的订阅，然后将“资源组”设置为“所有资源组”。
 7. 在“选择”下，选择对应于 Service Fabric 应用程序的 UAI，然后单击“保存”。
@@ -40,7 +41,7 @@ ms.locfileid: "75957107"
 ## <a name="granting-access-to-azure-key-vault"></a>授予对 Azure Key Vault 的访问权限
 与访问存储类似，可以利用 Service Fabric 应用程序的托管标识来访问 Azure Key Vault。 在 Azure 门户中授予访问权限的步骤类似于上面所列的步骤，这里不再重复。 有关差异，请参考下图。
 
-![Key Vault 访问策略](../key-vault/media/vs-secure-secret-appsettings/add-keyvault-access-policy.png)
+:::image type="content" source="../key-vault/media/vs-secure-secret-appsettings/add-keyvault-access-policy.png" alt-text="Key Vault 访问策略":::
 
 以下示例演示如何通过模板部署授予对保管库的访问权限；请将以下代码片段添加为模板的 `resources` 元素下的另一个条目。 此示例演示如何为用户分配的标识类型和系统分配的标识类型分别授予访问权限 - 请选择适用的一个。
 
@@ -115,5 +116,4 @@ ms.locfileid: "75957107"
 <!--Not Available on * [Deploy an Azure Service Fabric application with a system-assigned managed identity](./how-to-deploy-service-fabric-application-system-assigned-managed-identity.md)-->
 <!--Not Available on * [Deploy an Azure Service Fabric application with a user-assigned managed identity](./how-to-deploy-service-fabric-application-user-assigned-managed-identity.md)-->
 
-<!--Update_Description: new articles on how to grant access other resources -->
-<!--new.date: 09/02/2019-->
+<!-- Update_Description: update meta properties, wording update, update link -->

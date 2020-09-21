@@ -9,15 +9,16 @@ ms.workload: identity
 ms.service: active-directory
 ms.subservice: user-help
 ms.topic: end-user-help
-ms.date: 08/26/2020
+ms.date: 09/09/2020
 ms.author: v-junlch
 ms.reviewer: kexia
-ms.openlocfilehash: fdc99026b4ed78f537a49f4b7a7a9017f66fca9d
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+metadata ms.custom: contperfq1
+ms.openlocfilehash: 1b3d3b1b6d764f218d316eb79f9df83d76313f3c
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947095"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593855"
 ---
 # <a name="common-problems-with-two-factor-verification-and-your-work-or-school-account"></a>双因素验证以及工作或学校帐户的常见问题
 
@@ -31,12 +32,10 @@ Azure Active Directory (Azure AD) 组织可以启用双重验证 (2FV)。 有一
 
 2FV 比密码更安全，因为 2FV 需要你知道的密码加上你拥有的设备 。 黑客没有你的实体电话。
 
-![身份验证方法的概念图](../authentication/media/concept-mfa-howitworks/methods.png)
-
 >[!Important]
->如果你是管理员，可以在 [Azure AD 文档](/active-directory)中详细了解如何创建和管理 Azure AD 环境。
->
->另外，本文内容也只适用于解决工作或学校帐户出现的问题，即由组织提供给你的帐户（例如 alain@contoso.com）。 如果在结合使用双因素验证和个人 Microsoft 帐户（即你为自己创建的帐户，例如 danielle@outlook.com）时遇到问题，请参阅[为你的 Microsoft 帐户启用或禁用双因素验证](https://support.microsoft.com/help/4028586/microsoft-account-turning-two-step-verification-on-or-off)。
+>如果你是管理员，可以在 [Azure AD 文档](../index.yml)中详细了解如何创建和管理 Azure AD 环境。
+
+此内容旨在帮助你解决工作或学校帐户出现的问题，该帐户是由组织提供给你的帐户（例如 dritan@contoso.com）。 如果在个人 Microsoft 帐户（即你为自己设置的帐户，例如 danielle@outlook.com）上遇到双重验证问题，请参阅[为你的 Microsoft 帐户启用或禁用双重验证](https://support.microsoft.com/help/4028586/microsoft-account-turning-two-step-verification-on-or-off)。
 
 ## <a name="i-dont-have-my-mobile-device-with-me"></a>我没有随身携带移动设备
 

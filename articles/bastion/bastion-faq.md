@@ -1,21 +1,21 @@
 ---
 title: Azure Bastion 常见问题解答 | Azure
-description: Azure Bastion 的常见问题解答
+description: 解决 Azure Bastion 的常见问题，例如可用性、支持的并发会话数、配置问题、定价。
 services: bastion
-author: rockboyfor
 ms.service: bastion
 ms.topic: conceptual
 origin.date: 07/10/2020
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: yes
 ms.testdate: 07/27/2020
 ms.author: v-yeche
-ms.openlocfilehash: 4eda42b22ffefd057da50459c236ad727a941441
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 02575a265e9415270da871421916792e62b8a108
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917064"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89654957"
 ---
 <!--Verified successfully-->
 # <a name="azure-bastion-faq"></a>Azure Bastion 常见问题解答

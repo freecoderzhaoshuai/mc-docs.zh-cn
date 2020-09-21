@@ -11,13 +11,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: carlrab
 origin.date: 08/20/2019
-ms.date: 08/17/2020
-ms.openlocfilehash: 50d54b96f57b9db7259ab299d0ba35f95de54ea7
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.date: 09/14/2020
+ms.openlocfilehash: 4b71ce2c37e1cab8537f81dfb5467aca1f473357
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223123"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014362"
 ---
 # <a name="what-is-sql-data-sync-for-azure"></a>什么是 Azure SQL 数据同步？
 
@@ -55,7 +55,7 @@ SQL 数据同步使用中心辐射型拓扑来同步数据。 将同步组中的
 
 - **混合数据同步：** 借助数据同步，可以在 SQL Server 和 Azure SQL 数据库中的数据库之间保持数据同步，以便启用混合应用程序。 此功能可能会吸引在考虑迁移到云中，并希望启用 Azure 应用程序的客户。
 - **分布式应用程序：** 在许多情况下，跨各个数据库分散不同的工作负载会大有裨益。 例如，如果有大型生产数据库，但还需要对此数据运行报表或分析工作负载，那么使用第二个数据库来处理此额外工作负载将会有所帮助。 这种方法可最大限度地减轻对生产工作负载造成的性能影响。 可以使用 SQL 数据同步来同步这两个数据库。
-- **全球分布的应用程序：** 许多企业的业务分布在多个区域，甚至是多个国家/地区/区域。 为了最大限度地缩短网络延迟时间，最好将数据存储在靠近的区域中。 借助 SQL 数据同步，可轻松同步世界各地区域中的数据库。
+- **全球分布的应用程序：** 许多企业的业务分布在多个区域。 为了最大限度地缩短网络延迟时间，最好将数据存储在靠近的区域中。 借助数据同步，可轻松让所有区域中的数据库保持同步。
 
 数据同步不是以下场景的首选解决方案：
 
@@ -129,6 +129,7 @@ SQL 数据同步使用插入、更新和删除触发器来跟踪更改。 它在
 ### <a name="general-limitations"></a>一般限制
 
 - 表不能包含非主键标识列。
+- 表必须具有聚集索引，才能使用数据同步。
 - 主键不能具有以下数据类型：sql_variant、binary、varbinary、image、xml。
 - 使用以下数据类型作为主键时请小心谨慎，因为支持的精度仅到秒：time、datetime、datetime2、datetimeoffset。
 - 对象（数据库、表和列）的名称不能包含可打印字符句点 (.)、左方括号 ([) 或右方括号 (])。

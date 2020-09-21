@@ -8,18 +8,18 @@ manager: mtillman
 editor: ''
 ms.service: active-directory
 ms.subservice: pim
-ms.topic: conceptual
+ms.topic: how-to
 ms.workload: identity
-ms.date: 05/28/2020
+ms.date: 09/08/2020
 ms.author: v-junlch
 ms.custom: pim
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 5241ac76920843da5405653ee0a279fad1574292
-ms.sourcegitcommit: 0130a709d934d89db5cccb3b4997b9237b357803
+ms.openlocfilehash: c222538cde9767efcd39473adf177f686fd773c4
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/29/2020
-ms.locfileid: "84186900"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593753"
 ---
 # <a name="start-using-privileged-identity-management"></a>开始使用 Privileged Identity Management
 
@@ -38,9 +38,7 @@ ms.locfileid: "84186900"
 
 ## <a name="prepare-pim-for-azure-ad-roles"></a>准备将 PIM 用于 Azure AD 角色
 
-为目录启用 Privileged Identity Management 后，就可以准备 Privileged Identity Management 来管理 Azure AD 角色。
-
-以下是我们建议你在为 Azure AD 角色做准备时执行的任务，顺序如下：
+建议执行以下任务，以准备使用 Privileged Identity Management 来管理 Azure AD 角色：
 
 1. [配置 Azure AD 角色设置](pim-how-to-change-default-settings.md)。
 1. [指定符合条件的分配](pim-how-to-add-role-to-user.md)。
@@ -48,9 +46,7 @@ ms.locfileid: "84186900"
 
 ## <a name="prepare-pim-for-azure-roles"></a>准备将 PIM 用于 Azure 角色
 
-为目录启用 Privileged Identity Management 后，就可以准备 Privileged Identity Management 来管理在订阅上进行 Azure 资源访问的 Azure 角色。
-
-以下是我们建议你在为 Azure 角色做准备时执行的任务，顺序如下：
+建议执行以下任务，以准备使用 Privileged Identity Management 来管理订阅的 Azure 角色：
 
 1. [发现 Azure 资源](pim-resource-roles-discover-resources.md)
 1. [配置 Azure 角色设置](pim-resource-roles-configure-role-settings.md)。
@@ -82,11 +78,11 @@ ms.locfileid: "84186900"
 
     ![“所有服务”中的 Azure AD Privileged Identity Management](./media/pim-getting-started/pim-all-services-find.png)
 
-1. 选择“Privileged Identity Management 快速入门”。
+1. 选择 Privileged Identity Management 的“快速入门”。
 
-1. 选中“将边栏选项卡固定到仪表板”可将“Privileged Identity Management 快速入门”边栏选项卡固定到仪表板。
+1. 选择“将边栏选项卡固定到仪表板”，将 Privileged Identity Management“快速入门”页固定到仪表板 。
 
-    ![用于将 Privileged Identity Management 边栏选项卡固定到仪表板的图钉图标](./media/pim-getting-started/pim-quickstart-pin-to-dashboard.png)
+    ![用于将 Privileged Identity Management 页固定到仪表板的图钉图标](./media/pim-getting-started/pim-quickstart-pin-to-dashboard.png)
 
     在 Azure 仪表板上，你将看到如下所示的一个磁贴：
 

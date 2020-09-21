@@ -3,14 +3,17 @@ title: 创建 Azure Service Fabric 群集
 description: 了解如何使用 Azure 资源管理器在 Azure 中设置安全的 Service Fabric 群集。  可以使用默认模板或自己的群集模板创建群集。
 ms.topic: conceptual
 origin.date: 08/16/2018
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: c04f415f93f3fdb4c58630fa79ec659efd9f2c67
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.openlocfilehash: 42ef587d83c774ccaa71d0eadbc1c1c1ce8105ff
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356266"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655690"
 ---
 # <a name="create-a-service-fabric-cluster-using-azure-resource-manager"></a>使用 Azure 资源管理器创建 Service Fabric 群集 
 > [!div class="op_single_selector"]
@@ -37,7 +40,7 @@ ms.locfileid: "84356266"
 * [Az.ServiceFabric](https://docs.microsoft.com/powershell/module/az.servicefabric)
 * [az SF CLI 模块](https://docs.azure.cn/cli/sf?view=azure-cli-latest)
 
-    <!--Correct on URL WITHOUT az-SF-CLI-module-->
+    <!--Correct on URL WITHOUT #az-SF-CLI-module-->
     
 ### <a name="sign-in-to-azure"></a>登录 Azure
 
@@ -129,6 +132,11 @@ az sf cluster create --resource-group $resourceGroupName --location $resourceGro
 
 使用 PowerShell 部署群集：
 
+>  [!NOTE]
+> 必须修改从 GitHub 存储库“Azure-Sample”下载或引用的模板，使之适应 Azure 中国云环境。 例如，替换某些终结点（将“blob.core.windows.net”替换为“blob.core.chinacloudapi.cn”，将“cloudapp.azure.com”替换为“cloudapp.chinacloudapi.cn”）；必要时更改某些不受支持的位置、VM 映像、VM 大小、SKU 以及资源提供程序的 API 版本。
+>
+
+
 ```powershell
 $resourceGroupLocation="chinanorth"
 $resourceGroupName="mycluster"
@@ -163,7 +171,7 @@ az sf cluster create --resource-group $resourceGroupName --location $resourceGro
 
 如果想要使用证书来保护群集，请使用以下命令创建群集。
 
-如果这是一个同时用于其他目的的 CA 签名证书，则我们建议专门为 Key Vault 提供一个不同的资源组。 建议将 Key Vault 置于其资源组中。 这样可在不丢失密钥和机密的情况下删除计算和存储资源组，包括具有 Service Fabric 群集的资源组。 **包含 Key Vault 的资源组必须与正在使用它的群集位于同一区域。** 
+如果这是一个同时用于其他目的的 CA 签名证书，则我们建议专门为 Key Vault 提供一个不同的资源组。 建议将密钥保管库置于其资源组中。 这样可在不丢失密钥和机密的情况下删除计算和存储资源组，包括具有 Service Fabric 群集的资源组。 **包含 Key Vault 的资源组必须与正在使用它的群集位于同一区域。** 
 
 ### <a name="use-the-default-five-node-one-node-type-template-that-ships-in-the-module"></a>使用模块中附带的默认“5 Node 1”节点类型模板
 [Azure 示例：Windows 模板](https://github.com/Azure-Samples/service-fabric-cluster-templates/tree/master/5-VM-Windows-1-NodeTypes-Secure-NSG)和 [Ubuntu 模板](https://github.com/Azure-Samples/service-fabric-cluster-templates/tree/master/5-VM-Ubuntu-1-NodeTypes-Secure)中提供了所用的模板
@@ -289,7 +297,7 @@ az sf cluster create --resource-group $resourceGroupName --location $resourceGro
 <!-- Links -->
 
 [azure-powershell]: https://docs.microsoft.com/powershell/azure/install-Az-ps
-[azure-CLI]: https://docs.azure.cn/cli/get-started-with-azure-cli?view=azure-cli-latest
+[azure-CLI]: https://docs.azure.cn/cli/get-started-with-azure-cli?view=azure-cli-latest?view=azure-cli-latest
 [service-fabric-cluster-security]: service-fabric-cluster-security.md
 [customize-your-cluster-template]: service-fabric-cluster-creation-create-template.md
 

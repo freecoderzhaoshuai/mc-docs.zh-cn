@@ -1,19 +1,21 @@
 ---
 title: 在使用 Azure Site Recovery 进行 VMware VM 和物理服务器的灾难恢复期间设置横向扩展进程服务器 | Azure
 description: 本文介绍如何在 VMware VM 和物理服务器的灾难恢复期间设置横向扩展进程服务器。
-author: rockboyfor
 manager: digimobile
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 04/23/2019
-ms.date: 06/10/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 0ca1f1ba534a96456fec50a50f3ee643f7f6be40
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: f983f850e1f6bce754d82ea405a1b26b90562c4a
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291339"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655454"
 ---
 # <a name="scale-with-additional-process-servers"></a>使用额外的进程服务器进行扩展
 
@@ -53,11 +55,11 @@ ms.locfileid: "79291339"
 下载进程服务器的安装文件，如下所示：
 
 1. 登录到 Azure 门户，并浏览到恢复服务保管库。
-2. 打开“Site Recovery 基础结构”   > “VMWare 和物理计算机”   > “配置服务器”  （在“针对 VMware 和物理计算机”下面）。
+2. 打开“Site Recovery 基础结构” > “VMware 和物理计算机” > “配置服务器”（在“针对 VMware 和物理计算机”下面）  。
 3. 选择配置服务器以向下钻取到配置服务器详细信息。 然后单击“+ 进程服务器”  。
 4. 在“添加进程服务器”   >  “选择要部署进程服务器的位置”  中，选择“在本地部署横向扩展进程服务器”  。
 
-    ![添加服务器页](./media/vmware-azure-set-up-process-server-scale/add-process-server.png)
+    :::image type="content" source="./media/vmware-azure-set-up-process-server-scale/add-process-server.png" alt-text="添加服务器页":::
 5. 单击“下载 Azure Site Recovery 统一安装程序”。  这会下载最新版本的安装文件。
 
     > [!WARNING]
@@ -74,7 +76,7 @@ ms.locfileid: "79291339"
 运行以下命令进行安装：
 
 ```
-UnifiedSetup.exe [/ServerMode <CS/PS>] [/InstallDrive <DriveLetter>] [/MySQLCredsFilePath <MySQL credentials file path>] [/VaultCredsFilePath <Vault credentials file path>] [/EnvType <VMWare/NonVMWare>] [/PSIP <IP address to be used for data transfer] [/CSIP <IP address of CS to be registered with>] [/PassphraseFilePath <Passphrase file path>]
+UnifiedSetup.exe [/ServerMode <CS/PS>] [/InstallDrive <DriveLetter>] [/MySQLCredsFilePath <MySQL credentials file path>] [/VaultCredsFilePath <Vault credentials file path>] [/EnvType <VMware/NonVMware>] [/PSIP <IP address to be used for data transfer] [/CSIP <IP address of CS to be registered with>] [/PassphraseFilePath <Passphrase file path>]
 ```
 
 其中，命令行参数如下所示：
@@ -86,7 +88,7 @@ UnifiedSetup.exe [/ServerMode <CS/PS>] [/InstallDrive <DriveLetter>] [/MySQLCred
 ```
 MicrosoftAzureSiteRecoveryUnifiedSetup.exe /q /x:C:\Temp\Extracted
 cd C:\Temp\Extracted
-UNIFIEDSETUP.EXE /AcceptThirdpartyEULA /servermode "PS" /InstallLocation "D:\" /EnvType "VMWare" /CSIP "10.150.24.119" /PassphraseFilePath "C:\Users\Administrator\Desktop\Passphrase.txt" /DataTransferSecurePort 443
+UNIFIEDSETUP.EXE /AcceptThirdpartyEULA /servermode "PS" /InstallLocation "D:\" /EnvType "VMware" /CSIP "10.150.24.119" /PassphraseFilePath "C:\Users\Administrator\Desktop\Passphrase.txt" /DataTransferSecurePort 443
 ```
 ### <a name="create-a-proxy-settings-file"></a>创建代理设置文件
 
@@ -104,4 +106,4 @@ UNIFIEDSETUP.EXE /AcceptThirdpartyEULA /servermode "PS" /InstallLocation "D:\" /
 ## <a name="next-steps"></a>后续步骤
 了解如何[管理进程服务器设置](vmware-azure-manage-process-server.md)
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -5,18 +5,18 @@ author: chenyl
 ms.service: signalr
 ms.topic: conceptual
 origin.date: 06/11/2020
-ms.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: v-tawe
-ms.openlocfilehash: 590feea38e4ebc54d5b95e27239724f78b626f88
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 2494b3877e611df430c7c0a390300ed512a42d3b
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715635"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063318"
 ---
 # <a name="upstream-settings"></a>上游设置
 
-上游是一项功能，它允许 Azure SignalR 服务以无服务器模式将消息和连接事件发送到一组终结点。 你可以使用上游在无服务器模式下从客户端调用某个中心方法，并让终结点在客户端建立连接或断开连接时获得通知。
+Upstream 是一项预览功能，它允许 Azure SignalR 服务以无服务器模式将消息和连接事件发送到一组终结点。 你可以使用上游在无服务器模式下从客户端调用某个中心方法，并让终结点在客户端建立连接或断开连接时获得通知。
 
 > [!NOTE]
 > 只有无服务器模式可以配置上游设置。
@@ -61,6 +61,10 @@ http://host.com/chat/api/messages/broadcast
 - 使用逗号 (,) 来联接多个事件。 例如，`connected, disconnected` 匹配“已连接”和“已断开连接”事件。
 - 使用完整的事件名称来匹配事件。 例如，`connected` 匹配“已连接”事件。
 
+> [!NOTE]
+> 如果使用 Azure Functions 和 [SignalR 触发器](../azure-functions/functions-bindings-signalr-service-trigger.md)，则 SignalR 触发器将按以下格式公开单个终结点：`https://<APP_NAME>.chinacloudsites.cn/runtime/webhooks/signalr?code=<API_KEY>`。
+> 只需将 URL 模板配置到此 URL 即可。
+
 ### <a name="authentication-settings"></a>身份验证设置
 
 你可以分别为每个上游设置项配置身份验证。 配置身份验证时，会在上游消息的 `Authentication` 标头中设置令牌。 目前，Azure SignalR 服务支持以下身份验证类型：
@@ -79,7 +83,7 @@ http://host.com/chat/api/messages/broadcast
 3. 在“上游 URL 模式”下添加 URL。 然后，设置（如“中心规则”）会显示默认值。
 4. 若要设置“中心规则”、“事件规则”、“类别规则”和“上游身份验证”的设置，请选择“中心规则”的值。     此时会显示一个页面，你可以在其中编辑设置：
 
-    :::image type="content" source="media/concept-upstream/upstream-detail-portal.png" alt-text="上游设置":::
+    :::image type="content" source="media/concept-upstream/upstream-detail-portal.png" alt-text="Upstream 设置详细信息":::
 
 5. 若要设置“上游身份验证”，请确保已先启用托管标识。 然后选择“使用托管标识”。 可以根据需要选择“身份验证资源 ID”下的任何选项。 有关详细信息，请参阅 [Azure SignalR 服务的托管标识](howto-use-managed-identity.md)。
 

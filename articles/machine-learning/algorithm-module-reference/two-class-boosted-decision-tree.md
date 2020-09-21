@@ -8,14 +8,14 @@ ms.subservice: core
 ms.topic: reference
 author: likebupt
 ms.author: v-yiso
-origin.date: 04/22/2020
+origin.date: 08/24/2020
 ms.date: 06/22/2020
-ms.openlocfilehash: a9edf945287b254e1011d2d6a290f98df65d28ba
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: 65222d446e84e8e7c600edc1c3a96f7ed9365ac7
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097259"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020863"
 ---
 # <a name="two-class-boosted-decision-tree-module"></a>“双类提升决策树”模块
 
@@ -27,6 +27,8 @@ ms.locfileid: "85097259"
   
 通常，当配置正确时，提升决策树是可在各种机器学习任务中获得最佳性能的最简单方法。 但是，它们也是占用大量内存的学习器之一，并且当前实现将所有内容都保存在内存中。 因此，提升决策树模型可能无法处理某些线性学习器可以处理的大型数据集。
 
+此模块基于 LightGBM 算法。
+
 ## <a name="how-to-configure"></a>配置方式
 
 此模块创建一个未训练的分类模型。 由于分类是一种监督式学习方法，所以，若要训练模型，你需要一个“带标记的数据集”，其中包含一个标签列，该列在所有行中都有一个值。
@@ -37,7 +39,7 @@ ms.locfileid: "85097259"
   
 2.  通过设置“创建训练程序模式”选项，指定要如何对模型进行训练。
   
-    + “单个参数”：如果你知道自己想要如何配置模型，可以提供一组特定的值作为参数。
+    + “单个参数”****：如果你知道自己想要如何配置模型，可以提供一组特定的值作为参数。
   
     + **参数范围**：如果不确定最佳参数，可以使用[优化模型超参数](tune-model-hyperparameters.md)模块来找到最佳参数。 你提供某个值范围，然后训练程序就会循环访问多个设置组合，以确定可产生最佳结果的值组合。
   
@@ -66,15 +68,15 @@ ms.locfileid: "85097259"
 
     + 如果将“创建训练程序模式”设置为“单个参数”，请连接带标记的数据集和[训练模型](train-model.md)模块 。  
   
-    + 如果将“创建训练程序模式”设置为“参数范围”，则连接标记的数据集并使用[优化模型超参数](tune-model-hyperparameters.md)模块来训练模型 。  
+    + 如果将“创建训练程序模式”设置为“参数范围”，请连接带标记的数据集并使用[优化模型超参数](tune-model-hyperparameters.md)来训练模型 。  
   
     > [!NOTE]
     > 
-    > 如果将参数范围传递给[训练模型](train-model.md)模块，则它只使用单个参数列表中的默认值。  
+    > 如果将参数范围传递给[训练模型](train-model.md)，则它只使用单个参数列表中的默认值。  
     > 
     > 如果将一组参数值传递给[优化模型超参数](tune-model-hyperparameters.md)模块，则当它期望每个参数有一系列设置时，它会忽略这些值，并为学习器使用默认值。  
     > 
-    > 如果选择“参数范围”选项并为任何参数输入单个值，则整个扫描过程中都会使用你指定的单个值，即使其他参数的一系列值发生了更改。  
+    > 如果选择“参数范围”选项并为任何参数输入单个值，则整个整理过程中都会使用你指定的单个值，即使其他参数的值发生一系列更改。  
    
 ## <a name="results"></a>结果
 

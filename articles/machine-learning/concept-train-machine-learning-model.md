@@ -10,12 +10,12 @@ ms.subservice: core
 ms.topic: conceptual
 ms.date: 05/13/2020
 ms.custom: tracking-python
-ms.openlocfilehash: 9c492ffd6e20343e582e157c41b9fefdf8a20f39
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 600c6a5b2aed9463bec6fda8ae356dc43cd2ab50
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88946976"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021348"
 ---
 # <a name="train-models-with-azure-machine-learning"></a>使用 Azure 机器学习训练模型
 
@@ -55,14 +55,14 @@ Azure 机器学习提供多种方法来训练模型，从使用 SDK 的代码优
 * [什么是运行配置？](concept-azure-machine-learning-architecture.md#run-configurations)
 * [教程：训练第一个 ML 模型](tutorial-1st-experiment-sdk-train.md)
 * [示例：Jupyter Notebook 训练模型示例](https://github.com/Azure/MachineLearningNotebooks/tree/master/how-to-use-azureml/training)
-* [如何：设置计算目标并将其用于模型训练](how-to-set-up-training-targets.md)
+* [如何：使用计算目标进行模型训练](how-to-set-up-training-targets.md)
 
 ### <a name="automated-machine-learning"></a>自动化机器学习
 
 定义迭代、超参数设置、特征化和其他设置。 在训练过程中，Azure 机器学习会并行尝试不同的算法和参数。 一旦训练达到你定义的退出条件就会停止。 使用估算器时，无需担心定义运行配置。
 
 > [!TIP]
-> 除了 Python SDK 外，还可以通过 [Azure 机器学习工作室](https://ml.azure.com)使用自动化 ML。
+> 除了 Python SDK 外，还可以通过 [Azure 机器学习工作室](https://studio.ml.azure.cn)使用自动化 ML。
 
 * [什么是自动化机器学习？](concept-automated-ml.md)
 * [教程：使用自动化机器学习创建第一个分类模型](tutorial-first-experiment-automated-ml.md)
@@ -90,7 +90,7 @@ Azure 机器学习提供多种方法来训练模型，从使用 SDK 的代码优
 * [教程：使用 Azure 机器学习管道进行批处理评分](tutorial-pipeline-batch-scoring-classification.md)
 * [示例：Jupyter Notebook 机器学习管道示例](https://github.com/Azure/MachineLearningNotebooks/tree/master/how-to-use-azureml/machine-learning-pipelines)
 * [示例：使用自动化机器学习的管道](https://aka.ms/pl-automl)
-* [示例：使用估算器的管道](https://aka.ms/pl-estimator)
+* [示例：使用估算器的管道](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/machine-learning-pipelines/intro-to-pipelines/aml-pipelines-how-to-use-estimatorstep.ipynb)
 
 ### <a name="understand-what-happens-when-you-submit-a-training-job"></a>了解提交训练作业时会发生的情况
 
@@ -129,7 +129,11 @@ R SDK 使你能够将 R 语言与 Azure 机器学习结合使用。 SDK 使用�
 
 + [什么是设计器？](concept-designer.md)
 + [教程：预测汽车价格](tutorial-designer-automobile-price-train-score.md)
-
++ [回归：预测价格](samples-designer.md)
++ [分类：预测收入](samples-designer.md)
++ [分类：预测客户流失、购买欲和追加销售](samples-designer.md)
++ [使用自定义 R 脚本的分类：预测航班延误](samples-designer.md)
++ [文本分类：维基百科 SP 500 数据集](samples-designer.md)
 
 ## <a name="many-models-solution-accelerator"></a>多模型解决方案加速器
 
@@ -156,4 +160,4 @@ R SDK 使你能够将 R 语言与 Azure 机器学习结合使用。 SDK 使用�
 
 ## <a name="next-steps"></a>后续步骤
 
-了解如何[设置训练环境](how-to-set-up-training-targets.md)。
+了解如何[使用计算目标进行模型训练](how-to-set-up-training-targets.md)。

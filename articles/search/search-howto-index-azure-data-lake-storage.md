@@ -8,23 +8,23 @@ ms.author: v-tawe
 ms.devlang: rest-api
 ms.service: cognitive-search
 ms.topic: conceptual
-origin.date: 11/04/2019
-ms.date: 07/17/2020
-ms.openlocfilehash: fe00fbf84d42c1913adb8f8d05dc06bc8b89510f
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+origin.date: 07/11/2020
+ms.date: 09/10/2020
+ms.openlocfilehash: 95dec4656c0d71c96b803845f83bd2f40a6ad095
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471955"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020929"
 ---
 # <a name="indexing-documents-in-azure-data-lake-storage-gen2"></a>为 Azure Data Lake Storage Gen2 中的文档编制索引
 
 > [!IMPORTANT] 
 > Azure Data Lake Storage Gen2 支持目前以公共预览版提供。 提供的预览版功能不附带服务级别协议，我们不建议将其用于生产工作负荷。
-> 可以填写[此表单](https://aka.ms/azure-cognitive-search/indexer-preview)来请求访问预览版。 [REST API 版本 2020-06-30-Preview](search-api-preview.md) 提供此功能。 目前不支持门户或 .NET SDK。
+> 可以填写[此表单](https://aka.ms/azure-cognitive-search/indexer-preview)来请求访问预览版。 [REST API 版本 2020-06-30-Preview](search-api-preview.md) 和门户提供此功能。 目前不支持 .NET SDK。
 
 
-设置 Azure 存储帐户时，可以选择启用[分层命名空间](https://docs.azure.cn/storage/blobs/data-lake-storage-namespace)。 这样，就可以将帐户中的内容集合组织成目录和嵌套子目录的层次结构。 启用分层命名空间即可启用 [Azure Data Lake Storage Gen2](https://docs.azure.cn/storage/blobs/data-lake-storage-introduction)。
+设置 Azure 存储帐户时，可以选择启用[分层命名空间](../storage/blobs/data-lake-storage-namespace.md)。 这样，就可以将帐户中的内容集合组织成目录和嵌套子目录的层次结构。 启用分层命名空间即可启用 [Azure Data Lake Storage Gen2](../storage/blobs/data-lake-storage-introduction.md)。
 
 本文介绍如何开始为 Azure Data Lake Storage Gen2 中的文档编制索引。
 
@@ -40,15 +40,15 @@ ms.locfileid: "86471955"
 
 收到预览版注册成功的确认消息后，便可以创建索引管道。
 
-可以使用 [REST API 版本 2020-06-30-Preview](search-api-preview.md) 来为 Data Lake Storage Gen2 中的内容和元数据编制索引。 目前不支持门户或 .NET SDK。
+可以使用 [REST API 版本 2020-06-30-Preview](search-api-preview.md) 或门户为 Data Lake Storage Gen2 中的内容和元数据编制索引。 目前不支持 .NET SDK。
 
 为 Data Lake Storage Gen2 中的内容编制索引，与为 Azure Blob 存储中的内容编制索引相同。 若要了解如何设置 Data Lake Storage Gen2 数据源、索引和索引器，请参阅[如何使用 Azure 认知搜索为 Azure Blob 存储中的文档编制索引](search-howto-indexing-azure-blob-storage.md)。 “Blob 存储”一文还提供了支持的文档格式、提取的 Blob 元数据属性、增量索引等相关信息。 此信息同样适用于 Data Lake Storage Gen2。
 
 ## <a name="access-control"></a>访问控制
 
-Azure Data Lake Storage Gen2 实现了一个[访问控制模型](https://docs.azure.cn/storage/blobs/data-lake-storage-access-control)，该模型支持 Azure 基于角色的访问控制 (RBAC) 和类似于 POSIX 的访问控制列表 (ACL)。 为 Data Lake Storage Gen2 中的内容编制索引时，Azure 认知搜索不会从内容中提取 RBAC 和 ACL 信息。 因此，此信息不会包含在 Azure 认知搜索索引中。
+Azure Data Lake Storage Gen2 实现了一个[访问控制模型](../storage/blobs/data-lake-storage-access-control.md)，该模型支持 Azure 基于角色的访问控制 (Azure RBAC) 和类似 POSIX 的访问控制列表 (ACL)。 为 Data Lake Storage Gen2 中的内容编制索引时，Azure 认知搜索不会从内容中提取 RBAC 和 ACL 信息。 因此，此信息不会包含在 Azure 认知搜索索引中。
 
-如果对索引中的每个文档保持访问控制非常重要，则应由应用程序开发人员需要负责实施[安全修整](https://docs.azure.cn/search/search-security-trimming-for-azure-search)。
+如果对索引中的每个文档保持访问控制非常重要，则应由应用程序开发人员需要负责实施[安全修整](./search-security-trimming-for-azure-search.md)。
 
 ## <a name="change-detection"></a>更改检测
 

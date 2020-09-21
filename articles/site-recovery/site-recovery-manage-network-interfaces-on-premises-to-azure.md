@@ -1,21 +1,24 @@
 ---
-title: 使用 Azure Site Recovery 管理网络接口，以实现本地到 Azure 的灾难恢复 | Azure
+title: 管理网络适配器以使用 Azure Site Recovery 实现本地灾难恢复
 description: 介绍如何使用 Azure Site Recovery 管理网络接口，以实现本地到 Azure 的灾难恢复
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 04/09/2019
-ms.date: 06/10/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 29ff72c9bdf9a55347bfb129eb24b1fe2770926a
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 5a220d35103a0bdebc6f02cef2187153f7ed058d
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "72519387"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655705"
 ---
-# <a name="manage-virtual-machine-network-interfaces-for-on-premises-disaster-recovery-to-azure"></a>管理用于本地到 Azure 灾难恢复的虚拟机网络接口
+# <a name="manage-vm-network-interfaces-for-on-premises-disaster-recovery-to-azure"></a>管理用于本地到 Azure 灾难恢复的 VM 网络接口
+
 Azure 中的虚拟机 (VM) 必须附加有至少一个网络接口。 它可以附加 VM 的大小所能够支持的网络接口数量。
 
 默认情况下，Azure 虚拟机上附加的第一个网络接口定义为主网络接口。 虚拟机中的所有其他网络接口为辅助网络接口。 默认情况下，来自虚拟机的所有出站流量都是通过分配给主网络接口的主 IP 配置的 IP 地址发出的。
@@ -26,7 +29,7 @@ Azure 中的虚拟机 (VM) 必须附加有至少一个网络接口。 它可以�
 
 ## <a name="select-the-target-network"></a>选择目标网络
 
-对于 VMware 和物理机，以及 Hyper-V（不带 System Center Virtual Machine Manager）虚拟机，可为单个虚拟机指定目标虚拟网络。 对于带 Virtual Machine Manager 的 Hyper-V 虚拟机，使用[网络映射](site-recovery-network-mapping.md)映射某个源 Virtual Machine Manager 服务器上的 VM 网络，并以 Azure 网络为定向目标。
+对于 VMware 和物理机，以及 Hyper-V（不带 System Center Virtual Machine Manager）虚拟机，可为单个虚拟机指定目标虚拟网络。 对于带 Virtual Machine Manager 的 Hyper-V 虚拟机，使用[网络映射](./hyper-v-vmm-network-mapping.md)映射某个源 Virtual Machine Manager 服务器上的 VM 网络，并以 Azure 网络为定向目标。
 
 1. 在恢复服务保管库中的“复制的项”  下，选择任何复制的项以访问其设置。
 
@@ -34,7 +37,7 @@ Azure 中的虚拟机 (VM) 必须附加有至少一个网络接口。 它可以�
 
 3. 在“网络属性”  下，从可用网络接口的列表中选择虚拟网络。
 
-    ![网络设置](./media/site-recovery-manage-network-interfaces-on-premises-to-azure/compute-and-network.png)
+    :::image type="content" source="./media/site-recovery-manage-network-interfaces-on-premises-to-azure/compute-and-network.png" alt-text="网络设置":::
 
 修改目标网络会影响该特定虚拟机的所有网络接口。
 
@@ -60,7 +63,7 @@ Azure 中的虚拟机 (VM) 必须附加有至少一个网络接口。 它可以�
 
 3. 输入所需 IP 地址（根据需要）。
 
-    ![网络接口设置](./media/site-recovery-manage-network-interfaces-on-premises-to-azure/network-interface-settings.png)
+    :::image type="content" source="./media/site-recovery-manage-network-interfaces-on-premises-to-azure/network-interface-settings.png" alt-text="网络接口设置":::
 
 4. 选择“确定”  以完成编辑，然后返回“计算和网络”  窗格。
 
@@ -71,4 +74,4 @@ Azure 中的虚拟机 (VM) 必须附加有至少一个网络接口。 它可以�
 ## <a name="next-steps"></a>后续步骤
 [深入了解](../virtual-network/virtual-network-network-interface-vm.md) Azure 虚拟机的网络接口。
 
-<!-- Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

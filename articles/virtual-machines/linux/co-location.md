@@ -1,22 +1,23 @@
 ---
 title: 并置 Linux VM
 description: 了解并置 Azure VM 资源如何改善延迟。
+author: Johnnytechn
 ms.service: virtual-machines
-ms.topic: article
 origin.date: 10/30/2019
-ms.date: 04/30/2020
-ms.author: v-yeche
-ms.openlocfilehash: 47cf51a92119a075635677c3b5fd277a4e03824b
-ms.sourcegitcommit: 275203d0f144aa809792f2c570fd64797f405c80
+ms.topic: conceptual
+ms.date: 09/03/2020
+ms.author: v-johya
+ms.openlocfilehash: b285560aff7e561df14a78613c3f89a4b05be198
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82125795"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057490"
 ---
 <!--Verified successfully-->
 # <a name="co-locate-resources-for-improved-latency"></a>并置资源以改善延迟
 
-在 Azure 中部署应用程序时，跨区域或可用性区域分布实例会造成网络延迟，这可能会影响应用程序的总体性能。 
+在 Azure 中部署应用程序时，跨区域分布实例会造成网络延迟，这可能会影响应用程序的总体性能。 
 
 ## <a name="proximity-placement-groups"></a>邻近放置组
 

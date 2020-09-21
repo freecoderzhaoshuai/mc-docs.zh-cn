@@ -5,16 +5,17 @@ description: 了解有关如何在 Azure Kubernetes 服务 (AKS) 中管理群集
 services: container-service
 ms.topic: conceptual
 origin.date: 12/06/2018
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: a783ce303632b474e93e5db308f117e0091d881b
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: fa72ce2f2674e2ac8cbeb2b9e8a76ca051f055f2
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842565"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021272"
 ---
 # <a name="best-practices-for-cluster-security-and-upgrades-in-azure-kubernetes-service-aks"></a>有关 Azure Kubernetes 服务 (AKS) 中的群集安全性和升级的最佳做法
 
@@ -23,7 +24,7 @@ ms.locfileid: "87842565"
 本文重点介绍如何保护 AKS 群集。 你将学习如何执行以下操作：
 
 > [!div class="checklist"]
-> * 使用 Azure Active Directory 和基于角色的访问控制来保护 API 服务器访问
+> * 使用 Azure Active Directory 和基于角色的访问控制 (RBAC) 来保护 API 服务器访问
 > * 保护容器对节点资源的访问
 > * 将 AKS 群集升级到最新的 Kubernetes 版本
 > * 使节点保持最新状态并自动应用安全修补程序
@@ -57,7 +58,7 @@ Azure Active Directory (AD) 提供可与 AKS 群集集成的企业级标识管�
 若要更精确地控制容器操作，还可以使用内置 Linux 安全功能，例如 *AppArmor* 和 *seccomp*。 这些功能在节点级别定义，然后通过 Pod 清单实现。 内置的 Linux 安全功能仅在 Linux 节点和 Pod 上提供。
 
 > [!NOTE]
-> AKS 或其他位置中的 Kubernetes 环境并不完全安全，因为可能存在恶意的多租户使用情况。 用于节点的其他安全功能（如 *AppArmor*、*seccomp*、*Pod 安全策略*或更细粒度的基于角色的访问控制 (RBAC)）可增加攻击的难度。 但是，为了在运行恶意多租户工作负荷时获得真正的安全性，虚拟机监控程序应是你唯一信任的安全级别。 Kubernetes 的安全域成为整个群集，而不是单个节点。 对于这些类型的恶意多租户工作负荷，应使用物理隔离的群集。
+> AKS 或其他位置中的 Kubernetes 环境并不完全安全，因为可能存在恶意的多租户使用情况。 用于节点的其他安全功能（如 AppArmor、seccomp、Pod 安全策略或更细粒度的基于角色的访问控制 (RBAC)）可增加攻击的难度。 但是，为了在运行恶意多租户工作负荷时获得真正的安全性，虚拟机监控程序应是你唯一信任的安全级别。 Kubernetes 的安全域成为整个群集，而不是单个节点。 对于这些类型的恶意多租户工作负荷，应使用物理隔离的群集。
 
 ### <a name="app-armor"></a>App Armor
 
@@ -230,8 +231,8 @@ Weaveworks 的 [kured（KUbernetes 重启守护程序）][kured]开源项目可�
 
 <!-- INTERNAL LINKS -->
 
-[az-aks-get-upgrades]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-get-upgrades
-[az-aks-upgrade]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-upgrade
+[az-aks-get-upgrades]: https://docs.microsoft.com/cli/azure/aks#az_aks_get_upgrades
+[az-aks-upgrade]: https://docs.microsoft.com/cli/azure/aks#az_aks_upgrade
 [aks-supported-versions]: supported-kubernetes-versions.md
 [aks-upgrade]: upgrade-cluster.md
 [aks-best-practices-identity]: concepts-identity.md

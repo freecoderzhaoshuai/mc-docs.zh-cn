@@ -1,17 +1,19 @@
 ---
 title: Service Fabric 中的 Initializer CodePackage
 description: 介绍了 Service Fabric 中的 Initializer CodePackage。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 03/10/2020
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 5fe968002298ec996144b357c78eaaf2602ba86f
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.openlocfilehash: 5622d4660a68df84ae31f5d61118f41d47393b26
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356282"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655734"
 ---
 # <a name="initializer-codepackages"></a>Initializer CodePackage
 
@@ -53,7 +55,7 @@ ms.locfileid: "84356282"
 >
 > 此示例引用了 mcr.microsoft.com/windows/nanoserver:1809。 Windows Server 容器并非在所有主机 OS 版本间都兼容。 若要了解详细信息，请参阅 [Windows 容器版本兼容性](https://docs.microsoft.com/virtualization/windowscontainers/deploy-containers/version-compatibility)。
 
-以下 ServiceManifest.xml 在前述 ServiceManifest 代码片段基础上构建。 *InitCodePackage0*、*InitCodePackage1* 和 *WorkloadCodePackage* 是表示容器的 CodePackage。 激活后，*InitCodePackage0* 先执行。 它将一条消息记录到一个文件中，然后退出。 接下来执行 *InitCodePackage1*，它也将一条消息记录到一个文件中，然后退出。 最后，*WorkloadCodePackage* 开始执行。 它也将一条消息记录到一个文件中，将文件内容输出到 **stdout**，然后一直 ping 下去。
+以下 ServiceManifest.xml 在前述 ServiceManifest 代码片段基础上构建。 InitCodePackage0、InitCodePackage1 和 WorkloadCodePackage 是表示容器的 CodePackage  。 激活后，*InitCodePackage0* 先执行。 它将一条消息记录到一个文件中，然后退出。 接下来执行 *InitCodePackage1*，它也将一条消息记录到一个文件中，然后退出。 最后，*WorkloadCodePackage* 开始执行。 它也将一条消息记录到一个文件中，将文件内容输出到 **stdout**，然后一直 ping 下去。
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>

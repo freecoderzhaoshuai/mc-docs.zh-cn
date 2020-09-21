@@ -1,18 +1,20 @@
 ---
 title: 在 Azure 中的 Service Fabric 上快速创建 .NET 应用
 description: 在本快速入门中，请使用 Service Fabric Reliable Services 示例应用程序创建用于 Azure 的 .NET 应用程序。
-author: rockboyfor
 ms.topic: quickstart
 origin.date: 06/26/2019
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
 ms.custom: mvc, devcenter, vs-azure
-ms.openlocfilehash: d4c2aa5cf579f31e6c0859f5c01ab9705e5279a5
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 80aa1e0af223bb82b336dd5e4fbec84981b0ecf7
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77540178"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655645"
 ---
 # <a name="quickstart-deploy-a-net-reliable-services-application-to-service-fabric"></a>快速入门：将 .NET Reliable Services 应用程序部署到 Service Fabric
 
@@ -20,7 +22,7 @@ Azure Service Fabric 是一款分布式系统平台，可用于部署和管理�
 
 此快速入门展示了如何将首个 .NET 应用程序部署到 Service Fabric。 完成后，将生成一个投票应用程序，其中包含 ASP.NET Core Web 前端，用于将投票结果保存到群集的有状态后端服务中。
 
-![应用程序屏幕截图](./media/service-fabric-quickstart-dotnet/application-screenshot.png)
+:::image type="content" source="./media/service-fabric-quickstart-dotnet/application-screenshot.png" alt-text="应用程序屏幕截图":::
 
 通过此应用程序，将了解如何：
 
@@ -83,7 +85,7 @@ git clone https://github.com/Azure-Samples/service-fabric-dotnet-quickstart
 
 右键单击“开始”菜单中的 Visual Studio 图标，再选择“以管理员身份运行”  。 若要将调试程序附加到服务，需要以管理员身份运行 Visual Studio。
 
-从克隆的存储库中打开 Voting.sln  Visual Studio 解决方案。
+从克隆的存储库中打开“Voting.sln” Visual Studio 解决方案。 
 
 默认情况下，Voting 应用程序在端口 8080 上侦听。 应用程序端口在 */VotingWeb/PackageRoot/ServiceManifest.xml* 文件中进行设置。  可以通过更新**终结点**元素的 **Port** 属性来更改应用程序端口。  若要在本地部署和运行应用程序，应用程序端口必须为打开状态且在你的计算机上可用。  如果更改应用程序端口，请通篇将本文中的“8080”替换为新的应用程序端口值。
 
@@ -94,7 +96,7 @@ git clone https://github.com/Azure-Samples/service-fabric-dotnet-quickstart
 
 部署完成后，启动浏览器并打开 `http://localhost:8080` 来查看应用程序的 Web 前端。
 
-![应用程序前端](./media/service-fabric-quickstart-dotnet/application-screenshot-new.png)
+:::image type="content" source="./media/service-fabric-quickstart-dotnet/application-screenshot-new.png" alt-text="应用程序前端":::
 
 现在可以添加一组投票选项，并开始进行投票。 此应用程序可以运行，并将所有数据存储到 Service Fabric 群集中，而无需单独提供数据库。
 
@@ -105,7 +107,7 @@ git clone https://github.com/Azure-Samples/service-fabric-dotnet-quickstart
 * Web 前端服务 (VotingWeb) - ASP.NET Core Web 前端服务，可提供网页服务，并公开用于与后端服务进行通信的 Web API。
 * 后端服务 (VotingData) - ASP.NET Core Web 服务，可公开用于将投票结果存储在可靠字典中并保留在磁盘上的API。
 
-![应用程序关系图](./media/service-fabric-quickstart-dotnet/application-diagram.png)
+:::image type="content" source="./media/service-fabric-quickstart-dotnet/application-diagram.png" alt-text="应用程序关系图":::
 
 在应用程序中投票时，将会发生以下事件：
 
@@ -128,7 +130,7 @@ git clone https://github.com/Azure-Samples/service-fabric-dotnet-quickstart
 3. 返回到浏览器，再单击投票选项或添加新的投票选项。 点击 Web 前端 API 控制器中的第一个断点。
     * 在此步骤中，浏览器中的 JavaScript 将请求发送到前端服务中的 Web API 控制器。
 
-        ![添加投票前端服务](./media/service-fabric-quickstart-dotnet/addvote-frontend.png)
+        :::image type="content" source="./media/service-fabric-quickstart-dotnet/addvote-frontend.png" alt-text="添加投票前端服务":::
 
     * 首先，为后端服务构建 ReverseProxy 的 URL  (1)。
     * 然后，向 ReverseProxy 发送 HTTP PUT 请求  (2)。
@@ -138,10 +140,10 @@ git clone https://github.com/Azure-Samples/service-fabric-dotnet-quickstart
     - 在浏览器提示时，授予 ServiceFabricAllowedUsers 组读取和执行权限（适用于调试模式）。
     - 此时，到达后端服务中的断点。
 
-        ![添加投票后端服务](./media/service-fabric-quickstart-dotnet/addvote-backend.png)
+        :::image type="content" source="./media/service-fabric-quickstart-dotnet/addvote-backend.png" alt-text="添加投票后端服务":::
 
     - 在方法 (1) 的第一行  ，`StateManager` 获取或添加一个可靠字典 `counts`。
-    - 与可靠字典中的值进行的所有交互都需要使用事务，这个 using 语句（图中标识为2）  负责创建此事务。
+    - 与可靠字典中的值进行的所有交互都需要使用事务，这个 using 语句 (2)  负责创建此事务。
     - 在事务中更新投票选项的相关键值，并提交操作  (3)。 提交方法返回后，便会更新字典中的数据，并将数据复制到群集中的其他节点。 数据现在安全地存储在群集中，并且后端服务可以故障转移到其他节点，同时数据仍可用。
 5. 按 F5  以继续操作
 
@@ -160,12 +162,12 @@ git clone https://github.com/Azure-Samples/service-fabric-dotnet-quickstart
 5. 单击“清单版本”  按钮，更改服务和应用程序的版本。
 6. 将 VotingWebPkg 下 Code 元素的版本更改为“2.0.0”（举个例子），再单击“保存”。
 
-    ![“更改版本”对话框](./media/service-fabric-quickstart-dotnet/change-version.png)
+    :::image type="content" source="./media/service-fabric-quickstart-dotnet/change-version.png" alt-text="“更改版本”对话框":::
 7. 在“发布 Service Fabric 应用程序”  对话框中，选中“升级应用程序”复选框  。
 8. 将“目标配置文件”  更改为 **PublishProfiles\Local.5Node.xml** 并确保将“连接终结点”  设置为“本地群集”  。 
 9. 选择“升级应用程序”。 
 
-    ![“发布”对话框中的升级设置](./media/service-fabric-quickstart-dotnet/upgrade-app.png)
+    :::image type="content" source="./media/service-fabric-quickstart-dotnet/upgrade-app.png" alt-text="“发布”对话框中的升级设置":::
 
 10. 单击“发布”  。
 
@@ -173,8 +175,8 @@ git clone https://github.com/Azure-Samples/service-fabric-dotnet-quickstart
 
 11. 打开浏览器，并在端口 19080 上转到群集地址。 例如，`http://localhost:19080/` 。
 12. 单击树视图中的“应用程序”  节点，再单击右侧窗格中的“进行中的升级”  。 可以了解如何通过群集中的升级域滚动升级，同时确保在继续执行下一步之前每个域都能够正常运行。 在验证域运行状况后，进度栏中的升级域将显示为绿色。
-    
-    ![Service Fabric Explorer 中的升级视图](./media/service-fabric-quickstart-dotnet/upgrading.png)
+
+    :::image type="content" source="./media/service-fabric-quickstart-dotnet/upgrading.png" alt-text="Service Fabric Explorer 中的升级视图":::
 
     Service Fabric 在升级群集中每个节点上的服务后等待两分钟，从而确保升级安全性。 预计整个更新大约需要 8 分钟的时间。
 
@@ -193,4 +195,4 @@ git clone https://github.com/Azure-Samples/service-fabric-dotnet-quickstart
 > [!div class="nextstepaction"]
 > [Service Fabric 上的 .NET 应用程序](service-fabric-tutorial-create-dotnet-app.md)
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

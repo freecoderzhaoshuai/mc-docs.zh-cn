@@ -6,13 +6,13 @@ ms.author: v-jay
 ms.service: mysql
 ms.topic: conceptual
 origin.date: 6/25/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: a9bbf3a0825dd91cf8facb697664f5fd74c621d2
-ms.sourcegitcommit: 403db9004b6e9390f7fd1afddd9e164e5d9cce6a
+ms.date: 09/14/2020
+ms.openlocfilehash: bfd8edb76f8d6805a6ab138855f09602a4553f0a
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86440505"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512879"
 ---
 # <a name="limitations-in-azure-database-for-mysql"></a>Azure Database for MySQL 中的限制
 
@@ -48,7 +48,7 @@ Azure Database for MySQL 支持优化服务器参数的值。 某些参数（例
 - DBA 角色：许多服务器参数和设置可能会无意中导致服务器性能下降或使 DBMS 的 ACID 属性无效。 因此，为了维护产品级别的服务完整性和 SLA，此服务不公开 DBA 角色。 默认用户帐户（在创建新的数据库实例时构造）允许该用户执行托管数据库实例中的大部分 DDL 和 DML 语句。 
 - SUPER 特权：[SUPER 特权](https://dev.mysql.com/doc/refman/5.7/en/privileges-provided.html#priv_super)同样也受到限制。
 - DEFINER：需要创建并限制超级权限。 如果使用备份导入数据，请在执行 mysqldump 时手动删除或使用 `--skip-definer` 命令删除 `CREATE DEFINER` 命令。
-
+- 系统数据库：在 Azure Database for MySQL 中，[mysql 系统数据库](https://dev.mysql.com/doc/refman/8.0/en/system-schema.html)为只读状态，因为它用于支持各种 PaaS 服务功能。 请注意，不能更改 `mysql` 系统数据库中的任何内容。
 
 ## <a name="data-manipulation-statement-support"></a>数据操作语句支持
 

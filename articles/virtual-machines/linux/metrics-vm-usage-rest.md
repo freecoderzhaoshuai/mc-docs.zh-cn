@@ -1,32 +1,30 @@
 ---
-title: 使用 REST API 获取虚拟机使用情况指标 | Azure
+title: 使用 REST API 获取 Azure 虚拟机使用情况数据
 description: 使用 Azure REST API 收集虚拟机的使用情况指标。
-services: virtual-machines
-author: rockboyfor
-ms.reviewer: routlaw
-manager: digimobile
-ms.service: load-balancer
-ms.custom: REST
-ms.topic: article
+author: Johnnytechn
+ms.service: virtual-machines
 origin.date: 06/13/2018
-ms.date: 08/12/2019
-ms.author: v-yeche
-ms.openlocfilehash: 3b66fcb9830997a6b88b012987a42f540b2831de
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.subservice: monitoring
+ms.custom: REST
+ms.topic: how-to
+ms.date: 09/03/2020
+ms.author: v-johya
+ms.openlocfilehash: b618f859ae363c6b7b5a6208906e09ee263c9896
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "68912815"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057665"
 ---
 # <a name="get-virtual-machine-usage-metrics-using-the-rest-api"></a>使用 REST API 获取虚拟机使用情况指标
 
-此示例演示如何使用 [Azure REST API](https://docs.microsoft.com/rest/api/azure/) 检索 [Linux 虚拟机](/virtual-machines/linux/monitor)的 CPU 使用情况。
+此示例演示如何使用 [Azure REST API](https://docs.microsoft.com/rest/api/azure/) 检索 Linux 虚拟机的 CPU 使用情况。
 
 [Azure Monitor REST 参考](https://docs.microsoft.com/rest/api/monitor)中提供了完整的参考文档和 REST API 的其他示例。 
 
 ## <a name="build-the-request"></a>生成请求
 
-使用以下 GET 请求从虚拟机中收集 [CPU 百分比指标](/monitoring-and-diagnostics/monitoring-supported-metrics#microsoftcomputevirtualmachines)
+使用以下 GET 请求从虚拟机中收集 [CPU 百分比指标](../../azure-monitor/platform/metrics-supported.md#microsoftcomputevirtualmachines)
 
 ```http
 GET https://management.chinacloudapi.cn/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmname}/providers/microsoft.insights/metrics?api-version=2018-01-01&metricnames=Percentage%20CPU&timespan=2018-06-05T03:00:00Z/2018-06-07T03:00:00Z
@@ -45,10 +43,10 @@ GET https://management.chinacloudapi.cn/subscriptions/{subscriptionId}/resourceG
 
 | 名称 | 说明 |
 | :--- | :---------- |
-| subscriptionId | 用于标识 Azure 订阅的订阅 ID。 如果拥有多个订阅，请参阅[使用多个订阅](https://docs.azure.cn/cli/manage-azure-subscriptions-azure-cli?view=azure-cli-latest)。 |
+| subscriptionId | 用于标识 Azure 订阅的订阅 ID。 如果拥有多个订阅，请参阅[使用多个订阅](/cli/manage-azure-subscriptions-azure-cli?view=azure-cli-latest)。 |
 | resourceGroupName | 与资源相关的 Azure 资源组的名称。 可以从 Azure 资源管理器 API、CLI 或门户获取此值。 |
 | vmname | Azure 虚拟机的名称。 |
-| metricnames | 以逗号分隔的有效[负载均衡器指标](/load-balancer/load-balancer-standard-diagnostics)列表。 |
+| metricnames | 以逗号分隔的有效[负载均衡器指标](../../load-balancer/load-balancer-standard-diagnostics.md)列表。 |
 | api-version | 要用于请求的 API 版本。<br /><br /> 本文档涵盖 API 版本 `2018-01-01`，包含于上述 URL 中。  |
 | timespan | 带有以下格式 `startDateTime_ISO/endDateTime_ISO` 的字符串，用于定义返回的指标的时间范围。 此可选参数设置为在示例中返回一天的数据。 |
 | &nbsp; | &nbsp; |

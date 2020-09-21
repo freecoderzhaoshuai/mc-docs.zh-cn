@@ -1,5 +1,5 @@
 ---
-title: 教程 - 如何在 Azure 中的 Linux 虚拟机首次启动时使用 cloud-init 对其进行自定义
+title: 教程 - 在 Azure 中使用 cloud-init 自定义 Linux VM
 description: 本教程介绍在 Azure 中首次启动 Linux VM 时如何使用 cloud-init 和 Key Vault 对其进行自定义
 services: virtual-machines-linux
 documentationcenter: virtual-machines
@@ -11,15 +11,15 @@ ms.service: virtual-machines-linux
 ms.topic: tutorial
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure
-ms.date: 04/20/2020
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.custom: mvc
-ms.openlocfilehash: 81fd207f27ec4c3c8389f85edb10cb4cbc569a29
-ms.sourcegitcommit: ebedf9e489f5218d4dda7468b669a601b3c02ae5
+ms.custom: mvc, devx-track-javascript
+ms.openlocfilehash: 43c572d57a206f9e160abcafdfb43e12b609d841
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2020
-ms.locfileid: "82159184"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057690"
 ---
 # <a name="tutorial---how-to-use-cloud-init-to-customize-a-linux-virtual-machine-in-azure-on-first-boot"></a>教程 - 如何在 Azure 中的 Linux 虚拟机首次启动时使用 cloud-init 对其进行自定义
 
@@ -37,9 +37,9 @@ ms.locfileid: "82159184"
 如果选择在本地安装并使用 CLI，本教程要求运行 Azure CLI 2.0.30 或更高版本。 运行 `az --version` 即可查找版本。 如果需要进行安装或升级，请参阅[安装 Azure CLI](https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest)。
 
 ## <a name="cloud-init-overview"></a>Cloud-init 概述
-[Cloud-init](https://cloudinit.readthedocs.io) 是一种广泛使用的方法，用于在首次启动 Linux VM 时对其进行自定义。 可使用 cloud-init 来安装程序包和写入文件，或者配置用户和安全性。 在初始启动期间运行 cloud-init 时，无需额外的步骤和代理即可应用配置。
+[Cloud-init](https://cloudinit.readthedocs.io) 是一种广泛使用的方法，用于在首次启动 Linux VM 时对其进行自定义。 可使用 cloud-init 来安装程序包和写入文件，或者配置用户和安全性。 在初始启动期间运行 cloud-init 时，无需额外的步骤且无需代理来应用配置。
 
-Cloud-init 还支持不同的发行版。 例如，不需使用  apt-get install 或  yum install 来安装包， 而是可定义要安装的程序包的列表。 Cloud-init 将对所选发行版自动使用本机包管理工具。
+Cloud-init 还支持不同的发行版。 例如，不要使用 apt-get 安装或 yum 安装来安装包。 可定义要安装的程序包的列表。 Cloud-init 将为所选发行版自动使用本机包管理工具。
 
 我们正在与合作伙伴协作，将 cloud-init 纳入用户向 Azure 提供的映像中并使其在映像中正常运行。 下表概述了 cloud-init 当前在 Azure 平台映像上的可用性：
 
@@ -54,12 +54,12 @@ Cloud-init 还支持不同的发行版。 例如，不需使用  apt-get install
 <!-- Not Available on | | RedHat | RHEL | 7-RAW-CI | latest|-->
 
 ## <a name="create-cloud-init-config-file"></a>创建 cloud-init 配置文件
-若要运行 cloud-init，请创建一个 VM，以便安装 NGINX 并运行简单的“Hello World”Node.js 应用。 以下 cloud-init 配置会安装所需的程序包，创建 Node.js 应用，然后初始化并启动该应用。
+若要运行 cloud-init，请创建一个 VM，以便安装 NGINX 并运行简单的“Hello World”Node.js 应用。 以下 cloud-init 配置会安装所需的程序包、创建 Node.js 应用，然后初始化并启动该应用。
 
-在本地 Shell 中，创建名为“cloud-init.txt”  的文件并粘贴下面的配置。 例如，键入 `sensible-editor cloud-init.txt` 以创建文件并查看可用编辑器的列表。 请确保已正确复制整个 cloud-init 文件，尤其是第一行：
+在 bash 提示符下，创建名为“cloud-init.txt”的文件并粘贴下面的配置。 例如，键入 `sensible-editor cloud-init.txt` 以创建文件并查看可用编辑器的列表。 请确保已正确复制整个 cloud-init 文件，尤其是第一行：
 
 <!-- Not Avaialble cloud shell-->
-```bash
+```yaml
 #cloud-config
 package_upgrade: true
 packages:
@@ -110,7 +110,7 @@ runcmd:
 az group create --name myResourceGroupAutomate --location chinaeast
 ```
 
-现在，请使用 [az vm create](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-create) 创建 VM。 使用 `--custom-data` 参数传入 cloud-init 配置文件。 如果未将 cloud-init.txt  配置文件保存在现有工作目录中，请提供该文件的完整路径。 以下示例创建一个名为 myVM  的 VM：
+现在，请使用 [az vm create](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-create) 创建 VM。 使用 `--custom-data` 参数传递到 cloud-init 配置文件中。 如果未将 cloud-init.txt  配置文件保存在现有工作目录中，请提供该文件的完整路径。 以下示例创建一个名为 myVM  的 VM：
 
 ```azurecli
 az vm create \
@@ -122,7 +122,7 @@ az vm create \
     --custom-data cloud-init.txt
 ```
 
-创建 VM、安装程序包和启动应用需耗时几分钟。 在 Azure CLI 返回提示之后，仍然存在继续运行的后台任务。 可能还需等待几分钟才能访问应用。 创建 VM 后，请记下 Azure CLI 显示的 `publicIpAddress`。 此地址用于通过 Web 浏览器访问 Node.js 应用。
+创建 VM、安装程序包和启动应用需耗时几分钟。 在 Azure CLI 向你返回提示之后，仍然存在继续运行的后台任务。 可能还需等待几分钟才能访问应用。 创建 VM 后，请记下 Azure CLI 显示的 `publicIpAddress`。 此地址用于通过 Web 浏览器访问 Node.js 应用。
 
 若要使 VM 能使用 Web 流量，请通过 [az vm open-port](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-open-port) 从 Internet 打开端口 80：
 
@@ -131,7 +131,7 @@ az vm open-port --port 80 --resource-group myResourceGroupAutomate --name myAuto
 ```
 
 ## <a name="test-web-app"></a>测试 Web 应用
-现在可以打开 Web 浏览器，并在地址栏中输入“http:\/\/\<publicIpAddress>”  。 在 VM 创建过程中提供自己的公共 IP 地址。 将显示 Node.js 应用，如下例所示：
+现在可以打开 Web 浏览器，并在地址栏中输入“http:\/\/\<publicIpAddress>”。 在 VM 创建过程中提供自己的公共 IP 地址。 将显示 Node.js 应用，如下例所示：
 
 ![查看运行中的 NGINX 站点](./media/tutorial-automate-vm-deployment/nginx.png)
 
@@ -168,6 +168,7 @@ az keyvault certificate create \
     --name mycert \
     --policy "$(az keyvault certificate get-default-policy --output json)"
 ```
+
 
 ### <a name="prepare-certificate-for-use-with-vm"></a>准备用于 VM 的证书
 若要在 VM 创建过程中使用该证书，请使用 [az keyvault secret list-versions](https://docs.azure.cn/cli/keyvault/secret?view=azure-cli-latest#az-keyvault-secret-list-versions) 获取证书的 ID。 VM 需要特定格式的证书才能在启动时将其注入，因此请使用 [az vm secret format](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-secret-format) 转换该证书。 以下示例将这些命令的输出分配给变量，以便在后续步骤中使用：
@@ -238,7 +239,7 @@ runcmd:
 ```
 
 ### <a name="create-secure-vm"></a>创建安全的 VM
-现在，请使用 [az vm create](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-create) 创建 VM。 使用 `--secrets` 参数注入 Key Vault 中的证书数据。 与上个示例一样，使用 `--custom-data` 参数传入 cloud-init 配置：
+现使用 [az vm create](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-create) 创建 VM。 使用 `--secrets` 参数注入 Key Vault 中的证书数据。 与上个示例一样，使用 `--custom-data` 参数传入 cloud-init 配置：
 
 ```azurecli
 az vm create \
@@ -251,7 +252,7 @@ az vm create \
     --secrets "$vm_secret"
 ```
 
-创建 VM、安装程序包和启动应用需耗时几分钟。 在 Azure CLI 返回提示之后，仍然存在继续运行的后台任务。 可能还需等待几分钟才能访问应用。 创建 VM 后，请记下 Azure CLI 显示的 `publicIpAddress`。 此地址用于通过 Web 浏览器访问 Node.js 应用。
+创建 VM、安装程序包和启动应用需耗时几分钟。 在 Azure CLI 向你返回提示之后，仍然存在继续运行的后台任务。 可能还需等待几分钟才能访问应用。 创建 VM 后，请记下 Azure CLI 显示的 `publicIpAddress`。 此地址用于通过 Web 浏览器访问 Node.js 应用。
 
 若要使 VM 能使用安全的 Web 流量，请通过 [az vm open-port](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-open-port) 从 Internet 打开端口 443：
 
@@ -263,7 +264,7 @@ az vm open-port \
 ```
 
 ### <a name="test-secure-web-app"></a>测试 Web 应用是否安全
-现在可以打开 Web 浏览器，并在地址栏中输入“https:\/\/\<publicIpAddress>”  。 提供你自己的公共 IP 地址，如前面的 VM 创建过程的输出中所示。 若使用自签名的证书，请接受安全警告：
+现在可以打开 Web 浏览器，并在地址栏中输入 https:\/\/\<publicIpAddress>。 提供你自己的公共 IP 地址，如前面的 VM 创建过程的输出中所示。 若使用自签名的证书，请接受安全警告：
 
 ![接受 Web 浏览器安全警告](./media/tutorial-automate-vm-deployment/browser-warning.png)
 
@@ -273,7 +274,7 @@ az vm open-port \
 
 
 ## <a name="next-steps"></a>后续步骤
-在本教程中，你使用 cloud-init 在首次启动时配置了 VM。 你已了解如何：
+在本教程中，你使用 cloud-init 在首次启动时配置了 VM。 你已了解如何执行以下操作：
 
 > [!div class="checklist"]
 > * 创建 cloud-init 配置文件

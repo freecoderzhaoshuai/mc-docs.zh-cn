@@ -7,29 +7,29 @@ author: brjohnstmsft
 ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
-origin.date: 06/30/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: c1a22471c7a3e8542163ef54eb608f570b099e65
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+origin.date: 08/26/2020
+ms.date: 09/10/2020
+ms.openlocfilehash: 37c88108504fd61e48da058659c7b0ff07ad4b4c
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471847"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020948"
 ---
-# <a name="upgrade-to-the-latest-azure-cognitive-search-service-rest-api-version"></a>升级到最新的 Azure 认知搜索服务 REST API 版本
+# <a name="upgrade-to-the-latest-rest-api-in-azure-cognitive-search"></a>升级到 Azure 认知搜索服务中最新的 REST API
 
-如果你使用的是早期版本的[搜索 REST API](https://docs.microsoft.com/rest/api/searchservice/)，则可参阅本文来升级应用程序，以便使用正式发布的最新 API 版本 2020-06-30。
+如果你使用的是[搜索 REST API](https://docs.microsoft.com/rest/api/searchservice/) 的早期版本，本文将有助于将应用程序升级到正式发布的最新 API 版本 2020-06-30 。
 
-REST API 版本 2020-06-30 包含早期版本中的一些更改。 这些更改主要涉及向后兼容性，因此更改代码只需最小的工作量，具体取决于之前使用的是哪个版本。 [升级步骤](#UpgradeSteps)概述了使用新功能所要做出的代码更改。
+版本 2020-06-30 包含一项重要的新功能（[知识存储](knowledge-store-concept-intro.md)），并引入了几项小的行为变更。 因此，此版本主要向后兼容，从而如果从前一版 (2019-05-06) 升级，代码更改应该极少。
 
 > [!NOTE]
-> Azure 认知搜索服务实例支持各种 REST API 版本，包括以前的版本。 你可以继续使用这些 API 版本，但我们建议将代码迁移到最新版本，以便可以访问新功能。
+> 搜索服务支持多种 REST API 版本，包括早期版本。 你可以继续使用这些 API 版本，但我们建议将代码迁移到最新版本，以便可以访问新功能。 随着时间的推移，最陈旧的 REST API 版本将会被弃用，并且[不会再受支持](search-api-versions.md#unsupported-versions)。
 
 <a name="UpgradeSteps"></a>
 
 ## <a name="how-to-upgrade"></a>如何升级
 
-升级到新版本时，除了更改版本号，可能无需对代码进行任何其他更改。 仅对于以下情况，可能需要更改代码：
+在升级到新版本时，除了更改版本号之外，可能不会需要对代码进行很多其他更改。 仅对于以下情况，可能需要更改代码：
 
 * 当 API 响应中返回无法识别的属性时，代码失效。 默认情况下，应用程序应忽略无法理解的属性。
 
@@ -37,7 +37,7 @@ REST API 版本 2020-06-30 包含早期版本中的一些更改。 这些更改�
 
 * 你的代码引用的 API 版本早于 2019-05-06，并且受该版本中一项或多项中断性变更的影响。 [升级到 2019-05-06](#upgrade-to-2019-05-06) 部分提供了更多详细信息。 
 
-如果其中任一种情况适用，则可能需要相应地更改代码。 否则，如果不是要开始使用新版本中添加的功能，便无需进行任何更改。
+如果其中任一种情况适用，则可能需要相应地更改代码。 否则，尽管你可能需要开始使用新版本中添加的功能，也无需进行任何更改。
 
 ## <a name="upgrade-to-2020-06-30"></a>升级到 2020-06-30
 
@@ -64,7 +64,7 @@ REST API 版本 2020-06-30 包含早期版本中的一些更改。 这些更改�
 
 ### <a name="breaking-changes"></a>重大变化
 
-如果代码包含以下功能，则针对早期 API 版本编写的现有代码将在 api-version = 2019-05-06 时中断：
+如果代码包含以下功能，针对早期 API 版本编写的现有代码将在遇到 api-version = 2019-05-06 及更高版本时中断运行：
 
 #### <a name="indexer-for-azure-cosmos-db---datasource-is-now-type-cosmosdb"></a>Azure Cosmos DB - 数据源的索引器现在是 "type": "cosmosdb"
 
@@ -148,4 +148,3 @@ API 版本 2017-11-11-Preview 中引入了一种更新的用于定义索引字�
 
 > [!div class="nextstepaction"]
 > [搜索服务 REST API 参考](https://docs.microsoft.com/rest/api/searchservice/)
-

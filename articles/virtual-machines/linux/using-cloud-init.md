@@ -6,22 +6,22 @@ ms.service: virtual-machines-linux
 ms.subservice: extensions
 ms.workload: infrastructure-services
 ms.topic: how-to
-ms.date: 07/29/2020
+ms.date: 09/03/2020
 ms.author: v-johya
 origin.date: 01/23/2019
-ms.openlocfilehash: e6af21ade70bf9dd9cbfa7d1dc788e10c1c139fc
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.openlocfilehash: 29221354cc1a32bb7e61e5f9907a6898016b5119
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508432"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057581"
 ---
 # <a name="cloud-init-support-for-virtual-machines-in-azure"></a>Azure 中虚拟机的 cloud-init 支持
 本文介绍在 Azure 中预配时用于配置虚拟机 (VM) 或虚拟机规模集的 [cloud-init](https://cloudinit.readthedocs.io) 的现有支持。 Azure 预配资源后，这些 cloud-init 配置即会在首次启动时运行。  
 
 VM 预配是指 Azure 向下传递“VM 创建”参数值（例如主机名、用户名、密码等），并在 VM 启动时向其提供这些值的过程。 “预配代理”将使用这些值，配置 VM，并在完成后返回报告。 
 
-Azure 支持两个预配代理：[cloud-init](https://cloudinit.readthedocs.io) 和 [Azure Linux 代理 (WALA)](/virtual-machines/extensions/agent-linux)。
+Azure 支持两个预配代理：[cloud-init](https://cloudinit.readthedocs.io) 和 [Azure Linux 代理 (WALA)](../extensions/agent-linux.md)。
 
 ## <a name="cloud-init-overview"></a>cloud-init 概述
 [cloud-init](https://cloudinit.readthedocs.io) 是一种广泛使用的方法，用于在首次启动 Linux VM 时对其进行自定义。 可使用 cloud-init 安装程序包和写入文件，或者配置用户和安全。 由于是在初始启动过程中调用 cloud-init，因此无需额外的步骤且无需代理来应用配置。  有关如何正确设置 `#cloud-config` 文件或其他输入的格式的详细信息，请参阅 [cloud-init 文档站点](https://cloudinit.readthedocs.io/en/latest/topics/format.html#cloud-config-data)。  `#cloud-config` 文件是采用 base64 编码的文本文件。
@@ -90,7 +90,7 @@ cloud-init 还支持不同的发行版。 例如，不要使用 apt-get 安装�
 目前 Azure Stack 将支持预配启用了 cloud-init 的映像。
 
 ## <a name="what-is-the-difference-between-cloud-init-and-the-linux-agent-wala"></a>cloud-init 和 Linux 代理 (WALA) 之间的区别是什么？
-WALA 是一种特定于 Azure 平台的代理，用于预配和配置 VM 并处理 [Azure 扩展](/virtual-machines/extensions/features-linux)。 
+WALA 是一种特定于 Azure 平台的代理，用于预配和配置 VM 并处理 [Azure 扩展](../extensions/features-linux.md)。 
 
 我们正在增强将 VM 配置为使用 cloud-init 而不是 Linux 代理的任务，使现有的 cloud-init 客户能够使用其当前 cloud-init 脚本，或者使新客户能够利用丰富的 cloud-init 配置功能。 如果已使用过 cloud-init 脚本来配置 Linux 系统，那么，**不需要进行额外的设置**就能让 cloud-init 处理这些任务。 
 
@@ -116,7 +116,6 @@ az group create --name myResourceGroup --location chinaeast
 下一步是在当前 shell 中创建名为 cloud-init.txt  的文件并粘贴以下配置。 对于此示例，请在本地计算机中创建文件。 可使用任何想要使用的编辑器。 输入 `sensible-editor cloud-init.txt` 以创建文件并查看可用编辑器的列表。 选择 #1 以使用 nano 编辑器。 请确保已正确复制整个 cloud-init 文件，尤其是第一行：
 
 <!--Notice: Change Cloud Shell to Shell-->
-
 ```yaml
 #cloud-config
 package_upgrade: true
@@ -139,6 +138,8 @@ az vm create \
 ```
 
 创建 VM 后，Azure CLI 会显示部署的特定信息。 记下 `publicIpAddress`。 此地址用于访问 VM。  创建 VM、安装程序包和启动应用需要一些时间。 在 Azure CLI 向你返回提示之后，仍然存在继续运行的后台任务。 你可以使用 SSH 连接到 VM 并使用故障排除部分中所述的步骤来查看 cloud-init 日志。 
+
+还可通过传递 [ARM 模板中的参数](/azure-resource-manager/templates/deploy-cli#inline-parameters)来部署已启用 cloud-init 的 VM。
 
 ## <a name="troubleshooting-cloud-init"></a>对 cloud-init 进行故障排除
 VM 预配完成后，会在 `--custom-data` 中定义的所有模块和脚本上运行 cloud-init，以便配置 VM。  若要对配置中存在的任何错误或遗漏进行故障排除，需要在位于 /var/log/cloud-init.log 的 cloud-init 日志中搜索模块名称（例如 `disk_setup` 或 `runcmd`）。

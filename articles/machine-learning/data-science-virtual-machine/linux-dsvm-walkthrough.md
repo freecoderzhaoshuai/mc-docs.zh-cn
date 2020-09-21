@@ -8,19 +8,17 @@ ms.subservice: data-science-vm
 author: vijetajo
 ms.author: vijetaj
 ms.topic: conceptual
-ms.date: 04/02/2020
-ms.openlocfilehash: 6924f86132a4d398b825da797a4299f9fa1c2ab9
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.date: 07/17/2020
+ms.openlocfilehash: 991fe7ce99eaec2fac09f7c03e93a52adbc70004
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097041"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021621"
 ---
-# <a name="data-science-with-a-linux-data-science-virtual-machine-in-azure"></a>Azure 上的 Linux Data Science Virtual Machine 中的数据科学
+# <a name="data-science-with-an-ubuntu-data-science-virtual-machine-in-azure"></a>使用 Azure 中的 Ubuntu Data Science Virtual Machine 完成数据科学任务
 
-本演练介绍如何使用 Linux Data Science Virtual Machine (DSVM) 执行多种常见数据科学任务。 Linux DSVM 是 Azure 提供的虚拟机映像，其中预安装了一组常用于执行数据分析和机器学习的工具。 [预配 Linux Data Science Virtual Machine](linux-dsvm-intro.md) 中逐项列出了主要的软件组件。 DSVM 映像允许在几分钟之内轻松开始执行数据科学任务，而无需逐个安装和配置每个工具。 可以根据需要轻松扩展 DSVM，还可以在不使用时将其停用。 DSVM 资源既具有弹性，又具有成本效益。
-
-在本演练中演示的数据科学任务遵循了[什么是团队数据科学过程？](/machine-learning/team-data-science-process/overview)中所概述的步骤 团队数据科学过程是数据科学的系统性方法，允许数据科学家团队在构建智能应用程序的生命周期内有效地协作。 数据科学过程还为数据科学提供了可供个人遵循迭代框架。
+本演练介绍如何使用 Ubuntu Data Science Virtual Machine (DSVM) 完成多项常见数据科学任务。 Ubuntu DSVM 是 Azure 提供的虚拟机映像，其中预安装了一组常用于执行数据分析和机器学习的工具。 [预配 Ubuntu Data Science Virtual Machine](./dsvm-ubuntu-intro.md) 中逐项列出了主要的软件组件。 DSVM 映像允许在几分钟之内轻松开始执行数据科学任务，而无需逐个安装和配置每个工具。 可以根据需要轻松扩展 DSVM，还可以在不使用时将其停用。 DSVM 资源既具有弹性，又具有成本效益。
 
 在本演练中，我们对 [spambase](https://archive.ics.uci.edu/ml/datasets/spambase) 数据集进行了分析。 Spambase 是一组标记为 spam 或 ham（非 spam）的电子邮件。 Spambase 还包含有关电子邮件内容的一些统计信息。 我们稍后将在本演练中讨论这些统计信息。
 
@@ -29,10 +27,9 @@ ms.locfileid: "85097041"
 必须具备以下先决条件，才能使用 Linux DSVM：
 
 * **Azure 订阅**。 若要获取 Azure 订阅，请参阅[立即创建免费的 Azure 帐户](https://www.azure.cn/pricing/1rmb-trial)。
-* [Linux Data Science Virtual Machine](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-1804)。 有关预配虚拟机的信息，请参阅[预配 Linux Data Science Virtual Machine](linux-dsvm-intro.md)。
+* [**Ubuntu Data Science Virtual Machine**](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-1804)。 有关预配虚拟机的信息，请参阅[预配 Ubuntu Data Science Virtual Machine](linux-dsvm-intro.md)。
 * 计算机上安装了 [X2Go](https://wiki.x2go.org/doku.php) 且 XFCE 会话处于打开状态。 有关详细信息，请参阅[安装和配置 X2Go 客户端](linux-dsvm-intro.md#x2go)。
 * 为获得更流畅的滚动体验，请在 DSVM 的 Firefox Web 浏览器中切换 `about:config` 中的 `gfx.xrender.enabled` 标记。 [了解详细信息](https://www.reddit.com/r/firefox/comments/4nfmvp/ff_47_unbearable_slow_over_remote_x11/)。 此外，考虑将 `mousewheel.enable_pixel_scrolling` 设置为 `False`。 [了解详细信息](https://support.mozilla.org/questions/981140)。
-* Azure 机器学习帐户。 如果没有帐户，请在 [Azure 机器学习主页](/machine-learning//)上注册新帐户。
 
 ## <a name="download-the-spambase-dataset"></a>下载 spambase 数据集
 
@@ -286,31 +283,6 @@ clf = svm.SVC()
 clf.fit(X, y)
 ```
 
-若要将模型发布到 Azure 机器学习：
-
-```Python
-# Publish the model.
-workspace_id = "<workspace-id>"
-workspace_token = "<workspace-token>"
-from azureml import services
-@services.publish(workspace_id, workspace_token)
-@services.types(char_freq_dollar = float, word_freq_remove = float, word_freq_hp = float)
-@services.returns(int) # 0 or 1
-def predictSpam(char_freq_dollar, word_freq_remove, word_freq_hp):
-    inputArray = [char_freq_dollar, word_freq_remove, word_freq_hp]
-    return clf.predict(inputArray)
-
-# Get some info about the resulting model.
-predictSpam.service.url
-predictSpam.service.api_key
-
-# Call the model
-predictSpam.service(1, 1, 1)
-```
-
-> [!NOTE]
-> 此选项仅适用于 Python 2.7。 Python 3.5 尚不支持。 若要运行，请使用 /anaconda/bin/python2.7。
-
 ### <a name="jupyterhub"></a>JupyterHub
 
 在 DSVM 中的 Anaconda 分发版包含 Jupyter Notebook - 一个共享 Python、R 或 Julia 代码和分析的跨平台环境。 可通过 JupyterHub 访问 Jupyter notebook。 使用本地 Linux 用户名和密码在 https://\<DSVM DNS name or IP address\>:8000/ 中登录。 JupyterHub 的所有配置文件可以在 /etc/jupyterhub 中找到。
@@ -318,14 +290,14 @@ predictSpam.service(1, 1, 1)
 > [!NOTE]
 > 若要在当前内核中从 Jupyter Notebook 使用 Python 包管理器（通过 `pip` 命令），可以在代码单元中使用以下命令：
 >
->   ```python
+>   ```Python
 >    import sys
 >    ! {sys.executable} -m pip install numpy -y
 >   ```
 > 
 > 若要在当前内核中从 Jupyter Notebook 使用 Conda 安装程序（通过 `conda` 命令），可以在代码单元中使用以下命令：
 >
->   ```python
+>   ```Python
 >    import sys
 >    ! {sys.prefix}/bin/conda install --yes --prefix {sys.prefix} numpy
 >   ```
@@ -334,7 +306,6 @@ DSVM 上已安装了几个示例 Notebook：
 
 * 示例 Python 笔记本：
   * [IntroToJupyterPython.ipynb](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Data-Science-Virtual-Machine/Samples/Notebooks/IntroToJupyterPython.ipynb)
-  * [IrisClassifierPyMLWebService](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Data-Science-Virtual-Machine/Samples/Notebooks/IrisClassifierPyMLWebService.ipynb)
 * 示例 R 笔记本：
   * [IntroTutorialinR](https://github.com/Azure/Azure-MachineLearning-DataScience/blob/master/Data-Science-Virtual-Machine/Samples/Notebooks/IntroTutorialinR.ipynb) 
 
@@ -506,9 +477,9 @@ CREATE TABLE data (word_freq_make real, word_freq_address real, word_freq_all re
 1. 对于“驱动程序”，选择 PostgreSQL 。
 1. 将 URL 设置为 **jdbc:postgresql://localhost/spam**。
 1. 输入用户名和密码。
-1. 选择“确定” 。
+1. 选择“确定”。
 1. 若要打开“连接”窗口，请双击**垃圾邮件数据库**别名。
-1. 选择“连接” 。
+1. 选择“连接”。
 
 运行一些查询：
 
@@ -567,8 +538,4 @@ GO
 
 还可以使用 SQuirreL SQL 进行查询。 使用 SQL Server JDBC 驱动程序执行类似于 PostgreSQL 的步骤。 JDBC 驱动程序位于 /usr/share/java/jdbcdrivers/sqljdbc42.jar 文件夹中。
 
-## <a name="next-steps"></a>后续步骤
 
-获取文章概述，了解包含在 Azure 中的数据科学过程的任务，请参阅[团队数据科学过程](/machine-learning/team-data-science-process/overview)。
-
-有关针对特定方案，演示团队数据科学过程中的步骤的端到端演练的说明，请参阅[团队数据科学过程演练](../team-data-science-process/walkthroughs.md)。 该演练还展示了如何将云、本地工具以及服务结合到一个工作流或管道中，以创建智能应用程序。

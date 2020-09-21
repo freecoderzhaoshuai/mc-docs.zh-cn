@@ -5,15 +5,15 @@ author: Johnnytechn
 ms.service: virtual-machines-linux
 ms.subservice: imaging
 ms.topic: troubleshooting
-ms.date: 07/29/2020
+ms.date: 09/10/2020
 ms.author: v-johya
 ms.reviewer: cynthn
-ms.openlocfilehash: f48ff9e9eb29171d4ead9589abb3819d0b2cab84
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.openlocfilehash: cc3829f2c3328f90bd893e97122b501afdf8d39c
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508868"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057635"
 ---
 # <a name="troubleshooting-vm-provisioning-with-cloud-init"></a>对使用 cloud-init 的 VM 预配进行故障排除
 
@@ -21,33 +21,34 @@ ms.locfileid: "87508868"
 
 预配问题的一些示例：
 - VM 停滞在“正在创建”状态达 40 分钟，并且 VM 创建操作被标记为失败
-- CustomData 未得到处理
+- `CustomData` 未得到处理
 - 临时磁盘装载失败
 - 未创建用户，或存在用户访问问题
 - 未正确设置网络
 - 交换文件或分区故障
 
-本文逐步讲解如何对 cloud-init 进行故障排除。 如需更深入的详细信息，请参阅 [cloud-init 工作方式](https://msazure.visualstudio.com/AzureWiki/_wiki/wikis/AzureWiki.wiki/53162/cloud-init-deep-dive)。
+本文逐步讲解如何对 cloud-init 进行故障排除。 如需更深入的详细信息，请参阅[深入探讨 cloud-init](./cloud-init-deep-dive.md)。
 
-## <a name="step-1-test-the-deployment-without-customdata"></a>步骤 1：在不使用 customData 的情况下测试部署
+## <a name="step-1-test-the-deployment-without-customdata"></a>步骤 1：在不使用 `customData` 的情况下测试部署
 
-在创建 VM 时，Cloud-init 可以接受传递给它的 customData。 首先，你应确保这不会导致任何部署问题。 尽量在不传入任何配置的情况下预配 VM。 如果你发现 VM 无法预配，请继续执行下面的步骤；如果发现未应用你传递的配置，请转到[步骤 4]()。 
+在创建 VM 时，Cloud-init 可以接受传递给它的 `customData`。 首先，你应确保这不会导致任何部署问题。 尽量在不传入任何配置的情况下预配 VM。 如果你发现 VM 无法预配，请继续执行下面的步骤；如果发现未应用你传递的配置，请转到[步骤 4]()。 
 
-## <a name="step-2-review-image-requirements-are-satisfied"></a>步骤 2：查看是否满足映像要求
+## <a name="step-2-review-image-requirements"></a>步骤 2：查看映像要求
 VM 预配失败的主要原因是 OS 映像不满足在 Azure 上运行的先决条件。 尝试在 Azure 中预配映像之前，请确保已正确准备好映像。 
 
 
 以下文章演示了准备 Azure 中支持的各种 Linux 发行版的步骤：
 
-- [基于 CentOS 的分发版](create-upload-centos.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-- [Debian Linux](debian-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-- [Oracle Linux](oracle-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-- [Red Hat Enterprise Linux](redhat-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-- [SLES 和 openSUSE](suse-create-upload-vhd.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-- [Ubuntu](create-upload-ubuntu.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
-- [其他：非认可的分发版](create-upload-generic.md?toc=%2fazure%2fvirtual-machines%2flinux%2ftoc.json)
+- [基于 CentOS 的分发版](create-upload-centos.md)
+- [Debian Linux](debian-create-upload-vhd.md)
+- [Flatcar Container Linux](flatcar-create-upload-vhd.md)
+- [Oracle Linux](oracle-create-upload-vhd.md)
+- [Red Hat Enterprise Linux](redhat-create-upload-vhd.md)
+- [SLES 和 openSUSE](suse-create-upload-vhd.md)
+- [Ubuntu](create-upload-ubuntu.md)
+- [其他：非认可的分发版](create-upload-generic.md)
 
-对于[受支持的 Azure cloud-init 映像](/virtual-machines/linux/using-cloud-init)，Linux 发行版已准备好所有必需的包和配置，方便用户在 Azure 中正确预配映像。 如果发现无法基于你自己的特选映像创建 VM，请尝试使用一个受支持的、已使用你的可选 customData 为其配置了 cloud-init 的 Azure 市场映像。 如果 customData 可以在 Azure 市场映像中正常使用，则可能是特选映像出现问题。
+对于[受支持的 Azure cloud-init 映像](./using-cloud-init.md)，Linux 发行版已准备好所有必需的包和配置，方便用户在 Azure 中正确预配映像。 如果发现无法基于你自己的特选映像创建 VM，请尝试使用一个受支持的、已使用你的可选 `customData` 为其配置了 cloud-init 的市场映像。 如果 `customData` 可以在市场映像中正常使用，则可能是特选映像出现问题。
 
 ## <a name="step-3-collect--review-vm-logs"></a>步骤 3：收集和查看 VM 日志
 
@@ -55,24 +56,18 @@ VM 预配失败的主要原因是 OS 映像不满足在 Azure 上运行的先决
 
 你需要在 VM 处于运行状态的情况下使用其中的日志来了解预配为何失败。  若要了解 VM 预配为何失败，请不要停止 VM。 让 VM 保持运行状态。 为了收集日志，你需要使发生故障的 VM 保持运行状态。 若要收集日志，请使用以下方法之一：
 
-- 在创建 VM 之前[启用启动诊断](/virtual-machines/linux/tutorial-monitor#enable-boot-diagnostics)，然后在启动过程中[查看](/virtual-machines/linux/tutorial-monitor#view-boot-diagnostics)它们。
+- 在创建 VM 之前[启用启动诊断](./tutorial-monitor.md#enable-boot-diagnostics)，然后在启动过程中[查看](./tutorial-monitor.md#view-boot-diagnostics)它们。
 
-- [手动将 OS 磁盘附加并装载](/virtual-machines/troubleshooting/troubleshoot-recovery-disks-portal-linux)到正在运行的 VM 以提取日志 - Azure VM 修复
-
-收集下列日志：
+- [运行 AZ VM Repair](../troubleshooting/repair-linux-vm-using-azure-virtual-machine-repair-commands.md) 来附加和装载 OS 磁盘，这将允许你收集以下日志：
 ```bash
+/var/log/cloud-init*
 /var/log/waagent*
 /var/log/syslog*
 /var/log/rsyslog*
 /var/log/messages*
 /var/log/kern*
 /var/log/dmesg*
-/var/log/dpkg*
-/var/log/yum*
-/var/log/cloud-init*
 /var/log/boot*
-/var/log/auth*
-/var/log/secure*
 ```
 若要开始进行初始故障排除，请从 cloud-init 日志着手，了解发生故障的位置，然后使用其他日志深入了解情况并获取更多见解。 
 * /var/log/cloud-init.log
@@ -134,5 +129,5 @@ Cloud-init 有多个依赖项，这些依赖项记录在 Azure 上的映像所�
 
 ## <a name="next-steps"></a>后续步骤
 
-如果仍然无法厘清 cloud-init 未运行配置的原因，则需更细致地了解每个 cloud-init 阶段发生的情况，以及运行模块的时间。 有关详细信息，请参阅[更深入地了解 cloud-init 配置](https://msazure.visualstudio.com/AzureWiki/_wiki/wikis/AzureWiki.wiki/53162/cloud-init-deep-dive)。 
+如果仍然无法厘清 cloud-init 未运行配置的原因，则需更细致地了解每个 cloud-init 阶段发生的情况，以及运行模块的时间。 有关详细信息，请参阅[更深入地了解 cloud-init 配置](./cloud-init-deep-dive.md)。 
 

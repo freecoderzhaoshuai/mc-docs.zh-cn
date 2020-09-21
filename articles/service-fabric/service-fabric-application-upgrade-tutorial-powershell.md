@@ -2,15 +2,19 @@
 title: 使用 PowerShell 升级 Service Fabric 应用
 description: 本文逐步指导使用 PowerShell 部署 Service Fabric 应用程序、更改代码以及推出升级版本。
 ms.topic: conceptual
-origin.date: 02/23/2018
-ms.date: 06/08/2020
+origin.date: 08/05/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 74cdb1a4ae962864acca51bb2ffdf9518fab1421
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.custom: devx-track-azurepowershell
+ms.openlocfilehash: 1e261b7e7a663ae4308903f50d7dfd556129f522
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356293"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655118"
 ---
 # <a name="service-fabric-application-upgrade-using-powershell"></a>使用 PowerShell 升级 Service Fabric 应用程序
 > [!div class="op_single_selector"]
@@ -26,6 +30,21 @@ ms.locfileid: "84356293"
 可使用托管或本机 API、PowerShell、Azure CLI、Java 或 REST 执行受监视的应用程序升级。 有关使用 Visual Studio 执行升级的说明，请参阅[使用 Visual Studio 升级应用程序](service-fabric-application-upgrade-tutorial.md)。
 
 使用 Service Fabric 监视的滚动升级，应用程序管理员可以配置 Service Fabric 用于确定应用程序运行状况是否正常的运行状况评估策略。 此外，管理员还可以配置当运行状况评估失败时要采取的措施（例如，执行自动回滚）。本部分演练使用 PowerShell 对其中一个 SDK 示例进行受监视的升级。 
+
+> [!NOTE]
+> 在应用程序升级期间，不会保留 [ApplicationParameters](https://docs.azure.cn/dotnet/api/system.fabric.description.applicationdescription.applicationparameters?view=azure-dotnet#System_Fabric_Description_ApplicationDescription_ApplicationParameters)。 为了保留当前的应用程序参数，用户应首先获取参数，然后将它们传递到升级 API 调用中，如下所示：
+```powershell
+$myApplication = Get-ServiceFabricApplication -ApplicationName fabric:/myApplication
+$appParamCollection = $myApplication.ApplicationParameters
+
+$applicationParameterMap = @{}
+foreach ($pair in $appParamCollection)
+{
+    $applicationParameterMap.Add($pair.Name, $pair.Value);
+}
+
+Start-ServiceFabricApplicationUpgrade -ApplicationName fabric:/myApplication -ApplicationTypeVersion 2.0.0 -ApplicationParameter $applicationParameterMap -Monitored -FailureAction Rollback
+```
 
 ## <a name="step-1-build-and-deploy-the-visual-objects-sample"></a>步骤 1：构建和部署 Visual Objects 示例
 单击右键应用程序项目 **VisualObjectsApplication**，并选择“**发布**”命令生成并发布应用程序。  有关详细信息，请参阅 [Service Fabric 应用程序升级教程](service-fabric-application-upgrade-tutorial.md)。  或者，也可以使用 PowerShell 来部署应用程序。
@@ -135,4 +154,4 @@ Get-ServiceFabricApplicationUpgrade fabric:/VisualObjects
 
 参考[对应用程序升级进行故障排除](service-fabric-application-upgrade-troubleshooting.md)中的步骤来解决应用程序升级时的常见问题。
 
-<!--Update_Description: update meta properties, wording update, update link-->
+<!-- Update_Description: update meta properties, wording update, update link -->

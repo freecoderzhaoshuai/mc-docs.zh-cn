@@ -1,22 +1,22 @@
 ---
 title: 使用 Azure Site Recovery 安装 Linux VM 故障恢复的主目标服务器
 description: 了解如何设置 Linux 主目标服务器，以便在使用 Azure Site Recovery 将 VMware VM 灾难恢复到 Azure 期间故障回复到本地站点。
-author: rockboyfor
 services: site-recovery
 manager: digimobile
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 03/06/2019
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 09/30/2019
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: ac356b8520af21cf4a7c737a2440aefe23314468
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 9e3cafcbea3cd7e74ad2fb97a3a7a49edb8e68db
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426527"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655005"
 ---
 # <a name="install-a-linux-master-target-server-for-failback"></a>安装用于故障回复的 Linux 主目标服务器
 将虚拟机故障转移到 Azure 后，可将虚拟机故障回复到本地站点。 若要故障回复，需要在本地站点中重新保护 Azure 中的虚拟机。 对于此过程，需要安装一个本地主目标服务器用于接收流量。 
@@ -40,6 +40,9 @@ ms.locfileid: "87426527"
 * 主目标应在可与进程服务器和配置服务器通信的网络中。
 * 主目标版本应该低于或等于进程服务器和配置服务器的版本。 例如，如果配置服务器版本为 9.4，则主目标的版本可以是 9.4 或 9.3，而不能是 9.5。
 * 主目标只能是 VMware 虚拟机，而不能是物理服务器。
+
+> [!NOTE]
+> 切勿在主目标等任何管理组件上打开存储 vMotion。 如果重新保护成功后移动主目标，将无法分离虚拟机磁盘 (VMDK)。 此情况下，故障回复将失败。
 
 ## <a name="sizing-guidelines-for-creating-master-target-server"></a>创建主目标服务器时的大小调整准则
 
@@ -68,22 +71,22 @@ ms.locfileid: "87426527"
 
 1. 选择“英语”作为首选语言，再按 Enter。 
 
-    ![选择一种语言](./media/vmware-azure-install-linux-master-target/image1.png)
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image1.png" alt-text="选择一种语言":::
 1. 选择“安装 Ubuntu 服务器”，再按 Enter。 
 
-    ![选择“安装 Ubuntu 服务器”](./media/vmware-azure-install-linux-master-target/image2.png)
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image2.png" alt-text="选择“安装 Ubuntu 服务器”":::
 
 1. 选择“英语”作为首选语言，再按 Enter。 
 
-    ![选择“英语”作为首选语言](./media/vmware-azure-install-linux-master-target/image3.png)
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image3.png" alt-text="选择“英语”作为首选语言":::
 
 1. 在“时区”选项列表中选择相应选项，再按 Enter。 
 
-    ![选择正确的时区](./media/vmware-azure-install-linux-master-target/image4.png)
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image4.png" alt-text="选择正确的时区":::
 
 1. 选择“否”（默认选项），然后按 Enter。 
 
-     ![配置键盘](./media/vmware-azure-install-linux-master-target/image5.png)
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image5.png" alt-text="配置键盘":::
 1. 选择“英语(美国)”作为键盘原产地语言，再按 Enter。 
 
 1. 选择“英语(美国)”作为键盘布局，再按 Enter。 
@@ -92,13 +95,13 @@ ms.locfileid: "87426527"
 
 1. 要创建用户帐户，请输入用户名，然后选择“继续”。
 
-    ![创建用户帐户](./media/vmware-azure-install-linux-master-target/image9.png)
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image9.png" alt-text="创建用户帐户":::
 
 1. 为新用户帐户输入密码，然后选择“继续”。
 
 1. 确认新用户的密码，再选择“继续”。
 
-    ![确认密码](./media/vmware-azure-install-linux-master-target/image11.png)
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image11.png" alt-text="确认密码":::
 
 1. 在加密主目录的下一项选择中，选择“否”（默认选项），再按 Enter。 
 
@@ -106,48 +109,48 @@ ms.locfileid: "87426527"
 
 1. 在分区方法选项中选择“引导式 - 使用整个磁盘”，然后按 Enter。 
 
-    ![选择分区方法选项](./media/vmware-azure-install-linux-master-target/image14.png)
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image14.png" alt-text="选择分区方法选项":::
 
 1. 在“选择要分区的磁盘”选项中选择相应的磁盘，再按 Enter。 
 
-    ![选择磁盘](./media/vmware-azure-install-linux-master-target/image15.png)
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image15.png" alt-text="选择磁盘":::
 
 1. 选择“是”将更改写入磁盘，再按 Enter。 
 
-    ![选择默认选项](./media/vmware-azure-install-linux-master-target/image16-ubuntu.png)
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image16-ubuntu.png" alt-text="选择默认选项":::
 
 1. 在配置代理选项中选择默认选项，再选择“继续”按钮并按 Enter。 
 
-    ![选择如何管理升级](./media/vmware-azure-install-linux-master-target/image17-ubuntu.png)
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image17-ubuntu.png" alt-text="选择如何管理升级":::
 
 1. 在管理系统升级相应选项中选择“不自动更新”选项，再按 Enter。 
 
-    ![选择如何管理升级](./media/vmware-azure-install-linux-master-target/image18-ubuntu.png)
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image18-ubuntu.png" alt-text="选择如何管理升级":::
 
     > [!WARNING]
     > 由于 Azure Site Recovery 主目标服务器需要非常特定的 Ubuntu 版本，因此需确保已为虚拟机禁用内核升级。 如果启用，任意常规升级都会导致主目标服务器无法正常工作。 请务必选择“不自动更新”选项。
 
 1. 选择默认选项。 若要对 SSH 连接使用 openSSH，请依次选择“OpenSSH 服务器”选项和“继续”。 
 
-    ![选择软件](./media/vmware-azure-install-linux-master-target/image19-ubuntu.png)
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image19-ubuntu.png" alt-text="选择软件":::
 
 1. 在选择是否安装 GRUB 启动加载程序时，选择“是”，再按 Enter。 
 
-    ![GRUB 启动安装程序](./media/vmware-azure-install-linux-master-target/image20.png)
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image20.png" alt-text="GRUB 启动安装程序":::
 
 1. 为启动加载程序安装选择相应的设备（推荐 /dev/sda），然后按 Enter。 
 
-    ![选择适当的设备](./media/vmware-azure-install-linux-master-target/image21.png)
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image21.png" alt-text="选择适当的设备":::
 
 1. 选择“继续”，然后按 Enter 来完成安装。 
 
-    ![完成安装](./media/vmware-azure-install-linux-master-target/image22.png)
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image22.png" alt-text="完成安装":::
 
 1. 在完成安装后，使用新用户凭据登录 VM。 （有关详细信息，请参阅步骤 10。）
 
 1. 按下列屏幕截图中所述步骤来设置 ROOT 用户密码。 然后以根用户身份登录。
 
-    ![设置根用户密码](./media/vmware-azure-install-linux-master-target/image23.png)
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image23.png" alt-text="设置根用户密码":::
 
 ### <a name="configure-the-machine-as-a-master-target-server"></a>将计算机配置为主目标服务器
 
@@ -161,7 +164,7 @@ ms.locfileid: "87426527"
 
 4. 在左窗格中，选择“高级” > “常规”，然后选择屏幕右下角的“配置参数”按钮。  
 
-    ![打开“配置参数”](./media/vmware-azure-install-linux-master-target/image24-ubuntu.png) 
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image24-ubuntu.png" alt-text="打开“配置参数”"::: 
 
     当计算机正在运行时，“配置参数”选项不可用。 若要使此选项卡处于活动状态，请关闭虚拟机。
 
@@ -175,7 +178,7 @@ ms.locfileid: "87426527"
 
     - 在名称列中，添加“disk.EnableUUID”，然后将值设置为 TRUE。 
 
-        ![检查 disk.EnableUUID 是否存在](./media/vmware-azure-install-linux-master-target/image25.png)
+        :::image type="content" source="./media/vmware-azure-install-linux-master-target/image25.png" alt-text="检查 disk.EnableUUID 是否存在":::
 
 #### <a name="disable-kernel-upgrades"></a>禁用内核升级
 
@@ -217,7 +220,7 @@ Azure Site Recovery 主目标服务器需要特定版本的 Ubuntu，请确保�
 
     `tar -xvf latestlinuxmobsvc.tar.gz`
 
-    ![要运行的命令的屏幕截图](./media/vmware-azure-install-linux-master-target/image16.png)
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image16.png" alt-text="要运行的命令的屏幕截图":::
 
 2. 运行以下命令来指定权限。
 
@@ -227,8 +230,8 @@ Azure Site Recovery 主目标服务器需要特定版本的 Ubuntu，请确保�
 
     `./ApplyCustomChanges.sh`
 
-    > [!NOTE]
-    > 仅在服务器上运行该脚本一次。 然后关闭服务器。 根据后续部分所述添加磁盘后，重启服务器。
+> [!NOTE]
+> 仅在服务器上运行该脚本一次。 然后关闭服务器。 根据后续部分所述添加磁盘后，重启服务器。
 
 ### <a name="add-a-retention-disk-to-the-linux-master-target-virtual-machine"></a>将保留磁盘添加到 Linux 主目标虚拟机
 
@@ -238,11 +241,11 @@ Azure Site Recovery 主目标服务器需要特定版本的 Ubuntu，请确保�
 
 2. 通过 multipath -ll 命令了解保留磁盘的多路径 I：multipath -ll
 
-    ![多路径 ID](./media/vmware-azure-install-linux-master-target/image27.png)
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image27.png" alt-text="多路径 ID":::
 
 3. 格式化驱动器，然后在新驱动器上创建文件系统：mkfs.ext4 /dev/mapper/\<Retention disk's multipath id>。
 
-    ![文件系统](./media/vmware-azure-install-linux-master-target/image23-centos.png)
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image23-centos.png" alt-text="文件系统":::
 
 4. 创建文件系统后，请装载保留磁盘。
 
@@ -269,7 +272,13 @@ Azure Site Recovery 主目标服务器需要特定版本的 Ubuntu，请确保�
 > [!NOTE]
 > 安装主目标服务器之前，请检查虚拟机上的 /etc/hosts 文件是否包含用于将本地主机名映射到所有网络适配器关联的 IP 地址的条目。
 
-1. 在配置服务器上从 C:\ProgramData\Microsoft Azure Site Recovery\private\connection.passphrase 复制通行短语。 然后运行以下命令，将其作为 passphrase.txt 保留在同一本地目录中：
+1. 运行以下命令安装主目标。
+
+    ```
+    ./install -q -d /usr/local/ASR -r MT -v VmWare
+    ```
+
+2. 在配置服务器上从 C:\ProgramData\Microsoft Azure Site Recovery\private\connection.passphrase 复制通行短语。 然后运行以下命令，将其作为 passphrase.txt 保留在同一本地目录中：
 
     `echo <passphrase> >passphrase.txt`
 
@@ -277,7 +286,7 @@ Azure Site Recovery 主目标服务器需要特定版本的 Ubuntu，请确保�
 
     `echo itUx70I47uxDuUVY >passphrase.txt`
 
-2. 记下配置服务器的 IP 地址， 运行以下命令安装主目标服务器并将它注册到配置服务器。
+3. 记下配置服务器的 IP 地址， 运行以下命令，将服务器注册到配置服务器。
 
     ```
     /usr/local/ASR/Vx/bin/UnifiedAgentConfigurator.sh -i <ConfigurationServer IP Address> -P passphrase.txt
@@ -301,22 +310,16 @@ Azure Site Recovery 主目标服务器需要特定版本的 Ubuntu，请确保�
 
 2. 选择默认安装位置，并按 Enter 继续。
 
-    ![选择主目标的默认安装位置](./media/vmware-azure-install-linux-master-target/image17.png)
+    :::image type="content" source="./media/vmware-azure-install-linux-master-target/image17.png" alt-text="选择主目标的默认安装位置":::
 
 安装完成后，使用命令行注册配置服务器。
 
 1. 请注意配置服务器的 IP 地址。 因为下一步骤需要用到。
 
-2. 运行以下命令安装主目标服务器并将它注册到配置服务器。
+2. 运行以下命令，将服务器注册到配置服务器。
 
     ```
-    ./install -q -d /usr/local/ASR -r MT -v VmWare
-    /usr/local/ASR/Vx/bin/UnifiedAgentConfigurator.sh -i <ConfigurationServer IP Address> -P passphrase.txt
-    ```
-    示例： 
-
-    ```
-    /usr/local/ASR/Vx/bin/UnifiedAgentConfigurator.sh -i 104.40.75.37 -P passphrase.txt
+    /usr/local/ASR/Vx/bin/UnifiedAgentConfigurator.sh
     ```
 
     等到脚本执行完成。 如果成功注册主目标，门户中的“Site Recovery 基础结构”页上会列出该主目标。
@@ -339,13 +342,17 @@ Azure Site Recovery 主目标服务器需要特定版本的 Ubuntu，请确保�
 
 * 主目标不应在虚拟机上留下任何快照。 如果有快照，故障回复会失败。
 
-* 由于使用某些自定义 NIC 配置，网络接口已在启动期间被禁用，因此主目标代理无法初始化。 请确保正确设置以下属性。 在以太网卡文件 /etc/sysconfig/network-scripts/ifcfg-eth* 中检查这些属性。
-    * BOOTPROTO=dhcp
-    * ONBOOT=yes
+* 由于使用某些自定义 NIC 配置，网络接口已在启动期间被禁用，因此主目标代理无法初始化。 请确保正确设置以下属性。 在以太网卡文件 /etc/network/interfaces 中检查这些属性。
+    * auto eth0
+    * iface eth0 inet dhcp <br />
+
+    使用以下命令重启网络服务： <br />
+
+`sudo systemctl restart networking`
 
 ## <a name="next-steps"></a>后续步骤
 主目标安装和注册完成后，在“Site Recovery 基础结构”中“主目标”部分的配置服务器概述下即会显示此主目标。
 
 现在，可以继续执行[重新保护](vmware-azure-reprotect.md)过程，并执行故障回复。
 
-<!--Update_Description: update meta properties, wording update, update link -->
+<!-- Update_Description: update meta properties, wording update, update link -->

@@ -3,14 +3,14 @@ title: 常见问题 - Azure 事件中心 | Microsoft Docs
 description: 本文提供了有关 Azure 事件中心的常见问题 (FAQ) 和解答的列表。
 ms.topic: article
 origin.date: 06/23/2020
-ms.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: v-tawe
-ms.openlocfilehash: 28e30835dd210f1a8cfe22e572f164badab0eda3
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 80ad30e742283343a40e08e26e3d54196816ca9e
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715237"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063350"
 ---
 # <a name="event-hubs-frequently-asked-questions"></a>事件中心常见问题
 
@@ -72,8 +72,8 @@ Azure 事件中心标准层提供的功能超出了基本层中提供的功能�
 | HTTP、HTTPS | 80、443 |  |
 | Kafka | 9093 | 请参阅[使用 Kafka 应用程序中的事件中心](event-hubs-for-kafka-ecosystem-overview.md)
 
-### <a name="what-ip-addresses-do-i-need-to-whitelist"></a>需要将哪些 IP 地址列入允许列表？
-若要找到适合加入连接的允许列表的 IP 地址，请执行以下步骤：
+### <a name="what-ip-addresses-do-i-need-to-allow"></a>需要允许哪些 IP 地址？
+若要查找要添加到允许列表以进行连接的正确 IP 地址，请执行以下步骤：
 
 1. 从命令提示符运行以下命令： 
 
@@ -261,7 +261,7 @@ bootstrap.servers=dummynamespace.servicebus.chinacloudapi.cn:9093 request.timeou
 
 ### <a name="support-and-sla"></a>支持和 SLA
 
-事件中心的技术支持可通过 [社区论坛](https://www.azure.cn/support/contact/)获得。 计费和订阅管理支持免费提供。
+事件中心的技术支持可通过 [Azure 服务总线的 Microsoft 问答页面](https://www.azure.cn/support/contact/)获取。 计费和订阅管理支持免费提供。
 
 若要详细了解我们的 SLA，请参阅[服务级别协议](https://www.azure.cn/support/legal/sla/)页面。
 

@@ -3,16 +3,17 @@ title: Azure Service Fabric 的网络模式
 description: 介绍 Service Fabric 的常见网络模式以及如何使用 Azure 网络功能创建群集。
 ms.topic: conceptual
 origin.date: 01/19/2018
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 01/13/2020
 ms.author: v-yeche
-ms.openlocfilehash: 65ba07e4611a6dd0900fe06fa303987c8ee60e3f
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 697878542fc2bc638428398d352d4da2d3fe5a13
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426362"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655680"
 ---
 # <a name="service-fabric-networking-patterns"></a>Service Fabric 网络模式
 可将 Azure Service Fabric 群集与其他 Azure 网络功能集成。 本文说明如何创建使用以下功能的群集：
@@ -102,6 +103,8 @@ DnsSettings              : {
             "defaultValue": "10.0.0.0/24"
         },*/
     ```
+
+    也可以注释掉名为“virtualNetworkName”的参数，这样它就不会提示你在 Azure 门户的群集部署边栏选项卡中输入虚拟网络名称两次。
 
 2. 注释掉 `Microsoft.Compute/virtualMachineScaleSets` 的 `nicPrefixOverride` 属性，因为你使用的是现有子网，并且已在步骤 1 中禁用了此变量。
 
@@ -261,7 +264,7 @@ DnsSettings              : {
         ],
     ```
 
-7. 在 `Microsoft.ServiceFabric/clusters` 资源中，将 `managementEndpoint` 更改为静态 IP 地址的 DNS FQDN。 如果使用安全群集，请确保将 *http://* 更改为 *https://* 。 （请注意，此步骤仅适用于 Service Fabric 群集。 如果使用虚拟机规模集，请跳过此步骤。）
+7. 在 `Microsoft.ServiceFabric/clusters` 资源中，将 `managementEndpoint` 更改为静态 IP 地址的 DNS FQDN。 如果使用安全群集，请确保将 *http://* 更改为 *https://*。 （请注意，此步骤仅适用于 Service Fabric 群集。 如果使用虚拟机规模集，请跳过此步骤。）
 
     ```json
     "fabricSettings": [],
@@ -363,7 +366,7 @@ DnsSettings              : {
         ],
     ```
 
-6. 在 `Microsoft.ServiceFabric/clusters` 资源中，将 `managementEndpoint` 更改为指向内部负载均衡器地址。 如果使用安全群集，请确保将 *http://* 更改为 *https://* 。 （请注意，此步骤仅适用于 Service Fabric 群集。 如果使用虚拟机规模集，请跳过此步骤。）
+6. 在 `Microsoft.ServiceFabric/clusters` 资源中，将 `managementEndpoint` 更改为指向内部负载均衡器地址。 如果使用安全群集，请确保将 *http://* 更改为 *https://*。 （请注意，此步骤仅适用于 Service Fabric 群集。 如果使用虚拟机规模集，请跳过此步骤。）
 
     ```json
     "fabricSettings": [],
@@ -600,11 +603,11 @@ DnsSettings              : {
 
 ## <a name="notes-for-production-workloads"></a>生产工作负荷的说明
 
-以上 GitHub 模板设计为使用 Azure 标准负载均衡器 (SLB) 的默认 SKU（基本 SKU）。 此 SLB 没有 SLA，因此对于生产工作负荷，应使用标准 SKU。 有关此内容的详细信息，请参阅 [Azure 标准负载均衡器概述](/load-balancer/load-balancer-standard-overview)。 使用 SLB 的标准 SKU 的任何 Service Fabric 群集都需要确保每种节点类型都有一条规则，允许端口 443 上的出站流量。 这是完成群集设置所必需的，没有此类规则的任何部署都将失败。 在上面的“仅内部”负载均衡器示例中，必须使用允许端口 443 出站流量的规则，将附加的外部负载均衡器添加到模板。
+以上 GitHub 模板设计为使用 Azure 标准负载均衡器 (SLB) 的默认 SKU（基本 SKU）。 此 SLB 没有 SLA，因此对于生产工作负荷，应使用标准 SKU。 有关此内容的详细信息，请参阅 [Azure 标准负载均衡器概述](../load-balancer/load-balancer-overview.md)。 使用 SLB 的标准 SKU 的任何 Service Fabric 群集都需要确保每种节点类型都有一条规则，允许端口 443 上的出站流量。 这是完成群集设置所必需的，没有此类规则的任何部署都将失败。 在上面的“仅内部”负载均衡器示例中，必须使用允许端口 443 出站流量的规则，将附加的外部负载均衡器添加到模板。
 
 ## <a name="next-steps"></a>后续步骤
 [创建群集](service-fabric-cluster-creation-via-arm.md)
 
 部署后，可在资源组中看到两个负载均衡器。 如果浏览这两个负载均衡器，可以看到公共 IP 地址和分配给公共 IP 地址的管理终结点（端口 19000 和 19080）。 此外，还会看到静态内部 IP 地址和分配给内部负载均衡器的应用程序终结点（端口 80）。 这两个负载均衡器使用同一个虚拟机规模集后端池。
 
-<!--Update_Description: update meta properties, wording update-->
+<!-- Update_Description: update meta properties, wording update, update link -->

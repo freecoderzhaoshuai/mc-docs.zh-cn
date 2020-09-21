@@ -8,14 +8,14 @@ ms.author: v-tawe
 ms.devlang: rest-api
 ms.service: cognitive-search
 ms.topic: conceptual
-origin.date: 11/04/2019
-ms.date: 07/17/2020
-ms.openlocfilehash: 7e45c3db8a2cf4f98c8854cab09b15646c983d6c
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+origin.date: 07/12/2020
+ms.date: 09/10/2020
+ms.openlocfilehash: 4165c8cbcc420d90b36b8fc5fe0e5b17866f56ec
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471882"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020888"
 ---
 # <a name="connect-to-and-index-azure-sql-content-using-an-azure-cognitive-search-indexer"></a>使用 Azure 认知搜索索引器连接到 Azure SQL 内容并为其编制索引
 
@@ -52,7 +52,7 @@ ms.locfileid: "86471882"
 |----------|---------|
 | 数据来自单个表或视图 | 如果数据分散在多个表中，可以创建数据的单一视图。 但是，如果使用视图，则无法使用 SQL Server 集成的更改检测来使用增量更改刷新索引。 有关详细信息，请参阅下文中的[捕获更改和删除的行](#CaptureChangedRows)。 |
 | 数据类型是兼容的 | Azure 认知搜索索引中支持大多数但并非全部 SQL 类型。 有关列表，请参阅[映射数据类型](#TypeMapping)。 |
-| 不需要进行实时数据同步 | 索引器最多每五分钟可以为表重新编制索引。 如果数据频繁更改并且所做更改需要在数秒或数分钟内反映在索引中，建议使用 [REST API](https://docs.microsoft.com/rest/api/searchservice/AddUpdate-or-Delete-Documents) 或 [.NET SDK](search-import-data-dotnet.md) 来直接推送更新的行。 |
+| 不需要进行实时数据同步 | 索引器最多每五分钟可以为表重新编制索引。 如果数据频繁更改并且所做更改需要在数秒或数分钟内反映在索引中，建议使用 [REST API](https://docs.microsoft.com/rest/api/searchservice/AddUpdate-or-Delete-Documents) 或 [.NET SDK](./search-get-started-dotnet.md) 来直接推送更新的行。 |
 | 可以进行增量索引编制 | 如果具有大型数据集并打算按计划运行索引器，则 Azure 认知搜索必须能够有效地标识新的、更改的或删除的行。 只有按需（而非按计划）编制索引时或者为少于 100,000 行的数据编制索引时，才允许非增量索引编制。 有关详细信息，请参阅下文中的[捕获更改和删除的行](#CaptureChangedRows)。 |
 
 > [!NOTE] 
@@ -81,7 +81,7 @@ ms.locfileid: "86471882"
 
 3. 通过为索引器命名并引用数据源和目标索引创建索引器：
 
-    ```
+   ```
     POST https://myservice.search.azure.cn/indexers?api-version=2020-06-30
     Content-Type: application/json
     api-key: admin-key
@@ -91,24 +91,29 @@ ms.locfileid: "86471882"
         "dataSourceName" : "myazuresqldatasource",
         "targetIndexName" : "target index name"
     }
-    ```
+   ```
 
 通过此方式创建的索引器不包含计划。 它会在创建后自动运行一次。 可使用**运行索引器**请求随时再次运行：
 
+```
     POST https://myservice.search.azure.cn/indexers/myindexer/run?api-version=2020-06-30
     api-key: admin-key
+```
 
 可自定义索引器行为的几个方面，例如批大小和可在索引器执行失败前跳过的文档数。 有关详细信息，请参阅[创建索引器 API](https://docs.microsoft.com/rest/api/searchservice/Create-Indexer)。
 
-可能需要允许 Azure 服务连接到数据库。 有关如何执行该操作的说明，请参阅[从 Azure 连接](https://docs.azure.cn/sql-database/sql-database-firewall-configure)。
+可能需要允许 Azure 服务连接到数据库。 有关如何执行该操作的说明，请参阅[从 Azure 连接](../azure-sql/database/firewall-configure.md)。
 
 若要监视索引器状态和执行历史记录（已编制索引的项目数、失败数等），请使用**索引器状态**请求：
 
+```
     GET https://myservice.search.azure.cn/indexers/myindexer/status?api-version=2020-06-30
     api-key: admin-key
+```
 
 响应应类似于以下形式：
 
+```
     {
         "\@odata.context":"https://myservice.search.azure.cn/$metadata#Microsoft.Azure.Search.V2015_02_28.IndexerExecutionInfo",
         "status":"running",
@@ -139,14 +144,15 @@ ms.locfileid: "86471882"
             ... earlier history items
         ]
     }
+```
 
 执行历史记录包含最多 50 个最近完成的执行，它们按反向时间顺序排序（以便最新执行出现在响应中的第一个）。
-
-<!-- Additional information about the response can be found in [Get Indexer Status](https://go.microsoft.com/fwlink/p/?LinkId=528198) -->
+有关响应的其他信息可在[获取索引器状态](https://docs.microsoft.com/rest/api/searchservice/get-indexer-status)中找到
 
 ## <a name="run-indexers-on-a-schedule"></a>按计划运行索引器
 还可以排列索引器，以按计划定期运行。 若要执行此操作，在创建或更新索引器时添加**计划**属性。 下面的示例显示了用于更新索引器的 PUT 请求：
 
+```
     PUT https://myservice.search.azure.cn/indexers/myindexer?api-version=2020-06-30
     Content-Type: application/json
     api-key: admin-key
@@ -156,6 +162,7 @@ ms.locfileid: "86471882"
         "targetIndexName" : "target index name",
         "schedule" : { "interval" : "PT10M", "startTime" : "2015-01-01T00:00:00Z" }
     }
+```
 
 **间隔**参数是必需的。 间隔是指开始两个连续的索引器执行之间的时间。 允许的最小间隔为 5 分钟；最长为一天。 必须将其格式化为 XSD“dayTimeDuration”值（[ISO 8601 持续时间](https://www.w3.org/TR/xmlschema11-2/#dayTimeDuration)值的受限子集）。 它的模式为： `P(nD)(T(nH)(nM))`。 示例：`PT15M` 为每隔 15 分钟，`PT2H` 为每隔 2 小时。
 
@@ -183,6 +190,7 @@ Azure 认知搜索使用  “增量索引编制”来避免索引器每次运行
 
 若要使用此策略，按如下所示创建或更新数据源：
 
+```
     {
         "name" : "myazuresqldatasource",
         "type" : "azuresql",
@@ -192,6 +200,7 @@ Azure 认知搜索使用  “增量索引编制”来避免索引器每次运行
            "@odata.type" : "#Microsoft.Azure.Search.SqlIntegratedChangeTrackingPolicy"
       }
     }
+```
 
 当使用 SQL 集成的更改跟踪策略时，不指定单独的数据删除检测策略 - 此策略具有对标识删除的行的内置支持。 但是，对于要“自动”检测的删除项，搜索索引中的文档键必须与 SQL 表中的主键相同。 
 
@@ -218,6 +227,7 @@ Azure 认知搜索使用  “增量索引编制”来避免索引器每次运行
 
 若要使用高使用标记策略，请按如下所示创建或更新数据源：
 
+```
     {
         "name" : "myazuresqldatasource",
         "type" : "azuresql",
@@ -228,6 +238,7 @@ Azure 认知搜索使用  “增量索引编制”来避免索引器每次运行
            "highWaterMarkColumnName" : "[a rowversion or last_updated column name]"
       }
     }
+```
 
 > [!WARNING]
 > 如果源表在高使用标记列上没有索引，SQL 索引器使用的查询可能会超时。特别是，当表中包含多个行时，`ORDER BY [High Water Mark Column]` 子句需要索引才能有效运行。
@@ -245,11 +256,13 @@ Azure 认知搜索使用  “增量索引编制”来避免索引器每次运行
 
 若要启用此功能，请使用以下配置创建或更新索引器：
 
+```
     {
       ... other indexer definition properties
      "parameters" : {
             "configuration" : { "convertHighWaterMarkToRowVersion" : true } }
     }
+```
 
 <a name="queryTimeout"></a>
 
@@ -257,11 +270,13 @@ Azure 认知搜索使用  “增量索引编制”来避免索引器每次运行
 
 如果遇到超时错误，可以使用 `queryTimeout` 索引器配置设置，查询超时值设置为高于 5 分钟超时的默认值。 例如，要将超时设置为 10 分钟，请使用以下配置创建或更新索引器：
 
+```
     {
       ... other indexer definition properties
      "parameters" : {
             "configuration" : { "queryTimeout" : "00:10:00" } }
     }
+```
 
 <a name="disableOrderByHighWaterMarkColumn"></a>
 
@@ -269,11 +284,13 @@ Azure 认知搜索使用  “增量索引编制”来避免索引器每次运行
 
 也可以禁用 `ORDER BY [High Water Mark Column]` 子句。 但是，不建议这样做，因为如果索引器执行由于错误而中断，索引器在将来运行时必须重新处理所有行，即使索引器在中断时就处理了几乎所有行也是如此。 若要禁用 `ORDER BY` 子句，使用索引器定义中的 `disableOrderByHighWaterMarkColumn` 设置：  
 
+```
     {
      ... other indexer definition properties
      "parameters" : {
             "configuration" : { "disableOrderByHighWaterMarkColumn" : true } }
     }
+```
 
 ### <a name="soft-delete-column-deletion-detection-policy"></a>软删除列删除检测策略
 从源表中删除行时，可能还希望从搜索索引中删除这些行。 如果使用 SQL 集成的更改跟踪策略，此操作会自动完成。 但是，高使用标记更改跟踪策略不会帮助你处理删除的行。 怎么办？
@@ -282,6 +299,7 @@ Azure 认知搜索使用  “增量索引编制”来避免索引器每次运行
 
 使用软删除技术时，可在创建或更新数据源时，按如下方式指定软删除策略：
 
+```
     {
         …,
         "dataDeletionDetectionPolicy" : {
@@ -290,6 +308,7 @@ Azure 认知搜索使用  “增量索引编制”来避免索引器每次运行
            "softDeleteMarkerValue" : "[the value that indicates that a row is deleted]"
         }
     }
+```
 
 **SoftDeleteMarkerValue** 必须是字符串 - 使用实际值的字符串表示形式。 例如，如果有一个整数列（使用值 1 标记删除的行），则使用 `"1"`。 如果有一个 BIT 列（使用布尔值 true 标记删除的行），请使用字符串文本 `True` 或 `true`（不区分大小写）。
 
@@ -320,11 +339,13 @@ SQL 索引器公开多个配置设置：
 
 在索引器定义的 `parameters.configuration` 对象中使用这些设置。 例如，要将查询超时设置为 10 分钟，请使用以下配置创建或更新索引器：
 
+```
     {
       ... other indexer definition properties
      "parameters" : {
             "configuration" : { "queryTimeout" : "00:10:00" } }
     }
+```
 
 ## <a name="faq"></a>常见问题
 
@@ -348,7 +369,7 @@ SQL 索引器公开多个配置设置：
 
 是的。 索引器在搜索服务中的一个节点上运行，该节点的资源在编制查询流量索引并进行处理和其他 API 请求之间共享。 如果运行密集型编制索引和查询工作负荷，并频繁遇到 503 错误或响应时间增加，请考虑[纵向扩展搜索服务](search-capacity-planning.md)。
 
-**问：是否可以将[故障转移群集](https://docs.azure.cn/sql-database/sql-database-geo-replication-overview)中的次要副本用作数据源？**
+**问：是否可以将[故障转移群集](../azure-sql/database/auto-failover-group-overview.md)中的次要副本用作数据源？**
 
 视情况而定。 对于表或视图的完整索引编制，可以使用辅助副本。 
 
@@ -360,7 +381,7 @@ SQL 索引器公开多个配置设置：
 
 如果尝试在只读副本上使用 rowversion，则会看到以下错误： 
 
-    "Using a rowversion column for change tracking is not supported on secondary (read-only) availability replicas. Please update the datasource and specify a connection to the primary availability replica.Current database 'Updateability' property is 'READ_ONLY'".
+“辅助(只读)可用性副本不支持使用 rowversion 列进行更改跟踪。 请更新数据源并指定与主可用性副本的连接。当前数据库的 'Updateability' 属性为 'READ_ONLY'”。
 
 **问：是否可以使用替代的非 rowversion 列进行高使用标记更改跟踪？**
 
@@ -368,4 +389,4 @@ SQL 索引器公开多个配置设置：
 
 + 你可以确保当索引器运行时在编制索引的表上没有未完成的事务（例如，所有表更新都按计划作为批处理进行，并且 Azure 认知搜索索引器计划设置为避免与表更新计划重叠）。  
 
-+ 你定期执行完整重新索引来补充任何缺少的行。 
++ 你定期执行完整重新索引来补充任何缺少的行。

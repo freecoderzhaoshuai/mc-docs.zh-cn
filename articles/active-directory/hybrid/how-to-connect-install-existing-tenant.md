@@ -12,18 +12,18 @@ ms.workload: identity
 ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: how-to
-ms.date: 07/06/2020
+ms.date: 09/08/2020
 ms.subservice: hybrid
 ms.author: v-junlch
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: e87b5f780368c041925e947f37220fa2fcd7161e
-ms.sourcegitcommit: 92b9b1387314b60661f5f62db4451c9ff2c49500
+ms.openlocfilehash: 79c90bf6d248d48eecb5acd61f2be0b58286e92a
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86164857"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593747"
 ---
-# <a name="azure-ad-connect-when-you-have-an-existent-tenant"></a>Azure AD Connect：已有租户时
+# <a name="azure-ad-connect-when-you-have-an-existing-tenant"></a>Azure AD Connect：如果你有现有的租户
 有关如何使用 Azure AD Connect 的大多数主题假设一开始使用的是新 Azure AD 租户，其中不包含任何用户或其他对象。 但是，如果一开始使用的 Azure AD 租户中填充了用户和其他对象，现在想要使用 Connect，那么，本主题适合你阅读。
 
 ## <a name="the-basics"></a>基础知识
@@ -72,6 +72,7 @@ Azure AD 中的对象在云中 (Azure AD) 或本地掌控。 对于单个对象�
 ## <a name="create-a-new-on-premises-active-directory-from-data-in-azure-ad"></a>基于 Azure AD 中的数据创建新的本地 Active Directory
 某些客户最初在 Azure AD 中使用仅限云的解决方案，而没有构建本地 AD。 后来，他们想要使用本地资源，并希望基于 Azure AD 数据构建本地 AD。 对于这种情况，Azure AD Connect 无法起到作用。 它不会创建本地用户，并且没有能力将本地密码设置为与 Azure AD 中的密码相同。
 
+如果计划添加本地 AD 的唯一原因是支持 LOB（业务线应用），也许应该考虑改用 [Azure AD 域服务](../../active-directory-domain-services/index.yml)。
 
 ## <a name="next-steps"></a>后续步骤
 了解有关[将本地标识与 Azure Active Directory 集成](whatis-hybrid-identity.md)的详细信息。

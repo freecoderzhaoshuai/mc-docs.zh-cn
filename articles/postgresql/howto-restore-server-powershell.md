@@ -5,15 +5,16 @@ author: WenJason
 ms.author: v-jay
 ms.service: postgresql
 ms.devlang: azurepowershell
-ms.topic: conceptual
+ms.topic: how-to
 origin.date: 06/08/2020
-ms.date: 07/06/2020
-ms.openlocfilehash: f83761d474ff36ee1d3665e8897bd0bbde03e075
-ms.sourcegitcommit: 7ea2d04481512e185a60fa3b0f7b0761e3ed7b59
+ms.date: 09/14/2020
+ms.custom: devx-track-azurepowershell
+ms.openlocfilehash: b642911e5d2fe576efb4ca18c05909e7d5b9801e
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/02/2020
-ms.locfileid: "85845943"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512860"
 ---
 # <a name="how-to-back-up-and-restore-an-azure-database-for-postgresql-server-using-powershell"></a>如何使用 PowerShell 来备份和还原 Azure Database for PostgreSQL 服务器
 
@@ -130,4 +131,4 @@ Get-AzPostgreSqlServer -Name mydemoserver -ResourceGroupName myresourcegroup |
 ## <a name="next-steps"></a>后续步骤
 
 > [!div class="nextstepaction"]
-> [使用 PowerShell 自定义 Azure Database for PostgreSQL 服务器参数](howto-configure-server-parameters-using-powershell.md)
+> [如何使用 PowerShell 生成 Azure Database for PostgreSQL 连接字符串](howto-connection-string-powershell.md)

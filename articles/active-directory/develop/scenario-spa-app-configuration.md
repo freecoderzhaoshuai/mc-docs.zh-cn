@@ -8,28 +8,29 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 04/22/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 ms.custom: aaddev
-ms.openlocfilehash: 12f3bfd234c172e9376030138a0a5dde6f3ba344
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.openlocfilehash: bca2008e6f3ee9acd073d1ee495523ba4de7eab8
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82126448"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593629"
 ---
 # <a name="single-page-application-code-configuration"></a>单页应用程序：代码配置
 
 了解如何为单页应用程序 (SPA) 配置代码。
 
-## <a name="msal-libraries-that-support-implicit-flow"></a>支持隐式流的 MSAL 库
+## <a name="msal-libraries-for-spas-and-supported-authentication-flows"></a>用于 SPA 和支持的身份验证流的 MSAL 库
 
-Microsoft 标识平台提供以下 Microsoft 身份验证库 (MSAL) 库，通过使用行业推荐的安全性实践来支持隐式流：
+Microsoft 标识平台提供下述用于 JavaScript 的 Microsoft 身份验证库 (MSAL.js)，通过使用行业推荐的安全性实践来支持隐式流和 PKCE 授权代码流：
 
-| MSAL 库 | 说明 |
-|--------------|--------------|
-| ![MSAL.js](./media/sample-v2-code/logo_js.png) <br/> [MSAL.js](https://github.com/AzureAD/microsoft-authentication-library-for-js)  | 用于任何使用 JavaScript 或 SPA 框架（如 Angular、Vue.js 和 React.js）构建的客户端 Web 应用的纯 JavaScript 库。 |
-| ![MSAL Angular](./media/sample-v2-code/logo_angular.png) <br/> [MSAL Angular](https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-angular/README.md) | 核心 MSAL.js 库的包装器，用于简化在使用 Angular 框架构建的单页应用中的使用。 |
+| MSAL 库 | 流向 | 说明 |
+|--------------|------|-------------|
+| ![MSAL.js](./media/sample-v2-code/logo_js.png) <br/> [MSAL.js (2.x)](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-browser) | 授权代码流 (PKCE) | 用于任何使用 JavaScript 或 SPA 框架（如 Angular、Vue.js 和 React.js）构建的客户端 Web 应用的纯 JavaScript 库。 |
+| ![MSAL.js](./media/sample-v2-code/logo_js.png) <br/> [MSAL.js (1.x)](https://github.com/AzureAD/microsoft-authentication-library-for-js/tree/dev/lib/msal-core) | 隐式流 | 用于任何使用 JavaScript 或 SPA 框架（如 Angular、Vue.js 和 React.js）构建的客户端 Web 应用的纯 JavaScript 库。 |
+| ![MSAL Angular](./media/sample-v2-code/logo_angular.png) <br/> [MSAL Angular](https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-angular/README.md) | 隐式流 | 核心 MSAL.js 库的包装器，用于简化在使用 Angular 框架构建的单页应用中的使用。 |
 
 ## <a name="application-code-configuration"></a>应用程序代码配置
 
@@ -41,10 +42,9 @@ Microsoft 标识平台提供以下 Microsoft 身份验证库 (MSAL) 库，通过
 // Configuration object constructed.
 const config = {
     auth: {
-        clientId: 'your_app_id',
-        redirectUri: "your_app_redirect_uri" //defaults to application start page
+        clientId: 'your_client_id'
     }
-}
+};
 
 // create UserAgentApplication instance
 const userAgentApplication = new UserAgentApplication(config);

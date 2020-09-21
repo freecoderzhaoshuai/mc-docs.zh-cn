@@ -9,17 +9,17 @@ ms.service: active-directory
 ms.workload: identity
 ms.subservice: users-groups-roles
 ms.topic: how-to
-ms.date: 07/06/2020
+ms.date: 09/08/2020
 ms.author: v-junlch
 ms.reviewer: elkuzmen
 ms.custom: it-pro
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 228f3007041c8277f0a3a95d086d2427b7234ba5
-ms.sourcegitcommit: 92b9b1387314b60661f5f62db4451c9ff2c49500
+ms.openlocfilehash: 53188b45bbc2fd177063fd5cc5fdbca22fa7ffa9
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/09/2020
-ms.locfileid: "86165032"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593831"
 ---
 # <a name="managing-custom-domain-names-in-your-azure-active-directory"></a>管理 Azure Active Directory 中的自定义域名
 
@@ -71,7 +71,9 @@ ms.locfileid: "86165032"
 
 ### <a name="forcedelete-option"></a>ForceDelete 选项
 
-若要在 Azure 门户中调用 **ForceDelete**，必须确保对该域名的引用少于 1000 个，并且必须在 [Exchange 管理中心](https://outlook.office365.com/ecp/)更新或删除预配服务是 Exchange 的所有引用。 这包括支持 Exchange 邮件的安全组和分发列表；有关详细信息，请参阅[删除支持邮件的安全组](https://technet.microsoft.com/library/bb123521(v=exchg.160).aspx#Remove%20mail-enabled%20security%20groups)。 此外，如果存在以下任一情况，则 **ForceDelete** 操作不会成功：
+可以在 [Azure 门户](https://portal.azure.cn)中使用 **ForceDelete** 来强制删除域名，或使用 [Microsoft Graph API](https://docs.microsoft.com/graph/api/domain-forcedelete?view=graph-rest-beta) 执行此操作。 这些选项使用异步操作，并将自定义域名（例如“user@contoso.com”）中的所有引用更新为类似于“user@contoso.partner.onmschina.cn”的初始默认域名称。 
+
+若要在 Azure 门户中调用 **ForceDelete**，必须确保对该域名的引用少于 1000 个，并且必须在 [Exchange 管理中心](https://outlook.office365.com/ecp/)更新或删除预配服务是 Exchange 的所有引用。 这包括支持 Exchange 邮件的安全组和分发列表；有关详细信息，请参阅[删除支持邮件的安全组](https://docs.microsoft.com/Exchange/recipients/mail-enabled-security-groups?view=exchserver-2019#Remove%20mail-enabled%20security%20groups)。 此外，如果存在以下任一情况，则 **ForceDelete** 操作不会成功：
 
 * 通过 Office 365 域订阅服务购买了域
 * 你是代表另一客户组织的合作伙伴管理员
@@ -113,7 +115,7 @@ Azure Active Directory 中的大多数域名管理任务也可以使用 Microsof
 
 ## <a name="next-steps"></a>后续步骤
 
-* [添加自定义域名](/active-directory/fundamentals/add-custom-domain?context=azure/active-directory/users-groups-roles/context/ugr-context)
-* [在 Exchange 管理中心删除 Azure AD 的自定义域名中支持 Exchange 邮件的安全组](https://technet.microsoft.com/library/bb123521(v=exchg.160).aspx#Remove%20mail-enabled%20security%20groups)
+* [添加自定义域名](../fundamentals/add-custom-domain.md)
+* [在 Exchange 管理中心删除 Azure AD 的自定义域名中支持 Exchange 邮件的安全组](https://docs.microsoft.com/Exchange/recipients/mail-enabled-security-groups?view=exchserver-2019#Remove%20mail-enabled%20security%20groups)
 * [使用 Microsoft 图形 API 强制删除自定义域名](https://docs.microsoft.com/graph/api/domain-forcedelete?view=graph-rest-beta)
 

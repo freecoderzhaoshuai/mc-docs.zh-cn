@@ -8,7 +8,7 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 06/23/2020
-ms.date: 07/17/2020
+ms.date: 09/10/2020
 translation.priority.mt:
 - de-de
 - es-es
@@ -20,12 +20,12 @@ translation.priority.mt:
 - ru-ru
 - zh-cn
 - zh-tw
-ms.openlocfilehash: 4f40b48c869bf3e60bdae7727c73d09d6963b628
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.openlocfilehash: 106a14a567dead1f417bc77bebefe9e1d7ab9391
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471985"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020891"
 ---
 # <a name="lucene-query-syntax-in-azure-cognitive-search"></a>Azure 认知搜索中的 Lucene 查询语法
 
@@ -184,7 +184,16 @@ NOT 运算符是一个减号。 例如：`wifi –luxury` 将搜索包含 `wifi`
 > [!NOTE]  
 > 通常，模式匹配很慢，因此你可能需要使用其他方法，例如边缘 n 元标记化，为搜索词中的字符序列创建标记。 索引将更大，但是查询的执行速度可能更快，具体取决于模式构造和要编制索引的字符串的长度。
 >
-> 在查询分析期间，以前缀、后缀、通配符或正则表达式形式构建的查询将绕过[词法分析](search-lucene-query-architecture.md#stage-2-lexical-analysis)，按原样传递到查询树。 仅当索引包含查询所指定的格式的字符串时，才会查找匹配项。 在大多数情况下，在编制索引期间需要使用一个可以保留字符串完整性的替代分析器，使部分字词和模式匹配能够成功。 有关详细信息，请参阅 [Azure 认知搜索查询中的部分字词搜索](search-query-partial-matching.md)。
+
+### <a name="impact-of-an-analyzer-on-wildcard-queries"></a>分析器对通配符查询的影响
+
+在查询分析期间，以前缀、后缀、通配符或正则表达式形式构建的查询将绕过[词法分析](search-lucene-query-architecture.md#stage-2-lexical-analysis)，按原样传递到查询树。 仅当索引包含查询所指定的格式的字符串时，才会查找匹配项。 在大多数情况下，在编制索引期间需要使用一个可以保留字符串完整性的分析器，使部分字词和模式匹配能够成功。 有关详细信息，请参阅 [Azure 认知搜索查询中的部分字词搜索](search-query-partial-matching.md)。
+
+考虑这样一种情况：你可能希望搜索查询“terminate*”返回包含“terminate”、“termination”和“terminates”等术语的结果。
+
+如果你要用 en.lucene（Lucene 英文版）分析器，它将对每个术语应用主动的词干提取。 例如，将“terminate”、“termination”和“terminates”标记到索引中的标记“termi”。 另一方面，根本不会分析使用通配符或模糊搜索的查询中的术语，因此不会有与“terminate*”查询匹配的结果。
+
+另一方面，Microsoft 分析器（在本例中是 en.microsoft 分析器）更高级一些，使用词形还原而不是词干提取。 这意味着所有生成的标记都应该是有效的英语单词。 例如，“terminate”、“terminates”和“termination”在索引中几乎保持完整，对于严重依赖于通配符和模糊搜索的场景，这是更好的选择。
 
 ##  <a name="scoring-wildcard-and-regex-queries"></a><a name="bkmk_searchscoreforwildcardandregexqueries"></a> 对通配符和正则表达式查询评分
 
@@ -196,4 +205,4 @@ Azure 认知搜索使用基于频率的评分 (TF-IDF) 进行文本查询。 但
 + [完整 Lucene 搜索的查询示例](search-query-lucene-examples.md)
 + [搜索文档](https://docs.microsoft.com/rest/api/searchservice/Search-Documents)
 + [用于筛选器和排序的 OData 表达式语法](query-odata-filter-orderby-syntax.md)   
-+ [Azure 认知搜索中的简单查询语法](query-simple-syntax.md)   
++ [Azure 认知搜索中的简单查询语法](query-simple-syntax.md)

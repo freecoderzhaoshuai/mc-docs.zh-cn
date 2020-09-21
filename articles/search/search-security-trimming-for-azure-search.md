@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 06/04/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: 7da38509f17f615ca949da4e8f93c447586b7c41
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.date: 09/10/2020
+ms.openlocfilehash: 2c4ef2c6ce3a8859cd56a2a6d44f36d1c04c76db
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471841"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021063"
 ---
 # <a name="security-filters-for-trimming-results-in-azure-cognitive-search"></a>用于在 Azure 认知搜索中修整结果的安全筛选器
 
@@ -35,26 +35,29 @@ ms.locfileid: "86471841"
 
 ## <a name="prerequisites"></a>先决条件
 
-本文假设读者拥有 [Azure 订阅](https://www.azure.cn/pricing/1rmb-trial/)、[Azure 认知搜索服务](https://docs.azure.cn/search/search-create-service-portal)和 [Azure 认知搜索索引](https://docs.azure.cn/search/search-create-index-portal)。  
+本文假设读者拥有 [Azure 订阅](https://www.azure.cn/pricing/1rmb-trial/)、[Azure 认知搜索服务](search-create-service-portal.md)和[索引](search-what-is-an-index.md)。  
 
 ## <a name="create-security-field"></a>创建安全字段
 
 文档必须包含一个指定哪些组拥有访问权限的字段。 此信息将成为筛选条件，在返回给请求发出者的结果集中选择或拒绝文档时，将以此条件为依据。
 我们假设为受保护的文件创建了一个索引，每个文件可由一组不同的用户访问。
+
 1. 将字段 `group_ids`（此处可选择任意名称）为 `Collection(Edm.String)`。 确保该字段的 `filterable` 属性设置为 `true`，以便根据用户拥有的访问权限筛选搜索结果。 例如，如果针对 `file_name` 为“secured_file_b”的文档将 `group_ids` 字段设置为 `["group_id1, group_id2"]`，则只有属于组 ID“group_id1”或“group_id2”的用户才对该文件拥有读访问权限。
+   
    确保字段的 `retrievable` 属性设置为 `false`，以便不会将其返回为搜索请求的一部分。
+
 2. 此外，针对此示例添加 `file_id` 和 `file_name` 字段。  
 
-```JSON
-{
-    "name": "securedfiles",  
-    "fields": [
-        {"name": "file_id", "type": "Edm.String", "key": true, "searchable": false, "sortable": false, "facetable": false},
-        {"name": "file_name", "type": "Edm.String"},
-        {"name": "group_ids", "type": "Collection(Edm.String)", "filterable": true, "retrievable": false}
-    ]
-}
-```
+    ```JSON
+    {
+        "name": "securedfiles",  
+        "fields": [
+            {"name": "file_id", "type": "Edm.String", "key": true, "searchable": false, "sortable": false, "facetable": false},
+            {"name": "file_name", "type": "Edm.String"},
+            {"name": "group_ids", "type": "Collection(Edm.String)", "filterable": true, "retrievable": false}
+        ]
+    }
+    ```
 
 ## <a name="pushing-data-into-your-index-using-the-rest-api"></a>使用 REST API 将数据推送到索引中
   

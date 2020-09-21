@@ -7,8 +7,8 @@ author: brjohnstmsft
 ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
-origin.date: 11/04/2019
-ms.date: 12/16/2019
+origin.date: 08/05/2020
+ms.date: 09/10/2020
 translation.priority.mt:
 - de-de
 - es-es
@@ -20,12 +20,12 @@ translation.priority.mt:
 - ru-ru
 - zh-cn
 - zh-tw
-ms.openlocfilehash: b3a9333826fcca6bf18ef1870251108d64f0cdaa
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.openlocfilehash: 292d783e586c2fec5319bab49ac3cfbc414d8346
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588731"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021191"
 ---
 # <a name="odata-orderby-syntax-in-azure-cognitive-search"></a>Azure 认知搜索中的 OData $orderby 语法
 
@@ -51,7 +51,9 @@ sortable_function ::= geo_distance_call | 'search.score()'
 > [!NOTE]
 > 请参阅 [Azure 认知搜索的 OData 表达式语法参考](search-query-odata-syntax-reference.md)以了解完整的 EBNF。
 
-每个子句都有排序条件，可以选择后跟排序方向（`asc` 表示升序，或 `desc` 表示降序）。 如果不指定方向，则默认为升序。 排序条件可以是 `sortable` 字段的路径，也可以是对 [`geo.distance`](search-query-odata-geo-spatial-functions.md) 或 [`search.score`](search-query-odata-search-score-function.md) 函数的调用。
+每个子句都有排序条件，可以选择后跟排序方向（`asc` 表示升序，或 `desc` 表示降序）。 如果不指定方向，则默认为升序。 在字段中有 NULL 值的情况下，如果排序是 `asc`，则 NULL 值首先出现；如果排序是 `desc`，则 NULL 值最后出现。
+
+排序条件可以是 `sortable` 字段的路径，也可以是对 [`geo.distance`](search-query-odata-geo-spatial-functions.md) 或 [`search.score`](search-query-odata-search-score-function.md) 函数的调用。
 
 如果多个文档具有相同的排序条件且未使用 `search.score` 函数（例如，如果按数字 `Rating` 字段排序，并且三个文档的评分均为 4 分），则会通过以降序按文档分数排序来打破平分的局面。 当文档分数相同时（例如，当请求中没有指定全文搜索查询时），平分文档的相对排序是不确定的。
 
@@ -65,19 +67,27 @@ sortable_function ::= geo_distance_call | 'search.score()'
 
 按基准费率对酒店进行升序排序：
 
+```odata-filter-expr
     $orderby=BaseRate asc
+```
 
 按评分对酒店进行降序排序，然后按基准费率对酒店进行升序排序（请记住，升序是默认值）：
 
+```odata-filter-expr
     $orderby=Rating desc,BaseRate
+```
 
 按评分对酒店进行降序排序，然后按距给定坐标的距离进行升序排序：
 
+```odata-filter-expr
     $orderby=Rating desc,geo.distance(Location, geography'POINT(-122.131577 47.678581)') asc
+```
 
 按 search.score 和评分对酒店进行降序排序，然后按距给定坐标的距离进行升序排序。 在相关性评分和评分相同的两家酒店之间，将距离最近的酒店列在前面：
 
+```odata-filter-expr
     $orderby=search.score() desc,Rating desc,geo.distance(Location, geography'POINT(-122.131577 47.678581)') asc
+```
 
 ## <a name="next-steps"></a>后续步骤  
 

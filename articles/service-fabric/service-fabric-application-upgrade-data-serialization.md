@@ -1,17 +1,19 @@
 ---
-title: 应用程序升级：数据序列化
+title: 应用程序升级 - 数据序列化
 description: 介绍有关数据序列化的最佳实践，以及数据序列化如何影响应用程序滚动升级。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 11/02/2017
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.date: 01/06/2020
-ms.openlocfilehash: 5f220dcf298453394f8865a06b55fa05700770f7
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 6471a4aad6aa7896042ade7d55072f423253c867
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742466"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655691"
 ---
 # <a name="how-data-serialization-affects-an-application-upgrade"></a>数据序列化如何影响应用程序升级
 在[应用程序滚动升级](service-fabric-application-upgrade.md)过程中，升级应用于部分节点，一次一个升级域。 在此过程中，一些升级域位于较新版本的应用程序上，而一些升级域位于较旧版本的应用程序上。 在滚动更新期间，新版本的应用程序必须能够读取旧版本的数据，并且旧版本的应用程序必须能够读取新版本的数据。 如果数据格式不向前和向后兼容，则升级可能会失败（或更糟），甚至可能丢失数据。 本文介绍数据格式的构成，并提供确保数据向前和向后兼容的最佳实践。
@@ -28,7 +30,7 @@ ms.locfileid: "75742466"
 * 更改类名或命名空间
 
 ### <a name="data-contract-as-the-default-serializer"></a>用作默认序列化程序的数据约定
-序列化程序通常负责读取数据并将其反其序列化到当前版本中，即使该数据位于较旧或*较新*版本中。 默认序列化程序是[数据协定序列化程序](https://msdn.microsoft.com/library/ms733127.aspx)，它具有定义完善的版本控制规则。 Reliable Collections 允许替代序列化程序，但 Reliable Actors 目前不允许。 数据序列化程序在启用滚动升级中扮演着重要的角色。 数据协定序列化程序是建议用于 Service Fabric 应用程序的序列化程序。
+序列化程序通常负责读取数据并将其反其序列化到当前版本中，即使该数据位于较旧或*较新*版本中。 默认序列化程序是[数据协定序列化程序](https://docs.microsoft.com/dotnet/framework/wcf/feature-details/using-data-contracts?view=azure-dotnet)，它具有定义完善的版本控制规则。 Reliable Collections 允许替代序列化程序，但 Reliable Actors 目前不允许。 数据序列化程序在启用滚动升级中扮演着重要的角色。 数据协定序列化程序是建议用于 Service Fabric 应用程序的序列化程序。
 
 ## <a name="how-the-data-format-affects-a-rolling-upgrade"></a>数据格式如何影响滚动升级
 滚动升级期间，主要在两种情景下序列化程序可能会遇到较旧的数据版本或*较新*的数据版本：
@@ -43,7 +45,7 @@ ms.locfileid: "75742466"
 
 代码和数据格式的两个版本必须同时向前和向后兼容。 如果它们不兼容，则滚动升级可能失败，甚至可能丢失数据。 滚动升级可能失败，因为代码或序列化程序在遇到另一个版本时可能会引发异常或错误。 例如，如果添加了一个新属性，但旧的序列化程序在反序列化期间弃用了该新属性，则数据可能会丢失。
 
-数据协定是为确保数据兼容所建议的解决方案。 它具有定义完善的版本控制规则，可用于添加、删除和更改字段。 它还支持处理未知字段、挂接到序列化和反序列化过程以及类继承。 有关详细信息，请参阅[使用数据协定](https://msdn.microsoft.com/library/ms733127.aspx)。
+数据协定是为确保数据兼容所建议的解决方案。 它具有定义完善的版本控制规则，可用于添加、删除和更改字段。 它还支持处理未知字段、挂接到序列化和反序列化过程以及类继承。 有关详细信息，请参阅[使用数据协定](https://docs.microsoft.com/dotnet/framework/wcf/feature-details/using-data-contracts?view=azure-dotnet)。
 
 ## <a name="next-steps"></a>后续步骤
 [使用 Visual Studio 升级应用程序](service-fabric-application-upgrade-tutorial.md)逐步讲解了如何使用 Visual Studio 进行应用程序升级。
@@ -56,4 +58,4 @@ ms.locfileid: "75742466"
 
 参考[对应用程序升级进行故障排除](service-fabric-application-upgrade-troubleshooting.md)中的步骤来解决应用程序升级时的常见问题。
 
-<!--Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

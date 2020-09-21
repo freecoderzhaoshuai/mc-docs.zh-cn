@@ -12,13 +12,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: sstein, carlr
 origin.date: 04/16/2019
-ms.date: 07/13/2020
-ms.openlocfilehash: c6af9e49989022a847a279d75c4de29a173b7800
-ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+ms.date: 09/14/2020
+ms.openlocfilehash: d26da1900dd8a2aaba46b1aa8329dd62985a4252
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86227775"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014336"
 ---
 # <a name="azure-sql-managed-instance-content-reference"></a>Azure SQL 托管实例内容参考信息
 [!INCLUDE[appliesto-sqlmi](../includes/appliesto-sqlmi.md)]
@@ -74,6 +74,14 @@ ms.locfileid: "86227775"
 - [扩展的事件](../database/xevent-db-diff-from-svr.md)
 - [将扩展的事件存储到事件文件](../database/xevent-code-event-file.md)
 - [将扩展的事件存储到环形缓冲区](../database/xevent-code-ring-buffer.md)
+
+### <a name="alerting"></a>警报
+
+- [对托管实例创建警报](alerts-create.md)
+
+## <a name="operations"></a>操作
+
+- [用户在 SQL 托管实例上发起的手动故障转移](user-initiated-failover.md)
 
 ## <a name="develop-applications"></a>开发应用程序
 

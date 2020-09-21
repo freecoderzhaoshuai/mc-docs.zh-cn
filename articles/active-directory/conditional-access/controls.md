@@ -4,19 +4,19 @@ description: 了解 Azure Active Directory 条件访问中的自定义控件的�
 services: active-directory
 ms.service: active-directory
 ms.subservice: conditional-access
-ms.topic: article
-ms.date: 04/24/2020
+ms.topic: conceptual
+ms.date: 09/07/2020
 ms.author: v-junlch
 author: MicrosoftGuyJFlo
 manager: daveba
 ms.reviewer: inbarc
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 65c3ddbc3aabae60db938573bf1136c04bb7c285
-ms.sourcegitcommit: a4a2521da9b29714aa6b511fc6ba48279b5777c8
+ms.openlocfilehash: 8b48266d3d6ce424dae4b0233eb6f893205c9ff5
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/24/2020
-ms.locfileid: "82126288"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593691"
 ---
 # <a name="custom-controls-preview"></a>自定义控件（预览版）
 
@@ -31,11 +31,11 @@ ms.locfileid: "82126288"
 
 创建自定义控件的选项位于“条件访问”  页的“管理”  部分中。
 
-![控制](./media/controls/82.png)
+![条件访问中的自定义控件接口](./media/controls/custom-controls-conditional-access.png)
 
 单击“新建自定义控件”  ，打开包含控件 JSON 数据文本框的边栏选项卡。  
 
-![控制](./media/controls/81.png)
+![新建自定义控件](./media/controls/new-custom-controls-conditional-access.png)
 
 ## <a name="deleting-custom-controls"></a>删除自定义控件
 
@@ -48,6 +48,10 @@ ms.locfileid: "82126288"
 ## <a name="editing-custom-controls"></a>编辑自定义控件
 
 若要编辑自定义控件，必须删除当前控件，然后使用更新的信息创建新控件。
+
+## <a name="known-limitations"></a>已知的限制
+
+在 Intune 设备注册过程中或者在将设备加入 Azure AD 时，不能将自定义控件与 Identity Protection 的需要 Azure 多重身份验证的自动化以及要求多重身份验证声明的 Azure AD 自助式密码重置 (SSPR) 配合使用来提升 Privileged Identity Manager (PIM) 中角色的权限。
 
 ## <a name="next-steps"></a>后续步骤
 

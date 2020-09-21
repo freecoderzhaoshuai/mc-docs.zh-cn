@@ -11,13 +11,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: ''
 origin.date: 12/04/2018
-ms.date: 07/13/2020
-ms.openlocfilehash: 59c0bb3263261fb13b33d866c471610b0d11a6df
-ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+ms.date: 09/14/2020
+ms.openlocfilehash: 638ea5f99f06475b6152705dcd1442df301b4614
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86228013"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014381"
 ---
 # <a name="deploy-a-split-merge-service-to-move-data-between-sharded-databases"></a>部署拆分/合并服务以在分片数据库之间移动数据
 [!INCLUDE[appliesto-sqldb](../includes/appliesto-sqldb.md)]
@@ -174,6 +174,9 @@ ms.locfileid: "86228013"
 ### <a name="test-with-powershell-scripts"></a>使用 PowerShell 脚本进行测试
 
 可以通过运行包含的示例 PowerShell 脚本测试部署和环境。
+
+> [!IMPORTANT]
+> 示例脚本在 PowerShell 5.1 上运行。 它们目前不可在 PowerShell 6 或更高版本上运行。
 
 包含的脚本文件为：
 

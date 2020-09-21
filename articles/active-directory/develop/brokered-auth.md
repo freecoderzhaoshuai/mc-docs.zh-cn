@@ -9,17 +9,16 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: conceptual
 ms.workload: identity
-ms.date: 01/06/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 ms.custom: aaddev
 ms.reviewer: shoatman, hahamil, brianmel
-ms.collection: M365-identity-device-management
-ms.openlocfilehash: 641a4096e3b20d7357f1c666f2c8d7c2cbcb04b0
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 23655869f20de41b9307ebddbdeaa2782c0cdfe9
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75776838"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593660"
 ---
 # <a name="brokered-authentication-in-android"></a>Android 中的中介身份验证
 
@@ -124,4 +123,12 @@ MSAL 首先使用中介绑定服务，因为调用此服务不需要任何 Andro
 - 要求用户禁用 Microsoft Authenticator 应用和 Intune 公司门户的超级优化。
 - 要求用户授予 `"READ_CONTACTS"` 权限
 
-<!-- Update_Description: wording update -->
+## <a name="verifying-broker-integration"></a>验证中介集成
+
+虽然可能无法立即弄清楚中介集成是否正在运行，但你可以使用以下步骤进行检查：
+
+1. 在 Android 设备上，使用中介完成某个请求。
+1. 在 Android 设备上的设置中，查找与进行身份验证时所使用的帐户相对应的新建帐户。 该帐户的类型应为“工作帐户”。
+
+如果要重复测试，可以从设置中删除该帐户。
+

@@ -1,26 +1,19 @@
 ---
-title: 将 VM 移到其他订阅或资源组
+title: 使用 Azure CLI 移动 VM
 description: 使用 Azure CLI 将 VM 移至另一个 Azure 订阅或资源组。
-documentationcenter: ''
 author: Johnnytechn
-manager: digimobile
-editor: ''
-tags: azure-resource-manager
-ms.assetid: d635f0a5-4458-4b95-a5f8-eed4f41eb4d4
-ms.service: virtual-machines-linux
+ms.service: virtual-machines
 ms.workload: infrastructure-services
-ms.tgt_pltfrm: na
-ms.devlang: azurecli
-ms.topic: article
+ms.topic: how-to
 origin.date: 09/12/2018
-ms.date: 04/13/2020
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.openlocfilehash: 08630e1e90a2ba4e9d3d75672d205be05ae37682
-ms.sourcegitcommit: ebedf9e489f5218d4dda7468b669a601b3c02ae5
+ms.openlocfilehash: 487a322a12c7a916cc05ce66f18ff4272603dfc6
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2020
-ms.locfileid: "82159096"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057566"
 ---
 # <a name="move-a-vm-to-another-subscription-or-resource-group"></a>将 VM 移到其他订阅或资源组
 本文逐步说明如何在资源组或订阅之间移动虚拟机 (VM)。 如果在个人订阅中创建了 VM，现在想要将其移到公司的订阅，则在订阅之间移动 VM 会很方便。
@@ -28,6 +21,7 @@ ms.locfileid: "82159096"
 > [!IMPORTANT]
 >在移动过程中会创建新的资源 ID。 移动 VM 后，需要更新工具和脚本以使用新的资源 ID。
 >
+
 
 ## <a name="use-the-azure-cli-to-move-a-vm"></a>使用 Azure CLI 移动 VM
 
@@ -39,7 +33,7 @@ ms.locfileid: "82159096"
 az account show --subscription mySourceSubscription --query tenantId
 az account show --subscription myDestinationSubscription --query tenantId
 ```
-如果源和目标订阅的租户 ID 不相同，则必须联系[支持人员](https://support.azure.cn/support/support-azure/)才能将资源移动到新租户。
+如果源和目标订阅的租户 ID 不相同，则必须联系[支持人员](https://portal.azure.cn/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/overview)才能将资源移动到新租户。
 
 若要成功移动 VM，需要移动 VM 及其所有支持资源。 使用 [az resource list](https://docs.azure.cn/cli/resource?view=azure-cli-latest#az-resource-list) 命令列出资源组中的所有资源及其 ID。 这有助于通过管道将此命令的输出发送到文件，以便将 ID 复制并粘贴到后续命令中。
 

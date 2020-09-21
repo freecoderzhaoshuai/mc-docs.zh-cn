@@ -2,19 +2,19 @@
 title: 使用 Helm 在 AKS 中安装现有应用程序
 description: 了解如何使用 Helm 打包工具在 Azure Kubernetes 服务 (AKS) 群集中部署容器
 services: container-service
-author: rockboyfor
 ms.topic: article
 origin.date: 06/24/2020
-ms.date: 07/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: yes
 ms.testdate: 06/24/2020
 ms.author: v-yeche
-ms.openlocfilehash: 8821c370725b540c65eef07004698def33ce4470
-ms.sourcegitcommit: 6c9e5b3292ade56d812e7e214eeb66aeb9b8776e
+ms.openlocfilehash: 6ca1d9a7e5bb6ab6f4aa24c8ac3818434395b964
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86218719"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020824"
 ---
 # <a name="install-existing-applications-with-helm-in-azure-kubernetes-service-aks"></a>使用 Helm 在 Azure Kubernetes 服务 (AKS) 中安装现有应用程序
 
@@ -49,12 +49,13 @@ version.BuildInfo{Version:"v3.0.0", GitCommit:"e29ce2a54e96cd02ccfce88bee4f58bb6
 
 ## <a name="install-an-application-with-helm-v3"></a>使用 Helm v3 安装应用程序
 
-### <a name="add-the-official-helm-stable-charts-repository"></a>添加官方 Helm 稳定图表存储库
+### <a name="add-helm-repositories"></a>添加 Helm 存储库
 
-使用 [helm repo][helm-repo-add] 命令添加官方 Helm 稳定图表存储库。
+使用 [helm repo][helm-repo-add] 命令添加官方 Helm 稳定图表和 ingress-nginx 存储库。
 
 ```console
 helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 ```
 
 ### <a name="find-helm-charts"></a>查找 Helm 图表
@@ -126,6 +127,7 @@ helm repo update
 $ helm repo update
 
 Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "ingress-nginx" chart repository
 ...Successfully got an update from the "stable" chart repository
 Update Complete. ⎈ Happy Helming!⎈
 ```
@@ -137,8 +139,9 @@ Update Complete. ⎈ Happy Helming!⎈
 <!--MOONCAKE: Add --set defaultBackend.image.repository=gcr.azk8s.cn/google_containers/defaultbackend-amd64-->
 
 ```console
-helm install my-nginx-ingress stable/nginx-ingress \
+helm install my-nginx-ingress ingress-nginx/ingress-nginx \
     --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
+    --set controller.image.registry=usgcr.azk8s.cn \
     --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
     --set defaultBackend.image.repository=gcr.azk8s.cn/google_containers/defaultbackend-amd64
 ```
@@ -146,8 +149,9 @@ helm install my-nginx-ingress stable/nginx-ingress \
 以下精简示例输出显示了 Helm 图表创建的 Kubernetes 资源的部署状态：
 
 ```console
-$ helm install my-nginx-ingress stable/nginx-ingress \
+$ helm install my-nginx-ingress ingress-nginx/ingress-nginx \
 >     --set controller.nodeSelector."beta\.kubernetes\.io/os"=linux \
+>     --set controller.image.registry=usgcr.azk8s.cn \
 >     --set defaultBackend.nodeSelector."beta\.kubernetes\.io/os"=linux \
 >     --set defaultBackend.image.repository=gcr.azk8s.cn/google_containers/defaultbackend-amd64
 
@@ -160,25 +164,23 @@ TEST SUITE: None
 NOTES:
 The nginx-ingress controller has been installed.
 It may take a few minutes for the LoadBalancer IP to be available.
-You can watch the status by running 'kubectl --namespace default get services -o wide -w my-nginx-ingress-controller'
+You can watch the status by running 'kubectl --namespace default get services -o wide -w my-nginx-ingress-ingress-nginx-controller'
 ...
 ```
 
 使用 `kubectl get services` 命令获取服务的 *EXTERNAL-IP*。
 
 ```console
-kubectl --namespace default get services -o wide -w my-nginx-ingress-controller
+kubectl --namespace default get services -o wide -w my-nginx-ingress-ingress-nginx-controller
 ```
 
-例如，下面的命令显示 *my-nginx-ingress-controller* 服务的 *EXTERNAL-IP*：
-
-<!--MOONCAKE: Add --set defaultBackend.image.repository=gcr.azk8s.cn/google_containers/defaultbackend-amd64-->
+例如，下面的命令显示 my-nginx-ingress-ingress-nginx-controller 服务的 EXTERNAL-IP ：
 
 ```console
-$ kubectl --namespace default get services -o wide -w my-nginx-ingress-controller
+$ kubectl --namespace default get services -o wide -w my-nginx-ingress-ingress-nginx-controller
 
-NAME                          TYPE           CLUSTER-IP     EXTERNAL-IP     PORT(S)                      AGE   SELECTOR
-my-nginx-ingress-controller   LoadBalancer   10.0.123.1     <EXTERNAL-IP>   80:31301/TCP,443:31623/TCP   96s   app=nginx-ingress,component=controller,release=my-nginx-ingress
+NAME                                        TYPE           CLUSTER-IP   EXTERNAL-IP      PORT(S)                      AGE   SELECTOR
+my-nginx-ingress-ingress-nginx-controller   LoadBalancer   10.0.2.237   <EXTERNAL-IP>    80:31380/TCP,443:32239/TCP   72s   app.kubernetes.io/component=controller,app.kubernetes.io/instance=my-nginx-ingress,app.kubernetes.io/name=ingress-nginx
 ```
 
 ### <a name="list-releases"></a>列出版本

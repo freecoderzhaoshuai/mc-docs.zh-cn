@@ -3,31 +3,37 @@ title: Service Fabric 服务分区
 description: 介绍如何对 Service Fabric 有状态服务进行分区。 使用分区可以将数据存储在本地计算机上，以便数据和计算可以一起扩展。
 ms.topic: conceptual
 origin.date: 06/30/2017
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: e5423f137e9e90a3033d5aeed5b3c76a49377893
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 877407170d82172bd3c9c01ded9e1cad8aff7416
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356276"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655197"
 ---
 # <a name="partition-service-fabric-reliable-services"></a>Service Fabric Reliable Services 分区
 本文介绍 Azure Service Fabric Reliable Services 分区的基本概念。 本文中使用的源代码也可以在 [GitHub](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/classic/Services/AlphabetPartitions)上获取。
 
 ## <a name="partitioning"></a>分区
-分区并不是 Service Fabric 所独有的。 事实上，它是生成可缩放服务的核心模式。 从更广泛的意义来说，可将分区视为将状态（数据）和计算划分为更小的可访问单元，以提高可伸缩性和性能的一种概念。 [数据分区][wikipartition]是一种众所周知的分区形式，也称为分片。
+分区并不是 Service Fabric 所独有的。 事实上，它是生成可缩放服务的核心模式。 从更广泛的意义来说，可将分区视为将状态（数据）和计算划分为更小的可访问单元，以提高可伸缩性和性能的一种概念。 数据分区是一种众所周知的分区形式，也称为分片。
+
+<!--Not Available on [data partitioning][wikipartition]-->
 
 ### <a name="partition-service-fabric-stateless-services"></a>Service Fabric 无状态服务分区
 对于无状态服务，可以将分区视为包含服务的一个或多个实例的逻辑单元。 图 1 显示一个无状态服务，其五个实例使用一个分区在群集中分布。
 
-![无状态服务](./media/service-fabric-concepts-partitioning/statelessinstances.png)
+:::image type="content" source="./media/service-fabric-concepts-partitioning/statelessinstances.png" alt-text="无状态服务":::
 
-实际上有两种类型的无状态服务解决方案。 第一种是在外部（例如在 Azure SQL 数据库中）保持其状态的服务（如存储会话信息和数据的网站）。 第二种是不管理任何持久状态的仅计算服务（如计算器或图像缩略）。
+实际上有两种类型的无状态服务解决方案。 第一种是在外部（例如在 Azure SQL 数据库中的数据库中）保持其状态的服务（如存储会话信息和数据的网站）。 第二种是不管理任何持久状态的仅计算服务（如计算器或图像缩略）。
 
 在任一情况下，对无状态服务进行分区都是非常少见的方案 — 通常通过添加更多实例实现可伸缩性和可用性。 对于无状态服务实例要考虑多个分区的唯一情况是在需要满足特殊路由请求时。
 
-例如，考虑以下这种情况：ID 处于特定范围内的用户只应该由特定服务实例提供服务。 可对无状态服务进行分区的情况的另一个示例是在用户具有真正分区的后端（例如分片 SQL 数据库）并且要控制哪个服务实例应写入数据库分片（或是在无状态服务中执行的其他准备工作需要的分区信息与后端中使用的信息相同）时。 这些类型的情况也可以通过其他方式进行解决，并不一定需要服务分区。
+例如，考虑以下这种情况：ID 处于特定范围内的用户只应该由特定服务实例提供服务。 可对无状态服务进行分区的情况的另一个示例是在用户具有真正分区的后端（例如 SQL 数据库中的分片数据库）并且要控制哪个服务实例应写入数据库分片（或是在无状态服务中执行的其他准备工作需要的分区信息与后端中使用的信息相同）时。 这些类型的情况也可以通过其他方式进行解决，并不一定需要服务分区。
 
 本演练的其余部分侧重于有状态服务。
 
@@ -41,7 +47,7 @@ ms.locfileid: "84356276"
 
 图 2 显示缩放群集之前和之后的 10 个分区的分布。
 
-![有状态服务](./media/service-fabric-concepts-partitioning/partitions.png)
+:::image type="content" source="./media/service-fabric-concepts-partitioning/partitions.png" alt-text="有状态服务":::
 
 这样，便因为来自客户端的请求在计算机间进行分布而实现了扩大，提高了应用程序的整体性能，并减少了对数据区块的访问争用。
 
@@ -52,7 +58,7 @@ ms.locfileid: "84356276"
 
 我们来看一个简单的示例。 如果要为全国投票生成一个服务，则可以为该国家/地区中的每个城市创建一个分区。 随后可以在对应于该城市的分区中为城市中的每个人存储投票。 图 3 显示一组人及其所在的城市。
 
-![简单分区](./media/service-fabric-concepts-partitioning/cities.png)
+:::image type="content" source="./media/service-fabric-concepts-partitioning/cities.png" alt-text="简单分区":::
 
 <!--MOONCAKE: CUSTOMIZE WITH `Seattle` AND `Kirkland`-->
 
@@ -99,16 +105,18 @@ Service Fabric 提供了三个分区方案可供选择：
 ### <a name="ranged-partitioning-scheme"></a>范围分区方案
 此方案用于指定整数范围（由低键和高键标识）和分区数目 (n)。 它会创建 n 个分区，每个分区负责整个分区键范围的未重叠子范围。 例如，一个采用低键 0、高键 99 和计数 4 的范围分区方案会创建如下所示的 4 个分区。
 
-![范围分区](./media/service-fabric-concepts-partitioning/range-partitioning.png)
+:::image type="content" source="./media/service-fabric-concepts-partitioning/range-partitioning.png" alt-text="范围分区":::
 
 一种常见方法是基于数据集中的唯一键创建哈希。 一些常见的键示例有：车辆识别号 (VIN)、员工 ID 或唯一字符串。 随后使用此唯一键生成一个哈希代码（键范围取模）以用作键。 可以指定所允许键范围的上限和下限。
 
 ### <a name="select-a-hash-algorithm"></a>选择哈希算法
 哈希法的重要部分是选择哈希算法。 一个考虑事项是：目标是否是对相邻的类似键进行分组（局部敏感哈希法）— 或者活动是否应广泛分布在所有分区上（分发哈希法），后者更加常见。
 
-良好的分发哈希算法的特征是易于计算，几乎没有冲突，并且均匀地分发键。 高效的哈希算法的一个很好示例是 [FNV-1](https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function) 哈希算法。
+良好的分发哈希算法的特征是易于计算，几乎没有冲突，并且均匀地分发键。 高效的哈希算法的一个很好示例是 FNV-1 哈希算法。
 
-有关选择常规哈希代码算法的很好的资源是 [哈希函数的维基百科网页](https://en.wikipedia.org/wiki/Hash_function)。
+<!--Not Available on [FNV-1](https://en.wikipedia.org/wiki/Fowler%E2%80%93Noll%E2%80%93Vo_hash_function)-->
+
+<!--Not Available on A good resource for general hash code algorithm choices is the [Wikipedia page on hash functions](https://en.wikipedia.org/wiki/Hash_function).-->
 
 ## <a name="build-a-stateful-service-with-multiple-partitions"></a>生成具有多个分区的有状态服务
 让我们创建具有多个分区的第一个可靠有状态服务。 在此示例中，会生成一个非常简单的应用程序，在其中要以相同字母开头的所有姓氏存储在相同分区中。
@@ -236,7 +244,7 @@ Service Fabric 提供了三个分区方案可供选择：
     此服务可用作简单 Web 界面，它接受姓氏作为查询字符串参数，确定分区键，并将它发送到 Alphabet.Processing 服务进行处理。
 11. 在“创建服务”对话框中，选择“无状态”服务并将它称为“Alphabet.Web”，如下所示 。
 
-    ![无状态服务屏幕截图](./media/service-fabric-concepts-partitioning/createnewstateless.png)上获取。
+    :::image type="content" source="./media/service-fabric-concepts-partitioning/createnewstateless.png" alt-text="无状态服务屏幕截图":::。
 12. 在 Alphabet.WebApi 服务的 ServiceManifest.xml 中更新终结点信息，以打开端口，如下所示。
 
     ```xml
@@ -348,10 +356,10 @@ Service Fabric 提供了三个分区方案可供选择：
     ```
 16. 完成部署之后，可以在 Service Fabric Explorer 中检查服务及其所有分区。
 
-    ![Service Fabric Explorer 屏幕截图](./media/service-fabric-concepts-partitioning/sfxpartitions.png)
+    :::image type="content" source="./media/service-fabric-concepts-partitioning/sfxpartitions.png" alt-text="Service Fabric Explorer 屏幕截图":::
 17. 在浏览器中，可以输入 `http://localhost:8081/?lastname=somename`来测试分区逻辑。 会看到以相同字母开头的每个姓氏都存储在相同分区中。
 
-    ![浏览器屏幕截图](./media/service-fabric-concepts-partitioning/samplerunning.png)
+    :::image type="content" source="./media/service-fabric-concepts-partitioning/samplerunning.png" alt-text="浏览器屏幕截图":::
 
 该示例的完整源代码位于 [GitHub](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started/tree/classic/Services/AlphabetPartitions)。
 
@@ -362,8 +370,8 @@ Service Fabric 提供了三个分区方案可供选择：
 * [Service Fabric 服务的可伸缩性](service-fabric-concepts-scalability.md)
 * [Service Fabric 应用程序的容量规划](service-fabric-capacity-planning.md)
 
-[wikipartition]: https://en.wikipedia.org/wiki/Partition_(database)
+<!--Not Available on [wikipartition]: https://en.wikipedia.org/wiki/Partition_(database)-->
 
 [1]: ./media/service-fabric-create-your-first-application-in-visual-studio/new-project-dialog-2.png
 
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

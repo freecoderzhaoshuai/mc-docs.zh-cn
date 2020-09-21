@@ -11,13 +11,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: mathoma, carlrab
 origin.date: 04/14/2020
-ms.date: 08/17/2020
-ms.openlocfilehash: 26e7ff39514374816f8298f3ffa621d95f7ed226
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.date: 09/14/2020
+ms.openlocfilehash: 515d264f153bd6c7259bcac3f9db14aee242e42f
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223156"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014332"
 ---
 # <a name="manage-azure-sql-database-long-term-backup-retention"></a>管理 Azure SQL 数据库长期备份保留
 [!INCLUDE[appliesto-sqldb-sqlmi](../includes/appliesto-sqldb-sqlmi.md)]
@@ -81,7 +81,7 @@ ms.locfileid: "88223156"
 
 以下各部分展示了如何使用 PowerShell 配置长期备份保留、查看 Azure 存储中的备份，以及从 Azure 存储中的备份进行还原。
 
-### <a name="rbac-roles-to-manage-long-term-retention"></a>用于管理长期保留的 RBAC 角色
+### <a name="azure-roles-to-manage-long-term-retention"></a>用于管理长期保留的 Azure 角色
 
 对于 **Get-AzSqlDatabaseLongTermRetentionBackup** 和 **Restore-AzSqlDatabase**，需要具有以下角色之一：
 

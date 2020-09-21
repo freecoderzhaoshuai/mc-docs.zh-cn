@@ -1,19 +1,21 @@
 ---
 title: 关于使用 Azure Site Recovery 对 VMware VM 和物理服务器进行灾难恢复的移动服务 | Azure
 description: 了解可使用 Azure Site Recovery 服务将 VMware VM 和物理服务器灾难恢复到 Azure 的移动服务代理。
-author: rockboyfor
 manager: digimobile
 ms.service: site-recovery
 ms.topic: how-to
 origin.date: 04/10/2020
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: a156d20f4d6c466b4823593050031a7dbe8142c7
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: 9c58294a231b37a86617f0260c40e993fbbdf662
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440448"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655440"
 ---
 # <a name="about-the-mobility-service-for-vmware-vms-and-physical-servers"></a>关于适用于 VMware VM 和物理服务器的移动服务
 
@@ -38,6 +40,7 @@ ms.locfileid: "84440448"
 
 - 确保符合所有推送安装[先决条件](vmware-azure-install-mobility-service.md)。
 - 确保所有服务器配置均符合[将 VMware VM 和物理服务器灾难恢复到 Azure 的支持矩阵](vmware-physical-azure-support-matrix.md)中的条件。
+- 从 [9.36 版本](https://support.microsoft.com/help/4578241/)开始，对于 SUSE Linux Enterprise Server 11 SP4，确保最新的安装程序[在配置服务器和横向扩展进程服务器上可用](#download-latest-mobility-agent-installer-for-suse-11-sp3-server)
 
 以下部分介绍了推送安装工作流：
 
@@ -108,7 +111,7 @@ ms.locfileid: "84440448"
 
     ```cmd
     cd C:\Temp
-    ren Microsoft-ASR_UA_version_Windows_GA_date_release.exe MobilityServiceInstaller.exe
+    ren Microsoft-ASR_UA*Windows*release.exe MobilityServiceInstaller.exe
     MobilityServiceInstaller.exe /q /x:C:\Temp\Extracted
     cd C:\Temp\Extracted
     ```
@@ -187,8 +190,8 @@ ms.locfileid: "84440448"
 
 ## <a name="azure-virtual-machine-agent"></a>Azure 虚拟机代理
 
-- **Windows VM**：从移动服务版本 9.7.0.0 开始，移动服务安装程序会安装 [Azure VM 代理](/virtual-machines/extensions/features-windows#azure-vm-agent)。 这可以确保当计算机故障转移到 Azure 时，Azure VM 满足使用任何 VM 扩展相关的代理安装先决条件。
-- **Linux VM**：故障转移后，必须在 Azure VM 上手动安装 [WALinuxAgent](/virtual-machines/extensions/update-linux-agent)。
+- **Windows VM**：从移动服务版本 9.7.0.0 开始，移动服务安装程序会安装 [Azure VM 代理](../virtual-machines/extensions/features-windows.md#azure-vm-agent)。 这可以确保当计算机故障转移到 Azure 时，Azure VM 满足使用任何 VM 扩展相关的代理安装先决条件。
+- **Linux VM**：故障转移后，必须在 Azure VM 上手动安装 [WALinuxAgent](../virtual-machines/extensions/update-linux-agent.md)。
 
 <a name="installer-files"></a>
 ## <a name="locate-installer-files"></a>找到安装程序文件
@@ -208,10 +211,25 @@ ms.locfileid: "84440448"
 `Microsoft-ASR_UA_version_SLES12-64_GA_date_release.tar.gz` | SUSE Linux Enterprise Server 12 SP1 <br /> 包括 SP2 和 SP3。
 `Microsoft-ASR_UA_version_SLES11-SP3-64_GA_date_release.tar.gz` | SUSE Linux Enterprise Server 11 SP3
 `Microsoft-ASR_UA_version_SLES11-SP4-64_GA_date_release.tar.gz` | SUSE Linux Enterprise Server 11 SP4
+`Microsoft-ASR_UA_version_OL6-64_GA_date_release.tar.gz` | Oracle Enterprise Linux 6.4 <br /> Oracle Enterprise Linux 6.5
 `Microsoft-ASR_UA_version_UBUNTU-14.04-64_GA_date_release.tar.gz` | Ubuntu Linux 14.04
 `Microsoft-ASR_UA_version_UBUNTU-16.04-64_GA_date_release.tar.gz` | Ubuntu Linux 16.04 LTS 服务器
 `Microsoft-ASR_UA_version_DEBIAN7-64_GA_date_release.tar.gz` | Debian 7
 `Microsoft-ASR_UA_version_DEBIAN8-64_GA_date_release.tar.gz` | Debian 8
+
+### <a name="download-latest-mobility-agent-installer-for-suse-11-sp3-server"></a>下载适用于 SUSE 11 SP3 服务器的最新移动代理安装程序
+
+从 [9.36 版本](https://support.microsoft.com/help/4578241/)开始作为更新或保护 SUSE Linux Enterprise Server 11 SP3 计算机的先决条件：
+
+1. 确保从 Azure 下载中心下载最新的移动代理安装程序，并将其放置在配置服务器和所有横向扩展进程服务器上的推送安装程序存储库中
+2. [下载](https://download.microsoft.com/download/0/3/4/0341b388-1ff5-4ead-b197-7cf6d2bb3e40/Microsoft-ASR_UA_9.36.0.0_SLES11-SP3-64_GA_06Aug2020_release.tar.gz) SUSE Linux Enterprise Server 11 SP3 代理安装程序。
+3. 导航到配置服务器，将 SUSE Linux Enterprise Server 11 SP3 代理安装程序复制到以下路径
+    1. INSTALL_DIR\home\svsystems\pushinstallsvc\repository
+    1. INSTALL_DIR\home\svsystems\admin\web\sw folders
+4. 现在，导航到关联的横向扩展进程服务器，并复制第三步中提到的两个路径中的安装程序。
+5. 例如，如果安装路径为 C:\Program Files (x86)\Microsoft Azure Site Recovery，则上述目录将为
+    1. C:\Program Files (x86)\Microsoft Azure Site Recovery\home\svsystems\pushinstallsvc\repository
+    1. C:\Program Files (x86)\Microsoft Azure Site Recovery\home\svsystems\admin\web\sw path
 
 ## <a name="next-steps"></a>后续步骤
 

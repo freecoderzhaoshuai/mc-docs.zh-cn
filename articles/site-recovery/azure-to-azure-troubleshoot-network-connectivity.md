@@ -1,18 +1,20 @@
 ---
 title: 使用 Azure Site Recovery 对 Azure 到 Azure 灾难恢复的连接进行故障排除
 description: 排查 Azure VM 灾难恢复中的连接问题
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.topic: how-to
 origin.date: 04/06/2020
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 956c7ed8a8ff3bda1beeba5652ecf2300f7c6e81
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: d94586b120e8420fb529eb20be7d7565611ce644
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440576"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655503"
 ---
 # <a name="troubleshoot-azure-to-azure-vm-network-connectivity-issues"></a>排查 Azure 到 Azure VM 网络连接性问题
 
@@ -20,12 +22,16 @@ ms.locfileid: "84440576"
 
 要使 Site Recovery 复制正常运行，必须具有从 VM 到特定 URL 或 IP 范围的出站连接。 如果 VM 位于防火墙后或使用网络安全组 (NSG) 规则来控制出站连接，则可能会遇到以下问题之一。
 
-| URL | 详细信息 |
-|---|---|
-| `*.blob.core.chinacloudapi.cn` | 必需，以便从 VM 将数据写入到源区域中的缓存存储帐户。 如果你知道 VM 的所有缓存存储帐户，则可以对特定存储帐户 URL 使用允许列表。 例如，使用 `cache1.blob.core.chinacloudapi.cn` 和 `cache2.blob.core.chinacloudapi.cn` 而不是 `*.blob.core.chinacloudapi.cn`。 |
-| `login.chinacloudapi.cn` | 对于 Site Recovery 服务 URL 的授权和身份验证而言是必需的。 |
-| `*.hypervrecoverymanager.windowsazure.cn` | 必需，以便从 VM 进行 Site Recovery 服务通信。 如果防火墙代理支持 IP，则可以使用相应的“Site Recovery IP”。 |
-| `*.servicebus.chinacloudapi.cn` | 必需，以便从 VM 写入 Site Recovery 监视和诊断数据。 如果防火墙代理支持 IP，则可以使用相应的“Site Recovery 监视 IP”。 |
+<!--MOONCAKE: REMOVE US GOVERMENT COLUMN DETAILS-->
+
+| **Name** | **Azure 中国世纪互联** | **说明** |
+| ------------------------- | -------------------------------------------- | ----------- |
+| 存储                   | `*.blob.core.chinacloudapi.cn`                  | 必需，以便从 VM 将数据写入到源区域中的缓存存储帐户。 如果你知道 VM 的所有缓存存储帐户，则可以对特定存储帐户 URL 使用允许列表。 例如，使用 `cache1.blob.core.chinacloudapi.cn` 和 `cache2.blob.core.chinacloudapi.cn` 而不是 `*.blob.core.chinacloudapi.cn`。 |
+| Azure Active Directory    | `login.chinacloudapi.cn`                | 对于 Site Recovery 服务 URL 的授权和身份验证而言是必需的。 |
+| 复制               | `*.hypervrecoverymanager.windowsazure.cn` | 必需，以便从 VM 进行 Site Recovery 服务通信。 如果防火墙代理支持 IP，则可以使用相应的“Site Recovery IP”。 |
+| 服务总线               | `*.servicebus.chinacloudapi.cn`                 | 必需，以便从 VM 写入 Site Recovery 监视和诊断数据。 如果防火墙代理支持 IP，则可以使用相应的“Site Recovery 监视 IP”。 |
+
+<!--MOONCAKE: REMOVE US GOVERMENT COLUMN DETAILS-->
 
 ## <a name="outbound-connectivity-for-site-recovery-urls-or-ip-ranges-error-code-151037-or-151072"></a>Site Recovery URL 或 IP范围的出站连接（错误代码 151037 或 151072）
 
@@ -46,14 +52,14 @@ ms.locfileid: "84440576"
 1. 在“虚拟网络/子网”中，选择相应链接以打开虚拟网络的资源页。
 1. 转到“设置”，然后选择“DNS 服务器” 。
 
-    尝试从虚拟机访问 DNS 服务器。 如果 DNS 服务器无法访问，请通过对 DNS 服务器进行故障转移或创建 DR 网络与 DNS 之间站点的行来使其可访问。
+尝试从虚拟机访问 DNS 服务器。 如果 DNS 服务器无法访问，请通过对 DNS 服务器进行故障转移或创建 DR 网络与 DNS 之间站点的行来使其可访问。
 
-    :::image type="content" source="./media/azure-to-azure-troubleshoot-errors/custom_dns.png" alt-text="com-error":::
+:::image type="content" source="./media/azure-to-azure-troubleshoot-errors/custom_dns.png" alt-text="com-error":::
 
 ### <a name="issue-2-site-recovery-configuration-failed-151196"></a>问题 2：Site Recovery 配置失败 (151196)
 
 > [!NOTE]
-> 如果 VM 位于“标准”内部负载均衡器之后，则默认情况下，它将无法访问 Office 365 IP（如 `login.chinacloudapi.cn`）。 可以将其更改为“基本”内部负载均衡器类型，也可以按照[使用 Azure CLI 在标准负载均衡器中配置负载均衡和出站规则](/load-balancer/configure-load-balancer-outbound-cli)一文中所述创建出站访问权限。
+> 如果 VM 位于“标准”内部负载均衡器之后，则默认情况下，它将无法访问 Office 365 IP（如 `login.chinacloudapi.cn`）。 可以将其更改为“基本”内部负载均衡器类型，也可以按照[使用 Azure CLI 在标准负载均衡器中配置负载均衡和出站规则](../load-balancer/quickstart-load-balancer-standard-public-cli.md?tabs=option-1-create-load-balancer-standard#create-outbound-rule-configuration)一文中所述创建出站访问权限。
 
 #### <a name="possible-cause"></a>可能的原因
 
@@ -62,7 +68,7 @@ ms.locfileid: "84440576"
 #### <a name="resolution"></a>解决方法
 
 - Azure Site Recovery 需要访问 Office 365 IP 范围才能进行身份验证。
-- 如果使用 Azure 网络安全组 (NSG) 规则/防火墙代理控制 VM 上的出站网络连接，请确保允许到 Office 365 IP 范围的通信。 创建一个基于 [Azure Active Directory (Azure AD) 服务标记](/virtual-network/security-overview#service-tags)的 NSG 规则，该规则允许访问与 Azure AD 对应的所有 IP 地址。
+- 如果使用 Azure 网络安全组 (NSG) 规则/防火墙代理控制 VM 上的出站网络连接，请确保允许到 Office 365 IP 范围的通信。 创建一个基于 [Azure Active Directory (Azure AD) 服务标记](../virtual-network/security-overview.md#service-tags)的 NSG 规则，该规则允许访问与 Azure AD 对应的所有 IP 地址。
 - 如果将来向 Azure AD 添加新地址，则需创建新的 NSG 规则。
 
 ### <a name="example-nsg-configuration"></a>NSG 配置示例
@@ -74,7 +80,7 @@ ms.locfileid: "84440576"
 
 #### <a name="nsg-rules---china-east"></a>NSG 规则 - 中国东部
 
-1. 为 NSG 创建 HTTPS 出站安全规则，如以下屏幕截图所示。 此示例使用“目标服务标记”：“Storage”和“目标端口范围”：“443”。
+1. 为 NSG 创建 HTTPS 出站安全规则，如以下屏幕截图所示。 此示例使用“目标服务标记”：“Storage.ChinaEast”和“目标端口范围”：“443”。
 
     :::image type="content" source="./media/azure-to-azure-about-networking/storage-tag.png" alt-text="storage-tag":::
 
@@ -82,15 +88,25 @@ ms.locfileid: "84440576"
 
     :::image type="content" source="./media/azure-to-azure-about-networking/aad-tag.png" alt-text="aad-tag":::
 
-1. 为与目标位置相对应的 Site Recovery IP 创建 HTTPS 端口 443 出站规则：
-
-    <!--MOONCAKE: CUSTIMIZTION ON China North-->
+1. 与上述安全规则类似，为 NSG 上的“EventHub.chinanorth”（对应于目标位置）创建出站 HTTPS (443) 安全规则。 这样就可以访问 Site Recovery 监视功能。
+1. 在 NSG 上为“AzureSiteRecovery”创建出站 HTTPS (443) 安全规则。 这样就可以在任何区域访问 Site Recovery 服务。
     
-    | 位置 | Site Recovery IP 地址 | Site Recovery 监视 IP 地址 |
-    | --- | --- | --- |
-    | 中国北部 | 40.125.202.254  | 42.159.4.151 |
-
-    <!--MOONCAKE: CUSTIMIZTION ON China North-->
+    <!--MOONCAKE: CUSTOMIZE, UPDATE CAREFULLY-->
+    <!--MOONCAKE: CORRECT ON China North | 40.125.202.254 | 42.159.4.151 -->
+    
+    > [!NOTE]
+    > 如果 Azure 中国的特定区域不支持 `AzureSiteRecovery` 服务标记，我们可以为对应于目标位置的 Site Recovery IP 创建出站 HTTPS (443) 安全规则：
+    >
+    > 例如： 
+    >
+    >  |**位置** | **Site Recovery IP 地址** |  **Site Recovery 监视 IP 地址**|
+    >  |--- | --- | ---|
+    >  |中国北部 | 40.125.202.254 | 42.159.4.151|
+    >  
+    > ![site-recovery-ip-address](./media/azure-to-azure-about-networking/site-recovery-ip-address-chenye.png)
+    
+    <!--MOONCAKE: CORRECT ON China North | 40.125.202.254 | 42.159.4.151-->
+    <!--MOONCAKE: CUSTOMIZE, UPDATE CAREFULLY-->
 
 #### <a name="nsg-rules---china-north"></a>NSG 规则 - 中国北部
 
@@ -99,24 +115,34 @@ ms.locfileid: "84440576"
 <!--MOONCAKE: CUSTOMIZE ON "Storage"， Not Available on .ChinaEast -->
 
 1. 为 Storage 创建 HTTPS 出站安全规则：
-    
+
     - **目标服务标记**：_存储_
     - **目标端口范围**：_443_
 
 1. 为 AzureActiveDirectory 创建 HTTPS 出站安全规则。
 
-   - **目标服务标记**：_AzureActiveDirectory_
-   - **目标端口范围**：_443_
+    - **目标服务标记**：_AzureActiveDirectory_
+    - **目标端口范围**：_443_
 
-1. 为与源位置相对应的 Site Recovery IP 创建 HTTPS 端口 443 出站规则：
+1. 与上述安全规则类似，为 NSG 上的“EventHub.ChinaEast”（对应于源位置）创建出站 HTTPS (443) 安全规则。 这样就可以访问 Site Recovery 监视功能。
+1. 在 NSG 上为“AzureSiteRecovery”创建出站 HTTPS (443) 安全规则。 这样就可以在任何区域访问 Site Recovery 服务。
     
-    <!--MOONCAKE: CUSTIMIZTION ON China East-->
+    <!--MOONCAKE: CUSTOMIZE, UPDATE CAREFULLY-->
+    <!--MOONCAKE: CORRECT ON China East | 42.159.205.45 | 42.159.132.40 -->
     
-    | 位置 | Site Recovery IP 地址 | Site Recovery 监视 IP 地址 |
-    | --- | --- | --- |
-    | 中国东部 | 42.159.205.45 | 42.159.132.40|
+    > [!NOTE]
+    > 如果 Azure 中国的特定区域不支持 `AzureSiteRecovery` 服务标记，则可以为对应于源位置的 Site Recovery IP 创建出站 HTTPS (443) 安全规则：
+    >
+    > 例如：
+    > 
+    >  |**位置** | **Site Recovery IP 地址** |  **Site Recovery 监视 IP 地址**|
+    >  |--- | --- | ---|
+    >  |中国东部 | 42.159.205.45 | 42.159.132.40|
+    >
     
-    <!--MOONCAKE: CUSTIMIZTION ON China East-->
+    <!--MOONCAKE: CORRECT ON China East | 42.159.205.45 | 42.159.132.40 -->
+    <!--MOONCAKE: CUSTOMIZE, UPDATE CAREFULLY-->
+
 
 ### <a name="issue-3-site-recovery-configuration-failed-151197"></a>问题 3：Site Recovery 配置失败 (151197)
 
@@ -155,7 +181,7 @@ Azure Site Recovery 需要根据区域访问 [Site Recovery IP 范围](azure-to-
 
 ### <a name="fix-the-problem"></a>解决问题
 
-若要允许[所需 URL](azure-to-azure-about-networking.md#outbound-connectivity-for-urls) 或[所需 IP 范围](azure-to-azure-about-networking.md#outbound-connectivity-using-service-tags)，请按照[网络指南文档](site-recovery-azure-to-azure-networking-guidance.md)中的步骤进行操作。
+若要允许[所需 URL](azure-to-azure-about-networking.md#outbound-connectivity-for-urls) 或[所需 IP 范围](azure-to-azure-about-networking.md#outbound-connectivity-using-service-tags)，请按照[网络指南文档](./azure-to-azure-about-networking.md)中的步骤进行操作。
 
 ## <a name="next-steps"></a>后续步骤
 

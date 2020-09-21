@@ -1,7 +1,7 @@
 ---
 title: 用于解决常见安全要求的 playbook
 titleSuffix: Azure SQL Database & Azure SQL Managed Instance
-description: 本文介绍了 Azure SQL 数据库和 Azure SQL 托管实例中的常见安全要求和最佳做法
+description: 本文介绍了 Azure SQL 数据库和 Azure SQL 托管实例中的常见安全要求和最佳做法。
 ms.service: sql-db-mi
 ms.subservice: security
 ms.custom: sqldbrb=2
@@ -9,14 +9,14 @@ author: WenJason
 ms.author: v-jay
 ms.topic: article
 origin.date: 02/20/2020
-ms.date: 08/17/2020
+ms.date: 09/14/2020
 ms.reviewer: ''
-ms.openlocfilehash: 0956a6eb0bb894d97bb85f812b2b272b38c8b93b
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: 14af95e09080122f2db0087f5ea31173baf32e05
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223306"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014321"
 ---
 # <a name="playbook-for-addressing-common-security-requirements-with-azure-sql-database-and-azure-sql-managed-instance"></a>用于解决 Azure SQL 数据库和 Azure SQL 托管实例常见安全要求的 playbook
 [!INCLUDE[appliesto-sqldb-sqlmi](../includes/appliesto-sqldb-sqlmi.md)]
@@ -287,7 +287,7 @@ SQL 身份验证是指使用用户名和密码连接到 Azure SQL 数据库或 S
 - 识别有权访问系统的用户（和自动化过程）的综合层次结构。
 
 - 根据所需的用户组创建角色，并将权限分配给角色。
-  - 对于在 Azure 门户中或通过 PowerShell 自动化完成的管理级任务，请使用 RBAC 角色。 查找符合要求的内置角色，或者使用可用权限创建 Azure 自定义角色
+  - 对于通过 Azure 门户或 PowerShell 自动化完成的管理级任务，请使用 Azure 角色。 查找符合要求的内置角色，或者使用可用权限创建 Azure 自定义角色
   - 在托管实例中为服务器范围的任务（创建新的登录名和数据库）创建服务器角色。
   - 为数据库级任务创建数据库角色。
 
@@ -314,7 +314,7 @@ SQL 身份验证是指使用用户名和密码连接到 Azure SQL 数据库或 S
 
 - 当内置角色授予的权限过多或不足时，创建并使用用户定义的角色。
 
-- 还可以在 T-SQL 的 SQL 代理作业步骤中或使用适用于 RBAC 角色的 Azure PIM，暂时执行角色分配（也称为动态职责分离 (DSD)）。
+- 还可以通过 T-SQL 的 SQL 代理作业步骤或适用于 Azure 角色的 Azure PIM 暂时执行角色分配（也称为动态职责分离 (DSD)）。
 
 - 确保 DBA 无权访问加密密钥或密钥存储，而有权访问密钥的安全管理员无权访问数据库。 
 

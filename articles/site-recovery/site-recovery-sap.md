@@ -1,18 +1,20 @@
 ---
 title: 使用 Azure Site Recovery 设置 SAP NetWeaver 灾难恢复
 description: 了解如何使用 Azure Site Recovery 为 SAP NetWeaver 设置灾难恢复。
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.topic: how-to
 origin.date: 11/27/2018
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: d705c5164711e08bcae44f0dead6ac00df473463
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 9a6394874d40ab82bd094c2961abe3ee95dc2c4b
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77611265"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655296"
 ---
 # <a name="set-up-disaster-recovery-for-a-multi-tier-sap-netweaver-app-deployment"></a>为多层 SAP NetWeaver 应用部署设置灾难恢复
 
@@ -30,9 +32,9 @@ ms.locfileid: "77611265"
 
 开始之前，请确保自己知道如何执行以下任务：
 
-* [将虚拟机复制到 Azure](azure-to-azure-walkthrough-enable-replication.md)
-* [设计恢复网络](site-recovery-azure-to-azure-networking-guidance.md)
-* [执行到 Azure 的测试故障转移](azure-to-azure-walkthrough-test-failover.md)
+* [将虚拟机复制到 Azure](./azure-to-azure-tutorial-enable-replication.md)
+* [设计恢复网络](./azure-to-azure-about-networking.md)
+* [执行到 Azure 的测试故障转移](./azure-to-azure-tutorial-dr-drill.md)
 * [执行到 Azure 的故障转移](site-recovery-failover.md)
 * [复制域控制器](site-recovery-active-directory.md)
 * [复制 SQL Server 实例](site-recovery-sql.md)
@@ -41,11 +43,11 @@ ms.locfileid: "77611265"
 
 使用 Azure Site Recovery 可以为以下方案实现灾难恢复解决方案：
 * 在 Azure 数据中心内运行 SAP 系统，并将其复制到其他 Azure 数据中心（Azure 到 Azure 灾难恢复）。 
-    有关详细信息，请参阅 [Azure 到 Azure 复制体系结构](/site-recovery/azure-to-azure-architecture)。
+    有关详细信息，请参阅 [Azure 到 Azure 复制体系结构](https://docs.azure.cn/site-recovery/azure-to-azure-architecture)。
 * 在本地 VMware（或物理）服务器上运行 SAP 系统。 SAP 系统还会复制到 Azure 数据中心内的灾难恢复站点（VMware 到 Azure 灾难恢复）。 
-    此方案需要一些附加的组件。 有关详细信息，请参阅 [VMware 到 Azure 复制体系结构](/site-recovery/vmware-azure-architecture)。
+    此方案需要一些附加的组件。 有关详细信息，请参阅 [VMware 到 Azure 复制体系结构](https://docs.azure.cn/site-recovery/vmware-azure-architecture)。
 * 在本地 Hyper-V 上运行的 SAP 系统。 SAP 系统还会复制到 Azure 数据中心内的灾难恢复站点（Hyper-V 到 Azure 灾难恢复）。
-    此方案需要一些附加的组件。 有关详细信息，请参阅 [Hyper-V 到 Azure 复制体系结构](/site-recovery/hyper-v-azure-architecture)。
+    此方案需要一些附加的组件。 有关详细信息，请参阅 [Hyper-V 到 Azure 复制体系结构](https://docs.azure.cn/site-recovery/azure-to-azure-architecture)。
 
 在本文中，你将使用 **Azure 到 Azure** 灾难恢复方案。 此方案将演示 Site Recovery 的 SAP 灾难恢复功能。 由于 Site Recovery 复制过程不特定于应用程序，因此介绍的过程应该也适用于其他方案。
 
@@ -116,7 +118,7 @@ SMLG 事务管理 ABAP 应用程序服务器的登录组。 该事务使用 Cent
 
 ## <a name="replicate-virtual-machines"></a>复制虚拟机
 
-若要开始将所有 SAP 应用程序虚拟机复制到 Azure 灾难恢复数据中心，请遵照[将虚拟机复制到 Azure](azure-to-azure-walkthrough-enable-replication.md) 中的指导。
+若要开始将所有 SAP 应用程序虚拟机复制到 Azure 灾难恢复数据中心，请遵照[将虚拟机复制到 Azure](./azure-to-azure-tutorial-enable-replication.md) 中的指导。
 
 * 有关保护 Active Directory 和 DNS 的指导，请参阅[如何保护 Active Directory 和 DNS](site-recovery-active-directory.md)。
 
@@ -126,7 +128,7 @@ SMLG 事务管理 ABAP 应用程序服务器的登录组。 该事务使用 Cent
 
 如果使用的是静态 IP，可以指定希望虚拟机采用的 IP 地址。 若要设置 IP 地址，请转到“计算和网络设置”   >   “网络接口卡”。
 
-![演示如何在 Site Recovery 的“网络接口卡”窗格中设置专用 IP 地址的屏幕截图](./media/site-recovery-sap/sap-static-ip.png)
+:::image type="content" source="./media/site-recovery-sap/sap-static-ip.png" alt-text="演示如何在 Site Recovery 的“网络接口卡”窗格中设置专用 IP 地址的屏幕截图":::
 
 ## <a name="create-a-recovery-plan"></a>创建恢复计划
 
@@ -143,27 +145,30 @@ SMLG 事务管理 ABAP 应用程序服务器的登录组。 该事务使用 Cent
 可以选择“部署到 Azure”，将最常用的 Site Recovery 脚本部署到 Azure 自动化帐户中。  使用任何已发布的脚本时，请遵循脚本中的指导。
 
 > [!NOTE]
-> 选择以下 `Deploy to Azure` 后，选择 `Edit template` 并根据 Azure 中国区环境更新以下项。
-> * 在第 14 行中，将 `automationRegion` 参数的 `allowedValues` 属性替换为以下项。
+> 必须修改从 GitHub 存储库“azure-quickstart-templates”下载或参考的模板，以适应 Azure 中国云环境。
+> 例如，替换某些终结点（将“blob.core.windows.net”替换为“blob.core.chinacloudapi.cn”，将“cloudapp.azure.com”替换为“cloudapp.chinacloudapi.cn”）；必要时更改某些不受支持的位置、VM 映像、VM 大小、SKU 以及资源提供程序的 API 版本。
+>
+> 选择下面的“`Deploy to Azure`”后，请选择“`Edit template`”并根据 Azure 中国环境更新特定项。
+> * 在第 14 行将 `automationRegion` 参数的 `allowedValues` 属性替换为以下项。
 >   `chinaeast2,chinanorth,chinanorth2`
 > * 选择“保存”。
 
 
-[![“部署到 Azure”](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/c4803408-340e-49e3-9a1f-0ed3f689813d.png)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fazure-quickstart-templates%2Fmaster%2Fasr-automation-recovery%2F%2Fazuredeploy.json)
+[![部署到 Azure](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/c4803408-340e-49e3-9a1f-0ed3f689813d.png)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fazure%2Fazure-quickstart-templates%2Fmaster%2Fasr-automation-recovery%2F%2Fazuredeploy.json)
 
 1. 将操作前脚本添加到“组 1”，以故障转移 SQL Server 可用性组。 使用示例脚本中发布的 ASR-SQL-FailoverAG 脚本。 遵循脚本中的指导，并相应地在脚本中进行所需的更改。
 1. 添加一个操作后脚本，以便在 Web 层的已故障转移虚拟机（组 1）上附加负载均衡器。 使用示例脚本中发布的 ASR-AddSingleLoadBalancer 脚本。 遵循脚本中的指导，并根据需要在脚本中进行更改。
 
-    ![SAP 恢复计划](./media/site-recovery-sap/sap_recovery_plan.png)
+![SAP 恢复计划](./media/site-recovery-sap/sap_recovery_plan.png)
 
 ## <a name="run-a-test-failover"></a>运行测试故障转移
 
 1. 在 Azure 门户中，选择恢复服务保管库。
 1. 选择针对 SAP 应用程序创建的恢复计划。
-1. 选择“测试故障转移”  。
+1. 选择“测试故障转移”。
 1. 若要启动测试故障转移过程，请选择恢复点和 Azure 虚拟网络。
 1. 当辅助环境启动时，执行验证。
-1. 完成验证后，选择“清理测试故障转移”清理测试故障转移环境。 
+1. 完成验证后，选择“清理测试故障转移”清理测试故障转移环境。
 
 有关详细信息，请参阅[在 Site Recovery 中执行到 Azure 的测试故障转移](site-recovery-test-failover-to-azure.md)。
 
@@ -171,7 +176,7 @@ SMLG 事务管理 ABAP 应用程序服务器的登录组。 该事务使用 Cent
 
 1. 在 Azure 门户中，选择恢复服务保管库。
 1. 选择针对 SAP 应用程序创建的恢复计划。
-1. 选择“故障转移”。 
+1. 选择“故障转移”。
 1. 若要启动故障转移过程，请选择恢复点。
 
 有关详细信息，请参阅 [Site Recovery 中的故障转移](site-recovery-failover.md)。

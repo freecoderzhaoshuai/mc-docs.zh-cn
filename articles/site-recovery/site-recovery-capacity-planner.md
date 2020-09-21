@@ -1,20 +1,22 @@
 ---
-title: 使用 Azure Site Recovery 为 Hyper-V 灾难恢复规划容量 | Azure
+title: 使用 Azure Site Recovery 为 Hyper-V 灾难恢复规划容量
 description: 利用本文在使用 Azure Site Recovery 服务设置灾难恢复时估算容量。
-author: rockboyfor
-manager: digimobile
+manager: carmonm
 services: site-recovery
 ms.service: site-recovery
 ms.topic: conceptual
-origin.date: 08/22/2019
-ms.date: 09/30/2019
+origin.date: 11/12/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 8c2419736b9366f0b7bdfe873ad4402f1f1f45af
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: b213021c51b46e7a070f19f752ab3281fd5181c9
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71340809"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655312"
 ---
 # <a name="plan-capacity-for-hyper-v-vm-disaster-recovery"></a>为 Hyper-V VM 灾难恢复规划容量 
 
@@ -39,20 +41,20 @@ Azure Site Recovery Capacity Planner 工具可帮助用户确定通过 Azure Sit
 ## <a name="before-you-start"></a>开始之前
 
 * 收集环境信息，包括 VM 数、每个 VM 的磁盘数、每个磁盘的存储。
-* 确定已复制数据的每日更改（改动）率。 下载 [Hyper-V 容量计划工具](https://www.microsoft.com/download/details.aspx?id=39057)以获取更改率。 [详细了解](site-recovery-capacity-planning-for-hyper-v-replication.md)此工具。 我们建议运行此工具一周以上的时间以获取平均值。
+* 确定已复制数据的每日更改（改动）率。 下载 [Hyper-V 容量计划工具](https://www.microsoft.com/download/details.aspx?id=39057)以获取更改率。 [详细了解](./hyper-v-deployment-planner-overview.md)此工具。 我们建议运行此工具一周以上的时间以获取平均值。
 
 ## <a name="run-the-quick-planner"></a>运行快速规划器
 1. 下载并打开 [Site Recovery Capacity Planner](https://aka.ms/asr-capacity-planner-excel) 工具。 需要运行宏。 在出现提示时，请选择启用编辑内容的选项。
 
 2. 在“选择规划器类型”列表框中，选择“快速规划器”   。
 
-    ![入门](./media/site-recovery-capacity-planner/getting-started.png)
+    :::image type="content" source="./media/site-recovery-capacity-planner/getting-started.png" alt-text="“选择规划器类型”选项的屏幕截图，其中的快速规划器处于选中状态。":::
 
 3. 在“Capacity Planner”工作表中输入所需信息。  必须填写以下屏幕快照中标有红圈的所有字段：
 
     a. 在“选择你的方案”  中，选择“Hyper-V 到 Azure”  或“VMware/物理设备到 Azure”  .
 
-    b. 在“平均每日数据更改率(%)”中输入使用 [Hyper-V 容量计划工具](site-recovery-capacity-planning-for-hyper-v-replication.md)或 [Site Recovery Deployment Planner](./site-recovery-deployment-planner.md) 收集的信息。 
+    b. 在“平均每日数据更改率(%)”中输入使用 [Hyper-V 容量计划工具](./hyper-v-deployment-planner-overview.md)或 [Site Recovery Deployment Planner](./site-recovery-deployment-planner.md) 收集的信息。 
 
     c. 将 Hyper-V VM 复制到 Azure 时，不使用“压缩”设置。  对于压缩，请使用第三方应用程序（例如 Riverbed）。
 
@@ -60,7 +62,7 @@ Azure Site Recovery Capacity Planner 工具可帮助用户确定通过 Azure Sit
 
     e. 在“完成成批虚拟机的初始复制所需的小时数”和“初始复制批处理的虚拟机数”中，可以输入用于计算初始复制要求的设置   。 部署 Site Recovery 时，应上传整个初始数据集。
 
-    ![输入](./media/site-recovery-capacity-planner/inputs.png)
+    :::image type="content" source="./media/site-recovery-capacity-planner/inputs.png" alt-text="Capacity Planner 工作表的屏幕截图，显示了所需的输入信息。":::
 
 4. 输入源环境的值以后，显示的输出将包括：
 
@@ -76,7 +78,7 @@ Azure Site Recovery Capacity Planner 工具可帮助用户确定通过 Azure Sit
     * **所需的其他进程服务器数**：显示除了默认在配置服务器上运行的进程服务器外，是否还需要其他进程服务器。
     * **源中的 100% 附加存储**：显示源位置是否需要其他存储。
 
-    ![输出](./media/site-recovery-capacity-planner/output.png)
+    :::image type="content" source="./media/site-recovery-capacity-planner/output.png" alt-text="根据提供的输入显示的输出的屏幕截图。":::
 
 ## <a name="run-the-detailed-planner"></a>运行详细规划器
 
@@ -84,7 +86,7 @@ Azure Site Recovery Capacity Planner 工具可帮助用户确定通过 Azure Sit
 
 2. 在“选择规划器类型”  中，从列表框中选择“详细规划器”  。
 
-    ![入门指南](./media/site-recovery-capacity-planner/getting-started-2.png)
+    :::image type="content" source="./media/site-recovery-capacity-planner/getting-started-2.png" alt-text="“选择规划器类型”选项的屏幕截图，其中的详细规划器处于选中状态。":::
 
 3. 在“工作负荷限定”工作表中输入所需的信息。  必须填写所有标记的字段。
 
@@ -104,7 +106,7 @@ Azure Site Recovery Capacity Planner 工具可帮助用户确定通过 Azure Sit
 
     h.如果该值不存在，请单击“添加行”。 在“映射 Azure VM 大小”中输入要映射的 Azure VM 大小。  如果不想手动执行此操作，请选择“计算 IaaS VM”。  如果输入了手动设置，然后单击“计算 IaaS VM”，系统可能会覆盖手动设置。  计算过程会自动确定 Azure VM 大小的最佳匹配项。
 
-    ![工作负荷限定工作表](./media/site-recovery-capacity-planner/workload-qualification.png)
+    :::image type="content" source="./media/site-recovery-capacity-planner/workload-qualification.png" alt-text="工作负荷限定工作表的屏幕截图，显示了所需的输入信息。":::
 
 4. 如果选择“计算 IaaS VM”，则会执行以下操作： 
 
@@ -116,12 +118,12 @@ Azure Site Recovery Capacity Planner 工具可帮助用户确定通过 Azure Sit
 
 AA 到 AE 列为输出，提供的是每个 VM 的信息。
 
-![输出列 AA 到 AE](./media/site-recovery-capacity-planner/workload-qualification-2.png)
+:::image type="content" source="./media/site-recovery-capacity-planner/workload-qualification-2.png" alt-text="屏幕截图，显示输出列 AA 到 AE。":::
 
 ### <a name="example"></a>示例
 例如，如果有 6 个 VM，其值如表中所示，该工具会计算和分配最佳 Azure VM 匹配项以及 Azure 存储需求。
 
-![工作负荷限定分配](./media/site-recovery-capacity-planner/workload-qualification-3.png)
+:::image type="content" source="./media/site-recovery-capacity-planner/workload-qualification-3.png" alt-text="屏幕截图，显示工作负荷限定分配。":::
 
 * 在示例输出中，请注意以下问题：
 
@@ -142,9 +144,9 @@ AA 到 AE 列为输出，提供的是每个 VM 的信息。
 
 2. 如果想要进行更改，则需修改“工作负荷限定”工作表。  然后再次选择“将数据提交到规划器工具”。 
 
-    ![Capacity Planner](./media/site-recovery-capacity-planner/capacity-planner.png)
+    :::image type="content" source="./media/site-recovery-capacity-planner/capacity-planner.png" alt-text="屏幕截图，显示 Capacity Planner 工作表中修改的输入和生成的输出。":::
 
 ## <a name="next-steps"></a>后续步骤
-[了解如何运行](site-recovery-capacity-planning-for-hyper-v-replication.md)容量计划工具。
+[了解如何运行](./hyper-v-deployment-planner-overview.md)容量计划工具。
 
-<!-- Update_Description: wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

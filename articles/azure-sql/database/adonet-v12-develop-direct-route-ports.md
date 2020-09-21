@@ -4,20 +4,20 @@ description: 从 ADO.NET 到 Azure SQL 数据库的客户端连接可以绕过�
 services: sql-database
 ms.service: sql-database
 ms.subservice: development
-ms.custom: sqldbrb=1
+ms.custom: sqldbrb=1, devx-track-dotnet
 ms.devlang: ''
 ms.topic: conceptual
 author: WenJason
 ms.author: v-jay
 ms.reviewer: genemi
 origin.date: 06/11/2020
-ms.date: 07/13/2020
-ms.openlocfilehash: 43581a54ca43dbe771d7d15d036facac042b414a
-ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+ms.date: 9/14/2020
+ms.openlocfilehash: 2315eede1835f2af4c4637c1f4cf7b673cd4e6a9
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86227488"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014333"
 ---
 # <a name="ports-beyond-1433-for-adonet-45"></a>用于 ADO.NET 4.5 的非 1433 端口
 [!INCLUDE[appliesto-sqldb](../includes/appliesto-sqldb.md)]
@@ -78,7 +78,7 @@ ms.locfileid: "86227488"
 * ADO.NET 4.5 已于 2012 年 8 月 15 日发布。 可以在 [此处](https://devblogs.microsoft.com/dotnet/announcing-the-release-of-net-framework-4-5-rtm-product-and-source-code/)访问 .NET 团队的博客通告。
   * 可以在 [此处](https://devblogs.microsoft.com/dotnet/announcing-the-net-framework-4-5-1-preview/)访问有关 ADO.NET 4.5.1 的博客文章。
 
-* Microsoft® ODBC Driver 17 for SQL Server® - Windows、Linux 和 macOS https://www.microsoft.com/download/details.aspx?id=56567
+* Microsoft ODBC Driver 17 for SQL Server https://aka.ms/downloadmsodbcsql
 
 * 通过重定向连接到 Azure SQL 数据库 V12 https://techcommunity.microsoft.com/t5/DataCAT/Connect-to-Azure-SQL-Database-V12-via-Redirection/ba-p/305362
 

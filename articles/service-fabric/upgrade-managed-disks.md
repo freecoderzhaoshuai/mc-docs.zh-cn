@@ -3,20 +3,21 @@ title: 将群集节点升级为使用 Azure 托管磁盘
 description: 本文介绍了如何在只需群集短暂停机甚至无需其停机的前提下，将现有 Service Fabric 群集升级为使用 Azure 托管磁盘。
 ms.topic: how-to
 origin.date: 04/07/2020
-ms.date: 08/03/2020
-ms.testscope: no
-ms.testdate: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: 54d40543cc63c269620c99d0bad9a07df326eb83
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 5267bda2ac0ce0f77c1ad0ac8c8731d82441a90e
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426338"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655154"
 ---
 # <a name="upgrade-cluster-nodes-to-use-azure-managed-disks"></a>将群集节点升级为使用 Azure 托管磁盘
 
-[Azure 托管磁盘](../virtual-machines/windows/managed-disks-overview.md)是推荐用于 Azure 虚拟机的磁盘存储产品/服务，可以持久存储数据。 将你的节点类型所基于的虚拟机规模集升级为使用托管磁盘，可以改善 Service Fabric 工作负荷的复原能力。 本文介绍了如何在只需群集短暂停机甚至无需其停机的前提下，将现有 Service Fabric 群集升级为使用 Azure 托管磁盘。
+[Azure 托管磁盘](../virtual-machines/managed-disks-overview.md)是推荐用于 Azure 虚拟机的磁盘存储产品/服务，可以持久存储数据。 将你的节点类型所基于的虚拟机规模集升级为使用托管磁盘，可以改善 Service Fabric 工作负荷的复原能力。 本文介绍了如何在只需群集短暂停机甚至无需其停机的前提下，将现有 Service Fabric 群集升级为使用 Azure 托管磁盘。
 
 将 Service Fabric 群集节点升级为使用托管磁盘的一般策略是：
 
@@ -27,6 +28,9 @@ ms.locfileid: "87426338"
 3. 验证群集和新节点是否正常，然后删除原始规模集，以及已删除的节点的节点状态。
 
 本文将引导你完成将示例群集的主要节点类型升级为使用托管磁盘的步骤，同时避免发生任何群集停机（参阅下面的注释）。 示例测试群集的初始状态包括一个[银级持久性](service-fabric-cluster-capacity.md#durability-characteristics-of-the-cluster)的节点类型，该节点类型由包含五个节点的单个规模集提供支持。
+
+> [!NOTE]
+> 基本 SKU 负载均衡器的限制会阻止添加其他规模集。 建议改为使用标准 SKU 负载均衡器。 有关详细信息，请参阅[两个 SKU 的比较](/load-balancer/skus)。
 
 > [!CAUTION]
 > 仅当你依赖于群集 DNS 时（例如，在访问 [Service Fabric Explorer](service-fabric-visualizing-your-cluster.md) 时），才会在此过程中遇到服务中断。 [适用于前端服务的体系结构最佳做法](https://docs.microsoft.com/azure/architecture/microservices/design/gateway)要求在你的节点类型的前面使用某种[负载均衡器](https://docs.microsoft.com/azure/architecture/guide/technology-choices/load-balancing-overview)，以便无需中断服务即可进行节点交换。
@@ -323,7 +327,7 @@ foreach($name in $nodeNames){
 
 使用 Service Fabric Explorer 来监视将种子节点迁移到新规模集的过程，以及原始规模集中的节点从“正在禁用”到“已禁用”状态的转换进度。 
 
-![显示已禁用节点状态的 Service Fabric Explorer](./media/upgrade-managed-disks/service-fabric-explorer-node-status.png)
+:::image type="content" source="./media/upgrade-managed-disks/service-fabric-explorer-node-status.png" alt-text="显示已禁用节点状态的 Service Fabric Explorer":::
 
 > [!NOTE]
 > 在原始规模集的所有节点上完成禁用操作可能需要一段时间。 为了保证数据一致性，每次只能更改一个种子节点。 每次进行种子节点更改都需要更新群集；因此，替换种子节点需要执行群集升级两次（添加和删除节点各需要执行一次）。 在此示例方案中升级 5 个种子节点需要执行群集升级 10 次。
@@ -346,7 +350,7 @@ Write-Host "Removed scale set $scaleSetName"
 
 在 Service Fabric Explorer 中，已删除的节点（因此也包括“群集运行状况”）现在会显示为“错误”状态。 
 
-![显示处于“错误”状态的已禁用节点的 Service Fabric Explorer](./media/upgrade-managed-disks/service-fabric-explorer-disabled-nodes-error-state.png)
+:::image type="content" source="./media/upgrade-managed-disks/service-fabric-explorer-disabled-nodes-error-state.png" alt-text="显示处于“错误”状态的已禁用节点的 Service Fabric Explorer":::
 
 从 Service Fabric 群集中删除已过时的节点可将“群集运行状况”还原为“正常”。
 
@@ -358,7 +362,7 @@ foreach($name in $nodeNames){
 }
 ```
 
-![Service Fabric Explorer，其中包含处于“错误”状态的已关闭节点](./media/upgrade-managed-disks/service-fabric-explorer-healthy-cluster.png)
+:::image type="content" source="./media/upgrade-managed-disks/service-fabric-explorer-healthy-cluster.png" alt-text="Service Fabric Explorer，其中包含处于“错误”状态的已关闭节点":::
 
 ## <a name="next-steps"></a>后续步骤
 
@@ -366,7 +370,7 @@ foreach($name in $nodeNames){
 
 了解如何：
 
-* [纵向扩展 Service Fabric 群集主节点类型](service-fabric-scale-up-node-type.md)
+* [纵向扩展 Service Fabric 群集主节点类型](service-fabric-scale-up-primary-node-type.md)
 
 * [将规模集模板转换为使用托管磁盘](../virtual-machine-scale-sets/virtual-machine-scale-sets-convert-template-to-md.md)
 

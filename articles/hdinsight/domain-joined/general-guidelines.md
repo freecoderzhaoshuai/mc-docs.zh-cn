@@ -7,12 +7,12 @@ ms.reviewer: jasonh
 ms.service: hdinsight
 ms.topic: conceptual
 ms.date: 02/13/2020
-ms.openlocfilehash: 8ddfa4993aee2966aab24d12ab435a6d027c27f8
-ms.sourcegitcommit: 362814dc7ac5b56cf0237b9016a67c35d8d72c32
+ms.openlocfilehash: 939865f0cdab9ead609de9a24878dfcb61efb759
+ms.sourcegitcommit: e1a0ea64b617b7f96655c29cd8edd69890cbd553
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/31/2020
-ms.locfileid: "87457498"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89592492"
 ---
 # <a name="enterprise-security-general-information-and-guidelines-in-azure-hdinsight"></a>Azure HDInsight 中的企业安全性常规信息和准则
 
@@ -62,7 +62,7 @@ ms.locfileid: "87457498"
 如果未启用分层命名空间，则：
 
 * 没有继承的权限。
-* 能够使用的唯一文件系统权限是**存储数据 XXXX** RBAC 角色，该角色直接在 Azure 门户中分配给用户。
+* 能够使用的唯一文件系统权限是**存储数据 XXXX** Azure 角色，该角色直接在 Azure 门户中分配给用户。
 
 ### <a name="default-hdfs-permissions"></a>默认的 HDFS 权限
 

@@ -2,20 +2,20 @@
 title: AKS 业务连续性和灾难恢复的最佳做法
 description: 了解群集操作员的最佳做法，以最大程度实现应用程序的正常运行时间，提供高可用性，并为 Azure Kubernetes 服务 (AKS) 中的灾难恢复情况做好准备。
 services: container-service
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 11/28/2018
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
 ms.custom: fasttrack-edit
-ms.openlocfilehash: 117c3bfff73d76c521dea2820fd0cb749eb44ce5
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: c9c159887d69cf1e62956328387b909ca80ce7bd
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842627"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021271"
 ---
 # <a name="best-practices-for-business-continuity-and-disaster-recovery-in-azure-kubernetes-service-aks"></a>Azure Kubernetes 服务 (AKS) 中实现业务连续性和灾难恢复的最佳做法
 
@@ -95,7 +95,7 @@ AKS 区域可用性和配对区域是共同考虑的因素。 将 AKS 群集部�
 
 状态可以外部化或与操作状态的代码共存。 通常，你会使用一个数据库或其他数据存储（在网络中不同计算机上运行或同一计算机进程外部运行）来实现状态的外部化。
 
-当容器和微服务中运行的进程不保持状态时，它们最有弹性。 由于应用程序几乎始终包含某种状态，因此请使用 Azure Database for MySQL、Azure Database for PostgreSQL 或 Azure SQL 数据库等 PaaS 解决方案。
+当容器和微服务中运行的进程不保持状态时，它们最有弹性。 由于应用程序几乎始终包含某种状态，因此请使用 Azure Cosmos DB、Azure Database for PostgreSQL、Azure Database for MySQL 或 Azure SQL 数据库等 PaaS 解决方案。
 
 如何构建可移植的应用程序，请参阅以下指导原则：
 
@@ -124,7 +124,7 @@ AKS 区域可用性和配对区域是共同考虑的因素。 将 AKS 群集部�
 如果使用 Azure 托管磁盘，可以选择如下所述的复制和 DR 解决方案：
 
 * [Azure 上的 Velero](https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure/blob/master/README.md)
-* [Azure Site Recovery](https://azure.microsoft.com/blog/asr-managed-disks-between-azure-regions/)
+* [Azure 备份](../backup/backup-overview.md)
 
 ### <a name="application-based-asynchronous-replication"></a>基于应用程序的异步复制
 

@@ -7,20 +7,21 @@ author: HeidiSteen
 ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
-origin.date: 06/03/2020
-ms.date: 07/02/2020
-ms.openlocfilehash: 31c96e7824afdfb0e79dccea93223f9e6bfb74f4
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+origin.date: 08/01/2020
+ms.date: 09/10/2020
+ms.custom: references_regions
+ms.openlocfilehash: 89e61b3f79644cd9a7f25516c48734628fe1c7ca
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471842"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020904"
 ---
 # <a name="security-in-azure-cognitive-search---overview"></a>Azure 认知搜索中的安全性 - 概述
 
-本文介绍 Azure 认知搜索中可以保护内容和操作的关键安全功能。 
+本文介绍 Azure 认知搜索中可以保护内容和操作的关键安全功能。
 
-+ 在存储层上，静态加密是在平台级别进行的，但对于想要对用户自有密钥和 Microsoft 托管密钥提供双重保护的客户，认知搜索还提供了“双重加密”选项。
++ 在存储层上，对保存到磁盘的所有服务托管内容（包括索引、同义词映射以及索引器、数据源和技能组的定义）都内置了静态加密。 Azure 认知搜索还支持添加客户管理的密钥 (CMK)，以对索引内容进行双重加密。 对于 2020 年 8 月 1 日后创建的服务，CMK 加密延伸到临时磁盘上的数据，以对索引内容进行完全双重加密。
 
 + 入站安全性通过不断提升的安全性级别来保护搜索服务终结点：从请求所使用的 API 密钥到防火墙中的入站规则，再到全面保护服务不受公共 Internet 影响的专用终结点。
 
@@ -32,39 +33,49 @@ Watch this fast-paced video for an overview of the security architecture and eac
 > [!VIDEO https://channel9.msdn.com/Shows/AI-Show/Azure-Cognitive-Search-Whats-new-in-security/player]
 -->
 
+<a name="encryption"></a>
+
 ## <a name="encrypted-transmissions-and-storage"></a>加密的传输和存储
 
-在 Azure 认知搜索中，加密无处不在：从连接和传输开始，一直延伸到磁盘上存储的内容。 对于公共 Internet 上的搜索服务，Azure 认知搜索会侦听 HTTPS 端口 443。 客户端到服务的所有连接都使用 TLS 1.2 加密。 不支持更早的版本（1.0 或 1.1）。
+在 Azure 认知搜索中，加密从连接和传输开始，一直延伸到磁盘上存储的内容。 对于公共 Internet 上的搜索服务，Azure 认知搜索会侦听 HTTPS 端口 443。 客户端到服务的所有连接都使用 TLS 1.2 加密。 不支持更早的版本（1.0 或 1.1）。
 
-### <a name="data-encryption-at-rest"></a>静态数据加密
+<!-- For data handled internally by the search service, the following table describes the [data encryption models](../security/fundamentals/encryption-models.md). Some features, such as knowledge store, incremental enrichment, and indexer-based indexing, read from or write to data structures in other Azure Services. Those services have their own levels of encryption support separate from Azure Cognitive Search. -->
 
-Azure 认知搜索存储了索引定义和内容、数据源定义、索引器定义、技能组定义和同义词映射。
+| 建模 | 密钥&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 要求&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 限制 | 适用于 |
+|------------------|-------|-------------|--------------|------------|
+| 服务器端加密 | Microsoft 管理的密钥 | 无（内置） | 无，可在所有层级、所有区域使用，适用于 2018 年 1 月 24 日后创建的内容。 | 内容（索引和同义词映射）和定义（索引器、数据源、技能组） |
+| 服务器端加密 | 客户管理的密钥 | Azure Key Vault | 可在计费层级、所有区域使用，适用于 2019 年 1 月后创建的内容。 | 数据磁盘上的内容（索引和同义词映射） |
+| 服务器端双重加密 | 客户管理的密钥 | Azure Key Vault | 可在计费层级、所选区域使用，适用于 2020 年 8 月 1 日后的搜索服务。 | 数据磁盘和临时磁盘上的内容（索引和同义词映射） |
 
-在整个存储层中，系统使用 Microsoft 管理的密钥在磁盘上对数据进行加密。 你无法在门户中或以编程方式启用或禁用加密，或者查看加密设置。 加密已完全内部化，对完成索引所需的时间或索引大小并无显著影响。 加密自动对所有索引进行，包括对未完全加密的索引（在 2018 年 1 月前创建）的增量更新。
+### <a name="service-managed-keys"></a>服务托管的密钥
 
-在内部，加密基于 [Azure 存储服务加密](../storage/common/storage-service-encryption.md)，使用 256 位 AES 加密进行。
+服务托管加密是一种基于 [Azure 存储服务加密](../storage/common/storage-service-encryption.md)的 Microsoft 内部操作，使用 256 位 [AES 加密](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard)进行。 加密自动对所有索引进行，包括对未完全加密的索引（在 2018 年 1 月前创建）的增量更新。
 
-> [!NOTE]
-> 静态加密已于 2018 年 1 月 24 日宣布推出并应用于所有区域中的所有服务层级，包括免费层。 对于完全加密，必须删除该日期之前创建的索引并重新生成，以便进行加密。 否则，仅对 1 月 24 日以后添加的新数据进行加密。
+### <a name="customer-managed-keys-cmk"></a>客户管理的密钥 (CMK)
 
-### <a name="customer-managed-key-cmk-encryption"></a>客户管理的密钥 (CMK) 加密
+客户管理的密钥需要额外的计费服务 Azure Key Vault，它与 Azure 认知搜索可以位于不同区域，但需位于同一订阅下。 启用 CMK 加密会增大索引大小，降低查询性能。 根据迄今为止的观察结果，查询时间预期会增加 30%-60%，不过，实际性能根据索引定义和查询类型而有所不同。 由于这种性能影响，我们建议仅对真正需要此功能的索引启用此功能。 有关详细信息，请参阅[在 Azure 认知搜索中配置客户管理的加密密钥](search-security-manage-encryption-keys.md)。
 
-对于想要获得额外存储保护的客户，可以在磁盘上存储和加密数据和对象之前，对这些数据和对象进行加密。 此方法基于通过 Azure 密钥保管库管理和存储并独立于 Microsoft 的用户自有密钥。 在磁盘上加密内容之前对其进行加密称为“双重加密”。 目前，可以有选择地对索引和同义词映射进行双重加密。 有关详细信息，请参阅 [Azure 认知搜索中客户管理的加密密钥](search-security-manage-encryption-keys.md)。
+<a name="double-encryption"></a>
 
-> [!NOTE]
-> CMK 加密常用于 2019 年 1 月之后创建的搜索服务。 免费（共享）服务不支持此功能。 
->
->启用此功能会增大索引大小，降低查询性能。 根据迄今为止的观察结果，查询时间预期会增加 30%-60%，不过，实际性能根据索引定义和查询类型而有所不同。 由于这种性能影响，我们建议仅对真正需要此功能的索引启用此功能。
+### <a name="double-encryption"></a>双重加密
+
+在 Azure 认知搜索中，双重加密是 CMK 的扩展。 可理解为双层加密（先通过 CMK 加密，然后再由服务托管的密钥加密），其使用范围广泛，包含写入数据磁盘的长期存储以及写入临时磁盘的短期存储。 CMK 在 2020 年 8 月 1 日之前和之后的差异在于，该日期之后，它将对临时磁盘上的静态数据进行额外加密，这也是使 CMK 成为 Azure 认知搜索中双重加密功能的原因。
+
+对于 8 月 1 日后在这些区域中创建的新服务，目前可以使用双重加密：
+
++ 中国东部 2
 
 <a name="service-access-and-authentication"></a>
 
 ## <a name="inbound-security-and-endpoint-protection"></a>入站安全性和终结点保护
 
-入站安全性功能通过不断提升的安全性和复杂性级别来保护搜索服务终结点。 首先，所有请求都需要 API 密钥才能进行经过身份验证的访问。 其次，你可以选择设置防火墙规则，以限制对特定 IP 地址的访问。 为了提供高级保护，第三个选项是启用 Azure 专用链接来保护服务终结点不受所有 Internet 流量的影响。
+入站安全性功能通过不断提升的安全性和复杂性级别来保护搜索服务终结点。 首先，所有请求都需要 API 密钥才能进行经过身份验证的访问。 其次，你可以选择设置防火墙规则，以限制对特定 IP 地址的访问。
+
+<!-- For advanced protection, a third option is to enable Azure Private Link to shield your service endpoint from all internet traffic. -->
 
 ### <a name="public-access-using-api-keys"></a>使用 API 密钥进行公共访问
 
-默认情况下，将使用基于密钥的身份验证（用于对搜索服务终结点进行管理员或查询访问）通过公有云来访问搜索服务。 API 密钥是随机生成的数字和字母所组成的字符串。 密钥的类型（管理员或查询）确定访问的级别。 提交有效密钥被视为请求源自受信任实体的证明。 
+默认情况下，将使用基于密钥的身份验证（用于对搜索服务终结点进行管理员或查询访问）通过公有云来访问搜索服务。 API 密钥是随机生成的数字和字母所组成的字符串。 密钥的类型（管理员或查询）确定访问的级别。 提交有效密钥被视为请求源自受信任实体的证明。
 
 有两个搜索服务访问级别，可通过以下 API 密钥启用它们：
 
@@ -82,7 +93,7 @@ Azure 认知搜索存储了索引定义和内容、数据源定义、索引器�
 
 To further control access to your search service, you can create inbound firewall rules that allow access to specific IP address or a range of IP addresses. All client connections must be made through an allowed IP address, or the connection is denied.
 
-You can use the portal to [configure inbound access](service-configure-firewall.md). 
+You can use the portal to [configure inbound access](service-configure-firewall.md).
 
 Alternatively, you can use the management REST APIs. API version 2020-03-13, with the [IpRule](https://docs.microsoft.com/rest/api/searchmanagement/2019-10-01-preview/createorupdate-service#IpRule) parameter, allows you to restrict access to your service by identifying IP addresses, individually or in a range, that you want to grant access to your search service.  -->
 
@@ -111,7 +122,7 @@ If you require granular, per-user control over search results, you can build sec
 
 ## Administrative rights
 
-[Role-based access (RBAC)](../role-based-access-control/overview.md) is an authorization system built on [Azure Resource Manager](../azure-resource-manager/management/overview.md) for provisioning of Azure resources. In Azure Cognitive Search, Resource Manager is used to create or delete the service, manage API keys, and scale the service. As such, RBAC role assignments will determine who can perform those tasks, regardless of whether they are using the [portal](search-manage.md), [PowerShell](search-manage-powershell.md), or the [Management REST APIs](https://docs.microsoft.com/rest/api/searchmanagement/search-howto-management-rest-api).
+[Azure role-based access control (Azure RBAC)](../role-based-access-control/overview.md) is an authorization system built on [Azure Resource Manager](../azure-resource-manager/management/overview.md) for provisioning of Azure resources. In Azure Cognitive Search, Resource Manager is used to create or delete the service, manage API keys, and scale the service. As such, Azure role assignments will determine who can perform those tasks, regardless of whether they are using the [portal](search-manage.md), [PowerShell](search-manage-powershell.md), or the [Management REST APIs](https://docs.microsoft.com/rest/api/searchmanagement/search-howto-management-rest-api).
 
 In contrast, admin rights over content hosted on the service, such as the ability to create or delete an index, is conferred through API keys as described in the [previous section](#index-access).
 
@@ -127,5 +138,5 @@ Azure Cognitive Search has been certified compliant for multiple global, regiona
 ## <a name="see-also"></a>另请参阅
 
 + [Azure 安全基础知识](../security/fundamentals/index.yml)
-+ [Azure 安全性](https://docs.azure.cn/security)
++ [Azure 安全性](https://azure.microsoft.com/overview/security)
 + [Azure 安全中心](../security-center/index.yml)

@@ -11,13 +11,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: carlrab
 origin.date: 01/14/2019
-ms.date: 07/13/2020
-ms.openlocfilehash: 70f9daf9d5dcd9621259cda1eb661a3c093300ad
-ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+ms.date: 09/14/2020
+ms.openlocfilehash: 0e411bd89e7bf57a1635a9e9584d95fc7cddd277
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86227709"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014207"
 ---
 # <a name="tutorial-set-up-sql-data-sync-between-databases-in-azure-sql-database-and-sql-server"></a>教程：设置 Azure SQL 数据库和 SQL Server 的数据库之间的 SQL 数据同步
 [!INCLUDE[appliesto-sqldb](../includes/appliesto-sqldb.md)]
@@ -60,7 +60,7 @@ ms.locfileid: "86227709"
    | ------------------------------ | ------------------------------------------------- |
    | **同步组名称** | 输入新同步组的名称。 此名称不同于数据库本身的名称。 |
    | **同步元数据数据库** | 选择创建数据库（推荐）或使用现有数据库。<br/><br/>如果选择“新建数据库”，请选择“创建新数据库” 。 然后在“SQL 数据库”页中，命名并配置新数据库，再选择“确定” 。<br/><br/>如果选择“使用现有数据库”，请从列表中选择数据库。 |
-   | **自动同步** | 选择“开”或“关” 。<br/><br/>如果选择“开”，请在“同步频率”部分中输入数字，然后选择“秒”、“分钟”、“小时”或“天”     。 |
+   | **自动同步** | 选择“开”或“关” 。<br/><br/>如果选择“开”，请在“同步频率”部分中输入数字，然后选择“秒”、“分钟”、“小时”或“天”     。<br/> 从保存配置的时间开始，经过所选的间隔时间后，第一次同步开始。|
    | **冲突解决方法** | 选择“中心胜出”或“成员胜出” 。<br/><br/>“中心胜出”表示发生冲突时，中心数据库中的数据将覆盖成员数据库中的冲突数据。<br/><br/>“成员胜出”表示发生冲突时，成员数据库中的数据将覆盖中心数据库中的冲突数据。 |
 
    > [!NOTE]

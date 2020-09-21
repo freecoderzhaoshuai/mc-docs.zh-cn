@@ -1,26 +1,18 @@
 ---
-title: 在 Azure 中使用 cloud-init 设置 Linux VM 的主机名 | Azure
+title: 使用 cloud-init 设置 Linux VM 的主机名 | Azure
 description: 如何通过 Azure CLI 使用 cloud-init 在创建期间自定义 Linux VM
-services: virtual-machines-linux
-documentationcenter: ''
 author: Johnnytechn
-manager: digimobile
-editor: ''
-tags: azure-resource-manager
 ms.service: virtual-machines-linux
-ms.workload: infrastructure-services
-ms.tgt_pltfrm: vm-linux
-ms.devlang: azurecli
-ms.topic: article
+ms.topic: how-to
 origin.date: 11/29/2017
-ms.date: 04/13/2020
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.openlocfilehash: bfae2f798b15e4c1f0853dc9dda1c234c81b8afb
-ms.sourcegitcommit: ebedf9e489f5218d4dda7468b669a601b3c02ae5
+ms.openlocfilehash: 35be9478bebe4c649fb187796c0ad70f7d6517fc
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2020
-ms.locfileid: "82159157"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057607"
 ---
 # <a name="use-cloud-init-to-set-hostname-for-a-linux-vm-in-azure"></a>在 Azure 中使用 cloud-init 设置 Linux VM 的主机名
 本文演示如何在 Azure 中使用 [cloud-init](https://cloudinit.readthedocs.io) 在预配时间配置虚拟机 (VM) 或虚拟机规模集 (VMSS) 上特定的主机名。 Azure 预配资源后，这些 cloud-init 脚本即会在第一次启动时运行。 有关 cloud-init 如何在 Azure 以及受支持的 Linux 发行版中本机工作的详细信息，请参阅 [cloud-init 概述](using-cloud-init.md)

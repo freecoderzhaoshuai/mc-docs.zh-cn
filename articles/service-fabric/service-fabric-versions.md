@@ -3,22 +3,25 @@ title: Azure Service Fabric 中支持的群集版本
 description: 了解 Azure Service Fabric 中的群集版本，包括指向 Service Fabric 团队博客中最新版本的链接。
 ms.topic: troubleshooting
 origin.date: 06/15/2020
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 06/08/2020
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: c85e9a7f07ca1dd53755dec96c431b2b9515cf3f
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 1c375c12d1d2661611bc4795657317fb807136cc
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426463"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655710"
 ---
 # <a name="supported-service-fabric-versions"></a>支持的 Service Fabric 版本
 
 请确保群集始终运行受支持的 Azure Service Fabric 版本。 在公告新版 Service Fabric 的发布日期以后，至少还要过 60 天我们才会结束对旧版本的支持。 可以在 [Service Fabric 团队博客](https://blogs.msdn.microsoft.com/azureservicefabric/)中找到有关新版本的公告。
 
 <!--URL Correct on https://blogs.msdn.microsoft.com/azureservicefabric/-->
+
+对于给定版本的 Service Fabric 运行时，可以使用指定版本或较旧版本的 SDK/NuGet 包。 较新版本的包不受支持，并且在针对较旧群集时可能会产生问题，因为它们可能具有这些环境不支持的功能或协议更改。
 
 若要详细了解如何使群集始终运行受支持的 Service Fabric 版本，请参阅以下文档：
 
@@ -43,12 +46,14 @@ ms.locfileid: "87426463"
 | 6.3.* | 6.1.480.* |版本 3.2 或更低版本 |2019 年 3 月 31 日  |
 | 6.4.* | 6.2.301.* |版本 3.3 或更低版本 |2019 年 9 月 15 日 |
 | 6.5.* | 6.4.617.* |低于或等于版本 3.4 |2020 年 8 月 1 日 |
-| 7.0.466.* | 6.4.664.* |低于或等于版本 4.0|2020 年 8 月 1 日  |
-| 7.0.466.* | 6.5.* |低于或等于版本 4.0|2020 年 8 月 1 日 |
-| 7.0.470.* | 7.0.466.* |低于或等于版本 4.0 |2020 年 8 月 1 日  |
-| 7.0.472.* | 7.0.466.* |低于或等于版本 4.0 |2020 年 8 月 1 日  |
-| 7.1.409.* | 7.0.466.* |低于或等于版本 4.0 |当前版本，因此无结束日期 |
-| 7.1.417.* | 7.0.466.* |低于或等于版本 4.0 |当前版本，因此无结束日期 |
+| 7.0.466.* | 6.4.664.* |低于或等于版本 4.0|2020 年 11 月 1 日  |
+| 7.0.466.* | 6.5.* |低于或等于版本 4.0|2020 年 11 月 1 日 |
+| 7.0.470.* | 7.0.466.* |低于或等于版本 4.0 |2020 年 11 月 1 日  |
+| 7.0.472.* | 7.0.466.* |低于或等于版本 4.0 |2020 年 11 月 1 日  |
+| 7.1.409.* | 7.0.466.* |低于或等于版本 4.1 |当前版本，因此无结束日期 |
+| 7.1.417.* | 7.0.466.* |低于或等于版本 4.1 |当前版本，因此无结束日期 |
+| 7.1.428.* | 7.0.466.* |低于或等于版本 4.1 |当前版本，因此无结束日期 |
+| 7.1.456.* | 7.0.466.* |低于或等于版本 4.1 |当前版本，因此无结束日期 |
 
 ## <a name="supported-operating-systems"></a>支持的操作系统
 
@@ -119,5 +124,7 @@ ms.locfileid: "87426463"
 | 7.0 CU6 | 7.0.472.9590 | 7.0.471.1 |
 | 7.1 RTO | 7.1.409.9590 | 7.1.410.1 |
 | 7.1 CU1 | 7.1.417.9590 | 7.1.418.1 |
+| 7.1 CU2 | 7.1.428.9590 | 7.1.428.1 |
+| 7.1 CU3 | 7.1.456.9590 | 7.1.452.1 |
 
 <!-- Update_Description: update meta properties, wording update, update link -->

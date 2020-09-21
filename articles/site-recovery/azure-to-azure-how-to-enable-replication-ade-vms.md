@@ -1,19 +1,21 @@
 ---
 title: 在 Azure Site Recovery 中为加密 Azure VM 启用复制
 description: 本文介绍如何使用 Site Recovery 对启用了 Azure 磁盘加密的 VM 配置从一个 Azure 区域到另一个区域的 Azure VM 复制。
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.service: site-recovery
 ms.topic: article
 origin.date: 08/08/2019
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: 794a912bc6fbabbf580888a393417659e24961be
-ms.sourcegitcommit: 5ae04a3b8e025986a3a257a6ed251b575dbf60a1
+ms.openlocfilehash: 655194ca460946b6d6c7ac5a43831daef568a54b
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2020
-ms.locfileid: "84440429"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655589"
 ---
 # <a name="replicate-azure-disk-encryption-enabled-virtual-machines-to-another-azure-region"></a>将启用了 Azure 磁盘加密的虚拟机复制到另一个 Azure 区域
 
@@ -45,11 +47,11 @@ Site Recovery 要求用户具有在目标区域中创建密钥保管库以及将
 
 1. 转到“主页” > “Keyvaults” > “ContosoWeb2KeyVault”>“访问策略”。  
 
-    ![“Key Vault 权限”窗口](./media/azure-to-azure-how-to-enable-replication-ade-vms/key-vault-permission-1.png)
+    :::image type="content" source="./media/azure-to-azure-how-to-enable-replication-ade-vms/key-vault-permission-1.png" alt-text="“Key Vault 权限”窗口":::
 
 2. 可以发现目前没有任何用户权限。 选择“添加新订阅”。 输入用户和权限信息。
 
-    ![keyvault 权限](./media/azure-to-azure-how-to-enable-replication-ade-vms/key-vault-permission-2.png)
+    :::image type="content" source="./media/azure-to-azure-how-to-enable-replication-ade-vms/key-vault-permission-2.png" alt-text="keyvault 权限":::
 
 如果启用灾难恢复 (DR) 的用户无权复制密钥，则拥有相应权限的安全管理员可使用以下脚本将加密机密和密钥复制到目标区域。
 
@@ -67,10 +69,12 @@ Site Recovery 要求用户具有在目标区域中创建密钥保管库以及将
     
     > [!NOTE]
     > 执行此脚本之前，请替换以下项，使之与 Azure 中国云环境匹配。
-    > 1. **Get-Authentication** 函数 *请将 `https://vault.azure.net` 替换为 `https://vault.azure.cn`。
-    >     *将 `https://login.windows.net` 替换为 `https://login.chinacloudapi.cn`。
-    > 2. Start-CopyKeys 函数 *请将 `Login-AzAccount` 替换为“Login-AzAccount -Environment AzureChinaCloud”。
-    >     \* 请将 `vault.azure.net`替换为“vault.azure.cn”。
+    > 1. `Get-Authentication` 函数
+    >     * 将 `https://vault.azure.net` 替换为 `https://vault.azure.cn`。
+    >     * 将 `https://login.windows.net` 替换为 `https://login.chinacloudapi.cn`。
+    > 2. `Start-CopyKeys` 函数
+    >     * 将 `Login-AzAccount` 替换为 `Login-AzAccount -Environment AzureChinaCloud`。
+    >     * 将 `vault.azure.net` 替换为 `vault.azure.cn`。
     
     <!--MOONCAKE: CUSTOMIZE-->
     
@@ -106,7 +110,7 @@ Site Recovery 要求用户具有在目标区域中创建密钥保管库以及将
     - **目标位置**：要在其中复制源虚拟机数据的位置。 Site Recovery 根据所选计算机的位置提供合适的目标区域列表。 我们建议使用与恢复服务保管库位置相同的位置。
     - **目标订阅**：用于灾难恢复的目标订阅。 默认情况下，目标订阅与源订阅相同。
     - **目标资源组**：复制的虚拟机所属的资源组。 默认情况下，Site Recovery 会在目标区域中创建一个新的资源组， 其名称带有“asr”后缀。 如果已存在 Azure Site Recovery 创建的资源组，将会重复使用它。 此外，可按以下部分所述，选择对资源组进行自定义。 目标资源组的位置可以是除托管源虚拟机区域以外的任何 Azure 区域。
-    - **目标虚拟网络**：默认情况下，Site Recovery 会在目标区域中创建一个新的虚拟网络， 其名称带有“asr”后缀。 此虚拟网络会映射到源网络并用于任何将来的保护。 [详细了解](site-recovery-network-mapping-azure-to-azure.md)网络映射。
+    - **目标虚拟网络**：默认情况下，Site Recovery 会在目标区域中创建一个新的虚拟网络， 其名称带有“asr”后缀。 此虚拟网络会映射到源网络并用于任何将来的保护。 [详细了解](./azure-to-azure-network-mapping.md)网络映射。
     - **目标存储帐户（如果源 VM 不使用托管磁盘）** ：默认情况下，Site Recovery 会创建模拟源 VM 存储配置的新目标存储帐户。 如果已存在一个存储帐户，将重复使用它。
     - **副本托管磁盘（如果源 VM 使用托管磁盘）** ：Site Recovery 在目标区域新建托管磁盘副本，以生成和源 VM 的托管磁盘存储类型一致（标准或高级）的镜像磁盘。
     - **缓存存储帐户**：Site Recovery 需要源区域中称为“缓存存储”的额外存储帐户。 源 VM 上的所有更改将受到跟踪并发送到缓存存储帐户。 它们随后会复制到目标位置。
@@ -144,7 +148,7 @@ Site Recovery 要求用户具有在目标区域中创建密钥保管库以及将
 
 可以使用[一个脚本](#copy-disk-encryption-keys-to-the-dr-region-by-using-the-powershell-script)将加密密钥复制到目标区域，然后在“恢复服务保管库” > “复制的项” > “属性” > “计算和网络”中更新目标加密设置 。
 
-![“更新 ADE 设置”对话框窗口](./media/azure-to-azure-how-to-enable-replication-ade-vms/update-ade-settings.png)
+:::image type="content" source="./media/azure-to-azure-how-to-enable-replication-ade-vms/update-ade-settings.png" alt-text="“更新 ADE 设置”对话框窗口":::
 
 <a name="trusted-root-certificates-error-code-151066"></a>
 ## <a name="troubleshoot-key-vault-permission-issues-during--azure-to-azure-vm-replication"></a>排查执行 Azure 到 Azure 的 VM 复制期间出现的 Key Vault 权限问题
@@ -173,5 +177,4 @@ Azure Site Recovery 至少需要源区域密钥保管库的读取权限和目标
 
 [详细了解](site-recovery-test-failover-to-azure.md)如何运行测试故障转移。
 
-<!-- Update_Description: wording update  -->
-
+<!-- Update_Description: update meta properties, wording update, update link -->

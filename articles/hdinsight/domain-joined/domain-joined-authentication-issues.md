@@ -7,12 +7,12 @@ ms.reviewer: jasonh
 ms.service: hdinsight
 ms.topic: troubleshooting
 ms.date: 11/08/2019
-ms.openlocfilehash: 4c12bf0e4b8fd44933745d63ce935e039d2d9ea5
-ms.sourcegitcommit: 362814dc7ac5b56cf0237b9016a67c35d8d72c32
+ms.openlocfilehash: 504e72522de09ee19f2a7427e0f0ac1a03e54bd3
+ms.sourcegitcommit: e1a0ea64b617b7f96655c29cd8edd69890cbd553
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/31/2020
-ms.locfileid: "87457497"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89592493"
 ---
 # <a name="authentication-issues-in-azure-hdinsight"></a>Azure HDInsight 中的身份验证问题
 
@@ -82,7 +82,7 @@ Azure AD 租户的公司管理员应该允许 Azure AD 为 ADFS 支持的用户�
 
 ---
 
-## <a name="invalid_grant-or-unauthorized_client-50053"></a>invalid_grant 或 unauthorized_client，50053
+## <a name="invalid_grant-or-unauthorized_client-50053-2"></a>invalid_grant 或 unauthorized_client，50053 (#2)
 
 ### <a name="issue"></a>问题
 
@@ -154,7 +154,7 @@ Kinit 失败。
 
 * 如果可以使用本地 Ambari 管理员登录到 Ambari，请查看用户列表。
 
-* 如果你有[已加入域的 Windows 计算机](../../active-directory-domain-services/manage-domain.md)，则可以使用标准 Windows AD 工具进行浏览。 这需要一个在域中正常工作的帐户。
+* 如果你有[已加入域的 Windows 计算机](../../active-directory-domain-services/tutorial-create-management-vm.md)，则可以使用标准 Windows AD 工具进行浏览。 这需要一个在域中正常工作的帐户。
 
 * 在头节点中，你可以使用 SAMBA 命令进行搜索。 这需要一个有效的 Kerberos 会话（成功的 kinit）。 net ads search "(userPrincipalName=bob*)"
 
@@ -208,7 +208,7 @@ Kinit 失败，`Preauthentication` 失败。
 
 * 对于 Azure Data Lake Storage Gen1，请清除浏览器缓存并再次登录到 Ambari。
 
-* 对于 Azure Data Lake Storage Gen2，请针对用户尝试以其身份登录的用户运行 `/usr/lib/hdinsight-common/scripts/RegisterKerbWithOauth.sh <upn>`
+* 对于 Azure Data Lake Storage Gen2，请针对用户尝试以其身份登录的用户运行 `/usr/lib/hdinsight-common/scripts/RegisterKerbTicketAndOAuth.sh <upn>`
 
 ---
 

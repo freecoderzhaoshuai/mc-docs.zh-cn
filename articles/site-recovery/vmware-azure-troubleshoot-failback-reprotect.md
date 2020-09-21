@@ -1,21 +1,21 @@
 ---
 title: 使用 Azure Site Recovery 解决 VMware VM 灾难恢复中的故障回复
 description: 本文介绍了在 VMware VM 灾难恢复到 Azure 期间使用 Azure Site Recovery 排查故障回复和重新保护问题的方法。
-author: rockboyfor
 manager: digimobile
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 11/27/2018
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 01/13/2020
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 0a79161530bd1ee05937102a19a1a4e65f2c7eef
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 8556d2ab46b72e89e1c9233b381665d219e5cd7f
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426497"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655276"
 ---
 # <a name="troubleshoot-failback-to-on-premises-from-azure"></a>排查从 Azure 到本地的故障回复问题
 
@@ -32,7 +32,7 @@ ms.locfileid: "87426497"
 - 如果无法从进程服务器访问配置服务器，请使用 Telnet 在端口 443 上检查与配置服务器的连接。 也可以尝试从进程服务器 ping 配置服务器。 连接到配置服务器后，进程服务器也应会发出检测信号。
 - 作为物理本地服务器保护的 Windows Server 2008 R2 SP1 服务器无法从 Azure 故障回复到本地站点。
 - 在以下情况下无法进行故障回复：
-    - 已将计算机迁移到 Azure。 [了解详细信息](migrate-overview.md#what-do-we-mean-by-migration)。
+    - 已将计算机迁移到 Azure。 
     - 已将 VM 移到另一个资源组。
     - 已删除 Azure VM。
     - 已对 VM 禁用保护。
@@ -66,7 +66,7 @@ ms.locfileid: "87426497"
 若要解决此问题，请执行下列操作：
 
 * 选择另一台主机上的另一个主目标服务器，以便重新保护在该主机上创建虚拟机，从而确保名称不发生冲突。
-* 还可以使用 vMotion 将主目标服务器移到另一台主机，这样就不会发生名称冲突。 如果现有 VM 是孤立的虚拟机，请将其重命名，以便在同一 ESXi 主机上创建新的 VM。
+* 还可以使用 VMotion 将主目标服务器移到另一台主机，这样就不会发生名称冲突。 如果现有 VM 是孤立的虚拟机，请将其重命名，以便在同一 ESXi 主机上创建新的 VM。
 
 ### <a name="error-code-78093"></a>错误代码 78093
 
@@ -98,6 +98,6 @@ VM 未运行、未响应或无法访问。
 若要解决此问题，请执行下列操作：
 
 * 可以在 ESXi 主机上预配更多内存。
-* 另外，可以使用 vMotion 将 VM 迁移到另一台有足够内存的 ESXi 主机上以启动 VM。
+* 另外，可以使用 VMotion 将 VM 迁移到另一台有足够内存的 ESXi 主机上以启动 VM。
 
 <!-- Update_Description: update meta properties, wording update, update link -->

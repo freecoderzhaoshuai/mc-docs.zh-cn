@@ -5,16 +5,17 @@ description: 了解如何为 Azure Kubernetes 服务 (AKS) 群集更新或重置
 services: container-service
 ms.topic: article
 origin.date: 03/11/2019
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
-ms.openlocfilehash: aba38e98749ef64c00151f025daeaec89b4bae9b
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: f903c30e182d4a9d806bc66fe0941a0af4c35faa
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842616"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021533"
 ---
 # <a name="update-or-rotate-the-credentials-for-azure-kubernetes-service-aks"></a>更新或轮换 Azure Kubernetes 服务 (AKS) 的凭据
 
@@ -35,7 +36,8 @@ ms.locfileid: "87842616"
 * 为现有服务主体更新凭据。
 * 创建新服务主体并更新群集以使用这些新凭据。 
 
-> ![警告] 如果选择创建新服务主体，那么更新大型 AKS 群集以使用这些凭据可能需要很长时间才能完成。
+> [!WARNING]
+> 如果选择创建新服务主体，那么更新大型 AKS 群集以使用这些凭据可能需要很长时间才能完成。
 
 ### <a name="check-the-expiration-date-of-your-service-principal"></a>检查服务主体的到期日期
 
@@ -132,14 +134,14 @@ az aks update-credentials \
 
 <!-- LINKS - internal -->
 
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
-[az-aks-show]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-show
-[az-aks-update-credentials]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-update-credentials
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
+[az-aks-show]: https://docs.microsoft.com/cli/azure/aks#az_aks_show
+[az-aks-update-credentials]: https://docs.microsoft.com/cli/azure/aks#az_aks_update_credentials
 [best-practices-identity]: operator-best-practices-identity.md
 [aad-integration]: ./azure-ad-integration-cli.md
 [create-aad-app]: ./azure-ad-integration-cli.md#create-azure-ad-server-component
-[az-ad-sp-create]: https://docs.azure.cn/cli/ad/sp?view=azure-cli-latest#az-ad-sp-create-for-rbac
-[az-ad-sp-credential-list]: https://docs.azure.cn/cli/ad/sp/credential?view=azure-cli-latest#az-ad-sp-credential-list
-[az-ad-sp-credential-reset]: https://docs.azure.cn/cli/ad/sp/credential?view=azure-cli-latest#az-ad-sp-credential-reset
+[az-ad-sp-create]: https://docs.azure.cn/cli/ad/sp#az-ad-sp-create-for-rbac
+[az-ad-sp-credential-list]: https://docs.azure.cn/cli/ad/sp/credential#az-ad-sp-credential-list
+[az-ad-sp-credential-reset]: https://docs.azure.cn/cli/ad/sp/credential#az-ad-sp-credential-reset
 
 <!-- Update_Description: update meta properties, wording update, update link -->

@@ -5,14 +5,14 @@ author: WenJason
 ms.author: v-jay
 ms.service: postgresql
 ms.topic: conceptual
-origin.date: 07/10/2020
-ms.date: 08/17/2020
-ms.openlocfilehash: 53d4e88f9ee749755bde1ad3931476c73c35a787
-ms.sourcegitcommit: 3cf647177c22b24f76236c57cae19482ead6a283
+origin.date: 08/10/2020
+ms.date: 09/14/2020
+ms.openlocfilehash: 72774d23cfd8bf077c8c16331d4eb5b534f9f341
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/10/2020
-ms.locfileid: "88029691"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512918"
 ---
 # <a name="read-replicas-in-azure-database-for-postgresql---single-server"></a>Azure Database for PostgreSQL（单一服务器）中的只读副本
 
@@ -147,16 +147,19 @@ AS total_log_delay_in_bytes from pg_stat_replication;
 ### <a name="replica-configuration"></a>副本配置
 使用与主服务器相同的计算和存储设置创建副本。 创建副本后，可以更改多个设置，包括存储和备份保留期。
 
-在以下情况下，还可以在副本上更改 vCore 和定价层：
-* PostgreSQL 要求只读副本上的 `max_connections` 参数值大于或等于主服务器上的值，否则副本不会启动。 在 Azure Database for PostgreSQL 中，`max_connections` 参数值基于 SKU（vCore 和定价层）。 有关详细信息，请参阅 [Azure Database for PostgreSQL 中的限制](concepts-limits.md)。 
-* 不支持缩放到基本定价层或从基本定价层进行缩放
-
-> [!IMPORTANT]
-> 将主服务器设置更新为新值之前，请将副本配置更新为一个相等或更大的值。 此操作可确保副本与主服务器发生的任何更改保持同步。
-
-在不遵守限制的情况下尝试更新上述服务器值会导致出错。
-
 创建副本时或之后，防火墙规则、虚拟网络规则和参数设置不会从主服务器继承到副本服务器。
+
+### <a name="scaling"></a>扩展
+缩放 vCore 或者在“常规用途”和“内存优化”之间缩放：
+* PostgreSQL 要求辅助服务器上的 `max_connections` 设置[大于或等于主服务器上的设置](https://www.postgresql.org/docs/current/hot-standby.html)，否则辅助服务器将不会启动。
+* 在 Azure Database for PostgreSQL 中，所允许的每台服务器的最大连接数已固定到计算 sku，因为连接会占用内存。 可以详细了解 [max_connections 与计算 sku 之间的映射](concepts-limits.md)。
+* 纵向扩展：先纵向扩展副本的计算，然后纵向扩展主服务器。 此顺序可防止因违反 `max_connections` 要求而出现错误。
+* 纵向缩减：先纵向缩减主服务器的计算，然后纵向缩减副本。 如果尝试将副本缩放至低于主服务器的级别，将会出现错误，因为这样会违反 `max_connections` 要求。
+
+缩放存储：
+* 所有副本都启用了存储自动增长，以防止存储空间已满的副本出现复制问题。 无法禁用此设置。
+* 你也可以手动纵向扩展存储，就像在任何其他服务器上一样
+
 
 ### <a name="basic-tier"></a>基本层
 基本层服务器仅支持相同区域复制。

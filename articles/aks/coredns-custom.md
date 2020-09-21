@@ -2,19 +2,19 @@
 title: 自定义 Azure Kubernetes 服务 (AKS) 的 CoreDNS
 description: 了解如何使用 Azure Kubernetes 服务 (AKS) 自定义 CoreDNS，以便添加子域或扩展自定义 DNS 终结点
 services: container-service
-author: rockboyfor
 ms.topic: article
 origin.date: 03/15/2019
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 03/09/2020
 ms.author: v-yeche
-ms.openlocfilehash: 5e807bf7d3d10b02aced5662957ac271ab61a6aa
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: f10160a2283d7f2dfbfd14e1b50422ddcc0b890a
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842609"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021546"
 ---
 # <a name="customize-coredns-with-azure-kubernetes-service"></a>使用 Azure Kubernetes 服务自定义 CoreDNS
 
@@ -53,9 +53,17 @@ data:
         errors
         cache 30
         rewrite name substring <domain to be rewritten>.com default.svc.cluster.local
+        kubernetes cluster.local in-addr.arpa ip6.arpa {
+          pods insecure
+          upstream
+          fallthrough in-addr.arpa ip6.arpa
+        }
         forward .  /etc/resolv.conf # you can redirect this to a specific DNS server such as 10.0.0.10, but that server must be able to resolve the rewritten domain name
     }
 ```
+
+> [!IMPORTANT]
+> 如果重定向到 DNS 服务器（例如 CoreDNS 服务 IP），则该 DNS 服务器必须能够解析重写的域名。
 
 使用 [kubectl apply configmap][kubectl-apply] 命令创建 ConfigMap，并指定 YAML 清单的名称：
 

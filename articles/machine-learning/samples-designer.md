@@ -10,12 +10,12 @@ author: peterclu
 ms.author: peterlu
 ms.date: 03/29/2020
 ms.custom: designer
-ms.openlocfilehash: 8f0dacce21827fcb447e969707f6163a653809f7
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.openlocfilehash: 3b4944aa0f9fe569bb2becb2fc25324aeeeaeb3a
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097423"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021511"
 ---
 # <a name="example-pipelines--datasets-for-azure-machine-learning-designer"></a>用于 Azure 机器学习设计器的管道和数据集示例
 
@@ -26,13 +26,15 @@ ms.locfileid: "85097423"
 * Azure 订阅。 如果没有 Azure 订阅，请创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
 * 使用企业 SKU 的 Azure 机器学习工作区。
 
+[!INCLUDE [machine-learning-missing-ui](../../includes/machine-learning-missing-ui.md)]
+
 ## <a name="use-sample-pipelines"></a>使用示例管道
 
 设计器会将示例管道的副本保存到工作室工作区。 你可以编辑管道，以根据自己的需求对其进行改编；还可以保存管道供自己使用。 可以使用这些示例作为起点来快速开始生成项目。
 
 以下介绍如何使用设计器示例：
 
-1. 登录到 <a href="https://ml.azure.com?tabs=jre" target="_blank">ml.azure.com</a>，选择要使用的工作区。
+1. 登录到 <a href="https://studio.ml.azure.cn?tabs=jre" target="_blank">studio.ml.azure.cn</a>，选择要使用的工作区。
 
 1. 选择“设计器”。
 
@@ -53,9 +55,9 @@ ms.locfileid: "85097423"
 
 1. 管道运行完毕后，可以查看管道，还可以查看每个模块的输出，了解详细信息。 使用以下步骤查看模块输出：
 
-   1. 选择画布中的模块。
+   1. 右键单击画布中要查看其输出的模块。
+   1. 选择“可视化”。
 
-   1. 在画布右侧的模块详细信息窗格中，选择“输出 + 日志”。 选择图标 ![可视化图标](./media/tutorial-designer-automobile-price-train-score/visualize-icon.png)，查看每个模块的结果。 
 
    从示例着手，了解一些最常见的机器学习方案。
 

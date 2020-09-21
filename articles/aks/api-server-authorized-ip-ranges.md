@@ -4,16 +4,17 @@ description: 了解如何使用用于访问 Azure Kubernetes 服务 (AKS) 中 AP
 services: container-service
 ms.topic: article
 origin.date: 11/05/2019
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
-ms.openlocfilehash: 7316c5f74e57a48d01b6c7e57b8bb264725296ae
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: a3182d854bfd27560f589ba848329d9a543c6b4f
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842537"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020971"
 ---
 # <a name="secure-access-to-the-api-server-using-authorized-ip-address-ranges-in-azure-kubernetes-service-aks"></a>使用 Azure Kubernetes 服务 (AKS) 中的已授权 IP 地址范围保护对 API 服务器的访问
 
@@ -150,12 +151,12 @@ az aks update \
 
 <!-- LINKS - internal -->
 
-[az-aks-update]: https://docs.microsoft.com/cli/azure/ext/aks-preview/aks?view=azure-cli-latest#ext-aks-preview-az-aks-update
-[az-aks-create]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-create
-[az-network-public-ip-list]: https://docs.azure.cn/cli/network/public-ip?view=azure-cli-latest#az-network-public-ip-list
+[az-aks-update]: https://docs.microsoft.com/cli/azure/ext/aks-preview/aks#ext_aks_preview_az_aks_update
+[az-aks-create]: https://docs.microsoft.com/cli/azure/aks#az_aks_create
+[az-network-public-ip-list]: https://docs.azure.cn/cli/network/public-ip#az-network-public-ip-list
 [concepts-clusters-workloads]: concepts-clusters-workloads.md
 [concepts-security]: concepts-security.md
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
 [operator-best-practices-cluster-security]: operator-best-practices-cluster-security.md
 [route-tables]: ../virtual-network/manage-route-table.md
 [standard-sku-lb]: load-balancer-standard.md

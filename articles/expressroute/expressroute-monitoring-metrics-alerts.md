@@ -8,12 +8,12 @@ ms.topic: conceptual
 origin.date: 08/22/2019
 ms.date: 01/20/2020
 ms.author: v-yiso
-ms.openlocfilehash: 0f6624f7ac36f13529b1004124fe3664cd55030f
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 345da0126bfa3d98ee0a5cb5453efa18e4e2bda9
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75859746"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021337"
 ---
 # <a name="expressroute-monitoring-metrics-and-alerts"></a>ExpressRoute 监视、指标和警报
 
@@ -36,6 +36,8 @@ ms.locfileid: "75859746"
 |BGP 可用性|可用性|<ui><li> 对等机（主要/辅助 ExpressRoute 路由器）</ui></li><ui><li> 对等互连类型</ui></li>|ExpressRoute|
 |BitsInPerSecond|交通|<ui><li> 对等互连类型 (ExpressRoute)</ui></li><ui><li>链路 (ExpressRoute Direct)</ui></li>| <li> ExpressRoute</li><li>ExpressRoute Direct|
 |BitsOutPerSecond|交通| <ui><li>对等互连类型 (ExpressRoute)</ui></li><ui><li> 链路 (ExpressRoute Direct) | <ui><li>ExpressRoute<ui><li>ExpressRoute Direct</ui></li> |
+|CPU 使用率|性能| <ui><li>实例</ui></li>|ExpressRoute 虚拟网络网关|
+|每秒数据包数|性能| <ui><li>实例</ui></li>|ExpressRoute 虚拟网络网关|
 |GlobalReachBitsInPerSecond|交通|<ui><li>对等互连线路密钥（服务密钥）</ui></li>|Global Reach|
 |GlobalReachBitsOutPerSecond|交通|<ui><li>对等互连线路密钥（服务密钥）</ui></li>|Global Reach|
 |AdminState|物理连接|链接|ExpressRoute Direct|
@@ -104,17 +106,31 @@ ms.locfileid: "75859746"
 
 ![er direct 线路 Rx 轻型级别](./media/expressroute-monitoring-metrics-alerts/txlight-level-per-link.jpg)
 
+## <a name="expressroute-virtual-network-gateway-metrics"></a>ExpressRoute 虚拟网络网关指标
+
+### <a name="cpu-utilization---split-instance"></a>CPU 使用率 - 拆分实例
+
+可以查看网关实例的 CPU 使用率。
+
+:::image type="content" source="./media/expressroute-monitoring-metrics-alerts/cpu-split.jpg" alt-text="CPU 拆分":::
+
+### <a name="packets-per-second---split-by-instance"></a>每秒数据包数 - 按实例拆分
+
+可以查看每秒遍历网关的数据包数。
+
+:::image type="content" source="./media/expressroute-monitoring-metrics-alerts/pps-split.jpg" alt-text="每秒数据包数 - 拆分":::
+
 ## <a name="expressroute-gateway-connections-in-bitsseconds"></a>ExpressRoute 网关连接（以位/秒为单位）
 
 ![网关连接](./media/expressroute-monitoring-metrics-alerts/erconnections.jpg ) 
 
 ## <a name="alerts-for-expressroute-gateway-connections"></a>ExpressRoute 网关连接的警报
 
-1. 若要配置警报，请导航到 **Azure Monitor**，然后单击“警报”  。
+1. 若要配置警报，请导航到 **Azure Monitor**，然后选择“警报”。
 
    ![alerts](./media/expressroute-monitoring-metrics-alerts/eralertshowto.jpg)
 
-2. 单击“+选择目标”  ，然后选择 ExpressRoute 网关连接资源。
+2. 单击“+选择目标”****，然后选择 ExpressRoute 网关连接资源。
 
    ![目标]( ./media/expressroute-monitoring-metrics-alerts/alerthowto2.jpg)
 3. 定义警报详细信息。
@@ -132,7 +148,7 @@ ms.locfileid: "75859746"
 
 ## <a name="configure-alerts-for-activity-logs-on-circuits"></a>为线路上的活动日志配置警报
 
-在**警报条件**中，可以选择“活动日志”  作为信号类型并选择“信号”。
+在**警报条件**中，可以选择“活动日志”**** 作为信号类型并选择“信号”。
 
   ![另一个](./media/expressroute-monitoring-metrics-alerts/alertshowto6activitylog.jpg)
 
@@ -141,5 +157,5 @@ ms.locfileid: "75859746"
 配置 ExpressRoute 连接。
   
   * [创建和修改线路](expressroute-howto-circuit-arm.md)
-  * [创建和修改对等互连配置](expressroute-howto-routing-arm.md)
+  * [创建和修改对等配置](expressroute-howto-routing-arm.md)
   * [将 VNet 链接到 ExpressRoute 线路](expressroute-howto-linkvnet-arm.md)

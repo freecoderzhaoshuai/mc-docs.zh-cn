@@ -7,15 +7,15 @@ author: HeidiSteen
 ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
-origin.date: 11/04/2019
-ms.date: 07/20/2020
+origin.date: 07/12/2020
+ms.date: 09/10/2020
 ms.custom: fasttrack-edit
-ms.openlocfilehash: 4f7df1b2c177004064b46c7600932b37bd5ee80e
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+ms.openlocfilehash: 1eb8287acd21b20abfb55dcb97ea694c79e3390b
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471881"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021423"
 ---
 # <a name="indexers-in-azure-cognitive-search"></a>Azure 认知搜索中的索引器
 
@@ -39,7 +39,7 @@ Azure 认知搜索中的*索引器*是一种爬网程序，它从外部 Azure �
 
 ## <a name="permissions"></a>权限
 
-与索引器相关的所有操作（包括对状态或定义的 GET 请求）都需要[管理员 api-key](search-security-api-keys.md)。 
+与索引器相关的所有操作（包括对状态或定义的 GET 请求）都需要[管理员 api-key](search-security-api-keys.md)。
 
 <a name="supported-data-sources"></a>
 
@@ -55,7 +55,44 @@ Azure 认知搜索中的*索引器*是一种爬网程序，它从外部 Azure �
 * [Azure 虚拟机中的 SQL Server](search-howto-connecting-azure-sql-iaas-to-azure-search-using-indexers.md)
 * [SQL 托管实例](search-howto-connecting-azure-sql-mi-to-azure-search-using-indexers.md)
 
+## <a name="indexer-stages"></a>索引器阶段
+
+在首次运行时，如果索引为空，索引器将读取表或容器中提供的所有数据。 在后续运行中，索引器通常可以只检测并检索已更改的数据。 对于 blob 数据，更改检测是自动进行的。 对于其他数据源（如 Azure SQL 或 Cosmos DB），必须启用更改检测。
+
+对于它引入的每个文档，索引器将执行或协调多个步骤来编制索引，从文档检索到最终的搜索引擎“移交”。 （可选）如果定义了技能组，索引器还有助于推动技能组的执行和输出。
+
+![索引器阶段](./media/search-indexer-overview/indexer-stages.png "索引器阶段")
+
+### <a name="stage-1-document-cracking"></a>第 1 阶段：文档破解
+
+文档破解是打开文件并提取内容的过程。 根据数据源的类型，索引器将尝试执行不同的操作来提取可能可索引的内容。  
+
+示例：  
+
+* 如果文档是 [Azure SQL 数据源](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md)中的记录，则索引器将提取记录中的每个字段。
+* 如果文档是 [Azure Blob 存储数据源](search-howto-indexing-azure-blob-storage.md)中的 PDF 文件，则索引器将提取该文件的文本、图像和元数据。
+* 如果文档是 [Cosmos DB 数据源](search-howto-index-cosmosdb.md)中的记录，则索引器将提取 Cosmos DB 文档中的字段和子字段。
+
+### <a name="stage-2-field-mappings"></a>第 2 阶段：字段映射 
+
+索引器提取源字段中的文本，并将其发送到索引或知识存储中的目标字段。 当字段名称和类型一致时，路径会被清除。 不过，如果希望输出中有不同的名称或类型，则需要告知索引器如何映射字段。 当索引器从源文档读取时，此步骤需在文档破解后、转换之前进行。 在定义[字段映射](search-indexer-field-mappings.md)时，源字段的值将按原样发送到目标字段，而不进行任何修改。 字段映射是可选的。
+
+### <a name="stage-3-skillset-execution"></a>第 3 阶段：技能组执行
+
+技能组执行是一个可选步骤，它调用内置或自定义 AI 处理。 你可能需要它以图像分析的形式进行光学字符识别 (OCR)，或者可能需要语言翻译。 无论是哪种转换，技能组执行都是扩充的途径。 如果索引器是管道，则可将[技能组](cognitive-search-defining-skillset.md)视为“管道内的管道”。 技能组有自己的一系列步骤，称为技能。
+
+### <a name="stage-4-output-field-mappings"></a>阶段 4：输出字段映射
+
+技能组的输出实际上是一棵称为“扩充文档”的信息树。 通过输出字段映射，可以选择此树中哪些部分要映射到索引中的字段。 了解如何[定义输出字段映射](cognitive-search-output-field-mapping.md)。
+
+就像将源字段中的原义值关联到目标字段的字段映射一样，输出字段映射会告知索引器如何将扩充文档中的已转换值关联到索引中的目标字段。 与被视为可选的字段映射不同，你始终需要为需要驻留在索引中的任何已转换内容定义输出字段映射。
+
+<!-- The next image shows a sample indexer [debug session](cognitive-search-debug-session.md) representation of the indexer stages: document cracking, field mappings, skillset execution, and output field mappings. -->
+
+:::image type="content" source="media/search-indexer-overview/sample-debug-session.png" alt-text="示例调试会话" lightbox="media/search-indexer-overview/sample-debug-session.png":::
+
 ## <a name="basic-configuration-steps"></a>基本配置步骤
+
 索引器可提供数据源独有的功能。 因此，索引器或数据源配置的某些方面会因索引器类型而不同。 但是，所有索引器的基本构成元素和要求都相同。 下面介绍所有索引器都适用的共同步骤。
 
 ### <a name="step-1-create-a-data-source"></a>步骤 1：创建数据源
@@ -78,8 +115,10 @@ Azure 认知搜索中的*索引器*是一种爬网程序，它从外部 Azure �
 
 虽然通常会对索引操作进行计划，但也可使用 [Run 命令](https://docs.microsoft.com/rest/api/searchservice/run-indexer)按需调用索引器：
 
-    POST https://[service name].search.azure.cn/indexers/[indexer name]/run?api-version=2020-06-30
-    api-key: [Search service admin key]
+```http
+POST https://[service name].search.azure.cn/indexers/[indexer name]/run?api-version=2020-06-30
+api-key: [Search service admin key]
+```
 
 > [!NOTE]
 > “运行 API”成功返回时，已计划索引器调用，但实际处理过程以异步方式发生。 
@@ -92,37 +131,40 @@ Azure 认知搜索中的*索引器*是一种爬网程序，它从外部 Azure �
 
 可以通过[“获取索引器状态”命令](https://docs.microsoft.com/rest/api/searchservice/get-indexer-status)检索索引器的状态和执行历史记录：
 
-
-    GET https://[service name].search.azure.cn/indexers/[indexer name]/status?api-version=2020-06-30
-    api-key: [Search service admin key]
+```http
+GET https://[service name].search.azure.cn/indexers/[indexer name]/status?api-version=2020-06-30
+api-key: [Search service admin key]
+```
 
 响应包含总体索引器状态、最后一次（或正在进行的）索引器调用以及最近索引器调用的历史记录。
 
-    {
-        "status":"running",
-        "lastResult": {
-            "status":"success",
-            "errorMessage":null,
-            "startTime":"2018-11-26T03:37:18.853Z",
-            "endTime":"2018-11-26T03:37:19.012Z",
-            "errors":[],
-            "itemsProcessed":11,
-            "itemsFailed":0,
-            "initialTrackingState":null,
-            "finalTrackingState":null
-         },
-        "executionHistory":[ {
-            "status":"success",
-             "errorMessage":null,
-            "startTime":"2018-11-26T03:37:18.853Z",
-            "endTime":"2018-11-26T03:37:19.012Z",
-            "errors":[],
-            "itemsProcessed":11,
-            "itemsFailed":0,
-            "initialTrackingState":null,
-            "finalTrackingState":null
-        }]
-    }
+```output
+{
+    "status":"running",
+    "lastResult": {
+        "status":"success",
+        "errorMessage":null,
+        "startTime":"2018-11-26T03:37:18.853Z",
+        "endTime":"2018-11-26T03:37:19.012Z",
+        "errors":[],
+        "itemsProcessed":11,
+        "itemsFailed":0,
+        "initialTrackingState":null,
+        "finalTrackingState":null
+     },
+    "executionHistory":[ {
+        "status":"success",
+         "errorMessage":null,
+        "startTime":"2018-11-26T03:37:18.853Z",
+        "endTime":"2018-11-26T03:37:19.012Z",
+        "errors":[],
+        "itemsProcessed":11,
+        "itemsFailed":0,
+        "initialTrackingState":null,
+        "finalTrackingState":null
+    }]
+}
+```
 
 执行历史记录包含最多 50 个最近完成的执行，它们被按反向时间顺序排序（因此，最新执行出现在响应中的第一个）。
 

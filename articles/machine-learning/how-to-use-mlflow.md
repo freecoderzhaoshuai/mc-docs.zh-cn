@@ -12,12 +12,12 @@ ms.topic: conceptual
 origin.date: 06/04/2020
 ms.data: 08/24/2020
 ms.custom: seodec18
-ms.openlocfilehash: 49a543505ef7594ee3ad62732edf38d422113ad1
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.openlocfilehash: 385fcbffd61d1e03ff197b1e2d08ed6c585b70d7
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715345"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021518"
 ---
 # <a name="track-model-metrics-and-deploy-ml-models-with-mlflow-and-azure-machine-learning-preview"></a>使用 MLflow 和 Azure 机器学习（预览版）跟踪模型指标并部署 ML 模型
 
@@ -106,7 +106,7 @@ with mlflow.start_run():
 
 使用 Azure 机器学习进行 MLflow 跟踪，你可以将远程运行中记录的指标和项目存储在 Azure 机器学习工作区中。
 
-远程运行可以让你通过更强大的计算（例如启用 GPU 的虚拟机或机器学习计算群集）训练模型。 请参阅[为模型训练设置计算目标](how-to-set-up-training-targets.md)，了解不同的计算选项。
+远程运行可以让你通过更强大的计算（例如启用 GPU 的虚拟机或机器学习计算群集）训练模型。 请参阅[使用计算目标进行模型训练](how-to-set-up-training-targets.md)，了解不同的计算选项。
 
 使用 [`Environment`](https://docs.microsoft.com/python/api/azureml-core/azureml.core.environment.environment?view=azure-ml-py) 类配置计算和训练运行环境。 将 `mlflow` 和 `azureml-mlflow` pip 包包含在环境的 [`CondaDependencies`](https://docs.microsoft.com/python/api/azureml-core/azureml.core.conda_dependencies.condadependencies?view=azure-ml-py) 部分中。 然后，将远程计算作为计算目标构造 [`ScriptRunConfig`](https://docs.microsoft.com/python/api/azureml-core/azureml.core.script_run_config.scriptrunconfig?view=azure-ml-py)。
 
@@ -286,3 +286,4 @@ webservice.wait_for_deployment()
 
 ## <a name="next-steps"></a>后续步骤
 * [管理模型](concept-model-management-and-deployment.md)。
+* 监视生产模型中的[数据偏移](how-to-monitor-data-drift.md)。

@@ -1,31 +1,25 @@
 ---
 title: 从经典部署模型迁移到 Azure Resource Manager 部署模型的过程中出现的常见错误
 description: 本文编录了将 IaaS 资源从 Azure 服务管理迁移到 Azure Resource Manager 堆栈期间的最常见错误和缓解措施。
-services: virtual-machines-linux
-documentationcenter: ''
 author: Johnnytechn
-manager: digimobile
-editor: ''
-tags: azure-resource-manager
-ms.assetid: 5bc03a1b-eb1c-438c-83d9-f0e9d61f1b6a
+manager: vashan
 ms.service: virtual-machines-linux
 ms.workload: infrastructure-services
-ms.tgt_pltfrm: vm-linux
-ms.topic: article
-origin.date: 03/30/2017
-ms.date: 04/13/2020
+ms.topic: troubleshooting
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.openlocfilehash: 9cd706066fb701d37d10d84f076a02b1e954e9c6
-ms.sourcegitcommit: ebedf9e489f5218d4dda7468b669a601b3c02ae5
+origin.date: 03/30/2017
+ms.openlocfilehash: 6e08570ba22dd9aea3a9a2df816d4d4b90eccc16
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2020
-ms.locfileid: "82159194"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057668"
 ---
-# <a name="common-errors-during-classic-to-azure-resource-manager-migration"></a>从经典部署模型迁移到 Azure Resource Manager 部署模型的过程中出现的常见错误
+# <a name="errors-that-commonly-occur-during-classic-to-azure-resource-manager-migration"></a>从经典部署模型迁移到 Azure 资源管理器部署模型的过程中经常出现的错误
 
 > [!IMPORTANT]
-> 目前，大约有 90% 的 IaaS VM 在使用 [Azure 资源管理器](https://www.azure.cn/home/features/resource-manager/)。 自 2020 年 2 月 28 日起，经典 VM 已弃用，并将于 2023 年 3 月 1 日完全停用。 [详细了解]( https://docs.azure.cn/zh-cn/virtual-machines/classic-vm-deprecation)此弃用以及[它对你的影响](/virtual-machines/classic-vm-deprecation#how-does-this-affect-me)。
+> 目前，大约有 90% 的 IaaS VM 在使用 [Azure 资源管理器](https://www.azure.cn/home/features/resource-manager/)。 自 2020 年 2 月 28 日起，经典 VM 已弃用，并将于 2023 年 3 月 1 日完全停用。 [详细了解]( https://docs.azure.cn/virtual-machines/classic-vm-deprecation)此弃用以及[它对你的影响](../classic-vm-deprecation.md#how-does-this-affect-me)。
 
 [!INCLUDE [virtual-machines-common-migration-errors](../../../includes/virtual-machines-common-classic-resource-manager-migration-common-errors.md)]
 

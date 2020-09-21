@@ -1,17 +1,19 @@
 ---
 title: 使用 Azure Monitor 日志进行性能监视
 description: 了解如何设置 Log Analytics 代理以监视 Azure Service Fabric 群集的容器和性能计数器。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 04/16/2018
-ms.date: 05/06/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 0a2ecefe269b35789b589bf5cbe38b1363a7e0a2
-ms.sourcegitcommit: 81241aa44adbcac0764e2b5eb865b96ae56da6b7
+ms.openlocfilehash: bd021ea60134c69dd2cc09cc938bf8719c26e0af
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/09/2020
-ms.locfileid: "83002013"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655732"
 ---
 <!--VM extension exists on Azure China Cloud-->
 # <a name="performance-monitoring-with-azure-monitor-logs"></a>使用 Azure Monitor 日志进行性能监视
@@ -19,9 +21,7 @@ ms.locfileid: "83002013"
 本文介绍如何逐步将 Log Analytics 代理作为虚拟机规模集扩展添加到群集并将其连接到现有的 Azure Log Analytics 工作区。 这可收集关于容器、应用程序和性能监视的诊断数据。 通过将其作为扩展添加到虚拟机规模集资源，Azure 资源管理器可确保它安装在每个节点上，即使在缩放群集时也是如此。
 
 > [!NOTE]
-> 本文假定已设置了 Azure Log Analytics 工作区。
-
-<!--Not Available on [Set up Azure Monitor logs](service-fabric-diagnostics-oms-setup.md)-->
+> 本文假定已设置了 Azure Log Analytics 工作区。 如果尚未设置，请转到[设置 Azure Monitor 日志](service-fabric-diagnostics-oms-setup.md)
 
 [!INCLUDE [azure-monitor-log-analytics-rebrand](../../includes/azure-monitor-log-analytics-rebrand.md)]
 
@@ -35,7 +35,7 @@ ms.locfileid: "83002013"
 
 2. 在门户中，导航到 Log Analytics 工作区所在的资源组。 单击进入日志分析资源（资源类型为 Log Analytics 工作区）。 进入资源概述页后，单击左侧菜单中“设置”部分下面的“高级设置”。 
 
-    ![日志分析属性页](media/service-fabric-diagnostics-oms-agent/oms-advanced-settings.png)
+    :::image type="content" source="media/service-fabric-diagnostics-oms-agent/oms-advanced-settings.png" alt-text="日志分析属性页":::
 
 3. 若要建立 Windows 群集，请单击“Windows 服务器”；若要创建 Linux 群集，请单击“Linux 服务器”   。 此页将显示 `workspace ID` 和 `workspace key`（在门户中列为“主键”）。 下一步骤需要使用这两个值。
 
@@ -55,7 +55,7 @@ ms.locfileid: "83002013"
 
     以下示例展示如何将 Log Analytics 代理添加到 Windows 群集。
 
-    ![Log Analytics 代理 cli 命令](media/service-fabric-diagnostics-oms-agent/cli-command.png)
+    :::image type="content" source="media/service-fabric-diagnostics-oms-agent/cli-command.png" alt-text="Log Analytics 代理 cli 命令":::
 
 5. 15 分钟内即可将代理成功添加到节点上。 可使用 `az vmss extension list` API 验证是否已添加代理：
 
@@ -73,13 +73,13 @@ ms.locfileid: "83002013"
 
 添加 Log Analytics 代理后，请转到 Log Analytics 门户，选择要收集的性能计数器。
 
-1. 在 Azure 门户中，转到在其中创建 Service Fabric 分析解决方案的资源组。 选择 **ServiceFabric\<nameOfLog AnalyticsWorkspace\>** 。
+1. 在 Azure 门户中，转到在其中创建 Service Fabric 分析解决方案的资源组。 选择 ServiceFabric\<nameOfLog AnalyticsWorkspace\>。
 
 2. 单击“Log Analytics”  。
 
 3. 单击“高级设置”  。
 
-4. 单击“数据”  ，然后单击“Windows 或 Linux 性能计数器”  。 此时会显示一个可以选择的默认计数器列表，此外还可以设置收集间隔。 还可以添加要收集的[其他性能计数器](service-fabric-diagnostics-event-generation-perf.md)。 此[参考文章](https://msdn.microsoft.com/library/windows/desktop/aa373193(v=vs.85).aspx)中介绍了正确的格式。
+4. 单击“数据”  ，然后单击“Windows 或 Linux 性能计数器”  。 此时会显示一个可以选择的默认计数器列表，此外还可以设置收集间隔。 还可以添加要收集的[其他性能计数器](service-fabric-diagnostics-event-generation-perf.md)。 此[参考文章](https://docs.microsoft.com/windows/win32/perfctrs/specifying-a-counter-path)中介绍了正确的格式。
 
 5. 单击“保存”，然后单击“确定”   。
 
@@ -93,7 +93,7 @@ ms.locfileid: "83002013"
 
 10. 单击“容器指标”图形可了解更多详细信息。 还可以使用 Kusto 查询语言，像查询群集事件一样查询性能计数器数据，以及基于节点、性能计数器名称和值进行筛选。
 
-    ![Log Analytics 性能计数器查询](media/service-fabric-diagnostics-event-analysis-oms/oms_node_metrics_table.PNG)
+![Log Analytics 性能计数器查询](media/service-fabric-diagnostics-event-analysis-oms/oms_node_metrics_table.PNG)
 
 ## <a name="next-steps"></a>后续步骤
 

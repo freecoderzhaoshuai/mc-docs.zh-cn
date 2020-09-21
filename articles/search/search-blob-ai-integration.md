@@ -8,13 +8,13 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 03/16/2020
-ms.openlocfilehash: ca8bc8aab8af09b2a2cf05ddd73c9bc7102728d2
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.date: 09/10/2020
+ms.openlocfilehash: 06a24e8412c6dbc0782bc0f8dde473376b6e86ae
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79497353"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020940"
 ---
 # <a name="use-ai-to-understand-blob-storage-data"></a>使用 AI 了解 Blob 存储数据
 
@@ -113,8 +113,8 @@ AI 扩充的输出是 Azure 认知搜索中的搜索索引，或者是 Azure 存
 
 在充分利用 Azure 存储中的数据方面，AI 扩充的作用还有很多，包括以不同的方式组合认知服务，以及在没有任何现有认知服务能够解决所需的方案时创作自定义技能。 可通过以下链接了解详细信息。
 
-+ [使用 Azure 门户上传、下载和列出 Blob（Azure Blob 存储）](https://docs.azure.cn/storage/blobs/storage-quickstart-blobs-portal)
++ [使用 Azure 门户上传、下载和列出 Blob（Azure Blob 存储）](../storage/blobs/storage-quickstart-blobs-portal.md)
 + [设置 Blob 索引器（Azure 认知搜索）](search-howto-indexing-azure-blob-storage.md) 
 + [AI 扩充概述（Azure 认知搜索）](cognitive-search-concept-intro.md) 
 + [创建技能集（Azure 认知搜索）](cognitive-search-defining-skillset.md)
-+ [映射注释树中的节点（Azure 认知搜索）](cognitive-search-output-field-mapping.md)            
++ [映射注释树中的节点（Azure 认知搜索）](cognitive-search-output-field-mapping.md)

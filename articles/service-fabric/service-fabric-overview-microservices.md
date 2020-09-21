@@ -3,15 +3,18 @@ title: Azure 微服务简介
 description: 概述了为何使用微服务方法生成云应用程序对于开发现代应用程序非常重要，以及 Azure Service Fabric 如何提供一个平台来实现此目的。
 ms.topic: conceptual
 origin.date: 01/07/2020
-ms.date: 06/08/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
 ms.custom: sfrev
-ms.openlocfilehash: e93e5d9a8943731373e2c51eb8549e80be245304
-ms.sourcegitcommit: 0e178672632f710019eae60cea6a45ac54bb53a1
+ms.openlocfilehash: 252b94deceb57f354bce958b01b66c23a0c28dfe
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84356265"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655644"
 ---
 # <a name="why-use-a-microservices-approach-to-building-applications"></a>为何使用微服务方法构建应用程序？
 
@@ -37,7 +40,9 @@ ms.locfileid: "84356265"
 
 这类单一式设计方法有一些优点。 单一式应用程序的设计通常更为简单，组件之间通常通过进程间通信 (IPC) 进行调用，因此调用更快。 此外，每个人都只测试单一产品，人力资源运用更有效率。 缺点是分层之间紧密耦合，无法缩放单独组件。 如果需要执行修复或升级，必须等待其他人完成其测试， 因此更难以发挥灵活性。
 
-微服务解决了这些缺点，更密切配合上述业务要求。 但它们本身也有优缺点。 微服务的优点是通常各自封装较为简单的业务功能，可独立缩放、测试、部署和管理。 微服务方法的一个重要优点是团队更倾向于以业务方案为导向，而非以技术为导向。 较小的团队可以根据客户方案开发微服务，使用他们所需的任何技术。
+微服务解决了这些缺点，更密切配合上述业务要求。 但它们本身也有优缺点。 微服务的优点是通常各自封装较为简单的业务功能，可独立进行横向缩放、测试、部署和管理。 微服务方法的一个重要优点是团队更倾向于以业务方案为导向，而非以技术为导向。 较小的团队可以根据客户方案开发微服务，使用他们所需的任何技术。
+
+<!--MOONCAKE CUSTOMIZZATION-->
 
 换句话说，组织不需要为了维护微服务应用程序而将技术标准化。 拥有服务的单独团队可以根据团队的专业知识，或什么最适合解决问题，各自发挥所长。 实际上，最好使用一组建议的技术，例如特定的 NoSQL 存储或 Web 应用程序框架。
 
@@ -131,6 +136,7 @@ ms.locfileid: "84356265"
 
 运行状况与诊断不同。 运行状况是指微服务报告其当前状态，以便采取适当的措施。 一个很好的例子便是使用升级和部署机制保持可用性。 当前服务可能由于进程崩溃或计算机重新启动而状况不正常，但仍可运行。 不应该执行升级而让情况恶化。 最好是先进行调查，或让微服务有时间恢复。 微服务的运行状况事件有助于我们做出明智的决策，实际上有助于创建自我修复的服务。
 
+<!--Not Available on ## Guidance for designing microservices on Azure-->
 <!--Not Available on [building microservices on Azure](https://docs.microsoft.com/azure/architecture/microservices/)-->
 
 ## <a name="service-fabric-as-a-microservices-platform"></a>Service Fabric 作为微服务平台
@@ -170,8 +176,6 @@ Service Fabric 允许重用现有代码，可以通过新的微服务对现有�
 * 开发和运营遵循一致的部署协定。
 
 成本降低是立竿见影的。 在 Microsoft 内部，大量现有应用程序正在容器化，节省的成本高达数百万美元。 虽然部署一致性难以评估，但同样很重要。 也就是说，开发人员仍可以自由选择适合自己的技术；不过，运营人员只接受使用一种方法来部署和管理应用程序。 这可以减轻运营压力，免除支持不同技术而造成的复杂性，同时，不必强制要求开发人员选择特定的技术。 实质上，每个应用程序都容器化到独立式部署映像中。
-
-<!--Correct on at Microsoft-->
 
 许多组织止步于这一阶段。 它们已享受到容器带来的优势，Service Fabric 能够提供完整的管理体验，包括部署、升级、版本控制、回滚和运行状况监视等。
 

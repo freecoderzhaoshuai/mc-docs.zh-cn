@@ -12,18 +12,18 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: mathoma, carlrab, danil
 origin.date: 09/26/2019
-ms.date: 08/17/2020
-ms.openlocfilehash: 81f898d88c2487cbd72ce153c2e2b83e30f4f6b7
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.date: 09/14/2020
+ms.openlocfilehash: 38ae80cdb4172b3f896df0e6c88425a7ec4d9906
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222881"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014201"
 ---
 # <a name="recover-using-automated-database-backups---azure-sql-database--sql-managed-instance"></a>使用自动数据库备份进行恢复 - Azure SQL 托管实例和 SQL 托管实例
 [!INCLUDE[appliesto-sqldb-sqlmi](../includes/appliesto-sqldb-sqlmi.md)]
 
-默认情况下，Azure SQL 数据库和 Azure SQL 托管实例备份存储在异地复制的 Blob 存储（RA-GRS 存储类型）中。 以下选项适用于使用[自动数据库备份](automated-backups-overview.md)的数据库恢复： 方法：
+以下选项适用于使用[自动数据库备份](automated-backups-overview.md)的数据库恢复： 方法：
 
 - 在恢复到保持期内指定时间点的同一服务器上创建新数据库。
 - 在恢复到已删除数据库的删除时间的同一服务器上创建数据库。
@@ -34,6 +34,11 @@ ms.locfileid: "88222881"
 
 > [!IMPORTANT]
 > 还原期间无法覆盖现有数据库。
+
+默认情况下，Azure SQL 数据库和 Azure SQL 托管实例备份存储在异地复制的 Blob 存储（RA-GRS 存储类型）中。 此外，SQL 托管实例支持本地冗余 (LRS) 备份存储。 冗余可确保数据免受计划内和计划外事件的影响，包括暂时性的硬件故障、网络中断或断电、大范围自然灾害等。
+
+> [!IMPORTANT]
+> 为备份配置存储冗余仅适用于托管实例，允许在创建过程中进行配置。 预配资源后，不能更改备份存储冗余选项。
 
 使用“标准”或“高级”服务层级时，数据库还原可能会产生额外的存储费用。 如果还原的数据库的最大大小大于目标数据库的服务层级和性能级别包含的存储量，则会产生额外的费用。 有关额外存储定价的详细信息，请参阅 [SQL 数据库定价页面](https://azure.cn/pricing/details/sql-database/)。 如果实际使用的空间量小于附送的存储量，可以通过将数据库最大大小设置为附送的量，来避免产生额外的费用。
 
@@ -52,9 +57,9 @@ ms.locfileid: "88222881"
 
 对于单个订阅，并发还原请求的数目存在限制。 这些限制适用于时间点还原、异地还原和从长期保留备份中还原的任意组合。
 
-|| **处理的并发请求数最多为 #** | **提交的并发请求数最多为 #** |
+| **部署选项** | **处理的并发请求数最多为 #** | **提交的并发请求数最多为 #** |
 | :--- | --: | --: |
-|**单个数据库（每个订阅）**|10 个|60|
+|**单个数据库（每个订阅）**|10|60|
 |**弹性池（每个池）**|4|200|
 
 
@@ -137,6 +142,9 @@ ms.locfileid: "88222881"
 > 若要以编程方式还原已删除的数据库，请参阅[使用自动备份以编程方式执行恢复](recovery-using-backups.md)。
 
 ## <a name="geo-restore"></a>异地还原
+
+> [!IMPORTANT]
+> 异地还原仅适用于配置了异地冗余 (RA-GRS) 备份存储类型的托管实例。 配置有本地冗余备份存储类型的托管实例不支持异地还原。
 
 你可以在任何 Azure 区域中，从最新的异地复制备份还原任何 SQL 数据库服务器上的数据库或任何托管实例上的实例数据库。 异地还原使用异地复制的备份作为源。 即使由于服务中断而无法访问数据库或数据中心，也依然能够请求异地还原。
 

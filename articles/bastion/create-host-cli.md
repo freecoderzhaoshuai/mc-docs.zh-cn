@@ -6,33 +6,33 @@ author: rockboyfor
 ms.service: bastion
 ms.topic: how-to
 origin.date: 03/26/2020
-ms.date: 07/27/2020
+ms.date: 09/14/2020
 ms.testscope: yes
 ms.testdate: 07/27/2020
 ms.author: v-yeche
-ms.openlocfilehash: fb2696286166b682fea4eea21338792d11a764b9
-ms.sourcegitcommit: 4d9846bb03ac24bd98b0c9a781bb8912ff6d2f61
+Customer intent: As someone with a networking background, I want to create an Azure Bastion host.
+ms.openlocfilehash: 77137b0e9f1e1f8268a1458a96b81a7e9bb3bef3
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "86926974"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655554"
 ---
-<!--RELEASE BEFORE CONFIRMATION-->
-<!--Verified NOT Passed-->
-# <a name="create-an-azure-bastion-host-using-azure-cli"></a>使用 Azure CLI 创建 Azure Bastion 主机
+<!--Verified successfully on 09/07/2020->
+# Create an Azure Bastion host using Azure CLI
 
-本文介绍如何使用 Azure CLI 创建 Azure Bastion 主机。 在虚拟网络中预配 Azure Bastion 服务后，即可在该虚拟网络中的所有 VM 上获得无缝的 RDP/SSH 体验。 Azure Bastion 部署是按虚拟网络进行的，而不是按订阅/帐户或虚拟机进行的。
+This article shows you how to create an Azure Bastion host using Azure CLI. Once you provision the Azure Bastion service in your virtual network, the seamless RDP/SSH experience is available to all of the VMs in the same virtual network. Azure Bastion deployment is per virtual network, not per subscription/account or virtual machine.
 
-或者，可使用 [Azure 门户](bastion-create-host-portal.md)或 [Azure PowerShell](bastion-create-host-powershell.md) 创建 Azure Bastion 主机。
+Optionally, you can create an Azure Bastion host by using the [Azure portal](bastion-create-host-portal.md), or using [Azure PowerShell](bastion-create-host-powershell.md).
 
-## <a name="before-you-begin"></a>准备阶段
+## Before you begin
 
-确保拥有 Azure 订阅。 如果还没有 Azure 订阅，可以激活 [MSDN 订户权益](https://www.azure.cn/offers/ms-mc-arz-msdn/index.html)或注册[试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
+Verify that you have an Azure subscription. If you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits](https://www.azure.cn/offers/ms-mc-arz-msdn/index.html) or sign up for a [trial account](https://www.azure.cn/pricing/1rmb-trial).
 
 <!--Not Available on [!INCLUDE [cloudshell cli](../../includes/vpn-gateway-cloud-shell-cli.md)]-->
 
 <a name="createhost"></a>
-## <a name="create-a-bastion-host"></a>创建 Bastion 主机
+##创建 Bastion 主机
 
 本部分帮助你使用 Azure CLI 创建新的 Azure Bastion 资源。
 

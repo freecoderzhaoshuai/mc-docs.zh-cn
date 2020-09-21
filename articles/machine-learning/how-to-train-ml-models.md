@@ -7,16 +7,16 @@ author: maxluk
 services: machine-learning
 ms.service: machine-learning
 ms.subservice: core
-ms.topic: how-to
 ms.reviewer: sgilley
 ms.date: 03/09/2020
-ms.custom: seodec18
-ms.openlocfilehash: eaaeb9566ea512d969c384ea3ac7763f5f8e5f3d
-ms.sourcegitcommit: 1c01c98a2a42a7555d756569101a85e3245732fd
+ms.topic: conceptual
+ms.custom: how-to
+ms.openlocfilehash: fa17da8bfb9d462c69d19b8b19df81d51573a7e5
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2020
-ms.locfileid: "85097125"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021319"
 ---
 # <a name="train-models-with-azure-machine-learning-using-estimator"></a>通过估算器使用 Azure 机器学习训练模型
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -29,7 +29,7 @@ ms.locfileid: "85097125"
 ## <a name="train-with-an-estimator"></a>使用估算器进行训练
 
 创建[工作区](concept-workspace.md)并设置[开发环境](how-to-configure-environment.md)后，在 Azure 机器学习中训练模型包括以下步骤：  
-1. 创建[远程计算目标](how-to-set-up-training-targets.md)（注意：也可将本地计算机用作计算目标）
+1. 创建[远程计算目标](how-to-create-attach-compute-sdk.md)（也可将本地计算机用作计算目标）
 2. 将[训练数据](how-to-access-data.md)上传到数据存储（可选）
 3. 创建[训练脚本](tutorial-train-models-with-aml.md#create-a-training-script)
 4. 创建 `Estimator` 对象
@@ -39,7 +39,7 @@ ms.locfileid: "85097125"
 
 ### <a name="single-node-training"></a>单节点训练
 
-对在 Azure 中的远程计算上为 scikit 学习模型运行的单节点训练使用 `Estimator`。 你应该已经创建了[计算目标](how-to-set-up-training-targets.md#amlcompute)对象 `compute_target` 和 [FileDataset](how-to-create-register-datasets.md) 对象 `ds`。
+对在 Azure 中的远程计算上为 scikit 学习模型运行的单节点训练使用 `Estimator`。 你应该已经创建了[计算目标](how-to-create-attach-compute-sdk.md#amlcompute)对象 `compute_target` 和 [FileDataset](how-to-create-register-datasets.md) 对象 `ds`。
 
 ```Python
 from azureml.train.estimator import Estimator
@@ -63,7 +63,7 @@ sk_est = Estimator(source_directory='./my-sklearn-proj',
 --|--
 `source_directory`| 包含训练作业所需的所有代码的本地目录。 此文件夹从本地计算机复制到远程计算。
 `script_params`| 字典，指定要以 `<command-line argument, value>` 对的形式传递到训练脚本 `entry_script` 的命令行参数。 若要在 `script_params` 中指定详细标志，请使用 `<command-line argument, "">`。
-`compute_target`| 运行训练脚本的远程计算目标，在本例中为 Azure 机器学习计算 ([AmlCompute](how-to-set-up-training-targets.md#amlcompute)) 群集。 （请注意，尽管 AmlCompute 群集是常用目标，也可以选择其他计算目标类型，如 Azure VM，或甚至是本地计算机。）
+`compute_target`| 运行训练脚本的远程计算目标，在本例中为 Azure 机器学习计算 ([AmlCompute](how-to-create-attach-compute-sdk.md#amlcompute)) 群集。 （请注意，尽管 AmlCompute 群集是常用目标，也可以选择其他计算目标类型，如 Azure VM，或甚至是本地计算机。）
 `entry_script`| 要在远程计算上运行的训练脚本的文件路径（相对于 `source_directory`）。 此文件及其依赖的其他任何文件都应位于此文件夹中。
 `conda_packages`| 要通过训练脚本所需的 conda 安装的 Python 包列表。  
 
@@ -93,7 +93,7 @@ print(run.get_portal_url())
 
 以下代码演示了如何为 Keras 模型执行分布式训练。 此外，它没有使用默认 Azure 机器学习映像，而是指定 Docker 中心 `continuumio/miniconda` 的自定义 Docker 映像来进行训练。
 
-应已创建[计算目标](how-to-set-up-training-targets.md#amlcompute)对象 `compute_target`。 按如下所示创建估算器：
+应已创建[计算目标](how-to-create-attach-compute-sdk.md#amlcompute)对象 `compute_target`。 按如下所示创建估算器：
 
 ```Python
 from azureml.train.estimator import Estimator
@@ -113,7 +113,7 @@ estimator = Estimator(source_directory='./my-keras-proj',
 
 参数 | 说明 | 默认
 --|--|--
-`custom_docker_image`| 要使用的映像的名称。 仅提供公共 docker 存储库（这种情况下为 Docker 中心）中可用的映像。 若要使用专用 docker 存储库中的映像，请改为使用构造函数的 `environment_definition` 参数。 [请参阅示例](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/training-with-deep-learning/how-to-use-estimator/how-to-use-estimator.ipynb)。 | `None`
+`custom_docker_image`| 要使用的映像的名称。 仅提供公共 docker 存储库（这种情况下为 Docker 中心）中可用的映像。 若要使用专用 docker 存储库中的映像，请改为使用构造函数的 `environment_definition` 参数。| `None`
 `node_count`| 要用于训练作业的节点数。 | `1`
 `process_count_per_node`| 要在每个节点上运行的进程（或“工作线程”）数。 在这种情况下，使用每个节点上均可用的 `2`GPU。| `1`
 `distributed_training`| 用于使用 MPI 后端来启动分布式训练的 [MPIConfiguration](https://docs.microsoft.com/python/api/azureml-core/azureml.core.runconfig.mpiconfiguration?view=azure-ml-py) 对象。  | `None`
@@ -137,11 +137,9 @@ model = run.register_model(model_name='sklearn-sample', model_path=None)
 
 ## <a name="github-tracking-and-integration"></a>GitHub 跟踪和集成
 
-如果你启动训练运行（其中源目录为本地 Git 存储库），存储库的相关信息存储在运行历史记录中。 有关详细信息，请参阅 [Azure 机器学习的 Git 集成](concept-train-model-git-integration.md)。
+如果以本地 Git 存储库作为源目录开始训练运行，有关存储库的信息将存储在运行历史记录中。 有关详细信息，请参阅 [Azure 机器学习的 Git 集成](concept-train-model-git-integration.md)。
 
 ## <a name="examples"></a>示例
-有关显示估算器模式基础知识的笔记本，请参阅：
-* [how-to-use-azureml/training-with-deep-learning/how-to-use-estimator](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/training-with-deep-learning/how-to-use-estimator/how-to-use-estimator.ipynb)
 
 有关使用估算器来训练 scikit-learn 模型的笔记本，请参阅：
 * [tutorials/img-classification-part1-training.ipynb](https://github.com/Azure/MachineLearningNotebooks/blob/master/tutorials/image-classification-mnist-data/img-classification-part1-training.ipynb)

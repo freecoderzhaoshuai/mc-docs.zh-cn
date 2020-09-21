@@ -2,17 +2,18 @@
 title: 有关 Azure Site Recovery 服务的一般问题
 description: 本文讨论有关 Azure Site Recovery 的常见问题。
 ms.topic: conceptual
-origin.date: 01/24/2020
-ms.date: 08/03/2020
+origin.date: 07/14/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 02/24/2020
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 922f53fea593ca331212cd270c9fe6c49a0d5239
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 96c628340a654aa3133c44586ebc998ce762eff0
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426531"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655707"
 ---
 # <a name="general-questions-about-azure-site-recovery"></a>有关 Azure Site Recovery 的一般问题
 
@@ -25,11 +26,16 @@ ms.locfileid: "87426531"
 ## <a name="general"></a>常规
 
 ### <a name="what-does-site-recovery-do"></a>站点恢复的功能是什么？
+
 通过协调和自动化 Azure VM 复制（本地区域虚拟机和物理服务器到 Azure；本地计算机到辅助数据中心），Site Recovery 可帮助实现业务连续性与灾难恢复 (BCDR) 策略。 [了解详细信息](site-recovery-overview.md)。
 
 ### <a name="can-i-protect-a-virtual-machine-that-has-a-docker-disk"></a>是否可以保护具有 Docker 磁盘的虚拟机？
 
 否，此方案不受支持。
+
+### <a name="what-does-site-recovery-do-to-ensure-data-integrity"></a>Site Recovery 如何确保数据完整性？
+
+Site Recovery 采取各种措施来确保数据完整性。 使用 HTTPS 协议在所有服务之间建立安全连接。 这可确保任何恶意软件或外部实体都无法篡改数据。 采用的另一个措施是使用校验和。 源和目标之间的数据传输是通过计算它们之间数据的校验和来执行的。 这可确保传输的数据是一致的。
 
 ## <a name="service-providers"></a>服务提供商
 
@@ -54,7 +60,7 @@ ms.locfileid: "87426531"
 是的。
 
 ### <a name="what-platforms-do-you-currently-support"></a>目前支持哪些平台？
-我们支持 Azure Pack、云平台系统和基于 System Center 的（2012 和更高版本）的部署。 [了解更多](https://technet.microsoft.com/library/dn850370.aspx)有关 Azure Pack 和 Site Recovery 集成的信息。
+我们支持 Azure Pack、云平台系统和基于 System Center 的（2012 和更高版本）的部署。 [了解更多](https://docs.microsoft.com/previous-versions/azure/windows-server-azure-pack/dn850370(v=technet.10))有关 Azure Pack 和 Site Recovery 集成的信息。
 
 ### <a name="do-you-support-single-azure-pack-and-single-vmm-server-deployments"></a>是否支持单一 Azure Pack 和单一 VMM 服务器部署？
 是，可以复制 Hyper-V 虚拟机到 Azure，或者在服务提供商站点之间复制。  请注意，如果在服务提供商站点之间复制，将无法使用 Azure Runbook 集成。
@@ -68,7 +74,7 @@ ms.locfileid: "87426531"
 
 可以使用[定价计算器](https://www.azure.cn/pricing/calculator)来估算使用 Site Recovery 时的费用。
 
-若要对费用进行详细估算，请运行 [VMware](../site-recovery/site-recovery-vmware-deployment-planner-cost-estimation.md) 或 [Hyper-V](https://aka.ms/asr-deployment-planner) 的部署规划器工具并使用[成本估算报告](../site-recovery/site-recovery-vmware-deployment-planner-cost-estimation.md)。
+若要对费用进行详细估算，请运行 [VMware](https://docs.azure.cn/site-recovery/site-recovery-vmware-deployment-planner-cost-estimation) 或 [Hyper-V](https://aka.ms/asr-deployment-planner) 的部署规划器工具并使用[成本估算报告](https://docs.azure.cn/site-recovery/site-recovery-vmware-deployment-planner-cost-estimation)。
 
 ### <a name="managed-disks-are-now-used-to-replicate-vmware-vms-and-physical-servers-do-i-incur-additional-charges-for-the-cache-storage-account-with-managed-disks"></a>现在，托管磁盘用于复制 VMware VM 和物理服务器。 使用托管磁盘的缓存存储帐户是否会产生其他费用？
 
@@ -98,7 +104,7 @@ DR 演练没有单独的费用。 如果在测试故障转移后创建 VM，则�
 是的。 在某个区域中创建站点恢复保管库时，我们确保启用和协调复制与故障转移时所需的一切元数据都保留在该区域的地理边界范围内。
 
 ### <a name="does-site-recovery-encrypt-replication"></a>站点恢复是否将复制数据加密？
-在本地站点之间复制虚拟机和物理服务器时，支持传输中加密。 将虚拟机和物理服务器复制到 Azure 时，同时支持传输中加密和[静态加密（Azure 中）](/storage/storage-service-encryption)。
+在本地站点之间复制虚拟机和物理服务器时，支持传输中加密。 将虚拟机和物理服务器复制到 Azure 时，同时支持传输中加密和[静态加密（Azure 中）](../storage/common/storage-service-encryption.md)。
 
 ### <a name="does-azure-to-azure-site-recovery-use-tls-12-for-all-communications-across-microservices-of-azure"></a>Azure 到 Azure Site Recovery 是否使用 TLS 1.2 进行 Azure 微服务之间的所有通信？
 是，对于 Azure 到 Azure Site Recovery 方案，默认强制实施 TLS 1.2 协议。 
@@ -108,6 +114,19 @@ DR 演练没有单独的费用。 如果在测试故障转移后创建 VM，则�
 
 ### <a name="how-can-i-enforce-tls-12-on-hyperv-to-azure-site-recovery-scenarios"></a>如何在 HyperV 到 Azure Site Recovery 方案中强制实施 TLS 1.2？
 Azure Site Recovery 的微服务之间的所有通信均通过 TLS 1.2 协议进行。 Site Recovery 使用系统 (OS) 中配置的安全提供程序，并使用可用的最新 TLS 协议。 用户需要在注册表中显式启用 TLS 1.2，然后 Site Recovery 将开始使用 TLS 1.2 与服务进行通信。 
+
+### <a name="how-can-i-enforce-restricted-access-on-my-storage-accounts-which-are-accessed-by-site-recovery-service-for-readingwriting-replication-data"></a>如何对存储帐户强制实施受限访问权限（Site Recovery 服务访问这些帐户来读取/写入复制数据）？
+可转到“标识”设置来打开恢复服务保管库的托管标识。 将保管库注册到 Azure Active Directory 后，便可以转到存储帐户，向保管库分配以下角色：
+
+- 基于资源管理器的存储帐户（标准类型）：
+    - [参与者](../role-based-access-control/built-in-roles.md#contributor)
+    - [存储 Blob 数据参与者](../role-based-access-control/built-in-roles.md#storage-blob-data-contributor)
+- 基于资源管理器的存储帐户（高级类型）：
+    - [参与者](../role-based-access-control/built-in-roles.md#contributor)
+    - [存储 Blob 数据所有者](../role-based-access-control/built-in-roles.md#storage-blob-data-owner)
+- 经典存储帐户：
+    - [经典存储帐户参与者](../role-based-access-control/built-in-roles.md#classic-storage-account-contributor)
+    - [经典存储帐户密钥操作员服务角色](../role-based-access-control/built-in-roles.md#classic-storage-account-key-operator-service-role)
 
 ## <a name="disaster-recovery"></a>灾难恢复
 
@@ -134,7 +153,7 @@ Azure Site Recovery 的微服务之间的所有通信均通过 TLS 1.2 协议进
 ### <a name="is-disaster-recovery-supported-for-hyper-v-vms"></a>Hyper-V VM 是否支持灾难恢复？
 是，Site Recovery 支持本地 Hyper-V VM 的灾难恢复。 [查看有关 Hyper-V VM 灾难恢复的常见问题](hyper-v-azure-common-questions.md)。
 
-## <a name="is-disaster-recovery-supported-for-physical-servers"></a>物理服务器是否支持灾难恢复？
+### <a name="is-disaster-recovery-supported-for-physical-servers"></a>物理服务器是否支持灾难恢复？
 是，Site Recovery 支持将运行 Windows 和 Linux 的本地物理服务器灾难恢复到 Azure 或辅助站点。 了解灾难恢复到 [Azure](vmware-physical-azure-support-matrix.md#replicated-machines) 和[辅助站点](vmware-physical-secondary-support-matrix.md#replicated-vm-support)的要求。
 请注意，故障转移后，物理服务器将在 Azure 中作为 VM 运行。 当前不支持从 Azure 故障回复到本地物理服务器。 只能故障回复到 VMware 虚拟机。
 
@@ -171,12 +190,12 @@ Azure Site Recovery 通过公共终结点将数据复制到 Azure 存储帐户�
 <!--MOONCAKE: CUSTOMIZTION-->
 
 ### <a name="can-i-extend-replication-from-existing-recovery-site-to-another-tertiary-site"></a>我可以将复制从现有的恢复站点扩展到其他站点吗？
-不支持扩展或链式复制。
+Azure 中国目前不支持扩展复制或链式复制。
 
 <!-- Not Available on [feedback forum](https://feedback.azure.com/forums/256299-site-recovery/suggestions/6097959-support-for-exisiting-extended-replication) -->
 
 ### <a name="can-i-do-an-offline-replication-the-first-time-i-replicate-to-azure"></a>在首次复制到 Azure 时可以进行脱机复制吗？
-不支持此操作。
+Azure 中国目前不支持这种情况。
 
 <!-- Not Available on [feedback forum](https://feedback.azure.com/forums/256299-site-recovery/suggestions/6227386-support-for-offline-replication-data-transfer-from) -->
 
@@ -192,10 +211,10 @@ Azure Site Recovery 通过公共终结点将数据复制到 Azure 存储帐户�
 是的。 可从以下文章详细了解如何限制带宽：
 
 * [复制 VMware VM 和物理服务器的容量规划](site-recovery-plan-capacity-vmware.md)
-* [将 Hyper-V VM 复制到 Azure 的容量规划](site-recovery-capacity-planning-for-hyper-v-replication.md)
+* [将 Hyper-V VM 复制到 Azure 的容量规划](./hyper-v-deployment-planner-overview.md)
 
 ### <a name="can-i-enable-replication-with-app-consistency-in-linux-servers"></a>能否在 Linux 服务器中启用应用一致性复制？ 
-是的。 适用于 Linux 操作系统的 Azure Site Recovery 支持通过应用程序自定义脚本实现应用程序一致性。 在保障应用程序一致性时，Azure Site Recovery 移动代理将使用带有 pre 和 post 选项的自定义脚本。 以下是启用此功能的步骤。
+是的。 适用于 Linux 操作系统的 Azure Site Recovery 支持通过应用程序自定义脚本实现应用一致性。 在保障应用程序一致性时，Azure Site Recovery 移动代理将使用带有 pre 和 post 选项的自定义脚本。 以下是启用此功能的步骤。
 
 1. 以 root 身份登录计算机。
 2. 将目录更改为 Azure Site Recovery 移动代理安装位置。 默认位置为“/usr/local/ASR”<br />
@@ -229,6 +248,72 @@ Azure Site Recovery 通过公共终结点将数据复制到 Azure 存储帐户�
 >[!Note]
 >Site Recovery 代理版本应为 9.24 或更高版本才能支持自定义脚本。
 
+## <a name="replication-policy"></a>复制策略
+
+### <a name="what-is-a-replication-policy"></a>什么是复制策略？
+
+复制策略定义了恢复点的保留历史记录设置。 此策略还定义了应用一致性快照的频率。 默认情况下，Azure Site Recovery 使用以下默认设置创建新的复制策略：
+
+- 恢复点历史记录的保留期为 24 小时。
+- 应用一致性快照的频率为 4 小时。
+
+### <a name="what-is-a-crash-consistent-recovery-point"></a>什么是崩溃一致性恢复点？
+
+故障一致性恢复点包含，与在快照期间从服务器拔下电源线时一样的磁盘上数据。 故障一致性恢复点不包含在拍摄快照时的任何内存中数据。
+
+目前，大多数应用程序都可以从崩溃一致性快照正常恢复。 对于无数据库的操作系统以及文件服务器、DHCP 服务器、打印服务器等应用程序而言，崩溃一致性恢复点通常已足够。
+
+### <a name="what-is-the-frequency-of-crash-consistent-recovery-point-generation"></a>崩溃一致性恢复点生成的频率是多少？
+
+Site Recovery 每隔 5 分钟创建崩溃一致性恢复点。
+
+### <a name="what-is-an-application-consistent-recovery-point"></a>什么是应用程序一致性恢复点？
+
+应用程序一致性恢复点是从应用程序一致性快照创建的。 应用一致性恢复点除了捕获与故障一致性快照相同的数据，还捕获内存中数据以及进程中的所有事务。
+
+由于包含额外内容，因此应用一致性快照涉及最多且耗时最长。 我们建议对数据库操作系统以及 SQL Server 等应用程序使用应用程序一致性恢复点。
+
+### <a name="what-is-the-impact-of-application-consistent-recovery-points-on-application-performance"></a>应用程序一致性恢复点对应用程序性能有何影响？
+
+应用一致性恢复点捕获内存中和进程中的所有数据。 因为恢复点捕获此类数据，所以它们需要 Windows 上的卷影复制服务等框架来让应用处于静止状态。 如果捕获过程频繁发生，当工作负荷已经很忙时，它可能会影响性能。 对于非数据库工作负荷，建议不要对应用一致性恢复点使用低频率。 即使对于数据库工作负荷，1 小时也足够了。
+
+### <a name="what-is-the-minimum-frequency-of-application-consistent-recovery-point-generation"></a>应用程序一致性恢复点生成的最低频率是多少？
+
+Site Recovery 可以创建最低频率为 1 小时的应用一致性恢复点。
+
+### <a name="how-are-recovery-points-generated-and-saved"></a>如何生成和保存恢复点？
+
+为了理解 Site Recovery 如何生成恢复点，让我们来看一个复制策略示例。 此复制策略有一个恢复点，它的保留期为 24 小时，应用一致性快照频率为 1 小时。
+
+Site Recovery 每隔 5 分钟创建崩溃一致性恢复点。 你无法更改此频率。 对于过去一个小时，你可以从 12 个故障一致性恢复点和 1 个应用一致性恢复点中进行选择。 随着时间的推移，Site Recovery 会删除过去一个小时之外的所有恢复点，并且每小时只保存 1 个恢复点。
+
+以下屏幕截图演示了该示例。 在屏幕截图中：
+
+- 在过去一个小时内，有一些频率为 5 分钟的恢复点。
+- 在过去一个小时之外，Site Recovery 只保留 1 个恢复点。
+
+   :::image type="content" source="./media/azure-to-azure-troubleshoot-errors/recoverypoints.png" alt-text="生成的恢复点列表":::
+
+### <a name="how-far-back-can-i-recover"></a>可以恢复到哪个最早的时间点？
+
+可以使用的最早恢复点是 72 小时。
+
+### <a name="i-have-a-replication-policy-of-24-hours-what-will-happen-if-a-problem-prevents-site-recovery-from-generating-recovery-points-for-more-than-24-hours-will-my-previous-recovery-points-be-lost"></a>我有保留期为 24 小时的复制策略。 如果某个问题导致 Site Recovery 超过 24 小时无法生成恢复点，将会怎样？ 以前的恢复点是否将丢失？
+
+不会，Site Recovery 将保留以前的所有恢复点。 根据恢复点的保留期，Site Recovery 仅在生成新点时才替换最早的点。 由于此问题，Site Recovery 无法生成任何新的恢复点。 在有新的恢复点之前，所有旧的恢复点都将在到达保留期后保留。
+
+### <a name="after-replication-is-enabled-on-a-vm-how-do-i-change-the-replication-policy"></a>在 VM 上启用复制后，如何更改复制策略？
+
+转到“Site Recovery 保管库” > “Site Recovery 基础结构” > “复制策略”。   选择要编辑的策略，然后保存所做的更改。 任何更改也会应用到现有的所有复制。
+
+### <a name="are-all-the-recovery-points-a-complete-copy-of-the-vm-or-a-differential"></a>所有恢复点是包含 VM 的完整副本还是差异副本？
+
+生成的第一个恢复点包含完整副本。 任何后续恢复点包含增量更改。
+
+### <a name="does-increasing-the-retention-period-of-recovery-points-increase-the-storage-cost"></a>增大恢复点保留期是否会增加存储成本？
+
+是，如果你将保留期从 24 小时延长到 72 小时，Site Recovery 会额外保存恢复点 48 小时。 增加的时间会产生存储费用。 例如，一个恢复点可能有 10GB 的增量更改，每月每 GB 的费用为 $0.16。 额外费用为每月 $1.60 × 48。
+
 ## <a name="failover"></a>故障转移
 ### <a name="if-im-failing-over-to-azure-how-do-i-access-the-azure-vms-after-failover"></a>如果故障转移到 Azure，则在故障转移后如何访问 Azure VM？
 
@@ -247,7 +332,7 @@ Azure 具有复原能力。 Site Recovery 已能够根据 Azure SLA 故障转移
 
 * [详细了解](site-recovery-create-recovery-plans.md)恢复计划。
 * [详细了解](site-recovery-failover.md)故障转移。
-* [详细了解](site-recovery-failback-azure-to-vmware.md) VMware VM 和物理服务器故障回复的信息
+* [详细了解](./vmware-azure-failback.md) VMware VM 和物理服务器故障回复的信息
 
 ### <a name="if-my-on-premises-host-is-not-responding-or-crashed-can-i-fail-back-to-a-different-host"></a>如果我的本地主机未响应或崩溃，我是否可以故障回复到另一个主机？
 是，可以使用备用位置恢复从 Azure 故障回复到另一个主机。

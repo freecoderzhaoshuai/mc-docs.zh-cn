@@ -8,16 +8,16 @@ ms.service: active-directory
 ms.subservice: develop
 ms.topic: how-to
 ms.workload: identity
-ms.date: 08/17/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 ms.reviewer: paulgarn, hirsin, keyam
 ms.custom: aaddev
-ms.openlocfilehash: 67ea354b5205f1b939250a6f03f2657fc4c0a1bc
-ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
+ms.openlocfilehash: a71dac110e5843fb607a4ad86287fcba8adf6f6e
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "88647555"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593677"
 ---
 # <a name="how-to-provide-optional-claims-to-your-app"></a>如何：向应用提供可选声明
 
@@ -53,13 +53,12 @@ ms.locfileid: "88647555"
 | `auth_time`                | 用户上次进行身份验证的时间。 请参阅 OpenID Connect 规范。| JWT        |           |  |
 | `tenant_region_scope`      | 资源租户的区域 | JWT        |           | |
 | `sid`                      | 会话 ID，用于基于会话的用户注销。 | JWT        | Azure AD 帐户。   |         |
-| `platf`                    | 设备平台    | JWT        |           | 限制为可以验证设备类型的托管设备。|
 | `verified_primary_email`   | 源自用户的 PrimaryAuthoritativeEmail      | JWT        |           |         |
 | `verified_secondary_email` | 源自用户的 SecondaryAuthoritativeEmail   | JWT        |           |        |
 | `vnet`                     | VNET 说明符信息。 | JWT        |           |      |
 | `fwd`                      | IP 地址。| JWT    |   | 添加请求方客户端（如果位于 VNET 中）的原始 IPv4 地址 |
-| `ctry`                     | 用户所在国家/地区 | JWT |  | Azure AD 返回 `ctry` 可选声明（如果存在）且声明的值是标准的双字母国家/地区代码，例如 FR、JP、SZ 等。 |
-| `tenant_ctry`              | 资源租户所在的国家/地区 | JWT | | |
+| `ctry`                     | 用户所在国家/地区 | JWT、SAML |  | Azure AD 返回 `ctry` 可选声明（如果存在）且此字段的值是标准的双字母国家/地区代码，例如 FR、JP、SZ 等。 |
+| `tenant_ctry`              | 资源租户所在的国家/地区 | JWT | | 与 `ctry` 相同，区别是由管理员在租户级别设置。还必须是标准的双字母值。 |
 | `xms_pdl`             | 首选数据位置   | JWT | | 对于多地域租户，首选数据位置是显示用户所在地理区域的三字母代码。 <br/>例如：`APC` 表示“亚太”。 |
 | `xms_pl`                   | 用户首选语言  | JWT ||用户的首选语言（如果已设置）。 在来宾访问方案中，源自其主租户。 已格式化 LL-CC（“zh-cn”）。 |
 | `xms_tpl`                  | 租户首选语言| JWT | | 资源租户的首选语言（如果已设置）。 已格式化 LL（“en”）。 |
@@ -199,7 +198,7 @@ ms.locfileid: "88647555"
 |------------------------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `name`                 | Edm.String              | 可选声明的名称。                                                                                                                                                                                                                                                                               |
 | `source`               | Edm.String              | 声明的源（目录对象）。 扩展属性提供预定义声明和用户定义的声明。 如果源值为 null，则声明是预定义的可选声明。 如果源值为 user，则 name 属性中的值是来自用户对象的扩展属性。 |
-| `essential`            | Edm.Boolean             | 如果值为 true，则必须使用客户端指定的声明，以确保为最终用户请求的特定任务提供顺利的授权体验。 默认值为 false。                                                                                                                 |
+| `essential`            | Edm.Boolean             | 如果值为 true，则必须使用客户端指定的声明，以确保为最终用户请求的特定任务提供顺利的授权体验。 默认值是 False。                                                                                                                 |
 | `additionalProperties` | 集合 (Edm.String) | 声明的附加属性。 如果此集合中存在某个属性，该属性将修改 name 属性中指定的可选声明的行为。                                                                                                                                                   |
 
 ## <a name="configuring-directory-extension-optional-claims"></a>配置目录扩展可选声明
@@ -396,7 +395,7 @@ ms.locfileid: "88647555"
 
 **清单配置：**
 
-1. 登录到 [Azure 门户](https://portal.azure.cn)。
+1. 登录 [Azure 门户](https://portal.azure.cn)。
 1. 通过身份验证后，在页面右上角选择 Azure AD 租户。
 1. 从左侧菜单中选择“Azure Active Directory”。
 1. 在列表中找到要为其配置可选声明的应用程序并选择它。

@@ -3,16 +3,17 @@ title: 收集和分析资源日志
 description: 记录和分析 Azure 容器注册表的资源日志事件，例如身份验证、映像推送和映像拉取。
 ms.topic: article
 origin.date: 06/01/2020
-ms.date: 07/27/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 05/06/2020
+ms.testdate: 09/14/2020
 ms.author: v-yeche
-ms.openlocfilehash: b9b8a6968346346f985163bc5e94ca6c7b9d34e1
-ms.sourcegitcommit: 5726d3b2e694f1f94f9f7d965676c67beb6ed07c
+ms.openlocfilehash: 8e89142fa1f025cc8bb9732dc0f1ea95c692f85c
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86863160"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021449"
 ---
 <!--Verified successfully-->
 # <a name="azure-container-registry-logs-for-diagnostic-evaluation-and-auditing"></a>用于诊断评估和审核的 Azure 容器注册表日志
@@ -66,7 +67,7 @@ ms.locfileid: "86863160"
 
 下图显示了如何使用门户创建注册表的诊断设置。
 
-![启用诊断设置](media/container-registry-diagnostics-audit-logs/diagnostic-settings.png)
+:::image type="content" source="media/container-registry-diagnostics-audit-logs/diagnostic-settings.png" alt-text="启用诊断设置":::
 
 > [!TIP]
 > 仅收集所需的数据，以便在成本与监视需求之间进行适当的平衡。 例如，如果只需审核身份验证事件，请仅选择“ContainerRegistryLoginEvents”日志。 
@@ -84,7 +85,7 @@ ContainerRegistryRepositoryEvents
 
 下图显示了示例输出：
 
-![查询日志数据](media/container-registry-diagnostics-audit-logs/azure-monitor-query.png)
+:::image type="content" source="media/container-registry-diagnostics-audit-logs/azure-monitor-query.png" alt-text="查询日志数据":::
 
 有关在 Azure 门户中使用 Log Analytics 的教程，请参阅 [Azure Monitor Log Analytics 入门](../azure-monitor/log-query/get-started-portal.md)，或试用 Log Analytics [演示环境](https://portal.loganalytics.io/demo)。 
 
@@ -126,7 +127,8 @@ ContainerRegistryRepositoryEvents
 | project LoginServer, OperationName, Repository, Tag, Identity, CallerIpAddress
 ```
 
-### <a name="reposity-level-operation-failures"></a>存储库级操作失败
+<a name="repository-level-operation-failures"></a>
+### <a name="repository-level-operation-failures"></a>存储库级操作失败
 
 ```kusto
 ContainerRegistryRepositoryEvents 
@@ -146,7 +148,7 @@ ContainerRegistryLoginEvents
 
 除了将日志发送到 Log Analytics 以外，还有一种常见的替代方案，那就是选择 Azure 存储帐户作为日志目标。 若要将日志存档在 Azure 存储中，请先创建一个存储帐户，然后通过诊断设置启用存档。
 
-还可以将诊断日志事件流式传输到 [Azure 事件中心](../event-hubs/event-hubs-what-is-event-hubs.md)。 数据中心每秒可以接受数百万事件，用户可以使用任何实时分析提供程序转换并存储这些事件。 
+还可以将诊断日志事件流式传输到 [Azure 事件中心](../event-hubs/event-hubs-about.md)。 数据中心每秒可以接受数百万事件，用户可以使用任何实时分析提供程序转换并存储这些事件。 
 
 ## <a name="next-steps"></a>后续步骤
 

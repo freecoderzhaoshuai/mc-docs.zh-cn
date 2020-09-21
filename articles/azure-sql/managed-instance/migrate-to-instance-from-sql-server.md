@@ -11,13 +11,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: douglas, carlrab
 origin.date: 07/11/2019
-ms.date: 08/17/2020
-ms.openlocfilehash: 0ced28f9082b83750646781cb83483cbcc6024b8
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.date: 09/14/2020
+ms.openlocfilehash: 3c8b8fd32117b48bcc54b1053dd4f566fd4d504b
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222660"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014230"
 ---
 # <a name="sql-server-instance-migration-to-azure-sql-managed-instance"></a>将 SQL Server 实例迁移到 Azure SQL 托管实例
 [!INCLUDE[appliesto-sqlmi](../includes/appliesto-sqlmi.md)]
@@ -161,7 +161,7 @@ SQL 托管实例支持以下数据库迁移选项（目前仅支持这些迁移�
 作为先决条件，请确保已完成以下活动：
 
 - 通过调查各种实例、数据库、tempdb 设置和配置，使托管实例上的设置与源 SQL Server 实例中的设置相符。 在运行首次性能比较之前，请确保未更改兼容性级别或加密等设置，否则需要承受启用的某些新功能影响某些查询的风险。 为了减少迁移风险，请只在完成性能监视之后更改数据库兼容级别。
-- 实现[适用于“常规用途”服务层级的存储最佳做法指导原则](https://techcommunity.microsoft.com/t5/DataCAT/Storage-performance-best-practices-and-considerations-for-Azure/ba-p/305525)，如预先分配文件大小以获得更好的性能。
+- 实现[适用于“常规用途”服务层级的存储最佳做法指导原则](https://techcommunity.microsoft.com)，如预先分配文件大小以获得更好的性能。
 - 了解[可能导致托管实例与 SQL Server 之间出现性能差别的关键环境差异](https://azure.microsoft.com/blog/key-causes-of-performance-differences-between-sql-managed-instance-and-sql-server/)，并识别可能影响性能的风险。
 - 确保在托管实例上保持启用“查询存储”和“自动优化”。 这些功能可让你衡量工作负荷的性能，并自动修复潜在的性能问题。 根据[在升级到较新 SQL Server 版本期间保持性能稳定性](https://docs.microsoft.com/sql/relational-databases/performance/query-store-usage-scenarios#CEUpgrade)中所述，了解在更改数据库兼容级别之前和之后，如何使用查询存储作为最佳工具来获取有关工作负载性能的信息。
 准备好尽量与本地环境相当的环境后，可以开始运行工作负荷并衡量性能。 衡量过程应包括[在源 SQL Server 实例上创建工作负载的基线性能测量值](#create-a-performance-baseline)时所测得的相同参数。
@@ -199,7 +199,7 @@ SQL 托管实例提供许多高级工具用于监视和故障排除，你应使�
 
 要增强安全性，请考虑使用 [Azure Active Directory 身份验证](../database/security-overview.md)、[审核](auditing-configure.md)、[威胁检测](../database/advanced-data-security.md)、[行级别安全性](https://docs.microsoft.com/sql/relational-databases/security/row-level-security)和[动态数据掩码](https://docs.microsoft.com/sql/relational-databases/security/dynamic-data-masking)。
 
-除了高级管理和安全功能以外，托管实例还提供一组高级工具来帮助你[监视和优化工作负载](../database/monitor-tune-overview.md)。 托管实例中的[自动优化](https://docs.microsoft.com/sql/relational-databases/automatic-tuning/automatic-tuning#automatic-plan-correction)会持续监视 SQL 计划执行统计信息的性能，并自动修复已识别到的性能问题。
+除了高级管理和安全功能以外，托管实例还提供一组高级工具来帮助你[监视和优化工作负载](../database/monitor-tune-overview.md)。 托管实例中的[自动优化](https://docs.microsoft.com/sql/relational-databases/automatic-tuning/automatic-tuning#automatic-plan-correction)会持续监视 SQL 计划执行统计信息的性能，并自动修复已确定的性能问题。
 
 ## <a name="next-steps"></a>后续步骤
 

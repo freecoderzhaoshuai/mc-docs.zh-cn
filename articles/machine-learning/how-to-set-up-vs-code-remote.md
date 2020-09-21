@@ -9,12 +9,12 @@ ms.topic: how-to
 ms.author: jmartens
 author: j-martens
 ms.date: 08/06/2020
-ms.openlocfilehash: 3213d031979405917a582f281ef5b3f7aba7f66a
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 6405ff6281fcae4b33ae245c8e01bb96306d6174
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88946746"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021481"
 ---
 # <a name="debug-interactively-on-an-azure-machine-learning-compute-instance-with-vs-code-remote"></a>使用 VS Code Remote 对 Azure 机器学习计算实例进行交互式调试
 
@@ -35,7 +35,7 @@ ms.locfileid: "88946746"
 
 ## <a name="get-the-ip-and-ssh-port-for-your-compute-instance"></a>获取计算实例的 IP 和 SSH 端口
 
-1. 前往 https://ml.azure.com/，转到 Azure 机器学习工作室。
+1. 前往 https://studio.ml.azure.cn/，转到 Azure 机器学习工作室。
 
 2. 选择[工作区](concept-workspace.md)。
 1. 单击“计算实例”选项卡****。
@@ -48,14 +48,16 @@ ms.locfileid: "88946746"
    vi ~/.ssh/id_azmlcitest_rsa  
    ```
 
-   **Windows**： 
-   ```
-   notepad C:\Users\<username>\.ssh\id_azmlcitest_rsa 
+   **Windows**：
+
+   ```cmd
+   notepad C:\Users\<username>\.ssh\id_azmlcitest_rsa
    ```
 
    私钥如下所示：
-   ```
-   -----BEGIN RSA PRIVATE KEY----- 
+
+   ```text
+   -----BEGIN RSA PRIVATE KEY-----
 
    MIIEpAIBAAKCAQEAr99EPm0P4CaTPT2KtBt+kpN3rmsNNE5dS0vmGWxIXq4vAWXD 
    ..... 
@@ -113,6 +115,6 @@ Host azmlci1
 
 ## <a name="next-steps"></a>后续步骤
 
-现在，你已设置 Visual Studio Code Remote，可以将计算实例用作 Visual Studio Code 中的远程计算，从而对代码进行交互式调试。 
+现在，你已设置 Visual Studio Code 远程，可以将计算实例用作 Visual Studio Code 中的远程计算，从而[对代码进行交互式调试](how-to-debug-visual-studio-code.md)。
 
 [教程：训练自己的首个 ML 模型](tutorial-1st-experiment-sdk-train.md)演示如何将计算实例与集成的笔记本配合使用。

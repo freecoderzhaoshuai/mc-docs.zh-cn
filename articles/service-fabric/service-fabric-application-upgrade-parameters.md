@@ -1,16 +1,19 @@
 ---
-title: 应用程序升级：升级参数
+title: 应用程序升级 - 升级参数
 description: 介绍与升级 Service Fabric 应用程序相关的参数，包括要执行的运行状况检查，以及用于自动撤消升级的策略。
 ms.topic: conceptual
 origin.date: 11/08/2018
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.date: 01/06/2020
-ms.openlocfilehash: 874ee77b88d575da142c968082f231fda3d0ebdd
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 9fa459c7cf4c3bc75f2fb8368a0581ac8df6499b
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75742465"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655537"
 ---
 # <a name="application-upgrade-parameters"></a>应用程序升级参数
 本文介绍 Azure Service Fabric 应用程序升级期间应用的各种参数。 应用程序升级参数控制升级期间应用的超时和运行状况检查，并指定在升级失败时必须应用的策略。 应用程序参数使用以下项应用于升级：
@@ -60,7 +63,7 @@ Visual Studio Service Fabric 应用程序升级参数通过“Visual Studio 升�
 > | ForceRestart |PS、VS |如果更新配置或数据包而不更新服务代码，则仅当 ForceRestart 属性设置为 **True** 时，服务才会重启。 更新完成后，Service Fabric 将通知服务新的配置包或数据包可用。 该服务负责应用所做的更改。 如有必要，该服务可进行重启。 |
 > | HealthCheckRetryTimeoutSec |PS、VS |声明升级失败之前，Service Fabric 继续执行运行状况评估的持续时间（以秒为单位）。 默认为 600 秒。 此持续时间在 *HealthCheckWaitDurationSec* 秒后开始。 在此 *HealthCheckRetryTimeout* 期间，Service Fabric 可能会对应用程序执行多次运行状况检查。 默认值为 10 分钟，应该针对应用程序相应地自定义该值。 |
 > | HealthCheckStableDurationSec |PS、VS |在转到下一个升级域或完成升级之前，为了验证应用程序是否稳定而要等待的持续时间（以秒为单位）。 此等待持续时间用于防止在执行了运行状况检查后，未检测到运行状况更改。 默认值为 120 秒，应该针对应用程序相应地自定义该值。 |
-> | HealthCheckWaitDurationSec |PS、VS | 完成升级域的升级后，在 Service Fabric 评估应用程序的运行状况之前需要等待的时间（以秒为单位）。 也可将此持续时间视为应用程序应先运行多长时间才可被视为正常运行。 如果运行状况检查通过，升级过程将转到下一个升级域。  如果运行状况检查失败，则在再次重试运行状况检查之前，Service Fabric 会等待 [UpgradeHealthCheckInterval](/service-fabric/service-fabric-cluster-fabric-settings#clustermanager) 秒的时间，直到 *HealthCheckRetryTimeoutSec* 秒的时间用完。 建议的默认值为 0 秒。 |
+> | HealthCheckWaitDurationSec |PS、VS | 完成升级域的升级后，在 Service Fabric 评估应用程序的运行状况之前需要等待的时间（以秒为单位）。 也可将此持续时间视为应用程序应先运行多长时间才可被视为正常运行。 如果运行状况检查通过，升级过程将转到下一个升级域。  如果运行状况检查失败，则在再次重试运行状况检查之前，Service Fabric 会等待 [UpgradeHealthCheckInterval](./service-fabric-cluster-fabric-settings.md#clustermanager) 秒的时间，直到 *HealthCheckRetryTimeoutSec* 秒的时间用完。 建议的默认值为 0 秒。 |
 > | MaxPercentUnhealthyDeployedApplications|PS、VS |建议的默认值为 0。 指定在将应用程序视为不正常和升级失败之前，可以不正常的最大已部署应用程序数（请参阅[运行状况部分](service-fabric-health-introduction.md)）。 此参数在节点上定义应用程序运行状况，可帮助检查升级过程中的问题。 通常，应用程序的副本将与另一个节点负载均衡，使应用程序看上去运行正常，从而使升级继续。 通过指定严格的 *MaxPercentUnhealthyDeployedApplications* 运行状况，Service Fabric 可以快速检测应用程序包的问题，这样就产生了一种采用快速失败机制的升级。 |
 > | MaxPercentUnhealthyServices |PS、VS |*DefaultServiceTypeHealthPolicy* 和 *ServiceTypeHealthPolicyMap* 的参数。 建议的默认值为 0。 指定在将应用程序视为不正常和升级失败之前，应用程序实例中可以不正常的最大服务数。 |
 > | MaxPercentUnhealthyPartitionsPerService|PS、VS |*DefaultServiceTypeHealthPolicy* 和 *ServiceTypeHealthPolicyMap* 的参数。 建议的默认值为 0。 指定在将服务视为不正常之前，服务中可以不正常的最大分区数。 |
@@ -76,7 +79,7 @@ Visual Studio Service Fabric 应用程序升级参数通过“Visual Studio 升�
 
 ## <a name="sfctl-parameters"></a>SFCTL 参数
 
-通过 Service Fabric CLI 进行的 Service Fabric 应用程序升级使用 [sfctl application upgrade](/service-fabric/service-fabric-sfctl-application#sfctl-application-upgrade) 命令以及下面的必需和可选参数。
+通过 Service Fabric CLI 进行的 Service Fabric 应用程序升级使用 [sfctl application upgrade](./service-fabric-sfctl-application.md#sfctl-application-upgrade) 命令以及下面的必需和可选参数。
 
 ### <a name="required-parameters"></a>必需的参数
 
@@ -120,4 +123,4 @@ Visual Studio Service Fabric 应用程序升级参数通过“Visual Studio 升�
 
 参考[对应用程序升级进行故障排除](service-fabric-application-upgrade-troubleshooting.md)中的步骤来解决应用程序升级时的常见问题。
 
-<!-- Update_Description: update meta properties, wording update  -->
+<!-- Update_Description: update meta properties, wording update, update link -->

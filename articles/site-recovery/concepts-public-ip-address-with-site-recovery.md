@@ -1,20 +1,22 @@
 ---
-title: 使用 Azure Site Recovery 进行故障转移后使用公共 IP 地址 | Azure
+title: 使用 Azure Site Recovery 进行故障转移后分配公共 IP 地址
 description: 介绍如何结合使用 Azure Site Recovery 和 Azure 流量管理器设置公共 IP 地址来实现灾难恢复和迁移
 services: site-recovery
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 04/08/2019
-ms.date: 04/22/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 202432e824aa9af99d8f3e917aac4999b2232557
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: ef46358e73509f5edc92bf7013918fc9298b4709
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79292864"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655487"
 ---
 # <a name="set-up-public-ip-addresses-after-failover"></a>设置故障转移后的公共 IP 地址
 
@@ -48,7 +50,7 @@ Azure 流量管理器在终结点之间启用 DNS 级别路由，可帮助在灾
 2. 使用流量管理器的 [Azure 到 Azure 故障转移](../site-recovery/concepts-traffic-manager-with-site-recovery.md#azure-to-azure-failover) 
 
 设置如下：
-- 创建[流量管理器配置文件](../traffic-manager/traffic-manager-create-profile.md)。
+- 创建[流量管理器配置文件](../traffic-manager/quickstart-create-traffic-manager-profile.md)。
 - 利用“优先级”  路由方法创建两个终结点 - 针对源的“主要”  终结点，针对 Azure 的“故障转移”  终结点。 为**主要**终结点分配优先级 1，为**故障转移**终结点分配优先级 2。
 - “主要”  终结点可以是 [Azure](../traffic-manager/traffic-manager-endpoint-types.md#azure-endpoints) 或[外部](../traffic-manager/traffic-manager-endpoint-types.md#external-endpoints)终结点，具体取决于源环境在 Azure 内部还是外部。
 - “故障转移”  终结点被创建为“Azure”  终结点。 使用静态公共 IP 地址  ，因为这将是灾难事件中流量管理器的面向外部的终结点。
@@ -58,4 +60,4 @@ Azure 流量管理器在终结点之间启用 DNS 级别路由，可帮助在灾
 - 详细了解流量管理器的[路由方法](../traffic-manager/traffic-manager-routing-methods.md)。
 - 详细了解如何使用[恢复计划](site-recovery-create-recovery-plans.md)自动执行应用程序故障转移。
 
-<!-- Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

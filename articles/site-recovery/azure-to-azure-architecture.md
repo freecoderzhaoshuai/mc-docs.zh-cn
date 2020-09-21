@@ -2,21 +2,21 @@
 title: 使用 Azure Site Recovery 执行 Azure 到 Azure 的灾难恢复体系结构
 description: 概述了使用 Azure Site Recovery 服务为 Azure VM 设置 Azure 区域之间的灾难恢复时使用的体系结构。
 services: site-recovery
-author: rockboyfor
-manager: digimobile
+manager: carmonm
 ms.service: site-recovery
 ms.topic: conceptual
 origin.date: 03/13/2020
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 06/08/2020
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: f13aa38dc2a688cc33ed099847bd11f11bb9fc51
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: d026db9cbf122184fdb8b38001d2f16ef7c59abc
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426473"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655239"
 ---
 # <a name="azure-to-azure-disaster-recovery-architecture"></a>Azure 到 Azure 的灾难恢复体系结构
 
@@ -34,7 +34,7 @@ ms.locfileid: "87426473"
 **缓存存储帐户** | 源网络中需要一个缓存存储帐户。 在复制期间，VM 更改将存储在缓存中，然后再发送到目标存储。  缓存存储帐户必须是标准存储帐户。<br/><br/> 使用缓存可确保尽量减少对 VM 上运行的生产应用程序造成的影响。<br/><br/> [详细了解](azure-to-azure-support-matrix.md#cache-storage)缓存存储要求。 
 **目标资源** | 在复制期间以及发生故障转移时将使用目标资源。 Site Recovery 默认可以设置目标资源，你也可以自行创建/自定义目标资源。<br/><br/> 在目标区域中，请检查是否能够创建 VM，以及你的订阅是否有足够的资源用于支持目标区域中所需的 VM 大小。 
 
-![源和目标复制](./media/concepts-azure-to-azure-architecture/enable-replication-step-1-v2.png)
+:::image type="content" source="./media/concepts-azure-to-azure-architecture/enable-replication-step-1-v2.png" alt-text="此图显示了源和目标副本。":::
 
 ## <a name="target-resources"></a>目标资源
 
@@ -116,7 +116,7 @@ Site Recovery 按如下所述创建快照：
 4. Site Recovery 处理缓存中的数据，并将其发送到目标存储帐户或副本托管磁盘。
 5. 处理数据后，每隔五分钟生成崩溃一致性恢复点。 根据复制策略中指定的设置生成应用一致性恢复点。
 
-    ![启用复制过程，步骤 2](./media/concepts-azure-to-azure-architecture/enable-replication-step-2-v2.png)
+:::image type="content" source="./media/concepts-azure-to-azure-architecture/enable-replication-step-2-v2.png" alt-text="此图显示了复制过程第 2 步。":::
 
 **复制过程**
 
@@ -128,14 +128,19 @@ Site Recovery 按如下所述创建快照：
 
 如果使用 URL 控制 VM 的出站访问，请允许这些 URL。
 
-| **URL** | **详细信息** |
-| ------- | ----------- |
-| *.blob.core.chinacloudapi.cn | 允许将数据从 VM 写入源区域中的缓存存储帐户。 |
-| login.chinacloudapi.cn | 向 Site Recovery 服务 URL 提供授权和身份验证。 |
-| *.hypervrecoverymanager.windowsazure.cn | 允许 VM 与 Site Recovery 服务进行通信。 |
-| *.servicebus.chinacloudapi.cn | 允许 VM 写入 Site Recovery 监视和诊断数据。 |
-| *.vault.azure.cn | 允许访问，以便通过门户为支持 ADE 的虚拟机启用复制 |
-| *.automation.ext.azure.com | 允许通过门户为复制项启用移动代理自动升级 |
+<!--MOONCAKE: CUSTOMIZE-->
+<!--REMOVE THE US GOVERMENT COLUMNS DETAILS-->
+
+| **Name** | **Azure 中国世纪互联** | **说明** |
+| ------------------------- | -------------------------------------------- | ----------- |
+| 存储                   | `*.blob.core.chinacloudapi.cn`                  | 允许将数据从 VM 写入源区域中的缓存存储帐户。 |
+| Azure Active Directory    | `login.chinacloudapi.cn`                | 向 Site Recovery 服务 URL 提供授权和身份验证。 |
+| 复制               | `*.hypervrecoverymanager.windowsazure.cn` | 允许 VM 与 Site Recovery 服务进行通信。 |
+| 服务总线               | `*.servicebus.chinacloudapi.cn`                 | 允许 VM 写入 Site Recovery 监视和诊断数据。 |
+| Key Vault                 | `*.vault.azure.cn`                        | 允许访问，以便通过门户为支持 ADE 的虚拟机启用复制 |
+| Azure 自动化          | `*.azure-automation.cn`               | 允许通过门户为复制项启用移动代理自动升级 |
+
+<!--MOONCAKE: CUSTOMIZE-->
 
 ### <a name="outbound-connectivity-for-ip-address-ranges"></a>IP 地址范围的出站连接
 
@@ -172,11 +177,11 @@ Site Recovery 按如下所述创建快照：
 
 #### <a name="control-access-with-nsg-rules"></a>使用 NSG 规则控制访问
 
-如果使用 [NSG 规则](/virtual-network/security-overview)通过筛选传入和传出 Azure 网络/子网的网络流量来控制 VM 连接，请注意以下要求：
+如果使用 [NSG 规则](../virtual-network/security-overview.md)通过筛选传入和传出 Azure 网络/子网的网络流量来控制 VM 连接，请注意以下要求：
 
 - 源 Azure 区域的 NSG 规则应允许复制流量进行出站访问。
 - 我们建议先在测试环境中创建规则，然后在生产环境中实施这些规则。
-- 使用[服务标记](/virtual-network/security-overview#service-tags)，而不要允许单个 IP 地址。
+- 使用[服务标记](../virtual-network/security-overview.md#service-tags)，而不要允许单个 IP 地址。
     - 服务标记表示集合在一起的一组 IP 地址前缀，可以最大程度地降低安全规则创建过程的复杂性。
     - Azure 会不断地自动更新服务标记。 
 
@@ -192,7 +197,7 @@ Site Recovery 按如下所述创建快照：
 
 如果启动故障转移，系统会在目标资源组、目标虚拟网络、目标子网和目标可用性集中创建 VM。 可在故障转移过程中使用任意恢复点。
 
-![故障转移过程](./media/concepts-azure-to-azure-architecture/failover-v2.png)
+:::image type="content" source="./media/concepts-azure-to-azure-architecture/failover-v2.png" alt-text="此图显示了源环境和目标环境故障转移过程。":::
 
 ## <a name="next-steps"></a>后续步骤
 

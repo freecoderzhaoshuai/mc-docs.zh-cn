@@ -7,14 +7,14 @@ author: HeidiSteen
 ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
-origin.date: 03/24/2020
-ms.date: 07/17/2020
-ms.openlocfilehash: 462de4b5a021acd88c45baa09ddbaad0b49d88da
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+origin.date: 06/18/2020
+ms.date: 09/10/2020
+ms.openlocfilehash: fe6ba76412f59aec100ca865bd6c9f0716716270
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471908"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021146"
 ---
 # <a name="ai-enrichment-in-azure-cognitive-search"></a>Azure 认知搜索中的 AI 扩充
 
@@ -30,7 +30,7 @@ AI 扩充是[索引器](search-indexer-overview.md)的扩展，可用于从图�
 
 ![扩充管道关系图](./media/cognitive-search-intro/cogsearch-architecture.png "扩充管道概述")
 
-Azure 认知搜索中的内置技能基于认知服务 API 中预先训练的机器学习模型：[计算机视觉](https://docs.azure.cn/cognitive-services/computer-vision/)和[文本分析](https://docs.azure.cn/cognitive-services/text-analytics/overview)。 若要在内容处理期间利用这些资源，可以附加认知服务资源。
+Azure 认知搜索中的内置技能基于认知服务 API 中预先训练的机器学习模型：[计算机视觉](../cognitive-services/computer-vision/index.yml)和[文本分析](../cognitive-services/text-analytics/overview.md)。 若要在内容处理期间利用这些资源，可以附加认知服务资源。
 
 数据引入阶段应用了自然语言和图形处理，其结果会成为 Azure 认知搜索的可搜索索引中文档撰写内容的一部分。 数据作为 Azure 数据集的来源，然后使用任意所需的[内置技能](cognitive-search-predefined-skills.md)通过索引管道进行推送。  
 
@@ -60,7 +60,7 @@ Azure 认知搜索中的内置技能基于认知服务 API 中预先训练的机
 
 自定义技能可以支持更复杂的方案，例如识别表单，或者使用你提供的模型进行自定义实体检测，以及在[自定义技能 Web 界面](cognitive-search-custom-skill-interface.md)中进行包装。 自定义技能的几个示例包括[自定义实体识别](https://github.com/Microsoft/SkillsExtractorCognitiveSearch)。
 
-<a name="enrichment-steps"> ## 扩充管道中的步骤 </a>
+## <a name="steps-in-an-enrichment-pipeline"></a>扩充管道中的步骤<a name="enrichment-steps"></a>
 
 扩充管道基于[索引器](search-indexer-overview.md)。 索引器根据索引与数据源之间的字段到字段映射填充索引，以进行文档破解。 技能（现已附加到索引器）根据你定义的技能组截获并扩充文档。 编制索引后，可以使用所有[受 Azure 认知搜索支持的查询类型](search-query-overview.md)通过搜索请求来访问内容。  本部分引导索引器的新手完成这些步骤。
 

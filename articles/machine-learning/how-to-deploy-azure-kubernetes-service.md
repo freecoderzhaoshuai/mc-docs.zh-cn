@@ -10,12 +10,12 @@ ms.author: jordane
 author: jpe316
 ms.reviewer: larryfr
 ms.date: 06/23/2020
-ms.openlocfilehash: d5196b84c0981dfd1b4151d5a5ec05eaaa18d76b
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 0371495ec376884f98fbdc9e9726b29e7988bb64
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88946971"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021006"
 ---
 # <a name="deploy-a-model-to-an-azure-kubernetes-service-cluster"></a>将模型部署到 Azure Kubernetes 服务群集
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -27,11 +27,13 @@ ms.locfileid: "88946971"
 - 硬件加速选项，如 GPU 和现场可编程门阵列 (FPGA)____。
 
 > [!IMPORTANT]
-> 群集缩放并非通过 Azure 机器学习 SDK 提供。 如需深入了解如何缩放 AKS 群集中的节点，请参阅[缩放 AKS 群集中的节点计数](../aks/scale-cluster.md)。
+> 群集缩放并非通过 Azure 机器学习 SDK 提供。 若要详细了解如何缩放 AKS 群集中的节点，请参阅 
+- [手动缩放 AKS 群集中的节点计数](../aks/scale-cluster.md)
+- [在 AKS 中设置群集自动缩放程序](../aks/cluster-autoscaler.md)
 
 部署到 Azure Kubernetes 服务时，将部署到连接到工作区的 AKS 群集____。 有两种方法可将 AKS 群集连接到工作区：
 
-* 使用 Azure 机器学习 SDK、机器学习 CLI 或 [Azure 机器学习工作室](https://ml.azure.com)创建 AKS 群集。 此过程会自动将群集连接到工作区。
+* 使用 Azure 机器学习 SDK、机器学习 CLI 或 [Azure 机器学习工作室](https://studio.ml.azure.cn)创建 AKS 群集。 此过程会自动将群集连接到工作区。
 * 将现有的 AKS 群集附加到 Azure 机器学习工作区。 可使用 Azure 机器学习 SDK、机器学习 CLI 或 Azure 机器学习工作室来附加群集。
 
 AKS 群集和 AML 工作区可以位于不同的资源组中。
@@ -62,11 +64,18 @@ AKS 群集和 AML 工作区可以位于不同的资源组中。
 
 - 本文中的 CLI 片段假设已创建 `inferenceconfig.json` 文档____。 有关如何创建此文档的详细信息，请参阅[部署模型的方式和位置](how-to-deploy-and-where.md)。
 
-- 如果需要的是在群集中部署的标准负载均衡器 (SLB)，而不是基本负载均衡器 (BLB)，请在 AKS 门户/CLI/SDK 中创建群集，然后将该群集附加到 AML 工作区。
+- 如果群集中需要部署的是标准负载均衡器 (SLB)，而不是基本负载均衡器 (BLB)，请在 AKS 门户/CLI/SDK 中创建群集，然后将该群集附加到 AML 工作区。
 
-- 如果附加 AKS 群集（已[启用授权 IP 范围以访问 API 服务器](/aks/api-server-authorized-ip-ranges)），请为该 AKS 群集启用 AML 控制平面 IP 范围。 AML 控制平面是跨配对区域部署的，并且会在 AKS 群集上部署推理 Pod。 如果没有 API 服务器的访问权限，则无法部署推理 Pod。 在 AKS 群集中启用 IP 范围时，请对两个[配对区域]( https://docs.microsoft.com/azure/best-practices-availability-paired-regions)都使用 [IP 范围](https://www.microsoft.com/en-us/download/confirmation.aspx?id=56519)。
+- 如果你的 Azure Policy 限制创建公共 IP，创建 AKS 群集将会失败。 AKS 需要一个公共 IP 用于[出口流量](/aks/limit-egress-traffic)。 本文还指导如何通过公共 IP（几个 FQDN 的 IP 除外）锁定来自群集的出口流量。 启用公共 IP 有两种方法：
+  - 群集可以使用在默认情况下与 BLB 或 SLB 一起创建的公共 IP，或者
+  - 可以在没有公共 IP 的情况下创建群集，然后为公共 IP 配置一个带有用户定义的路由的防火墙，如[此处](/aks/egress-outboundtype)所述 
+  
+  AML 控制平面不会与此公共 IP 通信。 它与 AKS 控制平面通信以便进行部署。 
 
-__授权 IP 范围仅适用于标准负载均衡器。__
+- 如果附加 AKS 群集（已[启用授权 IP 范围以访问 API 服务器](/aks/api-server-authorized-ip-ranges)），请为该 AKS 群集启用 AML 控制平面 IP 范围。 AML 控制平面是跨配对区域部署的，并且会在 AKS 群集上部署推理 Pod。 如果没有 API 服务器的访问权限，则无法部署推理 Pod。 在 AKS 群集中启用 IP 范围时，请对两个[配对区域](/best-practices-availability-paired-regions)都使用 [IP 范围](https://www.microsoft.com/en-us/download/confirmation.aspx?id=56519)。
+
+
+  授权 IP 范围仅适用于标准负载均衡器。
  
  - 计算名称在工作区内必须唯一
    - 名称是必须提供的，且长度必须介于 3 到 24 个字符之间。
@@ -224,6 +233,10 @@ az ml computetarget attach aks -n myaks -i aksresourceid -g myresourcegroup -w m
 ## <a name="deploy-to-aks"></a>部署到 AKS
 
 要将模型部署到 Azure Kubernetes 服务，请创建一个描述所需计算资源的部署配置____。 例如，核心和内存的数量。 此外，还需要一个推理配置，描述托管模型和 Web 服务所需的环境____。 有关如何创建推理配置的详细信息，请参阅[部署模型的方式和位置](how-to-deploy-and-where.md)。
+
+> [!NOTE]
+> 待部署模型的数量限制为每个部署（每个容器）1,000 个模型。
+
 
 ### <a name="using-the-sdk"></a>使用 SDK
 

@@ -12,16 +12,16 @@ ms.tgt_pltfrm: na
 ms.devlang: na
 ms.topic: how-to
 ms.subservice: compliance
-ms.date: 08/25/2020
+ms.date: 09/08/2020
 ms.author: v-junlch
 ms.reviewer: mwahl
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: b53d1091ef2c2a094aedc2059cc99a30f98100d1
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: cdf87364005d1dd7f6430d822da24eb76d7131a6
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947374"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593766"
 ---
 # <a name="add-a-connected-organization-in-azure-ad-entitlement-management"></a>在 Azure AD 权利管理中添加连接的组织
 
@@ -77,7 +77,7 @@ Azure AD 目录或域中的用户进行身份验证的方式取决于身份验�
 1. 选择“添加”以添加 Azure AD 目录或域。 目前只能为每个连接的组织添加一个 Azure AD 目录或域。
 
     > [!NOTE]
-    > 该 Azure AD 目录或域中的所有用户都可请求此访问包。 这包括来自与该目录关联的所有子域的 Azure AD 中的用户，除非这些域被 Azure AD 企业对企业 (B2B) 允许或拒绝列表阻止。 有关详细信息，请参阅[允许或阻止向特定组织中的 B2B 用户发送邀请](../b2b/allow-deny-list.md)。
+    > 该 Azure AD 目录或域中的所有用户都可请求此访问包。 这包括来自与该目录关联的所有子域的 Azure AD 中的用户，除非这些域被 Azure AD 企业对企业 (B2B) 允许或拒绝列表阻止。 有关详细信息，请参阅[允许或阻止向特定组织中的 B2B 用户发送邀请](../external-identities/allow-deny-list.md)。
 
 1. 添加 Azure AD 目录或域后，选择“选择”。
 
@@ -87,7 +87,7 @@ Azure AD 目录或域中的用户进行身份验证的方式取决于身份验�
 
 1. 选择“发起人”选项卡，然后为此连接的组织添加可选的发起人。
 
-    发起人是已在你的目录中的内部或外部用户，他们是与此连接的组织建立关系的联系点。 内部发起人是你的目录中的成员用户。 外部发起人是来自连接的组织且以前已受邀并已在你的目录中的来宾用户。 当此连接的组织中的用户请求访问此访问包时，可将发起人用作审批者。 若要了解如何将来宾用户邀请到目录，请参阅[在 Azure 门户中添加 Azure Active Directory B2B 协作用户](../b2b/add-users-administrator.md)。
+    发起人是已在你的目录中的内部或外部用户，他们是与此连接的组织建立关系的联系点。 内部发起人是你的目录中的成员用户。 外部发起人是来自连接的组织且以前已受邀并已在你的目录中的来宾用户。 当此连接的组织中的用户请求访问此访问包时，可将发起人用作审批者。 若要了解如何将来宾用户邀请到目录，请参阅[在 Azure 门户中添加 Azure Active Directory B2B 协作用户](../external-identities/add-users-administrator.md)。
 
     选择“添加/删除”时，会打开一个窗格，可在其中选择内部或外部发起人。 此窗格显示你的目录中用户和组的未筛选列表。
 
@@ -101,7 +101,7 @@ Azure AD 目录或域中的用户进行身份验证的方式取决于身份验�
 
 如果连接的组织更改为其他域、组织名称发生更改，或者你想要更改发起人，则可以按照本部分中的说明更新连接的组织。
 
-**必备角色**：全局管理员、用户管理员或来宾邀请者  
+**必备角色**：全局管理员或用户管理员 
 
 1. 在 Azure 门户中，依次选择“Azure Active Directory”、“标识监管”。 
 
@@ -118,7 +118,7 @@ Azure AD 目录或域中的用户进行身份验证的方式取决于身份验�
 
 如果你与某个外部 Azure AD 目录或域不再有关系，则可以删除该连接的组织。
 
-**必备角色**：全局管理员、用户管理员或来宾邀请者  
+**必备角色**：全局管理员或用户管理员 
 
 1. 在 Azure 门户中，依次选择“Azure Active Directory”、“标识监管”。 
 
@@ -130,8 +130,12 @@ Azure AD 目录或域中的用户进行身份验证的方式取决于身份验�
 
     ![连接的组织的“删除”按钮](./media/entitlement-management-organization/organization-delete.png)
 
+## <a name="managing-a-connected-organization-programmatically"></a>以编程方式管理连接的组织
+
+你还可以使用 Microsoft Graph 创建、列出、更新和删除连接的组织。 通过具有委托的 `EntitlementManagement.ReadWrite.All` 权限的应用程序，相应角色中的用户可以调用 API 来管理 [connectedOrganization](https://docs.microsoft.com/graph/api/resources/connectedorganization?view=graph-rest-beta) 对象并为其设置发起人。
+
 ## <a name="next-steps"></a>后续步骤
 
-- [管控外部用户的访问权限](entitlement-management-external-users.md)
+- [管控外部用户的访问权限](./entitlement-management-external-users.md)
 - [管控不在目录中的用户的访问权限](entitlement-management-access-package-request-policy.md#for-users-not-in-your-directory)
 

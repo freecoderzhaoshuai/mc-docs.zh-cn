@@ -12,19 +12,19 @@ ms.subservice: core
 ms.workload: data-services
 ms.topic: how-to
 ms.date: 03/10/2020
-ms.openlocfilehash: fc07e8af0afe0cb01dc0a8526c2ad90f7aa8ddc1
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: f673cca4ea1d7f4ce90401791c7ca9c405e04460
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228348"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021001"
 ---
 # <a name="where-to-save-and-write-files-for-azure-machine-learning-experiments"></a>保存和写入 Azure 机器学习试验文件的位置
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
 
 本文介绍在试验中保存输入文件以及写入输出文件的位置，以防止出现存储空间上限错误和试验延迟。
 
-在[计算目标](how-to-set-up-training-targets.md)上启动训练运行时，它们会与外部环境隔离。 此设计的目的是确保试验的可再现性和可移植性。 如果在相同或不同的计算目标上运行同一脚本两次，可获得相同的结果。 在此设计中，可将计算目标视为无状态计算资源，其中每个资源与完成后运行的作业无关联。
+在[计算目标](concept-compute-target.md)上启动训练运行时，它们会与外部环境隔离。 此设计的目的是确保试验的可再现性和可移植性。 如果在相同或不同的计算目标上运行同一脚本两次，可获得相同的结果。 在此设计中，可将计算目标视为无状态计算资源，其中每个资源与完成后运行的作业无关联。
 
 ## <a name="where-to-save-input-files"></a>保存输入文件的位置
 
@@ -79,4 +79,4 @@ Jupyter 笔记本| 创建 `.amlignore` 文件或将笔记本移动到新的空�
 
 * 详细了解如何[访问数据存储中的数据](how-to-access-data.md)。
 
-* 详细了解[如何设置训练目标](how-to-set-up-training-targets.md)。
+* 详细了解如何使用 [Python SDK](how-to-create-attach-compute-sdk.md) 或[工作室](how-to-create-attach-compute-studio.md)来创建计算目标。

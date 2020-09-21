@@ -7,14 +7,14 @@ author: brjohnstmsft
 ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
-origin.date: 02/28/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: 92dc862d3a4618d05776c93d7da3a995a758ad1f
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+origin.date: 08/26/2020
+ms.date: 09/10/2020
+ms.openlocfilehash: 23c937cca9442331f678f1e19b1d65ab5e87ad98
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471793"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021561"
 ---
 # <a name="synonyms-in-azure-cognitive-search"></a>Azure 认知搜索中的同义词
 
@@ -52,6 +52,7 @@ ms.locfileid: "86471793"
 
 如以下示例所示，可使用 HTTP POST 创建新的同义词映射：
 
+```synonym-map
     POST https://[servicename].search.azure.cn/synonymmaps?api-version=2020-06-30
     api-key: [admin key]
 
@@ -62,9 +63,11 @@ ms.locfileid: "86471793"
           USA, United States, United States of America\n
           Washington, Wash., WA => WA\n"
     }
+```
 
 此外，可使用 PUT 并在 URI 上指定同义词映射名称。 如果同义词映射不存在，则创建一个。
 
+```synonym-map
     PUT https://[servicename].search.azure.cn/synonymmaps/mysynonymmap?api-version=2020-06-30
     api-key: [admin key]
 
@@ -74,10 +77,12 @@ ms.locfileid: "86471793"
           USA, United States, United States of America\n
           Washington, Wash., WA => WA\n"
     }
+```
 
 ##### <a name="apache-solr-synonym-format"></a>Apache Solr 同义词格式
 
 Solr 格式支持等效和显式同义词映射。 映射规则遵循 Apache Solr 的开源同义词筛选器规范，详情请参阅此文档：[SynonymFilter](https://cwiki.apache.org/confluence/display/solr/Filter+Descriptions#FilterDescriptions-SynonymFilter)。 下面是等效同义词的示例规则。
+
 ```
 USA, United States, United States of America
 ```
@@ -85,29 +90,52 @@ USA, United States, United States of America
 使用以上规则，搜索查询“USA”会扩展为“USA”、“United States”或“United States of America”。
 
 箭头“=>”表示显式映射。 如果指定，与“=>”左侧内容匹配的一系列搜索查询词会被替换为“=>”右侧的替代项。 给定以下规则，搜索查询“Washington”、“Wash”。 或“WA”全都会重写为“WA”。 显式映射只会按指定方向应用，在此示例中，不会将查询“WA”重写为“Washington”。
+
 ```
 Washington, Wash., WA => WA
 ```
 
+如果需要定义包含逗号的同义词，可以使用反斜杠对其进行转义，如以下示例所示：
+
+```
+WA\, USA, WA, Washington
+```
+
+由于反斜杠本身是其他语言（例如 JSON 和 C#）中的特殊字符，因此你可能需要对其进行双重转义。 例如，发送到上述同义词映射的 REST API 的 JSON 如下所示：
+
+```json
+    {
+       "format":"solr",
+       "synonyms": "WA\\, USA, WA, Washington"
+    }
+```
+
 #### <a name="list-synonym-maps-under-your-service"></a>列出服务下的同义词映射。
 
+```synonym-map
     GET https://[servicename].search.azure.cn/synonymmaps?api-version=2020-06-30
     api-key: [admin key]
+```
 
 #### <a name="get-a-synonym-map-under-your-service"></a>获取服务下的同义词映射。
 
+```synonym-map
     GET https://[servicename].search.azure.cn/synonymmaps/mysynonymmap?api-version=2020-06-30
     api-key: [admin key]
+```
 
 #### <a name="delete-a-synonyms-map-under-your-service"></a>删除服务下的同义词映射。
 
+```synonym-map
     DELETE https://[servicename].search.azure.cn/synonymmaps/mysynonymmap?api-version=2020-06-30
     api-key: [admin key]
+```
 
 ### <a name="configure-a-searchable-field-to-use-the-synonym-map-in-the-index-definition"></a>配置可搜索字段以在索引定义中使用同义词映射。
 
 新字段属性 **synonymMaps** 可用于指定同义词映射以供可搜索字段使用。 同义词映射是服务级资源，服务下的任意索引字段都可以引用。
 
+```synonym-map
     POST https://[servicename].search.azure.cn/indexes?api-version=2020-06-30
     api-key: [admin key]
 
@@ -139,6 +167,7 @@ Washington, Wash., WA => WA
           }
        ]
     }
+```
 
 可为类型“Edm.String”或“Collection(Edm.String)”的可搜索字段指定 **synonymMaps**。
 

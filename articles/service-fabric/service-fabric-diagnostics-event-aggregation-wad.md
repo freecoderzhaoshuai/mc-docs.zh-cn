@@ -1,17 +1,19 @@
 ---
 title: 使用 Windows Azure 诊断聚合事件
 description: 了解如何使用 WAD 聚合和收集事件，以便对 Azure Service Fabric 群集进行监视和诊断。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 04/03/2018
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 36400d11e31c868d671200e47151ccfe9cb85afb
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 85a59c3e1707a05ff2a9e92a06e768a113880b9d
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79292037"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655658"
 ---
 # <a name="event-aggregation-and-collection-using-windows-azure-diagnostics"></a>使用 Windows Azure 诊断聚合和集合事件
 > [!div class="op_single_selector"]
@@ -24,8 +26,7 @@ ms.locfileid: "79292037"
 
 上传和收集日志的方式之一是使用可将日志上传到 Azure 存储、也能选择发送日志到 Azure Application Insights 或 Azure 事件中心的 Windows Azure 诊断 (WAD) 扩展。
 
-<!--Not Available on [Log Analytics](../log-analytics/log-analytics-service-fabric.md)-->
-<!--Redirect to URL of service-fabric/service-fabric-diagnostics-oms-setup-->
+<!--Not Available on [Azure Monitor logs](./service-fabric-diagnostics-oms-setup.md)-->
 
 [!INCLUDE [updated-for-az](../../includes/updated-for-az.md)]
 
@@ -33,8 +34,8 @@ ms.locfileid: "79292037"
 本文中使用了以下工具：
 
 * [Azure Resource Manager](../azure-resource-manager/management/overview.md)
-* [Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview)
-* [Azure Resource Manager 模板](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
+* [Azure PowerShell](https://docs.microsoft.com/powershell/azure/)
+* [Azure Resource Manager 模板](../virtual-machines/extensions/diagnostics-template.md?toc=/virtual-machines/windows/toc.json)
 
 ## <a name="service-fabric-platform-events"></a>Service Fabric 平台事件
 Service Fabric 提供了一些[现成的日志记录通道](service-fabric-diagnostics-event-generation-infra.md)，该扩展预配置了其中的以下通道来将监视和诊断数据发送到存储表或其他位置：
@@ -48,11 +49,11 @@ Service Fabric 提供了一些[现成的日志记录通道](service-fabric-diagn
 ### <a name="deploy-the-diagnostics-extension-as-part-of-cluster-creation-through-azure-portal"></a>在通过 Azure 门户创建群集过程中部署诊断扩展
 创建群集时，在群集配置步骤中，展开可选设置并确保将“诊断”设置为“打开”  （默认设置）。
 
-![门户中有关创建群集的 Azure 诊断设置](media/service-fabric-diagnostics-event-aggregation-wad/azure-enable-diagnostics-new.png)
+:::image type="content" source="media/service-fabric-diagnostics-event-aggregation-wad/azure-enable-diagnostics-new.png" alt-text="门户中有关创建群集的 Azure 诊断设置":::
 
 强烈建议在最终步骤中**单击“创建”之前**下载模板。 有关详细信息，请参阅[使用 Azure Resource Manager 模板设置 Service Fabric 群集](service-fabric-cluster-creation-via-arm.md)。 需要使用该模板来更改要从（上面列出的）哪些通道来收集数据。
 
-![群集模板](media/service-fabric-diagnostics-event-aggregation-wad/download-cluster-template.png)
+:::image type="content" source="media/service-fabric-diagnostics-event-aggregation-wad/download-cluster-template.png" alt-text="群集模板":::
 
 <!--Not Available on [set up Log Analytics](service-fabric-diagnostics-oms-setup.md)-->
 
@@ -121,6 +122,7 @@ Service Fabric 提供了一些[现成的日志记录通道](service-fabric-diagn
         "type": "IaaSDiagnostics",
         "autoUpgradeMinorVersion": true,
         "protectedSettings": {
+        "storageAccountEndPoint": "https://core.chinacloudapi.cn/",
         "storageAccountName": "[parameters('applicationDiagnosticsStorageAccountName')]",
         "storageAccountKey": "[listKeys(resourceId('Microsoft.Storage/storageAccounts', parameters('applicationDiagnosticsStorageAccountName')),'2015-05-01-preview').key1]",
         "storageAccountEndPoint": "https://core.chinacloudapi.cn/"
@@ -203,12 +205,12 @@ Service Fabric 提供了一些[现成的日志记录通道](service-fabric-diagn
 ## <a name="log-collection-configurations"></a>日志收集配置
 其他通道的日志也可供收集，下面是你可以在 Azure 中运行的群集的模板中进行的一些最常见配置。
 
-* 操作通道 - 基本：默认情况下启用，由 Service Fabric 和群集执行的高级操作，包括出现节点事件、部署新应用程序或升级回滚等。有关事件的列表，请参阅[操作通道事件](/service-fabric/service-fabric-diagnostics-event-generation-operational)。
+* 操作通道 - 基本：默认情况下启用，由 Service Fabric 和群集执行的高级操作，包括出现节点事件、部署新应用程序或升级回滚等。有关事件的列表，请参阅[操作通道事件](./service-fabric-diagnostics-event-generation-operational.md)。
 
     ```json
     scheduledTransferKeywordFilter: "4611686018427387904"
     ```
-* 操作通道 - 详细：这包括运行状况报告和负载均衡决策，加上基本操作通道中的所有内容。 这些事件由系统或代码使用 [ReportPartitionHealth](https://msdn.microsoft.com/library/azure/system.fabric.iservicepartition.reportpartitionhealth.aspx) 或 [ReportLoad](https://msdn.microsoft.com/library/azure/system.fabric.iservicepartition.reportload.aspx) 等运行状况或加载报告 API 生成。 要在 Visual Studio 的诊断事件查看器中查看这些事件，请将“Microsoft-ServiceFabric:4:0x4000000000000008”添加到 ETW 提供程序列表。
+* 操作通道 - 详细：这包括运行状况报告和负载均衡决策，加上基本操作通道中的所有内容。 这些事件由系统或代码使用 [ReportPartitionHealth](https://docs.microsoft.com/previous-versions/azure/reference/mt645153(v=azure.100)) 或 [ReportLoad](https://docs.microsoft.com/previous-versions/azure/reference/mt161491(v=azure.100)) 等运行状况或加载报告 API 生成。 要在 Visual Studio 的诊断事件查看器中查看这些事件，请将“Microsoft-ServiceFabric:4:0x4000000000000008”添加到 ETW 提供程序列表。
 
     ```json
     scheduledTransferKeywordFilter: "4611686018427387912"
@@ -296,7 +298,7 @@ Service Fabric 提供了一些[现成的日志记录通道](service-fabric-diagn
 }
 ```
 
-若要收集性能计数器或事件日志，请参考[使用 Azure 资源管理器模板创建具有监视和诊断功能的 Windows 虚拟机](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)中提供的示例修改资源管理器模板。 然后，重新发布资源管理器模板。
+若要收集性能计数器或事件日志，请参考[使用 Azure 资源管理器模板创建具有监视和诊断功能的 Windows 虚拟机](../virtual-machines/extensions/diagnostics-template.md?toc=/virtual-machines/windows/toc.json)中提供的示例修改资源管理器模板。 然后，重新发布资源管理器模板。
 
 ## <a name="collect-performance-counters"></a>收集性能计数器
 
@@ -315,7 +317,7 @@ Service Fabric 提供了一些[现成的日志记录通道](service-fabric-diagn
 
 #### <a name="add-an-application-insights-instrumentation-key-when-creating-a-cluster-in-azure-portal"></a>在 Azure 门户中创建群集时添加 Application Insights 检测密钥
 
-![添加 AIKey](media/service-fabric-diagnostics-event-analysis-appinsights/azure-enable-diagnostics.png)
+:::image type="content" source="media/service-fabric-diagnostics-event-analysis-appinsights/azure-enable-diagnostics.png" alt-text="添加 AI 密钥":::
 
 创建群集时，如果“已启用”诊断，则会显示一个可选字段，可在其中输入 Application Insights 检测密钥。 如果在此处粘贴 Application Insights 密钥，则系统会在用于部署群集的资源管理器模板中自动配置 Application Insights 接收器。
 
@@ -352,20 +354,22 @@ Service Fabric 提供了一些[现成的日志记录通道](service-fabric-diagn
 
 ## <a name="next-steps"></a>后续步骤
 
-正确配置 Azure 诊断后，将看到来自 ETW 和 EventSource 日志的存储表中的数据。 
+正确配置 Azure 诊断后，将看到来自 ETW 和 EventSource 日志的存储表中的数据。 如果选择使用 Azure Monitor 日志、Kibana 或其他不在资源管理器模板中直接配置的任何数据分析和可视化平台，请确保设置所选平台以读入这些存储表中的数据。 对 Azure Monitor 日志执行此操作相对较为简单。 Application Insights 则有点特殊，由于它可以被配置为诊断扩展配置中的一部分，所以如果选择使用 AI 请参考[相应的文章](service-fabric-diagnostics-event-analysis-appinsights.md)。
 
-<!--Not Available on If you choose to use Log Analytics, Kibana, or any other data analytics and visualization platform that is not directly configured in the Resource Manager template, make sure to set up the platform of your choice to read in the data from these storage tables. Doing this for Log Analytics is relatively trivial, and is explained in [Event and log analysis](service-fabric-diagnostics-event-analysis-oms.md)-->
 
-<!-- Not Available on [appropriate article](service-fabric-diagnostics-event-analysis-appinsights.md) -->
+<!-- Not Available on , and is explained in [Event and log analysis](service-fabric-diagnostics-event-analysis-oms.md)-->
 
 >[!NOTE]
 >目前没有任何方法可以筛选或清理已发送到表的事件。 如果未实施某个过程从表中删除事件，该表会不断增大。 目前，在[监视器示例](https://github.com/Azure-Samples/service-fabric-watchdog-service)中有一个运行数据整理服务的示例，建议为自己编写一个，除非有需要存储超过 30 或 90 天日志的的理由。
 
-* [了解如何使用诊断扩展收集性能计数器或日志](../virtual-machines/windows/extensions-diagnostics-template.md?toc=%2fvirtual-machines%2fwindows%2ftoc.json)
+* [了解如何使用诊断扩展收集性能计数器或日志](../virtual-machines/extensions/diagnostics-template.md?toc=/virtual-machines/windows/toc.json)
 
-<!-- Not Available on * [Event Analysis and Visualization with Application Insights](service-fabric-diagnostics-event-analysis-appinsights.md) -->
+* [使用 Application Insights 进行事件分析和可视化](service-fabric-diagnostics-event-analysis-appinsights.md)
+
 <!-- Not Available on * [Event Analysis and Visualization with Azure Monitor logs](service-fabric-diagnostics-event-analysis-oms.md)-->
-<!-- Not Available on * [Event Analysis and Visualization with Application Insights](service-fabric-diagnostics-event-analysis-appinsights.md)-->
+
+* [使用 Application Insights 进行事件分析和可视化](service-fabric-diagnostics-event-analysis-appinsights.md)
+
 <!-- Not Available on * [Event Analysis and Visualization with Azure Monitor logs](service-fabric-diagnostics-event-analysis-oms.md)-->
 
 <!-- Update_Description: update meta properties, wording update, update link -->

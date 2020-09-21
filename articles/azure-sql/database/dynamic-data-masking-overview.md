@@ -2,7 +2,7 @@
 title: 动态数据屏蔽
 description: 动态数据掩码通过对 Azure SQL 数据库、Azure SQL 托管实例和 Azure Synapse Analytics 的非特权用户屏蔽敏感数据，限制此类数据的泄露
 services: sql-database
-ms.service: sql-database
+ms.service: sql-db-mi
 ms.subservice: security
 ms.custom: sqldbrb=1
 ms.devlang: ''
@@ -10,15 +10,15 @@ ms.topic: conceptual
 author: WenJason
 ms.author: v-jay
 ms.reviewer: vanto
-origin.date: 04/28/2020
-ms.date: 07/13/2020
+origin.date: 08/04/2020
+ms.date: 09/14/2020
 tags: azure-synpase
-ms.openlocfilehash: f6b7b95d53a871cad8c5c3d5fe2b97fd195c7049
-ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+ms.openlocfilehash: 95e9b22e0345c502a19c930215c0d99cd8343620
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86227820"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014372"
 ---
 # <a name="dynamic-data-masking"></a>动态数据屏蔽 
 [!INCLUDE[appliesto-sqldb-sqlmi-asa](../includes/appliesto-sqldb-sqlmi-asa.md)]
@@ -77,7 +77,7 @@ DDM 建议引擎会将数据库中的某些字段标记为可能的敏感字段�
 
 ### <a name="data-masking-policies"></a>数据掩码策略
 
-- [创建或更新](https://docs.microsoft.com/rest/api/sql/datamaskingpolicies/createorupdate)：创建或更新指定列的敏感度标签。
+- [创建或更新](https://docs.microsoft.com/rest/api/sql/datamaskingpolicies/createorupdate)：创建或更新数据库的数据掩码策略。
 - [获取](https://docs.microsoft.com/rest/api/sql/datamaskingpolicies/get)：获取数据库的数据掩码策略。 
 
 ### <a name="data-masking-rules"></a>数据掩码规则

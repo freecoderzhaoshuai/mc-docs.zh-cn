@@ -5,14 +5,17 @@ description: 了解有关 Azure Kubernetes 服务 (AKS) 中的存储、数据加
 services: container-service
 ms.topic: conceptual
 origin.date: 05/06/2019
-ms.date: 05/25/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: c914b01f8be599d7008eec05764b83e74e7c673e
-ms.sourcegitcommit: 7e6b94bbaeaddb854beed616aaeba6584b9316d9
+ms.openlocfilehash: ebca8cef0128ffd3be6a6fdd5191015edc3abdd6
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/21/2020
-ms.locfileid: "83735151"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021265"
 ---
 # <a name="best-practices-for-storage-and-backups-in-azure-kubernetes-service-aks"></a>有关 Azure Kubernetes 服务 (AKS) 中的存储和备份的最佳做法
 
@@ -34,13 +37,12 @@ ms.locfileid: "83735151"
 
 下表概述了可用的存储类型及其功能：
 
-<!--Not Available on   Windows Server container support-->
+| 使用案例 | 卷插件 | 读/写一次 | 只读多次 | 读/写多次 | Windows Server 容器支持 |
+|----------|---------------|-----------------|----------------|-----------------|--------------------|
+| 共享配置       | Azure 文件   | 是 | 是 | 是 | 是 |
+| 结构化应用数据        | Azure 磁盘   | 是 | 否  | 否  | 是 |
 
-| 使用案例 | 卷插件 | 读/写一次 | 只读多次 | 读/写多次 |
-|----------|---------------|-----------------|----------------|-----------------|
-| 共享配置       | Azure 文件   | 是 | 是 | 是 |
-| 结构化应用数据        | Azure 磁盘   | 是 | 否  | 否  |
-| 非结构化的数据，文件系统操作 | [BlobFuse][blobfuse] | 是 | 是 | 是 |
+<!--Not Available on FEATURE blobfuse-->
 
 为 AKS 中的卷提供的两种主要存储类型由 Azure 磁盘或 Azure 文件支持。 为了提高安全性，两种类型的存储都默认使用 Azure 存储服务加密 (SSE) 来加密静态数据。 目前无法使用 AKS 节点级别的 Azure 磁盘加密对磁盘进行加密。
 
@@ -78,7 +80,7 @@ AKS 节点作为 Azure VM 运行。 有不同类型和大小的 VM 可使用。 
 
 当需要将存储附加到 pod 时，可以使用永久性卷。 可手动或动态创建这些永久性卷。 手动创建永久性卷会增加管理开销，并限制缩放能力。 使用动态永久性卷预配来简化存储管理，让应用程序能够根据需要缩放和扩大整体规模。
 
-![Azure Kubernetes 服务 (AKS) 群集中的永久性卷声明](media/concepts-storage/persistent-volume-claims.png)
+:::image type="content" source="media/concepts-storage/persistent-volume-claims.png" alt-text="Azure Kubernetes 服务 (AKS) 群集中的永久性卷声明":::
 
 通过永久性卷声明 (PVC)，可根据需要动态创建存储。 基础 Azure 磁盘是根据 pod 的请求创建的。 在 Pod 定义中，请求创建一个卷并将其附加到指定的装载路径。
 
@@ -92,7 +94,7 @@ AKS 节点作为 Azure VM 运行。 有不同类型和大小的 VM 可使用。 
 
 ## <a name="secure-and-back-up-your-data"></a>保护和备份数据
 
-**最佳做法指南** - 使用适合自己存储类型的工具（例如 Velero 或 Azure Site Recovery）来备份数据。 验证这些备份的完整性和安全性。
+**最佳做法指南** - 使用适合自己存储类型的工具（例如 Velero 或 Azure 备份）来备份数据。 验证这些备份的完整性和安全性。
 
 当应用程序存储和使用永久存储在磁盘或文件中的数据时，需要定期备份或创建数据的快照。 Azure 磁盘可以使用内置快照技术。 在执行快照操作之前，可能需要查找应用程序以将写入刷新到磁盘。 [Velero][velero] 可以备份永久性卷以及其他群集资源和配置。 如果无法[从应用程序中删除状态][remove-state]，请从永久性卷备份数据并定期测试还原操作以验证数据完整性和所需的过程。
 
@@ -105,18 +107,19 @@ AKS 节点作为 Azure VM 运行。 有不同类型和大小的 VM 可使用。 
 <!-- LINKS - External -->
 
 [velero]: https://github.com/heptio/velero
-[blobfuse]: https://github.com/Azure/azure-storage-fuse
+
+<!--Not Available on [blobfuse]: https://github.com/Azure/azure-storage-fuse-->
 
 <!-- LINKS - Internal -->
 
 [aks-concepts-storage]: concepts-storage.md
-[vm-sizes]: ../virtual-machines/linux/sizes.md
+[vm-sizes]: ../virtual-machines/sizes.md
 [dynamic-disks]: azure-disks-dynamic-pv.md
 [dynamic-files]: azure-files-dynamic-pv.md
 [reclaim-policy]: concepts-storage.md#storage-classes
 [aks-concepts-storage-pvcs]: concepts-storage.md#persistent-volume-claims
 [aks-concepts-storage-classes]: concepts-storage.md#storage-classes
-[managed-disks]: ../virtual-machines/linux/managed-disks-overview.md
+[managed-disks]: ../virtual-machines/managed-disks-overview.md
 [best-practices-multi-region]: operator-best-practices-multi-region.md
 [remove-state]: operator-best-practices-multi-region.md#remove-service-state-from-inside-containers
 

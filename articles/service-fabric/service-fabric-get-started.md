@@ -1,20 +1,20 @@
 ---
 title: 设置 Windows 开发环境
 description: 安装运行时、SDK 和工具并创建本地开发群集。 完成此设置后，就可以在 Windows 上开始生成应用程序。
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 06/16/2020
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 06/08/2020
 ms.author: v-yeche
-ms.custom: sfrev
-ms.openlocfilehash: ec6ac257bdc4ab317995be2d0f8f0c9aced1a5a3
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.custom: sfrev, devx-track-azurepowershell
+ms.openlocfilehash: 85301d2ed66dd6f3fa0b89ceec5882639b6e5b51
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426498"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655726"
 ---
 # <a name="prepare-your-development-environment-on-windows"></a>在 Windows 上准备开发环境
 
@@ -48,7 +48,7 @@ ms.locfileid: "87426498"
 
 ## <a name="install-the-sdk-and-tools"></a>安装 SDK 和工具
 
-Web 平台安装程序 (WebPI) 是安装 SDK 和工具的建议方法。 如果使用 WebPI 收到运行时错误，还可以在特定 Service Fabric 版本的发行说明中找到指向安装程序的直接链接。 发行说明可以在 [Service Fabric 团队博客](https://blogs.msdn.microsoft.com/azureservicefabric/)的各种发布公告中找到。
+Web 平台安装程序 (WebPI) 是安装 SDK 和工具的建议方法。 如果使用 WebPI 收到运行时错误，还可以在特定 Service Fabric 版本的发行说明中找到指向安装程序的直接链接。 发行说明可以在 [Service Fabric 团队博客](https://techcommunity.microsoft.com/t5/azure-service-fabric/bg-p/Service-Fabric)的各种发布公告中找到。
 
 > [!NOTE]
 > 不支持本地 Service Fabric 开发群集升级。
@@ -74,8 +74,8 @@ Service Fabric 工具是 Visual Studio 2017 和 2019 中 Azure 开发工作负�
 
 当前版本包括：
 
-* Service Fabric SDK and Tools 4.1.416
-* Service Fabric 运行时 7.1.417
+* Service Fabric SDK and Tools 4.1.456
+* Service Fabric 运行时 7.1.456
 
 有关支持版本的列表，请参阅 [Service Fabric 版本](service-fabric-versions.md)
 

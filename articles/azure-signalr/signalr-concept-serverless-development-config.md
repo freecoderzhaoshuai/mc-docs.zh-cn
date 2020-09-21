@@ -5,15 +5,15 @@ author: anthonychu
 ms.service: signalr
 ms.topic: conceptual
 origin.date: 03/01/2019
-ms.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: v-tawe
-ms.custom: devx-track-javascript
-ms.openlocfilehash: d16d5d77315a08427724586966d3e3013e382eaa
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.custom: devx-track-javascript, devx-track-csharp
+ms.openlocfilehash: c8c95d0b5cda96febac6aa37908f6833db915f2e
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715279"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063361"
 ---
 # <a name="azure-functions-development-and-configuration-with-azure-signalr-service"></a>使用 Azure SignalR 服务进行 Azure Functions 开发和配置
 
@@ -52,7 +52,9 @@ Azure Functions 应用程序可以利用 [Azure SignalR 服务绑定](../azure-f
 
 使用 SignalR 触发器绑定来处理从 SignalR 服务发送的消息。 可在客户端发送消息或客户端连接或断开连接时通过触发功能收到通知。
 
-有关详细信息，请参阅 [SignalR 触发器绑定参考](../azure-functions/functions-bindings-signalr-service-trigger.md)
+有关详细信息，请参阅 [SignalR 触发器绑定参考](../azure-functions/functions-bindings-signalr-service-trigger.md)。
+
+还需要将函数终结点配置为上游，让服务在收到来自客户端的消息时触发函数。 有关如何配置上游的详细信息，请参阅此[文档](concept-upstream.md)。
 
 ### <a name="sending-messages-and-managing-group-membership"></a>发送消息和管理组成员身份
 
@@ -110,7 +112,7 @@ public class SignalRTestHub : ServerlessHub
 
 ### <a name="define-hub-method"></a>定义中心方法
 
-所有中心方法必须具有 `[SignalRTrigger]` 属性，且必须使用无参数的构造函数 。 然后将方法名称视为参数 event 。
+所有中心方法必须具有由 `[SignalRTrigger]` 属性修饰的 `InvocationContext` 参数，并使用无参数构造函数。 然后将方法名称视为参数 event 。
 
 默认情况下，除了方法名称外，`category=messages` 是以下名称之一：
 
@@ -203,7 +205,11 @@ SDK 根据约定自动将 `/negotiate` 追加到 URL，然后使用该 URL 开�
 
 ### <a name="sending-messages-from-a-client-to-the-service"></a>将消息从客户端发送到服务
 
-尽管 SignalR SDK 允许客户端应用程序调用 SignalR 中心内的后端逻辑，但在将 SignalR 服务与 Azure Functions 配合使用时，尚不支持此功能。 使用 HTTP 请求调用 Azure Functions。
+如果为 SignalR 资源配置了[上游](concept-upstream.md)，则可以使用任何 SignalR 客户端将消息从客户端发送到 Azure Functions。 下面是一个 JavaScript 示例：
+
+```javascript
+connection.send('method1', 'arg1', 'arg2');
+```
 
 ## <a name="azure-functions-configuration"></a>Azure Functions 配置
 

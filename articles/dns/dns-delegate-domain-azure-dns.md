@@ -1,25 +1,25 @@
 ---
-title: 教程 - 在 Azure DNS 中托管域和子域
-description: 本教程展示了如何配置 Azure DNS 来托管 DNS 区域。
+title: 教程：托管域和子域 - Azure DNS
+description: 本文介绍如何配置 Azure DNS 来托管 DNS 区域。
 services: dns
 author: WenJason
 ms.service: dns
 ms.topic: tutorial
-origin.date: 10/30/2018
-ms.date: 12/02/2019
+origin.date: 3/11/2019
+ms.date: 09/14/2020
 ms.author: v-jay
-ms.openlocfilehash: e97c3de4d067218b604906575eb3c78bde557037
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 8d269810d4378cce0164bcb48ed45f6abb94b153
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291443"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512951"
 ---
 # <a name="tutorial-host-your-domain-in-azure-dns"></a>教程：在 Azure DNS 中托管域
 
 可以使用 Azure DNS 来托管 DNS 域并管理 DNS 记录。 通过在 Azure 中托管域，可以使用与其他 Azure 服务相同的凭据、API、工具和计费来管理 DNS 记录。
 
-例如，假设你从某个域名注册机构购买了域 contoso.net，然后在 Azure DNS 中创建了名为 contoso.net 的区域。 由于你是域的所有者，因此，注册机构将为你提供选项来配置域的名称服务器 (NS) 记录。 注册机构将这些 NS 记录存储在 .net 父区域中。 然后，世界各地的 Internet 用户在尝试解析 contoso.net 中的 DNS 记录时，会被定向到 Azure DNS 区域中的域。
+例如，假设你从某个域名注册机构购买了域 contoso.net，然后在 Azure DNS 中创建了名为 contoso.net 的区域。 由于你是域的所有者，因此，注册机构将为你提供选项来配置域的名称服务器 (NS) 记录。 注册机构将 NS 记录存储在 .NET 父区域中。 然后，世界各地的 Internet 用户在尝试解析 contoso.net 中的 DNS 记录时，会被定向到 Azure DNS 区域中的域。
 
 
 在本教程中，你将了解如何执行以下操作：
@@ -31,13 +31,13 @@ ms.locfileid: "79291443"
 > * 验证委托是否正常工作。
 
 
-如果没有 Azure 订阅，可在开始前创建一个 [试用帐户](https://www.azure.cn/zh-cn/pricing/1rmb-trial-full/?form-type=identityauth) 。
+如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/zh-cn/pricing/1rmb-trial-full/?form-type=identityauth)。
 
-## <a name="prerequisites"></a>必备条件
+## <a name="prerequisites"></a>先决条件
 
 必须有一个可以用来测试的域名，可以在 Azure DNS 中托管该域名。 必须能够完全控制此域。 完全控制包括能够为域设置名称服务器 (NS) 记录。
 
-本教程中使用的示例域为 contoso.net，但请使用自己的域名。
+在本示例中，我们将父域称为 contoso.net
 
 ## <a name="create-a-dns-zone"></a>创建 DNS 区域
 
@@ -46,22 +46,24 @@ ms.locfileid: "79291443"
    ![DNS 区域](./media/dns-delegate-domain-azure-dns/openzone650.png)
 
 1. 选择“创建 DNS 区域”  。
-1. 在“创建 DNS 区域”页上输入以下值，然后选择“创建”：  
+1. 在“创建 DNS 区域”页上输入以下值，然后选择“创建”：例如，“contoso.net”  
 
-   | **设置** | **值** | **详细信息** |
-   |---|---|---|
-   |**名称**|[你的域名] |你购买的域名。 本教程使用 contoso.net 作为示例。|
-   |**订阅**|[订阅]|选择要在其中创建区域的订阅。|
-   |**资源组**|**新建：** contosoRG|创建资源组。 资源组名称必须在所选订阅中唯一。<br>资源组的位置对 DNS 区域没有影响。 DNS 区域位置始终是“全局”，并且不会显示。|
-   |**位置**|中国东部||
+    | **设置** | **值** | **详细信息** |
+    |--|--|--|
+    | **项目详细信息：**  |  |  |
+    | **资源组**    | ContosoRG | 创建资源组。 资源组名称必须在所选订阅中唯一。 资源组的位置对 DNS 区域没有影响。 DNS 区域位置始终是“全球”，并且不会显示。 |
+    | **实例详细信息：** |  |  |
+    | **名称**              | contoso.net | 用于区域名称的字段      |
+    | **位置**          | 中国东部 2 | 此字段基于在资源组创建过程中选择的位置  |
+    
 
 ## <a name="retrieve-name-servers"></a>检索名称服务器
 
 在将 DNS 区域委托给 Azure DNS 之前，需要知道区域的名称服务器。 每次创建区域时，Azure DNS 都会分配某个池中的名称服务器。
 
-1. 创建 DNS 区域以后，在 Azure 门户的“收藏夹”窗格中选择“所有资源”。   在“所有资源”页中，选择你的 DNS 区域。  如果所选订阅中已包含多个资源，则可在“按名称筛选”框中输入你的域名，轻松访问应用程序网关  。 
+1. 创建 DNS 区域以后，在 Azure 门户的“收藏夹”窗格中选择“所有资源”。******** 在“所有资源”页中，选择你的 DNS 区域。**** 如果所选订阅中已包含多个资源，则可在“按名称筛选”框中输入你的域名，轻松访问应用程序网关****。 
 
-1. 从“DNS 区域”页中检索名称服务器。 在本示例中，为区域 contoso.net 分配了名称服务器 ns1-01.azure-dns.cn、ns2-01.azure-dns.cn、ns3-01.azure-dns.cn 和 ns4-01.azure-dns.cn     ：
+1. 从“DNS 区域”页中检索名称服务器。 在本示例中，为区域 contoso.net 分配了名称服务器 ns1-01.azure-dns.cn、ns2-01.azure-dns.cn、ns3-01.azure-dns.cn 和 ns4-01.azure-dns.cn********：
 
    ![名称服务器的列表](./media/dns-delegate-domain-azure-dns/viewzonens500.png)
 
@@ -78,15 +80,15 @@ Azure DNS 自动在你的区域中为所分配的名称服务器创建权威 NS 
 > [!NOTE]
 > 复制每个名称服务器地址时，请确保复制地址末尾的尾随句点。 尾随句点表示完全限定域名的结束。 如果 NS 名称末尾没有句点，一些注册机构会追加句点。 若要符合 DNS RFC，请包括尾随句点。
 
-Azure DNS 目前不支持使用你自己区域中的名称服务器的委托（有时称为“虚构名称服务器”）  。
+Azure DNS 目前不支持使用你自己区域中的名称服务器的委托（有时称为“虚构名称服务器”）**。
 
 ## <a name="verify-the-delegation"></a>验证委托
 
-完成委托后，可以使用 nslookup 等工具来查询区域的授权起始点 (SOA) 记录，验证名称解析是否正常工作  。 SOA 记录是在创建区域时自动创建的。 在完成委托后，你可能需要等待 10 分钟或更长时间，然后才能成功验证它是否正常工作。 更改可能需要花费一段时间才能通过 DNS 系统进行传播。
+完成委托后，可以使用 nslookup 等工具来查询区域的授权起始点 (SOA) 记录，验证名称解析是否正常工作**。 SOA 记录是在创建区域时自动创建的。 在完成委托后，你可能需要等待 10 分钟或更长时间，然后才能成功验证它是否正常工作。 更改可能需要花费一段时间才能通过 DNS 系统进行传播。
 
 无需指定 Azure DNS 名称服务器。 如果正确设置了委托，正常的 DNS 解析过程会自动找到名称服务器。
 
-1. 从命令提示符下，输入类似于以下示例的 nslookup 命令：
+1. 在命令提示符下，输入类似以下示例的 nslookup 命令：
 
    ```
    nslookup -type=SOA contoso.net
@@ -112,7 +114,7 @@ Azure DNS 目前不支持使用你自己区域中的名称服务器的委托（�
 
 如果打算继续执行下一教程，可以保留 **contosoRG** 资源组。 否则，请删除 **contosoRG** 资源组以删除在本教程中创建的资源。
 
-- 选择“contosoRG”资源组，然后选择“删除资源组”   。 
+- 选择“contosoRG”资源组，然后选择“删除资源组”********。 
 
 ## <a name="next-steps"></a>后续步骤
 

@@ -3,24 +3,24 @@ title: 在 Azure 上执行 Team Data Science Process 的演练
 description: 如何将云和本地工具以及服务结合到一个工作流或管道中，以创建智能应用程序。
 services: machine-learning
 author: marktab
-manager: cgronlun
-editor: cgronlun
+manager: marktab
+editor: marktab
 ms.service: machine-learning
 ms.subservice: team-data-science-process
 ms.topic: article
-ms.date: 08/17/2017
+ms.date: 01/10/2020
 ms.author: tdsp
 ms.custom: seodec18, previous-author=deguhath, previous-ms.author=deguhath
-ms.openlocfilehash: b87c67d781bd3c1878d96855593017ddec73bfad
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 9a83f59eb10a3730099505128238418036341b72
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75599181"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021479"
 ---
 # <a name="walkthroughs-executing-the-team-data-science-process"></a>执行 Team Data Science Process 的演练
 
-这些**端到端演练**演示了特定方案的 Team Data Science Process 步骤。 具体展示了如何将云、本地工具以及服务结合到一个工作流或管道中，以创建智能应用程序  。 这些演练按所使用的**平台**进行分组。
+这些综合演练演示了特定方案的 Team Data Science Process 步骤。 这些演练演示如何将云、本地工具和服务合并到智能应用程序的工作流中。 这些演练按所使用的**平台**进行分组。
 
 
 ## <a name="walkthrough-descriptions"></a>演练说明
@@ -40,7 +40,7 @@ ms.locfileid: "75599181"
 
 有关构成 Team Data Science Process 的关键组件的讨论，请参阅 [Team Data Science Process 概述](overview.md)。
 
-有关可用于构建数据科学项目的 Team Data Science Process 生命周期的讨论，请参阅 [Team Data Science Process 生命周期](lifecycle.md)。 生命周期概述了执行项目时，其从开始到结束所遵循的步骤。 
+有关 Team Data Science Process 生命周期的讨论，请参阅 [Team Data Science Process 生命周期](lifecycle.md)。 此生命周期概述了执行项目时，其从开始到结束所遵循的步骤。 
 
-获取主题概述，了解包含 Azure 中数据科学过程的任务，请参阅[数据科学过程](/machine-learning/team-data-science-process/)。 
+有关概述，请参阅 [Data Science Process](/machine-learning/team-data-science-process/)。 
 

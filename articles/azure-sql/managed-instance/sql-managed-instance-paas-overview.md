@@ -10,19 +10,19 @@ ms.topic: conceptual
 author: WenJason
 ms.author: v-jay
 ms.reviewer: sstein, carlrab, vanto
-origin.date: 06/25/2020
-ms.date: 08/17/2020
-ms.openlocfilehash: a97fc84d39591d284dff66c82ce5e2acca057ba8
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+origin.date: 08/14/2020
+ms.date: 09/14/2020
+ms.openlocfilehash: 5ee9666e3a133c32575c1e57abef23e01de8e3d4
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223268"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014367"
 ---
 # <a name="what-is-azure-sql-managed-instance"></a>什么是 Azure SQL 托管实例？
 [!INCLUDE[appliesto-sqlmi](../includes/appliesto-sqlmi.md)]
 
-作为 Azure SQL 产品系列的一部分，Azure SQL 托管实例是一种智能、可缩放的云数据库服务；它将最广泛的 SQL Server 数据库引擎兼容性与完全托管且经久不衰的平台即服务的所有优势相结合。 SQL 托管实例具有与最新 SQL Server (Enterprise Edition) 数据库引擎近 100% 的兼容性，提供解决常见安全问题的本机[虚拟网络 (VNet)](../../virtual-network/virtual-networks-overview.md) 实现，并提供现有 SQL Server 客户惯用的[业务模型](https://azure.cn/pricing/details/sql-database/)。 SQL 托管实例允许现有 SQL Server 客户将其本地应用程序即时转移到云中，而只需对应用程序和数据库做出极少量的更改。 同时，SQL 托管实例保留了所有 PaaS 功能（自动修补和版本更新、[自动备份](../database/automated-backups-overview.md)、[高可用性](../database/high-availability-sla.md)），可大幅降低管理开销和总拥有成本。
+Azure SQL 托管实例是一种智能、可缩放的云数据库服务；它将最广泛的 SQL Server 数据库引擎兼容性与完全托管且经久不衰的平台即服务的所有优势相结合。 SQL 托管实例具有与最新 SQL Server (Enterprise Edition) 数据库引擎近 100% 的兼容性，提供解决常见安全问题的本机[虚拟网络 (VNet)](../../virtual-network/virtual-networks-overview.md) 实现，并提供现有 SQL Server 客户惯用的[业务模型](https://azure.cn/pricing/details/sql-database/)。 SQL 托管实例允许现有 SQL Server 客户将其本地应用程序即时转移到云中，而只需对应用程序和数据库做出极少量的更改。 同时，SQL 托管实例保留了所有 PaaS 功能（自动修补和版本更新、[自动备份](../database/automated-backups-overview.md)、[高可用性](../database/high-availability-sla.md)），可大幅降低管理开销和总拥有成本。
 
 > [!IMPORTANT]
 > 若要查看 SQL 托管实例当前可用的区域列表，请参阅[支持区域](resource-limits.md#supported-regions)。
@@ -74,8 +74,8 @@ SQL 托管实例[基于 vCore 的购买模型](../database/service-tiers-vcore.m
 
 在 vCore 模型中，可在以下两代硬件中进行选择。
 
-- Gen4 逻辑 CPU 基于 Intel E5-2673 v3 (Haswell) 2.4-GHz 处理器，采用附加 SSD 和物理核心（每个核心 7 GB RAM），计算大小为 8 到 24 个 vCore。
-- Gen5 逻辑 CPU 基于 Intel E5-2673 v4 (Broadwell) 2.3-GHz 和 Intel SP-8160 (Skylake) 处理器，采用快速 NVMe SSD 和超线程逻辑核心，计算大小为 4 到 80 个核心。
+- Gen4 逻辑 CPU 基于 Intel� E5-2673 v3 (Haswell) 2.4-GHz 处理器，采用附加 SSD 和物理核心（每个核心 7 GB RAM），计算大小为 8 到 24 个 vCore。
+- Gen5 逻辑 CPU 基于 Intel� E5-2673 v4 (Broadwell) 2.3-GHz、Intel� SP-8160 (Skylake) 和 Intel� 8272CL (Cascade Lake) 2.5 GHz 处理器，采用快速 NVMe SSD 和超线程逻辑核心，计算大小为 4 到 80 个核心。
 
 若要详细了解两代硬件之间的区别，请参阅 [SQL 托管实例资源限制](resource-limits.md#hardware-generation-characteristics)。
 

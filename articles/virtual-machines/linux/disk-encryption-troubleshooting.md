@@ -1,21 +1,22 @@
 ---
-title: 故障排除 - 适用于 Linux VM 的 Azure 磁盘加密
+title: 对适用于 Linux VM 的 Azure 磁盘加密进行故障排除
 description: 本文提供适用于 Linux VM 的 Azure 磁盘加密的故障排除提示。
 author: Johnnytechn
-ms.service: security
-ms.topic: article
+ms.service: virtual-machines-linux
+ms.subservice: security
+ms.topic: troubleshooting
 ms.author: v-johya
 origin.date: 08/06/2019
-ms.date: 04/13/2020
+ms.date: 09/03/2020
 ms.custom: seodec18
-ms.openlocfilehash: 14ee9ba4fb8b817ffc888db7b1a9dc5f818da909
-ms.sourcegitcommit: ebedf9e489f5218d4dda7468b669a601b3c02ae5
+ms.openlocfilehash: 61738696a9ac8c4b96705005a28e4e1db5c164a3
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2020
-ms.locfileid: "82159042"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057700"
 ---
-# <a name="azure-disk-encryption-troubleshooting-guide"></a>Azure 磁盘加密故障排除指南
+# <a name="azure-disk-encryption-for-linux-vms-troubleshooting-guide"></a>适用于 Linux VM 的 Azure 磁盘加密故障排除指南
 
 本指南面向使用 Azure 磁盘加密的组织中的 IT 专业人员、信息安全分析人员和云管理员。 本文旨在帮助排查与磁盘加密相关的问题。
 
@@ -24,6 +25,8 @@ ms.locfileid: "82159042"
 - [VM 的其他要求](disk-encryption-overview.md#supported-vms-and-operating-systems)
 - [网络要求](disk-encryption-overview.md#networking-requirements)
 - [加密密钥存储要求](disk-encryption-overview.md#encryption-key-storage-requirements)
+
+ 
 
 ## <a name="troubleshooting-linux-os-disk-encryption"></a>Linux OS 磁盘加密故障排除
 
@@ -68,48 +71,73 @@ Microsoft.OSTCExtensions.AzureDiskEncryptionForLinux extension 扩展已弃用�
 
 Linux OS 磁盘加密序列暂时卸载 OS 驱动器。 然后，它将对整个 OS 磁盘进行逐块加密，然后再将其重新安装为加密状态。 Linux 磁盘加密不允许在加密的同时并发使用 VM。 VM 的性能特点会在完成加密所需的时间上产生显著差异。 这些特点包括磁盘大小以及存储帐户为标准还是高级 (SSD) 存储。
 
-若要检查加密状态，可以轮询 [Get-AzVmDiskEncryptionStatus](https://docs.microsoft.com/powershell/module/az.compute/get-azvmdiskencryptionstatus) 命令返回的 ProgressMessage  字段。 加密 OS 驱动器时，VM 会进入维护状态，同时会禁用 SSH，以防止对进行中的进程造成任何干扰。 进行加密时，EncryptionInProgress  消息大部分时间都在提供报告。 几个小时之后，VMRestartPending  消息会提示重新启动 VM。 例如：
+加密 OS 驱动器时，VM 会进入维护状态，同时会禁用 SSH，以防止对进行中的进程造成任何干扰。  若要检查加密状态，请使用 Azure PowerShell [Get-AzVmDiskEncryptionStatus](https://docs.microsoft.com/powershell/module/az.compute/get-azvmdiskencryptionstatus) 命令，然后检查 ProgressMessage 字段。 数据和 OS 磁盘进行加密时，ProgressMessage 将报告一系列状态：
 
 ```azurepowershell
-PS > Get-AzVMDiskEncryptionStatus -ResourceGroupName "MyVirtualMachineResourceGroup" -VMName "VirtualMachineName"
+PS > Get-AzVMDiskEncryptionStatus -ResourceGroupName "MyResourceGroup" -VMName "myVM"
+
+OsVolumeEncrypted          : EncryptionInProgress
+DataVolumesEncrypted       : EncryptionInProgress
+OsVolumeEncryptionSettings :
+ProgressMessage            : Transitioning
+
+PS > Get-AzVMDiskEncryptionStatus -ResourceGroupName "MyResourceGroup" -VMName "myVM"
+
+OsVolumeEncrypted          : EncryptionInProgress
+DataVolumesEncrypted       : EncryptionInProgress
+OsVolumeEncryptionSettings : Microsoft.Azure.Management.Compute.Models.DiskEncryptionSettings
+ProgressMessage            : Encryption succeeded for data volumes
+
+PS > Get-AzVMDiskEncryptionStatus -ResourceGroupName "MyResourceGroup" -VMName "myVM"
+
+OsVolumeEncrypted          : EncryptionInProgress
+DataVolumesEncrypted       : EncryptionInProgress
+OsVolumeEncryptionSettings : Microsoft.Azure.Management.Compute.Models.DiskEncryptionSettings
+ProgressMessage            : Provisioning succeeded
+
+PS > Get-AzVMDiskEncryptionStatus -ResourceGroupName "MyResourceGroup" -VMName "myVM"
+
 OsVolumeEncrypted          : EncryptionInProgress
 DataVolumesEncrypted       : EncryptionInProgress
 OsVolumeEncryptionSettings : Microsoft.Azure.Management.Compute.Models.DiskEncryptionSettings
 ProgressMessage            : OS disk encryption started
-
-PS > Get-AzVMDiskEncryptionStatus -ResourceGroupName "MyVirtualMachineResourceGroup" -VMName "VirtualMachineName"
-OsVolumeEncrypted          : VMRestartPending
-DataVolumesEncrypted       : Encrypted
-OsVolumeEncryptionSettings : Microsoft.Azure.Management.Compute.Models.DiskEncryptionSettings
-ProgressMessage            : OS disk successfully encrypted, please reboot the VM
 ```
 
-系统会提示重启 VM，在 VM 重启后，必须等待 2-3 分钟，以重启并在目标上执行最终步骤。 当加密最终完成时，状态消息会发生更改。 显示此消息后，加密的 OS 驱动器预期可供使用，并且 VM 可恢复使用。
+对于大多数加密过程，ProgressMessage 将保留为“已启动 OS 磁盘加密”状态 。  成功完成加密后，将返回 ProgressMessage：
 
-在以下情况下，建议将 VM还原到就在加密前一刻获取的快照或备份：
-- 如果上述的重新启动序列不会发生。
-- 如果启动信息、进度消息或其他错误指示器报告 OS 加密过程已失败。 本指南中以“卸载失败”错误为例，介绍了一个消息。
+```azurepowershell
+PS > Get-AzVMDiskEncryptionStatus -ResourceGroupName "MyResourceGroup" -VMName "myVM"
 
-在下次尝试之前，请重新评估 VM 的特征，并确保满足所有先决条件。
+OsVolumeEncrypted          : Encrypted
+DataVolumesEncrypted       : NotMounted
+OsVolumeEncryptionSettings : Microsoft.Azure.Management.Compute.Models.DiskEncryptionSettings
+ProgressMessage            : Encryption succeeded for all volumes
+```
 
+显示此消息后，加密的 OS 驱动器预期可供使用，并且 VM 可恢复使用。
 
-<!--Pending
-## Troubleshooting Azure Disk Encryption behind a firewall
+如果启动信息、进度消息或一个错误报告 OS 加密已在此进程执行期间失败，则将 VM 还原为加密前最后使用的快照或备份。 本指南中以“卸载失败”错误为例，介绍了一个消息。
 
-See [Disk Encryption on an isolated network](disk-encryption-isolated-network.md) 
--->
+在再次尝试加密之前，请重新评估 VM 的特征，并确保满足所有先决条件。
+
+## <a name="troubleshooting-azure-disk-encryption-behind-a-firewall"></a>防火墙保护下的 Azure 磁盘加密故障排除
+
+请参阅[隔离网络上的磁盘加密](disk-encryption-isolated-network.md)
 
 ## <a name="troubleshooting-encryption-status"></a>加密状态故障排除 
 
-即使磁盘在 VM 中解密后，门户也可能显示该磁盘已加密。  当使用低级别命令从 VM 内部直接解密磁盘，而不是使用较高级别的 Azure 磁盘加密管理命令时，可能会发生这种情况。  较高级别命令不仅从 VM 内部解密磁盘，而且在 VM 外部它们还更新与 VM 关联的重要平台级加密设置和扩展设置。  如果这些未保持一致，平台将无法报告加密状态或正确预配 VM。   
+即使磁盘在 VM 中解密后，门户也可能显示该磁盘已加密。  当使用低级别命令从 VM 内部直接解密磁盘，而不是使用较高级别的 Azure 磁盘加密管理命令时，可能会发生这种情况。  较高级别命令不仅从 VM 内部解密磁盘，而且在 VM 外部它们还更新与 VM 关联的重要平台级加密设置和扩展设置。  如果这些未保持一致，平台将无法报告加密状态或正确预配 VM。
 
 若要使用 PowerShell 禁用 Azure 磁盘加密，请使用 [Disable-AzVMDiskEncryption](https://docs.microsoft.com/powershell/module/az.compute/disable-azvmdiskencryption)，然后使用 [Remove-AzVMDiskEncryptionExtension](https://docs.microsoft.com/powershell/module/az.compute/remove-azvmdiskencryptionextension)。 禁用加密之前，运行 Remove-AzVMDiskEncryptionExtension 会失败。
 
 若要使用 CLI 禁用 Azure 磁盘加密，请使用 [az vm encryption disable](https://docs.azure.cn/cli/vm/encryption?view=azure-cli-latest#az-vm-encryption-disable)。 
 
-<!--Not Available on ## Next steps-->
-<!--Not Available on - [Apply disk encryption in Azure Security Center](../../security-center/security-center-apply-disk-encryption.md)-->
-<!--Not Available on - [Azure data encryption at rest](../../security/fundamentals/encryption-atrest.md)-->
+## <a name="next-steps"></a>后续步骤
+
+本文档已详细描述有关 Azure 磁盘加密的一些常见问题和解决这些问题的方法。 有关此服务及其功能的详细信息，请参阅以下文章：
+
+- [在 Azure 安全中心应用磁盘加密](../../security-center/security-center-virtual-machine-protection.md)
+- [Azure 静态数据加密](../../security/fundamentals/encryption-atrest.md)
 
 <!-- Update_Description: new article about disk encryption troubleshooting -->
 <!--NEW.date: 11/11/2019-->

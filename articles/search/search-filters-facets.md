@@ -8,13 +8,14 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 11/04/2019
-ms.date: 12/16/2019
-ms.openlocfilehash: 6cc25bde113a24de51c8a0cf966cafabf37006ad
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.date: 09/10/2020
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 0c215e88d2430ed92ff58fa4fe6b577a6852995e
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75335856"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021592"
 ---
 # <a name="how-to-build-a-facet-filter-in-azure-cognitive-search"></a>如何在 Azure 认知搜索中生成分面筛选器 
 
@@ -29,7 +30,7 @@ ms.locfileid: "75335856"
 
 分面为动态并在查询中返回。 搜索响应带有用于导航结果的分面类别。 如果不熟悉分面，可通过以下示例了解分面导航结构。
 
-  ![](./media/search-filters-facets/facet-nav.png)
+  ![显示搜索对话框的图像，其中包含按业务标题分组的筛选后搜索结果。 箭头指示结果是 facet 导航结构中显示的 facet。](./media/search-filters-facets/facet-nav.png)
 
 不熟悉分面导航并希望了解更多详情？ 请参阅[如何在 Azure 认知搜索中实现分面导航](search-faceted-navigation.md)。
 
@@ -78,11 +79,11 @@ ms.locfileid: "75335856"
 ```
 
 > [!Note]
-> 此索引定义复制自[使用 REST API 创建 Azure 认知搜索索引](https://docs.azure.cn/search/search-create-index-rest-api)。 除了字段定义的表面差异外，二者完全相同。 已在 `category`、`tags`、`parkingIncluded`、`smokingAllowed` 和 `rating` 字段中显式添加 `filterable` 和 `facetable` 属性。 在实践中，使用 REST API 时，默认会在这些字段中启用 `filterable` 和 `facetable`。 使用 .NET SDK 时，必须显式启用这些属性。
+> 此索引定义复制自[使用 REST API 创建 Azure 认知搜索索引](./search-get-started-powershell.md)。 除了字段定义的表面差异外，二者完全相同。 已在 `category`、`tags`、`parkingIncluded`、`smokingAllowed` 和 `rating` 字段中显式添加 `filterable` 和 `facetable` 属性。 在实践中，使用 REST API 时，默认会在这些字段中启用 `filterable` 和 `facetable`。 使用 .NET SDK 时，必须显式启用这些属性。
 
 ## <a name="build-and-load-an-index"></a>生成和加载索引
 
-编写查询之前的一个中间步骤（也许是众所周知的步骤）是[生成并填充索引](https://docs.azure.cn/search/search-get-started-dotnet#1---create-index)。 为了保持内容完整，此处阐述了此步骤。 确定索引是否可用的一种方法是在[门户](https://portal.azure.cn)中查看索引列表。
+编写查询之前的一个中间步骤（也许是众所周知的步骤）是[生成并填充索引](./search-get-started-dotnet.md#1---create-an-index)。 为了保持内容完整，此处阐述了此步骤。 确定索引是否可用的一种方法是在[门户](https://portal.azure.cn)中查看索引列表。
 
 ## <a name="add-facet-filters-to-a-query"></a>将分面筛选器添加到查询
 

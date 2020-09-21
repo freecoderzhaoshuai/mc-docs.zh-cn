@@ -1,19 +1,20 @@
 ---
 title: Azure Service Fabric 反向代理
 description: 使用 Service Fabric 的反向代理从群集内部和外部与微服务通信
-author: rockboyfor
 ms.topic: conceptual
 origin.date: 11/03/2017
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
-ms.testdate: 01/13/2020
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: ba96d98cf100fa1a4e5820199062a2639cca7921
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 9c6ef85603ec1f2d42816925f6656085ff7229b9
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426398"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655638"
 ---
 # <a name="reverse-proxy-in-azure-service-fabric"></a>Azure Service Fabric 中的反向代理
 借助 Azure Service Fabric 中内置的反向代理，Service Fabric 群集中运行的微服务可以发现包含 http 终结点的其他服务，并与之通信。
@@ -101,7 +102,7 @@ http://10.0.0.5:10592/3f0d39ad-924b-4233-b4a7-02617c6308a6-130834621071472715/
 
 如果服务使用“统一 Int64”分区方案，则必须使用 *PartitionKey* 和 *PartitionKind* 查询字符串来访问服务的分区：
 
-* 外部访问方式：`http://mycluster.chinaeast.cloudapp.chinacloudapi.cn:19081/MyApp/MyService?PartitionKey=3&PartitionKind=Int64Range`
+* 外部访问方式：`http://mycluster.chinaeast.cloudapp.chinacloudapi.cn - 19081/MyApp/MyService?PartitionKey=3&PartitionKind=Int64Range`
 * 内部访问方式：`http://localhost:19081/MyApp/MyService?PartitionKey=3&PartitionKind=Int64Range`
 
 要访问服务公开的资源，可直接在 URL 中将资源路径置于服务名称之后：
@@ -109,7 +110,7 @@ http://10.0.0.5:10592/3f0d39ad-924b-4233-b4a7-02617c6308a6-130834621071472715/
 * 外部访问方式：`http://mycluster.chinaeast.cloudapp.chinacloudapi.cn:19081/MyApp/MyService/index.html?PartitionKey=3&PartitionKind=Int64Range`
 * 内部访问方式：`http://localhost:19081/MyApp/MyService/api/users/6?PartitionKey=3&PartitionKind=Int64Range`
 
-然后，网关会将这些请求转发到服务的 URL：
+然后，网关会将这些请求转发到服务 URL：
 
 * `http://10.0.0.5:10592/3f0d39ad-924b-4233-b4a7-02617c6308a6-130834621071472715/index.html`
 * `http://10.0.0.5:10592/3f0d39ad-924b-4233-b4a7-02617c6308a6-130834621071472715/api/users/6`
@@ -119,7 +120,7 @@ http://10.0.0.5:10592/3f0d39ad-924b-4233-b4a7-02617c6308a6-130834621071472715/
 
 不过，副本或服务实例可能会共享主机进程，在通过基于 http.sys 的 Web 服务器进行托管的情况下还可能会共享端口，这些 Web 服务器包括：
 
-* [System.Net.HttpListener](https://msdn.microsoft.com/library/system.net.httplistener%28v=vs.110%29.aspx)
+* [System.Net.HttpListener](https://docs.microsoft.com/dotnet/api/system.net.httplistener?view=netcore-3.1)
 * [ASP.NET Core WebListener](https://docs.asp.net/latest/fundamentals/servers.html#weblistener)
 * [Katana](https://www.nuget.org/packages/Microsoft.AspNet.WebApi.OwinSelfHost/)
 
@@ -157,7 +158,7 @@ http://10.0.0.5:10592/3f0d39ad-924b-4233-b4a7-02617c6308a6-130834621071472715/
 * [诊断反向代理事件](service-fabric-reverse-proxy-diagnostics.md)
 * 参阅 [GitHub 上的示例项目](https://github.com/Azure-Samples/service-fabric-dotnet-getting-started)中服务之间的 HTTP 通信示例。
 * [使用 Reliable Services 远程控制执行远程过程调用](service-fabric-reliable-services-communication-remoting.md)
-* [Reliable Services 中使用 OWIN 的 Web API](service-fabric-reliable-services-communication-webapi.md)
+* [Reliable Services 中使用 OWIN 的 Web API](./service-fabric-reliable-services-communication-aspnetcore.md)
 * [使用 Reliable Services 的 WCF 通信](service-fabric-reliable-services-communication-wcf.md)
 
 [0]: ./media/service-fabric-reverseproxy/external-communication.png

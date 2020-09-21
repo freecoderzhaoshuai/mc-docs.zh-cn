@@ -12,17 +12,16 @@ ms.devlang: na
 ms.tgt_pltfrm: na
 ms.workload: identity
 ms.topic: conceptual
-origin.date: 11/27/2018
-ms.date: 10/09/2019
+ms.date: 09/08/2020
 ms.subservice: hybrid
 ms.author: v-junlch
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 6b290a7918854b6f9da9b8129dd72b3419bf4ed6
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 213aa076172f66fbbd704d168d10f569e8d334e4
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79290986"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593648"
 ---
 # <a name="topologies-for-azure-ad-connect"></a>Azure AD Connect 的拓扑
 本文介绍了使用 Azure AD Connect 同步作为关键集成解决方案的各种本地拓扑和 Azure Active Directory (Azure AD) 拓扑。 此外，介绍支持和不支持的配置。
@@ -186,10 +185,15 @@ Azure AD 租户在设计上是隔离的。 不支持以下任务：
 
 可以使用本地 FIM 2010 或 MIM 2016 在两个 Exchange 组织之间同步用户（通过 GALSync）。 一个组织中的用户显示为另一组织中的外部用户/联系人。 这些不同的本地 Active Directory 实例可与其自身的 Azure AD 租户同步。
 
+### <a name="using-unauthorized-clients-to-access-the-azure-ad-connect-backend"></a>使用未经授权的客户端访问 Azure AD Connect 后端
+![使用未经授权的客户端访问 Azure AD Connect 后端](./media/plan-connect-topologies/other-client-unsupported.png)
+
+Azure Active Directory Connect 服务器通过 Azure Active Directory Connect 后端与 Azure Active Directory 通信。 唯一可用于与此后端进行通信的软件是 Azure Active Directory Connect。 不支持使用任何其他软件或方法与 Azure Active Directory Connect 后端通信。 
+
 ## <a name="next-steps"></a>后续步骤
 若要了解如何为这些方案安装 Azure AD Connect，请参阅 [Azure AD Connect 的自定义安装](how-to-connect-install-custom.md)。
 
-了解有关 [Azure AD Connect 同步](how-to-connect-sync-whatis.md) 配置的详细信息。
+了解有关 [Azure AD Connect 同步](how-to-connect-sync-whatis.md)配置的详细信息。
 
 了解有关[将本地标识与 Azure Active Directory 集成](whatis-hybrid-identity.md)的详细信息。
 

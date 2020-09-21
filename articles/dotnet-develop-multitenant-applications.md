@@ -1,26 +1,30 @@
 ---
-title: 多租户网站模式 | Microsoft Azure
-description: 查找介绍如何在 Azure 中实现多租户网站的体系结构概述和设计模式。
+title: 多租户 Web 应用程序模式 | Microsoft Docs
+description: 查找介绍如何在 Azure 中实现多租户 Web 应用程序的体系结构概述和设计模式。
 services: ''
 documentationcenter: .net
 author: wadepickett
 manager: wpickett
 editor: ''
+ms.assetid: 4f0281d2-1555-42b0-a99d-1222fade0b0f
 ms.service: active-directory
+ms.workload: identity
+ms.tgt_pltfrm: na
+ms.devlang: dotnet
 ms.topic: article
 origin.date: 06/05/2015
-ms.date: 01/21/2016
-ms.author: v-junlch
-ms.openlocfilehash: dd9f529bc8b2d9d8a93f3c82ba2d1964291f0838
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.date: 09/10/2020
+ms.author: v-tawe
+ms.custom: devx-track-dotnet
+ms.openlocfilehash: c309663d0b9855a3e6005e75c310b63cb48eef38
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "78850517"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020809"
 ---
 # <a name="multitenant-applications-in-azure"></a>Azure 中的多租户应用程序
-
-多租户应用程序是一种共享资源，它允许单独的用户或“租户”像使用他们自己的应用程序一样查看该应用程序。 适合实施多租户应用程序的典型情况是，应用程序的所有用户都可能希望定制用户体验，但在其他方面具有相同的基本业务要求。 大型多租户应用程序的示例包括 Office 365、Outlook.com 和 visualstudio.com。
+多租户应用程序是一种共享资源，它允许“单独租户中的用户”像使用其自己的应用程序一样查看应用程序。 适合实施多租户应用程序的典型情况是，不同租户中的所有应用程序用户都可能希望定制用户体验，但在其他方面具有相同的基本业务要求。 大型多租户应用程序的示例包括 Office 365、Outlook.com 和 visualstudio.com。
 
 从应用程序提供商的角度来看，多租户技术的优势大多涉及运营和成本效益。 应用程序的一个版本可以满足许多租户/客户的需求，从而使你能够整合系统管理任务，例如监视、性能优化、软件维护和数据备份。
 
@@ -40,13 +44,13 @@ ms.locfileid: "78850517"
 
 总之，虽然提供高度可扩展的服务必须考虑很多事项，但对于许多多租户应用程序，也有一些共同的目标和要求。 有些要求在特定情况下可能并不相关，并且各个目标和要求的重要性在各种情况下也会有所不同。 作为多租户应用程序的提供商，你的目标和要求还有：满足租户的目标和要求、盈利能力、计费、多个服务级别、配置、可维护性监视以及自动化。
 
-有关多租户应用程序的其他设计注意事项的详细信息，请参阅[在 Azure 中托管多租户应用程序][]。
+有关多租户应用程序的其他设计注意事项的详细信息，请参阅[在 Azure 中托管多租户应用程序][Hosting a Multi-Tenant Application on Azure]。
 
 Azure 提供了许多功能，使你能够解决在设计多租户系统时遇到的关键问题。
 
 **隔离**
 
-* 按使用或不使用 SSL 通信的主机头对网站租户进行分段
+* 按使用或不使用 TLS 通信的主机头对网站租户进行分段
 * 按查询参数对网站租户进行分段
 * 辅助角色中的 Web 服务
   * 辅助角色通常在应用程序后端处理数据。
@@ -89,5 +93,5 @@ Azure 提供许多方法来为应用程序预配新租户。 对于具有大量�
 
 <!--links-->
 
-[在 Azure 中托管多租户应用程序]: https://msdn.microsoft.com/library/hh534480.aspx
+[Hosting a Multi-Tenant Application on Azure]: https://msdn.microsoft.com/library/hh534480.aspx
 [Designing Multitenant Applications on Azure]: https://msdn.microsoft.com/library/windowsazure/hh689716

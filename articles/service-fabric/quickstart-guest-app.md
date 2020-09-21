@@ -1,16 +1,20 @@
 ---
-title: 将现有应用快速部署到 Azure Service Fabric 群集
+title: 快速将现有应用部署到群集
 description: 通过 Visual Studio 使用 Azure Service Fabric 群集来托管现有的 Node.js 应用程序。
 ms.topic: conceptual
 origin.date: 12/06/2017
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.date: 01/06/2020
-ms.openlocfilehash: 16b07f83a3965578fa76afcd78bfeef78307fae0
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: devx-track-javascript
+ms.openlocfilehash: dc8cb6c50a9b0895e9a94de497d75b96ab99697d
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75741886"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655666"
 ---
 # <a name="host-a-nodejs-application-on-azure-service-fabric"></a>在 Azure Service Fabric 上托管 Node.js 应用程序
 

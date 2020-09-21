@@ -11,13 +11,13 @@ author: WenJason
 ms.author: v-jay
 ms.reviewer: ''
 origin.date: 01/08/2020
-ms.date: 07/13/2020
-ms.openlocfilehash: de336b9256e1da0814fed2b033c9de65fe8f0ba6
-ms.sourcegitcommit: fa26665aab1899e35ef7b93ddc3e1631c009dd04
+ms.date: 09/14/2020
+ms.openlocfilehash: 7e42da5bfcb795a330da8b8eb576d966e534e06f
+ms.sourcegitcommit: d5cdaec8050631bb59419508d0470cb44868be1a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86227591"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90014331"
 ---
 # <a name="import-or-export-an-azure-sql-database-without-allowing-azure-services-to-access-the-server"></a>导入或导出 Azure SQL 数据库但不允许 Azure 服务访问服务器
 [!INCLUDE[appliesto-sqldb](../includes/appliesto-sqldb.md)]
@@ -30,10 +30,14 @@ ms.locfileid: "86227591"
 
 ## <a name="create-the-azure-virtual-machine"></a>创建 Azure 虚拟机
 
-创建一个 Azure 虚拟机。
+通过选择“部署到 Azure”按钮来创建 Azure 虚拟机。
 
-有关详细信息，请参阅[创建 Windows VM](/virtual-machines/windows/quick-create-portal)。
+借助此模板，可以使用 Windows 版本（最新补丁版本）适用的其他一些选项来部署简单的 Windows 虚拟机。 这会在资源组位置部署 A2 大小 VM，并返回 VM 的完全限定的域名。
+<br><br>
 
+[![图像显示标记为“部署到 Azure”的按钮。](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.png)](https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2F101-vm-simple-windows%2Fazuredeploy.json)
+
+有关详细信息，请参阅 [Windows VM 的极简部署](https://github.com/Azure/azure-quickstart-templates/tree/master/101-vm-simple-windows)。
 
 ## <a name="connect-to-the-virtual-machine"></a>连接到虚拟机
 

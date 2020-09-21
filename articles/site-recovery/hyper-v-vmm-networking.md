@@ -1,19 +1,21 @@
 ---
-title: 设置 IP 寻址以在使用 Azure Site Recovery 故障转移后连接到辅助本地站点
+title: 设置使用 Azure Site Recovery 故障转移到辅助站点后的 IP 地址
 description: 介绍如何设置 IP 寻址以在使用 Azure Site Recovery 灾难恢复和故障转移后连接到辅助本地站点中的 VM。
-author: rockboyfor
-manager: digimobile
+manager: carmonm
 ms.service: site-recovery
 ms.topic: conceptual
-origin.date: 09/09/2019
-ms.date: 09/30/2019
+origin.date: 11/12/2019
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 4e6351d77b1388b6c232dfdeec431b15d32c4c3b
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 6afa24948dd41f2754a757f0e64bc7235c2b5a42
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "71340720"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655668"
 ---
 # <a name="set-up-ip-addressing-to-connect-to-a-secondary-on-premises-site-after-failover"></a>设置 IP 寻址以在故障转移后连接到辅助本地站点
 
@@ -60,11 +62,11 @@ ms.locfileid: "71340720"
 
 故障转移前 
 
-![在故障转移之前](./media/hyper-v-vmm-networking/network-design2.png)
+:::image type="content" source="./media/hyper-v-vmm-networking/network-design2.png" alt-text="此图显示了故障转移前的子网。":::
 
 故障转移后 
 
-![在故障转移之后](./media/hyper-v-vmm-networking/network-design3.png)
+:::image type="content" source="./media/hyper-v-vmm-networking/network-design3.png" alt-text="此图显示了故障转移后的子网。":::
 
 故障转移后，Site Recovery 为 VM 上的每个网络接口分配 IP 地址。 将为每个 VM 实例从相关网络中的静态 IP 地址池中分配地址。
 
@@ -76,11 +78,11 @@ ms.locfileid: "71340720"
 
 为 VM 启用保护后，可以使用以下示例脚本来验证分配给 VM 的地址。 此 IP 地址将被设为故障转移 IP 地址，并在故障转移期间分配给 VM：
 
-```
+```powershell
 $vm = Get-SCVirtualMachine -Name <VM_NAME>
 $na = $vm[0].VirtualNetworkAdapters>
 $ip = Get-SCIPAddress -GrantToObjectID $na[0].id
-$ip.address 
+$ip.address
 ```
 
 ## <a name="use-a-different-ip-address"></a>使用不同 IP 地址
@@ -90,7 +92,7 @@ $ip.address
 - 对 Intranet 应用程序使用低 TTL 值。
 - 在 Site Recovery 恢复计划中使用以下脚本及时更新 DNS 服务器。 如果使用动态 DNS 注册，则不需要该脚本。
 
-    ```
+    ```powershell
     param(
     string]$Zone,
     [string]$name,
@@ -115,14 +117,14 @@ $ip.address
 
 故障转移前 
 
-![不同的 IP 地址 - 故障转移前](./media/hyper-v-vmm-networking/network-design10.png)
+:::image type="content" source="./media/hyper-v-vmm-networking/network-design10.png" alt-text="此图显示了故障转移前不同的 IP 地址。":::
 
 故障转移后 
 
-![不同的 IP 地址 - 故障转移后](./media/hyper-v-vmm-networking/network-design11.png)
+:::image type="content" source="./media/hyper-v-vmm-networking/network-design11.png" alt-text="显示故障转移后不同 IP 地址的图。":::
 
 ## <a name="next-steps"></a>后续步骤
 
 [运行故障转移](hyper-v-vmm-failover-failback.md)
 
-<!-- Update_Description: update meta properties -->
+<!-- Update_Description: update meta properties, wording update, update link -->

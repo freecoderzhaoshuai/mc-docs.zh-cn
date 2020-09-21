@@ -13,16 +13,16 @@ ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: identity
 ms.subservice: report-monitor
-ms.date: 08/26/2020
+ms.date: 09/09/2020
 ms.author: v-junlch
 ms.reviewer: dhanyahk
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 860a7259dc375d77de726af053ca770b230e91d2
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: 7ae0227aa2b266e89a91c69f435acbe6f27d1feb
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88946955"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593759"
 ---
 # <a name="sign-in-activity-reports-in-the-azure-active-directory-portal"></a>Azure Active Directory 门户中的“登录活动”报告
 
@@ -44,11 +44,7 @@ Azure Active Directory (Azure AD) 中的报告体系结构由以下部分组成�
 
 ### <a name="what-azure-ad-license-do-you-need-to-access-sign-in-activity"></a>访问登录活动需要什么 Azure AD 许可证？
 
-- [所有版本的 Azure AD](reference-reports-data-retention.md#how-long-does-azure-ad-store-the-data) 中都提供了登录活动报告。
-
-- 若要使用 API 访问登录数据，租户必须拥有与之关联的 [Azure Active Directory Premium](../fundamentals/active-directory-get-started-premium.md) 许可证。
-
-
+[Azure AD 的所有版本](reference-reports-data-retention.md#how-long-does-azure-ad-store-the-data)中均提供登录活动报告，也可通过 Microsoft Graph API 访问这些报告。
 
 ## <a name="sign-ins-report"></a>登录报告
 

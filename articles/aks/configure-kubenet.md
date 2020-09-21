@@ -4,17 +4,18 @@ description: 了解如何在 Azure Kubernetes 服务 (AKS) 中配置 kubenet（�
 services: container-service
 ms.topic: article
 origin.date: 06/02/2020
-ms.date: 08/10/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 07/13/2020
 ms.author: v-yeche
 ms.reviewer: nieberts, jomore
-ms.openlocfilehash: 33d788ddb5cc5ca2202e12240e1fc60e6e4645f8
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: e6e6ddeab9e99c4d25181e036ef023d7b33610a0
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842614"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021548"
 ---
 # <a name="use-kubenet-networking-with-your-own-ip-address-ranges-in-azure-kubernetes-service-aks"></a>在 Azure Kubernetes 服务 (AKS) 中结合自己的 IP 地址范围使用 kubenet 网络
 
@@ -29,7 +30,7 @@ ms.locfileid: "87842614"
 * AKS 群集的虚拟网络必须允许出站 Internet 连接。
 * 不要在同一子网中创建多个 AKS 群集。
 * AKS 群集可能不会使用 Kubernetes 服务地址范围的 `169.254.0.0/16`、`172.30.0.0/16`、`172.31.0.0/16` 或 `192.0.2.0/24`。
-* AKS 群集使用的服务主体在虚拟网络中的子网上必须至少具有[网络参与者](../role-based-access-control/built-in-roles.md#network-contributor)角色。 如果希望定义[自定义角色](../role-based-access-control/custom-roles.md)而不是使用内置的网络参与者角色，则需要以下权限：
+* AKS 群集使用的服务主体在虚拟网络中的子网上必须至少具有[网络参与者](../role-based-access-control/built-in-roles.md#network-contributor)角色。 你还必须具有相应的权限（如订阅所有者），才能创建服务主体并向其分配权限。 如果希望定义[自定义角色](../role-based-access-control/custom-roles.md)而不是使用内置的网络参与者角色，则需要以下权限：
     * `Microsoft.Network/virtualNetworks/subnets/join/action`
     * `Microsoft.Network/virtualNetworks/subnets/read`
 
@@ -256,15 +257,15 @@ az aks create -g MyResourceGroup -n MyManagedCluster --vnet-subnet-id MySubnetID
 
 <!-- LINKS - Internal -->
 
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
 [aks-network-concepts]: concepts-network.md
-[az-group-create]: https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-create
-[az-network-vnet-create]: https://docs.azure.cn/cli/network/vnet?view=azure-cli-latest#az-network-vnet-create
-[az-ad-sp-create-for-rbac]: https://docs.azure.cn/cli/ad/sp?view=azure-cli-latest#az-ad-sp-create-for-rbac
-[az-network-vnet-show]: https://docs.azure.cn/cli/network/vnet?view=azure-cli-latest#az-network-vnet-show
-[az-network-vnet-subnet-show]: https://docs.azure.cn/cli/network/vnet/subnet?view=azure-cli-latest#az-network-vnet-subnet-show
-[az-role-assignment-create]: https://docs.azure.cn/cli/role/assignment?view=azure-cli-latest#az-role-assignment-create
-[az-aks-create]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-create
+[az-group-create]: https://docs.azure.cn/cli/group#az-group-create
+[az-network-vnet-create]: https://docs.azure.cn/cli/network/vnet#az-network-vnet-create
+[az-ad-sp-create-for-rbac]: https://docs.azure.cn/cli/ad/sp#az-ad-sp-create-for-rbac
+[az-network-vnet-show]: https://docs.azure.cn/cli/network/vnet#az-network-vnet-show
+[az-network-vnet-subnet-show]: https://docs.azure.cn/cli/network/vnet/subnet#az-network-vnet-subnet-show
+[az-role-assignment-create]: https://docs.azure.cn/cli/role/assignment#az-role-assignment-create
+[az-aks-create]: https://docs.microsoft.com/cli/azure/aks#az_aks_create
 [byo-subnet-route-table]: #bring-your-own-subnet-and-route-table-with-kubenet
 [develop-helm]: quickstart-helm.md
 [use-helm]: kubernetes-helm.md

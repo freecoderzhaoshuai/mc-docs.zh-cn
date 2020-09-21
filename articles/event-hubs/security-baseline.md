@@ -5,15 +5,15 @@ author: msmbaldwin
 ms.service: security
 ms.topic: conceptual
 origin.date: 03/25/2020
-ms.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: v-tawe
-ms.custom: security-benchmark
-ms.openlocfilehash: 55750f53e6100668beb63e39ab8c1851b8bcac68
-ms.sourcegitcommit: 5055d580fb7ef1722e32e09a334d1d3e28295dd6
+ms.custom: subject-security-benchmark
+ms.openlocfilehash: 24d5a994eb944d238dca9ebbad5bd4c71eb6ac4f
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/07/2020
-ms.locfileid: "89503346"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063287"
 ---
 # <a name="azure-security-baseline-for-event-hubs"></a>事件中心的 Azure 安全基线
 
@@ -33,13 +33,13 @@ ms.locfileid: "89503346"
 
 绑定到至少一个虚拟网络子网服务终结点后，相应的事件中心命名空间将不再接受来自经授权的虚拟网络子网以外的任何位置的流量。 从虚拟网络的角度来看，通过将事件中心命名空间绑定到服务终结点，可配置从虚拟网络子网到消息传递服务的独立网络隧道。 
 
-也可创建一个专用终结点，该终结点是一个网络接口，可以使用 Azure 专用链接服务将你以私密且安全的方式连接到 Azure 事件中心服务。 专用终结点使用 VNet 中的专用 IP 地址将服务有效接入 VNet 中。 发往服务的所有流量都可以通过专用终结点路由，因此不需要网关、NAT 设备、ExpressRoute 或 VPN 连接或公共 IP 地址。 
+<!-- You can also create a private endpoint, which is a network interface that connects you privately and securely to Azure Event Hubs service by using the Azure Private Link service. The private endpoint uses a private IP address from your VNet, effectively bringing the service into your VNet. All traffic to the service can be routed through the private endpoint, so no gateways, NAT devices, ExpressRoute or VPN connections, or public IP addresses are needed.  -->
 
 还可以使用防火墙保护 Azure 事件中心命名空间。 Azure 事件中心支持使用基于 IP 的访问控制来提供入站防火墙支持。 可以通过 Azure 门户、Azure 资源管理器模板、Azure CLI 或 Azure PowerShell 设置防火墙规则。
 
 如何将虚拟网络服务终结点与 Azure 事件中心配合使用： https://docs.azure.cn/event-hubs/event-hubs-service-endpoints
 
-有关详细信息，请参阅“将 Azure 事件中心与 Azure 专用链接集成”： https://docs.azure.cn/event-hubs/private-link-service 。
+<!-- For more information, see Integrate Azure Event Hubs with Azure Private Link: https://docs.azure.cn/event-hubs/private-link-service. -->
 
 在事件中心命名空间中启用虚拟网络集成和防火墙： https://docs.azure.cn/event-hubs/event-hubs-tutorial-virtual-networks-firewalls
 
@@ -885,7 +885,9 @@ Azure Repos Documentation: https://docs.microsoft.com/azure/devops/repos/index?v
 
 如何创建 Key Vault： https://docs.azure.cn/key-vault/quick-create-portal
 
-如何使用托管标识提供 Key Vault 身份验证： https://docs.azure.cn/key-vault/managed-identity
+如何对 Key Vault 进行身份验证： https://docs.azure.cn/key-vault/general/authentication
+
+如何分配 Key Vault 访问策略： https://docs.azure.cn/key-vault/general/assign-access-policy-portal
 
 **Azure 安全中心监视**：是
 

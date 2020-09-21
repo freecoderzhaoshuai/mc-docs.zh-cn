@@ -10,12 +10,12 @@ author: xiaoharper
 ms.author: amlstudiodocs
 ms.custom: seodec18
 ms.date: 12/07/2017
-ms.openlocfilehash: bb5f26ebe0d1ba85151c7dc6bc285d7d66811a27
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: e4f615755c3828dc3cd248fc268fe0f39fb4317c
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228329"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020995"
 ---
 # <a name="create-and-share-an-machine-learning-studio-classic-workspace"></a>创建并共享机器学习工作室（经典）工作区
 
@@ -71,7 +71,7 @@ ms.locfileid: "88228329"
 
 
 ## <a name="share-an-azure-machine-learning-studio-classic-workspace"></a>共享 Azure 机器学习工作室（经典）工作区
-创建机器学习工作室工作区（经典）后，可以邀请用户进入工作区，以共享对工作区及其所有试验、数据集、笔记本等的访问权限。可以将用户添加到以下两个角色之一：
+创建机器学习工作室（经典）工作区后，可以邀请用户进入工作区，以共享对工作区及其所有试验、数据集等的访问权限。可以将用户添加到以下两个角色之一：
 
 * **用户** - 工作区用户可以在工作区中创建、打开、修改和删除试验、数据集等。
 * **所有者** - 除了指定用户可以执行的操作之外，所有者还可以邀请和删除工作区中的用户。

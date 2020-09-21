@@ -7,17 +7,17 @@ author: Johnnytechn
 manager: gwallace
 tags: azure-resource-manager
 ms.service: virtual-machines-linux
-ms.topic: article
+ms.topic: how-to
 ms.tgt_pltfrm: vm-linux
 ms.workload: infrastructure-services
-ms.date: 07/29/2020
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.openlocfilehash: df4662bca4f6a79f191cb58bd920d2985df370e4
-ms.sourcegitcommit: b5794af488a336d84ee586965dabd6f45fd5ec6d
+ms.openlocfilehash: fb6fb41b459b47c6428ce807ed01077dec3e112b
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/01/2020
-ms.locfileid: "87508466"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057652"
 ---
 # <a name="time-sync-for-linux-vms-in-azure"></a>Azure 中 Linux VM 的时间同步
 
@@ -72,7 +72,7 @@ Azure 主机与内部 Azure 时间服务器同步，后者从 Azure 拥有的带
 
     <!--MOONCAKE: CORRECT ON Azure-owned-->
     
-在较新的 Linux 发行版中，VMICTimeSync 服务使用精度时间协议 (PTP)，但较早的发行版可能不支持 PTP，因此会求助于 NTP 从主机获取时间。
+在较新的 Linux 发行版中，VMICTimeSync 服务提供精度时间协议 (PTP) 硬件时钟源，但较早的发行版可能不提供此时钟源，因此会回退到 NTP 从主机获取时间。
 
 若要确认 NTP 是否正确同步，请运行 `ntpq -p` 命令。
 
@@ -120,9 +120,9 @@ root        391      2  0 17:52 ?        00:00:00 [hv_balloon]
 ```
 
 
-### <a name="check-for-ptp"></a>查看 PTP
+### <a name="check-for-ptp-clock-source"></a>检查 PTP 时钟源
 
-使用较新版的 Linux 时，可以在 VMICTimeSync 提供程序中获得精度时间协议 (PTP) 时钟源。 在较旧版的 CentOS 7.x 上，[Linux Integration Services](https://github.com/LIS/lis-next) 可以在下载后用于安装更新的驱动程序。 使用 PTP 时，Linux 设备的表示形式为 /dev/ptp*x*。 
+使用较新版的 Linux 时，可以在 VMICTimeSync 提供程序中获得精度时间协议 (PTP) 时钟源。 在较旧版的 CentOS 7.x 上，[Linux Integration Services](https://github.com/LIS/lis-next) 可以在下载后用于安装更新的驱动程序。 当 PTP 时钟源可用时，Linux 设备的表示形式为 /dev/ptpx。 
 
 <!--Not Available on Red Hat Enterprise Linux-->
 
@@ -138,11 +138,11 @@ ls /sys/class/ptp
 cat /sys/class/ptp/ptp0/clock_name
 ```
 
-应该会返回 **hyperv**。
+此命令应返回 `hyperv`。
 
 ### <a name="chrony"></a>chrony
 
-在 Ubuntu 19.10 及更高版本和 CentOS 7.x 上，[chrony](https://chrony.tuxfamily.org/) 配置为使用 PTP 源时钟。 旧的 Linux 发行版使用网络时间协议守护程序 (ntpd)（不支持 PTP 源），而不是使用 chrony。 要在这些版本中启用 PTP，必须使用以下代码手动安装并配置 chrony（在 chrony.conf 中）：
+在 Ubuntu 19.10 及更高版本和 CentOS 8.x 上，[chrony](https://chrony.tuxfamily.org/) 配置为使用 PTP 源时钟。 旧的 Linux 发行版使用网络时间协议守护程序 (ntpd)（不支持 PTP 源），而不是使用 chrony。 要在这些版本中启用 PTP，必须使用以下代码手动安装并配置 chrony（在 chrony.conf 中）：
 
 <!--Not Available on Red Hat Enterprise Linux-->
 
@@ -150,15 +150,15 @@ cat /sys/class/ptp/ptp0/clock_name
 refclock PHC /dev/ptp0 poll 3 dpoll -2 offset 0
 ```
 
-有关 Ubuntu 和 NTP 的详细信息，请参阅[时间同步](https://ubuntu.com/server/docs/network-ntp)。
+有关 Ubuntu 和 NTP 的详细信息，请参阅[时间同步](https://help.ubuntu.com/lts/serverguide/NTP.html)。
 <!--Correct on the link of "https://ubuntu.com/server/docs/network-ntp"-->
 <!--Not Available on Red Hat -->
 
 有关 chrony 的详细信息，请参阅[使用 chrony](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-configuring_ntp_using_the_chrony_suite#sect-Using_chrony)。
 
-如果同时启用了 chrony 和 TimeSync 源，则可将一个源标记为“首选”，这样就会将另一个源设置为“备用”。  由于 NTP 服务在遇到大偏差时更新时钟需要很长时间，因此可以使用 VMICTimeSync，后者在出现 VM 暂停事件时恢复时钟的速度远远快于单独使用基于 NTP 的工具的速度。
+如果同时启用了 chrony 和 VMICTimeSync 源，则可将一个源标记为“首选”，这样就会将另一个源设置为“备用”。 由于 NTP 服务在遇到大偏差时更新时钟需要很长时间，因此可以使用 VMICTimeSync，后者在出现 VM 暂停事件时恢复时钟的速度远远快于单独使用基于 NTP 的工具的速度。
 
-默认情况下，chronyd 会加快或减慢系统时钟以修复任何时间偏移。 如果偏移量过大，chrony 将无法修复偏移。 若要解决此问题，可以更改 /etc/chrony.conf  中的 `makestep` 参数，以便在偏移量超过指定的阈值时强制进行时间同步。
+默认情况下，chronyd 会加快或减慢系统时钟以修复任何时间偏移。 如果偏移量过大，chrony 将无法修复偏移。 若要解决此问题，可以更改 /etc/chrony.conf 中的 `makestep` 参数，以便在偏移量超过指定的阈值时强制进行时间同步。
 
  ```bash
 makestep 1.0 -1

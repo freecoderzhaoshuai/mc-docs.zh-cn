@@ -7,14 +7,14 @@ author: HeidiSteen
 ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
-origin.date: 05/11/2020
-ms.date: 07/20/2020
-ms.openlocfilehash: 2f3a696cec92923a3201c9cf3405e88150ea19df
-ms.sourcegitcommit: fe9ccd3bffde0dd2b528b98a24c6b3a8cbe370bc
+origin.date: 08/21/2020
+ms.date: 09/10/2020
+ms.openlocfilehash: b39aeb6735306faf699901ce4e957e64684539e8
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/20/2020
-ms.locfileid: "86471953"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021195"
 ---
 # <a name="service-limits-in-azure-cognitive-search"></a>Azure 认知搜索中的服务限制
 
@@ -84,8 +84,8 @@ ms.locfileid: "86471953"
 | 最大技能集数<sup>4</sup> |3 |5 或 15 |50 |200 |200 |空值 |10 |10 |
 | 每次调用的最大索引编制负载 |10,000 个文档 |仅受最大文档的限制 |仅受最大文档的限制 |仅受最大文档的限制 |仅受最大文档的限制 |空值 |无限制 |无限制 |
 | 最小计划 | 5 分钟 |5 分钟 |5 分钟 |5 分钟 |5 分钟 |5 分钟 |5 分钟 | 5 分钟 |
-| 最长运行时间 <sup>5</sup> | 1-3 分钟 |24 小时 |24 小时 |24 小时 |24 小时 |空值  |24 小时 |24 小时 |
-| 认知搜索技能集的最长运行时间或具有图像分析的 blob 索引 <sup>5</sup> | 3-10 分钟 |2 小时 |2 小时 |2 小时 |2 小时 |空值  |2 小时 |2 小时 |
+| 最长运行时间| 1-3 分钟 |24 小时 |24 小时 |24 小时 |24 小时 |空值  |24 小时 |24 小时 |
+| 包含技能组的索引器的最长运行时间 <sup>5</sup> | 3-10 分钟 |2 小时 |2 小时 |2 小时 |2 小时 |空值  |2 小时 |2 小时 |
 | Blob 索引器：最大 blob 大小，MB |16 |16 |128 |256 |256 |空值  |256 |256 |
 | Blob 索引器：从 blob 中提取的内容的最大字符数 |32,000 |64,000 |400&nbsp;万 |800&nbsp;万 |1600&nbsp;万 |空值 |400&nbsp;万 |400&nbsp;万 |
 

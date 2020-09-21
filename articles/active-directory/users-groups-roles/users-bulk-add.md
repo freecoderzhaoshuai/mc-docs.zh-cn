@@ -5,7 +5,7 @@ services: active-directory
 author: curtand
 ms.author: v-junlch
 manager: mtillman
-ms.date: 08/26/2020
+ms.date: 09/08/2020
 ms.topic: how-to
 ms.service: active-directory
 ms.subservice: users-groups-roles
@@ -13,12 +13,12 @@ ms.workload: identity
 ms.custom: it-pro
 ms.reviewer: jeffsta
 ms.collection: M365-identity-device-management
-ms.openlocfilehash: 5b74b7574fd63089d54f9b1379eb1c209c2d22cd
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: bbf08b767a53b59be5ee8c1ffe46b593cef67f03
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947314"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593799"
 ---
 # <a name="bulk-create-users-in-azure-active-directory"></a>在 Azure Active Directory 中批量创建用户
 
@@ -35,7 +35,7 @@ Azure Active Directory (Azure AD) 支持批量用户创建和删除操作，并�
 ![用于上传和调出的电子表格，说明了每一行和每一列的用途和值](./media/users-bulk-add/create-template-example.png)
 
 > [!WARNING]
-> 如果尝试在 CSV 模板中仅添加一个条目，则必须保留第 3 行并将新条目添加到第 4 行。 
+> 如果要使用 CSV 模板仅添加一个条目，则必须保留第 3 行并将新条目添加到第 4 行。
 
 ### <a name="csv-template-structure"></a>CSV 模板结构
 

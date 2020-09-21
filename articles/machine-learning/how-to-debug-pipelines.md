@@ -5,34 +5,47 @@ description: 使用 Python 调试 Azure 机器学习管道。 了解开发管道
 services: machine-learning
 ms.service: machine-learning
 ms.subservice: core
-ms.topic: troubleshooting
-author: likebupt
-ms.author: keli19
-ms.date: 03/18/2020
-ms.custom: tracking-python
-ms.openlocfilehash: b0fb0dfe99afafb2728b371ce6ae305c9377e4eb
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+author: lobrien
+ms.author: laobri
+ms.date: 08/28/2020
+ms.topic: conceptual
+ms.custom: troubleshooting, devx-track-python
+ms.openlocfilehash: 6b8b6faf6e1b25935ac41efa773a7e538cc24715
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88946979"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020970"
 ---
 # <a name="debug-and-troubleshoot-machine-learning-pipelines"></a>对机器学习管道进行调试和故障排除
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
 
-在本文中，你将在 [Azure 机器学习 SDK](https://docs.microsoft.com/python/api/overview/azure/ml/intro?view=azure-ml-py) 和 [Azure 机器学习设计器（预览版）](https://docs.microsoft.com/azure/machine-learning/concept-designer)中了解如何对[机器学习管道](concept-ml-pipelines.md)进行调试和故障排除。 本文提供了有关如何执行以下操作的信息：
+在本文中，你将了解如何在 [Azure 机器学习 SDK](https://docs.microsoft.com/python/api/overview/azure/ml/intro?view=azure-ml-py) 和 [Azure 机器学习设计器（预览版）](https://docs.microsoft.com/azure/machine-learning/concept-designer)中对[机器学习管道](concept-ml-pipelines.md)进行故障排除和调试。 
 
-* 使用 Azure 机器学习 SDK 进行调试
-* 使用 Azure 机器学习设计器进行调试
-* 使用 Application Insights 进行调试
-* 使用 Visual Studio Code (VS Code) 和针对 Visual Studio 的 Python 工具 (PTVSD) 以交互方式调试
+## <a name="troubleshooting-tips"></a>故障排除提示
 
-## <a name="azure-machine-learning-sdk"></a>Azure 机器学习 SDK
-以下部分概述了生成管道时的常见陷阱，以及用于调试管道中运行的代码的不同策略。 如果在使管道按预期运行时遇到问题，请参考以下提示。
+下表包含管道开发期间出现的一些常见问题，以及可能的解决方法。
 
-### <a name="testing-scripts-locally"></a>在本地测试脚本
+| 问题 | 可能的解决方法 |
+|--|--|
+| 无法将数据传递给 `PipelineData` 字典 | 确保已在脚本中创建了一个目录，该目录对应于管道预期步骤要将数据输出到的位置。 大多数情况下，输入参数将定义输出目录，然后你需要显式创建该目录。 使用 `os.makedirs(args.output_dir, exist_ok=True)` 创建输出目录。 有关演示此设计模式的评分脚本示例，请参阅[该教程](tutorial-pipeline-batch-scoring-classification.md#write-a-scoring-script)。 |
+| 依赖项 bug | 如果在远程管道中看到在本地测试时未发生的依赖项错误，请确认远程环境依赖项和版本与测试环境中的依赖项和版本匹配。 请参阅[生成、缓存和重复使用环境](/machine-learning/concept-environments#environment-building-caching-and-reuse)|
+| 计算目标出现不明确的错误 | 请尝试删除并重新创建计算目标。 重新创建计算目标是很快的，并且可以解决某些暂时性问题。 |
+| 管道未重复使用步骤 | 默认已启用步骤重复使用，但是，请确保未在管道步骤中禁用它。 如果已禁用重复使用，则步骤中的 `allow_reuse` 参数将设置为 `False`。 |
+| 管道不必要地重新运行 | 为了确保步骤只在其基础数据或脚本发生更改时才重新运行，请分离每个步骤的源代码目录。 如果对多个步骤使用同一个源目录，则可能会遇到不必要的重新运行。 在管道步骤对象中使用 `source_directory` 参数以指向该步骤的隔离目录，并确保未对多个步骤使用同一个 `source_directory` 路径。 |
 
-管道中最常见的失败之一是附加的脚本（数据清理脚本、评分脚本等）不按预期方式运行，或者在远程计算上下文中包含运行时错误，而这些错误在 Azure 机器学习工作室中的工作区内难以调试。 
+
+## <a name="debugging-techniques"></a>调试方法
+
+调试管道有三种主要方法： 
+
+* 在本地计算机上调试单个管道步骤
+* 使用日志记录和 Application Insights 来隔离并诊断问题根源
+* 将远程调试器附加到 Azure 中运行的管道
+
+### <a name="debug-scripts-locally"></a>在本地调试脚本
+
+管道中最常见的失败情形之一是，域脚本未按预期运行，或者在难以调试的远程计算上下文中包含运行时错误。
 
 管道本身无法在本地运行，但在本地计算机上的隔离位置运行脚本可以更快地进行调试，因为无需等待计算和环境生成过程完成。 执行此操作需要完成一些开发工作：
 
@@ -49,41 +62,9 @@ ms.locfileid: "88946979"
 > [!TIP] 
 > 确认脚本按预期运行后，合理的下一步是在单步管道中运行该脚本，然后尝试在包含多个步骤的管道中运行该脚本。
 
-### <a name="debugging-scripts-from-remote-context"></a>从远程上下文调试脚本
+## <a name="configure-write-to-and-review-pipeline-logs"></a>配置、写入和查看管道日志
 
 在开始生成管道之前，在本地测试脚本是调试主要代码段和复杂逻辑的适当方式，但在某个时间点，你可能需要在执行实际管道运行本身期间调试脚本，尤其是在诊断与管道步骤交互期间发生的行为时。 我们建议在步骤脚本中充分使用 `print()` 语句，以便可以查看远程执行期间的对象状态和预期值，就像在调试 JavaScript 代码时一样。
-
-日志文件 `70_driver_log.txt` 包含： 
-
-* 脚本执行期间输出的所有语句
-* 脚本的堆栈跟踪 
-
-若要在门户中查找此日志文件和其他日志文件，请先单击工作区中的管道运行。
-
-![管道运行列表页](./media/how-to-debug-pipelines/pipelinerun-01.png)
-
-导航到管道运行详细信息页。
-
-![管道运行详细信息页](./media/how-to-debug-pipelines/pipelinerun-02.png)
-
-单击特定步骤的模块。 导航到“日志”选项卡。其他日志包含有关环境映像生成过程和步骤准备脚本的信息。
-
-![管道运行详细信息页日志选项卡](./media/how-to-debug-pipelines/pipelinerun-03.png)
-
-> [!TIP]
-> 可以在工作区中的“终结点”选项卡中找到“已发布的管道”的运行。 可以在“试验”或“管道”中找到“未发布的管道”的运行。 
-
-### <a name="troubleshooting-tips"></a>故障排除提示
-
-下表包含管道开发期间出现的一些常见问题，以及可能的解决方法。
-
-| 问题 | 可能的解决方法 |
-|--|--|
-| 无法将数据传递给 `PipelineData` 字典 | 确保已在脚本中创建了一个目录，该目录对应于管道预期步骤要将数据输出到的位置。 大多数情况下，输入参数将定义输出目录，然后你需要显式创建该目录。 使用 `os.makedirs(args.output_dir, exist_ok=True)` 创建输出目录。 有关演示此设计模式的评分脚本示例，请参阅[该教程](tutorial-pipeline-batch-scoring-classification.md#write-a-scoring-script)。 |
-| 依赖项 bug | 如果在本地开发并测试了脚本，但在管道中的远程计算上运行时发现了依赖项问题，请确保计算环境依赖项和版本与测试环境相匹配。 请参阅[生成、缓存和重复使用环境](https://docs.microsoft.com/azure/machine-learning/concept-environments#environment-building-caching-and-reuse)|
-| 计算目标出现不明确的错误 | 删除再重新创建计算目标可以解决计算目标的某些问题。 |
-| 管道未重复使用步骤 | 默认已启用步骤重复使用，但是，请确保未在管道步骤中禁用它。 如果已禁用重复使用，则步骤中的 `allow_reuse` 参数将设置为 `False`。 |
-| 管道不必要地重新运行 | 为了确保步骤仅在基础数据或脚本发生更改时才重新运行，请解耦每个步骤的目录。 如果对多个步骤使用同一个源目录，则可能会遇到不必要的重新运行。 在管道步骤对象中使用 `source_directory` 参数以指向该步骤的隔离目录，并确保未对多个步骤使用同一个 `source_directory` 路径。 |
 
 ### <a name="logging-options-and-behavior"></a>日志记录选项和行为
 
@@ -127,9 +108,33 @@ logger.warning("I am an OpenCensus warning statement, find me in Application Ins
 logger.error("I am an OpenCensus error statement with custom dimensions", {'step_id': run.id})
 ``` 
 
-## <a name="azure-machine-learning-designer-preview"></a>Azure 机器学习设计器（预览版）
+### <a name="finding-and-reading-pipeline-log-files"></a>查找和读取管道日志文件
 
-本部分概述了如何在设计器中对管道进行故障排除。 对于在设计器中创建的管道，可以在创作页或管道运行详细信息页中找到 70_driver_log 文件。
+日志文件 `70_driver_log.txt` 包含： 
+
+* 脚本执行期间输出的所有语句
+* 脚本的堆栈跟踪 
+
+若要在门户中查找此日志文件和其他日志文件，请先单击工作区中的管道运行。
+
+![管道运行列表页](./media/how-to-debug-pipelines/pipelinerun-01.png)
+
+导航到管道运行详细信息页。
+
+![管道运行详细信息页](./media/how-to-debug-pipelines/pipelinerun-02.png)
+
+单击特定步骤的模块。 导航到“日志”选项卡。其他日志包含有关环境映像生成过程和步骤准备脚本的信息。
+
+![管道运行详细信息页日志选项卡](./media/how-to-debug-pipelines/pipelinerun-03.png)
+
+> [!TIP]
+> 可以在工作区中的“终结点”选项卡中找到“已发布的管道”的运行。 可以在“试验”或“管道”中找到“未发布的管道”的运行。 
+
+若要详细了解如何从 `ParallelRunStep` 中进行日志记录和跟踪，请参阅[对 ParallelRunStep 进行调试和故障排除](how-to-debug-parallel-run-step.md)。
+
+## <a name="logging-in-azure-machine-learning-designer-preview"></a>Azure 机器学习设计器（预览版）中的日志记录
+
+对于在设计器中创建的管道，可以在创作页或管道运行详细信息页中找到 70_driver_log 文件。
 
 ### <a name="enable-logging-for-real-time-endpoints"></a>为实时终结点启用日志记录
 
@@ -163,7 +168,7 @@ logger.error("I am an OpenCensus error statement with custom dimensions", {'step
 ## <a name="application-insights"></a>Application Insights
 有关以此方式使用 OpenCensus Python 库的详细信息，请参阅此指南：[在 Application Insights 中对机器学习管道进行调试和故障排除](how-to-debug-pipelines-application-insights.md)
 
-## <a name="visual-studio-code"></a>Visual Studio Code
+## <a name="interactive-debugging-with-visual-studio-code"></a>使用 Visual Studio Code 进行交互式调试
 
 在某些情况下，可能需要以交互方式调试 ML 管道中使用的 Python 代码。 通过使用 Visual Studio Code (VS Code) 和 debugpy，可以在训练环境中运行代码时附加到该代码。 有关详细信息，请访问[在 VS Code 指南中进行交互式调试](how-to-debug-visual-studio-code.md#debug-and-troubleshoot-machine-learning-pipelines)。
 

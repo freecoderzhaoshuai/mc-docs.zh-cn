@@ -11,12 +11,12 @@ ms.reviewer: larryfr
 ms.topic: how-to
 ms.date: 12/27/2019
 ms.custom: seodec18, tracking-python
-ms.openlocfilehash: 4aa64a000af04e48706e61947090bfc0fe48222d
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: bf62a67f13ab537c435615db91790fc6dc726191
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228228"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021026"
 ---
 # <a name="configure-a-development-environment-for-azure-machine-learning"></a>配置 Azure 机器学习的开发环境
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -27,7 +27,7 @@ ms.locfileid: "88228228"
 
 | 环境 | 优点 | 缺点 |
 | --- | --- | --- |
-| [基于云的 Azure 机器学习计算实例（预览版）](#compute-instance) | 最容易入门。 整个 SDK 已安装在工作区 VM 中，笔记本教程已预先克隆，随时可供运行。 | 缺少对开发环境和依赖项的控制。 Linux VM 会产生额外的成本（可以停止不使用的 VM，以免产生费用）。 请参阅[定价详细信息](https://azure.microsoft.com/pricing/details/virtual-machines/linux/)。 |
+| [基于云的 Azure 机器学习计算实例](#compute-instance) | 最容易入门。 整个 SDK 已安装在工作区 VM 中，笔记本教程已预先克隆，随时可供运行。 | 缺少对开发环境和依赖项的控制。 Linux VM 会产生额外的成本（可以停止不使用的 VM，以免产生费用）。 请参阅[定价详细信息](https://www.azure.cn/pricing/details/virtual-machines/)。 |
 | [本地环境](#local) | 可以全面控制开发环境和依赖项。 使用所选的任何生成工具、环境或 IDE 来运行。 | 入门需要更长的时间。 必须安装必要的 SDK 包，此外，必须安装一个环境（如果尚未安装）。 |
 | [Azure Databricks](#aml-databricks) | 非常适合用于在可缩放的 Apache Spark 平台上运行大规模的密集型机器学习工作流。 | 对于试验性机器学习或较小规模的试验和工作流而言性能过剩。 Azure Databricks 会产生额外的成本。 请参阅[定价详细信息](https://azure.microsoft.com/pricing/details/databricks/)。 |
 | [Data Science Virtual Machine (DSVM)](#dsvm) | 类似于基于云的计算实例（已预装 Python 和 SDK），但预装了其他流行的数据科学和机器学习工具。 易于缩放，并可与其他自定义工具和工作流结合使用。 | 与基于云的计算实例相比，入门过程更慢。 |
@@ -215,7 +215,7 @@ Jupyter Notebook 是 [Jupyter 项目](https://jupyter.org/)的一部分。 它�
     conda activate myenv
     ```
 
-1. 克隆一组示例笔记本的 [GitHub 存储库](https://aka.ms/aml-notebooks)。
+1. 克隆一组示例笔记本的 [GitHub 存储库](https://github.com/Azure/MachineLearningNotebooks)。
 
     ```bash
     git clone https://github.com/Azure/MachineLearningNotebooks.git
@@ -306,10 +306,10 @@ Azure Databricks 如何使用 Azure 机器学习：
    |SDK 包附加项|Source|PyPi 名称|
    |----|---|---|
    |对于 Databricks| 上传 Python Egg 或 PyPI | azureml-sdk[databricks]|
-   |对于包含自动化<br> ML 功能的 Databricks| 上传 Python Egg 或 PyPI | azureml-sdk[automl]|
+   |对于包含自动化<br> ML 功能的 Databricks| 上传 Python Egg 或 PyPI | `azureml-sdk[automl]`|
 
    > [!Warning]
-   > 无法安装其他 SDK 附加项。 请仅选择上述选项中的一个 [databricks] 或 [automl]。
+   > 无法安装其他 SDK 附加项。 请仅选择上述选项中的一个，即 [`databricks`] 或 [`automl`]。
 
    * 不要选择“自动附加到所有群集”。
    * 选择群集名称旁边的“附加”。

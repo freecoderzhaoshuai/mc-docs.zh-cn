@@ -9,16 +9,16 @@ ms.service: active-directory
 ms.subservice: develop
 ms.workload: identity
 ms.topic: conceptual
-ms.date: 08/17/2020
+ms.date: 09/07/2020
 ms.author: v-junlch
 ms.reviewer: nacanuma, jmprieur
 ms.custom: aaddev
-ms.openlocfilehash: 442fa4be20131f9a08d931afd4852554909425c2
-ms.sourcegitcommit: 7646936d018c4392e1c138d7e541681c4dfd9041
+ms.openlocfilehash: f6e0ab49c0acdf5e0881ce585e5061c83a1cdc52
+ms.sourcegitcommit: 25d542cf9c8c7bee51ec75a25e5077e867a9eb8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "88647568"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89593675"
 ---
 # <a name="microsoft-identity-platform-application-authentication-certificate-credentials"></a>Microsoft 标识平台应用程序身份验证证书凭据
 
@@ -36,7 +36,7 @@ Microsoft 标识平台允许应用程序使用其自己的凭据进行身份验�
 | --- | --- |
 | `alg` | 应为 **RS256** |
 | `typ` | 应为 **JWT** |
-| `x5t` | 编码为 Base64 字符串值的 x.509 证书哈希（也称为证书的 SHA-1 指纹）。 例如，如果 x.509 证书哈希为 `84E05C1D98BCE3A5421D225B140B36E86A3D5534`，`x5t` 声明就会是 `hOBcHZi846VCHSJbFAs26Go9VTQ`。 |
+| `x5t` | 编码为 Base64 字符串值的 x.509 证书哈希（也称为证书的 SHA-1 指纹）的十六进制表示形式。 例如，如果 x.509 证书哈希为 `84E05C1D98BCE3A5421D225B140B36E86A3D5534`（十六进制），`x5t` 声明就会是 `hOBcHZi846VCHSJbFAs26Go9VTQ=` (Base64)。 |
 
 ### <a name="claims-payload"></a>声明（有效负载）
 

@@ -2,18 +2,20 @@
 title: 使用 Azure PowerShell 和 Azure Site Recovery 对 Azure VM 进行灾难恢复
 description: 了解如何在 Azure PowerShell 中使用 Azure Site Recovery 为 Azure 虚拟机设置灾难恢复。
 services: site-recovery
-author: rockboyfor
-manager: digimobile
+manager: rochakm
 ms.topic: article
 origin.date: 03/29/2019
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: 90c3b68afd4106252bec9074df74afcf6f9e53a0
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: fda8c571d5f8e0a3d37ffbef9a1ad6d239b35877
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77611284"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655712"
 ---
 # <a name="set-up-disaster-recovery-for-azure-virtual-machines-using-azure-powershell"></a>使用 Azure PowerShell 为 Azure 虚拟机设置灾难恢复
 
@@ -181,7 +183,7 @@ Set-AzRecoveryServicesAsrVaultContext -Vault $vault
 - 每个区域只能创建一个结构对象。
 - 如果之前已在 Azure 门户中为 VM 启用了 Site Recovery 复制，则 Site Recovery 会自动创建结构对象。 如果区域存在结构对象，则无法创建新结构对象。
 
-在开始之前，请注意 Site Recovery 操作以异步方式执行。 启动操作时，将提交 Azure Site Recovery 作业，并返回跟踪对象的作业。 使用作业跟踪对象获得最新的状态作业 (`Get-AzRecoveryServicesAsrJob`) 和监视操作状态。
+在开始之前，应明白 Site Recovery 操作以异步方式执行。 启动操作时，将提交 Azure Site Recovery 作业，并返回跟踪对象的作业。 使用作业跟踪对象获得最新的状态作业 (`Get-AzRecoveryServicesAsrJob`) 和监视操作状态。
 
 ```azurepowershell
 #Create Primary ASR fabric
@@ -449,7 +451,7 @@ $datadiskId1 = $vm.StorageProfile.DataDisks[0].ManagedDisk.Id
 $RecoveryReplicaDiskAccountType = $vm.StorageProfile.DataDisks[0].ManagedDisk.StorageAccountType
 $RecoveryTargetDiskAccountType = $vm.StorageProfile.DataDisks[0].ManagedDisk.StorageAccountType
 
-$DataDisk1ReplicationConfig  = New-AzRecoveryServicesAsrAzureToAzureDiskReplicationConfig -ManagedDisk -LogStorageAccountId $CacheStorageAccount.Id `
+$DataDisk1ReplicationConfig  = New-AzRecoveryServicesAsrAzureToAzureDiskReplicationConfig -ManagedDisk -LogStorageAccountId $ChinaEastCacheStorageAccount.Id `
          -DiskId $datadiskId1 -RecoveryResourceGroupId $RecoveryRG.ResourceId -RecoveryReplicaDiskAccountType $RecoveryReplicaDiskAccountType `
          -RecoveryTargetDiskAccountType $RecoveryTargetDiskAccountType
 
@@ -664,4 +666,3 @@ Remove-AzRecoveryServicesAsrReplicationProtectedItem -ReplicationProtectedItem $
 查看 [Azure Site Recovery PowerShell 参考](https://docs.microsoft.com/powershell/module/az.RecoveryServices)来了解如何通过 PowerShell 执行其他任务，例如创建恢复计划，以及对恢复计划执行测试性故障转移。
 
 <!-- Update_Description: update meta properties, wording update, update link -->
-

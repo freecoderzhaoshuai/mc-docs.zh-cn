@@ -4,23 +4,26 @@ description: 了解如何在 Azure 门户中管理 Azure Database for PostgreSQL
 author: WenJason
 ms.author: v-jay
 ms.service: postgresql
-ms.topic: conceptual
+ms.topic: how-to
 origin.date: 11/20/2019
-ms.date: 12/09/2019
-ms.openlocfilehash: 835b0d7a38e4b84e9bc97ff6c627849a811251a9
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.date: 09/14/2020
+ms.openlocfilehash: 1936e2ce68af3e78480f24f58ddf199c62e17ec8
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74840121"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512882"
 ---
 # <a name="manage-an-azure-database-for-postgresql-server-using-the-azure-portal"></a>使用 Azure 门户管理 Azure Database for PostgreSQL 服务器
+
 本文介绍如何管理 Azure Database for PostgreSQL 服务器。 管理任务包括计算和存储缩放、管理员密码重置，以及查看服务器详细信息。
 
 ## <a name="sign-in"></a>登录
+
 登录 [Azure 门户](https://portal.azure.cn)。
 
 ## <a name="create-a-server"></a>创建服务器
+
 访问[快速入门](quickstart-create-server-database-portal.md)，了解如何创建并开始使用 Azure Database for PostgreSQL 服务器。
 
 ## <a name="scale-compute-and-storage"></a>缩放计算和存储
@@ -29,19 +32,18 @@ ms.locfileid: "74840121"
 
 ### <a name="scale-between-general-purpose-and-memory-optimized-tiers"></a>在“常规用途”和“内存优化”层之间缩放
 
-可以从“常规用途”层缩放到“内存优化”层，反之亦然。 不支持在创建服务器后在“基本”层和其他层之间来回更改。 
+可以从“常规用途”层缩放到“内存优化”层，反之亦然。 不支持在创建服务器后在“基本”层和其他层之间来回更改。
 
 1. 在 Azure 门户中选择服务器。 选择位于“设置”部分的“定价层”。  
 
-2. 选择“常规用途”或“内存优化”，具体取决于你要缩放到哪一层。   
+2. 选择“常规用途”或“内存优化”，具体取决于你要缩放到哪一层。  
 
-    ![change-pricing-tier](./media/howto-create-manage-server-portal/change-pricing-tier.png)
+   ![Azure 门户的屏幕截图，该门户用于在 Azure Database for PostgreSQL 中选择“基本”、“常规用途”或“内存优化”层](./media/howto-create-manage-server-portal/change-pricing-tier.png)
 
-    > [!NOTE]
-    > 更改层级导致服务器重启。
+   > [!NOTE]
+   > 更改层级导致服务器重启。
 
-4. 选择“确定”以保存更改。 
-
+3. 选择“确定”以保存更改。 
 
 ### <a name="scale-vcores-up-or-down"></a>纵向扩展或缩减 vCore
 
@@ -49,13 +51,12 @@ ms.locfileid: "74840121"
 
 2. 通过将滑块移动到所需的值来更改“vCore”  设置。
 
-    ![scale-compute](./media/howto-create-manage-server-portal/scaling-compute.png)
+   ![Azure 门户的屏幕截图，该门户用于在 Azure Database for PostgreSQL 中选择 vCore 选项](./media/howto-create-manage-server-portal/scaling-compute.png)
 
-    > [!NOTE]
-    > 缩放 vCore 会导致服务器重启。
+   > [!NOTE]
+   > 缩放 vCore 会导致服务器重启。
 
 3. 选择“确定”以保存更改。 
-
 
 ### <a name="scale-storage-up"></a>纵向扩展存储
 
@@ -63,27 +64,26 @@ ms.locfileid: "74840121"
 
 2. 通过将滑块向上移动到所需的值来更改“存储”  设置。
 
-    ![scale-storage](./media/howto-create-manage-server-portal/scaling-storage.png)
+   ![Azure 门户的屏幕截图，该门户用于在 Azure Database for PostgreSQL 中选择存储规模](./media/howto-create-manage-server-portal/scaling-storage.png)
 
-    > [!NOTE]
-    > 存储无法纵向缩减。
+   > [!NOTE]
+   > 存储无法纵向缩减。
 
 3. 选择“确定”以保存更改。 
 
-
 ## <a name="update-admin-password"></a>更新管理员密码
+
 可以通过 Azure 门户更改管理员角色的密码。
 
 1. 在 Azure 门户中选择服务器。 在“概览”窗口中，选择“重置密码”   。
 
-   ![概览](./media/howto-create-manage-server-portal/overview-reset-password.png)
+   ![Azure 门户的屏幕截图，该门户用于在 Azure Database for PostgreSQL 中重置密码](./media/howto-create-manage-server-portal/overview-reset-password.png)
 
 2. 输入新密码并确认。 文本框会就密码复杂性要求提示你。
 
-   ![reset-password](./media/howto-create-manage-server-portal/reset-password.png)
+   ![Azure 门户的屏幕截图，该门户用于在 Azure Database for PostgreSQL 中重置密码并进行保存](./media/howto-create-manage-server-portal/reset-password.png)
 
 3. 选择“确定”以保存新密码。 
-
 
 ## <a name="delete-a-server"></a>删除服务器
 
@@ -91,18 +91,18 @@ ms.locfileid: "74840121"
 
 1. 在 Azure 门户中选择服务器。 在“概览”窗口中，选择“删除”。  
 
-    ![delete](./media/howto-create-manage-server-portal/overview-delete.png)
+   ![Azure 门户的屏幕截图，该门户用于在 Azure Database for PostgreSQL 中删除服务器](./media/howto-create-manage-server-portal/overview-delete.png)
 
 2. 在输入框中键入服务器名称，确认这是要删除的服务器。
 
-    ![confirm-delete](./media/howto-create-manage-server-portal/confirm-delete.png)
+   ![Azure 门户的屏幕截图，该门户用于在 Azure Database for PostgreSQL 中确认服务器删除操作](./media/howto-create-manage-server-portal/confirm-delete.png)
 
-    > [!NOTE]
-    > 删除服务器的操作不可逆。
+   > [!NOTE]
+   > 删除服务器的操作不可逆。
 
 3. 选择“删除”。 
 
-
 ## <a name="next-steps"></a>后续步骤
+
 - 了解[备份和服务器还原](howto-restore-server-portal.md)
 - 了解 [Azure Database for PostgreSQL 中的优化和监视选项](concepts-monitoring.md)

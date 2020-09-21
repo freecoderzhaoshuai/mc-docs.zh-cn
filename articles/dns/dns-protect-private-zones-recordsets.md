@@ -6,14 +6,14 @@ author: WenJason
 ms.service: dns
 ms.topic: how-to
 origin.date: 02/18/2020
-ms.date: 08/10/2020
+ms.date: 09/14/2020
 ms.author: v-jay
-ms.openlocfilehash: 2317135c53fc976d62899d00e73e1fd9ee5df056
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 97584a78b7a76b071d806924a1f184e314b435cb
+ms.sourcegitcommit: 5116a603d3cac3cbc2e2370ff857f871f8f51a5f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917146"
+ms.lasthandoff: 09/08/2020
+ms.locfileid: "89512855"
 ---
 # <a name="how-to-protect-private-dns-zones-and-records"></a>如何保护专用 DNS 区域和记录
 
@@ -21,7 +21,7 @@ ms.locfileid: "87917146"
 
 专用 DNS 区域和记录是关键资源。 删除 DNS 区域或单个 DNS 记录可能导致服务中断。 重要的是保护 DNS 区域和记录，防止未经授权的或意外的更改。
 
-本文介绍如何通过 Azure DNS 来保护专用 DNS 区域和记录，使之避免受到此类更改。  我们应用了 Azure 资源管理器提供的两个强大的安全功能：[基于角色的访问控制](../role-based-access-control/overview.md)和[资源锁](../azure-resource-manager/management/lock-resources.md)。
+本文介绍如何通过 Azure DNS 来保护专用 DNS 区域和记录，使之避免受到此类更改。  我们应用了 Azure 资源管理器提供的两个强大的安全功能：[Azure 基于角色的访问控制 (Azure RBAC)](../role-based-access-control/overview.md) 和[资源锁](../azure-resource-manager/management/lock-resources.md)。
 
 ## <a name="role-based-access-control"></a>基于角色的访问控制
 

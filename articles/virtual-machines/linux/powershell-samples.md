@@ -3,22 +3,22 @@ title: Azure 虚拟机 PowerShell 示例
 description: Azure 虚拟机 PowerShell 示例
 author: Johnnytechn
 ms.service: virtual-machines
-ms.topic: article
+ms.topic: how-to
 ms.workload: infrastructure
-ms.date: 06/05/2020
+ms.date: 09/03/2020
 ms.author: v-johya
-ms.openlocfilehash: a3cccbd6aabc747a36c51e5352359925a5b3229c
-ms.sourcegitcommit: 285649db9b21169f3136729c041e4d04d323229a
+ms.openlocfilehash: e474983ef3d9f87ef5ab00723d3f82b89ccc7aa1
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/11/2020
-ms.locfileid: "84684050"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057540"
 ---
-# <a name="azure-virtual-machine-powershell-samples"></a>Azure 虚拟机 PowerShell 示例
+# <a name="azure-virtual-machine-powershell-samples-for-creating-and-managing-linux-vms"></a>用于创建和管理 Linux VM 的 Azure 虚拟机 PowerShell 示例
 
 下表包含用于创建和管理 Linux 虚拟机的 PowerShell 脚本示例的链接。
 
-| | |
+| Script | 说明 |
 |---|---|
 |**创建虚拟机**||
 | [创建完全配置的虚拟机](./../scripts/virtual-machines-linux-powershell-sample-create-vm.md?toc=%2fvirtual-machines%2flinux%2ftoc.json) | 创建资源组、虚拟机以及所有相关资源。|

@@ -4,17 +4,17 @@ description: 了解 Azure Kubernetes 服务 (AKS) 中的访问和标识，包括
 services: container-service
 ms.topic: conceptual
 origin.date: 07/07/2020
-ms.date: 08/10/2020
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: ''
 author: rockboyfor
 ms.author: v-yeche
-ms.openlocfilehash: ed79f93f751f6b8322a94c5ebbb6e1cd856a58b7
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 1cacbdaa23cd4bb4599d6b5afffc5cc558fef40d
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842670"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020850"
 ---
 # <a name="access-and-identity-options-for-azure-kubernetes-service-aks"></a>Azure Kubernetes 服务 (AKS) 的访问和标识选项
 
@@ -22,17 +22,18 @@ ms.locfileid: "87842670"
 
 本文介绍了可帮助在 AKS 中进行身份验证和分配权限的核心概念：
 
-- [Kubernetes 基于角色的访问控制 (RBAC)](#kubernetes-role-based-access-controls-rbac)
+- [Kubernetes 基于角色的访问控制 (RBAC)](#kubernetes-role-based-access-control-rbac)
     - [角色和 ClusterRole](#roles-and-clusterroles)
     - [RoleBinding 和 ClusterRoleBinding](#rolebindings-and-clusterrolebindings) 
     - [Kubernetes 服务帐户](#kubernetes-service-accounts)
 - [Azure Active Directory 集成](#azure-active-directory-integration)
-- [Azure RBAC](#azure-role-based-access-controls-rbac)
+- [Azure RBAC](#azure-role-based-access-control-azure-rbac)
     - [使用 Azure RBAC 授予对 AKS 资源的访问权限](#azure-rbac-to-authorize-access-to-the-aks-resource)
     
     <!--Not Available on - [Azure RBAC for Kubernetes Authorization (Preview)](#azure-rbac-for-kubernetes-authorization-preview)-->
     
-## <a name="kubernetes-role-based-access-controls-rbac"></a>Kubernetes 基于角色的访问控制 (RBAC)
+<a name="kubernetes-role-based-access-controls-rbac"></a>
+## <a name="kubernetes-role-based-access-control-rbac"></a><a name="kubernetes-role-based-access-control-rbac"></a>Kubernetes 基于角色的访问控制 (RBAC)
 
 为了精确地筛选用户可执行的操作，Kubernetes 采用基于角色的访问控制 (RBAC)。 使用此控制机制，可以向用户或用户组分配执行各种操作的权限，例如创建或修改资源，或者查看正在运行的应用程序工作负载的日志。 可将这些权限的范围限制为单个命名空间，也可以授予面向整个 AKS 群集的权限。 使用 Kubernetes RBAC，可通过创建“角色”来定义权限，然后通过“角色绑定”将这些角色分配给用户 。
 
@@ -73,13 +74,29 @@ Kubernetes 中的一个主要用户类型是“服务帐户”。 服务帐户�
 
 借助集成了 Azure AD 的 AKS 群集，可授权用户或组访问一个命名空间或多个群集内的 Kubernetes 资源。 若要获取 `kubectl` 配置上下文，用户可以运行 [az aks get-credentials][az-aks-get-credentials] 命令。 随后在用户使用 `kubectl` 与 AKS 群集进行交互时，系统会提示他们使用自己的 Azure AD 凭据登录。 此方法提供用户帐户管理和密码凭据的单一源。 用户只能访问由群集管理员定义的资源。
 
-<!--Not Available on Azure AD authentication is provided to AKS clusters with OpenID Connect. OpenID Connect is an identity layer built on top of the OAuth 2.0 protocol. For more information on OpenID Connect, see the Open ID connect documentation. From inside of the Kubernetes cluster, Webhook Token Authentication is used to verify authentication tokens. Webhook token authentication is configured and managed as part of the AKS cluster.-->
-<!--Not Available on [Open ID connect documentation][openid-connect]-->
-<!--Not Available on [Webhook Token Authentication][webhook-token-docs]-->
-<!--Not Available on ### Webhook and API server-->
-<!--Not Available on [here](managed-aad.md).**-->
+使用 OpenID Connect 向 AKS 群集提供 Azure AD 身份验证。 OpenID Connect 是构建在 OAuth 2.0 协议顶层的标识层。 有关 OpenID Connect 的详细信息，请参阅 [Open ID Connect 文档][openid-connect]。 在 Kubernetes 群集内部，使用 [Webhook 令牌身份验证][webhook-token-docs]来验证身份验证令牌。 Webhook 令牌身份验证作为 AKS 群集的一部分进行配置和管理。
 
-## <a name="azure-role-based-access-controls-rbac"></a>Azure 基于角色的访问控制 (RBAC)
+### <a name="webhook-and-api-server"></a>Webhook 和 API 服务器
+
+:::image type="content" source="media/concepts-identity/auth-flow.png" alt-text="Webhook 和 API 服务器身份验证流":::
+
+如上图所示，API 服务器调用 AKS Webhook 服务器并执行以下步骤：
+
+1. Kubectl 使用 Azure AD 客户端应用程序，通过 [OAuth 2.0 设备授权授予流](../active-directory/develop/v2-oauth2-device-code.md)来登录用户。
+2. Azure AD 提供 access_token、id_token 和 refresh_token。
+3. 用户使用 kubeconfig 中的 access_token 来向 kubectl 发出请求。
+4. Kubectl 将 access_token 发送到 APIServer。
+5. API 服务器配置身份验证 WebHook 服务器来执行验证。
+6. 身份验证 Webhook 服务器将检查 Azure AD 公共签名密钥，以确认 JSON Web 令牌签名有效。
+7. 服务器应用程序使用用户提供的凭据从 MS Graph API 查询已登录用户的组成员身份。
+8. 响应将随用户信息（例如访问令牌的用户主体名称 (UPN) 声明以及基于对象 ID 的用户组成员身份）一起发送到 APIServer。
+9. API 基于 Kubernetes Role/RoleBinding 执行授权决策。
+10. 授权后，API 服务器会将响应返回到 kubectl。
+11. Kubectl 向用户提供反馈。
+
+<!--Not Available on [here](managed-aad.md)-->
+
+## <a name="azure-role-based-access-control-azure-rbac"></a>Azure 基于角色的访问控制 (Azure RBAC)
 
 Azure RBAC 是在 [Azure 资源管理器](../azure-resource-manager/management/overview.md)基础上构建的授权系统，针对 Azure 资源提供精细的访问权限管理。
 
@@ -91,7 +108,7 @@ Azure RBAC 是在 [Azure 资源管理器](../azure-resource-manager/management/o
 
 完全操作 AKS 群集需要两个级别的访问权限： 
 1. [访问 Azure 订阅中的 AKS 资源](#azure-rbac-to-authorize-access-to-the-aks-resource)。 借助此过程，可以使用 AKS API 来控制群集缩放或升级，还可以拉取 kubeconfig。
-2. 访问 Kubernetes API。 此访问权限由 [Kubernetes RBAC](#kubernetes-role-based-access-controls-rbac) 控制（传统上）。
+2. 访问 Kubernetes API。 此访问权限由 [Kubernetes RBAC](#kubernetes-role-based-access-control-rbac) 控制（传统上）。
 
     <!--Note Available on [integrating Azure RBAC with AKS for Kubernetes authorization](#azure-rbac-for-kubernetes-authorization-preview)-->
 
@@ -144,7 +161,7 @@ AKS 提供以下四个内置角色。 它们类似于 [Kubernetes 内置角色](
 <!-- LINKS - Internal -->
 
 [openid-connect]: ../active-directory/develop/v2-protocols-oidc.md
-[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-get-credentials
+[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks#az_aks_get_credentials
 [azure-rbac]: ../role-based-access-control/overview.md
 
 <!--CORRECT ON azure-ad-integration-cli.md-->

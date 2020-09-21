@@ -3,16 +3,17 @@ title: 更改 Azure Service Fabric 群集设置
 description: 本文介绍可以自定义的结构设置和结构升级策略。
 ms.topic: reference
 origin.date: 08/30/2019
-ms.date: 08/03/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: cfdf7f75d4b548596a01c5c6f27d7302def8ebaf
-ms.sourcegitcommit: 692b9bad6d8e4d3a8e81c73c49c8cf921e1955e7
+ms.openlocfilehash: 6d7e3d7dfaca171a8f04460152e523fdaf8d48b7
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2020
-ms.locfileid: "87426444"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655265"
 ---
 # <a name="customize-service-fabric-cluster-settings"></a>自定义 Service Fabric 群集设置
 本文介绍可以自定义的 Service Fabric 群集的各种结构设置。 对于 Azure 中托管的群集，可以通过 [Azure 门户](https://portal.azure.cn)或使用 Azure 资源管理器模板自定义设置。 对于独立群集，可通过更新 ClusterConfig.json 文件并对群集执行配置升级来自定义设置。 有关详细信息，请参阅[升级独立群集的配置](service-fabric-cluster-config-upgrade-windows-server.md)。
@@ -651,17 +652,16 @@ ms.locfileid: "87426444"
 |RunAsPassword|string，默认值为“” |动态|指示 RunAs 帐户密码。 仅需用于“DomainUser”帐户类型。 |
 
 ## <a name="security"></a>安全性
-
 | **Parameter** | **允许的值** |**升级策略**| **指导或简短说明** |
 | --- | --- | --- | --- |
-|AADCertEndpointFormat|string，默认值为“”|静态|AAD 证书终结点格式，默认为“Azure 商业版”，为非默认环境指定，例如 Azure 中国云“https:\//login.chinacloudapi.cn/{0}/federationmetadata/2007-06/federationmetadata.xml” |
+|AADCertEndpointFormat|string，默认值为“”|静态|AAD 证书终结点格式，默认为“Azure 商业版”，为非默认环境指定，例如 Azure 中国云“https:\//portal.partner.microsoftonline.cn/{0}/federationmetadata/2007-06/federationmetadata.xml” |
 |AADClientApplication|string，默认值为“”|静态|表示 Fabric 客户端的本机客户端应用程序名称或 ID |
 |AADClusterApplication|string，默认值为“”|静态|表示群集的 Web API 应用程序名称或 ID |
-|AADLoginEndpoint|string，默认值为“”|静态|AAD 登录终结点，默认为“Azure 商业版”，为非默认环境指定，例如 Azure 中国云“https:\//login.chinacloudapi.cn” |
+|AADLoginEndpoint|string，默认值为“”|静态|AAD 登录终结点，默认为“Azure 商业版”，为非默认环境指定，例如 Azure 中国云“https:\//portal.partner.microsoftonline.cn” |
 |AADTenantId|string，默认值为“”|静态|租户 ID (GUID) |
 |AcceptExpiredPinnedClusterCertificate|bool，默认值为 FALSE|动态|指示是否接受由指纹声明但已过期的群集证书。仅适用于群集证书，因此请将群集保持在活动状态。 |
 |AdminClientCertThumbprints|string，默认值为“”|动态|管理员角色客户端使用的证书的指纹。 该参数是以逗号分隔的名称列表。 |
-|AADTokenEndpointFormat|string，默认值为“”|静态|AAD 令牌终结点，默认为“Azure 商业版”，为非默认环境指定，例如 Azure 中国云“https:\//login.chinacloudapi.cn/{0}” |
+|AADTokenEndpointFormat|string，默认值为“”|静态|AAD 令牌终结点，默认为“Azure 商业版”，为非默认环境指定，例如 Azure 中国云“https:\//portal.partner.microsoftonline.cn/{0}” |
 |AdminClientClaims|string，默认值为“”|动态|管理员客户端所需的所有可能的声明；其格式与 ClientClaims 相同；此列表会从内部添加到 ClientClaims；所以不需要另外将相同的条目添加到 ClientClaims。 |
 |AdminClientIdentities|string，默认值为“”|动态|管理员角色结构客户端的 Windows 标识；用于授权特权结构操作。 该参数是以逗号分隔的列表；每个条目是域帐户名或组名称。 为方便起见，自动向运行 fabric.exe 的帐户分配管理员角色；组 ServiceFabricAdministrators 也是这样。 |
 |AppRunAsAccountGroupX509Folder|字符串，默认为 /home/sfuser/sfusercerts |静态|AppRunAsAccountGroup X509 证书和私钥所在的文件夹 |
@@ -929,4 +929,4 @@ ms.locfileid: "87426444"
 有关详细信息，请参阅[升级独立群集的配置](service-fabric-cluster-config-upgrade-windows-server.md)。
 
 <!--Not Available on [Upgrade the configuration of an Azure cluster](service-fabric-cluster-config-upgrade-azure.md)-->
-<!--Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->

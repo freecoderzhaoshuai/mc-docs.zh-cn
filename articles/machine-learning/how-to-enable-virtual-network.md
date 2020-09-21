@@ -11,12 +11,12 @@ author: aashishb
 ms.date: 07/07/2020
 ms.topic: conceptual
 ms.custom: how-to, contperfq4, tracking-python
-ms.openlocfilehash: 60c038566d212ebca5c9e71c5eada7d7bd9d9401
-ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
+ms.openlocfilehash: e47d515088610bf64357c7a1579f3d2abdd8cc4c
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/04/2020
-ms.locfileid: "89462954"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021174"
 ---
 # <a name="network-isolation-during-training--inference-with-private-virtual-networks"></a>使用专用虚拟网络进行训练和推理期间的网络隔离
 [!INCLUDE [applies-to-skus](../../includes/aml-applies-to-basic-enterprise-sku.md)]
@@ -328,6 +328,11 @@ Batch 服务在附加到 VM 的网络接口 (NIC) 级别添加网络安全组 (N
         az network list-service-tags -l "China East 2" --query "values[?starts_with(id, 'Batch')] | [?properties.region=='eastus2']"
         az network list-service-tags -l "China East 2" --query "values[?starts_with(id, 'AzureMachineLearning')] | [?properties.region=='eastus2']"
         ```
+
+        > [!TIP]
+        > 如果你使用的是“中国东部 2”区域，则这些命令不会返回 IP 地址。 而如果使用以下链接之一下载 IP 地址列表：
+        >
+        > * [适用于 Azure 中国的 Azure IP 范围和服务标记](https://www.microsoft.com//download/details.aspx?id=57062)
     
     添加 UDR 时，请为每个相关的 Batch IP 地址前缀定义路由，并将“下一跃点类型”设置为“Internet”。  下图显示了 Azure 门户中此 UDR 的示例：
 
@@ -342,7 +347,7 @@ Batch 服务在附加到 VM 的网络接口 (NIC) 级别添加网络安全组 (N
 
 若要创建机器学习计算群集，请按照以下步骤操作：
 
-1. 登录 [Azure 机器学习工作室](https://ml.azure.com/)，然后选择你的订阅和工作区。
+1. 登录 [Azure 机器学习工作室](https://studio.ml.azure.cn/)，然后选择你的订阅和工作区。
 
 1. 选择左侧的“计算”。
 
@@ -394,7 +399,7 @@ except ComputeTargetException:
     cpu_cluster.wait_for_completion(show_output=True)
 ```
 
-创建过程完成后，请在试验中使用该群集训练模型。 有关详细信息，请参阅[选择并使用用于训练的计算目标](how-to-set-up-training-targets.md)。
+创建过程完成后，请在试验中使用该群集训练模型。 有关详细信息，请参阅[使用用于训练的计算目标](how-to-set-up-training-targets.md)。
 
 [!INCLUDE [low-pri-note](../../includes/machine-learning-low-pri-vm.md)]
 
@@ -415,7 +420,7 @@ except ComputeTargetException:
 >
 > AKS 实例和 Azure 虚拟网络必须位于同一区域。 如果你在虚拟网络中保护工作区使用的一个或多个 Azure 存储帐户，它们必须与 AKS 实例位于同一虚拟网络中。
 
-1. 登录 [Azure 机器学习工作室](https://ml.azure.com/)，然后选择你的订阅和工作区。
+1. 登录 [Azure 机器学习工作室](https://studio.ml.azure.cn/)，然后选择你的订阅和工作区。
 
 1. 选择左侧的“计算”。
 
@@ -505,7 +510,7 @@ aks_target = ComputeTarget.create(workspace=ws,
 > [!IMPORTANT]
 > 创建 Azure Kubernetes 服务群集时，无法启用专用 IP。 只能在更新现有群集时进行启用。
 
-以下代码片段演示了如何**创建新的 AKS 群集**，然后将其更新为使用专用 IP/内部负载均衡器：
+以下代码片段演示了如何__创建新的 AKS 群集__，然后将其更新为使用专用 IP/内部负载均衡器：
 
 ```python
 import azureml.core
@@ -547,7 +552,7 @@ except:
 __Azure CLI__
 
 ```azurecli
-az rest --method put --uri https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<workspace>/computes/<compute>?api-version=2018-11-19 --body @body.json
+az rest --method put --uri https://management.chinacloudapi.cn/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.MachineLearningServices/workspaces/<workspace>/computes/<compute>?api-version=2018-11-19 --body @body.json
 ```
 
 该命令引用的 `body.json` 文件的内容类似于以下 JSON 文档：
@@ -622,7 +627,7 @@ Azure 容器实例在部署模型时动态创建。 你必须为部署使用的�
 > * Azure 机器学习工作区必须是 Enterprise Edition。 若要了解如何升级，请参阅[升级到 Enterprise Edition](how-to-manage-workspace.md#upgrade)。
 > * Azure 容器注册表必须是高级版。 若要详细了解如何升级，请参阅[更改 SKU](/azure/container-registry/container-registry-skus#changing-skus)。
 > * Azure 容器注册表必须与用于训练或推理的存储帐户和计算目标位于同一虚拟网络和子网中。
-> * Azure 机器学习工作区必须包含 [Azure 机器学习计算群集](how-to-set-up-training-targets.md#amlcompute)。
+> * Azure 机器学习工作区必须包含 [Azure 机器学习计算群集](how-to-create-attach-compute-sdk.md#amlcompute)。
 >
 >     如果 ACR 位于虚拟网络后面，Azure 机器学习无法使用它来直接生成 Docker 映像。 而是使用计算群集来生成映像。
 
@@ -785,11 +790,11 @@ Azure 机器学习使用与工作区关联的密钥保管库实例来存储以�
 
     如果你不想要使用默认出站规则，同时想要限制虚拟网络的出站访问，请参阅[限制来自虚拟网络的出站连接](#limiting-outbound-from-vnet)部分。
 
-1. 将 VM 或 HDInsight 群集附加到 Azure 机器学习工作区。 有关详细信息，请参阅[设置模型训练的计算目标](how-to-set-up-training-targets.md)。
+1. 将 VM 或 HDInsight 群集附加到 Azure 机器学习工作区。 有关详细信息，请参阅[使用用于模型训练的计算目标](how-to-set-up-training-targets.md)。
 
 
 ## <a name="next-steps"></a>后续步骤
 
-* [设置训练环境](how-to-set-up-training-targets.md)
+* [使用模型训练的计算目标](how-to-set-up-training-targets.md)
 * [模型部署位置](how-to-deploy-and-where.md)
 * [使用 TLS 通过 Azure 机器学习保护 Web 服务](how-to-secure-web-service.md)

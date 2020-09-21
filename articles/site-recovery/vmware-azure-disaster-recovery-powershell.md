@@ -1,19 +1,21 @@
 ---
 title: 使用 PowerShell 在 Azure Site Recovery 中设置 VMware 灾难恢复
 description: 了解如何使用 PowerShell 在 Azure Site Recovery 中设置复制和故障转移到 Azure 以进行 VMware VM 的灾难恢复。
-author: rockboyfor
 manager: digimobile
 ms.service: site-recovery
 origin.date: 01/10/2020
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.topic: conceptual
 ms.author: v-yeche
-ms.openlocfilehash: 82a80183ccbf72da8c2fa6ddc492cc2398346475
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: e3a0fee1c7b8e7326c1727c47b5c01c41a7098d4
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79291349"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655479"
 ---
 # <a name="set-up-disaster-recovery-of-vmware-vms-to-azure-with-powershell"></a>使用 PowerShell 设置 VMware VM 到 Azure 的灾难恢复
 
@@ -36,7 +38,7 @@ ms.locfileid: "79291349"
 开始之前：
 
 - 请确保了解[方案体系结构和组件](vmware-azure-architecture.md)。
-- 查看所有组件的[支持要求](site-recovery-support-matrix-to-azure.md)。
+- 查看所有组件的[支持要求](./vmware-physical-azure-support-matrix.md)。
 - 设置 Azure PowerShell `Az` 模块。 如需进安装或升级 Azure PowerShell，请遵循此[安装和配置 Azure PowerShell 指南](https://docs.microsoft.com/powershell/azure/install-az-ps)。
 
 ## <a name="log-into-azure"></a>登录到 Azure
@@ -107,26 +109,25 @@ Select-AzSubscription -SubscriptionName "ASR Test Subscription"
 使用 Set-ASRVaultContext cmdlet 设置保管库上下文。 设置后，PowerShell 会话中的后续 Azure Site Recovery 操作将在所选保管库的上下文中执行。
 
 > [!TIP]
-> Azure Site Recovery PowerShell 模块（Az.RecoveryServices 模块）附带了大多数 cmdlet 的易用别名。 模块中的 cmdlet 采用 *\<Operation>-**AzRecoveryServicesAsr**\<Object>* 形式，并具有采用 *\<Operation>-**ASR**\<Object>* 形式的等效别名。 可以替换 cmdlet 别名以便于使用。
+> Azure Site Recovery PowerShell 模块（Az.RecoveryServices 模块）附带了大多数 cmdlet 的易用别名。 模块中的 cmdlet 采用 \<Operation>-AzRecoveryServicesAsr\<Object> 形式，并具有采用 \<Operation>-ASR\<Object> 形式的等效别名** **。 可以替换 cmdlet 别名以便于使用。
 
 在以下示例中，使用来自 $vault 变量的保管库详细信息指定 PowerShell 会话的保管库上下文。
 
-```azurepowershell
-Set-ASRVaultContext -Vault $vault
-```
-```
-ResourceName      ResourceGroupName ResourceNamespace          ResourceType
-------------      ----------------- -----------------          -----------
-VMwareDRToAzurePs VMwareDRToAzurePs Microsoft.RecoveryServices vaults
-```
+    ```azurepowershell
+    Set-ASRVaultContext -Vault $vault
+    ```
+    ```
+    ResourceName      ResourceGroupName ResourceNamespace          ResourceType
+    ------------ ----------------- ----------------- -----------
+    VMwareDRToAzurePs VMwareDRToAzurePs Microsoft.RecoveryServices vaults
+    ```
 
 除了使用 Set-ASRVaultContext cmdlet 之外，还可以使用 Import-AzRecoveryServicesAsrVaultSettingsFile cmdlet 设置保管库上下文。 将保管库注册密钥文件所在位置的路径指定为 Import-AzRecoveryServicesAsrVaultSettingsFile cmdlet 的路径参数。 例如：
 
-```azurepowershell
-Get-AzRecoveryServicesVaultSettingsFile -SiteRecovery -Vault $Vault -Path "C:\Work\"
-Import-AzRecoveryServicesAsrVaultSettingsFile -Path "C:\Work\VMwareDRToAzurePs_2017-11-23T19-52-34.VaultCredentials"
-```
-
+    ```azurepowershell
+    Get-AzRecoveryServicesVaultSettingsFile -SiteRecovery -Vault $Vault -Path "C:\Work\"
+    Import-AzRecoveryServicesAsrVaultSettingsFile -Path "C:\Work\VMwareDRToAzurePs_2017-11-23T19-52-34.VaultCredentials"
+    ```
 本文的后续部分假定已设置 Azure Site Recovery 操作的保管库上下文。
 
 ## <a name="validate-vault-registration"></a>验证保管库注册
@@ -245,40 +246,40 @@ Import-AzRecoveryServicesAsrVaultSettingsFile -Path "C:\Work\VMwareDRToAzurePs_2
 
     * 创建保护容器映射，以便通过配置服务器映射复制策略。
 
-        ```azurepowershell
-        #Get the protection container corresponding to the Configuration Server
-        $ProtectionContainer = Get-AzRecoveryServicesAsrProtectionContainer -Fabric $ASRFabrics[0]
+    ```azurepowershell
+    #Get the protection container corresponding to the Configuration Server
+    $ProtectionContainer = Get-AzRecoveryServicesAsrProtectionContainer -Fabric $ASRFabrics[0]
 
-        #Get the replication policies to map by name.
-        $ReplicationPolicy = Get-AzRecoveryServicesAsrPolicy -Name "ReplicationPolicy"
-        $FailbackReplicationPolicy = Get-AzRecoveryServicesAsrPolicy -Name "ReplicationPolicy-Failback"
+    #Get the replication policies to map by name.
+    $ReplicationPolicy = Get-AzRecoveryServicesAsrPolicy -Name "ReplicationPolicy"
+    $FailbackReplicationPolicy = Get-AzRecoveryServicesAsrPolicy -Name "ReplicationPolicy-Failback"
 
-        # Associate the replication policies to the protection container corresponding to the Configuration Server.
+    # Associate the replication policies to the protection container corresponding to the Configuration Server.
 
-        $Job_AssociatePolicy = New-AzRecoveryServicesAsrProtectionContainerMapping -Name "PolicyAssociation1" -PrimaryProtectionContainer $ProtectionContainer -Policy $ReplicationPolicy
+    $Job_AssociatePolicy = New-AzRecoveryServicesAsrProtectionContainerMapping -Name "PolicyAssociation1" -PrimaryProtectionContainer $ProtectionContainer -Policy $ReplicationPolicy
 
-        # Check the job status
-        while (($Job_AssociatePolicy.State -eq "InProgress") -or ($Job_AssociatePolicy.State -eq "NotStarted")){
-               sleep 10;
-               $Job_AssociatePolicy = Get-ASRJob -Job $Job_AssociatePolicy
-        }
-        $Job_AssociatePolicy.State
+    # Check the job status
+    while (($Job_AssociatePolicy.State -eq "InProgress") -or ($Job_AssociatePolicy.State -eq "NotStarted")){
+        sleep 10;
+        $Job_AssociatePolicy = Get-ASRJob -Job $Job_AssociatePolicy
+    }
+    $Job_AssociatePolicy.State
 
-        <# In the protection container mapping used for failback (replicating failed over virtual machines
-          running in Azure, to the primary VMware site.) the protection container corresponding to the
-          Configuration server acts as both the Primary protection container and the recovery protection
-          container
-        #>
-        $Job_AssociateFailbackPolicy = New-AzRecoveryServicesAsrProtectionContainerMapping -Name "FailbackPolicyAssociation" -PrimaryProtectionContainer $ProtectionContainer -RecoveryProtectionContainer $ProtectionContainer -Policy $FailbackReplicationPolicy
+    <# In the protection container mapping used for failback (replicating failed over virtual machines
+        running in Azure, to the primary VMware site.) the protection container corresponding to the
+        Configuration server acts as both the Primary protection container and the recovery protection
+        container
+    #>
+    $Job_AssociateFailbackPolicy = New-AzRecoveryServicesAsrProtectionContainerMapping -Name "FailbackPolicyAssociation" -PrimaryProtectionContainer $ProtectionContainer -RecoveryProtectionContainer $ProtectionContainer -Policy $FailbackReplicationPolicy
 
-        # Check the job status
-        while (($Job_AssociateFailbackPolicy.State -eq "InProgress") -or ($Job_AssociateFailbackPolicy.State -eq "NotStarted")){
-               sleep 10;
-               $Job_AssociateFailbackPolicy = Get-ASRJob -Job $Job_AssociateFailbackPolicy
-        }
-        $Job_AssociateFailbackPolicy.State
+    # Check the job status
+    while (($Job_AssociateFailbackPolicy.State -eq "InProgress") -or ($Job_AssociateFailbackPolicy.State -eq "NotStarted")){
+        sleep 10;
+        $Job_AssociateFailbackPolicy = Get-ASRJob -Job $Job_AssociateFailbackPolicy
+    }
+    $Job_AssociateFailbackPolicy.State
 
-        ```
+    ```
 
 ## <a name="add-a-vcenter-server-and-discover-vms"></a>添加 vCenter 服务器，并发现 VM
 
@@ -345,7 +346,7 @@ $ReplicationStdStorageAccount= New-AzStorageAccount -ResourceGroupName "VMwareDR
 * 要复制的可保护项。
 * 要将虚拟机复制到的存储帐户（前提是复制到存储帐户）。 
 * 需要使用日志存储在高级存储帐户或托管磁盘中保护虚拟机。
-* 用于复制的进程服务器。 已检索可用进程服务器列表并将其保存在 ***$ProcessServers[0]*** *(ScaleOut-ProcessServer)* 和 ***$ProcessServers[1]*** *(ConfigurationServer)* 变量中。
+* 用于复制的进程服务器。 检索可用进程服务器的列表，并将其保存在 ***$ProcessServers[0]*** *(ScaleOut-ProcessServer)* 和 ***$ProcessServers[1]*** *(ConfigurationServer)* 变量中。
 * 用于将移动服务软件推送安装到计算机的帐户。 检索可用帐户的列表，并将其存储在 ***$AccountHandles*** 变量中。
 * 要用于复制的复制策略的保护容器映射。
 * 故障转移时必须在其中创建虚拟机的资源组。
@@ -487,8 +488,8 @@ Errors           : {}
     #Start the failover job
     $Job_Failover = Start-AzRecoveryServicesAsrUnplannedFailoverJob -ReplicationProtectedItem $ReplicatedVM1 -Direction PrimaryToRecovery -RecoveryPoint $RecoveryPoints[0]
     do {
-           $Job_Failover = Get-ASRJob -Job $Job_Failover;
-           sleep 60;
+        $Job_Failover = Get-ASRJob -Job $Job_Failover;
+        sleep 60;
     } while (($Job_Failover.State -eq "InProgress") -or ($JobFailover.State -eq "NotStarted"))
     $Job_Failover.State
     ```

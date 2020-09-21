@@ -10,12 +10,12 @@ ms.author: aashishb
 author: aashishb
 ms.reviewer: larryfr
 ms.date: 05/19/2020
-ms.openlocfilehash: 1d22a7dea1d51605b4c129d8c8ef1d3085320f0c
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 72ce260080f5baf28dc170088e1f4e21a4727f0a
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228456"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021368"
 ---
 # <a name="enterprise-security-for-azure-machine-learning"></a>Azure 机器学习的企业安全性
 
@@ -119,19 +119,14 @@ Azure 机器学习依赖于其他 Azure 服务提供计算资源。 计算资源
 ### <a name="encryption-at-rest"></a>静态加密
 
 > [!IMPORTANT]
-> 如果工作区包含敏感数据，我们建议在创建工作区时设置 [hbi_workspace 标志](https://docs.microsoft.com/python/api/azureml-core/azureml.core.workspace(class)?view=azure-ml-py#create-name--auth-none--subscription-id-none--resource-group-none--location-none--create-resource-group-true--sku--basic---friendly-name-none--storage-account-none--key-vault-none--app-insights-none--container-registry-none--cmk-keyvault-none--resource-cmk-uri-none--hbi-workspace-false--default-cpu-compute-target-none--default-gpu-compute-target-none--exist-ok-false--show-output-true-)。 
+> 如果工作区包含敏感数据，我们建议在创建工作区时设置 [hbi_workspace 标志](https://docs.microsoft.com/python/api/azureml-core/azureml.core.workspace(class)?view=azure-ml-py#create-name--auth-none--subscription-id-none--resource-group-none--location-none--create-resource-group-true--sku--basic---friendly-name-none--storage-account-none--key-vault-none--app-insights-none--container-registry-none--cmk-keyvault-none--resource-cmk-uri-none--hbi-workspace-false--default-cpu-compute-target-none--default-gpu-compute-target-none--exist-ok-false--show-output-true-)。 只能在创建工作区时设置 `hbi_workspace` 标志。 不能更改现有工作区的这个标志。
 
-`hbi_workspace` 标志控制 Microsoft 为诊断而收集的数据量，并在 Microsoft 托管环境中启用其他加密。 此外，该标志启用以下操作：
+`hbi_workspace` 标志控制 [Microsoft 为诊断而收集的数据](#microsoft-collected-data)量，并[在 Microsoft 托管环境中启用其他加密](../security/fundamentals/encryption-atrest.md)。 此外，该标志启用以下操作：
 
 * 开始加密 Azure 机器学习计算群集中的本地暂存磁盘，前提是尚未在该订阅中创建任何以前的群集。 否则，需要提供支持票证来启用对计算群集的暂存磁盘的加密 
 * 在不同运行之间清理本地暂存磁盘
 * 利用密钥保管库，将存储帐户、容器注册表和 SSH 帐户的凭据从执行层安全地传递到计算群集
 * 启用 IP 筛选，以确保基础批处理池不会由除 AzureMachineLearningService 以外的任何外部服务调用
-
-> [!WARNING]
-> 只能在创建工作区时设置 `hbi_workspace` 标志。 不能更改现有工作区的这个标志。
-
-有关 Azure 中静态加密工作原理的详细信息，请参阅 [Azure 数据静态加密](https://docs.microsoft.com/azure/security/fundamentals/encryption-atrest)。
 
 #### <a name="azure-blob-storage"></a>Azure Blob 存储
 

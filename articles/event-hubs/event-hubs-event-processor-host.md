@@ -3,24 +3,23 @@ title: 使用事件处理程序主机接收事件 - Azure 事件中心 | Microso
 description: 本文介绍 Azure 事件中心中的事件处理程序主机，它简化了检查点操作、租用和读取事件的管理。
 ms.topic: conceptual
 origin.date: 06/23/2020
-ms.date: 08/21/2020
+ms.date: 09/14/2020
 ms.author: v-tawe
-ms.openlocfilehash: e52d324d0139f5ed011d60e808e5e81eb351b3e1
-ms.sourcegitcommit: 2e9b16f155455cd5f0641234cfcb304a568765a9
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 11a4d351fce3ff00591b8da70ab18b9346f20d84
+ms.sourcegitcommit: 35b56258d738eee314dacdd19cbbe3ef5bdfbd77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2020
-ms.locfileid: "88715310"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90063353"
 ---
 # <a name="event-processor-host"></a>事件处理程序主机
 > [!NOTE]
-> 本文适用于旧版 Azure 事件中心 SDK。 若要了解如何将代码迁移到新版 SDK，请参阅以下迁移指南。 
+> 本文适用于旧版 Azure 事件中心 SDK。 有关 SDK 的当前版本，请参阅[跨应用程序的多个实例均衡分区负载](event-processor-balance-partition-load.md)。 若要了解如何将代码迁移到新版 SDK，请参阅以下迁移指南。 
 > - [.NET](https://github.com/Azure/azure-sdk-for-net/blob/master/sdk/eventhub/Azure.Messaging.EventHubs/MigrationGuide.md)
 > - [Java](https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/eventhubs/azure-messaging-eventhubs/migration-guide.md)
 > - [Python](https://github.com/Azure/azure-sdk-for-python/blob/master/sdk/eventhub/azure-eventhub/migration_guide.md)
 > - [Java Script](https://github.com/Azure/azure-sdk-for-js/blob/master/sdk/eventhub/event-hubs/migrationguide.md)
->
-> 另请参阅[跨应用程序的多个实例均衡分区负载](event-processor-balance-partition-load.md)。
 
 Azure 事件中心是强大的遥测引入服务，使用它能以较低的成本流式传输数百万个事件。 本文介绍如何通过*事件处理程序主机* (EPH) 使用引用的事件；EPH 是一个智能使用者代理，可以简化检查点、租用和并行事件读取器的管理。  
 
@@ -90,6 +89,8 @@ public class SimpleEventProcessor : IEventProcessor
 
 最后，使用者将 [EventProcessorHost](/dotnet/api/microsoft.azure.eventhubs.processor.eventprocessorhost) 实例注册到事件中心服务。 向 EventProcessorHost 实例注册事件处理程序类会启动事件处理。 注册操作告知事件中心服务预期使用者应用会使用其某些分区发送的事件，并且每当推送要使用的事件时，都要调用 [IEventProcessor](/dotnet/api/microsoft.azure.eventhubs.processor.ieventprocessor) 实现代码。 
 
+> [!NOTE]
+> consumerGroupName 区分大小写。  对 consumerGroupName 的更改可能会导致从流的开头读取所有分区。
 
 ### <a name="example"></a>示例
 
@@ -114,8 +115,8 @@ public class SimpleEventProcessor : IEventProcessor
 | $Default | 0 | Consumer\_VM3 | 2018-04-15T01:23:45 | 156 |
 | $Default | 1 | Consumer\_VM4 | 2018-04-15T01:22:13 | 734 |
 | $Default | 2 | Consumer\_VM0 | 2018-04-15T01:22:56 | 122 |
-| 解码的字符： |   |   |   |   |
-| 解码的字符： |   |   |   |   |
+| : |   |   |   |   |
+| : |   |   |   |   |
 | $Default | 15 | Consumer\_VM3 | 2018-04-15T01:22:56 | 976 |
 
 此处，每个主机按特定的持续时间（租约持续时间）获取分区所有权。 如果某个主机发生故障（VM 关闭），则租约将会过期。 其他主机尝试获取分区所有权，其中一个主机会成功。 此过程会重置具有新所有者的分区上的租约。 这样，每次只会有一个读取者可以从使用者组中任意给定的分区读取事件。
@@ -194,10 +195,10 @@ Epoch 功能可让用户确保在任意时间点使用者组中只有一个接�
 熟悉事件处理程序主机后，请参阅以下文章来详细了解事件中心：
 
 - 事件中心入门
-    - [.NET Core](get-started-dotnet-standard-send-v2.md)
-    - [Java](get-started-java-send-v2.md)
-    - [Python](get-started-python-send-v2.md)
-    - [JavaScript](get-started-node-send-v2.md)
+    - [.NET Core](event-hubs-dotnet-standard-getstarted-send.md)
+    - [Java](event-hubs-java-get-started-send.md)
+    - [Python](event-hubs-python-get-started-send.md)
+    - [JavaScript](event-hubs-node-get-started-send.md)
 * [事件中心编程指南](event-hubs-programming-guide.md)
 * [事件中心中的可用性和一致性](event-hubs-availability-and-consistency.md)
 * [事件中心常见问题](event-hubs-faq.md)

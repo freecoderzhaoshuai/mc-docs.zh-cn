@@ -8,13 +8,14 @@ ms.author: v-tawe
 ms.service: cognitive-search
 ms.topic: conceptual
 origin.date: 04/22/2020
-ms.date: 06/09/2020
-ms.openlocfilehash: 9921bf4f4b9eedfca51dc8badf9f24fa1d0effac
-ms.sourcegitcommit: c4fc01b7451951ef7a9616fca494e1baf29db714
+ms.date: 09/10/2020
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 5c8a48782a352d5e705b893c4e1f47a6b38c34d9
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/09/2020
-ms.locfileid: "84564367"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021589"
 ---
 # <a name="how-to-filter-by-language-in-azure-cognitive-search"></a>如何在 Azure 认知搜索中按语言筛选 
 
@@ -35,14 +36,14 @@ ms.locfileid: "84564367"
 
 以下示例来自 [real-estate 示例](search-get-started-portal.md)，该示例具有包含不同语言内容的多个字符串字段。 请注意此索引中字段的语言分析器分配。 如果与旨在处理目标语言的语言规则的分析器搭配使用，包含字符串的字段可在全文搜索中更好地发挥作用。
 
-  ![](./media/search-filters-language/lang-fields.png)
+  ![屏幕截图，显示房地产示例的“字段”屏幕。 将会突出显示一组字段，指出语言分析器分配如何与突出显示的字段的语言相对应。](./media/search-filters-language/lang-fields.png)
 
 > [!Note]
-> 有关通过语言分析器显示字段定义的代码示例，请参阅[定义索引 (.NET)](https://docs.azure.cn/search/search-create-index-dotnet) 和[定义索引 (REST)](search-create-index-rest-api.md)。
+> 有关通过语言分析器显示字段定义的代码示例，请参阅[定义索引 (.NET)](./search-get-started-dotnet.md) 和[定义索引 (REST)](./search-get-started-powershell.md)。
 
 ## <a name="build-and-load-an-index"></a>生成和加载索引
 
-编写查询之前的一个中间步骤（也许是众所周知的步骤）是[生成并填充索引](https://docs.azure.cn/search/search-create-index-dotnet)。 为了保持内容完整，此处阐述了此步骤。 确定索引是否可用的一种方法是在[门户](https://portal.azure.cn)中查看索引列表。
+编写查询之前的一个中间步骤（也许是众所周知的步骤）是[生成并填充索引](./search-get-started-dotnet.md)。 为了保持内容完整，此处阐述了此步骤。 确定索引是否可用的一种方法是在[门户](https://portal.azure.cn)中查看索引列表。
 
 ## <a name="constrain-the-query-and-trim-results"></a>约束查询和修剪结果
 
@@ -67,4 +68,3 @@ parameters =
 + [语言分析器](https://docs.microsoft.com/rest/api/searchservice/language-support)
 + [Azure 认知搜索中全文搜索的工作原理](search-lucene-query-architecture.md)
 + [搜索文档 REST API](https://docs.microsoft.com/rest/api/searchservice/search-documents)
-

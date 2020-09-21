@@ -3,19 +3,19 @@ title: 内部网络上的入口控制器
 titleSuffix: Azure Kubernetes Service
 description: 了解如何在 Azure Kubernetes 服务 (AKS) 群集中安装和配置适用于内部专用网络的 NGINX 入口控制器。
 services: container-service
-author: rockboyfor
 ms.topic: article
-origin.date: 07/21/2020
-ms.date: 08/10/2020
+origin.date: 08/17/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 07/13/2020
 ms.author: v-yeche
-ms.openlocfilehash: 024c952297a10d26d65a0d21ae72a9fa98752cb7
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: a8649c7f54cfb93da0b94c38b57941fb10645a85
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88222959"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90020840"
 ---
 # <a name="create-an-ingress-controller-to-an-internal-virtual-network-in-azure-kubernetes-service-aks"></a>在 Azure Kubernetes 服务 (AKS) 中创建内部虚拟网络的入口控制器
 
@@ -34,7 +34,7 @@ ms.locfileid: "88222959"
 
 ## <a name="before-you-begin"></a>准备阶段
 
-本文使用 [Helm 3][helm] 安装 NGINX 入口控制器和证书管理器。 有关配置和使用 Helm 的详细信息，请参阅[在 Azure Kubernetes 服务 (AKS) 中使用 Helm 安装应用程序][use-helm]。
+本文使用 [Helm 3][helm] 安装 NGINX 入口控制器。 确保使用最新版本的 Helm，并且有权访问 ingress-nginx Helm 存储库。 有关配置和使用 Helm 的详细信息，请参阅[在 Azure Kubernetes 服务 (AKS) 中使用 Helm 安装应用程序][use-helm]。
 
 本文还要求运行 Azure CLI 2.0.64 或更高版本。 运行 `az --version` 即可查找版本。 如果需要进行安装或升级，请参阅[安装 Azure CLI][azure-cli-install]。
 
@@ -68,11 +68,11 @@ service:
 # Create a namespace for your ingress resources
 kubectl create namespace ingress-basic
 
-# Add the official stable repository
-helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+# Add the ingress-nginx repository
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 
 # Use Helm to deploy an NGINX ingress controller
-helm install nginx-ingress stable/nginx-ingress \
+helm install nginx-ingress ingress-nginx/ingress-nginx \
     --namespace ingress-basic \
     -f internal-ingress.yaml \
     --set controller.replicaCount=2 \
@@ -87,17 +87,16 @@ helm install nginx-ingress stable/nginx-ingress \
 为 NGINX 入口控制器创建 Kubernetes 负载均衡器服务时，系统会分配内部 IP 地址。 若要获取公共 IP 地址，请使用 `kubectl get service` 命令。
 
 ```console
-kubectl get service -l app=nginx-ingress --namespace ingress-basic
+kubectl --namespace ingress-basic get services -o wide -w nginx-ingress-ingress-nginx-controller
 ```
 
 将 IP 地址分配给服务需要几分钟时间，如以下示例输出中所示：
 
 ```
-$ kubectl get service -l app=nginx-ingress --namespace ingress-basic
+$ kubectl --namespace ingress-basic get services -o wide -w nginx-ingress-ingress-nginx-controller
 
-NAME                             TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)                      AGE
-nginx-ingress-controller         LoadBalancer   10.0.61.144    10.240.0.42   80:30386/TCP,443:32276/TCP   6m2s
-nginx-ingress-default-backend    ClusterIP      10.0.192.145   <none>        80/TCP                       6m2s
+NAME                                     TYPE           CLUSTER-IP    EXTERNAL-IP     PORT(S)                      AGE   SELECTOR
+nginx-ingress-ingress-nginx-controller   LoadBalancer   10.0.74.133   EXTERNAL_IP     80:32486/TCP,443:30953/TCP   44s   app.kubernetes.io/component=controller,app.kubernetes.io/instance=nginx-ingress,app.kubernetes.io/name=ingress-nginx
 ```
 
 由于尚未创建入口规则，如果浏览到该内部 IP 地址，则会显示 NGINX 入口控制器的默认 404 页面。 入口规则是通过以下步骤配置的。
@@ -206,6 +205,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   rules:
@@ -214,11 +214,15 @@ spec:
       - backend:
           serviceName: aks-helloworld
           servicePort: 80
-        path: /(.*)
+        path: /hello-world-one(/|$)(.*)
       - backend:
           serviceName: ingress-demo
           servicePort: 80
         path: /hello-world-two(/|$)(.*)
+      - backend:
+          serviceName: aks-helloworld
+          servicePort: 80
+        path: /(.*)
 ```
 
 使用 `kubectl apply -f hello-world-ingress.yaml` 命令创建入口资源。
@@ -368,7 +372,7 @@ kubectl delete namespace ingress-basic
 <!-- LINKS - internal -->
 
 [use-helm]: kubernetes-helm.md
-[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[azure-cli-install]: https://docs.azure.cn/cli/install-azure-cli
 [aks-ingress-basic]: ingress-basic.md
 [aks-ingress-tls]: ingress-tls.md
 [aks-ingress-static-tls]: ingress-static-ip.md

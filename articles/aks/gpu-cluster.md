@@ -2,20 +2,19 @@
 title: 在 Azure Kubernetes 服务 (AKS) 上使用 GPU
 description: 了解如何在 Azure Kubernetes 服务 (AKS) 上将 GPU 用于高性能计算或图形密集型工作负荷
 services: container-service
-author: rockboyfor
-ms.service: container-service
 ms.topic: article
-origin.date: 03/27/2020
-ms.date: 08/10/2020
+origin.date: 08/21/2020
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: 03/27/2020
 ms.author: v-yeche
-ms.openlocfilehash: a790a0af63445bc3a14685e5aa4ac84eb3671a1f
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+author: rockboyfor
+ms.openlocfilehash: 59a1d6a86f135058be5c147ec308fe59ee7ccb73
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842558"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021537"
 ---
 # <a name="use-gpus-for-compute-intensive-workloads-on-azure-kubernetes-service-aks"></a>在 Azure Kubernetes 服务 (AKS) 上将 GPU 用于计算密集型工作负荷
 
@@ -84,7 +83,7 @@ az aks create \
 az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
 ```
 
-## <a name="install-nvidia-drivers"></a>安装 NVIDIA 驱动程序
+## <a name="install-nvidia-device-plugin"></a>安装 NVIDIA 设备插件
 
 在使用节点中的 GPU 之前，必须为 NVIDIA 设备插件部署 DaemonSet。 此 DaemonSet 在会每个节点上运行 pod，以便为 GPU 提供所需驱动程序。
 
@@ -150,6 +149,8 @@ $ kubectl apply -f nvidia-device-plugin-ds.yaml
 daemonset "nvidia-device-plugin" created
 ```
 
+<!--Not Available on ## Use the AKS specialized GPU image (preview)-->
+<!--Not Available on ### Use the AKS specialized GPU image on new clusters (preview)-->
 ## <a name="confirm-that-gpus-are-schedulable"></a>确认 GPU 是可计划的
 
 创建 AKS 群集后，确认 GPU 在 Kubernetes 中是可计划的。 首先，使用 [kubectl get nodes][kubectl-get] 命令列出群集中的节点：
@@ -403,16 +404,16 @@ kubectl delete jobs samples-tf-mnist-demo
 [kubectl delete]: https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#delete
 [kubectl-create]: https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#create
 [azure-pricing]: https://www.azure.cn/pricing/
-[azure-availability]: https://azure.microsoft.com/global-infrastructure/services/
+[azure-availability]: https://status.azure.com/status/
 [nvidia-github]: https://github.com/NVIDIA/k8s-device-plugin
 
 <!-- LINKS - internal -->
 
-[az-group-create]: https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-create
-[az-aks-create]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-create
-[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-get-credentials
+[az-group-create]: https://docs.azure.cn/cli/group#az-group-create
+[az-aks-create]: https://docs.microsoft.com/cli/azure/aks#az_aks_create
+[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks#az_aks_get_credentials
 [aks-spark]: spark-job.md
 [gpu-skus]: ../virtual-machines/sizes-gpu.md
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
 
 <!-- Update_Description: wording update, update link -->

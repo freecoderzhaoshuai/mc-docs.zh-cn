@@ -3,16 +3,18 @@ title: 使用 Azure CLI 创建和加密 Linux VM
 description: 本快速入门介绍如何使用 Azure CLI 创建和加密 Linux 虚拟机
 author: Johnnytechn
 ms.author: v-johya
-ms.service: security
-ms.topic: quickstart
+ms.service: virtual-machines-linux
+ms.subservice: security
 origin.date: 05/17/2019
-ms.date: 04/13/2020
-ms.openlocfilehash: 6871600d43a2383726382611a6dc573a1e9898e7
-ms.sourcegitcommit: ebedf9e489f5218d4dda7468b669a601b3c02ae5
+ms.topic: quickstart
+ms.date: 09/03/2020
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: c5621d104597193ff3a7a2170d732b32587e87f5
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2020
-ms.locfileid: "82159063"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057673"
 ---
 <!--Verfied successfully-->
 # <a name="quickstart-create-and-encrypt-a-linux-vm-with-the-azure-cli"></a>快速入门：使用 Azure CLI 创建和加密 Linux VM
@@ -27,15 +29,15 @@ Azure CLI 用于从命令行或脚本创建和管理 Azure 资源。 本快速�
 
 ## <a name="create-a-resource-group"></a>创建资源组
 
-使用 [az group create](https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-create) 命令创建资源组。 Azure 资源组是在其中部署和管理 Azure 资源的逻辑容器。 以下示例在“chinaeast”  位置创建名为“myResourceGroup”  的资源组：
+使用 [az group create](https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-create) 命令创建资源组。 Azure 资源组是在其中部署和管理 Azure 资源的逻辑容器。 以下示例在“chinanorth2”位置创建名为“myResourceGroup”的资源组：
 
 ```azurecli
-az group create --name "myResourceGroup" --location "chinaeast"
+az group create --name "myResourceGroup" --location "chinanorth2"
 ```
 
 ## <a name="create-a-virtual-machine"></a>创建虚拟机
 
-使用 [az vm create](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-create) 创建 VM。 以下示例创建一个名为 myVM  的 VM。
+使用 [az vm create](https://docs.azure.cn/cli/vm?view=azure-cli-latest#az-vm-create) 创建 VM。 以下示例创建一个名为 myVM 的 VM。
 
 ```azurecli
 az vm create \
@@ -52,7 +54,7 @@ az vm create \
 {
   "fqdns": "",
   "id": "/subscriptions/<guid>/resourceGroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM",
-  "location": "chinaeast",
+  "location": "chinanorth2",
   "macAddress": "00-0D-3A-23-9A-49",
   "powerState": "VM running",
   "privateIpAddress": "10.0.0.4",
@@ -69,7 +71,7 @@ Azure 磁盘加密将其加密密钥存储在 Azure 密钥保管库中。 使用
 > 每个密钥保管库必须有一个在 Azure 中唯一的名称。 在下面的示例中，将 <your-unique-keyvault-name> 替换为你选择的名称。
 
 ```azurecli
-az keyvault create --name "<your-unique-keyvault-name>" --resource-group "myResourceGroup" --location "chinaeast" --enabled-for-disk-encryption
+az keyvault create --name "<your-unique-keyvault-name>" --resource-group "myResourceGroup" --location "chinanorth2" --enabled-for-disk-encryption
 ```
 
 ## <a name="encrypt-the-virtual-machine"></a>加密虚拟机

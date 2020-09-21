@@ -1,23 +1,23 @@
 ---
 title: 在 Azure Bastion 中使用 VM 和 NSG
-description: 本文介绍如何在 Azure Bastion 中引入 NSG 访问
+description: 可以将网络安全组与 Azure Bastion 配合使用。 了解此配置所需的子网。
 services: bastion
-author: rockboyfor
 ms.service: bastion
 ms.topic: conceptual
-origin.date: 04/20/2020
-ms.date: 07/27/2020
+origin.date: 07/07/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: f9901769e23023330ce9345555b6f58dafc55588
-ms.sourcegitcommit: 4d9846bb03ac24bd98b0c9a781bb8912ff6d2f61
+ms.openlocfilehash: 28718c2929af2e41356150d5ea8af90237ab6277
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/22/2020
-ms.locfileid: "86926980"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89654956"
 ---
-<!--RELEASE BEFORE CONFIRMATION-->
+<!--Verified succesfully for only charactors only-->
 # <a name="working-with-nsg-access-and-azure-bastion"></a>使用 NSG 访问和 Azure Bastion
 
 使用 Azure Bastion 时，可以使用网络安全组 (NSG)。 有关详细信息，请参阅[安全组](../virtual-network/security-overview.md)。
@@ -47,10 +47,14 @@ Azure Bastion 将专门部署到 ***AzureBastionSubnet***。
     * **来自公共 Internet 的入口流量：** Azure Bastion 将创建一个公共 IP，需要在该公共 IP 上启用端口 443，用于入口流量。 不需要在 AzureBastionSubnet 上打开端口 3389/22。
     * **来自 Azure Bastion 控制平面的入口流量：** 对于控制平面连接，请启用从 GatewayManager 服务标记进行的端口 443 入站。 这使控制平面（即网关管理器）能够与 Azure Bastion 通信。
 
+    :::image type="content" source="./media/bastion-nsg/inbound.png" alt-text="入站":::
+
 * **出口流量：**
 
     * **流向目标 VM 的出口流量：** Azure Bastion 将通过专用 IP 到达目标 VM。 NSG 需要允许端口 3389 和 22 的出口流量流向其他目标 VM 子网。
     * **流向 Azure 中其他公共终结点的出口流量：** Azure Bastion 需要能够连接到 Azure 中的各种公共终结点，以便执行相应操作（例如，存储诊断日志和计量日志）。 因此，Azure Bastion 需要出站到 443，再到 AzureCloud 服务标记。
+
+    :::image type="content" source="./media/bastion-nsg/outbound.png" alt-text="Outbound":::
 
 ### <a name="target-vm-subnet"></a>目标 VM 子网
 此子网包含要通过 RDP/SSH 连接到的目标虚拟机。

@@ -5,14 +5,15 @@ description: 了解 Azure Kubernetes 服务 (AKS) 中虚拟网络资源和连接
 services: container-service
 ms.topic: conceptual
 origin.date: 12/10/2018
-ms.date: 05/25/2020
+author: rockboyfor
+ms.date: 09/14/2020
 ms.author: v-yeche
-ms.openlocfilehash: b4c61aff38f333a344b38e2cfce8cfbc4e8ca3ef
-ms.sourcegitcommit: 7e6b94bbaeaddb854beed616aaeba6584b9316d9
+ms.openlocfilehash: ab8cd754d84bfb346c0e7ddbb1ce4020a72b2fa4
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/21/2020
-ms.locfileid: "83735045"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021268"
 ---
 # <a name="best-practices-for-network-connectivity-and-security-in-azure-kubernetes-service-aks"></a>Azure Kubernetes 服务 (AKS) 中的网络连接和安全的最佳做法
 
@@ -37,9 +38,11 @@ ms.locfileid: "83735045"
 
 容器网络接口 (CNI) 是与供应商无关的协议，允许容器运行时将向网络提供程序发出请求。 Azure CNI 将 IP 地址分配给 Pod 和节点，并在接到现有的 Azure 虚拟网络时提供 IP 地址管理 (IPAM) 功能。 每个节点和 Pod 资源接收 Azure 虚拟网络中的 IP 地址，与其他资源或服务通信不需要其他路由。
 
-![显示两个节点的示意图，其中的网桥将每个节点连接到单个 Azure VNet](media/operator-best-practices-network/advanced-networking-diagram.png)
+:::image type="content" source="media/operator-best-practices-network/advanced-networking-diagram.png" alt-text="显示两个节点的示意图，其中的网桥将每个节点连接到单个 Azure VNet":::
 
-对于大多数生产部署，应使用 Azure CNI 网络。 使用此网络模型可以将资源的控制和管理相分离。 从安全角度看，通常希望不同的团队来管理和保护这些资源。 使用 Azure CNI 网络，可以通过分配到每个 Pod 的 IP 地址直接连接到现有 Azure 资源、本地资源或其他服务。
+对于生产部署，kubenet 和 Azure CNI 都是有效选项。
+
+用于生产的 Azure CNI 网络的一个明显优势是网络模型允许将资源的控制和管理分离。 从安全角度看，通常希望不同的团队来管理和保护这些资源。 使用 Azure CNI 网络，可以通过分配到每个 Pod 的 IP 地址直接连接到现有 Azure 资源、本地资源或其他服务。
 
 使用 Azure CNI 网络时，虚拟网络资源位于 AKS 群集外单独存在的资源组中。 委托 AKS 服务主体的权限以访问和管理这些资源。 AKS 群集使用的服务主体在虚拟网络中的子网上必须至少具有[网络参与者](../role-based-access-control/built-in-roles.md#network-contributor)权限。 如果希望定义[自定义角色](../role-based-access-control/custom-roles.md)而不是使用内置的网络参与者角色，则需要以下权限：
   * `Microsoft.Network/virtualNetworks/subnets/join/action`
@@ -70,7 +73,7 @@ Kubenet 适用于小型开发或测试工作负荷，因为无需从 AKS 群集�
 
 Azure 负载均衡器可以将客户流量分配到 AKS 群集中的各个应用程序，但是对这些流量的了解有限。 负载均衡器资源在第 4 层工作，并根据协议或端口分配流量。 大多数使用 HTTP 或 HTTPS 的 Web 应用程序应使用在第 7 层工作的 Kuberenetes 入口资源和控制器。 入口可以根据应用程序的 URL 分配流量并处理 TLS/SSL 终端。 此功能还可以减少公开和映射的 IP 地址数。 使用负载平衡器，每个应用程序通常需要分配一个公共 IP 地址并映射到 AKS 群集中的服务。 使用入口资源，单个 IP 地址可以将流量分配给多个应用程序。
 
-![显示 AKS 群集中入口流量的示意图](media/operator-best-practices-network/aks-ingress.png)
+:::image type="content" source="media/operator-best-practices-network/aks-ingress.png" alt-text="显示 AKS 群集中入口流量的示意图":::
 
 入口有两个组件：
 
@@ -105,9 +108,7 @@ spec:
 
 入口控制器是在 AKS 节点上运行的守护程序并监视传入请求。 然后根据入口资源中定义的规则分配流量。 最佳常见的入口控制器基于 [NGINX]。 AKS 不会限制你使用特定控制器，因此可以使用其他控制器，例如 [Contour][contour]、[HAProxy][haproxy] 或 [Traefik][traefik]。
 
-必须在 Linux 节点上计划入口控制器。 在 YAML 清单或 Helm 图表部署中使用节点选择器来指示资源应在基于 Linux 的节点上运行。 有关详细信息，请参阅[使用节点选择器控制在 AKS 中计划 Pod 的位置][concepts-node-selectors]。
-
-<!--Not Available on Windows Server nodes shouldn't run the ingress controller.-->
+必须在 Linux 节点上计划入口控制器。 Windows Server 节点不应运行入口控制器。 在 YAML 清单或 Helm 图表部署中使用节点选择器来指示资源应在基于 Linux 的节点上运行。 有关详细信息，请参阅[使用节点选择器控制在 AKS 中计划 Pod 的位置][concepts-node-selectors]。
 
 入口有许多方案，包括以下操作指南：
 
@@ -122,7 +123,7 @@ spec:
 
 将流量分配到服务和应用程序的入口控制器通常是 AKS 群集中的 Kubernetes 资源。 控制器作为守护程序在 AKS 节点上运行，并使用一些节点资源（例如 CPU、内存和网络带宽）。 在较大的环境中，通常需要将部分流量路由或 TLS 终端卸载到 AKS 群集之外的网络资源。 还需要扫描传入流量是否存在潜在攻击。
 
-![Azure 应用程序网关等 Web 应用程序防火墙 (WAF) 可以保护和分配 AKS 群集的流量](media/operator-best-practices-network/web-application-firewall-app-gateway.png)
+:::image type="content" source="media/operator-best-practices-network/web-application-firewall-app-gateway.png" alt-text="Azure 应用程序网关等 Web 应用程序防火墙 (WAF) 可以保护和分配 AKS 群集的流量":::
 
 Web 应用程序防火墙 (WAF) 通过筛选传入流量提供额外的安全层。 开放式 Web 应用程序安全项目 (OWASP) 提供了一套规则来监视跨网站脚本或 cookie 中毒之类的攻击。 [Azure 应用程序网关][app-gateway]（目前在 AKS 中处于预览状态）是一种 WAF，可在流量到达 AKS 群集和应用程序之前与 AKS 群集集成以提供这些安全功能。 其他第三方解决方案也可以执行这些功能，因此可以在给定的产品中继续使用现有的资源和专业知识。
 
@@ -162,7 +163,7 @@ spec:
 
 AKS 中的大多数操作都可以使用 Azure 管理工具或通过 Kubernetes API 服务器来完成。 AKS 节点不会连接到公共 Internet，并且仅在专用网络上可用。 要连接到节点并执行维护或排查问题，请通过堡垒主机或跳转盒路由连接。 此主机应位于与 AKS 群集虚拟网络安全对等互连的单独的管理虚拟网络中。
 
-![使用堡垒主机或跳转盒连接到 AKS 节点](media/operator-best-practices-network/connect-using-bastion-host-simplified.png)
+:::image type="content" source="media/operator-best-practices-network/connect-using-bastion-host-simplified.png" alt-text="使用堡垒主机或跳转盒连接到 AKS 节点":::
 
 堡垒主机的管理网络也应受到保护。 使用 [Azure ExpressRoute][expressroute] 或 [VPN 网关][vpn-gateway]连接到本地网络，并使用网络安全组控制访问。
 

@@ -2,19 +2,21 @@
 title: 使用 Azure Site Recovery 从 Azure 故障回复 Hyper-V VM
 description: 如何使用 Azure Site Recovery 从 Azure 将 Hyper-V VM 故障回复到本地站点。
 services: site-recovery
-author: rockboyfor
-manager: digimobile
+manager: gaggupta
 ms.service: site-recovery
 ms.topic: article
 origin.date: 09/12/2019
-ms.date: 01/13/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: yes
+ms.testdate: 09/07/2020
 ms.author: v-yeche
-ms.openlocfilehash: c65e03dc427a097a70e0ff1dcb9ece11ae145486
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: c789424383a3db43a7d35985ef9dfc25f4224770
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "79292848"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655017"
 ---
 # <a name="run-a-failback-for-hyper-v-vms"></a>为 Hyper-V VM 运行故障回复
 
@@ -62,7 +64,7 @@ ms.locfileid: "79292848"
 
 1. 如果要设置新硬件，请在计算机上安装[支持的 Windows 版本](hyper-v-azure-support-matrix.md#replicated-vms)和 Hyper-V 角色。
 2. 创建与原始服务器上的名称相同的虚拟网络交换机。
-3. 在“受保护的项” > “保护组” > “\<ProtectionGroupName> -> \<VirtualMachineName>”中，选择要故障回复的 VM，然后选择“计划内故障转移”    。
+3. 在“受保护的项” > “保护组” > \<ProtectionGroupName> -> \<VirtualMachineName> 中，选择要故障恢复的 VM，然后选择“计划的故障转移”  。
 4. 在“确认计划的故障转移”中，选择“如果本地虚拟机不存在，则创建它”   。
 5. 在“主机名”中，选择要在其上放置 VM 的新 Hyper-V 主机服务器  。
 6. 在“数据同步”中，建议选择“在故障转移之前同步数据”这一选项  。 此选项可以最大程度地减少 VM 的停机时间，因为它可以在不关闭 VM 的情况下执行同步。 此选项执行以下操作：
@@ -70,7 +72,7 @@ ms.locfileid: "79292848"
     - **阶段 2**：关闭 Azure VM，确保其不会发生任何新的更改。 最终的更改集将传输到本地服务器，本地虚拟机会启动。
 
 7. 单击复选标记开始故障转移（故障回复）。
-8. 完成初始同步并准备好关闭 Azure VM 后，请单击“作业” > “\<计划内故障转移作业>”>“完成故障转移”   。 这将关闭 Azure 计算机，将最新更改传输到本地 VM，并启动 VM。
+8. 完成初始同步并准备好关闭 Azure VM 后，请单击“作业” > \<planned failover job> > “完成故障转移” 。 这将关闭 Azure 计算机，将最新更改传输到本地 VM，并启动 VM。
 9. 可登录到本地 VM，验证一切是否按预期工作。
 10. 单击“提交”完成故障转移  。 提交会删除 Azure VM 及其磁盘，并准备要重新保护的本地 VM。
 10. 单击“反向复制”，开始将本地 VM 复制到 Azure  。 仅复制在 Azure 中关闭 VM 以来发生的增量更改。

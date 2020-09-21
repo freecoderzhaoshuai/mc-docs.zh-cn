@@ -1,26 +1,22 @@
 ---
-title: 在 Azure 中运行 OpenSUSE Linux 的虚拟机上安装 MySQL | Azure
+title: 在 Azure 中的 OpenSUSE VM 上安装 MySQL
 description: 了解如何在 Azure 中的 OpenSUSE Linux 虚拟机上安装 MySQL。
 services: virtual-machines-linux
-documentationcenter: ''
-author: rockboyfor
-manager: digimobile
-editor: ''
-tags: azure-resource-manager
-ms.assetid: 1594e10e-c314-455a-9efb-a89441de364b
+author: Johnnytechn
 ms.service: virtual-machines-linux
+ms.subservice: workloads
 ms.workload: infrastructure-services
 ms.tgt_pltfrm: vm-linux
-ms.topic: article
+ms.topic: how-to
+ms.date: 09/03/2020
+ms.author: v-johya
 origin.date: 07/11/2018
-ms.date: 11/11/2019
-ms.author: v-yeche
-ms.openlocfilehash: 894a9ce209c113c031572189434141dcd40bede5
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 7a601680f094405b999783d4acf6af9963b14dc8
+ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "73831453"
+ms.lasthandoff: 09/13/2020
+ms.locfileid: "90057559"
 ---
 # <a name="install-mysql-on-a-virtual-machine-running-opensuse-linux-in-azure"></a>在 Azure 中运行 OpenSUSE Linux 的虚拟机上安装 MySQL
 
@@ -38,7 +34,7 @@ ms.locfileid: "73831453"
 az group create --name mySQLSUSEResourceGroup --location chinaeast
 ```
 
-创建 VM。 在此示例中，VM 名为 *myVM*，VM 大小为 *Standard_D2s_v3*，但应选择你认为最适合你的工作负荷的 [VM 大小](sizes.md)。
+创建 VM。 在此示例中，VM 名为 *myVM*，VM 大小为 *Standard_D2s_v3*，但应选择你认为最适合你的工作负荷的 [VM 大小](../sizes.md)。
 
 ```azurecli
 az vm create --resource-group mySQLSUSEResourceGroup \
@@ -62,10 +58,11 @@ az vm open-port --port 3306 --resource-group mySQLSUSEResourceGroup --name myVM
 ssh 10.111.112.113
 ```
 
+ 
 ## <a name="update-the-vm"></a>更新 VM
-
+ 
 连接到 VM 后，安装系统更新和修补程序。 
-
+   
 ```bash
 sudo zypper update
 ```
@@ -74,12 +71,13 @@ sudo zypper update
 
 ## <a name="install-mysql"></a>安装 MySQL 
 
+
 通过 SSH 在 VM 中安装 MySQL。 根据需要回复提示。
 
 ```bash
 sudo zypper install mysql
 ```
-
+ 
 将 MySQL 设置为在系统启动时启动。 
 
 ```bash
@@ -99,6 +97,7 @@ systemctl is-enabled mysql
 sudo reboot
 ```
 
+
 ## <a name="mysql-password"></a>MySQL 密码
 
 在安装后，MySQL 根密码默认为空。 运行 **mysql\_secure\_installation** 脚本来保护 MySQL。 该脚本会提示更改 MySQL 根密码、删除匿名用户帐户、禁用远程根登录、删除测试数据库以及重新加载特权表。 
@@ -108,6 +107,8 @@ sudo reboot
 ```azurecli  
 ssh 10.111.112.113
 ```
+
+
 
 ```bash
 mysql_secure_installation
@@ -127,10 +128,12 @@ mysql -u root -p
 ```sql
 CREATE USER 'mysqluser'@'localhost' IDENTIFIED BY 'password';
 ```
-
+   
 行尾的分号 (;) 对于结束命令很重要。
 
+
 ## <a name="create-a-database"></a>创建数据库
+
 
 创建数据库，并授予 `mysqluser` 用户权限。
 
@@ -138,7 +141,7 @@ CREATE USER 'mysqluser'@'localhost' IDENTIFIED BY 'password';
 CREATE DATABASE testdatabase;
 GRANT ALL ON testdatabase.* TO 'mysqluser'@'localhost' IDENTIFIED BY 'password';
 ```
-
+   
 数据库用户名和密码仅由连接到数据库的脚本使用。  数据库用户帐户名称不一定表示系统上的实际用户帐户。
 
 允许从另一台计算机登录。 在此示例中，允许从其登录的计算机的 IP 地址是 *10.112.113.114*。
@@ -146,12 +149,13 @@ GRANT ALL ON testdatabase.* TO 'mysqluser'@'localhost' IDENTIFIED BY 'password';
 ```sql
 GRANT ALL ON testdatabase.* TO 'mysqluser'@'10.112.113.114' IDENTIFIED BY 'password';
 ```
-
+   
 若要退出 MySQL 数据库管理实用程序，请键入：
 
 ```    
 quit
 ```
+
 
 ## <a name="next-steps"></a>后续步骤
 有关 MySQL 的详细信息，请参阅 [MySQL 文档](https://dev.mysql.com/doc)。

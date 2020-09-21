@@ -3,15 +3,18 @@ title: 在 C# 中创建第一个 Service Fabric 应用程序
 description: 介绍如何创建包含无状态服务和有状态服务的 Azure Service Fabric 应用程序。
 ms.topic: conceptual
 origin.date: 07/10/2019
-ms.date: 02/24/2020
+author: rockboyfor
+ms.date: 09/14/2020
+ms.testscope: no
+ms.testdate: ''
 ms.author: v-yeche
-ms.custom: sfrev
-ms.openlocfilehash: 0ef9454ac247bc47c1e9a7c3c634409a680c24eb
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: sfrev, devx-track-csharp
+ms.openlocfilehash: 4793424acee99064b0ba2a366e1061149b6d5fd2
+ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "77541065"
+ms.lasthandoff: 09/10/2020
+ms.locfileid: "89655368"
 ---
 # <a name="get-started-with-reliable-services"></a>Reliable Services 入门
 
@@ -36,11 +39,11 @@ Azure Service Fabric 应用程序包含一个或多个运行代码的服务。 �
 
 以管理员身份启动 Visual Studio 2017 或 Visual Studio 2019，并新建一个名为 HelloWorld  的 Service Fabric 应用程序项目：
 
-![使用“新建项目”对话框新建 Service Fabric 应用程序](media/service-fabric-reliable-services-quick-start/hello-stateless-NewProject.png)
+:::image type="content" source="media/service-fabric-reliable-services-quick-start/hello-stateless-NewProject.png" alt-text="使用“新建项目”对话框新建 Service Fabric 应用程序":::
 
 然后，使用 **.NET Core 2.0** 创建一个名为 *HelloWorldStateless* 的无状态服务项目：
 
-![在第二个对话框中，创建无状态服务项目](media/service-fabric-reliable-services-quick-start/hello-stateless-NewProject2.png)
+:::image type="content" source="media/service-fabric-reliable-services-quick-start/hello-stateless-NewProject2.png" alt-text="在第二个对话框中，创建无状态服务项目":::
 
 解决方案现在包含两个项目：
 
@@ -53,21 +56,21 @@ Azure Service Fabric 应用程序包含一个或多个运行代码的服务。 �
 
 * 名为 *RunAsync* 的开放式入口点方法，可在其中开始执行任何工作负荷，包括长时间运行的计算工作负荷。
 
-    ```csharp
-    protected override async Task RunAsync(CancellationToken cancellationToken)
-    {
-        ...
-    }
-    ```
+```csharp
+protected override async Task RunAsync(CancellationToken cancellationToken)
+{
+    ...
+}
+```
 
 * 一个通信入口点，可在其中插入所选的通信堆栈，例如 ASP.NET Core。 这就是可以开始接收来自用户和其他服务请求的位置。
 
-    ```csharp
-    protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
-    {
-        ...
-    }
-    ```
+```csharp
+protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
+{
+    ...
+}
+```
 
 在本教程中，我们将重点放在 `RunAsync()` 入口点方法上。 这是可以立即开始运行代码的位置。
 项目模板包括 `RunAsync()` 的示例实现，该实现递增滚动计数。
@@ -119,11 +122,11 @@ Service Fabric 引入了一种新的有状态服务。 有状态服务能够可�
 
 在同一个 *HelloWorld* 应用程序中，通过右键单击应用程序项目中的服务引用并选择“**添加”->“新建 Service Fabric 服务**”，可以添加一个新的服务。
 
-![向 Service Fabric 应用程序添加服务](media/service-fabric-reliable-services-quick-start/hello-stateful-NewService.png)
+:::image type="content" source="media/service-fabric-reliable-services-quick-start/hello-stateful-NewService.png" alt-text="向 Service Fabric 应用程序添加服务":::
 
 选择“.NET Core 2.0”->“有状态服务”  并将其命名为 HelloWorldStateful  。 单击“确定”。 
 
-![使用“新建项目”对话框新建 Service Fabric 有状态服务](media/service-fabric-reliable-services-quick-start/hello-stateful-NewProject.png)
+:::image type="content" source="media/service-fabric-reliable-services-quick-start/hello-stateful-NewProject.png" alt-text="使用“新建项目”对话框新建 Service Fabric 有状态服务":::
 
 应用程序现在应该有两个服务：无状态服务 *HelloWorldStateless* 和有状态服务 *HelloWorldStateful*。
 
@@ -175,7 +178,7 @@ var myDictionary = await this.StateManager.GetOrAddAsync<IReliableDictionary<str
 
 可靠集合可以存储任何 .NET 类型（包括自定义类型），但需要注意以下几点：
 
-* Service Fabric 通过跨节点*复制*状态，使状态具备高可用性；而可靠集合会将数据存储到每个副本上的本地磁盘中。 这意味着可靠集合中存储的所有内容都必须*可序列化*。 默认情况下，可靠集合使用 [DataContract](https://msdn.microsoft.com/library/system.runtime.serialization.datacontractattribute%28v=vs.110%29.aspx) 进行序列化，因此，在使用默认序列化程序时，务必确保类型[受数据协定序列化程序的支持](https://msdn.microsoft.com/library/ms731923%28v=vs.110%29.aspx)。
+* Service Fabric 通过跨节点*复制*状态，使状态具备高可用性；而可靠集合会将数据存储到每个副本上的本地磁盘中。 这意味着可靠集合中存储的所有内容都必须*可序列化*。 默认情况下，可靠集合使用 [DataContract](https://docs.microsoft.com/dotnet/api/system.runtime.serialization.datacontractattribute?view=netcore-3.1) 进行序列化，因此，在使用默认序列化程序时，务必确保类型[受数据协定序列化程序的支持](https://docs.microsoft.com/dotnet/framework/wcf/feature-details/types-supported-by-the-data-contract-serializer?view=azure-dotnet)。
 * 在可靠集合上提交事务时，将复制对象以实现高可用性。 存储在可靠集合中的对象保留在服务的本地内存中。 这意味着你有对象的本地引用。
 
     切勿转变这些对象的本地实例而不在事务中的可靠集合上执行更新操作。 这是因为对对象的本地实例的更改将不会自动复制。 必须将对象重新插回字典中，或在字典上使用其中一个*更新*方法。
@@ -209,12 +212,12 @@ using (ITransaction tx = this.StateManager.CreateTransaction())
 > 
 > 
 
-![在 Visual Studio 中查看诊断事件](media/service-fabric-reliable-services-quick-start/hello-stateful-Output.png)
+:::image type="content" source="media/service-fabric-reliable-services-quick-start/hello-stateful-Output.png" alt-text="在 Visual Studio 中查看诊断事件":::
 
 ## <a name="next-steps"></a>后续步骤
 [在 Visual Studio 中调试 Service Fabric 应用程序](service-fabric-debugging-your-application.md)
 
-[入门：Service Fabric Web API 服务与 OWIN 自托管](service-fabric-reliable-services-communication-webapi.md)
+[入门：Service Fabric Web API 服务与 OWIN 自托管](./service-fabric-reliable-services-communication-aspnetcore.md)
 
 [深入了解 Reliable Collections](service-fabric-reliable-services-reliable-collections.md)
 
@@ -222,6 +225,6 @@ using (ITransaction tx = this.StateManager.CreateTransaction())
 
 [应用程序升级](service-fabric-application-upgrade.md)
 
-[Reliable Services 的开发人员参考](https://msdn.microsoft.com/library/azure/dn706529.aspx)
+[Reliable Services 的开发人员参考](https://docs.microsoft.com/previous-versions/azure/dn706529(v=azure.100))
 
-<!-- Update_Description: update meta properties, wording update -->
+<!-- Update_Description: update meta properties, wording update, update link -->
