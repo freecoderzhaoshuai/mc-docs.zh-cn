@@ -6,15 +6,15 @@ author: WenJason
 ms.service: data-factory
 ms.topic: include
 origin.date: 12/13/2019
-ms.date: 06/29/2020
+ms.date: 07/27/2020
 ms.author: v-jay
 ms.custom: include file
-ms.openlocfilehash: ffc3533a2ae6e8a14068f2c7826da74b517bdc76
-ms.sourcegitcommit: f5484e21fa7c95305af535d5a9722b5ab416683f
+ms.openlocfilehash: 09395a171a8501cf5a4b240b936dd75cf920484b
+ms.sourcegitcommit: 0eaa82cf74477d26d06bdd8fb6e715e6ed1339c4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/24/2020
-ms.locfileid: "85323363"
+ms.lasthandoff: 07/23/2020
+ms.locfileid: "90523782"
 ---
 | Category | 数据存储 |
 |:--- |:--- |
@@ -27,7 +27,7 @@ ms.locfileid: "85323363"
 | &nbsp; |[Azure Database for PostgreSQL](../articles/data-factory/connector-azure-database-for-postgresql.md) |
 | &nbsp; |[Azure 文件](../articles/data-factory/connector-azure-file-storage.md) |
 | &nbsp; |[Azure SQL 数据库](../articles/data-factory/connector-azure-sql-database.md) |
-| &nbsp; |[Azure SQL 托管实例](../articles/data-factory/connector-azure-sql-database-managed-instance.md) |
+| &nbsp; |[Azure SQL 托管实例](../articles/azure-sql/managed-instance/sql-managed-instance-paas-overview.md) |
 | &nbsp; |[Azure Synapse Analytics（以前称为 SQL 数据仓库）](../articles/data-factory/connector-azure-sql-data-warehouse.md) |
 | &nbsp; |[Azure 表存储](../articles/data-factory/connector-azure-table-storage.md) |
 | **Database** |[Amazon Redshift](../articles/data-factory/connector-amazon-redshift.md) |

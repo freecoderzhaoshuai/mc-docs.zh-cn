@@ -5,15 +5,15 @@ description: 了解如何使用 Azure Powershell 创建将内部 Web 流量重�
 services: application-gateway
 author: vhorne
 ms.service: application-gateway
-ms.topic: article
-ms.date: 06/24/2020
+ms.topic: how-to
+ms.date: 09/14/2020
 ms.author: v-junlch
-ms.openlocfilehash: 781381e6dd58fd121b99854412ed3d27045b8ea7
-ms.sourcegitcommit: 3a8a7d65d0791cdb6695fe6c2222a1971a19f745
+ms.openlocfilehash: 50d4356bb9aa7e8823321d67037c4cfdda3a809b
+ms.sourcegitcommit: e1b6e7fdff6829040c4da5d36457332de33e0c59
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2020
-ms.locfileid: "85516637"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721175"
 ---
 # <a name="create-an-application-gateway-with-internal-redirection-using-azure-powershell"></a>使用 Azure PowerShell 创建支持内部重定向的应用程序网关
 
@@ -21,12 +21,11 @@ ms.locfileid: "85516637"
 
 在本文中，学习如何：
 
-> [!div class="checklist"]
-> * 设置网络
-> * 创建应用程序网关
-> * 添加侦听器和重定向规则
-> * 使用后端池创建虚拟机规模集
-> * 在域中创建 CNAME 记录
+* 设置网络
+* 创建应用程序网关
+* 添加侦听器和重定向规则
+* 使用后端池创建虚拟机规模集
+* 在域中创建 CNAME 记录
 
 如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
 

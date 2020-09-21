@@ -1,16 +1,16 @@
 ---
 title: 模式：在策略定义中使用标记
 description: 此 Azure Policy 模式提供有关如何在策略定义中添加参数化标记或从资源组继承标记的示例。
-origin.date: 05/20/2020
-ms.date: 08/06/2020
+origin.date: 08/17/2020
+ms.date: 09/15/2020
 ms.author: v-tawe
 ms.topic: sample
-ms.openlocfilehash: 0acaeb1c3b139519816d2f19e63dbfeac6cf8340
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: ba1efc03885b7453cc411f9860eb5f7201817df7
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87919227"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523996"
 ---
 # <a name="azure-policy-pattern-tags"></a>Azure Policy 模式：标记
 

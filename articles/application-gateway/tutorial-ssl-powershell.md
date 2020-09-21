@@ -5,16 +5,16 @@ description: 了解如何使用 Azure PowerShell 创建应用程序网关并为 
 services: application-gateway
 author: vhorne
 ms.service: application-gateway
-ms.topic: article
-ms.date: 04/26/2020
+ms.topic: how-to
+ms.date: 09/15/2020
 ms.author: v-junlch
-ms.custom: mvc
-ms.openlocfilehash: fd389cca27614b9fea9859cff2d5995002ce72bc
-ms.sourcegitcommit: e3512c5c2bbe61704d5c8cbba74efd56bfe91927
+ms.custom: mvc, devx-track-azurepowershell
+ms.openlocfilehash: cd180c732b7496889d127350342b75ebba2e640a
+ms.sourcegitcommit: e1b6e7fdff6829040c4da5d36457332de33e0c59
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82267686"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721082"
 ---
 # <a name="create-an-application-gateway-with-tls-termination-using-azure-powershell"></a>通过 Azure PowerShell 使用 TLS 终端创建应用程序网关
 
@@ -22,11 +22,10 @@ ms.locfileid: "82267686"
 
 在本文中，学习如何：
 
-> [!div class="checklist"]
-> * 创建自签名证书
-> * 设置网络
-> * 使用证书创建应用程序网关
-> * 使用默认后端池创建虚拟机规模集
+* 创建自签名证书
+* 设置网络
+* 使用证书创建应用程序网关
+* 使用默认后端池创建虚拟机规模集
 
 如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
 

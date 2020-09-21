@@ -1,34 +1,36 @@
 ---
 title: 如何从 Windows 组策略基线创建来宾配置策略定义
 description: 了解如何将 Windows Server 2019 安全基线中的组策略转换为策略定义。
-origin.date: 06/05/2020
-ms.date: 08/06/2020
+origin.date: 08/17/2020
+ms.date: 09/15/2020
 ms.author: v-tawe
 ms.topic: how-to
-ms.openlocfilehash: 6076c32a24c11893708b9d1969500fabca219508
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: a5b30c7896653ab142810fc66dced488424356bc
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87919215"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678486"
 ---
 # <a name="how-to-create-guest-configuration-policy-definitions-from-group-policy-baseline-for-windows"></a>如何从 Windows 组策略基线创建来宾配置策略定义
 
-创建自定义策略定义之前，最好参阅 [Azure Policy 来宾配置](../concepts/guest-configuration.md)中的概念性概述信息。 若要了解如何创建适用于 Linux 的自定义来宾配置策略定义，请参阅[如何创建适用于 Linux 的来宾配置策略](./guest-configuration-create-linux.md)。 若要了解如何创建适用于 Windows 的自定义来宾配置策略定义，请参阅[如何创建适用于 Windows 的来宾配置策略](./guest-configuration-create.md)。 
+创建自定义策略定义之前，最好参阅 [Azure Policy 来宾配置](../concepts/guest-configuration.md)中的概念性概述信息。 若要了解如何创建适用于 Linux 的自定义来宾配置策略定义，请参阅[如何创建适用于 Linux 的来宾配置策略](./guest-configuration-create-linux.md)。 若要了解如何创建适用于 Windows 的自定义来宾配置策略定义，请参阅[如何创建适用于 Windows 的来宾配置策略](./guest-configuration-create.md)。
 
-审核 Windows 时，来宾配置使用 [Desired State Configuration](https://docs.microsoft.com/powershell/scripting/dsc/overview/overview) (DSC) 资源模块创建配置文件。 DSC 配置定义了计算机应处于的条件。 如果配置评估为“不合规”，则会触发策略效果 auditIfNotExists。 [Azure Policy 来宾配置](../concepts/guest-configuration.md)仅审核计算机内部的设置。
+审核 Windows 时，来宾配置使用 [Desired State Configuration](https://docs.microsoft.com/powershell/scripting/dsc/overview/overview) (DSC) 资源模块创建配置文件。 DSC 配置定义了计算机应处于的条件。 如果配置评估为“不合规”，则会触发策略效果 auditIfNotExists。
+[Azure Policy 来宾配置](../concepts/guest-configuration.md)仅审核计算机内部的设置。
 
 > [!IMPORTANT]
 > 具有来宾配置的自定义策略定义是一项预览功能。
 >
 > 必须有来宾配置扩展，才能在 Azure 虚拟机中执行审核。
 
-<!-- > To deploy the extension at scale across all Windows machines, assign the following policy definitions:
->   - [Deploy prerequisites to enable Guest Configuration Policy on Windows VMs.](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F0ecd903d-91e7-4726-83d3-a229d7f2e293) -->
+<!-- > To deploy the extension at scale across all Windows machines, assign the following policy
+> definitions:
+> - [Deploy prerequisites to enable Guest Configuration Policy on Windows VMs.](https://portal.azure.cn/#blade/Microsoft_Azure_Policy/PolicyDetailBlade/definitionId/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2F0ecd903d-91e7-4726-83d3-a229d7f2e293) -->
 
-DSC 社区已发布 [BaselineManagement 模块](https://github.com/microsoft/BaselineManagement)，以将导出的组策略模板转换为 DSC 格式。 BaselineManagement 模块与 GuestConfiguration cmdlet 一起为 Windows 组策略内容创建 Azure Policy 来宾配置包。 有关使用 BaselineManagement 模块的详细信息，请参阅文章[快速入门：将组策略转换为 DSC](https://docs.microsoft.com/powershell/scripting/dsc/quickstarts/gpo-quickstart)。 
+DSC 社区已发布 [BaselineManagement 模块](https://github.com/microsoft/BaselineManagement)，以将导出的组策略模板转换为 DSC 格式。 BaselineManagement 模块与 GuestConfiguration cmdlet 一起为 Windows 组策略内容创建 Azure Policy 来宾配置包。 有关使用 BaselineManagement 模块的详细信息，请参阅文章[快速入门：将组策略转换为 DSC](https://docs.microsoft.com/powershell/scripting/dsc/quickstarts/gpo-quickstart)。
 
-在本指南中，我们将逐步介绍从组策略对象 (GPO) 创建 Azure Policy 来宾配置包的过程。 虽然本演练概述了 Windows Server 2019 安全基线的转换，但该过程也可以应用于其他 GPO。  
+在本指南中，我们将逐步介绍从组策略对象 (GPO) 创建 Azure Policy 来宾配置包的过程。 虽然本演练概述了 Windows Server 2019 安全基线的转换，但该过程也可以应用于其他 GPO。
 
 ## <a name="download-windows-server-2019-security-baseline-and-install-related-powershell-modules"></a>下载 Windows Server 2019 安全基线并安装相关的 PowerShell 模块
 
@@ -65,7 +67,7 @@ DSC 社区已发布 [BaselineManagement 模块](https://github.com/microsoft/Bas
 
 ## <a name="convert-from-group-policy-to-azure-policy-guest-configuration"></a>从组策略转换为 Azure Policy 来宾配置
 
-接下来，使用来宾配置和基线管理模块，将下载的 Server 2019 基线转换为来宾配置包。 
+接下来，使用来宾配置和基线管理模块，将下载的 Server 2019 基线转换为来宾配置包。
 
 1. 使用基线管理模块将组策略转换为 Desired State Configuration。
 
@@ -206,5 +208,5 @@ DSC 社区已发布 [BaselineManagement 模块](https://github.com/microsoft/Bas
 ## <a name="next-steps"></a>后续步骤
 
 - 了解如何使用[来宾配置](../concepts/guest-configuration.md)审核 VM。
-- 了解如何[以编程方式创建策略](programmatically-create.md)。
-- 了解如何[获取符合性数据](get-compliance-data.md)。
+- 了解如何[以编程方式创建策略](./programmatically-create.md)。
+- 了解如何[获取符合性数据](./get-compliance-data.md)。

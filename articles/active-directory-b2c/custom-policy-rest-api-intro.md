@@ -8,21 +8,21 @@ manager: celestedg
 ms.service: active-directory
 ms.workload: identity
 ms.topic: how-to
-ms.date: 07/27/2020
+ms.date: 09/21/2020
 ms.author: v-junlch
 ms.subservice: B2C
-ms.openlocfilehash: 3a97794ead48b6111038d7007ff6dca8ef4d44e7
-ms.sourcegitcommit: dd2bc914f6fc2309f122b1c7109e258ceaa7c868
+ms.openlocfilehash: d6b2d3c40c5fcacfc2414a213d53364520345e21
+ms.sourcegitcommit: 2944f818f2849202724a237555dce3a2fcb47a49
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87297645"
+ms.lasthandoff: 09/21/2020
+ms.locfileid: "90828780"
 ---
 # <a name="integrate-rest-api-claims-exchanges-in-your-azure-ad-b2c-custom-policy"></a>在 Azure AD B2C 自定义策略中集成 REST API 声明交换
 
 [!INCLUDE [active-directory-b2c-advanced-audience-warning](../../includes/active-directory-b2c-advanced-audience-warning.md)]
 
-构成 Azure Active Directory B2C (Azure AD B2C) 的基础的 Identity Experience Framework 可在用户旅程中与 RESTful API 相集成。 本文介绍如何使用 `RESTful technical profile` 创建与 RESTful 服务交互的用户旅程。
+构成 Azure Active Directory B2C (Azure AD B2C) 的基础的 Identity Experience Framework 可在用户旅程中与 RESTful API 相集成。 本文介绍如何使用 [RESTful 技术配置文件](restful-technical-profile.md)创建与 RESTful 服务交互的用户旅程。
 
 使用 Azure AD B2C 可以通过调用 RESTful 服务，将自己的业务逻辑添加到用户旅程中。 Identity Experience Framework 可以在 RESTful 服务中发送和接收数据，以交换声明。 例如，可以：
 
@@ -125,9 +125,9 @@ RESTful 声明提供程序分析的输出声明始终预期分析平面 JSON 正
 
 ```xml
 <OutputClaims>
-  <OutputClaim ClaimTypeReferenceId="displayName" PartnerClaimType="contacts.0.person.name" />
-  <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="contacts.0.person.emails.0.email" />
-  <OutputClaim ClaimTypeReferenceId="loyaltyNumber" PartnerClaimType="contacts.0.person.loyaltyNumber" />
+  <OutputClaim ClaimTypeReferenceId="displayName" PartnerClaimType="contacts[0].person.name" />
+  <OutputClaim ClaimTypeReferenceId="email" PartnerClaimType="contacts[0].person.emails[0].email" />
+  <OutputClaim ClaimTypeReferenceId="loyaltyNumber" PartnerClaimType="contacts[0].person.loyaltyNumber" />
 </OutputClaims>
 ```
 
@@ -135,7 +135,7 @@ RESTful 声明提供程序分析的输出声明始终预期分析平面 JSON 正
 
 必须保护 REST API 终结点，以便只有经过身份验证的客户端才能与其通信。 REST API 必须使用 HTTPS 终结点。 将 AuthenticationType 元数据设置为以下身份验证方法之一：
 
-- “客户端证书”使用客户端证书身份验证来限制访问。 只有具有适当证书的服务才能访问你的 API。 将客户端证书存储在 Azure AD B2C 策略密钥中。 
+- “客户端证书”使用客户端证书身份验证来限制访问。 只有具有适当证书的服务才能访问你的 API。 将客户端证书存储在 Azure AD B2C 策略密钥中。
 - “持有者”使用客户端 OAuth2 访问令牌来限制访问。 访问令牌存储在 Azure AD B2C 策略密钥中。 
 
 ## <a name="rest-api-platform"></a>REST API 平台

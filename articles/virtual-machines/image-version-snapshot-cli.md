@@ -12,12 +12,12 @@ ms.testscope: yes
 ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.reviewer: akjosh
-ms.openlocfilehash: 52f048037ab89da3f2910d8aaec874fc4c5f3d72
-ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
+ms.openlocfilehash: 90c27b359718580f2ec5cc4bc13768d1a1293cea
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89046525"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90524002"
 ---
 <!--Verified successfully from partial-->
 # <a name="create-an-image-from-a-vhd-or-snapshot-in-a-shared-image-gallery-using-the-azure-cli"></a>使用 Azure CLI 从共享映像库中的 VHD 或快照创建映像
@@ -127,7 +127,7 @@ az sig image-version create \
 >
 
 <!--Not Availale on  by adding `--storage-account-type standard_zrs` when you create the image version.-->
-<!--Not Available on , or [Zone Redundant Storage](/storage/common/storage-redundancy-zrs) by adding `-StorageAccountType Standard_ZRS`-->
+<!--Not Available on , or [Zone Redundant Storage](/storage/common/storage-redundancy-zrs)-->
 
 ## <a name="next-steps"></a>后续步骤
 

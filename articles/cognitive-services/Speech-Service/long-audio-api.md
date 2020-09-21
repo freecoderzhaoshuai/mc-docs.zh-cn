@@ -11,12 +11,12 @@ ms.topic: conceptual
 origin.date: 08/11/2020
 ms.date: 09/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: ec625f3113efa5bd5a08edafdc68700966f17fd8
-ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
+ms.openlocfilehash: 01006a2ceb6a901e8c52a749a1a5038758b2c69f
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/02/2020
-ms.locfileid: "89317596"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678494"
 ---
 # <a name="long-audio-api-preview"></a>长音频 API（预览）
 
@@ -97,7 +97,7 @@ if args.voices:
 使用命令 `python voice_synthesis_client.py --voices -key <your_key> -region <region>` 运行该脚本，并替换以下值：
 
 * 将 `<your_key>` 替换为语音服务订阅密钥。 [Azure 门户](https://aka.ms/azureportal)中资源的“概述”选项卡内提供了此信息。
-* 将 `<region>` 替换为创建语音资源的区域（例如：`eastus` 或 `westus`）。 [Azure 门户](https://aka.ms/azureportal)中资源的“概述”选项卡内提供了此信息。
+* 将 `<region>` 替换为创建语音资源的区域（例如：`chinaeast` 或 `chinanorth`）。 [Azure 门户](https://aka.ms/azureportal)中资源的“概述”选项卡内提供了此信息。
 
 你将看到如下所示的输出：
 
@@ -179,7 +179,7 @@ if args.submit:
 使用命令 `python voice_synthesis_client.py --submit -key <your_key> -region <region> -file <input> -locale <locale> -voiceId <voice_guid>` 运行该脚本，并替换以下值：
 
 * 将 `<your_key>` 替换为语音服务订阅密钥。 [Azure 门户](https://aka.ms/azureportal)中资源的“概述”选项卡内提供了此信息。
-* 将 `<region>` 替换为创建语音资源的区域（例如：`eastus` 或 `westus`）。 [Azure 门户](https://aka.ms/azureportal)中资源的“概述”选项卡内提供了此信息。
+* 将 `<region>` 替换为创建语音资源的区域（例如：`chinaeast` 或 `chinanorth`）。 [Azure 门户](https://aka.ms/azureportal)中资源的“概述”选项卡内提供了此信息。
 * 将 `<input>` 替换为准备进行文本转语音的文本文件的路径。
 * 将 `<locale>` 替换为所需的输出区域设置。 有关详细信息，请参阅[语言支持](language-support.md#neural-voices)。
 * 将 `<voice_guid>` 替换为所需的输出语音。 使用之前调用 `/voicesynthesis/voices` 终结点所返回的其中一个声音。

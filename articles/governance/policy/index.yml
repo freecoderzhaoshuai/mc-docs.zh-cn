@@ -10,13 +10,13 @@ metadata:
   author: DCtheGeek
   ms.author: v-tawe
   origin.date: 08/10/2020
-  ms.date: 08/27/2020
-  ms.openlocfilehash: 032b179b51440e152ac00d0c29cf844ed3c04ca9
-  ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
+  ms.date: 09/15/2020
+  ms.openlocfilehash: da8dd68bc2ee4ba7fee70611089b645d2866b61b
+  ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 08/27/2020
-  ms.locfileid: "88951227"
+  ms.lasthandoff: 09/15/2020
+  ms.locfileid: "90523994"
 landingContent:
 - title: 关于 Azure Policy
   linkLists:

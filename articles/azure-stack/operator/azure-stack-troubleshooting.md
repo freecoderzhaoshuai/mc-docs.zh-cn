@@ -4,17 +4,18 @@ titleSuffix: Azure Stack
 description: 了解如何排查 Azure Stack Hub 的问题，包括 VM、存储和应用服务的问题。
 author: WenJason
 ms.topic: article
+ms.service: azure-stack
 origin.date: 07/21/2019
 ms.date: 08/31/2020
 ms.author: v-jay
 ms.reviewer: prchint
 ms.lastreviewed: 07/21/2020
-ms.openlocfilehash: 80b4b41611ca518bbf69b4a053577d85af5b944f
-ms.sourcegitcommit: 4e2d781466e54e228fd1dbb3c0b80a1564c2bf7b
+ms.openlocfilehash: 143eb338f7dcdf9480fd29d4af312981253584fd
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/26/2020
-ms.locfileid: "88867830"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523844"
 ---
 # <a name="troubleshoot-issues-in-azure-stack-hub"></a>排查 Azure Stack Hub 中的问题
 
@@ -107,7 +108,7 @@ Azure Stack Hub 中的用户可以是订阅、资源组或服务的每个实例�
 1. 登录到恢复 VM，并运行以下命令：
 
    ```
-   sudo su �
+   sudo su -
    mkdir /tempmount
    fdisk -l
    mount /dev/sdc2 /tempmount /*adjust /dev/sdc2 as necessary*/

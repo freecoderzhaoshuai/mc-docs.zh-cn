@@ -8,16 +8,16 @@ tags: azure-resource-manager
 ms.service: key-vault
 ms.subservice: secrets
 ms.topic: quickstart
-ms.custom: mvc, seo-javascript-september2019, seo-javascript-october2019
+ms.custom: mvc, seo-javascript-september2019, seo-javascript-october2019, devx-track-azurecli
 origin.date: 09/03/2019
-ms.date: 04/20/2020
+ms.date: 09/15/2020
 ms.author: v-tawe
-ms.openlocfilehash: eb7fdb9dd624eca6005475af9d9782c33401e410
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.openlocfilehash: 33b6d9fd44db1af3c4f99f8f95d0a0ee90250a5f
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588952"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678334"
 ---
 # <a name="quickstart-set-and-retrieve-a-secret-from-azure-key-vault-using-azure-cli"></a>快速入门：使用 Azure CLI 在 Azure Key Vault 中设置和检索机密
 

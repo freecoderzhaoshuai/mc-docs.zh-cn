@@ -5,16 +5,15 @@ description: 了解如何使用 Azure PowerShell 在应用程序网关上使用 
 services: web-application-firewall
 author: vhorne
 ms.service: web-application-firewall
-origin.date: 11/14/2019
-ms.date: 11/25/2019
+ms.date: 09/15/2020
 ms.author: v-junlch
-ms.topic: conceptual
-ms.openlocfilehash: 8ee97a50bc31326fd01939029c309bb622791ae4
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.topic: how-to
+ms.openlocfilehash: 469b5cb2e38c7c6896746e04353db1f4ee09b9a6
+ms.sourcegitcommit: e1b6e7fdff6829040c4da5d36457332de33e0c59
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74461700"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721164"
 ---
 # <a name="enable-web-application-firewall-using-azure-powershell"></a>使用 Azure PowerShell 启用 Web 应用程序防火墙
 
@@ -22,11 +21,10 @@ ms.locfileid: "74461700"
 
 在本文中，学习如何：
 
-> [!div class="checklist"]
-> * 设置网络
-> * 创建启用 WAF 的应用程序网关
-> * 创建虚拟机规模集
-> * 创建存储帐户和配置诊断
+* 设置网络
+* 创建启用 WAF 的应用程序网关
+* 创建虚拟机规模集
+* 创建存储帐户和配置诊断
 
 ![Web 应用程序防火墙示例](../media/tutorial-restrict-web-traffic-powershell/scenario-waf.png)
 
@@ -43,7 +41,7 @@ ms.locfileid: "74461700"
 资源组是在其中部署和管理 Azure 资源的逻辑容器。 使用 [New-AzResourceGroup](https://docs.microsoft.com/powershell/module/az.resources/new-azresourcegroup) 创建 Azure 资源组。  
 
 ```azurepowershell
-New-AzResourceGroup -Name myResourceGroupAG -Location chinanorth
+New-AzResourceGroup -Name myResourceGroupAG -Location chinanorth2
 ```
 
 ## <a name="create-network-resources"></a>创建网络资源 
@@ -61,14 +59,14 @@ $agSubnetConfig = New-AzVirtualNetworkSubnetConfig `
 
 $vnet = New-AzVirtualNetwork `
   -ResourceGroupName myResourceGroupAG `
-  -Location chinanorth `
+  -Location chinanorth2 `
   -Name myVNet `
   -AddressPrefix 10.0.0.0/16 `
   -Subnet $backendSubnetConfig, $agSubnetConfig
 
 $pip = New-AzPublicIpAddress `
   -ResourceGroupName myResourceGroupAG `
-  -Location chinanorth `
+  -Location chinanorth2 `
   -Name myAGPublicIPAddress `
   -AllocationMethod Static `
   -Sku Standard
@@ -160,7 +158,7 @@ $wafPolicy = New-AzApplicationGatewayFirewallPolicy -Name wafpolicyNew -Resource
 $appgw = New-AzApplicationGateway `
   -Name myAppGateway `
   -ResourceGroupName myResourceGroupAG `
-  -Location chinanorth `
+  -Location chinanorth2 `
   -BackendAddressPools $defaultPool `
   -BackendHttpSettingsCollection $poolSettings `
   -FrontendIpConfigurations $fipconfig `
@@ -195,7 +193,7 @@ $ipConfig = New-AzVmssIpConfig `
   -ApplicationGatewayBackendAddressPoolsId $backendPool.Id
 
 $vmssConfig = New-AzVmssConfig `
-  -Location chinanorth `
+  -Location chinanorth2 `
   -SkuCapacity 2 `
   -SkuName Standard_DS2 `
   -UpgradePolicyMode Automatic
@@ -257,7 +255,7 @@ Update-AzVmss `
 $storageAccount = New-AzStorageAccount `
   -ResourceGroupName myResourceGroupAG `
   -Name myagstore1 `
-  -Location chinanorth `
+  -Location chinanorth2 `
   -SkuName "Standard_LRS"
 ```
 

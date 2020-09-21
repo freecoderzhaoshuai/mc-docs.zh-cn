@@ -4,17 +4,16 @@ description: 本文介绍如何使用 Azure CLI 基于 URL 将 Web 流量路由�
 services: application-gateway
 author: vhorne
 ms.service: application-gateway
-ms.topic: article
-origin.date: 08/01/2019
-ms.date: 09/10/2019
+ms.topic: how-to
+ms.date: 09/15/2020
 ms.author: v-junlch
-ms.custom: mvc
-ms.openlocfilehash: df4c7baf9c0a8562ca8c51c77c692a1dd5ef9f8e
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.custom: mvc, devx-track-azurecli
+ms.openlocfilehash: b1ed89ebcea1171d223a2fd3dacc733b1870d9a5
+ms.sourcegitcommit: e1b6e7fdff6829040c4da5d36457332de33e0c59
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "70857208"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721078"
 ---
 # <a name="route-web-traffic-based-on-the-url-using-the-azure-cli"></a>使用 Azure CLI 基于 URL 对 Web 流量进行路由
 
@@ -24,13 +23,12 @@ ms.locfileid: "70857208"
 
 在本文中，学习如何：
 
-> [!div class="checklist"]
-> * 为所需的网络资源创建资源组
-> * 创建网络资源
-> * 为来自应用程序的流量创建应用程序网关
-> * 为不同类型的流量指定服务器池和路由规则
-> * 为每个池创建一个规模集，使池可以自动缩放
-> * 运行测试，以便验证不同类型的流量是否进入正确的池
+* 为所需的网络资源创建资源组
+* 创建网络资源
+* 为来自应用程序的流量创建应用程序网关
+* 为不同类型的流量指定服务器池和路由规则
+* 为每个池创建一个规模集，使池可以自动缩放
+* 运行测试，以便验证不同类型的流量是否进入正确的池
 
 如果你愿意，可以使用 [Azure PowerShell](tutorial-url-route-powershell.md) 或 [Azure 门户](create-url-route-portal.md)完成本过程中的步骤。
 
@@ -42,10 +40,10 @@ ms.locfileid: "70857208"
 
 资源组是在其中部署和管理 Azure 资源的逻辑容器。 使用 `az group create` 创建资源组。
 
-以下示例在“chinanorth”位置创建名为“myResourceGroupAG”的资源组。
+以下示例在“chinanorth2”  位置创建名为“myResourceGroupAG”  的资源组。
 
 ```azurecli
-az group create --name myResourceGroupAG --location chinanorth
+az group create --name myResourceGroupAG --location chinanorth2
 ```
 
 ## <a name="create-network-resources"></a>创建网络资源
@@ -53,24 +51,24 @@ az group create --name myResourceGroupAG --location chinanorth
 使用 `az network vnet create` 创建名为 *myVNet* 的虚拟网络和名为 *myAGSubnet* 的子网。 然后，使用 `az network vnet subnet create` 添加后端服务器所需的名为 *myBackendSubnet* 的子网。 使用 `az network public-ip create` 创建名为 *myAGPublicIPAddress* 的公共 IP 地址。
 
 ```azurecli
-az network vnet create `
-  --name myVNet `
-  --resource-group myResourceGroupAG `
-  --location chinanorth `
-  --address-prefix 10.0.0.0/16 `
-  --subnet-name myAGSubnet `
+az network vnet create \
+  --name myVNet \
+  --resource-group myResourceGroupAG \
+  --location chinanorth2 \
+  --address-prefix 10.0.0.0/16 \
+  --subnet-name myAGSubnet \
   --subnet-prefix 10.0.1.0/24
 
-az network vnet subnet create `
-  --name myBackendSubnet `
-  --resource-group myResourceGroupAG `
-  --vnet-name myVNet `
+az network vnet subnet create \
+  --name myBackendSubnet \
+  --resource-group myResourceGroupAG \
+  --vnet-name myVNet \
   --address-prefix 10.0.2.0/24
 
-az network public-ip create `
-  --resource-group myResourceGroupAG `
-  --name myAGPublicIPAddress `
-  --allocation-method Static `
+az network public-ip create \
+  --resource-group myResourceGroupAG \
+  --name myAGPublicIPAddress \
+  --allocation-method Static \
   --sku Standard
 ```
 
@@ -79,18 +77,18 @@ az network public-ip create `
 使用 `az network application-gateway create` 创建名为 *myAppGateway* 的应用程序网关。 使用 Azure CLI 创建应用程序网关时，请指定配置信息，例如容量、sku 和 HTTP 设置。 将应用程序网关分配给 myAGSubnet  和 myAGPublicIPAddress  。
 
 ```azurecli
-az network application-gateway create `
-  --name myAppGateway `
-  --location chinanorth `
-  --resource-group myResourceGroupAG `
-  --vnet-name myVNet `
-  --subnet myAGsubnet `
-  --capacity 2 `
-  --sku Standard_v2 `
-  --http-settings-cookie-based-affinity Disabled `
-  --frontend-port 80 `
-  --http-settings-port 80 `
-  --http-settings-protocol Http `
+az network application-gateway create \
+  --name myAppGateway \
+  --location chinanorth2 \
+  --resource-group myResourceGroupAG \
+  --vnet-name myVNet \
+  --subnet myAGsubnet \
+  --capacity 2 \
+  --sku Standard_v2 \
+  --http-settings-cookie-based-affinity Disabled \
+  --frontend-port 80 \
+  --http-settings-port 80 \
+  --http-settings-protocol Http \
   --public-ip-address myAGPublicIPAddress
 ```
 
@@ -110,20 +108,20 @@ az network application-gateway create `
 使用 `az network application-gateway address-pool create` 向应用程序网关添加名为 *imagesBackendPool* 和 *videoBackendPool* 的后端池。 使用 `az network application-gateway frontend-port create` 添加池的前端端口。
 
 ```azurecli
-az network application-gateway address-pool create `
-  --gateway-name myAppGateway `
-  --resource-group myResourceGroupAG `
+az network application-gateway address-pool create \
+  --gateway-name myAppGateway \
+  --resource-group myResourceGroupAG \
   --name imagesBackendPool
 
-az network application-gateway address-pool create `
-  --gateway-name myAppGateway `
-  --resource-group myResourceGroupAG `
+az network application-gateway address-pool create \
+  --gateway-name myAppGateway \
+  --resource-group myResourceGroupAG \
   --name videoBackendPool
 
-az network application-gateway frontend-port create `
-  --port 8080 `
-  --gateway-name myAppGateway `
-  --resource-group myResourceGroupAG `
+az network application-gateway frontend-port create \
+  --port 8080 \
+  --gateway-name myAppGateway \
+  --resource-group myResourceGroupAG \
   --name port8080
 ```
 
@@ -133,11 +131,11 @@ az network application-gateway frontend-port create `
 
 
 ```azurecli
-az network application-gateway http-listener create `
-  --name backendListener `
-  --frontend-ip appGatewayFrontendIP `
-  --frontend-port port8080 `
-  --resource-group myResourceGroupAG `
+az network application-gateway http-listener create \
+  --name backendListener \
+  --frontend-ip appGatewayFrontendIP \
+  --frontend-port port8080 \
+  --resource-group myResourceGroupAG \
   --gateway-name myAppGateway
 ```
 
@@ -146,23 +144,23 @@ az network application-gateway http-listener create `
 URL 路径映射可确保将特定的 URL 路由到特定的后端池。 使用 `az network application-gateway url-path-map create` 和 `az network application-gateway url-path-map rule create` 创建名为 *imagePathRule* 和 *videoPathRule* 的 URL 路径映射。
 
 ```azurecli
-az network application-gateway url-path-map create `
-  --gateway-name myAppGateway `
-  --name myPathMap `
-  --paths /images/* `
-  --resource-group myResourceGroupAG `
-  --address-pool imagesBackendPool `
-  --default-address-pool appGatewayBackendPool `
-  --default-http-settings appGatewayBackendHttpSettings `
-  --http-settings appGatewayBackendHttpSettings `
+az network application-gateway url-path-map create \
+  --gateway-name myAppGateway \
+  --name myPathMap \
+  --paths /images/* \
+  --resource-group myResourceGroupAG \
+  --address-pool imagesBackendPool \
+  --default-address-pool appGatewayBackendPool \
+  --default-http-settings appGatewayBackendHttpSettings \
+  --http-settings appGatewayBackendHttpSettings \
   --rule-name imagePathRule
 
-az network application-gateway url-path-map rule create `
-  --gateway-name myAppGateway `
-  --name videoPathRule `
-  --resource-group myResourceGroupAG `
-  --path-map-name myPathMap `
-  --paths /video/* `
+az network application-gateway url-path-map rule create \
+  --gateway-name myAppGateway \
+  --name videoPathRule \
+  --resource-group myResourceGroupAG \
+  --path-map-name myPathMap \
+  --paths /video/* \
   --address-pool videoBackendPool
 ```
 
@@ -171,13 +169,13 @@ az network application-gateway url-path-map rule create `
 路由规则可将 URL 映射与所创建的侦听器相关联。 使用 `az network application-gateway rule create` 添加名为 *rule2* 的规则。
 
 ```azurecli
-az network application-gateway rule create `
-  --gateway-name myAppGateway `
-  --name rule2 `
-  --resource-group myResourceGroupAG `
-  --http-listener backendListener `
-  --rule-type PathBasedRouting `
-  --url-path-map myPathMap `
+az network application-gateway rule create \
+  --gateway-name myAppGateway \
+  --name rule2 \
+  --resource-group myResourceGroupAG \
+  --http-listener backendListener \
+  --rule-type PathBasedRouting \
+  --url-path-map myPathMap \
   --address-pool appGatewayBackendPool
 ```
 
@@ -203,18 +201,18 @@ for i in `seq 1 3`; do
     poolName="videoBackendPool"
   fi
 
-  az vmss create `
-    --name myvmss$i `
-    --resource-group myResourceGroupAG `
-    --image UbuntuLTS `
-    --admin-username azureuser `
-    --admin-password Azure123456! `
-    --instance-count 2 `
-    --vnet-name myVNet `
-    --subnet myBackendSubnet `
-    --vm-sku Standard_DS2 `
-    --upgrade-policy-mode Automatic `
-    --app-gateway myAppGateway `
+  az vmss create \
+    --name myvmss$i \
+    --resource-group myResourceGroupAG \
+    --image UbuntuLTS \
+    --admin-username azureuser \
+    --admin-password Azure123456! \
+    --instance-count 2 \
+    --vnet-name myVNet \
+    --subnet myBackendSubnet \
+    --vm-sku Standard_DS2 \
+    --upgrade-policy-mode Automatic \
+    --app-gateway myAppGateway \
     --backend-pool-name $poolName
 done
 ```
@@ -223,12 +221,12 @@ done
 
 ```azurecli
 for i in `seq 1 3`; do
-  az vmss extension set `
-    --publisher Microsoft.Azure.Extensions `
-    --version 2.0 `
-    --name CustomScript `
-    --resource-group myResourceGroupAG `
-    --vmss-name myvmss$i `
+  az vmss extension set \
+    --publisher Microsoft.Azure.Extensions \
+    --version 2.0 \
+    --name CustomScript \
+    --resource-group myResourceGroupAG \
+    --vmss-name myvmss$i \
     --settings '{ "fileUris": ["https://raw.githubusercontent.com/Azure/azure-docs-powershell-samples/master/application-gateway/iis/install_nginx.sh"], "commandToExecute": "./install_nginx.sh" }'
 done
 ```
@@ -238,10 +236,10 @@ done
 若要获取应用程序网关的公共 IP 地址，请使用 az network public-ip show。 复制该公共 IP 地址，并将其粘贴到浏览器的地址栏。 例如，`http://40.121.222.19`、`http://40.121.222.19:8080/images/test.htm` 或 `http://40.121.222.19:8080/video/test.htm`。
 
 ```azurecli
-az network public-ip show `
-  --resource-group myResourceGroupAG `
-  --name myAGPublicIPAddress `
-  --query [ipAddress] `
+az network public-ip show \
+  --resource-group myResourceGroupAG \
+  --name myAGPublicIPAddress \
+  --query [ipAddress] \
   --output tsv
 ```
 
@@ -260,11 +258,10 @@ az network public-ip show `
 当不再需要资源组、应用程序网关以及所有相关资源时，请将其删除。
 
 ```azurecli
-az group delete --name myResourceGroupAG --location chinanorth
+az group delete --name myResourceGroupAG
 ```
 
 ## <a name="next-steps"></a>后续步骤
 
 [创建支持基于 URL 路径进行重定向的应用程序网关](./tutorial-url-redirect-cli.md)
 
-<!-- Update_Description: code update -->

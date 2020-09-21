@@ -1,22 +1,22 @@
 ---
-title: 访问防火墙后的密钥保管库 - Azure 密钥保管库 | Azure
-description: 了解如何从防火墙后面的应用程序访问 Azure Key Vault
+title: 访问防火墙后的密钥保管库 - Azure 密钥保管库 | Microsoft Docs
+description: 了解要打开哪些端口、主机或 IP 地址，才能允许防火墙后面的密钥保管库客户端应用程序访问密钥保管库。
 services: key-vault
 author: amitbapat
 manager: rkarlin
 tags: azure-resource-manager
 ms.service: key-vault
 ms.subservice: general
-ms.topic: tutorial
+ms.topic: how-to
 origin.date: 08/12/2019
-ms.date: 07/01/2020
+ms.date: 09/16/2020
 ms.author: v-tawe
-ms.openlocfilehash: b0c343fa44b58fa832ec049204db87de1da333f5
-ms.sourcegitcommit: 4f84bba7e509a321b6f68a2da475027c539b8fd3
+ms.openlocfilehash: 1f8106e2ce5babf4325d3089287606f51527683d
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/01/2020
-ms.locfileid: "85796175"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678470"
 ---
 # <a name="access-azure-key-vault-behind-a-firewall"></a>访问防火墙后面的 Azure Key Vault
 
@@ -74,4 +74,4 @@ Key Vault 服务使用其他 Azure 资源，例如 PaaS 基础结构。 因此�
 
 ## <a name="next-steps"></a>后续步骤
 
-如果在 Key Vault 方面有任何问题，请访问 [Azure Key Vault 论坛](https://social.msdn.microsoft.com/forums/azure/home?forum=AzureKeyVault)。
+如果对密钥保管库有任何疑问，请访问[面向 Azure 密钥保管库的 Microsoft Q&A 问题页面](https://social.msdn.microsoft.com/forums/azure/home?forum=AzureKeyVault)。

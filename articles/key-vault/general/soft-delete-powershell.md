@@ -1,21 +1,22 @@
 ---
 title: Azure Key Vault - 如何将软删除与 PowerShell 配合使用
-description: 使用 PowerShell 代码段进行软删除的用例示例
+description: 了解如何使用 Azure PowerShell 来使用 Azure Key Vault 的软删除功能，该功能允许恢复密钥保管库和密钥保管库对象。
 services: key-vault
-author: msmbaldwin
-manager: rkarlin
+author: ShaneBala-keyvault
+manager: ravijan
 ms.service: key-vault
 ms.subservice: general
-ms.topic: tutorial
-origin.date: 08/12/2019
-ms.date: 07/28/2020
+ms.topic: how-to
+origin.date: 08/11/2020
+ms.date: 09/15/2020
 ms.author: v-tawe
-ms.openlocfilehash: 2d0819c209561ae7c4115b2781ee0fb119de776a
-ms.sourcegitcommit: 0e778acf5aa5eb63ab233e07e7aecce3a9a5e6d4
+ms.custom: devx-track-azurepowershell
+ms.openlocfilehash: 4373312d479c997a0fb2e250cd3bdc4be799403d
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87296527"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678435"
 ---
 # <a name="how-to-use-key-vault-soft-delete-with-powershell"></a>如何将 Key Vault 软删除与 PowerShell 配合使用
 
@@ -28,7 +29,7 @@ Azure Key Vault 的软删除功能允许恢复已删除的保管库和保管库�
 
 [!INCLUDE [updated-for-az](../../../includes/updated-for-az.md)]
 
-- Azure PowerShell 1.0.0 或更高版本 - 若尚未安装此产品，请安装 Azure PowerShell 并将其与 Azure 订阅关联，请参阅[如何安装和配置 Azure PowerShell](https://docs.microsoft.com/powershell/azure/overview)。 
+- Azure PowerShell 1.0.0 或更高版本 - 若尚未安装此产品，请安装 Azure PowerShell 并将其与 Azure 订阅关联，请参阅[如何安装和配置 Azure PowerShell](https://docs.microsoft.com/powershell/azure/)。 
 
 >[!NOTE]
 > 环境中可能加载了过期版本的 Key Vault PowerShell 输出格式化文件，而没有加载正确版本。 预期 PowerShell 的更新版本将包含输出格式所需的更正，届时将更新此主题。 如果遇到此格式问题，当前的解决方法是：
@@ -68,11 +69,7 @@ Set-AzResource -resourceid $resource.ResourceId -Properties $resource.Properties
 
 ### <a name="new-key-vault"></a>新的密钥保管库
 
-通过向创建命令添加软删除启用标志，在创建时启用对新密钥保管库的软删除。
-
-```powershell
-New-AzKeyVault -Name "ContosoVault" -ResourceGroupName "ContosoRG" -Location "ChinaNorth" -EnableSoftDelete
-```
+默认对所有新密钥保管库自动启用软删除。 2020 年 12 月 31 日前，无法在任何密钥保管库上禁用软删除。 
 
 ### <a name="verify-soft-delete-enablement"></a>验证软删除支持
 
@@ -207,7 +204,7 @@ Set-AzKeyVaultAccessPolicy -VaultName ContosoVault -UserPrincipalName user@conto
 
 可以使用以下命令管理证书：
 
-- 删除名为“SQLPassword”的证书： 
+- 删除证书： 
   ```powershell
   Remove-AzKeyVaultCertificate -VaultName ContosoVault -Name 'MyCert'
   ```
@@ -268,7 +265,7 @@ Remove-AzKeyVault -VaultName ContosoVault -InRemovedState -Location chinanorth
 
 启用清除保护时，在保持期到期之前，不能清除处于已删除状态的保管库或对象。 仍可以恢复此类保管库或对象。 此功能可增加保障，在保留期到期之前，永远不会永久删除保管库或对象。 默认保持期为 90 天，但在创建密钥保管库期间，可将保留策略间隔设置为介于 7 到 90 天之间的值。 清除保护保留策略使用相同的间隔。 一旦设置，保留策略间隔就不能再更改。
 
-仅当也启用了软删除时，才能启用清除保护。 目前不支持禁用清除保护。 
+仅当也启用了软删除时，才能启用清除保护。 不支持禁用清除保护。 
 
 若要在创建保管库时同时启用软删除和清除保护，请使用 [New-AzKeyVault](https://docs.microsoft.com/powershell/module/az.keyvault/new-azkeyvault?view=azps-1.5.0) cmdlet：
 
@@ -286,5 +283,5 @@ Set-AzResource -resourceid $resource.ResourceId -Properties $resource.Properties
 
 ## <a name="other-resources"></a>其他资源
 
-- 有关 Key Vault 软删除功能的概述，请参阅 [Azure Key Vault 软删除概述](overview-soft-delete.md)。
+- 有关 Key Vault 软删除功能的概述，请参阅 [Azure Key Vault 软删除概述](soft-delete-overview.md)。
 - 有关 Azure 密钥保管库使用情况的综述，请参阅[什么是 Azure 密钥保管库？](overview.md)。

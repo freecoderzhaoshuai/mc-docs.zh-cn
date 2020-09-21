@@ -10,12 +10,12 @@ ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
 ms.custom: security-benchmark
-ms.openlocfilehash: c0152cddc95e8cdc417bc4a2a51e7ff7aad6e344
-ms.sourcegitcommit: 3eadca6821ef679d8ac6ca2dc46d6a13aac211cd
+ms.openlocfilehash: 08a3f7fbae9f0d3e7d3d9ed698d63cbf46daa87d
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/04/2020
-ms.locfileid: "87548060"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90524040"
 ---
 # <a name="azure-security-baseline-for-network-watcher"></a>网络观察程序的 Azure 安全基线
 
@@ -25,7 +25,7 @@ ms.locfileid: "87548060"
 
 有关详细信息，请参阅 [Azure 安全基线概述](/security/benchmarks/security-baselines-overview)。
 
-## <a name="network-security"></a>网络安全性
+## <a name="network-security"></a>网络安全
 
 有关详细信息，请参阅[安全控制：网络安全](/security/benchmarks/security-control-network-security)。
 
@@ -163,7 +163,7 @@ ms.locfileid: "87548060"
 
 **Azure 安全中心监视**：是
 
-责任：客户
+**责任**：客户
 
 ### <a name="24-collect-security-logs-from-operating-systems"></a>2.4：从操作系统收集安全日志
 
@@ -312,7 +312,7 @@ ms.locfileid: "87548060"
 
 * [如何部署 Privileged Identity Management (PIM)](/active-directory/privileged-identity-management/pim-deployment-plan)
 
-* [了解 Azure AD 风险检测](/active-directory/reports-monitoring/concept-risk-events)
+<!--Not Available on * [Understand Azure AD risk detections](/active-directory/reports-monitoring/concept-risk-events)-->
 
 **Azure 安全中心监视**：是
 
@@ -358,37 +358,23 @@ ms.locfileid: "87548060"
 
 可以通过为 Azure AD 用户帐户创建诊断设置，并将审核日志和登录日志发送到 Log Analytics 工作区，来简化此过程。 可以在 Log Analytics 中配置所需的日志警报。
 
-* [如何将 Azure 活动日志集成到 Azure Monitor](/active-directory/reports-monitoring/howto-integrate-activity-logs-with-log-analytics)
+<!--Not Available on * [How to integrate Azure Activity Logs into Azure Monitor](/active-directory/reports-monitoring/howto-integrate-activity-logs-with-log-analytics)-->
 
-* [如何加入 Azure Sentinel](/sentinel/quickstart-onboard)
+<!--Not Available on * [How to on-board Azure Sentinel](/sentinel/quickstart-onboard)-->
 
 **Azure 安全中心监视**：不适用
 
 **责任**：客户
 
-### <a name="312-alert-on-account-login-behavior-deviation"></a>3.12：针对帐户登录行为偏差发出警报
+<!--Not Available on ### 3.12: Alert on account login behavior deviation-->
 
-**指导**：对于控制平面（例如 Azure 门户）中帐户登录行为的偏差，可使用 Azure AD 标识保护和风险检测功能进行配置，实现在检测到与用户标识相关的可疑操作时自动进行响应。 还可将数据引入 Azure Sentinel 以做进一步调查。
+<!--Not Available on * [How to view Azure AD risky sign-in](/active-directory/reports-monitoring/concept-risky-sign-ins)-->
+<!--Not Available on * [How to configure and enable Identity Protection risk policies](/active-directory/identity-protection/howto-identity-protection-configure-risk-policies)-->
+<!--Not Available on * [How to onboard Azure Sentinel](/sentinel/quickstart-onboard)-->
 
-* [如何查看 Azure AD 风险登录](/active-directory/reports-monitoring/concept-risky-sign-ins)
+<!--Not Available on ### 3.13: Provide Azure with access to relevant customer data during support scenarios-->
 
-* [如何配置和启用标识保护风险策略](/active-directory/identity-protection/howto-identity-protection-configure-risk-policies)
-
-* [如何加入 Azure Sentinel](/sentinel/quickstart-onboard)
-
-**Azure 安全中心监视**：目前不可用
-
-**责任**：客户
-
-### <a name="313-provide-azure-with-access-to-relevant-customer-data-during-support-scenarios"></a>3.13：在支持场合下为 Azure 提供对相关客户数据的访问权限
-
-**指导**：不适用；客户密码箱不适用于 Azure 网络观察程序。
-
-* [支持客户密码箱的服务列表](/security/fundamentals/customer-lockbox-overview#supported-services-and-scenarios-in-general-availability)
-
-**Azure 安全中心监视**：不适用
-
-**责任**：不适用
+<!--Not Available on * [List of Customer Lockbox-supported services](/security/fundamentals/customer-lockbox-overview#supported-services-and-scenarios-in-general-availability)-->
 
 ## <a name="data-protection"></a>数据保护
 
@@ -396,7 +382,7 @@ ms.locfileid: "87548060"
 
 ### <a name="41-maintain-an-inventory-of-sensitive-information"></a>4.1：维护敏感信息的清单
 
-**指南**：使用标记可以帮助跟踪存储或处理敏感信息的 Azure 资源。
+**指导**：使用标记可以帮助跟踪存储或处理敏感信息的 Azure 资源。
 
 * [如何创建和使用标记](/azure-resource-manager/resource-group-using-tags)
 
@@ -406,9 +392,9 @@ ms.locfileid: "87548060"
 
 ### <a name="42-isolate-systems-storing-or-processing-sensitive-information"></a>4.2：隔离存储或处理敏感信息的系统
 
-**指导**：为开发、测试和生产实现单独的订阅和/或管理组。
+**指导**：为开发、测试和生产实施单独的订阅和/或管理组。
 
-* [如何创建其他 Azure 订阅](/billing/billing-create-subscription)
+<!--Not Available on * [How to create additional Azure subscriptions](/billing/billing-create-subscription)-->
 
 * [如何创建管理组](/governance/management-groups/create)
 
@@ -570,7 +556,7 @@ ms.locfileid: "87548060"
 - 不允许的资源类型
 - 允许的资源类型
 
-* [如何创建其他 Azure 订阅](/billing/billing-create-subscription)
+<!--Not Available on * [How to create additional Azure subscriptions](/billing/billing-create-subscription)-->
 
 * [如何创建管理组](/governance/management-groups/create)
 
@@ -898,7 +884,7 @@ ms.locfileid: "87548060"
 
 **指南**：安全中心向每个警报分配一个严重性，帮助你优先处理应首先调查的警报。 严重性取决于安全中心在发出警报时所依据的检测结果和分析结果的置信度，以及导致发出警报的活动的恶意企图的置信度。
 
-此外，应清楚地标记订阅（例如 生产、非生产），并创建命名系统来对 Azure 资源进行明确标识和分类。
+此外，请明确标记订阅（例如 生产、非生产），并创建命名系统来对 Azure 资源进行明确标识和分类。
 
 **Azure 安全中心监视**：是
 
@@ -924,27 +910,13 @@ ms.locfileid: "87548060"
 
 **责任**：客户
 
-### <a name="105-incorporate-security-alerts-into-your-incident-response-system"></a>10.5：将安全警报整合到事件响应系统中
+<!--Not Available on ### 10.5: Incorporate security alerts into your incident response system-->
 
-**指导**：使用连续导出功能导出 Azure 安全中心警报和建议。 使用连续导出可以手动导出或者持续导出警报和建议。 可以使用 Azure 安全中心数据连接器将警报流式传输到 Sentinel。
+<!--Not Available on * [How to configure continuous export](/security-center/continuous-export)-->
 
-* [如何配置连续导出](/security-center/continuous-export)
+<!--Not Available on ### 10.6: Automate the response to security alerts-->
 
-* [如何将警报流式传输到 Azure Sentinel](/sentinel/connect-azure-security-center)
-
-**Azure 安全中心监视**：不适用
-
-**责任**：客户
-
-### <a name="106-automate-the-response-to-security-alerts"></a>10.6：自动响应安全警报
-
-**指导**：使用 Azure 安全中心内的工作流自动化功能可以通过“逻辑应用”针对安全警报和建议自动触发响应。
-
-* [如何配置工作流自动化和逻辑应用](/security-center/workflow-automation)
-
-**Azure 安全中心监视**：不适用
-
-**责任**：客户
+<!--Not Available * [How to configure Workflow Automation and Logic Apps](/security-center/workflow-automation)-->
 
 ## <a name="penetration-tests-and-red-team-exercises"></a>渗透测试和红队练习
 

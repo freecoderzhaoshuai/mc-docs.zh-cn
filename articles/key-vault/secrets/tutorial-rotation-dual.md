@@ -9,18 +9,18 @@ ms.service: key-vault
 ms.subservice: general
 ms.topic: tutorial
 origin.date: 06/22/2020
-ms.date: 07/28/2020
+ms.date: 09/15/2020
 ms.author: v-tawe
-ms.openlocfilehash: 10cd5a18ad4ebd1dd7de138baf8cfabd696f1974
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: b5cbd999839bb346005f80b53017e4d582062a13
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88227879"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678410"
 ---
 # <a name="automate-the-rotation-of-a-secret-for-resources-with-two-sets-of-authentication-credentials"></a>自动轮换使用两组身份验证凭据的资源的机密
 
-向 Azure 服务进行身份验证的最佳方法是使用[托管标识](../general/managed-identity.md)，但某些情况下无法做到这一点。 在此类情况下，将使用访问密钥或密码。 访问密钥和密码应经常轮换。
+向 Azure 服务进行身份验证的最佳方法是使用[托管标识](../general/authentication.md)，但某些情况下无法做到这一点。 在此类情况下，将使用访问密钥或密码。 访问密钥和密码应经常轮换。
 
 本教程介绍如何定期自动轮换使用两组身份验证凭据的数据库和服务的机密。 具体而言，本教程将使用 Azure 事件网格通知触发的函数来将 Azure Key Vault 中存储的 Azure 存储帐户密钥作为机密轮换。 解码的字符：
 
@@ -42,9 +42,8 @@ ms.locfileid: "88227879"
 * 两个 Azure 存储帐户
 
 如果没有现成的密钥保管库和存储帐户，可以使用下面的部署链接：
-<br><a href="https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fjlichwa%2FKeyVault-Rotation-StorageAccountKey-PowerShell%2Fmaster%2Farm-templates%2FInitial-Setup%2Fazuredeploy.json" target="_blank">
-    <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.png"/>
-</a>
+
+[![图像显示标记为“部署到 Azure”的按钮。](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fjlichwa%2FKeyVault-Rotation-StorageAccountKey-PowerShell%2Fmaster%2Farm-templates%2FInitial-Setup%2Fazuredeploy.json)
 
 1. 在“资源组”下，选择“新建”。 将组命名为“akvrotation”，然后单击“确定” 。
 1. 选择“查看 + 创建”。
@@ -80,10 +79,9 @@ akvrotationstorage2    akvrotation      chinaeast      Microsoft.Storage/storage
 - 具有事件触发器和 http 触发器的存储帐户密钥轮换函数（按需轮换）
 - “SecretNearExpiry”事件的 EventGrid 事件订阅
 
-1. 选择 Azure 模板部署链接：
-<br><a href="https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fjlichwa%2FKeyVault-Rotation-StorageAccountKey-PowerShell%2Fmaster%2Farm-templates%2FFunction%2Fazuredeploy.json" target="_blank">
-    <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.png"/>
-</a>
+1. 选择 Azure 模板部署链接： 
+
+   [![图像显示标记为“部署到 Azure”的按钮。](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fjlichwa%2FKeyVault-Rotation-StorageAccountKey-PowerShell%2Fmaster%2Farm-templates%2FInitial-Setup%2Fazuredeploy.json)
 
 1. 在“资源组”列表中选择“akvrotation” 。
 1. 在“存储帐户名称”中，键入包含要轮换的访问密钥的存储帐户名称
@@ -94,7 +92,7 @@ akvrotationstorage2    akvrotation      chinaeast      Microsoft.Storage/storage
 1. 选择“查看 + 创建”。
 1. 选择“创建”
 
-   ![查看 + 创建](../media/secrets/rotation-dual/dual-rotation-2.png)
+   ![查看并创建第一个存储帐户](../media/secrets/rotation-dual/dual-rotation-2.png)
 
 完成上述步骤后，你将获得一个存储帐户、一个服务器场、一个函数应用、应用程序见解。 部署完成后，应会看到以下屏幕：![部署完成](../media/secrets/rotation-dual/dual-rotation-3.png)
 > [!NOTE]
@@ -139,13 +137,13 @@ az keyvault secret set --name storageKey --vault-name akvrotation-kv --value <ke
 ```azurecli
 az keyvault secret show --vault-name akvrotation-kv --name storageKey
 ```
-注意，`CredentialId` 会更新为备用 `keyName`，并重新生成 `value` ![显示机密](../media/secrets/rotation-dual/dual-rotation-4.png)
+请注意，`CredentialId` 已更新为备用 `keyName`，并且已重新生成 `value`![第一个存储帐户的 az keyvault secret show 的输出](../media/secrets/rotation-dual/dual-rotation-4.png)
 
 检索访问密钥以验证值
 ```azurecli
 az storage account keys list -n akvrotationstorage 
 ```
-![访问密钥列表](../media/secrets/rotation-dual/dual-rotation-5.png)
+![第一个存储帐户的 az storage account keys list 的输出](../media/secrets/rotation-dual/dual-rotation-5.png)
 
 ## <a name="add-additional-storage-accounts-for-rotation"></a>添加用于轮换的其他存储帐户
 
@@ -155,10 +153,9 @@ az storage account keys list -n akvrotationstorage
 - 将存储帐户密钥操作员服务角色分配给函数应用，用于访问存储帐户访问密钥
 - “SecretNearExpiry”事件的 EventGrid 事件订阅
 
-1. 选择 Azure 模板部署链接：
-<br><a href="https://portal.azure.cn/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fjlichwa%2FKeyVault-Rotation-StorageAccountKey-PowerShell%2Fmaster%2Farm-templates%2FAdd-Event-Subscription%2Fazuredeploy.json" target="_blank">
-    <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.png"/>
-</a>
+1. 选择 Azure 模板部署链接： 
+
+   [![图像显示标记为“部署到 Azure”的按钮。](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fjlichwa%2FKeyVault-Rotation-StorageAccountKey-PowerShell%2Fmaster%2Farm-templates%2FAdd-Event-Subscription%2Fazuredeploy.json)
 
 1. 在“资源组”列表中选择“akvrotation” 。
 1. 在“存储帐户名称”中，键入包含要轮换的访问密钥的存储帐户名称
@@ -168,7 +165,7 @@ az storage account keys list -n akvrotationstorage
 1. 选择“查看 + 创建”。
 1. 选择“创建”
 
-   ![查看 + 创建](../media/secrets/rotation-dual/dual-rotation-7.png)
+   ![查看并创建第二个存储帐户](../media/secrets/rotation-dual/dual-rotation-7.png)
 
 ### <a name="add-another-storage-account-access-key-to-key-vault"></a>将其他存储帐户访问密钥添加到 Key Vault
 
@@ -186,7 +183,7 @@ az storage account keys list -n akvrotationstorage2
 填充“key2Value”和“storageAccountResourceId”的检索值
 
 ```azurecli
-$tomorrowDate = (get-date).AddDays(+1).ToString("yyy-MM-ddThh:mm:ssZ")
+tomorrowDate=`date -d tomorrow -Iseconds -u | awk -F'+' '{print $1"Z"}'`
 az keyvault secret set --name storageKey2 --vault-name akvrotation-kv --value <key2Value> --tags "CredentialId=key2" "ProviderAddress=<storageAccountResourceId>" "ValidityPeriodDays=60" --expires $tomorrowDate
 ```
 
@@ -194,13 +191,13 @@ az keyvault secret set --name storageKey2 --vault-name akvrotation-kv --value <k
 ```azurecli
 az keyvault secret show --vault-name akvrotation-kv --name storageKey2
 ```
-注意，`CredentialId` 会更新为备用 `keyName`，并重新生成 `value` ![显示机密](../media/secrets/rotation-dual/dual-rotation-8.png)
+请注意，`CredentialId` 已更新为备用 `keyName`，并且已重新生成 `value`![第二个存储帐户的 az keyvault secret show 的输出](../media/secrets/rotation-dual/dual-rotation-8.png)
 
 检索访问密钥以验证值
 ```azurecli
 az storage account keys list -n akvrotationstorage 
 ```
-![访问密钥列表](../media/secrets/rotation-dual/dual-rotation-9.png)
+![第二个存储帐户的 az storage account keys list 的输出](../media/secrets/rotation-dual/dual-rotation-9.png)
 
 ## <a name="available-key-vault-dual-credential-rotation-functions"></a>可用的保管库双重凭据轮换函数
 

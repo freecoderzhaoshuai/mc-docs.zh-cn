@@ -9,12 +9,12 @@ ms.date: 09/14/2020
 ms.testscope: yes|no
 ms.testdate: 08/10/2020null
 ms.author: v-yeche
-ms.openlocfilehash: b2eb2411d7891c494e3f837fa7b8e703c859156e
-ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
+ms.openlocfilehash: f00af714e1dfbcd80c66aebb3ab79ded8d218a0f
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/11/2020
-ms.locfileid: "90021528"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90524034"
 ---
 <!--Verified successfully-->
 # <a name="preview---secure-your-cluster-using-pod-security-policies-in-azure-kubernetes-service-aks"></a>预览 - 在 Azure Kubernetes 服务 (AKS) 中使用 Pod 安全策略保护群集
@@ -463,7 +463,10 @@ kubectl delete namespace psp-aks
 [az-feature-list]: https://docs.azure.cn/cli/feature#az-feature-list
 [az-provider-register]: https://docs.azure.cn/cli/provider#az-provider-register
 [az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks#az_aks_get_credentials
-[az-aks-update]: https://docs.microsoft.com/cli/azure/ext#ext-aks-preview-az-aks-update
+[az-aks-update]: https://docs.microsoft.com/cli/azure/aks#az_aks_update
+
+<!--MOONCAKE: CORRECT ON [az-aks-update]: https://docs.microsoft.com/cli/azure/aks#az_aks_update-->
+
 [az-extension-add]: https://docs.azure.cn/cli/extension#az-extension-add
 [aks-support-policies]: support-policies.md
 [aks-faq]: faq.md

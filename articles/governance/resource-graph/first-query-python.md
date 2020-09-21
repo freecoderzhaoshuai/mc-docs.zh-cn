@@ -2,16 +2,16 @@
 title: 快速入门：你的第一个 Python 查询
 description: 本快速入门介绍为 Python 启用 Resource Graph 库并运行第一个查询的步骤。
 origin.date: 07/15/2020
-ms.date: 08/27/2020
+ms.date: 09/15/2020
 ms.author: v-tawe
 ms.topic: quickstart
 ms.custom: devx-track-python
-ms.openlocfilehash: 1986491227985757e7e2f09fc6fd3f6fc2fe2515
-ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
+ms.openlocfilehash: ba303989e04434899d47e468e9fa19d85fee4753
+ms.sourcegitcommit: 75299b1cb5540a11149f320edaae82ae8c03c16b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88951949"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523144"
 ---
 # <a name="quickstart-run-your-first-resource-graph-query-using-python"></a>快速入门：使用 Python 运行你的第一个 Resource Graph 查询
 

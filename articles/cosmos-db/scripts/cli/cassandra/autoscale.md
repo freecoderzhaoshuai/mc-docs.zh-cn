@@ -10,12 +10,12 @@ ms.date: 08/17/2020
 ms.testscope: yes
 ms.testdate: 08/10/2020
 ms.author: v-yeche
-ms.openlocfilehash: 0eb2fda085ac16d1e814ed12841b6da9e1c0d077
-ms.sourcegitcommit: 84606cd16dd026fd66c1ac4afbc89906de0709ad
+ms.openlocfilehash: 6e7244466fe46cf8b909ef274bd2dfcef750f40a
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88223523"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523991"
 ---
 <!--Verify successfully-->
 # <a name="create-an-azure-cosmos-cassandra-api-account-keyspace-and-table-with-autoscale-using-azure-cli"></a>使用 Azure CLI 创建 Azure Cosmos Cassandra API 帐户、密钥空间和表（具有自动缩放功能）
@@ -109,9 +109,13 @@ az group delete --name $resourceGroupName
 |---|---|
 | [az group create](https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-create) | 创建用于存储所有资源的资源组。 |
 | [az cosmosdb create](https://docs.azure.cn/cli/cosmosdb?view=azure-cli-latest#az-cosmosdb-create) | 创建 Azure Cosmos DB 帐户。 |
-| [az cosmosdb cassandra keyspace create](https://docs.azure.cn/cli/cosmosdb/cassandra/keyspace?view=azure-cli-latest#az-cosmosdb-cassandra-keyspace-create) | 创建 Azure Cosmos Cassandra 密钥空间。 |
-| [az cosmosdb cassandra table create](https://docs.azure.cn/cli/cosmosdb/cassandra/table?view=azure-cli-latest#az-cosmosdb-cassandra-table-create) | 创建 Azure Cosmos Cassandra 表。 |
+| [az cosmosdb cassandra keyspace create](https://docs.microsoft.com/cli/azure/cosmosdb/cassandra/keyspace?view=azure-cli-latest#az-cosmosdb-cassandra-keyspace-create) | 创建 Azure Cosmos Cassandra 密钥空间。 |
+| [az cosmosdb cassandra table create](https://docs.microsoft.com/cli/azure/cosmosdb/cassandra/table?view=azure-cli-latest#az-cosmosdb-cassandra-table-create) | 创建 Azure Cosmos Cassandra 表。 |
 | [az group delete](https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-delete) | 删除资源组，包括所有嵌套的资源。 |
+
+<!--CORRECT ON [az cosmosdb cassandra keyspace create]-->
+<!--CORRECT ON [az cosmosdb cassandra table create]-->
+
 
 ## <a name="next-steps"></a>后续步骤
 

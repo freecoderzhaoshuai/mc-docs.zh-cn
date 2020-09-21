@@ -6,12 +6,12 @@ origin.date: 04/15/2020
 ms.date: 08/03/2020
 ms.author: v-tawe
 ms.custom: devx-track-javascript
-ms.openlocfilehash: a9ed6ecd2e18c9b68c339a2e82cdc8014d33efb5
-ms.sourcegitcommit: 3821704fee67315badba49cf628af2aa68d98f28
+ms.openlocfilehash: 1a104bad4278086a6fea8585d967fe6a9d4dcc4d
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "89323276"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90679996"
 ---
 ## <a name="prerequisites"></a>先决条件
 
@@ -288,7 +288,7 @@ function synthesizeSpeech() {
 若要切换到某种神经语音，请将 `name` 更改为[神经语音选项](https://docs.azure.cn/cognitive-services/speech-service/language-support#neural-voices)之一。 然后，为 `mstts` 添加 XML 命名空间，并在 `<mstts:express-as>` 标记中包装文本。 使用 `style` 参数自定义讲话风格。 此示例使用 `cheerful`，但请尝试将其设置为 `customerservice` 或 `chat`，以了解讲话风格的差别。
 
 <!-- > [!IMPORTANT]
-> Neural voices are **only** supported for Speech resources created in *East US*, *South East Asia*, and *West Europe* regions. -->
+> Neural voices are **only** supported for Speech resources created in *China East*, *South East Asia*, and *West Europe* regions. -->
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis"

@@ -2,15 +2,15 @@
 title: 策略示例索引
 description: Azure Policy 的内置项的索引。 类别标记、法规符合性、Key Vault、Kubernetes、来宾配置等。
 ms.topic: sample
-origin.date: 06/10/2020
-ms.date: 08/06/2020
+origin.date: 07/20/2020
+ms.date: 09/15/2020
 ms.author: v-tawe
-ms.openlocfilehash: 1cb89f3baccc238f28954ed41e769fe0d803aaea
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: e28d5d3856b44624c5d3eff89444180d8a4e0f9f
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917084"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90524003"
 ---
 # <a name="azure-policy-samples"></a>Azure Policy 示例
 
@@ -42,8 +42,9 @@ The following are the [Regulatory Compliance](../concepts/regulatory-compliance.
 
 - [Azure Security Benchmark](./azure-security-benchmark.md)
 - [CIS Microsoft Azure Foundations Benchmark v1.1.0](./cis-azure-1-1-0.md)
+- [HIPAA HITRUST 9.2](./hipaa-hitrust-9-2.md)
 - [NIST SP 800-53 R4](./nist-sp-800-53-r4.md)
-- [NIST SP 800-171 R2](./nist-sp-800-171-r2.md) 
+- [NIST SP 800-171 R2](./nist-sp-800-171-r2.md)
 -->
 
 ## <a name="other-samples"></a>其他示例

@@ -13,24 +13,24 @@ metadata:
   author: msmbaldwin
   ms.author: v-tawe
   origin.date: 04/07/2020
-  ms.date: 07/28/2020
-  ms.openlocfilehash: f63f465f70feab802adea3cf0595016aecabb75d
-  ms.sourcegitcommit: 0e778acf5aa5eb63ab233e07e7aecce3a9a5e6d4
+  ms.date: 09/15/2020
+  ms.openlocfilehash: 9d61bb18e7d0f415c905d391a9110f0ae7d4f536
+  ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 07/28/2020
-  ms.locfileid: "87296507"
+  ms.lasthandoff: 09/16/2020
+  ms.locfileid: "90678491"
 highlightedContent:
   items:
   - title: Azure Key Vault 简介
     itemType: overview
     url: ./general/overview.md
+  - title: 对软删除的重要更改
+    itemType: whats-new
+    url: ./general/soft-delete-change.md
   - title: 身份验证
     itemType: overview
     url: ./general/authentication.md
-  - title: 软删除
-    itemType: overview
-    url: ./general/overview-soft-delete.md
   - title: 基本概念
     itemType: overview
     url: ./general/basic-concepts.md
@@ -58,8 +58,8 @@ conceptualContent:
       text: 监视和管理证书创建
     footerLink:
       url: ./certificates/index.yml
-      text: 查看更多
-  - title: 密钥
+      text: 查看详细信息
+  - title: 键
     links:
     - url: ./keys/about-keys.md
       itemType: overview
@@ -86,7 +86,24 @@ conceptualContent:
       text: 为单用户资源轮换机密
     footerLink:
       url: ./secrets/index.yml
-      text: 查看更多
+      text: 查看详细信息
+  - title: 客户端库
+    links:
+    - url: ./general/client-libraries.md
+      itemType: reference
+      text: Azure Key Vault 的客户端库
+    - url: https://docs.microsoft.com/dotnet/api/overview/azure/key-vault?view=azure-dotnet
+      itemType: reference
+      text: .NET 客户端库
+    - url: https://docs.microsoft.com/python/api/overview/azure/key-vault-index?view=azure-python
+      itemType: reference
+      text: Python 客户端库
+    - url: https://azure.github.io/azure-sdk-for-java/keyvault.html
+      itemType: reference
+      text: Java 客户端库
+    - url: https://docs.microsoft.com/javascript/api/overview/azure/key-vault-index?view=azure-node-latest
+      itemType: reference
+      text: Node.js 客户端库
   - title: 将 Key Vault 与存储配合使用
     links:
     - url: ./secrets/overview-storage-keys.md
@@ -120,7 +137,7 @@ conceptualContent:
     - url: ../app-service/app-service-key-vault-references.md
       itemType: overview
       text: 应用服务 - 在应用服务中引用 Key Vault 机密
-    - url: ../app-service/configure-ssl-certificate.md#store-in-azure-key-vault
+    - url: ../app-service/configure-ssl-certificate.md
       itemType: overview
       text: 应用服务 - 在 Key Vault 中维护应用服务证书
     - url: ../aks/developer-best-practices-pod-security.md#use-azure-key-vault-with-secrets-store-csi-driver

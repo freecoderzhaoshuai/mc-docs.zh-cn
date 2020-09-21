@@ -11,12 +11,12 @@ ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 1c1e2073f5bad5e86acd24ba72d577717bf63b8e
-ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
+ms.openlocfilehash: 2dd8c54377da2f11c01b1ce040be4a263086738e
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89052445"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523623"
 ---
 <!--Verified Successsfully-->
 <!--This is not a new file. -->
@@ -422,7 +422,7 @@ Azure 虚拟机 (VM) 经历的不同状态可以归类为“预配”状态和�
 
 <!--Not Available on ## Next steps-->
 
-<!--Not Available on To learn more about monitoring your VM, see [Monitor virtual machines in Azure](../azure-monitor/insights/monitor-vm-azure.md).-->
+<!--Not Available on To learn more about monitoring your VM, see [Monitor virtual machines in Azure](../azure-monitor/insights/monitor-vm-azure.md)-->
 
 <!-- Update_Description: new article about states lifecycle -->
 <!--NEW.date: 08/31/2020-->

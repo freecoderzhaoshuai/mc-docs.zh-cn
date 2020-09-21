@@ -3,14 +3,15 @@ title: 针对受限制请求的指南
 description: 了解如何分组、错开、分页以及并行查询，以避免 Azure Resource Graph 限制请求。
 ms.author: v-tawe
 origin.date: 08/03/2020
-ms.date: 08/27/2020
+ms.date: 09/15/2020
 ms.topic: conceptual
-ms.openlocfilehash: ccda1fdd31e9f6bc9988eba7d40fae01cf61d92a
-ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
+ms.custom: devx-track-csharp
+ms.openlocfilehash: 88ea1f9a1bdd123f743a164b4e54f65ac1245c1f
+ms.sourcegitcommit: 75299b1cb5540a11149f320edaae82ae8c03c16b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88951221"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523146"
 ---
 # <a name="guidance-for-throttled-requests-in-azure-resource-graph"></a>有关 Azure Resource Graph 中的受限制请求的指南
 

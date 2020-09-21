@@ -6,15 +6,15 @@ services: application-gateway
 author: vhorne
 ms.service: application-gateway
 ms.topic: how-to
-ms.date: 08/03/2020
+ms.date: 09/14/2020
 ms.author: v-junlch
 ms.custom: mvc, devx-track-azurecli
-ms.openlocfilehash: a54ef3ebfbb1ac85207b3447af0cf0cb8c154119
-ms.sourcegitcommit: 36e7f37481969f92138bfe70192b1f4a2414caf7
+ms.openlocfilehash: 32e3da907827d639402a3d9e4c8f17f9f542bcbd
+ms.sourcegitcommit: e1b6e7fdff6829040c4da5d36457332de33e0c59
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87796296"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721080"
 ---
 # <a name="create-an-application-gateway-that-hosts-multiple-web-sites-using-the-azure-cli"></a>使用 Azure CLI 创建托管多个网站的应用程序网关
 
@@ -22,13 +22,12 @@ ms.locfileid: "87796296"
 
 在本文中，学习如何：
 
-> [!div class="checklist"]
-> * 设置网络
-> * 创建应用程序网关
-> * 创建后端侦听器
-> * 创建路由规则
-> * 使用后端池创建虚拟机规模集
-> * 在域中创建 CNAME 记录
+* 设置网络
+* 创建应用程序网关
+* 创建后端侦听器
+* 创建路由规则
+* 使用后端池创建虚拟机规模集
+* 在域中创建 CNAME 记录
 
 :::image type="content" source="./media/tutorial-multiple-sites-cli/scenario.png" alt-text="多站点应用程序网关":::
 

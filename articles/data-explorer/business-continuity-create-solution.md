@@ -8,12 +8,12 @@ ms.service: data-explorer
 ms.topic: conceptual
 origin.date: 08/05/2020
 ms.date: 08/18/2020
-ms.openlocfilehash: e74da3b8ea0201b4bd61f7515a0d3a420af4a40c
-ms.sourcegitcommit: 4f936264ddb502ff61623892f57067e935ef6e42
+ms.openlocfilehash: 017be731b398bcf3e043725a95e644565c5cffc3
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/02/2020
-ms.locfileid: "89316387"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678422"
 ---
 # <a name="create-business-continuity-and-disaster-recovery-solutions-with-azure-data-explorer"></a>使用 Azure 数据资源管理器创建业务连续性和灾难恢复解决方案
 
@@ -132,9 +132,9 @@ az kusto cluster stop --name=<clusterName> --resource-group=<rgName> --subscript
 
 :::image type="content" source="media/business-continuity-create-solution/simulation-verify-service.png" alt-text="验证应用服务 BCDR 客户端":::
 
-Azure 数据资源管理器群集分布于西欧（2xD14v2 主要副本）、东南亚和美国东部 (2xD11v2)。 
+<!-- The Azure Data Explorer clusters are distributed across West Europe (2xD14v2 primary), South East Asia, and East US (2xD11v2). 
 
-:::image type="content" source="media/business-continuity-create-solution/performance-test-query-time.png" alt-text="全球查询响应时间":::
+:::image type="content" source="media/business-continuity-create-solution/performance-test-query-time.png" alt-text="Cross planet query response time"::: -->
 
 > [!NOTE]
 > 响应时间较慢是由不同的 SKU 和全球查询导致的。

@@ -2,16 +2,16 @@
 title: 快速入门：使用模板创建共享查询
 description: 在本快速入门中，我们使用 Azure 资源管理器模板（ARM 模板）来创建 Resource Graph 共享查询，以便按 OS 对虚拟机计数。
 origin.date: 07/06/2020
-ms.date: 08/27/2020
+ms.date: 09/15/2020
 ms.author: v-tawe
 ms.topic: quickstart
 ms.custom: subject-armqs
-ms.openlocfilehash: c224e78f1c25797cba48a82d37436ab37767f075
-ms.sourcegitcommit: 26080c846ff2b8e4c53077edf06903069883e13e
+ms.openlocfilehash: 7946590c219234760c79ee926e7687e3978e1263
+ms.sourcegitcommit: 75299b1cb5540a11149f320edaae82ae8c03c16b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88951260"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523166"
 ---
 # <a name="quickstart-create-a-shared-query-by-using-an-arm-template"></a>快速入门：使用 ARM 模板创建共享查询
 

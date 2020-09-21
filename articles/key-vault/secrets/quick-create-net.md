@@ -4,16 +4,17 @@ description: 了解如何使用 .NET 客户端库 (v4) 在 Azure 密钥保管库
 author: msmbaldwin
 ms.author: v-tawe
 origin.date: 03/21/2020
-ms.date: 07/28/2020
+ms.date: 09/15/2020
 ms.service: key-vault
 ms.subservice: secrets
 ms.topic: quickstart
-ms.openlocfilehash: 4ddb1a1bcdb58885c564d3ae708bb9ca1360e8c7
-ms.sourcegitcommit: 0e778acf5aa5eb63ab233e07e7aecce3a9a5e6d4
+ms.custom: devx-track-csharp
+ms.openlocfilehash: fb6f583faa6eb77cbe7e2f0cbaf447b9a9a8877c
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87296472"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678370"
 ---
 # <a name="quickstart-azure-key-vault-client-library-for-net-sdk-v4"></a>快速入门：适用于 .NET 的 Azure Key Vault 客户端库 (SDK v4)
 
@@ -219,7 +220,7 @@ var client = new SecretClient(new Uri(kvUri), new DefaultAzureCredential(credent
 
 ### <a name="save-a-secret"></a>保存机密
 
-应用程序通过身份验证后，你可以使用 [client.SetSecret 方法](/dotnet/api/microsoft.azure.keyvault.keyvaultclientextensions.setsecretasync)将机密放入密钥保管库。此操作需要使用机密的名称，本示例中使用“mySecret”。  
+应用程序通过身份验证后，你可以使用 [client.SetSecret 方法](https://docs.microsoft.com/dotnet/api/microsoft.azure.keyvault.keyvaultclientextensions.setsecretasync)将机密放入密钥保管库。此操作需要使用机密的名称，本示例中使用“mySecret”。  
 
 ```csharp
 client.SetSecret(secretName, secretValue);
@@ -237,7 +238,7 @@ az keyvault secret show --vault-name <your-unique-keyvault-name> --name mySecret
 
 ### <a name="retrieve-a-secret"></a>检索机密
 
-现在，可以使用 [client.GetSecret 方法](/dotnet/api/microsoft.azure.keyvault.keyvaultclientextensions.getsecretasync)检索以前设置的值。
+现在，可以使用 [client.GetSecret 方法](https://docs.microsoft.com/dotnet/api/microsoft.azure.keyvault.keyvaultclientextensions.getsecretasync)检索以前设置的值。
 
 ```csharp
 KeyVaultSecret secret = client.GetSecret(secretName);
@@ -247,7 +248,7 @@ KeyVaultSecret secret = client.GetSecret(secretName);
 
 ### <a name="delete-a-secret"></a>删除机密
 
-最后，使用 [client.DeleteSecret 方法](/dotnet/api/microsoft.azure.keyvault.keyvaultclientextensions.getsecretasync)从密钥保管库中删除机密。
+最后，使用 [client.DeleteSecret 方法](https://docs.microsoft.com/dotnet/api/microsoft.azure.keyvault.keyvaultclientextensions.getsecretasync)从密钥保管库中删除机密。
 
 ```csharp
 client.StartDeleteSecret(secretName);
@@ -355,7 +356,6 @@ namespace key_vault_console_app
 
 若要详细了解 Key Vault 以及如何将其与应用程序集成，请继续阅读以下文章。
 
-- 实现[使用 .NET 对 Azure Key Vault 进行服务到服务的身份验证](../general/service-to-service-authentication.md)
 - 阅读 [Azure Key Vault 概述](../general/overview.md)
 - 参阅 [Azure Key Vault 开发人员指南](../general/developers-guide.md)
 - 查看 [Azure Key Vault 最佳做法](../general/best-practices.md)

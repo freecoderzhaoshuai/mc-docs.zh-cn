@@ -9,15 +9,15 @@ ms.reviewer: douglasl
 ms.service: data-factory
 ms.workload: data-services
 ms.topic: conceptual
-origin.date: 07/15/2020
-ms.date: 08/10/2020
+origin.date: 08/03/2020
+ms.date: 09/21/2020
 ms.author: v-jay
-ms.openlocfilehash: a9432430cba7124216783c6b7d49ea6983d7d9dc
-ms.sourcegitcommit: 66563f2b68cce57b5816f59295b97f1647d7a3d6
+ms.openlocfilehash: 271aa3ca57bb4878ba489703832bb6643c1eb0d4
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87914341"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523780"
 ---
 # <a name="copy-activity-in-azure-data-factory"></a>Azure 数据工厂中的复制活动
 
@@ -246,13 +246,10 @@ ms.locfileid: "87914341"
 
 - [Azure SQL 数据库](connector-azure-sql-database.md)
 - [Azure SQL 数据库托管实例](connector-azure-sql-managed-instance.md)
-- [Azure Synapse Analytics（以前称为 Azure SQL 数据仓库）](connector-azure-sql-data-warehouse.md)
+- [Azure Synapse Analytics（以前称为 SQL 数据仓库）](connector-azure-sql-data-warehouse.md)
 - [SQL Server](connector-sql-server.md)
 
 ![创建接收器表](media/copy-activity-overview/create-sink-table.png)
-
-> [!NOTE]
-> 启用了[暂存复制](copy-activity-performance-features.md#staged-copy)后，当前不支持自动创建表。
 
 ## <a name="fault-tolerance"></a>容错
 

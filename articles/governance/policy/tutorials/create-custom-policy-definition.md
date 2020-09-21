@@ -3,14 +3,14 @@ title: 教程：创建自定义策略定义
 description: 本教程介绍如何创建 Azure Policy 的自定义策略定义以在 Azure 资源上强制实施自定义业务规则。
 ms.author: v-tawe
 origin.date: 06/16/2020
-ms.date: 08/06/2020
+ms.date: 09/15/2020
 ms.topic: tutorial
-ms.openlocfilehash: 5c4eea24e145adef743734d007e526c0325efe53
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: c769463bea2360c294a4d5c6c3d8818a042627bc
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917325"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523834"
 ---
 # <a name="tutorial-create-a-custom-policy-definition"></a>教程：创建自定义策略定义
 
@@ -75,7 +75,7 @@ ms.locfileid: "87917325"
 查找属性的最简单方法是查找相同类型的现有资源。 已使用所要强制实施的设置配置的资源也会提供用于比较的值。
 在 Azure 门户中，找到该特定资源的“导出模板”页（在“设置”下） 。
 
-:::image type="content" source="../media/create-custom-policy-definition/export-template.png" alt-text="现有资源上的“导出模板”页" border="false":::
+:::image type="content" source="../media/create-custom-policy-definition/export-template.png" alt-text="Azure 门户中现有资源上的“导出模板”页的屏幕截图。" border="false":::
 
 针对存储帐户执行此操作会显示以下示例所示的模板：
 
@@ -351,7 +351,7 @@ Search-AzGraph -Query "Resources | where type=~'microsoft.storage/storageaccount
 }
 ```
 
-### <a name="metadata"></a>Metadata
+### <a name="metadata"></a>元数据
 
 前三个组成部分是策略元数据。 由于我们知道要为哪些对象创建规则，因此可以轻松提供这些组成部分的值。 [Mode](../concepts/definition-structure.md#mode) 主要与标记和资源位置相关。 由于我们不需要将评估范围限制为支持标记的资源，因此将对 **mode** 使用 _all_ 值。
 

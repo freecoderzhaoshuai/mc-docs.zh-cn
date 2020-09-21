@@ -11,12 +11,12 @@ ms.topic: tutorial
 ms.custom: seo-dt-2019
 origin.date: 01/04/2018
 ms.date: 06/29/2020
-ms.openlocfilehash: f3092b97f09aac51d178f521c45000457b38a94c
-ms.sourcegitcommit: f5484e21fa7c95305af535d5a9722b5ab416683f
+ms.openlocfilehash: e927aba75629dc197dd5638d46f9c1b74f0d5388
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/24/2020
-ms.locfileid: "85323252"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90524046"
 ---
 # <a name="transform-data-in-azure-virtual-network-using-hive-activity-in-azure-data-factory-using-the-azure-portal"></a>通过 Azure 门户在 Azure 数据工厂中使用 Hive 活动转换 Azure 虚拟网络中的数据
 
@@ -84,7 +84,7 @@ ms.locfileid: "85323252"
  
    Azure 数据工厂的名称必须 **全局唯一**。 如果收到错误，请更改数据工厂的名称（例如改为 yournameMyAzureSsisDataFactory），并重新尝试创建。 有关数据工厂项目命名规则，请参阅[数据工厂 - 命名规则](naming-rules.md)一文。
   
-       `Data factory name “MyAzureSsisDataFactory” is not available`
+    数据工厂名“MyAzureSsisDataFactory”不可用
 3. 选择要在其中创建数据工厂的 Azure **订阅**。 
 4. 对于**资源组**，请执行以下步骤之一：
      

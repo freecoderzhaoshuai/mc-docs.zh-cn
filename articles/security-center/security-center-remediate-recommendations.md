@@ -11,15 +11,15 @@ ms.devlang: na
 ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/09/2020
-ms.author: v-tawe
+ms.date: 09/14/2020
+ms.author: v-johya
 origin.date: 11/04/2019
-ms.openlocfilehash: 9789a7e132fbb03e03a0d8a18e3ba478bae62f52
-ms.sourcegitcommit: 134afb420381acd8d6ae56b0eea367e376bae3ef
+ms.openlocfilehash: 84266980f3151697c9639f7ebabe1b70d0eeab07
+ms.sourcegitcommit: 41e986cd4a2879d8767dc6fc815c805e782dc7e6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/15/2020
-ms.locfileid: "83422995"
+ms.lasthandoff: 09/20/2020
+ms.locfileid: "90822360"
 ---
 # <a name="remediate-recommendations-in-azure-security-center"></a>在 Azure 安全中心修正建议
 
@@ -45,7 +45,7 @@ ms.locfileid: "83422995"
 
 1. 在带有“快速修复!”标签的建议的列表中， 单击建议。
 
-    [![选择“快速修复!”](media/security-center-remediate-recommendations/security-center-one-click-fix-select.png)](media/security-center-remediate-recommendations/security-center-one-click-fix-select.png#lightbox)
+    [![选择“快速修复!”](./media/security-center-remediate-recommendations/security-center-one-click-fix-select.png)](./media/security-center-remediate-recommendations/security-center-one-click-fix-select.png#lightbox)
 
 1. 从“不正常的资源”选项卡上，选择要对其实施建议的资源，然后单击“修正”。
 
@@ -71,33 +71,10 @@ ms.locfileid: "83422995"
 修正操作使用模板部署或 REST PATCH API 调用，将配置应用于资源。 这些操作记录在 [Azure 活动日志](../azure-resource-manager/management/view-activity-logs.md)中。
 
 
-## <a name="recommendations-with-quick-fix-remediation"></a>“快速修复”修正建议
-
-|建议|影响|
-|---|---|
-|应在 SQL 服务器上启用审核|此操作将在这些服务器及其数据库上启用 SQL 审核。 <br>**注意**： <ul><li>对于所选 SQL 服务器的每个区域，都将创建一个用于保存审核日志的存储帐户，并且此帐户将由该区域中的所有服务器共享。</li><li>为了确保正确审核，请勿删除或重命名资源组或存储帐户。</li></ul>|
-|应在 SQL 托管实例上启用高级数据安全性|此操作将在选定 SQL 托管实例上启用 SQL 高级数据安全 (ADS)。 <br>**注意**： <ul><li>对于选定 SQL 托管实例的每个区域和资源组，都将创建一个用于保存扫描结果的存储帐户，并且此帐户将由该区域中的所有实例共享。</li><li> 每个 SQL 托管实例的 ADS 费用为 $15。</li></ul>|
-|应对 SQL 托管实例启用漏洞评估|此操作将在选定 SQL 托管实例上启用 SQL 漏洞评估。 <br>**注意**：<ul><li>SQL 漏洞评估是 SQL 高级数据安全 (ADS) 包的一部分。 如果尚未启用 ADS，那么它将在托管实例上自动启用。</li><li>对于选定 SQL 托管实例的每个区域和资源组，都将创建一个用于存储扫描结果的存储帐户，并且此帐户将由该区域中的所有实例共享。</li><li>每个 SQL 服务器的 ADS 费用为 $15。</li></ul>||
-|应在 SQL 服务器上启用高级数据安全|此操作将在这些选定服务器及其数据库上启用高级数据安全 (ADS)。 <br>**注意**：<ul><li>对于选定 SQL 服务器的每个区域和资源组，都将创建一个用于存储扫描结果的存储帐户，并且此帐户将由该区域中的所有服务器共享。</li><li>每个 SQL 服务器的 ADS 费用为 $15。</li></ul>||
-|应在 SQL 服务器上启用漏洞评估|此操作将在这些选定服务器及其数据库上启用 SQL 漏洞评估。 <br>**注意**：<ul><li>SQL 漏洞评估是 SQL 高级数据安全 (ADS) 包的一部分。 如果尚未启用 ADS，那么它将在 SQL 服务器上自动启用。</li><li>对于选定 SQL 服务器的每个区域和资源组，都将创建一个用于存储扫描结果的存储帐户，并且此帐户将由该区域中的所有实例共享。</li><li>每个 SQL 服务器的 ADS 费用为 $15。</li></ul>||
-|应在 SQL 数据库上启用透明数据加密|此操作在选定数据库上启用 SQL 数据库透明数据加密 (TDE)。 <br>**注意**：默认情况下，将使用服务管理的 TDE 密钥。
-|应该启用安全传输到存储帐户|此操作将你的存储帐户安全设置更新为，仅允许来自安全连接的请求 (HTTPS)。 <br>**注意**：<ul><li>使用 HTTP 的任何请求都将被拒绝。</li><li>使用 Azure 文件服务时，在不加密的情况下进行连接将失败，包括在不加密的情况下使用 SMB 2.1、SMB 3.0 的方案，以及某些风格的 Linux SMB 客户端。 了解详细信息。</li></ul>|
-|只能通过 HTTPS 访问 Web 应用程序|此操作会将所选资源上的所有流量从 HTTP 重定向到 HTTPS。 <br>**注意**：<ul><li>没有 SSL 证书的 HTTPS 终结点将在浏览器中显示为带有“隐私错误”。 因此，拥有自定义域的用户需要验证他们是否已设置 SSL 证书。</li><li>请确保用于保护应用服务的数据包和 Web 应用程序防火墙允许 HTTPS 会话转发。</li></ul>|
-|应该只能通过 HTTPS 访问函数应用|此操作会将所选资源上的所有流量从 HTTP 重定向到 HTTPS。 <br>**注意**：<ul><li>没有 SSL 证书的 HTTPS 终结点将在浏览器中显示为带有“隐私错误”。 因此，拥有自定义域的用户需要验证他们是否已设置 SSL 证书。</li><li>请确保用于保护应用服务的数据包和 Web 应用程序防火墙允许 HTTPS 会话转发。</li></ul>|
-|只能通过 HTTPS 访问 API 应用|此操作会将所选资源上的所有流量从 HTTP 重定向到 HTTPS。 <br>**注意**：<ul><li>没有 SSL 证书的 HTTPS 终结点将在浏览器中显示为带有“隐私错误”。 因此，拥有自定义域的用户需要验证他们是否已设置 SSL 证书。</li><li>请确保用于保护应用服务的数据包和 Web 应用程序防火墙允许 HTTPS 会话转发。</li></ul>|
-|应禁用 Web 应用程序的远程调试|此操作将禁用远程调试。|
-|应对函数应用禁用远程调试|此操作将禁用远程调试。|
-|应为 API 应用禁用远程调试|此操作将禁用远程调试。|
-|CORS 不应允许所有资源都能访问你的 Web 应用程序|此操作将阻止其他域访问你的 Web 应用程序。 若要允许特定的域，请在“允许的源”字段中输入它们（用逗号分隔）。 <br>**注意**：如果将此字段留空，将会阻止所有跨源调用。参数字段标题：“允许的源”|
-|CORS 不应允许所有资源都能访问函数应用|此操作将阻止其他域访问你的函数应用程序。 若要允许特定的域，请在“允许的源”字段中输入它们（用逗号分隔）。 <br>**注意**：如果将此字段留空，将会阻止所有跨源调用。参数字段标题：“允许的源”|
-|CORS 不应允许所有资源访问 API 应用|此操作将阻止其他域访问你的 API 应用程序。 若要允许特定的域，请在“允许的源”字段中输入它们（用逗号分隔）。 <br>**注意**：如果将此字段留空，将会阻止所有跨源调用。参数字段标题：“允许的源”|
-|应在虚拟机上启用监视代理|此操作在所选虚拟机上安装监视代理。 选择代理要向其报告的工作区。<ul><li>如果更新策略设置为“自动”，它会部署到新的现有实例上。</li><li>如果更新策略设置为“手动”，并且你想要在现有实例上安装代理，请选中相应的复选框选项。 [了解详细信息](../virtual-machine-scale-sets/virtual-machine-scale-sets-faq.md#how-do-i-add-an-extension-to-all-vms-in-my-virtual-machine-scale-set)</li></ul>|
-|应启用 Key Vault 中的诊断日志|此操作在密钥保管库上启用诊断日志。 诊断日志和指标保存在选定工作区中。|
-|应启用服务总线中的诊断日志|此操作在服务总线上启用诊断日志。 诊断日志和指标保存在选定工作区中。|
-
 ## <a name="next-steps"></a>后续步骤
 
 在本文档中，已向你介绍了如何在安全中心修正建议。 若要了解有关安全中心的详细信息，请参阅以下主题：
 
 * [在 Azure 安全中心设置安全策略](tutorial-security-policy.md) - 了解如何配置 Azure 订阅和资源组的安全策略。
 * [Azure 安全中心的安全运行状况监视](security-center-monitoring.md) - 了解如何监视 Azure 资源的运行状况。
+

@@ -10,12 +10,12 @@ ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
 ms.custom: security-benchmark
-ms.openlocfilehash: 79fc5e0a6c1b5090282647e182b39766be99823d
-ms.sourcegitcommit: e633c458126612223fbf7a8853dbf19acc7f0fa5
+ms.openlocfilehash: 7ffd2e86e60b68576ad9021852d135b30de2cd33
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/20/2020
-ms.locfileid: "88658552"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90524000"
 ---
 <!--Verified successfully on Characters content only-->
 # <a name="azure-security-baseline-for-batch"></a>Batch 的 Azure 安全基线
@@ -482,9 +482,9 @@ https://docs.azure.cn/active-directory/governance/access-reviews-overview
 
 **指导**：不可用；Azure Batch 尚不支持客户密码箱。
 
-客户密码箱支持的服务列表： https://docs.azure.cn/security/fundamentals/customer-lockbox-overview#supported-services-and-scenarios-in-general-availability
+<!--Not Available on  https://docs.azure.cn/security/fundamentals/customer-lockbox-overview#supported-services-and-scenarios-in-general-availability-->
 
-Azure 安全中心监视：不适用
+**Azure 安全中心监视**：不适用
 
 **责任**：客户
 

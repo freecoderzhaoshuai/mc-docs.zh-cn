@@ -1,17 +1,17 @@
 ---
 title: 内置策略计划列表
 description: 列出 Azure Policy 的内置策略计划。 类别包括“合规性”、“来宾配置”等。
-origin.date: 07/10/2020
-ms.date: 08/06/2020
+origin.date: 09/10/2020
+ms.date: 09/15/2020
 ms.author: v-tawe
 ms.topic: sample
 ms.custom: generated
-ms.openlocfilehash: 798015d45957acda2fecd4d81fbc9da293c4709d
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: c6039f39d6521c2f25839972c0f1d5307d26a2ae
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917247"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523615"
 ---
 # <a name="azure-policy-built-in-initiative-definitions"></a>Azure Policy 内置计划定义
 
@@ -21,27 +21,27 @@ ms.locfileid: "87917247"
 
 <!-- ## Cosmos DB -->
 
-<!-- [!INCLUDE [azure-policy-samples-policysets-cosmos-db](../../../../includes/policy/samples/bycat/policysets-cosmos-db.md)] -->
+<!-- [!INCLUDE [azure-policy-reference-policysets-cosmos-db](../../../../includes/policy/reference/bycat/policysets-cosmos-db.md)] -->
 
 ## <a name="guest-configuration"></a>来宾配置
 
-[!INCLUDE [azure-policy-samples-policysets-guest-configuration](../../../../includes/policy/samples/bycat/policysets-guest-configuration.md)]
+[!INCLUDE [azure-policy-reference-policysets-guest-configuration](../../../../includes/policy/reference/bycat/policysets-guest-configuration.md)]
 
 <!-- ## Kubernetes -->
 
-<!-- [!INCLUDE [azure-policy-samples-policysets-kubernetes](../../../../includes/policy/samples/bycat/policysets-kubernetes.md)] -->
+<!-- [!INCLUDE [azure-policy-reference-policysets-kubernetes](../../../../includes/policy/reference/bycat/policysets-kubernetes.md)] -->
 
 ## <a name="monitoring"></a>监视
 
-[!INCLUDE [azure-policy-samples-policysets-monitoring](../../../../includes/policy/samples/bycat/policysets-monitoring.md)]
+[!INCLUDE [azure-policy-reference-policysets-monitoring](../../../../includes/policy/reference/bycat/policysets-monitoring.md)]
 
 <!-- ## Regulatory Compliance -->
 
-<!-- [!INCLUDE [azure-policy-samples-policysets-regulatory-compliance](../../../../includes/policy/samples/bycat/policysets-regulatory-compliance.md)] -->
+<!-- [!INCLUDE [azure-policy-reference-policysets-regulatory-compliance](../../../../includes/policy/reference/bycat/policysets-regulatory-compliance.md)] -->
 
 ## <a name="security-center"></a>安全中心
 
-[!INCLUDE [azure-policy-samples-policysets-security-center](../../../../includes/policy/samples/bycat/policysets-security-center.md)]
+[!INCLUDE [azure-policy-reference-policysets-security-center](../../../../includes/policy/reference/bycat/policysets-security-center.md)]
 
 ## <a name="next-steps"></a>后续步骤
 

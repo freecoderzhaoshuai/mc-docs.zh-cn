@@ -5,15 +5,15 @@ description: 本文介绍如何排查将 Azure 应用程序网关与 Azure 应�
 services: application-gateway
 author: abshamsft
 ms.service: application-gateway
-ms.topic: article
-ms.date: 03/30/2020
+ms.topic: troubleshooting
+ms.date: 09/14/2020
 ms.author: v-junlch
-ms.openlocfilehash: 1e449186286e65b8e12898170865c70fc786a67e
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 878510f4358ec59d1586736a789b58159ad72397
+ms.sourcegitcommit: e1b6e7fdff6829040c4da5d36457332de33e0c59
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80581803"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721105"
 ---
 # <a name="troubleshoot-app-service-issues-in-application-gateway"></a>排查应用程序网关中的应用服务问题
 
@@ -23,9 +23,8 @@ ms.locfileid: "80581803"
 
 本文介绍如何排查以下问题：
 
-> [!div class="checklist"]
-> * 发生重定向时，应用服务 URL 在浏览器中公开。
-> * 应用服务 ARRAffinity Cookie 域设置为应用服务主机名 (example.chinacloudsites.cn) 而不是原始主机。
+* 发生重定向时，应用服务 URL 在浏览器中公开。
+* 应用服务 ARRAffinity Cookie 域设置为应用服务主机名 (example.chinacloudsites.cn) 而不是原始主机。
 
 当后端应用程序发送重定向响应时，你可能希望将客户端重定向到不同的 URL，而不是后端应用程序指定的 URL。 当应用服务托管在应用程序网关后面，并要求客户端重定向到其相对路径时，你可能希望这样做。 例如，从 contoso.chinacloudsites.cn/path1 重定向到 contoso.chinacloudsites.cn/path2。 
 
@@ -98,7 +97,7 @@ X-Powered-By: ASP.NET
 
     ![应用服务自定义域列表](./media/troubleshoot-app-service-redirection-app-service-url/appservice-2.png)
 
-- 应用服务现已准备好接受主机名 `www.contoso.com`。 更改 DNS 中的 CNAME 条目，使其重新指向应用程序网关的 FQDN，例如 `appgw.chinanorth.chinacloudapp.cn`。
+- 应用服务现已准备好接受主机名 `www.contoso.com`。 更改 DNS 中的 CNAME 条目，使其重新指向应用程序网关的 FQDN，例如 `appgw.chinanorth2.chinacloudapp.cn`。
 
 - 确保执行 DNS 查询时，域 `www.contoso.com` 解析为应用程序网关的 FQDN。
 

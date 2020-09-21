@@ -8,14 +8,14 @@ tags: azure-resource-manager
 ms.service: key-vault
 ms.topic: overview
 origin.date: 04/17/2020
-ms.date: 06/02/2020
+ms.date: 09/16/2020
 ms.author: v-tawe
-ms.openlocfilehash: 0f715654ed2f2815d956a8118211765f5df65b81
-ms.sourcegitcommit: 9811bf312e0d037cb530eb16c8d85238fd276949
+ms.openlocfilehash: 6225eb329ceb8210da913d85b1a8aa06c6c0d8fb
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84275688"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678473"
 ---
 # <a name="about-keys-secrets-and-certificates"></a>关于密钥、机密和证书
 
@@ -59,7 +59,7 @@ Key Vault 中的对象通过 URL 唯一标识。 不管地理位置如何，系�
 
 其中：  
 
-|||  
+| 元素 | 说明 |  
 |-|-|  
 |`keyvault-name`|Microsoft Azure Key Vault 服务中的保管库名称。<br /><br /> Key Vault 名称由用户选择，并且全局唯一。<br /><br /> Key Vault 的名称必须是 3-24 个字符，且仅包含 0-9、a-z、A-Z 和 - 的字符串。|  
 |`object-type`|对象的类型（“密钥”、“机密”或“证书”）。|  

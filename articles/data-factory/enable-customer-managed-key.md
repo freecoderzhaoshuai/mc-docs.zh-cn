@@ -7,21 +7,21 @@ author: WenJason
 ms.service: data-factory
 ms.topic: quickstart
 origin.date: 05/08/2020
-ms.date: 07/27/2020
+ms.date: 09/21/2020
 ms.author: v-jay
 ms.reviewer: mariozi
-ms.openlocfilehash: 1c694fc8adbf6ba90dfbf548dffe376402f2fbce
-ms.sourcegitcommit: 0eaa82cf74477d26d06bdd8fb6e715e6ed1339c4
+ms.openlocfilehash: 6d786b6827fcd783ff0d1fc8ed4f06374f0777ab
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/23/2020
-ms.locfileid: "86974563"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523869"
 ---
 # <a name="encrypt-azure-data-factory-with-customer-managed-keys"></a>使用客户管理的密钥加密 Azure 数据工厂
 
 [!INCLUDE[appliesto-adf-xxx-md](includes/appliesto-adf-xxx-md.md)]
 
-Azure 数据工厂对静态数据进行加密，其中包括实体定义、运行期间缓存的所有数据以及用于数据预览的缓存数据。 默认情况下，使用随机生成并由 Microsoft 管理的密钥加密数据，该密钥只会分配到数据工厂。 为了获得额外的安全保证，现在可以通过 Azure 数据工厂客户管理的密钥功能启用“创建自己的密钥”(BYOK)。 指定客户管理的密钥时，数据工厂会使用工厂系统密钥和 CMK 加密客户数据。 缺少两者中的任何一个都会导致拒绝访问数据和工厂。
+Azure 数据工厂对静态数据进行加密，其中包括实体定义和在运行期间缓存的所有数据。 默认情况下，使用随机生成并由 Microsoft 管理的密钥加密数据，该密钥只会分配到数据工厂。 为了获得额外的安全保证，现在可以通过 Azure 数据工厂客户管理的密钥功能启用“创建自己的密钥”(BYOK)。 指定客户管理的密钥时，数据工厂会使用工厂系统密钥和 CMK 加密客户数据。 缺少两者中的任何一个都会导致拒绝访问数据和工厂。
 
 存储客户管理的密钥需要 Azure 密钥保管库。 可以创建自己的密钥并将其存储在密钥保管库中，也可以使用 Azure 密钥保管库 API 来生成密钥。 密钥保管库和数据工厂必须位于同一 Azure Active Directory (Azure AD) 租户和同一区域，但可以位于不同订阅中。 有关 Azure 密钥保管库的详细信息，请参阅[什么是 Azure 密钥保管库？](../key-vault/general/overview.md)
 
@@ -77,7 +77,7 @@ Azure 数据工厂对静态数据进行加密，其中包括实体定义、运�
 
     ![屏幕截图：从密钥保管库获取密钥 URI](media/enable-customer-managed-key/04-get-key-identifier.png)
 
-1. 启动 Azure 数据工厂门户，然后使用左侧导航栏跳转到数据工厂的“管理”页
+1. 启动 Azure 数据工厂门户，然后使用左侧导航栏跳转到数据工厂管理门户
 
 1. 单击“客户管理的密钥”图标
 

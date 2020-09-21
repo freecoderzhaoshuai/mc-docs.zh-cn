@@ -12,12 +12,12 @@ ms.topic: tutorial
 ms.custom: seo-dt-2019
 origin.date: 06/10/2018
 ms.date: 07/27/2020
-ms.openlocfilehash: c93924ab90d4f11d31504365935c3461dd012a13
-ms.sourcegitcommit: 0eaa82cf74477d26d06bdd8fb6e715e6ed1339c4
+ms.openlocfilehash: 1d5b25f02efad7f0a511e176cc808fe3adb6eec5
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/23/2020
-ms.locfileid: "86974219"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90524041"
 ---
 # <a name="incrementally-load-data-from-azure-sql-database-to-azure-blob-storage-using-the-azure-portal"></a>使用 Azure 门户以增量方式将 Azure SQL 数据库中的数据加载到 Azure Blob 存储
 
@@ -162,11 +162,11 @@ END
 
    Azure 数据工厂的名称必须 **全局唯一**。 如果看到红色感叹号和以下错误，请更改数据工厂的名称（例如改为 yournameADFIncCopyTutorialDF），并重新尝试创建。 有关数据工厂项目命名规则，请参阅[数据工厂 - 命名规则](naming-rules.md)一文。
 
-       `Data factory name "ADFIncCopyTutorialDF" is not available`
+    数据工厂名“ADFIncCopyTutorialDF”不可用
 4. 选择要在其中创建数据工厂的 Azure **订阅**。
 5. 对于**资源组**，请执行以下步骤之一：
 
-      - 选择“使用现有资源组”，并从下拉列表选择现有的资源组。
+      - 选择“使用现有资源组”，并从下拉列表选择现有的资源组。 
       - 选择“新建”，并输入资源组的名称。   
          
         若要了解有关资源组的详细信息，请参阅 [使用资源组管理 Azure 资源](../azure-resource-manager/management/overview.md)。  
@@ -277,7 +277,7 @@ END
         | 名称 | 类型 | 值 |
         | ---- | ---- | ----- |
         | LastModifiedtime | DateTime | @{activity('LookupNewWaterMarkActivity').output.firstRow.NewWatermarkvalue} |
-        | TableName | 字符串 | @{activity('LookupOldWaterMarkActivity').output.firstRow.TableName} |
+        | TableName | String | @{activity('LookupOldWaterMarkActivity').output.firstRow.TableName} |
 
         ![存储过程活动 - 存储过程设置](./media/tutorial-incremental-copy-portal/sproc-activity-stored-procedure-settings.png)
 27. 若要验证管道设置，请单击工具栏中的“验证”。 确认没有任何验证错误。 若要关闭“管道验证报告”窗口，请单击 >>。   
@@ -288,7 +288,7 @@ END
 ## <a name="trigger-a-pipeline-run"></a>触发管道运行
 1. 单击工具栏中的“添加触发器”，然后单击“立即触发”。 
 
-2. 在“管道运行”窗口中选择“完成”。
+2. 在“管道运行”窗口中选择“完成”。 
 
 ## <a name="monitor-the-pipeline-run"></a>监视管道运行
 

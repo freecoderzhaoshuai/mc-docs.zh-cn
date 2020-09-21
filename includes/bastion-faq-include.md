@@ -6,17 +6,17 @@ author: rockboyfor
 ms.service: bastion
 ms.topic: include
 origin.date: 05/04/2020
-ms.date: 08/10/2020
+ms.date: 09/21/2020
 ms.testscope: no
 ms.testdate: 07/27/2020
 ms.author: v-yeche
 ms.custom: include file
-ms.openlocfilehash: bff62aa4960d81d581e5b8eb6e49e8e2620c43cb
-ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
+ms.openlocfilehash: daa200baca8ed3c387325769e79ad09feee5811e
+ms.sourcegitcommit: 41e986cd4a2879d8767dc6fc815c805e782dc7e6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89046462"
+ms.lasthandoff: 09/20/2020
+ms.locfileid: "90822394"
 ---
 <!--Verified successfully-->
 <a name="regions"></a>

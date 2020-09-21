@@ -12,14 +12,14 @@ ms.tgt_pltfrm: ''
 ms.devlang: powershell
 ms.topic: quickstart
 origin.date: 04/10/2020
-ms.date: 05/11/2020
+ms.date: 09/21/2020
 ms.author: v-jay
-ms.openlocfilehash: 827f61d07d92e72b49ec9a4dad31b5da594d0702
-ms.sourcegitcommit: f8d6fa25642171d406a1a6ad6e72159810187933
+ms.openlocfilehash: 8369b44ac18252de9830f4abbef355d20dfbfd1b
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82198089"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523917"
 ---
 # <a name="quickstart-create-an-azure-data-factory-using-powershell"></a>快速入门：使用 PowerShell 创建 Azure 数据工厂
 
@@ -112,6 +112,10 @@ ms.locfileid: "82198089"
 
 在数据工厂中创建链接服务，将数据存储和计算服务链接到数据工厂。 在本快速入门中，请创建一个 Azure 存储链接服务，用作源存储和接收器存储。 链接服务包含的连接信息可供数据工厂服务用来在运行时连接到它。
 
+>[!TIP]
+>本快速入门使用“帐户密钥”  作为数据存储的身份验证类型，但你可以根据需要选择其他受支持的身份验证方法：“SAS URI”  、“服务主体”  和“托管标识”  。 有关详细信息，请参阅[此文](/data-factory/connector-azure-blob-storage#linked-service-properties)中的相应部分。
+>为了安全地存储数据存储的机密，我们还建议使用 Azure Key Vault。 有关详细说明，请参阅[此文](/data-factory/store-credentials-in-key-vault)。
+
 1. 在 **C:\ADFv2QuickStartPSH** 文件夹中，创建包含以下内容的名为 **AzureStorageLinkedService.json** 的 JSON 文件：（创建 ADFv2QuickStartPSH 文件夹（如果不存在）。）
 
     > [!IMPORTANT]
@@ -130,7 +134,7 @@ ms.locfileid: "82198089"
     }
     ```
 
-    如果使用记事本，请在“另存为”对话框中选择“所有文件”作为“另存为类型”字段的值。    否则，会为文件添加 `.txt` 扩展。 例如，`AzureStorageLinkedService.json.txt`。 如果先在文件资源管理器中创建该文件，然后再在记事本中将其打开，则可能看不到 `.txt` 扩展，因为系统默认设置“隐藏已知文件类型的扩展名”选项。  在执行下一步骤之前删除 `.txt` 扩展名。
+    如果使用记事本，请在“另存为”对话框中选择“所有文件”作为“另存为类型”字段的值。    否则，会为文件添加 `.txt` 扩展。 例如，`AzureStorageLinkedService.json.txt` 。 如果先在文件资源管理器中创建该文件，然后再在记事本中将其打开，则可能看不到 `.txt` 扩展，因为系统默认设置“隐藏已知文件类型的扩展名”选项。  在执行下一步骤之前删除 `.txt` 扩展名。
 
 2. 在 **PowerShell** 中，切换到 **ADFv2QuickStartPSH** 文件夹。
 

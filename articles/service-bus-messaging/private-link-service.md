@@ -2,18 +2,19 @@
 title: 将 Azure 服务总线与 Azure 专用链接服务集成
 description: 了解如何将 Azure 服务总线与 Azure 专用链接服务集成
 author: rockboyfor
+ms.service: service-bus-messaging
 origin.date: 06/23/2020
 ms.date: 08/31/2020
 ms.testscope: yes|no
 ms.testdate: 08/26/2020
 ms.author: v-yeche
 ms.topic: article
-ms.openlocfilehash: 8725dcbba06ac10f089096b833e7af41e4f345f9
-ms.sourcegitcommit: b5ea35dcd86ff81a003ac9a7a2c6f373204d111d
+ms.openlocfilehash: befa78a853cfbe3a21c9c45b39956422845cebbf
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/27/2020
-ms.locfileid: "88947615"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523862"
 ---
 <!--Verified successfully-->
 # <a name="allow-access-to-azure-service-bus-namespaces-via-private-endpoints"></a>允许通过专用终结点访问 Azure 服务总线命名空间
@@ -268,11 +269,12 @@ Aliases:  <service-bus-namespace-name>.servicebus.chinacloudapi.cn
 
 每个服务总线命名空间的最大专用终结点数目：120。
 
-有关详细信息，请参阅 [Azure 专用链接服务：限制](../private-link/private-link-service-overview.md#limitations)
+<!--Not Available on  [Azure Private Link service: Limitations](../private-link/private-link-service-overview.md#limitations)-->
 
 ## <a name="next-steps"></a>后续步骤
 
-- 详细了解 [Azure 专用链接](../private-link/private-link-service-overview.md)
+<!--Not Available on  - Learn more about [Azure Private Link](../private-link/private-link-service-overview.md)-->
+
 - 详细了解 [Azure 服务总线](service-bus-messaging-overview.md)
 
 <!-- Update_Description: new article about private link service -->

@@ -14,12 +14,12 @@ ms.workload: na
 ms.date: 05/13/2020
 ms.author: v-tawe
 origin.date: 03/20/2019
-ms.openlocfilehash: 47147b1ed2e5c046435952a5b9e66c6889fd18d4
-ms.sourcegitcommit: cbaa1aef101f67bd094f6ad0b4be274bbc2d2537
+ms.openlocfilehash: 903e540f7bf7a401edda3503fee41dbe4f7131db
+ms.sourcegitcommit: 41e986cd4a2879d8767dc6fc815c805e782dc7e6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/28/2020
-ms.locfileid: "84126631"
+ms.lasthandoff: 09/20/2020
+ms.locfileid: "90822363"
 ---
 # <a name="integrate-security-solutions-in-azure-security-center"></a>在 Azure 安全中心集成安全解决方案
 本文档介绍如何管理已连接到 Azure 安全中心的安全解决方案，以及如何添加新的安全解决方案。
@@ -43,7 +43,6 @@ ms.locfileid: "84126631"
 
 安全中心还为以下项提供漏洞分析：
 
-* SQL 数据库 - 请参阅[在漏洞评估仪表板中浏览漏洞评估报告](security-center-iaas-advanced-data.md#explore-vulnerability-assessment-reports)
 * Azure 容器注册表映像 - 请参阅 [Azure 容器注册表与安全中心（预览版）的集成](azure-container-registry-integration.md)
 
 ## <a name="how-security-solutions-are-integrated"></a>安全中心如何集成

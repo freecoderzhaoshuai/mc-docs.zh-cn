@@ -5,16 +5,15 @@ description: 了解如何创建应用程序网关，将内部 web 流量重定�
 services: application-gateway
 author: vhorne
 ms.service: application-gateway
-ms.topic: article
-origin.date: 11/14/2019
-ms.date: 11/21/2019
+ms.topic: how-to
+ms.date: 09/14/2020
 ms.author: v-junlch
-ms.openlocfilehash: d2d603c1c98b4140fe15b97c86470bb19103ad99
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 9f328f4ae78b142f75ed1f76bcb22d9d0f5c81e2
+ms.sourcegitcommit: e1b6e7fdff6829040c4da5d36457332de33e0c59
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74326642"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721176"
 ---
 # <a name="create-an-application-gateway-with-internal-redirection-using-the-azure-cli"></a>使用 Azure CLI 创建支持内部重定向的应用程序网关
 
@@ -22,14 +21,13 @@ ms.locfileid: "74326642"
 
 在本文中，学习如何：
 
-> [!div class="checklist"]
-> * 设置网络
-> * 创建应用程序网关
-> * 添加侦听器和重定向规则
-> * 使用后端池创建虚拟机规模集
-> * 在域中创建 CNAME 记录
+* 设置网络
+* 创建应用程序网关
+* 添加侦听器和重定向规则
+* 使用后端池创建虚拟机规模集
+* 在域中创建 CNAME 记录
 
-如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial/?WT.mc_id=A261C142F)。
+如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
 
 如果选择在本地安装并使用 CLI，此快速入门教程要求运行 Azure CLI 2.0.4 版或更高版本。 要查找版本，请运行 `az --version`。 如果需要进行安装或升级，请参阅[安装 Azure CLI](/cli/install-azure-cli)。
 
@@ -37,10 +35,10 @@ ms.locfileid: "74326642"
 
 资源组是在其中部署和管理 Azure 资源的逻辑容器。 使用 [az group create](/cli/group) 创建资源组。
 
-以下示例在“chinanorth”位置创建名为“myResourceGroupAG”的资源组。
+以下示例在“chinanorth2”  位置创建名为“myResourceGroupAG”  的资源组。
 
 ```azurecli 
-az group create --name myResourceGroupAG --location chinanorth
+az group create --name myResourceGroupAG --location chinanorth2
 ```
 
 ## <a name="create-network-resources"></a>创建网络资源 
@@ -48,20 +46,20 @@ az group create --name myResourceGroupAG --location chinanorth
 使用 [az network vnet create](/cli/network/vnet) 创建名为 *myVNet* 的虚拟网络和名为 *myAGSubnet* 的子网。 然后，可以使用 [az network vnet subnet create](/cli/network/vnet/subnet) 添加后端服务器池所需的名为 *myBackendSubnet* 的子网。 使用 [az network public-ip create](/cli/network/public-ip#az-network-public-ip-create) 创建名为 *myAGPublicIPAddress* 的公共 IP 地址。
 
 ```azurecli
-az network vnet create `
-  --name myVNet `
-  --resource-group myResourceGroupAG `
-  --location chinanorth `
-  --address-prefix 10.0.0.0/16 `
-  --subnet-name myAGSubnet `
+az network vnet create \
+  --name myVNet \
+  --resource-group myResourceGroupAG \
+  --location chinanorth2 \
+  --address-prefix 10.0.0.0/16 \
+  --subnet-name myAGSubnet \
   --subnet-prefix 10.0.1.0/24
-az network vnet subnet create `
-  --name myBackendSubnet `
-  --resource-group myResourceGroupAG `
-  --vnet-name myVNet `
+az network vnet subnet create \
+  --name myBackendSubnet \
+  --resource-group myResourceGroupAG \
+  --vnet-name myVNet \
   --address-prefix 10.0.2.0/24
-az network public-ip create `
-  --resource-group myResourceGroupAG `
+az network public-ip create \
+  --resource-group myResourceGroupAG \
   --name myAGPublicIPAddress
 ```
 
@@ -70,18 +68,18 @@ az network public-ip create `
 可以使用 [az network application-gateway create](/cli/network/application-gateway) 创建名为 *myAppGateway* 的应用程序网关。 使用 Azure CLI 创建应用程序网关时，请指定配置信息，例如容量、sku 和 HTTP 设置。 将应用程序网关分配给之前创建的 *myAGSubnet* 和 *myAGPublicIPAddress*。 
 
 ```azurecli
-az network application-gateway create `
-  --name myAppGateway `
-  --location chinanorth `
-  --resource-group myResourceGroupAG `
-  --vnet-name myVNet `
-  --subnet myAGsubnet `
-  --capacity 2 `
-  --sku Standard_Medium `
-  --http-settings-cookie-based-affinity Disabled `
-  --frontend-port 80 `
-  --http-settings-port 80 `
-  --http-settings-protocol Http `
+az network application-gateway create \
+  --name myAppGateway \
+  --location chinanorth2 \
+  --resource-group myResourceGroupAG \
+  --vnet-name myVNet \
+  --subnet myAGsubnet \
+  --capacity 2 \
+  --sku Standard_Medium \
+  --http-settings-cookie-based-affinity Disabled \
+  --frontend-port 80 \
+  --http-settings-port 80 \
+  --http-settings-protocol Http \
   --public-ip-address myAGPublicIPAddress
 ```
 
@@ -101,19 +99,19 @@ az network application-gateway create `
 使用 [az network application-gateway http-listener create](/cli/network/application-gateway/http-listener#az-network-application-gateway-http-listener-create) 添加路由流量所需的后端侦听器。
 
 ```azurecli
-az network application-gateway http-listener create `
-  --name contosoComListener `
-  --frontend-ip appGatewayFrontendIP `
-  --frontend-port appGatewayFrontendPort `
-  --resource-group myResourceGroupAG `
-  --gateway-name myAppGateway `
+az network application-gateway http-listener create \
+  --name contosoComListener \
+  --frontend-ip appGatewayFrontendIP \
+  --frontend-port appGatewayFrontendPort \
+  --resource-group myResourceGroupAG \
+  --gateway-name myAppGateway \
   --host-name www.contoso.com
-az network application-gateway http-listener create `
-  --name contosoOrgListener `
-  --frontend-ip appGatewayFrontendIP `
-  --frontend-port appGatewayFrontendPort `
-  --resource-group myResourceGroupAG `
-  --gateway-name myAppGateway `
+az network application-gateway http-listener create \
+  --name contosoOrgListener \
+  --frontend-ip appGatewayFrontendIP \
+  --frontend-port appGatewayFrontendPort \
+  --resource-group myResourceGroupAG \
+  --gateway-name myAppGateway \
   --host-name www.contoso.org   
   ```
 
@@ -122,13 +120,13 @@ az network application-gateway http-listener create `
 使用 [az network application-gateway redirect-config create](/cli/network/application-gateway/redirect-config#az-network-application-gateway-redirect-config-create) 在应用程序网关中添加从 *www\.consoto.org* 将流量发送到 *www\.contoso.com* 的侦听器的重定向配置。
 
 ```azurecli
-az network application-gateway redirect-config create `
-  --name orgToCom `
-  --gateway-name myAppGateway `
-  --resource-group myResourceGroupAG `
-  --type Permanent `
-  --target-listener contosoListener `
-  --include-path true `
+az network application-gateway redirect-config create \
+  --name orgToCom \
+  --gateway-name myAppGateway \
+  --resource-group myResourceGroupAG \
+  --type Permanent \
+  --target-listener contosoListener \
+  --include-path true \
   --include-query-string true
 ```
 
@@ -139,23 +137,23 @@ az network application-gateway redirect-config create `
 在此示例中，将创建两个新规则并删除创建的默认规则。  可以使用 [az network application-gateway rule create](/cli/network/application-gateway/rule#az-network-application-gateway-rule-create) 添加规则。
 
 ```azurecli
-az network application-gateway rule create `
-  --gateway-name myAppGateway `
-  --name contosoComRule `
-  --resource-group myResourceGroupAG `
-  --http-listener contosoComListener `
-  --rule-type Basic `
+az network application-gateway rule create \
+  --gateway-name myAppGateway \
+  --name contosoComRule \
+  --resource-group myResourceGroupAG \
+  --http-listener contosoComListener \
+  --rule-type Basic \
   --address-pool appGatewayBackendPool
-az network application-gateway rule create `
-  --gateway-name myAppGateway `
-  --name contosoOrgRule `
-  --resource-group myResourceGroupAG `
-  --http-listener contosoOrgListener `
-  --rule-type Basic `
+az network application-gateway rule create \
+  --gateway-name myAppGateway \
+  --name contosoOrgRule \
+  --resource-group myResourceGroupAG \
+  --http-listener contosoOrgListener \
+  --rule-type Basic \
   --redirect-config orgToCom
-az network application-gateway rule delete `
-  --gateway-name myAppGateway `
-  --name rule1 `
+az network application-gateway rule delete \
+  --gateway-name myAppGateway \
+  --name rule1 \
   --resource-group myResourceGroupAG
 ```
 
@@ -164,18 +162,18 @@ az network application-gateway rule delete `
 在此示例中，将创建一个虚拟机规模集以支持所创建的后端池。 创建的规模集名为 *myvmss*，并包含两个在其上安装了 NGINX 的虚拟机实例。
 
 ```azurecli
-az vmss create `
-  --name myvmss `
-  --resource-group myResourceGroupAG `
-  --image UbuntuLTS `
-  --admin-username azureuser `
-  --admin-password Azure123456! `
-  --instance-count 2 `
-  --vnet-name myVNet `
-  --subnet myBackendSubnet `
-  --vm-sku Standard_DS2 `
-  --upgrade-policy-mode Automatic `
-  --app-gateway myAppGateway `
+az vmss create \
+  --name myvmss \
+  --resource-group myResourceGroupAG \
+  --image UbuntuLTS \
+  --admin-username azureuser \
+  --admin-password Azure123456! \
+  --instance-count 2 \
+  --vnet-name myVNet \
+  --subnet myBackendSubnet \
+  --vm-sku Standard_DS2 \
+  --upgrade-policy-mode Automatic \
+  --app-gateway myAppGateway \
   --backend-pool-name appGatewayBackendPool
 ```
 
@@ -184,12 +182,12 @@ az vmss create `
 在 shell 窗口中运行以下命令：
 
 ```azurecli
-az vmss extension set `
-  --publisher Microsoft.Azure.Extensions `
-  --version 2.0 `
-  --name CustomScript `
-  --resource-group myResourceGroupAG `
-  --vmss-name myvmss `
+az vmss extension set \
+  --publisher Microsoft.Azure.Extensions \
+  --version 2.0 \
+  --name CustomScript \
+  --resource-group myResourceGroupAG \
+  --vmss-name myvmss \
   --settings '{ "fileUris": ["https://raw.githubusercontent.com/Azure/azure-docs-powershell-samples/master/application-gateway/iis/install_nginx.sh"],
   "commandToExecute": "./install_nginx.sh" }'
 ```
@@ -199,10 +197,10 @@ az vmss extension set `
 使用其公共 IP 地址创建应用程序网关后，可以获取 DNS 地址并使用它在域中创建 CNAME 记录。 可以使用 [az network public-ip show](/cli/network/public-ip#az-network-public-ip-show) 获取应用程序网关的 DNS 地址。 复制 DNSSettings 的 *fqdn* 值并使用它作为所创建的 CNAME 记录的值。 不建议使用 A 记录，因为重新启动应用程序网关后 VIP 可能会变化。
 
 ```azurecli
-az network public-ip show `
-  --resource-group myResourceGroupAG `
-  --name myAGPublicIPAddress `
-  --query [dnsSettings.fqdn] `
+az network public-ip show \
+  --resource-group myResourceGroupAG \
+  --name myAGPublicIPAddress \
+  --query [dnsSettings.fqdn] \
   --output tsv
 ```
 
@@ -224,4 +222,3 @@ az network public-ip show `
 > * 使用后端池创建虚拟机规模集
 > * 在域中创建 CNAME 记录
 
-<!-- Update_Description: update metedata properties -->

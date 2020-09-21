@@ -11,13 +11,13 @@ ms.workload: data-services
 ms.topic: tutorial
 ms.custom: seo-lt-2019; seo-dt-2019
 origin.date: 06/10/2020
-ms.date: 07/27/2020
-ms.openlocfilehash: d6a392c2d31dcdf327796fc8f4156639bad88010
-ms.sourcegitcommit: 0eaa82cf74477d26d06bdd8fb6e715e6ed1339c4
+ms.date: 09/21/2020
+ms.openlocfilehash: d21d4bfd091a92485c524715a9523bdee0ff7f9c
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/23/2020
-ms.locfileid: "86974251"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90524038"
 ---
 # <a name="incrementally-load-data-from-multiple-tables-in-sql-server-to-a-database-in-azure-sql-database-using-the-azure-portal"></a>使用 Azure 门户以递增方式将数据从 SQL Server 中的多个表加载到 Azure SQL 数据库中的数据库
 
@@ -289,7 +289,7 @@ END
 1. 确认在 Integration Runtime 的列表中看到 **MySelfHostedIR**。
 
 ## <a name="create-linked-services"></a>创建链接服务
-可在数据工厂中创建链接服务，将数据存储和计算服务链接到数据工厂。 在本部分中，你将创建指向 SQL Server 数据库和 Azure SQL 数据库的链接服务。 
+可在数据工厂中创建链接服务，将数据存储和计算服务链接到数据工厂。 在本部分中，你将创建 SQL Server 数据库和 Azure SQL 数据库中数据库的链接服务。 
 
 ### <a name="create-the-sql-server-linked-service"></a>创建 SQL Server 链接服务
 在此步骤中，请将 SQL Server 数据库链接到数据工厂。

@@ -7,12 +7,12 @@ origin.date: 04/30/2020
 ms.date: 08/13/2020
 ms.author: v-tawe
 ms.custom: fasttrack-edit
-ms.openlocfilehash: c4fc194d4bbd8da0d74732802e5b984f5980b82c
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: a0609e8aee9f77c1308c37e14dfdbeb49c09f0cf
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88227941"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678390"
 ---
 # <a name="set-up-staging-environments-in-azure-app-service"></a>设置 Azure 应用服务中的过渡环境
 <a name="Overview"></a>
@@ -366,7 +366,7 @@ Remove-AzResource -ResourceGroupName [resource group name] -ResourceType Microso
             "type": "Microsoft.Web/sites/slots",
             "apiVersion": "2018-02-01",
             "name": "[concat(parameters('my_site_name'), '/staging')]",
-            "location": "East US",
+            "location": "China East",
             "kind": "app",
             "properties": {
                 "buildVersion": "[parameters('sites_buildVersion')]"
@@ -376,7 +376,7 @@ Remove-AzResource -ResourceGroupName [resource group name] -ResourceType Microso
             "type": "Microsoft.Web/sites",
             "apiVersion": "2018-02-01",
             "name": "[parameters('my_site_name')]",
-            "location": "East US",
+            "location": "China East",
             "kind": "app",
             "dependsOn": [
                 "[resourceId('Microsoft.Web/sites/slots', parameters('my_site_name'), 'staging')]"

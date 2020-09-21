@@ -9,14 +9,14 @@ ms.service: key-vault
 ms.subservice: keys
 ms.topic: overview
 origin.date: 09/04/2019
-ms.date: 07/28/2020
+ms.date: 09/15/2020
 ms.author: v-tawe
-ms.openlocfilehash: 6c7007730b4d102d4ff95d610502c8ff6ec9b295
-ms.sourcegitcommit: 0e778acf5aa5eb63ab233e07e7aecce3a9a5e6d4
+ms.openlocfilehash: d7745c332777eb65de542556896e541aa2e0ba4f
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87296506"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678499"
 ---
 # <a name="about-azure-key-vault-keys"></a>关于 Azure Key Vault 密钥
 
@@ -41,8 +41,8 @@ Azure Key Vault 支持软密钥：
 
 Key Vault 仅支持 RSA 和椭圆曲线密钥。 
 
--   **EC**：“软”椭圆曲线密钥。
--   **RSA**：“软”RSA 密钥。
+-   **EC**：受软件保护的椭圆曲线密钥。
+-   **RSA**：受软件保护的 RSA 密钥。
 
 Key Vault 支持大小为 2048、3072 和 4096 的 RSA 密钥。 Key Vault 支持类型为 P-256、P-384、P-521 和 P-256K (SECP256K1) 的椭圆曲线密钥。
 

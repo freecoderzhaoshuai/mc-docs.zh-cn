@@ -10,12 +10,12 @@ ms.testscope: yes|no
 ms.testdate: 07/20/2020Null
 ms.author: v-yeche
 ms.custom: security-benchmark
-ms.openlocfilehash: 332c3f130ab5624b00855c46b9a512d037aefac4
-ms.sourcegitcommit: 5726d3b2e694f1f94f9f7d965676c67beb6ed07c
+ms.openlocfilehash: b381deaa3936ce44594f34ba26e30054e5da8f7f
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86863416"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523796"
 ---
 # <a name="azure-security-baseline-for-container-instances"></a>容器实例的 Azure 安全基线
 
@@ -25,7 +25,7 @@ ms.locfileid: "86863416"
 
 有关详细信息，请参阅 [Azure 安全基线概述](/security/benchmarks/security-baselines-overview)。
 
-## <a name="network-security"></a>网络安全性
+## <a name="network-security"></a>网络安全
 
 有关详细信息，请参阅[安全控制：网络安全](/security/benchmarks/security-control-network-security)。
 
@@ -61,7 +61,7 @@ ms.locfileid: "86863416"
 
 **指导**：在 Azure 容器实例中托管的关键 Web 应用程序前部署 Azure Web 应用程序防火墙 (WAF)，以对传入的流量进行额外的检查。 启用 WAF 的诊断设置，并将日志引入存储帐户、事件中心或 Log Analytics 工作区。
 
-* [如何部署 Azure WAF](/web-application-firewall/ag/create-waf-policy-ag)
+<!--Not Available on [How to deploy Azure WAF](/web-application-firewall/ag/create-waf-policy-ag)-->
 
 **Azure 安全中心监视**：是
 
@@ -145,7 +145,7 @@ ms.locfileid: "86863416"
 
 **Azure 安全中心监视**：不适用
 
-责任：客户
+**责任**：客户
 
 ### <a name="19-maintain-standard-security-configurations-for-network-devices"></a>1.9：维护网络设备的标准安全配置
 
@@ -153,13 +153,15 @@ ms.locfileid: "86863416"
 
 * [如何配置和管理 Azure Policy](/governance/policy/tutorials/create-and-manage)
 
-* [用于网络的 Azure Policy 示例](/governance/policy/samples/#network)
+<!--CORRECT ON (/governance/policy/samples/) WITHOUT #newwork-->
 
-* [如何创建 Azure 蓝图](/governance/blueprints/create-blueprint-portal)
+* [用于网络的 Azure Policy 示例](/governance/policy/samples/)
+
+<!--Not Available on [How to create an Azure Blueprint](/governance/blueprints/create-blueprint-portal)-->
 
 **Azure 安全中心监视**：不适用
 
-责任：客户
+**责任**：客户
 
 ### <a name="110-document-traffic-configuration-rules"></a>1.10：阐述流量配置规则
 
@@ -189,7 +191,7 @@ ms.locfileid: "86863416"
 
 **Azure 安全中心监视**：不适用
 
-责任：客户
+**责任**：客户
 
 ## <a name="logging-and-monitoring"></a>日志记录和监视
 
@@ -243,7 +245,7 @@ ms.locfileid: "86863416"
 
 **Azure 安全中心监视**：不适用
 
-责任：客户
+**责任**：客户
 
 ### <a name="26-monitor-and-review-logs"></a>2.6：监视和审查日志
 
@@ -257,7 +259,7 @@ ms.locfileid: "86863416"
 
 **Azure 安全中心监视**：不适用
 
-责任：客户
+**责任**：客户
 
 ### <a name="27-enable-alerts-for-anomalous-activity"></a>2.7：针对异常活动启用警报
 
@@ -277,7 +279,7 @@ ms.locfileid: "86863416"
 
 **Azure 安全中心监视**：不适用
 
-责任：客户
+**责任**：客户
 
 ### <a name="29-enable-dns-query-logging"></a>2.9：启用 DNS 查询日志记录
 
@@ -285,7 +287,7 @@ ms.locfileid: "86863416"
 
 **Azure 安全中心监视**：不适用
 
-责任：客户
+**责任**：客户
 
 ### <a name="210-enable-command-line-audit-logging"></a>2.10：启用命令行审核日志记录
 
@@ -327,7 +329,7 @@ ms.locfileid: "86863416"
 
 **Azure 安全中心监视**：不适用
 
-责任：客户
+**责任**：客户
 
 ### <a name="33-use-dedicated-administrative-accounts"></a>3.3：使用专用管理帐户
 
@@ -347,11 +349,11 @@ ms.locfileid: "86863416"
 
 **指导**：请尽可能使用 Azure Active Directory SSO，而不是为每个服务配置单个独立凭据。 请使用 Azure 安全中心标识和访问管理建议。
 
-* [了解 Azure AD 的 SSO](/active-directory/manage-apps/what-is-single-sign-on)
+<!--Not Available on [Understand SSO with Azure AD](/active-directory/manage-apps/what-is-single-sign-on)-->
 
 **Azure 安全中心监视**：不适用
 
-责任：客户
+**责任**：客户
 
 ### <a name="35-use-multi-factor-authentication-for-all-azure-active-directory-based-access"></a>3.5：对所有基于 Azure Active Directory 的访问使用多重身份验证
 
@@ -375,7 +377,7 @@ ms.locfileid: "86863416"
 
 **Azure 安全中心监视**：不适用
 
-责任：客户
+**责任**：客户
 
 ### <a name="37-log-and-alert-on-suspicious-activity-from-administrative-accounts"></a>3.7：记录来自管理帐户的可疑活动并对其发出警报
 
@@ -427,7 +429,7 @@ ms.locfileid: "86863416"
 
 可以通过为 Azure Active Directory 用户帐户创建诊断设置，并将审核日志和登录日志发送到 Log Analytics 工作区，来简化此过程。 你可以在 Log Analytics 工作区中配置所需的警报。
 
-* [如何将 Azure 活动日志集成到 Azure Monitor](/active-directory/reports-monitoring/howto-integrate-activity-logs-with-log-analytics)
+<!--Not Available on [How to integrate Azure Activity Logs into Azure Monitor](/active-directory/reports-monitoring/howto-integrate-activity-logs-with-log-analytics)-->
 
 **Azure 安全中心监视**：目前不可用
 
@@ -437,9 +439,9 @@ ms.locfileid: "86863416"
 
 **指导**：使用 Azure Active Directory (Azure AD) 风险和标识保护功能配置对检测到的与用户标识相关的可疑操作的自动响应。
 
-* [如何查看 Azure AD 风险登录](/active-directory/reports-monitoring/concept-risky-sign-ins)
+<!--Not Available on [How to view Azure AD risky sign-ins](/active-directory/reports-monitoring/concept-risky-sign-ins)-->
 
-* [如何配置和启用标识保护风险策略](/active-directory/identity-protection/howto-identity-protection-configure-risk-policies)
+<!--Not Available on [How to configure and enable Identity Protection risk policies](/active-directory/identity-protection/howto-identity-protection-configure-risk-policies)-->
 
 **Azure 安全中心监视**：目前不可用
 
@@ -449,7 +451,7 @@ ms.locfileid: "86863416"
 
 **指导**：目前不可用；Azure 容器实例目前不支持客户密码箱。
 
-* [支持客户密码箱的服务列表](/security/fundamentals/customer-lockbox-overview#supported-services-and-scenarios-in-general-availability)
+<!--Not available on * [List of Customer Lockbox supported services](/security/fundamentals/customer-lockbox-overview#supported-services-and-scenarios-in-general-availability)-->
 
 **Azure 安全中心监视**：不适用
 
@@ -479,7 +481,7 @@ ms.locfileid: "86863416"
 
 * [在正在运行的 Azure 容器实例中执行命令](/container-instances/container-instances-exec)
 
-* [如何创建其他 Azure 订阅](/billing/billing-create-subscription)
+<!--Not Available on * [How to create additional Azure subscriptions](/billing/billing-create-subscription)-->
 
 * [如何创建管理组](/governance/management-groups/create)
 
@@ -534,7 +536,7 @@ ms.locfileid: "86863416"
 
 **Azure 安全中心监视**：不适用
 
-责任：共享
+**责任**：共享
 
 ### <a name="46-use-azure-rbac-to-control-access-to-resources"></a>4.6：使用 Azure RBAC 控制对资源的访问
 
@@ -654,7 +656,7 @@ ms.locfileid: "86863416"
 
 **指导**：使用 Azure Resource Graph 查询/发现订阅中的所有资源（例如计算、存储、网络、端口和协议等）。 确保租户中具有适当的（读取）权限，并枚举所有 Azure 订阅以及订阅中的资源。
 
-虽然可以通过 Resource Graph 发现经典的 Azure 资源，但强烈建议创建和使用 Azure 资源管理器资源以供后续使用。
+尽管可以通过 Resource Graph 发现经典 Azure 资源，但我们强烈建议你今后还是创建并使用 Azure 资源管理器资源。
 
 * [如何使用 Azure Resource Graph 创建查询](/governance/resource-graph/first-query-portal)
 
@@ -688,7 +690,7 @@ ms.locfileid: "86863416"
 
 **Azure 安全中心监视**：不适用
 
-责任：客户
+**责任**：客户
 
 ### <a name="64-maintain-an-inventory-of-approved-azure-resources-and-software-titles"></a>6.4：维护已批准的 Azure 资源和软件标题的清单
 
@@ -882,7 +884,7 @@ ms.locfileid: "86863416"
 
 **Azure 安全中心监视**：不适用
 
-责任：客户
+**责任**：客户
 
 ### <a name="76-securely-store-custom-operating-system-images"></a>7.6：安全存储自定义操作系统映像
 
@@ -906,7 +908,7 @@ ms.locfileid: "86863416"
 
 **Azure 安全中心监视**：不适用
 
-责任：客户
+**责任**：客户
 
 ### <a name="78-deploy-system-configuration-management-tools-for-operating-systems"></a>7.8：为操作系统部署系统配置管理工具
 
@@ -934,7 +936,7 @@ ms.locfileid: "86863416"
 
 **指导**：如果使用 Azure 容器注册表存储容器映像，请使用 Azure 安全中心对 OS 和容器的 Docker 设置执行基线扫描。
 
-* [了解 Azure 安全中心容器建议](/security-center/security-center-container-recommendations)
+<!--Not Available on * [Understand Azure Security Center container recommendations](/security-center/security-center-container-recommendations)-->
 
 **Azure 安全中心监视**：是
 
@@ -944,7 +946,7 @@ ms.locfileid: "86863416"
 
 **指导**：将托管服务标识与 Azure Key Vault 结合使用，以便简化和保护云应用程序的机密管理。
 
-* [如何与 Azure 托管标识集成](/azure-app-configuration/howto-integrate-azure-managed-service-identity)
+<!--Not Available on * [How to integrate with Azure Managed Identities](/azure-app-configuration/howto-integrate-azure-managed-service-identity)-->
 
 * [如何创建 Key Vault](/key-vault/quick-create-portal)
 
@@ -976,7 +978,7 @@ ms.locfileid: "86863416"
 
 **Azure 安全中心监视**：不适用
 
-责任：客户
+**责任**：客户
 
 ## <a name="malware-defense"></a>恶意软件防护
 
@@ -998,7 +1000,7 @@ ms.locfileid: "86863416"
 
 **Azure 安全中心监视**：不适用
 
-责任：客户
+**责任**：客户
 
 ### <a name="83-ensure-anti-malware-software-and-signatures-are-updated"></a>步骤 8.3：确保反恶意软件和签名已更新
 
@@ -1024,7 +1026,7 @@ ms.locfileid: "86863416"
 
 **Azure 安全中心监视**：不适用
 
-责任：客户
+**责任**：客户
 
 ### <a name="92-perform-complete-system-backups-and-backup-any-customer-managed-keys"></a>9.2：执行完整系统备份，并备份客户管理的所有密钥
 
@@ -1049,7 +1051,7 @@ ms.locfileid: "86863416"
 
 **Azure 安全中心监视**：不适用
 
-责任：客户
+**责任**：客户
 
 ### <a name="94-ensure-protection-of-backups-and-customer-managed-keys"></a>9.4：确保保护备份和客户管理的密钥
 
@@ -1081,7 +1083,7 @@ ms.locfileid: "86863416"
 
 **Azure 安全中心监视**：不适用
 
-责任：客户
+**责任**：客户
 
 ### <a name="102-create-an-incident-scoring-and-prioritization-procedure"></a>10.2：创建事件评分和优先级设定过程
 
@@ -1117,19 +1119,19 @@ ms.locfileid: "86863416"
 
 **指导**：使用连续导出功能导出 Azure 安全中心警报和建议。 使用连续导出可以手动导出或者持续导出警报和建议。 可以使用 Azure 安全中心数据连接器将警报流式传输到 Sentinel。
 
-* [如何配置连续导出](/security-center/continuous-export)
+<!--Not Available on * [How to configure continuous export](/security-center/continuous-export)-->
 
-* [如何将警报流式传输到 Azure Sentinel](/sentinel/connect-azure-security-center)
+<!--Not Available on * [How to stream alerts into Azure Sentinel](/sentinel/connect-azure-security-center)-->
 
 **Azure 安全中心监视**：不适用
 
-责任：客户
+**责任**：客户
 
 ### <a name="106-automate-the-response-to-security-alerts"></a>10.6：自动响应安全警报
 
 **指导**：使用 Azure 安全中心内的工作流自动化功能可以通过“逻辑应用”针对安全警报和建议自动触发响应。
 
-* [如何配置工作流自动化和逻辑应用](/security-center/workflow-automation)
+<!--Not Available on * [How to configure Workflow Automation and Logic Apps](/security-center/workflow-automation)-->
 
 **Azure 安全中心监视**：不适用
 

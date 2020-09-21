@@ -2,18 +2,19 @@
 title: 快速入门 - 适用于 Java 的 Azure Key Vault 客户端库
 description: 提供编写 Azure SDK 客户端库快速入门时要遵循的格式和内容准则。
 author: msmbaldwin
+ms.custom: devx-track-java
 ms.author: v-tawe
 origin.date: 10/20/2019
-ms.date: 07/28/2020
+ms.date: 09/15/2020
 ms.service: key-vault
 ms.subservice: secrets
 ms.topic: quickstart
-ms.openlocfilehash: 40ebafd0e916f80f7e8e839d171acf0ad257e056
-ms.sourcegitcommit: 0e778acf5aa5eb63ab233e07e7aecce3a9a5e6d4
+ms.openlocfilehash: ca7ca4621f58f778a482c897d118553ace45f413
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87296519"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678378"
 ---
 # <a name="quickstart-azure-key-vault-client-library-for-java"></a>快速入门：适用于 Java 的 Azure Key Vault 客户端库
 
@@ -28,7 +29,12 @@ Azure 密钥保管库可帮助保护云应用程序和服务使用的加密密�
 
 <!-- - Use FIPS 140-2 Level 2 validated HSMs. -->
 
-[源代码](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault) | [API 参考文档](https://azure.github.io/azure-sdk-for-java) | [产品文档](index.yml) | [示例](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/azure-security-keyvault-secrets/src/samples/java/com/azure/security/keyvault/secrets)
+其他资源：
+
+* [源代码](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault)
+* [API 参考文档](https://azure.github.io/azure-sdk-for-java)
+* [产品文档](index.yml)
+* [示例](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/azure-security-keyvault-secrets/src/samples/java/com/azure/security/keyvault/secrets)
 
 ## <a name="prerequisites"></a>先决条件
 
@@ -252,7 +258,7 @@ az group delete -g "myResourceGroup"
 Remove-AzResourceGroup -Name "myResourceGroup"
 ```
 
-## <a name="sample-code"></a>示例代码
+## <a name="sample-code"></a>代码示例
 
 ```java
 package com.keyvault.quickstart;

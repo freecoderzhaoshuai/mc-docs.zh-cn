@@ -47,7 +47,7 @@
   items:
     - name: 故障转移和修补
       href: cache-failover.md
-    - name: 最佳实践
+    - name: 最佳做法
       href: cache-best-practices.md
 - name: 操作指南
   items:
@@ -146,7 +146,8 @@
     - name: 资源管理器模板
       href: 'https://docs.microsoft.com/azure/templates/microsoft.cache/allversions'
     - name: Azure Policy 内置策略定义
-      href: ./policy-samples.md
+      displayName: 'samples, policies, definitions'
+      href: ./policy-reference.md
     - name: Redis 命令
       href: 'https://redis.io/commands#'
 - name: 资源

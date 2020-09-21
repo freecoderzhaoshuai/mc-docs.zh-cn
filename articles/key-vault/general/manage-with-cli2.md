@@ -1,5 +1,5 @@
 ---
-title: 使用 CLI 管理 Azure Key Vault - Azure Key Vault | Azure
+title: 使用 CLI 管理 Azure 密钥保管库 - Azure 密钥保管库 | Microsoft Docs
 description: 使用本文通过 Azure CLI 自动执行密钥保管库中的常见任务
 services: key-vault
 author: msmbaldwin
@@ -8,14 +8,15 @@ ms.service: key-vault
 ms.subservice: general
 ms.topic: tutorial
 origin.date: 08/12/2019
-ms.date: 04/20/2020
+ms.date: 09/15/2020
 ms.author: v-tawe
-ms.openlocfilehash: 3fa54fabb479db3d100811983c77baa251894619
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 3630036e35d03438dff065313b4dd7f83fdde0c3
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588905"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678495"
 ---
 # <a name="manage-key-vault-using-the-azure-cli"></a>使用 Azure CLI 管理密钥保管库 
 
@@ -67,7 +68,7 @@ az account set -h
 
 ## <a name="how-to-create-a-hardened-container-a-vault-in-azure"></a>如何在 Azure 中创建强化的容器（保管库）
 
-保管库可以集中存储应用程序机密，降低安全信息意外丢失的可能性。 Key Vault 还控制并记录外界对其所存储内容的访问。 Azure Key Vault 负责处理传输层安全性 (TLS) 证书的请求和续订事宜，其提供的功能是可靠的证书生命周期管理解决方案所必需的。 在后续步骤中，将创建一个保管库。
+保管库是由硬件安全模块支持的安全容器。 保管库可以集中存储应用程序机密，降低安全信息意外丢失的可能性。 Key Vault 还控制并记录外界对其所存储内容的访问。 Azure Key Vault 负责处理传输层安全性 (TLS) 证书的请求和续订事宜，其提供的功能是可靠的证书生命周期管理解决方案所必需的。 在后续步骤中，将创建一个保管库。
 
 ### <a name="connect-to-your-subscriptions"></a>连接到订阅
 
@@ -198,7 +199,7 @@ az keyvault certificate list --vault-name "ContosoKeyVault"
 
 应用程序必须向 Azure Active Directory 提供这两个值才能获取令牌。 如何将应用程序配置为获取令牌取决于应用程序。 对于 [Key Vault 示例应用程序](https://www.microsoft.com/download/details.aspx?id=45343)，应用程序所有者会在 app.config 文件中设置这些值。
 
-有关向 Azure Active Directory 注册应用程序的详细步骤，应查看标题为[将应用程序与 Azure Active Directory 集成](../../active-directory/develop/active-directory-integrating-applications.md)一文，以及[使用 Azure CLI 创建 Azure 服务主体](/cli/create-an-azure-service-principal-azure-cli)一文。
+有关向 Azure Active Directory 注册应用程序的详细步骤，请查看标题为[将应用程序与 Azure Active Directory 集成](../../active-directory/develop/active-directory-integrating-applications.md)、[使用门户创建可访问资源的 Azure ActiveDirectory 应用程序和服务主体](../../active-directory/develop/howto-create-service-principal-portal.md)和[使用 Azure CLI 创建 Azure 服务主体](/cli/create-an-azure-service-principal-azure-cli)的文章。
 
 在 Azure Active Directory 中注册应用程序：
 

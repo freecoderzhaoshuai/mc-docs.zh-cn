@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 2a152d9f313468af52d3a0d31a09ac6041941310
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 6ddd5b8bb3d047d67f0e5a89d686271f81c31310
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "75466880"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90679931"
 ---
 ## <a name="obtain-an-azure-resource-manager-token"></a>获取 Azure 资源管理器令牌
 Azure Active Directory 必须使用 Azure 资源管理器来验证所有针对资源执行的任务。 此处显示的示例使用密码身份验证。有关其他方法，请参阅[对 Azure 资源管理器请求进行身份验证][lnk-authenticate-arm]。
@@ -16,7 +16,7 @@ Azure Active Directory 必须使用 Azure 资源管理器来验证所有针对�
       ("https://login.chinacloudapi.cn/{0}", tenantId));
     var credential = new ClientCredential(applicationId, password);
     AuthenticationResult token = authContext.AcquireTokenAsync
-      ("https://management.core.windows.net/", credential).Result;
+      ("https://management.core.chinacloudapi.cn/", credential).Result;
 
     if (token == null)
     {
@@ -37,7 +37,7 @@ Azure Active Directory 必须使用 Azure 资源管理器来验证所有针对�
    
     ```csharp
     var rgResponse = client.ResourceGroups.CreateOrUpdate(rgName,
-        new ResourceGroup("East US"));
+        new ResourceGroup("China East"));
     if (rgResponse.Properties.ProvisioningState != "Succeeded")
     {
       Console.WriteLine("Problem creating resource group");

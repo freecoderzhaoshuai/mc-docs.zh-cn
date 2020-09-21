@@ -4,17 +4,16 @@ description: 了解如何使用 Azure PowerShell 基于 URL 将 Web 流量路由
 services: application-gateway
 author: vhorne
 ms.service: application-gateway
-ms.topic: article
-origin.date: 07/31/2019
-ms.date: 11/11/2019
+ms.topic: how-to
+ms.date: 09/15/2020
 ms.author: v-junlch
 ms.custom: mvc
-ms.openlocfilehash: 5566023d677077946d33c51505244422d2956d39
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: a0d8adc34bbb70485b9a9a00738d17b8d5deade4
+ms.sourcegitcommit: e1b6e7fdff6829040c4da5d36457332de33e0c59
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "73934227"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721081"
 ---
 # <a name="route-web-traffic-based-on-the-url-using-azure-powershell"></a>使用 Azure PowerShell 基于 URL 对 Web 流量进行路由
 
@@ -24,16 +23,15 @@ ms.locfileid: "73934227"
 
 在本文中，学习如何：
 
-> [!div class="checklist"]
-> * 设置网络
-> * 创建侦听器、URL 路径映射和规则
-> * 创建可缩放的后端池
+* 设置网络
+* 创建侦听器、URL 路径映射和规则
+* 创建可缩放的后端池
 
 ![URL 路由示例](./media/tutorial-url-route-powershell/scenario.png)
 
 如果需要，可以使用 [Azure CLI](tutorial-url-route-cli.md) 或 [Azure 门户](create-url-route-portal.md)完成本过程中的步骤。
 
-如果没有 Azure 订阅，请在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial/)。
+如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
 
 [!INCLUDE [updated-for-az](../../includes/updated-for-az.md)]
 
@@ -48,7 +46,7 @@ ms.locfileid: "73934227"
 使用 [New-AzResourceGroup](https://docs.microsoft.com/powershell/module/az.resources/new-azresourcegroup) 创建 Azure 资源组。  
 
 ```azurepowershell
-New-AzResourceGroup -Name myResourceGroupAG -Location chinanorth
+New-AzResourceGroup -Name myResourceGroupAG -Location chinanorth2
 ```
 
 ## <a name="create-network-resources"></a>创建网络资源
@@ -68,13 +66,13 @@ $agSubnetConfig = New-AzVirtualNetworkSubnetConfig `
 
 $vnet = New-AzVirtualNetwork `
   -ResourceGroupName myResourceGroupAG `
-  -Location chinanorth `
+  -Location chinanorth2 `
   -Name myVNet `
   -AddressPrefix 10.0.0.0/16 `
   -Subnet $backendSubnetConfig, $agSubnetConfig
 $pip = New-AzPublicIpAddress `
   -ResourceGroupName myResourceGroupAG `
-  -Location chinanorth `
+  -Location chinanorth2 `
   -Name myAGPublicIPAddress `
   -AllocationMethod Static `
   -Sku Standard
@@ -168,7 +166,7 @@ $sku = New-AzApplicationGatewaySku `
 $appgw = New-AzApplicationGateway `
   -Name myAppGateway `
   -ResourceGroupName myResourceGroupAG `
-  -Location chinanorth `
+  -Location chinanorth2 `
   -BackendAddressPools $defaultPool `
   -BackendHttpSettingsCollection $poolSettings `
   -FrontendIpConfigurations $fipconfig `
@@ -356,7 +354,7 @@ for ($i=1; $i -le 3; $i++)
     -ApplicationGatewayBackendAddressPoolsId $poolId
 
   $vmssConfig = New-AzVmssConfig `
-    -Location chinanorth `
+    -Location chinanorth2 `
     -SkuCapacity 2 `
     -SkuName Standard_DS2 `
     -UpgradePolicyMode Automatic
@@ -441,4 +439,3 @@ Remove-AzResourceGroup -Name myResourceGroupAG
 
 [基于 URL 重定向 Web 流量](./tutorial-url-redirect-powershell.md)
 
-<!-- Update_Description: code update -->

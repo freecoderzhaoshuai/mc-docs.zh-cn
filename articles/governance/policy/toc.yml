@@ -52,7 +52,7 @@
           href: ./samples/pattern-logical-operators.md
         - name: 字段
           href: ./samples/pattern-fields.md
-        - name: 参数
+        - name: parameters
           href: ./samples/pattern-parameters.md
         - name: 效果详细信息
           href: ./samples/pattern-effect-details.md
@@ -83,6 +83,9 @@
     - name: 评估新策略的影响
       displayName: 'audit, enforcementmode, compliance'
       href: ./concepts/evaluate-impact.md
+    - name: 建议的策略
+      displayName: 'VMs, virtual machines'
+      href: ./concepts/recommended-policies.md
     - name: 将策略设计为代码工作流
       displayName: 'devops, infrastructure as code, iac, release, continuous, delivery, deploy'
       href: ./concepts/policy-as-code.md
@@ -124,8 +127,12 @@
     - name: 修正不符合资源
       displayName: 'managed identity, task, definition, roleDefinitionIds'
       href: ./how-to/remediate-resources.md
-- name: 故障排除
-  href: ./troubleshoot/general.md
+- name: 疑难解答
+  items:
+    - name: 常见问题
+      href: ./troubleshoot/general.md
+    - name: 已知问题
+      href: 'https://github.com/azure/azure-policy#known-issues'
 - name: 参考
   items:
     - name: Azure CLI
@@ -133,9 +140,9 @@
     - name: Azure PowerShell
       items:
         - name: 策略
-          href: 'https://docs.microsoft.com/powershell/module/az.resources/#policies'
+          href: 'https://docs.microsoft.com/powershell/module/az.resources#policy'
         - name: 策略见解
-          href: 'https://docs.microsoft.com/powershell/module/az.policyinsights#policy_insights'
+          href: 'https://docs.microsoft.com/powershell/module/az.policyinsights'
         - name: 来宾配置
           href: 'https://www.powershellgallery.com/packages/Az.GuestConfiguration'
     - name: 用于 .NET 的 Azure SDK
@@ -147,9 +154,9 @@
     - name: 用于 Java 的 Azure SDK
       items:
         - name: 分配
-          href: 'https://docs.microsoft.com/java/api/com.microsoft.azure.management.resources.policyassignment?view=azure-java-stable'
+          href: 'https://docs.microsoft.com/java/api/com.microsoft.azure.management.resources.policyassignment'
         - name: 策略定义
-          href: 'https://docs.microsoft.com/java/api/com.microsoft.azure.management.resources.PolicyDefinitions?view=azure-java-stable'
+          href: 'https://docs.microsoft.com/java/api/com.microsoft.azure.management.resources.PolicyDefinitions'
     - name: 用于 JavaScript 的 Azure SDK
       items:
         - name: 策略
@@ -192,15 +199,23 @@
           href: 'https://docs.microsoft.com/azure/templates/microsoft.authorization/policysetdefinitions'
 - name: 资源
   items:
-    - name: 已知问题
-      href: 'https://github.com/azure/azure-policy#known-issues'
     - name: GitHub - Azure Policy 示例
       href: 'https://github.com/Azure/azure-policy'
-    - name: GitHub - 社区策略存储库
-      href: 'https://github.com/Azure/Community-Policy'
-    - name: 有关 Azure Policy 的 Microsoft Q&A
-      href: 'https://docs.microsoft.com/answers/topics/azure-policy.html'
+    - name: 社区工具
+      items:
+        - name: GitHub - 社区策略存储库
+          href: 'https://github.com/Azure/Community-Policy'
+        - name: 用于 Azure Policy 符合性扫描的 GitHub Action
+          href: 'https://github.com/marketplace/actions/azure-policy-compliance-scan'
+        - name: CCO Azure 治理仪表板
+          href: 'https://github.com/Azure/ccodashboard/blob/master/README.md#cco-azure-governance-dashboard-report-pages'
+        - name: AzAdvertizer
+          href: 'https://www.azadvertizer.net/'
+        - name: Azure 治理可视化工具
+          href: 'https://github.com/julianhayward/azure-mg-sub-governance-reporting'
+    - name: 反馈和支持
+      items:
+        - name: Azure 支持工单
+          href: 'https://support.azure.cn/support/contact'
     - name: 定价计算器
       href: 'https://www.azure.cn/pricing/calculator/'
-    - name: UserVoice
-      href: 'https://feedback.azure.com/forums/915958-azure-governance?category_id=345055'

@@ -4,17 +4,16 @@ description: 了解如何通过 Azure PowerShell 使用虚拟机规模集创建�
 services: application-gateway
 author: vhorne
 ms.service: application-gateway
-ms.topic: article
-origin.date: 07/19/2019
-ms.date: 09/10/2019
+ms.topic: how-to
+ms.date: 09/14/2020
 ms.author: v-junlch
 ms.custom: mvc
-ms.openlocfilehash: a9bb3d78e2bb475a9cf976c38786bb95db337164
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: b3e903f185f9ba97b873161a38d19ef7d190f13f
+ms.sourcegitcommit: e1b6e7fdff6829040c4da5d36457332de33e0c59
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "70857297"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721099"
 ---
 # <a name="manage-web-traffic-with-an-application-gateway-using-azure-powershell"></a>通过 Azure PowerShell 使用应用程序网关管理 Web 流量
 
@@ -22,10 +21,9 @@ ms.locfileid: "70857297"
 
 在本文中，学习如何：
 
-> [!div class="checklist"]
-> * 设置网络
-> * 创建应用程序网关
-> * 使用默认后端池创建虚拟机规模集
+* 设置网络
+* 创建应用程序网关
+* 使用默认后端池创建虚拟机规模集
 
 如果需要，可以使用 [Azure CLI](tutorial-manage-web-traffic-cli.md) 完成此过程。
 
@@ -40,7 +38,7 @@ ms.locfileid: "70857297"
 资源组是在其中部署和管理 Azure 资源的逻辑容器。 使用 [New-AzResourceGroup](https://docs.microsoft.com/powershell/module/az.resources/new-azresourcegroup) 创建 Azure 资源组。  
 
 ```azurepowershell
-New-AzResourceGroup -Name myResourceGroupAG -Location chinanorth
+New-AzResourceGroup -Name myResourceGroupAG -Location chinanorth2
 ```
 
 ## <a name="create-network-resources"></a>创建网络资源 
@@ -58,14 +56,14 @@ $agSubnetConfig = New-AzVirtualNetworkSubnetConfig `
 
 $vnet = New-AzVirtualNetwork `
   -ResourceGroupName myResourceGroupAG `
-  -Location chinanorth `
+  -Location chinanorth2 `
   -Name myVNet `
   -AddressPrefix 10.0.0.0/16 `
   -Subnet $backendSubnetConfig, $agSubnetConfig
 
 $pip = New-AzPublicIpAddress `
   -ResourceGroupName myResourceGroupAG `
-  -Location chinanorth `
+  -Location chinanorth2 `
   -Name myAGPublicIPAddress `
   -AllocationMethod Static `
   -Sku Standard
@@ -153,7 +151,7 @@ $sku = New-AzApplicationGatewaySku `
 $appgw = New-AzApplicationGateway `
   -Name myAppGateway `
   -ResourceGroupName myResourceGroupAG `
-  -Location chinanorth `
+  -Location chinanorth2 `
   -BackendAddressPools $defaultPool `
   -BackendHttpSettingsCollection $poolSettings `
   -FrontendIpConfigurations $fipconfig `
@@ -187,7 +185,7 @@ $ipConfig = New-AzVmssIpConfig `
   -ApplicationGatewayBackendAddressPoolsId $backendPool.Id
 
 $vmssConfig = New-AzVmssConfig `
-  -Location chinanorth `
+  -Location chinanorth2 `
   -SkuCapacity 2 `
   -SkuName Standard_DS2_v2 `
   -UpgradePolicyMode Automatic
@@ -259,4 +257,3 @@ Remove-AzResourceGroup -Name myResourceGroupAG
 
 [使用 Web 应用程序防火墙限制 Web 流量](./tutorial-restrict-web-traffic-powershell.md)
 
-<!-- Update_Description: code update -->

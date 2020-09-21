@@ -10,12 +10,12 @@ ms.testscope: yes
 ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.custom: security-benchmark
-ms.openlocfilehash: 413a2b5d9ffb378a15ecca94c9e3eb909378921d
-ms.sourcegitcommit: 22e1da9309795e74a91b7241ac5987a802231a8c
+ms.openlocfilehash: b922d66df71397bff11b7677131bb5c6513fb2f4
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/04/2020
-ms.locfileid: "89462923"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523990"
 ---
 <!--All Links Verified Successfully-->
 # <a name="azure-security-baseline-for-windows-virtual-machines"></a>适用于 Windows 虚拟机的 Azure 安全基线
@@ -150,7 +150,7 @@ ms.locfileid: "89462923"
 
 * [如何配置和管理 Azure Policy](../../governance/policy/tutorials/create-and-manage.md)
 
-* [用于网络的 Azure Policy 示例](/governance/policy/samples/#network)
+<!--Not Available on * [Azure Policy samples for networking](/governance/policy/samples/#network)-->
 
 <!--Not Available on * [How to create an Azure Blueprint](../../governance/blueprints/create-blueprint-portal.md)-->
 
@@ -184,7 +184,7 @@ ms.locfileid: "89462923"
 
 * [如何配置和管理 Azure Policy](../../governance/policy/tutorials/create-and-manage.md)
 
-* [用于网络的 Azure Policy 示例](/governance/policy/samples/#network)
+<!--Not Available on * [Azure Policy samples for networking](/governance/policy/samples/#network)-->
 
 **Azure 安全中心监视**：不可用
 

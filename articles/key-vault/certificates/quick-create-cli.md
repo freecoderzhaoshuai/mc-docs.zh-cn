@@ -1,5 +1,5 @@
 ---
-title: 快速入门：在 Azure Key Vault 中设置和检索证书
+title: 快速入门：设置和查看 Azure Key Vault 证书 - Azure CLI
 description: 以快速入门的方式介绍如何使用 Azure CLI 在 Azure Key Vault 中设置和检索证书
 services: key-vault
 author: msmbaldwin
@@ -8,16 +8,16 @@ tags: azure-resource-manager
 ms.service: key-vault
 ms.subservice: certificates
 ms.topic: quickstart
-ms.custom: mvc, seo-javascript-september2019, seo-javascript-october2019
+ms.custom: mvc, seo-javascript-september2019, seo-javascript-october2019, devx-track-azurecli
 origin.date: 09/03/2019
-ms.date: 04/20/2020
+ms.date: 09/15/2020
 ms.author: v-tawe
-ms.openlocfilehash: f0df601222ca66abf3551f17173147ad115ee927
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.openlocfilehash: ac884f3acbaceb009c624cc615ea7250bf0fe374
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588883"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678478"
 ---
 # <a name="quickstart-set-and-retrieve-a-certificate-from-azure-key-vault-using-azure-cli"></a>快速入门：使用 Azure CLI 在 Azure Key Vault 中设置和检索证书
 

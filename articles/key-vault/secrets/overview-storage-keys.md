@@ -1,7 +1,7 @@
 ---
 title: 使用 Azure Key Vault 和 Azure CLI 管理存储帐户密钥
 description: 存储帐户密钥在 Azure Key Vault 与 Azure 存储帐户基于密钥的访问方式之间提供无缝集成。
-ms.topic: conceptual
+ms.topic: tutorial
 services: key-vault
 ms.service: key-vault
 ms.subservice: secrets
@@ -9,13 +9,14 @@ author: msmbaldwin
 ms.author: v-tawe
 manager: rkarlin
 origin.date: 09/18/2019
-ms.date: 07/28/2020
-ms.openlocfilehash: 4edddbe10ad2164e598142df8ba3e699609ac0ab
-ms.sourcegitcommit: 0e778acf5aa5eb63ab233e07e7aecce3a9a5e6d4
+ms.date: 09/15/2020
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: ad80a3aa99dab76cc8a5937547f0f88417223e04
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87296508"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678339"
 ---
 # <a name="manage-storage-account-keys-with-key-vault-and-the-azure-cli"></a>使用 Key Vault 和 Azure CLI 管理存储帐户密钥
 
@@ -71,7 +72,7 @@ az login
 
 使用 Azure CLI [az role assignment create](/cli/role/assignment?view=azure-cli-latest) 命令授予 Key Vault 访问你的存储帐户的权限。 为该命令提供以下参数值：
 
-- `--role`：传递“存储帐户密钥操作员服务角色”RBAC 角色。 此角色将访问范围限制为你的存储帐户。 对于经典存储帐户，请改为传递“经典存储帐户密钥操作员服务角色”。
+- `--role`：传递“存储帐户密钥操作员服务角色”Azure 角色。 此角色将访问范围限制为你的存储帐户。 对于经典存储帐户，请改为传递“经典存储帐户密钥操作员服务角色”。
 - `--assignee-object-id`：传递值“2330fcd0-aceb-49c4-a58f-27980b31efc5”，即 Azure 中国云中 Key Vault 的对象 ID。
 - `--scope`：传递格式为 `/subscriptions/<subscriptionID>/resourceGroups/<StorageAccountResourceGroupName>/providers/Microsoft.Storage/storageAccounts/<YourStorageAccountName>` 的存储帐户资源 ID。 若要查找订阅 ID，请使用 Azure CLI [az account list](/cli/account?view=azure-cli-latest#az-account-list) 命令；若要查找存储帐户名称和存储帐户资源组，请使用 Azure CLI [az storage account list](/cli/storage/account?view=azure-cli-latest#az-storage-account-list) 命令。
 

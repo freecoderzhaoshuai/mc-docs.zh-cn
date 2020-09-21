@@ -11,13 +11,13 @@ metadata:
   author: msmbaldwin
   ms.author: v-tawe
   origin.date: 04/07/2020
-  ms.date: 04/20/2020
-  ms.openlocfilehash: 9daf6a41ca8c31f6d98bbcdd8f3be8c1ac3c2395
-  ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+  ms.date: 09/15/2020
+  ms.openlocfilehash: 60f4ac1dd7248a48fa6e072bc1fe56c42eee47f1
+  ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 04/30/2020
-  ms.locfileid: "82588885"
+  ms.lasthandoff: 09/16/2020
+  ms.locfileid: "90678480"
 landingContent:
 - title: 证书
   linkLists:
@@ -25,6 +25,8 @@ landingContent:
     links:
     - text: 什么是 Key Vault 证书？
       url: about-certificates.md
+    - text: 关于软删除的重要新消息
+      url: ../general/soft-delete-change.md
     - text: Key Vault 证书入门
       url: certificate-scenarios.md
     - text: 证书创建方法
@@ -45,6 +47,18 @@ landingContent:
       url: quick-create-python.md
     - text: 在 Key Vault 中导入证书
       url: tutorial-import-certificate.md
+- title: Key Vault 证书的客户端库
+  linkLists:
+  - linkListType: reference
+    links:
+    - text: .NET 客户端库
+      url: https://docs.microsoft.com/dotnet/api/azure.security.keyvault.certificates?view=azure-dotnet
+    - text: Python 客户端库
+      url: https://docs.microsoft.com/python/api/overview/azure/keyvault-certificates-readme?view=azure-python
+    - text: Java 客户端库
+      url: https://apidocs.chargebee.com/docs/api?lang=java#client_library
+    - text: Node.js 客户端库
+      url: https://docs.microsoft.com/javascript/api/@azure/keyvault-certificates/?view=azure-node-latest
 - title: 有关 Key Vault 的详细信息
   linkLists:
   - linkListType: overview
@@ -54,6 +68,12 @@ landingContent:
     - text: 基本概念
       url: ../general/basic-concepts.md
     - text: 软删除概述
-      url: ../general/overview-soft-delete.md
+      url: ../general/soft-delete-overview.md
     - text: 安全概述
       url: ../general/overview-security.md
+- title: Microsoft Learn
+  linkLists:
+  - linkListType: learn
+    links:
+    - text: 使用 Azure Key Vault 管理服务器应用中的机密
+      url: https://docs.microsoft.com/learn/modules/manage-secrets-with-azure-key-vault/

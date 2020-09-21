@@ -1,16 +1,16 @@
 ---
 title: 模式：使用计划将策略定义分组
-description: 此 Azure Policy 模式通过示例介绍了如何将策略定义分组到计划中
+description: 此 Azure Policy 模式通过示例介绍了如何将策略定义分组到计划中。
 origin.date: 06/29/2020
-ms.date: 08/06/2020
+ms.date: 09/15/2020
 ms.author: v-tawe
 ms.topic: sample
-ms.openlocfilehash: d10e11adf620d765db91d72ba44ef0f2c635880d
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 8deed13912a6647ad21f6504b10fab704e4a316f
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917185"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523999"
 ---
 # <a name="azure-policy-pattern-group-policy-definitions"></a>Azure Policy 模式：将策略定义分组
 

@@ -13,12 +13,12 @@ ms.custom:
 - cli-validate
 - devx-track-python
 - devx-track-azurecli
-ms.openlocfilehash: 9c1c78f3ba1792cc2a698a1aeb19700e388c2474
-ms.sourcegitcommit: 9d9795f8a5b50cd5ccc19d3a2773817836446912
+ms.openlocfilehash: 42b621ea7a7cede24a10b1bffdcc0783c9d65f5e
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/14/2020
-ms.locfileid: "88228975"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678358"
 ---
 # <a name="tutorial-deploy-a-django-web-app-with-postgresql-in-azure-app-service"></a>教程：在 Azure 应用服务中部署使用 PostgreSQL 的 Django Web 应用
 
@@ -34,7 +34,7 @@ ms.locfileid: "88228975"
 > * 查看诊断日志
 > * 在 Azure 门户中管理 Web 应用
 
-<!-- You can also use the [Azure portal version of this tutorial](/azure/developer/python/tutorial-python-postgresql-app-portal). -->
+<!-- You can also use the [Azure portal version of this tutorial](https://docs.microsoft.com/azure/developer/python/tutorial-python-postgresql-app-portal). -->
 
 ## <a name="set-up-your-initial-environment"></a>设置初始环境
 
@@ -118,7 +118,7 @@ Djangoapp 示例包含数据驱动的 Django 投票应用，该应用是根据 D
 ## <a name="create-postgres-database-in-azure"></a>在 Azure 中创建 Postgres 数据库
 
 <!-- > [!NOTE]
-> Before you create an Azure Database for PostgreSQL server, check which [compute generation](/azure/postgresql/concepts-pricing-tiers#compute-generations-and-vcores) is available in your region. -->
+> Before you create an Azure Database for PostgreSQL server, check which [compute generation](https://docs.microsoft.com/azure/postgresql/concepts-pricing-tiers#compute-generations-and-vcores) is available in your region. -->
 
 安装适用于 Azure CLI 的 `db-up` 扩展：
 

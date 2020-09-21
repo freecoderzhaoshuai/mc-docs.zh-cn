@@ -5,15 +5,15 @@ description: 了解如何使用 Azure CLI 创建应用程序网关并为 TLS 终
 services: application-gateway
 author: vhorne
 ms.service: application-gateway
-ms.topic: article
-ms.date: 04/26/2020
+ms.topic: how-to
+ms.date: 09/14/2020
 ms.author: v-junlch
-ms.openlocfilehash: 65e4923fb9efb316a3c0589ecaf16e2fdf0f075b
-ms.sourcegitcommit: e3512c5c2bbe61704d5c8cbba74efd56bfe91927
+ms.openlocfilehash: e7df387a78085f6e2668ff38ab44fe1df38483ac
+ms.sourcegitcommit: e1b6e7fdff6829040c4da5d36457332de33e0c59
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82267689"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721161"
 ---
 # <a name="create-an-application-gateway-with-http-to-https-redirection-using-the-azure-cli"></a>使用 Azure CLI 创建支持 HTTP 到 HTTPS 重定向的应用程序网关
 
@@ -21,12 +21,11 @@ ms.locfileid: "82267689"
 
 在本文中，学习如何：
 
-> [!div class="checklist"]
-> * 创建自签名证书
-> * 设置网络
-> * 使用证书创建应用程序网关
-> * 添加侦听器和重定向规则
-> * 使用默认后端池创建虚拟机规模集
+* 创建自签名证书
+* 设置网络
+* 使用证书创建应用程序网关
+* 添加侦听器和重定向规则
+* 使用默认后端池创建虚拟机规模集
 
 如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
 
@@ -63,20 +62,20 @@ az group create --name myResourceGroupAG --location chinanorth2
 使用 [az network vnet create](/cli/network/vnet) 创建名为 *myVNet* 的虚拟网络和名为 *myAGSubnet* 的子网。 然后，可以使用 [az network vnet subnet create](/cli/network/vnet/subnet) 添加后端服务器所需的名为 *myBackendSubnet* 的子网。 使用 [az network public-ip create](https://docs.azure.cn/zh-cn/cli/network/public-ip?view=azure-cli-latest#az-network-public-ip-create) 创建名为 *myAGPublicIPAddress* 的公共 IP 地址。
 
 ```azurecli
-az network vnet create `
-  --name myVNet `
-  --resource-group myResourceGroupAG `
-  --location chinanorth2 `
-  --address-prefix 10.0.0.0/16 `
-  --subnet-name myAGSubnet `
+az network vnet create \
+  --name myVNet \
+  --resource-group myResourceGroupAG \
+  --location chinanorth2 \
+  --address-prefix 10.0.0.0/16 \
+  --subnet-name myAGSubnet \
   --subnet-prefix 10.0.1.0/24
-az network vnet subnet create `
-  --name myBackendSubnet `
-  --resource-group myResourceGroupAG `
-  --vnet-name myVNet `
+az network vnet subnet create \
+  --name myBackendSubnet \
+  --resource-group myResourceGroupAG \
+  --vnet-name myVNet \
   --address-prefix 10.0.2.0/24
-az network public-ip create `
-  --resource-group myResourceGroupAG `
+az network public-ip create \
+  --resource-group myResourceGroupAG \
   --name myAGPublicIPAddress
 ```
 
@@ -87,20 +86,20 @@ az network public-ip create `
 将应用程序网关分配给之前创建的 *myAGSubnet* 和 *myAGPublicIPAddress*。 在此示例中，在创建应用程序网关时将关联所创建的证书及其密码。 
 
 ```azurecli
-az network application-gateway create `
-  --name myAppGateway `
-  --location chinanorth2 `
-  --resource-group myResourceGroupAG `
-  --vnet-name myVNet `
-  --subnet myAGsubnet `
-  --capacity 2 `
-  --sku Standard_Medium `
-  --http-settings-cookie-based-affinity Disabled `
-  --frontend-port 443 `
-  --http-settings-port 80 `
-  --http-settings-protocol Http `
-  --public-ip-address myAGPublicIPAddress `
-  --cert-file appgwcert.pfx `
+az network application-gateway create \
+  --name myAppGateway \
+  --location chinanorth2 \
+  --resource-group myResourceGroupAG \
+  --vnet-name myVNet \
+  --subnet myAGsubnet \
+  --capacity 2 \
+  --sku Standard_Medium \
+  --http-settings-cookie-based-affinity Disabled \
+  --frontend-port 443 \
+  --http-settings-port 80 \
+  --http-settings-protocol Http \
+  --public-ip-address myAGPublicIPAddress \
+  --cert-file appgwcert.pfx \
   --cert-password "Azure123456!"
 
 ```
@@ -120,10 +119,10 @@ az network application-gateway create `
 可以使用 [az network application-gateway frontend-port create](/cli/network/application-gateway/frontend-port#az-network-application-gateway-frontend-port-create) 向应用程序网关添加 HTTP 端口。
 
 ```azurecli
-az network application-gateway frontend-port create `
-  --port 80 `
-  --gateway-name myAppGateway `
-  --resource-group myResourceGroupAG `
+az network application-gateway frontend-port create \
+  --port 80 \
+  --gateway-name myAppGateway \
+  --resource-group myResourceGroupAG \
   --name httpPort
 ```
 
@@ -132,11 +131,11 @@ az network application-gateway frontend-port create `
 可以使用 [az network application-gateway http-listener create](/cli/network/application-gateway/http-listener#az-network-application-gateway-http-listener-create) 向应用程序网关添加名为 *myListener* 的侦听器。
 
 ```azurecli
-az network application-gateway http-listener create `
-  --name myListener `
-  --frontend-ip appGatewayFrontendIP `
-  --frontend-port httpPort `
-  --resource-group myResourceGroupAG `
+az network application-gateway http-listener create \
+  --name myListener \
+  --frontend-ip appGatewayFrontendIP \
+  --frontend-port httpPort \
+  --resource-group myResourceGroupAG \
   --gateway-name myAppGateway
 ```
 
@@ -145,13 +144,13 @@ az network application-gateway http-listener create `
 使用 [az network application-gateway redirect-config create](/cli/network/application-gateway/redirect-config#az-network-application-gateway-redirect-config-create) 将 HTTP 到 HTTPS 重定向配置添加到应用程序网关。
 
 ```azurecli
-az network application-gateway redirect-config create `
-  --name httpToHttps `
-  --gateway-name myAppGateway `
-  --resource-group myResourceGroupAG `
-  --type Permanent `
-  --target-listener appGatewayHttpListener `
-  --include-path true `
+az network application-gateway redirect-config create \
+  --name httpToHttps \
+  --gateway-name myAppGateway \
+  --resource-group myResourceGroupAG \
+  --type Permanent \
+  --target-listener appGatewayHttpListener \
+  --include-path true \
   --include-query-string true
 ```
 
@@ -160,12 +159,12 @@ az network application-gateway redirect-config create `
 使用 [az network application-gateway rule create](/cli/network/application-gateway/rule#az-network-application-gateway-rule-create) 将具有重定向配置的名为 *rule2* 的路由规则添加到应用程序网关。
 
 ```azurecli
-az network application-gateway rule create `
-  --gateway-name myAppGateway `
-  --name rule2 `
-  --resource-group myResourceGroupAG `
-  --http-listener myListener `
-  --rule-type Basic `
+az network application-gateway rule create \
+  --gateway-name myAppGateway \
+  --name rule2 \
+  --resource-group myResourceGroupAG \
+  --http-listener myListener \
+  --rule-type Basic \
   --redirect-config httpToHttps
 ```
 
@@ -174,30 +173,30 @@ az network application-gateway rule create `
 在此示例中，将创建一个名为 *myvmss* 的虚拟机规模集，以便为应用程序网关的后端池提供服务器。 规模集中的虚拟机与 *myBackendSubnet* 和 *appGatewayBackendPool* 相关联。 若要创建规模集，可以使用 [az vmss create](/cli/vmss#az-vmss-create)。
 
 ```azurecli
-az vmss create `
-  --name myvmss `
-  --resource-group myResourceGroupAG `
-  --image UbuntuLTS `
-  --admin-username azureuser `
-  --admin-password Azure123456! `
-  --instance-count 2 `
-  --vnet-name myVNet `
-  --subnet myBackendSubnet `
-  --vm-sku Standard_DS2 `
-  --upgrade-policy-mode Automatic `
-  --app-gateway myAppGateway `
+az vmss create \
+  --name myvmss \
+  --resource-group myResourceGroupAG \
+  --image UbuntuLTS \
+  --admin-username azureuser \
+  --admin-password Azure123456! \
+  --instance-count 2 \
+  --vnet-name myVNet \
+  --subnet myBackendSubnet \
+  --vm-sku Standard_DS2 \
+  --upgrade-policy-mode Automatic \
+  --app-gateway myAppGateway \
   --backend-pool-name appGatewayBackendPool
 ```
 
 ### <a name="install-nginx"></a>安装 NGINX
 
 ```azurecli
-az vmss extension set `
-  --publisher Microsoft.Azure.Extensions `
-  --version 2.0 `
-  --name CustomScript `
-  --resource-group myResourceGroupAG `
-  --vmss-name myvmss `
+az vmss extension set \
+  --publisher Microsoft.Azure.Extensions \
+  --version 2.0 \
+  --name CustomScript \
+  --resource-group myResourceGroupAG \
+  --vmss-name myvmss \
   --settings '{ "fileUris": ["https://raw.githubusercontent.com/Azure/azure-docs-powershell-samples/master/application-gateway/iis/install_nginx.sh"],
   "commandToExecute": "./install_nginx.sh" }'
 ```
@@ -207,10 +206,10 @@ az vmss extension set `
 若要获取应用程序网关的公共 IP 地址，可以使用 [az network public-ip show](https://docs.azure.cn/zh-cn/cli/network/public-ip?view=azure-cli-latest#az-network-public-ip-show)。 复制该公共 IP 地址，并将其粘贴到浏览器的地址栏。
 
 ```azurecli
-az network public-ip show `
-  --resource-group myResourceGroupAG `
-  --name myAGPublicIPAddress `
-  --query [ipAddress] `
+az network public-ip show \
+  --resource-group myResourceGroupAG \
+  --name myAGPublicIPAddress \
+  --query [ipAddress] \
   --output tsv
 ```
 

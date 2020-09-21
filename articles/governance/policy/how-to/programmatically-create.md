@@ -2,15 +2,15 @@
 title: 以编程方式创建策略
 description: 本文逐步讲解如何使用 Azure CLI、Azure PowerShell 和 REST API 以编程方式创建和管理适用于 Azure Policy 的策略。
 ms.author: v-tawe
-origin.date: 05/20/2020
-ms.date: 08/06/2020
+origin.date: 08/17/2020
+ms.date: 09/15/2020
 ms.topic: how-to
-ms.openlocfilehash: 7a0d1bdce9552c025c4c9adbc5532fa8e4131d23
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 3b9bdb12f3c7c3bfa3435662be354575d16506ad
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917089"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90524004"
 ---
 # <a name="programmatically-create-policies"></a>以编程方式创建策略
 
@@ -237,7 +237,7 @@ az policy definition show --name 'Audit Storage Accounts with Open Public Networ
 "/subscription/<subscriptionId>/providers/Microsoft.Authorization/policyDefinitions/Audit Storage Accounts Open to Public Networks"
 ```
 
-有关如何使用 Azure CLI 管理资源策略的详细信息，请参阅 [Azure CLI 资源策略](/cli/policy?view=azure-cli-latest)。
+有关如何使用 Azure CLI 管理资源策略的详细信息，请参阅 [Azure CLI 资源策略](/cli/policy)。
 
 ## <a name="next-steps"></a>后续步骤
 
@@ -245,6 +245,6 @@ az policy definition show --name 'Audit Storage Accounts with Open Public Networ
 
 - [Azure REST API 资源](https://docs.microsoft.com/rest/api/resources/)
 - [Azure PowerShell 模块](https://docs.microsoft.com/powershell/module/az.resources/#policies)
-- [Azure CLI 策略命令](/cli/policy?view=azure-cli-latest)
+- [Azure CLI 策略命令](/cli/policy)
 - [Azure Policy Insights 资源提供程序 REST API 参考](https://docs.microsoft.com/rest/api/policy-insights)
 - [使用 Azure 管理组来组织资源](../../management-groups/overview.md)。

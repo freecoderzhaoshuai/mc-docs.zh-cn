@@ -11,12 +11,12 @@ ms.date: 08/31/2020
 ms.testscope: yes
 ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 1d6db7bce580cd0b2d894763791f0da5ca63f098
-ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
+ms.openlocfilehash: 4a071f2c3d930c3a0f3db40c3b8a58c1f4a05403
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89052350"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523622"
 ---
 <!--Verified Successfully-->
 # <a name="sizes-for-virtual-machines-in-azure"></a>Azure 中虚拟机的大小
@@ -32,9 +32,13 @@ ms.locfileid: "89052350"
 
 <!-- Not Available  Dasv4, Dav4, DC series -->
 <!-- Not Available  Easv4, Eav4, Mv2, -->
-<!-- Not Available [Storage optimized](../virtual-machines-windows-sizes-storage.md)        | Lsv2 -->
-<!-- Not Available [GPU](sizes-gpu.md)            | NC, NVv2, ND, NDv2 (Preview), NV, NVv3, NVv4 (Preview)   -->
-<!-- Not Available [High performance compute](sizes-hpc.md) | HB, HBv2, HC, H-->
+<!-- Not Available Storage optimized        | Lsv2 -->
+<!-- Not Available GPU            | NC, NVv2, ND, NDv2 (Preview), NV, NVv3, NVv4 (Preview)   -->
+<!-- Not Available High performance compute | HB, HBv2, HC, H-->
+<!-- Not Available [Storage optimized]-->
+<!-- Not Available [GPU](sizes-gpu.md)-->
+<!-- Not Available [High performance compute](sizes-hpc.md)-->
+
 
 - 有关不同大小的定价信息，请参阅 [Linux](https://www.azure.cn/pricing/details/virtual-machines/) 或 [Windows](https://www.azure.cn/pricing/details/virtual-machines/) 的定价页。
 - 如需了解 Azure 区域中各种 VM 大小的可用性，请参阅 [可用产品（按区域）](https://azure.microsoft.com/regions/services/)。
@@ -61,7 +65,7 @@ ms.locfileid: "89052350"
 
 <!--Not Available on ## Manage costs-->
 
-<!--Not Suitable on [!INCLUDE [cost-management-horizontal](../../includes/cost-management-horizontal.md)]-->
+<!--Not Suitable on [!INCLUDE [cost-management-horizontal](../../includes/cost-management-horizontal.md)-->
 <!--For cost-management-billing is not Available on Azure China-->
 
 ## <a name="next-steps"></a>后续步骤

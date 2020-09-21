@@ -12,12 +12,12 @@ ms.topic: tutorial
 ms.custom: seo-lt-2019; seo-dt-2019
 origin.date: 01/12/2018
 ms.date: 07/27/2020
-ms.openlocfilehash: cd0705941cfeff4c5615cd80beaa6a5332ea800a
-ms.sourcegitcommit: 0eaa82cf74477d26d06bdd8fb6e715e6ed1339c4
+ms.openlocfilehash: af8ce5a9ff985d2a964356dcd06c16d4e44a973f
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/23/2020
-ms.locfileid: "86974256"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90524045"
 ---
 # <a name="incrementally-load-data-from-azure-sql-database-to-azure-blob-storage-using-change-tracking-information-using-the-azure-portal"></a>使用 Azure 门户根据更改跟踪信息，以增量方式将 Azure SQL 数据库中的数据加载到 Azure Blob 存储
 
@@ -167,11 +167,11 @@ ms.locfileid: "86974256"
 
    Azure 数据工厂的名称必须 **全局唯一**。 如果收到错误，请更改数据工厂的名称（例如改为 yournameADFTutorialDataFactory），并重新尝试创建。 有关数据工厂项目命名规则，请参阅[数据工厂 - 命名规则](naming-rules.md)一文。
 
-       `Data factory name “ADFTutorialDataFactory” is not available`
+   数据工厂名“ADFTutorialDataFactory”不可用
 3. 选择要在其中创建数据工厂的 Azure **订阅**。
 4. 对于**资源组**，请执行以下步骤之一：
 
-      - 选择“使用现有资源组”，并从下拉列表选择现有的资源组。
+      - 选择“使用现有资源组”，并从下拉列表选择现有的资源组。 
       - 选择“新建”，并输入资源组的名称。   
          
         若要了解有关资源组的详细信息，请参阅 [使用资源组管理 Azure 资源](../azure-resource-manager/management/overview.md)。  
@@ -202,7 +202,7 @@ ms.locfileid: "86974256"
 2. 在“新建链接服务”窗口中，选择“Azure Blob 存储”，然后单击“继续”。
 
    ![选择“Azure Blob 存储”](./media/tutorial-incremental-copy-change-tracking-feature-portal/select-azure-storage.png)
-3. 在“新建链接服务”  窗口中执行以下步骤：
+3. 在“新建链接服务”窗口中执行以下步骤：
 
     1. 输入 **AzureStorageLinkedService** 作为**名称**。
     2. 对于“存储帐户名称”，请选择自己的 Azure 存储帐户。
@@ -234,7 +234,7 @@ ms.locfileid: "86974256"
 ### <a name="create-a-dataset-to-represent-source-data"></a>创建用于表示源数据的数据集
 在此步骤中，请创建一个代表源数据的数据集。
 
-1. 在树状视图中，依次单击“+”（加号）、“数据集”。 
+1. 在树状视图中，依次单击“+”（加号）、“数据集”。
 
    ![“新建数据集”菜单](./media/tutorial-incremental-copy-change-tracking-feature-portal/new-dataset-menu.png)
 2. 选择“Azure SQL 数据库”，然后单击“完成”。 
@@ -439,7 +439,7 @@ SET [Age] = '10', [name]='update' where [PersonID] = 1
 1. 在工具栏中单击管道对应的“触发器”，然后单击“立即触发”。
 
     ![“立即触发”菜单](./media/tutorial-incremental-copy-change-tracking-feature-portal/trigger-now-menu-2.png)
-2. 在“管道运行”窗口中选择“完成”。
+2. 在“管道运行”窗口中选择“完成”。 
 
 ### <a name="monitor-the-incremental-copy-pipeline"></a>监视增量复制管道
 1. 单击左侧的“监视”选项卡。 可以在列表中查看管道运行及其状态。 若要刷新列表，请单击“刷新”。 使用“操作”列中的链接可以查看与管道运行关联的活动运行，以及重新运行管道。

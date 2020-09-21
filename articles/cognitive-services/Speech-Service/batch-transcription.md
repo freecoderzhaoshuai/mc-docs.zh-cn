@@ -12,12 +12,12 @@ origin.date: 08/28/2020
 ms.date: 09/02/2020
 ms.author: v-tawe
 ms.custom: devx-track-csharp
-ms.openlocfilehash: e0aeb1d6f98ee776c2c8941392fac9c71bd4dcbf
-ms.sourcegitcommit: 4db9853370c9d4c7e5d54f1e1cfadf40efcc12a6
+ms.openlocfilehash: dacab87d565092eda7d8f22cb5f353b1317dee05
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/02/2020
-ms.locfileid: "89317438"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678400"
 ---
 # <a name="how-to-use-batch-transcription"></a>如何使用批量听录
 
@@ -171,7 +171,7 @@ ms.locfileid: "89317438"
       `destinationContainerUrl`
    :::column-end:::
    :::column span="2":::
-      Azure 中可写容器的可选 URL（包含[服务临时 SAS](../../storage/common/storage-sas-overview.md)）。 结果存储在此容器中。 不支持具有存储访问策略的 SAS。 如果未指定，Microsoft 会将结果存储在由 Microsoft 管理的存储容器中。 当通过调用[删除听录](https://westus.dev.cognitive.microsoft.com/docs/services/speech-to-text-api-v3-0/operations/DeleteTranscription)来删除听录时，结果数据也会被删除。
+      Azure 中可写容器的可选 URL（包含[服务临时 SAS](../../storage/common/storage-sas-overview.md)）。 结果存储在此容器中。 不支持具有存储访问策略的 SAS。 如果未指定，Microsoft 会将结果存储在由 Microsoft 管理的存储容器中。 当通过调用[删除听录](https://chinaeast2.dev.cognitive.azure.cn/docs/services/speech-to-text-api-v3-0/operations/DeleteTranscription)来删除听录时，结果数据也会被删除。
 :::row-end:::
 
 ### <a name="storage"></a>存储

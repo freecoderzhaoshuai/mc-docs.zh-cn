@@ -4,15 +4,16 @@ description: 了解如何通过 Azure CLI 在应用程序网关上使用 Web 应
 services: web-application-firewall
 author: vhorne
 ms.service: web-application-firewall
-ms.date: 06/24/2020
+ms.date: 09/15/2020
 ms.author: v-junlch
-ms.topic: overview
-ms.openlocfilehash: 996067ea7ccac220ed937fc3c86515b0ee32da46
-ms.sourcegitcommit: 3a8a7d65d0791cdb6695fe6c2222a1971a19f745
+ms.topic: how-to
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: 9b51c3ce9b49e6413ecc20cdc0d7cc75ffbf8c02
+ms.sourcegitcommit: e1b6e7fdff6829040c4da5d36457332de33e0c59
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2020
-ms.locfileid: "85516744"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721165"
 ---
 # <a name="enable-web-application-firewall-using-the-azure-cli"></a>使用 Azure CLI 启用 Web 应用程序防火墙
 
@@ -20,11 +21,10 @@ ms.locfileid: "85516744"
 
 在本文中，学习如何：
 
-> [!div class="checklist"]
-> * 设置网络
-> * 创建启用 WAF 的应用程序网关
-> * 创建虚拟机规模集
-> * 创建存储帐户和配置诊断
+ * 设置网络
+ * 创建启用 WAF 的应用程序网关
+ * 创建虚拟机规模集
+ * 创建存储帐户和配置诊断
 
 ![Web 应用程序防火墙示例](../media/tutorial-restrict-web-traffic-cli/scenario-waf.png)
 
@@ -47,24 +47,24 @@ az group create --name myResourceGroupAG --location chinanorth2
 虚拟网络和子网用于提供与应用程序网关及其关联资源的网络连接。 创建名为 myVNet 的虚拟网络和名为 myAGSubnet 的子网。 创建名为 myAGPublicIPAddress 的公共 IP 地址。
 
 ```azurecli
-az network vnet create `
-  --name myVNet `
-  --resource-group myResourceGroupAG `
-  --location chinanorth2 `
-  --address-prefix 10.0.0.0/16 `
-  --subnet-name myBackendSubnet `
+az network vnet create \
+  --name myVNet \
+  --resource-group myResourceGroupAG \
+  --location chinanorth2 \
+  --address-prefix 10.0.0.0/16 \
+  --subnet-name myBackendSubnet \
   --subnet-prefix 10.0.1.0/24
 
-az network vnet subnet create `
-  --name myAGSubnet `
-  --resource-group myResourceGroupAG `
-  --vnet-name myVNet `
+az network vnet subnet create \
+  --name myAGSubnet \
+  --resource-group myResourceGroupAG \
+  --vnet-name myVNet \
   --address-prefix 10.0.2.0/24
 
-az network public-ip create `
-  --resource-group myResourceGroupAG `
-  --name myAGPublicIPAddress `
-  --allocation-method Static `
+az network public-ip create \
+  --resource-group myResourceGroupAG \
+  --name myAGPublicIPAddress \
+  --allocation-method Static \
   --sku Standard
 ```
 
@@ -73,25 +73,25 @@ az network public-ip create `
 可以使用 [az network application-gateway create](/cli/network/application-gateway) 创建名为 *myAppGateway* 的应用程序网关。 使用 Azure CLI 创建应用程序网关时，请指定配置信息，例如容量、sku 和 HTTP 设置。 将应用程序网关分配给 myAGSubnet 和 myAGPublicIPAddress。
 
 ```azurecli
-az network application-gateway create `
-  --name myAppGateway `
-  --location chinanorth2 `
-  --resource-group myResourceGroupAG `
-  --vnet-name myVNet `
-  --subnet myAGSubnet `
-  --capacity 2 `
-  --sku WAF_v2 `
-  --http-settings-cookie-based-affinity Disabled `
-  --frontend-port 80 `
-  --http-settings-port 80 `
-  --http-settings-protocol Http `
+az network application-gateway create \
+  --name myAppGateway \
+  --location chinanorth2 \
+  --resource-group myResourceGroupAG \
+  --vnet-name myVNet \
+  --subnet myAGSubnet \
+  --capacity 2 \
+  --sku WAF_v2 \
+  --http-settings-cookie-based-affinity Disabled \
+  --frontend-port 80 \
+  --http-settings-port 80 \
+  --http-settings-protocol Http \
   --public-ip-address myAGPublicIPAddress
 
-az network application-gateway waf-config set `
-  --enabled true `
-  --gateway-name myAppGateway `
-  --resource-group myResourceGroupAG `
-  --firewall-mode Detection `
+az network application-gateway waf-config set \
+  --enabled true \
+  --gateway-name myAppGateway \
+  --resource-group myResourceGroupAG \
+  --firewall-mode Detection \
   --rule-set-version 3.0
 ```
 
@@ -108,30 +108,30 @@ az network application-gateway waf-config set `
 在此示例中，将创建虚拟机规模集，以便为应用程序网关的后端池提供两个服务器。 规模集中的虚拟机与 *myBackendSubnet* 子网相关联。 若要创建规模集，可以使用 [az vmss create](/cli/vmss#az-vmss-create)。
 
 ```azurecli
-az vmss create `
-  --name myvmss `
-  --resource-group myResourceGroupAG `
-  --image UbuntuLTS `
-  --admin-username azureuser `
-  --admin-password Azure123456! `
-  --instance-count 2 `
-  --vnet-name myVNet `
-  --subnet myBackendSubnet `
-  --vm-sku Standard_DS2 `
-  --upgrade-policy-mode Automatic `
-  --app-gateway myAppGateway `
+az vmss create \
+  --name myvmss \
+  --resource-group myResourceGroupAG \
+  --image UbuntuLTS \
+  --admin-username azureuser \
+  --admin-password Azure123456! \
+  --instance-count 2 \
+  --vnet-name myVNet \
+  --subnet myBackendSubnet \
+  --vm-sku Standard_DS2 \
+  --upgrade-policy-mode Automatic \
+  --app-gateway myAppGateway \
   --backend-pool-name appGatewayBackendPool
 ```
 
 ### <a name="install-nginx"></a>安装 NGINX
 
 ```azurecli
-az vmss extension set `
-  --publisher Microsoft.Azure.Extensions `
-  --version 2.0 `
-  --name CustomScript `
-  --resource-group myResourceGroupAG `
-  --vmss-name myvmss `
+az vmss extension set \
+  --publisher Microsoft.Azure.Extensions \
+  --version 2.0 \
+  --name CustomScript \
+  --resource-group myResourceGroupAG \
+  --vmss-name myvmss \
   --settings '{ "fileUris": ["https://raw.githubusercontent.com/Azure/azure-docs-powershell-samples/master/application-gateway/iis/install_nginx.sh"],"commandToExecute": "./install_nginx.sh" }'
 ```
 
@@ -144,11 +144,11 @@ az vmss extension set `
 使用 [az storage account create](/cli/storage/account?view=azure-cli-latest#az-storage-account-create) 创建名为 *myagstore1* 的存储帐户。
 
 ```azurecli
-az storage account create `
-  --name myagstore1 `
-  --resource-group myResourceGroupAG `
-  --location chinanorth2 `
-  --sku Standard_LRS `
+az storage account create \
+  --name myagstore1 \
+  --resource-group myResourceGroupAG \
+  --location chinanorth2 \
+  --sku Standard_LRS \
   --encryption-services blob
 ```
 
@@ -171,10 +171,10 @@ az monitor diagnostic-settings create --name appgwdiag --resource $appgwid \
 若要获取应用程序网关的公共 IP 地址，请使用 [az network public-ip show](/cli/network/public-ip#az-network-public-ip-show)。 复制该公共 IP 地址，并将其粘贴到浏览器的地址栏。
 
 ```azurecli
-az network public-ip show `
-  --resource-group myResourceGroupAG `
-  --name myAGPublicIPAddress `
-  --query [ipAddress] `
+az network public-ip show \
+  --resource-group myResourceGroupAG \
+  --name myAGPublicIPAddress \
+  --query [ipAddress] \
   --output tsv
 ```
 

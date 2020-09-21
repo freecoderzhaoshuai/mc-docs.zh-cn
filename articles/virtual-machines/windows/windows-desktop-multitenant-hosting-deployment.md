@@ -10,18 +10,18 @@ ms.date: 08/31/2020
 ms.testscope: yes
 ms.testdate: 08/31/2020
 ms.author: v-yeche
-ms.openlocfilehash: 6b958682e7b61eb7a7e4fc3b98dbb155e597ab05
-ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
+ms.openlocfilehash: 610967e6059c3da8a5138599cba07687f596839a
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89046541"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90524035"
 ---
 <!--Verified Successfully-->
 # <a name="how-to-deploy-windows-10-on-azure-with-multitenant-hosting-rights"></a>如何使用多租户托管权限在 Azure 上部署 Windows 10 
 对于其用户使用 Windows 10 企业版 E3/E5 或使用 Windows 虚拟桌面访问（用户订阅许可证或附加设备用户订阅许可证）的客户，通过使用 Windows 10 多租户托管权限，他们可以在云中使用其 Windows 10 许可证并在 Azure 上运行 Windows 10 虚拟机，无需购买其他许可证。 
 
-<!--Not Available on For more information, please see [Multitenant Hosting for Windows 10](https://www.microsoft.com/CloudandHosting/licensing_sca.aspx).-->
+<!--Not Available on For more information, please see [Multitenant Hosting for Windows 10](https://www.microsoft.com/CloudandHosting/licensing_sca.aspx)-->
 
 > [!NOTE]
 > 本文演示如何在 Azure 市场上实现 Windows 10 专业版桌面映像的许可权益。

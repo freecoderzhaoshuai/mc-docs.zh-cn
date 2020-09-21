@@ -5,15 +5,15 @@ description: 本文提供有关如何在现有或新的应用程序网关上将 
 services: application-gateway
 author: abshamsft
 ms.service: application-gateway
-ms.topic: article
-ms.date: 06/24/2020
+ms.topic: how-to
+ms.date: 09/14/2020
 ms.author: v-junlch
-ms.openlocfilehash: 2422cf1046d066c77575aa9262b7ccda66863266
-ms.sourcegitcommit: 3a8a7d65d0791cdb6695fe6c2222a1971a19f745
+ms.openlocfilehash: efaa12e2bf64f62aa411b10952c5f785d7b8c07d
+ms.sourcegitcommit: e1b6e7fdff6829040c4da5d36457332de33e0c59
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/28/2020
-ms.locfileid: "85516690"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721109"
 ---
 # <a name="configure-app-service-with-application-gateway"></a>使用应用程序网关配置应用服务
 
@@ -23,10 +23,8 @@ ms.locfileid: "85516690"
 
 在本文中，学习如何：
 
-> [!div class="checklist"]
->
-> - 创建后端池并将一个应用服务添加到其中
-> - 在启用“选取主机名”开关的情况下创建 HTTP 设置和自定义探测
+- 创建后端池并将一个应用服务添加到其中
+- 在启用“选取主机名”开关的情况下创建 HTTP 设置和自定义探测
 
 ## <a name="prerequisites"></a>先决条件
 
@@ -105,4 +103,3 @@ ms.locfileid: "85516690"
 
 若要详细了解应用服务和应用程序网关的其他多租户支持，请参阅[应用程序网关的多租户服务支持](/application-gateway/application-gateway-web-app-overview)。
 
-<!-- Update_Description: wording update -->

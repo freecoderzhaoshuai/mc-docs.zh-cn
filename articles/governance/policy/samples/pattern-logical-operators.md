@@ -1,16 +1,16 @@
 ---
 title: 模式：策略定义中的逻辑运算符
 description: 此 Azure Policy 模式通过示例介绍了如何使用策略定义中的逻辑运算符。
-origin.date: 04/15/2020
-ms.date: 04/20/2020
+origin.date: 08/17/2020
+ms.date: 09/15/2020
 ms.author: v-tawe
 ms.topic: sample
-ms.openlocfilehash: 866b55d25a4e6db92339cccef9019f4b1068f0fa
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.openlocfilehash: 9f01f49ee44e68b29445e40e36c438c623a8263d
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588737"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523998"
 ---
 # <a name="azure-policy-pattern-logical-operators"></a>Azure Policy 模式：逻辑运算符
 

@@ -9,14 +9,14 @@ metadata:
   ms.collection: collection
   author: DCtheGeek
   ms.author: v-tawe
-  origin.date: 06/29/2020
-  ms.date: 08/06/2020
-  ms.openlocfilehash: 7372abafbc87027d7a4acbf8cfaad624694c8f93
-  ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+  origin.date: 08/31/2020
+  ms.date: 09/15/2020
+  ms.openlocfilehash: 6ac3af9e05469c9db864781e088e7108e3bf5eda
+  ms.sourcegitcommit: f5438a4f20d47cfe24e5cee209bb9e11a704c23c
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 08/07/2020
-  ms.locfileid: "87917127"
+  ms.lasthandoff: 09/15/2020
+  ms.locfileid: "90456014"
 landingContent:
 - title: 关于 Azure 治理
   linkLists:
@@ -30,14 +30,26 @@ landingContent:
     links:
     - text: Azure 管理组
       url: ./overview.md
-- title: 组织资源
+- title: 入门
   linkLists:
+  - linkListType: quickstart
+    links:
+    - text: 创建管理组（门户）
+      url: ./create-management-group-portal.md
+    - text: 创建管理组 (Azure CLI)
+      url: ./create-management-group-azure-cli.md
+    - text: 创建管理组 (Azure PowerShell)
+      url: ./create-management-group-powershell.md
+    - text: 创建管理组 (REST)
+      url: ./create-management-group-rest-api.md
+    - text: 向管理组部署资源（ARM 模板）
+      url: ../../azure-resource-manager/templates/deploy-to-management-group.md
   - linkListType: how-to-guide
     links:
-    - text: 创建管理组
-      url: ./create.md
-    - text: 管理资源
+    - text: 管理资源层次结构
       url: ./manage.md
+    - text: 保护资源层次结构
+      url: ./how-to/protect-resource-hierarchy.md
 - title: 参考
   linkLists:
   - linkListType: reference

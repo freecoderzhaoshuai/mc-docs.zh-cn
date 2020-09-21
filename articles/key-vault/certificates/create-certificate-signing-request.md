@@ -9,14 +9,14 @@ ms.service: key-vault
 ms.subservice: certificates
 ms.topic: tutorial
 origin.date: 06/17/2020
-ms.date: 07/23/2020
+ms.date: 09/15/2020
 ms.author: v-tawe
-ms.openlocfilehash: 3f804df21d4b7b776f07df97ee249fd24d7e8a08
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 877c3622a69e769451571815508abfb95cbb5708
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917307"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678446"
 ---
 # <a name="creating-and-merging-csr-in-key-vault"></a>在 Key Vault 中创建和合并 CSR
 
@@ -30,13 +30,17 @@ Azure Key Vault 支持将你选择的任何证书颁发机构颁发的数字证�
 
 以下步骤将帮助你从没有与 Key Vault 合作的证书颁发机构（例如，GoDaddy 不是受信任的密钥保管库 CA）创建证书 
 
+
 ### <a name="azure-powershell"></a>Azure PowerShell
+
+
 
 1.  首先，创建证书策略。 由于此方案中所选的 CA 不受支持，Key Vault 不会代表用户注册或续订证书颁发者颁发的证书，因此 IssuerName 设置为“未知”。
 
     ```azurepowershell
     $policy = New-AzKeyVaultCertificatePolicy -SubjectName "CN=www.contosoHRApp.com" -ValidityInMonths 1  -IssuerName Unknown
     ```
+
 
 2. 创建证书签名请求
 
@@ -46,6 +50,7 @@ Azure Key Vault 支持将你选择的任何证书颁发机构颁发的数字证�
    ```
 
 3. 获取由 CA 签名的 CSR 请求。`$certificateOperation.CertificateSigningRequest` 是针对该证书的 base4 编码的证书签名请求。 可以获取此 blob，并将其转储到证书颁发者的证书请求网站中。 此步骤因 CA 而异，最好的方法是查看 CA 提供的关于如何执行此步骤的指南。 此外，还可以使用 certreq 或 openssl 之类的工具来对证书请求进行签名，并完成证书生成过程。
+
 
 4. 在 Key Vault 中合并已签名的请求。证书颁发者对证书请求进行签名后，可以带回已签名的证书，并将其与在 Azure Key Vault 中创建的初始私钥/公钥对合并
 
@@ -77,9 +82,31 @@ Azure Key Vault 支持将你选择的任何证书颁发机构颁发的数字证�
 
 现已成功合并证书请求。
 
+## <a name="adding-more-information-to-csr"></a>向 CSR 添加更多信息
+
+如果想要在创建 CSR 时添加更多信息，例如 - 
+    - 国家/地区：
+    - 城市/区域：
+    - 省/自治区/直辖市：
+    - 组织：
+    - 组织单位：可以在创建 CSR 时通过在 subjectName 中定义这些信息来添加所有这些信息。
+
+示例
+    ```SubjectName="CN = docs.microsoft.com, OU = Microsoft Corporation, O = Microsoft Corporation, L = Redmond, S = WA, C = US"
+    ```
+
+>[!Note]
+>如果你正在 CSR 中请求具有所有这些详细信息的 DV 证书，则 CA 可能会拒绝该请求，因为 CA 可能无法验证请求中的所有信息。 如果你正在请求 OV 证书，那么在 CSR 中添加所有这些信息更合适。
+
+
 ## <a name="troubleshoot"></a>疑难解答
 
-如果颁发的证书在 Azure 门户中处于“已禁用”状态，请继续查看“证书操作”以查看该证书的错误消息。
+- 错误类型“指定的 X.509 证书内容中终端实体证书的公钥与指定私钥的公共部分不一致。请检查证书是否有效”。如果你不将 CSR 与启动的同一 CSR 请求合并，则会发生此错误。 每次创建 CSR 时，它都会创建一个在合并签名请求时必须匹配的私钥。
+    
+- 当 CSR 合并时，它会合并整个链吗？
+    是的，它会合并整个链，前提是用户返回 p7b 文件进行合并。
+
+- 如果颁发的证书在 Azure 门户中处于“已禁用”状态，请继续查看“证书操作”以查看该证书的错误消息。
 
 有关详细信息，请参阅 [Key Vault REST API 中的证书操作参考](https://docs.microsoft.com/rest/api/keyvault)。 有关建立权限的信息，请参阅[保管库 - 创建或更新](https://docs.microsoft.com/rest/api/keyvault/vaults/createorupdate)和[保管库 - 更新访问策略](https://docs.microsoft.com/rest/api/keyvault/vaults/updateaccesspolicy)。
 

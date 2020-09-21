@@ -2,20 +2,21 @@
 author: WenJason
 ms.service: data-factory
 ms.topic: include
-origin.date: 08/12/2019
-ms.date: 06/29/2020
-ms.author: jingwang
-ms.openlocfilehash: d07081ad5cae61591ae5156134a69d3ae2806500
-ms.sourcegitcommit: f5484e21fa7c95305af535d5a9722b5ab416683f
+origin.date: 07/13/2019
+ms.date: 09/21/2020
+ms.author: v-jay
+ms.openlocfilehash: 5e8c61f25de1f64c55077e746fc5b0237914c444
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/24/2020
-ms.locfileid: "85320307"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523646"
 ---
 <!--
     Separate the generic requirement on Self-hosted Integration Runtime set-up from connector articles.
 -->
-如果数据存储是以下方式之一配置的，则需要设置[自承载集成运行时](../articles/data-factory/create-self-hosted-integration-runtime.md)才能连接到此数据存储：
+如果数据存储位于本地网络、Azure 虚拟网络或 Amazon Virtual Private Cloud 内部，则需要设置[自承载集成运行时](../articles/data-factory/create-self-hosted-integration-runtime.md)才能连接到该数据存储。
 
-- 数据存储位于本地网络内部、Azure 虚拟网络内部或 Amazon 虚拟私有云内。
-- 数据存储是一种托管的云数据服务，只有在防火墙规则中列入允许列表的 IP 才能访问该服务。
+如果数据存储是托管的云数据服务，则可以使用 Azure 集成运行时。 如果访问范围限制为防火墙规则中列入白名单的 IP，可以选择将 [Azure 集成运行时 IP](../articles/data-factory/azure-integration-runtime-ip-addresses.md) 添加到允许列表。 
+
+要详细了解网络安全机制和数据工厂支持的选项，请参阅[数据访问策略](../articles/data-factory/data-access-strategies.md)。

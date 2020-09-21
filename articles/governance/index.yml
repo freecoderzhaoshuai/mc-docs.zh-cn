@@ -10,14 +10,14 @@ metadata:
   ms.collection: collection
   author: DCtheGeek
   ms.author: v-tawe
-  origin.date: 09/10/2019
-  ms.date: 12/18/2019
-  ms.openlocfilehash: f93510f3ce23e4b482572de22353086fb0a64d6e
-  ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+  origin.date: 06/29/2020
+  ms.date: 09/15/2020
+  ms.openlocfilehash: 9e3ab682117da0b617d9cdc9220ae450ff4695a7
+  ms.sourcegitcommit: 75299b1cb5540a11149f320edaae82ae8c03c16b
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 08/07/2020
-  ms.locfileid: "87917305"
+  ms.lasthandoff: 09/15/2020
+  ms.locfileid: "90523164"
 highlightedContent:
   items:
   - title: 治理概述
@@ -31,6 +31,8 @@ productDirectory:
     links:
     - url: ./management-groups/overview.md
       text: 概述
+    - url: ./management-groups/how-to/protect-resource-hierarchy.md
+      text: 保护资源层次结构
     - url: ./management-groups/index.yml
       text: 查看更多 >
   - title: Azure Policy
@@ -75,13 +77,17 @@ additionalContent:
     - title: 管理组
       links:
       - text: Azure CLI
-        url: /cli/ext/managementgroups/?view=azure-cli-latest
+        url: /cli/account/management-group
       - text: Azure PowerShell
         url: https://docs.microsoft.com/powershell/module/az.resources/#resources
       - text: 用于 .NET 的 Azure SDK
         url: https://docs.microsoft.com/dotnet/api/overview/azure/managementgroups
-      - text: 用于 Node 的 Azure SDK
+      - text: 用于 JavaScript 的 Azure SDK
         url: https://docs.microsoft.com/javascript/api/@azure/arm-managementgroups/managementgroups
+      - text: REST
+        url: https://docs.microsoft.com/rest/api/resources/managementgroups
+      - text: 资源管理器模板
+        url: https://docs.microsoft.com/azure/templates/microsoft.management/managementgroups
     - title: Azure Policy
       links:
       - text: Azure CLI
@@ -95,12 +101,6 @@ additionalContent:
       - text: Azure PowerShell
         url: https://www.powershellgallery.com/packages/Az.GuestConfiguration
         note: （来宾配置）
-      - text: 用于 .NET 的 Azure SDK
-        url: https://docs.microsoft.com/dotnet/api/microsoft.azure.management.resourcemanager.models.policyassignment
-        note: （分配）
-      - text: 用于 .NET 的 Azure SDK
-        url: https://docs.microsoft.com/dotnet/api/microsoft.azure.management.resourcemanager.models.policydefinition
-        note: （策略定义）
       - text: REST
         url: https://docs.microsoft.com/rest/api/policy-insights/
         note: （策略见解）
@@ -118,15 +118,28 @@ additionalContent:
         note: （来宾配置）
       - text: 资源管理器模板
         url: https://docs.microsoft.com/azure/templates/microsoft.authorization/allversions
+    - title: Azure Policy（更多）
+      links:
+      - text: 用于 .NET 的 Azure SDK
+        url: https://docs.microsoft.com/dotnet/api/microsoft.azure.management.resourcemanager.models.policyassignment
+        note: （分配）
+      - text: 用于 .NET 的 Azure SDK
+        url: https://docs.microsoft.com/dotnet/api/microsoft.azure.management.resourcemanager.models.policydefinition
+        note: （策略定义）
+      - text: 用于 JavaScript 的 Azure SDK
+        url: https://docs.microsoft.com/javascript/api/@azure/arm-policy
+        note: （策略）
+      - text: 用于 JavaScript 的 Azure SDK
+        url: https://docs.microsoft.com/javascript/api/@azure/arm-policyinsights
+        note: （策略见解）
+      - text: 用于 Python 的 Azure SDK
+        url: https://docs.microsoft.com/python/api/azure-mgmt-policyinsights/azure.mgmt.policyinsights
     - title: Azure Resource Graph
       links:
       - text: Azure CLI
         url: https://docs.microsoft.com/cli/azure/ext/resource-graph/graph
       - text: Azure PowerShell
         url: https://docs.microsoft.com/powershell/module/az.resourcegraph/
-      - text: Azure PowerShell
-        url: https://www.powershellgallery.com/packages/Az.ResourceGraph
-        note: （PS 库模块）
       - text: 用于 .NET 的 Azure SDK
         url: https://docs.microsoft.com/dotnet/api/Microsoft.Azure.Management.ResourceGraph
       - text: 用于 .NET 的 Azure SDK
@@ -135,11 +148,11 @@ additionalContent:
       - text: Azure SDK for Go
         url: https://godoc.org/github.com/Azure/azure-sdk-for-go/services/resourcegraph/mgmt/2019-04-01/resourcegraph
       - text: 用于 Java 的 Azure SDK
-        url: https://docs.microsoft.com/java/api/overview/azure/resourcegraph/management?view=azure-java-stable
+        url: https://docs.microsoft.com/java/api/overview/azure/resourcegraph/management
       - text: 用于 Java 的 Azure SDK
         url: https://search.maven.org/artifact/com.microsoft.azure.resourcegraph.v2019_04_01/azure-mgmt-resourcegraph/1.0.0-beta/jar
         note: (Maven)
-      - text: 用于 Node 的 Azure SDK
+      - text: 用于 JavaScript 的 Azure SDK
         url: https://docs.microsoft.com/javascript/api/@azure/arm-resourcegraph
       - text: 用于 Python 的 Azure SDK
         url: https://docs.microsoft.com/python/api/azure-mgmt-resourcegraph/azure.mgmt.resourcegraph
@@ -148,6 +161,8 @@ additionalContent:
         note: (Gem)
       - text: REST
         url: https://docs.microsoft.com/rest/api/azure-resourcegraph/
+      - text: 资源管理器模板
+        url: https://docs.microsoft.com/templates/microsoft.resourcegraph/allversions
     - title: 成本管理
       links:
       - text: REST

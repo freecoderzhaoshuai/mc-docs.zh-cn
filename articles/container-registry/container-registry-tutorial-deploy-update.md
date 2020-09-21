@@ -8,12 +8,12 @@ ms.testscope: yes
 ms.testdate: 09/14/2020
 ms.author: v-yeche
 ms.custom: seodec18, mvc
-ms.openlocfilehash: 0441143a2e3f08556c39cdcfebca64f78f434dae
-ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
+ms.openlocfilehash: 99355452bc710c62ff3aca8547bd581dd467dd65
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/11/2020
-ms.locfileid: "90021662"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523870"
 ---
 <!--Verified Successfully-->
 # <a name="tutorial-push-an-updated-container-image-to-a-geo-replicated-container-registry-for-regional-web-app-deployments"></a>教程：将已更新的容器映像推送到异地复制的容器注册表以进行区域性 Web 应用部署
@@ -149,7 +149,9 @@ Webhook 通知 Web 应用，新的映像已推送到注册表，后者会自动�
 
 [deployed-app-chinaeast-modified]: ./media/container-registry-tutorial-deploy-update/deployed-app-eastus-modified.png
 [deployed-app-chinanorth-modified]: ./media/container-registry-tutorial-deploy-update/deployed-app-westus-modified.png
-[local-container-01]: ./media/container-registry-tutorial-deploy-update/local-container-01.png
+
+<!--Not Available on [local-container-01]: ./media/container-registry-tutorial-deploy-update/local-container-01.png-->
+
 [tutorial-portal-01]: ./media/container-registry-tutorial-deploy-update/tutorial-portal-01.png
 [tutorial-portal-02]: ./media/container-registry-tutorial-deploy-update/tutorial-portal-02.png
 [tutorial-portal-03]: ./media/container-registry-tutorial-deploy-update/tutorial-portal-03.png

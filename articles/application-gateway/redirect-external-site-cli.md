@@ -4,16 +4,15 @@ description: 了解如何创建应用程序网关，将内部 web 流量重定�
 services: application-gateway
 author: vhorne
 ms.service: application-gateway
-ms.topic: article
-origin.date: 11/13/2019
-ms.date: 11/21/2019
+ms.topic: how-to
+ms.date: 09/14/2020
 ms.author: v-junlch
-ms.openlocfilehash: 4e5ddb189f72d1c9e5c0b7dcb877a4c23652f67f
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 68f5cd1ad3180af698cb4478545c25a4cc2eba96
+ms.sourcegitcommit: e1b6e7fdff6829040c4da5d36457332de33e0c59
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "74326643"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721123"
 ---
 # <a name="create-an-application-gateway-with-external-redirection-using-the-azure-cli"></a>使用 Azure CLI 创建支持外部重定向的应用程序网关
 
@@ -21,12 +20,11 @@ ms.locfileid: "74326643"
 
 在本文中，学习如何：
 
-> [!div class="checklist"]
-> * 设置网络
-> * 创建侦听器和重定向规则
-> * 创建应用程序网关
+* 设置网络
+* 创建侦听器和重定向规则
+* 创建应用程序网关
 
-如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial/?WT.mc_id=A261C142F)。
+如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial)。
 
 如果选择在本地安装并使用 CLI，此快速入门教程要求运行 Azure CLI 2.0.4 版或更高版本。 若要查找版本，请运行 `az --version`。 如果需要进行安装或升级，请参阅[安装 Azure CLI](/cli/install-azure-cli)。
 
@@ -34,10 +32,10 @@ ms.locfileid: "74326643"
 
 资源组是在其中部署和管理 Azure 资源的逻辑容器。 使用 [az group create](/cli/group) 创建资源组。
 
-以下示例在“chinanorth”位置创建名为“myResourceGroupAG”的资源组。
+以下示例在“chinanorth2”  位置创建名为“myResourceGroupAG”  的资源组。
 
 ```azurecli 
-az group create --name myResourceGroupAG --location chinanorth
+az group create --name myResourceGroupAG --location chinanorth2
 ```
 
 ## <a name="create-network-resources"></a>创建网络资源 
@@ -45,15 +43,15 @@ az group create --name myResourceGroupAG --location chinanorth
 使用 [az network vnet create](/cli/network/vnet) 创建名为 *myVNet* 的虚拟网络和名为 *myAGSubnet* 的子网。 使用 [az network public-ip create](https://docs.azure.cn/zh-cn/cli/network/public-ip?view=azure-cli-latest#az-network-public-ip-create) 创建名为 *myAGPublicIPAddress* 的公共 IP 地址。 这些资源用于提供与应用程序网关及其关联资源的网络连接。
 
 ```azurecli
-az network vnet create `
-  --name myVNet `
-  --resource-group myResourceGroupAG `
-  --location chinanorth `
-  --address-prefix 10.0.0.0/16 `
-  --subnet-name myAGSubnet `
+az network vnet create \
+  --name myVNet \
+  --resource-group myResourceGroupAG \
+  --location chinanorth2 \
+  --address-prefix 10.0.0.0/16 \
+  --subnet-name myAGSubnet \
   --subnet-prefix 10.0.1.0/24
-az network public-ip create `
-  --resource-group myResourceGroupAG `
+az network public-ip create \
+  --resource-group myResourceGroupAG \
   --name myAGPublicIPAddress
 ```
 
@@ -62,18 +60,18 @@ az network public-ip create `
 可以使用 [az network application-gateway create](/cli/network/application-gateway) 创建名为 *myAppGateway* 的应用程序网关。 使用 Azure CLI 创建应用程序网关时，请指定配置信息，例如容量、sku 和 HTTP 设置。 将应用程序网关分配给之前创建的 *myAGSubnet* 和 *myPublicIPAddress*。 
 
 ```azurecli
-az network application-gateway create `
-  --name myAppGateway `
-  --location chinanorth `
-  --resource-group myResourceGroupAG `
-  --vnet-name myVNet `
-  --subnet myAGsubnet `
-  --capacity 2 `
-  --sku Standard_Medium `
-  --http-settings-cookie-based-affinity Disabled `
-  --frontend-port 8080 `
-  --http-settings-port 80 `
-  --http-settings-protocol Http `
+az network application-gateway create \
+  --name myAppGateway \
+  --location chinanorth2 \
+  --resource-group myResourceGroupAG \
+  --vnet-name myVNet \
+  --subnet myAGsubnet \
+  --capacity 2 \
+  --sku Standard_Medium \
+  --http-settings-cookie-based-affinity Disabled \
+  --frontend-port 8080 \
+  --http-settings-port 80 \
+  --http-settings-protocol Http \
   --public-ip-address myAGPublicIPAddress
 ```
 
@@ -90,11 +88,11 @@ az network application-gateway create `
 使用 [az network application-gateway redirect-config create](/cli/network/application-gateway/redirect-config) 在应用程序网关中添加从 www\.consoto.org 将流量发送到 www\.contoso.com 的侦听器的重定向配置。
 
 ```azurecli
-az network application-gateway redirect-config create `
-  --name myredirect `
-  --gateway-name myAppGateway `
-  --resource-group myResourceGroupAG `
-  --type Temporary `
+az network application-gateway redirect-config create \
+  --name myredirect \
+  --gateway-name myAppGateway \
+  --resource-group myResourceGroupAG \
+  --type Temporary \
   --target-url "https://bing.com"
 ```
 
@@ -103,23 +101,23 @@ az network application-gateway redirect-config create `
 应用程序网关需要侦听器才能适当地将流量路由到后端池。 使用创建侦听器[az 网络应用程序网关 http 侦听器创建](/cli/network/application-gateway)使用创建的前端端口与[az 网络应用程序网关前端端口创建](/cli/network/application-gateway)。 侦听器需要使用规则来了解哪个后端池使用传入流量。 使用 [az network application-gateway rule create](/cli/network/application-gateway) 创建名为 *redirectRule* 的基本规则。
 
 ```azurecli
-az network application-gateway frontend-port create `
-  --port 80 `
-  --gateway-name myAppGateway `
-  --resource-group myResourceGroupAG `
+az network application-gateway frontend-port create \
+  --port 80 \
+  --gateway-name myAppGateway \
+  --resource-group myResourceGroupAG \
   --name redirectPort
-az network application-gateway http-listener create `
-  --name redirectListener `
-  --frontend-ip appGatewayFrontendIP `
-  --frontend-port redirectPort `
-  --resource-group myResourceGroupAG `
+az network application-gateway http-listener create \
+  --name redirectListener \
+  --frontend-ip appGatewayFrontendIP \
+  --frontend-port redirectPort \
+  --resource-group myResourceGroupAG \
   --gateway-name myAppGateway
-az network application-gateway rule create `
-  --gateway-name myAppGateway `
-  --name redirectRule `
-  --resource-group myResourceGroupAG `
-  --http-listener redirectListener `
-  --rule-type Basic `
+az network application-gateway rule create \
+  --gateway-name myAppGateway \
+  --name redirectRule \
+  --resource-group myResourceGroupAG \
+  --http-listener redirectListener \
+  --rule-type Basic \
   --redirect-config myredirect
 ```
 
@@ -137,4 +135,3 @@ az network application-gateway rule create `
 > * 创建侦听器和重定向规则
 > * 创建应用程序网关
 
-<!-- Update_Description: update metedata properties -->

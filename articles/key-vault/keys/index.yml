@@ -11,12 +11,12 @@ metadata:
   author: msmbaldwin
   ms.author: mbaldwin
   ms.date: 04/07/2020
-  ms.openlocfilehash: ad53e342ad757117c722bc94548ddef17187f14c
-  ms.sourcegitcommit: 4f84bba7e509a321b6f68a2da475027c539b8fd3
+  ms.openlocfilehash: df55646b9b4fc73fe924d5dc947546d01a3639ab
+  ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 07/01/2020
-  ms.locfileid: "85796181"
+  ms.lasthandoff: 09/16/2020
+  ms.locfileid: "90678498"
 landingContent:
 - title: 密钥
   linkLists:
@@ -24,6 +24,8 @@ landingContent:
     links:
     - text: 什么是 Key Vault 密钥？
       url: about-keys.md
+    - text: 关于软删除的重要新消息
+      url: ../general/soft-delete-change.md
 - title: 入门
   linkLists:
   - linkListType: quickstart
@@ -36,6 +38,18 @@ landingContent:
       url: quick-create-portal.md
     - text: Python
       url: quick-create-python.md
+- title: Key Vault 密钥的客户端库
+  linkLists:
+  - linkListType: reference
+    links:
+    - text: .NET 客户端库
+      url: https://docs.microsoft.com/dotnet/api/azure.security.keyvault.keys?view=azure-dotnet
+    - text: Python 客户端库
+      url: https://docs.microsoft.com/python/api/overview/azure/keyvault-keys-readme?view=azure-python
+    - text: Java 客户端库
+      url: https://azuresdkdocs.blob.core.windows.net/$web/java/azure-security-keyvault-keys/4.2.0/index.html
+    - text: Node.js 客户端库
+      url: https://docs.microsoft.com/javascript/api/@azure/keyvault-keys/?view=azure-node-latest
 - title: 有关 Key Vault 的详细信息
   linkLists:
   - linkListType: overview
@@ -45,7 +59,7 @@ landingContent:
     - text: 基本概念
       url: ../general/basic-concepts.md
     - text: 软删除概述
-      url: ../general/overview-soft-delete.md
+      url: ../general/soft-delete-overview.md
     - text: 安全概述
       url: ../general/overview-security.md
 - title: Microsoft Learn

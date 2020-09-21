@@ -8,14 +8,15 @@ ms.service: key-vault
 ms.subservice: general
 ms.topic: tutorial
 origin.date: 04/22/2020
-ms.date: 07/28/2020
+ms.date: 09/15/2020
 ms.author: v-tawe
-ms.openlocfilehash: 85538dd33e90a1033e0c8694792f9948843b529e
-ms.sourcegitcommit: 0e778acf5aa5eb63ab233e07e7aecce3a9a5e6d4
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: eefad967d4e02f752af304a3fc1480ea8da23767
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87296513"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678497"
 ---
 # <a name="configure-azure-key-vault-firewalls-and-virtual-networks"></a>配置 Azure Key Vault 防火墙和虚拟网络
 

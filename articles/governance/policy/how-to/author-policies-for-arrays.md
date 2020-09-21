@@ -2,15 +2,15 @@
 title: 为资源上的数组属性创作策略
 description: 了解如何使用数组参数和数组语言表达式，如何计算 [*] 别名，以及如何使用 Azure Policy 定义规则追加元素。
 ms.author: v-tawe
-origin.date: 05/20/2020
-ms.date: 08/06/2020
+origin.date: 08/17/2020
+ms.date: 09/15/2020
 ms.topic: how-to
-ms.openlocfilehash: 03f3a95c8222fe338cc3c939eee55502dc12bb88
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: edd3ece371f0420d5fc876555de8dc5c208e3cf8
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917103"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90524059"
 ---
 # <a name="author-policies-for-array-properties-on-azure-resources"></a>为 Azure 资源上的数组属性创作策略
 

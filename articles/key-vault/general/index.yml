@@ -11,13 +11,13 @@ metadata:
   ms.author: v-tawe
   manager: rkarlin
   origin.date: 09/19/2019
-  ms.date: 04/20/2020
-  ms.openlocfilehash: 49553231edd8ca6615edf7f05fc5f61657b831a0
-  ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+  ms.date: 09/16/2020
+  ms.openlocfilehash: 2a470470494be06f09c6268c5b1391cd4d392d46
+  ms.sourcegitcommit: a3f936c07cada0344f50d3b0ed1d5c8b6c815f3f
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 04/30/2020
-  ms.locfileid: "82588971"
+  ms.lasthandoff: 09/18/2020
+  ms.locfileid: "90769732"
 landingContent:
 - title: 关于 Azure Key Vault
   linkLists:
@@ -25,12 +25,14 @@ landingContent:
     links:
     - text: 什么是 Azure Key Vault？
       url: overview.md
+    - text: 关于软删除的重要新消息
+      url: soft-delete-change.md
   - linkListType: concept
     links:
     - text: 基本概念
       url: basic-concepts.md
     - text: 软删除
-      url: overview-soft-delete.md
+      url: soft-delete-overview.md
     - text: 限制
       url: overview-throttling.md
 - title: 教程
@@ -39,10 +41,10 @@ landingContent:
     links:
     - text: 从 Web 应用程序使用 Key Vault
       url: tutorial-net-create-vault-azure-web-app.md
-    - text: 将 Key Vault 与 Azure Windows 虚拟机配合使用
-      url: tutorial-net-windows-virtual-machine.md
-    - text: 通过 Python 使用 Key Vault - Windows
-      url: tutorial-python-windows-virtual-machine.md
+    - text: 通过 .NET 结合使用密钥保管库和虚拟机
+      url: tutorial-net-virtual-machine.md
+    - text: 通过 Python 结合使用密钥保管库和虚拟机
+      url: tutorial-python-virtual-machine.md
 - title: 安全性
   linkLists:
   - linkListType: overview
@@ -51,9 +53,33 @@ landingContent:
       url: secure-your-key-vault.md
     - text: 安全建议
       url: security-recommendations.md
-  - linkListType: tutorial
+  - linkListType: how-to-guide
     links:
-    - text: 使用托管标识
-      url: managed-identity.md
-    - text: 使用访问策略
-      url: group-permissions-for-apps.md
+    - text: 对 Key Vault 进行身份验证
+      url: authentication.md
+    - text: 分配访问策略 (CLI)
+      url: assign-access-policy-CLI.md
+    - text: 分配访问策略 (PowerShell)
+      url: assign-access-policy-powershell.md
+    - text: 分配访问策略（门户）
+      url: assign-access-policy-portal.md
+- title: 客户端库
+  linkLists:
+  - linkListType: reference
+    links:
+    - text: Azure Key Vault 的客户端库
+      url: client-libraries.md
+    - text: .NET 客户端库
+      url: https://docs.microsoft.com/dotnet/api/overview/azure/key-vault?view=azure-dotnet
+    - text: Python 客户端库
+      url: https://docs.microsoft.com/python/api/overview/azure/key-vault-index?view=azure-python
+    - text: Java 客户端库
+      url: https://azure.github.io/azure-sdk-for-java/keyvault.html
+    - text: Node.js 客户端库
+      url: https://docs.microsoft.com/javascript/api/overview/azure/key-vault-index?view=azure-node-latest
+- title: Microsoft Learn
+  linkLists:
+  - linkListType: learn
+    links:
+    - text: 使用 Azure Key Vault 管理服务器应用中的机密
+      url: https://docs.microsoft.com/learn/modules/manage-secrets-with-azure-key-vault/

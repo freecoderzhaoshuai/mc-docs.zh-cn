@@ -4,15 +4,15 @@ description: 了解如何使用 Azure PowerShell 创建支持基于 URL 路径�
 services: application-gateway
 author: vhorne
 ms.service: application-gateway
-ms.date: 03/30/2020
+ms.date: 09/15/2020
 ms.author: v-junlch
-ms.topic: conceptual
-ms.openlocfilehash: 89cd6188d72dc022a92e0ba5ee90b9992b5170fd
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.topic: how-to
+ms.openlocfilehash: b5e024b734910648b4c62d1485b531a8ecd29a99
+ms.sourcegitcommit: e1b6e7fdff6829040c4da5d36457332de33e0c59
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "80581801"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721084"
 ---
 # <a name="create-an-application-gateway-with-url-path-based-redirection-using-azure-powershell"></a>使用 Azure PowerShell 创建支持基于 URL 路径的重定向的应用程序网关
 
@@ -20,11 +20,10 @@ ms.locfileid: "80581801"
 
 在本文中，学习如何：
 
-> [!div class="checklist"]
-> * 设置网络
-> * 创建应用程序网关
-> * 添加侦听器和路由规则
-> * 为后端池创建虚拟机规模集
+* 设置网络
+* 创建应用程序网关
+* 添加侦听器和路由规则
+* 为后端池创建虚拟机规模集
 
 下面的示例演示来自端口 8080 和 8081 并定向到相同后端池的站点流量：
 
@@ -43,7 +42,7 @@ ms.locfileid: "80581801"
 资源组是在其中部署和管理 Azure 资源的逻辑容器。 使用 [New-AzResourceGroup](https://docs.microsoft.com/powershell/module/az.resources/new-azresourcegroup) 创建 Azure 资源组。  
 
 ```azurepowershell
-New-AzResourceGroup -Name myResourceGroupAG -Location chinanorth
+New-AzResourceGroup -Name myResourceGroupAG -Location chinanorth2
 ```
 
 ## <a name="create-network-resources"></a>创建网络资源
@@ -61,14 +60,14 @@ $agSubnetConfig = New-AzVirtualNetworkSubnetConfig `
 
 New-AzVirtualNetwork `
   -ResourceGroupName myResourceGroupAG `
-  -Location chinanorth `
+  -Location chinanorth2 `
   -Name myVNet `
   -AddressPrefix 10.0.0.0/16 `
   -Subnet $backendSubnetConfig, $agSubnetConfig
 
 New-AzPublicIpAddress `
   -ResourceGroupName myResourceGroupAG `
-  -Location chinanorth `
+  -Location chinanorth2 `
   -Name myAGPublicIPAddress `
   -AllocationMethod Dynamic
 ```
@@ -159,7 +158,7 @@ $sku = New-AzApplicationGatewaySku `
 New-AzApplicationGateway `
   -Name myAppGateway `
   -ResourceGroupName myResourceGroupAG `
-  -Location chinanorth `
+  -Location chinanorth2 `
   -BackendAddressPools $defaultPool `
   -BackendHttpSettingsCollection $poolSettings `
   -FrontendIpConfigurations $fipconfig `
@@ -433,7 +432,7 @@ for ($i=1; $i -le 3; $i++)
     -ApplicationGatewayBackendAddressPoolsId $poolId
 
   $vmssConfig = New-AzVmssConfig `
-    -Location chinanorth `
+    -Location chinanorth2 `
     -SkuCapacity 2 `
     -SkuName Standard_DS2 `
     -UpgradePolicyMode Automatic

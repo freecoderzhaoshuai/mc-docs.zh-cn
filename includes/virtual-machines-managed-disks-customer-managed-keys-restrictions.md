@@ -9,18 +9,18 @@ ms.date: 09/11/2020
 ms.author: v-johya
 ms.custom: include file
 origin.date: 07/10/2020
-ms.openlocfilehash: d0d4625ed3c2721665265e89bc659f7b2f3082fe
-ms.sourcegitcommit: f45809a2120ac7a77abe501221944c4482673287
+ms.openlocfilehash: 6aaa49ab2266101859f377fcb1f404658e396c23
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/13/2020
-ms.locfileid: "90057694"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90524036"
 ---
 <!--Verify Successfully-->
 - 仅支持大小为 2048 位、3,072 位和 4,096 位的[软件密钥](../articles/key-vault/keys/about-keys.md)，不支持其他密钥或其他大小。
 
     <!--Not Available on and HSM RSA keys-->
-    <!--Not Available on - [HSM](../articles/key-vault/keys/hsm-protected-keys.md) keys require the **premium** tier of Azure Key vaults.-->
+    <!--Not Available on - [HSM](../articles/key-vault/keys/hsm-protected-keys.md)-->
     
 - 从使用服务器端加密和客户托管密钥加密的自定义映像创建的磁盘必须使用相同的客户托管密钥进行加密，且必须位于同一订阅中。
 - 从使用服务器端加密和客户托管密钥加密的磁盘创建的快照必须使用相同的客户托管密钥进行加密。

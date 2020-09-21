@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 75f4f9a9a70cf6e6f7aa7479a6fa94c530bbea64
-ms.sourcegitcommit: c1ba5a62f30ac0a3acb337fb77431de6493e6096
+ms.openlocfilehash: 40dacf6410c2f554ae225a8b15937eccdc30ecee
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/17/2020
-ms.locfileid: "63829234"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90679976"
 ---
 必须先创建 VNet 和网关子网，再处理以下任务。
 
@@ -41,7 +41,7 @@ ms.locfileid: "63829234"
    ```
    </LocalNetworkSites>
     <VirtualNetworkSites>
-      <VirtualNetworkSite name="myAzureVNET" Location="East US">
+      <VirtualNetworkSite name="myAzureVNET" Location="China East">
         <AddressSpace>
           <AddressPrefix>10.0.0.0/16</AddressPrefix>
         </AddressSpace>

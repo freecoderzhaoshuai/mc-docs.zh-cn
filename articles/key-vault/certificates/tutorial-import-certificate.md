@@ -8,16 +8,16 @@ tags: azure-resource-manager
 ms.service: key-vault
 ms.subservice: certificates
 ms.topic: tutorial
-ms.custom: mvc
+ms.custom: mvc, devx-track-azurecli
 origin.date: 04/16/2020
-ms.date: 07/23/2020
+ms.date: 09/15/2020
 ms.author: v-tawe
-ms.openlocfilehash: a54a7f8907820ac3d14e5eee79b0d1e3436dc338
-ms.sourcegitcommit: 0e778acf5aa5eb63ab233e07e7aecce3a9a5e6d4
+ms.openlocfilehash: 488f66290b58c4dd8e2ea848996e4b6774c3844b
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87296521"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678475"
 ---
 # <a name="tutorial-import-a-certificate-in-azure-key-vault"></a>教程：在 Azure Key Vault 中导入证书
 

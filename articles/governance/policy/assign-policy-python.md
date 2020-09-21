@@ -4,12 +4,12 @@ description: 本快速入门介绍如何使用 Python 创建 Azure Policy 分配
 ms.date: 08/10/2020
 ms.topic: quickstart
 ms.custom: devx-track-python
-ms.openlocfilehash: 48dc4503e04e8b8fcbe9cfc1574927e35fd8932a
-ms.sourcegitcommit: 5055d580fb7ef1722e32e09a334d1d3e28295dd6
+ms.openlocfilehash: 6a67b2d8c36e92eee3ea52859dc0ea7a6f350d5a
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/07/2020
-ms.locfileid: "89503339"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678392"
 ---
 # <a name="quickstart-create-a-policy-assignment-to-identify-non-compliant-resources-using-python"></a>快速入门：使用 Python 创建策略分配以识别不合规的资源
 
@@ -21,7 +21,7 @@ Python 库用于从命令行或脚本管理 Azure 资源。 本指南介绍如�
 
 如果没有 Azure 订阅，请在开始前创建一个[试用帐户](https://wd.azure.cn/pricing/1rmb-trial/)。
 
-[!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
+<!-- [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)] -->
 
 ## <a name="add-the-policy-library"></a>添加 Policy 库
 
@@ -132,7 +132,7 @@ results = policyInsightsClient.policy_states.list_query_results_for_subscription
 print(results)
 ```
 
-将 `{subscriptionId}` 替换为要查看此策略分配的符合性结果的订阅。 有关其他作用域和汇总数据的方法的列表，请参阅[策略状态方法](/python/api/azure-mgmt-policyinsights/azure.mgmt.policyinsights.operations.policystatesoperations#methods)。
+将 `{subscriptionId}` 替换为要查看此策略分配的符合性结果的订阅。 有关其他作用域和汇总数据的方法的列表，请参阅[策略状态方法](https://docs.microsoft.com/python/api/azure-mgmt-policyinsights/azure.mgmt.policyinsights.operations.policystatesoperations#methods)。
 
 结果应如以下示例所示：
 

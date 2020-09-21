@@ -2,15 +2,15 @@
 title: 评估新 Azure Policy 定义的影响
 description: 了解将新策略定义引入 Azure 环境时要遵循的过程。
 ms.author: v-tawe
-origin.date: 05/20/2020
-ms.date: 08/06/2020
+origin.date: 08/17/2020
+ms.date: 09/15/2020
 ms.topic: conceptual
-ms.openlocfilehash: 5d5fb7118349b9c64632d51af631c392ec10d68a
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 2fb4526a421f40a54521ab56d84107b96af3b9a5
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917106"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90524064"
 ---
 # <a name="evaluate-the-impact-of-a-new-azure-policy-definition"></a>评估新 Azure Policy 定义的影响
 

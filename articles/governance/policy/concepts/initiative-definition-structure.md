@@ -1,16 +1,16 @@
 ---
 title: 计划定义结构的详细信息
 description: 描述如何使用策略计划定义对策略定义进行分组，以便部署到组织中的 Azure 资源。
-origin.date: 05/29/2020
-ms.date: 08/06/2020
+origin.date: 08/17/2020
+ms.date: 09/15/2020
 ms.author: v-tawe
 ms.topic: conceptual
-ms.openlocfilehash: cc04be9ee70f40f8d888c1363c356e8fb0e35a59
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 40ec31e1c8eb56c862532dae108a465119ac368d
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87919217"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90524062"
 ---
 # <a name="azure-policy-initiative-definition-structure"></a>Azure Policy 计划定义结构
 
@@ -118,7 +118,7 @@ Azure Policy 内置项和模式位于 [Azure Policy 示例](../samples/index.md)
 <!-- 
   > [!NOTE]
   > For a [Regulatory Compliance](./regulatory-compliance.md) initiative, the `category` must be
-  > **Regulatory Compliance**. 
+  > **Regulatory Compliance**.
 -->
 
 - `preview`（布尔值）：如果策略计划定义为“预览版”，则为 true 或 false 标志。
@@ -303,8 +303,7 @@ This information is:
   initiative.
 - Available via REST API. See the `Microsoft.PolicyInsights` resource provider and the
   [policyMetadata operation group](https://docs.microsoft.com/rest/api/policy-insights/policymetadata/getresource).
-- Available via Azure CLI. See the
-  [az policy metadata](/cli/policy/metadata?view=azure-cli-latest) command.
+- Available via Azure CLI. See the [az policy metadata](/cli/policy/metadata) command.
 
 > [!IMPORTANT]
 > Metadata objects for Regulatory Compliance are _read-only_ and can't be created by customers.

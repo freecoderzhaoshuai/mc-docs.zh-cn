@@ -7,17 +7,17 @@ manager: ravijan
 tags: azure-resource-manager
 ms.service: key-vault
 ms.subservice: general
-ms.topic: conceptual
+ms.topic: how-to
 origin.date: 04/06/2020
-ms.date: 06/02/2020
+ms.date: 09/16/2020
 ms.author: v-tawe
 Customer intent: As a key vault administrator, I want to learn the options available to monitor the health of my vaults
-ms.openlocfilehash: d0e4c92bf0537f18af7230482d4242a01eac3d3e
-ms.sourcegitcommit: 9811bf312e0d037cb530eb16c8d85238fd276949
+ms.openlocfilehash: 82b118d0aad817c39113bf9ad8b7671b8755bd6a
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/02/2020
-ms.locfileid: "84275684"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678477"
 ---
 # <a name="monitoring-and-alerting-for-azure-key-vault"></a>Azure Key Vault 的监视和警报
 

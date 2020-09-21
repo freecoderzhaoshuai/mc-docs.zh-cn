@@ -4,6 +4,8 @@
   items:
     - name: 关于证书
       href: about-certificates.md
+    - name: 关于证书续订
+      href: overview-renew-certificate.md
 - name: 快速入门
   expanded: true
   items:
@@ -17,9 +19,6 @@
       href: quick-create-python.md
 - name: 示例
   items:
-    - name: Azure Policy 内置策略定义
-      displayName: 'samples, policies, definitions'
-      href: ../policy-samples.md?toc=/key-vault/certificates/toc.json&bc=/key-vault/breadcrumb/toc.json
     - name: Key Vault 代码示例
       href: 'https://docs.microsoft.com/samples/browse/?expanded=azure&products=azure-key-vault'
 - name: 教程
@@ -42,6 +41,10 @@
   items:
     - name: 将 Key Vault 与 DigiCert CA 集成
       href: how-to-integrate-certificate-authority.md
+    - name: 疑难解答 - 导入证书
+      href: import-cert-faqs.md
+    - name: 导出来自 Key Vault 的证书
+      href: how-to-export-certificate.md
 - name: 参考
   items:
     - name: Azure PowerShell
@@ -61,8 +64,13 @@
     - name: 资源管理器模板
       href: 'https://docs.microsoft.com/azure/templates/microsoft.keyvault/allversions'
       displayName: ARM
+    - name: Azure Policy 内置策略定义
+      displayName: 'samples, policies, definitions'
+      href: ../policy-reference.md?toc=/azure/key-vault/certificates/toc.json&bc=/azure/key-vault/breadcrumb/toc.json
 - name: 资源
   items:
+    - name: 利用 Microsoft Learn 掌握技能
+      href: 'https://docs.microsoft.com/learn/browse/?products=azure-key-vault'
     - name: 定价
       href: 'https://www.azure.cn/pricing/details/key-vault/'
     - name: 上市区域

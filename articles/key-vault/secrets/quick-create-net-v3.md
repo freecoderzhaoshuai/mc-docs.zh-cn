@@ -4,16 +4,16 @@ description: 了解如何使用 .NET 客户端库 (v3) 在 Azure 密钥保管库
 author: msmbaldwin
 ms.author: v-tawe
 origin.date: 11/05/2019
-ms.date: 07/28/2020
+ms.date: 09/15/2020
 ms.service: key-vault
 ms.subservice: secrets
 ms.topic: quickstart
-ms.openlocfilehash: 8190d9a48fd8b6f8a246140f8f4984336fb5325e
-ms.sourcegitcommit: 0e778acf5aa5eb63ab233e07e7aecce3a9a5e6d4
+ms.openlocfilehash: 65433f0e27a7df8ad4ef0598f811c682d3e3ca25
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87296502"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678377"
 ---
 # <a name="quickstart-azure-key-vault-client-library-for-net-sdk-v3"></a>快速入门：适用于 .NET 的 Azure Key Vault 客户端库 (SDK v3)
 
@@ -31,7 +31,7 @@ Azure 密钥保管库可帮助保护云应用程序和服务使用的加密密�
 
 <!-- - Use FIPS 140-2 Level 2 validated HSMs. -->
 
-[API 参考文档](/dotnet/api/overview/key-vault?view=azure-dotnet) | [库源代码](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/keyvault) | [包 (NuGet)](https://www.nuget.org/packages/Microsoft.Azure.KeyVault/)
+[API 参考文档](https://docs.microsoft.com/dotnet/api/overview/key-vault?view=azure-dotnet) | [库源代码](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/keyvault) | [包 (NuGet)](https://www.nuget.org/packages/Microsoft.Azure.KeyVault/)
 
 > [!NOTE]
 > 每个密钥保管库必须具有唯一的名称。 在以下示例中，将 <your-unique-keyvault-name> 替换为密钥保管库的名称。
@@ -185,7 +185,7 @@ export akvClientId = "<your-clientID>"
 export akvClientSecret = "<your-clientSecret>"
 ```
 
-将这些环境变量分配到代码中的字符串，然后通过将这些字符串传递给 [KeyVaultClient 类](/dotnet/api/microsoft.azure.keyvault.keyvaultclient)，来对应用程序进行身份验证：
+将这些环境变量分配到代码中的字符串，然后通过将这些字符串传递给 [KeyVaultClient 类](https://docs.microsoft.com/dotnet/api/microsoft.azure.keyvault.keyvaultclient)，来对应用程序进行身份验证：
 
 ```csharp
 string clientId = Environment.GetEnvironmentVariable("akvClientId");
@@ -201,7 +201,7 @@ KeyVaultClient kvClient = new KeyVaultClient(async (authority, resource, scope) 
 
 ### <a name="save-a-secret"></a>保存机密
 
-对应用程序进行身份验证后，可以使用 [SetSecretAsync 方法](/dotnet/api/microsoft.azure.keyvault.keyvaultclientextensions.setsecretasync)将机密放入 Key Vault。这需要使用 Key Vault 的 URL，其格式为 `https://<your-unique-keyvault-name>.vault.azure.cn/secrets/`。 还需要使用机密的名称 - 我们使用了“mySecret”。 
+对应用程序进行身份验证后，可以使用 [SetSecretAsync 方法](https://docs.microsoft.com/dotnet/api/microsoft.azure.keyvault.keyvaultclientextensions.setsecretasync)将机密放入 Key Vault。这需要使用 Key Vault 的 URL，其格式为 `https://<your-unique-keyvault-name>.vault.azure.cn/secrets/`。 还需要使用机密的名称 - 我们使用了“mySecret”。 
 
 ```csharp
 await kvClient.SetSecretAsync($"{kvURL}", secretName, secretValue);
@@ -215,7 +215,7 @@ az keyvault secret show --vault-name <your-unique-keyvault-name> --name mySecret
 
 ### <a name="retrieve-a-secret"></a>检索机密
 
-现在，可以使用 [GetSecretAsync 方法](/dotnet/api/microsoft.azure.keyvault.keyvaultclientextensions.getsecretasync)检索以前设置的值
+现在，可以使用 [GetSecretAsync 方法](https://docs.microsoft.com/dotnet/api/microsoft.azure.keyvault.keyvaultclientextensions.getsecretasync)检索以前设置的值
 
 ```csharp
 var keyvaultSecret = await kvClient.GetSecretAsync($"{kvURL}", secretName).ConfigureAwait(false);

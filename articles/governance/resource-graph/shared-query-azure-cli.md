@@ -5,12 +5,12 @@ origin.date: 06/29/2020
 ms.date: 08/27/2020
 ms.author: v-tawe
 ms.topic: quickstart
-ms.openlocfilehash: 4c817c4d9ec0f3f7dbfa1ee6eb1748162cd24df6
-ms.sourcegitcommit: 5055d580fb7ef1722e32e09a334d1d3e28295dd6
+ms.openlocfilehash: 9b89dd27e213682d6310621cffa5fe1002599463
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/07/2020
-ms.locfileid: "89503333"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678388"
 ---
 # <a name="quickstart-create-a-resource-graph-shared-query-using-azure-cli"></a>快速入门：使用 Azure CLI 创建 Resource Graph 共享查询
 
@@ -51,13 +51,13 @@ ms.locfileid: "89503333"
 
 将 Azure CLI 扩展添加到所选环境中后，即可使用 Resource Graph 查询。 共享查询是一个 Azure 资源管理器对象，你可授予该对象权限或在 Azure Resource Graph Explorer 中运行该对象。 该查询汇总了按“位置”分组的所有资源。
 
-1. 使用 [az group create](https://docs.microsoft.com/cli/azure/group#az-group-create) 创建资源组，以存储 Azure Resource Graph 共享查询。 此资源组名为 `resource-graph-queries`，并位于 `westus2`。
+1. 使用 [az group create](https://docs.microsoft.com/cli/azure/group#az-group-create) 创建资源组，以存储 Azure Resource Graph 共享查询。 此资源组名为 `resource-graph-queries`，并位于 `chinaeast2`。
 
    ```azurecli
    # Login first with az login if not using Cloud Shell
 
    # Create the resource group
-   az group create --name 'resource-graph-queries' --location 'westus2'
+   az group create --name 'resource-graph-queries' --location 'chinaeast2'
    ```
 
 1. 使用 `graph` 扩展和 [az graph shared-query create](https://docs.microsoft.com/cli/azure/ext/resource-graph/graph/shared-query#ext-resource-graph-az-graph-shared-query-create) 命令创建 Azure Resource Graph 共享查询：

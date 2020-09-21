@@ -4,16 +4,17 @@ description: 了解如何使用 Node.js 客户端库在 Azure 密钥保管库中
 author: msmbaldwin
 ms.author: v-tawe
 origin.date: 10/20/2019
-ms.date: 07/28/2020
+ms.date: 09/15/2020
 ms.service: key-vault
 ms.subservice: secrets
 ms.topic: quickstart
-ms.openlocfilehash: a2f7c34535dabcbb3972ddc19b9403e29afd7107
-ms.sourcegitcommit: 0e778acf5aa5eb63ab233e07e7aecce3a9a5e6d4
+ms.custom: devx-track-javascript
+ms.openlocfilehash: efb2104768968de4a480b5ad91326efb89e34371
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/28/2020
-ms.locfileid: "87296466"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678366"
 ---
 # <a name="quickstart-azure-key-vault-client-library-for-nodejs-v4"></a>快速入门：适用于 Node.js 的 Azure Key Vault 客户端库 (v4)
 
@@ -205,7 +206,7 @@ az group delete -g "myResourceGroup"
 Remove-AzResourceGroup -Name "myResourceGroup"
 ```
 
-## <a name="sample-code"></a>示例代码
+## <a name="sample-code"></a>代码示例
 
 ```javascript
 const { DefaultAzureCredential } = require("@azure/identity");

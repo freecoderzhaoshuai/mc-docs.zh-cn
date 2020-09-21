@@ -7,16 +7,16 @@ manager: rkarlin
 tags: azure-resource-manager
 ms.service: key-vault
 ms.subservice: certificates
-ms.topic: tutorial
+ms.topic: how-to
 origin.date: 06/02/2020
-ms.date: 07/23/2020
+ms.date: 09/15/2020
 ms.author: v-tawe
-ms.openlocfilehash: ff01357b87b6bb455d87ebfaadae26da5564b6ea
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: e9841bdfb174fb40b224c81725d32ac236c14e6c
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917343"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678485"
 ---
 # <a name="integrating-key-vault-with-digicert-certificate-authority"></a>将 Key Vault 与 DigiCert 证书颁发机构集成
 
@@ -37,6 +37,7 @@ Azure 密钥保管库用户可以直接从其 Key Vault 生成 DigiCert 证书�
    - [使用 Azure 门户创建 Key Vault](../secrets/quick-create-portal.md)
 *   需要激活 DigiCert CertCentral 帐户。 [注册](https://www.digicert.com/account/signup/) CertCentral 帐户。
 *   帐户中的管理员级别权限。
+
 
 ### <a name="before-you-begin"></a>开始之前
 
@@ -64,6 +65,7 @@ Azure 密钥保管库用户可以直接从其 Key Vault 生成 DigiCert 证书�
     -   单击“创建”。
    
 6.  你会看到 DigicertCA 现已添加到证书颁发机构列表中。
+
 
 ### <a name="azure-powershell"></a>Azure PowerShell
 
@@ -130,6 +132,16 @@ Add-AzKeyVaultCertificate -VaultName "Contoso-Vaultname" -Name "ExampleCertifica
  ![证书属性](../media/certificates/how-to-integrate-certificate-authority/certificate-operation-select.png)
 
 有关详细信息，请参阅 [Key Vault REST API 中的证书操作参考](https://docs.microsoft.com/rest/api/keyvault)。 有关建立权限的信息，请参阅[保管库 - 创建或更新](https://docs.microsoft.com/rest/api/keyvault/vaults/createorupdate)和[保管库 - 更新访问策略](https://docs.microsoft.com/rest/api/keyvault/vaults/updateaccesspolicy)。
+
+## <a name="frequently-asked-questions"></a>常见问题
+
+- 能否通过 KeyVault 生成 digicert 通配符证书？ 
+   是的。 这取决于你如何配置了 digicert 帐户。
+- 如果我们要创建 EV 证书，我们应如何指定？ 
+   创建证书时，单击高级策略配置，然后指定证书类型。 支持的值包括：OV-SSL、EV-SSL
+- 通过集成创建 digicert 证书与直接通过 digicert 获取证书是否存在时间延迟？
+   否。 创建证书时，验证过程可能需要一些时间，并且验证依赖于 DigiCert 遵循的过程。
+
 
 ## <a name="next-steps"></a>后续步骤
 

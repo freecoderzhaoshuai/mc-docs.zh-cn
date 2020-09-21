@@ -10,8 +10,6 @@
       items:
         - name: 适用于 VM 的功能覆盖范围
           href: security-center-services.md
-        - name: 适用于 Azure PaaS 资源的功能覆盖范围
-          href: features-paas.md
     - name: 安全中心的新增功能
       href: release-notes.md
     - name: 安全建议
@@ -45,7 +43,7 @@
       href: secure-score-security-controls.md
     - name: 权限
       href: security-center-permissions.md
-    - name: 数据安全性
+    - name: 数据安全
       href: security-center-data-security.md
     - name: 使用建议增强安全性
       href: security-center-using-recommendations.md

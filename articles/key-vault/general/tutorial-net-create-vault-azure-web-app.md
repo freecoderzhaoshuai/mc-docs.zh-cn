@@ -10,12 +10,12 @@ ms.topic: tutorial
 origin.date: 05/06/2020
 ms.date: 06/02/2020
 ms.author: v-tawe
-ms.openlocfilehash: 77a1566840ce18b71f86718ea2ff0eebb4c8c64f
-ms.sourcegitcommit: 5055d580fb7ef1722e32e09a334d1d3e28295dd6
+ms.openlocfilehash: 40de41681a4643cf868f45f67a7149a3eb1afe88
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/07/2020
-ms.locfileid: "89503331"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678429"
 ---
 # <a name="tutorial-use-a-managed-identity-to-connect-key-vault-to-an-azure-web-app-with-net"></a>教程：使用托管标识将 Key Vault 连接到 .NET Azure Web 应用
 
@@ -282,7 +282,7 @@ using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 ```
 
-将以下行添加到 `app.UseEndpoints` 调用之前，更新 URI 以反映密钥保管库的 `vaultUri`。 下面的代码将 [DefaultAzureCredential()](/dotnet/api/azure.identity.defaultazurecredential?view=azure-dotnet) 用于向密钥保管库进行身份验证，该类使用来自应用程序托管标识的令牌进行身份验证。 它还在密钥保管库受到限制的情况下将指数退避用于重试。
+将以下行添加到 `app.UseEndpoints` 调用之前，更新 URI 以反映密钥保管库的 `vaultUri`。 下面的代码将 [DefaultAzureCredential()](https://docs.microsoft.com/dotnet/api/azure.identity.defaultazurecredential?view=azure-dotnet) 用于向密钥保管库进行身份验证，该类使用来自应用程序托管标识的令牌进行身份验证。 它还在密钥保管库受到限制的情况下将指数退避用于重试。
 
 ```csharp
 SecretClientOptions options = new SecretClientOptions()
@@ -332,7 +332,7 @@ http://<your-webapp-name>.chinacloudsites.cn
 
 - 详细了解 [Azure 资源的托管标识](../../active-directory/managed-identities-azure-resources/overview.md)
 - 详细了解[应用服务的托管标识](../../app-service/overview-managed-identity.md?tabs=dotnet)
-- 请参阅[适用于 .NET 的 Azure Key Vault 客户端库 API 参考](/dotnet/api/overview/azure/key-vault?view=azure-dotnet)
+- 请参阅[适用于 .NET 的 Azure Key Vault 客户端库 API 参考](https://docs.microsoft.com/dotnet/api/overview/azure/key-vault?view=azure-dotnet)
 - 请参阅[适用于 .NET 的 Azure Key Vault 客户端库源代码](https://github.com/Azure/azure-sdk-for-net/tree/master/sdk/keyvault)
 - 请参阅[适用于 .NET 的 v4 Azure Key Vault 客户端库 NuGet 包](https://www.nuget.org/packages/Azure.Security.KeyVault.Secrets/)
 

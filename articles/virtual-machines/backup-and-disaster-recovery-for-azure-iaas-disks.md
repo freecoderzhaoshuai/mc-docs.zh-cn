@@ -10,12 +10,12 @@ ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
 ms.subservice: disks
-ms.openlocfilehash: cf8e7f25fef29928d7eadde62910867d3df2760b
-ms.sourcegitcommit: e32bba428f5745beb5a23a6e99e5f1b36cfeb09e
+ms.openlocfilehash: e54b3223f89e6151a551e7ea26bfe78a75fc0295
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/02/2020
-ms.locfileid: "89310349"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90524043"
 ---
 <!--Verified Successfully from rename articles-->
 # <a name="backup-and-disaster-recovery-for-azure-iaas-disks"></a>Azure IaaS 磁盘的备份和灾难恢复
@@ -209,7 +209,7 @@ IaaS 应用程序数据问题是另一种可能的情况。 假设有一个应�
 
 1. 创建每个虚拟硬盘 Blob 的快照，这只需要几秒钟的时间。
 
-    若要创建快照，可以使用 [PowerShell](../articles/storage/common/storage-powershell-guide-full.md)、[Azure 存储 REST API](https://msdn.microsoft.com/library/azure/ee691971.aspx)、[Azure CLI](https://docs.azure.cn/cli/?view=azure-cli-latest) 或 Azure 存储客户端库之一（如[用于 .NET 的存储客户端库](https://msdn.microsoft.com/library/azure/hh488361.aspx)）。
+    若要创建快照，可以使用 [PowerShell](https://docs.microsoft.com/powershell/module/az.storage)、[Azure 存储 REST API](https://msdn.microsoft.com/library/azure/ee691971.aspx)、[Azure CLI](https://docs.azure.cn/cli/?view=azure-cli-latest) 或 Azure 存储客户端库之一（如[用于 .NET 的存储客户端库](https://msdn.microsoft.com/library/azure/hh488361.aspx)）。
 
 1. 启动 VM，这将终止故障时间。 整个过程通常会在几分钟内完成。
 

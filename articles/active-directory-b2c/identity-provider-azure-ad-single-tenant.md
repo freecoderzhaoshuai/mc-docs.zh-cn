@@ -7,17 +7,17 @@ author: msmimart
 manager: celestedg
 ms.service: active-directory
 ms.workload: identity
-ms.topic: conceptual
-ms.date: 05/18/2020
+ms.topic: how-to
+ms.date: 09/21/2020
 ms.author: v-junlch
 ms.subservice: B2C
 ms.custom: fasttrack-edit
-ms.openlocfilehash: 350a2aafaeb6f8c124e63f1e81fecc4f1ee00598
-ms.sourcegitcommit: 87e789550ea49ff77c7f19bc68fad228009fcf44
+ms.openlocfilehash: d6dec0689d411012b4b264fbfbdaf2362da0688e
+ms.sourcegitcommit: 2944f818f2849202724a237555dce3a2fcb47a49
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/21/2020
-ms.locfileid: "83748074"
+ms.lasthandoff: 09/21/2020
+ms.locfileid: "90828773"
 ---
 # <a name="set-up-sign-in-for-a-specific-azure-active-directory-organization-in-azure-active-directory-b2c"></a>在 Azure Active Directory B2C 中设置登录特定 Azure Active Directory 组织
 
@@ -38,8 +38,9 @@ ms.locfileid: "83748074"
     ```
 
     例如，`https://login.partner.microsoftonline.cn/contoso.partner.onmschina.cn/v2.0/.well-known/openid-configuration`。
+    例如，`https://login.partner.microsoftonline.cn/contoso.com/v2.0/.well-known/openid-configuration`。
 
-1. 对于“客户端 ID”，请输入之前记录的应用程序 ID。
+1. 对于“客户端 ID”，输入之前记录的应用程序 ID。
 1. 对于“客户端机密”，请输入之前记录的客户端机密。
 1. 对于“范围”，请输入 `openid profile`。
 1. 对于“响应类型”和“响应模式” ，请保留默认值。
@@ -47,10 +48,10 @@ ms.locfileid: "83748074"
 1. 在“标识提供者声明映射”下，选择以下声明：
 
     * **用户 ID**：*oid*
-    * **显示名称**：*name*
-    * **名字**：*given_name*
-    * **姓氏**：*family_name*
-    * **电子邮件**：*unique_name*
+    * 显示名称：name
+    * 给定名称：given_name
+    * 姓氏：family_name
+    * 电子邮件：unique_name
 
-1. 选择“保存” 。
+1. 选择“保存”。
 

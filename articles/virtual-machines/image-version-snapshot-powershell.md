@@ -12,12 +12,12 @@ ms.testscope: yes
 ms.testdate: 08/31/2020
 ms.author: v-yeche
 ms.reviewer: akjosh
-ms.openlocfilehash: 8e3578dd883ddad73b49e2e3b1457fff78709d02
-ms.sourcegitcommit: daf7317c80f13e459469bbc507786520c8fa6d70
+ms.openlocfilehash: edca6ee63686393c426617798cade4b51f6e0fbd
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89046535"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90524001"
 ---
 <!--Verified Successfully-->
 # <a name="create-an-image-from-a-vhd-or-snapshot-in-a-shared-image-gallery-using-powershell"></a>使用 PowerShell 从共享映像库中的 VHD 或快照创建映像
@@ -147,7 +147,7 @@ $job.State
 > 需等待映像版本完全生成并复制完毕，然后才能使用同一快照来创建另一映像版本。 
 
 <!--Not Availale on  by adding `--storage-account-type standard_zrs` when you create the image version.-->
-<!--Not Available on , or [Zone Redundant Storage](/storage/common/storage-redundancy-zrs) by adding `-StorageAccountType Standard_ZRS`-->
+<!--Not Available on , or [Zone Redundant Storage](/storage/common/storage-redundancy-zrs)-->
 
 ## <a name="delete-the-source"></a>删除源
 

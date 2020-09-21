@@ -6,16 +6,16 @@ ms.service: bastion
 ms.topic: overview
 origin.date: 01/31/2020
 author: rockboyfor
-ms.date: 09/14/2020
+ms.date: 09/21/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 9e26af10987f64dd139e129e4cee6923ee90f548
-ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
+ms.openlocfilehash: fb3f536270327ae5047f8ca97f7cd2dc779915e1
+ms.sourcegitcommit: 41e986cd4a2879d8767dc6fc815c805e782dc7e6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/10/2020
-ms.locfileid: "89654963"
+ms.lasthandoff: 09/20/2020
+ms.locfileid: "90822392"
 ---
 <!--RELEASE BEFORE CONFIRMATION-->
 # <a name="what-is-azure-bastion"></a>什么是 Azure Bastion？

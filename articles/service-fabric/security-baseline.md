@@ -10,12 +10,12 @@ ms.testscope: yes
 ms.testdate: 09/07/2020
 ms.author: v-yeche
 ms.custom: security-benchmark
-ms.openlocfilehash: c052074b5aa6887619fa5b9a76471f921f69f39b
-ms.sourcegitcommit: e1cd3a0b88d3ad962891cf90bac47fee04d5baf5
+ms.openlocfilehash: a0ac88ae2c76c5c9397e739db7733d36869296b5
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/10/2020
-ms.locfileid: "89655694"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523634"
 ---
 <!--All Links Verified Successfully-->
 
@@ -931,7 +931,7 @@ Service Fabric 的 Azure 安全基线包含可帮助你改善部署安全状况�
 
 * [为新的 Service Fabric 群集配置托管标识支持](./configure-new-azure-service-fabric-enable-managed-identity.md)
 
-* [将托管标识用于 Service Fabric 应用程序](./how-to-managed-identity-service-fabric-app-code.md)
+    <!--Not Available on * [Use managed identity with a Service Fabric application](./how-to-managed-identity-service-fabric-app-code.md)-->
 
 * [Service Fabric 应用程序的 KeyVaultReference 支持](./service-fabric-keyvault-references.md)
 

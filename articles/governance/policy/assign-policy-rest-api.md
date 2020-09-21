@@ -3,12 +3,12 @@ title: 快速入门：使用 REST API 进行新策略分配
 description: 本快速入门介绍如何使用 REST API 创建 Azure Policy 分配以识别不合规资源。
 ms.date: 08/10/2020
 ms.topic: quickstart
-ms.openlocfilehash: 465245a982673a3a939bc029eec310be806aedde
-ms.sourcegitcommit: 5055d580fb7ef1722e32e09a334d1d3e28295dd6
+ms.openlocfilehash: d75cc2981b9836068b9ed842a6effe80b1d5b58d
+ms.sourcegitcommit: f5438a4f20d47cfe24e5cee209bb9e11a704c23c
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/07/2020
-ms.locfileid: "89503336"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90456006"
 ---
 # <a name="quickstart-create-a-policy-assignment-to-identify-non-compliant-resources-with-rest-api"></a>快速入门：使用 REST API 创建策略分配以识别不合规资源
 
@@ -25,7 +25,7 @@ REST API 用于创建和管理 Azure 资源。 本指南使用 REST API 创建�
 
 - 安装 [ARMClient](https://github.com/projectkudu/ARMClient)（如果尚未安装）。 该工具可将 HTTP 请求发送到基于 Azure 资源管理器的 REST API。 你也可以使用 REST 文档中的“试用”功能，或者使用 PowerShell 的 [Invoke-RestMethod](https://docs.microsoft.com/powershell/module/microsoft.powershell.utility/invoke-restmethod) 或 [Postman](https://www.postman.com) 等工具。
 
-[!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)]
+<!-- [!INCLUDE [cloud-shell-try-it.md](../../../includes/cloud-shell-try-it.md)] -->
 
 ## <a name="create-a-policy-assignment"></a>创建策略分配
 

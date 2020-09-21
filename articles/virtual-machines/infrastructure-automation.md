@@ -10,12 +10,12 @@ ms.date: 08/31/2020
 ms.testscope: no
 ms.testdate: ''
 ms.author: v-yeche
-ms.openlocfilehash: 44f10588453b9174f92c0f246e13e180e69fe87d
-ms.sourcegitcommit: 63a4bc7c501fb6dd54a31d39c87c0e8692ac2eb0
+ms.openlocfilehash: 5902f19ed1593036fb445f0098601fe3816d42ef
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2020
-ms.locfileid: "89052372"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523995"
 ---
 <!--Verified Successfully-->
 # <a name="use-infrastructure-automation-tools-with-virtual-machines-in-azure"></a>在 Azure 中将基础结构自动化工具与虚拟机配合使用
@@ -37,9 +37,9 @@ ms.locfileid: "89052372"
 [Ansible](https://www.ansible.com/) 是适用于配置管理、VM 创建或应用程序部署的自动化引擎。 Ansible 通常将无代理的模型与 SSH 密钥配合使用，对目标计算机进行身份验证和管理。 配置任务在 playbook 中定义，可以使用多个 Ansible 模块来执行特定任务。 有关详细信息，请参阅 [How Ansible works](https://www.ansible.com/how-ansible-works)（Ansible 工作原理）。
 
 <!--Not Available on Learn how to-->
-<!--Not Available on - [Install and configure Ansible on Linux for use with Azure](/developer/ansible/install-on-linux-vm).-->
-<!--Not Available on - [Create a Linux virtual machine](/developer/ansible/vm-configure).-->
-<!--Not Available on - [Manage a Linux virtual machine](/developer/ansible/vm-manage).-->
+<!--Not Available on - [Install and configure Ansible on Linux for use with Azure](/developer/ansible/install-on-linux-vm)-->
+<!--Not Available on - [Create a Linux virtual machine](/developer/ansible/vm-configure)-->
+<!--Not Available on - [Manage a Linux virtual machine](/developer/ansible/vm-manage)-->
 
 ## <a name="chef"></a>Chef
 [Chef](https://www.chef.io/) 是一个自动化平台，用于定义基础结构的配置、部署和管理方式。 其他组件包括：Chef Habitat，用于应用程序生命周期自动化而不是基础结构；Chef InSpec，用于自动遵循安全和策略要求。 Chef 客户端安装在目标计算机上，通过一个或多个中心 Chef 服务器来存储和管理配置。 有关详细信息，请参阅 [An Overview of Chef](https://docs.chef.io/chef_overview.html)（Chef 概述）。
@@ -47,7 +47,7 @@ ms.locfileid: "89052372"
 <!--Not Available on Learn how to:
 
 <!--Not Available on - [Deploy Chef Automate from the Azure Marketplace](https://market.azure.cn/marketplace/apps/chef-software.chef-automate?tab=Overview).-->
-<!--Not Available on - [Install Chef on Windows and create Azure VMs](/developer/chef/windows-vm-configure).-->
+<!--Not Available on - [Install Chef on Windows and create Azure VMs](/developer/chef/windows-vm-configure)-->
 
 ## <a name="puppet"></a>Puppet
 [Puppet](https://www.puppet.com) 是可供企业使用的自动化平台，用于处理应用程序交付和部署过程。 代理安装在目标计算机上，因此 Puppet Master 可以通过运行清单来定义 Azure 基础结构和 VM 的所需配置。 Puppet 可以通过集成其他解决方案（例如 Jenkins 和 GitHub）来改进 DevOps 工作流。 有关详细信息，请参阅 [How Puppet works](https://puppet.com/products/how-puppet-works)（Puppet 工作原理）。
@@ -136,12 +136,12 @@ Azure 自动化还提供 Desired State Configuration (DSC) 服务，用于针对
 
 了解如何：
 
-<!--Not Available on - [Deploy Spot VMs using a Resource Manager template](./linux/spot-template.md).-->
+<!--Not Available on - [Deploy Spot VMs using a Resource Manager template](./linux/spot-template.md)-->
 
 - [通过资源管理器模板创建 Windows 虚拟机](./windows/ps-template.md)。
 - [下载 VM 模板](./windows/download-template.md)。
 
-<!--Not Available on- [Create an Azure Image Builder template](./linux/image-builder-json.md).-->
+<!--Not Available on- [Create an Azure Image Builder template](./linux/image-builder-json.md)-->
 
 ## <a name="next-steps"></a>后续步骤
 可以通过许多不同的选项，在 Azure 中使用基础结构自动化工具。 可以自由使用最适合自己的需求和环境的解决方案。 若要开始尝试一些内置到 Azure 的工具，请了解如何自动完成 [Linux](./linux/tutorial-automate-vm-deployment.md) 或 [Windows](./windows/tutorial-automate-vm-deployment.md) VM 的自定义。

@@ -1,5 +1,5 @@
 ---
-title: 快速入门：在 Azure Key Vault 中设置和检索密钥
+title: 在 Azure Key Vault 中创建和检索密钥的属性 - Azure CLI
 description: 以快速入门的方式介绍如何使用 Azure CLI 在 Azure Key Vault 中设置和检索密钥
 services: key-vault
 author: msmbaldwin
@@ -9,14 +9,15 @@ ms.service: key-vault
 ms.subservice: keys
 ms.topic: quickstart
 origin.date: 03/30/2020
-ms.date: 04/20/2020
+ms.date: 09/15/2020
 ms.author: v-tawe
-ms.openlocfilehash: cea2c76112fed7810c6938642f848a03bc3cff45
-ms.sourcegitcommit: 89ca2993f5978cd6dd67195db7c4bdd51a677371
+ms.custom: devx-track-azurecli
+ms.openlocfilehash: c4105299519178a78217fc6a61c69cbae07fdf98
+ms.sourcegitcommit: 39410f3ed7bdeafa1099ba5e9ec314b4255766df
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/30/2020
-ms.locfileid: "82588912"
+ms.lasthandoff: 09/16/2020
+ms.locfileid: "90678481"
 ---
 # <a name="quickstart-set-and-retrieve-a-key-from-azure-key-vault-using-azure-cli"></a>快速入门：使用 Azure CLI 在 Azure Key Vault 中设置和检索密钥
 

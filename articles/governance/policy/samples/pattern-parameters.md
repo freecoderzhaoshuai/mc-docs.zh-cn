@@ -1,16 +1,16 @@
 ---
 title: 模式：策略定义中的参数
-description: 此 Azure Policy 模式通过示例介绍了如何在策略定义中使用参数。
-origin.date: 05/20/2020
-ms.date: 08/06/2020
+description: 此 Azure Policy 模式提供了如何在策略定义中使用字符串和数组参数以及如何参数化效果的示例。
+origin.date: 08/17/2020
+ms.date: 09/15/2020
 ms.author: v-tawe
 ms.topic: sample
-ms.openlocfilehash: 78e6959c9069a5e38d1b1ae180a72f7207dc4981
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: 4897d1fbf99c54078c2914d03ccc65427e32c718
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917262"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523997"
 ---
 # <a name="azure-policy-pattern-parameters"></a>Azure Policy 模式：参数
 

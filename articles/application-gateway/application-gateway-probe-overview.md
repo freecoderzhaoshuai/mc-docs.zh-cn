@@ -5,14 +5,14 @@ services: application-gateway
 author: vhorne
 ms.service: application-gateway
 ms.topic: article
-ms.date: 08/03/2020
+ms.date: 09/14/2020
 ms.author: v-junlch
-ms.openlocfilehash: cd3ff2966d4ef674fc61a214412dc76f3022acd2
-ms.sourcegitcommit: 36e7f37481969f92138bfe70192b1f4a2414caf7
+ms.openlocfilehash: c3294ddc2a313964973c2bcd7ba02d477911a375
+ms.sourcegitcommit: e1b6e7fdff6829040c4da5d36457332de33e0c59
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/05/2020
-ms.locfileid: "87796263"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721181"
 ---
 # <a name="application-gateway-health-monitoring-overview"></a>应用程序网关运行状况监视概述
 
@@ -98,7 +98,7 @@ $match = New-AzApplicationGatewayProbeHealthResponseMatch -Body "Healthy"
 
 此外，不能阻止出站 Internet 连接，并且必须允许来自 **AzureLoadBalancer** 标记的入站流量。
 
-有关详细信息，请参阅[应用程序网关配置概述](configuration-overview.md#network-security-groups-on-the-application-gateway-subnet)。
+有关详细信息，请参阅[应用程序网关配置概述](configuration-infrastructure.md#network-security-groups)。
 
 ## <a name="next-steps"></a>后续步骤
 了解应用程序网关的运行状况监视后，可以在 Azure 门户中配置[自定义运行状况探测](application-gateway-create-probe-portal.md)，或使用 PowerShell 和 Azure Resource Manager 部署模型配置[自定义运行状况探测](application-gateway-create-probe-ps.md)。

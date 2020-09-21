@@ -11,13 +11,13 @@ metadata:
   author: WenJason
   ms.author: v-jay
   origin.date: 10/02/2019
-  ms.date: 07/27/2020
-  ms.openlocfilehash: 23e348a8ededbc771bf52cabdd69ff90438f23d3
-  ms.sourcegitcommit: 66563f2b68cce57b5816f59295b97f1647d7a3d6
+  ms.date: 09/21/2020
+  ms.openlocfilehash: e92e405cc3b5806a30063082f7ca84d2164f8e14
+  ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
   ms.translationtype: HT
   ms.contentlocale: zh-CN
-  ms.lasthandoff: 08/07/2020
-  ms.locfileid: "87914304"
+  ms.lasthandoff: 09/15/2020
+  ms.locfileid: "90523883"
 landingContent:
 - title: 关于 Azure 数据工厂
   linkLists:
@@ -75,7 +75,7 @@ landingContent:
       url: /data-factory/tutorial-incremental-copy-overview
     - text: 加载 ADLS Gen2
       url: /data-factory/load-azure-data-lake-storage-gen2
-    - text: 加载 SQL DW
+    - text: 加载 Azure Synapse Analytics
       url: /data-factory/load-azure-sql-data-warehouse
     - text: 加载 SAP BW
       url: /data-factory/load-sap-bw-data

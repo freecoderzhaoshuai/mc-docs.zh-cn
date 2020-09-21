@@ -6,14 +6,14 @@ services: application-gateway
 author: vhorne
 ms.service: application-gateway
 ms.topic: how-to
-ms.date: 07/10/2020
+ms.date: 09/14/2020
 ms.author: v-junlch
-ms.openlocfilehash: d43f880853c90108bb8729719ba686952c1b144a
-ms.sourcegitcommit: 65a7360bb14b0373e18ec8eaa288ed3ac7b24ef4
+ms.openlocfilehash: 92e4040a68cc385768d4a77acd2d74bf29e1b1a5
+ms.sourcegitcommit: e1b6e7fdff6829040c4da5d36457332de33e0c59
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86219712"
+ms.lasthandoff: 09/17/2020
+ms.locfileid: "90721180"
 ---
 # <a name="create-certificates-to-allow-the-backend-with-azure-application-gateway"></a>创建证书以允许 Azure 应用程序网关中的后端
 
@@ -21,10 +21,9 @@ ms.locfileid: "86219712"
 
 在本文中，学习如何：
 
-> [!div class="checklist"]
->
-> - 从后端证书中导出身份验证证书（对于 v1 SKU）
-> - 从后端证书中导出受信任的根证书（适用于 v2 SKU）
+
+- 从后端证书中导出身份验证证书（对于 v1 SKU）
+- 从后端证书中导出受信任的根证书（适用于 v2 SKU）
 
 ## <a name="prerequisites"></a>先决条件
 

@@ -3,7 +3,7 @@ title: Azure 安全中心中的 Endpoint Protection 建议
 description: 如何发现 Endpoint Protection 解决方案并将其标识为正常。
 services: security-center
 documentationcenter: na
-author: memildin
+author: Johnnytechn
 manager: rkarlin
 ms.assetid: 2730a2f5-20bc-4027-a1c2-db9ed0539532
 ms.service: security-center
@@ -11,15 +11,15 @@ ms.devlang: na
 ms.topic: conceptual
 ms.tgt_pltfrm: na
 ms.workload: na
-ms.date: 05/14/2020
-ms.author: v-tawe
+ms.date: 09/14/2020
+ms.author: v-johya
 origin.date: 12/29/2019
-ms.openlocfilehash: 789ed5205ecd89450447d881c12b4667a4301acb
-ms.sourcegitcommit: cbaa1aef101f67bd094f6ad0b4be274bbc2d2537
+ms.openlocfilehash: 62aa45399e1978447099a067b4b46ab384273b81
+ms.sourcegitcommit: 41e986cd4a2879d8767dc6fc815c805e782dc7e6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/28/2020
-ms.locfileid: "84126763"
+ms.lasthandoff: 09/20/2020
+ms.locfileid: "90822377"
 ---
 # <a name="endpoint-protection-assessment-and-recommendations-in-azure-security-center"></a>Azure 安全中心中的 Endpoint Protection 评估和建议
 
@@ -60,25 +60,19 @@ Azure 安全中心提供[支持的](security-center-services.md#endpoint-support
 
 * 安全中心建议在运行 MprotComputerStatus 且发生以下任何情况时，解决计算机上的 Endpoint Protection 运行状况问题 ：
 
-    * 以下属性至少一个为 false：
+  * 以下属性至少一个为 false：
 
-            **AMServiceEnabled**
+    * **AMServiceEnabled**
+    * **AntispywareEnabled**
+    * **RealTimeProtectionEnabled**
+    * **BehaviorMonitorEnabled**
+    * **IoavProtectionEnabled**
+    * **OnAccessProtectionEnabled**
 
-            **AntispywareEnabled**
-    
-            **RealTimeProtectionEnabled**
-    
-            **BehaviorMonitorEnabled**
-    
-            **IoavProtectionEnabled**
-    
-            **OnAccessProtectionEnabled**
-          
-    * 如果以下一个或两个签名更新大于或等于 7。 
+  * 如果以下一个或两个签名更新大于或等于 7。 
 
-            **AntispywareSignatureAge**
-    
-            **AntivirusSignatureAge**
+    * **AntispywareSignatureAge**
+    * **AntivirusSignatureAge**
 
 ## <a name="trend-micro"></a>Trend Micro
 
@@ -180,6 +174,3 @@ Azure 安全中心提供[支持的](security-center-services.md#endpoint-support
 
 %Systemdrive%\WindowsAzure\Logs\Plugins\Microsoft.Azure.Security.IaaSAntimalware(Or PaaSAntimalware)\1.5.5.x(version#)\CommandExecution.log 中提供了 Microsoft Antimalware 扩展日志
 
-### <a name="support"></a>支持
-
-如果需要更多帮助，请联系 [MSDN Azure 和 Stack Overflow 论坛](https://social.msdn.microsoft.com/Forums/home?forum=windowsazurezhchs)上的 Azure 专家。 或者提交 Azure 支持事件。 请转到 [Azure 支持站点](https://support.azure.cn/support/contact/)并选择“获取支持”。 有关使用 Azure 支持的信息，请阅读 [Microsoft Azure 支持常见问题解答](https://support.azure.cn/support/faq)。

@@ -2,15 +2,15 @@
 title: 策略分配结构的详细信息
 description: 介绍策略分配定义，Azure Policy 使用该定义将策略定义和参数关联到资源，以进行评估。
 ms.author: v-tawe
-origin.date: 04/15/2020
-ms.date: 08/06/2020
+origin.date: 08/17/2020
+ms.date: 09/15/2020
 ms.topic: conceptual
-ms.openlocfilehash: f86b5af674b8384802b037222a163af49669e423
-ms.sourcegitcommit: ac70b12de243a9949bf86b81b2576e595e55b2a6
+ms.openlocfilehash: b810dc8e2e40df70a82f6feafe19974c868039d8
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/07/2020
-ms.locfileid: "87917116"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523873"
 ---
 # <a name="azure-policy-assignment-structure"></a>Azure Policy 分配结构
 
@@ -81,8 +81,7 @@ Azure Policy 使用策略分配来定义为哪些资源分配了哪些策略或�
 
 ## <a name="parameters"></a>parameters
 
-此策略分配段为[策略定义或计划定义](./definition-structure.md#parameters)中定义的参数提供值。
-通过这种设计，可对不同的资源重复使用某个策略或计划定义，但需要检查不同的业务价值或成果。
+此策略分配段为[策略定义或计划定义](./definition-structure.md#parameters)中定义的参数提供值。 通过这种设计，可对不同的资源重复使用某个策略或计划定义，但需要检查不同的业务价值或成果。
 
 ```json
 "parameters": {
