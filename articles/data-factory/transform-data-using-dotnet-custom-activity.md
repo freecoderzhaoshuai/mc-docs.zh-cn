@@ -10,13 +10,13 @@ ms.workload: data-services
 ms.topic: conceptual
 ms.custom: seo-lt-2019
 origin.date: 11/26/2018
-ms.date: 05/11/2020
-ms.openlocfilehash: a28bd16737f1f67d943f8bb80880d4bf0fd4ad78
-ms.sourcegitcommit: f8d6fa25642171d406a1a6ad6e72159810187933
+ms.date: 09/21/2020
+ms.openlocfilehash: 9236e20786a448717c323862100afc3638c109cd
+ms.sourcegitcommit: f5d53d42d58c76bb41da4ea1ff71e204e92ab1a7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/28/2020
-ms.locfileid: "82198212"
+ms.lasthandoff: 09/15/2020
+ms.locfileid: "90523771"
 ---
 # <a name="use-custom-activities-in-an-azure-data-factory-pipeline"></a>在 Azure 数据工厂管道中使用自定义活动
 
@@ -25,7 +25,7 @@ ms.locfileid: "82198212"
 在 Azure 数据工厂管道中可使用两类活动。
 
 - [数据移动活动](copy-activity-overview.md)：在[支持的源与接收器数据存储](copy-activity-overview.md#supported-data-stores-and-formats)之间移动数据。
-- [数据转换活动](transform-data.md)：使用 Azure HDInsight 和 Azure Batch 等计算服务转换数据。
+- [数据转换活动](transform-data.md)：使用 Azure HDInsight、Azure Batch 和 Azure 机器学习等计算服务转换数据。
 
 若要将数据移入/移出数据工厂不支持的数据存储，或者要以数据工厂不支持的方式转换/处理数据，可以使用你自己的数据移动或转换逻辑创建**自定义活动**，并在管道中使用该活动。 自定义活动在虚拟机的 **Azure Batch** 池上运行自定义代码逻辑。
 
