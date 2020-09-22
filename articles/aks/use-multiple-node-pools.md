@@ -8,12 +8,12 @@ ms.date: 08/10/2020
 ms.testscope: no
 ms.testdate: 05/25/2020
 ms.author: v-yeche
-ms.openlocfilehash: a6ea613b51b55c1e1289e11f6b54f8b2f08b952f
-ms.sourcegitcommit: fce0810af6200f13421ea89d7e2239f8d41890c0
+ms.openlocfilehash: 5c6385da6c4377b9c682baf6cacd1f837e9eb924
+ms.sourcegitcommit: 78c71698daffee3a6b316e794f5bdcf6d160f326
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2020
-ms.locfileid: "87842574"
+ms.lasthandoff: 09/11/2020
+ms.locfileid: "90021530"
 ---
 # <a name="create-and-manage-multiple-node-pools-for-a-cluster-in-azure-kubernetes-service-aks"></a>为 Azure Kubernetes 服务 (AKS) 中的群集创建和管理多个节点池
 
@@ -157,7 +157,7 @@ az aks nodepool add \
 本部分中的命令说明如何升级单个特定的节点池。 [下一部分](#upgrade-a-cluster-control-plane-with-multiple-node-pools)将会说明升级控制平面与节点池的 Kubernetes 版本之间的关系。
 
 > [!NOTE]
-> 节点池的 OS 映像版本与群集的 Kubernetes 版本相关联。 只能先升级 OS 映像，然后再升级群集。
+> 节点池的 OS 映像版本与群集的 Kubernetes 版本相关联。 只能通过集群升级来获得OS映像的升级。
 
 由于本示例包含两个节点池，因此必须使用 [az aks nodepool upgrade][az-aks-nodepool-upgrade] 来升级节点池。 若要查看可用的升级，请使用 [az aks get-upgrades][az-aks-get-upgrades]
 
@@ -578,7 +578,14 @@ $ az aks nodepool list -g myResourceGroup --cluster-name myAKSCluster
 ]
 ```
 
+<a name="specify-a-taint-label-or-tag-for-a-node-pool"></a>
+### <a name="setting-nodepool-azure-tags"></a>设置 nodepool Azure 标记
+
 可将 Azure 标记应用到 AKS 群集中的节点池。 应用到某个节点池的标记将应用到该节点池中的每个节点，并通过升级持久保存。 标记还会应用于在横向扩展操作期间添加到节点池的新节点。 添加标记有助于完成策略跟踪或成本估算等任务。
+
+进行操作时（例如，通过搜索密钥来检索标记时），Azure 标记可以使用不区分大小写的密钥。 在这种情况下，将更新或检索带有给定密钥的标记，而不考虑大小写。 标记值区分大小写。
+
+在 AKS 中，如果设置了多个键相同但大小写不同的标记，则使用的标记是第一个（按字母顺序）。 例如，`{"Key1": "val1", "kEy1": "val2", "key1": "val3"}` 会导致设置 `Key1` 和 `val1`。
 
 使用 [az aks nodepool add][az-aks-nodepool-add] 创建节点池。 指定名称 tagnodepool，并使用 `--tag` 参数为标记指定 dept=IT 和 costcenter=9999。  
 
@@ -774,22 +781,22 @@ az group delete --name myResourceGroup --yes --no-wait
 <!-- INTERNAL LINKS -->
 
 [aks-windows]: windows-container-cli.md
-[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-get-credentials
-[az-aks-create]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-create
-[az-aks-get-upgrades]: https://docs.microsoft.com/cli/azure/aks?view=azure-cli-latest#az-aks-get-upgrades
-[az-aks-nodepool-add]: https://docs.microsoft.com/cli/azure/aks/nodepool?view=azure-cli-latest#az-aks-nodepool-add
-[az-aks-nodepool-list]: https://docs.microsoft.com/cli/azure/aks/nodepool?view=azure-cli-latest#az-aks-nodepool-list
-[az-aks-nodepool-update]: https://docs.microsoft.com/cli/azure/aks/nodepool?view=azure-cli-latest#az-aks-nodepool-update
-[az-aks-nodepool-upgrade]: https://docs.microsoft.com/cli/azure/aks/nodepool?view=azure-cli-latest#az-aks-nodepool-upgrade
-[az-aks-nodepool-scale]: https://docs.microsoft.com/cli/azure/aks/nodepool?view=azure-cli-latest#az-aks-nodepool-scale
-[az-aks-nodepool-delete]: https://docs.microsoft.com/cli/azure/aks/nodepool?view=azure-cli-latest#az-aks-nodepool-delete
-[az-extension-add]: https://docs.azure.cn/cli/extension?view=azure-cli-latest#az-extension-add
-[az-extension-update]: https://docs.azure.cn/cli/extension?view=azure-cli-latest#az-extension-update
-[az-group-create]: https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-create
-[az-group-delete]: https://docs.azure.cn/cli/group?view=azure-cli-latest#az-group-delete
-[az-group-deployment-create]: https://docs.azure.cn/cli/group/deployment?view=azure-cli-latest#az-group-deployment-create
+[az-aks-get-credentials]: https://docs.microsoft.com/cli/azure/aks#az_aks_get_credentials
+[az-aks-create]: https://docs.microsoft.com/cli/azure/aks#az_aks_create
+[az-aks-get-upgrades]: https://docs.microsoft.com/cli/azure/aks#az_aks_get_upgrades
+[az-aks-nodepool-add]: https://docs.microsoft.com/cli/azure/aks/nodepool#az-aks-nodepool-add
+[az-aks-nodepool-list]: https://docs.microsoft.com/cli/azure/aks/nodepool#az-aks-nodepool-list
+[az-aks-nodepool-update]: https://docs.microsoft.com/cli/azure/aks/nodepool#az-aks-nodepool-update
+[az-aks-nodepool-upgrade]: https://docs.microsoft.com/cli/azure/aks/nodepool#az-aks-nodepool-upgrade
+[az-aks-nodepool-scale]: https://docs.microsoft.com/cli/azure/aks/nodepool#az-aks-nodepool-scale
+[az-aks-nodepool-delete]: https://docs.microsoft.com/cli/azure/aks/nodepool#az-aks-nodepool-delete
+[az-extension-add]: https://docs.azure.cn/cli/extension#az-extension-add
+[az-extension-update]: https://docs.azure.cn/cli/extension#az-extension-update
+[az-group-create]: https://docs.azure.cn/cli/group#az-group-create
+[az-group-delete]: https://docs.azure.cn/cli/group#az-group-delete
+[az-group-deployment-create]: https://docs.azure.cn/cli/group/deployment#az-group-deployment-create
 [gpu-cluster]: gpu-cluster.md
-[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli?view=azure-cli-latest
+[install-azure-cli]: https://docs.azure.cn/cli/install-azure-cli
 [operator-best-practices-advanced-scheduler]: operator-best-practices-advanced-scheduler.md
 [quotas-skus-regions]: quotas-skus-regions.md
 [supported-versions]: supported-kubernetes-versions.md
@@ -800,7 +807,7 @@ az group delete --name myResourceGroup --yes --no-wait
 [ip-limitations]: ../virtual-network/virtual-network-ip-addresses-overview-arm#standard
 [node-resource-group]: faq.md#why-are-two-resource-groups-created-with-aks
 [vmss-commands]: ../virtual-machine-scale-sets/virtual-machine-scale-sets-networking.md#public-ipv4-per-virtual-machine
-[az-list-ips]: https://docs.azure.cn/cli/vmss?view=azure-cli-latest.md?view=azure-cli-latest#az-vmss-list-instance-public-ips
+[az-list-ips]: https://docs.azure.cn/cli/vmss.md#az-vmss-list-instance-public-ips
 
 <!--Not Available on [reduce-latency-ppg]: reduce-latency-ppg.md-->
 
