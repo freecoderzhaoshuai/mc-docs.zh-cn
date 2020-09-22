@@ -6,13 +6,13 @@ ms.author: v-junlch
 ms.service: cache
 ms.topic: conceptual
 ms.custom: subject-armqs
-ms.date: 08/31/2020
-ms.openlocfilehash: c798e30e4e1ebd9af6e525c9bb1e3f91f43cdf10
-ms.sourcegitcommit: 2eb5a2f53b4b73b88877e962689a47d903482c18
+ms.date: 09/14/2020
+ms.openlocfilehash: a43208844f38c8ccf9228d400d881823b54d980a
+ms.sourcegitcommit: 2944f818f2849202724a237555dce3a2fcb47a49
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/03/2020
-ms.locfileid: "89413930"
+ms.lasthandoff: 09/21/2020
+ms.locfileid: "90828786"
 ---
 # <a name="create-an-azure-cache-for-redis-using-a-resource-manager-template"></a>使用资源管理器模板创建 Azure Cache for Redis
 
@@ -27,19 +27,138 @@ ms.locfileid: "89413930"
 ## <a name="prerequisites"></a>先决条件
 
 * **Azure 订阅**：如果没有 Azure 订阅，可在开始前创建一个[试用帐户](https://www.azure.cn/pricing/1rmb-trial/)。
-* **存储帐户**：若要创建帐户，请参阅[创建 Azure 存储帐户](/storage/common/storage-account-create?toc=%2Fazure%2Fstorage%2Fblobs%2Ftoc.json&tabs=template)。 存储帐户用于诊断数据。
+* **存储帐户**：若要创建帐户，请参阅[创建 Azure 存储帐户](/storage/common/storage-account-create?tabs=azure-portal)。 存储帐户用于诊断数据。
 
 ## <a name="review-the-template"></a>查看模板
 
 本快速入门中使用的模板来自 [Azure 快速启动模板](https://azure.microsoft.com/resources/templates/101-redis-cache/)。
 
 ```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "redisCacheName": {
+      "type": "string",
+      "metadata": {
+        "description": "Specify the name of the Azure Redis Cache to create."
+      }
+    },
+    "location": {
+      "defaultValue": "[resourceGroup().location]",
+      "type": "string",
+      "metadata": {
+        "description": "Location of all resources"
+      }
+    },
+    "redisCacheSKU": {
+      "type": "string",
+      "defaultValue": "Standard",
+      "allowedValues": [
+        "Basic",
+        "Standard",
+        "Premium"
+      ],
+      "metadata": {
+        "description": "Specify the pricing tier of the new Azure Redis Cache."
+      }
+    },
+    "redisCacheFamily": {
+      "type": "string",
+      "defaultValue": "C",
+      "allowedValues": [
+        "C",
+        "P"
+      ],
+      "metadata": {
+        "description": "Specify the family for the sku. C = Basic/Standard, P = Premium."
+      }
+    },
+    "redisCacheCapacity": {
+      "type": "int",
+      "defaultValue": 1,
+      "allowedValues": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "metadata": {
+        "description": "Specify the size of the new Azure Redis Cache instance. Valid values: for C (Basic/Standard) family (0, 1, 2, 3, 4, 5, 6), for P (Premium) family (1, 2, 3, 4)"
+      }
+    },
+    "enableNonSslPort": {
+      "type": "bool",
+      "defaultValue": false,
+      "metadata": {
+        "description": "Specify a boolean value that indicates whether to allow access via non-SSL ports."
+      }
+    },
+    "diagnosticsEnabled": {
+      "type": "bool",
+      "defaultValue": false,
+      "metadata": {
+        "description": "Specify a boolean value that indicates whether diagnostics should be saved to the specified storage account."
+      }
+    },
+    "existingDiagnosticsStorageAccountId": {
+      "type": "string",
+      "metadata": {
+        "description": "Sepcify an existing storage account for diagnostics."
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Cache/Redis",
+      "apiVersion": "2019-07-01",
+      "name": "[parameters('redisCacheName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "enableNonSslPort": "[parameters('enableNonSslPort')]",
+        "minimumTlsVersion": "1.2",
+        "sku": {
+          "capacity": "[parameters('redisCacheCapacity')]",
+          "family": "[parameters('redisCacheFamily')]",
+          "name": "[parameters('redisCacheSKU')]"
+        }
+      },
+      "resources": [
+        {
+          "type": "Microsoft.Cache/redis/providers/diagnosticsettings",
+          "apiVersion": "2017-05-01-preview",
+          "name": "[concat(parameters('redisCacheName'), '/Microsoft.Insights/', parameters('redisCacheName'))]",
+          "location": "[parameters('location')]",
+          "dependsOn": [
+            "[resourceId('Microsoft.Cache/Redis', parameters('redisCacheName'))]"
+          ],
+          "properties": {
+            "storageAccountId": "[parameters('existingDiagnosticsStorageAccountId')]",
+            "metrics": [
+              {
+                "timeGrain": "AllMetrics",
+                "enabled": "[parameters('diagnosticsEnabled')]",
+                "retentionPolicy": {
+                  "days": 90,
+                  "enabled": "[parameters('diagnosticsEnabled')]"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
 ```
 
 该模板中定义了以下资源：
 
 * [Microsoft.Cache/Redis](https://docs.microsoft.com/azure/templates/microsoft.cache/redis)
-* `Microsoft.Insights/diagnosticsettings`
+* [Microsoft.Insights/diagnosticsettings](https://docs.microsoft.com/azure/templates/microsoft.insights/diagnosticsettings)
 
 适用于新[高级层](cache-overview.md#service-tiers)的资源管理器模板也已推出。
 
