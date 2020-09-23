@@ -69,11 +69,12 @@ import os
 import cmd
 from azure.keyvault.secrets import SecretClient
 from azure.identity import DefaultAzureCredential
+from azure.identity import AzureAuthorityHosts
 
 keyVaultName = os.environ["KEY_VAULT_NAME"]
 KVUri = f"https://{keyVaultName}.vault.azure.cn"
 
-credential = DefaultAzureCredential()
+credential = DefaultAzureCredential(authority=AzureAuthorityHosts.AZURE_CHINA)
 client = SecretClient(vault_url=KVUri, credential=credential)
 
 secretName = input("Input a name for your secret > ")
@@ -116,7 +117,7 @@ python kv_secrets.py
 在前面的代码中，[`DefaultAzureCredential`](https://docs.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python) 对象使用针对服务主体创建的环境变量。 每当从 Azure 库创建客户端对象（例如 [`SecretClient`](https://docs.microsoft.com/python/api/azure-keyvault-secrets/azure.keyvault.secrets.secretclient?view=azure-python)）以及要通过该客户端使用的资源的 URI 时，都要提供此凭据：
 
 ```python
-credential = DefaultAzureCredential()
+credential = DefaultAzureCredential(authority=AzureAuthorityHosts.AZURE_CHINA)
 client = SecretClient(vault_url=KVUri, credential=credential)
 ```
 
